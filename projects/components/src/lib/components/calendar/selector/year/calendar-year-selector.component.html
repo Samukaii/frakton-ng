@@ -1,0 +1,9 @@
+<div class="grid-cols-3 grid w-full gap-2">
+	@for (year of years(); track $index) {
+		<div
+			(click)="selectYear(year)"
+			class="text-center capitalize cursor-pointer hover:bg-blue-100 transition px-2 py-1 rounded-md">
+			{{ year | date: 'yyyy' }}
+		</div>
+	}
+</div>

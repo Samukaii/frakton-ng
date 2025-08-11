@@ -1,0 +1,46 @@
+<div class="p-2 flex flex-col gap-2">
+	<div class="flex gap-2">
+		@for (option of options().slice(0, 3); track option.id) {
+			<fkt-badge
+				class="block cursor-pointer hover:scale-105"
+				(click)="select.emit(option)"
+				[color]="option.color"
+			>
+				<div badge-content class="flex gap-2 items-center">
+					@if (option.id === selected()?.id) {
+						<fkt-icon name="check" class="!text-sm" />
+					}
+					<p class="whitespace-nowrap">
+						{{ option.name }}
+					</p>
+
+				</div>
+
+			</fkt-badge>
+		}
+	</div>
+
+	@let secondRowOptions = options().slice(3);
+
+	@if (secondRowOptions.length) {
+		<div class="flex flex-wrap gap-2">
+			@for (option of secondRowOptions; track option.id) {
+				<fkt-badge
+					class="block cursor-pointer hover:scale-105"
+					(click)="select.emit(option)"
+					[color]="option.color"
+				>
+					<div badge-content class="flex gap-2 items-center">
+						<p class="whitespace-nowrap">
+							{{ option.name }}
+						</p>
+						@if (option.id === selected()?.id) {
+							<fkt-icon name="check" />
+						}
+					</div>
+				</fkt-badge>
+			}
+		</div>
+	}
+
+</div>

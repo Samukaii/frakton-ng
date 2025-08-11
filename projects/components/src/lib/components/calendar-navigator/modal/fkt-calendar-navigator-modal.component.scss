@@ -1,0 +1,5 @@
+@reference "../../../styles/tailwind.css";
+
+:host {
+	@apply block h-fit w-fit p-4 min-w-[400px];
+}

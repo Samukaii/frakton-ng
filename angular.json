@@ -1,0 +1,113 @@
+{
+	"$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+	"version": 1,
+	"newProjectRoot": "projects",
+	"projects": {
+		"core": {
+			"projectType": "library",
+			"root": "projects/core",
+			"sourceRoot": "projects/core/src",
+			"prefix": "fk",
+			"architect": {
+				"build": {
+					"builder": "@angular/build:ng-packagr",
+					"configurations": {
+						"production": {
+							"tsConfig": "projects/core/tsconfig.lib.prod.json"
+						},
+						"development": {
+							"tsConfig": "projects/core/tsconfig.lib.json"
+						}
+					},
+					"defaultConfiguration": "production"
+				},
+				"test": {
+					"builder": "@angular/build:karma",
+					"options": {
+						"tsConfig": "projects/core/tsconfig.spec.json"
+					}
+				}
+			}
+		},
+		"components": {
+			"projectType": "library",
+			"root": "projects/components",
+			"sourceRoot": "projects/components/src",
+			"prefix": "fkt",
+			"architect": {
+				"build": {
+					"builder": "@angular/build:ng-packagr",
+					"configurations": {
+						"production": {
+							"tsConfig": "projects/components/tsconfig.lib.prod.json"
+						},
+						"development": {
+							"tsConfig": "projects/components/tsconfig.lib.json"
+						}
+					},
+					"defaultConfiguration": "production"
+				},
+				"test": {
+					"builder": "@angular/build:karma",
+					"options": {
+						"tsConfig": "projects/components/tsconfig.spec.json"
+					}
+				},
+				"storybook": {
+					"builder": "@storybook/angular:start-storybook",
+					"options": {
+						"configDir": "projects/components/.storybook",
+						"browserTarget": "components:build:development",
+						"compodoc": false,
+						"port": 6006
+					}
+				},
+				"build-storybook": {
+					"builder": "@storybook/angular:build-storybook",
+					"options": {
+						"configDir": "projects/components/.storybook",
+						"browserTarget": "components:build:production",
+						"compodoc": false,
+						"outputDir": "dist/storybook/components"
+					}
+				}
+			}
+		}
+	},
+	"schematics": {
+		"@schematics/angular:component": {
+			"type": "component",
+			"style": "scss",
+			"inlineStyle": false,
+			"skipTests": true
+		},
+		"@schematics/angular:directive": {
+			"type": "directive",
+			"skipTests": true
+		},
+		"@schematics/angular:service": {
+			"type": "service",
+			"skipTests": true
+		},
+		"@schematics/angular:guard": {
+			"typeSeparator": ".",
+			"skipTests": true
+		},
+		"@schematics/angular:interceptor": {
+			"typeSeparator": ".",
+			"skipTests": true
+		},
+		"@schematics/angular:module": {
+			"typeSeparator": ".",
+			"skipTests": true
+		},
+		"@schematics/angular:pipe": {
+			"typeSeparator": ".",
+			"skipTests": true
+		},
+		"@schematics/angular:resolver": {
+			"typeSeparator": ".",
+			"skipTests": true
+		}
+	}
+}

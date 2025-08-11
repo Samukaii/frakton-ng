@@ -1,0 +1,48 @@
+<div class="flex gap-2 items-center">
+	<label [class.!text-red-500]="!!error.message()"
+		   [class.float]="control().viewValue()"
+		   class="text-gray-800 font-medium text-sm mb-1">{{ label() }}</label>
+</div>
+
+<div class="relative">
+	<input
+		[spellcheck]="spellcheck() ? 'true' : 'false'"
+		[class.!pr-10]="type() === 'password'"
+		[class.!border-red-500]="!!error.message()"
+		class="!border-[1px] border-transparent"
+		#input
+		[type]="inputType()"
+		[placeholder]="placeholder()"
+		[signalFormControl]="control()"
+		[transformer]="transformerValue()"
+	/>
+
+	<div class="absolute pointer-events-none top-0 w-full flex items-center justify-end h-full">
+		@if (type() === "password") {
+			<div class="absolute top-2 right-2 cursor-pointer">
+				@if (showPassword()) {
+					<fkt-icon
+						(click)="showPassword.set(false)"
+						class="size-6 text-gray-500 hover:text-yellow-600 transition"
+						name="eye-slash"
+					/>
+				} @else {
+					<fkt-icon
+						(click)="showPassword.set(true)"
+						class="size-6 text-gray-500 hover:text-yellow-600 transition"
+						name="eye"
+					/>
+				}
+			</div>
+		} @else if (suffix()) {
+			<div class="pointer-events-auto">
+				<ng-container
+					[ngTemplateOutlet]="suffix()!.templateRef"
+				/>
+			</div>
+		}
+	</div>
+
+</div>
+
+<fkt-field-error #error [control]="control()" />

@@ -1,0 +1,19 @@
+<button (click)="$event.preventDefault()" [disabled]="disabled() || loading()" [class]="classes()">
+	@if (loading()) {
+		<div class="spinner"></div>
+		<p>{{ loadingText() || text() }}</p>
+	} @else {
+		<div
+			[class.flex-row-reverse]="iconPosition() === 'left'"
+			class="flex items-center gap-2"
+		>
+			@let iconName = icon();
+			@if (text()) {
+				<p>{{ text() }}</p>
+			}
+			@if (iconName) {
+				<fkt-icon class="transition rounded-full " [name]="iconName"></fkt-icon>
+			}
+		</div>
+	}
+</button>

@@ -1,0 +1,17 @@
+@reference "../../styles/tailwind.css";
+
+:host {
+	@apply w-full flex-1 overflow-auto;
+	@apply block rounded-xl ring-1 ring-gray-300;
+}
+
+thead {
+	@apply border-b border-gray-300;
+
+}
+
+tbody {
+	tr:not(:last-child) {
+		@apply border-b border-gray-300;
+	}
+}

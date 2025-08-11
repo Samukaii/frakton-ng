@@ -1,0 +1,15 @@
+@switch (mode()) {
+	@case ('month') {
+		<fkt-calendar-month-header
+			(yearClick)="openYearModal()"
+			(monthClick)="openMonthModal()"
+			[(currentDate)]="currentDate"
+		/>
+	}
+	@case ('year') {
+		<fkt-calendar-year-header
+			(yearClick)="openYearModal()"
+			[(currentDate)]="currentDate"
+		/>
+	}
+}

@@ -1,0 +1,37 @@
+<div  (mouseover)="showActions.set(true)" (mouseout)="showActions.set(false)" class="flex flex-col gap-2">
+	<div
+		class="icon-card flex relative gap-1 p-2 rounded-md w-[120px] h-[130px] overflow-hidden justify-center border border-gray-200 items-center flex-col">
+		<fkt-icon
+			class="text-xl"
+			[name]="icon()"
+		/>
+
+		@if (copied()) {
+			<p class="text-green-500 font-semibold text-base">
+				Copied!
+			</p>
+		}
+
+		<div
+			[class.opacity-100]="showActions() && !copied()"
+			[class.!pointer-events-auto]="showActions() && !copied()"
+			[class.cursor-pointer]="showActions() && !copied()"
+			class="icon-card__actions absolute flex opacity-0 pointer-events-none cursor-auto transition flex-col w-full p-1 items-center justify-center h-full">
+			<div class="flex flex-col gap-2 w-full h-full">
+				<div (click)="copyTemplate()" class="bg-gray-100 cursor-pointer hover:bg-gray-300 transition text-sm h-full rounded-md flex justify-center font-semibold  items-center w-full">
+					Copy template
+				</div>
+
+				<div (click)="copyIconName()" class="bg-gray-100 cursor-pointer hover:bg-gray-300 transition text-sm h-full rounded-md flex justify-center font-semibold items-center w-full">
+					Copy name
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<p class="text-sm text-center truncate max-w-[100px]">
+		{{ icon() }}
+	</p>
+
+</div>

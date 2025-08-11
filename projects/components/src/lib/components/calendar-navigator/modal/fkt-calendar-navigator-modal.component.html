@@ -1,0 +1,25 @@
+@switch (step()) {
+	@case ('date') {
+		<fkt-calendar-date-selector
+			(currentDateChange)="selectDate($event)"
+			[currentDate]="currentDate()"
+		/>
+	}
+	@case ('month') {
+		<fkt-calendar-month-selector
+			(currentDateChange)="selectDate($event)"
+			[currentDate]="currentDate()"
+		/>
+	}
+	@case ('year') {
+		<fkt-calendar-multi-year-header
+			[(currentDate)]="internalDate"
+		/>
+		<hr class="my-2 border-gray-200">
+
+		<fkt-calendar-year-selector
+			(currentDateChange)="selectDate($event)"
+			[currentDate]="internalDate()"
+		/>
+	}
+}

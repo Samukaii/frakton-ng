@@ -1,0 +1,30 @@
+<div class="flex border border-gray-200 gap-4 min-h-[400px] justify-center items-center">
+	@let icon = noResults().icon;
+	@let action = noResults().action;
+
+	@if (icon?.name) {
+		<fkt-icon
+			[style.font-size]="icon!.size || '116px'"
+			[class]="'text-gray-800'"
+			[name]="icon!.name"
+		/>
+	}
+
+	<div class="flex flex-col">
+		<h3 class="text-lg font-semibold text-gray-800">
+			{{ noResults().label }}
+		</h3>
+		@if (noResults().description) {
+			<p class="mb-3  text-gray-800">
+				{{ noResults().description }}
+			</p>
+		}
+
+		@if (action) {
+			<fkt-buttons-list
+				[actions]="[action]"
+			/>
+		}
+
+	</div>
+</div>

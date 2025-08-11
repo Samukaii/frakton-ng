@@ -1,0 +1,6 @@
+@reference "../../../styles/tailwind.css";
+
+:host {
+	@apply flex justify-center w-full;
+}
+

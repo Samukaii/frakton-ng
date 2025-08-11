@@ -1,0 +1,12 @@
+<fkt-navigator
+	(next)="next()"
+	(previous)="previous()"
+>
+	<div class="flex items-center gap-3">
+		<strong
+			(click)="yearClick.emit()"
+			class="cursor-pointer hover:bg-blue-100 transition px-1 rounded-md text-lg font-semibold">
+			{{ currentDate() | date: 'yyyy' }}
+		</strong>
+	</div>
+</fkt-navigator>

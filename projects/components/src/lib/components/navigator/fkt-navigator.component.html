@@ -1,0 +1,21 @@
+<div class="flex justify-between items-center">
+	<div class="flex">
+		<fkt-button
+			(click)="previous.emit()"
+			[disabled]="!canGoToPrevious()"
+			theme="basic"
+			icon="chevron-double-left"
+		/>
+	</div>
+	<div class="flex w-full justify-center items-center">
+		<ng-content/>
+	</div>
+	<div class="flex justify-end">
+		<fkt-button
+			(click)="next.emit()"
+			[disabled]="!canGoToNext()"
+			theme="basic"
+			icon="chevron-double-right"
+		/>
+	</div>
+</div>

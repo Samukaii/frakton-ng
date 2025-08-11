@@ -1,0 +1,18 @@
+<fkt-input
+	#input
+	[label]="label() ?? ''"
+	(click)="openModal(input.element()?.nativeElement!, 'bottom-start')"
+	[placeholder]="placeholder() ?? ''"
+	[transformer]="transformer"
+	[control]="control()"
+>
+	<div #ref class="mr-1" *appFormControlSuffix>
+		<fkt-button
+			theme="basic"
+			(click)="$event.stopImmediatePropagation(); openModal(ref, 'bottom-end')"
+			variant="icon"
+			icon="calendar"
+			color="primary"
+		/>
+	</div>
+</fkt-input>

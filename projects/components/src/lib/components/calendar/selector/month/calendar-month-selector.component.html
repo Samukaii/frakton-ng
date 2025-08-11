@@ -1,0 +1,9 @@
+<div class="grid-cols-3 grid w-full gap-2">
+	@for (month of months; track month) {
+		<div
+			(click)="selectMonth(month)"
+			class="text-center capitalize cursor-pointer hover:bg-blue-100 transition px-2 py-1 rounded-md">
+			{{ month | date: 'MMMM' }}
+		</div>
+	}
+</div>

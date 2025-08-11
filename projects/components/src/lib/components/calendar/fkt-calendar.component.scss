@@ -1,0 +1,9 @@
+@reference "../../styles/tailwind.css";
+
+:host {
+	@apply flex flex-col w-full h-full;
+
+	&.with-border {
+		@apply border border-gray-200 p-4 rounded-md shadow-md;
+	}
+}

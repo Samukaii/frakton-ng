@@ -1,0 +1,37 @@
+@switch (step()) {
+	@case ('date') {
+		<fkt-calendar-month-header
+			(yearClick)="selectStep('year')"
+			(monthClick)="selectStep('month')"
+			[(currentDate)]="currentDate"
+		/>
+		<hr class="my-2 border-gray-200 ">
+		<fkt-calendar-date-selector
+			[configFn]="configFn()"
+			[(currentDate)]="currentDate"
+		/>
+	}
+	@case ('month') {
+		<fkt-calendar-year-header
+			(yearClick)="selectStep('year')"
+			[(currentDate)]="currentDate"
+		/>
+		<hr class="my-2 border-gray-200">
+		<fkt-calendar-month-selector
+			[configFn]="configFn()"
+			[(currentDate)]="currentDate"
+			(back)="goBackToLastStep()"
+		/>
+	}
+	@case ('year') {
+		<fkt-calendar-multi-year-header
+			[(currentDate)]="currentDate"
+		/>
+		<hr class="my-2 border-gray-200">
+		<fkt-calendar-year-selector
+			[configFn]="configFn()"
+			[(currentDate)]="currentDate"
+			(back)="goBackToLastStep()"
+		/>
+	}
+}

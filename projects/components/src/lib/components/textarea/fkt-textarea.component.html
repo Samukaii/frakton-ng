@@ -1,0 +1,19 @@
+<div class="flex gap-2 items-center">
+	<label [class.!text-red-500]="!!error.message()"
+		   [class.float]="control().viewValue()"
+		   class="text-gray-800 font-medium text-sm mb-1">{{ label() }}</label>
+</div>
+
+
+<div class="relative">
+	<textarea
+		[class.!border-red-500]="!!error.message()"
+		class="!border-[1px] border-transparent"
+		[signalFormControl]="control()"
+		#textarea
+		[placeholder]="placeholder()"
+	></textarea>
+</div>
+
+
+<fkt-field-error #error [control]="control()"/>

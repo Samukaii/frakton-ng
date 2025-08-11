@@ -1,0 +1,15 @@
+@reference "../../styles/tailwind.css";
+
+:host {
+	@apply flex gap-2;
+
+	&.vertical {
+		@apply flex-col;
+	}
+
+	&.fill {
+		& > * {
+			width: 100%;
+		}
+	}
+}

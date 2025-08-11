@@ -1,0 +1,26 @@
+<div class="flex flex-col">
+	<div class="flex border-b border-gray-300 overflow-hidden">
+		@for (tab of tabs(); track tab.key()) {
+			<div
+				(click)="selectTab(tab.key())"
+				class="flex p-4 w-full gap-2 justify-center border-l border-gray-300 cursor-pointer hover:bg-gray-200 transition border-transparent"
+				[class.!border-b-gray-500]="tab.key() === activeTab()"
+				[class.!border-b-2]="tab.key() === activeTab()"
+			>
+				@if (tab.icon()) {
+					<fkt-icon [name]="tab.icon()!"/>
+				}
+
+				<p class="m-0">{{ tab.label() }}</p>
+
+			</div>
+		}
+	</div>
+
+
+	<div class="flex w-full c-w-full p-4">
+		@if (activeTabComponent()) {
+			<ng-container [ngTemplateOutlet]="activeTabComponent()?.template()"/>
+		}
+	</div>
+</div>

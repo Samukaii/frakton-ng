@@ -1,0 +1,5 @@
+@reference "../../styles/tailwind.css";
+
+:host {
+  @apply text-xs text-red-500 transition-all h-5 overflow-hidden flex items-end;
+}

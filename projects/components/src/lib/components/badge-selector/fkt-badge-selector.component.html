@@ -1,0 +1,20 @@
+@let selectedOptionValue = selectedOption();
+
+@if (selectedOptionValue) {
+	<fkt-badge
+		class="cursor-pointer hover:scale-105 transition block"
+		(click)="select()"
+		[color]="selectedOptionValue.color"
+	>
+		<div badge-content class="flex gap-2 items-center">
+			<p class="whitespace-nowrap">
+				{{ selectedOption()?.name }}
+
+			</p>
+			<fkt-icon
+				name="chevron-down"
+			/>
+		</div>
+	</fkt-badge>
+
+}

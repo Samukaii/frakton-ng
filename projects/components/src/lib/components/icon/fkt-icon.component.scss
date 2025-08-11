@@ -1,0 +1,16 @@
+:host {
+	line-height: 1 !important;
+	font-family: FintraxIcons, sans-serif;
+	font-size: 1.25rem;
+	width: fit-content;
+	height: fit-content;
+	min-height: 0;
+}
+
+:host.transition {
+	transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+:host.rounded-full {
+	border-radius: 9999px;
+}

@@ -1,0 +1,119 @@
+
+:host {
+	@apply block w-fit relative bg-transparent;
+
+	.message {
+		box-shadow: 1px 8px 15px 5px #00000026;
+		background-color: var(--color);
+	}
+
+	.tip {
+		border-color: var(--color);
+	}
+
+	// LEFT
+	&.left-center-position {
+		.tip {
+			@apply border-r-[10px] border-b-[5px] border-b-transparent border-t-[5px] border-t-transparent absolute left-[-10px] top-[50%] -translate-y-[50%];
+		}
+	}
+
+	&.left-start-position {
+		.tip {
+			@apply border-r-[10px] border-b-[5px] border-b-transparent border-t-[5px] border-t-transparent absolute left-[-10px] top-[0%];
+		}
+
+		.message {
+			@apply bottom-[10px];
+		}
+	}
+
+	&.left-end-position {
+		.tip {
+			@apply border-r-[10px] border-b-[5px] border-b-transparent border-t-[5px] border-t-transparent absolute left-[-10px] top-[95%];
+		}
+
+		.message {
+			@apply top-[16px];
+		}
+	}
+
+	// RIGHT
+	&.right-center-position {
+		.tip {
+			@apply border-l-[10px] border-b-[5px] border-b-transparent border-t-[5px] border-t-transparent absolute right-[-10px] top-[50%] -translate-y-[50%];
+		}
+	}
+
+	&.right-start-position {
+		.tip {
+			@apply border-l-[10px] border-b-[5px] border-b-transparent border-t-[5px] border-t-transparent absolute right-[-10px] top-[0%];
+		}
+
+		.message {
+			@apply bottom-[10px];
+		}
+	}
+
+	&.right-end-position {
+		.tip {
+			@apply border-l-[10px] border-b-[5px] border-b-transparent border-t-[5px] border-t-transparent absolute right-[-10px] top-[95%];
+		}
+
+		.message {
+			@apply top-[16px];
+		}
+	}
+
+	// TOP
+	&.top-center-position {
+		.tip {
+			@apply border-b-[10px] border-l-[5px] border-l-transparent border-r-[5px] border-r-transparent absolute top-[-10px] left-[50%] -translate-x-[50%];
+		}
+	}
+
+	&.top-start-position {
+		.tip {
+			@apply border-b-[10px] border-l-[5px] border-l-transparent border-r-[5px] border-r-transparent absolute top-[-10px] -left-[3%];
+		}
+
+		.message {
+			@apply right-[20px];
+		}
+	}
+
+	&.top-end-position {
+		.tip {
+			@apply border-b-[10px] border-l-[5px] border-l-transparent border-r-[5px] border-r-transparent absolute top-[-10px] left-[100%];
+		}
+		.message {
+			@apply left-[20px];
+		}
+	}
+
+	// BOTTOM
+	&.bottom-center-position {
+		.tip {
+			@apply border-t-[10px] border-l-[5px] border-l-transparent border-r-[5px] border-r-transparent absolute bottom-[-10px] left-[50%] -translate-x-[50%];
+		}
+	}
+
+	&.bottom-start-position {
+		.tip {
+			@apply border-t-[10px] border-l-[5px] border-l-transparent border-r-[5px] border-r-transparent absolute bottom-[-10px] -left-[3%];
+		}
+
+		.message {
+			@apply right-[20px];
+		}
+	}
+
+	&.bottom-end-position {
+		.tip {
+			@apply border-t-[10px] border-l-[5px] border-l-transparent border-r-[5px] border-r-transparent absolute bottom-[-10px] left-[100%];
+		}
+		.message {
+			@apply left-[20px];
+		}
+	}
+}

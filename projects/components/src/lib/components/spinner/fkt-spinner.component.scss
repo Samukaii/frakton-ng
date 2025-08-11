@@ -1,0 +1,25 @@
+@reference "../../styles/tailwind.css";
+
+.spinner {
+	border-width: var(--stroke, 6px);
+	width: var(--size, 80px);
+	height: var(--size, 80px);
+
+	@apply border-gray-100 rounded-full animate-spin;
+
+	&.primary {
+		@apply border-t-gray-500;
+	}
+
+	&.yellow {
+		@apply border-t-yellow-500;
+	}
+
+	&.red {
+		@apply border-t-red-500;
+	}
+
+	&.green {
+		@apply border-t-green-500;
+	}
+}

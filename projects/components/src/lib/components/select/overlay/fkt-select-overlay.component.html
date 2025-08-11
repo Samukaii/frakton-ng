@@ -1,0 +1,26 @@
+<ul class="overlay">
+	@if (loading()) {
+		<div class="flex w-full justify-center items-center p-4">
+			<fkt-spinner/>
+		</div>
+	} @else {
+		@for (option of options(); track option.value) {
+			<li
+				(click)="select.emit(option)"
+			>{{ option.label }}
+				<div>
+					@if (option.value === selected()) {
+						<fkt-icon
+							class="text-gray-700 size-6"
+							name="check"
+						/>
+					}
+				</div>
+			</li>
+		} @empty {
+			<fkt-no-results
+				[noResults]="noResults()!"
+			/>
+		}
+	}
+</ul>

@@ -1,0 +1,5 @@
+@reference "../../../styles/tailwind.css";
+
+:host {
+	@apply gap-2 w-full justify-between flex;
+}
