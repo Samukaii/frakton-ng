@@ -1,7 +1,7 @@
 import { Component, computed, input, output } from '@angular/core';
 
 @Component({
-	selector: 'fkt-sidebar',
+	selector: 'fkt-drawer',
 	imports: [],
 	templateUrl: './fkt-drawer.component.html',
 	styleUrl: './fkt-drawer.component.scss'

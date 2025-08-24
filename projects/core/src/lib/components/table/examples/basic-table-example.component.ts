@@ -3,7 +3,7 @@ import { TableComponent } from '../table.component';
 import { FktIdentifiable } from '../../../shared/types';
 import { FktButtonAction } from '../../button';
 import { createUserColumns, mockUsers } from './table-mock-data';
-import { FktNoResults } from 'components';
+import { FktNoResults } from '../../no-results';
 import { FktTableActionFn, FktTableClassesFn, FktTableColumnFn } from '../fkt-table.types';
 
 @Component({

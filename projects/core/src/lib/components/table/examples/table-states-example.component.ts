@@ -2,8 +2,8 @@ import { Component, computed, input, signal } from '@angular/core';
 import { TableComponent } from '../table.component';
 import { FktButtonAction, FktButtonComponent } from '../../button';
 import { createUserActions, createUserClasses, createUserColumns, mockUsers, User } from './table-mock-data';
-import { FktNoResults } from 'components';
 import { FktTableActionFn, FktTableClassesFn, FktTableColumnFn } from '../fkt-table.types';
+import { FktNoResults } from '../../no-results';
 
 type TableState = 'loading' | 'empty' | 'populated';
 
