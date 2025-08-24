@@ -1,3 +1,12 @@
-export const fktSidebarModes = ['overlay', 'push'] as const;
+import { FktIconName } from '../../shared/types';
 
-export type FktDrawerTypes = typeof fktSidebarModes[number];
+export interface FktMenuItem {
+	name: string;
+	icon: FktIconName;
+	path: string;
+}
+
+export interface FktMenuGroup {
+	name?: string;
+	items: FktMenuItem[];
+}

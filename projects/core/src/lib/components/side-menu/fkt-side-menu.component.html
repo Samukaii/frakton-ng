@@ -1,8 +1,8 @@
-<app-sidebar
+<fkt-drawer
 	mode="push"
-	[width]="service.opened() ? '350px' : '80px'"
+	[width]="opened() ? '350px' : '80px'"
 	[opened]="true"
-	(backdropClick)="service.close()">
+	(backdropClick)="opened.set(false)">
 	<div class="w-full h-full flex flex-col"
 		 side-main>
 		<ng-content />
@@ -15,14 +15,14 @@
 					@for (group of groups; track group.name) {
 						@if (group.name) {
 							<div
-								[style.max-height]="service.opened() ? '50px' : '0px'"
+								[style.max-height]="opened() ? '50px' : '0px'"
 								class="transition-[max-height] overflow-hidden">
 								<h2 class="text-gray-400 mt-4 mb-1">{{ group.name }}</h2>
 
 							</div>
 							<div
-								[class.hidden]="!service.opened() && $first"
-								[class.mt-4]="!service.opened()"
+								[class.hidden]="!opened() && $first"
+								[class.mt-4]="!opened()"
 								class="mb-4">
 								<hr class="border-gray-600">
 							</div>
@@ -37,17 +37,17 @@
 							class="flex flex-col gap-2">
 							@for (menu of group.items; track menu.path) {
 								<div
-									[appTooltip]="menu.name"
+									[fktTooltip]="menu.name"
 									position="right-center"
-									[tooltipEnabled]="!service.opened()"
+									[tooltipEnabled]="!opened()"
 									[routerLink]="menu.path"
 									class="w-full bg-gray-700 bg-opacity-50 items-center flex gap-2 text-white rounded-lg cursor-pointer transition hover:bg-gray-600 p-3"
 									routerLinkActive="!bg-gray-600 bg-opacity-100"
 								>
-									<app-icon
+									<fkt-icon
 										class="!text-3xl"
 										[name]="menu.icon" />
-									@if (service.opened()) {
+									@if (opened()) {
 										<p class="whitespace-nowrap">
 											{{ menu.name }}
 										</p>
@@ -64,4 +64,4 @@
 
 
 	</div>
-</app-sidebar>
+</fkt-drawer>

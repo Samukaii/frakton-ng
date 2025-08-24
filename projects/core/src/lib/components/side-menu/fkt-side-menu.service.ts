@@ -3,7 +3,7 @@ import { Injectable, signal } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class SideMenuService {
+export class FktSideMenuService {
 	opened = signal(false);
 
 	open() {
