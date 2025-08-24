@@ -17,12 +17,12 @@
 	],
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/frakton-ng/core.git"
+		"url": "https://github.com/Samukaii/frakton-ng.git"
 	},
 	"bugs": {
-		"url": "https://github.com/frakton-ng/core/issues"
+		"url": "https://github.com/Samukaii/frakton-ng/issues"
 	},
-	"homepage": "https://github.com/frakton-ng/core#readme",
+	"homepage": "https://github.com/Samukaii/frakton-ng/core#readme",
 	"keywords": [
 		"design-system",
 		"angular",
