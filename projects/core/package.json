@@ -1,12 +1,51 @@
 {
-  "name": "core",
-  "version": "0.0.1",
-  "peerDependencies": {
-    "@angular/common": "^20.1.0",
-    "@angular/core": "^20.1.0"
-  },
-  "dependencies": {
-    "tslib": "^2.3.0"
-  },
-  "sideEffects": false
+	"name": "@frakton-ng/core",
+	"version": "1.0.0",
+	"description": "Frakton NG — Design System Angular: componentes UI modernos, acessíveis e escaláveis para acelerar o desenvolvimento de aplicações.",
+	"author": "Samuel Alejandro <samuelalejandro.dev@gmail.com>",
+	"license": "MIT",
+	"main": "dist/index.js",
+	"types": "dist/index.d.ts",
+	"exports": {
+		".": {
+			"import": "./dist/index.js",
+			"types": "./dist/index.d.ts"
+		}
+	},
+	"files": [
+		"dist"
+	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/frakton-ng/core.git"
+	},
+	"bugs": {
+		"url": "https://github.com/frakton-ng/core/issues"
+	},
+	"homepage": "https://github.com/frakton-ng/core#readme",
+	"keywords": [
+		"design-system",
+		"angular",
+		"frakton-ng",
+		"component-library",
+		"ui",
+		"acessibilidade",
+		"web-components",
+		"ux"
+	],
+	"peerDependencies": {
+		"@angular/common": "^20.1.0",
+		"@angular/core": "^20.1.0"
+	},
+	"dependencies": {
+		"tslib": "^2.3.0"
+	},
+	"sideEffects": false,
+	"engines": {
+		"node": ">=18.0.0",
+		"npm": ">=8.0.0"
+	},
+	"publishConfig": {
+		"access": "public"
+	}
 }

@@ -1,0 +1,223 @@
+import {Meta, Story, Controls, ArgTypes} from '@storybook/addon-docs/blocks';
+import * as fktCalendarNavigatorStories from './fkt-calendar-navigator.stories';
+
+<Meta of={fktCalendarNavigatorStories} />
+
+The **FktCalendarNavigator** component provides an interactive calendar header with navigation controls and modal-based date selection. It displays the current month/year and allows users to navigate between dates with modal overlays for detailed selection.
+
+## Key Features
+
+- **Multiple Modes**: Switch between 'month' and 'year' display modes
+- **Modal Integration**: Opens detailed calendar modals for date/month/year selection
+- **Navigation Controls**: Previous/next navigation with customizable button states
+- **Two-way Binding**: Reactive date binding with model signals
+- **Overlay System**: Advanced modal positioning and management
+- **Click Navigation**: Clickable month/year labels that open selection modals
+- **Responsive Design**: Adapts to different screen sizes and containers
+
+## Configuration Options
+<ArgTypes/>
+
+### Types
+```typescript
+type FktCalendarNavigatorMode = 'month' | 'year';
+```
+
+## Examples
+
+### Month Mode Navigator
+
+Calendar navigator in month mode displaying both month and year with clickable navigation.
+
+<Story of={fktCalendarNavigatorStories.MonthMode} />
+___
+<Controls of={fktCalendarNavigatorStories.MonthMode} />
+
+```typescript
+import { Component, signal } from '@angular/core';
+import { FktCalendarNavigatorComponent } from '@frakton-ng';
+
+@Component({
+  selector: 'month-mode-example',
+  template: `
+    <fkt-calendar-navigator
+      [mode]="'month'"
+      [(currentDate)]="currentDate"
+    />
+  `,
+  standalone: true,
+  imports: [FktCalendarNavigatorComponent]
+})
+export class ExampleComponent {
+  currentDate = signal(new Date());
+}
+```
+
+### Year Mode Navigator
+
+Calendar navigator in year mode displaying only the year with navigation controls.
+
+<Story of={fktCalendarNavigatorStories.YearMode} />
+___
+<Controls of={fktCalendarNavigatorStories.YearMode} />
+
+```typescript
+import { Component, signal } from '@angular/core';
+import { FktCalendarNavigatorComponent } from '@frakton-ng';
+
+@Component({
+  selector: 'year-mode-example',
+  template: `
+    <fkt-calendar-navigator
+      [mode]="'year'"
+      [(currentDate)]="currentDate"
+    />
+  `,
+  standalone: true,
+  imports: [FktCalendarNavigatorComponent]
+})
+export class ExampleComponent {
+  currentDate = signal(new Date());
+}
+```
+
+
+### With Form Integration
+
+Calendar navigator integrated with reactive forms for date selection.
+
+<Story of={fktCalendarNavigatorStories.FormIntegration} />
+___
+<Controls of={fktCalendarNavigatorStories.FormIntegration} />
+
+```typescript
+import { Component, signal, effect, inject } from '@angular/core';
+import { DatePipe } from '@angular/common';
+import { SignalFormBuilder,  } from '@frakton-ng/forms';
+import { FktCalendarNavigatorComponent } from '@frakton-ng';
+
+@Component({
+  selector: 'form-integration-example',
+  template: `
+	  <div class="border-b pb-2 mb-2 border-gray-200">
+		  <fkt-calendar-navigator
+			  [mode]="'month'"
+			  [(currentDate)]="formDate"
+		  />
+	  </div>
+	  <div class="text-gray-600 text-center font-semibold">
+		  Selected: {{ dateForm.controls.selectedDate.value() | date:'fullDate' }}
+	  </div>
+  `,
+  standalone: true,
+	imports: [FktCalendarNavigatorComponent, DatePipe]
+})
+export class ExampleComponent {
+  private fb = inject(SignalFormBuilder);
+
+  protected dateForm = this.fb.group({
+    selectedDate: [new Date()]
+  });
+
+  formDate = signal(new Date());
+
+  updateFormDate = effect(() => {
+	  this.dateForm.patchValue({
+		  selectedDate: this.formDate()
+	  });
+  });
+}
+```
+
+### Dynamic Mode Switching
+
+Navigator with the ability to switch between month and year display modes.
+
+<Story of={fktCalendarNavigatorStories.DynamicMode} />
+___
+<Controls of={fktCalendarNavigatorStories.DynamicMode} />
+
+```typescript
+import { Component, signal } from '@angular/core';
+import {DatePipe} from "@angular/common";
+import {
+	FktBadgeComponent,
+	FktButtonComponent,
+	CalendarNavigatorMode,
+	FktCalendarNavigatorComponent
+} from "@frakton-ng";
+
+@Component({
+  selector: 'dynamic-mode-example',
+  template: `
+	  <div class="space-y-4">
+		  <fkt-calendar-navigator
+			  [mode]="currentMode()"
+			  [(currentDate)]="selectedDate"
+		  />
+
+		  <div class="flex c-w-full justify-between items-center mt-2 pt-2 border-t border-gray-200 text-gray-600">
+			  <div class="justify-start">
+				  <fkt-badge
+					  text="Mode: {{currentMode()}}"
+					  color="blue">
+
+				  </fkt-badge>
+			  </div>
+
+			  <strong class="text-center">
+				  Selected: {{ selectedDate() | date:'fullDate' }}
+			  </strong>
+
+			  <div class="flex justify-end gap-2">
+				  <fkt-button
+					  (click)="toggleMode()"
+					  theme="stroked"
+					  text="Switch to {{ currentMode() === 'month' ? 'Year' : 'Month' }} mode"
+				  >
+
+				  </fkt-button>
+
+				  <fkt-button
+					  (click)="goToToday()"
+					  text="Today"
+				  >
+				  </fkt-button>
+			  </div>
+		  </div>
+	  </div>
+  `,
+  standalone: true,
+	imports: [FktCalendarNavigatorComponent, DatePipe, FktButtonComponent, FktBadgeComponent]
+})
+export class ExampleComponent {
+  protected selectedDate = signal(new Date());
+  protected currentMode = signal<CalendarNavigatorMode>('month');
+
+  protected toggleMode() {
+    this.currentMode.update(currentMode => currentMode === 'month' ? 'year' : 'month');
+  }
+
+  protected goToToday() {
+    this.selectedDate.set(new Date());
+  }
+}
+
+```
+
+### Navigation Behavior
+- **Month Mode**: Previous/Next buttons navigate by month, Month/Year labels open selection modals
+- **Year Mode**: Previous/Next buttons navigate by year, Year label opens multi-year selection modal
+
+## Use Cases
+
+Perfect for date picker headers, event calendar controls, dashboard date filters, and appointment scheduling interfaces. Integrates seamlessly with form controls and data filtering systems.
+
+## Accessibility
+
+- **Keyboard Navigation**: Tab navigation through controls
+- **Screen Reader Support**: Proper ARIA labels for navigation buttons
+- **Focus Management**: Logical focus flow through interactive elements
+- **Date Announcements**: Screen readers announce selected dates
+
+

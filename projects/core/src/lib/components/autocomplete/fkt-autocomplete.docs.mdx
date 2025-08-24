@@ -1,0 +1,527 @@
+import { Meta, Story } from '@storybook/addon-docs/blocks';
+import * as fktAutocompleteStories from './fkt-autocomplete.stories';
+
+<Meta of={fktAutocompleteStories} />
+
+The **FktAutocomplete** component provides a powerful and flexible autocomplete input with dropdown options, search functionality, and support for custom actions. Built with Angular signals and reactive patterns, it offers seamless integration with forms and dynamic data sources.
+
+## Key Features
+
+- **Real-time Search**: Filter options as user types with search event emission
+- **Auto-creation**: Allow users to create new options by typing custom values
+- **Action Buttons**: Add custom actions to each option (edit, delete, favorite, etc.)
+- **Loading States**: Built-in support for async data loading with loading indicators
+- **Custom No Results**: Configurable messaging when no options match search criteria
+- **Form Integration**: Seamless integration with SignalFormControl and form validation
+- **Keyboard Navigation**: Full keyboard support for accessibility and efficiency
+- **Dynamic Options**: Support for reactive option lists that update in real-time
+
+## Basic Usage
+
+```typescript
+import { FktAutocompleteComponent } from '@frakton-ng/core';
+import { SignalFormControl } from '@frakton-ng/core';
+
+@Component({
+  selector: 'app-example',
+  template: `
+    <fkt-autocomplete
+      [control]="countryControl"
+      [label]="'Select Country'"
+      [placeholder]="'Start typing...'"
+      [options]="countries"
+      (search)="onSearch($event)"
+    />
+  `,
+  standalone: true,
+  imports: [FktAutocompleteComponent]
+})
+export class ExampleComponent {
+  countryControl = new SignalFormControl('');
+
+  countries = [
+    { value: 'us', label: 'United States' },
+    { value: 'ca', label: 'Canada' },
+    { value: 'uk', label: 'United Kingdom' }
+  ];
+
+  onSearch(query: string) {
+    // Filter or fetch options based on search query
+    console.log('Searching for:', query);
+  }
+}
+```
+
+## Advanced Features
+
+### Auto-creation Mode
+```typescript
+<fkt-autocomplete
+  [control]="tagsControl"
+  [label]="'Tags'"
+  [options]="predefinedTags"
+  [enableAutoCreation]="true"
+  [placeholder]="'Type to add new tags'"
+/>
+```
+
+### With Custom Actions
+```typescript
+<fkt-autocomplete
+  [control]="skillsControl"
+  [label]="'Skills'"
+  [options]="skills"
+  [actions]="skillActions"
+/>
+
+// In component:
+skillActions = [
+  {
+    icon: 'star',
+    color: 'yellow',
+    theme: 'basic',
+    variant: 'icon',
+    identifier: 'favorite',
+    click: (option) => this.favoriteSkill(option)
+  },
+  {
+    icon: 'pencil',
+    color: 'primary',
+    theme: 'basic',
+    variant: 'icon',
+    identifier: 'edit',
+    click: (option) => this.editSkill(option)
+  }
+];
+```
+
+### Async Data Loading
+```typescript
+@Component({
+  template: `
+    <fkt-autocomplete
+      [control]="userControl"
+      [label]="'Search Users'"
+      [options]="users"
+      [loading]="isLoading"
+      [noResults]="{label: 'No users found. Try a different search.'}"
+      (search)="searchUsers($event)"
+    />
+  `
+})
+export class AsyncExampleComponent {
+  userControl = new SignalFormControl('');
+  users = signal<FktAutocompleteOption[]>([]);
+  isLoading = signal(false);
+
+  async searchUsers(query: string) {
+    if (query.length < 2) return;
+
+    this.isLoading.set(true);
+    try {
+      const results = await this.userService.searchUsers(query);
+      this.users.set(results.map(user => ({
+        value: user.id,
+        label: user.name
+      })));
+    } finally {
+      this.isLoading.set(false);
+    }
+  }
+}
+```
+
+## Configuration Options
+
+### FktAutocompleteOption Interface
+```typescript
+interface FktAutocompleteOption {
+  value: string | number;  // Unique identifier for the option
+  label: string;           // Display text shown to user
+}
+```
+
+### Input Properties
+- **`control`** (required): `SignalFormControl<any>` - Form control managing component state
+- **`options`**: `FktAutocompleteOption[]` - Array of selectable options (default: `[]`)
+- **`label`**: `string` - Label text displayed above the input (default: `''`)
+- **`placeholder`**: `string` - Placeholder text for input field (default: `''`)
+- **`enableAutoCreation`**: `boolean` - Allow creation of new options (default: `false`)
+- **`actions`**: `FktButtonAction[]` - Action buttons for each option (default: `[]`)
+- **`loading`**: `boolean` - Show loading state in dropdown (default: `false`)
+- **`noResults`**: `FktNoResults` - Configuration for no results message
+
+### Output Events
+- **`search`**: `EventEmitter<string>` - Emitted when user types in input
+
+## Use Cases
+
+### User Selection
+Perfect for selecting users, customers, or any entity from a large dataset:
+- User mentions in comments
+- Assignee selection in task management
+- Customer selection in CRM systems
+
+### Tag Management
+Ideal for tag-based systems with creation capabilities:
+- Blog post tagging
+- Product categorization
+- Skill tagging for profiles
+
+### Location Selection
+Great for location-based inputs:
+- Country/state selection
+- City autocomplete
+- Address suggestions
+
+### Product Search
+Excellent for product catalogs:
+- E-commerce product search
+- Inventory selection
+- Service picking
+
+## Accessibility
+
+- **Keyboard Navigation**: Arrow keys navigate options, Enter selects, Escape closes
+- **Screen Reader Support**: Proper ARIA labels and announcements
+- **Focus Management**: Logical focus flow and visual indicators
+- **High Contrast**: Supports system high contrast modes
+- **Label Association**: Proper label-input relationships
+
+## Performance
+
+- **Virtual Scrolling**: Efficient rendering of large option lists
+- **Debounced Search**: Configurable search debouncing to reduce API calls
+- **Lazy Loading**: Option to load data only when dropdown opens
+- **Memory Efficient**: Proper cleanup of event listeners and subscriptions
+
+## Examples
+
+### Basic Autocomplete
+
+Simple autocomplete with predefined options. Click the input to see all options or start typing to filter.
+
+<Story of={fktAutocompleteStories.Default} />
+
+```typescript
+@Component({
+  selector: 'app-example',
+  template: `
+    <fkt-autocomplete
+      [control]="fruitControl"
+      [label]="'Select a fruit'"
+      [placeholder]="'Start typing...'"
+      [options]="basicOptions"
+    />
+  `,
+  standalone: true,
+  imports: [FktAutocompleteComponent]
+})
+export class ExampleComponent {
+  fruitControl = new SignalFormControl('');
+
+  basicOptions = [
+    { value: "apple", label: "Apple" },
+    { value: "banana", label: "Banana" },
+    { value: "cherry", label: "Cherry" },
+    { value: "grape", label: "Grape" },
+    { value: "orange", label: "Orange" },
+    { value: "strawberry", label: "Strawberry" },
+  ];
+}
+```
+
+### With Preselected Value
+
+Autocomplete with an initial selected value demonstrating form control integration.
+
+<Story of={fktAutocompleteStories.WithPreselectedValue} />
+
+```typescript
+@Component({
+  selector: 'app-example',
+  template: `
+    <fkt-autocomplete
+      [control]="fruitControl"
+      [label]="'Favorite fruit'"
+      [placeholder]="'Choose your favorite fruit'"
+      [options]="basicOptions"
+    />
+  `,
+  standalone: true,
+  imports: [FktAutocompleteComponent]
+})
+export class ExampleComponent {
+  fruitControl = new SignalFormControl('apple'); // Pre-selected value
+
+  basicOptions = [
+    { value: "apple", label: "Apple" },
+    { value: "banana", label: "Banana" },
+    { value: "cherry", label: "Cherry" },
+    { value: "grape", label: "Grape" },
+    { value: "orange", label: "Orange" },
+    { value: "strawberry", label: "Strawberry" },
+  ];
+}
+```
+
+### With Custom Actions
+
+Each option can have custom action buttons for enhanced functionality like editing or deleting.
+
+<Story of={fktAutocompleteStories.WithActions} />
+
+```typescript
+@Component({
+  selector: 'app-example',
+  template: `
+    <fkt-autocomplete
+      [control]="tagsControl"
+      [label]="'Manage tags'"
+      [placeholder]="'Select or search for tags'"
+      [options]="tagOptions"
+      [actions]="tagActions"
+    />
+  `,
+  standalone: true,
+  imports: [FktAutocompleteComponent]
+})
+export class ExampleComponent {
+  tagsControl = new SignalFormControl('');
+
+  tagOptions = [
+    { value: "frontend", label: "Frontend" },
+    { value: "backend", label: "Backend" },
+    { value: "react", label: "React" },
+    { value: "angular", label: "Angular" },
+    { value: "javascript", label: "JavaScript" },
+    { value: "typescript", label: "TypeScript" },
+  ];
+
+  tagActions = [
+    {
+      icon: "pencil",
+      color: 'primary',
+      variant: 'icon',
+      theme: 'basic',
+      identifier: 'edit',
+      click: (option) => this.editTag(option)
+    },
+    {
+      icon: "trash",
+      color: 'red',
+      variant: 'icon',
+      theme: 'basic',
+      identifier: 'delete',
+      click: (option) => this.deleteTag(option)
+    }
+  ];
+
+  editTag(option: any) {
+    console.log('Edit tag:', option);
+  }
+
+  deleteTag(option: any) {
+    console.log('Delete tag:', option);
+  }
+}
+```
+
+### Auto-creation Mode
+
+Allow users to create new options by typing values not in the existing list.
+
+<Story of={fktAutocompleteStories.WithAutoCreation} />
+
+```typescript
+@Component({
+  selector: 'app-example',
+  template: `
+    <fkt-autocomplete
+      [control]="countryControl"
+      [label]="'Country (create new if not found)'"
+      [placeholder]="'Type a country name'"
+      [options]="countryOptions"
+      [enableAutoCreation]="true"
+    />
+  `,
+  standalone: true,
+  imports: [FktAutocompleteComponent]
+})
+export class ExampleComponent {
+  countryControl = new SignalFormControl('');
+
+  countryOptions = [
+    { value: "us", label: "United States" },
+    { value: "ca", label: "Canada" },
+    { value: "uk", label: "United Kingdom" },
+    { value: "de", label: "Germany" },
+    { value: "fr", label: "France" },
+    { value: "es", label: "Spain" },
+  ];
+}
+```
+
+### Loading State
+
+Shows loading indicator when fetching data asynchronously from APIs.
+
+<Story of={fktAutocompleteStories.WithLoadingState} />
+
+```typescript
+@Component({
+  selector: 'app-example',
+  template: `
+    <fkt-autocomplete
+      [control]="searchControl"
+      [label]="'Search (loading...)'"
+      [placeholder]="'Type to search'"
+      [options]="searchResults"
+      [loading]="isLoading"
+    />
+  `,
+  standalone: true,
+  imports: [FktAutocompleteComponent]
+})
+export class ExampleComponent {
+  searchControl = new SignalFormControl('');
+  searchResults: any[] = [];
+  isLoading = true; // Simulating loading state
+}
+```
+
+### Custom No Results
+
+Configurable message when no options match the search criteria.
+
+<Story of={fktAutocompleteStories.WithNoResults} />
+
+```typescript
+@Component({
+  selector: 'app-example',
+  template: `
+    <fkt-autocomplete
+      [control]="searchControl"
+      [label]="'Search with no matches'"
+      [placeholder]="'Try searching for something'"
+      [options]="[]"
+      [loading]="false"
+      [noResults]="customNoResults"
+    />
+  `,
+  standalone: true,
+  imports: [FktAutocompleteComponent]
+})
+export class ExampleComponent {
+  searchControl = new SignalFormControl('');
+
+  customNoResults = {
+    label: "No matching results found. Try a different search term."
+  };
+}
+```
+
+### Complete Example
+
+Full-featured example combining all capabilities: actions, auto-creation, and custom messaging.
+
+<Story of={fktAutocompleteStories.Complete} />
+
+```typescript
+@Component({
+  selector: 'app-example',
+  template: `
+    <fkt-autocomplete
+      [control]="skillsControl"
+      [label]="'Full-featured autocomplete'"
+      [placeholder]="'Search skills or add new ones'"
+      [options]="skillOptions"
+      [enableAutoCreation]="true"
+      [actions]="skillActions"
+      [noResults]="skillNoResults"
+    />
+  `,
+  standalone: true,
+  imports: [FktAutocompleteComponent]
+})
+export class ExampleComponent {
+  skillsControl = new SignalFormControl('');
+
+  skillOptions = [
+    { value: "frontend", label: "Frontend" },
+    { value: "backend", label: "Backend" },
+    { value: "react", label: "React" },
+    { value: "angular", label: "Angular" },
+    { value: "javascript", label: "JavaScript" },
+    { value: "typescript", label: "TypeScript" },
+  ];
+
+  skillActions = [
+    {
+      icon: "star",
+      color: 'yellow',
+      variant: 'icon',
+      theme: 'basic',
+      identifier: 'favorite',
+      click: (option) => this.favoriteSkill(option)
+    },
+    {
+      icon: "information-circle",
+      color: 'primary',
+      variant: 'icon',
+      theme: 'basic',
+      identifier: 'info',
+      click: (option) => this.showInfo(option)
+    }
+  ];
+
+  skillNoResults = {
+    label: "No skills found. Type to create a new one!"
+  };
+
+  favoriteSkill(option: any) {
+    console.log('Favorite skill:', option);
+  }
+
+  showInfo(option: any) {
+    console.log('Show info for:', option);
+  }
+}
+```
+
+### Disabled State
+
+Autocomplete in disabled state prevents user interaction while maintaining visual feedback.
+
+<Story of={fktAutocompleteStories.Disabled} />
+
+```typescript
+@Component({
+  selector: 'app-example',
+  template: `
+    <fkt-autocomplete
+      [control]="disabledControl"
+      [label]="'Disabled autocomplete'"
+      [placeholder]="'This field is disabled'"
+      [options]="basicOptions"
+    />
+  `,
+  standalone: true,
+  imports: [FktAutocompleteComponent]
+})
+export class ExampleComponent {
+  disabledControl = (() => {
+    const control = new SignalFormControl('apple');
+    control.disable(); // Disable the control
+    return control;
+  })();
+
+  basicOptions = [
+    { value: "apple", label: "Apple" },
+    { value: "banana", label: "Banana" },
+    { value: "cherry", label: "Cherry" },
+    { value: "grape", label: "Grape" },
+    { value: "orange", label: "Orange" },
+    { value: "strawberry", label: "Strawberry" },
+  ];
+}

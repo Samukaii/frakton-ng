@@ -30,7 +30,9 @@
     "typeCheckHostBindings": true,
     "strictTemplates": true
   },
-  "files": [],
+	"files": [
+		"./globals.d.ts"
+	],
   "references": [
     {
       "path": "./projects/core/tsconfig.lib.json"
@@ -39,10 +41,10 @@
       "path": "./projects/core/tsconfig.spec.json"
     },
     {
-      "path": "./projects/components/tsconfig.lib.json"
+      "path": "./projects/core/tsconfig.lib.json"
     },
     {
-      "path": "./projects/components/tsconfig.spec.json"
+      "path": "./projects/core/tsconfig.spec.json"
     }
   ]
 }

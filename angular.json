@@ -7,7 +7,7 @@
 			"projectType": "library",
 			"root": "projects/core",
 			"sourceRoot": "projects/core/src",
-			"prefix": "fk",
+			"prefix": "fkt",
 			"architect": {
 				"build": {
 					"builder": "@angular/build:ng-packagr",
@@ -26,38 +26,12 @@
 					"options": {
 						"tsConfig": "projects/core/tsconfig.spec.json"
 					}
-				}
-			}
-		},
-		"components": {
-			"projectType": "library",
-			"root": "projects/components",
-			"sourceRoot": "projects/components/src",
-			"prefix": "fkt",
-			"architect": {
-				"build": {
-					"builder": "@angular/build:ng-packagr",
-					"configurations": {
-						"production": {
-							"tsConfig": "projects/components/tsconfig.lib.prod.json"
-						},
-						"development": {
-							"tsConfig": "projects/components/tsconfig.lib.json"
-						}
-					},
-					"defaultConfiguration": "production"
-				},
-				"test": {
-					"builder": "@angular/build:karma",
-					"options": {
-						"tsConfig": "projects/components/tsconfig.spec.json"
-					}
 				},
 				"storybook": {
 					"builder": "@storybook/angular:start-storybook",
 					"options": {
-						"configDir": "projects/components/.storybook",
-						"browserTarget": "components:build:development",
+						"configDir": "projects/core/.storybook",
+						"browserTarget": "core:build:development",
 						"compodoc": false,
 						"port": 6006
 					}
@@ -65,10 +39,10 @@
 				"build-storybook": {
 					"builder": "@storybook/angular:build-storybook",
 					"options": {
-						"configDir": "projects/components/.storybook",
-						"browserTarget": "components:build:production",
+						"configDir": "projects/core/.storybook",
+						"browserTarget": "core:build:production",
 						"compodoc": false,
-						"outputDir": "dist/storybook/components"
+						"outputDir": "dist/storybook/core"
 					}
 				}
 			}

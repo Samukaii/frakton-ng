@@ -1,0 +1,52 @@
+@reference "../../styles/tailwind.css";
+
+:host {
+	@apply block rounded-md relative mt-5 border-gray-500 transition scroll-smooth w-full;
+
+	textarea {
+		@apply outline-none border-gray-400 w-full border-2 rounded-md p-2 bg-transparent;
+
+		&::placeholder {
+			@apply opacity-0;
+		}
+	}
+
+	&.disabled {
+		@apply select-none;
+		label {
+			@apply text-gray-400 z-50 scale-90 -translate-x-1 -translate-y-[27px];
+		}
+
+		textarea {
+			@apply border-gray-200 select-none text-gray-400 cursor-not-allowed;
+		}
+	}
+
+	label {
+		@apply absolute px-1 top-[15px] left-3 transition bg-white text-gray-500;
+	}
+
+
+	&:focus-within {
+		label {
+			@apply text-yellow-500 z-50 scale-90 -translate-x-1 -translate-y-[27px];
+		}
+
+		textarea {
+			@apply transition border-yellow-500;
+
+			&::placeholder {
+				@apply opacity-100;
+			}
+		}
+	}
+
+	.float {
+		@apply z-50 scale-90 -translate-x-1 -translate-y-[27px];
+	}
+
+	fkt-field-error {
+		@apply pl-3;
+	}
+}
+

@@ -1,0 +1,7 @@
+<p [class]="'flex-grow break-all  w-full block ' + (text().classes | call: getClasses)">
+	{{ text().value }}
+</p>
+
+<fkt-buttons-list
+	[actions]="actions()"
+/>

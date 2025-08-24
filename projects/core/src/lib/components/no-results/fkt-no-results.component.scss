@@ -1,0 +1,5 @@
+@reference "../../styles/tailwind.css";
+
+:host {
+	@apply flex border border-gray-200 gap-4 min-h-[400px] justify-center items-center;
+}

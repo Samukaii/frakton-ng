@@ -1,0 +1,469 @@
+import { Meta, Story, ArgTypes } from '@storybook/addon-docs/blocks';
+import * as fktTooltipStories from './fkt-tooltip.stories';
+
+<Meta of={fktTooltipStories} />
+
+# Tooltip
+
+_A lightweight tooltip directive that provides contextual information on hover. Built with Angular signals and overlay system, it offers flexible positioning and seamless integration with any HTML element._
+
+## Key Features
+
+- **Universal Directive**: Works with any HTML element or Angular component
+- **Smart Positioning**: 16 different position options with intelligent viewport detection
+- **Overlay Integration**: Built on top of the powerful FktOverlay system
+- **Mouse Interaction**: Shows on mouseenter, hides when mouse leaves element area
+- **Configurable**: Enable/disable tooltips dynamically
+- **Lightweight**: Minimal overhead with efficient event handling
+- **Accessible**: Proper ARIA attributes and screen reader support
+- **Signal-Based**: Reactive updates with Angular signals
+
+## Configuration Options
+
+<ArgTypes/>
+
+### Types
+
+```typescript
+// Available positioning options (16 total positions)
+type FktGeometryPosition =
+  | 'top-start' | 'top-center' | 'top-end'
+  | 'right-start' | 'right-center' | 'right-end'
+  | 'bottom-start' | 'bottom-center' | 'bottom-end'
+  | 'left-start' | 'left-center' | 'left-end'
+  | 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
+```
+
+## Examples
+
+### Basic Tooltips
+
+Simple tooltip examples with different button styles and states.
+
+<Story of={fktTooltipStories.BasicTooltips} />
+
+```typescript
+import { Component } from '@angular/core';
+import { FktButtonComponent } from '@frakton-ng/core';
+import { FktTooltipDirective } from '@frakton-ng/core';
+
+@Component({
+  selector: 'basic-tooltip-example',
+  template: `
+    <div class="space-y-4">
+      <h3 class="text-lg font-semibold">Basic Tooltips</h3>
+      <div class="flex flex-wrap gap-4">
+        <fkt-button
+          text="Hover me"
+          theme="stroked"
+          color="primary"
+          fktTooltip="This is a basic tooltip message"
+        ></fkt-button>
+
+        <fkt-button
+          text="Info Button"
+          theme="filled"
+          color="primary"
+          fktTooltip="Click this button to perform an action"
+        ></fkt-button>
+
+        <fkt-button
+          text="Disabled State"
+          theme="stroked"
+          color="primary"
+          [disabled]="true"
+          fktTooltip="This button is disabled"
+        ></fkt-button>
+      </div>
+    </div>
+  `,
+  standalone: true,
+  imports: [FktButtonComponent, FktTooltipDirective]
+})
+export class BasicTooltipExampleComponent {}
+```
+
+### Positioning
+
+Comprehensive examples showing all 16 available tooltip positions.
+
+<Story of={fktTooltipStories.Positioning} />
+
+```typescript
+import { Component } from '@angular/core';
+import { FktButtonComponent } from '@frakton-ng/core';
+import { FktTooltipDirective } from '@frakton-ng/core';
+
+@Component({
+  selector: 'positioning-tooltip-example',
+  template: `
+	  <div class="space-y-6">
+		  <h3 class="text-lg font-semibold">Tooltip Positioning</h3>
+
+		  <div class="grid grid-cols-1 gap-8">
+			  <!-- Top positions -->
+			  <div class="space-y-3">
+				  <h4 class="font-semibold text-gray-700 text-center w-full">Top Positions</h4>
+				  <div class="flex justify-center gap-4">
+					  <fkt-button
+						  text="Top Start"
+						  theme="stroked"
+						  color="primary"
+						  disableAutoReposition
+						  fktTooltip="Top start positioned tooltip"
+						  position="top-start"
+					  ></fkt-button>
+
+					  <fkt-button
+						  text="Top Center"
+						  theme="stroked"
+						  color="primary"
+						  disableAutoReposition
+						  fktTooltip="Top center positioned tooltip"
+						  position="top-center"
+					  ></fkt-button>
+
+					  <fkt-button
+						  text="Top End"
+						  theme="stroked"
+						  color="primary"
+						  disableAutoReposition
+						  fktTooltip="Top end positioned tooltip"
+						  position="top-end"
+					  ></fkt-button>
+				  </div>
+			  </div>
+
+			  <!-- Bottom positions -->
+			  <div class="space-y-3">
+				  <h4 class="font-semibold text-gray-700 text-center w-full">Bottom Positions</h4>
+				  <div class="flex justify-center gap-4">
+					  <fkt-button
+						  text="Bottom Start"
+						  theme="stroked"
+						  color="red"
+						  disableAutoReposition
+						  fktTooltip="Bottom start positioned tooltip"
+						  position="bottom-start"
+					  ></fkt-button>
+
+					  <fkt-button
+						  text="Bottom Center"
+						  theme="stroked"
+						  color="red"
+						  disableAutoReposition
+						  fktTooltip="Bottom center positioned tooltip (default)"
+						  position="bottom-center"
+					  ></fkt-button>
+
+					  <fkt-button
+						  text="Bottom End"
+						  theme="stroked"
+						  color="red"
+						  disableAutoReposition
+						  fktTooltip="Bottom end positioned tooltip"
+						  position="bottom-end"
+					  ></fkt-button>
+				  </div>
+			  </div>
+
+			  <!-- Side positions -->
+			  <div class="space-y-3">
+				  <h4 class="font-semibold text-gray-700 text-center w-full">Side Positions</h4>
+				  <div class="flex justify-center gap-4">
+					  <div class="flex flex-col gap-2">
+						  <fkt-button
+							  text="Left Start"
+							  theme="stroked"
+							  color="green"
+							  disableAutoReposition
+							  fktTooltip="Left start positioned tooltip"
+							  position="left-start"
+						  ></fkt-button>
+
+						  <fkt-button
+							  text="Left Center"
+							  theme="stroked"
+							  color="green"
+							  disableAutoReposition
+							  fktTooltip="Left center positioned tooltip"
+							  position="left-center"
+						  ></fkt-button>
+
+						  <fkt-button
+							  text="Left End"
+							  theme="stroked"
+							  color="green"
+							  disableAutoReposition
+							  fktTooltip="Left end positioned tooltip"
+							  position="left-end"
+						  ></fkt-button>
+					  </div>
+
+					  <div class="flex flex-col gap-2">
+						  <fkt-button
+							  text="Right Start"
+							  theme="stroked"
+							  color="yellow"
+							  disableAutoReposition
+							  fktTooltip="Right start positioned tooltip"
+							  position="right-start"
+						  ></fkt-button>
+
+						  <fkt-button
+							  text="Right Center"
+							  theme="stroked"
+							  color="yellow"
+							  disableAutoReposition
+							  fktTooltip="Right center positioned tooltip"
+							  position="right-center"
+						  ></fkt-button>
+
+						  <fkt-button
+							  text="Right End"
+							  theme="stroked"
+							  color="yellow"
+							  disableAutoReposition
+							  fktTooltip="Right end positioned tooltip"
+							  position="right-end"
+						  ></fkt-button>
+					  </div>
+				  </div>
+			  </div>
+
+			  <!-- Corners -->
+			  <div class="space-y-3">
+				  <h4 class="font-semibold text-gray-700 text-center w-full">Corner Positions</h4>
+				  <div class="flex justify-center gap-4">
+					  <fkt-button
+						  text="Bottom Left"
+						  theme="stroked"
+						  color="primary"
+						  disableAutoReposition
+						  fktTooltip="Bottom left positioned tooltip"
+						  position="bottom-left"
+					  ></fkt-button>
+
+					  <fkt-button
+						  text="Top Left"
+						  theme="stroked"
+						  color="primary"
+						  disableAutoReposition
+						  fktTooltip="Top left positioned tooltip"
+						  position="top-left"
+					  ></fkt-button>
+
+					  <fkt-button
+						  text="Bottom Right"
+						  theme="stroked"
+						  color="primary"
+						  disableAutoReposition
+						  fktTooltip="Bottom right positioned tooltip"
+						  position="bottom-right"
+					  ></fkt-button>
+
+					  <fkt-button
+						  text="Top Right"
+						  theme="stroked"
+						  color="primary"
+						  disableAutoReposition
+						  fktTooltip="Top right positioned tooltip"
+						  position="top-right"
+					  ></fkt-button>
+				  </div>
+			  </div>
+		  </div>
+	  </div>
+  `,
+  standalone: true,
+  imports: [FktButtonComponent, FktTooltipDirective]
+})
+export class PositioningTooltipExampleComponent {}
+```
+
+### Interactive Controls
+
+Dynamic tooltip configuration with form controls.
+
+<Story of={fktTooltipStories.InteractiveControls} />
+
+```typescript
+import { Component, inject } from '@angular/core';
+import { FktButtonComponent, FktSelectComponent, FktInputComponent, FktCheckboxComponent } from '@frakton-ng/core';
+import { FktTooltipDirective } from '@frakton-ng/core';
+import { SignalFormBuilder } from '@frakton-ng/core';
+import { fktGeometryPositions, FktGeometryPosition } from '@frakton-ng/core';
+
+@Component({
+  selector: 'interactive-tooltip-example',
+  template: `
+    <div class="space-y-6">
+      <h3 class="text-lg font-semibold">Interactive Tooltip Controls</h3>
+
+      <form class="space-y-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <fkt-select
+            [control]="form.controls.position"
+            [label]="'Tooltip Position'"
+            [options]="positionOptions"
+          ></fkt-select>
+
+          <fkt-checkbox
+            [control]="form.controls.enabled"
+            [label]="'Enable Tooltips'"
+          ></fkt-checkbox>
+        </div>
+
+        <fkt-input
+          [control]="form.controls.text"
+          [label]="'Tooltip Text'"
+          [placeholder]="'Enter tooltip message...'"
+          [type]="'text'"
+        ></fkt-input>
+      </form>
+
+      <div class="border-t pt-4">
+        <div class="flex justify-center">
+          <fkt-button
+            text="Interactive Tooltip Button"
+            theme="filled"
+            color="primary"
+            [fktTooltip]="form.controls.text.value()"
+            [tooltipEnabled]="form.controls.enabled.value()"
+            [position]="form.controls.position.value()"
+          ></fkt-button>
+        </div>
+      </div>
+    </div>
+  `,
+  standalone: true,
+  imports: [FktButtonComponent, FktSelectComponent, FktInputComponent, FktCheckboxComponent, FktTooltipDirective]
+})
+export class InteractiveTooltipExampleComponent {
+  private fb = inject(SignalFormBuilder);
+
+  form = this.fb.group({
+    enabled: true,
+    position: 'bottom-center' as FktGeometryPosition,
+    text: 'This is a configurable tooltip message'
+  });
+
+  positionOptions = fktGeometryPositions.map(position => ({
+    value: position,
+    label: this.formatPositionLabel(position)
+  }));
+
+  private formatPositionLabel(position: FktGeometryPosition): string {
+    return position
+      .split('-')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ');
+  }
+}
+```
+
+### Different Elements
+
+Tooltips on various UI components and HTML elements.
+
+<Story of={fktTooltipStories.DifferentElements} />
+
+```typescript
+import { Component } from '@angular/core';
+import { FktButtonComponent, FktIconComponent, FktBadgeComponent } from '@frakton-ng/core';
+import { FktTooltipDirective } from '@frakton-ng/core';
+
+@Component({
+  selector: 'different-elements-example',
+  template: `
+    <div class="space-y-6">
+      <h3 class="text-lg font-semibold">Tooltips on Different Elements</h3>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Buttons Section -->
+        <div class="space-y-3">
+          <h4 class="font-medium text-gray-700">Buttons</h4>
+          <div class="space-y-2">
+            <fkt-button
+              text="Primary Action"
+              theme="filled"
+              color="primary"
+              fktTooltip="This is the main call-to-action button"
+            ></fkt-button>
+          </div>
+        </div>
+
+        <!-- Icons Section -->
+        <div class="space-y-3">
+          <h4 class="font-medium text-gray-700">Icons</h4>
+          <div class="flex gap-3">
+            <fkt-icon
+              name="information-circle"
+              size="24"
+              class="text-blue-500 cursor-pointer"
+              fktTooltip="Get more information about this feature"
+              position="top-center"
+            ></fkt-icon>
+          </div>
+        </div>
+
+        <!-- Text Elements -->
+        <div class="space-y-3">
+          <h4 class="font-medium text-gray-700">Text Elements</h4>
+          <div class="space-y-2">
+            <p
+              class="text-gray-800 cursor-help border-b border-dotted border-gray-400 inline-block"
+              fktTooltip="This is a helpful explanation of the underlined term"
+            >
+              Hover over this text
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  `,
+  standalone: true,
+  imports: [FktButtonComponent, FktIconComponent, FktBadgeComponent, FktTooltipDirective]
+})
+export class DifferentElementsExampleComponent {}
+```
+
+## Use Cases
+
+### UI Element Enhancement
+Perfect for adding contextual help to interface elements:
+- Button descriptions and action explanations
+- Icon clarifications and feature descriptions
+- Form field hints and validation messages
+- Navigation assistance and guidance
+
+### Information Architecture
+Ideal for providing additional context without cluttering:
+- Technical term definitions
+- Status indicator explanations
+- Feature availability notifications
+- Help text and usage instructions
+
+### Accessibility Support
+Essential for inclusive design:
+- Alternative descriptions for icons
+- Expanded explanations for abbreviations
+- Context for interactive elements
+- Supplementary information for screen readers
+
+## Accessibility
+
+- **Mouse Interaction**: Shows on mouseenter, hides when mouse leaves element area
+- **Keyboard Support**: Tooltips do not interfere with keyboard navigation
+- **Screen Reader Support**: Tooltip content is accessible to assistive technologies
+- **Focus Management**: Does not trap or redirect focus from the trigger element
+- **ARIA Attributes**: Proper ARIA labeling for enhanced accessibility
+- **High Contrast**: Supports system high contrast modes for visibility
+
+## Performance
+
+- **Lazy Loading**: Tooltip overlays are created only when needed (on first hover)
+- **Memory Management**: Automatic cleanup when directive is destroyed
+- **Event Optimization**: Efficient mouse event handling with proper cleanup
+- **Positioning Cache**: Intelligent position calculation to minimize recomputation
+- **Overlay Reuse**: Efficient overlay management through the FktOverlay system

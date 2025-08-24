@@ -1,0 +1,526 @@
+import { Meta, Story } from '@storybook/addon-docs/blocks';
+import * as fktButtonStories from './fkt-button.stories';
+
+<Meta of={fktButtonStories} />
+
+The **FktButton** component provides a versatile and customizable button with multiple themes, variants, and styling options. Built with Angular signals and modern design patterns, it supports various visual styles, icons, loading states, and accessibility features.
+
+## Key Features
+
+- **Multiple Themes**: Raised, stroked, and basic visual themes
+- **Flexible Variants**: Default, icon-only, and rectangular button variants
+- **Color Options**: Comprehensive color palette with primary, red, yellow, and green colors
+- **Icon Support**: Optional icons with configurable positioning (left or right)
+- **Loading States**: Built-in loading state with customizable loading text
+- **Accessibility**: Full keyboard navigation and screen reader support
+- **Responsive Design**: Adapts to different screen sizes and touch interactions
+- **Signal-Based**: Built with Angular signals for optimal performance
+
+## Configuration Options
+
+### Input Properties
+- **`text`**: `string` - Button text content (default: `''`)
+- **`loadingText`**: `string` - Text shown during loading state (default: `''`)
+- **`color`**: `FktColor` - Button color theme (default: `'primary'`)
+- **`theme`**: `FktButtonTheme` - Visual style theme (default: `'raised'`)
+- **`variant`**: `FktButtonVariant` - Button variant style (default: `'rounded'`)
+- **`icon`**: `FktIconName` - Optional icon name (default: `undefined`)
+- **`iconPosition`**: `'left' | 'right'` - Icon position relative to text (default: `'right'`)
+- **`loading`**: `boolean` - Show loading state (default: `false`)
+- **`disabled`**: `boolean` - Disable button interaction (default: `false`)
+
+### Themes
+- **`raised`**: Elevated appearance with shadow and solid background
+- **`stroked`**: Outlined style with border and transparent background
+- **`basic`**: Minimal style with no border or background
+
+### Variants
+- **`rounded`**: Circular button
+- **`rect`**: Rectangular button
+
+### Color Options
+Available colors include: `primary`, `red`, `yellow`, and `green`.
+
+## Accessibility
+
+- **Keyboard Navigation**: Full keyboard support with Tab and Enter/Space keys
+- **Screen Reader Support**: Proper ARIA labels and button role announcements
+- **Focus Management**: Clear visual focus indicators and logical focus flow
+- **State Communication**: Loading and disabled states are clearly communicated
+- **Touch Friendly**: Optimized touch targets for mobile devices
+- **High Contrast**: Supports system high contrast modes
+
+## Performance
+
+- **Efficient Rendering**: Optimized change detection with Angular signals
+- **Memory Management**: Proper cleanup of event listeners
+- **CSS Optimization**: Efficient styling with computed classes
+- **Bundle Size**: Minimal impact on application bundle size
+
+## Examples
+
+### Raised Theme Button
+
+A standard button with elevated appearance, perfect for primary actions.
+
+<Story of={fktButtonStories.Raised} />
+
+```typescript
+@Component({
+  selector: 'app-example',
+  template: `
+    <fkt-button
+	  class="w-fit"
+      [text]="'Click me'"
+      [theme]="'raised'"
+      [disabled]="false"
+      (click)="onClick()"
+    />
+  `,
+  standalone: true,
+  imports: [FktButtonComponent]
+})
+export class ExampleComponent {
+  onClick() {
+    console.log('Raised button clicked');
+  }
+}
+```
+
+### Stroked Theme Button
+
+An outlined button style ideal for secondary actions and cancel operations.
+
+<Story of={fktButtonStories.Stroked} />
+
+```typescript
+@Component({
+  selector: 'app-example',
+  template: `
+    <fkt-button
+	  class="w-fit"
+      [text]="'Cancel'"
+      [theme]="'stroked'"
+      [color]="'primary'"
+      [disabled]="false"
+      (click)="onCancel()"
+    />
+  `,
+  standalone: true,
+  imports: [FktButtonComponent]
+})
+export class ExampleComponent {
+  onCancel() {
+    console.log('Cancel button clicked');
+  }
+}
+```
+
+### With Icon
+
+Button with icon support, demonstrating icon positioning and combination with text.
+
+<Story of={fktButtonStories.WithIcon} />
+
+```typescript
+@Component({
+  selector: 'app-example',
+  template: `
+    <fkt-button
+	  class="w-fit"
+      [text]="'With icon'"
+      [theme]="'raised'"
+      [color]="'primary'"
+      [icon]="'arrow'"
+      [iconPosition]="'right'"
+      [disabled]="false"
+      (click)="onIconClick()"
+    />
+  `,
+  standalone: true,
+  imports: [FktButtonComponent]
+})
+export class ExampleComponent {
+  onIconClick() {
+    console.log('Icon button clicked');
+  }
+}
+```
+
+### Basic Theme Button
+
+Minimal button style with basic theme, perfect for subtle actions and text-only interactions.
+
+<Story of={fktButtonStories.Basic} />
+
+```typescript
+@Component({
+  selector: 'app-example',
+  template: `
+    <fkt-button
+	  class="w-fit"
+      [text]="'Basic Button'"
+      [theme]="'basic'"
+      [color]="'primary'"
+      [disabled]="false"
+      (click)="onBasicClick()"
+    />
+  `,
+  standalone: true,
+  imports: [FktButtonComponent]
+})
+export class ExampleComponent {
+  onBasicClick() {
+    console.log('Basic button clicked');
+  }
+}
+```
+
+### Icon Only Button
+
+Compact circular button with just an icon, ideal for toolbars and action menus.
+
+<Story of={fktButtonStories.IconOnly} />
+
+```typescript
+@Component({
+  selector: 'app-example',
+  template: `
+    <fkt-button
+	  class="w-fit"
+      [icon]="'plus'"
+      [variant]="'rounded'"
+      [theme]="'raised'"
+      [color]="'primary'"
+      [disabled]="false"
+      (click)="onAddClick()"
+    />
+  `,
+  standalone: true,
+  imports: [FktButtonComponent]
+})
+export class ExampleComponent {
+  onAddClick() {
+    console.log('Add button clicked');
+  }
+}
+```
+
+### Rectangular Icon Button
+
+Rectangular icon button with standard padding, perfect for data table actions.
+
+<Story of={fktButtonStories.RectIcon} />
+
+```typescript
+@Component({
+  selector: 'app-example',
+  template: `
+    <fkt-button
+	  class="w-fit"
+      [icon]="'trash'"
+      [variant]="'rect'"
+      [theme]="'basic'"
+      [color]="'red'"
+      [disabled]="false"
+      (click)="onDeleteClick()"
+    />
+  `,
+  standalone: true,
+  imports: [FktButtonComponent]
+})
+export class ExampleComponent {
+  onDeleteClick() {
+    console.log('Delete button clicked');
+  }
+}
+```
+
+### Loading State Button
+
+Button showing loading state with custom loading text, perfect for async operations.
+
+<Story of={fktButtonStories.Loading} />
+
+```typescript
+@Component({
+  selector: 'app-example',
+  template: `
+    <fkt-button
+	  class="w-fit"
+      [text]="'Save Changes'"
+      [loadingText]="'Saving...'"
+      [theme]="'raised'"
+      [color]="'primary'"
+      [loading]="true"
+      [disabled]="false"
+      (click)="onSaveClick()"
+    />
+  `,
+  standalone: true,
+  imports: [FktButtonComponent]
+})
+export class ExampleComponent {
+  onSaveClick() {
+    console.log('Save clicked');
+  }
+}
+```
+
+### Left Icon Position
+
+Button with icon positioned to the left of the text for enhanced visual hierarchy.
+
+<Story of={fktButtonStories.WithLeftIcon} />
+
+```typescript
+@Component({
+  selector: 'app-example',
+  template: `
+    <fkt-button
+	  class="w-fit"
+      [text]="'Download'"
+      [icon]="'trash'"
+      [iconPosition]="'left'"
+      [theme]="'raised'"
+      [color]="'green'"
+      [disabled]="false"
+      (click)="onDownloadClick()"
+    />
+  `,
+  standalone: true,
+  imports: [FktButtonComponent]
+})
+export class ExampleComponent {
+  onDownloadClick() {
+    console.log('Download started');
+  }
+}
+```
+
+### Text Variants
+
+Buttons showcasing different semantic color options for various use cases.
+
+<Story of={fktButtonStories.TextVariants} />
+
+```typescript
+@Component({
+  selector: 'app-example',
+  template: `
+	<div class="flex gap-2">
+		<div class="flex flex-col gap-2">
+			<h2 class="text-lg font-semibold text-center border-b border-gray-200 mb-2">Rounded</h2>
+			<div class="flex gap-2 items-center">
+				<strong class="font-semibold w-[60px]">Raised</strong>
+				<fkt-button class="w-fit" variant="rounded" text="Primary" theme="raised" color="primary"/>
+				<fkt-button class="w-fit" variant="rounded" text="Green" theme="raised" color="green"/>
+				<fkt-button class="w-fit" variant="rounded" text="Red" theme="raised" color="red"/>
+				<fkt-button class="w-fit" variant="rounded" text="Yellow" theme="raised" color="yellow"/>
+			</div>
+			<div class="flex gap-2 items-center">
+				<strong class="font-semibold w-[60px]">Stroked</strong>
+				<fkt-button class="w-fit" variant="rounded" text="Primary" theme="stroked" color="primary"/>
+				<fkt-button class="w-fit" variant="rounded" text="Green" theme="stroked" color="green"/>
+				<fkt-button class="w-fit" variant="rounded" text="Red" theme="stroked" color="red"/>
+				<fkt-button class="w-fit" variant="rounded" text="Yellow" theme="stroked" color="yellow"/>
+			</div>
+			<div class="flex gap-2 items-center">
+				<strong class="font-semibold w-[60px]">Basic</strong>
+				<fkt-button class="w-fit" variant="rounded" text="Primary" theme="basic" color="primary"/>
+				<fkt-button class="w-fit" variant="rounded" text="Green" theme="basic" color="green"/>
+				<fkt-button class="w-fit" variant="rounded" text="Red" theme="basic" color="red"/>
+				<fkt-button class="w-fit" variant="rounded" text="Yellow" theme="basic" color="yellow"/>
+			</div>
+		<div>
+
+		<div class="flex flex-col gap-2">
+			<h2 class="text-lg font-semibold text-center border-b border-gray-200 mb-2">Rect</h2>
+			<div class="flex gap-2 items-center">
+				<strong class="font-semibold w-[60px]">Raised</strong>
+				<fkt-button class="w-fit" variant="rect" text="Primary" theme="raised" color="primary"/>
+				<fkt-button class="w-fit" variant="rect" text="Green" theme="raised" color="green"/>
+				<fkt-button class="w-fit" variant="rect" text="Red" theme="raised" color="red"/>
+				<fkt-button class="w-fit" variant="rect" text="Yellow" theme="raised" color="yellow"/>
+			</div>
+			<div class="flex gap-2 items-center">
+				<strong class="font-semibold w-[60px]">Stroked</strong>
+				<fkt-button class="w-fit" variant="rect" text="Primary" theme="stroked" color="primary"/>
+				<fkt-button class="w-fit" variant="rect" text="Green" theme="stroked" color="green"/>
+				<fkt-button class="w-fit" variant="rect" text="Red" theme="stroked" color="red"/>
+				<fkt-button class="w-fit" variant="rect" text="Yellow" theme="stroked" color="yellow"/>
+			</div>
+			<div class="flex gap-2 items-center">
+				<strong class="font-semibold w-[60px]">Basic</strong>
+				<fkt-button class="w-fit" variant="rect" text="Primary" theme="basic" color="primary"/>
+				<fkt-button class="w-fit" variant="rect" text="Green" theme="basic" color="green"/>
+				<fkt-button class="w-fit" variant="rect" text="Red" theme="basic" color="red"/>
+				<fkt-button class="w-fit" variant="rect" text="Yellow" theme="basic" color="yellow"/>
+			</div>
+		</div>
+	</div>
+  `,
+  standalone: true,
+  imports: [FktButtonComponent]
+})
+export class ExampleComponent {
+}
+```
+
+### Icon Variants
+
+Buttons showcasing different semantic color options for various use cases.
+
+<Story of={fktButtonStories.IconVariants} />
+
+```typescript
+@Component({
+  selector: 'app-example',
+  template: `
+	<div class="flex gap-2">
+		<div class="flex flex-col gap-2">
+			<h2 class="text-lg font-semibold text-center border-b border-gray-200 mb-2">Rounded</h2>
+			<div class="flex gap-2 items-center">
+				<strong class="font-semibold w-[60px]">Raised</strong>
+				<fkt-button class="w-fit" variant="rounded" icon="plus" theme="raised" color="primary"/>
+				<fkt-button class="w-fit" variant="rounded" icon="plus" theme="raised" color="green"/>
+				<fkt-button class="w-fit" variant="rounded" icon="plus" theme="raised" color="red"/>
+				<fkt-button class="w-fit" variant="rounded" icon="plus" theme="raised" color="yellow"/>
+			</div>
+			<div class="flex gap-2 items-center">
+				<strong class="font-semibold w-[60px]">Stroked</strong>
+				<fkt-button class="w-fit" variant="rounded" icon="plus" theme="stroked" color="primary"/>
+				<fkt-button class="w-fit" variant="rounded" icon="plus" theme="stroked" color="green"/>
+				<fkt-button class="w-fit" variant="rounded" icon="plus" theme="stroked" color="red"/>
+				<fkt-button class="w-fit" variant="rounded" icon="plus" theme="stroked" color="yellow"/>
+			</div>
+			<div class="flex gap-2 items-center">
+				<strong class="font-semibold w-[60px]">Basic</strong>
+				<fkt-button class="w-fit" variant="rounded" icon="plus" theme="basic" color="primary"/>
+				<fkt-button class="w-fit" variant="rounded" icon="plus" theme="basic" color="green"/>
+				<fkt-button class="w-fit" variant="rounded" icon="plus" theme="basic" color="red"/>
+				<fkt-button class="w-fit" variant="rounded" icon="plus" theme="basic" color="yellow"/>
+			</div>
+		<div>
+
+		<div class="flex flex-col gap-2">
+			<h2 class="text-lg font-semibold text-center border-b border-gray-200 mb-2">Rect</h2>
+			<div class="flex gap-2 items-center">
+				<strong class="font-semibold w-[60px]">Raised</strong>
+				<fkt-button class="w-fit" variant="rect" icon="plus" theme="raised" color="primary"/>
+				<fkt-button class="w-fit" variant="rect" icon="plus" theme="raised" color="green"/>
+				<fkt-button class="w-fit" variant="rect" icon="plus" theme="raised" color="red"/>
+				<fkt-button class="w-fit" variant="rect" icon="plus" theme="raised" color="yellow"/>
+			</div>
+			<div class="flex gap-2 items-center">
+				<strong class="font-semibold w-[60px]">Stroked</strong>
+				<fkt-button class="w-fit" variant="rect" icon="plus" theme="stroked" color="primary"/>
+				<fkt-button class="w-fit" variant="rect" icon="plus" theme="stroked" color="green"/>
+				<fkt-button class="w-fit" variant="rect" icon="plus" theme="stroked" color="red"/>
+				<fkt-button class="w-fit" variant="rect" icon="plus" theme="stroked" color="yellow"/>
+			</div>
+			<div class="flex gap-2 items-center">
+				<strong class="font-semibold w-[60px]">Basic</strong>
+				<fkt-button class="w-fit" variant="rect" icon="plus" theme="basic" color="primary"/>
+				<fkt-button class="w-fit" variant="rect" icon="plus" theme="basic" color="green"/>
+				<fkt-button class="w-fit" variant="rect" icon="plus" theme="basic" color="red"/>
+				<fkt-button class="w-fit" variant="rect" icon="plus" theme="basic" color="yellow"/>
+			</div>
+		</div>
+	</div>
+  `,
+  standalone: true,
+  imports: [FktButtonComponent]
+})
+export class ExampleComponent {
+  onSuccessClick() {
+    console.log('Success clicked');
+  }
+}
+```
+
+
+### Theme Variations
+
+Buttons demonstrating different theme options with the same color for consistency.
+
+<Story of={fktButtonStories.StrokedSecondary} />
+
+```typescript
+@Component({
+  selector: 'app-example',
+  template: `
+    <fkt-button
+	  class="w-fit"
+      [text]="'Secondary'"
+      [theme]="'stroked'"
+      [color]="'yellow'"
+      [disabled]="false"
+      (click)="onSecondaryClick()"
+    />
+  `,
+  standalone: true,
+  imports: [FktButtonComponent]
+})
+export class ExampleComponent {
+  onSecondaryClick() {
+    console.log('Secondary clicked');
+  }
+}
+```
+
+### Long Text Handling
+
+Button with longer text content showing how the component handles text wrapping.
+
+<Story of={fktButtonStories.LongText} />
+
+```typescript
+@Component({
+  selector: 'app-example',
+  template: `
+    <fkt-button
+	  class="w-fit"
+      [text]="'This is a very long button text that demonstrates wrapping'"
+      [theme]="'raised'"
+      [color]="'primary'"
+      [disabled]="false"
+      (click)="onLongTextClick()"
+      style="max-width: 200px;"
+    />
+  `,
+  standalone: true,
+  imports: [FktButtonComponent]
+})
+export class ExampleComponent {
+  onLongTextClick() {
+    console.log('Long text button clicked');
+  }
+}
+```
+
+### Disabled State
+
+Button in disabled state showing non-interactive appearance and behavior.
+
+<Story of={fktButtonStories.Disabled} />
+
+```typescript
+@Component({
+  selector: 'app-example',
+  template: `
+    <fkt-button
+	  class="w-fit"
+      [text]="'Disabled'"
+      [theme]="'raised'"
+      [color]="'primary'"
+      [disabled]="true"
+    />
+  `,
+  standalone: true,
+  imports: [FktButtonComponent]
+})
+export class ExampleComponent {
+  // Disabled buttons don't emit click events
+}
+```

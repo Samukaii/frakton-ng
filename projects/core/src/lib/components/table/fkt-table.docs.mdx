@@ -1,0 +1,736 @@
+import { Meta, Story, Controls, ArgTypes } from '@storybook/addon-docs/blocks';
+import * as stories from './fkt-table.stories';
+
+<Meta of={stories} />
+
+# Table
+
+_A powerful and flexible table component for displaying tabular data with dynamic columns, row actions, loading states, and customizable empty states. Built with Angular signals for optimal performance and provides extensive customization options for real-world data display scenarios._
+
+## Key Features
+
+- **Dynamic Column Configuration**: Function-based column definitions that adapt to your data structure
+- **Row Actions**: Customizable action buttons for each table row with conditional visibility
+- **Loading States**: Built-in loading spinner with customizable messaging
+- **Empty State Management**: Rich empty states with icons, descriptions, and action buttons
+- **Flexible Cell Types**: Support for different cell renderers including default and action cells
+- **Custom Row Styling**: Function-based row class generation for conditional styling
+- **Header Actions**: Main action button in table header for global operations
+- **Signal-Based Performance**: Built with Angular signals for efficient updates
+- **Type Safety**: Full TypeScript support with generic types for your data models
+
+## Configuration Options
+
+<ArgTypes/>
+
+### Types
+
+```typescript
+// Core table interfaces
+interface TableColumn {
+  position: string;        // Column order identifier
+  name: string;           // Display name in header
+  cell: TableCell;        // Cell configuration
+}
+
+interface TableCell<Type extends TableCellType = TableCellType> {
+  type: Type;             // Cell renderer type: 'default' | 'with-action'
+  options: ComponentData<InstanceType<TableCellsMapping[Type]>>;
+}
+
+interface TableAction {
+  classes?: string[];     // CSS classes for action button
+  name: string;          // Action identifier
+  condition: boolean;    // Whether to show the action
+  icon: IconName;        // Icon for the action button
+  click: () => void;     // Action handler
+}
+
+// Function types for dynamic behavior
+type TableColumnFn<T extends FktIdentifiable> = (item: T) => TableColumn[];
+type TableActionFn<T extends FktIdentifiable> = (item: T) => TableAction[];
+type TableClassesFn<T extends FktIdentifiable> = (item: T) => string;
+
+// Data requirements
+interface FktIdentifiable {
+  id: number | string;   // Required unique identifier
+}
+```
+
+## Examples
+
+### Basic Table
+
+A simple table displaying user data with basic column configuration.
+
+<Story of={stories.BasicTable} />
+<p></p>
+___
+<Controls of={stories.BasicTable} />
+
+```typescript
+import { Component, computed, input } from '@angular/core';
+import { TableComponent } from '@frakton-ng/core';
+import { TableColumnFn } from './models/table-column-fn';
+import { FktIdentifiable, FktNoResults } from '../../../shared/types';
+
+interface User extends FktIdentifiable {
+  name: string;
+  email: string;
+  role: 'admin' | 'user' | 'moderator';
+  status: 'active' | 'inactive' | 'pending';
+}
+
+const createUserColumns: TableColumnFn<User> = (user) => [
+  {
+    position: '1',
+    name: 'Name',
+    cell: {
+      type: 'default',
+      options: { data: user.name }
+    }
+  },
+  {
+    position: '2',
+    name: 'Email',
+    cell: {
+      type: 'default',
+      options: { data: user.email }
+    }
+  },
+  {
+    position: '3',
+    name: 'Role',
+    cell: {
+      type: 'default',
+      options: { data: user.role }
+    }
+  },
+  {
+    position: '4',
+    name: 'Status',
+    cell: {
+      type: 'default',
+      options: { data: user.status }
+    }
+  }
+];
+
+@Component({
+  selector: 'basic-table-example',
+  template: `
+    <fkt-table
+      [data]="tableData()"
+      [columnsFn]="columnsFn()"
+      [classesFn]="classesFn()"
+      [actionsFn]="actionsFn()"
+      [mainAction]="mainAction()"
+      [loading]="loading()"
+      [noHeaderWhenEmpty]="noHeaderWhenEmpty()"
+      [noResults]="noResults()"
+    />
+  `,
+  standalone: true,
+  imports: [TableComponent]
+})
+export class BasicTableExampleComponent {
+  data = input<User[]>([]);
+  columnsFn = input<TableColumnFn<User>>(createUserColumns);
+  classesFn = input<TableClassesFn<User>>(() => '');
+  actionsFn = input<TableActionFn<User>>(() => []);
+  mainAction = input<FktButtonAction | undefined>();
+  loading = input<boolean>(false);
+  noHeaderWhenEmpty = input<boolean>(false);
+  noResults = input<FktNoResults>({
+    label: 'No data available',
+    description: 'There are no records to display at this time.',
+    icon: { name: 'document-text', size: '80px' }
+  });
+
+  tableData = computed(() => this.data());
+}
+```
+
+### Table with Actions
+
+Complete table with row actions, main header action, and conditional styling.
+
+<Story of={stories.WithActions} />
+<p></p>
+___
+<Controls of={stories.WithActions} />
+
+```typescript
+import { Component, computed, input, signal } from '@angular/core';
+import { TableComponent } from '@frakton-ng/core';
+import { TableActionFn } from './models/table-action-fn';
+import { FktButtonAction } from '../../button';
+
+const createUserActions: TableActionFn<User> = (user) => [
+  {
+    name: 'view',
+    condition: true,
+    icon: 'eye',
+    classes: ['text-blue-600', 'hover:text-blue-800'],
+    click: () => console.log('View user:', user.name)
+  },
+  {
+    name: 'edit',
+    condition: user.status !== 'inactive',
+    icon: 'pencil',
+    classes: ['text-green-600', 'hover:text-green-800'],
+    click: () => console.log('Edit user:', user.name)
+  },
+  {
+    name: 'delete',
+    condition: user.role !== 'admin',
+    icon: 'trash',
+    classes: ['text-red-600', 'hover:text-red-800'],
+    click: () => console.log('Delete user:', user.name)
+  }
+];
+
+const createUserClasses: TableClassesFn<User> = (user) => {
+  switch (user.status) {
+    case 'active':
+      return 'bg-green-50 hover:bg-green-100';
+    case 'inactive':
+      return 'bg-gray-50 hover:bg-gray-100 opacity-75';
+    case 'pending':
+      return 'bg-yellow-50 hover:bg-yellow-100';
+    default:
+      return '';
+  }
+};
+
+@Component({
+  selector: 'table-with-actions-example',
+  template: `
+    <fkt-table
+      [data]="tableData()"
+      [columnsFn]="columnsFn()"
+      [classesFn]="classesFn()"
+      [actionsFn]="actionsFn()"
+      [mainAction]="mainAction()"
+      [loading]="loading()"
+      [noHeaderWhenEmpty]="noHeaderWhenEmpty()"
+      [noResults]="noResults()"
+    />
+  `,
+  standalone: true,
+  imports: [TableComponent]
+})
+export class TableWithActionsExampleComponent {
+  data = input<User[]>([]);
+  columnsFn = input<TableColumnFn<User>>(createUserColumns);
+  classesFn = input<TableClassesFn<User>>(createUserClasses);
+  actionsFn = input<TableActionFn<User>>(createUserActions);
+  mainAction = input<FktButtonAction | undefined>({
+    identifier: 'add-user',
+    text: 'Add User',
+    theme: 'raised',
+    color: 'primary',
+    icon: 'plus',
+    iconPosition: 'left',
+    click: () => console.log('Add new user')
+  });
+
+  private _internalData = signal<User[]>([]);
+
+  tableData = computed(() => {
+    const inputData = this.data();
+    return inputData.length > 0 ? inputData : this._internalData();
+  });
+}
+```
+
+### Loading State
+
+Table displaying loading spinner with customizable loading message.
+
+<Story of={stories.LoadingState} />
+<p></p>
+___
+<Controls of={stories.LoadingState} />
+
+```typescript
+@Component({
+  selector: 'loading-table-example',
+  template: `
+    <fkt-table
+      [data]="data()"
+      [columnsFn]="columnsFn()"
+      [loading]="true"
+      [noResults]="loadingNoResults()"
+    />
+  `,
+  standalone: true,
+  imports: [TableComponent]
+})
+export class LoadingTableExampleComponent {
+  data = input<User[]>([]);
+  columnsFn = input<TableColumnFn<User>>(createUserColumns);
+
+  loadingNoResults = computed<FktNoResults>(() => ({
+    label: 'Loading data...',
+    description: 'Please wait while we fetch your data.',
+    icon: { name: 'arrow-path', size: '80px' }
+  }));
+}
+```
+
+### Empty State
+
+Table with comprehensive empty state configuration including action button.
+
+<Story of={stories.EmptyState} />
+<p></p>
+___
+<Controls of={stories.EmptyState} />
+
+```typescript
+@Component({
+  selector: 'empty-table-example',
+  template: `
+    <fkt-table
+      [data]="[]"
+      [columnsFn]="columnsFn()"
+      [mainAction]="mainAction()"
+      [noHeaderWhenEmpty]="true"
+      [noResults]="emptyStateConfig()"
+    />
+  `,
+  standalone: true,
+  imports: [TableComponent]
+})
+export class EmptyTableExampleComponent {
+  columnsFn = input<TableColumnFn<User>>(createUserColumns);
+
+  mainAction = computed<FktButtonAction>(() => ({
+    identifier: 'add-user',
+    text: 'Add User',
+    theme: 'raised',
+    color: 'primary',
+    icon: 'plus',
+    iconPosition: 'left',
+    click: () => console.log('Add first user')
+  }));
+
+  emptyStateConfig = computed<FktNoResults>(() => ({
+    label: 'No data to display',
+    description: 'The table is currently empty. Add some records to get started.',
+    icon: { name: 'table-cells', size: '96px' },
+    action: {
+      identifier: 'add-data',
+      text: 'Add Data',
+      theme: 'raised',
+      color: 'primary',
+      icon: 'plus',
+      iconPosition: 'left',
+      click: () => console.log('Add data clicked')
+    }
+  }));
+}
+```
+
+### Interactive States
+
+Interactive example with state controls for testing different table states.
+
+<Story of={stories.InteractiveStates} />
+<p></p>
+___
+<Controls of={stories.InteractiveStates} />
+
+```typescript
+import { FktButtonComponent } from '../../button';
+
+type TableState = 'loading' | 'empty' | 'populated';
+
+@Component({
+  selector: 'table-states-example',
+  template: `
+    <div class="space-y-4">
+      <!-- State Control Buttons -->
+      <div class="flex gap-2 p-4 bg-gray-50 rounded-lg">
+        <fkt-button
+          [text]="'Loading State'"
+          [theme]="currentState() === 'loading' ? 'raised' : 'stroked'"
+          [color]="'primary'"
+          [disabled]="false"
+          (click)="setState('loading')"
+        />
+        <fkt-button
+          [text]="'Empty State'"
+          [theme]="currentState() === 'empty' ? 'raised' : 'stroked'"
+          [color]="'yellow'"
+          [disabled]="false"
+          (click)="setState('empty')"
+        />
+        <fkt-button
+          [text]="'Populated State'"
+          [theme]="currentState() === 'populated' ? 'raised' : 'stroked'"
+          [color]="'green'"
+          [disabled]="false"
+          (click)="setState('populated')"
+        />
+      </div>
+
+      <!-- Table -->
+      <fkt-table
+        [data]="tableData()"
+        [columnsFn]="columnsFn()"
+        [loading]="isLoading()"
+        [noHeaderWhenEmpty]="noHeaderWhenEmpty()"
+        [noResults]="noResults()"
+      />
+    </div>
+  `,
+  standalone: true,
+  imports: [TableComponent, FktButtonComponent]
+})
+export class TableStatesExampleComponent {
+  private currentState = signal<TableState>('populated');
+
+  tableData = computed(() => {
+    const state = this.currentState();
+    switch (state) {
+      case 'loading':
+      case 'populated':
+        return this.data();
+      case 'empty':
+        return [];
+      default:
+        return this.data();
+    }
+  });
+
+  isLoading = computed(() => this.currentState() === 'loading');
+
+  setState(newState: TableState): void {
+    this.currentState.set(newState);
+  }
+}
+```
+
+### Custom Cell Types
+
+Advanced example showing different cell types and custom formatting.
+
+<Story of={stories.CustomCells} />
+<p></p>
+___
+<Controls of={stories.CustomCells} />
+
+```typescript
+interface Product extends FktIdentifiable {
+  name: string;
+  category: string;
+  price: number;
+  stock: number;
+  status: 'active' | 'inactive' | 'discontinued';
+}
+
+const createProductColumns: TableColumnFn<Product> = (product) => [
+  {
+    position: '1',
+    name: 'Product',
+    cell: {
+      type: 'default',
+      options: { data: product.name }
+    }
+  },
+  {
+    position: '3',
+    name: 'Price',
+    cell: {
+      type: 'default',
+      options: {
+        data: new Intl.NumberFormat('en-US', {
+          style: 'currency',
+          currency: 'USD'
+        }).format(product.price)
+      }
+    }
+  },
+  {
+    position: '5',
+    name: 'Status',
+    cell: {
+      type: 'with-action',
+      options: {
+        data: product.status,
+        action: {
+          identifier: 'toggle-status',
+          icon: product.status === 'active' ? 'check-circle' : 'x-circle',
+          theme: 'basic',
+          color: product.status === 'active' ? 'green' : 'red',
+          variant: 'icon',
+          click: () => console.log('Toggle status:', product)
+        }
+      }
+    }
+  }
+];
+
+@Component({
+  selector: 'custom-cells-example',
+  template: `
+    <div class="space-y-8">
+      <div>
+        <h3 class="text-lg font-semibold mb-4">Products - Custom Formatting</h3>
+        <fkt-table
+          [data]="productData()"
+          [columnsFn]="productColumns()"
+          [mainAction]="productMainAction()"
+        />
+      </div>
+    </div>
+  `,
+  standalone: true,
+  imports: [TableComponent]
+})
+export class CustomCellsExampleComponent {
+  productData = input<Product[]>([]);
+
+  productColumns = computed<TableColumnFn<Product>>(() => createProductColumns);
+
+  productMainAction = computed<FktButtonAction>(() => ({
+    identifier: 'add-product',
+    text: 'Add Product',
+    theme: 'raised',
+    color: 'primary',
+    icon: 'plus',
+    iconPosition: 'left',
+    click: () => console.log('Add new product')
+  }));
+}
+```
+
+### Product Table
+
+Real-world example with product data and inventory management actions.
+
+<Story of={stories.ProductTable} />
+<p></p>
+___
+<Controls of={stories.ProductTable} />
+
+```typescript
+// Full product table implementation with all features
+@Component({
+  selector: 'product-table-example',
+  template: `
+    <fkt-table
+      [data]="productData()"
+      [columnsFn]="productColumns()"
+      [classesFn]="productClassesFn()"
+      [actionsFn]="productActionsFn()"
+      [mainAction]="productMainAction()"
+      [loading]="loading()"
+      [noResults]="productNoResults()"
+    />
+  `,
+  standalone: true,
+  imports: [TableComponent]
+})
+export class ProductTableExampleComponent {
+  productData = input<Product[]>([]);
+  loading = input<boolean>(false);
+
+  productColumns = computed<TableColumnFn<Product>>(() => createProductColumns);
+  productClassesFn = computed<TableClassesFn<Product>>(() => createProductClasses);
+  productActionsFn = computed<TableActionFn<Product>>(() => createProductActions);
+
+  productMainAction = computed<FktButtonAction>(() => ({
+    identifier: 'add-product',
+    text: 'Add Product',
+    theme: 'raised',
+    color: 'primary',
+    icon: 'plus',
+    iconPosition: 'left',
+    click: () => console.log('Add new product')
+  }));
+
+  productNoResults = computed<FktNoResults>(() => ({
+    label: 'No products available',
+    description: 'Your product catalog is empty. Add some products to get started.',
+    icon: { name: 'shopping-bag', size: '80px' },
+    action: {
+      identifier: 'add-product',
+      text: 'Add Product',
+      theme: 'raised',
+      color: 'primary',
+      icon: 'plus',
+      iconPosition: 'left',
+      click: () => console.log('Add product')
+    }
+  }));
+}
+```
+
+### Task Table
+
+Task management table with priority and status indicators.
+
+<Story of={stories.TaskTable} />
+<p></p>
+___
+<Controls of={stories.TaskTable} />
+
+```typescript
+interface Task extends FktIdentifiable {
+  title: string;
+  assignee: string;
+  priority: 'high' | 'medium' | 'low';
+  status: 'todo' | 'in-progress' | 'completed' | 'cancelled';
+  dueDate: Date;
+}
+
+const createTaskColumns: TableColumnFn<Task> = (task) => [
+  {
+    position: '1',
+    name: 'Task',
+    cell: {
+      type: 'default',
+      options: { data: task.title }
+    }
+  },
+  {
+    position: '2',
+    name: 'Assignee',
+    cell: {
+      type: 'default',
+      options: { data: task.assignee }
+    }
+  },
+  {
+    position: '3',
+    name: 'Priority',
+    cell: {
+      type: 'default',
+      options: { data: task.priority }
+    }
+  },
+  {
+    position: '4',
+    name: 'Status',
+    cell: {
+      type: 'default',
+      options: { data: task.status }
+    }
+  }
+];
+
+@Component({
+  selector: 'task-table-example',
+  template: `
+    <fkt-table
+      [data]="taskData()"
+      [columnsFn]="taskColumns()"
+      [classesFn]="taskClassesFn()"
+      [actionsFn]="taskActionsFn()"
+      [mainAction]="taskMainAction()"
+      [noResults]="taskNoResults()"
+    />
+  `,
+  standalone: true,
+  imports: [TableComponent]
+})
+export class TaskTableExampleComponent {
+  taskData = input<Task[]>([]);
+
+  taskColumns = computed<TableColumnFn<Task>>(() => createTaskColumns);
+  taskClassesFn = computed<TableClassesFn<Task>>(() => createTaskClasses);
+  taskActionsFn = computed<TableActionFn<Task>>(() => createTaskActions);
+
+  taskMainAction = computed<FktButtonAction>(() => ({
+    identifier: 'add-task',
+    text: 'New Task',
+    theme: 'raised',
+    color: 'primary',
+    icon: 'plus',
+    iconPosition: 'left',
+    click: () => console.log('Add new task')
+  }));
+
+  taskNoResults = computed<FktNoResults>(() => ({
+    label: 'No tasks assigned',
+    description: 'You don\'t have any tasks yet. Create your first task to get started.',
+    icon: { name: 'clipboard-document-list', size: '80px' },
+    action: {
+      identifier: 'add-task',
+      text: 'Create Task',
+      theme: 'raised',
+      color: 'primary',
+      icon: 'plus',
+      iconPosition: 'left',
+      click: () => console.log('Add task')
+    }
+  }));
+}
+```
+
+## Use Cases
+
+The Table component is ideal for various data display scenarios in modern web applications:
+
+### Administrative Dashboards
+Perfect for user management, system monitoring, and configuration interfaces where data needs to be presented clearly with actionable controls.
+
+### Data Management Interfaces
+Excellent for CRM systems, inventory management, and database frontends where users need to view, edit, and interact with large datasets.
+
+### Content Management Systems
+Great for article listings, media libraries, and any content that requires tabular organization with bulk and individual actions.
+
+### Analytics and Reporting
+Suitable for displaying metrics, logs, and analytical data with sorting, filtering, and export capabilities.
+
+### E-commerce Platforms
+Ideal for product catalogs, order management, and customer data where visual status indicators and quick actions are essential.
+
+## Accessibility
+
+### Keyboard Navigation
+- **Tab Navigation**: Full keyboard support for navigating through table headers, action buttons, and interactive elements
+- **Enter/Space**: Activates action buttons and interactive elements within table cells
+- **Arrow Keys**: Native browser support for navigating table cells when using screen readers
+
+### Screen Reader Support
+- **Table Structure**: Proper HTML table markup with thead, tbody, and semantic structure
+- **Header Association**: Table headers are properly associated with data cells
+- **Action Announcements**: Row actions are properly labeled and announced to screen readers
+- **State Communication**: Loading states and empty states are communicated through accessible text
+
+### Focus Management
+- **Logical Order**: Focus flows naturally through table headers and row actions
+- **Visual Indicators**: Clear focus indicators on all interactive elements
+- **Skip Patterns**: Efficient navigation patterns for large tables
+
+### ARIA Support
+- **Role Attributes**: Proper ARIA roles for table structure and interactive elements
+- **State Attributes**: Dynamic ARIA states for loading, expanded/collapsed states
+- **Label Associations**: Comprehensive labeling for action buttons and controls
+
+### High Contrast Support
+- **Color Independence**: All information is conveyed through multiple channels (color, text, icons)
+- **Contrast Ratios**: Text and interactive elements meet WCAG contrast requirements
+- **System Integration**: Respects user's high contrast mode preferences
+
+## Performance
+
+### Efficient Rendering
+- **Angular Signals**: Built with Angular signals for optimal change detection and rendering performance
+- **OnPush Strategy**: Uses OnPush change detection for efficient updates
+- **Virtual Scrolling Ready**: Compatible with Angular CDK virtual scrolling for large datasets
+
+### Memory Management
+- **Function References**: Proper handling of function references to avoid memory leaks
+- **Event Cleanup**: Automatic cleanup of event listeners and subscriptions
+- **Computed Values**: Efficient computation of derived values using Angular signals
+
+### Bundle Optimization
+- **Tree Shakable**: Only used components are included in the final bundle
+- **Minimal Dependencies**: Uses only essential Angular and Frakton components
+- **Efficient Imports**: Barrel exports for optimal import patterns

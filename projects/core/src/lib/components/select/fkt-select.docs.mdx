@@ -1,0 +1,121 @@
+import { Meta, Story, Controls, ArgTypes } from '@storybook/addon-docs/blocks';
+import * as stories from './fkt-select.stories';
+
+<Meta of={stories} />
+
+# FktSelect
+
+_A dropdown selection component that provides a clean and accessible interface for choosing options. Built with Angular signals and reactive forms, it offers a styled alternative to native select elements with enhanced functionality and consistent design._
+
+## Key Features
+
+- **Custom Styling**: Beautiful dropdown design that works consistently across all browsers
+- **Form Integration**: Seamless integration with SignalFormControl and reactive forms  
+- **Keyboard Navigation**: Full keyboard support for accessibility and efficiency
+- **Loading States**: Built-in support for dynamic option loading with loading indicators
+- **Custom No Results**: Configurable messaging when no options are available
+- **Async Loading**: Support for loading options dynamically from APIs
+
+## Configuration Options
+
+<ArgTypes/>
+
+### Types
+
+```typescript
+// Option interface
+interface FktSelectOption {
+  value: string | number;
+  label: string;
+}
+
+// No results configuration  
+interface FktNoResults {
+  label: string;
+  icon?: { name: FktIconName; size?: string };
+  description?: string;
+  action?: FktButtonAction;
+}
+```
+
+## Examples
+
+### Basic Select
+
+Simple dropdown with a list of predefined options. Click to open and select an option.
+
+<Story of={stories.Default} />
+___
+<Controls of={stories.Default} />
+
+### Pre-selected Option
+
+Select dropdown with an initial selected value showing the selected state.
+
+<Story of={stories.WithPreselected} />
+___
+<Controls of={stories.WithPreselected} />
+
+### Large Option List
+
+Select with many options demonstrating scrollable dropdown behavior.
+
+<Story of={stories.WithLargeList} />
+___
+<Controls of={stories.WithLargeList} />
+
+### Loading State
+
+Select showing loading indicator while options are being fetched.
+
+<Story of={stories.Loading} />
+___
+<Controls of={stories.Loading} />
+
+### Empty State
+
+Select with no options showing custom "no results" message.
+
+<Story of={stories.EmptyState} />
+___
+<Controls of={stories.EmptyState} />
+
+### With Validation
+
+Select with required validation showing error state when no option is selected.
+
+<Story of={stories.WithValidation} />
+___
+<Controls of={stories.WithValidation} />
+
+### Disabled State
+
+Select in disabled state preventing user interaction while maintaining visual feedback.
+
+<Story of={stories.Disabled} />
+___
+<Controls of={stories.Disabled} />
+
+### Async Loading
+
+Select that loads options asynchronously with simulated API delay.
+
+<Story of={stories.AsyncLoading} />
+___
+<Controls of={stories.AsyncLoading} />
+
+## Use Cases
+
+[Real-world application scenarios where the FktSelect component provides value]
+
+- **Form Selection**: Country/region selection, status and priority selection, user and role assignment
+- **Configuration Settings**: Theme and appearance options, language and locale selection, feature toggles
+- **Data Filtering**: Sort order selection, filter criteria selection, date range presets
+- **Business Applications**: Department and team selection, project status and priority, customer and vendor selection
+
+## Accessibility
+
+- **Keyboard Navigation**: Arrow keys navigate options, Enter selects, Escape closes dropdown, Tab moves focus
+- **Screen Reader Support**: ARIA labels for combobox role, aria-expanded state, aria-activedescendant for highlighted option
+- **Focus Management**: Logical tab order, visible focus indicators, focus trap when dropdown is open
+- **Other Notes**: Supports high contrast mode, respects prefers-reduced-motion for animations

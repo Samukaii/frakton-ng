@@ -1,0 +1,131 @@
+@reference "../../styles/tailwind.css";
+
+:host {
+	display: block;
+}
+
+button {
+	@apply w-full flex justify-center cursor-pointer disabled:cursor-not-allowed;
+}
+
+.theme-raised {
+	@apply transition;
+	@apply disabled:opacity-40 disabled:hover:shadow-none disabled:shadow-none;
+	@apply hover:shadow-gray-800/30 hover:shadow-lg;
+	@apply flex gap-2 font-semibold text-white border-2 px-4 py-2 rounded-full;
+
+	&.variant-rounded {
+		&.icon-only {
+			@apply p-2;
+		}
+	}
+
+	&.variant-rect {
+		@apply rounded-md;
+
+		&.icon-only {
+			@apply p-2;
+		}
+	}
+
+	&.color-primary {
+		@apply hover:bg-gray-700 disabled:hover:bg-gray-700;
+		@apply bg-gray-800 hover:shadow-gray-900 border-gray-800;
+	}
+
+	&.color-yellow {
+		@apply hover:bg-yellow-400 disabled:hover:bg-yellow-600 text-gray-800;
+		@apply bg-yellow-500 border-yellow-500;
+	}
+
+	&.color-red {
+		@apply hover:bg-red-500 disabled:hover:bg-red-700;
+		@apply bg-red-600 border-red-600;
+	}
+
+	&.color-green {
+		@apply hover:bg-green-500 hover:border-green-500 disabled:hover:bg-green-700;
+		@apply bg-green-600 border-green-600;
+	}
+}
+
+.theme-stroked {
+	@apply transition-[background-color];
+	@apply disabled:opacity-60 disabled:grayscale;
+	@apply items-center flex gap-2 font-semibold border-2 py-2 px-4 rounded-full;
+
+	&.variant-rounded {
+		&.icon-only {
+			@apply p-2;
+		}
+	}
+
+	&.variant-rect {
+		@apply rounded-md;
+
+		&.icon-only {
+			@apply p-2;
+		}
+	}
+
+	&.color-yellow {
+		@apply hover:bg-yellow-500 hover:text-gray-50 hover:border-yellow-500;
+		@apply text-yellow-500 border-yellow-500;
+	}
+
+	&.color-primary {
+		@apply hover:bg-gray-800 hover:text-gray-50 hover:border-gray-800;
+		@apply text-gray-800 border-gray-800;
+	}
+
+	&.color-red {
+		@apply hover:bg-red-500 hover:text-gray-50 hover:border-red-500;
+		@apply text-red-500 border-red-500;
+	}
+
+	&.color-green {
+		@apply hover:bg-green-500 hover:text-gray-50 hover:border-green-500;
+		@apply text-green-500 border-green-500;
+	}
+}
+
+.theme-basic {
+	@apply transition;
+	@apply disabled:opacity-60 disabled:grayscale disabled:bg-gray-300 disabled:hover:bg-gray-300;
+	@apply items-center flex gap-2 font-semibold py-2 px-4 rounded-full;
+
+	&:hover {
+		background-color: #00000015;
+	}
+
+	&.variant-rounded {
+		&.icon-only {
+			@apply p-2;
+		}
+	}
+
+	&.variant-rect {
+		@apply rounded-md;
+
+		&.icon-only {
+			@apply p-2;
+		}
+	}
+
+	&.color-yellow {
+		@apply text-yellow-500;
+	}
+
+	&.color-primary {
+		@apply text-gray-800;
+	}
+
+	&.color-red {
+		@apply text-red-500;
+	}
+
+	&.color-green {
+		@apply text-green-500;
+	}
+}
+

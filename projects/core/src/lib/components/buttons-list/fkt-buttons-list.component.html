@@ -1,0 +1,16 @@
+@for (action of actions(); track action.identifier) {
+	<fkt-button
+		[fktTooltip]="action.tooltip ?? ''"
+		[tooltipEnabled]="!!action.tooltip"
+		(click)="action?.click?.(context())"
+		[loading]="action.loading ?? false"
+		[disabled]="action.disabled ?? false"
+		[text]="action.text ?? ''"
+		[loadingText]="action.loadingText ?? ''"
+		[color]="action.color ?? 'primary'"
+		[theme]="action.theme ?? 'raised'"
+		[variant]="action.variant ?? 'rounded'"
+		[icon]="action.icon"
+		[iconPosition]="action.iconPosition ?? 'right'"
+	/>
+}

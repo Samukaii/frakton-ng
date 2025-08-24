@@ -1,0 +1,23 @@
+@reference "../../styles/tailwind.css";
+
+:host {
+	@apply flex gap-2;
+
+	&.horizontal {
+		justify-content: var(--horizontal-alignment);
+		align-items: var(--vertical-alignment);
+	}
+
+	&.vertical {
+		@apply flex-col;
+
+		justify-content: var(--vertical-alignment);
+		align-items: var(--horizontal-alignment);
+	}
+
+	&.fill {
+		& > * {
+			width: 100%;
+		}
+	}
+}

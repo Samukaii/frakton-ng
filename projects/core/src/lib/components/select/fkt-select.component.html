@@ -1,0 +1,47 @@
+<div class="flex gap-2 items-center">
+	<label
+		[id]="labelId"
+		[class.!text-red-500]="!!error.message()"
+		[class.float]="control().viewValue()"
+		class="text-gray-800 font-medium text-sm mb-1"
+	>{{ label() }}</label>
+</div>
+
+<div class="relative">
+	<div
+		#element
+		class="container"
+		[class.opened]="opened()"
+		[class.!border-red-500]="!!error.message()"
+		(click)="openOverlay(element)"
+		(keydown)="handleKeydown(element, $event)"
+		role="combobox"
+		aria-haspopup="listbox"
+		tabindex="0"
+		[attr.aria-labelledby]="labelId"
+		[attr.aria-expanded]="opened()"
+		[attr.aria-controls]="opened() ? listBoxId : null"
+		[attr.aria-activedescendant]="opened() ? activeOptionId() : null"
+		[attr.aria-disabled]="control().disabled()"
+		[attr.aria-invalid]="!!error.message()"
+		[attr.aria-errormessage]="!!error.message() ? errorId : null"
+	>
+		<div>
+			@if (selectedOption()?.label) {
+				<span>
+				{{ selectedOption()?.label }}
+				</span>
+			} @else if (opened()) {
+				<span class="text-gray-400" aria-hidden="true">{{ placeholder() }}</span>
+			}
+		</div>
+		<fkt-icon aria-hidden="true" name="chevron-down"/>
+	</div>
+</div>
+
+<fkt-field-error
+	#error
+	[id]="errorId"
+	aria-live="polite"
+	[control]="control()"
+/>

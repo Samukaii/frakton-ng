@@ -1,15 +1,12 @@
 {
 	"name": "frakton-ng",
-	"version": "0.0.0",
+	"version": "1.0.0",
 	"scripts": {
 		"ng": "ng",
 		"start": "ng serve",
 		"build": "ng build",
 		"watch": "ng build --watch --configuration development",
 		"test": "ng test",
-		"sass:watch": "sass --watch ./projects/components/src/lib/styles/tailwind.scss projects/components/src/lib/styles/tailwind.css",
-		"tailwind:watch": "npx @tailwindcss/cli -i ./projects/components/src/lib/styles/tailwind-input.css -o projects/components/src/lib/styles/tailwind.css --watch",
-		"tw:watch": "concurrently \"npm run tailwind:watch\" \"npm run sass:watch\"",
 		"storybook": "ng run components:storybook",
 		"storybook:dev": "ng run components:storybook",
 		"dev": "ng run components:storybook"
