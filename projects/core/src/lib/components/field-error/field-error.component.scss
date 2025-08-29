@@ -1,5 +1,15 @@
-@reference "../../styles/tailwind.css";
-
 :host {
-  @apply text-xs text-red-500 transition-all h-5 overflow-hidden flex items-end;
+	display: flex;
+	justify-content: flex-start;
+	font-size: var(--font-size-xs);
+	overflow: hidden;
+	color: var(--color-red-500);
+	transition: var(--transition-base);
+	height: var(--space-lg);
+	max-height: 0;
+	line-height: 1.25rem;
+
+	&.active {
+		max-height: var(--space-lg);
+	}
 }

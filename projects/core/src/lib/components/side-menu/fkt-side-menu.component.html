@@ -3,21 +3,21 @@
 	[width]="opened() ? '350px' : '80px'"
 	[opened]="true"
 	(backdropClick)="opened.set(false)">
-	<div class="w-full h-full flex flex-col"
+	<div class="main-content"
 		 side-main>
-		<ng-content />
+		<ng-content/>
 	</div>
-	<div class="bg-gray-900 border-t border-gray-700 w-full h-full flex flex-col justify-between"
+	<div class="menu"
 		 side-content>
-		<div class="flex z-20 flex-col p-3">
-			<div class="flex flex-col gap-2">
-				<div class="flex flex-col">
-					@for (group of groups; track group.name) {
+		<div class="menu__content">
+			<div class="menu__content__content">
+				<div class="menu__list">
+					@for (group of groups(); track group.name) {
 						@if (group.name) {
 							<div
 								[style.max-height]="opened() ? '50px' : '0px'"
-								class="transition-[max-height] overflow-hidden">
-								<h2 class="text-gray-400 mt-4 mb-1">{{ group.name }}</h2>
+								class="menu__group">
+								<h2>{{ group.name }}</h2>
 
 							</div>
 							<div
@@ -34,34 +34,28 @@
 							}
 						}
 						<div
-							class="flex flex-col gap-2">
+							class="menu__items">
 							@for (menu of group.items; track menu.path) {
 								<div
 									[fktTooltip]="menu.name"
 									position="right-center"
 									[tooltipEnabled]="!opened()"
-									[routerLink]="menu.path"
-									class="w-full bg-gray-700 bg-opacity-50 items-center flex gap-2 text-white rounded-lg cursor-pointer transition hover:bg-gray-600 p-3"
-									routerLinkActive="!bg-gray-600 bg-opacity-100"
+									[class.menu__items-item--collapsed]="!opened()"
+									class="menu__items-item"
 								>
 									<fkt-icon
-										class="!text-3xl"
-										[name]="menu.icon" />
+										[name]="menu.icon"/>
 									@if (opened()) {
-										<p class="whitespace-nowrap">
+										<p>
 											{{ menu.name }}
 										</p>
 									}
-
 								</div>
 							}
 						</div>
 					}
 				</div>
-
 			</div>
 		</div>
-
-
 	</div>
 </fkt-drawer>

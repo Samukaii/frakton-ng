@@ -2,16 +2,16 @@
 	(next)="next()"
 	(previous)="previous()"
 >
-	<div class="flex items-center gap-3">
+	<div class="container">
 		<strong
 			(click)="monthClick.emit()"
-			class="cursor-pointer hover:bg-blue-100 transition px-1 rounded-md capitalize text-lg font-semibold">
+			class="container__month">
 			{{ currentDate() | date: 'MMMM' }}
 		</strong>
 
 		<strong
 			(click)="yearClick.emit()"
-			class="cursor-pointer hover:bg-blue-100 transition px-1 rounded-md text-lg font-semibold">
+			class="container__year">
 			{{ currentDate() | date: 'yyyy' }}
 		</strong>
 	</div>

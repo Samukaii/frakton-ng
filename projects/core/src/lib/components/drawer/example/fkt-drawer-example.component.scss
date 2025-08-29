@@ -1,0 +1,27 @@
+:host {
+	height: 1000px;
+	width: 100%;
+	display: block;
+}
+
+.side-content {
+	height: 100%;
+	width: 100%;
+	background-color: white;
+	border: dashed 2px var(--color-gray-200);
+	font-weight: var(--font-semibold);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.main-content {
+	height: 100%;
+	width: 100%;
+	background-color: white;
+	border: dashed 2px var(--color-gray-200);
+	font-weight: var(--font-semibold);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}

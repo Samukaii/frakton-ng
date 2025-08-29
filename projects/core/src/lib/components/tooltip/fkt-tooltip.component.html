@@ -1,9 +1,9 @@
-<div class="relative">
+<div class="message">
 	<div
-		class="tip"></div>
+		[class]="'message__tip ' + tipPositionClass()"></div>
 
 	<div
-		class="relative bg-red p-2 text-sm text-white font-semibold message">
+		class="message__content">
 		{{ text() }}
 	</div>
 </div>

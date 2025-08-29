@@ -8,8 +8,7 @@ import { Generic } from '../../shared/types';
 	templateUrl: './field-error.component.html',
 	styleUrl: './field-error.component.scss',
 	host: {
-		'[class.max-h-5]': '!!message()',
-		'[class.max-h-0]': '!message()',
+		'[class.active]': '!!message()',
 	},
 })
 export class FieldErrorComponent {

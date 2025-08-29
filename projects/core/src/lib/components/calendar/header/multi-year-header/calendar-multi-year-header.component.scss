@@ -1,0 +1,11 @@
+.container {
+	display: flex;
+	align-items: center;
+	gap: var(--space-sm);
+
+	strong {
+		padding: 0 var(--space-3xs);
+		font-weight: var(--font-semibold);
+		font-size: var(--font-size-lg);
+	}
+}

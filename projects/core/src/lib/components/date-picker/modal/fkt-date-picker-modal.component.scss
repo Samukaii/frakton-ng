@@ -1,5 +1,6 @@
-@reference "../../../styles/tailwind.css";
-
 :host {
-	@apply h-fit w-[400px] block p-4;
+	height: fit-content;
+	width: 400px;
+	display: block;
+	padding: 0;
 }

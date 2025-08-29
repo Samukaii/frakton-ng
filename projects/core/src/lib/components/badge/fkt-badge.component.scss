@@ -1,31 +1,58 @@
 @reference "../../styles/tailwind.css";
 
-.opaque {
-	&.red {
-		@apply bg-red-500;
-	}
-	&.blue {
-		@apply bg-blue-500;
-	}
-	&.orange {
-		@apply bg-orange-500;
-	}
-	&.green {
-		@apply bg-green-500;
-	}
-}
+.badge {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 
-.faded {
-	&.red {
-		@apply bg-red-200 text-black;
+	height: fit-content;
+	width: fit-content;
+	border-radius: var(--radius-md);
+
+	color: var(--color-neutral-100);
+
+	gap: var(--space-xs);
+	padding: var(--space-3xs) var(--space-xs);
+	font-weight: var(--font-semibold);
+	font-size: var(--font-size-sm);
+
+	&.badge--opaque {
+		&.badge--red {
+			background-color: var(--color-red-500);
+		}
+
+		&.badge--blue {
+			background-color: var(--color-blue-500);
+		}
+
+		&.badge--orange {
+			background-color: var(--color-orange-500);
+		}
+
+		&.badge--green {
+			background-color: var(--color-green-500);
+		}
 	}
-	&.blue {
-		@apply bg-blue-200 text-black;
-	}
-	&.orange {
-		@apply bg-orange-200 text-black;
-	}
-	&.green {
-		@apply bg-green-200 text-black;
+
+	&.badge--faded {
+		&.badge--red {
+			background-color: var(--color-red-200);
+			color: var(--color-neutral-950);
+		}
+
+		&.badge--blue {
+			background-color: var(--color-blue-200);
+			color: var(--color-neutral-950);
+		}
+
+		&.badge--orange {
+			background-color: var(--color-orange-200);
+			color: var(--color-neutral-950);
+		}
+
+		&.badge--green {
+			background-color: var(--color-green-200);
+			color: var(--color-neutral-950);
+		}
 	}
 }

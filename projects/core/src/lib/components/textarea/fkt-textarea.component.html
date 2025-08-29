@@ -1,15 +1,19 @@
-<div class="flex gap-2 items-center">
-	<label [class.!text-red-500]="!!error.message()"
-		   [class.float]="!!control().viewValue()"
-		   aria-hidden="true"
-		   class="text-gray-800 font-medium text-sm mb-1">{{ label() }}</label>
+<div class="label-container">
+	<div
+		[class.error]="!!error.message()"
+		[class.float]="control().viewValue()"
+		[class.disabled]="control().disabled()"
+		class="label-wrapper">
+		<label
+			aria-hidden="true"
+		>{{ label() }}</label>
+	</div>
 </div>
 
-<div class="relative">
+<div class="input">
 	<textarea
-		[class.!border-red-500]="!!error.message()"
 		[attr.aria-label]="label()"
-		class="!border-[1px] border-transparent"
+		[class.error]="!!error.message()"
 		[signalFormControl]="control()"
 		#textarea
 		[placeholder]="placeholder()"

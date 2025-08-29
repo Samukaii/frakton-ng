@@ -1,36 +1,41 @@
-<div class="flex gap-2 items-center">
-	<label [class.!text-red-500]="!!error.message()"
-		   [class.float]="control().viewValue()"
-		   class="text-gray-800 font-medium text-sm mb-1">{{ label() }}</label>
+<div class="label-container">
+	<div
+		[class.error]="!!error.message()"
+		[class.float]="control().viewValue()"
+		[class.disabled]="control().disabled()"
+		aria-hidden="true"
+		class="label-wrapper">
+		<label
+		>{{ label() }}</label>
+	</div>
+
 </div>
 
-<div class="relative">
+<div class="input">
 	<input
 		[spellcheck]="spellcheck() ? 'true' : 'false'"
-		[class.!pr-10]="type() === 'password'"
-		[class.!border-red-500]="!!error.message()"
-		class="!border-[1px] border-transparent"
+		[class.password]="type() === 'password'"
+		[class.error]="!!error.message()"
 		#input
 		[type]="inputType()"
 		[style.padding]="inputPadding()"
 		[placeholder]="placeholder()"
 		[signalFormControl]="control()"
+		[attr.aria-label]="label()"
 		[transformer]="transformerValue()"
 	/>
 
-	<div class="absolute pointer-events-none top-0 w-full flex items-center justify-end h-full">
+	<div class="input__suffix">
 		@if (type() === "password") {
-			<div class="absolute top-2 right-2 cursor-pointer">
+			<div class="input__suffix-password">
 				@if (showPassword()) {
 					<fkt-button
-						class="pointer-events-auto"
 						(click)="showPassword.set(false)"
 						theme="basic"
 						icon="eye-slash"
 					/>
 				} @else {
 					<fkt-button
-						class="pointer-events-auto"
 						(click)="showPassword.set(true)"
 						theme="basic"
 						icon="eye"
@@ -38,7 +43,7 @@
 				}
 			</div>
 		} @else if (suffix()) {
-			<div class="pointer-events-auto mr-2">
+			<div class="input__suffix-content">
 				<ng-container
 					[ngTemplateOutlet]="suffix()!.templateRef"
 				/>
@@ -48,4 +53,4 @@
 
 </div>
 
-<fkt-field-error #error [control]="control()" />
+<fkt-field-error #error [control]="control()"/>

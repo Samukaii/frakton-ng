@@ -1,0 +1,571 @@
+import { Meta, Story, Controls, ArgTypes } from '@storybook/addon-docs/blocks';
+import * as stories from './fkt-side-menu.stories';
+
+<Meta of={stories} />
+
+# Side Menu
+
+_A responsive and customizable side navigation menu component with collapsible states, grouped menu items, and integrated routing support. Built with Angular signals for optimal performance and provides tooltips for collapsed states._
+
+## Key Features
+
+- **Collapsible Navigation**: Seamless transition between expanded and collapsed states
+- **Menu Groups**: Organize navigation items into logical groups with optional headers
+- **Router Integration**: Built-in Angular Router support with active state highlighting
+- **Tooltip Support**: Contextual tooltips when collapsed for better UX
+- **Icon Integration**: Rich icon support using the Frakton icon system
+- **Responsive Design**: Adapts to different screen sizes and touch interactions
+- **Signal-Based State**: Built with Angular signals for efficient state management
+- **Drawer Foundation**: Built on top of the robust FktDrawer component
+- **Type Safety**: Full TypeScript support with strongly typed interfaces
+
+## Configuration Options
+
+<ArgTypes/>
+
+### Input Properties
+- **`groups`**: `FktMenuGroup[]` - Array of menu groups with their navigation items (required)
+- **`opened`**: `ModelSignal<boolean>` - Two-way binding for expanded/collapsed state (default: `true`)
+
+### Types
+
+```typescript
+// Core side menu interfaces
+interface FktMenuItem {
+  name: string;           // Display name for the menu item
+  icon: FktIconName;      // Icon identifier from Frakton icon set
+  path: string;           // Router path for navigation
+}
+
+interface FktMenuGroup {
+  name?: string;          // Optional group header text (if omitted, shows divider)
+  items: FktMenuItem[];   // Array of menu items in this group
+}
+```
+
+## Examples
+
+### Basic Side Menu
+
+A simple side menu with a single group of navigation items.
+
+<Story of={stories.BasicSideMenu} />
+<p></p>
+___
+<Controls of={stories.BasicSideMenu} />
+
+```typescript
+import { Component, input } from '@angular/core';
+import { FktSideMenuComponent } from '../fkt-side-menu.component';
+import { FktMenuGroup } from '../fkt-side-menu.types';
+
+@Component({
+  selector: 'basic-side-menu-example',
+  template: `
+    <div style="height: 600px; width: 100%; display: flex;">
+      <fkt-side-menu
+        [groups]="groups()"
+        [(opened)]="opened"
+      >
+        <div style="padding: 24px; background-color: #f9fafb; width: 100%; height: 100%;">
+          <h1 style="margin: 0 0 16px 0; font-size: 24px; font-weight: 600;">Main Content</h1>
+          <p style="margin: 0; color: #6b7280;">This is the main content area. Use the side menu to navigate.</p>
+        </div>
+      </fkt-side-menu>
+    </div>
+  `,
+  standalone: true,
+  imports: [FktSideMenuComponent]
+})
+export class BasicSideMenuExampleComponent {
+  groups = input.required<FktMenuGroup[]>();
+  opened = input<boolean>(true);
+}
+```
+
+### Collapsible Side Menu
+
+Side menu with toggle functionality demonstrating collapsed and expanded states.
+
+<Story of={stories.CollapsibleSideMenu} />
+<p></p>
+___
+<Controls of={stories.CollapsibleSideMenu} />
+
+```typescript
+import { Component, input, signal } from '@angular/core';
+import { FktSideMenuComponent } from '../fkt-side-menu.component';
+import { FktMenuGroup } from '../fkt-side-menu.types';
+import { FktButtonComponent } from '../../button';
+
+@Component({
+  selector: 'collapsible-side-menu-example',
+  template: `
+    <div style="height: 600px; width: 100%; display: flex;">
+      <fkt-side-menu
+        [groups]="groups()"
+        [(opened)]="menuOpened"
+      >
+        <div style="padding: 24px; background-color: #f9fafb; width: 100%; height: 100%;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+            <h1 style="margin: 0; font-size: 24px; font-weight: 600;">Dashboard</h1>
+            <fkt-button
+              [text]="menuOpened() ? 'Collapse Menu' : 'Expand Menu'"
+              [icon]="menuOpened() ? 'chevron-left' : 'chevron-right'"
+              [theme]="'stroked'"
+              [color]="'primary'"
+              [iconPosition]="menuOpened() ? 'right' : 'left'"
+              (click)="toggleMenu()"
+            />
+          </div>
+          <p style="margin: 0; color: #6b7280; line-height: 1.6;">
+            The side menu is currently <strong>{{ menuOpened() ? 'expanded' : 'collapsed' }}</strong>.
+            When collapsed, hover over menu items to see tooltips with their full names.
+          </p>
+        </div>
+      </fkt-side-menu>
+    </div>
+  `,
+  standalone: true,
+  imports: [FktSideMenuComponent, FktButtonComponent]
+})
+export class CollapsibleSideMenuExampleComponent {
+  groups = input.required<FktMenuGroup[]>();
+  opened = input<boolean>(true);
+
+  menuOpened = signal(this.opened());
+
+  toggleMenu(): void {
+    this.menuOpened.update(current => !current);
+  }
+}
+```
+
+### Multi-Group Navigation
+
+Side menu with multiple groups, demonstrating named groups and divider groups.
+
+<Story of={stories.MultiGroupSideMenu} />
+<p></p>
+___
+<Controls of={stories.MultiGroupSideMenu} />
+
+```typescript
+import { Component, input } from '@angular/core';
+import { FktSideMenuComponent } from '../fkt-side-menu.component';
+import { FktMenuGroup } from '../fkt-side-menu.types';
+
+@Component({
+  selector: 'multi-group-side-menu-example',
+  template: `
+    <div style="height: 700px; width: 100%; display: flex;">
+      <fkt-side-menu
+        [groups]="groups()"
+        [(opened)]="opened"
+      >
+        <div style="padding: 24px; background-color: #f9fafb; width: 100%; height: 100%;">
+          <h1 style="margin: 0 0 16px 0; font-size: 24px; font-weight: 600;">Multi-Section Navigation</h1>
+          <p style="margin: 0; color: #6b7280; line-height: 1.6;">
+            This example shows how to organize menu items into logical groups.
+            Groups with names display headers, while groups without names show dividers.
+          </p>
+        </div>
+      </fkt-side-menu>
+    </div>
+  `,
+  standalone: true,
+  imports: [FktSideMenuComponent]
+})
+export class MultiGroupSideMenuExampleComponent {
+  groups = input.required<FktMenuGroup[]>();
+  opened = input<boolean>(true);
+}
+```
+
+### Dynamic Menu with Permissions
+
+Advanced example showing dynamic menu generation based on user permissions.
+
+<Story of={stories.DynamicPermissionsSideMenu} />
+<p></p>
+___
+<Controls of={stories.DynamicPermissionsSideMenu} />
+
+```typescript
+import { Component, signal, computed } from '@angular/core';
+import { FktSideMenuComponent, FktMenuGroup, FktButtonComponent } from '@frakton-ng/core';
+
+interface UserPermissions {
+  canViewAnalytics: boolean;
+  canManageUsers: boolean;
+  canManageProducts: boolean;
+  canViewReports: boolean;
+  isAdmin: boolean;
+}
+
+@Component({
+  selector: 'dynamic-permissions-side-menu-example',
+  template: `
+    <div style="height: 700px; width: 100%; display: flex;">
+      <fkt-side-menu
+        [groups]="dynamicMenuGroups()"
+        [(opened)]="menuOpened"
+      >
+        <div style="padding: 24px; background-color: #f9fafb; width: 100%; height: 100%;">
+          <div style="margin-bottom: 24px;">
+            <h1 style="margin: 0 0 16px 0; font-size: 24px; font-weight: 600;">User Role: {{ currentRole() }}</h1>
+            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+              <fkt-button
+                [text]="'Admin'"
+                [theme]="currentRole() === 'Admin' ? 'raised' : 'stroked'"
+                [color]="'red'"
+                (click)="setRole('admin')"
+              />
+              <fkt-button
+                [text]="'Manager'"
+                [theme]="currentRole() === 'Manager' ? 'raised' : 'stroked'"
+                [color]="'yellow'"
+                (click)="setRole('manager')"
+              />
+              <fkt-button
+                [text]="'User'"
+                [theme]="currentRole() === 'User' ? 'raised' : 'stroked'"
+                [color]="'green'"
+                (click)="setRole('user')"
+              />
+            </div>
+          </div>
+          <p style="margin: 0; color: #6b7280; line-height: 1.6;">
+            The menu items change based on the selected user role. 
+            Switch between roles to see how the navigation adapts dynamically.
+          </p>
+        </div>
+      </fkt-side-menu>
+    </div>
+  `,
+  standalone: true,
+  imports: [FktSideMenuComponent, FktButtonComponent]
+})
+export class DynamicPermissionsSideMenuExampleComponent {
+  menuOpened = signal(true);
+  private userRole = signal<'admin' | 'manager' | 'user'>('manager');
+
+  currentRole = computed(() => {
+    const role = this.userRole();
+    return role.charAt(0).toUpperCase() + role.slice(1);
+  });
+
+  userPermissions = computed<UserPermissions>(() => {
+    const role = this.userRole();
+    switch (role) {
+      case 'admin':
+        return {
+          canViewAnalytics: true,
+          canManageUsers: true,
+          canManageProducts: true,
+          canViewReports: true,
+          isAdmin: true
+        };
+      case 'manager':
+        return {
+          canViewAnalytics: true,
+          canManageUsers: false,
+          canManageProducts: true,
+          canViewReports: true,
+          isAdmin: false
+        };
+      case 'user':
+      default:
+        return {
+          canViewAnalytics: false,
+          canManageUsers: false,
+          canManageProducts: false,
+          canViewReports: false,
+          isAdmin: false
+        };
+    }
+  });
+
+  dynamicMenuGroups = computed<FktMenuGroup[]>(() => {
+    const permissions = this.userPermissions();
+    const groups: FktMenuGroup[] = [
+      {
+        name: 'Main',
+        items: [
+          { name: 'Dashboard', icon: 'home', path: '/dashboard' }
+        ]
+      }
+    ];
+
+    // Add analytics if user can view them
+    if (permissions.canViewAnalytics) {
+      groups[0].items.push({ name: 'Analytics', icon: 'chart-bar', path: '/analytics' });
+    }
+
+    // Add management section if user has management permissions
+    if (permissions.canManageUsers || permissions.canManageProducts) {
+      const managementItems: any[] = [];
+      
+      if (permissions.canManageUsers) {
+        managementItems.push({ name: 'Users', icon: 'users', path: '/users' });
+      }
+      
+      if (permissions.canManageProducts) {
+        managementItems.push({ name: 'Products', icon: 'cube', path: '/products' });
+      }
+
+      groups.push({
+        name: 'Management',
+        items: managementItems
+      });
+    }
+
+    // Add reports for managers and admins
+    if (permissions.canViewReports) {
+      groups.push({
+        name: 'Reports',
+        items: [
+          { name: 'Sales Report', icon: 'document-chart-bar', path: '/reports/sales' },
+          { name: 'User Activity', icon: 'chart-pie', path: '/reports/activity' }
+        ]
+      });
+    }
+
+    // Add admin-only section
+    if (permissions.isAdmin) {
+      groups.push({
+        name: 'System',
+        items: [
+          { name: 'System Logs', icon: 'document-text', path: '/admin/logs' },
+          { name: 'Security', icon: 'shield-check', path: '/admin/security' }
+        ]
+      });
+    }
+
+    // Always add settings at the end (no group name = divider)
+    groups.push({
+      items: [
+        { name: 'Settings', icon: 'cog-6-tooth', path: '/settings' },
+        { name: 'Profile', icon: 'user', path: '/profile' }
+      ]
+    });
+
+    return groups;
+  });
+
+  setRole(role: 'admin' | 'manager' | 'user'): void {
+    this.userRole.set(role);
+  }
+}
+```
+
+### Admin Dashboard Layout
+
+Complete dashboard layout showcasing real-world usage with content integration.
+
+<Story of={stories.AdminDashboardLayout} />
+<p></p>
+___
+<Controls of={stories.AdminDashboardLayout} />
+
+```typescript
+import { Component, input, signal, computed } from '@angular/core';
+import { FktSideMenuComponent } from '../fkt-side-menu.component';
+import { FktMenuGroup } from '../fkt-side-menu.types';
+import { FktButtonComponent } from '../../button';
+
+@Component({
+  selector: 'admin-dashboard-layout-example',
+  template: `
+    <div style="height: 800px; width: 100%; display: flex;">
+      <fkt-side-menu
+        [groups]="groups()"
+        [(opened)]="menuOpened"
+      >
+        <!-- Main Content Area -->
+        <div style="display: flex; flex-direction: column; width: 100%; height: 100%; background-color: #f9fafb;">
+          <!-- Header -->
+          <header style="background: white; border-bottom: 1px solid #e5e7eb; padding: 16px 24px; display: flex; justify-content: space-between; align-items: center;">
+            <div style="display: flex; align-items: center; gap: 16px;">
+              <fkt-button
+                [icon]="menuOpened() ? 'bars-3' : 'bars-3'"
+                [variant]="'rect'"
+                [theme]="'basic'"
+                [color]="'primary'"
+                (click)="toggleMenu()"
+              />
+              <h1 style="margin: 0; font-size: 24px; font-weight: 600; color: #111827;">{{ currentPageTitle() }}</h1>
+            </div>
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <fkt-button
+                [icon]="'bell'"
+                [variant]="'rect'"
+                [theme]="'basic'"
+                [color]="'primary'"
+              />
+              <div style="width: 32px; height: 32px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 50%;"></div>
+            </div>
+          </header>
+
+          <!-- Main Content -->
+          <main style="flex: 1; padding: 24px; overflow-y: auto;">
+            <div style="max-width: 1200px; margin: 0 auto;">
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-bottom: 32px;">
+                <!-- Stats Cards -->
+                <div style="background: white; border-radius: 8px; padding: 24px; border: 1px solid #e5e7eb;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+                    <span style="color: #6b7280; font-size: 14px; font-weight: 500;">Total Users</span>
+                    <div style="width: 32px; height: 32px; background: #dbeafe; border-radius: 6px; display: flex; align-items: center; justify-content: center; color: #2563eb;">
+                      👥
+                    </div>
+                  </div>
+                  <div style="font-size: 32px; font-weight: 700; color: #111827; margin-bottom: 4px;">1,249</div>
+                  <div style="color: #10b981; font-size: 14px; font-weight: 500;">+12.5% from last month</div>
+                </div>
+
+                <div style="background: white; border-radius: 8px; padding: 24px; border: 1px solid #e5e7eb;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+                    <span style="color: #6b7280; font-size: 14px; font-weight: 500;">Revenue</span>
+                    <div style="width: 32px; height: 32px; background: #dcfce7; border-radius: 6px; display: flex; align-items: center; justify-content: center; color: #16a34a;">
+                      💰
+                    </div>
+                  </div>
+                  <div style="font-size: 32px; font-weight: 700; color: #111827; margin-bottom: 4px;">$54,329</div>
+                  <div style="color: #10b981; font-size: 14px; font-weight: 500;">+8.2% from last month</div>
+                </div>
+
+                <div style="background: white; border-radius: 8px; padding: 24px; border: 1px solid #e5e7eb;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+                    <span style="color: #6b7280; font-size: 14px; font-weight: 500;">Orders</span>
+                    <div style="width: 32px; height: 32px; background: #fef3c7; border-radius: 6px; display: flex; align-items: center; justify-content: center; color: #d97706;">
+                      📦
+                    </div>
+                  </div>
+                  <div style="font-size: 32px; font-weight: 700; color: #111827; margin-bottom: 4px;">328</div>
+                  <div style="color: #ef4444; font-size: 14px; font-weight: 500;">-2.1% from last month</div>
+                </div>
+              </div>
+
+              <div style="background: white; border-radius: 8px; padding: 24px; border: 1px solid #e5e7eb;">
+                <h2 style="margin: 0 0 16px 0; font-size: 18px; font-weight: 600; color: #111827;">Recent Activity</h2>
+                <div style="space-y: 12px;">
+                  <div style="display: flex; align-items: center; gap: 12px; padding: 12px; background: #f9fafb; border-radius: 6px; margin-bottom: 8px;">
+                    <div style="width: 8px; height: 8px; background: #10b981; border-radius: 50%;"></div>
+                    <span style="flex: 1; color: #374151;">New user registration: john.doe@example.com</span>
+                    <span style="color: #6b7280; font-size: 14px;">2 minutes ago</span>
+                  </div>
+                  <div style="display: flex; align-items: center; gap: 12px; padding: 12px; background: #f9fafb; border-radius: 6px; margin-bottom: 8px;">
+                    <div style="width: 8px; height: 8px; background: #3b82f6; border-radius: 50%;"></div>
+                    <span style="flex: 1; color: #374151;">Order #1248 has been completed</span>
+                    <span style="color: #6b7280; font-size: 14px;">15 minutes ago</span>
+                  </div>
+                  <div style="display: flex; align-items: center; gap: 12px; padding: 12px; background: #f9fafb; border-radius: 6px; margin-bottom: 8px;">
+                    <div style="width: 8px; height: 8px; background: #f59e0b; border-radius: 50%;"></div>
+                    <span style="flex: 1; color: #374151;">Product inventory updated: Wireless Headphones</span>
+                    <span style="color: #6b7280; font-size: 14px;">1 hour ago</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </main>
+        </div>
+      </fkt-side-menu>
+    </div>
+  `,
+  standalone: true,
+  imports: [FktSideMenuComponent, FktButtonComponent]
+})
+export class AdminDashboardLayoutExampleComponent {
+  groups = input.required<FktMenuGroup[]>();
+  opened = input<boolean>(true);
+
+  menuOpened = signal(this.opened());
+  private currentPage = signal('dashboard');
+
+  currentPageTitle = computed(() => {
+    const page = this.currentPage();
+    return page.charAt(0).toUpperCase() + page.slice(1);
+  });
+
+  toggleMenu(): void {
+    this.menuOpened.update(current => !current);
+  }
+}
+```
+
+## Use Cases
+
+The Side Menu component is ideal for various navigation scenarios in modern web applications:
+
+### Administrative Dashboards
+Perfect for admin panels where users need quick access to management features like user administration, system monitoring, and configuration settings.
+
+### Application Navigation
+Excellent for main application navigation in complex apps with multiple sections, providing a persistent navigation structure that doesn't interfere with content.
+
+### Content Management Systems
+Great for CMS interfaces where editors need easy access to different content areas, media libraries, and administrative functions.
+
+### E-commerce Platforms
+Ideal for merchant dashboards where store owners need to navigate between inventory, orders, customers, and settings efficiently.
+
+### Analytics and Reporting Platforms
+Suitable for data-heavy applications where users need to navigate between different report types, dashboards, and data views.
+
+### Multi-tenant Applications
+Perfect for SaaS applications where different user roles need access to different features and sections based on their permissions.
+
+## Accessibility
+
+### Keyboard Navigation
+- **Tab Navigation**: Full keyboard support for navigating through menu items and interactive elements
+- **Enter/Space**: Activates menu items and triggers navigation
+- **Escape**: Closes the menu when focused (if applicable)
+- **Arrow Keys**: Navigate between menu items within groups
+
+### Screen Reader Support
+- **Navigation Landmarks**: Proper nav role and ARIA landmarks for menu structure
+- **Menu Semantics**: Proper menubar, menu, and menuitem roles for screen reader understanding
+- **State Announcements**: Expanded/collapsed states are announced to assistive technologies
+- **Current Page**: Active menu item is properly identified and announced
+
+### Focus Management
+- **Logical Order**: Focus flows naturally through menu items and groups
+- **Visual Indicators**: Clear focus indicators on all interactive menu items
+- **Focus Restoration**: Proper focus management when menu state changes
+- **Skip Navigation**: Support for skip-to-content patterns when needed
+
+### ARIA Support
+- **Role Attributes**: Proper ARIA roles for navigation and menu structure
+- **State Attributes**: Dynamic ARIA states for expanded/collapsed menu
+- **Label Associations**: Comprehensive labeling for menu items and groups
+- **Current Page**: aria-current attribute for active navigation items
+
+### Tooltip Accessibility
+- **Keyboard Access**: Tooltips are accessible via keyboard when menu is collapsed
+- **Screen Reader**: Tooltip content is available to screen readers
+- **ARIA Descriptions**: Proper aria-describedby associations for tooltip content
+
+### High Contrast Support
+- **Color Independence**: Navigation state is conveyed through multiple channels (color, text, icons)
+- **Contrast Ratios**: All text and interactive elements meet WCAG contrast requirements
+- **System Integration**: Respects user's high contrast mode preferences
+
+## Performance
+
+### Efficient Rendering
+- **Angular Signals**: Built with Angular signals for optimal change detection and rendering performance
+- **OnPush Strategy**: Uses OnPush change detection for efficient updates
+- **Smooth Transitions**: Hardware-accelerated CSS transitions for menu state changes
+- **Lazy Loading**: Menu content can be lazily loaded for large navigation structures
+
+### Memory Management
+- **Signal Cleanup**: Automatic cleanup of signal subscriptions
+- **Event Handling**: Efficient event listener management with proper cleanup
+- **Router Integration**: Optimized router link handling without memory leaks
+
+### Bundle Optimization
+- **Tree Shakable**: Only used components are included in the final bundle
+- **Minimal Dependencies**: Uses only essential Angular and Frakton components
+- **Efficient Imports**: Barrel exports for optimal import patterns
+- **Icon Optimization**: Icons are loaded efficiently through the Frakton icon system

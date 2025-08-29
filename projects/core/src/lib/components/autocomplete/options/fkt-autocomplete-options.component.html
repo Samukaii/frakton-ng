@@ -1,6 +1,6 @@
 <ul class="overlay">
 	@if (loading()) {
-		<div class="flex w-full justify-center items-center p-4">
+		<div class="spinner-container">
 			<fkt-spinner/>
 		</div>
 	} @else {
@@ -11,7 +11,6 @@
 				<div>
 					@if (option.value === selected()) {
 						<fkt-icon
-							class="text-gray-700 size-6"
 							name="check"
 						/>
 					}
@@ -25,7 +24,6 @@
 			</li>
 		} @empty {
 			<fkt-no-results
-				class="!min-h-[250px]"
 				[noResults]="noResults()!"
 			/>
 		}

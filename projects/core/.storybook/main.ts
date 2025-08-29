@@ -10,20 +10,12 @@ const config: StorybookConfig = {
 		'@storybook/addon-docs',
 		'@storybook/addon-styling-webpack',
 	],
-	staticDirs: ['../src/lib/assets', '.'],
+	staticDirs: ['../assets', '.'],
 	previewHead: (head) => `
     ${head}
-    <link rel="preload" href="assets/fonts/fintrax-icons/frakton-icons.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="assets/fonts/fintrax-icons/frakton-icons.woff" as="font" type="font/woff" crossorigin>
     <style>
-      @font-face {
-        font-family: 'FintraxIcons';
-        src: url('assets/fonts/fintrax-icons/frakton-icons.woff2') format('woff2'),
-             url('assets/fonts/fintrax-icons/frakton-icons.woff') format('woff'),
-             url('assets/fonts/fintrax-icons/frakton-icons.ttf') format('truetype');
-        font-weight: normal;
-        font-style: normal;
-        font-display: swap;
+      * {
+      	font-family: Frakton, serif;
       }
     </style>
   `,

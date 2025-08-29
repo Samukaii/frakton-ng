@@ -1,0 +1,18 @@
+<div class="drawer">
+	<div
+		[class.drawer__side-content--show]="opened()"
+		[class.drawer__side-content--overlay]="mode() === 'overlay'"
+    	[style.--show-width]="width()"
+		class="drawer__side-content">
+		<ng-content select="[side-content]"/>
+	</div>
+	<div class="drawer__side-main">
+		<div
+			class="drawer__backdrop"
+			[class.drawer__backdrop--show]="canShowOverlay()"
+			(click)="backdropClick.emit()"
+		>
+		</div>
+		<ng-content select="[side-main]"/>
+	</div>
+</div>

@@ -1,22 +1,21 @@
 import { booleanAttribute, Component, computed, input, output, } from '@angular/core';
-import { FktIconComponent } from '../icon';
 import { TableCellRendererComponent } from './cell-renderer/table-cell-renderer.component';
 import { FktSpinnerComponent } from '../spinner';
 import { FktButtonsListComponent } from '../buttons-list';
 import { CallPipe } from '../../pipes';
 import { FktIdentifiable } from '../../shared/types';
 import { FktButtonAction } from '../button';
-import { FktNoResults } from '../no-results';
+import { FktNoResults, FktNoResultsComponent } from '../no-results';
 import { FktTableActionFn, FktTableClassesFn, FktTableColumn, FktTableColumnFn } from './fkt-table.types';
 
 @Component({
 	selector: 'fkt-table',
 	imports: [
-		FktIconComponent,
 		CallPipe,
 		TableCellRendererComponent,
 		FktSpinnerComponent,
 		FktButtonsListComponent,
+		FktNoResultsComponent,
 	],
 	templateUrl: './table.component.html',
 	styleUrl: './table.component.scss',

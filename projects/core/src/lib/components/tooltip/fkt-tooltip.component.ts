@@ -8,7 +8,6 @@ import { FktColor, FktGeometryPosition } from '../../shared/types';
 	templateUrl: './fkt-tooltip.component.html',
 	styleUrl: './fkt-tooltip.component.scss',
 	host: {
-		'[class]': 'positionClass()',
 		'[style.--color]': 'tooltipColor()',
 	},
 })
@@ -27,54 +26,37 @@ export class FktTooltipComponent {
 
 	private tipPositionMap: Record<
 		FktGeometryPosition,
-		`${FktGeometryPosition}-position`
+		FktGeometryPosition
 	> = {
-		'bottom-center': 'top-center-position',
-		'bottom-end': 'top-end-position',
-		'bottom-left': 'top-left-position',
-		'bottom-right': 'top-right-position',
-		'bottom-start': 'top-start-position',
+		'bottom-center': 'top-center',
+		'bottom-end': 'top-end',
+		'bottom-left': 'top-left',
+		'bottom-right': 'top-right',
+		'bottom-start': 'top-start',
 
-		'left-center': 'right-center-position',
-		'left-end': 'right-end-position',
-		'left-start': 'right-start-position',
+		'left-center': 'right-center',
+		'left-end': 'right-end',
+		'left-start': 'right-start',
 
-		'right-center': 'left-center-position',
-		'right-end': 'left-end-position',
-		'right-start': 'left-start-position',
+		'right-center': 'left-center',
+		'right-end': 'left-end',
+		'right-start': 'left-start',
 
-		'top-center': 'bottom-center-position',
-		'top-end': 'bottom-end-position',
-		'top-left': 'bottom-left-position',
-		'top-right': 'bottom-right-position',
-		'top-start': 'bottom-start-position',
+		'top-center': 'bottom-center',
+		'top-end': 'bottom-end',
+		'top-left': 'bottom-left',
+		'top-right': 'bottom-right',
+		'top-start': 'bottom-start',
 	};
 
 	tooltipColor = computed(() => {
 		return this.colorMap[this.color() ?? 'primary'];
 	});
 
-	tipStyles = computed(() => {
-		const color = this.color() ?? 'primary';
-		const colorHex = this.colorMap[color];
-
-		return {
-			'border-color': colorHex,
-		};
-	});
-
-	messageStyles = computed(() => {
-		const color = this.color() ?? 'primary';
-		const colorHex = this.colorMap[color];
-
-		return {
-			'background-color': colorHex,
-		};
-	});
-
-	positionClass = computed(() => {
+	protected tipPositionClass = computed(() => {
 		const currentPosition = this.overlayInfo.currentPosition();
+		const tipPosition = this.tipPositionMap[currentPosition ?? 'bottom-center'];
 
-		return this.tipPositionMap[currentPosition ?? 'bottom-center'];
+		return `message__tip--${tipPosition}`;
 	});
 }

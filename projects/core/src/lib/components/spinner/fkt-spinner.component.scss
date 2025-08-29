@@ -1,25 +1,29 @@
-@reference "../../styles/tailwind.css";
+@keyframes spin {
+	to {
+		transform: rotate(360deg);
+	}
+}
 
 .spinner {
-	border-width: var(--stroke, 6px);
 	width: var(--size, 80px);
 	height: var(--size, 80px);
-
-	@apply border-gray-100 rounded-full animate-spin;
+	border: solid var(--stroke, 6px) var(--color-gray-200);
+	border-radius: var(--radius-full);
+	animation: spin 1s linear infinite;
 
 	&.primary {
-		@apply border-t-gray-500;
+		border-top-color: var(--color-gray-500);
 	}
 
 	&.yellow {
-		@apply border-t-yellow-500;
+		border-top-color: var(--color-yellow-500);
 	}
 
 	&.red {
-		@apply border-t-red-500;
+		border-top-color: var(--color-red-500);
 	}
 
 	&.green {
-		@apply border-t-green-500;
+		border-top-color: var(--color-green-500);
 	}
 }

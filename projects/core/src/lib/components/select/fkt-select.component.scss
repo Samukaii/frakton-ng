@@ -1,47 +1,120 @@
 @reference "../../styles/tailwind.css";
 
 :host {
-	@apply block rounded-full relative mt-5 border-gray-500 transition scroll-smooth w-full;
+	display: block;
+	border-radius: var(--radius-full);
+	position: relative;
+	margin-top: var(--space-lg);
+	border-color: var(--color-gray-500);
+	transition: var(--transition-base);
+	background-color: var(--color-neutral-100);
+	scroll-behavior: smooth;
+	width: 100%;
 
+	* {
+		box-sizing: border-box;
+	}
 
-	.container {
-		@apply outline-none border-gray-400 min-h-[50px] w-full transition border hover:border-gray-600 focus:border-black  rounded-lg flex justify-between items-center px-4 py-2 bg-transparent cursor-pointer;
+	.label-container {
+		display: flex;
+		gap: var(--space-xs);
+		align-items: center;
 
-		&::placeholder {
-			@apply opacity-0;
+		label {
+			top: 15px;
+			position: absolute;
+			padding: 0 var(--space-3xs);
+			transition: var(--transition-base);
+			left: var(--space-sm);
+			background-color: var(--color-neutral-100);
+			color: var(--color-gray-800);
+			font-weight: var(--font-normal);
+			font-size: var(--font-size-sm);
+			margin-bottom: var(--space-3xs);
+
+			&.error {
+				color: var(--color-red-500);
+			}
+
+			&.float {
+				z-index: 50;
+				scale: 90%;
+				translate: calc(var(--space-3xs) * -1) calc(var(--space-xl) * -1);
+			}
 		}
 	}
 
-	label {
-		@apply absolute px-1 top-[15px] left-3 transition bg-white text-gray-500;
+	.select {
+		position: relative;
+
+		&__container {
+			outline: none;
+			border: solid 1px var(--color-gray-400);
+			height: 50px;
+			width: 100%;
+			transition: var(--transition-base);
+			border-radius: var(--radius-lg);
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			padding: var(--space-xs) var(--space-md);
+			background-color: transparent;
+			cursor: pointer;
+
+			&:hover {
+				border-color: var(--color-gray-600);
+			}
+
+			&:focus {
+				border-color: var(--color-gray-950);
+			}
+
+			&.error {
+				border-color: var(--color-red-500);
+			}
+
+			.placeholder {
+				color: var(--color-gray-400);
+				opacity: 0;
+			}
+		}
 	}
 
 	&.opened {
-		label {
-			@apply text-yellow-500 z-50 scale-90 -translate-x-1 -translate-y-[27px];
+		.label-container label {
+			color: var(--color-yellow-500);
+			z-index: 50;
+			scale: 90%;
+			translate: calc(var(--space-3xs) * -1) calc(var(--space-xl) * -1);
 		}
 
-		.container {
-			@apply border-yellow-500;
+		.select__container {
+			border-color: var(--color-yellow-500);
+
+			.placeholder {
+				opacity: 1;
+			}
 		}
 	}
 
 	&.disabled {
-		@apply select-none;
-		label {
-			@apply text-gray-400 z-50 scale-90 -translate-x-1 -translate-y-[27px];
+		user-select: none;
+
+		.label-container label {
+			color: var(--color-gray-400);
+			z-index: 50;
+			scale: 90%;
+			translate: calc(var(--space-3xs) * -1) calc(var(--space-xl) * -1);
 		}
 
-		.container {
-			@apply border-gray-200 text-gray-400 cursor-not-allowed;
+		.select__container {
+			border-color: var(--color-gray-200);
+			color: var(--color-gray-400);
+			cursor: not-allowed;
 		}
-	}
-
-	.float {
-		@apply z-50 scale-90 -translate-x-1 -translate-y-[27px];
 	}
 
 	fkt-field-error {
-		@apply pl-3;
+		padding-left: var(--space-sm);
 	}
 }

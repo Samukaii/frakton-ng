@@ -1,5 +1,40 @@
-@reference "../../styles/tailwind.css";
-
 :host {
-	@apply flex border border-gray-200 gap-4 min-h-[400px] justify-center items-center;
+	display: flex;
+	gap: var(--space-md);
+	justify-content: center;
+	align-items: center;
+	min-height: 400px;
+
+	&.with-border {
+		border: solid 1px var(--color-gray-200);
+	}
+}
+
+* {
+	box-sizing: border-box;
+}
+
+h1, h2, h3, p {
+	margin: 0;
+}
+
+fkt-icon {
+	color: var(--color-gray-800);
+}
+
+.container {
+	display: flex;
+	flex-direction: column;
+
+	&__title {
+		font-size: var(--font-size-lg);
+		line-height: 1.75rem;
+		font-weight: var(--font-semibold);
+		color: var(--color-gray-800);
+	}
+
+	&__description {
+		margin-bottom: var(--space-sm);
+		color: var(--color-gray-800);
+	}
 }

@@ -18,20 +18,9 @@ export class FktBadgeComponent {
 		const variant = this.variant();
 
 		return [
-			color,
-			variant,
-			'h-fit',
-			'w-fit',
-			'text-white',
-			'text-sm',
-			'px-2',
-			'py-1',
-			'flex',
-			'gap-2',
-			'font-semibold',
-			'items-center',
-			'justify-center',
-			'rounded-md',
+			`badge--${color}`,
+			`badge--${variant}`,
+			'badge',
 		];
 	});
 }

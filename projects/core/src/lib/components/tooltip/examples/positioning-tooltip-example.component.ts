@@ -5,14 +5,14 @@ import { FktTooltipDirective } from '../fkt-tooltip.directive';
 @Component({
   selector: 'positioning-tooltip-example',
   template: `
-	  <div class="space-y-6">
-		  <h3 class="text-lg font-semibold">Tooltip Positioning</h3>
+	  <div class="container">
+		  <h3 class="container__title">Tooltip Positioning</h3>
 
-		  <div class="grid grid-cols-1 gap-8">
+		  <div class="container__list">
 			  <!-- Top positions -->
-			  <div class="space-y-3">
-				  <h4 class="font-semibold text-gray-700 text-center w-full">Top Positions</h4>
-				  <div class="flex justify-center gap-4">
+			  <div class="container__item">
+				  <h4 class="container__item-title">Top Positions</h4>
+				  <div class="container__item-buttons">
 					  <fkt-button
 						  text="Top Start"
 						  theme="stroked"
@@ -43,9 +43,9 @@ import { FktTooltipDirective } from '../fkt-tooltip.directive';
 			  </div>
 
 			  <!-- Bottom positions -->
-			  <div class="space-y-3">
-				  <h4 class="font-semibold text-gray-700 text-center w-full">Bottom Positions</h4>
-				  <div class="flex justify-center gap-4">
+			  <div class="container__item">
+				  <h4 class="container__item-title">Bottom Positions</h4>
+				  <div class="container__item-buttons">
 					  <fkt-button
 						  text="Bottom Start"
 						  theme="stroked"
@@ -76,10 +76,10 @@ import { FktTooltipDirective } from '../fkt-tooltip.directive';
 			  </div>
 
 			  <!-- Side positions -->
-			  <div class="space-y-3">
-				  <h4 class="font-semibold text-gray-700 text-center w-full">Side Positions</h4>
-				  <div class="flex justify-center gap-4">
-					  <div class="flex flex-col gap-2">
+			  <div class="container__item">
+				  <h4 class="container__item-title">Side Positions</h4>
+				  <div class="container__item-buttons">
+					  <div class="container__item-cols">
 						  <fkt-button
 							  text="Left Start"
 							  theme="stroked"
@@ -108,7 +108,7 @@ import { FktTooltipDirective } from '../fkt-tooltip.directive';
 						  ></fkt-button>
 					  </div>
 
-					  <div class="flex flex-col gap-2">
+					  <div class="container__item-cols">
 						  <fkt-button
 							  text="Right Start"
 							  theme="stroked"
@@ -140,9 +140,9 @@ import { FktTooltipDirective } from '../fkt-tooltip.directive';
 			  </div>
 
 			  <!-- Corners -->
-			  <div class="space-y-3">
-				  <h4 class="font-semibold text-gray-700 text-center w-full">Corner Positions</h4>
-				  <div class="flex justify-center gap-4">
+			  <div class="container__item">
+				  <h4 class="container__item-title">Corner Positions</h4>
+				  <div class="container__item-buttons">
 					  <fkt-button
 						  text="Bottom Left"
 						  theme="stroked"
@@ -183,6 +183,55 @@ import { FktTooltipDirective } from '../fkt-tooltip.directive';
 		  </div>
 	  </div>
   `,
+	styles: `
+		h4, h3 {
+			margin: 0;
+		}
+
+		.container {
+			display: flex;
+			flex-direction: column;
+			gap: var(--space-xl);
+
+			.container__title {
+				font-size: var(--font-size-lg);
+				font-weight: var(--font-semibold);
+				width: 100%;
+				text-align: center;
+			}
+
+			.container__list {
+				display: grid;
+				grid-template-columns: repeat(1, minmax(0, 1fr));
+				gap: 2rem;
+			}
+
+			.container__item {
+				display: flex;
+				flex-direction: column;
+				gap: var(--space-sm);
+			}
+
+			.container__item-title {
+				width: 100%;
+				font-weight: 600;
+				text-align: center;
+				color: var(--color-gray-700);
+			}
+
+			.container__item-buttons {
+				display: flex;
+				gap: var(--space-sm);
+				justify-content: center;
+			}
+
+			.container__item-cols {
+				display: flex;
+				flex-direction: column;
+				gap: var(--space-xs);
+			}
+		}
+	`,
   standalone: true,
   imports: [FktButtonComponent, FktTooltipDirective]
 })

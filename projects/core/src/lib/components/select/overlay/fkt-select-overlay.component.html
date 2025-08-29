@@ -1,7 +1,7 @@
 <ul class="overlay" role="listbox"
 >
 	@if (loading()) {
-		<div class="flex w-full justify-center items-center p-4">
+		<div class="spinner-container">
 			<fkt-spinner/>
 		</div>
 	} @else {
@@ -10,7 +10,7 @@
 				#option
 				role="option"
 				[id]="'fkt-select-option-' + option.value"
-				[class.bg-gray-100]="('fkt-select-option-' + option.value) === activeOptionId()"
+				[class.active]="('fkt-select-option-' + option.value) === activeOptionId()"
 				(click)="select.emit(option)"
 				[attr.aria-label]="option.label"
 				[attr.aria-selected]="option.value === selected()"
@@ -19,7 +19,6 @@
 				@if (option.value === selected()) {
 					<fkt-icon
 						aria-hidden="true"
-						class="text-gray-700 size-6"
 						name="check"
 					/>
 				}

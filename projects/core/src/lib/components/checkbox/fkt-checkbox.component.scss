@@ -1,5 +1,67 @@
 @reference "../../styles/tailwind.css";
 
 :host {
-	@apply block mt-4;
+	display: block;
+	margin-top: 1rem;
 }
+
+
+label {
+	display: inline-flex;
+	align-items: center;
+	cursor: pointer;
+
+	span {
+		margin-left: var(--space-xs);
+		font-size: var(--font-size-md);
+		user-select: none;
+	}
+
+	input[type="checkbox"] {
+		appearance: none;
+		width: var(--space-lg);
+		height: var(--space-lg);
+		border: 2px solid var(--color-neutral-500);
+		border-radius: var(--radius-xs);
+		outline: none;
+		transition: var(--transition-base);
+		position: relative;
+		cursor: pointer;
+		background: var(--color-neutral-100);
+
+		&::before {
+			content: '';
+			position: absolute;
+			top: 2px;
+			left: 5px;
+			width: 4px;
+			height: 8px;
+			border-right: 2px solid var(--color-neutral-100);
+			border-bottom: 2px solid var(--color-neutral-100);
+			transform: rotate(45deg) scale(0);
+			transition: var(--transition-base);
+			pointer-events: none;
+		}
+
+		&:checked {
+			background-color: var(--color-gray-600);
+			border-color: var(--color-gray-600);
+
+			&::before {
+				transform: rotate(45deg) scale(1);
+			}
+		}
+	}
+
+	&.disabled {
+		filter: grayscale(1);
+		cursor: not-allowed;
+		opacity: 40%;
+
+		input[type="checkbox"] {
+			cursor: not-allowed;
+		}
+	}
+
+}
+

@@ -1,10 +1,10 @@
 @let action = mainAction();
 
-<div class="overflow-x-auto w-full h-full flex-1">
+<div class="table-container">
 	@if ((loading() || !data().length)) {
-		<div class="flex h-full flex-col">
+		<div class="table-container__no-data">
 			@if (!noHeaderWhenEmpty()) {
-				<div class="w-full min-h-[70px] py-2 px-4 flex items-center justify-end border-b border-gray-300">
+				<div class="table-container__no-data-header">
 					@if (action) {
 						<fkt-buttons-list
 							[actions]="[action]"
@@ -13,81 +13,56 @@
 				</div>
 			}
 
-			<div class="w-full h-full flex flex-1 flex-col p-4 justify-center items-center">
+			<div class="table-container__no-data-content">
 				@if (loading()) {
-					<fkt-spinner [size]="80" [stroke]="8" />
+					<fkt-spinner [size]="80" [stroke]="8"/>
 				} @else {
 					@let noResultsVar = noResults();
 
-					<div class="flex gap-4 min-h-[400px] items-center">
-						@if (noResultsVar.icon) {
-							<fkt-icon
-								[style.font-family]="noResultsVar.icon.size ?? '116px'"
-								class="text-gray-800"
-								[name]="noResultsVar.icon.name"
-							/>
-						}
-
-						<div class="flex flex-col">
-							<h3 class="text-lg font-semibold text-gray-800">
-								{{ noResultsVar.label }}
-							</h3>
-							@if (noResultsVar.description) {
-								<p class="mb-3  text-gray-800">
-									{{noResultsVar.description}}
-								</p>
-							}
-
-							@if (noResultsVar.action) {
-								<fkt-buttons-list
-									[actions]="[noResultsVar.action]"
-								/>
-							}
-
-						</div>
-
-					</div>
+					<fkt-no-results
+						borderless
+						[noResults]="noResultsVar"
+					/>
 				}
 			</div>
 		</div>
 
 	} @else {
-		<table class="w-full   overflow-hidden table-fixed  text-sm">
-			<thead class="text-left">
-			<tr>
-				@for (header of headers(); track header.position) {
-					<th class="p-4  text-gray-900 font-semibold ">
-						<p>
-							{{ header.name }}
-						</p>
-					</th>
-				}
-				<th class="p-4 font-bold text-gray-800 w-52">
-					@if (action) {
-						<div class="flex w-full justify-end">
-							<fkt-buttons-list
-								[actions]="[action]"
-							/>
-						</div>
-
+		<table class="table">
+			<thead class="table__header">
+				<tr>
+					@for (header of headers(); track header.position) {
+						<th class="table__header-title">
+							<p>
+								{{ header.name }}
+							</p>
+						</th>
 					}
-				</th>
-			</tr>
+					<th class="table__header-actions">
+						@if (action) {
+							<div>
+								<fkt-buttons-list
+									[actions]="[action]"
+								/>
+							</div>
+						}
+					</th>
+				</tr>
 			</thead>
 			<tbody>
 				@for (item of columns(); track item) {
 					<tr
-						[class]="'hover:bg-gray-200 ' + (item.item | call: classesFn())"
+						[class]="item.item | call: classesFn()"
 					>
 						@for (column of item.columns; track column.position) {
-							<td class="px-4 py-4 break-words text-gray-800">
+							<td class="table__header-cell">
 								<fkt-table-cell-renderer
 									[column]="column"
 								/>
 							</td>
 						}
-						<td class="p-4  text-gray-800  whitespace-nowrap">
-							<div class="flex gap-4 justify-end">
+						<td class="table__header-cell--actions">
+							<div>
 								<fkt-buttons-list
 									[actions]="actions()[$index]"
 								/>

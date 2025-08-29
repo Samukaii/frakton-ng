@@ -43,11 +43,14 @@ export class SignalFormControlDirective<T> implements OnInit, OnDestroy {
 			const viewValue = this.getViewValue();
 
 			if (this.element.value === viewValue) return;
-			if (typeof viewValue !== "string") return;
+			if (typeof viewValue !== "string" && typeof viewValue !== "boolean" && typeof viewValue !== "number") return;
 
-			if (this.element.type === 'checkbox')
+			if (this.element.type === 'checkbox') {
 				this.element.checked = !!viewValue;
-			else this.element.value = viewValue;
+			console.log(viewValue)
+
+			}
+			else this.element.value = viewValue.toString();
 
 			if (this.cursorPosition === null) return;
 			this.element.setSelectionRange(

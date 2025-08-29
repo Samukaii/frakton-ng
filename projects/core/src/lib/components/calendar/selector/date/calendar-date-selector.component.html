@@ -1,17 +1,16 @@
-<div class="grid-cols-7 grid w-full gap-2">
+<div class="calendar">
 	@for (weekday of weekdays(); track weekday) {
-		<div class="text-center capitalize">
+		<div class="calendar__weekday">
 			{{ weekday | date: 'EEE' }}
 		</div>
 	}
 	@for (day of days(); track day.date) {
 		<div
-			[class.cursor-pointer]="day.onClick"
-			[class.hover:bg-blue-200]="day.onClick"
-			[class.!border-gray-500]="day.isToday"
-			[class.!bg-blue-300]="day.isCurrentDate"
+			[class.calendar__date--clickable]="day.onClick"
+			[class.calendar__date--today]="day.isToday"
+			[class.calendar__date--current-date]="day.isCurrentDate"
 			(click)="day.onClick?.()"
-			[class]="'select-none transition  border border-transparent aspect-square flex justify-center items-center rounded-full ' + (day.classes | toClass)">
+			[class]="'calendar__date ' + (day.classes | toClass)">
 			{{ day.date | date: 'dd' }}
 		</div>
 	}

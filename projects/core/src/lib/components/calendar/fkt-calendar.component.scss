@@ -1,9 +1,16 @@
 @reference "../../styles/tailwind.css";
 
 :host {
-	@apply flex flex-col w-full h-full;
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	height: 100%;
+	box-sizing: border-box;
 
 	&.with-border {
-		@apply border border-gray-200 p-4 rounded-md shadow-md;
+		border: solid 1px var(--color-gray-200);
+		padding: var(--space-md);
+		border-radius: var(--radius-md);
+		box-shadow: var(--shadow-md);
 	}
 }

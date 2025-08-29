@@ -1,14 +1,50 @@
-@reference "../../../styles/tailwind.css";
-
 :host {
 	display: block;
 	width: 100%;
+
+	* {
+		box-sizing: border-box;
+	}
 }
 
 .overlay {
-	@apply bg-white w-full shadow-md rounded-md drop-shadow-md border border-gray-100 z-10 ;
+	margin: 0;
+	background-color: var(--color-neutral-100);
+	width: 100%;
+	box-shadow: var(--shadow-md);
+	border-radius: var(--radius-md);
+	border: solid 1px var(--color-neutral-200);
+	z-index: 10;
+	padding: 0;
+
 
 	li {
-		@apply hover:bg-gray-100 px-4 py-2 transition cursor-pointer flex justify-between;
+		transition: var(--transition-base);
+		cursor: pointer;
+		display: flex;
+		align-items: center;
+		padding: var(--space-xs) var(--space-md);
+		justify-content: space-between;
+		&:hover {
+			background-color: var(--color-neutral-200);
+		}
+
+		fkt-icon {
+			color: var(--color-neutral-700);
+			width: var(--space-xl);
+			height: var(--space-xl);
+		}
 	}
+
+	fkt-no-results {
+		min-height: 250px;
+	}
+}
+
+.spinner-container {
+	display: flex;
+	width: 100%;
+	justify-content: center;
+	align-items: center;
+	padding: var(--space-md);
 }

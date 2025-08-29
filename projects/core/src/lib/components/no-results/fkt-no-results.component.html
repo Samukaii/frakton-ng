@@ -4,17 +4,16 @@
 @if (icon?.name) {
 	<fkt-icon
 		[style.font-size]="icon!.size || '116px'"
-		[class]="'text-gray-800'"
 		[name]="icon!.name"
 	/>
 }
 
-<div class="flex flex-col">
-	<h3 class="text-lg font-semibold text-gray-800">
+<div class="container">
+	<h3 class="container__title">
 		{{ noResults().label }}
 	</h3>
 	@if (noResults().description) {
-		<p class="mb-3  text-gray-800">
+		<p class="container__description">
 			{{ noResults().description }}
 		</p>
 	}

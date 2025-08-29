@@ -70,7 +70,7 @@ export class CalendarDateSelectorComponent {
 
 					list.unshift({
 						date: prevMonthDate.toISOString(),
-						classes: ['opacity-20'],
+						classes: ['calendar__date--out-of-range'],
 						isCurrentDate: false,
 						isToday,
 					});
@@ -95,7 +95,7 @@ export class CalendarDateSelectorComponent {
 					nextMonthDate.setDate(nextMonthDate.getDate() + weekDay);
 					list.push({
 						date: nextMonthDate.toISOString(),
-						classes: ['opacity-20'],
+						classes: ['calendar__date--out-of-range'],
 						isCurrentDate: false,
 						isToday,
 					});

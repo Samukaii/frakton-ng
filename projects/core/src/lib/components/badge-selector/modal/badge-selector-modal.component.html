@@ -1,19 +1,17 @@
-<div class="p-2 flex flex-col gap-2">
-	<div class="flex gap-2">
+<div class="container">
+	<div class="container__first-row">
 		@for (option of options().slice(0, 3); track option.id) {
 			<fkt-badge
-				class="block cursor-pointer hover:scale-105"
+				class="container__badge"
 				(click)="select.emit(option)"
 				[color]="option.color"
 			>
-				<div badge-content class="flex gap-2 items-center">
-					@if (option.id === selected()?.id) {
-						<fkt-icon name="check" class="!text-sm" />
-					}
-					<p class="whitespace-nowrap">
-						{{ option.name }}
-					</p>
+				<div badge-content class="container__badge-content">
+					<p>{{ option.name }}</p>
 
+					@if (option.id === selected()?.id) {
+						<fkt-icon name="check"/>
+					}
 				</div>
 
 			</fkt-badge>
@@ -23,19 +21,17 @@
 	@let secondRowOptions = options().slice(3);
 
 	@if (secondRowOptions.length) {
-		<div class="flex flex-wrap gap-2">
+		<div class="container__second-row">
 			@for (option of secondRowOptions; track option.id) {
 				<fkt-badge
-					class="block cursor-pointer hover:scale-105"
+					class="container__badge"
 					(click)="select.emit(option)"
 					[color]="option.color"
 				>
-					<div badge-content class="flex gap-2 items-center">
-						<p class="whitespace-nowrap">
-							{{ option.name }}
-						</p>
+					<div badge-content class="container__badge-content">
+						<p>{{ option.name }}</p>
 						@if (option.id === selected()?.id) {
-							<fkt-icon name="check" />
+							<fkt-icon name="check"/>
 						}
 					</div>
 				</fkt-badge>

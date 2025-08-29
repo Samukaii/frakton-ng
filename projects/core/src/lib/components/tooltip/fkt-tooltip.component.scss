@@ -1,153 +1,144 @@
-@reference "../../styles/tailwind.css";
+* {
+	box-sizing: border-box;
+}
 
 :host {
-	@apply block w-fit relative bg-transparent p-2;
+	display: block;
+	width: fit-content;
+	position: relative;
+	background-color: transparent;
+	padding: var(--space-xs);
 
 	$radius: 6px;
 
 	$tooltip-arrow-size: 10;
-	$tooltip-arrow-offset: sqrt(pow($tooltip-arrow-size, 2)/2); // Pythagorean Theorem where hypotenuse is arrow size and sides are equal
+	$tooltip-arrow-offset: sqrt(pow($tooltip-arrow-size, 2) / 2); // Pythagorean Theorem where hypotenuse is arrow size and sides are equal
 	$tooltip-arrow-offset-adjust: 2; // Adjust to overlap tooltip box
 	$tooltip-arrow-final-offset: (($tooltip-arrow-offset - $tooltip-arrow-offset-adjust) * -1) + px;
 
+
 	.message {
-		box-shadow: 1px 8px 15px 5px #00000026;
-		background-color: var(--color);
-		border-radius: $radius;
-	}
+		position: relative;
 
-	.tip {
-		border-color: var(--color);
-		@apply border-b-[10px] border-r-[5px] border-t-transparent border-l-[5px] border-l-transparent border-r-transparent absolute;
-	}
-
-	// LEFT
-	&.left-center-position {
-		.tip {
-			top: 50%;
-			left: 0;
-			transform: translateX(-100%) translateY(-50%) rotate(270deg);
+		&__content {
+			position: relative;
+			font-size: var(--font-size-sm);
+			color: var(--color-neutral-100);
+			font-weight: var(--font-semibold);
+			padding: var(--space-xs);
+			box-shadow: 1px 8px 15px 5px #00000026;
+			background-color: var(--color);
+			border-radius: $radius;
 		}
-	}
 
-	&.left-start-position {
-		.tip {
-			top: $radius;
-			left: 0;
-			transform: translateX(-100%) translateY(0) rotate(270deg);
-		}
-	}
+		&__tip {
+			position: absolute;
+			border-top: solid 0 transparent;
+			border-bottom: solid 10px var(--color);
+			border-right: solid 5px transparent;
+			border-left: solid 5px transparent;
 
-	&.left-end-position {
-		.tip {
-			bottom: $radius;
-			left: 0;
-			transform: translateX(-100%) translateY(0) rotate(270deg);
-		}
-	}
+			// LEFT
+			&.message__tip--left-center {
+				top: 50%;
+				left: 0;
+				transform: translateX(-100%) translateY(-50%) rotate(270deg);
+			}
 
-	// RIGHT
-	&.right-center-position {
-		.tip {
-			top: 50%;
-			right: 0;
-			transform: translateX(100%) translateY(-50%) rotate(90deg);
-		}
-	}
+			&.message__tip--left-start {
+				top: $radius;
+				left: 0;
+				transform: translateX(-100%) translateY(0) rotate(270deg);
+			}
 
-	&.right-start-position {
-		.tip {
-			top: $radius;
-			right: 0;
-			transform: translateX(100%) translateY(0) rotate(90deg);
-		}
-	}
+			&.message__tip--left-end {
+				bottom: $radius;
+				left: 0;
+				transform: translateX(-100%) translateY(0) rotate(270deg);
+			}
 
-	&.right-end-position {
-		.tip {
-			bottom: $radius;
-			right: 0;
-			transform: translateX(100%) translateY(0) rotate(90deg);
-		}
-	}
+			// RIGHT
+			&.message__tip--right-center {
+				top: 50%;
+				right: 0;
+				transform: translateX(100%) translateY(-50%) rotate(90deg);
+			}
 
-	// TOP
-	&.top-center-position {
-		.tip {
-			top: 0;
-			left: 50%;
-			transform: translateX(-50%) translateY(-100%);
-		}
-	}
+			&.message__tip--right-start {
+				top: $radius;
+				right: 0;
+				transform: translateX(100%) translateY(0) rotate(90deg);
+			}
 
-	&.top-start-position {
-		.tip {
-			top: 0;
-			left: $radius;
-			transform: translateX(0) translateY(-100%);
-		}
-	}
+			&.message__tip--right-end {
+				bottom: $radius;
+				right: 0;
+				transform: translateX(100%) translateY(0) rotate(90deg);
+			}
 
-	&.top-end-position {
-		.tip {
-			top: 0;
-			right: $radius;
-			transform: translateX(0) translateY(-100%);
-		}
-	}
+			// TOP
+			&.message__tip--top-center {
+				top: 0;
+				left: 50%;
+				transform: translateX(-50%) translateY(-100%);
+			}
 
-	&.top-left-position {
-		.tip {
-			transform: rotate(45deg);
-			right: $tooltip-arrow-final-offset;
-			top: $tooltip-arrow-final-offset;
-		}
-	}
-	&.top-right-position {
-		.tip {
-			transform: rotate(-45deg);
-			left: $tooltip-arrow-final-offset;
-			top: $tooltip-arrow-final-offset;
-		}
-	}
+			&.message__tip--top-start {
+				top: 0;
+				left: $radius;
+				transform: translateX(0) translateY(-100%);
+			}
 
-	// BOTTOM
-	&.bottom-center-position {
-		.tip {
-			bottom: 0;
-			left: 50%;
-			transform: translateX(50%) translateY(100%) rotate(180deg);
-		}
-	}
+			&.message__tip--top-end {
+				top: 0;
+				right: $radius;
+				transform: translateX(0) translateY(-100%);
+			}
 
-	&.bottom-start-position {
-		.tip {
-			bottom: 0;
-			left: $radius;
-			transform: translateX(0) translateY(100%) rotate(180deg);
-		}
-	}
+			&.message__tip--top-left {
+				transform: rotate(45deg);
+				right: $tooltip-arrow-final-offset;
+				top: $tooltip-arrow-final-offset;
+			}
 
-	&.bottom-end-position {
-		.tip {
-			bottom: 0;
-			right: $radius;
-			transform: translateX(0) translateY(100%) rotate(180deg);
+			&.message__tip--top-right {
+				transform: rotate(-45deg);
+				left: $tooltip-arrow-final-offset;
+				top: $tooltip-arrow-final-offset;
+			}
+
+			// BOTTOM
+			&.message__tip--bottom-center {
+				bottom: 0;
+				left: 50%;
+				transform: translateX(50%) translateY(100%) rotate(180deg);
+			}
+
+			&.message__tip--bottom-start {
+				bottom: 0;
+				left: $radius;
+				transform: translateX(0) translateY(100%) rotate(180deg);
+			}
+
+			&.message__tip--bottom-end {
+				bottom: 0;
+				right: $radius;
+				transform: translateX(0) translateY(100%) rotate(180deg);
+			}
+
+			&.message__tip--bottom-left {
+				transform: rotate(135deg);
+				right: $tooltip-arrow-final-offset;
+				bottom: $tooltip-arrow-final-offset;
+			}
+
+			&.message__tip--bottom-right {
+				transform: rotate(-135deg);
+				left: $tooltip-arrow-final-offset;
+				bottom: $tooltip-arrow-final-offset;
+			}
 		}
 	}
 
-	&.bottom-left-position {
-		.tip {
-			transform: rotate(135deg);
-			right: $tooltip-arrow-final-offset;
-			bottom: $tooltip-arrow-final-offset;
-		}
-	}
-	&.bottom-right-position {
-		.tip {
-			transform: rotate(-135deg);
-			left: $tooltip-arrow-final-offset;
-			bottom: $tooltip-arrow-final-offset;
-		}
-	}
+
 }

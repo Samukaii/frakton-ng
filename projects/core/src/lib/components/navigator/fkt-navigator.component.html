@@ -1,5 +1,5 @@
-<div class="flex justify-between items-center">
-	<div class="flex">
+<div class="navigator">
+	<div class="navigator__start">
 		<fkt-button
 			(click)="previous.emit()"
 			[disabled]="!canGoToPrevious()"
@@ -7,10 +7,10 @@
 			icon="chevron-double-left"
 		/>
 	</div>
-	<div class="flex w-full justify-center items-center">
+	<div class="navigator__center">
 		<ng-content/>
 	</div>
-	<div class="flex justify-end">
+	<div class="navigator__end">
 		<fkt-button
 			(click)="next.emit()"
 			[disabled]="!canGoToNext()"

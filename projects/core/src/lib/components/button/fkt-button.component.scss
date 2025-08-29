@@ -1,131 +1,275 @@
-@reference "../../styles/tailwind.css";
-
 :host {
 	display: block;
+	width: fit-content;
 }
 
+p {
+	margin: 0;
+	font-size: var(--font-size-md);
+}
+
+
 button {
-	@apply w-full flex justify-center cursor-pointer disabled:cursor-not-allowed;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	cursor: pointer;
+	border: none;
+	background: none;
+	font-family: inherit;
+	font-size: inherit;
+	outline: none;
+
+	&:disabled {
+		cursor: not-allowed;
+	}
+}
+
+
+.button-content {
+	display: flex;
+	align-items: center;
+	gap: var(--space-xs);
+
+	&.icon-left {
+		flex-direction: row-reverse;
+	}
+}
+
+.spinner {
+	width: 20px;
+	height: 20px;
+	border: 2px solid #e5e7eb;
+	border-top-color: currentColor;
+	border-radius: 50%;
+	animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+	to {
+		transform: rotate(360deg);
+	}
 }
 
 .theme-raised {
-	@apply transition;
-	@apply disabled:opacity-40 disabled:hover:shadow-none disabled:shadow-none;
-	@apply hover:shadow-gray-800/30 hover:shadow-lg;
-	@apply flex gap-2 font-semibold text-white border-2 px-4 py-2 rounded-full;
+	transition: var(--transition-base);
+	display: flex;
+	gap: var(--space-xs);
+	font-weight: var(--font-semibold);
+	color: white;
+	border: 2px solid;
+	padding: var(--space-xs) var(--space-md);
+	border-radius: var(--radius-full);
+	box-shadow: var(--shadow-md);
+
+	&:disabled {
+		opacity: 0.4;
+		box-shadow: none;
+
+		&:hover {
+			box-shadow: none;
+		}
+	}
+
+	&:hover:not(:disabled) {
+		box-shadow: var(--shadow-lg);
+	}
 
 	&.variant-rounded {
 		&.icon-only {
-			@apply p-2;
+			padding: var(--space-xs);
 		}
 	}
 
 	&.variant-rect {
-		@apply rounded-md;
+		border-radius: var(--space-2xs);
 
 		&.icon-only {
-			@apply p-2;
+			padding: var(--space-xs);
 		}
 	}
 
 	&.color-primary {
-		@apply hover:bg-gray-700 disabled:hover:bg-gray-700;
-		@apply bg-gray-800 hover:shadow-gray-900 border-gray-800;
+		background-color: var(--color-neutral-800);
+		border-color: var(--color-neutral-800);
+
+		&:hover:not(:disabled) {
+			background-color: var(--color-neutral-700);
+			border-color: var(--color-neutral-700);
+		}
 	}
 
 	&.color-yellow {
-		@apply hover:bg-yellow-400 disabled:hover:bg-yellow-600 text-gray-800;
-		@apply bg-yellow-500 border-yellow-500;
+		background-color: var(--color-yellow-500);
+		border-color: var(--color-yellow-500);
+		color: var(--color-neutral-800);
+
+		&:hover:not(:disabled) {
+			background-color: var(--color-yellow-400);
+			border-color: var(--color-yellow-400);
+		}
+
+		&:disabled:hover {
+			background-color: var(--color-yellow-600);
+			border-color: var(--color-yellow-600);
+		}
 	}
 
 	&.color-red {
-		@apply hover:bg-red-500 disabled:hover:bg-red-700;
-		@apply bg-red-600 border-red-600;
+		background-color: var(--color-red-600);
+		border-color: var(--color-red-600);
+
+		&:hover:not(:disabled) {
+			background-color: var(--color-red-500);
+			border-color: var(--color-red-500);
+		}
+
+		&:disabled:hover {
+			background-color: var(--color-red-700);
+			border-color: var(--color-red-700);
+		}
 	}
 
 	&.color-green {
-		@apply hover:bg-green-500 hover:border-green-500 disabled:hover:bg-green-700;
-		@apply bg-green-600 border-green-600;
+		background-color: var(--color-green-600);
+		border-color: var(--color-green-600);
+
+		&:hover:not(:disabled) {
+			background-color: var(--color-green-500);
+			border-color: var(--color-green-500);
+		}
+
+		&:disabled:hover {
+			background-color: var(--color-green-700);
+			border-color: var(--color-green-700);
+		}
 	}
 }
 
 .theme-stroked {
-	@apply transition-[background-color];
-	@apply disabled:opacity-60 disabled:grayscale;
-	@apply items-center flex gap-2 font-semibold border-2 py-2 px-4 rounded-full;
+	transition: background-color 0.3s ease;
+	display: flex;
+	align-items: center;
+	gap: var(--space-xs);
+	font-weight: var(--font-semibold);
+	border: 2px solid;
+	padding: var(--space-xs) var(--space-md);
+	border-radius: var(--radius-full);
+	background-color: transparent;
+
+	&:disabled {
+		opacity: 0.6;
+		filter: grayscale(100%);
+	}
 
 	&.variant-rounded {
 		&.icon-only {
-			@apply p-2;
+			padding: var(--space-xs);
 		}
 	}
 
 	&.variant-rect {
-		@apply rounded-md;
+		border-radius: var(--space-2xs);
 
 		&.icon-only {
-			@apply p-2;
+			padding: var(--space-xs);
 		}
 	}
 
 	&.color-yellow {
-		@apply hover:bg-yellow-500 hover:text-gray-50 hover:border-yellow-500;
-		@apply text-yellow-500 border-yellow-500;
+		color: var(--color-yellow-500);
+		border-color: var(--color-yellow-500);
+
+		&:hover:not(:disabled) {
+			background-color: var(--color-yellow-500);
+			color: var(--color-neutral-100);
+		}
 	}
 
 	&.color-primary {
-		@apply hover:bg-gray-800 hover:text-gray-50 hover:border-gray-800;
-		@apply text-gray-800 border-gray-800;
+		color: var(--color-gray-800);
+		border-color: var(--color-gray-800);
+
+		&:hover:not(:disabled) {
+			background-color: var(--color-gray-800);
+			color: var(--color-neutral-100);
+		}
 	}
 
 	&.color-red {
-		@apply hover:bg-red-500 hover:text-gray-50 hover:border-red-500;
-		@apply text-red-500 border-red-500;
+		color: var(--color-red-500);
+		border-color: var(--color-red-500);
+
+		&:hover:not(:disabled) {
+			background-color: var(--color-red-500);
+			color: var(--color-neutral-100);
+		}
 	}
 
 	&.color-green {
-		@apply hover:bg-green-500 hover:text-gray-50 hover:border-green-500;
-		@apply text-green-500 border-green-500;
+		color: var(--color-green-500);
+		border-color: var(--color-green-500);
+
+		&:hover:not(:disabled) {
+			background-color: var(--color-green-500);
+			color: var(--color-neutral-100);
+		}
 	}
 }
 
 .theme-basic {
-	@apply transition;
-	@apply disabled:opacity-60 disabled:grayscale disabled:bg-gray-300 disabled:hover:bg-gray-300;
-	@apply items-center flex gap-2 font-semibold py-2 px-4 rounded-full;
+	transition: var(--transition-base);
+	display: flex;
+	align-items: center;
+	gap: var(--space-xs);
+	font-weight: var(--font-semibold);
+	padding: var(--space-xs) var(--space-md);
+	border-radius: var(--radius-full);
+	background-color: transparent;
+	border: none;
 
-	&:hover {
-		background-color: #00000015;
+	&:hover:not(:disabled) {
+		background-color: rgba(0, 0, 0, 0.09);
+	}
+
+	&:disabled {
+		opacity: 0.6;
+		filter: grayscale(100%);
+		background-color: var(--color-neutral-400);
+
+		&:hover {
+			background-color: var(--color-neutral-400);
+		}
 	}
 
 	&.variant-rounded {
 		&.icon-only {
-			@apply p-2;
+			padding: var(--space-xs);
 		}
 	}
 
 	&.variant-rect {
-		@apply rounded-md;
+		border-radius: var(--space-2xs);
 
 		&.icon-only {
-			@apply p-2;
+			padding: var(--space-xs);
 		}
 	}
 
 	&.color-yellow {
-		@apply text-yellow-500;
+		color: var(--color-yellow-500);
 	}
 
 	&.color-primary {
-		@apply text-gray-800;
+		color: var(--color-gray-800);
 	}
 
 	&.color-red {
-		@apply text-red-500;
+		color: var(--color-red-500);
 	}
 
 	&.color-green {
-		@apply text-green-500;
+		color: var(--color-green-500);
 	}
 }
 

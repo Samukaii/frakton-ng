@@ -2,11 +2,11 @@
 
 @if (selectedOptionValue) {
 	<fkt-badge
-		class="cursor-pointer hover:scale-105 transition block"
+		class="badge"
 		(click)="select()"
 		[color]="selectedOptionValue.color"
 	>
-		<div badge-content class="flex gap-2 items-center">
+		<div badge-content class="badge__content">
 			<p class="whitespace-nowrap">
 				{{ selectedOption()?.name }}
 

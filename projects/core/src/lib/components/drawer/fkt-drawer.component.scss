@@ -1,0 +1,59 @@
+:host {
+	display: flex;
+	height: 100%;
+	width: 100%;
+}
+
+.drawer {
+	position: relative;
+	height: 100%;
+	width: 100%;
+	display: flex;
+
+	&__side-content {
+		width: var(--show-width, 250px);
+		max-width: 0;
+		transition: .3s;
+		z-index: 20;
+		overflow: hidden;
+		height: 100%;
+
+		&.drawer__side-content--overlay {
+			position: absolute;
+		}
+
+		&.drawer__side-content--show {
+			max-width: var(--show-width, 250px);
+		}
+	}
+
+	&__side-main {
+		position: relative;
+		overflow: auto;
+		flex: 1;
+		z-index: 10;
+		width: 100%;
+		height: 100%;
+	}
+
+	&__backdrop {
+		position: absolute;
+		transition: var(--transition-base);
+		pointer-events: none;
+		width: 100%;
+		height: 100%;
+		z-index: 10;
+		opacity: 0;
+		background-color: black;
+
+		&.drawer__backdrop--show {
+			pointer-events: none;
+			opacity: 50%;
+		}
+	}
+}
+
+
+.backdrop {
+
+}

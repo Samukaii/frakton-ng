@@ -1,17 +1,8 @@
-<label class="inline-flex items-center cursor-pointer group">
+<label
+	[class.disabled]="control().disabled()">
 	<input
 		type="checkbox"
 		[signalFormControl]="control()"
-		class="appearance-none w-5 h-5 border-2 border-gray-400 rounded-sm
-           checked:bg-gray-600 checked:border-gray-600
-           outline-none
-           transition-all duration-150
-           relative
-           cursor-pointer
-           before:content-[''] before:absolute before:top-0 before:left-1 before:w-2 before:h-3
-           before:border-white before:border-r-2 before:border-b-2
-           before:rotate-45 before:scale-0 checked:before:scale-100
-           peer"
 	/>
-	<span class="ml-2 text-md  select-none">{{ label() }}</span>
+	<span >{{ label() }}</span>
 </label>

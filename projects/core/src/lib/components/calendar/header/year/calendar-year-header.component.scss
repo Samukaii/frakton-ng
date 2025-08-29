@@ -1,0 +1,18 @@
+.container {
+	display: flex;
+	align-items: center;
+	gap: var(--space-sm);
+
+	strong {
+		cursor: pointer;
+		transition: var(--transition-base);
+		padding: var(--space-3xs) var(--space-xs);
+		font-size: var(--font-size-lg);
+		font-weight: var(--font-semibold);
+		border-radius: var(--radius-md);
+
+		&:hover {
+			background-color: var(--color-blue-100);
+		}
+	}
+}

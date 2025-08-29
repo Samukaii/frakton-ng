@@ -1,5 +1,29 @@
-@reference "../../styles/tailwind.css";
-
 :host {
-	@apply w-fit flex;
+	width: fit-content;
+	display: flex;
+
+	* {
+		box-sizing: border-box;
+	}
+}
+
+.badge {
+	cursor: pointer;
+	transition: var(--transition-base);
+	display: block;
+
+	&:hover {
+		scale: 105%;
+	}
+
+	&__content {
+		display: flex;
+		align-items: center;
+		gap: var(--space-xs);
+
+		p {
+			margin: 0;
+			white-space: nowrap;
+		}
+	}
 }
