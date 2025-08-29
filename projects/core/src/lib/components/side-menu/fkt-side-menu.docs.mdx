@@ -1,4 +1,4 @@
-import { Meta, Story, Controls, ArgTypes } from '@storybook/addon-docs/blocks';
+import {Meta, Story, Controls, ArgTypes, Canvas} from '@storybook/addon-docs/blocks';
 import * as stories from './fkt-side-menu.stories';
 
 <Meta of={stories} />
@@ -49,31 +49,32 @@ interface FktMenuGroup {
 
 A simple side menu with a single group of navigation items.
 
-<Story of={stories.BasicSideMenu} />
+<Canvas className="height-600" of={stories.BasicSideMenu} sourceState="none" />
 <p></p>
 ___
 <Controls of={stories.BasicSideMenu} />
 
 ```typescript
 import { Component, input } from '@angular/core';
-import { FktSideMenuComponent } from '../fkt-side-menu.component';
-import { FktMenuGroup } from '../fkt-side-menu.types';
+import { FktSideMenuComponent } from '../../fkt-side-menu.component';
+import { FktMenuGroup } from '../../fkt-side-menu.types';
 
 @Component({
   selector: 'basic-side-menu-example',
   template: `
-    <div style="height: 600px; width: 100%; display: flex;">
+    <div class="basic-side-menu-example">
       <fkt-side-menu
         [groups]="groups()"
-        [(opened)]="opened"
+        [opened]="opened()"
       >
-        <div style="padding: 24px; background-color: #f9fafb; width: 100%; height: 100%;">
-          <h1 style="margin: 0 0 16px 0; font-size: 24px; font-weight: 600;">Main Content</h1>
-          <p style="margin: 0; color: #6b7280;">This is the main content area. Use the side menu to navigate.</p>
+        <div class="basic-side-menu-example__content">
+          <h1 class="basic-side-menu-example__title">Main Content</h1>
+          <p class="basic-side-menu-example__description">This is the main content area. Use the side menu to navigate.</p>
         </div>
       </fkt-side-menu>
     </div>
   `,
+  styleUrl: './basic-side-menu-example.component.scss',
   standalone: true,
   imports: [FktSideMenuComponent]
 })
@@ -87,28 +88,28 @@ export class BasicSideMenuExampleComponent {
 
 Side menu with toggle functionality demonstrating collapsed and expanded states.
 
-<Story of={stories.CollapsibleSideMenu} />
+<Canvas className="height-600" of={stories.CollapsibleSideMenu} sourceState="none" />
 <p></p>
 ___
 <Controls of={stories.CollapsibleSideMenu} />
 
 ```typescript
-import { Component, input, signal } from '@angular/core';
-import { FktSideMenuComponent } from '../fkt-side-menu.component';
-import { FktMenuGroup } from '../fkt-side-menu.types';
-import { FktButtonComponent } from '../../button';
+import { Component, input, linkedSignal } from '@angular/core';
+import { FktSideMenuComponent } from '../../fkt-side-menu.component';
+import { FktMenuGroup } from '../../fkt-side-menu.types';
+import { FktButtonComponent } from '../../../button';
 
 @Component({
   selector: 'collapsible-side-menu-example',
   template: `
-    <div style="height: 600px; width: 100%; display: flex;">
+    <div class="collapsible-side-menu-example">
       <fkt-side-menu
         [groups]="groups()"
         [(opened)]="menuOpened"
       >
-        <div style="padding: 24px; background-color: #f9fafb; width: 100%; height: 100%;">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
-            <h1 style="margin: 0; font-size: 24px; font-weight: 600;">Dashboard</h1>
+        <div class="collapsible-side-menu-example__content">
+          <div class="collapsible-side-menu-example__header">
+            <h1 class="collapsible-side-menu-example__title">Dashboard</h1>
             <fkt-button
               [text]="menuOpened() ? 'Collapse Menu' : 'Expand Menu'"
               [icon]="menuOpened() ? 'chevron-left' : 'chevron-right'"
@@ -118,7 +119,7 @@ import { FktButtonComponent } from '../../button';
               (click)="toggleMenu()"
             />
           </div>
-          <p style="margin: 0; color: #6b7280; line-height: 1.6;">
+          <p class="collapsible-side-menu-example__description">
             The side menu is currently <strong>{{ menuOpened() ? 'expanded' : 'collapsed' }}</strong>.
             When collapsed, hover over menu items to see tooltips with their full names.
           </p>
@@ -126,6 +127,7 @@ import { FktButtonComponent } from '../../button';
       </fkt-side-menu>
     </div>
   `,
+  styleUrl: './collapsible-side-menu-example.component.scss',
   standalone: true,
   imports: [FktSideMenuComponent, FktButtonComponent]
 })
@@ -133,7 +135,7 @@ export class CollapsibleSideMenuExampleComponent {
   groups = input.required<FktMenuGroup[]>();
   opened = input<boolean>(true);
 
-  menuOpened = signal(this.opened());
+  menuOpened = linkedSignal(this.opened);
 
   toggleMenu(): void {
     this.menuOpened.update(current => !current);
@@ -145,27 +147,27 @@ export class CollapsibleSideMenuExampleComponent {
 
 Side menu with multiple groups, demonstrating named groups and divider groups.
 
-<Story of={stories.MultiGroupSideMenu} />
+<Canvas className="height-600" of={stories.MultiGroupSideMenu} sourceState="none" />
 <p></p>
 ___
 <Controls of={stories.MultiGroupSideMenu} />
 
 ```typescript
 import { Component, input } from '@angular/core';
-import { FktSideMenuComponent } from '../fkt-side-menu.component';
-import { FktMenuGroup } from '../fkt-side-menu.types';
+import { FktSideMenuComponent } from '../../fkt-side-menu.component';
+import { FktMenuGroup } from '../../fkt-side-menu.types';
 
 @Component({
   selector: 'multi-group-side-menu-example',
   template: `
-    <div style="height: 700px; width: 100%; display: flex;">
+    <div class="multi-group-side-menu-example">
       <fkt-side-menu
         [groups]="groups()"
-        [(opened)]="opened"
+        [opened]="opened()"
       >
-        <div style="padding: 24px; background-color: #f9fafb; width: 100%; height: 100%;">
-          <h1 style="margin: 0 0 16px 0; font-size: 24px; font-weight: 600;">Multi-Section Navigation</h1>
-          <p style="margin: 0; color: #6b7280; line-height: 1.6;">
+        <div class="multi-group-side-menu-example__content">
+          <h1 class="multi-group-side-menu-example__title">Multi-Section Navigation</h1>
+          <p class="multi-group-side-menu-example__description">
             This example shows how to organize menu items into logical groups.
             Groups with names display headers, while groups without names show dividers.
           </p>
@@ -173,10 +175,11 @@ import { FktMenuGroup } from '../fkt-side-menu.types';
       </fkt-side-menu>
     </div>
   `,
+  styleUrl: './with-routing-example.component.scss',
   standalone: true,
   imports: [FktSideMenuComponent]
 })
-export class MultiGroupSideMenuExampleComponent {
+export class WithRoutingExampleComponent {
   groups = input.required<FktMenuGroup[]>();
   opened = input<boolean>(true);
 }
@@ -186,14 +189,16 @@ export class MultiGroupSideMenuExampleComponent {
 
 Advanced example showing dynamic menu generation based on user permissions.
 
-<Story of={stories.DynamicPermissionsSideMenu} />
+<Canvas className="height-600" of={stories.DynamicPermissionsSideMenu} sourceState="none" />
 <p></p>
 ___
 <Controls of={stories.DynamicPermissionsSideMenu} />
 
 ```typescript
-import { Component, signal, computed } from '@angular/core';
-import { FktSideMenuComponent, FktMenuGroup, FktButtonComponent } from '@frakton-ng/core';
+import { Component, input, signal, computed } from '@angular/core';
+import { FktSideMenuComponent } from '../../fkt-side-menu.component';
+import { FktMenuGroup } from '../../fkt-side-menu.types';
+import { FktButtonComponent } from '../../../button';
 
 interface UserPermissions {
   canViewAnalytics: boolean;
@@ -206,15 +211,15 @@ interface UserPermissions {
 @Component({
   selector: 'dynamic-permissions-side-menu-example',
   template: `
-    <div style="height: 700px; width: 100%; display: flex;">
+    <div class="dynamic-permissions-example">
       <fkt-side-menu
         [groups]="dynamicMenuGroups()"
-        [(opened)]="menuOpened"
+        [opened]="opened()"
       >
-        <div style="padding: 24px; background-color: #f9fafb; width: 100%; height: 100%;">
-          <div style="margin-bottom: 24px;">
-            <h1 style="margin: 0 0 16px 0; font-size: 24px; font-weight: 600;">User Role: {{ currentRole() }}</h1>
-            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+        <div class="dynamic-permissions-example__content">
+          <div class="dynamic-permissions-example__controls">
+            <h1 class="dynamic-permissions-example__title">User Role: {{ currentRole() }}</h1>
+            <div class="dynamic-permissions-example__role-selector">
               <fkt-button
                 [text]="'Admin'"
                 [theme]="currentRole() === 'Admin' ? 'raised' : 'stroked'"
@@ -235,19 +240,22 @@ interface UserPermissions {
               />
             </div>
           </div>
-          <p style="margin: 0; color: #6b7280; line-height: 1.6;">
-            The menu items change based on the selected user role. 
+          <p class="dynamic-permissions-example__description">
+            The menu items change based on the selected user role.
             Switch between roles to see how the navigation adapts dynamically.
           </p>
         </div>
       </fkt-side-menu>
     </div>
   `,
+  styleUrl: './dynamic-permissions-side-menu-example.component.scss',
   standalone: true,
   imports: [FktSideMenuComponent, FktButtonComponent]
 })
 export class DynamicPermissionsSideMenuExampleComponent {
-  menuOpened = signal(true);
+  groups = input.required<FktMenuGroup[]>();
+  opened = input<boolean>(true);
+
   private userRole = signal<'admin' | 'manager' | 'user'>('manager');
 
   currentRole = computed(() => {
@@ -305,11 +313,11 @@ export class DynamicPermissionsSideMenuExampleComponent {
     // Add management section if user has management permissions
     if (permissions.canManageUsers || permissions.canManageProducts) {
       const managementItems: any[] = [];
-      
+
       if (permissions.canManageUsers) {
         managementItems.push({ name: 'Users', icon: 'users', path: '/users' });
       }
-      
+
       if (permissions.canManageProducts) {
         managementItems.push({ name: 'Products', icon: 'cube', path: '/products' });
       }
@@ -363,106 +371,106 @@ export class DynamicPermissionsSideMenuExampleComponent {
 
 Complete dashboard layout showcasing real-world usage with content integration.
 
-<Story of={stories.AdminDashboardLayout} />
+<Canvas className="height-600" of={stories.AdminDashboardLayout} sourceState="none" />
 <p></p>
 ___
 <Controls of={stories.AdminDashboardLayout} />
 
 ```typescript
-import { Component, input, signal, computed } from '@angular/core';
-import { FktSideMenuComponent } from '../fkt-side-menu.component';
-import { FktMenuGroup } from '../fkt-side-menu.types';
-import { FktButtonComponent } from '../../button';
+import { Component, input, signal, computed, linkedSignal } from '@angular/core';
+import { FktSideMenuComponent } from '../../fkt-side-menu.component';
+import { FktMenuGroup } from '../../fkt-side-menu.types';
+import { FktButtonComponent } from '../../../button';
 
 @Component({
   selector: 'admin-dashboard-layout-example',
   template: `
-    <div style="height: 800px; width: 100%; display: flex;">
+    <div class="admin-dashboard-example">
       <fkt-side-menu
         [groups]="groups()"
         [(opened)]="menuOpened"
       >
         <!-- Main Content Area -->
-        <div style="display: flex; flex-direction: column; width: 100%; height: 100%; background-color: #f9fafb;">
+        <div class="admin-dashboard-example__layout">
           <!-- Header -->
-          <header style="background: white; border-bottom: 1px solid #e5e7eb; padding: 16px 24px; display: flex; justify-content: space-between; align-items: center;">
-            <div style="display: flex; align-items: center; gap: 16px;">
+          <header class="admin-dashboard-example__header">
+            <div class="admin-dashboard-example__header-left">
               <fkt-button
-                [icon]="menuOpened() ? 'bars-3' : 'bars-3'"
+                [icon]="'bars-3'"
                 [variant]="'rect'"
                 [theme]="'basic'"
                 [color]="'primary'"
                 (click)="toggleMenu()"
               />
-              <h1 style="margin: 0; font-size: 24px; font-weight: 600; color: #111827;">{{ currentPageTitle() }}</h1>
+              <h1 class="admin-dashboard-example__title">{{ currentPageTitle() }}</h1>
             </div>
-            <div style="display: flex; align-items: center; gap: 12px;">
+            <div class="admin-dashboard-example__header-right">
               <fkt-button
                 [icon]="'bell'"
                 [variant]="'rect'"
                 [theme]="'basic'"
                 [color]="'primary'"
               />
-              <div style="width: 32px; height: 32px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 50%;"></div>
+              <div class="admin-dashboard-example__avatar"></div>
             </div>
           </header>
 
           <!-- Main Content -->
-          <main style="flex: 1; padding: 24px; overflow-y: auto;">
-            <div style="max-width: 1200px; margin: 0 auto;">
-              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-bottom: 32px;">
+          <main class="admin-dashboard-example__content">
+            <div class="admin-dashboard-example__container">
+              <div class="admin-dashboard-example__stats">
                 <!-- Stats Cards -->
-                <div style="background: white; border-radius: 8px; padding: 24px; border: 1px solid #e5e7eb;">
-                  <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
-                    <span style="color: #6b7280; font-size: 14px; font-weight: 500;">Total Users</span>
-                    <div style="width: 32px; height: 32px; background: #dbeafe; border-radius: 6px; display: flex; align-items: center; justify-content: center; color: #2563eb;">
+                <div class="admin-dashboard-example__card">
+                  <div class="admin-dashboard-example__card-header">
+                    <span class="admin-dashboard-example__card-label">Total Users</span>
+                    <div class="admin-dashboard-example__card-icon admin-dashboard-example__card-icon--blue">
                       👥
                     </div>
                   </div>
-                  <div style="font-size: 32px; font-weight: 700; color: #111827; margin-bottom: 4px;">1,249</div>
-                  <div style="color: #10b981; font-size: 14px; font-weight: 500;">+12.5% from last month</div>
+                  <div class="admin-dashboard-example__card-value">1,249</div>
+                  <div class="admin-dashboard-example__card-change admin-dashboard-example__card-change--positive">+12.5% from last month</div>
                 </div>
 
-                <div style="background: white; border-radius: 8px; padding: 24px; border: 1px solid #e5e7eb;">
-                  <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
-                    <span style="color: #6b7280; font-size: 14px; font-weight: 500;">Revenue</span>
-                    <div style="width: 32px; height: 32px; background: #dcfce7; border-radius: 6px; display: flex; align-items: center; justify-content: center; color: #16a34a;">
+                <div class="admin-dashboard-example__card">
+                  <div class="admin-dashboard-example__card-header">
+                    <span class="admin-dashboard-example__card-label">Revenue</span>
+                    <div class="admin-dashboard-example__card-icon admin-dashboard-example__card-icon--green">
                       💰
                     </div>
                   </div>
-                  <div style="font-size: 32px; font-weight: 700; color: #111827; margin-bottom: 4px;">$54,329</div>
-                  <div style="color: #10b981; font-size: 14px; font-weight: 500;">+8.2% from last month</div>
+                  <div class="admin-dashboard-example__card-value">$54,329</div>
+                  <div class="admin-dashboard-example__card-change admin-dashboard-example__card-change--positive">+8.2% from last month</div>
                 </div>
 
-                <div style="background: white; border-radius: 8px; padding: 24px; border: 1px solid #e5e7eb;">
-                  <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
-                    <span style="color: #6b7280; font-size: 14px; font-weight: 500;">Orders</span>
-                    <div style="width: 32px; height: 32px; background: #fef3c7; border-radius: 6px; display: flex; align-items: center; justify-content: center; color: #d97706;">
+                <div class="admin-dashboard-example__card">
+                  <div class="admin-dashboard-example__card-header">
+                    <span class="admin-dashboard-example__card-label">Orders</span>
+                    <div class="admin-dashboard-example__card-icon admin-dashboard-example__card-icon--yellow">
                       📦
                     </div>
                   </div>
-                  <div style="font-size: 32px; font-weight: 700; color: #111827; margin-bottom: 4px;">328</div>
-                  <div style="color: #ef4444; font-size: 14px; font-weight: 500;">-2.1% from last month</div>
+                  <div class="admin-dashboard-example__card-value">328</div>
+                  <div class="admin-dashboard-example__card-change admin-dashboard-example__card-change--negative">-2.1% from last month</div>
                 </div>
               </div>
 
-              <div style="background: white; border-radius: 8px; padding: 24px; border: 1px solid #e5e7eb;">
-                <h2 style="margin: 0 0 16px 0; font-size: 18px; font-weight: 600; color: #111827;">Recent Activity</h2>
-                <div style="space-y: 12px;">
-                  <div style="display: flex; align-items: center; gap: 12px; padding: 12px; background: #f9fafb; border-radius: 6px; margin-bottom: 8px;">
-                    <div style="width: 8px; height: 8px; background: #10b981; border-radius: 50%;"></div>
-                    <span style="flex: 1; color: #374151;">New user registration: john.doe@example.com</span>
-                    <span style="color: #6b7280; font-size: 14px;">2 minutes ago</span>
+              <div class="admin-dashboard-example__activity">
+                <h2 class="admin-dashboard-example__activity-title">Recent Activity</h2>
+                <div class="admin-dashboard-example__activity-list">
+                  <div class="admin-dashboard-example__activity-item">
+                    <div class="admin-dashboard-example__activity-indicator admin-dashboard-example__activity-indicator--green"></div>
+                    <span class="admin-dashboard-example__activity-text">New user registration: john.doe@example.com</span>
+                    <span class="admin-dashboard-example__activity-time">2 minutes ago</span>
                   </div>
-                  <div style="display: flex; align-items: center; gap: 12px; padding: 12px; background: #f9fafb; border-radius: 6px; margin-bottom: 8px;">
-                    <div style="width: 8px; height: 8px; background: #3b82f6; border-radius: 50%;"></div>
-                    <span style="flex: 1; color: #374151;">Order #1248 has been completed</span>
-                    <span style="color: #6b7280; font-size: 14px;">15 minutes ago</span>
+                  <div class="admin-dashboard-example__activity-item">
+                    <div class="admin-dashboard-example__activity-indicator admin-dashboard-example__activity-indicator--blue"></div>
+                    <span class="admin-dashboard-example__activity-text">Order #1248 has been completed</span>
+                    <span class="admin-dashboard-example__activity-time">15 minutes ago</span>
                   </div>
-                  <div style="display: flex; align-items: center; gap: 12px; padding: 12px; background: #f9fafb; border-radius: 6px; margin-bottom: 8px;">
-                    <div style="width: 8px; height: 8px; background: #f59e0b; border-radius: 50%;"></div>
-                    <span style="flex: 1; color: #374151;">Product inventory updated: Wireless Headphones</span>
-                    <span style="color: #6b7280; font-size: 14px;">1 hour ago</span>
+                  <div class="admin-dashboard-example__activity-item">
+                    <div class="admin-dashboard-example__activity-indicator admin-dashboard-example__activity-indicator--yellow"></div>
+                    <span class="admin-dashboard-example__activity-text">Product inventory updated: Wireless Headphones</span>
+                    <span class="admin-dashboard-example__activity-time">1 hour ago</span>
                   </div>
                 </div>
               </div>
@@ -472,6 +480,7 @@ import { FktButtonComponent } from '../../button';
       </fkt-side-menu>
     </div>
   `,
+  styleUrl: './admin-dashboard-layout-example.component.scss',
   standalone: true,
   imports: [FktSideMenuComponent, FktButtonComponent]
 })
@@ -479,7 +488,7 @@ export class AdminDashboardLayoutExampleComponent {
   groups = input.required<FktMenuGroup[]>();
   opened = input<boolean>(true);
 
-  menuOpened = signal(this.opened());
+  menuOpened = linkedSignal(this.opened);
   private currentPage = signal('dashboard');
 
   currentPageTitle = computed(() => {
@@ -490,6 +499,191 @@ export class AdminDashboardLayoutExampleComponent {
   toggleMenu(): void {
     this.menuOpened.update(current => !current);
   }
+}
+```
+
+### With routing
+
+Complete dashboard layout showcasing real-world usage with content integration.
+
+<Canvas className="height-600" of={stories.WithRouting} sourceState="none" />
+<p></p>
+___
+<Controls of={stories.WithRouting} />
+
+```typescript
+import { Component, inject, input } from '@angular/core';
+import { FktSideMenuComponent } from '../../fkt-side-menu.component';
+import { FktMenuGroup } from '../../fkt-side-menu.types';
+import { RouterOutlet, Routes } from '@angular/router';
+import { FktButtonComponent } from '../../../button';
+import { FktCheckboxComponent } from '../../../checkbox';
+import { FktInputComponent } from '../../../input';
+import { SignalFormBuilder } from '../../../../form/signal-form-builder';
+
+@Component({
+	selector: 'admin-dashboard-page',
+	template: `
+		<div class="admin-page admin-dashboard">
+			<h1 class="admin-page__title">Dashboard</h1>
+			<div class="admin-page__content">
+				<p class="admin-dashboard__welcome">Bem-vindo ao painel de administração! Aqui você visualiza métricas e
+					acessos rápidos.</p>
+				<div class="admin-dashboard__stats">
+					<div class="admin-dashboard__stat">
+						<span class="admin-dashboard__stat-label">Usuários ativos</span>
+						<span class="admin-dashboard__stat-value">1.245</span>
+					</div>
+					<div class="admin-dashboard__stat">
+						<span class="admin-dashboard__stat-label">Novos cadastros</span>
+						<span class="admin-dashboard__stat-value">38</span>
+					</div>
+					<div class="admin-dashboard__stat">
+						<span class="admin-dashboard__stat-label">Visitas hoje</span>
+						<span class="admin-dashboard__stat-value">8.102</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	`,
+	styles: `...`
+})
+export class AdminDashboardPageComponent {
+}
+
+@Component({
+	selector: 'admin-users-page',
+	template: `
+		<div class="admin-page admin-users">
+			<h1 class="admin-page__title">Gestão de Usuários</h1>
+			<div class="admin-page__content">
+				<p class="admin-users__subtitle">Acompanhe, edite e remova usuários cadastrados.</p>
+				<ul class="admin-users__list">
+					<li class="admin-users__item">
+						<span class="admin-users__avatar">AB</span>
+						<span class="admin-users__name">Ana Beatriz</span>
+						<fkt-badge
+							text="Administrador"
+							color="orange"
+						/>
+						<fkt-button
+							text="Editar"
+						/>
+					</li>
+					<li class="admin-users__item">
+						<span class="admin-users__avatar">RF</span>
+						<span class="admin-users__name">Rafael Ferreira</span>
+						<fkt-badge
+							text="Usuário"
+							color="blue"
+						/>
+						<fkt-button
+							text="Editar"
+						/>
+					</li>
+					<li class="admin-users__item">
+						<span class="admin-users__avatar">JG</span>
+						<span class="admin-users__name">João Guilherme</span>
+						<fkt-badge
+							text="Usuário"
+							color="blue"
+						/>
+						<fkt-button
+							text="Editar"
+						/>
+					</li>
+				</ul>
+			</div>
+		</div>
+	`,
+	imports: [
+		FktButtonComponent,
+		FktBadgeComponent
+	],
+	styles: `...`
+})
+export class AdminUsersPageComponent {
+}
+
+@Component({
+	selector: 'admin-settings-page',
+	template: `
+		<div class="admin-page admin-settings">
+			<h1 class="admin-page__title">Configurações do Sistema</h1>
+			<div class="admin-page__content">
+				<form class="admin-settings__form">
+					<fkt-input
+						label="Nome da aplicação"
+						placeholder="Informe aqui o nome da aplicação"
+						[control]="form.controls.name"
+					/>
+					<fkt-checkbox
+						label="Modo escuro"
+						[control]="form.controls.darkMode"
+					/>
+					<fkt-button
+						type="submit"
+						text="Salvar configurações"
+					/>
+				</form>
+			</div>
+		</div>
+	`,
+	imports: [
+		FktButtonComponent,
+		FktCheckboxComponent,
+		FktInputComponent
+	],
+	styles: `...`
+})
+export class AdminSettingsPageComponent {
+	private fb = inject(SignalFormBuilder);
+
+	protected form = this.fb.group({
+		name: '',
+		darkMode: false,
+	})
+}
+
+
+export const WITH_ROUTING_EXAMPLE_ROUTES: Routes = [
+	{
+		path: "dashboard",
+		component: AdminDashboardPageComponent,
+	},
+	{
+		path: "users",
+		component: AdminUsersPageComponent,
+	},
+	{
+		path: "settings",
+		component: AdminSettingsPageComponent,
+	},
+	{
+		path: "**",
+		redirectTo: "dashboard",
+	}
+];
+
+@Component({
+	selector: 'with-routing-example',
+	template: `
+		<div class="with-routing-example">
+			<fkt-side-menu
+				[groups]="groups()"
+				[opened]="opened()"
+			>
+				<router-outlet/>
+			</fkt-side-menu>
+		</div>
+	`,
+	styleUrl: './with-routing-example.component.scss',
+	standalone: true,
+	imports: [FktSideMenuComponent, RouterOutlet]
+})
+export class WithRoutingExampleComponent {
+	groups = input.required<FktMenuGroup[]>();
+	opened = input<boolean>(true);
 }
 ```
 

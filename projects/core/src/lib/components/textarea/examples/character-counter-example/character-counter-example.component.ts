@@ -1,7 +1,7 @@
 import { Component, computed, input } from '@angular/core';
-import { FktTextareaComponent } from '../fkt-textarea.component';
-import { SignalFormControl } from '../../../form/signal-form-control';
-import { SignalValidators } from '../../../form/validators/signal-validators';
+import { FktTextareaComponent } from '../../fkt-textarea.component';
+import { SignalFormControl } from '../../../../form/signal-form-control';
+import { SignalValidators } from '../../../../form/validators/signal-validators';
 
 @Component({
 	selector: 'textarea-character-counter-example',
@@ -68,7 +68,8 @@ import { SignalValidators } from '../../../form/validators/signal-validators';
 				}
 			</div>
 		</div>
-	`
+	`,
+	styleUrl: './character-counter-example.component.scss'
 })
 export class CharacterCounterExampleComponent {
 	maxLength = input(280); // Twitter-like limit

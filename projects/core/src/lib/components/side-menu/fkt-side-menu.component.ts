@@ -3,6 +3,7 @@ import { FktMenuGroup } from './fkt-side-menu.types';
 import { FktIconComponent } from '../icon';
 import { FktTooltipDirective } from '../tooltip';
 import { FktDrawerComponent } from '../drawer';
+import { RouterLink } from '@angular/router';
 
 @Component({
 	selector: 'fkt-side-menu',
@@ -10,6 +11,7 @@ import { FktDrawerComponent } from '../drawer';
 		FktDrawerComponent,
 		FktIconComponent,
 		FktTooltipDirective,
+		RouterLink,
 	],
 	templateUrl: './fkt-side-menu.component.html',
 	styleUrl: './fkt-side-menu.component.scss',

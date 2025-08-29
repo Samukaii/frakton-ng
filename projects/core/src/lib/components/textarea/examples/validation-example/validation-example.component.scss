@@ -1,0 +1,49 @@
+.validation-example {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-md);
+
+	&__container {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-xs);
+	}
+
+	&__status {
+		font-size: var(--font-size-sm);
+
+		&-label {
+			font-weight: var(--font-semibold);
+		}
+
+		&-content {
+			&--valid {
+				color: var(--color-green-600);
+			}
+
+			&--invalid {
+				color: var(--color-red-600);
+			}
+		}
+	}
+
+	&__info {
+		font-size: var(--font-size-sm);
+		color: var(--color-gray-600);
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-xs);
+
+		&-label {
+			display: flex;
+			gap: var(--space-xs);
+
+			strong {
+				font-weight: var(--font-semibold);
+			}
+		}
+	}
+
+
+}

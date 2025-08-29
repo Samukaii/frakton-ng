@@ -13,7 +13,7 @@
 	&__side-content {
 		width: var(--show-width, 250px);
 		max-width: 0;
-		transition: .3s;
+		transition: var(--transition-base);
 		z-index: 20;
 		overflow: hidden;
 		height: 100%;

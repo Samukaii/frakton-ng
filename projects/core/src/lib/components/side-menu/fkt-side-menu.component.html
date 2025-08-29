@@ -1,6 +1,6 @@
 <fkt-drawer
 	mode="push"
-	[width]="opened() ? '350px' : '80px'"
+	[width]="opened() ? '350px' : '72px'"
 	[opened]="true"
 	(backdropClick)="opened.set(false)">
 	<div class="main-content"
@@ -13,31 +13,24 @@
 			<div class="menu__content__content">
 				<div class="menu__list">
 					@for (group of groups(); track group.name) {
-						@if (group.name) {
-							<div
-								[style.max-height]="opened() ? '50px' : '0px'"
-								class="menu__group">
-								<h2>{{ group.name }}</h2>
+						<div
+							[style.max-height]="opened() ? '50px' : '0px'"
+							class="menu__group">
+							<h2>{{ group.name }}</h2>
+						</div>
+						<div
+							[class.menu__list-separator--first]="$first"
+							[class.menu__list-separator--closed]="!opened()"
+							class="menu__list-separator">
+							<hr>
+						</div>
 
-							</div>
-							<div
-								[class.hidden]="!opened() && $first"
-								[class.mt-4]="!opened()"
-								class="mb-4">
-								<hr class="border-gray-600">
-							</div>
-						} @else {
-							@if (!$first) {
-								<div class="mb-4 mt-6">
-									<hr class="border-gray-600">
-								</div>
-							}
-						}
 						<div
 							class="menu__items">
 							@for (menu of group.items; track menu.path) {
 								<div
 									[fktTooltip]="menu.name"
+									[routerLink]="menu.path"
 									position="right-center"
 									[tooltipEnabled]="!opened()"
 									[class.menu__items-item--collapsed]="!opened()"
@@ -45,11 +38,9 @@
 								>
 									<fkt-icon
 										[name]="menu.icon"/>
-									@if (opened()) {
-										<p>
-											{{ menu.name }}
-										</p>
-									}
+									<p>
+										{{ menu.name }}
+									</p>
 								</div>
 							}
 						</div>

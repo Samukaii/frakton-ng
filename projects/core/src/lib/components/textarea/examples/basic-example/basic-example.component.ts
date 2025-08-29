@@ -1,6 +1,6 @@
 import { Component, input } from '@angular/core';
-import { FktTextareaComponent } from '../fkt-textarea.component';
-import { SignalFormControl } from '../../../form/signal-form-control';
+import { FktTextareaComponent } from '../../fkt-textarea.component';
+import { SignalFormControl } from '../../../../form/signal-form-control';
 
 @Component({
 	selector: 'textarea-basic-example',
@@ -18,7 +18,8 @@ import { SignalFormControl } from '../../../form/signal-form-control';
 				<p>Current value: {{ control().value() || '(empty)' }}</p>
 			</div>
 		</div>
-	`
+	`,
+	styleUrl: './basic-example.component.scss'
 })
 export class BasicExampleComponent {
 	control = input(new SignalFormControl(''));

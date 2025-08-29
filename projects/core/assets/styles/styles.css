@@ -100,10 +100,10 @@
 	--icon-size-xl: 32px;
 
 	/* Transition Duration */
-	--transition-fast: 120ms;
-	--transition-normal: 250ms;
-	--transition-slow: 400ms;
-	--transition-xslow: 600ms;
+	--transition-timing-fast: 120ms;
+	--transition-timing-normal: 250ms;
+	--transition-timing-slow: 400ms;
+	--transition-timing-xslow: 600ms;
 
 	/* Transition Easing */
 	--transition-ease: cubic-bezier(0.4, 0, 0.2, 1);
@@ -112,7 +112,8 @@
 	--transition-linear: linear;
 
 	/* Transition Property (exemplo de preset) */
-	--transition-base: all var(--transition-fast) var(--transition-ease);
+	--transition-base: all var(--transition-timing-fast) var(--transition-ease);
+	--transition-slow: all var(--transition-timing-slow) var(--transition-ease);
 
 	/* Animation Delay */
 	--transition-delay-none: 0ms;

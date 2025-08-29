@@ -1,4 +1,4 @@
-import { Meta, Story } from '@storybook/addon-docs/blocks';
+import {ArgTypes, Controls, Meta, Story} from '@storybook/addon-docs/blocks';
 import * as fktAutocompleteStories from './fkt-autocomplete.stories';
 
 <Meta of={fktAutocompleteStories} />
@@ -16,184 +16,18 @@ The **FktAutocomplete** component provides a powerful and flexible autocomplete 
 - **Keyboard Navigation**: Full keyboard support for accessibility and efficiency
 - **Dynamic Options**: Support for reactive option lists that update in real-time
 
-## Basic Usage
-
-```typescript
-import { FktAutocompleteComponent } from '@frakton-ng/core';
-import { SignalFormControl } from '@frakton-ng/core';
-
-@Component({
-  selector: 'app-example',
-  template: `
-    <fkt-autocomplete
-      [control]="countryControl"
-      [label]="'Select Country'"
-      [placeholder]="'Start typing...'"
-      [options]="countries"
-      (search)="onSearch($event)"
-    />
-  `,
-  standalone: true,
-  imports: [FktAutocompleteComponent]
-})
-export class ExampleComponent {
-  countryControl = new SignalFormControl('');
-
-  countries = [
-    { value: 'us', label: 'United States' },
-    { value: 'ca', label: 'Canada' },
-    { value: 'uk', label: 'United Kingdom' }
-  ];
-
-  onSearch(query: string) {
-    // Filter or fetch options based on search query
-    console.log('Searching for:', query);
-  }
-}
-```
-
-## Advanced Features
-
-### Auto-creation Mode
-```typescript
-<fkt-autocomplete
-  [control]="tagsControl"
-  [label]="'Tags'"
-  [options]="predefinedTags"
-  [enableAutoCreation]="true"
-  [placeholder]="'Type to add new tags'"
-/>
-```
-
-### With Custom Actions
-```typescript
-<fkt-autocomplete
-  [control]="skillsControl"
-  [label]="'Skills'"
-  [options]="skills"
-  [actions]="skillActions"
-/>
-
-// In component:
-skillActions = [
-  {
-    icon: 'star',
-    color: 'yellow',
-    theme: 'basic',
-    variant: 'icon',
-    identifier: 'favorite',
-    click: (option) => this.favoriteSkill(option)
-  },
-  {
-    icon: 'pencil',
-    color: 'primary',
-    theme: 'basic',
-    variant: 'icon',
-    identifier: 'edit',
-    click: (option) => this.editSkill(option)
-  }
-];
-```
-
-### Async Data Loading
-```typescript
-@Component({
-  template: `
-    <fkt-autocomplete
-      [control]="userControl"
-      [label]="'Search Users'"
-      [options]="users"
-      [loading]="isLoading"
-      [noResults]="{label: 'No users found. Try a different search.'}"
-      (search)="searchUsers($event)"
-    />
-  `
-})
-export class AsyncExampleComponent {
-  userControl = new SignalFormControl('');
-  users = signal<FktAutocompleteOption[]>([]);
-  isLoading = signal(false);
-
-  async searchUsers(query: string) {
-    if (query.length < 2) return;
-
-    this.isLoading.set(true);
-    try {
-      const results = await this.userService.searchUsers(query);
-      this.users.set(results.map(user => ({
-        value: user.id,
-        label: user.name
-      })));
-    } finally {
-      this.isLoading.set(false);
-    }
-  }
-}
-```
-
 ## Configuration Options
 
-### FktAutocompleteOption Interface
+<ArgTypes/>
+
+### Types
+
 ```typescript
 interface FktAutocompleteOption {
   value: string | number;  // Unique identifier for the option
   label: string;           // Display text shown to user
 }
 ```
-
-### Input Properties
-- **`control`** (required): `SignalFormControl<any>` - Form control managing component state
-- **`options`**: `FktAutocompleteOption[]` - Array of selectable options (default: `[]`)
-- **`label`**: `string` - Label text displayed above the input (default: `''`)
-- **`placeholder`**: `string` - Placeholder text for input field (default: `''`)
-- **`enableAutoCreation`**: `boolean` - Allow creation of new options (default: `false`)
-- **`actions`**: `FktButtonAction[]` - Action buttons for each option (default: `[]`)
-- **`loading`**: `boolean` - Show loading state in dropdown (default: `false`)
-- **`noResults`**: `FktNoResults` - Configuration for no results message
-
-### Output Events
-- **`search`**: `EventEmitter<string>` - Emitted when user types in input
-
-## Use Cases
-
-### User Selection
-Perfect for selecting users, customers, or any entity from a large dataset:
-- User mentions in comments
-- Assignee selection in task management
-- Customer selection in CRM systems
-
-### Tag Management
-Ideal for tag-based systems with creation capabilities:
-- Blog post tagging
-- Product categorization
-- Skill tagging for profiles
-
-### Location Selection
-Great for location-based inputs:
-- Country/state selection
-- City autocomplete
-- Address suggestions
-
-### Product Search
-Excellent for product catalogs:
-- E-commerce product search
-- Inventory selection
-- Service picking
-
-## Accessibility
-
-- **Keyboard Navigation**: Arrow keys navigate options, Enter selects, Escape closes
-- **Screen Reader Support**: Proper ARIA labels and announcements
-- **Focus Management**: Logical focus flow and visual indicators
-- **High Contrast**: Supports system high contrast modes
-- **Label Association**: Proper label-input relationships
-
-## Performance
-
-- **Virtual Scrolling**: Efficient rendering of large option lists
-- **Debounced Search**: Configurable search debouncing to reduce API calls
-- **Lazy Loading**: Option to load data only when dropdown opens
-- **Memory Efficient**: Proper cleanup of event listeners and subscriptions
 
 ## Examples
 
@@ -202,6 +36,9 @@ Excellent for product catalogs:
 Simple autocomplete with predefined options. Click the input to see all options or start typing to filter.
 
 <Story of={fktAutocompleteStories.Default} />
+<p></p>
+___
+<Controls of={fktAutocompleteStories.Default} />
 
 ```typescript
 @Component({
@@ -236,6 +73,9 @@ export class ExampleComponent {
 Autocomplete with an initial selected value demonstrating form control integration.
 
 <Story of={fktAutocompleteStories.WithPreselectedValue} />
+<p></p>
+___
+<Controls of={fktAutocompleteStories.WithPreselectedValue} />
 
 ```typescript
 @Component({
@@ -270,6 +110,9 @@ export class ExampleComponent {
 Each option can have custom action buttons for enhanced functionality like editing or deleting.
 
 <Story of={fktAutocompleteStories.WithActions} />
+<p></p>
+___
+<Controls of={fktAutocompleteStories.WithActions} />
 
 ```typescript
 @Component({
@@ -332,6 +175,9 @@ export class ExampleComponent {
 Allow users to create new options by typing values not in the existing list.
 
 <Story of={fktAutocompleteStories.WithAutoCreation} />
+<p></p>
+___
+<Controls of={fktAutocompleteStories.WithAutoCreation} />
 
 ```typescript
 @Component({
@@ -367,6 +213,9 @@ export class ExampleComponent {
 Shows loading indicator when fetching data asynchronously from APIs.
 
 <Story of={fktAutocompleteStories.WithLoadingState} />
+<p></p>
+___
+<Controls of={fktAutocompleteStories.WithLoadingState} />
 
 ```typescript
 @Component({
@@ -395,6 +244,9 @@ export class ExampleComponent {
 Configurable message when no options match the search criteria.
 
 <Story of={fktAutocompleteStories.WithNoResults} />
+<p></p>
+___
+<Controls of={fktAutocompleteStories.WithNoResults} />
 
 ```typescript
 @Component({
@@ -426,6 +278,9 @@ export class ExampleComponent {
 Full-featured example combining all capabilities: actions, auto-creation, and custom messaging.
 
 <Story of={fktAutocompleteStories.Complete} />
+<p></p>
+___
+<Controls of={fktAutocompleteStories.Complete} />
 
 ```typescript
 @Component({
@@ -494,6 +349,9 @@ export class ExampleComponent {
 Autocomplete in disabled state prevents user interaction while maintaining visual feedback.
 
 <Story of={fktAutocompleteStories.Disabled} />
+<p></p>
+___
+<Controls of={fktAutocompleteStories.Disabled} />
 
 ```typescript
 @Component({
@@ -525,3 +383,39 @@ export class ExampleComponent {
     { value: "strawberry", label: "Strawberry" },
   ];
 }
+```
+
+## Use Cases
+
+### User Selection
+Perfect for selecting users, customers, or any entity from a large dataset:
+- User mentions in comments
+- Assignee selection in task management
+- Customer selection in CRM systems
+
+### Tag Management
+Ideal for tag-based systems with creation capabilities:
+- Blog post tagging
+- Product categorization
+- Skill tagging for profiles
+
+### Location Selection
+Great for location-based inputs:
+- Country/state selection
+- City autocomplete
+- Address suggestions
+
+### Product Search
+Excellent for product catalogs:
+- E-commerce product search
+- Inventory selection
+- Service picking
+
+## Accessibility
+
+- **Keyboard Navigation**: Arrow keys navigate options, Enter selects, Escape closes
+- **Screen Reader Support**: Proper ARIA labels and announcements
+- **Focus Management**: Logical focus flow and visual indicators
+- **High Contrast**: Supports system high contrast modes
+- **Label Association**: Proper label-input relationships
+

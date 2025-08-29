@@ -1,7 +1,7 @@
 import { Component, input, signal, computed } from '@angular/core';
-import { FktSideMenuComponent } from '../fkt-side-menu.component';
-import { FktMenuGroup } from '../fkt-side-menu.types';
-import { FktButtonComponent } from '../../button';
+import { FktSideMenuComponent } from '../../fkt-side-menu.component';
+import { FktMenuGroup } from '../../fkt-side-menu.types';
+import { FktButtonComponent } from '../../../button';
 
 interface UserPermissions {
   canViewAnalytics: boolean;
@@ -14,15 +14,15 @@ interface UserPermissions {
 @Component({
   selector: 'dynamic-permissions-side-menu-example',
   template: `
-    <div style="height: 700px; width: 100%; display: flex;">
+    <div class="dynamic-permissions-example">
       <fkt-side-menu
         [groups]="dynamicMenuGroups()"
         [opened]="opened()"
       >
-        <div style="padding: 24px; background-color: #f9fafb; width: 100%; height: 100%;">
-          <div style="margin-bottom: 24px;">
-            <h1 style="margin: 0 0 16px 0; font-size: 24px; font-weight: 600;">User Role: {{ currentRole() }}</h1>
-            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+        <div class="dynamic-permissions-example__content">
+          <div class="dynamic-permissions-example__controls">
+            <h1 class="dynamic-permissions-example__title">User Role: {{ currentRole() }}</h1>
+            <div class="dynamic-permissions-example__role-selector">
               <fkt-button
                 [text]="'Admin'"
                 [theme]="currentRole() === 'Admin' ? 'raised' : 'stroked'"
@@ -43,7 +43,7 @@ interface UserPermissions {
               />
             </div>
           </div>
-          <p style="margin: 0; color: #6b7280; line-height: 1.6;">
+          <p class="dynamic-permissions-example__description">
             The menu items change based on the selected user role.
             Switch between roles to see how the navigation adapts dynamically.
           </p>
@@ -51,6 +51,7 @@ interface UserPermissions {
       </fkt-side-menu>
     </div>
   `,
+  styleUrl: './dynamic-permissions-side-menu-example.component.scss',
   standalone: true,
   imports: [FktSideMenuComponent, FktButtonComponent]
 })

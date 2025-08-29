@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/angular';
+import { applicationConfig, Meta, StoryObj } from '@storybook/angular';
 import { moduleMetadata } from '@storybook/angular';
 import { FktSideMenuComponent } from './fkt-side-menu.component';
 import { FktMenuGroup } from './fkt-side-menu.types';
@@ -9,10 +9,37 @@ import {
 	DynamicPermissionsSideMenuExampleComponent,
 	AdminDashboardLayoutExampleComponent
 } from './examples';
+import { provideRouter, Routes } from '@angular/router';
+import {
+	WITH_ROUTING_EXAMPLE_ROUTES,
+	WithRoutingExampleComponent
+} from './examples/with-routing-example/with-routing-example.component';
+import { Component } from '@angular/core';
+
+@Component({
+	selector: 'fkt-empty',
+	template: ``,
+	styles: ``
+})
+class EmptyComponent {}
+
+const DEFAULT_ROUTES: Routes = [
+	{
+		path: 'empty',
+		component: EmptyComponent
+	},
+	{
+		path: '**',
+		redirectTo: 'empty'
+	}
+]
 
 const meta: Meta<FktSideMenuComponent> = {
 	title: 'Components/Side Menu',
 	component: FktSideMenuComponent,
+	parameters: {
+		layout: 'fullscreen'
+	},
 	decorators: [
 		moduleMetadata({
 			imports: [
@@ -20,9 +47,10 @@ const meta: Meta<FktSideMenuComponent> = {
 				CollapsibleSideMenuExampleComponent,
 				MultiGroupSideMenuExampleComponent,
 				DynamicPermissionsSideMenuExampleComponent,
-				AdminDashboardLayoutExampleComponent
+				AdminDashboardLayoutExampleComponent,
+				WithRoutingExampleComponent
 			]
-		})
+		}),
 	],
 	argTypes: {
 		groups: {
@@ -168,6 +196,11 @@ export const BasicSideMenu: Story = {
 			...args
 		}
 	}),
+	decorators: [
+		applicationConfig({
+			providers: [provideRouter(DEFAULT_ROUTES)],
+		}),
+	],
 	args: {
 		groups: defaultMenuGroups,
 		opened: true
@@ -181,6 +214,11 @@ export const CollapsibleSideMenu: Story = {
 			...args
 		}
 	}),
+	decorators: [
+		applicationConfig({
+			providers: [provideRouter(DEFAULT_ROUTES)],
+		}),
+	],
 	args: {
 		groups: collapsibleMenuGroups,
 		opened: true
@@ -194,6 +232,11 @@ export const MultiGroupSideMenu: Story = {
 			...args
 		}
 	}),
+	decorators: [
+		applicationConfig({
+			providers: [provideRouter(DEFAULT_ROUTES)],
+		}),
+	],
 	args: {
 		groups: multiGroupMenus,
 		opened: true
@@ -207,6 +250,11 @@ export const DynamicPermissionsSideMenu: Story = {
 			...args
 		}
 	}),
+	decorators: [
+		applicationConfig({
+			providers: [provideRouter(DEFAULT_ROUTES)],
+		}),
+	],
 	args: {
 		groups: permissionsMenuGroups,
 		opened: true
@@ -220,8 +268,51 @@ export const AdminDashboardLayout: Story = {
 			...args
 		}
 	}),
+	decorators: [
+		applicationConfig({
+			providers: [provideRouter(DEFAULT_ROUTES)],
+		}),
+	],
 	args: {
 		groups: adminMenuGroups,
+		opened: true
+	}
+};
+
+export const WithRouting: Story = {
+	render: (args) => ({
+		template: '<with-routing-example [groups]="groups" [opened]="opened"></with-routing-example>',
+		props: {
+			...args
+		}
+	}),
+	decorators: [
+		applicationConfig({
+			providers: [provideRouter(WITH_ROUTING_EXAMPLE_ROUTES)],
+		}),
+	],
+	args: {
+		groups: [
+			{
+				items: [
+					{
+						name: "Dashboard",
+						icon: "home",
+						path: "dashboard"
+					},
+					{
+						name: "Usuários",
+						icon: "users",
+						path: "users"
+					},
+					{
+						name: "Configurações",
+						icon: "cog-6-tooth",
+						path: "settings"
+					}
+				]
+			}
+		],
 		opened: true
 	}
 };

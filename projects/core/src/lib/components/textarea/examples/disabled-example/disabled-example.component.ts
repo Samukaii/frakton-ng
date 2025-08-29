@@ -1,7 +1,7 @@
 import { Component, input, OnInit } from '@angular/core';
-import { FktTextareaComponent } from '../fkt-textarea.component';
-import { SignalFormControl } from '../../../form/signal-form-control';
-import { FktButtonComponent } from '../../button';
+import { FktTextareaComponent } from '../../fkt-textarea.component';
+import { SignalFormControl } from '../../../../form/signal-form-control';
+import { FktButtonComponent } from '../../../button';
 
 @Component({
 	selector: 'textarea-disabled-example',
@@ -33,7 +33,8 @@ import { FktButtonComponent } from '../../button';
 				<p>Common use cases include read-only views, locked fields, or conditional editing.</p>
 			</div>
 		</div>
-	`
+	`,
+	styleUrl: './disabled-example.component.scss'
 })
 export class DisabledExampleComponent implements OnInit {
 	label = input('Terms and Conditions');

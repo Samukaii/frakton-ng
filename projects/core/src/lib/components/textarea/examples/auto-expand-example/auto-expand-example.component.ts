@@ -1,6 +1,6 @@
 import { Component, input } from '@angular/core';
-import { FktTextareaComponent } from '../fkt-textarea.component';
-import { SignalFormControl } from '../../../form/signal-form-control';
+import { FktTextareaComponent } from '../../fkt-textarea.component';
+import { SignalFormControl } from '../../../../form/signal-form-control';
 
 @Component({
 	selector: 'textarea-auto-expand-example',
@@ -25,7 +25,8 @@ import { SignalFormControl } from '../../../form/signal-form-control';
 				<p>Lines count: {{ lineCount() }}</p>
 			</div>
 		</div>
-	`
+	`,
+	styleUrl: './auto-expand-example.component.scss'
 })
 export class AutoExpandExampleComponent {
 	control = input(new SignalFormControl('Type here and press Enter to add new lines.\nThe textarea will automatically expand to fit the content when auto-expand is enabled.'));

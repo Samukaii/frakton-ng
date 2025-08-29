@@ -1,18 +1,18 @@
 import { Component, input } from '@angular/core';
-import { FktSideMenuComponent } from '../fkt-side-menu.component';
-import { FktMenuGroup } from '../fkt-side-menu.types';
+import { FktSideMenuComponent } from '../../fkt-side-menu.component';
+import { FktMenuGroup } from '../../fkt-side-menu.types';
 
 @Component({
   selector: 'multi-group-side-menu-example',
   template: `
-    <div style="height: 700px; width: 100%; display: flex;">
+    <div class="multi-group-side-menu-example">
       <fkt-side-menu
         [groups]="groups()"
         [opened]="opened()"
       >
-        <div style="padding: 24px; background-color: #f9fafb; width: 100%; height: 100%;">
-          <h1 style="margin: 0 0 16px 0; font-size: 24px; font-weight: 600;">Multi-Section Navigation</h1>
-          <p style="margin: 0; color: #6b7280; line-height: 1.6;">
+        <div class="multi-group-side-menu-example__content">
+          <h1 class="multi-group-side-menu-example__title">Multi-Section Navigation</h1>
+          <p class="multi-group-side-menu-example__description">
             This example shows how to organize menu items into logical groups.
             Groups with names display headers, while groups without names show dividers.
           </p>
@@ -20,6 +20,7 @@ import { FktMenuGroup } from '../fkt-side-menu.types';
       </fkt-side-menu>
     </div>
   `,
+  styleUrl: './multi-group-side-menu-example.component.scss',
   standalone: true,
   imports: [FktSideMenuComponent]
 })

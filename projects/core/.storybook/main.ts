@@ -14,9 +14,25 @@ const config: StorybookConfig = {
 	previewHead: (head) => `
     ${head}
     <style>
-      * {
-      	font-family: Frakton, serif;
-      }
+		* {
+			font-family: Frakton, serif;
+		}
+
+		.height-600 {
+			[data-story-block="true"] {
+				height: 600px;
+				overflow-y: scroll;
+
+				& > * {
+					height: 100%;
+					display: block;
+				}
+			}
+		}
+
+		#storybook-root {
+			height: 100vh;
+		}
     </style>
   `,
 	webpackFinal: async (cfg) => {

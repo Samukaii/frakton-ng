@@ -1,4 +1,4 @@
-import { Meta, Story } from '@storybook/addon-docs/blocks';
+import {ArgTypes, Controls, Meta, Story} from '@storybook/addon-docs/blocks';
 import * as fktDatePickerStories from './fkt-date-picker.stories';
 
 <Meta of={fktDatePickerStories} />
@@ -16,193 +16,9 @@ The **FktDatePicker** component provides an intuitive and accessible date select
 - **Custom Styling**: Consistent design that matches your application theme
 - **Locale Support**: Adapts to different date formats and locales
 
-## Basic Usage
-
-```typescript
-import { FktDatePickerComponent } from '@frakton-ng/core';
-import { SignalFormControl } from '@frakton-ng/core';
-
-@Component({
-  selector: 'app-example',
-  template: `
-    <fkt-date-picker
-      [control]="birthDateControl"
-      [label]="'Birth Date'"
-      [placeholder]="'Select your birth date'"
-    />
-
-    <fkt-date-picker
-      [control]="dueDateControl"
-      [label]="'Due Date'"
-      [placeholder]="'mm/dd/yyyy'"
-    />
-  `,
-  standalone: true,
-  imports: [FktDatePickerComponent]
-})
-export class ExampleComponent {
-  birthDateControl = new SignalFormControl('');
-  dueDateControl = new SignalFormControl(new Date()); // Pre-filled with today
-}
-```
-
-## Advanced Usage
-
-### With Form Validation
-```typescript
-import { SignalValidators } from '@frakton-ng/core';
-
-@Component({
-  template: `
-    <form (ngSubmit)="onSubmit()">
-      <fkt-date-picker
-        [control]="startDateControl"
-        [label]="'Project Start Date'"
-        [placeholder]="'Select start date'"
-      />
-
-      <fkt-date-picker
-        [control]="endDateControl"
-        [label]="'Project End Date'"
-        [placeholder]="'Select end date'"
-      />
-
-      <button type="submit" [disabled]="!isFormValid()">
-        Create Project
-      </button>
-    </form>
-  `
-})
-export class ProjectFormComponent {
-  startDateControl = new SignalFormControl('', {
-    validators: [SignalValidators.required()]
-  });
-
-  endDateControl = new SignalFormControl('', {
-    validators: [
-      SignalValidators.required(),
-      this.validateEndDate.bind(this)
-    ]
-  });
-
-  isFormValid = computed(() =>
-    this.startDateControl.valid() && this.endDateControl.valid()
-  );
-
-  validateEndDate(control: any) {
-    const startDate = new Date(this.startDateControl.value());
-    const endDate = new Date(control.value);
-
-    if (endDate <= startDate) {
-      return { endDateInvalid: true };
-    }
-    return null;
-  }
-
-  onSubmit() {
-    if (this.isFormValid()) {
-      const projectData = {
-        startDate: this.startDateControl.value(),
-        endDate: this.endDateControl.value()
-      };
-      console.log('Project created:', projectData);
-    }
-  }
-}
-```
-
-### Date Range Selection
-```typescript
-@Component({
-  template: `
-    <div class="space-y-4">
-      <div class="grid grid-cols-2 gap-4">
-        <fkt-date-picker
-          [control]="fromDateControl"
-          [label]="'From Date'"
-          [placeholder]="'Start date'"
-        />
-
-        <fkt-date-picker
-          [control]="toDateControl"
-          [label]="'To Date'"
-          [placeholder]="'End date'"
-        />
-      </div>
-
-      <div class="mt-4">
-        <p>Selected Range: {{ getDateRange() }}</p>
-        <p>Duration: {{ getDurationInDays() }} days</p>
-      </div>
-    </div>
-  `
-})
-export class DateRangeComponent {
-  fromDateControl = new SignalFormControl('');
-  toDateControl = new SignalFormControl('');
-
-  getDateRange = computed(() => {
-    const from = this.fromDateControl.value();
-    const to = this.toDateControl.value();
-
-    if (!from || !to) return 'Please select both dates';
-
-    return `${new Date(from).toLocaleDateString()} - ${new Date(to).toLocaleDateString()}`;
-  });
-
-  getDurationInDays = computed(() => {
-    const from = this.fromDateControl.value();
-    const to = this.toDateControl.value();
-
-    if (!from || !to) return 0;
-
-    const fromDate = new Date(from);
-    const toDate = new Date(to);
-    const timeDiff = toDate.getTime() - fromDate.getTime();
-
-    return Math.ceil(timeDiff / (1000 * 3600 * 24));
-  });
-}
-```
-
-### With Custom Date Constraints
-```typescript
-@Component({
-  template: `
-    <fkt-date-picker
-      [control]="eventDateControl"
-      [label]="'Event Date'"
-      [placeholder]="'Select event date (future dates only)'"
-    />
-  `
-})
-export class EventDateComponent {
-  eventDateControl = new SignalFormControl('', {
-    validators: [
-      SignalValidators.required(),
-      this.validateFutureDate.bind(this)
-    ]
-  });
-
-  validateFutureDate(control: any) {
-    const selectedDate = new Date(control.value);
-    const today = new Date();
-    today.setHours(0, 0, 0, 0); // Reset time to start of day
-
-    if (selectedDate < today) {
-      return { pastDate: true };
-    }
-    return null;
-  }
-}
-```
-
 ## Configuration Options
 
-### Input Properties
-- **`control`** (required): `SignalFormControl<any>` - Form control managing component state
-- **`label`**: `string` - Label text displayed above the input (default: `undefined`)
-- **`placeholder`**: `string` - Placeholder text for input field (default: `undefined`)
+<ArgTypes/>
 
 ### Date Format Support
 The component supports various date input formats:
@@ -216,6 +32,154 @@ The component supports various date input formats:
 - **Today Highlight**: Current date is visually highlighted
 - **Weekend Styling**: Weekends can have different styling
 - **Outside Click**: Calendar closes when clicking outside
+
+## Examples
+
+### Basic Date Picker
+
+Simple date picker with label and placeholder. Click the input field to open the calendar modal.
+
+<Story of={fktDatePickerStories.Default} />
+<p></p>
+___
+<Controls of={fktDatePickerStories.Default} />
+
+```typescript
+@Component({
+  selector: 'app-example',
+  template: `
+    <fkt-date-picker
+      [control]="birthDateControl"
+      [label]="'Birth Date'"
+      [placeholder]="'Select your birth date'"
+    />
+  `,
+  standalone: true,
+  imports: [FktDatePickerComponent]
+})
+export class ExampleComponent {
+  birthDateControl = new SignalFormControl('');
+}
+```
+
+### With Pre-filled Date
+
+Date picker initialized with a specific date value showing the formatted display.
+
+<Story of={fktDatePickerStories.WithPrefilledDate} />
+<p></p>
+___
+<Controls of={fktDatePickerStories.WithPrefilledDate} />
+
+```typescript
+@Component({
+  selector: 'app-example',
+  template: `
+    <fkt-date-picker
+      [control]="eventDateControl"
+      [label]="'Event Date'"
+      [placeholder]="'Select event date'"
+    />
+  `,
+  standalone: true,
+  imports: [FktDatePickerComponent]
+})
+export class ExampleComponent {
+  eventDateControl = new SignalFormControl(new Date()); // Pre-filled with today's date
+}
+```
+
+### Required Validation
+
+Date picker with required field validation showing error state when empty.
+
+<Story of={fktDatePickerStories.RequiredField} />
+<p></p>
+___
+<Controls of={fktDatePickerStories.RequiredField} />
+
+```typescript
+import { SignalValidators } from '@frakton-ng/core';
+
+@Component({
+  selector: 'app-example',
+  template: `
+    <fkt-date-picker
+      [control]="dueDateControl"
+      [label]="'Due Date (Required)'"
+      [placeholder]="'Please select a due date'"
+    />
+    <div class="mt-2 text-sm text-red-600" *ngIf="dueDateControl.invalid() && dueDateControl.touched()">
+      This field is required
+    </div>
+  `,
+  standalone: true,
+  imports: [FktDatePickerComponent]
+})
+export class ExampleComponent {
+  dueDateControl = new SignalFormControl('', {
+    validators: [SignalValidators.required()]
+  });
+}
+```
+
+### Disabled State
+
+Date picker in disabled state prevents user interaction while maintaining visual feedback.
+
+<Story of={fktDatePickerStories.Disabled} />
+<p></p>
+___
+<Controls of={fktDatePickerStories.Disabled} />
+
+```typescript
+@Component({
+  selector: 'app-example',
+  template: `
+    <fkt-date-picker
+      [control]="fixedDateControl"
+      [label]="'Fixed Date'"
+      [placeholder]="'This date cannot be changed'"
+    />
+  `,
+  standalone: true,
+  imports: [FktDatePickerComponent]
+})
+export class ExampleComponent {
+  fixedDateControl = (() => {
+    const control = new SignalFormControl(new Date('2024-12-25'));
+    control.disable(); // Disable the control
+    return control;
+  })();
+}
+```
+
+### With Format Hint
+
+Date picker with a format hint in the placeholder to guide users on the expected date format.
+
+<Story of={fktDatePickerStories.WithFormatHint} />
+<p></p>
+___
+<Controls of={fktDatePickerStories.WithFormatHint} />
+
+```typescript
+@Component({
+  selector: 'app-example',
+  template: `
+    <fkt-date-picker
+      [control]="formatDateControl"
+      [label]="'Start Date'"
+      [placeholder]="'DD/MM/YYYY format'"
+    />
+  `,
+  standalone: true,
+  imports: [FktDatePickerComponent]
+})
+export class ExampleComponent {
+  formatDateControl = new SignalFormControl('');
+}
+```
 
 ## Use Cases
 
@@ -255,166 +219,3 @@ Essential for reservation systems:
 - **High Contrast**: Supports system high contrast modes
 - **Label Association**: Proper label-input relationships
 - **Date Announcements**: Selected dates are announced to screen readers
-
-## Browser Support
-
-- **Modern Browsers**: Works in all modern browsers (Chrome, Firefox, Safari, Edge)
-- **Date Input Fallback**: Falls back to native date input on unsupported browsers
-- **Mobile Friendly**: Optimized for touch interactions on mobile devices
-- **Responsive**: Calendar adapts to different screen sizes
-
-## Examples
-
-### Basic Date Picker
-
-Simple date picker with label and placeholder. Click the input field to open the calendar modal.
-
-<Story of={fktDatePickerStories.Default} />
-
-```typescript
-@Component({
-  selector: 'app-example',
-  template: `
-    <fkt-date-picker
-      [control]="birthDateControl"
-      [label]="'Birth Date'"
-      [placeholder]="'Select your birth date'"
-    />
-  `,
-  standalone: true,
-  imports: [FktDatePickerComponent]
-})
-export class ExampleComponent {
-  birthDateControl = new SignalFormControl('');
-}
-```
-
-### With Pre-filled Date
-
-Date picker initialized with a specific date value showing the formatted display.
-
-<Story of={fktDatePickerStories.WithPrefilledDate} />
-
-```typescript
-@Component({
-  selector: 'app-example',
-  template: `
-    <fkt-date-picker
-      [control]="eventDateControl"
-      [label]="'Event Date'"
-      [placeholder]="'Select event date'"
-    />
-  `,
-  standalone: true,
-  imports: [FktDatePickerComponent]
-})
-export class ExampleComponent {
-  eventDateControl = new SignalFormControl(new Date()); // Pre-filled with today's date
-}
-```
-
-### Required Validation
-
-Date picker with required field validation showing error state when empty.
-
-<Story of={fktDatePickerStories.RequiredField} />
-
-```typescript
-import { SignalValidators } from '@frakton-ng/core';
-
-@Component({
-  selector: 'app-example',
-  template: `
-    <fkt-date-picker
-      [control]="dueDateControl"
-      [label]="'Due Date (Required)'"
-      [placeholder]="'Please select a due date'"
-    />
-    <div class="mt-2 text-sm text-red-600" *ngIf="dueDateControl.invalid() && dueDateControl.touched()">
-      This field is required
-    </div>
-  `,
-  standalone: true,
-  imports: [FktDatePickerComponent]
-})
-export class ExampleComponent {
-  dueDateControl = new SignalFormControl('', {
-    validators: [SignalValidators.required()]
-  });
-}
-```
-
-### Disabled State
-
-Date picker in disabled state prevents user interaction while maintaining visual feedback.
-
-<Story of={fktDatePickerStories.Disabled} />
-
-```typescript
-@Component({
-  selector: 'app-example',
-  template: `
-    <fkt-date-picker
-      [control]="fixedDateControl"
-      [label]="'Fixed Date'"
-      [placeholder]="'This date cannot be changed'"
-    />
-  `,
-  standalone: true,
-  imports: [FktDatePickerComponent]
-})
-export class ExampleComponent {
-  fixedDateControl = (() => {
-    const control = new SignalFormControl(new Date('2024-12-25'));
-    control.disable(); // Disable the control
-    return control;
-  })();
-}
-```
-
-### Without Label
-
-Date picker without label showing minimal configuration for compact layouts.
-
-<Story of={fktDatePickerStories.WithoutLabel} />
-
-```typescript
-@Component({
-  selector: 'app-example',
-  template: `
-    <fkt-date-picker
-      [control]="compactDateControl"
-      [placeholder]="'mm/dd/yyyy'"
-    />
-  `,
-  standalone: true,
-  imports: [FktDatePickerComponent]
-})
-export class ExampleComponent {
-  compactDateControl = new SignalFormControl('');
-}
-```
-
-### With Format Hint
-
-Date picker with a format hint in the placeholder to guide users on the expected date format.
-
-<Story of={fktDatePickerStories.WithFormatHint} />
-
-```typescript
-@Component({
-  selector: 'app-example',
-  template: `
-    <fkt-date-picker
-      [control]="formatDateControl"
-      [label]="'Start Date'"
-      [placeholder]="'DD/MM/YYYY format'"
-    />
-  `,
-  standalone: true,
-  imports: [FktDatePickerComponent]
-})
-export class ExampleComponent {
-  formatDateControl = new SignalFormControl('');
-}
-```

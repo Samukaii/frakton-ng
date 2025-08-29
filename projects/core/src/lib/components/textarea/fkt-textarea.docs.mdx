@@ -21,19 +21,6 @@ A multi-line text input component with reactive form integration, validation sup
 
 <ArgTypes/>
 
-### Types
-
-```typescript
-// Input types
-type control = SignalFormControl<any>; // Required
-type label = string; // Required
-type placeholder = string; // Optional, default: ''
-type autoExpand = boolean; // Optional, default: false
-
-// Method signature
-focus(): void; // Programmatically focuses the textarea element
-```
-
 ## Examples
 
 ### Basic Usage
@@ -61,7 +48,7 @@ import { SignalFormControl } from '../../../form/signal-form-control';
 				[label]="label()"
 				[placeholder]="placeholder()"
 			/>
-			
+
 			<div class="text-sm text-gray-600">
 				<p>Current value: {{ control().value() || '(empty)' }}</p>
 			</div>
@@ -74,9 +61,6 @@ export class BasicExampleComponent {
 	placeholder = input('Enter a detailed description...');
 }
 ```
-
-
-<Controls of={stories.Basic} />
 
 ### Validation
 
@@ -104,7 +88,7 @@ import { SignalValidators } from '../../../form/validators/signal-validators';
 				[label]="label()"
 				[placeholder]="placeholder()"
 			/>
-			
+
 			<div class="space-y-2">
 				<div class="text-sm">
 					<span class="font-medium">Status:</span>
@@ -113,12 +97,12 @@ import { SignalValidators } from '../../../form/validators/signal-validators';
 						{{ control().valid() ? 'Valid' : 'Invalid' }}
 					</span>
 				</div>
-				
+
 				<div class="text-sm text-gray-600">
 					<p>Character count: {{ characterCount() }}/{{ maxLength() }}</p>
 					<p>Required minimum: {{ minLength() }} characters</p>
 				</div>
-				
+
 				@if (control().errors() && control().touched()) {
 					<div class="text-sm text-red-600">
 						@if (control().errors()?.['required']) {
@@ -141,7 +125,7 @@ export class ValidationExampleComponent {
 	maxLength = input(500);
 	label = input('Bio');
 	placeholder = input('Tell us about yourself...');
-	
+
 	control = computed(() => {
 		return new SignalFormControl('', {
 			validators: [
@@ -151,7 +135,7 @@ export class ValidationExampleComponent {
 			]
 		});
 	});
-	
+
 	characterCount = computed(() => {
 		return this.control().value()?.length || 0;
 	});
@@ -182,14 +166,14 @@ import { SignalFormControl } from '../../../form/signal-form-control';
 				<p class="font-medium">Auto-expand is {{ autoExpand() ? 'enabled' : 'disabled' }}</p>
 				<p>The textarea will {{ autoExpand() ? 'automatically grow' : 'maintain fixed height' }} as you type.</p>
 			</div>
-			
+
 			<fkt-textarea
 				[control]="control()"
 				[label]="label()"
 				[placeholder]="placeholder()"
 				[autoExpand]="autoExpand()"
 			/>
-			
+
 			<div class="text-sm text-gray-600">
 				<p>Try typing multiple lines to see the auto-expand behavior.</p>
 				<p>Lines count: {{ lineCount() }}</p>
@@ -202,7 +186,7 @@ export class AutoExpandExampleComponent {
 	label = input('Notes');
 	placeholder = input('Start typing...');
 	autoExpand = input(true);
-	
+
 	lineCount() {
 		const value = this.control().value();
 		return value ? value.split('\n').length : 0;

@@ -1,10 +1,10 @@
 import { Component, inject, signal } from '@angular/core';
-import { FktTextareaComponent } from '../fkt-textarea.component';
-import { FktInputComponent } from '../../input';
-import { SignalFormBuilder } from '../../../form/signal-form-builder';
-import { SignalValidators } from '../../../form/validators/signal-validators';
+import { FktTextareaComponent } from '../../fkt-textarea.component';
+import { FktInputComponent } from '../../../input';
+import { SignalFormBuilder } from '../../../../form/signal-form-builder';
+import { SignalValidators } from '../../../../form/validators/signal-validators';
 import { JsonPipe } from '@angular/common';
-import { FktButtonComponent } from '../../button';
+import { FktButtonComponent } from '../../../button';
 
 @Component({
 	selector: 'textarea-form-integration-example',
@@ -74,7 +74,8 @@ import { FktButtonComponent } from '../../button';
 				</div>
 			}
 		</div>
-	`
+	`,
+	styleUrl: './form-integration-example.component.scss'
 })
 export class FormIntegrationExampleComponent {
 	private fb = inject(SignalFormBuilder);
