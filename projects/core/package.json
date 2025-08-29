@@ -1,6 +1,6 @@
 {
 	"name": "@frakton-ng/core",
-	"version": "1.10.0",
+	"version": "1.13.0",
 	"description": "Frakton NG — Design System Angular: componentes UI modernos, acessíveis e escaláveis para acelerar o desenvolvimento de aplicações.",
 	"author": "Samuel Alejandro <samuelalejandro.dev@gmail.com>",
 	"license": "MIT",
@@ -17,7 +17,6 @@
 		"fesm2022/",
 		"index.d.ts",
 		"assets/",
-		"styles/",
 		"README.md"
 	],
 	"repository": {

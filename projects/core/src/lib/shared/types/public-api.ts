@@ -19,8 +19,6 @@ export * from './fkt-geometry-size';
 export * from './fkt-icon-name';
 export * from './fkt-infer-form-value';
 export * from './fkt-infer-form-value-fn';
-export * from './fkt-menu-group';
-export * from './fkt-menu-item';
 export * from './fkt-or-signal';
 export * from './fkt-reactive-component-data';
 export * from './fkt-identifiable';

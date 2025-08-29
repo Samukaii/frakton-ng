@@ -13,13 +13,8 @@
 	"assets": [
 		{
 			"glob": "**/*",
-			"input": "src/lib/assets",
+			"input": "assets",
 			"output": "assets"
-		},
-		{
-			"glob": "**/*",
-			"input": "src/lib/styles/styles.css",
-			"output": "styles"
 		}
 	]
 }

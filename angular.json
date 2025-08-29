@@ -42,7 +42,7 @@
 						"configDir": "projects/core/.storybook",
 						"browserTarget": "core:build:production",
 						"compodoc": false,
-						"outputDir": "dist/storybook/core"
+						"outputDir": "docs"
 					}
 				}
 			}

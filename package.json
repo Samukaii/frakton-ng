@@ -8,7 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "storybook": "ng run core:storybook",
-    "storybook:dev": "ng run core:storybook",
+    "storybook:build": "ng run core:build-storybook",
     "dev": "ng run core:storybook"
   },
   "prettier": {
