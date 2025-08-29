@@ -59,8 +59,7 @@ class WithActionStoryComponent {
 		icon: {name: 'clipboard-document-list'},
 		action: {
 			text: 'Create Task',
-			theme: 'primary',
-			variant: 'filled',
+			theme: 'raised',
 			identifier: 'create-task',
 			click: () => this.createNewTask()
 		}
@@ -91,8 +90,7 @@ class SearchResultsStoryComponent {
 		icon: {name: 'magnifying-glass', size: '80px'},
 		action: {
 			text: 'Clear Search',
-			theme: 'primary',
-			variant: 'outlined',
+			theme: 'stroked',
 			identifier: 'clear-search',
 			click: () => this.clearSearch()
 		}
@@ -122,8 +120,7 @@ class DataTableStoryComponent {
 		icon: {name: 'table-cells', size: '100px'},
 		action: {
 			text: 'Add Record',
-			theme: 'primary',
-			variant: 'filled',
+			theme: 'raised',
 			identifier: 'add-record',
 			click: () => this.openAddRecordModal()
 		}
@@ -152,8 +149,7 @@ class FileUploadStoryComponent {
 		icon: {name: 'folder-open', size: '120px'},
 		action: {
 			text: 'Upload Files',
-			theme: 'primary',
-			variant: 'filled',
+			theme: 'raised',
 			icon: 'arrow-up-tray',
 			identifier: 'upload-files',
 			click: () => this.openFileUpload()
