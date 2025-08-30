@@ -122,6 +122,7 @@
 }
 
 .vertical-separator {
-	margin: var(--space-xs) 0;
-	border: solid 1px var(--color-gray-200);
+	margin: var(--space-sm) 0;
+	border: none;
+	border-bottom: solid 1px var(--color-gray-200);
 }
