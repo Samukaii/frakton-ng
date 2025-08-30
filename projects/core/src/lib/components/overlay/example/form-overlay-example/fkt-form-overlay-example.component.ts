@@ -1,12 +1,7 @@
-import { Component, inject, input, OnInit, output } from '@angular/core';
-import { FktButtonComponent } from '../../button';
-import { FktOverlayService } from '../fkt-overlay.service';
-import { FktInputComponent } from '../../input';
-import { FktIconComponent } from '../../icon';
-import { FormsModule } from '@angular/forms';
-import { SignalValidators } from '../../../form/validators/signal-validators';
-import { SignalFormBuilder } from '../../../form/signal-form-builder';
-import { FktTextareaComponent } from '../../textarea';
+import { Component, inject, input } from '@angular/core';
+import { FktButtonComponent } from '../../../button';
+import { FktOverlayService } from '../../fkt-overlay.service';
+import { FktFormOverlayDialogComponent } from '../dialog/fkt-form-overlay-dialog/fkt-form-overlay-dialog.component';
 
 export interface FormData {
 	name: string;
@@ -15,95 +10,9 @@ export interface FormData {
 }
 
 @Component({
-	selector: 'fkt-form-overlay-demo',
-	template: `
-		<div class="p-4 space-y-4 min-w-80">
-			<div class="flex items-center gap-2 pb-2 border-b border-gray-200">
-				<fkt-icon name="document-text" size="20" class="text-primary-600"></fkt-icon>
-				<h3 class="text-lg font-semibold text-gray-900">{{ title() }}</h3>
-			</div>
-
-			<p class="text-sm text-gray-600">{{ description() }}</p>
-
-			<form class="space-y-3" (ngSubmit)="handleSubmit()">
-				<fkt-input
-					[control]="form.controls.name"
-					label="Name"
-					placeholder="Enter your name"
-				></fkt-input>
-
-				<fkt-input
-					[control]="form.controls.email"
-					label="Email"
-					placeholder="Enter your email"
-					type="email"
-				></fkt-input>
-
-				<fkt-textarea
-					[control]="form.controls.message"
-					label="Message"
-					placeholder="Enter a message"
-				></fkt-textarea>
-
-				<div class="flex gap-2 justify-end pt-2">
-					<fkt-button
-						text="Cancel"
-						theme="stroked"
-						type="button"
-						(click)="handleCancel()"
-					></fkt-button>
-					<fkt-button
-						text="Submit"
-						theme="raised"
-						type="submit"
-						[disabled]="!form.valid()"
-					></fkt-button>
-				</div>
-			</form>
-		</div>
-	`,
-	standalone: true,
-	imports: [FktButtonComponent, FktInputComponent, FktIconComponent, FormsModule, FktTextareaComponent]
-})
-export class FktFormOverlayDemoComponent implements OnInit {
-	title = input('Contact Form');
-	description = input('Please fill out your information below:');
-	initialData = input<FormData>();
-
-	onFormSubmit = output<FormData>();
-	onFormCancel = output<void>();
-
-	private fb = inject(SignalFormBuilder);
-	protected form = this.fb.group({
-		name: ['', SignalValidators.required()],
-		email: ['', [SignalValidators.required(), SignalValidators.email()]],
-		message: ['', SignalValidators.required()],
-	})
-
-	ngOnInit() {
-		const initialData = this.initialData();
-
-		if (!initialData) return;
-
-		this.form.patchValue(initialData);
-	}
-
-	protected handleSubmit() {
-		if (!this.form.valid()) return;
-
-		this.onFormSubmit.emit(this.form.value());
-	}
-
-	protected handleCancel() {
-		this.onFormCancel.emit();
-	}
-}
-
-
-@Component({
 	selector: 'form-overlay-example',
 	template: `
-		<div class="flex gap-4 justify-center">
+		<div class="container">
 			<div #contactFormButton>
 				<fkt-button
 					text="Contact Form"
@@ -131,7 +40,7 @@ export class FktFormOverlayDemoComponent implements OnInit {
 			</div>
 		</div>
 	`,
-	standalone: true,
+	styleUrl: './fkt-form-overlay-example.component.scss',
 	imports: [FktButtonComponent]
 })
 export class FktFormOverlayExampleComponent {
@@ -140,7 +49,7 @@ export class FktFormOverlayExampleComponent {
 	openContactForm(nativeElement: HTMLElement) {
 		const overlayRef = this.overlayService.open({
 			anchorElementRef: {nativeElement},
-			component: FktFormOverlayDemoComponent,
+			component: FktFormOverlayDialogComponent,
 			data: {
 				title: 'Contact Us',
 				description: 'We would love to hear from you. Send us a message and we will respond as soon as possible.',
@@ -155,7 +64,7 @@ export class FktFormOverlayExampleComponent {
 				}
 			},
 			panelOptions: {
-				position: 'bottom-center',
+				position: 'bottom-start',
 				disableAutoReposition: true,
 				padding: '0',
 				width: 'fit-content',
@@ -169,7 +78,7 @@ export class FktFormOverlayExampleComponent {
 	openFeedbackForm(nativeElement: HTMLElement) {
 		const overlayRef = this.overlayService.open({
 			anchorElementRef: {nativeElement},
-			component: FktFormOverlayDemoComponent,
+			component: FktFormOverlayDialogComponent,
 			data: {
 				title: 'Share Your Feedback',
 				description: 'Help us improve by sharing your thoughts and suggestions.',
@@ -189,7 +98,7 @@ export class FktFormOverlayExampleComponent {
 				}
 			},
 			panelOptions: {
-				position: 'left-center',
+				position: 'bottom-start',
 				disableAutoReposition: true,
 				padding: '0',
 				width: 'fit-content',
@@ -203,7 +112,7 @@ export class FktFormOverlayExampleComponent {
 	openSettingsForm(nativeElement: HTMLElement) {
 		const overlayRef = this.overlayService.open({
 			anchorElementRef: {nativeElement},
-			component: FktFormOverlayDemoComponent,
+			component: FktFormOverlayDialogComponent,
 			data: {
 				title: 'Update Profile',
 				description: 'Update your profile information below.',
@@ -223,7 +132,7 @@ export class FktFormOverlayExampleComponent {
 				}
 			},
 			panelOptions: {
-				position: 'top-center',
+				position: 'bottom-start',
 				disableAutoReposition: true,
 				padding: '0',
 				width: 'fit-content',

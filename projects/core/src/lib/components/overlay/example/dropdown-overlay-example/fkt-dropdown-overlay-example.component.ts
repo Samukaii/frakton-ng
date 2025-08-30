@@ -1,8 +1,10 @@
-import { Component, inject, input, output } from '@angular/core';
-import { FktButtonComponent } from '../../button';
-import { FktOverlayService } from '../fkt-overlay.service';
-import { FktIconName } from '../../../shared/types';
-import { FktIconComponent } from '../../icon';
+import { Component, inject } from '@angular/core';
+import { FktButtonComponent } from '../../../button';
+import { FktOverlayService } from '../../fkt-overlay.service';
+import { FktIconName } from '../../../../shared/types';
+import {
+	FktDropdownOverlayDialogComponent
+} from '../dialog/fkt-dropdown-overlay-dialog/fkt-dropdown-overlay-dialog.component';
 
 export interface DropdownOption {
 	label: string;
@@ -12,75 +14,52 @@ export interface DropdownOption {
 }
 
 @Component({
-	selector: 'fkt-dropdown-menu-demo',
-	template: `
-		<div class="py-1">
-			@for(option of options(); track option.action) {
-				<button
-					class="w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
-					[disabled]="option.disabled"
-					(click)="handleOptionClick(option)"
-				>
-					<fkt-icon [name]="option.icon" size="16"></fkt-icon>
-					{{option.label}}
-				</button>
-			}
-		</div>
-	`,
-	standalone: true,
-	imports: [FktIconComponent]
-})
-export class FktDropdownMenuDemoComponent {
-	options = input<DropdownOption[]>([]);
-
-	onOptionSelect = output<string>();
-
-	handleOptionClick(option: DropdownOption) {
-		if (!option.disabled) {
-			this.onOptionSelect.emit(option.action);
-		}
-	}
-}
-
-@Component({
 	selector: 'dropdown-overlay-example',
 	template: `
-		<div class="grid grid-cols-2 gap-4">
+		<div class="container">
 			<div #fileActionsButton>
 				<fkt-button
-					text="File Actions ↓"
+					text="File Actions"
 					theme="stroked"
 					color="primary"
+					iconPosition="right"
+					icon="chevron-down"
 					(click)="openFileActionsMenu(fileActionsButton)"
 				></fkt-button>
 			</div>
 			<div #userProfileButton>
 				<fkt-button
-					text="User Profile ↓"
+					text="User Profile"
 					theme="stroked"
 					color="green"
+					iconPosition="right"
+					icon="chevron-down"
 					(click)="openUserProfileMenu(userProfileButton)"
 				></fkt-button>
 			</div>
 			<div #settingsButton>
 				<fkt-button
-					text="Settings ↓"
+					text="Settings"
 					theme="stroked"
 					color="primary"
+					iconPosition="right"
+					icon="chevron-down"
 					(click)="openSettingsMenu(settingsButton)"
 				></fkt-button>
 			</div>
 			<div #adminButton>
 				<fkt-button
-					text="Admin Actions ↓"
+					text="Admin Actions"
 					theme="stroked"
 					color="red"
+					iconPosition="right"
+					icon="chevron-down"
 					(click)="openAdminMenu(adminButton)"
 				></fkt-button>
 			</div>
 		</div>
 	`,
-	standalone: true,
+	styleUrl: './fkt-dropdown-overlay-example.component.scss',
 	imports: [FktButtonComponent]
 })
 export class FktDropdownOverlayExampleComponent {
@@ -137,7 +116,7 @@ export class FktDropdownOverlayExampleComponent {
 	private openDropdownMenu(nativeElement: HTMLElement, options: DropdownOption[], actionType: string) {
 		const overlayRef = this.overlayService.open({
 			anchorElementRef: {nativeElement},
-			component: FktDropdownMenuDemoComponent,
+			component: FktDropdownOverlayDialogComponent,
 			data: {
 				options: options,
 				onOptionSelect: (action: string) => {
@@ -148,7 +127,7 @@ export class FktDropdownOverlayExampleComponent {
 			panelOptions: {
 				position: 'bottom-start',
 				disableAutoReposition: true,
-				width: '200px',
+				width: 'fit-content',
 				padding: '0',
 				borderRadius: '8px',
 				boxShadow: '0 4px 6px rgba(0, 0, 0, 0.07), 0 1px 3px rgba(0, 0, 0, 0.1)'

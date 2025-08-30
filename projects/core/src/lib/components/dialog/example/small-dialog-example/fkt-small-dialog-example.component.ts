@@ -1,16 +1,16 @@
 import { Component, inject } from '@angular/core';
-import { FktButtonComponent } from '../../button';
-import { FktDialogService } from '../fkt-dialog.service';
-import { FktSimpleDialogDemoComponent } from './dialog/fkt-simple-dialog-demo.component';
+import { FktButtonComponent } from '../../../button';
+import { FktDialogService } from '../../fkt-dialog.service';
+import { FktSimpleDialogDemoComponent } from '../dialog/simple-dialog-demo/fkt-simple-dialog-demo.component';
 
 @Component({
 	selector: 'small-dialog-example',
 	template: `
-		<div class="flex justify-center">
-			<fkt-button class="w-fit" text="Open Small Dialog" theme="raised" (click)="openDialog()" />
+		<div class="container">
+			<fkt-button text="Open Small Dialog" theme="raised" (click)="openDialog()" />
 		</div>
 	`,
-	standalone: true,
+	styleUrl: './fkt-small-dialog-example.component.scss',
 	imports: [FktButtonComponent]
 })
 export class FktSmallDialogExampleComponent {

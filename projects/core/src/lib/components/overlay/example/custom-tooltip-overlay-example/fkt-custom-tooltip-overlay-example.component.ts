@@ -1,49 +1,17 @@
-import { Component, inject, input } from '@angular/core';
-import { FktButtonComponent } from '../../button';
-import { FktOverlayService } from '../fkt-overlay.service';
-import { FktGeometryPosition } from '../../../shared/types';
-import { FktIconComponent } from '../../icon';
-import { FktOverlayRef } from '../fkt-overlay.types';
-
-@Component({
-	selector: 'fkt-tooltip-overlay-demo',
-	template: `
-		<div class="flex items-center gap-2 text-white">
-			@if(type() === 'info') {
-				<fkt-icon name="information-circle" size="16"></fkt-icon>
-			}
-			@if(type() === 'warning') {
-				<fkt-icon name="exclamation-triangle" size="16"></fkt-icon>
-			}
-			@if(type() === 'error') {
-				<fkt-icon name="x-circle" size="16"></fkt-icon>
-			}
-			@if(type() === 'success') {
-				<fkt-icon name="check-circle" size="16"></fkt-icon>
-			}
-			<span class="text-sm">{{text()}}</span>
-		</div>
-	`,
-	styles: `
-		:host {
-			width: 100%;
-			height: 100%;
-			display: block;
-		}
-	`,
-	standalone: true,
-	imports: [FktIconComponent]
-})
-export class FktTooltipOverlayDemoComponent {
-	text = input('Tooltip message');
-	type = input<'info' | 'warning' | 'error' | 'success'>('info');
-}
+import { Component, inject } from '@angular/core';
+import { FktButtonComponent } from '../../../button';
+import { FktOverlayService } from '../../fkt-overlay.service';
+import { FktGeometryPosition } from '../../../../shared/types';
+import { FktOverlayRef } from '../../fkt-overlay.types';
+import {
+	FktTooltipOverlayDialogComponent
+} from '../dialog/fkt-tooltip-overlay-dialog/fkt-tooltip-overlay-dialog.component';
 
 
 @Component({
 	selector: 'custom-tooltip-overlay-example',
 	template: `
-		<div class="grid grid-cols-2 gap-3">
+		<div class="container">
 			<div #infoButton>
 				<fkt-button
 					text="Info Tooltip"
@@ -81,13 +49,13 @@ export class FktTooltipOverlayDemoComponent {
 			</div>
 		</div>
 	`,
-	standalone: true,
+	styleUrl: './fkt-custom-tooltip-overlay-example.component.scss',
 	imports: [FktButtonComponent]
 })
 export class FktCustomTooltipOverlayExampleComponent {
 	private overlayService = inject(FktOverlayService);
 
-	private overlayRef: FktOverlayRef<FktTooltipOverlayDemoComponent> | null = null;
+	private overlayRef: FktOverlayRef<FktTooltipOverlayDialogComponent> | null = null;
 
 	openTooltip(
 		nativeElement: HTMLElement,
@@ -106,7 +74,7 @@ export class FktCustomTooltipOverlayExampleComponent {
 
 		this.overlayRef = this.overlayService.open({
 			anchorElementRef: {nativeElement},
-			component: FktTooltipOverlayDemoComponent,
+			component: FktTooltipOverlayDialogComponent,
 			data: {
 				text: text,
 				type: type
@@ -120,6 +88,7 @@ export class FktCustomTooltipOverlayExampleComponent {
 				boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
 				maxHeight: 'fit-content',
 				minWidth: 'fit-content',
+				width: 'fit-content',
 				outsideClick: () => {
 					this.overlayRef = null;
 				}

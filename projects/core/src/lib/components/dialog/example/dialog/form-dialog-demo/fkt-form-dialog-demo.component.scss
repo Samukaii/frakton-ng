@@ -1,0 +1,29 @@
+* {
+	box-sizing: border-box;
+}
+
+h2, p {
+	margin: 0;
+}
+
+.header {
+	font-size: var(--font-size-xl);
+	font-weight: var(--font-semibold);
+	margin-bottom: var(--space-xs);
+}
+
+.description {
+	color: var(--color-gray-600);
+	margin-bottom: var(--space-md);
+}
+
+.form {
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-xs);
+	margin-bottom: var(--space-xl);
+}
+
+fkt-buttons-list {
+	width: 100%;
+}

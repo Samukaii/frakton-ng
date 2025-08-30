@@ -219,14 +219,12 @@ export const WithActions: Story = {
 			{
 				icon: "pencil",
 				color: 'primary',
-				variant: 'icon',
 				theme: 'basic',
 				identifier: 'edit'
 			},
 			{
 				icon: "trash",
 				color: 'red',
-				variant: 'icon',
 				theme: 'basic',
 				identifier: 'delete'
 			}
@@ -310,14 +308,12 @@ export const Complete: Story = {
 			{
 				icon: "star",
 				color: 'yellow',
-				variant: 'icon',
 				theme: 'basic',
 				identifier: 'favorite'
 			},
 			{
 				icon: "information-circle",
 				color: 'primary',
-				variant: 'icon',
 				theme: 'basic',
 				identifier: 'info'
 			}

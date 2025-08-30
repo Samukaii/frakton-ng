@@ -465,7 +465,6 @@ const createProductColumns: TableColumnFn<Product> = (product) => [
           icon: product.status === 'active' ? 'check-circle' : 'x-circle',
           theme: 'basic',
           color: product.status === 'active' ? 'green' : 'red',
-          variant: 'icon',
           click: () => console.log('Toggle status:', product)
         }
       }

@@ -1,15 +1,15 @@
 import { Component, inject } from '@angular/core';
-import { FktButtonComponent } from '../../button';
-import { FktDialogService } from '../fkt-dialog.service';
+import { FktButtonComponent } from '../../../button';
+import { FktDialogService } from '../../fkt-dialog.service';
 
 @Component({
 	selector: 'confirmation-dialog-example',
 	template: `
-		<div class="flex justify-center">
-			<fkt-button class="w-fit" text="Delete Item" color="red" theme="raised" (click)="openDialog()" />
+		<div class="container">
+			<fkt-button text="Delete Item" color="red" theme="raised" (click)="openDialog()" />
 		</div>
 	`,
-	standalone: true,
+	styleUrl: './fkt-confirmation-dialog-example.component.scss',
 	imports: [FktButtonComponent]
 })
 export class FktConfirmationDialogExampleComponent {

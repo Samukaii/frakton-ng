@@ -105,7 +105,6 @@ export const IconOnly: StoryObj = {
 	}),
 	args: {
 		icon: 'plus',
-		variant: 'icon',
 		theme: 'raised',
 		color: 'primary',
 		disabled: false

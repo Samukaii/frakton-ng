@@ -1,28 +1,26 @@
 import { Component, inject, signal } from '@angular/core';
-import { FktButtonComponent } from '../../button';
-import { FktDialogService } from '../fkt-dialog.service';
-import { FktSimpleDialogDemoComponent } from './dialog/fkt-simple-dialog-demo.component';
-import { FktFormDialogDemoComponent, FormData } from './dialog/fkt-form-dialog-demo.component';
-import { FktCustomDialogDemoComponent } from './dialog/fkt-custom-dialog-demo.component';
-import { FktIconName } from '../../../shared/types';
+import { FktButtonComponent } from '../../../button';
+import { FktDialogService } from '../../fkt-dialog.service';
+import { FktSimpleDialogDemoComponent } from '../dialog/simple-dialog-demo/fkt-simple-dialog-demo.component';
+import { FktFormDialogDemoComponent, FormData } from '../dialog/form-dialog-demo/fkt-form-dialog-demo.component';
+import { FktCustomDialogDemoComponent } from '../dialog/custom-dialog-demo/fkt-custom-dialog-demo.component';
+import { FktIconName } from '../../../../shared/types';
 
 @Component({
 	selector: 'dialog-demo-host',
 	template: `
-		<div class="flex justify-center gap-4">
-			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+		<div class="container">
+			<div class="container__actions">
 				<fkt-button
 					text="Simple Dialog"
 					theme="stroked"
 					(click)="openSimpleDialog()"
-					class="w-full"
 				></fkt-button>
 
 				<fkt-button
 					text="Form Dialog"
 					theme="stroked"
 					(click)="openFormDialog()"
-					class="w-full"
 				></fkt-button>
 
 				<fkt-button
@@ -30,7 +28,6 @@ import { FktIconName } from '../../../shared/types';
 					theme="stroked"
 					color="green"
 					(click)="openCustomDialog()"
-					class="w-full"
 				></fkt-button>
 
 				<fkt-button
@@ -38,7 +35,6 @@ import { FktIconName } from '../../../shared/types';
 					color="red"
 					theme="stroked"
 					(click)="openConfirmDialog()"
-					class="w-full"
 				></fkt-button>
 
 				<fkt-button
@@ -46,19 +42,17 @@ import { FktIconName } from '../../../shared/types';
 					theme="stroked"
 					color="yellow"
 					(click)="openFullScreenDialog()"
-					class="w-full"
 				></fkt-button>
 
 				<fkt-button
 					text="Small Dialog"
 					theme="stroked"
 					(click)="openSmallDialog()"
-					class="w-full"
 				></fkt-button>
 			</div>
 		</div>
 	`,
-	standalone: true,
+	styleUrl: './fkt-dialog-overview-example.component.scss',
 	imports: [FktButtonComponent]
 })
 export class FktDialogOverviewExampleComponent {

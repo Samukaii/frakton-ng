@@ -1,0 +1,22 @@
+* {
+	box-sizing: border-box;
+}
+
+h2, p {
+	margin: 0;
+}
+
+.title {
+	font-size: var(--font-size-xl);
+	font-weight: var(--font-semibold);
+	margin-bottom: var(--space-md);
+}
+
+.message {
+	color: var(--color-gray-600);
+	margin-bottom: var(--space-xl);
+}
+
+fkt-buttons-list {
+	width: 100%;
+}

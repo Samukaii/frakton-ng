@@ -1,23 +1,23 @@
 import { Component, inject, signal } from '@angular/core';
-import { FktButtonComponent } from '../../button';
-import { FktDialogService } from '../fkt-dialog.service';
-import { FktCustomDialogDemoComponent } from './dialog/fkt-custom-dialog-demo.component';
+import { FktButtonComponent } from '../../../button';
+import { FktDialogService } from '../../fkt-dialog.service';
+import { FktCustomDialogDemoComponent } from '../dialog/custom-dialog-demo/fkt-custom-dialog-demo.component';
 
 @Component({
 	selector: 'custom-dialog-example',
 	template: `
-		<div class="flex justify-center">
-			<fkt-button class="w-fit" text="Open Custom Dialog" theme="raised" (click)="openDialog()" />
+		<div class="container">
+			<fkt-button text="Open Custom Dialog" theme="raised" (click)="openDialog()" />
 		</div>
 	`,
-	standalone: true,
-	imports: [FktButtonComponent]
+	imports: [FktButtonComponent],
+	styleUrl: './fkt-custom-dialog-example.component.scss'
 })
 export class FktCustomDialogExampleComponent {
 	private dialogService = inject(FktDialogService);
 	counterSignal = signal(0);
 
-	openDialog() {
+	protected openDialog() {
 		const customDetails = [
 			'This dialog demonstrates signal passing',
 			'Custom details can be provided dynamically',

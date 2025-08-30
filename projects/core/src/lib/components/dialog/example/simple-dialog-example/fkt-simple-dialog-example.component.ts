@@ -1,20 +1,18 @@
 import { Component, inject, signal } from '@angular/core';
-import { FktButtonComponent } from '../../button';
-import { FktDialogService } from '../fkt-dialog.service';
-import { FktSimpleDialogDemoComponent } from './dialog/fkt-simple-dialog-demo.component';
+import { FktButtonComponent } from '../../../button';
+import { FktDialogService } from '../../fkt-dialog.service';
+import { FktSimpleDialogDemoComponent } from '../dialog/simple-dialog-demo/fkt-simple-dialog-demo.component';
 
 @Component({
 	selector: 'simple-dialog-example',
 	template: `
-		<div class="flex justify-center gap-4">
+		<div class="container">
 			<fkt-button
-				class="w-fit"
 				text="Open Simple Dialog"
 				theme="raised"
 				(click)="openDialog()"
 			/>
 			<fkt-button
-				class="w-fit"
 				text="Update Message"
 				theme="stroked"
 				color="green"
@@ -22,7 +20,7 @@ import { FktSimpleDialogDemoComponent } from './dialog/fkt-simple-dialog-demo.co
 			/>
 		</div>
 	`,
-	standalone: true,
+	styleUrl: './fkt-simple-dialog-example.component.scss',
 	imports: [FktButtonComponent]
 })
 export class FktSimpleDialogExampleComponent {

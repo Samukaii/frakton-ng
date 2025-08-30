@@ -1,4 +1,4 @@
-import { Meta, Story } from '@storybook/addon-docs/blocks';
+import {Canvas, Meta, Story} from '@storybook/addon-docs/blocks';
 import * as fktDialogStories from './fkt-dialog.stories';
 
 <Meta of={fktDialogStories} />
@@ -23,22 +23,21 @@ Built with modern Angular signals and reactive patterns, it supports advanced Ty
 
 Basic dialog examples demonstrating signal-based components and reactive content. Shows how dialogs maintain reactivity and handle simple interactions.
 
-<Story of={fktDialogStories.SimpleDialog} />
+<Canvas sourceState='none' of={fktDialogStories.SimpleDialog} />
 
 ### Code
 ```typescript
 @Component({
 	selector: 'demo-simple-dialog',
 	template: `
-		<h2 class="text-xl font-semibold mb-4">{{ title() }}</h2>
-		<p class="text-gray-600 mb-6">{{ message() }}</p>
+		<h2 class="title">{{ title() }}</h2>
+		<p class="message">{{ message() }}</p>
 		<fkt-buttons-list
 			[actions]="actions()"
 			horizontalAlignment="end"
-			class="w-full"
 		></fkt-buttons-list>
 	`,
-	standalone: true,
+	styleUrl: './fkt-simple-dialog-demo.component.scss',
 	imports: [FktButtonsListComponent]
 })
 export class FktSimpleDialogDemoComponent {
@@ -60,21 +59,21 @@ export class FktSimpleDialogDemoComponent {
 @Component({
 	selector: 'simple-dialog-example',
 	template: `
-		<div class="p-4 space-y-3">
-			<fkt-button 
-				text="Open Simple Dialog" 
-				theme="raised" 
-				(click)="openDialog()" 
+		<div class="container">
+			<fkt-button
+				text="Open Simple Dialog"
+				theme="raised"
+				(click)="openDialog()"
 			/>
-			<fkt-button 
-				text="Update Message" 
-				theme="stroked" 
+			<fkt-button
+				text="Update Message"
+				theme="stroked"
 				color="green"
-				(click)="updateMessage()" 
+				(click)="updateMessage()"
 			/>
 		</div>
 	`,
-	standalone: true,
+	styleUrl: './fkt-simple-dialog-example.component.scss',
 	imports: [FktButtonComponent]
 })
 export class FktSimpleDialogExampleComponent {
@@ -87,14 +86,14 @@ export class FktSimpleDialogExampleComponent {
 			data: {
 				title: 'Dynamic Simple Dialog',
 				message: this.messageSignal,  // Reactive signal
-				onClose: () => {
+				closeDialog: () => {
 					console.log('Dialog closed');
 					dialogInstance.close();
 				}
 			},
-			panelOptions: { 
-				width: '400px', 
-				padding: '2rem' 
+			panelOptions: {
+				width: '400px',
+				padding: '2rem'
 			}
 		});
 	}
@@ -109,7 +108,7 @@ export class FktSimpleDialogExampleComponent {
 
 Advanced dialogs containing forms with validation, submission handling, and data binding. Demonstrates how to handle complex user interactions within dialog contexts.
 
-<Story of={fktDialogStories.FormDialog} />
+<Canvas sourceState='none' of={fktDialogStories.FormDialog} />
 
 ### Code
 
@@ -122,108 +121,99 @@ export interface FormData {
 @Component({
 	selector: 'demo-form-dialog',
 	template: `
-			<h2 class="text-xl font-semibold mb-2">{{title()}}</h2>
-			<p class="text-gray-600 mb-4">{{description()}}</p>
+		<h2 class="header">{{ title() }}</h2>
+		<p class="description">{{ description() }}</p>
 
-			<div class="space-y-4 mb-6">
-				<fkt-input
-					[control]="nameControl"
-					label="Name"
-					placeholder="Enter your name"
-				></fkt-input>
+		<div class="form">
+			<fkt-input
+				[control]="form.controls.name"
+				label="Name"
+				placeholder="Enter your name"
+			></fkt-input>
 
-				<fkt-input
-					[control]="emailControl"
-					label="Email"
-					placeholder="Enter your email"
-					type="text"
-				></fkt-input>
-			</div>
+			<fkt-input
+				[control]="form.controls.email"
+				label="Email"
+				placeholder="Enter your email"
+				type="text"
+			></fkt-input>
+		</div>
 
-			<fkt-buttons-list
-				[actions]="actions()"
-				class="w-full"
-				fill
-			></fkt-buttons-list>
+		<fkt-buttons-list
+			[actions]="actions()"
+			fill
+		></fkt-buttons-list>
 	`,
-	standalone: true,
+	styleUrl: './fkt-form-dialog-demo.component.scss',
 	imports: [FktInputComponent, FktButtonsListComponent]
 })
 export class FktFormDialogDemoComponent {
-	// Input signals
 	title = input('Form Dialog');
 	description = input('Fill out the form below:');
 	initialName = input('');
 	initialEmail = input('');
 
-	// Output signals
-	formSubmit = output<FormData>();
-	formCancel = output<void>();
+	submit = output<FormData>();
+	cancel = output<void>();
 
-	// Form controls
-	nameControl = new SignalFormControl(this.initialName());
-	emailControl = new SignalFormControl(this.initialEmail());
+	private fb = inject(SignalFormBuilder);
 
-	// Computed actions
-	actions = computed((): FktButtonAction[] => [
+	protected form = this.fb.strictGroup<FormData>({
+		name: ['', SignalValidators.required()],
+		email: ['', SignalValidators.email()],
+	})
+
+	protected actions = computed((): FktButtonAction[] => [
 		{
 			identifier: 'cancel',
 			text: 'Cancel',
 			theme: 'stroked',
-			click: () => this.cancel()
+			click: () => {
+				this.cancel.emit();
+			}
 		},
 		{
 			identifier: 'save',
 			text: 'Save',
 			theme: 'raised',
-			click: () => this.save()
+			click: () => {
+				this.submit.emit(this.form.value());
+			}
 		},
 	]);
-
-	private save() {
-		const formData: FormData = {
-			name: this.nameControl.value(),
-			email: this.emailControl.value()
-		};
-		this.formSubmit.emit(formData);
-	}
-
-	private cancel() {
-		this.formCancel.emit();
-	}
 }
 
 @Component({
 	selector: 'form-dialog-example',
 	template: `
-		<div class="space-y-3">
-			<fkt-button 
-				text="Contact Form" 
+		<div class="container">
+			<fkt-button
+				text="Contact Form"
 				theme="stroked"
 				color="primary"
-				(click)="openContactForm()" 
+				(click)="openContactForm()"
 			/>
-			<fkt-button 
-				text="User Registration" 
+			<fkt-button
+				text="User Registration"
 				theme="stroked"
 				color="green"
-				(click)="openRegistrationForm()" 
+				(click)="openRegistrationForm()"
 			/>
-			<fkt-button 
-				text="Feedback Form" 
+			<fkt-button
+				text="Feedback Form"
 				theme="stroked"
 				color="yellow"
-				(click)="openFeedbackForm()" 
+				(click)="openFeedbackForm()"
 			/>
 		</div>
 	`,
-	standalone: true,
+	styleUrl: 'fkt-form-dialog-example.component.scss',
 	imports: [FktButtonComponent]
 })
 export class FktFormDialogExampleComponent {
 	private dialogService = inject(FktDialogService);
 
-	openContactForm() {
+	protected openContactForm() {
 		const dialogInstance = this.dialogService.open({
 			component: FktFormDialogDemoComponent,
 			data: {
@@ -231,12 +221,12 @@ export class FktFormDialogExampleComponent {
 				description: 'We would love to hear from you. Send us a message and we will respond as soon as possible.',
 				initialName: '',
 				initialEmail: '',
-				formSubmit: (formData) => {
+				submit: (formData: FormData) => {
 					console.log('Contact form submitted:', formData);
 					alert(`Thank you ${formData.name}! We received your message.`);
 					dialogInstance.close();
 				},
-				formCancel: () => {
+				cancel: () => {
 					console.log('Contact form cancelled');
 					dialogInstance.close();
 				}
@@ -245,7 +235,7 @@ export class FktFormDialogExampleComponent {
 		});
 	}
 
-	openRegistrationForm() {
+	protected openRegistrationForm() {
 		const dialogInstance = this.dialogService.open({
 			component: FktFormDialogDemoComponent,
 			data: {
@@ -253,18 +243,18 @@ export class FktFormDialogExampleComponent {
 				description: 'Create your account by providing the required information.',
 				initialName: '',
 				initialEmail: '',
-				formSubmit: (formData) => {
+				submit: (formData: FormData) => {
 					console.log('Registration form submitted:', formData);
 					alert(`Welcome ${formData.name}! Your account has been created.`);
 					dialogInstance.close();
 				},
-				formCancel: () => dialogInstance.close()
+				cancel: () => dialogInstance.close()
 			},
 			panelOptions: { width: '500px', padding: '2rem' }
 		});
 	}
 
-	openFeedbackForm() {
+	protected openFeedbackForm() {
 		const dialogInstance = this.dialogService.open({
 			component: FktFormDialogDemoComponent,
 			data: {
@@ -272,12 +262,12 @@ export class FktFormDialogExampleComponent {
 				description: 'Help us improve by sharing your thoughts and suggestions.',
 				initialName: 'John Doe',
 				initialEmail: 'john@example.com',
-				formSubmit: (formData) => {
+				submit: (formData: FormData) => {
 					console.log('Feedback form submitted:', formData);
 					alert(`Thanks for your feedback, ${formData.name}!`);
 					dialogInstance.close();
 				},
-				formCancel: () => dialogInstance.close()
+				cancel: () => dialogInstance.close()
 			},
 			panelOptions: { width: '500px', padding: '2rem' }
 		});
@@ -289,284 +279,123 @@ export class FktFormDialogExampleComponent {
 
 Advanced dialogs with complex content, icons, expandable details, and dynamic data. Shows custom styling, signal updates, and sophisticated user interactions.
 
-<Story of={fktDialogStories.CustomDialog} />
+<Canvas sourceState='none' of={fktDialogStories.CustomDialog} />
 
 ### Code
 ```typescript
 @Component({
-	selector: 'fkt-custom-dialog-demo',
+	selector: 'demo-custom-dialog',
 	template: `
-		<div class="space-y-4 min-w-96">
-			<div class="flex items-center gap-3 pb-3 border-b border-gray-200">
-				<div class="p-2 bg-primary-100 rounded-lg">
-					<fkt-icon [name]="iconName()" size="24" class="text-primary-600"></fkt-icon>
+		<div class="container">
+			<div>
+				<div class="container__header">
+					<fkt-icon [name]="iconName()"></fkt-icon>
+					<h2>{{title()}}</h2>
 				</div>
-				<div>
-					<h3 class="text-lg font-semibold text-gray-900">{{title()}}</h3>
-					<p class="text-sm text-gray-500">{{subtitle()}}</p>
-				</div>
-				@if(showBadge()) {
-					<fkt-badge
-						[text]="badgeText()"
-						[color]="badgeColor()"
-						variant="opaque"
-						class="ml-auto"
-					></fkt-badge>
-				}
-			</div>
 
-			<div class="text-gray-700">
-				<p>{{description()}}</p>
-				
-				@if(showDetails()) {
-					<div class="mt-4 p-3 bg-gray-50 rounded-lg">
-						<h4 class="font-medium mb-2">Additional Details:</h4>
-						<ul class="text-sm space-y-1">
-							@for(detail of details(); track detail) {
-								<li class="flex items-center gap-2">
-									<fkt-icon name="check-circle" size="16" class="text-green-500"></fkt-icon>
-									{{detail}}
-								</li>
+				<div class="container__message">
+					<p>{{message()}}</p>
+				</div>
+
+				@if (showDetails()) {
+					<div class="container__details">
+						<h4>{{detailsTitle()}}</h4>
+						<ul>
+							@for (detail of details(); track detail) {
+								<li>• {{detail}}</li>
 							}
 						</ul>
 					</div>
 				}
-				
-				@if(showCounter()) {
-					<div class="mt-4 p-3 bg-blue-50 rounded-lg">
-						<div class="flex items-center justify-between">
-							<span class="font-medium">Counter: {{counter()}}</span>
-							<div class="flex gap-1">
-								<fkt-button
-									text="-"
-									theme="stroked"
-									color="red"
-									variant="icon"
-									(click)="decrement()"
-									[disabled]="counter() <= 0"
-								></fkt-button>
-								<fkt-button
-									text="+"
-									theme="stroked"
-									color="green"
-									variant="icon"
-									(click)="increment()"
-								></fkt-button>
-							</div>
-						</div>
-					</div>
-				}
 			</div>
 
-			<div class="flex items-center justify-between pt-3 border-t border-gray-200">
-				<fkt-button
-					text="Toggle Details"
-					theme="basic"
-					color="primary"
-					(click)="toggleDetails()"
-				></fkt-button>
-				<div class="flex gap-2">
-					<fkt-button
-						text="Cancel"
-						theme="stroked"
-						(click)="handleCancel()"
-					></fkt-button>
-					<fkt-button
-						text="Confirm"
-						theme="raised"
-						[color]="primaryColor()"
-						(click)="handleConfirm()"
-					></fkt-button>
-				</div>
-			</div>
+
+			<fkt-buttons-list
+				[actions]="actions()"
+				horizontalAlignment="end"
+				orientation="horizontal"
+			></fkt-buttons-list>
 		</div>
 	`,
-	standalone: true,
-	imports: [FktButtonComponent, FktIconComponent, FktBadgeComponent]
+	styleUrl: './fkt-custom-dialog-demo.component.scss',
+	imports: [FktIconComponent, FktButtonsListComponent]
 })
 export class FktCustomDialogDemoComponent {
 	title = input('Custom Dialog');
-	subtitle = input('Advanced dialog example');
-	description = input('This dialog demonstrates advanced features like expandable content, counters, and dynamic updates.');
-	iconName = input('cog-6-tooth');
-	showBadge = input(true);
-	badgeText = input('NEW');
-	badgeColor = input<'primary' | 'green' | 'yellow' | 'red'>('primary');
-	primaryColor = input<'primary' | 'green' | 'yellow' | 'red'>('primary');
-	showCounter = input(true);
+	message = input<string | undefined>('This is a custom dialog with rich content, icons, and conditional sections.');
+	iconName = input<FktIconName>('information-circle');
+	detailsTitle = input<string | undefined>('Additional Details:');
+	details = input([
+		'Feature will be available in the next update',
+		'You can subscribe to notifications',
+		'Contact support for more information'
+	]);
 
-	counter = model(0);
-	details = input<string[]>(['Feature A enabled', 'Premium support included', 'Advanced analytics available']);
+	detailsToggled = output<boolean>();
+	dialogConfirmed = output<void>();
 
-	onConfirm = output<{counter: number, detailsVisible: boolean}>();
-	onCancel = output<void>();
+	protected showDetails = signal(false);
 
-	showDetails = signal(false);
-
-	increment() {
-		this.counter.set(this.counter() + 1);
-	}
-
-	decrement() {
-		if (this.counter() > 0) {
-			this.counter.set(this.counter() - 1);
+	protected actions = computed((): FktButtonAction[] => [
+		{
+			identifier: 'details',
+			text: this.showDetails() ? 'Hide Details' : 'Show Details',
+			theme: 'basic',
+			click: () => this.toggleDetails()
+		},
+		{
+			identifier: 'understand',
+			text: 'I Understand',
+			theme: 'raised',
+			click: () => this.dialogConfirmed.emit()
 		}
-	}
+	]);
 
-	toggleDetails() {
-		this.showDetails.set(!this.showDetails());
-	}
-
-	handleConfirm() {
-		this.onConfirm.emit({
-			counter: this.counter(),
-			detailsVisible: this.showDetails()
-		});
-	}
-
-	handleCancel() {
-		this.onCancel.emit();
+	private toggleDetails() {
+		this.showDetails.update(current => !current);
+		this.detailsToggled.emit(this.showDetails());
 	}
 }
 
 @Component({
 	selector: 'custom-dialog-example',
 	template: `
-		<div class="space-y-3">
-			<div class="grid grid-cols-2 gap-3">
-				<fkt-button 
-					text="Settings Dialog" 
-					theme="stroked"
-					color="primary"
-					(click)="openSettingsDialog()" 
-				/>
-				<fkt-button 
-					text="Premium Features" 
-					theme="stroked"
-					color="green"
-					(click)="openPremiumDialog()" 
-				/>
-				<fkt-button 
-					text="Warning Dialog" 
-					theme="stroked"
-					color="yellow"
-					(click)="openWarningDialog()" 
-				/>
-				<fkt-button 
-					text="Error Report" 
-					theme="stroked"
-					color="red"
-					(click)="openErrorDialog()" 
-				/>
-			</div>
+		<div class="container">
+			<fkt-button text="Open Custom Dialog" theme="raised" (click)="openDialog()" />
 		</div>
 	`,
-	standalone: true,
-	imports: [FktButtonComponent]
+	imports: [FktButtonComponent],
+	styleUrl: './fkt-custom-dialog-example.component.scss'
 })
 export class FktCustomDialogExampleComponent {
 	private dialogService = inject(FktDialogService);
+	counterSignal = signal(0);
 
-	// Shared reactive state
-	sharedCounter = signal(5);
+	protected openDialog() {
+		const customDetails = [
+			'This dialog demonstrates signal passing',
+			'Custom details can be provided dynamically',
+			`Counter value: ${this.counterSignal()}`
+		];
 
-	openSettingsDialog() {
 		const dialogInstance = this.dialogService.open({
 			component: FktCustomDialogDemoComponent,
 			data: {
-				title: 'Application Settings',
-				subtitle: 'Configure your preferences',
-				description: 'Adjust the settings below to customize your experience. Changes are saved automatically.',
+				title: 'Advanced Custom Dialog',
+				message: 'This dialog shows advanced features with signals and dynamic content.',
 				iconName: 'cog-6-tooth',
-				badgeText: 'BETA',
-				badgeColor: 'primary' as const,
-				primaryColor: 'primary' as const,
-				counter: this.sharedCounter,
-				details: ['Dark mode available', 'Notifications enabled', 'Auto-save active'],
-				onConfirm: (data) => {
-					console.log('Settings confirmed:', data);
-					alert(`Settings saved! Counter: ${data.counter}, Details shown: ${data.detailsVisible}`);
-					dialogInstance.close();
+				detailsTitle: 'Technical Details:',
+				details: customDetails,
+				detailsToggled: (isVisible: boolean) => {
+					console.log('Details toggled:', isVisible);
 				},
-				onCancel: () => {
-					console.log('Settings cancelled');
+				dialogConfirmed: () => {
+					this.counterSignal.update(count => count + 1);
+					console.log('Dialog confirmed! Counter:', this.counterSignal());
 					dialogInstance.close();
 				}
 			},
-			panelOptions: { width: '500px', padding: '2rem' }
-		});
-	}
-
-	openPremiumDialog() {
-		const dialogInstance = this.dialogService.open({
-			component: FktCustomDialogDemoComponent,
-			data: {
-				title: 'Upgrade to Premium',
-				subtitle: 'Unlock advanced features',
-				description: 'Get access to premium features including advanced analytics, priority support, and exclusive content.',
-				iconName: 'star',
-				badgeText: 'PRO',
-				badgeColor: 'green' as const,
-				primaryColor: 'green' as const,
-				counter: this.sharedCounter,
-				showCounter: false,
-				details: ['Priority support', 'Advanced analytics', 'Custom themes', 'API access'],
-				onConfirm: (data) => {
-					console.log('Premium upgrade confirmed:', data);
-					alert('Welcome to Premium! 🌟');
-					dialogInstance.close();
-				},
-				onCancel: () => dialogInstance.close()
-			},
-			panelOptions: { width: '500px', padding: '2rem' }
-		});
-	}
-
-	openWarningDialog() {
-		const dialogInstance = this.dialogService.open({
-			component: FktCustomDialogDemoComponent,
-			data: {
-				title: 'System Warning',
-				subtitle: 'Action required',
-				description: 'We detected some issues that require your attention. Please review the details and take action.',
-				iconName: 'exclamation-triangle',
-				badgeText: 'WARNING',
-				badgeColor: 'yellow' as const,
-				primaryColor: 'yellow' as const,
-				counter: this.sharedCounter,
-				details: ['Disk space running low', 'Security update available', 'Backup recommended'],
-				onConfirm: (data) => {
-					console.log('Warning acknowledged:', data);
-					alert('Thanks for acknowledging the warning.');
-					dialogInstance.close();
-				},
-				onCancel: () => dialogInstance.close()
-			},
-			panelOptions: { width: '500px', padding: '2rem' }
-		});
-	}
-
-	openErrorDialog() {
-		const dialogInstance = this.dialogService.open({
-			component: FktCustomDialogDemoComponent,
-			data: {
-				title: 'Error Report',
-				subtitle: 'Something went wrong',
-				description: 'An unexpected error occurred. Please review the details and try again or contact support.',
-				iconName: 'x-circle',
-				badgeText: 'ERROR',
-				badgeColor: 'red' as const,
-				primaryColor: 'red' as const,
-				counter: this.sharedCounter,
-				details: ['Connection failed', 'Data corrupted', 'Retry recommended'],
-				onConfirm: (data) => {
-					console.log('Error report sent:', data);
-					alert('Error report sent to our team.');
-					dialogInstance.close();
-				},
-				onCancel: () => dialogInstance.close()
-			},
-			panelOptions: { width: '500px', padding: '2rem' }
+			panelOptions: { width: '600px', padding: '2rem' }
 		});
 	}
 }
@@ -576,175 +405,43 @@ export class FktCustomDialogExampleComponent {
 
 Pre-built confirmation dialogs for destructive actions and important decisions. Demonstrates the built-in `confirm()` method with customizable buttons, colors, and actions.
 
-<Story of={fktDialogStories.ConfirmationDialog} />
+<Canvas sourceState='none' of={fktDialogStories.ConfirmationDialog} />
 
 ### Code
 ```typescript
 @Component({
 	selector: 'confirmation-dialog-example',
 	template: `
-		<div class="space-y-4">
-			<h3 class="text-lg font-semibold">Confirmation Dialogs</h3>
-			<p class="text-gray-600">Pre-built dialogs for common confirmation scenarios.</p>
-			
-			<div class="grid grid-cols-2 gap-3">
-				<fkt-button 
-					text="Delete Item" 
-					theme="stroked"
-					color="red"
-					(click)="confirmDelete()" 
-				/>
-				<fkt-button 
-					text="Save Changes" 
-					theme="stroked"
-					color="green"
-					(click)="confirmSave()" 
-				/>
-				<fkt-button 
-					text="Discard Draft" 
-					theme="stroked"
-					color="yellow"
-					(click)="confirmDiscard()" 
-				/>
-				<fkt-button 
-					text="Reset Settings" 
-					theme="stroked"
-					color="primary"
-					(click)="confirmReset()" 
-				/>
-			</div>
-
-			<div class="mt-6 p-4 bg-gray-50 rounded-lg">
-				<h4 class="font-medium mb-2">Action Log:</h4>
-				<div class="max-h-32 overflow-y-auto">
-					@for(log of actionLogs(); track $index) {
-						<div class="text-sm text-gray-600 py-1">
-							<span class="font-mono">{{log.timestamp}}</span> - {{log.action}}
-						</div>
-					}
-					@if(actionLogs().length === 0) {
-						<p class="text-sm text-gray-500 italic">No actions yet...</p>
-					}
-				</div>
-				<fkt-button 
-					text="Clear Log" 
-					theme="basic"
-					color="red"
-					size="sm"
-					class="mt-2"
-					(click)="clearLog()"
-					[disabled]="actionLogs().length === 0"
-				/>
-			</div>
+		<div class="container">
+			<fkt-button text="Delete Item" color="red" theme="raised" (click)="openDialog()" />
 		</div>
 	`,
-	standalone: true,
+	styleUrl: './fkt-confirmation-dialog-example.component.scss',
 	imports: [FktButtonComponent]
 })
 export class FktConfirmationDialogExampleComponent {
 	private dialogService = inject(FktDialogService);
-	
-	actionLogs = signal<{timestamp: string, action: string}[]>([]);
 
-	private logAction(action: string) {
-		const timestamp = new Date().toLocaleTimeString();
-		this.actionLogs.update(logs => [...logs, { timestamp, action }]);
-	}
-
-	confirmDelete() {
+	openDialog() {
 		this.dialogService.confirm({
-			title: 'Delete Item?',
-			description: 'This action cannot be undone. The item will be permanently deleted from your account.',
+			title: 'Delete Item',
+			description: 'This action cannot be undone. Are you sure you want to delete this item?',
 			actions: {
 				primary: {
 					text: 'Delete',
 					color: 'red',
 					click: () => {
-						this.logAction('Item deleted successfully');
-						console.log('Item deleted');
-					}
-				},
-				secondary: {
-					text: 'Cancel'
-					// Automatically closes the dialog
-				}
-			},
-			backdropClick: () => {
-				this.logAction('Delete cancelled (backdrop click)');
-				console.log('Delete cancelled via backdrop');
-			}
-		});
-	}
-
-	confirmSave() {
-		this.dialogService.confirm({
-			title: 'Save Changes?',
-			description: 'Do you want to save your changes? This will overwrite the existing data.',
-			actions: {
-				primary: {
-					text: 'Save',
-					color: 'green',
-					click: () => {
-						this.logAction('Changes saved successfully');
-						console.log('Changes saved');
-					}
-				},
-				secondary: {
-					text: 'Don\'t Save',
-					click: () => {
-						this.logAction('Changes discarded');
-						console.log('Changes not saved');
-					}
-				}
-			}
-		});
-	}
-
-	confirmDiscard() {
-		this.dialogService.confirm({
-			title: 'Discard Draft?',
-			description: 'Are you sure you want to discard this draft? Any unsaved changes will be lost.',
-			actions: {
-				primary: {
-					text: 'Discard',
-					color: 'yellow',
-					click: () => {
-						this.logAction('Draft discarded');
-						console.log('Draft discarded');
-					}
-				},
-				secondary: {
-					text: 'Keep Editing'
-				}
-			},
-			backdropClick: () => {
-				this.logAction('Discard cancelled (backdrop click)');
-			}
-		});
-	}
-
-	confirmReset() {
-		this.dialogService.confirm({
-			title: 'Reset All Settings?',
-			description: 'This will restore all settings to their default values. Your current preferences will be lost.',
-			actions: {
-				primary: {
-					text: 'Reset',
-					color: 'primary',
-					click: () => {
-						this.logAction('Settings reset to defaults');
-						console.log('Settings reset');
+						console.log('Item deleted!');
 					}
 				},
 				secondary: {
 					text: 'Cancel'
 				}
+			},
+			backdropClick: () => {
+				console.log('Backdrop clicked - dialog cancelled');
 			}
 		});
-	}
-
-	clearLog() {
-		this.actionLogs.set([]);
 	}
 }
 ```
@@ -753,421 +450,118 @@ export class FktConfirmationDialogExampleComponent {
 
 Large dialogs covering most of the viewport (90vw × 80vh). Perfect for immersive experiences, detailed forms, complex content, or applications that need maximum screen real estate.
 
-<Story of={fktDialogStories.FullScreenDialog} />
+<Canvas sourceState='none' of={fktDialogStories.FullScreenDialog} />
 
 ### Code
 ```typescript
 @Component({
-	selector: 'fkt-fullscreen-dialog-demo',
+	selector: 'demo-custom-dialog',
 	template: `
-		<div class="h-full flex flex-col">
-			<!-- Header -->
-			<div class="flex items-center justify-between p-4 border-b border-gray-200 bg-white">
-				<div class="flex items-center gap-3">
-					<fkt-icon [name]="iconName()" size="24" class="text-primary-600"></fkt-icon>
-					<div>
-						<h2 class="text-xl font-semibold text-gray-900">{{title()}}</h2>
-						<p class="text-sm text-gray-500">{{subtitle()}}</p>
+		<div class="container">
+			<div>
+				<div class="container__header">
+					<fkt-icon [name]="iconName()"></fkt-icon>
+					<h2>{{title()}}</h2>
+				</div>
+
+				<div class="container__message">
+					<p>{{message()}}</p>
+				</div>
+
+				@if (showDetails()) {
+					<div class="container__details">
+						<h4>{{detailsTitle()}}</h4>
+						<ul>
+							@for (detail of details(); track detail) {
+								<li>• {{detail}}</li>
+							}
+						</ul>
 					</div>
-				</div>
-				<div class="flex items-center gap-2">
-					@if(showProgress()) {
-						<div class="flex items-center gap-2 mr-4">
-							<span class="text-sm text-gray-600">Progress:</span>
-							<div class="w-24 h-2 bg-gray-200 rounded-full">
-								<div 
-									class="h-full bg-primary-500 rounded-full transition-all duration-300"
-									[style.width.%]="progress()"
-								></div>
-							</div>
-							<span class="text-sm font-medium">{{progress()}}%</span>
-						</div>
-					}
-					<fkt-button
-						text="✕"
-						theme="basic"
-						variant="icon"
-						(click)="handleClose()"
-					></fkt-button>
-				</div>
+				}
 			</div>
 
-			<!-- Content Area -->
-			<div class="flex-1 overflow-y-auto p-6 bg-gray-50">
-				<div class="max-w-4xl mx-auto space-y-6">
-					<div class="bg-white rounded-lg p-6">
-						<h3 class="text-lg font-semibold mb-4">{{contentTitle()}}</h3>
-						<p class="text-gray-700 mb-4">{{contentDescription()}}</p>
-						
-						@if(showTabs()) {
-							<div class="border-b border-gray-200 mb-6">
-								<nav class="flex gap-8">
-									@for(tab of tabs(); track tab.id) {
-										<button
-											class="py-2 px-1 border-b-2 font-medium text-sm transition-colors"
-											[class.border-primary-500]="activeTab() === tab.id"
-											[class.text-primary-600]="activeTab() === tab.id"
-											[class.border-transparent]="activeTab() !== tab.id"
-											[class.text-gray-500]="activeTab() !== tab.id"
-											(click)="setActiveTab(tab.id)"
-										>
-											{{tab.label}}
-										</button>
-									}
-								</nav>
-							</div>
 
-							<div class="min-h-64">
-								@switch(activeTab()) {
-									@case('overview') {
-										<div class="grid grid-cols-2 gap-6">
-											<div class="space-y-4">
-												<h4 class="font-medium">Key Metrics</h4>
-												<div class="grid grid-cols-2 gap-4">
-													<div class="p-4 bg-blue-50 rounded-lg">
-														<div class="text-2xl font-bold text-blue-600">1,234</div>
-														<div class="text-sm text-blue-600">Total Users</div>
-													</div>
-													<div class="p-4 bg-green-50 rounded-lg">
-														<div class="text-2xl font-bold text-green-600">98.5%</div>
-														<div class="text-sm text-green-600">Uptime</div>
-													</div>
-												</div>
-											</div>
-											<div class="space-y-4">
-												<h4 class="font-medium">Recent Activity</h4>
-												<div class="space-y-2">
-													@for(activity of activities(); track activity.id) {
-														<div class="flex items-center gap-3 p-3 bg-gray-50 rounded">
-															<fkt-icon [name]="activity.icon" size="16" class="text-gray-500"></fkt-icon>
-															<span class="text-sm">{{activity.text}}</span>
-														</div>
-													}
-												</div>
-											</div>
-										</div>
-									}
-									@case('settings') {
-										<div class="space-y-6">
-											<h4 class="font-medium">Application Settings</h4>
-											<div class="grid grid-cols-2 gap-6">
-												<div class="space-y-4">
-													<div>
-														<label class="block text-sm font-medium text-gray-700 mb-2">Theme</label>
-														<select class="w-full p-2 border border-gray-300 rounded-md">
-															<option>Light</option>
-															<option>Dark</option>
-															<option>Auto</option>
-														</select>
-													</div>
-													<div>
-														<label class="block text-sm font-medium text-gray-700 mb-2">Language</label>
-														<select class="w-full p-2 border border-gray-300 rounded-md">
-															<option>English</option>
-															<option>Spanish</option>
-															<option>French</option>
-														</select>
-													</div>
-												</div>
-												<div class="space-y-4">
-													<div class="flex items-center justify-between">
-														<label class="text-sm font-medium text-gray-700">Notifications</label>
-														<input type="checkbox" class="rounded">
-													</div>
-													<div class="flex items-center justify-between">
-														<label class="text-sm font-medium text-gray-700">Auto-save</label>
-														<input type="checkbox" class="rounded" checked>
-													</div>
-													<div class="flex items-center justify-between">
-														<label class="text-sm font-medium text-gray-700">Analytics</label>
-														<input type="checkbox" class="rounded">
-													</div>
-												</div>
-											</div>
-										</div>
-									}
-									@case('data') {
-										<div class="space-y-4">
-											<h4 class="font-medium">Data Management</h4>
-											<div class="overflow-x-auto">
-												<table class="min-w-full divide-y divide-gray-200">
-													<thead class="bg-gray-50">
-														<tr>
-															<th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
-															<th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-															<th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Last Updated</th>
-															<th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
-														</tr>
-													</thead>
-													<tbody class="bg-white divide-y divide-gray-200">
-														@for(item of dataItems(); track item.id) {
-															<tr>
-																<td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{item.name}}</td>
-																<td class="px-6 py-4 whitespace-nowrap">
-																	<span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full"
-																		  [class.bg-green-100]="item.status === 'active'"
-																		  [class.text-green-800]="item.status === 'active'"
-																		  [class.bg-red-100]="item.status === 'inactive'"
-																		  [class.text-red-800]="item.status === 'inactive'">
-																		{{item.status}}
-																	</span>
-																</td>
-																<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{item.lastUpdated}}</td>
-																<td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-																	<button class="text-primary-600 hover:text-primary-900 mr-2">Edit</button>
-																	<button class="text-red-600 hover:text-red-900">Delete</button>
-																</td>
-															</tr>
-														}
-													</tbody>
-												</table>
-											</div>
-										</div>
-									}
-								}
-							</div>
-						}
-					</div>
-				</div>
-			</div>
-
-			<!-- Footer -->
-			<div class="flex items-center justify-between p-4 border-t border-gray-200 bg-white">
-				<div class="flex items-center gap-4">
-					@if(showCounter()) {
-						<div class="flex items-center gap-2">
-							<span class="text-sm text-gray-600">Counter:</span>
-							<fkt-button
-								text="-"
-								theme="stroked"
-								variant="icon"
-								size="sm"
-								(click)="decrement()"
-								[disabled]="counter() <= 0"
-							></fkt-button>
-							<span class="mx-2 font-mono text-lg">{{counter()}}</span>
-							<fkt-button
-								text="+"
-								theme="stroked"
-								variant="icon"
-								size="sm"
-								(click)="increment()"
-							></fkt-button>
-						</div>
-					}
-					<fkt-button
-						text="Update Progress"
-						theme="basic"
-						size="sm"
-						(click)="updateProgress()"
-					></fkt-button>
-				</div>
-				<div class="flex gap-2">
-					<fkt-button
-						text="Cancel"
-						theme="stroked"
-						(click)="handleCancel()"
-					></fkt-button>
-					<fkt-button
-						text="Save Changes"
-						theme="raised"
-						(click)="handleSave()"
-					></fkt-button>
-				</div>
-			</div>
+			<fkt-buttons-list
+				[actions]="actions()"
+				horizontalAlignment="end"
+				orientation="horizontal"
+			></fkt-buttons-list>
 		</div>
 	`,
-	standalone: true,
-	imports: [FktButtonComponent, FktIconComponent]
+	styleUrl: './fkt-custom-dialog-demo.component.scss',
+	imports: [FktIconComponent, FktButtonsListComponent]
 })
-export class FktFullscreenDialogDemoComponent {
-	title = input('Full Screen Dialog');
-	subtitle = input('Managing complex data and settings');
-	iconName = input('squares-plus');
-	contentTitle = input('Dashboard Overview');
-	contentDescription = input('This full-screen dialog demonstrates complex layouts, tabbed content, data tables, and interactive elements suitable for detailed management interfaces.');
-	
-	showProgress = input(true);
-	showTabs = input(true);
-	showCounter = input(true);
-	
-	progress = signal(45);
-	counter = model(10);
-	activeTab = signal('overview');
-	
-	tabs = input([
-		{ id: 'overview', label: 'Overview' },
-		{ id: 'settings', label: 'Settings' },
-		{ id: 'data', label: 'Data' }
-	]);
-	
-	activities = input([
-		{ id: 1, icon: 'user-plus', text: 'New user registered' },
-		{ id: 2, icon: 'document-check', text: 'Report generated' },
-		{ id: 3, icon: 'bell', text: 'Notification sent' },
-		{ id: 4, icon: 'arrow-up-tray', text: 'Data exported' }
-	]);
-	
-	dataItems = input([
-		{ id: 1, name: 'Dataset A', status: 'active', lastUpdated: '2 hours ago' },
-		{ id: 2, name: 'Dataset B', status: 'inactive', lastUpdated: '1 day ago' },
-		{ id: 3, name: 'Dataset C', status: 'active', lastUpdated: '30 minutes ago' },
-		{ id: 4, name: 'Dataset D', status: 'active', lastUpdated: '5 hours ago' }
+export class FktCustomDialogDemoComponent {
+	title = input('Custom Dialog');
+	message = input<string | undefined>('This is a custom dialog with rich content, icons, and conditional sections.');
+	iconName = input<FktIconName>('information-circle');
+	detailsTitle = input<string | undefined>('Additional Details:');
+	details = input([
+		'Feature will be available in the next update',
+		'You can subscribe to notifications',
+		'Contact support for more information'
 	]);
 
-	onSave = output<{tab: string, counter: number, progress: number}>();
-	onCancel = output<void>();
-	onClose = output<void>();
+	detailsToggled = output<boolean>();
+	dialogConfirmed = output<void>();
 
-	setActiveTab(tabId: string) {
-		this.activeTab.set(tabId);
-	}
+	protected showDetails = signal(false);
 
-	increment() {
-		this.counter.set(this.counter() + 1);
-	}
-
-	decrement() {
-		if (this.counter() > 0) {
-			this.counter.set(this.counter() - 1);
+	protected actions = computed((): FktButtonAction[] => [
+		{
+			identifier: 'details',
+			text: this.showDetails() ? 'Hide Details' : 'Show Details',
+			theme: 'basic',
+			click: () => this.toggleDetails()
+		},
+		{
+			identifier: 'understand',
+			text: 'I Understand',
+			theme: 'raised',
+			click: () => this.dialogConfirmed.emit()
 		}
-	}
+	]);
 
-	updateProgress() {
-		const newProgress = Math.min(100, this.progress() + Math.floor(Math.random() * 20) + 5);
-		this.progress.set(newProgress);
-	}
-
-	handleSave() {
-		this.onSave.emit({
-			tab: this.activeTab(),
-			counter: this.counter(),
-			progress: this.progress()
-		});
-	}
-
-	handleCancel() {
-		this.onCancel.emit();
-	}
-
-	handleClose() {
-		this.onClose.emit();
+	private toggleDetails() {
+		this.showDetails.update(current => !current);
+		this.detailsToggled.emit(this.showDetails());
 	}
 }
 
 @Component({
 	selector: 'fullscreen-dialog-example',
 	template: `
-		<div class="space-y-3">
-			<fkt-button 
-				text="Open Dashboard" 
-				theme="raised"
-				color="primary"
-				(click)="openDashboard()" 
-			/>
-			<fkt-button 
-				text="Data Manager" 
-				theme="stroked"
-				color="green"
-				(click)="openDataManager()" 
-			/>
-			<fkt-button 
-				text="System Settings" 
-				theme="stroked"
-				color="yellow"
-				(click)="openSystemSettings()" 
-			/>
+		<div class="container">
+			<fkt-button text="Open Full Screen" theme="raised" (click)="openDialog()" />
 		</div>
 	`,
-	standalone: true,
+	styleUrl: './fkt-fullscreen-dialog-example.component.scss',
 	imports: [FktButtonComponent]
 })
 export class FktFullscreenDialogExampleComponent {
 	private dialogService = inject(FktDialogService);
-	sharedCounter = signal(15);
 
-	openDashboard() {
+	protected openDialog() {
 		const dialogInstance = this.dialogService.open({
-			component: FktFullscreenDialogDemoComponent,
+			component: FktCustomDialogDemoComponent,
 			data: {
-				title: 'Application Dashboard',
-				subtitle: 'Complete overview and management',
-				iconName: 'chart-bar-square',
-				contentTitle: 'Dashboard Overview',
-				contentDescription: 'Monitor your application performance, manage users, and configure settings all in one place.',
-				counter: this.sharedCounter,
-				onSave: (data) => {
-					console.log('Dashboard data saved:', data);
-					alert(`Dashboard saved! Active tab: ${data.tab}, Counter: ${data.counter}`);
-					dialogInstance.close();
-				},
-				onCancel: () => {
-					console.log('Dashboard cancelled');
-					dialogInstance.close();
-				},
-				onClose: () => {
-					console.log('Dashboard closed');
-					dialogInstance.close();
-				}
+				title: 'Full Screen Experience',
+				message: 'This dialog demonstrates full screen capabilities with responsive design.',
+				iconName: 'arrow-long-up' as FktIconName,
+				details: [
+					'Full viewport coverage',
+					'Responsive layout',
+					'Mobile-friendly design'
+				],
+				dialogConfirmed: () => dialogInstance.close()
 			},
-			panelOptions: { 
-				width: '90vw', 
-				height: '80vh',
-				padding: '0'
-			}
-		});
-	}
-
-	openDataManager() {
-		const dialogInstance = this.dialogService.open({
-			component: FktFullscreenDialogDemoComponent,
-			data: {
-				title: 'Data Management Center',
-				subtitle: 'Import, export, and manage your data',
-				iconName: 'circle-stack',
-				contentTitle: 'Data Operations',
-				contentDescription: 'Comprehensive data management tools for importing, processing, and exporting your datasets.',
-				showTabs: false,
-				counter: this.sharedCounter,
-				onSave: (data) => {
-					console.log('Data manager saved:', data);
-					alert('Data operations completed successfully!');
-					dialogInstance.close();
-				},
-				onCancel: () => dialogInstance.close(),
-				onClose: () => dialogInstance.close()
-			},
-			panelOptions: { 
-				width: '90vw', 
-				height: '80vh',
-				padding: '0'
-			}
-		});
-	}
-
-	openSystemSettings() {
-		const dialogInstance = this.dialogService.open({
-			component: FktFullscreenDialogDemoComponent,
-			data: {
-				title: 'System Configuration',
-				subtitle: 'Advanced system settings and preferences',
-				iconName: 'cog-8-tooth',
-				contentTitle: 'System Settings',
-				contentDescription: 'Configure advanced system preferences, security settings, and integration options.',
-				showCounter: false,
-				counter: this.sharedCounter,
-				onSave: (data) => {
-					console.log('System settings saved:', data);
-					alert('System settings updated successfully!');
-					dialogInstance.close();
-				},
-				onCancel: () => dialogInstance.close(),
-				onClose: () => dialogInstance.close()
-			},
-			panelOptions: { 
-				width: '90vw', 
-				height: '80vh',
-				padding: '0'
+			panelOptions: {
+				width: '100%',
+				maxWidth: '100vw',
+				maxHeight: '100vh',
+				height: '100%',
+				padding: '2rem',
+				borderRadius: 'none'
 			}
 		});
 	}
@@ -1178,312 +572,61 @@ export class FktFullscreenDialogExampleComponent {
 
 Compact dialogs (300px width) perfect for quick confirmations, simple interactions, and mobile-friendly experiences. Ideal for lightweight operations and minimal UI disruption.
 
-<Story of={fktDialogStories.SmallDialog} />
+<Canvas sourceState='none' of={fktDialogStories.SmallDialog} />
 
 ### Code
 ```typescript
 @Component({
-	selector: 'fkt-small-dialog-demo',
+	selector: 'demo-simple-dialog',
 	template: `
-		<div class="text-center space-y-4">
-			@if(showIcon()) {
-				<div class="flex justify-center">
-					<div class="p-3 rounded-full" [class]="iconBgClass()">
-						<fkt-icon [name]="iconName()" size="24" [class]="iconColorClass()"></fkt-icon>
-					</div>
-				</div>
-			}
-			
-			<div>
-				<h3 class="text-lg font-semibold text-gray-900">{{title()}}</h3>
-				@if(message()) {
-					<p class="text-sm text-gray-600 mt-2">{{message()}}</p>
-				}
-			</div>
-
-			@if(showInput()) {
-				<div class="text-left">
-					<input
-						#inputRef
-						type="text"
-						[placeholder]="inputPlaceholder()"
-						class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
-						(keyup.enter)="handleConfirm(inputRef.value)"
-					/>
-				</div>
-			}
-
-			@if(showCounter()) {
-				<div class="flex items-center justify-center gap-3">
-					<fkt-button
-						text="-"
-						theme="stroked"
-						variant="icon"
-						size="sm"
-						(click)="decrement()"
-						[disabled]="counter() <= minValue()"
-					></fkt-button>
-					<span class="text-lg font-mono min-w-[3ch] text-center">{{counter()}}</span>
-					<fkt-button
-						text="+"
-						theme="stroked"
-						variant="icon"
-						size="sm"
-						(click)="increment()"
-						[disabled]="counter() >= maxValue()"
-					></fkt-button>
-				</div>
-			}
-
-			<div class="flex gap-2 justify-center">
-				@if(showCancel()) {
-					<fkt-button
-						[text]="cancelText()"
-						theme="stroked"
-						size="sm"
-						(click)="handleCancel()"
-					></fkt-button>
-				}
-				<fkt-button
-					[text]="confirmText()"
-					theme="raised"
-					[color]="confirmColor()"
-					size="sm"
-					(click)="handleConfirm()"
-				></fkt-button>
-			</div>
-		</div>
+		<h2 class="title">{{ title() }}</h2>
+		<p class="message">{{ message() }}</p>
+		<fkt-buttons-list
+			[actions]="actions()"
+			horizontalAlignment="end"
+		></fkt-buttons-list>
 	`,
-	standalone: true,
-	imports: [FktButtonComponent, FktIconComponent]
+	styleUrl: './fkt-simple-dialog-demo.component.scss',
+	imports: [FktButtonsListComponent]
 })
-export class FktSmallDialogDemoComponent {
-	title = input('Quick Action');
-	message = input('');
-	iconName = input('check-circle');
-	showIcon = input(true);
-	showInput = input(false);
-	showCounter = input(false);
-	showCancel = input(true);
-	
-	inputPlaceholder = input('Enter value...');
-	confirmText = input('OK');
-	cancelText = input('Cancel');
-	confirmColor = input<'primary' | 'green' | 'yellow' | 'red'>('primary');
-	
-	counter = model(1);
-	minValue = input(1);
-	maxValue = input(10);
+export class FktSimpleDialogDemoComponent {
+	title = input('Simple Dialog');
+	message = input('This is a simple dialog with basic content.');
 
-	onConfirm = output<string | number>();
-	onCancel = output<void>();
+	closeDialog = output<void>();
 
-	iconBgClass = computed(() => {
-		const colorMap = {
-			'primary': 'bg-primary-100',
-			'green': 'bg-green-100',
-			'yellow': 'bg-yellow-100',
-			'red': 'bg-red-100'
-		};
-		return colorMap[this.confirmColor()] || 'bg-primary-100';
-	});
-
-	iconColorClass = computed(() => {
-		const colorMap = {
-			'primary': 'text-primary-600',
-			'green': 'text-green-600',
-			'yellow': 'text-yellow-600',
-			'red': 'text-red-600'
-		};
-		return colorMap[this.confirmColor()] || 'text-primary-600';
-	});
-
-	increment() {
-		if (this.counter() < this.maxValue()) {
-			this.counter.set(this.counter() + 1);
+	actions = computed((): FktButtonAction[] => [
+		{
+			identifier: 'close',
+			text: 'Close',
+			theme: 'raised',
+			click: () => this.closeDialog.emit()
 		}
-	}
-
-	decrement() {
-		if (this.counter() > this.minValue()) {
-			this.counter.set(this.counter() - 1);
-		}
-	}
-
-	handleConfirm(inputValue?: string) {
-		if (this.showInput()) {
-			this.onConfirm.emit(inputValue || '');
-		} else if (this.showCounter()) {
-			this.onConfirm.emit(this.counter());
-		} else {
-			this.onConfirm.emit('confirmed');
-		}
-	}
-
-	handleCancel() {
-		this.onCancel.emit();
-	}
+	]);
 }
 
 @Component({
 	selector: 'small-dialog-example',
 	template: `
-		<div class="space-y-4">
-			<h3 class="text-lg font-semibold">Small Dialogs</h3>
-			<p class="text-gray-600">Compact dialogs for quick interactions and mobile-friendly experiences.</p>
-			
-			<div class="grid grid-cols-2 gap-3">
-				<fkt-button 
-					text="Quick Confirm" 
-					theme="stroked"
-					color="primary"
-					(click)="openQuickConfirm()" 
-				/>
-				<fkt-button 
-					text="Text Input" 
-					theme="stroked"
-					color="green"
-					(click)="openTextInput()" 
-				/>
-				<fkt-button 
-					text="Number Counter" 
-					theme="stroked"
-					color="yellow"
-					(click)="openCounter()" 
-				/>
-				<fkt-button 
-					text="Delete Warning" 
-					theme="stroked"
-					color="red"
-					(click)="openDeleteWarning()" 
-				/>
-			</div>
-
-			<div class="mt-6 p-4 bg-gray-50 rounded-lg">
-				<h4 class="font-medium mb-2">Recent Actions:</h4>
-				<div class="space-y-1 max-h-24 overflow-y-auto">
-					@for(action of recentActions(); track $index) {
-						<div class="text-sm text-gray-600">{{action}}</div>
-					}
-					@if(recentActions().length === 0) {
-						<p class="text-sm text-gray-500 italic">No actions yet...</p>
-					}
-				</div>
-			</div>
+		<div class="container">
+			<fkt-button text="Open Small Dialog" theme="raised" (click)="openDialog()" />
 		</div>
 	`,
-	standalone: true,
+	styleUrl: './fkt-small-dialog-example.component.scss',
 	imports: [FktButtonComponent]
 })
 export class FktSmallDialogExampleComponent {
 	private dialogService = inject(FktDialogService);
-	
-	recentActions = signal<string[]>([]);
 
-	private addAction(action: string) {
-		this.recentActions.update(actions => [
-			`${new Date().toLocaleTimeString()}: ${action}`,
-			...actions.slice(0, 4) // Keep only last 5 actions
-		]);
-	}
-
-	openQuickConfirm() {
+	openDialog() {
 		const dialogInstance = this.dialogService.open({
-			component: FktSmallDialogDemoComponent,
+			component: FktSimpleDialogDemoComponent,
 			data: {
-				title: 'Quick Confirm',
-				message: 'Are you sure you want to proceed?',
-				iconName: 'question-mark-circle',
-				confirmText: 'Yes',
-				confirmColor: 'primary' as const,
-				onConfirm: (value) => {
-					this.addAction('Quick action confirmed');
-					console.log('Quick confirm:', value);
-					dialogInstance.close();
-				},
-				onCancel: () => {
-					this.addAction('Quick action cancelled');
-					dialogInstance.close();
-				}
+				title: 'Compact Dialog',
+				message: 'Small dialogs are perfect for quick confirmations.',
+				closeDialog: () => dialogInstance.close()
 			},
-			panelOptions: { width: '300px', padding: '1.5rem' }
-		});
-	}
-
-	openTextInput() {
-		const dialogInstance = this.dialogService.open({
-			component: FktSmallDialogDemoComponent,
-			data: {
-				title: 'Enter Name',
-				message: 'Please enter your name below:',
-				iconName: 'user',
-				showInput: true,
-				inputPlaceholder: 'Your name...',
-				confirmText: 'Save',
-				confirmColor: 'green' as const,
-				onConfirm: (value) => {
-					if (typeof value === 'string' && value.trim()) {
-						this.addAction(`Name entered: "${value}"`);
-						console.log('Name entered:', value);
-						dialogInstance.close();
-					} else {
-						alert('Please enter a valid name');
-					}
-				},
-				onCancel: () => {
-					this.addAction('Name input cancelled');
-					dialogInstance.close();
-				}
-			},
-			panelOptions: { width: '300px', padding: '1.5rem' }
-		});
-	}
-
-	openCounter() {
-		const dialogInstance = this.dialogService.open({
-			component: FktSmallDialogDemoComponent,
-			data: {
-				title: 'Select Quantity',
-				message: 'How many items do you want?',
-				iconName: 'calculator',
-				showCounter: true,
-				showCancel: false,
-				minValue: 1,
-				maxValue: 20,
-				confirmText: 'Select',
-				confirmColor: 'yellow' as const,
-				onConfirm: (value) => {
-					this.addAction(`Quantity selected: ${value}`);
-					console.log('Quantity selected:', value);
-					dialogInstance.close();
-				},
-				onCancel: () => dialogInstance.close()
-			},
-			panelOptions: { width: '300px', padding: '1.5rem' }
-		});
-	}
-
-	openDeleteWarning() {
-		const dialogInstance = this.dialogService.open({
-			component: FktSmallDialogDemoComponent,
-			data: {
-				title: 'Delete Item',
-				message: 'This action cannot be undone.',
-				iconName: 'exclamation-triangle',
-				confirmText: 'Delete',
-				cancelText: 'Keep',
-				confirmColor: 'red' as const,
-				onConfirm: (value) => {
-					this.addAction('Item deleted');
-					console.log('Item deleted:', value);
-					dialogInstance.close();
-				},
-				onCancel: () => {
-					this.addAction('Delete cancelled');
-					dialogInstance.close();
-				}
-			},
-			panelOptions: { width: '300px', padding: '1.5rem' }
+			panelOptions: { width: '300px', padding: '2rem' }
 		});
 	}
 }
@@ -1506,12 +649,12 @@ export class MyDialogComponent {
 	title = input('Default Title');
 	userData = input<User>();
 	config = input<DialogConfig>({ theme: 'light' });
-	
+
 	// Signal outputs - Required for callback type inference
 	onSave = output<FormData>();
 	onCancel = output<void>();
 	onAction = output<{ type: string, payload: any }>();
-	
+
 	// Signal models - Required for two-way binding
 	counter = model(0);
 	items = model<string[]>([]);
@@ -1525,7 +668,7 @@ const dialogRef = this.dialogService.open({
 		title: 'Custom Title',          // string - auto-completed
 		userData: this.currentUser,     // User type enforced
 		config: { theme: 'dark' },      // DialogConfig type enforced
-		
+
 		// ✅ TypeScript automatically infers callback parameter types
 		onSave: (data) => {             // data is automatically typed as FormData
 			console.log('Form saved:', data);
@@ -1537,7 +680,7 @@ const dialogRef = this.dialogService.open({
 		onAction: (event) => {          // event is automatically typed as { type: string, payload: any }
 			this.handleAction(event.type, event.payload);
 		},
-		
+
 		// ✅ Two-way signal binding with type safety
 		counter: this.sharedCounter,    // WritableSignal<number>
 		items: this.sharedItems,        // WritableSignal<string[]>
@@ -1592,34 +735,34 @@ export class UserProfileFormComponent {
 	initialName = input('');
 	initialEmail = input('');
 	readonly = input(false);
-	
+
 	// Signal outputs - work everywhere
 	onSubmit = output<{ name: string, email: string }>();
 	onCancel = output<void>();
-	
+
 	// Internal component state
 	name = signal('');
 	email = signal('');
-	
+
 	ngOnInit() {
 		this.name.set(this.initialName());
 		this.email.set(this.initialEmail());
 	}
-	
-	isValid = computed(() => 
-		this.name().trim().length > 0 && 
+
+	isValid = computed(() =>
+		this.name().trim().length > 0 &&
 		this.email().includes('@')
 	);
-	
+
 	handleSubmit() {
 		if (this.isValid()) {
-			this.onSubmit.emit({ 
-				name: this.name(), 
-				email: this.email() 
+			this.onSubmit.emit({
+				name: this.name(),
+				email: this.email()
 			});
 		}
 	}
-	
+
 	handleCancel() {
 		this.onCancel.emit();
 	}
@@ -1692,7 +835,7 @@ type ComponentModels<T> = {
 };
 
 // Results in perfectly typed dialog data:
-type FktDialogData<T> = 
+type FktDialogData<T> =
 	& Partial<ComponentInputs<T>>   // All inputs become optional data properties
 	& ComponentOutputs<T>           // All outputs become required callback functions
 	& Partial<ComponentModels<T>>;  // All models become optional signal bindings
@@ -1723,7 +866,7 @@ export class NewComponent {
 	config = input<Config>({ theme: 'light' });
 	save = output<FormData>();
 	cancel = output<void>();
-	
+
 	// Migration tip: Keep the same logic, just change the API
 	handleSave() {
 		const formData = this.buildFormData();
@@ -1864,7 +1007,7 @@ panelOptions: {
 
 ### Component Design
 - **Use signal-based APIs**: Required for TypeScript inference and reactivity
-- **Keep components focused**: Each dialog component should have a single responsibility  
+- **Keep components focused**: Each dialog component should have a single responsibility
 - **Design for reusability**: Signal-based components work in dialogs, overlays, and standalone
 - **Handle edge cases**: Consider what happens when users navigate away or refresh
 
@@ -1876,7 +1019,7 @@ panelOptions: {
 
 ### Performance & Memory
 - **Close properly**: Always call close() to prevent memory leaks
-- **Limit concurrent dialogs**: Avoid opening too many dialogs simultaneously  
+- **Limit concurrent dialogs**: Avoid opening too many dialogs simultaneously
 - **Optimize templates**: Keep dialog templates lightweight and efficient
 - **Lazy loading**: Consider loading heavy content only when needed
 

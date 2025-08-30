@@ -1,27 +1,27 @@
 import { Component, input, output, computed, signal } from '@angular/core';
-import { FktIconComponent } from '../../../icon';
-import { FktButtonsListComponent } from '../../../buttons-list';
-import { FktButtonAction } from '../../../button';
-import { FktIconName } from '../../../../shared/types';
+import { FktIconComponent } from '../../../../icon';
+import { FktButtonsListComponent } from '../../../../buttons-list';
+import { FktButtonAction } from '../../../../button';
+import { FktIconName } from '../../../../../shared/types';
 
 @Component({
 	selector: 'demo-custom-dialog',
 	template: `
-		<div class="h-full w-full flex flex-col justify-between">
+		<div class="container">
 			<div>
-				<div class="flex items-center mb-4">
-					<fkt-icon [name]="iconName()" class="text-blue-500 text-2xl mr-3"></fkt-icon>
-					<h2 class="text-xl font-semibold">{{title()}}</h2>
+				<div class="container__header">
+					<fkt-icon [name]="iconName()"></fkt-icon>
+					<h2>{{title()}}</h2>
 				</div>
 
-				<div class="mb-6">
-					<p class="text-gray-600 leading-relaxed">{{message()}}</p>
+				<div class="container__message">
+					<p>{{message()}}</p>
 				</div>
 
 				@if (showDetails()) {
-					<div class="bg-gray-50 p-4 rounded-lg mb-6">
-						<h4 class="font-medium mb-2">{{detailsTitle()}}</h4>
-						<ul class="text-sm text-gray-600 space-y-1">
+					<div class="container__details">
+						<h4>{{detailsTitle()}}</h4>
+						<ul>
 							@for (detail of details(); track detail) {
 								<li>• {{detail}}</li>
 							}
@@ -34,19 +34,11 @@ import { FktIconName } from '../../../../shared/types';
 			<fkt-buttons-list
 				[actions]="actions()"
 				horizontalAlignment="end"
-				class="w-full"
 				orientation="horizontal"
 			></fkt-buttons-list>
 		</div>
 	`,
-	styles: `
-		:host {
-			height: 100%;
-			width: 100%;
-			display: block;
-		}
-	`,
-	standalone: true,
+	styleUrl: './fkt-custom-dialog-demo.component.scss',
 	imports: [FktIconComponent, FktButtonsListComponent]
 })
 export class FktCustomDialogDemoComponent {

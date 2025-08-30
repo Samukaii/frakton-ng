@@ -6,6 +6,7 @@
 	transition: var(--transition-base);
 	scroll-behavior: smooth;
 	width: 100%;
+	margin-top: var(--space-xs);
 
 	.label-container {
 		display: flex;

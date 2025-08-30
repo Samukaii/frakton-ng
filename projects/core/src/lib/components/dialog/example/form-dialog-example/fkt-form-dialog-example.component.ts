@@ -1,28 +1,25 @@
 import { Component, inject } from '@angular/core';
-import { FktButtonComponent } from '../../button';
-import { FktDialogService } from '../fkt-dialog.service';
-import { FktFormDialogDemoComponent, FormData } from './dialog/fkt-form-dialog-demo.component';
+import { FktButtonComponent } from '../../../button';
+import { FktDialogService } from '../../fkt-dialog.service';
+import { FktFormDialogDemoComponent, FormData } from '../dialog/form-dialog-demo/fkt-form-dialog-demo.component';
 
 @Component({
 	selector: 'form-dialog-example',
 	template: `
-		<div class="flex justify-center gap-4">
+		<div class="container">
 			<fkt-button
-				class="w-fit"
 				text="Contact Form"
 				theme="stroked"
 				color="primary"
 				(click)="openContactForm()"
 			/>
 			<fkt-button
-				class="w-fit"
 				text="User Registration"
 				theme="stroked"
 				color="green"
 				(click)="openRegistrationForm()"
 			/>
 			<fkt-button
-				class="w-fit"
 				text="Feedback Form"
 				theme="stroked"
 				color="yellow"
@@ -30,13 +27,13 @@ import { FktFormDialogDemoComponent, FormData } from './dialog/fkt-form-dialog-d
 			/>
 		</div>
 	`,
-	standalone: true,
+	styleUrl: 'fkt-form-dialog-example.component.scss',
 	imports: [FktButtonComponent]
 })
 export class FktFormDialogExampleComponent {
 	private dialogService = inject(FktDialogService);
 
-	openContactForm() {
+	protected openContactForm() {
 		const dialogInstance = this.dialogService.open({
 			component: FktFormDialogDemoComponent,
 			data: {
@@ -44,12 +41,12 @@ export class FktFormDialogExampleComponent {
 				description: 'We would love to hear from you. Send us a message and we will respond as soon as possible.',
 				initialName: '',
 				initialEmail: '',
-				formSubmit: (formData: FormData) => {
+				submit: (formData: FormData) => {
 					console.log('Contact form submitted:', formData);
 					alert(`Thank you ${formData.name}! We received your message.`);
 					dialogInstance.close();
 				},
-				formCancel: () => {
+				cancel: () => {
 					console.log('Contact form cancelled');
 					dialogInstance.close();
 				}
@@ -58,7 +55,7 @@ export class FktFormDialogExampleComponent {
 		});
 	}
 
-	openRegistrationForm() {
+	protected openRegistrationForm() {
 		const dialogInstance = this.dialogService.open({
 			component: FktFormDialogDemoComponent,
 			data: {
@@ -66,18 +63,18 @@ export class FktFormDialogExampleComponent {
 				description: 'Create your account by providing the required information.',
 				initialName: '',
 				initialEmail: '',
-				formSubmit: (formData: FormData) => {
+				submit: (formData: FormData) => {
 					console.log('Registration form submitted:', formData);
 					alert(`Welcome ${formData.name}! Your account has been created.`);
 					dialogInstance.close();
 				},
-				formCancel: () => dialogInstance.close()
+				cancel: () => dialogInstance.close()
 			},
 			panelOptions: { width: '500px', padding: '2rem' }
 		});
 	}
 
-	openFeedbackForm() {
+	protected openFeedbackForm() {
 		const dialogInstance = this.dialogService.open({
 			component: FktFormDialogDemoComponent,
 			data: {
@@ -85,12 +82,12 @@ export class FktFormDialogExampleComponent {
 				description: 'Help us improve by sharing your thoughts and suggestions.',
 				initialName: 'John Doe',
 				initialEmail: 'john@example.com',
-				formSubmit: (formData: FormData) => {
+				submit: (formData: FormData) => {
 					console.log('Feedback form submitted:', formData);
 					alert(`Thanks for your feedback, ${formData.name}!`);
 					dialogInstance.close();
 				},
-				formCancel: () => dialogInstance.close()
+				cancel: () => dialogInstance.close()
 			},
 			panelOptions: { width: '500px', padding: '2rem' }
 		});

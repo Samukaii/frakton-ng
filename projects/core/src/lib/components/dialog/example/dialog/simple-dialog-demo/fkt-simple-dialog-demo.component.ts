@@ -1,19 +1,18 @@
 import { Component, input, output, computed } from '@angular/core';
-import { FktButtonsListComponent } from '../../../buttons-list';
-import { FktButtonAction } from '../../../button';
+import { FktButtonsListComponent } from '../../../../buttons-list';
+import { FktButtonAction } from '../../../../button';
 
 @Component({
 	selector: 'demo-simple-dialog',
 	template: `
-		<h2 class="text-xl font-semibold mb-4">{{ title() }}</h2>
-		<p class="text-gray-600 mb-6">{{ message() }}</p>
+		<h2 class="title">{{ title() }}</h2>
+		<p class="message">{{ message() }}</p>
 		<fkt-buttons-list
 			[actions]="actions()"
 			horizontalAlignment="end"
-			class="w-full"
 		></fkt-buttons-list>
 	`,
-	standalone: true,
+	styleUrl: './fkt-simple-dialog-demo.component.scss',
 	imports: [FktButtonsListComponent]
 })
 export class FktSimpleDialogDemoComponent {

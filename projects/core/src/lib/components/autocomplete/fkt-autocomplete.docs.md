@@ -47,7 +47,6 @@ export class ExampleComponent {
     {
       icon: 'trash',
       color: 'red',
-      variant: 'icon',
       theme: 'basic',
       identifier: 'remove'
     }

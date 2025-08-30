@@ -1,23 +1,23 @@
 import { Component, inject } from '@angular/core';
-import { FktButtonComponent } from '../../button';
-import { FktDialogService } from '../fkt-dialog.service';
-import { FktCustomDialogDemoComponent } from './dialog/fkt-custom-dialog-demo.component';
-import { FktIconName } from '../../../shared/types';
+import { FktButtonComponent } from '../../../button';
+import { FktDialogService } from '../../fkt-dialog.service';
+import { FktCustomDialogDemoComponent } from '../dialog/custom-dialog-demo/fkt-custom-dialog-demo.component';
+import { FktIconName } from '../../../../shared/types';
 
 @Component({
 	selector: 'fullscreen-dialog-example',
 	template: `
-		<div class="flex justify-center">
-			<fkt-button class="w-fit" text="Open Full Screen" theme="raised" (click)="openDialog()" />
+		<div class="container">
+			<fkt-button text="Open Full Screen" theme="raised" (click)="openDialog()" />
 		</div>
 	`,
-	standalone: true,
+	styleUrl: './fkt-fullscreen-dialog-example.component.scss',
 	imports: [FktButtonComponent]
 })
 export class FktFullscreenDialogExampleComponent {
 	private dialogService = inject(FktDialogService);
 
-	openDialog() {
+	protected openDialog() {
 		const dialogInstance = this.dialogService.open({
 			component: FktCustomDialogDemoComponent,
 			data: {

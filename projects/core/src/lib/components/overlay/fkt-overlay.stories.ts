@@ -1,20 +1,22 @@
 import type { Meta, StoryObj } from '@storybook/angular';
 import { moduleMetadata } from '@storybook/angular';
-import { FktSimpleOverlayExampleComponent } from './example/fkt-simple-overlay-example.component';
-import { FktCustomTooltipOverlayExampleComponent } from './example/fkt-custom-tooltip-overlay-example.component';
-import { FktDropdownOverlayExampleComponent } from './example/fkt-dropdown-overlay-example.component';
-import { FktFormOverlayExampleComponent } from './example/fkt-form-overlay-example.component';
-import { FktInteractiveOverlayExampleComponent } from './example/fkt-interactive-overlay-example.component';
+import { FktCustomTooltipOverlayExampleComponent } from './example/custom-tooltip-overlay-example/fkt-custom-tooltip-overlay-example.component';
 import overlayDocumentation from './fkt-overlay.docs.mdx';
+import {
+	FktSimpleOverlayExampleComponent
+} from './example/simple-overlay-example/fkt-simple-overlay-example.component';
+import {
+	FktDropdownOverlayExampleComponent
+} from './example/dropdown-overlay-example/fkt-dropdown-overlay-example.component';
+import { FktFormOverlayExampleComponent } from './example/form-overlay-example/fkt-form-overlay-example.component';
+import {
+	FktInteractiveOverlayExampleComponent
+} from './example/interactive-overlay-example/fkt-interactive-overlay-example.component';
 
 const meta: Meta = {
     title: 'Components/Overlay/Overlay',
     parameters: {
-        docs: {
-            description: {
-                component: overlayDocumentation
-            }
-        },
+		layout: 'centered',
     },
     decorators: [
         moduleMetadata({

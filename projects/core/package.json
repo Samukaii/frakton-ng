@@ -38,8 +38,8 @@
 		"ux"
 	],
 	"peerDependencies": {
-		"@angular/common": "^20.1.0",
-		"@angular/core": "^20.1.0"
+		"@angular/common": "^20.2.0",
+		"@angular/core": "^20.2.0"
 	},
 	"dependencies": {
 		"tslib": "^2.3.0"

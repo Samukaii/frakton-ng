@@ -1,14 +1,21 @@
-import type {Meta, StoryObj} from '@storybook/angular';
-import {moduleMetadata} from '@storybook/angular';
-import {FktSimpleDialogExampleComponent} from './example/fkt-simple-dialog-example.component';
-import {FktFormDialogExampleComponent} from './example/fkt-form-dialog-example.component';
-import {FktCustomDialogExampleComponent} from './example/fkt-custom-dialog-example.component';
-import {FktConfirmationDialogExampleComponent} from './example/fkt-confirmation-dialog-example.component';
-import {FktFullscreenDialogExampleComponent} from './example/fkt-fullscreen-dialog-example.component';
-import {FktSmallDialogExampleComponent} from './example/fkt-small-dialog-example.component';
+import type { Meta, StoryObj } from '@storybook/angular';
+import { moduleMetadata } from '@storybook/angular';
+import { FktSmallDialogExampleComponent } from './example/small-dialog-example/fkt-small-dialog-example.component';
+import {
+	FktFullscreenDialogExampleComponent
+} from './example/fullscreen-dialog-example/fkt-fullscreen-dialog-example.component';
+import { FktSimpleDialogExampleComponent } from './example/simple-dialog-example/fkt-simple-dialog-example.component';
+import { FktFormDialogExampleComponent } from './example/form-dialog-example/fkt-form-dialog-example.component';
+import { FktCustomDialogExampleComponent } from './example/custom-dialog-example/fkt-custom-dialog-example.component';
+import {
+	FktConfirmationDialogExampleComponent
+} from './example/confirmation-dialog-example/fkt-confirmation-dialog-example.component';
 
 const meta: Meta = {
     title: 'Components/Overlay/Dialog',
+	parameters: {
+		layout: 'centered',
+	},
     decorators: [
         moduleMetadata({
             imports: [

@@ -66,7 +66,6 @@ export const Preview: Story = {
 				identifier: "action-5",
 				theme: "raised",
 				icon: "plus",
-				variant: "icon",
 				color: "primary"
 			},
 			{
@@ -147,7 +146,6 @@ export const IconOnlyActions: Story = {
 				theme: "basic",
 				color: "primary",
 				icon: "pencil",
-				variant: "icon",
 				tooltip: "Edit"
 			},
 			{
@@ -155,7 +153,6 @@ export const IconOnlyActions: Story = {
 				theme: "basic",
 				color: "green",
 				icon: "trash",
-				variant: "icon",
 				tooltip: "Duplicate"
 			},
 			{
@@ -163,7 +160,6 @@ export const IconOnlyActions: Story = {
 				theme: "basic",
 				color: "red",
 				icon: "trash",
-				variant: "icon",
 				tooltip: "Delete"
 			}
 		]
@@ -259,7 +255,6 @@ export const ToolbarActions: Story = {
 				theme: "basic",
 				color: "primary",
 				icon: "trash",
-				variant: "icon",
 				tooltip: "Refresh Data"
 			}
 		]
@@ -274,7 +269,6 @@ export const FloatingActions: Story = {
 				theme: "raised",
 				color: "green",
 				icon: "trash",
-				variant: "icon",
 				tooltip: "Open Chat"
 			},
 			{
@@ -282,7 +276,6 @@ export const FloatingActions: Story = {
 				theme: "raised",
 				color: "primary",
 				icon: "plus",
-				variant: "icon",
 				tooltip: "Add New Item"
 			}
 		],
