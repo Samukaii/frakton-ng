@@ -1,11 +1,9 @@
-import { SignalFormGroup } from '../../../form/signal-form-group';
 import { SignalFormGroupBuilderConfig } from './signal-form-group-builder-config';
 import { Prettify } from '../prettify';
-import { SignalFormArray } from '../../../form/signal-form-array';
-import { SignalFormControl } from '../../../form/signal-form-control';
+import { SignalFormArray, SignalFormControl, SignalFormGroup } from '../../../form';
 import { SignalFormBuilderPermissiveWithValidators } from './signal-form-builder-permissive-with-validators';
 import { SignalValidatorConfig } from './signal-validator-config';
-import { SignalFormControlOptions } from '../../../form/signal-form-control-options';
+import { SignalFormControlOptions } from './signal-form-control-options';
 
 export type FormBuilderConfigToSignalFormGroup<
 	T extends SignalFormGroupBuilderConfig<any>,

@@ -1,5 +1,6 @@
 import { clampNumber } from '../clamp-number';
-import { SignalFormControlTransformer } from '../../form/signal-form-control';
+
+import { SignalFormControlTransformer } from "../../shared/types/form/signal-form-control-transformer";
 
 const toNumber = (value: string) => {
 	return +value.replace(/\D/g, '');

@@ -1,4 +1,4 @@
-import { SignalFormControlTransformer } from '../../form/signal-form-control';
+import { SignalFormControlTransformer } from "../../shared/types/form/signal-form-control-transformer";
 
 export const currencyTransformer: SignalFormControlTransformer = value => {
 	const raw =

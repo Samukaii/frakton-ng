@@ -1,15 +1,20 @@
 import { Injectable } from '@angular/core';
 import { SignalFormControl } from './signal-form-control';
-import { SignalFormControlOptions } from './signal-form-control-options';
-import { SignalFormGroup } from './signal-form-group';
-import { SignalFormArray } from './signal-form-array';
 import {
 	ArrayBuilderConfigToSignalFormArray,
 	FormBuilderConfigToSignalFormGroup,
-	Generic, InterfaceToFormConfig, Prettify,
-	SignalFormArrayBuilderConfig, SignalFormArrayControls, SignalFormControlBuilderConfig,
-	SignalFormGroupBuilderConfig, TypeToSignalFormGroupControls
+	Generic,
+	InterfaceToFormConfig,
+	Prettify,
+	SignalFormArrayBuilderConfig,
+	SignalFormArrayControls,
+	SignalFormControlBuilderConfig,
+	SignalFormControlOptions,
+	SignalFormGroupBuilderConfig,
+	TypeToSignalFormGroupControls
 } from '../shared/types';
+import { SignalFormGroup } from './signal-form-group';
+import { SignalFormArray } from './signal-form-array';
 
 @Injectable({
 	providedIn: 'root',

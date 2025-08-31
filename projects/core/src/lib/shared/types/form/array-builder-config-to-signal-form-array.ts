@@ -1,10 +1,8 @@
-import { SignalFormGroup } from '../../../form/signal-form-group';
+import { SignalFormArray, SignalFormControl, SignalFormGroup } from '../../../form';
 import { SignalFormArrayBuilderConfig } from './signal-form-array-builder-config';
-import { SignalFormArray } from '../../../form/signal-form-array';
-import { SignalFormControl } from '../../../form/signal-form-control';
 import { SignalFormBuilderPermissiveWithValidators } from './signal-form-builder-permissive-with-validators';
 import { SignalValidatorConfig } from './signal-validator-config';
-import { SignalFormControlOptions } from '../../../form/signal-form-control-options';
+import { SignalFormControlOptions } from './signal-form-control-options';
 import { SignalFormBuilderPermissiveConfig } from './signal-form-builder-permissive-config';
 
 export type ArrayBuilderConfigToSignalFormArray<

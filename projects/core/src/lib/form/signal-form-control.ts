@@ -1,21 +1,7 @@
 import { computed, signal, untracked, WritableSignal } from '@angular/core';
-import { SignalValidatorFn } from '../shared/types';
+import { SignalFormControlOptions, SignalValidatorFn } from '../shared/types';
 import { FormControlStatus, ValidationErrors } from '@angular/forms';
-import { SignalFormControlOptions } from './signal-form-control-options';
-
-export type SignalFormControlTransformer = (value: any) => {
-	modelValue: any;
-	viewValue: any;
-	cursorPosition?: number;
-};
-
-export interface SignalFormControlValueInterceptors {
-	formatter?: SignalFormControlTransformer;
-}
-
-interface SignalUpdateValueOptions {
-	source?: 'ui' | 'programmatic';
-}
+import { SignalUpdateValueOptions } from '../shared/types/form/signal-update-value-options';
 
 const isTwoWaySetValue = (
 	value: unknown,

@@ -1,4 +1,4 @@
-import { SignalFormControlTransformer } from '../../form/signal-form-control';
+import { SignalFormControlTransformer } from "../../shared/types/form/signal-form-control-transformer";
 
 const format = (raw: string, maxDecimals = 2) => {
 	const clean = raw

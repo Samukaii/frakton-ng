@@ -10,10 +10,8 @@ import {
 	untracked,
 } from '@angular/core';
 import { MarkUsed } from '../utils/mark-used';
-import {
-	SignalFormControl,
-	SignalFormControlTransformer,
-} from '../form/signal-form-control';
+import { SignalFormControl, } from '../form';
+import { SignalFormControlTransformer } from "../shared/types/form/signal-form-control-transformer";
 
 @Directive({
 	selector: 'input[signalFormControl],textarea[signalFormControl]',
@@ -47,10 +45,9 @@ export class SignalFormControlDirective<T> implements OnInit, OnDestroy {
 
 			if (this.element.type === 'checkbox') {
 				this.element.checked = !!viewValue;
-			console.log(viewValue)
+				console.log(viewValue)
 
-			}
-			else this.element.value = viewValue.toString();
+			} else this.element.value = viewValue.toString();
 
 			if (this.cursorPosition === null) return;
 			this.element.setSelectionRange(
@@ -99,7 +96,8 @@ export class SignalFormControlDirective<T> implements OnInit, OnDestroy {
 		return originalViewValue;
 	}
 
-	private onKeyDown = () => {};
+	private onKeyDown = () => {
+	};
 
 	private markAsTouched = () => {
 		this.signalFormControl().markAsTouched();

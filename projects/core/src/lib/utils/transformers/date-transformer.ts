@@ -1,6 +1,6 @@
-import { SignalFormControlTransformer } from '../../form/signal-form-control';
 import { isIsoDateString } from '../is-iso-date-string';
 import { clampNumber } from '../clamp-number';
+import { SignalFormControlTransformer } from "../../shared/types/form/signal-form-control-transformer";
 
 const transformIso = (value: string | Date) => {
 	const date = new Date(value);

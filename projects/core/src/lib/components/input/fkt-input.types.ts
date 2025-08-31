@@ -1,4 +1,4 @@
-import { SignalFormControlTransformer } from '../../form/signal-form-control';
+import { SignalFormControlTransformer } from "../../shared/types/form/signal-form-control-transformer";
 
 export const fktInputTypes = ['text', 'password', 'number', 'email'] as const;
 export const fktInputTransformers = ['currency', 'percent', 'hour'] as const;

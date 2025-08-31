@@ -4,12 +4,13 @@ import { outsideClickEffect } from '../../utils/outside-click-effect';
 import { MarkUsed } from '../../utils/mark-used';
 import { FktOverlayService } from '../overlay/fkt-overlay.service';
 import { FktAutocompleteOptionsComponent } from './options/fkt-autocomplete-options.component';
-import { SignalFormControl, SignalFormControlTransformer, } from '../../form/signal-form-control';
+import { SignalFormControl, } from '../../form';
 import { AUTOCOMPLETE_AUTO_CREATED_OPTION } from '../../static';
 import { FktButtonAction } from '../button';
 import { FktAutocompleteOption } from './fkt-autocomplete.types';
 import { FktNoResults } from '../no-results';
 import { FktOverlayRef } from '../overlay/fkt-overlay.types';
+import { SignalFormControlTransformer } from "../../shared/types/form/signal-form-control-transformer";
 
 @Component({
 	selector: 'fkt-autocomplete',

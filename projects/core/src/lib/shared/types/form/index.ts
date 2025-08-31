@@ -10,6 +10,7 @@ export * from './signal-form-builder-permissive-with-validators';
 export * from './signal-form-control-builder-config';
 export * from './signal-form-group.value';
 export * from './signal-form-group-builder-config';
+export * from './signal-form-control-options';
 export * from './signal-form-group-controls';
 export * from './signal-validator-config';
 export * from './signal-validator-fn';
