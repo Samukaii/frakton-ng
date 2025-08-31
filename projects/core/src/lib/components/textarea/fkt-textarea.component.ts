@@ -10,8 +10,8 @@ import {
 	viewChild,
 } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { FieldErrorComponent } from '../field-error/field-error.component';
-import { SignalFormControl } from '../../form/signal-form-control';
+import { FktFieldErrorComponent } from '../field-error';
+import { SignalFormControl } from '../../form';
 import { SignalFormControlDirective } from '../../directives';
 import { MarkUsed } from '../../utils/mark-used';
 
@@ -19,7 +19,7 @@ import { MarkUsed } from '../../utils/mark-used';
 	selector: 'fkt-textarea',
 	imports: [
 		ReactiveFormsModule,
-		FieldErrorComponent,
+		FktFieldErrorComponent,
 		SignalFormControlDirective,
 	],
 	templateUrl: './fkt-textarea.component.html',

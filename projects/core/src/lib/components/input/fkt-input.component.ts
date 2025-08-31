@@ -9,8 +9,8 @@ import {
 	viewChild,
 } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { FieldErrorComponent } from '../field-error/field-error.component';
-import { SignalFormControl, } from '../../form/signal-form-control';
+import { FktFieldErrorComponent } from '../field-error';
+import { SignalFormControl, } from '../../form';
 import { FormControlSuffixDirective, SignalFormControlDirective } from '../../directives';
 import { currencyTransformer, hourTransformer, percentTransformer } from '../../utils';
 import { NgTemplateOutlet } from '@angular/common';
@@ -21,7 +21,7 @@ import { FktButtonComponent } from '../button';
 	selector: 'fkt-input',
 	imports: [
 		ReactiveFormsModule,
-		FieldErrorComponent,
+		FktFieldErrorComponent,
 		SignalFormControlDirective,
 		NgTemplateOutlet,
 		FktButtonComponent,

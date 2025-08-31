@@ -1,30 +1,27 @@
-import { Component, effect, input, untracked } from '@angular/core';
-import { SignalFormGroup } from '../../form/signal-form-group';
+import { Component, effect, input, output, untracked } from '@angular/core';
+import { SignalFormGroup } from '../../form';
 import { MarkUsed } from '../../utils/mark-used';
-import { Generic, SignalFormGroupValue } from '../../shared/types';
+import { Generic, Prettify, SignalFormGroupValue } from '../../shared/types';
+import { FormsModule } from '@angular/forms';
+import { FktFormModifier } from './fkt-form.types';
 
-export type FormModifier<
-	InputModel extends Generic,
-	Form extends SignalFormGroup<any>,
-> = {
-	[Key in keyof SignalFormGroupValue<Form>]?: (
-		value: InputModel,
-	) => SignalFormGroupValue<Form>[Key];
-};
 
 @Component({
 	selector: 'fkt-form',
-	imports: [],
-	templateUrl: './form.component.html',
-	styleUrl: './form.component.scss',
+	imports: [
+		FormsModule
+	],
+	templateUrl: './fkt-form.component.html',
+	styleUrl: './fkt-form.component.scss',
 })
-export class FormComponent<
+export class FktFormComponent<
 	InputModel extends Generic,
 	Form extends SignalFormGroup<any>,
 > {
 	form = input.required<Form>();
 	data = input<InputModel>();
-	formModifiers = input<FormModifier<InputModel, Form>>();
+	formModifiers = input<FktFormModifier<InputModel, Form>>();
+	submit = output<Prettify<SignalFormGroupValue<Form>>>();
 
 	@MarkUsed()
 	protected updateForm = effect(() => {
@@ -61,5 +58,9 @@ export class FormComponent<
 		}
 
 		form.patchValue(finalObject);
+	}
+
+	protected onSubmit() {
+		this.submit.emit(this.form().value() as unknown as Prettify<SignalFormGroupValue<Form>>);
 	}
 }

@@ -1,5 +1,5 @@
 import { Prettify } from '../prettify';
-import { SignalFormGroup } from '../../../form/signal-form-group';
+import { SignalFormGroup } from '../../../form';
 
 export type SignalFormGroupValue<T extends SignalFormGroup<any>> = {
 	[key in keyof T['controls']]: Prettify<

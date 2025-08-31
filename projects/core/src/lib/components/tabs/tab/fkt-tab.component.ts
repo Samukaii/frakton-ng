@@ -4,12 +4,12 @@ import { FktIconName } from '../../../shared/types';
 
 @Component({
 	selector: 'fkt-tab',
-	exportAs: 'appTab',
+	exportAs: 'fktTab',
 	imports: [],
-	templateUrl: './tab.component.html',
-	styleUrl: './tab.component.scss'
+	templateUrl: './fkt-tab.component.html',
+	styleUrl: './fkt-tab.component.scss'
 })
-export class TabComponent {
+export class FktTabComponent {
 	label = input.required<string>();
 	key = input.required<string>();
 	icon = input<FktIconName>();

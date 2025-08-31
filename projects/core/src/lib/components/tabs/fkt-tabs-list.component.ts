@@ -1,20 +1,20 @@
 import { Component, computed, contentChildren, effect, model, untracked } from '@angular/core';
 import { FktIconComponent } from '../icon';
-import { TabComponent } from './tab/tab.component';
+import { FktTabComponent } from './tab/fkt-tab.component';
 import { NgTemplateOutlet } from '@angular/common';
 import { MarkUsed } from '../../utils/mark-used';
 
 @Component({
-	selector: 'fkt-tabs-container',
+	selector: 'fkt-tabs-list',
 	imports: [
 		FktIconComponent,
 		NgTemplateOutlet
 	],
-	templateUrl: './tabs-container.component.html',
-	styleUrl: './tabs-container.component.scss'
+	templateUrl: './fkt-tabs-list.component.html',
+	styleUrl: './fkt-tabs-list.component.scss'
 })
-export class TabsContainerComponent {
-	tabs = contentChildren(TabComponent);
+export class FktTabsListComponent {
+	tabs = contentChildren(FktTabComponent);
 	activeTab = model<string>();
 
 	protected activeTabComponent = computed(() => {

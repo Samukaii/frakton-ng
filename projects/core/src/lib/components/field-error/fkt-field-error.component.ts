@@ -1,17 +1,17 @@
 import { Component, computed, input } from '@angular/core';
-import { SignalFormControl } from '../../form/signal-form-control';
+import { SignalFormControl } from '../../form';
 import { Generic } from '../../shared/types';
 
 @Component({
 	selector: 'fkt-field-error',
 	imports: [],
-	templateUrl: './field-error.component.html',
-	styleUrl: './field-error.component.scss',
+	templateUrl: './fkt-field-error.component.html',
+	styleUrl: './fkt-field-error.component.scss',
 	host: {
 		'[class.active]': '!!message()',
 	},
 })
-export class FieldErrorComponent {
+export class FktFieldErrorComponent {
 	control = input<SignalFormControl<any>>();
 
 	private messages: { name: string; error: (error: Generic) => string }[] = [

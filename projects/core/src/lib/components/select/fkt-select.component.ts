@@ -1,6 +1,6 @@
 import { Component, computed, inject, input, output, signal } from '@angular/core';
-import { SignalFormControl } from '../../form/signal-form-control';
-import { FieldErrorComponent } from '../field-error/field-error.component';
+import { SignalFormControl } from '../../form';
+import { FktFieldErrorComponent } from '../field-error';
 import { FktSelectOption } from './fkt-select.types';
 import { FktSelectOverlayComponent } from './overlay/fkt-select-overlay.component';
 import { FktOverlayService } from '../overlay/fkt-overlay.service';
@@ -13,7 +13,7 @@ import { ElementIdGeneratorService } from '../../services/element-id-generator/e
 @Component({
 	selector: 'fkt-select',
 	imports: [
-		FieldErrorComponent,
+		FktFieldErrorComponent,
 		FktIconComponent
 	],
 	templateUrl: './fkt-select.component.html',
