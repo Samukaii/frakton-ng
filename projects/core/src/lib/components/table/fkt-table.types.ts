@@ -29,5 +29,4 @@ export interface FktTableColumn {
 
 export type FktTableColumnFn<T extends FktIdentifiable> = (item: T) => FktTableColumn[]
 
-
 export type FktTableClassesFn<T extends FktIdentifiable> = (item: T) => string;

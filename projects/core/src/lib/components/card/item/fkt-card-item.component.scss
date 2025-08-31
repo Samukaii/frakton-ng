@@ -1,5 +1,6 @@
-@reference "../../../styles/tailwind.css";
-
 :host {
-	@apply flex justify-between border-b px-4 py-2 gap-2;
+	display: flex;
+	justify-content: space-between;
+	border-bottom: solid 1px var(--border-color);
+	padding: var(--space-xs) var(--space-md);
 }

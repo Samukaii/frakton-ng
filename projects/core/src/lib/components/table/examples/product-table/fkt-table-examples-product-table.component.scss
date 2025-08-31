@@ -1,0 +1,21 @@
+:host ::ng-deep {
+	.table-product-no-stock {
+		background-color: var(--color-red-50);
+
+		&:hover {
+			background-color: var(--color-red-100) !important;
+		}
+	}
+
+	.table-product-discontinued {
+		background-color: var(--color-gray-50);
+		opacity: 60%;
+		filter: grayscale(1);
+		cursor: pointer;
+		pointer-events: none;
+
+		&:hover {
+			background-color: var(--color-gray-100) !important;
+		}
+	}
+}

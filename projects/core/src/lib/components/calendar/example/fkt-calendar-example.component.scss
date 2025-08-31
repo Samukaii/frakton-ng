@@ -1,5 +1,12 @@
-@reference "../../../styles/tailwind.css";
+.container {
+	width: 100%;
+	display: flex;
+	justify-content: center;
 
-.purple {
-	@apply bg-purple-200;
+	&__content {
+		display: flex;
+		gap: var(--space-md);
+		flex-direction: column;
+		width: 600px;
+	}
 }

@@ -1,6 +1,8 @@
-@reference "../../../styles/tailwind.css";
-
 :host {
-	@apply grid w-full justify-center flex-col gap-4;
+	display: grid;
 	grid-template-columns:  repeat(auto-fit, minmax(var(--min-width, 350px), 1fr));
+	width: 100%;
+	justify-items: center;
+	flex-direction: column;
+	gap: var(--space-md);
 }

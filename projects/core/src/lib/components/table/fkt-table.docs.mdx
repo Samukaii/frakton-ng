@@ -1,4 +1,4 @@
-import { Meta, Story, Controls, ArgTypes } from '@storybook/addon-docs/blocks';
+import {ArgTypes, Canvas, Controls, Meta} from '@storybook/addon-docs/blocks';
 import * as stories from './fkt-table.stories';
 
 <Meta of={stories} />
@@ -63,91 +63,144 @@ interface FktIdentifiable {
 
 A simple table displaying user data with basic column configuration.
 
-<Story of={stories.BasicTable} />
+<Canvas sourceState="none" of={stories.BasicTable} />
 <p></p>
 ___
-<Controls of={stories.BasicTable} />
+<Controls include={["data", "loading", "noHeaderWhenEmpty", "noResults"]} of={stories.BasicTable} />
 
 ```typescript
-import { Component, computed, input } from '@angular/core';
-import { TableComponent } from '@frakton-ng/core';
-import { TableColumnFn } from './models/table-column-fn';
-import { FktIdentifiable, FktNoResults } from '../../../shared/types';
-
-interface User extends FktIdentifiable {
-  name: string;
-  email: string;
-  role: 'admin' | 'user' | 'moderator';
-  status: 'active' | 'inactive' | 'pending';
+export interface User extends FktIdentifiable {
+	name: string;
+	email: string;
+	role: 'admin' | 'user' | 'moderator';
+	status: 'active' | 'inactive' | 'pending';
+	joinedAt: Date;
+	lastLogin?: Date;
 }
 
-const createUserColumns: TableColumnFn<User> = (user) => [
-  {
-    position: '1',
-    name: 'Name',
-    cell: {
-      type: 'default',
-      options: { data: user.name }
-    }
-  },
-  {
-    position: '2',
-    name: 'Email',
-    cell: {
-      type: 'default',
-      options: { data: user.email }
-    }
-  },
-  {
-    position: '3',
-    name: 'Role',
-    cell: {
-      type: 'default',
-      options: { data: user.role }
-    }
-  },
-  {
-    position: '4',
-    name: 'Status',
-    cell: {
-      type: 'default',
-      options: { data: user.status }
-    }
-  }
+export const users: User[] = [
+	{
+		id: 1,
+		name: 'John Doe',
+		email: 'john.doe@example.com',
+		role: 'admin',
+		status: 'active',
+		joinedAt: new Date('2023-01-15'),
+		lastLogin: new Date('2024-08-20')
+	},
+	{
+		id: 2,
+		name: 'Jane Smith',
+		email: 'jane.smith@example.com',
+		role: 'user',
+		status: 'active',
+		joinedAt: new Date('2023-02-20'),
+		lastLogin: new Date('2024-08-19')
+	},
+	{
+		id: 3,
+		name: 'Bob Johnson',
+		email: 'bob.johnson@example.com',
+		role: 'moderator',
+		status: 'inactive',
+		joinedAt: new Date('2023-03-10'),
+		lastLogin: new Date('2024-08-10')
+	},
+	{
+		id: 4,
+		name: 'Alice Brown',
+		email: 'alice.brown@example.com',
+		role: 'user',
+		status: 'pending',
+		joinedAt: new Date('2024-08-15')
+	}
 ];
 
 @Component({
-  selector: 'basic-table-example',
-  template: `
-    <fkt-table
-      [data]="tableData()"
-      [columnsFn]="columnsFn()"
-      [classesFn]="classesFn()"
-      [actionsFn]="actionsFn()"
-      [mainAction]="mainAction()"
-      [loading]="loading()"
-      [noHeaderWhenEmpty]="noHeaderWhenEmpty()"
-      [noResults]="noResults()"
-    />
-  `,
-  standalone: true,
-  imports: [TableComponent]
+	selector: 'fkt-table-examples-basic-table',
+	imports: [
+		FktTableComponent
+	],
+	template: `
+		<fkt-table
+			[data]="data()"
+			[columnsFn]="columnsFn"
+			[loading]="loading()"
+			[noHeaderWhenEmpty]="noHeaderWhenEmpty()"
+			[noResults]="noResults()"
+		/>
+	`,
+	styleUrl: './fkt-table-examples-basic-table.component.scss'
 })
-export class BasicTableExampleComponent {
-  data = input<User[]>([]);
-  columnsFn = input<TableColumnFn<User>>(createUserColumns);
-  classesFn = input<TableClassesFn<User>>(() => '');
-  actionsFn = input<TableActionFn<User>>(() => []);
-  mainAction = input<FktButtonAction | undefined>();
-  loading = input<boolean>(false);
-  noHeaderWhenEmpty = input<boolean>(false);
-  noResults = input<FktNoResults>({
-    label: 'No data available',
-    description: 'There are no records to display at this time.',
-    icon: { name: 'document-text', size: '80px' }
-  });
+export class FktTableExamplesBasicTableComponent {
+	data = input<User[]>(users);
+	loading = input<boolean>(false);
+	noHeaderWhenEmpty = input<boolean>(false);
+	noResults = input<FktNoResults>({
+		label: 'No data available',
+		description: 'There are no records to display at this time.',
+		icon: {name: 'document-text', size: '80px'}
+	});
 
-  tableData = computed(() => this.data());
+	columnsFn: FktTableColumnFn<User> = (user) => [
+		{
+			position: '1',
+			name: 'Name',
+			cell: {
+				type: 'default',
+				options: { value: user.name }
+			}
+		},
+		{
+			position: '2',
+			name: 'Email',
+			cell: {
+				type: 'default',
+				options: { value: user.email }
+			}
+		},
+		{
+			position: '3',
+			name: 'Role',
+			cell: {
+				type: 'badge',
+				options: {
+					text: user.role,
+					color: (() => {
+						switch (user.role) {
+							case "admin":
+								return "blue";
+							case "moderator":
+								return "orange";
+							default:
+								return "green"
+						}
+					})(),
+					variant: "faded"
+				}
+			}
+		},
+		{
+			position: '4',
+			name: 'Status',
+			cell: {
+				type: 'badge',
+				options: {
+					text: user.status,
+					color: (() => {
+						switch (user.status) {
+							case "active":
+								return "green";
+							case "pending":
+								return "orange";
+							default:
+								return "red"
+						}
+					})()
+				}
+			}
+		}
+	];
 }
 ```
 
@@ -155,92 +208,259 @@ export class BasicTableExampleComponent {
 
 Complete table with row actions, main header action, and conditional styling.
 
-<Story of={stories.WithActions} />
+<Canvas sourceState="none" of={stories.WithActions} />
 <p></p>
 ___
-<Controls of={stories.WithActions} />
+<Controls include={["data", "loading", "noHeaderWhenEmpty", "noResults", "mainAction"]} of={stories.WithActions} />
 
 ```typescript
-import { Component, computed, input, signal } from '@angular/core';
-import { TableComponent } from '@frakton-ng/core';
-import { TableActionFn } from './models/table-action-fn';
-import { FktButtonAction } from '../../button';
+export interface User extends FktIdentifiable {
+	name: string;
+	email: string;
+	role: 'admin' | 'user' | 'moderator';
+	status: 'active' | 'inactive' | 'pending';
+	joinedAt: Date;
+	lastLogin?: Date;
+}
 
-const createUserActions: TableActionFn<User> = (user) => [
-  {
-    name: 'view',
-    condition: true,
-    icon: 'eye',
-    classes: ['text-blue-600', 'hover:text-blue-800'],
-    click: () => console.log('View user:', user.name)
-  },
-  {
-    name: 'edit',
-    condition: user.status !== 'inactive',
-    icon: 'pencil',
-    classes: ['text-green-600', 'hover:text-green-800'],
-    click: () => console.log('Edit user:', user.name)
-  },
-  {
-    name: 'delete',
-    condition: user.role !== 'admin',
-    icon: 'trash',
-    classes: ['text-red-600', 'hover:text-red-800'],
-    click: () => console.log('Delete user:', user.name)
-  }
+export const users: User[] = [
+	{
+		id: 1,
+		name: 'John Doe',
+		email: 'john.doe@example.com',
+		role: 'admin',
+		status: 'active',
+		joinedAt: new Date('2023-01-15'),
+		lastLogin: new Date('2024-08-20')
+	},
+	{
+		id: 2,
+		name: 'Jane Smith',
+		email: 'jane.smith@example.com',
+		role: 'user',
+		status: 'active',
+		joinedAt: new Date('2023-02-20'),
+		lastLogin: new Date('2024-08-19')
+	},
+	{
+		id: 3,
+		name: 'Bob Johnson',
+		email: 'bob.johnson@example.com',
+		role: 'moderator',
+		status: 'inactive',
+		joinedAt: new Date('2023-03-10'),
+		lastLogin: new Date('2024-08-10')
+	},
+	{
+		id: 4,
+		name: 'Alice Brown',
+		email: 'alice.brown@example.com',
+		role: 'user',
+		status: 'pending',
+		joinedAt: new Date('2024-08-15')
+	}
 ];
 
-const createUserClasses: TableClassesFn<User> = (user) => {
-  switch (user.status) {
-    case 'active':
-      return 'bg-green-50 hover:bg-green-100';
-    case 'inactive':
-      return 'bg-gray-50 hover:bg-gray-100 opacity-75';
-    case 'pending':
-      return 'bg-yellow-50 hover:bg-yellow-100';
-    default:
-      return '';
-  }
+export const userMainAction: FktButtonAction = {
+	identifier: 'add-user',
+	text: 'Add User',
+	theme: 'raised',
+	color: 'primary',
+	icon: 'plus',
+	iconPosition: 'left',
+	click: () => console.log('Add new user')
 };
 
 @Component({
-  selector: 'table-with-actions-example',
-  template: `
-    <fkt-table
-      [data]="tableData()"
-      [columnsFn]="columnsFn()"
-      [classesFn]="classesFn()"
-      [actionsFn]="actionsFn()"
-      [mainAction]="mainAction()"
-      [loading]="loading()"
-      [noHeaderWhenEmpty]="noHeaderWhenEmpty()"
-      [noResults]="noResults()"
-    />
-  `,
-  standalone: true,
-  imports: [TableComponent]
+	selector: 'fkt-table-examples-table-with-actions',
+	imports: [
+		FktTableComponent
+	],
+	template: `
+		<fkt-table
+			[data]="tableData()"
+			[columnsFn]="columnsFn"
+			[classesFn]="classesFn"
+			[actionsFn]="actionsFn"
+			[mainAction]="mainAction()"
+			[loading]="loading()"
+			[noHeaderWhenEmpty]="noHeaderWhenEmpty()"
+			[noResults]="noResults()"
+		/>
+	`,
+	styleUrl: './fkt-table-examples-table-with-actions.component.scss'
 })
-export class TableWithActionsExampleComponent {
-  data = input<User[]>([]);
-  columnsFn = input<TableColumnFn<User>>(createUserColumns);
-  classesFn = input<TableClassesFn<User>>(createUserClasses);
-  actionsFn = input<TableActionFn<User>>(createUserActions);
-  mainAction = input<FktButtonAction | undefined>({
-    identifier: 'add-user',
-    text: 'Add User',
-    theme: 'raised',
-    color: 'primary',
-    icon: 'plus',
-    iconPosition: 'left',
-    click: () => console.log('Add new user')
-  });
+export class FktTableExamplesTableWithActionsComponent {
+	data = input<User[]>(users);
+	mainAction = input<FktButtonAction | undefined>(userMainAction);
+	loading = input<boolean>(false);
+	noHeaderWhenEmpty = input<boolean>(false);
+	noResults = input<FktNoResults>({
+		label: 'No users found',
+		description: 'There are no users to display. Add a new user to get started.',
+		icon: {name: 'user-group', size: '80px'},
+		action: {
+			identifier: 'add-user-from-empty',
+			text: 'Add User',
+			theme: 'raised',
+			color: 'primary',
+			icon: 'plus',
+			iconPosition: 'left',
+			click: () => {
+				this.addUser();
+			}
+		}
+	});
 
-  private _internalData = signal<User[]>([]);
+	protected tableData = linkedSignal<User[]>(this.data);
 
-  tableData = computed(() => {
-    const inputData = this.data();
-    return inputData.length > 0 ? inputData : this._internalData();
-  });
+	actionsFn: FktTableActionFn<User> = (user) => [
+		{
+			identifier: 'view',
+			condition: true,
+			theme: 'basic',
+			icon: 'eye',
+			color: 'primary',
+			click: () => this.viewUser(user)
+		},
+		{
+			identifier: 'edit',
+			condition: user.status !== 'inactive',
+			theme: 'basic',
+			icon: 'pencil',
+			color: 'green',
+			click: () => this.editUser(user)
+		},
+		{
+			identifier: 'toggle-status',
+			condition: true,
+			theme: 'basic',
+			icon: user.status === 'active' ? 'pause' : 'play',
+			color: user.status === 'active' ? 'yellow' : 'green',
+			click: () => this.toggleUserStatus(user)
+		},
+		{
+			identifier: 'delete',
+			condition: user.role !== 'admin',
+			theme: 'basic',
+			icon: 'trash',
+			color: 'red',
+			click: () => this.deleteUser(user)
+		}
+	];
+
+	columnsFn: FktTableColumnFn<User> = (user) => [
+		{
+			position: '1',
+			name: 'Name',
+			cell: {
+				type: 'default',
+				options: { value: user.name }
+			}
+		},
+		{
+			position: '2',
+			name: 'Email',
+			cell: {
+				type: 'default',
+				options: { value: user.email }
+			}
+		},
+		{
+			position: '3',
+			name: 'Role',
+			cell: {
+				type: 'badge',
+				options: {
+					text: user.role,
+					color: (() => {
+						switch (user.role) {
+							case "admin":
+								return "blue";
+							case "moderator":
+								return "orange";
+							default:
+								return "green"
+						}
+					})(),
+					variant: "faded"
+				}
+			}
+		},
+		{
+			position: '4',
+			name: 'Status',
+			cell: {
+				type: 'badge',
+				options: {
+					text: user.status,
+					color: (() => {
+						switch (user.status) {
+							case "active":
+								return "green";
+							case "pending":
+								return "orange";
+							default:
+								return "red"
+						}
+					})()
+				}
+			}
+		}
+	];
+
+	classesFn: FktTableClassesFn<User> = (user) => {
+		switch (user.status) {
+			case 'active':
+				return 'table-user-active';
+			case 'inactive':
+				return 'table-user-inactive';
+			case 'pending':
+				return 'table-user-pending';
+			default:
+				return '';
+		}
+	};
+
+	private viewUser(user: User) {
+		console.log('Viewing user:', user);
+	}
+
+	private editUser(user: User) {
+		console.log('Editing user:', user);
+	}
+
+	private toggleUserStatus(userToToggle: User) {
+		this.tableData.update(data => {
+			return data.map(user => {
+					if (user.id !== userToToggle.id) return user;
+
+					return {
+						...user,
+						status: userToToggle.status === 'active' ? 'inactive' : 'active' as User['status']
+					}
+				}
+			)
+		});
+	}
+
+	private deleteUser(userToRemove: User) {
+		this.tableData.update(users => users.filter(user => user.id !== userToRemove.id));
+	}
+
+	private addUser(): void {
+		const newUser: User = {
+			id: Date.now(),
+			name: `New User ${Math.floor(Math.random() * 1000)}`,
+			email: `user${Math.floor(Math.random() * 1000)}@example.com`,
+			role: 'user',
+			status: 'active',
+			joinedAt: new Date(),
+			lastLogin: new Date()
+		};
+
+		this.tableData.update(data => [...data, newUser]);
+	}
 }
 ```
 
@@ -248,34 +468,236 @@ export class TableWithActionsExampleComponent {
 
 Table displaying loading spinner with customizable loading message.
 
-<Story of={stories.LoadingState} />
+<Canvas sourceState="none" of={stories.LoadingState} />
 <p></p>
 ___
-<Controls of={stories.LoadingState} />
+<Controls include={["data", "loading", "noHeaderWhenEmpty", "noResults", "mainAction"]} of={stories.LoadingState} />
 
 ```typescript
-@Component({
-  selector: 'loading-table-example',
-  template: `
-    <fkt-table
-      [data]="data()"
-      [columnsFn]="columnsFn()"
-      [loading]="true"
-      [noResults]="loadingNoResults()"
-    />
-  `,
-  standalone: true,
-  imports: [TableComponent]
-})
-export class LoadingTableExampleComponent {
-  data = input<User[]>([]);
-  columnsFn = input<TableColumnFn<User>>(createUserColumns);
+export interface User extends FktIdentifiable {
+	name: string;
+	email: string;
+	role: 'admin' | 'user' | 'moderator';
+	status: 'active' | 'inactive' | 'pending';
+	joinedAt: Date;
+	lastLogin?: Date;
+}
 
-  loadingNoResults = computed<FktNoResults>(() => ({
-    label: 'Loading data...',
-    description: 'Please wait while we fetch your data.',
-    icon: { name: 'arrow-path', size: '80px' }
-  }));
+export const users: User[] = [
+	{
+		id: 1,
+		name: 'John Doe',
+		email: 'john.doe@example.com',
+		role: 'admin',
+		status: 'active',
+		joinedAt: new Date('2023-01-15'),
+		lastLogin: new Date('2024-08-20')
+	},
+	{
+		id: 2,
+		name: 'Jane Smith',
+		email: 'jane.smith@example.com',
+		role: 'user',
+		status: 'active',
+		joinedAt: new Date('2023-02-20'),
+		lastLogin: new Date('2024-08-19')
+	},
+	{
+		id: 3,
+		name: 'Bob Johnson',
+		email: 'bob.johnson@example.com',
+		role: 'moderator',
+		status: 'inactive',
+		joinedAt: new Date('2023-03-10'),
+		lastLogin: new Date('2024-08-10')
+	},
+	{
+		id: 4,
+		name: 'Alice Brown',
+		email: 'alice.brown@example.com',
+		role: 'user',
+		status: 'pending',
+		joinedAt: new Date('2024-08-15')
+	}
+];
+
+export const userMainAction: FktButtonAction = {
+	identifier: 'add-user',
+	text: 'Add User',
+	theme: 'raised',
+	color: 'primary',
+	icon: 'plus',
+	iconPosition: 'left',
+	click: () => console.log('Add new user')
+};
+
+@Component({
+	selector: 'fkt-table-examples-loading-state',
+	imports: [
+		FktTableComponent
+	],
+	template: `
+		<fkt-table
+			[data]="data()"
+			[columnsFn]="columnsFn"
+			[classesFn]="classesFn"
+			[actionsFn]="actionsFn"
+			[mainAction]="tableMainAction()"
+			[loading]="loading()"
+			[noHeaderWhenEmpty]="noHeaderWhenEmpty()"
+			[noResults]="tableNoResults()"
+		/>
+	`,
+	styleUrl: './fkt-table-examples-loading-state.component.scss'
+})
+export class FktTableExamplesLoadingStateComponent {
+	data = input<User[]>(users);
+	mainAction = input<FktButtonAction>(userMainAction);
+	loading = input<boolean>(false);
+	noHeaderWhenEmpty = input<boolean>(false);
+	noResults = input<FktNoResults>({
+		label: 'No data available',
+		description: 'There are no records to display at this time.',
+		icon: {name: 'document-text', size: '80px'}
+	});
+
+	tableData = linkedSignal(this.data);
+
+	tableMainAction = linkedSignal((): FktButtonAction => {
+		return {
+			...this.mainAction(),
+			click: () => this.addUser()
+		}
+	})
+
+	tableNoResults = linkedSignal((): FktNoResults => {
+		return {
+			...this.noResults(),
+			action: {
+				identifier: 'load-data',
+				text: 'Load Sample Data',
+				theme: 'raised',
+				color: 'primary',
+				icon: 'arrow-down-tray',
+				iconPosition: 'left',
+				click: () => this.addUser()
+			}
+		}
+	})
+
+	protected columnsFn: FktTableColumnFn<User> = (user) => [
+		{
+			position: '1',
+			name: 'Name',
+			cell: {
+				type: 'default',
+				options: {value: user.name}
+			}
+		},
+		{
+			position: '2',
+			name: 'Email',
+			cell: {
+				type: 'default',
+				options: {value: user.email}
+			}
+		},
+		{
+			position: '3',
+			name: 'Role',
+			cell: {
+				type: 'badge',
+				options: {
+					text: user.role,
+					color: (() => {
+						switch (user.role) {
+							case "admin":
+								return "blue";
+							case "moderator":
+								return "orange";
+							default:
+								return "green"
+						}
+					})(),
+					variant: "faded"
+				}
+			}
+		},
+		{
+			position: '4',
+			name: 'Status',
+			cell: {
+				type: 'badge',
+				options: {
+					text: user.status,
+					color: (() => {
+						switch (user.status) {
+							case "active":
+								return "green";
+							case "pending":
+								return "orange";
+							default:
+								return "red"
+						}
+					})()
+				}
+			}
+		}
+	];
+
+	protected classesFn: FktTableClassesFn<User> = (user) => {
+		switch (user.status) {
+			case 'active':
+				return 'table-user-active';
+			case 'inactive':
+				return 'table-user-inactive';
+			case 'pending':
+				return 'table-user-pending';
+			default:
+				return '';
+		}
+	};
+
+	protected actionsFn: FktTableActionFn<User> = (user) => [
+		{
+			identifier: 'view',
+			condition: true,
+			theme: 'basic',
+			icon: 'eye',
+			color: 'primary',
+			click: () => console.log('View user:', user.name)
+		},
+		{
+			identifier: 'edit',
+			condition: user.status !== 'inactive',
+			theme: 'basic',
+			icon: 'pencil',
+			color: 'green',
+			click: () => console.log('Edit user:', user.name)
+		},
+		{
+			identifier: 'delete',
+			condition: user.role === 'admin',
+			theme: 'basic',
+			icon: 'trash',
+			color: 'red',
+			click: () => console.log('Delete user:', user.name)
+		}
+	];
+
+	private addUser(): void {
+		const newUser: User = {
+			id: Date.now(),
+			name: `New User ${Math.floor(Math.random() * 1000)}`,
+			email: `user${Math.floor(Math.random() * 1000)}@example.com`,
+			role: 'user',
+			status: 'active',
+			joinedAt: new Date(),
+			lastLogin: new Date()
+		};
+
+		this.tableData.update(data => [...data, newUser]);
+	}
 }
 ```
 
@@ -283,53 +705,213 @@ export class LoadingTableExampleComponent {
 
 Table with comprehensive empty state configuration including action button.
 
-<Story of={stories.EmptyState} />
+<Canvas sourceState="none" of={stories.EmptyState} />
 <p></p>
 ___
-<Controls of={stories.EmptyState} />
+<Controls include={["data", "loading", "noHeaderWhenEmpty", "noResults"]} of={stories.EmptyState} />
 
 ```typescript
+export interface User extends FktIdentifiable {
+	name: string;
+	email: string;
+	role: 'admin' | 'user' | 'moderator';
+	status: 'active' | 'inactive' | 'pending';
+	joinedAt: Date;
+	lastLogin?: Date;
+}
+
+export const users: User[] = [
+	{
+		id: 1,
+		name: 'John Doe',
+		email: 'john.doe@example.com',
+		role: 'admin',
+		status: 'active',
+		joinedAt: new Date('2023-01-15'),
+		lastLogin: new Date('2024-08-20')
+	},
+	{
+		id: 2,
+		name: 'Jane Smith',
+		email: 'jane.smith@example.com',
+		role: 'user',
+		status: 'active',
+		joinedAt: new Date('2023-02-20'),
+		lastLogin: new Date('2024-08-19')
+	},
+	{
+		id: 3,
+		name: 'Bob Johnson',
+		email: 'bob.johnson@example.com',
+		role: 'moderator',
+		status: 'inactive',
+		joinedAt: new Date('2023-03-10'),
+		lastLogin: new Date('2024-08-10')
+	},
+	{
+		id: 4,
+		name: 'Alice Brown',
+		email: 'alice.brown@example.com',
+		role: 'user',
+		status: 'pending',
+		joinedAt: new Date('2024-08-15')
+	}
+];
+
+export const userMainAction: FktButtonAction = {
+	identifier: 'add-user',
+	text: 'Add User',
+	theme: 'raised',
+	color: 'primary',
+	icon: 'plus',
+	iconPosition: 'left',
+	click: () => console.log('Add new user')
+};
+
+
 @Component({
-  selector: 'empty-table-example',
-  template: `
-    <fkt-table
-      [data]="[]"
-      [columnsFn]="columnsFn()"
-      [mainAction]="mainAction()"
-      [noHeaderWhenEmpty]="true"
-      [noResults]="emptyStateConfig()"
-    />
-  `,
-  standalone: true,
-  imports: [TableComponent]
+	selector: 'fkt-table-examples-empty-state',
+	imports: [
+		FktTableComponent
+	],
+	template: `
+		<fkt-table
+			[data]="tableData()"
+			[columnsFn]="columnsFn"
+			[classesFn]="classesFn"
+			[mainAction]="tableMainAction()"
+			[loading]="loading()"
+			[noHeaderWhenEmpty]="noHeaderWhenEmpty()"
+			[noResults]="tableNoResults()"
+		/>
+	`,
+	styleUrl: './fkt-table-examples-empty-state.component.scss'
 })
-export class EmptyTableExampleComponent {
-  columnsFn = input<TableColumnFn<User>>(createUserColumns);
+export class FktTableExamplesEmptyStateComponent {
+	data = input<User[]>(users);
+	mainAction = input<FktButtonAction>(userMainAction);
+	loading = input<boolean>(false);
+	noHeaderWhenEmpty = input<boolean>(false);
+	noResults = input<FktNoResults>({
+		label: 'No data available',
+		description: 'There are no records to display at this time.',
+		icon: {name: 'document-text', size: '80px'}
+	});
 
-  mainAction = computed<FktButtonAction>(() => ({
-    identifier: 'add-user',
-    text: 'Add User',
-    theme: 'raised',
-    color: 'primary',
-    icon: 'plus',
-    iconPosition: 'left',
-    click: () => console.log('Add first user')
-  }));
+	tableData = linkedSignal(this.data);
 
-  emptyStateConfig = computed<FktNoResults>(() => ({
-    label: 'No data to display',
-    description: 'The table is currently empty. Add some records to get started.',
-    icon: { name: 'table-cells', size: '96px' },
-    action: {
-      identifier: 'add-data',
-      text: 'Add Data',
-      theme: 'raised',
-      color: 'primary',
-      icon: 'plus',
-      iconPosition: 'left',
-      click: () => console.log('Add data clicked')
-    }
-  }));
+	tableNoResults = linkedSignal((): FktNoResults => {
+		return {
+			...this.noResults(),
+			action: {
+				identifier: 'add-data',
+				text: 'Add Data',
+				theme: 'raised',
+				color: 'primary',
+				icon: 'plus',
+				iconPosition: 'left',
+				click: () => {
+					this.addUser();
+				}
+			}
+		}
+	});
+
+	tableMainAction(): FktButtonAction {
+		return {
+			...this.mainAction(),
+			click: () => {
+				this.addUser();
+			}
+		}
+	}
+
+	columnsFn: FktTableColumnFn<User> = (user) => [
+		{
+			position: '1',
+			name: 'Name',
+			cell: {
+				type: 'default',
+				options: {value: user.name}
+			}
+		},
+		{
+			position: '2',
+			name: 'Email',
+			cell: {
+				type: 'default',
+				options: {value: user.email}
+			}
+		},
+		{
+			position: '3',
+			name: 'Role',
+			cell: {
+				type: 'badge',
+				options: {
+					text: user.role,
+					color: (() => {
+						switch (user.role) {
+							case "admin":
+								return "blue";
+							case "moderator":
+								return "orange";
+							default:
+								return "green"
+						}
+					})(),
+					variant: "faded"
+				}
+			}
+		},
+		{
+			position: '4',
+			name: 'Status',
+			cell: {
+				type: 'badge',
+				options: {
+					text: user.status,
+					color: (() => {
+						switch (user.status) {
+							case "active":
+								return "green";
+							case "pending":
+								return "orange";
+							default:
+								return "red"
+						}
+					})()
+				}
+			}
+		}
+	];
+
+	classesFn: FktTableClassesFn<User> = (user) => {
+		switch (user.status) {
+			case 'active':
+				return 'table-user-active';
+			case 'inactive':
+				return 'table-user-inactive';
+			case 'pending':
+				return 'table-user-pending';
+			default:
+				return '';
+		}
+	};
+
+	private addUser() {
+		const newUser: User = {
+			id: Date.now(),
+			name: `New User ${Math.floor(Math.random() * 1000)}`,
+			email: `user${Math.floor(Math.random() * 1000)}@example.com`,
+			role: 'user',
+			status: 'active',
+			joinedAt: new Date(),
+			lastLogin: new Date()
+		};
+
+		this.tableData.update(data => [...data, newUser]);
+	}
 }
 ```
 
@@ -337,79 +919,282 @@ export class EmptyTableExampleComponent {
 
 Interactive example with state controls for testing different table states.
 
-<Story of={stories.InteractiveStates} />
+<Canvas sourceState="none" of={stories.InteractiveStates} />
 <p></p>
 ___
-<Controls of={stories.InteractiveStates} />
+<Controls include={["data", "loading", "noHeaderWhenEmpty", "noResults", "mainAction"]} of={stories.InteractiveStates} />
 
 ```typescript
-import { FktButtonComponent } from '../../button';
-
 type TableState = 'loading' | 'empty' | 'populated';
 
+export interface User extends FktIdentifiable {
+	name: string;
+	email: string;
+	role: 'admin' | 'user' | 'moderator';
+	status: 'active' | 'inactive' | 'pending';
+	joinedAt: Date;
+	lastLogin?: Date;
+}
+
+export const users: User[] = [
+	{
+		id: 1,
+		name: 'John Doe',
+		email: 'john.doe@example.com',
+		role: 'admin',
+		status: 'active',
+		joinedAt: new Date('2023-01-15'),
+		lastLogin: new Date('2024-08-20')
+	},
+	{
+		id: 2,
+		name: 'Jane Smith',
+		email: 'jane.smith@example.com',
+		role: 'user',
+		status: 'active',
+		joinedAt: new Date('2023-02-20'),
+		lastLogin: new Date('2024-08-19')
+	},
+	{
+		id: 3,
+		name: 'Bob Johnson',
+		email: 'bob.johnson@example.com',
+		role: 'moderator',
+		status: 'inactive',
+		joinedAt: new Date('2023-03-10'),
+		lastLogin: new Date('2024-08-10')
+	},
+	{
+		id: 4,
+		name: 'Alice Brown',
+		email: 'alice.brown@example.com',
+		role: 'user',
+		status: 'pending',
+		joinedAt: new Date('2024-08-15')
+	}
+];
+
+export const userMainAction: FktButtonAction = {
+	identifier: 'add-user',
+	text: 'Add User',
+	theme: 'raised',
+	color: 'primary',
+	icon: 'plus',
+	iconPosition: 'left',
+	click: () => console.log('Add new user')
+};
+
+
 @Component({
-  selector: 'table-states-example',
-  template: `
-    <div class="space-y-4">
-      <!-- State Control Buttons -->
-      <div class="flex gap-2 p-4 bg-gray-50 rounded-lg">
-        <fkt-button
-          [text]="'Loading State'"
-          [theme]="currentState() === 'loading' ? 'raised' : 'stroked'"
-          [color]="'primary'"
-          [disabled]="false"
-          (click)="setState('loading')"
-        />
-        <fkt-button
-          [text]="'Empty State'"
-          [theme]="currentState() === 'empty' ? 'raised' : 'stroked'"
-          [color]="'yellow'"
-          [disabled]="false"
-          (click)="setState('empty')"
-        />
-        <fkt-button
-          [text]="'Populated State'"
-          [theme]="currentState() === 'populated' ? 'raised' : 'stroked'"
-          [color]="'green'"
-          [disabled]="false"
-          (click)="setState('populated')"
-        />
-      </div>
+	selector: 'fkt-table-examples-interactive-states',
+	imports: [
+		FktButtonComponent,
+		FktTableComponent
+	],
+	template: `
+		<div class="container">
+			<div class="container__actions">
+				<fkt-button
+					text="Loading State"
+					color="primary"
+					[theme]="currentState() === 'loading' ? 'raised' : 'stroked'"
+					[disabled]="false"
+					(click)="setState('loading')"
+				/>
+				<fkt-button
+					text="Empty State"
+					color="yellow"
+					[theme]="currentState() === 'empty' ? 'raised' : 'stroked'"
+					[disabled]="false"
+					(click)="setState('empty')"
+				/>
+				<fkt-button
+					text="Populated State"
+					color="green"
+					[theme]="currentState() === 'populated' ? 'raised' : 'stroked'"
+					[disabled]="false"
+					(click)="setState('populated')"
+				/>
+			</div>
 
-      <!-- Table -->
-      <fkt-table
-        [data]="tableData()"
-        [columnsFn]="columnsFn()"
-        [loading]="isLoading()"
-        [noHeaderWhenEmpty]="noHeaderWhenEmpty()"
-        [noResults]="noResults()"
-      />
-    </div>
-  `,
-  standalone: true,
-  imports: [TableComponent, FktButtonComponent]
+			<fkt-table
+				[data]="tableData()"
+				[columnsFn]="columnsFn"
+				[classesFn]="classesFn"
+				[actionsFn]="actionsFn"
+				[mainAction]="tableMainAction()"
+				[loading]="tableLoading()"
+				[noHeaderWhenEmpty]="noHeaderWhenEmpty()"
+				[noResults]="tableNoResults()"
+			/>
+		</div>
+	`,
+	styleUrl: './fkt-table-examples-interactive-states.component.scss'
 })
-export class TableStatesExampleComponent {
-  private currentState = signal<TableState>('populated');
+export class FktTableExamplesInteractiveStatesComponent {
+	data = input<User[]>(users);
+	mainAction = input<FktButtonAction>(userMainAction);
+	loading = input<boolean>(false);
+	noHeaderWhenEmpty = input<boolean>(true);
+	noResults = input<FktNoResults>({
+		label: 'No data to display',
+		description: 'The table is currently empty. Try loading some data or adding new records.',
+		icon: { name: 'table-cells', size: '96px' },
+	});
 
-  tableData = computed(() => {
-    const state = this.currentState();
-    switch (state) {
-      case 'loading':
-      case 'populated':
-        return this.data();
-      case 'empty':
-        return [];
-      default:
-        return this.data();
-    }
-  });
+	protected currentState = signal<TableState>('populated');
 
-  isLoading = computed(() => this.currentState() === 'loading');
+	protected tableLoading = linkedSignal(() => {
+		const state = this.currentState();
+		const inputLoading = this.loading();
+		return state === 'loading' || inputLoading;
+	});
 
-  setState(newState: TableState): void {
-    this.currentState.set(newState);
-  }
+	tableMainAction = linkedSignal((): FktButtonAction => {
+		return {
+			...this.mainAction(),
+			click: () => this.addUser()
+		}
+	})
+
+	tableNoResults = linkedSignal((): FktNoResults => {
+		return {
+			...this.noResults(),
+			action: {
+				identifier: 'load-data',
+				text: 'Load Sample Data',
+				theme: 'raised',
+				color: 'primary',
+				icon: 'arrow-down-tray',
+				iconPosition: 'left',
+				click: () => this.addUser()
+			}
+		}
+	})
+
+	protected tableData = linkedSignal(() => {
+		const state = this.currentState();
+		const inputData = this.data();
+
+		switch (state) {
+			case 'loading':
+				return inputData;
+			case 'empty':
+				return [];
+			case 'populated':
+				return inputData;
+			default:
+				return inputData;
+		}
+	});
+
+	protected columnsFn: FktTableColumnFn<User> = (user) => [
+		{
+			position: '1',
+			name: 'Name',
+			cell: {
+				type: 'default',
+				options: { value: user.name }
+			}
+		},
+		{
+			position: '2',
+			name: 'Email',
+			cell: {
+				type: 'default',
+				options: { value: user.email }
+			}
+		},
+		{
+			position: '3',
+			name: 'Role',
+			cell: {
+				type: 'badge',
+				options: {
+					text: user.role,
+					color: (() => {
+						switch (user.role) {
+							case "admin":
+								return "blue";
+							case "moderator":
+								return "orange";
+							default:
+								return "green"
+						}
+					})(),
+					variant: "faded"
+				}
+			}
+		},
+		{
+			position: '4',
+			name: 'Status',
+			cell: {
+				type: 'badge',
+				options: {
+					text: user.status,
+					color: (() => {
+						switch (user.status) {
+							case "active":
+								return "green";
+							case "pending":
+								return "orange";
+							default:
+								return "red"
+						}
+					})()
+				}
+			}
+		}
+	];
+
+	protected classesFn: FktTableClassesFn<User> = (user) => {
+		switch (user.status) {
+			case 'active':
+				return 'table-user-active';
+			case 'inactive':
+				return 'table-user-inactive';
+			case 'pending':
+				return 'table-user-pending';
+			default:
+				return '';
+		}
+	};
+
+	protected actionsFn: FktTableActionFn<User> = (user) => [
+		{
+			identifier: 'view',
+			condition: true,
+			theme: 'basic',
+			icon: 'eye',
+			color: 'primary',
+			click: () => console.log('View user:', user.name)
+		},
+		{
+			identifier: 'edit',
+			condition: user.status !== 'inactive',
+			theme: 'basic',
+			icon: 'pencil',
+			color: 'green',
+			click: () => console.log('Edit user:', user.name)
+		},
+		{
+			identifier: 'delete',
+			condition: user.role === 'admin',
+			theme: 'basic',
+			icon: 'trash',
+			color: 'red',
+			click: () => console.log('Delete user:', user.name)
+		}
+	];
+
+	protected setState(newState: TableState): void {
+		this.currentState.set(newState);
+	}
+
+	private addUser(): void {
+		this.setState('populated');
+	}
 }
 ```
 
@@ -417,92 +1202,413 @@ export class TableStatesExampleComponent {
 
 Advanced example showing different cell types and custom formatting.
 
-<Story of={stories.CustomCells} />
+<Canvas sourceState="none" of={stories.CustomCells} />
 <p></p>
 ___
-<Controls of={stories.CustomCells} />
+<Controls include={["loading", "noHeaderWhenEmpty"]} of={stories.CustomCells} />
 
 ```typescript
-interface Product extends FktIdentifiable {
-  name: string;
-  category: string;
-  price: number;
-  stock: number;
-  status: 'active' | 'inactive' | 'discontinued';
-}
-
-const createProductColumns: TableColumnFn<Product> = (product) => [
-  {
-    position: '1',
-    name: 'Product',
-    cell: {
-      type: 'default',
-      options: { data: product.name }
-    }
-  },
-  {
-    position: '3',
-    name: 'Price',
-    cell: {
-      type: 'default',
-      options: {
-        data: new Intl.NumberFormat('en-US', {
-          style: 'currency',
-          currency: 'USD'
-        }).format(product.price)
-      }
-    }
-  },
-  {
-    position: '5',
-    name: 'Status',
-    cell: {
-      type: 'with-action',
-      options: {
-        data: product.status,
-        action: {
-          identifier: 'toggle-status',
-          icon: product.status === 'active' ? 'check-circle' : 'x-circle',
-          theme: 'basic',
-          color: product.status === 'active' ? 'green' : 'red',
-          click: () => console.log('Toggle status:', product)
-        }
-      }
-    }
-  }
-];
-
 @Component({
-  selector: 'custom-cells-example',
-  template: `
-    <div class="space-y-8">
-      <div>
-        <h3 class="text-lg font-semibold mb-4">Products - Custom Formatting</h3>
-        <fkt-table
-          [data]="productData()"
-          [columnsFn]="productColumns()"
-          [mainAction]="productMainAction()"
-        />
-      </div>
-    </div>
-  `,
-  standalone: true,
-  imports: [TableComponent]
+	selector: 'fkt-table-examples-custom-cells',
+	imports: [
+		FktTableComponent
+	],
+	template: `
+		<div class="container">
+			<div class="container__table">
+				<h3>Products - Custom Price and Status Formatting</h3>
+				<fkt-table
+					[data]="productData()"
+					[columnsFn]="productColumns()"
+					[classesFn]="productClassesFn"
+					[actionsFn]="productActionsFn"
+					[mainAction]="productMainAction()"
+					[loading]="loading()"
+					[noHeaderWhenEmpty]="noHeaderWhenEmpty()"
+					[noResults]="productNoResults"
+				/>
+			</div>
+
+			<div class="container__table">
+				<h3>Tasks - Status and Priority Indicators</h3>
+				<fkt-table
+					[data]="taskData()"
+					[columnsFn]="taskColumns()"
+					[classesFn]="taskClassesFn"
+					[actionsFn]="taskActionsFn"
+					[mainAction]="taskMainAction()"
+					[loading]="loading()"
+					[noHeaderWhenEmpty]="noHeaderWhenEmpty()"
+					[noResults]="taskNoResults"
+				/>
+			</div>
+		</div>
+	`,
+	styleUrl: './fkt-table-examples-custom-cells.component.scss'
 })
-export class CustomCellsExampleComponent {
-  productData = input<Product[]>([]);
+export class FktTableExamplesCustomCellsComponent {
+	loading = input<boolean>(false);
+	noHeaderWhenEmpty = input<boolean>(false);
 
-  productColumns = computed<TableColumnFn<Product>>(() => createProductColumns);
+	productData = signal<Product[]>(productData.products);
+	taskData = signal<Task[]>(taskData.tasks);
 
-  productMainAction = computed<FktButtonAction>(() => ({
-    identifier: 'add-product',
-    text: 'Add Product',
-    theme: 'raised',
-    color: 'primary',
-    icon: 'plus',
-    iconPosition: 'left',
-    click: () => console.log('Add new product')
-  }));
+	productColumns = computed<FktTableColumnFn<Product>>(() => (product) => [
+		{
+			position: '1',
+			name: 'Product',
+			cell: {
+				type: 'default',
+				options: {value: product.name}
+			}
+		},
+		{
+			position: '2',
+			name: 'Category',
+			cell: {
+				type: 'default',
+				options: {value: product.category}
+			}
+		},
+		{
+			position: '3',
+			name: 'Price',
+			cell: {
+				type: 'default',
+				options: {
+					value: new Intl.NumberFormat('en-US', {
+						style: 'currency',
+						currency: 'USD'
+					}).format(product.price)
+				}
+			}
+		},
+		{
+			position: '4',
+			name: 'Stock',
+			cell: {
+				type: 'default',
+				options: {
+					value: product.stock === 0
+						? 'Out of Stock'
+						: `${product.stock} units`
+				}
+			}
+		},
+		{
+			position: '5',
+			name: 'Status',
+			cell: {
+				type: 'with-action',
+				options: {
+					text: {
+						value:
+							this.formatProductStatus(product.status)
+					},
+					actions: [{
+						identifier: 'toggle-product-status',
+						icon: product.status === 'active' ? 'check-circle' : 'x-circle',
+						theme: 'basic',
+						color: product.status === 'active' ? 'green' : 'red',
+						click: () => this.toggleProductStatus(product)
+					}]
+				}
+			}
+		}
+	]);
+
+	taskColumns = computed<FktTableColumnFn<Task>>(() => (task) => [
+		{
+			position: '1',
+			name: 'Task',
+			cell: {
+				type: 'default',
+				options: {value: task.title}
+			}
+		},
+		{
+			position: '2',
+			name: 'Assignee',
+			cell: {
+				type: 'default',
+				options: {value: task.assignee}
+			}
+		},
+		{
+			position: '3',
+			name: 'Priority',
+			cell: {
+				type: 'with-action',
+				options: {
+					text: {
+						value: this.formatPriority(task.priority)
+					},
+					actions: [
+						{
+							identifier: 'change-priority',
+							icon: 'pencil-square',
+							color: "primary",
+							tooltip: "Change priority",
+							theme: 'basic',
+							condition: true,
+							click: () => this.changePriority(task)
+						}
+					]
+				}
+			}
+		},
+		{
+			position: '4',
+			name: 'Status',
+			cell: {
+				type: 'with-action',
+				options: {
+					text: {value: this.formatTaskStatus(task.status)},
+					actions: [
+						{
+							identifier: 'change-task',
+							condition: true,
+							theme: 'basic',
+							color: this.getStatusColor(task.status),
+							icon: this.getStatusIcon(task.status),
+							click: () => this.changeTaskStatus(task)
+						}
+					]
+				}
+			}
+		},
+		{
+			position: '5',
+			name: 'Due Date',
+			cell: {
+				type: 'default',
+				options: {
+					value: new Intl.DateTimeFormat('en-US', {
+						month: 'short',
+						day: 'numeric',
+						year: 'numeric'
+					}).format(task.dueDate)
+				}
+			}
+		}
+	]);
+
+	productClassesFn: FktTableClassesFn<Product> = (product) => {
+		if (product.stock === 0) {
+			return 'table-product-no-stock';
+		}
+		if (product.status === 'discontinued') {
+			return 'table-product-discontinued';
+		}
+		return '';
+	};
+
+	taskClassesFn: FktTableClassesFn<Task> = (task) => {
+		switch (task.status) {
+			case 'completed':
+				return 'table-task-completed';
+			case 'in-progress':
+				return 'table-task-in-progress';
+			case 'cancelled':
+				return 'table-task-cancelled';
+			default:
+				return '';
+		}
+	};
+
+	productActionsFn: FktTableActionFn<Product> = (product) => [
+		{
+			identifier: 'edit',
+			condition: product.status !== 'discontinued',
+			icon: 'pencil',
+			color: 'green',
+			theme: 'basic',
+			click: () => console.log('Edit product:', product.name)
+		},
+		{
+			identifier: 'delete',
+			condition: true,
+			icon: 'trash',
+			color: 'red',
+			theme: 'basic',
+			click: () => console.log('Delete product:', product.name)
+		}
+	];
+
+	taskActionsFn: FktTableActionFn<Task> = (task) => [
+		{
+			identifier: 'complete',
+			condition: task.status !== 'completed' && task.status !== 'cancelled',
+			icon: 'check',
+			color: 'green',
+			theme: 'basic',
+			click: () => console.log('Complete task:', task.title)
+		},
+		{
+			identifier: 'edit',
+			condition: task.status !== 'completed',
+			icon: 'pencil',
+			color: 'primary',
+			theme: 'basic',
+			click: () => console.log('Edit task:', task.title)
+		},
+		{
+			identifier: 'cancel',
+			condition: task.status !== 'completed' && task.status !== 'cancelled',
+			icon: 'x-mark',
+			color: 'red',
+			theme: 'basic',
+			click: () => console.log('Cancel task:', task.title)
+		}
+	];
+
+	taskMainAction = computed<FktButtonAction>(() => ({
+		identifier: 'add-task',
+		text: 'New Task',
+		theme: 'raised',
+		color: 'primary',
+		icon: 'plus',
+		iconPosition: 'left',
+		click: () => console.log('Add new task')
+	}));
+	productMainAction = computed<FktButtonAction>(() => ({
+		identifier: 'add-product',
+		text: 'Add Product',
+		theme: 'raised',
+		color: 'primary',
+		icon: 'plus',
+		iconPosition: 'left',
+		click: () => console.log('Add new product')
+	}));
+
+
+	taskNoResults: FktNoResults = {
+		label: 'No tasks assigned',
+		description: 'You don\'t have any tasks yet. Create your first task to get started.',
+		icon: {name: 'clipboard-document-list', size: '80px'},
+		action: {
+			identifier: 'add-first-task',
+			text: 'Create Task',
+			theme: 'raised',
+			color: 'primary',
+			icon: 'plus',
+			iconPosition: 'left',
+			click: () => console.log('Add first task')
+		}
+	};
+
+	productNoResults: FktNoResults = {
+		label: 'No products available',
+		description: 'Your product catalog is empty. Add some products to get started.',
+		icon: {name: 'shopping-bag', size: '80px'},
+		action: {
+			identifier: 'add-first-product',
+			text: 'Add Product',
+			theme: 'raised',
+			color: 'primary',
+			icon: 'plus',
+			iconPosition: 'left',
+			click: () => console.log('Add first product')
+		}
+	};
+
+	private formatProductStatus(status: Product['status']): string {
+		switch (status) {
+			case 'active':
+				return 'Active';
+			case 'inactive':
+				return 'Inactive';
+			case 'discontinued':
+				return 'Discontinued';
+			default:
+				return status;
+		}
+	}
+
+	private toggleProductStatus(product: Product): void {
+		console.log('Toggle product status:', product);
+	}
+
+	private formatPriority(priority: Task['priority']): string {
+		return priority.charAt(0).toUpperCase() + priority.slice(1);
+	}
+
+	private getPriorityIcon(priority: Task['priority']): FktIconName {
+		switch (priority) {
+			case 'high':
+				return 'arrow-up';
+			case 'medium':
+				return 'minus';
+			case 'low':
+				return 'arrow-down';
+			default:
+				return 'minus';
+		}
+	}
+
+	private getPriorityColor(priority: Task['priority']): string {
+		switch (priority) {
+			case 'high':
+				return 'red';
+			case 'medium':
+				return 'yellow';
+			case 'low':
+				return 'green';
+			default:
+				return 'gray';
+		}
+	}
+
+	private formatTaskStatus(status: Task['status']): string {
+		switch (status) {
+			case 'todo':
+				return 'To Do';
+			case 'in-progress':
+				return 'In Progress';
+			case 'completed':
+				return 'Completed';
+			case 'cancelled':
+				return 'Cancelled';
+			default:
+				return status;
+		}
+	}
+
+	private getStatusIcon(status: Task['status']): FktIconName {
+		switch (status) {
+			case 'todo':
+				return 'clock';
+			case 'in-progress':
+				return 'play';
+			case 'completed':
+				return 'check';
+			case 'cancelled':
+				return 'x-mark';
+			default:
+				return 'clock';
+		}
+	}
+
+	private getStatusColor(status: Task['status']): FktColor {
+		switch (status) {
+			case 'in-progress':
+				return 'yellow';
+			case 'completed':
+				return 'green';
+			case 'cancelled':
+				return 'red';
+			default:
+				return 'blue';
+		}
+	}
+
+	private changePriority(task: Task): void {
+		console.log('Change priority for task:', task);
+	}
+
+	private changeTaskStatus(task: Task): void {
+		console.log('Change status for task:', task);
+	}
 }
 ```
 
@@ -510,61 +1616,172 @@ export class CustomCellsExampleComponent {
 
 Real-world example with product data and inventory management actions.
 
-<Story of={stories.ProductTable} />
+<Canvas sourceState="none" of={stories.ProductTable} />
 <p></p>
 ___
-<Controls of={stories.ProductTable} />
+<Controls include={["data", "loading", "noHeaderWhenEmpty", "noResults"]} of={stories.ProductTable} />
 
 ```typescript
-// Full product table implementation with all features
+export interface Product extends FktIdentifiable {
+	name: string;
+	category: string;
+	price: number;
+	stock: number;
+	status: 'active' | 'inactive' | 'discontinued';
+	createdAt: Date;
+}
+
+export const products: Product[] = [
+	{
+		id: 1,
+		name: 'Laptop Pro',
+		category: 'Electronics',
+		price: 1299.99,
+		stock: 25,
+		status: 'active',
+		createdAt: new Date('2023-01-10')
+	},
+	{
+		id: 2,
+		name: 'Wireless Headphones',
+		category: 'Electronics',
+		price: 199.99,
+		stock: 0,
+		status: 'inactive',
+		createdAt: new Date('2023-02-15')
+	},
+	{
+		id: 3,
+		name: 'Office Chair',
+		category: 'Furniture',
+		price: 299.99,
+		stock: 12,
+		status: 'active',
+		createdAt: new Date('2023-03-20')
+	},
+	{
+		id: 4,
+		name: 'Standing Desk',
+		category: 'Furniture',
+		price: 599.99,
+		stock: 8,
+		status: 'discontinued',
+		createdAt: new Date('2023-01-25')
+	}
+];
+
+export const productMainAction: FktButtonAction = {
+	identifier: 'add-product',
+	text: 'Add Product',
+	theme: 'raised',
+	color: 'primary',
+	icon: 'plus',
+	iconPosition: 'left',
+	click: () => console.log('Add new product')
+};
+
 @Component({
-  selector: 'product-table-example',
-  template: `
-    <fkt-table
-      [data]="productData()"
-      [columnsFn]="productColumns()"
-      [classesFn]="productClassesFn()"
-      [actionsFn]="productActionsFn()"
-      [mainAction]="productMainAction()"
-      [loading]="loading()"
-      [noResults]="productNoResults()"
-    />
-  `,
-  standalone: true,
-  imports: [TableComponent]
+	selector: 'fkt-table-examples-product-table',
+	imports: [
+		FktTableComponent
+	],
+	template: `
+		<fkt-table
+			[data]="data()"
+			[columnsFn]="columnsFn"
+			[classesFn]="classesFn"
+			[actionsFn]="actionsFn"
+			[mainAction]="mainAction()"
+			[loading]="loading()"
+			[noHeaderWhenEmpty]="noHeaderWhenEmpty()"
+			[noResults]="noResults()"
+		/>
+	`,
+	styleUrl: './fkt-table-examples-product-table.component.scss'
 })
-export class ProductTableExampleComponent {
-  productData = input<Product[]>([]);
-  loading = input<boolean>(false);
+export class FktTableExamplesProductTableComponent {
+	data = input<Product[]>(products);
 
-  productColumns = computed<TableColumnFn<Product>>(() => createProductColumns);
-  productClassesFn = computed<TableClassesFn<Product>>(() => createProductClasses);
-  productActionsFn = computed<TableActionFn<Product>>(() => createProductActions);
+	mainAction = input<FktButtonAction>(productMainAction);
+	loading = input<boolean>(false);
+	noHeaderWhenEmpty = input<boolean>(false);
+	noResults = input<FktNoResults>({
+		label: 'No data available',
+		description: 'There are no records to display at this time.',
+		icon: {name: 'document-text', size: '80px'}
+	});
 
-  productMainAction = computed<FktButtonAction>(() => ({
-    identifier: 'add-product',
-    text: 'Add Product',
-    theme: 'raised',
-    color: 'primary',
-    icon: 'plus',
-    iconPosition: 'left',
-    click: () => console.log('Add new product')
-  }));
+	columnsFn: FktTableColumnFn<Product> = (product) => [
+		{
+			position: '1',
+			name: 'Product',
+			cell: {
+				type: 'default',
+				options: {value: product.name}
+			}
+		},
+		{
+			position: '2',
+			name: 'Category',
+			cell: {
+				type: 'default',
+				options: {value: product.category}
+			}
+		},
+		{
+			position: '3',
+			name: 'Price',
+			cell: {
+				type: 'badge',
+				options: {
+					text: `$${product.price.toFixed(2)}`,
+					color: "green",
+					variant: "faded"
+				}
+			}
+		},
+		{
+			position: '4',
+			name: 'Stock',
+			cell: {
+				type: 'badge',
+				options: {
+					text: product.stock.toString(),
+					color: "blue",
+					variant: "opaque"
+				}
+			}
+		}
+	];
 
-  productNoResults = computed<FktNoResults>(() => ({
-    label: 'No products available',
-    description: 'Your product catalog is empty. Add some products to get started.',
-    icon: { name: 'shopping-bag', size: '80px' },
-    action: {
-      identifier: 'add-product',
-      text: 'Add Product',
-      theme: 'raised',
-      color: 'primary',
-      icon: 'plus',
-      iconPosition: 'left',
-      click: () => console.log('Add product')
-    }
-  }));
+	classesFn: FktTableClassesFn<Product> = (product) => {
+		if (product.stock === 0) {
+			return 'table-product-no-stock';
+		}
+		if (product.status === 'discontinued') {
+			return 'table-product-discontinued';
+		}
+		return '';
+	};
+
+	actionsFn: FktTableActionFn<Product> = (product) => [
+		{
+			identifier: 'edit',
+			condition: product.status !== 'discontinued',
+			icon: 'pencil',
+			color: 'green',
+			theme: 'basic',
+			click: () => console.log('Edit product:', product.name)
+		},
+		{
+			identifier: 'delete',
+			condition: true,
+			icon: 'trash',
+			color: 'red',
+			theme: 'basic',
+			click: () => console.log('Delete product:', product.name)
+		}
+	];
 }
 ```
 
@@ -572,101 +1789,194 @@ export class ProductTableExampleComponent {
 
 Task management table with priority and status indicators.
 
-<Story of={stories.TaskTable} />
+<Canvas sourceState="none" of={stories.TaskTable} />
 <p></p>
 ___
-<Controls of={stories.TaskTable} />
+<Controls include={["data", "loading", "noHeaderWhenEmpty", "noResults"]} of={stories.TaskTable} />
 
 ```typescript
-interface Task extends FktIdentifiable {
-  title: string;
-  assignee: string;
-  priority: 'high' | 'medium' | 'low';
-  status: 'todo' | 'in-progress' | 'completed' | 'cancelled';
-  dueDate: Date;
+export interface Task extends FktIdentifiable {
+	title: string;
+	description: string;
+	priority: 'high' | 'medium' | 'low';
+	status: 'todo' | 'in-progress' | 'completed' | 'cancelled';
+	assignee: string;
+	dueDate: Date;
+	completedAt?: Date;
 }
 
-const createTaskColumns: TableColumnFn<Task> = (task) => [
-  {
-    position: '1',
-    name: 'Task',
-    cell: {
-      type: 'default',
-      options: { data: task.title }
-    }
-  },
-  {
-    position: '2',
-    name: 'Assignee',
-    cell: {
-      type: 'default',
-      options: { data: task.assignee }
-    }
-  },
-  {
-    position: '3',
-    name: 'Priority',
-    cell: {
-      type: 'default',
-      options: { data: task.priority }
-    }
-  },
-  {
-    position: '4',
-    name: 'Status',
-    cell: {
-      type: 'default',
-      options: { data: task.status }
-    }
-  }
+export const taskMainAction: FktButtonAction = {
+	identifier: 'add-task',
+	text: 'New Task',
+	theme: 'raised',
+	color: 'primary',
+	icon: 'plus',
+	iconPosition: 'left',
+	click: () => console.log('Add new task')
+};
+
+export const tasks: Task[] = [
+	{
+		id: 1,
+		title: 'Update documentation',
+		description: 'Update the API documentation with recent changes',
+		priority: 'high',
+		status: 'in-progress',
+		assignee: 'John Doe',
+		dueDate: new Date('2024-08-25')
+	},
+	{
+		id: 2,
+		title: 'Fix login bug',
+		description: 'Resolve the authentication issue on mobile devices',
+		priority: 'high',
+		status: 'todo',
+		assignee: 'Jane Smith',
+		dueDate: new Date('2024-08-23')
+	},
+	{
+		id: 3,
+		title: 'Implement search feature',
+		description: 'Add search functionality to the products page',
+		priority: 'medium',
+		status: 'completed',
+		assignee: 'Bob Johnson',
+		dueDate: new Date('2024-08-20'),
+		completedAt: new Date('2024-08-19')
+	}
 ];
 
 @Component({
-  selector: 'task-table-example',
-  template: `
-    <fkt-table
-      [data]="taskData()"
-      [columnsFn]="taskColumns()"
-      [classesFn]="taskClassesFn()"
-      [actionsFn]="taskActionsFn()"
-      [mainAction]="taskMainAction()"
-      [noResults]="taskNoResults()"
-    />
-  `,
-  standalone: true,
-  imports: [TableComponent]
+	selector: 'fkt-table-examples-task-table',
+	imports: [
+		FktTableComponent
+	],
+	template: `
+		<fkt-table
+			[data]="data()"
+			[columnsFn]="columnsFn"
+			[classesFn]="classesFn"
+			[actionsFn]="actionsFn"
+			[mainAction]="mainAction()"
+			[loading]="loading()"
+			[noHeaderWhenEmpty]="noHeaderWhenEmpty()"
+			[noResults]="noResults()"
+		/>
+	`,
+	styleUrl: './fkt-table-examples-task-table.component.scss'
 })
-export class TaskTableExampleComponent {
-  taskData = input<Task[]>([]);
+export class FktTableExamplesTaskTableComponent {
+	data = input<Task[]>(tasks);
 
-  taskColumns = computed<TableColumnFn<Task>>(() => createTaskColumns);
-  taskClassesFn = computed<TableClassesFn<Task>>(() => createTaskClasses);
-  taskActionsFn = computed<TableActionFn<Task>>(() => createTaskActions);
+	mainAction = input<FktButtonAction>(taskMainAction);
+	loading = input<boolean>(false);
+	noHeaderWhenEmpty = input<boolean>(false);
+	noResults = input<FktNoResults>({
+		label: 'No data available',
+		description: 'There are no records to display at this time.',
+		icon: {name: 'document-text', size: '80px'}
+	});
 
-  taskMainAction = computed<FktButtonAction>(() => ({
-    identifier: 'add-task',
-    text: 'New Task',
-    theme: 'raised',
-    color: 'primary',
-    icon: 'plus',
-    iconPosition: 'left',
-    click: () => console.log('Add new task')
-  }));
+	protected columnsFn: FktTableColumnFn<Task> = (task) => [
+		{
+			position: '1',
+			name: 'Task',
+			cell: {
+				type: 'default',
+				options: { value: task.title }
+			}
+		},
+		{
+			position: '2',
+			name: 'Assignee',
+			cell: {
+				type: 'default',
+				options: { value: task.assignee }
+			}
+		},
+		{
+			position: '3',
+			name: 'Priority',
+			cell: {
+				type: 'badge',
+				options: {
+					text: task.priority,
+					color: (() => {
+						switch (task.priority) {
+							case "high":
+								return "red";
+							case "medium":
+								return "orange";
+							default:
+								return "blue"
+						}
+					})()
+				}
+			}
+		},
+		{
+			position: '4',
+			name: 'Status',
+			cell: {
+				type: 'badge',
+				options: {
+					text: task.status,
+					color: (() => {
+						switch (task.status) {
+							case "todo":
+								return "green";
+							case "completed":
+								return "blue";
+							case "in-progress":
+								return "orange";
+							default:
+								return "red"
+						}
+					})()
+				}
+			}
+		}
+	];
 
-  taskNoResults = computed<FktNoResults>(() => ({
-    label: 'No tasks assigned',
-    description: 'You don\'t have any tasks yet. Create your first task to get started.',
-    icon: { name: 'clipboard-document-list', size: '80px' },
-    action: {
-      identifier: 'add-task',
-      text: 'Create Task',
-      theme: 'raised',
-      color: 'primary',
-      icon: 'plus',
-      iconPosition: 'left',
-      click: () => console.log('Add task')
-    }
-  }));
+	protected classesFn: FktTableClassesFn<Task> = (task) => {
+		switch (task.status) {
+			case 'completed':
+				return 'table-task-completed';
+			case 'in-progress':
+				return 'table-task-in-progress';
+			case 'cancelled':
+				return 'table-task-cancelled';
+			default:
+				return '';
+		}
+	};
+
+	protected actionsFn: FktTableActionFn<Task> = (task) => [
+		{
+			identifier: 'complete',
+			condition: task.status !== 'completed' && task.status !== 'cancelled',
+			icon: 'check',
+			color: 'green',
+			theme: 'basic',
+			click: () => console.log('Complete task:', task.title)
+		},
+		{
+			identifier: 'edit',
+			condition: task.status !== 'completed',
+			icon: 'pencil',
+			color: 'primary',
+			theme: 'basic',
+			click: () => console.log('Edit task:', task.title)
+		},
+		{
+			identifier: 'cancel',
+			condition: task.status !== 'completed' && task.status !== 'cancelled',
+			icon: 'x-mark',
+			color: 'red',
+			theme: 'basic',
+			click: () => console.log('Cancel task:', task.title)
+		}
+	];
 }
 ```
 

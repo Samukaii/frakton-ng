@@ -22,6 +22,7 @@ export class FktTooltipComponent {
 		green: '#22c55e',
 		primary: '#1f2937',
 		yellow: '#eab308',
+		blue: '#2B7FFFFF',
 	};
 
 	private tipPositionMap: Record<

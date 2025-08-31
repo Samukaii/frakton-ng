@@ -1,38 +1,34 @@
 import type { Meta, StoryObj } from '@storybook/angular';
 import { moduleMetadata } from '@storybook/angular';
-import { TableComponent } from './table.component';
-import { BasicTableExampleComponent } from './examples/basic-table-example.component';
-import { TableWithActionsExampleComponent } from './examples/table-with-actions-example.component';
-import { TableStatesExampleComponent } from './examples/table-states-example.component';
-import { CustomCellsExampleComponent } from './examples/custom-cells-example.component';
-import {
-	mockUsers,
-	mockProducts,
-	mockTasks,
-	createUserColumns,
-	createProductColumns,
-	createTaskColumns,
-	createUserActions,
-	createProductActions,
-	createTaskActions,
-	createUserClasses,
-	createProductClasses,
-	createTaskClasses,
-	createUserMainAction,
-	createProductMainAction,
-	createTaskMainAction
-} from './examples/table-mock-data';
+import { FktTableComponent } from './fkt-table.component';
+import { productData, taskData, userData } from './examples/table-mock-data';
 
-const meta: Meta<TableComponent<any>> = {
+
+import {
+	FktTableExamplesBasicTableComponent,
+	FktTableExamplesCustomCellsComponent,
+	FktTableExamplesEmptyStateComponent,
+	FktTableExamplesInteractiveStatesComponent,
+	FktTableExamplesLoadingStateComponent,
+	FktTableExamplesProductTableComponent,
+	FktTableExamplesTableWithActionsComponent,
+	FktTableExamplesTaskTableComponent,
+} from './examples';
+
+const meta: Meta<FktTableComponent<any>> = {
 	title: 'Components/Table',
-	component: TableComponent,
+	component: FktTableComponent,
 	decorators: [
 		moduleMetadata({
 			imports: [
-				BasicTableExampleComponent,
-				TableWithActionsExampleComponent,
-				TableStatesExampleComponent,
-				CustomCellsExampleComponent
+				FktTableExamplesBasicTableComponent,
+				FktTableExamplesCustomCellsComponent,
+				FktTableExamplesEmptyStateComponent,
+				FktTableExamplesInteractiveStatesComponent,
+				FktTableExamplesLoadingStateComponent,
+				FktTableExamplesProductTableComponent,
+				FktTableExamplesTableWithActionsComponent,
+				FktTableExamplesTaskTableComponent,
 			]
 		})
 	],
@@ -41,88 +37,85 @@ const meta: Meta<TableComponent<any>> = {
 			control: 'object',
 			description: 'Array of data items to display in the table. Each item must extend FktIdentifiable.',
 			table: {
-				type: { summary: 'T[]' },
-				defaultValue: { summary: '[]' }
+				type: {summary: 'T[]'},
+				defaultValue: {summary: '[]'},
+				category: "Attributes"
 			}
 		},
 		columnsFn: {
 			control: false,
 			description: 'Function that defines the columns for each data item. Returns an array of TableColumn configurations.',
 			table: {
-				type: { summary: 'TableColumnFn<T>' },
-				defaultValue: { summary: 'required' }
+				type: {summary: 'TableColumnFn<T>'},
+				defaultValue: {summary: 'required'},
+				category: "Attributes"
 			}
 		},
 		classesFn: {
 			control: false,
 			description: 'Optional function that returns CSS classes for each table row based on the data item.',
 			table: {
-				type: { summary: 'TableClassesFn<T>' },
-				defaultValue: { summary: '() => ""' }
+				type: {summary: 'TableClassesFn<T>'},
+				defaultValue: {summary: '() => ""'},
+				category: "Attributes"
 			}
 		},
 		actionsFn: {
 			control: false,
 			description: 'Optional function that returns an array of actions for each table row.',
 			table: {
-				type: { summary: 'TableActionFn<T>' },
-				defaultValue: { summary: '() => []' }
+				type: {summary: 'TableActionFn<T>'},
+				defaultValue: {summary: '() => []'},
+				category: "Attributes"
 			}
 		},
 		mainAction: {
 			control: 'object',
 			description: 'Optional main action button displayed in the table header.',
 			table: {
-				type: { summary: 'FktButtonAction' },
-				defaultValue: { summary: 'undefined' }
+				type: {summary: 'FktButtonAction'},
+				defaultValue: {summary: 'undefined'},
+				category: "Attributes"
 			}
 		},
 		loading: {
 			control: 'boolean',
 			description: 'Whether the table is in a loading state. Shows a spinner when true.',
 			table: {
-				type: { summary: 'boolean' },
-				defaultValue: { summary: 'false' }
+				type: {summary: 'boolean'},
+				defaultValue: {summary: 'false'},
+				category: "Attributes"
 			}
 		},
 		noHeaderWhenEmpty: {
 			control: 'boolean',
 			description: 'Whether to hide the table header when there is no data.',
 			table: {
-				type: { summary: 'boolean' },
-				defaultValue: { summary: 'false' }
+				type: {summary: 'boolean'},
+				defaultValue: {summary: 'false'},
+				category: "Attributes"
 			}
 		},
 		noResults: {
 			control: 'object',
 			description: 'Configuration for the empty state display when no data is available.',
 			table: {
-				type: { summary: 'FktNoResults' },
-				defaultValue: { summary: '{ label: "Sem resultados" }' }
+				type: {summary: 'FktNoResults'},
+				defaultValue: {summary: '{ label: "Sem resultados" }'},
+				category: "Attributes"
 			}
 		},
-		createAction: {
-			control: false,
-			description: 'Output event emitted when a create action is triggered.',
-			table: {
-				type: { summary: 'EventEmitter<void>' }
-			}
-		}
 	}
 };
 
-type Story = StoryObj<TableComponent<any>>;
+type Story = StoryObj<FktTableComponent<any>>;
 
 // Basic Table
 export const BasicTable: Story = {
 	render: (args) => ({
 		template: `
-			<basic-table-example
+			<fkt-table-examples-basic-table
 				[data]="data"
-				[columnsFn]="columnsFn"
-				[classesFn]="classesFn"
-				[actionsFn]="actionsFn"
-				[mainAction]="mainAction"
 				[loading]="loading"
 				[noHeaderWhenEmpty]="noHeaderWhenEmpty"
 				[noResults]="noResults"
@@ -133,17 +126,13 @@ export const BasicTable: Story = {
 		}
 	}),
 	args: {
-		data: mockUsers,
-		columnsFn: createUserColumns,
-		classesFn: () => '',
-		actionsFn: () => [],
-		mainAction: undefined,
+		data: userData.users,
 		loading: false,
 		noHeaderWhenEmpty: false,
 		noResults: {
 			label: 'No data available',
 			description: 'There are no records to display at this time.',
-			icon: { name: 'document-text', size: '80px' }
+			icon: {name: 'document-text', size: '80px'}
 		}
 	}
 };
@@ -152,11 +141,8 @@ export const BasicTable: Story = {
 export const WithActions: Story = {
 	render: (args) => ({
 		template: `
-			<table-with-actions-example
+			<fkt-table-examples-table-with-actions
 				[data]="data"
-				[columnsFn]="columnsFn"
-				[classesFn]="classesFn"
-				[actionsFn]="actionsFn"
 				[mainAction]="mainAction"
 				[loading]="loading"
 				[noHeaderWhenEmpty]="noHeaderWhenEmpty"
@@ -168,17 +154,14 @@ export const WithActions: Story = {
 		}
 	}),
 	args: {
-		data: mockUsers,
-		columnsFn: createUserColumns,
-		classesFn: createUserClasses,
-		actionsFn: createUserActions,
-		mainAction: createUserMainAction(),
+		data: userData.users,
+		mainAction: userData.userMainAction,
 		loading: false,
 		noHeaderWhenEmpty: false,
 		noResults: {
 			label: 'No users found',
 			description: 'There are no users to display. Add a new user to get started.',
-			icon: { name: 'user-group', size: '80px' },
+			icon: {name: 'user-group', size: '80px'},
 			action: {
 				identifier: 'add-user-from-empty',
 				text: 'Add User',
@@ -196,11 +179,8 @@ export const WithActions: Story = {
 export const LoadingState: Story = {
 	render: (args) => ({
 		template: `
-			<basic-table-example
+			<fkt-table-examples-loading-state
 				[data]="data"
-				[columnsFn]="columnsFn"
-				[classesFn]="classesFn"
-				[actionsFn]="actionsFn"
 				[mainAction]="mainAction"
 				[loading]="loading"
 				[noHeaderWhenEmpty]="noHeaderWhenEmpty"
@@ -212,17 +192,14 @@ export const LoadingState: Story = {
 		}
 	}),
 	args: {
-		data: mockUsers,
-		columnsFn: createUserColumns,
-		classesFn: createUserClasses,
-		actionsFn: createUserActions,
-		mainAction: createUserMainAction(),
+		data: userData.users,
+		mainAction: userData.userMainAction,
 		loading: true,
 		noHeaderWhenEmpty: false,
 		noResults: {
 			label: 'Loading data...',
 			description: 'Please wait while we fetch your data.',
-			icon: { name: 'arrow-up', size: '80px' }
+			icon: {name: 'arrow-up', size: '80px'}
 		}
 	}
 };
@@ -231,11 +208,8 @@ export const LoadingState: Story = {
 export const EmptyState: Story = {
 	render: (args) => ({
 		template: `
-			<basic-table-example
+			<fkt-table-examples-empty-state
 				[data]="data"
-				[columnsFn]="columnsFn"
-				[classesFn]="classesFn"
-				[actionsFn]="actionsFn"
 				[mainAction]="mainAction"
 				[loading]="loading"
 				[noHeaderWhenEmpty]="noHeaderWhenEmpty"
@@ -248,16 +222,13 @@ export const EmptyState: Story = {
 	}),
 	args: {
 		data: [],
-		columnsFn: createUserColumns,
-		classesFn: createUserClasses,
-		actionsFn: createUserActions,
-		mainAction: createUserMainAction(),
+		mainAction: userData.userMainAction,
 		loading: false,
 		noHeaderWhenEmpty: true,
 		noResults: {
 			label: 'No data to display',
 			description: 'The table is currently empty. Add some records to get started.',
-			icon: { name: 'table-cells', size: '96px' },
+			icon: {name: 'table-cells', size: '96px'},
 			action: {
 				identifier: 'add-data',
 				text: 'Add Data',
@@ -275,11 +246,8 @@ export const EmptyState: Story = {
 export const InteractiveStates: Story = {
 	render: (args) => ({
 		template: `
-			<table-states-example
+			<fkt-table-examples-interactive-states
 				[data]="data"
-				[columnsFn]="columnsFn"
-				[classesFn]="classesFn"
-				[actionsFn]="actionsFn"
 				[mainAction]="mainAction"
 				[loading]="loading"
 				[noHeaderWhenEmpty]="noHeaderWhenEmpty"
@@ -291,17 +259,14 @@ export const InteractiveStates: Story = {
 		}
 	}),
 	args: {
-		data: mockUsers,
-		columnsFn: createUserColumns,
-		classesFn: createUserClasses,
-		actionsFn: createUserActions,
-		mainAction: createUserMainAction(),
+		data: userData.users,
+		mainAction: userData.userMainAction,
 		loading: false,
 		noHeaderWhenEmpty: true,
 		noResults: {
 			label: 'No data to display',
 			description: 'The table is currently empty. Try loading some data or adding new records.',
-			icon: { name: 'table-cells', size: '96px' },
+			icon: {name: 'table-cells', size: '96px'},
 			action: {
 				identifier: 'load-data',
 				text: 'Load Sample Data',
@@ -319,7 +284,7 @@ export const InteractiveStates: Story = {
 export const CustomCells: Story = {
 	render: (args) => ({
 		template: `
-			<custom-cells-example
+			<fkt-table-examples-custom-cells
 				[loading]="loading"
 				[noHeaderWhenEmpty]="noHeaderWhenEmpty"
 			/>
@@ -338,11 +303,8 @@ export const CustomCells: Story = {
 export const ProductTable: Story = {
 	render: (args) => ({
 		template: `
-			<basic-table-example
+			<fkt-table-examples-product-table
 				[data]="data"
-				[columnsFn]="columnsFn"
-				[classesFn]="classesFn"
-				[actionsFn]="actionsFn"
 				[mainAction]="mainAction"
 				[loading]="loading"
 				[noHeaderWhenEmpty]="noHeaderWhenEmpty"
@@ -354,17 +316,14 @@ export const ProductTable: Story = {
 		}
 	}),
 	args: {
-		data: mockProducts,
-		columnsFn: createProductColumns,
-		classesFn: createProductClasses,
-		actionsFn: createProductActions,
-		mainAction: createProductMainAction(),
+		data: productData.products,
+		mainAction: productData.productMainAction,
 		loading: false,
 		noHeaderWhenEmpty: false,
 		noResults: {
 			label: 'No products available',
 			description: 'Your product catalog is empty. Add some products to get started.',
-			icon: { name: 'shopping-bag', size: '80px' },
+			icon: {name: 'shopping-bag', size: '80px'},
 			action: {
 				identifier: 'add-product',
 				text: 'Add Product',
@@ -382,11 +341,8 @@ export const ProductTable: Story = {
 export const TaskTable: Story = {
 	render: (args) => ({
 		template: `
-			<basic-table-example
+			<fkt-table-examples-task-table
 				[data]="data"
-				[columnsFn]="columnsFn"
-				[classesFn]="classesFn"
-				[actionsFn]="actionsFn"
 				[mainAction]="mainAction"
 				[loading]="loading"
 				[noHeaderWhenEmpty]="noHeaderWhenEmpty"
@@ -398,17 +354,14 @@ export const TaskTable: Story = {
 		}
 	}),
 	args: {
-		data: mockTasks,
-		columnsFn: createTaskColumns,
-		classesFn: createTaskClasses,
-		actionsFn: createTaskActions,
-		mainAction: createTaskMainAction(),
+		data: taskData.tasks,
+		mainAction: taskData.taskMainAction,
 		loading: false,
 		noHeaderWhenEmpty: false,
 		noResults: {
 			label: 'No tasks assigned',
 			description: 'You don\'t have any tasks yet. Create your first task to get started.',
-			icon: { name: 'clipboard-document-list', size: '80px' },
+			icon: {name: 'clipboard-document-list', size: '80px'},
 			action: {
 				identifier: 'add-task',
 				text: 'Create Task',

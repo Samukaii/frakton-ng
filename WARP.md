@@ -13,7 +13,6 @@ This file provides guidance to WARP (warp.dev) when working with code in this re
 - **Angular 20.1.x** with standalone components
 - **TypeScript** with strict mode enabled
 - **PNPM** as package manager
-- **Tailwind CSS v4** with PostCSS
 - **Storybook 9.1.1** for component development and documentation
 - **Karma** for unit testing
 
@@ -162,7 +161,6 @@ frakton-ng/
 │       │   │   ├── pipes/       # Shared pipes
 │       │   │   ├── form/        # Form-related utilities
 │       │   │   ├── validators/  # Custom validators
-│       │   │   ├── styles/      # Tailwind styles
 │       │   │   └── utils/       # Utility functions
 │       │   └── public-api.ts    # Public exports
 │       └── tsconfig.*.json
@@ -199,7 +197,7 @@ export class FktBadgeComponent {
   variant = input<FktBadgeVariant>('opaque');
   
   protected classes = computed(() => {
-    // Computed Tailwind classes
+    // Computed classes
   });
 }
 ```
@@ -214,7 +212,6 @@ export class FktBadgeComponent {
 ### Storybook Integration
 - Configuration in `projects/components/.storybook/`
 - Stories alongside components (`*.stories.ts`)
-- Custom webpack configuration for Tailwind CSS
 - Font assets served from `projects/components/src/lib/assets`
 
 ## Important Conventions
@@ -229,9 +226,8 @@ export class FktBadgeComponent {
    - Stories: `fkt-[name].stories.ts`
 
 3. **Styling**:
-   - Tailwind utility classes in templates
    - Component-specific styles in SCSS files
-   - Global Tailwind styles in `projects/components/src/lib/styles/`
+   - Global styles in `projects/core/assets/styles/styles.css`
 
 4. **Testing**:
    - Unit tests next to source files (`*.spec.ts`)
@@ -248,5 +244,4 @@ export class FktBadgeComponent {
 2. **Use Storybook** for component development - it's faster than the full app
 3. **Watch mode** is available for library builds during development
 4. **PNPM** is required - don't use npm or yarn
-5. **Tailwind classes** are computed dynamically in many components - check the `classes` computed property
-6. **Stories** should demonstrate all component states and variants
+5**Stories** should demonstrate all component states and variants

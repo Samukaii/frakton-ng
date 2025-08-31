@@ -1,0 +1,42 @@
+.container {
+	display: block;
+
+	&__actions {
+		display: flex;
+		gap: var(--space-xs);
+		padding: var(--space-md);
+		background-color: var(--color-gray-50);
+		border-radius: var(--radius-lg);
+		margin-bottom: var(--space-md);
+	}
+}
+
+:host ::ng-deep {
+	.table-user-active {
+		background-color: var(--color-red-50);
+
+		&:hover {
+			background-color: var(--color-red-100) !important;
+		}
+	}
+
+	.table-user-pending {
+		background-color: var(--color-yellow-50);
+
+		&:hover {
+			background-color: var(--color-yellow-100) !important;
+		}
+	}
+
+	.table-user-inactive {
+		background-color: var(--color-gray-50);
+		opacity: 60%;
+		filter: grayscale(1);
+		cursor: pointer;
+		pointer-events: none;
+
+		&:hover {
+			background-color: var(--color-gray-100) !important;
+		}
+	}
+}

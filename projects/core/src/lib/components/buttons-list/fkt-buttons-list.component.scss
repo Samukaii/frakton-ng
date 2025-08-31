@@ -1,7 +1,6 @@
-@reference "../../styles/tailwind.css";
-
 :host {
-	@apply flex gap-2;
+	display: flex;
+	gap: var(--space-xs);
 
 	&.horizontal {
 		justify-content: var(--horizontal-alignment);
@@ -9,8 +8,7 @@
 	}
 
 	&.vertical {
-		@apply flex-col;
-
+		flex-direction: column;
 		justify-content: var(--vertical-alignment);
 		align-items: var(--horizontal-alignment);
 	}

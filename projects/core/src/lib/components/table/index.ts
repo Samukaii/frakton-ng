@@ -1,5 +1,5 @@
 // Main component
-export { TableComponent } from './table.component';
+export { FktTableComponent } from './fkt-table.component';
 
 // Type definitions
 export * from './fkt-table.types';
@@ -8,6 +8,6 @@ export * from './fkt-table.types';
 export { tableCellsMapping } from './cells/table-cells-mapping';
 
 // Cell components (if needed for custom implementations)
-export { TableCellDefaultComponent } from './cells/default/table-cell-default.component';
-export { TableCellWithActionComponent } from './cells/action/table-cell-with-action.component';
+export { FktTableCellDefaultComponent } from './cells/default/fkt-table-cell-default.component';
+export { FktTableCellWithActionComponent } from './cells/action/fkt-table-cell-with-action.component';
 export { TableCellRendererComponent } from './cell-renderer/table-cell-renderer.component';

@@ -19,9 +19,9 @@ export class TableCellRendererComponent implements OnInit, OnDestroy {
 	ngOnInit() {
 		const column = this.column();
 
-    const cell = column.cell;
+		const cell = column.cell;
 
-    const componentToRender = tableCellsMapping[cell.type] as Type<any>;
+		const componentToRender = tableCellsMapping[cell.type] as Type<any>;
 
 		this.componentRef = this.viewRef.createComponent(componentToRender, {
 			bindings: createComponentBindings(componentToRender, cell.options as any)

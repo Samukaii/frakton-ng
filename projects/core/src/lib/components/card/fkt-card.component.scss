@@ -1,13 +1,14 @@
-@reference "../../styles/tailwind.css";
-
 :host {
-	@apply flex flex-col overflow-auto;
+	display: flex;
+	flex-direction: column;
+	overflow: auto;
 
 	&.with-border {
-		@apply border rounded-lg;
+		border: solid 1px var(--color-gray-950);
+		border-radius: var(--radius-lg);
 	}
 
 	&.with-shadow {
-		@apply shadow-lg;
+		box-shadow: var(--shadow-lg);
 	}
 }
