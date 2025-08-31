@@ -1,0 +1,23 @@
+* {
+	box-sizing: border-box;
+}
+
+p {
+	margin: 0;
+}
+
+.container {
+	display: flex;
+	align-items: center;
+	gap: var(--space-sm);
+
+	&__item {
+		text-align: center;
+
+		p {
+			margin-top: var(--space-xs);
+			font-size: var(--font-size-sm);
+			color: var(--color-gray-600);
+		}
+	}
+}

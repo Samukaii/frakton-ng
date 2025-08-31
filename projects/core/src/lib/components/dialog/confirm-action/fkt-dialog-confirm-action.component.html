@@ -1,21 +1,20 @@
-<div class="flex justify-center flex-col items-center">
+<div class="content">
 	<fkt-icon
 		name="exclamation-triangle"
 		class="!text-[80px] text-red-500"
 	/>
-	<h3 class="text-lg text-center font-semibold my-4 w-[300px]">
+	<h3 class="content__title">
 		{{title()}}
 	</h3>
 	@if (description()) {
-		<p class="text-gray-500">
+		<p class="content__description">
 			{{ description() }}
 		</p>
 	}
 
 </div>
-<div class="flex justify-center mt-4">
+<div class="actions">
 	<fkt-buttons-list
-		class="w-full"
 		orientation="vertical"
 		fill
 		[actions]="confirmActions()"

@@ -10,7 +10,9 @@ import { injectWindowScroll } from '../../../di/inject-window-scroll';
         </div>
     `,
     styles: `
-		@reference "../../../styles/tailwind.css";
+		* {
+			box-sizing: border-box;
+		}
 
         :host {
             position: absolute;
