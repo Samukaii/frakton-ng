@@ -1,5 +1,5 @@
 import { Component, computed, contentChild, input, TemplateRef, viewChild } from '@angular/core';
-import { TabLazyDirective } from '../../../directives';
+import { FktTabLazyDirective } from '../../../directives';
 import { FktIconName } from '../../../shared/types';
 
 @Component({
@@ -14,7 +14,7 @@ export class FktTabComponent {
 	key = input.required<string>();
 	icon = input<FktIconName>();
 	private containerTemplate = viewChild.required('tab', {read: TemplateRef});
-	private lazyContent = contentChild(TabLazyDirective);
+	private lazyContent = contentChild(FktTabLazyDirective);
 
 	template = computed(() => this.lazyContent()?.template ?? this.containerTemplate());
 }

@@ -3,6 +3,6 @@ import { Directive, inject, TemplateRef } from '@angular/core';
 @Directive({
   selector: '[appTabLazy]'
 })
-export class TabLazyDirective {
+export class FktTabLazyDirective {
 	template = inject(TemplateRef);
 }
