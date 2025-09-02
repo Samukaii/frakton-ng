@@ -1,14 +1,105 @@
-/* To learn more about Typescript configuration file: https://www.typescriptlang.org/docs/handbook/tsconfig-json.html. */
-/* To learn more about Angular compiler options: https://angular.dev/reference/configs/angular-compiler-options. */
 {
   "compileOnSave": false,
   "compilerOptions": {
     "paths": {
-      "components": [
-        "./dist/components"
+      "@frakton-ng/autocomplete": [
+        "libs/autocomplete/src/public-api.ts"
       ],
-      "core": [
-        "./dist/core"
+      "@frakton-ng/badge": [
+        "libs/badge/src/public-api.ts"
+      ],
+      "@frakton-ng/badge-selector": [
+        "libs/badge-selector/src/public-api.ts"
+      ],
+      "@frakton-ng/button": [
+        "libs/button/src/public-api.ts"
+      ],
+      "@frakton-ng/buttons-list": [
+        "libs/buttons-list/src/public-api.ts"
+      ],
+      "@frakton-ng/calendar": [
+        "libs/calendar/src/public-api.ts"
+      ],
+      "@frakton-ng/calendar-navigator": [
+        "libs/calendar-navigator/src/public-api.ts"
+      ],
+      "@frakton-ng/card": [
+        "libs/card/src/public-api.ts"
+      ],
+      "@frakton-ng/checkbox": [
+        "libs/checkbox/src/public-api.ts"
+      ],
+      "@frakton-ng/core": [
+        "libs/core/src/public-api.ts"
+      ],
+      "@frakton-ng/date-picker": [
+        "libs/date-picker/src/public-api.ts"
+      ],
+      "@frakton-ng/dialog": [
+        "libs/dialog/src/public-api.ts"
+      ],
+      "@frakton-ng/drawer": [
+        "libs/drawer/src/public-api.ts"
+      ],
+      "@frakton-ng/field-error": [
+        "libs/field-error/src/public-api.ts"
+      ],
+      "@frakton-ng/form": [
+        "libs/form/src/public-api.ts"
+      ],
+      "@frakton-ng/forms": [
+        "libs/forms/src/public-api.ts"
+      ],
+      "@frakton-ng/icon": [
+        "libs/icon/src/public-api.ts"
+      ],
+      "@frakton-ng/input": [
+        "libs/input/src/public-api.ts"
+      ],
+      "@frakton-ng/internal/di": [
+        "libs/internal/di/index.ts"
+      ],
+      "@frakton-ng/internal/pipes": [
+        "libs/internal/pipes/index.ts"
+      ],
+      "@frakton-ng/internal/services": [
+        "libs/internal/services/index.ts"
+      ],
+      "@frakton-ng/internal/types": [
+        "libs/internal/types/index.ts"
+      ],
+      "@frakton-ng/internal/utils": [
+        "libs/internal/utils/index.ts"
+      ],
+      "@frakton-ng/navigator": [
+        "libs/navigator/src/public-api.ts"
+      ],
+      "@frakton-ng/no-results": [
+        "libs/no-results/src/public-api.ts"
+      ],
+      "@frakton-ng/overlay": [
+        "libs/overlay/src/public-api.ts"
+      ],
+      "@frakton-ng/select": [
+        "libs/select/src/public-api.ts"
+      ],
+      "@frakton-ng/side-menu": [
+        "libs/side-menu/src/public-api.ts"
+      ],
+      "@frakton-ng/spinner": [
+        "libs/spinner/src/public-api.ts"
+      ],
+      "@frakton-ng/table": [
+        "libs/table/src/public-api.ts"
+      ],
+      "@frakton-ng/tabs": [
+        "libs/tabs/src/public-api.ts"
+      ],
+      "@frakton-ng/textarea": [
+        "libs/textarea/src/public-api.ts"
+      ],
+      "@frakton-ng/tooltip": [
+        "libs/tooltip/src/public-api.ts"
       ]
     },
     "strict": true,
@@ -30,21 +121,13 @@
     "typeCheckHostBindings": true,
     "strictTemplates": true
   },
-	"files": [
-		"./globals.d.ts"
-	],
-  "references": [
-    {
-      "path": "./projects/core/tsconfig.lib.json"
-    },
-    {
-      "path": "./projects/core/tsconfig.spec.json"
-    },
-    {
-      "path": "./projects/core/tsconfig.lib.json"
-    },
-    {
-      "path": "./projects/core/tsconfig.spec.json"
-    }
+  "include": [
+    "libs/**/*.ts"
+  ],
+  "exclude": [
+    "**/*.spec.ts"
+  ],
+  "files": [
+    "./globals.d.ts"
   ]
 }

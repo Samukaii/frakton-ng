@@ -1,59 +1,120 @@
-# FraktonNg
+Frakton NG
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.1.4.
+Frakton NG is a modern, opinionated, and enterprise-ready UI component library for Angular. Built with accessibility, performance, and developer experience in mind, Frakton NG accelerates the creation of visually stunning, scalable, and maintainable applications.
 
-## Development server
+> ✨ Why Frakton NG?
+> - Robust and accessible: Components follow best practices and work for everyone.
+> - Consistent design language: Out-of-the-box themes and design tokens for brand consistency.
+> - Real productivity: Intuitive APIs, type-safe signals, advanced overlays, and DX you actually feel.
 
-To start a local development server, run:
+---
 
-```bash
-ng serve
+## 📚 Documentation
+
+Explore full documentation, interactive demos, and the API reference:
+
+[Frakton NG Docs](https://samukaii.github.io/frakton-ng)
+
+---
+
+## 🚀 Installation
+
+Add Frakton NG to your project using your favorite package manager:
+
+```shell
+npm install @frakton-ng/core
+```
+or
+```shell
+yarn add @frakton-ng/core
+```
+or
+```shell
+pnpm add @frakton-ng/core
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
 
-## Code scaffolding
+---
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## 🎨 Integration
 
-```bash
-ng generate component component-name
+Import the required styles and theme files into your app by adding them to the styles array in your angular.json:
+
+```json
+{
+	"styles": [
+		"node_modules/@frakton-ng/core/assets/styles.css",
+		"node_modules/@frakton-ng/core/assets/themes/light.css",
+		"src/styles.css"
+	]
+}
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+- `styles.css`: Base component styles, tokens, and resets.
+- `light.css`: The default light theme (you can customize or swap themes).
+- Custom themes: Create your own theme using the built-in design tokens.
 
-```bash
-ng generate --help
+
+
+---
+
+## 🧑‍💻 Usage Example
+
+Here’s how to use a Frakton NG button in a standalone Angular component:
+
+```ts
+import { Component } from '@angular/core';
+import { FktButtonComponent } from '@frakton-ng/core';
+
+@Component({
+	selector: 'app-root',
+	template: `
+		<fkt-button 
+		  text="Click Me"
+		  theme="raised"
+		  color="primary"
+		  (click)="handleClick()"
+		></fkt-button>
+	  `,
+	standalone: true,
+	imports: [FktButtonComponent]
+})
+export class AppComponent {
+	handleClick() {
+		console.log('Button clicked!');
+	}
+}
 ```
 
-## Building
+---
 
-To build the project run:
+## 🧩 Features
 
-```bash
-ng build
-```
+- Angular-first: 100% standalone components, typed with Signals.
+- Ready for enterprise: Accessible, customizable, and scalable.
+- Modern overlay system: Ultra-flexible dialogs, tooltips, snackbars, with smart positioning and signal binding.
+- Themeable & token-based: Swap, extend, or create new themes easily using design tokens.
+- Best-in-class DX: API focused on productivity and ergonomics.
+- Built-in documentation: Full Storybook with real-world demos and custom playgrounds.
+- Open source, MIT licensed.
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+---
 
-## Running unit tests
+## ⚡️ Quick links
+- Full Docs & Storybook
+- Component Gallery
+- GitHub Issues / Feature requests
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+---
 
-```bash
-ng test
-```
+## 🛠️ Contributing
 
-## Running end-to-end tests
+Frakton NG is in active development!
+If you want to report bugs, suggest new features, or contribute code, check out the contributing guide or open an issue.
 
-For end-to-end (e2e) testing, run:
 
-```bash
-ng e2e
-```
+---
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+## 📦 License
 
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+MIT © Samuel Alejandro

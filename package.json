@@ -1,65 +1,74 @@
 {
-	"name": "frakton-ng",
-	"version": "1.0.0",
-	"scripts": {
-		"ng": "ng",
-		"start": "ng serve",
-		"build:core": "ng build core",
-		"publish": "pnpm run build:core && cd projects/core/dist && pnpm publish --access public",
-		"watch": "ng build --watch --configuration development",
-		"test": "ng test",
-		"storybook": "ng run core:storybook",
-		"storybook:build": "ng run core:build-storybook",
-		"dev": "ng run core:storybook"
-	},
-	"prettier": {
-		"overrides": [
-			{
-				"files": "*.html",
-				"options": {
-					"parser": "angular"
-				}
-			}
-		]
-	},
-	"private": true,
-	"dependencies": {
-		"@angular/common": "^20.2.2",
-		"@angular/compiler": "^20.2.2",
-		"@angular/core": "^20.2.2",
-		"@angular/forms": "^20.2.2",
-		"@angular/platform-browser": "^20.2.2",
-		"@angular/router": "^20.2.2",
-		"rxjs": "~7.8.0",
-		"tslib": "^2.3.0"
-	},
-	"devDependencies": {
-		"@angular-devkit/build-angular": "20.2.1",
-		"@angular/build": "^20.2.1",
-		"@angular/cli": "^20.2.1",
-		"@angular/compiler-cli": "^20.2.2",
-		"@storybook/addon-docs": "9.1.1",
-		"@storybook/addon-styling-webpack": "^2.0.0",
-		"@storybook/angular": "9.1.1",
-		"@types/jasmine": "~5.1.0",
-		"@types/node": "^24.2.0",
-		"autoprefixer": "^10.4.21",
-		"concurrently": "^9.2.0",
-		"css-loader": "^7.1.2",
-		"jasmine-core": "~5.8.0",
-		"karma": "~6.4.0",
-		"karma-chrome-launcher": "~3.2.0",
-		"karma-coverage": "~2.2.0",
-		"karma-jasmine": "~5.1.0",
-		"karma-jasmine-html-reporter": "~2.1.0",
-		"ng-packagr": "^20.1.0",
-		"postcss": "^8.5.6",
-		"postcss-loader": "^8.1.1",
-		"sass": "^1.90.0",
-		"sass-loader": "^16.0.5",
-		"storybook": "9.1.1",
-		"style-loader": "^4.0.0",
-		"typescript": "~5.8.2",
-		"zone.js": "^0.15.1"
-	}
+  "name": "frakton-ng",
+  "version": "1.0.0",
+  "scripts": {
+    "ng": "ng",
+    "start": "nx serve",
+    "build:core": "nx build core",
+    "publish": "pnpm run build:core && cd projects/core/dist && pnpm publish --access public",
+    "watch": "nx build --watch --configuration development",
+    "test": "nx test",
+    "storybook": "nx run storybook button",
+    "storybook:build": "nx run core:build-storybook",
+    "dev": "nx run core:storybook"
+  },
+  "prettier": {
+    "overrides": [
+      {
+        "files": "*.html",
+        "options": {
+          "parser": "angular"
+        }
+      }
+    ]
+  },
+  "private": true,
+  "dependencies": {
+    "@angular/common": "^20.2.2",
+    "@angular/compiler": "^20.2.2",
+    "@angular/core": "^20.2.2",
+    "@angular/forms": "^20.2.2",
+    "@angular/platform-browser": "^20.2.2",
+    "@angular/router": "^20.2.2",
+    "rxjs": "~7.8.0",
+    "tslib": "^2.3.0"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "20.2.1",
+    "@angular-devkit/core": "^20.2.1",
+    "@angular-devkit/schematics": "^20.2.1",
+    "@angular/build": "^20.2.1",
+    "@angular/cli": "^20.2.1",
+    "@angular/compiler-cli": "^20.2.2",
+    "@nx/angular": "21.4.1",
+    "@nx/storybook": "21.4.1",
+    "@nx/web": "21.4.1",
+    "@nx/workspace": "21.4.1",
+    "@schematics/angular": "^20.2.1",
+    "@storybook/addon-docs": "9.1.1",
+    "@storybook/addon-styling-webpack": "^2.0.0",
+    "@storybook/angular": "9.1.1",
+    "@types/jasmine": "~5.1.0",
+    "@types/node": "^24.2.0",
+    "autoprefixer": "^10.4.21",
+    "concurrently": "^9.2.0",
+    "css-loader": "^7.1.2",
+    "jasmine-core": "~5.8.0",
+    "karma": "~6.4.0",
+    "karma-chrome-launcher": "~3.2.0",
+    "karma-coverage": "~2.2.0",
+    "karma-jasmine": "~5.1.0",
+    "karma-jasmine-html-reporter": "~2.1.0",
+    "ng-packagr": "^20.1.0",
+    "nx": "21.4.1",
+    "postcss": "^8.5.6",
+    "postcss-loader": "^8.1.1",
+    "sass": "^1.90.0",
+    "sass-loader": "^16.0.5",
+    "storybook": "9.1.1",
+    "style-loader": "^4.0.0",
+    "typescript": "~5.8.2",
+    "zone.js": "^0.15.1"
+  },
+  "nx": {}
 }

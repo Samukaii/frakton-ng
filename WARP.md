@@ -236,7 +236,7 @@ export class FktBadgeComponent {
 
 5. **Exports**:
    - All public APIs through `public-api.ts`
-   - Barrel exports through `index.ts` files in component folders
+   - Barrel exports through `public-api.ts` files in component folders
 
 ## Tips for Development
 
