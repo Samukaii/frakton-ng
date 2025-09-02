@@ -1,0 +1,135 @@
+{
+	"name": "frakton-ng",
+	"version": "1.16.0",
+	"description": "Frakton NG — Design System Angular: componentes UI modernos, acessíveis e escaláveis para acelerar o desenvolvimento de aplicações.",
+	"author": "Samuel Alejandro <samuelalejandro.dev@gmail.com>",
+	"license": "MIT",
+	"main": "fesm2022/frakton-ng-core.mjs",
+	"module": "fesm2022/frakton-ng-core.mjs",
+	"types": "index.d.ts",
+	"exports": {
+		"./autocomplete": {
+			"import": "./dist/autocomplete/index.js"
+		},
+		"./badge": {
+			"import": "./dist/badge/index.js"
+		},
+		"./badge-selector": {
+			"import": "./dist/badge-selector/index.js"
+		},
+		"./button": {
+			"import": "./dist/button/index.js"
+		},
+		"./buttons-list": {
+			"import": "./dist/buttons-list/index.js"
+		},
+		"./calendar": {
+			"import": "./dist/calendar/index.js"
+		},
+		"./calendar-navigator": {
+			"import": "./dist/calendar-navigator/index.js"
+		},
+		"./card": {
+			"import": "./dist/card/index.js"
+		},
+		"./checkbox": {
+			"import": "./dist/checkbox/index.js"
+		},
+		"./core": {
+			"import": "./dist/core/index.js"
+		},
+		"./date-picker": {
+			"import": "./dist/date-picker/index.js"
+		},
+		"./dialog": {
+			"import": "./dist/dialog/index.js"
+		},
+		"./drawer": {
+			"import": "./dist/drawer/index.js"
+		},
+		"./field-error": {
+			"import": "./dist/field-error/index.js"
+		},
+		"./form": {
+			"import": "./dist/form/index.js"
+		},
+		"./forms": {
+			"import": "./dist/forms/index.js"
+		},
+		"./icon": {
+			"import": "./dist/icon/index.js"
+		},
+		"./input": {
+			"import": "./dist/input/index.js"
+		},
+		"./navigator": {
+			"import": "./dist/navigator/index.js"
+		},
+		"./no-results": {
+			"import": "./dist/no-results/index.js"
+		},
+		"./overlay": {
+			"import": "./dist/overlay/index.js"
+		},
+		"./select": {
+			"import": "./dist/select/index.js"
+		},
+		"./side-menu": {
+			"import": "./dist/side-menu/index.js"
+		},
+		"./spinner": {
+			"import": "./dist/spinner/index.js"
+		},
+		"./table": {
+			"import": "./dist/table/index.js"
+		},
+		"./tabs": {
+			"import": "./dist/tabs/index.js"
+		},
+		"./textarea": {
+			"import": "./dist/textarea/index.js"
+		},
+		"./tooltip": {
+			"import": "./dist/tooltip/index.js"
+		}
+	},
+	"files": [
+		"fesm2022/",
+		"index.d.ts",
+		"assets/",
+		"README.md"
+	],
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Samukaii/frakton-ng.git"
+	},
+	"bugs": {
+		"url": "https://github.com/Samukaii/frakton-ng/issues"
+	},
+	"homepage": "https://github.com/Samukaii/frakton-ng/core#readme",
+	"keywords": [
+		"design-system",
+		"angular",
+		"frakton-ng",
+		"component-library",
+		"ui",
+		"acessibilidade",
+		"web-components",
+		"ux"
+	],
+	"peerDependencies": {
+		"@angular/common": "^20.2.0",
+		"@angular/core": "^20.2.0"
+	},
+	"dependencies": {
+		"tslib": "^2.3.0"
+	},
+	"sideEffects": false,
+	"engines": {
+		"node": ">=18.0.0",
+		"npm": ">=8.0.0"
+	},
+	"publishConfig": {
+		"access": "public"
+	}
+}

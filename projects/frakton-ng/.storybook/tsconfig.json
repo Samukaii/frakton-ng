@@ -1,0 +1,17 @@
+{
+  "extends": "../tsconfig.lib.json",
+  "compilerOptions": {
+    "types": ["node", "@storybook/angular"],
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true
+  },
+  "exclude": [
+    "../libs/test.ts",
+    "../libs/**/*.spec.ts"
+  ],
+  "include": [
+    "../libs/**/*.stories.*",
+    "./preview.ts"
+  ],
+  "files": ["./typings.d.ts"]
+}
