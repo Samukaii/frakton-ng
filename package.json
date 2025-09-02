@@ -5,7 +5,7 @@
 		"ng": "ng",
 		"start": "ng serve",
 		"build:core": "ng build core",
-		"publish": "pnpm run build:core && cd projects/core/dist && pnpm publish --access public",
+		"publish": "pnpm run build:core && cd libs/core/dist && pnpm publish --access public",
 		"watch": "ng build --watch --configuration development",
 		"test": "ng test",
 		"storybook": "ng run core:storybook",
