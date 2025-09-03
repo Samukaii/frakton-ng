@@ -58,19 +58,19 @@
 				"libs/frakton-ng/input"
 			],
 			"frakton-ng/internal/di": [
-				"libs/frakton-ng/internal/di/public-api.ts"
+				"libs/frakton-ng/internal/di"
 			],
 			"frakton-ng/internal/pipes": [
-				"libs/frakton-ng/internal/pipes/public-api.ts"
+				"libs/frakton-ng/internal/pipes"
 			],
 			"frakton-ng/internal/services": [
-				"libs/frakton-ng/internal/services/public-api.ts"
+				"libs/frakton-ng/internal/services"
 			],
 			"frakton-ng/internal/types": [
-				"libs/frakton-ng/internal/types/public-api.ts"
+				"libs/frakton-ng/internal/types"
 			],
 			"frakton-ng/internal/utils": [
-				"libs/frakton-ng/internal/utils/public-api.ts"
+				"libs/frakton-ng/internal/utils"
 			],
 			"frakton-ng/navigator": [
 				"libs/frakton-ng/navigator"
