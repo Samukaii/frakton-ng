@@ -6,11 +6,14 @@
 		"frakton-ng": {
 			"projectType": "library",
 			"root": "libs/frakton-ng",
-			"sourceRoot": "libs/frakton-ng/src",
+			"sourceRoot": "libs/frakton-ng",
 			"prefix": "fkt",
 			"architect": {
 				"build": {
 					"builder": "@angular/build:ng-packagr",
+					"options": {
+						"project": "libs/frakton-ng/ng-package.json"
+					},
 					"configurations": {
 						"production": {
 							"tsConfig": "libs/frakton-ng/tsconfig.lib.prod.json"

@@ -1,97 +1,20 @@
 {
 	"name": "frakton-ng",
-	"version": "1.16.0",
+	"version": "2.0.0",
 	"description": "Frakton NG — Design System Angular: componentes UI modernos, acessíveis e escaláveis para acelerar o desenvolvimento de aplicações.",
 	"author": "Samuel Alejandro <samuelalejandro.dev@gmail.com>",
 	"license": "MIT",
-	"main": "fesm2022/frakton-ng-core.mjs",
-	"module": "fesm2022/frakton-ng-core.mjs",
+	"main": "fesm2022/frakton-ng.mjs",
+	"module": "fesm2022/frakton-ng.mjs",
 	"types": "index.d.ts",
-	"exports": {
-		"./autocomplete": {
-			"import": "./dist/autocomplete/index.js"
-		},
-		"./badge": {
-			"import": "./dist/badge/index.js"
-		},
-		"./badge-selector": {
-			"import": "./dist/badge-selector/index.js"
-		},
-		"./button": {
-			"import": "./dist/button/index.js"
-		},
-		"./buttons-list": {
-			"import": "./dist/buttons-list/index.js"
-		},
-		"./calendar": {
-			"import": "./dist/calendar/index.js"
-		},
-		"./calendar-navigator": {
-			"import": "./dist/calendar-navigator/index.js"
-		},
-		"./card": {
-			"import": "./dist/card/index.js"
-		},
-		"./checkbox": {
-			"import": "./dist/checkbox/index.js"
-		},
-		"./core": {
-			"import": "./dist/core/index.js"
-		},
-		"./date-picker": {
-			"import": "./dist/date-picker/index.js"
-		},
-		"./dialog": {
-			"import": "./dist/dialog/index.js"
-		},
-		"./drawer": {
-			"import": "./dist/drawer/index.js"
-		},
-		"./field-error": {
-			"import": "./dist/field-error/index.js"
-		},
-		"./form": {
-			"import": "./dist/form/index.js"
-		},
-		"./forms": {
-			"import": "./dist/forms/index.js"
-		},
-		"./icon": {
-			"import": "./dist/icon/index.js"
-		},
-		"./input": {
-			"import": "./dist/input/index.js"
-		},
-		"./navigator": {
-			"import": "./dist/navigator/index.js"
-		},
-		"./no-results": {
-			"import": "./dist/no-results/index.js"
-		},
-		"./overlay": {
-			"import": "./dist/overlay/index.js"
-		},
-		"./select": {
-			"import": "./dist/select/index.js"
-		},
-		"./side-menu": {
-			"import": "./dist/side-menu/index.js"
-		},
-		"./spinner": {
-			"import": "./dist/spinner/index.js"
-		},
-		"./table": {
-			"import": "./dist/table/index.js"
-		},
-		"./tabs": {
-			"import": "./dist/tabs/index.js"
-		},
-		"./textarea": {
-			"import": "./dist/textarea/index.js"
-		},
-		"./tooltip": {
-			"import": "./dist/tooltip/index.js"
-		}
+	"scripts": {
+		"build": "ng build frakton-ng",
+		"update-version:major": "node scripts/update-version.mjs major",
+		"update-version:minor": "node scripts/update-version.mjs minor",
+		"update-version:patch": "node scripts/update-version.mjs patch",
+		"publish:major": "pnpm run update-version:major && pnpm run build && cd dist && pnpm publish --access public",
+		"publish:minor": "pnpm run update-version:minor && pnpm run build && cd dist && pnpm publish --access public",
+		"publish:patch": "pnpm run update-version:patch && pnpm run build && cd dist && pnpm publish --access public"
 	},
 	"files": [
 		"fesm2022/",

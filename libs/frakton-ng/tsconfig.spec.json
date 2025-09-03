@@ -7,8 +7,5 @@
     "types": [
       "jasmine"
     ]
-  },
-  "include": [
-    "libs/**/*.ts"
-  ]
+  }
 }
