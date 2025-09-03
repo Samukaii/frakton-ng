@@ -4,58 +4,58 @@
 		"baseUrl": "./",
 		"paths": {
 			"frakton-ng/autocomplete": [
-				"libs/frakton-ng/autocomplete/public-api.ts"
+				"libs/frakton-ng/autocomplete"
 			],
 			"frakton-ng/badge": [
-				"libs/frakton-ng/badge/public-api.ts"
+				"libs/frakton-ng/badge"
 			],
 			"frakton-ng/badge-selector": [
-				"libs/frakton-ng/badge-selector/src/public-api.ts"
+				"libs/frakton-ng/badge-selector"
 			],
 			"frakton-ng/button": [
-				"libs/frakton-ng/button/src/public-api.ts"
+				"libs/frakton-ng/button"
 			],
 			"frakton-ng/buttons-list": [
-				"libs/frakton-ng/buttons-list/src/public-api.ts"
+				"libs/frakton-ng/buttons-list"
 			],
 			"frakton-ng/calendar": [
-				"libs/frakton-ng/calendar/src/public-api.ts"
+				"libs/frakton-ng/calendar"
 			],
 			"frakton-ng/calendar-navigator": [
-				"libs/frakton-ng/calendar-navigator/src/public-api.ts"
+				"libs/frakton-ng/calendar-navigator"
 			],
 			"frakton-ng/card": [
-				"libs/frakton-ng/card/src/public-api.ts"
+				"libs/frakton-ng/card"
 			],
 			"frakton-ng/checkbox": [
-				"libs/frakton-ng/checkbox/src/public-api.ts"
+				"libs/frakton-ng/checkbox"
 			],
 			"frakton-ng/core": [
-				"libs/frakton-ng/core/src/public-api.ts"
+				"libs/frakton-ng/core"
 			],
 			"frakton-ng/date-picker": [
-				"libs/frakton-ng/date-picker/src/public-api.ts"
+				"libs/frakton-ng/date-picker"
 			],
 			"frakton-ng/dialog": [
-				"libs/frakton-ng/dialog/src/public-api.ts"
+				"libs/frakton-ng/dialog"
 			],
 			"frakton-ng/drawer": [
-				"libs/frakton-ng/drawer/src/public-api.ts"
+				"libs/frakton-ng/drawer"
 			],
 			"frakton-ng/field-error": [
-				"libs/frakton-ng/field-error/src/public-api.ts"
+				"libs/frakton-ng/field-error"
 			],
 			"frakton-ng/form": [
-				"libs/frakton-ng/form/src/public-api.ts"
+				"libs/frakton-ng/form"
 			],
 			"frakton-ng/forms": [
-				"libs/frakton-ng/forms/src/public-api.ts"
+				"libs/frakton-ng/forms"
 			],
 			"frakton-ng/icon": [
-				"libs/frakton-ng/icon/src/public-api.ts"
+				"libs/frakton-ng/icon"
 			],
 			"frakton-ng/input": [
-				"libs/frakton-ng/input/public-api.ts"
+				"libs/frakton-ng/input"
 			],
 			"frakton-ng/internal/di": [
 				"libs/frakton-ng/internal/di/public-api.ts"
@@ -73,34 +73,34 @@
 				"libs/frakton-ng/internal/utils/public-api.ts"
 			],
 			"frakton-ng/navigator": [
-				"libs/frakton-ng/navigator/src/public-api.ts"
+				"libs/frakton-ng/navigator"
 			],
 			"frakton-ng/no-results": [
-				"libs/frakton-ng/no-results/src/public-api.ts"
+				"libs/frakton-ng/no-results"
 			],
 			"frakton-ng/overlay": [
-				"libs/frakton-ng/overlay/src/public-api.ts"
+				"libs/frakton-ng/overlay"
 			],
 			"frakton-ng/select": [
-				"libs/frakton-ng/select/src/public-api.ts"
+				"libs/frakton-ng/select"
 			],
 			"frakton-ng/side-menu": [
-				"libs/frakton-ng/side-menu/src/public-api.ts"
+				"libs/frakton-ng/side-menu"
 			],
 			"frakton-ng/spinner": [
-				"libs/frakton-ng/spinner/public-api.ts"
+				"libs/frakton-ng/spinner"
 			],
 			"frakton-ng/table": [
-				"libs/frakton-ng/table/src/public-api.ts"
+				"libs/frakton-ng/table"
 			],
 			"frakton-ng/tabs": [
-				"libs/frakton-ng/tabs/src/public-api.ts"
+				"libs/frakton-ng/tabs"
 			],
 			"frakton-ng/textarea": [
-				"libs/frakton-ng/textarea/src/public-api.ts"
+				"libs/frakton-ng/textarea"
 			],
 			"frakton-ng/tooltip": [
-				"libs/frakton-ng/tooltip/src/public-api.ts"
+				"libs/frakton-ng/tooltip"
 			]
 		},
 		"strict": true,
