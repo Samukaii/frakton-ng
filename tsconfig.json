@@ -1,50 +1,134 @@
-/* To learn more about Typescript configuration file: https://www.typescriptlang.org/docs/handbook/tsconfig-json.html. */
-/* To learn more about Angular compiler options: https://angular.dev/reference/configs/angular-compiler-options. */
 {
-  "compileOnSave": false,
-  "compilerOptions": {
-    "paths": {
-      "components": [
-        "./dist/components"
-      ],
-      "core": [
-        "./dist/core"
-      ]
-    },
-    "strict": true,
-    "noImplicitOverride": true,
-    "noPropertyAccessFromIndexSignature": true,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
-    "skipLibCheck": true,
-    "isolatedModules": true,
-    "experimentalDecorators": true,
-    "importHelpers": true,
-    "target": "ES2022",
-    "module": "preserve"
-  },
-  "angularCompilerOptions": {
-    "enableI18nLegacyMessageIdFormat": false,
-    "strictInjectionParameters": true,
-    "strictInputAccessModifiers": true,
-    "typeCheckHostBindings": true,
-    "strictTemplates": true
-  },
+	"compileOnSave": false,
+	"compilerOptions": {
+		"baseUrl": "./",
+		"paths": {
+			"frakton-ng/autocomplete": [
+				"libs/frakton-ng/autocomplete/public-api.ts"
+			],
+			"frakton-ng/badge": [
+				"libs/frakton-ng/badge/public-api.ts"
+			],
+			"frakton-ng/badge-selector": [
+				"libs/frakton-ng/badge-selector/src/public-api.ts"
+			],
+			"frakton-ng/button": [
+				"libs/frakton-ng/button/src/public-api.ts"
+			],
+			"frakton-ng/buttons-list": [
+				"libs/frakton-ng/buttons-list/src/public-api.ts"
+			],
+			"frakton-ng/calendar": [
+				"libs/frakton-ng/calendar/src/public-api.ts"
+			],
+			"frakton-ng/calendar-navigator": [
+				"libs/frakton-ng/calendar-navigator/src/public-api.ts"
+			],
+			"frakton-ng/card": [
+				"libs/frakton-ng/card/src/public-api.ts"
+			],
+			"frakton-ng/checkbox": [
+				"libs/frakton-ng/checkbox/src/public-api.ts"
+			],
+			"frakton-ng/core": [
+				"libs/frakton-ng/core/src/public-api.ts"
+			],
+			"frakton-ng/date-picker": [
+				"libs/frakton-ng/date-picker/src/public-api.ts"
+			],
+			"frakton-ng/dialog": [
+				"libs/frakton-ng/dialog/src/public-api.ts"
+			],
+			"frakton-ng/drawer": [
+				"libs/frakton-ng/drawer/src/public-api.ts"
+			],
+			"frakton-ng/field-error": [
+				"libs/frakton-ng/field-error/src/public-api.ts"
+			],
+			"frakton-ng/form": [
+				"libs/frakton-ng/form/src/public-api.ts"
+			],
+			"frakton-ng/forms": [
+				"libs/frakton-ng/forms/src/public-api.ts"
+			],
+			"frakton-ng/icon": [
+				"libs/frakton-ng/icon/src/public-api.ts"
+			],
+			"frakton-ng/input": [
+				"libs/frakton-ng/input/public-api.ts"
+			],
+			"frakton-ng/internal/di": [
+				"libs/frakton-ng/internal/di/public-api.ts"
+			],
+			"frakton-ng/internal/pipes": [
+				"libs/frakton-ng/internal/pipes/public-api.ts"
+			],
+			"frakton-ng/internal/services": [
+				"libs/frakton-ng/internal/services/public-api.ts"
+			],
+			"frakton-ng/internal/types": [
+				"libs/frakton-ng/internal/types/public-api.ts"
+			],
+			"frakton-ng/internal/utils": [
+				"libs/frakton-ng/internal/utils/public-api.ts"
+			],
+			"frakton-ng/navigator": [
+				"libs/frakton-ng/navigator/src/public-api.ts"
+			],
+			"frakton-ng/no-results": [
+				"libs/frakton-ng/no-results/src/public-api.ts"
+			],
+			"frakton-ng/overlay": [
+				"libs/frakton-ng/overlay/src/public-api.ts"
+			],
+			"frakton-ng/select": [
+				"libs/frakton-ng/select/src/public-api.ts"
+			],
+			"frakton-ng/side-menu": [
+				"libs/frakton-ng/side-menu/src/public-api.ts"
+			],
+			"frakton-ng/spinner": [
+				"libs/frakton-ng/spinner/public-api.ts"
+			],
+			"frakton-ng/table": [
+				"libs/frakton-ng/table/src/public-api.ts"
+			],
+			"frakton-ng/tabs": [
+				"libs/frakton-ng/tabs/src/public-api.ts"
+			],
+			"frakton-ng/textarea": [
+				"libs/frakton-ng/textarea/src/public-api.ts"
+			],
+			"frakton-ng/tooltip": [
+				"libs/frakton-ng/tooltip/src/public-api.ts"
+			]
+		},
+		"strict": true,
+		"noImplicitOverride": true,
+		"noPropertyAccessFromIndexSignature": true,
+		"noImplicitReturns": true,
+		"noFallthroughCasesInSwitch": true,
+		"skipLibCheck": true,
+		"isolatedModules": true,
+		"experimentalDecorators": true,
+		"importHelpers": true,
+		"target": "ES2022",
+		"module": "preserve"
+	},
+	"angularCompilerOptions": {
+		"enableI18nLegacyMessageIdFormat": false,
+		"strictInjectionParameters": true,
+		"strictInputAccessModifiers": true,
+		"typeCheckHostBindings": true,
+		"strictTemplates": true
+	},
+	"include": [
+		"libs/**/*.ts"
+	],
+	"exclude": [
+		"**/*.spec.ts"
+	],
 	"files": [
 		"./globals.d.ts"
-	],
-  "references": [
-    {
-      "path": "./projects/core/tsconfig.lib.json"
-    },
-    {
-      "path": "./projects/core/tsconfig.spec.json"
-    },
-    {
-      "path": "./projects/core/tsconfig.lib.json"
-    },
-    {
-      "path": "./projects/core/tsconfig.spec.json"
-    }
-  ]
+	]
 }

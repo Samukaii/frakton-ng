@@ -1,0 +1,58 @@
+{
+	"name": "frakton-ng",
+	"version": "2.0.0",
+	"description": "Frakton NG — Design System Angular: componentes UI modernos, acessíveis e escaláveis para acelerar o desenvolvimento de aplicações.",
+	"author": "Samuel Alejandro <samuelalejandro.dev@gmail.com>",
+	"license": "MIT",
+	"main": "fesm2022/frakton-ng.mjs",
+	"module": "fesm2022/frakton-ng.mjs",
+	"types": "index.d.ts",
+	"scripts": {
+		"build": "ng build frakton-ng",
+		"update-version:major": "node scripts/update-version.mjs major",
+		"update-version:minor": "node scripts/update-version.mjs minor",
+		"update-version:patch": "node scripts/update-version.mjs patch",
+		"publish:major": "pnpm run update-version:major && pnpm run build && cd dist && pnpm publish --access public",
+		"publish:minor": "pnpm run update-version:minor && pnpm run build && cd dist && pnpm publish --access public",
+		"publish:patch": "pnpm run update-version:patch && pnpm run build && cd dist && pnpm publish --access public"
+	},
+	"files": [
+		"fesm2022/",
+		"index.d.ts",
+		"assets/",
+		"README.md"
+	],
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Samukaii/frakton-ng.git"
+	},
+	"bugs": {
+		"url": "https://github.com/Samukaii/frakton-ng/issues"
+	},
+	"homepage": "https://github.com/Samukaii/frakton-ng/core#readme",
+	"keywords": [
+		"design-system",
+		"angular",
+		"frakton-ng",
+		"component-library",
+		"ui",
+		"acessibilidade",
+		"web-components",
+		"ux"
+	],
+	"peerDependencies": {
+		"@angular/common": "^20.2.0",
+		"@angular/core": "^20.2.0"
+	},
+	"dependencies": {
+		"tslib": "^2.3.0"
+	},
+	"sideEffects": false,
+	"engines": {
+		"node": ">=18.0.0",
+		"npm": ">=8.0.0"
+	},
+	"publishConfig": {
+		"access": "public"
+	}
+}

@@ -3,20 +3,23 @@
 	"version": 1,
 	"newProjectRoot": "projects",
 	"projects": {
-		"core": {
+		"frakton-ng": {
 			"projectType": "library",
-			"root": "projects/core",
-			"sourceRoot": "projects/core/src",
+			"root": "libs/frakton-ng",
+			"sourceRoot": "libs/frakton-ng",
 			"prefix": "fkt",
 			"architect": {
 				"build": {
 					"builder": "@angular/build:ng-packagr",
+					"options": {
+						"project": "libs/frakton-ng/ng-package.json"
+					},
 					"configurations": {
 						"production": {
-							"tsConfig": "projects/core/tsconfig.lib.prod.json"
+							"tsConfig": "libs/frakton-ng/tsconfig.lib.prod.json"
 						},
 						"development": {
-							"tsConfig": "projects/core/tsconfig.lib.json"
+							"tsConfig": "libs/frakton-ng/tsconfig.lib.json"
 						}
 					},
 					"defaultConfiguration": "production"
@@ -24,14 +27,14 @@
 				"test": {
 					"builder": "@angular/build:karma",
 					"options": {
-						"tsConfig": "projects/core/tsconfig.spec.json"
+						"tsConfig": "libs/frakton-ng/tsconfig.spec.json"
 					}
 				},
 				"storybook": {
 					"builder": "@storybook/angular:start-storybook",
 					"options": {
-						"configDir": "projects/core/.storybook",
-						"browserTarget": "core:build:development",
+						"configDir": "libs/frakton-ng/.storybook",
+						"browserTarget": "frakton-ng:build:development",
 						"compodoc": false,
 						"port": 6006
 					}
@@ -39,8 +42,8 @@
 				"build-storybook": {
 					"builder": "@storybook/angular:build-storybook",
 					"options": {
-						"configDir": "projects/core/.storybook",
-						"browserTarget": "core:build:production",
+						"configDir": "libs/frakton-ng/.storybook",
+						"browserTarget": "frakton-ng:build:production",
 						"compodoc": false,
 						"outputDir": "docs"
 					}

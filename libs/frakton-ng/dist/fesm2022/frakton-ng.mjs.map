@@ -1,0 +1,1 @@
+{"version":3,"file":"frakton-ng.mjs","sources":["../../public-api.ts","../../frakton-ng.ts"],"sourcesContent":["export default {}\r\n","/**\n * Generated bundle index. Do not edit.\n */\n\nexport * from './public-api';\n"],"names":[],"mappings":"AAAA,gBAAe,EAAE;;ACAjB;;AAEG"}

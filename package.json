@@ -4,12 +4,14 @@
 	"scripts": {
 		"ng": "ng",
 		"start": "ng serve",
-		"build:core": "ng build core",
-		"publish": "pnpm run build:core && cd projects/core/dist && pnpm publish --access public",
+		"build": "pnpm --filter frakton-ng build",
+		"publish:major": "pnpm --filter frakton-ng publish:major",
+		"publish:minor": "pnpm --filter frakton-ng publish:minor",
+		"publish:patch": "pnpm --filter frakton-ng publish:patch",
 		"watch": "ng build --watch --configuration development",
 		"test": "ng test",
-		"storybook": "ng run core:storybook",
-		"storybook:build": "ng run core:build-storybook",
+		"storybook": "ng run frakton-ng:storybook",
+		"storybook:build": "ng run frakton-ng:build-storybook",
 		"dev": "ng run core:storybook"
 	},
 	"prettier": {

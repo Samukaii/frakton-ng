@@ -1,0 +1,19 @@
+@let selectedOptionValue = selectedOption();
+
+@if (selectedOptionValue) {
+	<fkt-badge
+		class="badge"
+		(click)="select()"
+		[color]="selectedOptionValue.color"
+	>
+		<div badge-content class="badge__content">
+			<p class="whitespace-nowrap">
+				{{ selectedOption()?.name }}
+
+			</p>
+			<fkt-icon
+				name="chevron-down"
+			/>
+		</div>
+	</fkt-badge>
+}
