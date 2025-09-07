@@ -1,0 +1,27 @@
+.container {
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-xl);
+
+	&__info {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-top: var(--space-xs);
+		padding-top: var(--space-xs);
+		border-top: 1px solid var(--color-gray-200);
+		color: var(--color-gray-600);
+
+		&-selected {
+			color: var(--color-gray-600);
+			text-align: center;
+			font-weight: var(--font-semibold);
+		}
+	}
+
+	&__actions {
+		gap: var(--space-xs);
+		display: flex;
+		justify-content: flex-end;
+	}
+}

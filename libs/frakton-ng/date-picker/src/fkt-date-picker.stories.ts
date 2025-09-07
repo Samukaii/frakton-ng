@@ -8,14 +8,17 @@ const meta: Meta<FktDatePickerComponent> = {
 	argTypes: {
 		control: {
 			control: false,
+			type: {
+				name: "object",
+				value: {},
+				required: true,
+			},
 			table: {
 				category: "Attributes",
 				type: {
-					summary: 'SignalFormControl<any>',
+					summary: 'SignalFormControl<Date>',
+					detail: "import {SignalFormControl} from 'frakton-ng/forms';"
 				},
-				defaultValue: {
-					summary: "Required - SignalFormControl instance"
-				}
 			},
 			description: 'The form control that manages the date picker state and validation'
 		},
@@ -56,10 +59,9 @@ const meta: Meta<FktDatePickerComponent> = {
 
 type Story = StoryObj<FktDatePickerComponent>;
 
-// Basic date picker example
-export const Default: Story = {
+export const BasicDatePicker: Story = {
 	args: {
-		control: new SignalFormControl(''),
+		control: new SignalFormControl(null),
 		label: "Birth Date",
 		placeholder: "Select your birth date",
 	},
@@ -72,7 +74,6 @@ export const Default: Story = {
 	}
 };
 
-// Date picker with pre-filled date
 export const WithPrefilledDate: Story = {
 	args: {
 		control: new SignalFormControl(new Date()),
@@ -88,10 +89,9 @@ export const WithPrefilledDate: Story = {
 	}
 };
 
-// Date picker with required validation
-export const RequiredField: Story = {
+export const RequiredValidation: Story = {
 	args: {
-		control: new SignalFormControl('', {
+		control: new SignalFormControl(null, {
 			validators: [SignalValidators.required()]
 		}),
 		label: "Due Date (Required)",
@@ -106,8 +106,7 @@ export const RequiredField: Story = {
 	}
 };
 
-// Disabled date picker
-export const Disabled: Story = {
+export const DisabledState: Story = {
 	args: {
 		control: (() => {
 			const control = new SignalFormControl(new Date('2024-12-25'));
@@ -126,25 +125,9 @@ export const Disabled: Story = {
 	}
 };
 
-// Date picker without label
-export const WithoutLabel: Story = {
-	args: {
-		control: new SignalFormControl(''),
-		placeholder: "mm/dd/yyyy",
-	},
-	parameters: {
-		docs: {
-			description: {
-				story: 'A date picker without a label, useful for compact layouts where space is limited or when the context is clear.'
-			}
-		}
-	}
-};
-
-// Date picker with custom format hint
 export const WithFormatHint: Story = {
 	args: {
-		control: new SignalFormControl(''),
+		control: new SignalFormControl(null),
 		label: "Start Date",
 		placeholder: "DD/MM/YYYY format",
 	},
@@ -156,8 +139,5 @@ export const WithFormatHint: Story = {
 		}
 	}
 };
-
-// Legacy export for backward compatibility
-export const Preview: Story = Default;
 
 export default meta;

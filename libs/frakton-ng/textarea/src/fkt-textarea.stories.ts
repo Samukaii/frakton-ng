@@ -30,44 +30,56 @@ const meta: Meta<FktTextareaComponent> = {
 		control: {
 			control: false,
 			description: 'SignalFormControl instance that manages the textarea state and validation',
+			type: {
+				name: "object",
+				value: {},
+				required: true,
+			},
 			table: {
-				type: { summary: 'SignalFormControl<any>' },
-				defaultValue: { summary: 'Required' },
-				category: 'Inputs'
+				type: {
+					summary: 'SignalFormControl<string>',
+					detail: "import {SignalFormControl} from 'frakton-ng/forms'"
+				},
+				category: 'Attributes'
 			}
 		},
 		label: {
 			control: 'text',
 			description: 'Label text displayed above the textarea',
+			type: {
+				name: "string",
+				required: true,
+			},
 			table: {
-				type: { summary: 'string' },
-				defaultValue: { summary: 'Required' },
-				category: 'Inputs'
+				type: {summary: 'string'},
+				category: 'Attributes'
 			}
 		},
 		placeholder: {
 			control: 'text',
 			description: 'Placeholder text shown when the textarea is empty',
 			table: {
-				type: { summary: 'string' },
-				defaultValue: { summary: "''" },
-				category: 'Inputs'
+				type: {summary: 'string'},
+				defaultValue: {summary: "''"},
+				category: 'Attributes'
 			}
 		},
 		autoExpand: {
 			control: 'boolean',
 			description: 'When enabled, the textarea automatically expands to fit content',
 			table: {
-				type: { summary: 'boolean' },
-				defaultValue: { summary: 'false' },
-				category: 'Inputs'
+				type: {summary: 'boolean'},
+				defaultValue: {summary: 'false'},
+				category: 'Attributes'
 			}
 		},
 		focus: {
 			control: false,
 			description: 'Programmatically focuses the textarea element',
 			table: {
-				type: { summary: '() => void' },
+				type: {
+					summary: '() => void',
+				},
 				category: 'Methods'
 			}
 		}
@@ -76,7 +88,14 @@ const meta: Meta<FktTextareaComponent> = {
 
 type Story = StoryObj<FktTextareaComponent>;
 
-export const Basic: Story = {
+export const BasicUsage: Story = {
+	parameters: {
+		docs: {
+			story: {
+				description: 'A basic textarea with label and placeholder. Use this as a starting point for most scenarios where free-form multi-line text input is needed.',
+			}
+		}
+	},
 	render: (args) => ({
 		template: `<textarea-basic-example
 			[control]="control"
@@ -94,7 +113,14 @@ export const Basic: Story = {
 	}
 };
 
-export const WithValidation: Story = {
+export const Validation: Story = {
+	parameters: {
+		docs: {
+			story: {
+				description: 'Textarea with validation logic for minimum and maximum length. Shows error messages and disables submission if the requirements are not met.',
+			}
+		}
+	},
 	render: () => ({
 		template: `<textarea-validation-example
 			[minLength]="20"
@@ -108,6 +134,13 @@ export const WithValidation: Story = {
 };
 
 export const AutoExpand: Story = {
+	parameters: {
+		docs: {
+			story: {
+				description: 'Textarea with auto-expand enabled. The textarea grows vertically as the user types more lines, improving the writing experience for long texts.',
+			}
+		}
+	},
 	render: (args) => ({
 		template: `<textarea-auto-expand-example
 			[control]="control"
@@ -128,6 +161,13 @@ export const AutoExpand: Story = {
 };
 
 export const FormIntegration: Story = {
+	parameters: {
+		docs: {
+			story: {
+				description: 'Demonstrates how the textarea integrates with reactive forms using SignalFormControl. This is ideal for real-world forms that need validation, control and submission.',
+			}
+		}
+	},
 	render: () => ({
 		template: `<textarea-form-integration-example></textarea-form-integration-example>`,
 		props: {}
@@ -136,6 +176,13 @@ export const FormIntegration: Story = {
 };
 
 export const CharacterCounter: Story = {
+	parameters: {
+		docs: {
+			story: {
+				description: 'Textarea with a live character counter, ideal for use cases like social posts, tweets, or messages with a maximum allowed length.',
+			}
+		}
+	},
 	render: () => ({
 		template: `<textarea-character-counter-example
 			[maxLength]="280"
@@ -148,6 +195,14 @@ export const CharacterCounter: Story = {
 };
 
 export const DisabledState: Story = {
+	parameters: {
+		docs: {
+			story: {
+				description: 'Shows the textarea in a disabled state. Useful for read-only or preview scenarios, or when editing is not allowed due to permissions or workflow status.',
+
+			}
+		}
+	},
 	render: () => ({
 		template: `<textarea-disabled-example
 			[label]="'Terms and Conditions'"

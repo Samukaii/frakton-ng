@@ -1,7 +1,8 @@
-import { Meta, Story } from '@storybook/addon-docs/blocks';
+import {ArgTypes, Meta} from '@storybook/addon-docs/blocks';
 import * as fktBadgeStories from './fkt-badge.stories';
+import {StoryDoc} from "../../.storybook/blocks/StoryDoc";
 
-<Meta of={fktBadgeStories} />
+<Meta of={fktBadgeStories}/>
 
 The **FktBadge** component provides a visual indicator for status, categories, counts, and other contextual information. Built with Angular signals and flexible styling options, it offers semantic color coding and variant styles for different visual prominence levels.
 
@@ -16,20 +17,28 @@ The **FktBadge** component provides a visual indicator for status, categories, c
 
 ## Configuration Options
 
-### Input Properties
-- **`text`**: `string` - Badge text content (default: `undefined`)
-- **`color`** (required): `FktBadgeColor` - Badge color theme
-- **`variant`**: `FktBadgeVariant` - Visual style variant (default: `'opaque'`)
+<ArgTypes/>
 
-### Colors
-- **`green`**: Success states, positive indicators, active status
-- **`red`**: Error states, urgent items, negative indicators
-- **`blue`**: Information states, neutral indicators, primary actions
-- **`orange`**: Warning states, pending items, attention needed
 
-### Variants
-- **`opaque`**: Solid background with full color saturation for high visibility
-- **`faded`**: Reduced opacity background for subtle indicators
+### Types
+```ts
+export type FktBadgeColor = 'green' | 'red' | 'blue' | 'orange';
+
+export type FktBadgeVariant = 'opaque' | 'faded';
+```
+
+## Examples
+
+<StoryDoc of={fktBadgeStories.SuccessBadge}/>
+<StoryDoc of={fktBadgeStories.ErrorBadge}/>
+<StoryDoc of={fktBadgeStories.WarningBadge}/>
+<StoryDoc of={fktBadgeStories.InfoBadge}/>
+<StoryDoc of={fktBadgeStories.BadgeVariations}/>
+<StoryDoc of={fktBadgeStories.CountBadge}/>
+<StoryDoc of={fktBadgeStories.StatusBadge}/>
+<StoryDoc of={fktBadgeStories.PriorityBadge}/>
+<StoryDoc of={fktBadgeStories.CategoryBadge}/>
+<StoryDoc of={fktBadgeStories.LongTextBadge}/>
 
 ## Use Cases
 
@@ -74,240 +83,3 @@ Essential for dashboard and reporting:
 - **Lightweight**: Minimal CSS and JavaScript footprint
 - **Efficient Rendering**: Optimized change detection with Angular signals
 - **Memory Efficient**: No complex state management or subscriptions
-
-## Examples
-
-### Basic Badge
-
-A standard badge with success state and opaque styling, perfect for status indicators.
-
-<Story of={fktBadgeStories.Success} />
-
-```typescript
-@Component({
-  selector: 'app-example',
-  template: `
-    <fkt-badge
-      [text]="'Success'"
-      [color]="'green'"
-      [variant]="'opaque'"
-    />
-  `,
-  standalone: true,
-  imports: [FktBadgeComponent]
-})
-export class ExampleComponent {}
-```
-
-### Error State Badge
-
-Badge showing error state with red color for urgent attention.
-
-<Story of={fktBadgeStories.Error} />
-
-```typescript
-@Component({
-  selector: 'app-example',
-  template: `
-    <fkt-badge
-      [text]="'Error'"
-      [color]="'red'"
-      [variant]="'opaque'"
-    />
-  `,
-  standalone: true,
-  imports: [FktBadgeComponent]
-})
-export class ExampleComponent {}
-```
-
-### Information Badge
-
-Badge with blue color for informational content and faded variant for subtle display.
-
-<Story of={fktBadgeStories.Info} />
-
-```typescript
-@Component({
-  selector: 'app-example',
-  template: `
-    <fkt-badge
-      [text]="'Info'"
-      [color]="'blue'"
-      [variant]="'faded'"
-    />
-  `,
-  standalone: true,
-  imports: [FktBadgeComponent]
-})
-export class ExampleComponent {}
-```
-
-### Warning Badge
-
-Badge with orange color for warnings and pending states that need attention.
-
-<Story of={fktBadgeStories.Warning} />
-
-```typescript
-@Component({
-  selector: 'app-example',
-  template: `
-    <fkt-badge
-      [text]="'Warning'"
-      [color]="'orange'"
-      [variant]="'opaque'"
-    />
-  `,
-  standalone: true,
-  imports: [FktBadgeComponent]
-})
-export class ExampleComponent {}
-```
-
-### Color and Variant Variations
-
-Comprehensive showcase of all available colors and variants, demonstrating the full range of badge styling options.
-
-<Story of={fktBadgeStories.Variations} />
-
-```typescript
-@Component({
-  selector: 'app-example',
-  template: `
-    <div class="flex flex-col gap-4">
-      <div class="flex flex-col gap-2">
-        <h2 class="text-lg font-semibold border-b border-gray-200 pb-1">Opaque Variant</h2>
-        <div class="flex gap-2 items-center flex-wrap">
-          <fkt-badge text="Green" color="green" variant="opaque" />
-          <fkt-badge text="Red" color="red" variant="opaque" />
-          <fkt-badge text="Blue" color="blue" variant="opaque" />
-          <fkt-badge text="Orange" color="orange" variant="opaque" />
-        </div>
-      </div>
-      <div class="flex flex-col gap-2">
-        <h2 class="text-lg font-semibold border-b border-gray-200 pb-1">Faded Variant</h2>
-        <div class="flex gap-2 items-center flex-wrap">
-          <fkt-badge text="Green" color="green" variant="faded" />
-          <fkt-badge text="Red" color="red" variant="faded" />
-          <fkt-badge text="Blue" color="blue" variant="faded" />
-          <fkt-badge text="Orange" color="orange" variant="faded" />
-        </div>
-      </div>
-    </div>
-  `,
-  standalone: true,
-  imports: [FktBadgeComponent]
-})
-export class ExampleComponent {}
-```
-
-### Count Badges
-
-Numerical badges perfect for displaying counts, quantities, and numbers.
-
-<Story of={fktBadgeStories.CountBadge} />
-
-```typescript
-@Component({
-  selector: 'app-example',
-  template: `
-    <fkt-badge
-      [text]="'5'"
-      [color]="'blue'"
-      [variant]="'opaque'"
-    />
-  `,
-  standalone: true,
-  imports: [FktBadgeComponent]
-})
-export class ExampleComponent {}
-```
-
-### Status Badges
-
-Status indicators for workflow states, item conditions, and process stages.
-
-<Story of={fktBadgeStories.StatusBadge} />
-
-```typescript
-@Component({
-  selector: 'app-example',
-  template: `
-    <fkt-badge
-      [text]="'Online'"
-      [color]="'green'"
-      [variant]="'opaque'"
-    />
-  `,
-  standalone: true,
-  imports: [FktBadgeComponent]
-})
-export class ExampleComponent {}
-```
-
-### Category Badges
-
-Category and classification badges for organizing and labeling content.
-
-<Story of={fktBadgeStories.CategoryBadge} />
-
-```typescript
-@Component({
-  selector: 'app-example',
-  template: `
-    <fkt-badge
-      [text]="'Electronics'"
-      [color]="'blue'"
-      [variant]="'faded'"
-    />
-  `,
-  standalone: true,
-  imports: [FktBadgeComponent]
-})
-export class ExampleComponent {}
-```
-
-### Priority Badges
-
-Priority indicators for tasks, issues, and items requiring attention levels.
-
-<Story of={fktBadgeStories.PriorityBadge} />
-
-```typescript
-@Component({
-  selector: 'app-example',
-  template: `
-    <fkt-badge
-      [text]="'High Priority'"
-      [color]="'red'"
-      [variant]="'opaque'"
-    />
-  `,
-  standalone: true,
-  imports: [FktBadgeComponent]
-})
-export class ExampleComponent {}
-```
-
-### Long Text Badges
-
-Badges with longer text content demonstrating text handling and wrapping.
-
-<Story of={fktBadgeStories.LongTextBadge} />
-
-```typescript
-@Component({
-  selector: 'app-example',
-  template: `
-    <fkt-badge
-      [text]="'Very Long Category Name'"
-      [color]="'blue'"
-      [variant]="'faded'"
-    />
-  `,
-  standalone: true,
-  imports: [FktBadgeComponent]
-})
-export class ExampleComponent {}
-```

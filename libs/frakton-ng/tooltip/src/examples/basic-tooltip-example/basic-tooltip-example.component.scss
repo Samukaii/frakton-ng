@@ -1,0 +1,16 @@
+.container {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+
+	.container__list {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1rem;
+	}
+
+	.container__title {
+		font-weight: var(--font-semibold);
+		font-size: var(--font-size-lg);
+	}
+}

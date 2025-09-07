@@ -11,37 +11,7 @@ import { FktIconName } from 'frakton-ng/icon';
 	imports: [
 		FktTableComponent
 	],
-	template: `
-		<div class="container">
-			<div class="container__table">
-				<h3>Products - Custom Price and Status Formatting</h3>
-				<fkt-table
-					[data]="productData()"
-					[columnsFn]="productColumns()"
-					[classesFn]="productClassesFn"
-					[actionsFn]="productActionsFn"
-					[mainAction]="productMainAction()"
-					[loading]="loading()"
-					[noHeaderWhenEmpty]="noHeaderWhenEmpty()"
-					[noResults]="productNoResults"
-				/>
-			</div>
-
-			<div class="container__table">
-				<h3>Tasks - Status and Priority Indicators</h3>
-				<fkt-table
-					[data]="taskData()"
-					[columnsFn]="taskColumns()"
-					[classesFn]="taskClassesFn"
-					[actionsFn]="taskActionsFn"
-					[mainAction]="taskMainAction()"
-					[loading]="loading()"
-					[noHeaderWhenEmpty]="noHeaderWhenEmpty()"
-					[noResults]="taskNoResults"
-				/>
-			</div>
-		</div>
-	`,
+	templateUrl: './fkt-table-examples-custom-cells.component.html',
 	styleUrl: './fkt-table-examples-custom-cells.component.scss'
 })
 export class FktTableExamplesCustomCellsComponent {

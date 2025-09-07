@@ -67,17 +67,7 @@ export const userMainAction: FktButtonAction = {
 	imports: [
 		FktTableComponent
 	],
-	template: `
-		<fkt-table
-			[data]="tableData()"
-			[columnsFn]="columnsFn"
-			[classesFn]="classesFn"
-			[mainAction]="tableMainAction()"
-			[loading]="loading()"
-			[noHeaderWhenEmpty]="noHeaderWhenEmpty()"
-			[noResults]="tableNoResults()"
-		/>
-	`,
+	templateUrl: './fkt-table-examples-empty-state.component.html',
 	styleUrl: './fkt-table-examples-empty-state.component.scss'
 })
 export class FktTableExamplesEmptyStateComponent {

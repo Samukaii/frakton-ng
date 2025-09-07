@@ -55,15 +55,7 @@ export const users: User[] = [
 	imports: [
 		FktTableComponent
 	],
-	template: `
-		<fkt-table
-			[data]="data()"
-			[columnsFn]="columnsFn"
-			[loading]="loading()"
-			[noHeaderWhenEmpty]="noHeaderWhenEmpty()"
-			[noResults]="noResults()"
-		/>
-	`,
+	templateUrl: './fkt-table-examples-basic-table.component.html',
 	styleUrl: './fkt-table-examples-basic-table.component.scss'
 })
 export class FktTableExamplesBasicTableComponent {

@@ -1,5 +1,6 @@
 import {ArgTypes, Controls, Meta, Story} from '@storybook/addon-docs/blocks';
 import * as fktCheckboxStories from './fkt-checkbox.stories';
+import {StoryDoc} from "../../.storybook/blocks/StoryDoc";
 
 <Meta of={fktCheckboxStories} />
 
@@ -21,178 +22,12 @@ The **FktCheckbox** component provides a clean and accessible checkbox input wit
 
 ## Examples
 
-### Basic Checkbox
-
-Simple checkbox with label text. Click either the checkbox or label to toggle the state.
-
-<Story of={fktCheckboxStories.Default} />
-<p></p>
-___
-<Controls of={fktCheckboxStories.Default} />
-
-```typescript
-@Component({
-  selector: 'app-example',
-  template: `
-    <fkt-checkbox
-      [control]="termsControl"
-      [label]="'Accept terms and conditions'"
-    />
-  `,
-  standalone: true,
-  imports: [FktCheckboxComponent]
-})
-export class ExampleComponent {
-  termsControl = new SignalFormControl(false);
-}
-```
-
-### Pre-checked Checkbox
-
-Checkbox initialized with checked state using form control value.
-
-<Story of={fktCheckboxStories.Checked} />
-<p></p>
-___
-<Controls of={fktCheckboxStories.Checked} />
-
-```typescript
-@Component({
-  selector: 'app-example',
-  template: `
-    <fkt-checkbox
-      [control]="newsletterControl"
-      [label]="'Subscribe to newsletter'"
-    />
-  `,
-  standalone: true,
-  imports: [FktCheckboxComponent]
-})
-export class ExampleComponent {
-  newsletterControl = new SignalFormControl(true); // Pre-checked
-}
-```
-
-### Long Label Text
-
-Checkbox with longer label text showing proper text wrapping and alignment.
-
-<Story of={fktCheckboxStories.WithLongLabel} />
-<p></p>
-___
-<Controls of={fktCheckboxStories.WithLongLabel} />
-
-```typescript
-@Component({
-  selector: 'app-example',
-  template: `
-    <fkt-checkbox
-      [control]="agreementControl"
-      [label]="longLabelText"
-    />
-  `,
-  standalone: true,
-  imports: [FktCheckboxComponent]
-})
-export class ExampleComponent {
-  agreementControl = new SignalFormControl(false);
-
-  longLabelText = "I understand and agree to the Terms of Service, Privacy Policy, and Cookie Policy. I also consent to receiving marketing communications.";
-}
-```
-
-### Disabled State
-
-Checkbox in disabled state prevents user interaction while maintaining visual feedback.
-
-<Story of={fktCheckboxStories.Disabled} />
-<p></p>
-___
-<Controls of={fktCheckboxStories.Disabled} />
-
-```typescript
-@Component({
-  selector: 'app-example',
-  template: `
-    <fkt-checkbox
-      [control]="disabledControl"
-      [label]="'This option is disabled'"
-    />
-  `,
-  standalone: true,
-  imports: [FktCheckboxComponent]
-})
-export class ExampleComponent {
-  disabledControl = (() => {
-    const control = new SignalFormControl(false);
-    control.disable(); // Disable the control
-    return control;
-  })();
-}
-```
-
-### With Validation
-
-Checkbox with required validation showing error state when invalid.
-
-<Story of={fktCheckboxStories.WithValidation} />
-<p></p>
-___
-<Controls of={fktCheckboxStories.WithValidation} />
-
-```typescript
-import { SignalValidators } from '@frakton-ng/core';
-
-@Component({
-  selector: 'app-example',
-  template: `
-    <fkt-checkbox
-      [control]="requiredControl"
-      [label]="'I accept the terms (required)'"
-    />
-    <div class="mt-2 text-sm text-red-600" *ngIf="requiredControl.invalid() && requiredControl.touched()">
-      This field is required
-    </div>
-  `,
-  standalone: true,
-  imports: [FktCheckboxComponent]
-})
-export class ExampleComponent {
-  requiredControl = new SignalFormControl(false, {
-    validators: [SignalValidators.requiredTrue()]
-  });
-}
-```
-
-### Disabled and Checked
-
-Checkbox that is both disabled and checked, showing read-only state with a selected value.
-
-<Story of={fktCheckboxStories.DisabledChecked} />
-<p></p>
-___
-<Controls of={fktCheckboxStories.DisabledChecked} />
-
-```typescript
-@Component({
-  selector: 'app-example',
-  template: `
-    <fkt-checkbox
-      [control]="disabledCheckedControl"
-      [label]="'This option is enabled by default'"
-    />
-  `,
-  standalone: true,
-  imports: [FktCheckboxComponent]
-})
-export class ExampleComponent {
-  disabledCheckedControl = (() => {
-    const control = new SignalFormControl(true);
-    control.disable(); // Disable the control while checked
-    return control;
-  })();
-}
-```
+<StoryDoc of={fktCheckboxStories.BasicCheckbox}/>
+<StoryDoc of={fktCheckboxStories.PreCheckedCheckbox}/>
+<StoryDoc of={fktCheckboxStories.LongLabelText}/>
+<StoryDoc of={fktCheckboxStories.DisabledState}/>
+<StoryDoc of={fktCheckboxStories.WithValidation}/>
+<StoryDoc of={fktCheckboxStories.DisabledAndChecked}/>
 
 ## Use Cases
 

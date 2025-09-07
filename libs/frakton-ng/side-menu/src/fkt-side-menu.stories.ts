@@ -73,7 +73,6 @@ const meta: Meta<FktSideMenuComponent> = {
 
 type Story = StoryObj<FktSideMenuComponent>;
 
-// Sample menu data for different scenarios
 const defaultMenuGroups: FktMenuGroup[] = [
 	{
 		items: [
@@ -116,7 +115,6 @@ const multiGroupMenus: FktMenuGroup[] = [
 		]
 	},
 	{
-		// Group without name - shows divider only
 		items: [
 			{ name: 'Settings', icon: 'cog-6-tooth', path: '/settings' },
 			{ name: 'Profile', icon: 'user', path: '/profile' },
@@ -189,6 +187,13 @@ const adminMenuGroups: FktMenuGroup[] = [
 ];
 
 export const BasicSideMenu: Story = {
+	parameters: {
+		docs: {
+			description: {
+				story: "A simple side menu with a single group of navigation items."
+			}
+		}
+	},
 	render: (args) => ({
 		template: '<basic-side-menu-example [groups]="groups" [opened]="opened"></basic-side-menu-example>',
 		props: {
@@ -207,6 +212,13 @@ export const BasicSideMenu: Story = {
 };
 
 export const CollapsibleSideMenu: Story = {
+		parameters: {
+		docs: {
+			description: {
+				story: "Side menu with toggle functionality demonstrating collapsed and expanded states."
+			}
+		}
+	},
 	render: (args) => ({
 		template: '<collapsible-side-menu-example [groups]="groups" [opened]="opened"></collapsible-side-menu-example>',
 		props: {
@@ -224,7 +236,14 @@ export const CollapsibleSideMenu: Story = {
 	}
 };
 
-export const MultiGroupSideMenu: Story = {
+export const MultiGroupNavigation: Story = {
+		parameters: {
+		docs: {
+			description: {
+				story: "Side menu with multiple groups, demonstrating named groups and divider groups."
+			}
+		}
+	},
 	render: (args) => ({
 		template: '<multi-group-side-menu-example [groups]="groups" [opened]="opened"></multi-group-side-menu-example>',
 		props: {
@@ -242,7 +261,14 @@ export const MultiGroupSideMenu: Story = {
 	}
 };
 
-export const DynamicPermissionsSideMenu: Story = {
+export const DynamicMenuWithPermissions: Story = {
+		parameters: {
+		docs: {
+			description: {
+				story: "Advanced example showing dynamic menu generation based on user permissions."
+			}
+		}
+	},
 	render: (args) => ({
 		template: '<dynamic-permissions-side-menu-example [groups]="groups" [opened]="opened"></dynamic-permissions-side-menu-example>',
 		props: {
@@ -261,6 +287,13 @@ export const DynamicPermissionsSideMenu: Story = {
 };
 
 export const AdminDashboardLayout: Story = {
+		parameters: {
+		docs: {
+			description: {
+				story: "Complete dashboard layout showcasing real-world usage with content integration."
+			}
+		}
+	},
 	render: (args) => ({
 		template: '<admin-dashboard-layout-example [groups]="groups" [opened]="opened"></admin-dashboard-layout-example>',
 		props: {
@@ -279,6 +312,13 @@ export const AdminDashboardLayout: Story = {
 };
 
 export const WithRouting: Story = {
+		parameters: {
+		docs: {
+			description: {
+				story: "Complete dashboard layout showcasing real-world usage with content integration."
+			}
+		}
+	},
 	render: (args) => ({
 		template: '<with-routing-example [groups]="groups" [opened]="opened"></with-routing-example>',
 		props: {

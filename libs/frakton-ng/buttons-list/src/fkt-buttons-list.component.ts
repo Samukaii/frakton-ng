@@ -1,6 +1,7 @@
 import { booleanAttribute, Component, input } from '@angular/core';
 import { FktButtonAction, FktButtonComponent } from 'frakton-ng/button';
 import { FktTooltipDirective } from 'frakton-ng/tooltip';
+import { FktButtonsListAlignment, FktButtonsListOrientation } from './fkt-buttons-list.types';
 
 @Component({
 	selector: 'fkt-buttons-list',
@@ -17,9 +18,9 @@ import { FktTooltipDirective } from 'frakton-ng/tooltip';
 })
 export class FktButtonsListComponent<T> {
 	context = input<T>();
-	orientation = input<'horizontal' | 'vertical'>('horizontal');
+	orientation = input<FktButtonsListOrientation>('horizontal');
 	fill = input(false, { transform: booleanAttribute });
-	verticalAlignment = input<'start' | 'space-between' | 'space-evenly' | 'space-around' | 'end'>('start');
-	horizontalAlignment = input<'start' | 'space-between' | 'space-evenly' | 'space-around' | 'end'>('start');
+	verticalAlignment = input<FktButtonsListAlignment>('start');
+	horizontalAlignment = input<FktButtonsListAlignment>('start');
 	actions = input.required<FktButtonAction[]>();
 }

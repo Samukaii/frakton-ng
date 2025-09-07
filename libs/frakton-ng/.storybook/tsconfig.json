@@ -1,17 +1,33 @@
 {
-  "extends": "../tsconfig.lib.json",
-  "compilerOptions": {
-    "types": ["node", "@storybook/angular"],
-    "allowSyntheticDefaultImports": true,
-    "resolveJsonModule": true
-  },
-  "exclude": [
-    "../test.ts",
-    "../**/*.spec.ts"
-  ],
-  "include": [
-    "../**/*.stories.*",
-    "./preview.ts"
-  ],
-  "files": ["./typings.d.ts"]
+	"extends": "../tsconfig.lib.json",
+	"paths": {
+		"frakton-ng/blocks": ["./blocks"]
+	},
+	"compilerOptions": {
+		"types": [
+			"node",
+			"@storybook/angular"
+		],
+		"allowSyntheticDefaultImports": true,
+		"resolveJsonModule": true,
+		"jsx": "react-jsx",
+		"allowJs": true,
+		"esModuleInterop": true
+	},
+	"exclude": [
+		"../test.ts",
+		"../**/*.spec.ts"
+	],
+	"include": [
+		"../**/*.stories.*",
+		"./blocks/**/*.tsx",
+		"./theme/**/*.ts",
+		"../**/*.mdx",
+		"../**/src/examples/**/*.ts",
+		"./preview.ts",
+		"./manager.ts",
+	],
+	"files": [
+		"./typings.d.ts"
+	]
 }

@@ -30,7 +30,10 @@ const meta: Meta<FktSpinnerComponent> = {
 			description: 'Spinner color',
 			options: fktColors,
 			table: {
-				type: { summary: 'FktColor' },
+				type: {
+					summary: 'FktColor',
+					detail: "import {FktColor} from 'frakton-ng/core'"
+				},
 				defaultValue: { summary: 'primary' }
 			}
 		},
@@ -56,6 +59,13 @@ const meta: Meta<FktSpinnerComponent> = {
 type Story = StoryObj<FktSpinnerComponent>;
 
 export const SizeVariations: Story = {
+	parameters: {
+		docs: {
+			description: {
+				story: "Spinners with different sizes for various use cases and container sizes."
+			}
+		}
+	},
 	render: (args) => ({
 		template: '<fkt-spinner-example-size-variations [stroke]="stroke" [color]="color"/>',
 		props: {
@@ -69,6 +79,13 @@ export const SizeVariations: Story = {
 };
 
 export const ColorThemes: Story = {
+	parameters: {
+		docs: {
+			description: {
+				story: "Spinners showcasing different color themes for various semantic meanings."
+			}
+		}
+	},
 	render: (args) => ({
 		template: '<fkt-spinner-example-color-themes [size]="size" [stroke]="stroke"/>',
 		props: {
@@ -82,6 +99,13 @@ export const ColorThemes: Story = {
 };
 
 export const LoadingState: Story = {
+	parameters: {
+		docs: {
+			description: {
+				story: "Spinner used in a typical loading state scenario with conditional display."
+			}
+		}
+	},
 	render: (args) => ({
 		template: '<fkt-spinner-example-loading-state [size]="size" [stroke]="stroke" [color]="color"/>',
 		props: {
@@ -96,6 +120,13 @@ export const LoadingState: Story = {
 };
 
 export const CustomConfiguration: Story = {
+	parameters: {
+		docs: {
+			description: {
+				story: "Spinner with dynamic configuration based on different states or conditions."
+			}
+		}
+	},
 	render: (args) => ({
 		template: '<fkt-spinner-example-custom-configuration [size]="size" [color]="color"/>',
 		props: {
