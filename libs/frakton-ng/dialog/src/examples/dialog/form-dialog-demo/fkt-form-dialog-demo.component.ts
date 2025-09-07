@@ -11,30 +11,7 @@ export interface FormData {
 
 @Component({
 	selector: 'demo-form-dialog',
-	template: `
-		<h2 class="header">{{ title() }}</h2>
-		<p class="description">{{ description() }}</p>
-
-		<div class="form">
-			<fkt-input
-				[control]="form.controls.name"
-				label="Name"
-				placeholder="Enter your name"
-			></fkt-input>
-
-			<fkt-input
-				[control]="form.controls.email"
-				label="Email"
-				placeholder="Enter your email"
-				type="text"
-			></fkt-input>
-		</div>
-
-		<fkt-buttons-list
-			[actions]="actions()"
-			fill
-		></fkt-buttons-list>
-	`,
+	templateUrl: './fkt-form-dialog-demo.component.html',
 	styleUrl: './fkt-form-dialog-demo.component.scss',
 	imports: [FktInputComponent, FktButtonsListComponent]
 })

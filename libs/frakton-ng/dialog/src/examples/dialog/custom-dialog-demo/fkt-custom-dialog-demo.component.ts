@@ -5,38 +5,7 @@ import { FktButtonAction } from 'frakton-ng/button';
 
 @Component({
 	selector: 'demo-custom-dialog',
-	template: `
-		<div class="container">
-			<div>
-				<div class="container__header">
-					<fkt-icon [name]="iconName()"></fkt-icon>
-					<h2>{{title()}}</h2>
-				</div>
-
-				<div class="container__message">
-					<p>{{message()}}</p>
-				</div>
-
-				@if (showDetails()) {
-					<div class="container__details">
-						<h4>{{detailsTitle()}}</h4>
-						<ul>
-							@for (detail of details(); track detail) {
-								<li>• {{detail}}</li>
-							}
-						</ul>
-					</div>
-				}
-			</div>
-
-
-			<fkt-buttons-list
-				[actions]="actions()"
-				horizontalAlignment="end"
-				orientation="horizontal"
-			></fkt-buttons-list>
-		</div>
-	`,
+	templateUrl: './fkt-custom-dialog-demo.component.html',
 	styleUrl: './fkt-custom-dialog-demo.component.scss',
 	imports: [FktIconComponent, FktButtonsListComponent]
 })

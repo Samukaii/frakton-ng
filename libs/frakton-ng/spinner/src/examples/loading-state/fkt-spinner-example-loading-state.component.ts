@@ -11,30 +11,7 @@ import { FktColor } from 'frakton-ng/core';
 		FktButtonComponent,
 		FktIconComponent
 	],
-	template: `
-		<div class="container">
-			@if (isLoading()) {
-				<div class="container__loading">
-					<fkt-spinner [size]="size()" [stroke]="stroke()" [color]="color()" />
-					<span>Loading data...</span>
-				</div>
-			} @else {
-				<div class="container__success">
-					<fkt-icon
-						name="check"
-					/>
-					Data loaded successfully!
-				</div>
-			}
-
-			<fkt-button
-				(click)="toggleLoading()"
-				theme="stroked"
-				[text]="isLoading() ? 'Stop Loading' : 'Start Loading'"
-			>
-			</fkt-button>
-		</div>
-	`,
+	templateUrl: './fkt-spinner-example-loading-state.component.html',
 	styleUrl: './fkt-spinner-example-loading-state.component.scss'
 })
 export class FktSpinnerExampleLoadingStateComponent {

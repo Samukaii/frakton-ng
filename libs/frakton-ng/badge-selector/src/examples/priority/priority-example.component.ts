@@ -5,23 +5,7 @@ type BadgeType = 'low' | 'medium' | 'high' | 'critical';
 
 @Component({
 	selector: 'priority-example',
-	template: `
-		<div class="container">
-			<h3>Task Priority</h3>
-
-			<div class="container__selector">
-				<label>Priority Level:</label>
-				<fkt-badge-selector
-					[options]="options()"
-					[(currentBadgeId)]="currentBadgeId"
-				/>
-			</div>
-
-			<div class="container__description">
-				{{ priorityDescription() }}
-			</div>
-		</div>
-	`,
+	templateUrl: './priority-example.component.html',
 	styleUrl: './priority-example.component.scss',
 	imports: [FktBadgeSelectorComponent]
 })

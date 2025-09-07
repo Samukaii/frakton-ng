@@ -5,21 +5,7 @@ import { FktSimpleDialogDemoComponent } from '../dialog/simple-dialog-demo/fkt-s
 
 @Component({
 	selector: 'simple-dialog-example',
-	template: `
-		<div class="container">
-			<fkt-button
-				text="Open Simple Dialog"
-				theme="raised"
-				(click)="openDialog()"
-			/>
-			<fkt-button
-				text="Update Message"
-				theme="stroked"
-				color="green"
-				(click)="updateMessage()"
-			/>
-		</div>
-	`,
+	templateUrl: './fkt-simple-dialog-example.component.html',
 	styleUrl: './fkt-simple-dialog-example.component.scss',
 	imports: [FktButtonComponent]
 })

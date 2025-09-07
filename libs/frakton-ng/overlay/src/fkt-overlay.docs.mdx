@@ -20,10 +20,6 @@ Built with modern Angular signals and reactive patterns, it supports dynamic pos
 - **Advanced Control**: Outside click handling, auto-repositioning, and custom overlay IDs
 - **Responsive Design**: Smart viewport detection and mobile-friendly positioning
 
-## Configuration Options
-
-<ArgTypes/>
-
 ### Types
 
 ```typescript
@@ -60,11 +56,27 @@ export interface FktOverlayRef<T> {
 
 ## Examples
 
-<StoryDoc of={fktOverlayStories.SimpleOverlay} code={rawExamples.fktSimpleOverlayExample}/>
-<StoryDoc of={fktOverlayStories.CustomTooltipOverlay} code={rawExamples.fktCustomTooltipOverlayExample}/>
-<StoryDoc of={fktOverlayStories.DropdownMenuOverlay} code={rawExamples.fktDropdownOverlayExample}/>
-<StoryDoc of={fktOverlayStories.FormOverlay} code={rawExamples.fktFormOverlayExample}/>
-<StoryDoc of={fktOverlayStories.InteractiveOverlay} code={rawExamples.fktInteractiveOverlayExample}/>
+<StoryDoc of={fktOverlayStories.SimpleOverlay} code={[
+	rawExamples.fktSimpleOverlayExample,
+	rawExamples.fktSimpleOverlayDialog
+]}/>
+<StoryDoc of={fktOverlayStories.CustomTooltipOverlay} code={[
+	rawExamples.fktCustomTooltipOverlayExample,
+	rawExamples.fktTooltipOverlayDialog
+]}/>
+<StoryDoc of={fktOverlayStories.DropdownMenuOverlay} code={[
+	rawExamples.fktDropdownOverlayExample,
+	rawExamples.fktDropdownOverlayDialog
+]}/>
+<StoryDoc of={fktOverlayStories.FormOverlay} code={[
+	rawExamples.fktFormOverlayExample,
+	rawExamples.fktFormOverlayDialog,
+]}/>
+<StoryDoc of={fktOverlayStories.InteractiveOverlay} code={[
+	rawExamples.fktInteractiveOverlayExample,
+	rawExamples.fktInteractiveOverlayDialog
+]}/>
+
 
 ## Positioning Options
 
@@ -165,12 +177,12 @@ Using signal-based APIs makes your overlay components truly **reusable** across 
 @Component({
 	selector: 'user-profile-form',
 	template: `
-		<div class="p-4">
+		<div class="container">
 			<h3>{{ title() }}</h3>
 			<form (ngSubmit)="handleSubmit()">
 				<input [(ngModel)]="name" placeholder="Name" [readonly]="readonly()" />
 				<input [(ngModel)]="email" placeholder="Email" [readonly]="readonly()" />
-				<div class="flex gap-2">
+				<div class="container__actions">
 					@if (!readonly()) {
 						<button type="submit" [disabled]="!isValid()">Save</button>
 						<button type="button" (click)="handleCancel()">Cancel</button>
@@ -179,7 +191,6 @@ Using signal-based APIs makes your overlay components truly **reusable** across 
 			</form>
 		</div>
 	`,
-	standalone: true
 })
 export class UserProfileFormComponent {
 	// Signal inputs - work everywhere

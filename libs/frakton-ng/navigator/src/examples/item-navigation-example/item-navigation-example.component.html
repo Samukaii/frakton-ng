@@ -1,0 +1,16 @@
+<div class="container">
+	<div class="container__header">
+		<h3>{{ currentItem().title }}</h3>
+		<p>{{ currentItem().description }}</p>
+	</div>
+	<fkt-navigator
+		[canGoToPrevious]="canGoToPrevious()"
+		[canGoToNext]="canGoToNext()"
+		(previous)="previousItem()"
+		(next)="nextItem()"
+	>
+		<div class="container__content">
+			Item {{ currentIndex() + 1 }} of {{ items.length }}
+		</div>
+	</fkt-navigator>
+</div>

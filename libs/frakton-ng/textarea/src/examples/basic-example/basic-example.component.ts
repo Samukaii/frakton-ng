@@ -4,21 +4,8 @@ import { SignalFormControl } from 'frakton-ng/forms';
 
 @Component({
 	selector: 'textarea-basic-example',
-	standalone: true,
 	imports: [FktTextareaComponent],
-	template: `
-		<div class="w-full space-y-4">
-			<fkt-textarea
-				[control]="control()"
-				[label]="label()"
-				[placeholder]="placeholder()"
-			/>
-
-			<div class="text-sm text-gray-600">
-				<p>Current value: {{ control().value() || '(empty)' }}</p>
-			</div>
-		</div>
-	`,
+	templateUrl: './basic-example.component.html',
 	styleUrl: './basic-example.component.scss'
 })
 export class BasicExampleComponent {

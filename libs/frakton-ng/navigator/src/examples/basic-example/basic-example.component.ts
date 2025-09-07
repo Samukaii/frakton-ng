@@ -3,15 +3,7 @@ import { FktNavigatorComponent } from 'frakton-ng/navigator';
 
 @Component({
 	selector: 'basic-example',
-	template: `
-		<fkt-navigator
-			[canGoToPrevious]="canGoToPrevious()"
-			[canGoToNext]="canGoToNext()"
-			(previous)="goToPrevious()"
-			(next)="goToNext()"
-		/>
-	`,
-	standalone: true,
+	templateUrl: './basic-example.component.html',
 	imports: [FktNavigatorComponent]
 })
 export class BasicExampleComponent {

@@ -5,11 +5,7 @@ import { FktCustomDialogDemoComponent } from '../dialog/custom-dialog-demo/fkt-c
 
 @Component({
 	selector: 'custom-dialog-example',
-	template: `
-		<div class="container">
-			<fkt-button text="Open Custom Dialog" theme="raised" (click)="openDialog()" />
-		</div>
-	`,
+	templateUrl: './fkt-custom-dialog-example.component.html',
 	imports: [FktButtonComponent],
 	styleUrl: './fkt-custom-dialog-example.component.scss'
 })

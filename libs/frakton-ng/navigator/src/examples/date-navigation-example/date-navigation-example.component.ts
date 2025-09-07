@@ -3,20 +3,7 @@ import { FktNavigatorComponent } from 'frakton-ng/navigator';
 
 @Component({
 	selector: 'date-navigation-example',
-	template: `
-		<div class="space-y-4">
-			<fkt-navigator
-				[canGoToPrevious]="true"
-				[canGoToNext]="true"
-				(previous)="previousMonth()"
-				(next)="nextMonth()"
-			>
-				<div class="text-center text-lg font-medium">
-					{{ formattedDate() }}
-				</div>
-			</fkt-navigator>
-		</div>
-	`,
+	templateUrl: './date-navigation-example.component.html',
 	imports: [FktNavigatorComponent]
 })
 export class DateNavigationExampleComponent {

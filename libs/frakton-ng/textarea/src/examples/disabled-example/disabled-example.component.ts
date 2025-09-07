@@ -5,35 +5,8 @@ import { FktButtonComponent } from 'frakton-ng/button';
 
 @Component({
 	selector: 'textarea-disabled-example',
-	standalone: true,
 	imports: [FktTextareaComponent, FktButtonComponent],
-	template: `
-		<div class="w-full space-y-4">
-			<fkt-textarea
-				autoExpand
-				[control]="control"
-				[label]="label()"
-				[placeholder]="placeholder()"
-			/>
-
-			<div class="flex items-center space-x-4">
-				<fkt-button
-					(click)="toggleDisabled()"
-					[text]="(control.disabled() ? 'Enable' : 'Disable') + ' textarea'"
-				>
-				</fkt-button>
-
-				<span class="text-sm text-gray-600">
-					Status: <strong>{{ control.disabled() ? 'Disabled' : 'Enabled' }}</strong>
-				</span>
-			</div>
-
-			<div class="text-sm text-gray-600">
-				<p>Disabled textareas prevent user interaction while preserving the current value.</p>
-				<p>Common use cases include read-only views, locked fields, or conditional editing.</p>
-			</div>
-		</div>
-	`,
+	templateUrl: './disabled-example.component.html',
 	styleUrl: './disabled-example.component.scss'
 })
 export class DisabledExampleComponent implements OnInit {

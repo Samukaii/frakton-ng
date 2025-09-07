@@ -6,46 +6,9 @@ import { FktFormComponent } from 'frakton-ng/form';
 
 @Component({
 	selector: 'input-login-form-example',
-	standalone: true,
 	imports: [FktInputComponent, FktButtonComponent, FktFormComponent],
 	styleUrl: './login-form-example.component.scss',
-	template: `
-		<div class="container">
-			<h3>Login Form</h3>
-
-			<fkt-form [form]="form">
-				<div class="container__form">
-					<fkt-input
-						[control]="form.controls.email"
-						label="Email Address"
-						placeholder="Enter your email"
-						type="email"
-					/>
-
-					<fkt-input
-						[control]="form.controls.password"
-						label="Password"
-						placeholder="Enter your password"
-						type="password"
-					/>
-				</div>
-			</fkt-form>
-
-			<div class="container__actions">
-				<fkt-button
-					[disabled]="form.invalid()"
-					text="Log In"
-					(click)="onLogin()"
-				>
-				</fkt-button>
-
-				<div class="container__status">
-					<p>Form Status: {{ form.valid() ? '✓ Ready' : '✗ Incomplete' }}</p>
-					<p class="container__status-message">{{ getStatusMessage() }}</p>
-				</div>
-			</div>
-		</div>
-	`
+	templateUrl: './login-form-example.component.html'
 })
 export class LoginFormExampleComponent {
 	private fb = inject(SignalFormBuilder);

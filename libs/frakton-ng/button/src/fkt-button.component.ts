@@ -19,6 +19,7 @@ export class FktButtonComponent {
 	theme = input<FktButtonTheme>('raised');
 	variant = input<FktButtonVariant>('rounded');
 	icon = input<FktIconName>();
+	type = input<"submit" | "reset" | "button">("button");
 	iconPosition = input<FktButtonIconPosition>('right');
 
 	protected classes = computed(() => {

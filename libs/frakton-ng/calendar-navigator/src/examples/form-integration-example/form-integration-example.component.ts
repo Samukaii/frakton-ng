@@ -5,17 +5,7 @@ import { SignalFormBuilder } from 'frakton-ng/forms';
 
 @Component({
 	selector: 'form-integration-example',
-	template: `
-		<div class="navigator">
-			<fkt-calendar-navigator
-				[mode]="mode()"
-				[currentDate]="currentDate()"
-			/>
-		</div>
-		<div class="info">
-			Selected: {{ dateForm.controls.selectedDate.value() | date:'fullDate' }}
-		</div>
-	`,
+	templateUrl: './form-integration-example.component.html',
 	styleUrl: './form-integration-example.component.scss',
 	imports: [FktCalendarNavigatorComponent, DatePipe]
 })

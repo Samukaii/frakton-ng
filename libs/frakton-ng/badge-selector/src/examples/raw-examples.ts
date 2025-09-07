@@ -1,5 +1,7 @@
+import orderStatusExampleTemplate from "!!raw-loader!./order-status/order-status-example.component.html";
 import orderStatusExampleStyles from "!!raw-loader!./order-status/order-status-example.component.scss";
 import orderStatusExampleTypescript from "!!raw-loader!./order-status/order-status-example.component.ts";
+import priorityExampleTemplate from "!!raw-loader!./priority/priority-example.component.html";
 import priorityExampleStyles from "!!raw-loader!./priority/priority-example.component.scss";
 import priorityExampleTypescript from "!!raw-loader!./priority/priority-example.component.ts";
 
@@ -9,6 +11,11 @@ export const rawExamples = {
 		name: "OrderStatusExample",
 		files: [
 		
+			{
+				name: "order-status-example.component.html",
+				content: orderStatusExampleTemplate as string,
+				language: "html" as "html",
+			},		
 			{
 				name: "order-status-example.component.ts",
 				content: orderStatusExampleTypescript as string,
@@ -25,6 +32,11 @@ export const rawExamples = {
 		name: "PriorityExample",
 		files: [
 		
+			{
+				name: "priority-example.component.html",
+				content: priorityExampleTemplate as string,
+				language: "html" as "html",
+			},		
 			{
 				name: "priority-example.component.ts",
 				content: priorityExampleTypescript as string,

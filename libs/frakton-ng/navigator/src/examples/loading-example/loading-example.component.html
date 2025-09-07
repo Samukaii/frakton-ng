@@ -1,0 +1,20 @@
+<div class="container">
+	<fkt-button
+		(click)="toggleLoading()"
+		[text]="isLoading() ? 'Stop Loading' : 'Start Loading'"
+	/>
+	<fkt-navigator
+		[canGoToPrevious]="!isLoading()"
+		[canGoToNext]="!isLoading()"
+		(previous)="handlePrevious()"
+		(next)="handleNext()"
+	>
+		@if (isLoading()) {
+			<fkt-spinner/>
+			<div class="container__content">
+				Loading...
+			</div>
+		}
+	</fkt-navigator>
+
+</div>

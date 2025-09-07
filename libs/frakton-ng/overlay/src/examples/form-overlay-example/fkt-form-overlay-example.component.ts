@@ -11,35 +11,7 @@ export interface FormData {
 
 @Component({
 	selector: 'form-overlay-example',
-	template: `
-		<div class="container">
-			<div #contactFormButton>
-				<fkt-button
-					text="Contact Form"
-					theme="stroked"
-					color="primary"
-					(click)="openContactForm(contactFormButton)"
-				></fkt-button>
-			</div>
-			<div #feedbackFormButton>
-				<fkt-button
-					text="Feedback Form"
-					theme="stroked"
-					color="green"
-					(click)="openFeedbackForm(feedbackFormButton)"
-				></fkt-button>
-			</div>
-
-			<div #settingsFormButton>
-				<fkt-button
-					text="User Settings"
-					theme="stroked"
-					color="primary"
-					(click)="openSettingsForm(settingsFormButton)"
-				></fkt-button>
-			</div>
-		</div>
-	`,
+	templateUrl: './fkt-form-overlay-example.component.html',
 	styleUrl: './fkt-form-overlay-example.component.scss',
 	imports: [FktButtonComponent]
 })

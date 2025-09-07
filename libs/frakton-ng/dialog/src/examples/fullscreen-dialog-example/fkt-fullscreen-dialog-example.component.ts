@@ -6,11 +6,7 @@ import { FktIconName } from 'frakton-ng/icon';
 
 @Component({
 	selector: 'fullscreen-dialog-example',
-	template: `
-		<div class="container">
-			<fkt-button text="Open Full Screen" theme="raised" (click)="openDialog()" />
-		</div>
-	`,
+	templateUrl: './fkt-fullscreen-dialog-example.component.html',
 	styleUrl: './fkt-fullscreen-dialog-example.component.scss',
 	imports: [FktButtonComponent]
 })

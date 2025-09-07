@@ -5,28 +5,7 @@ import { FktFormDialogDemoComponent, FormData } from '../dialog/form-dialog-demo
 
 @Component({
 	selector: 'form-dialog-example',
-	template: `
-		<div class="container">
-			<fkt-button
-				text="Contact Form"
-				theme="stroked"
-				color="primary"
-				(click)="openContactForm()"
-			/>
-			<fkt-button
-				text="User Registration"
-				theme="stroked"
-				color="green"
-				(click)="openRegistrationForm()"
-			/>
-			<fkt-button
-				text="Feedback Form"
-				theme="stroked"
-				color="yellow"
-				(click)="openFeedbackForm()"
-			/>
-		</div>
-	`,
+	templateUrl: './fkt-form-dialog-example.component.html',
 	styleUrl: 'fkt-form-dialog-example.component.scss',
 	imports: [FktButtonComponent]
 })

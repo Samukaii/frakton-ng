@@ -1,7 +1,7 @@
 import {ArgTypes, Meta} from '@storybook/addon-docs/blocks';
 import * as stories from './fkt-input.stories';
 import {StoryDoc} from "../../.storybook/blocks/StoryDoc";
-import {rawExamples} from './examples';
+import {rawExamples} from './examples/raw-examples';
 
 <Meta of={stories} />
 
@@ -34,17 +34,17 @@ type FktInputTransformer = 'currency' | 'percent' | 'hour' | SignalFormControlTr
 
 ## Examples
 
-<StoryDoc of={stories.BasicInput} code={rawExamples.basicExampleComponent}/>
-<StoryDoc of={stories.PasswordField} code={rawExamples.passwordExampleComponent}/>
-<StoryDoc of={stories.NumericField} code={rawExamples.numberExampleComponent}/>
-<StoryDoc of={stories.EmailField} code={rawExamples.emailExampleComponent}/>
-<StoryDoc of={stories.CurrencyTransformer} code={rawExamples.currencyExampleComponent}/>
-<StoryDoc of={stories.PercentTransformer} code={rawExamples.percentExampleComponent}/>
-<StoryDoc of={stories.HourTransformer} code={rawExamples.hourExampleComponent}/>
-<StoryDoc of={stories.WithValidation} code={rawExamples.validationExampleComponent}/>
-<StoryDoc of={stories.DisabledState} code={rawExamples.disabledExampleComponent}/>
-<StoryDoc of={stories.WithCustomSuffix} code={rawExamples.suffixExampleComponent}/>
-<StoryDoc of={stories.FormIntegration} code={rawExamples.formIntegrationExampleComponent}/>
+<StoryDoc of={stories.BasicInput} code={rawExamples.basicExample}/>
+<StoryDoc of={stories.PasswordField} code={rawExamples.passwordExample}/>
+<StoryDoc of={stories.NumericField} code={rawExamples.numberExample}/>
+<StoryDoc of={stories.EmailField} code={rawExamples.emailExample}/>
+<StoryDoc of={stories.CurrencyTransformer} code={rawExamples.currencyExample}/>
+<StoryDoc of={stories.PercentTransformer} code={rawExamples.percentExample}/>
+<StoryDoc of={stories.HourTransformer} code={rawExamples.hourExample}/>
+<StoryDoc of={stories.WithValidation} code={rawExamples.validationExample}/>
+<StoryDoc of={stories.DisabledState} code={rawExamples.disabledExample}/>
+<StoryDoc of={stories.WithCustomSuffix} code={rawExamples.suffixExample}/>
+<StoryDoc of={stories.FormIntegration} code={rawExamples.formIntegrationExample}/>
 
 ## Use Cases
 - **User Registration Forms** - Email addresses, passwords, personal information with validation.

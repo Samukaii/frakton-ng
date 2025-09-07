@@ -3,12 +3,7 @@ import { FktCalendarNavigatorComponent, FktCalendarNavigatorMode } from 'frakton
 
 @Component({
 	selector: 'month-mode-example',
-	template: `
-		<fkt-calendar-navigator
-			[mode]="mode()"
-			[currentDate]="currentDate()"
-		/>
-	`,
+	templateUrl: './month-mode-example.component.html',
 	styleUrl: './month-mode-example.component.scss',
 	imports: [FktCalendarNavigatorComponent]
 })

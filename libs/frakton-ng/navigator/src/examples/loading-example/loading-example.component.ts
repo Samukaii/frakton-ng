@@ -5,28 +5,7 @@ import { FktSpinnerComponent } from 'frakton-ng/spinner';
 
 @Component({
 	selector: 'loading-example',
-	template: `
-		<div class="space-y-4">
-			<fkt-button
-				(click)="toggleLoading()"
-				[text]="isLoading() ? 'Stop Loading' : 'Start Loading'"
-			/>
-			<fkt-navigator
-				[canGoToPrevious]="!isLoading()"
-				[canGoToNext]="!isLoading()"
-				(previous)="handlePrevious()"
-				(next)="handleNext()"
-			>
-				@if (isLoading()) {
-					<fkt-spinner/>
-					<div class="text-center text-gray-500">
-						Loading...
-					</div>
-				}
-			</fkt-navigator>
-
-		</div>
-	`,
+	templateUrl: './loading-example.component.html',
 	imports: [FktNavigatorComponent, FktButtonComponent, FktSpinnerComponent]
 })
 export class LoadingExampleComponent {

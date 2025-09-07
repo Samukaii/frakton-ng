@@ -11,16 +11,16 @@ import {
 	ViewContainerRef
 } from '@angular/core';
 import { FktGeometryAlignmentService } from 'frakton-ng/internal/services';
-import { MarkUsed } from 'frakton-ng/internal/utils';
+import { elementSizeSignal, isElementInside, MarkUsed, outsideClickEffect } from 'frakton-ng/internal/utils';
 import { FktGeometryPosition } from 'frakton-ng/internal/types';
-import { elementSizeSignal, outsideClickEffect, isElementInside } from 'frakton-ng/internal/utils';
 import { OVERLAY_INFO } from '../tokens/overlay-info';
 
 @Component({
 	selector: 'fkt-overlay-anchor',
-	template: ` <div class="overlay-container">
-		<ng-template #container></ng-template>
-	</div>`,
+	template: `
+		<div class="overlay-container">
+			<ng-template #container></ng-template>
+		</div>`,
 	styles: `
 		:host {
 			position: absolute;
@@ -38,7 +38,6 @@ import { OVERLAY_INFO } from '../tokens/overlay-info';
 			border-radius: var(--border-radius, 10px);
 		}
 	`,
-	standalone: true,
 	host: {
 		'[style.opacity]': 'canShow() ? 1 : 0',
 		'[style.left.px]': 'alignedPosition()?.result?.x ?? 0',
@@ -55,7 +54,7 @@ import { OVERLAY_INFO } from '../tokens/overlay-info';
 	},
 })
 export class FktOverlayAnchorComponent {
-	container = viewChild.required('container', { read: ViewContainerRef });
+	container = viewChild.required('container', {read: ViewContainerRef});
 
 	id = input.required<string>();
 	anchor = input.required<ElementRef>();
@@ -78,10 +77,10 @@ export class FktOverlayAnchorComponent {
 
 	@MarkUsed()
 	protected autoClose = outsideClickEffect((element) => {
-		if(!(element instanceof HTMLElement))
+		if (!(element instanceof HTMLElement))
 			return;
 
-		if(isElementInside(element, this.anchor().nativeElement))
+		if (isElementInside(element, this.anchor().nativeElement))
 			return;
 
 		this.outsideClick.emit(element);
@@ -97,7 +96,7 @@ export class FktOverlayAnchorComponent {
 	protected internalWidth = computed(() => {
 		const width = this.width();
 
-		if(width) return width;
+		if (width) return width;
 
 		return `${this.anchor().nativeElement.getBoundingClientRect().width}px`;
 	});

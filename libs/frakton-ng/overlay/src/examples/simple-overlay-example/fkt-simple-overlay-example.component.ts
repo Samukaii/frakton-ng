@@ -9,42 +9,7 @@ import {
 
 @Component({
 	selector: 'simple-overlay-example',
-	template: `
-		<div class="container">
-			<div #left>
-				<fkt-button
-					text="Left Center"
-					theme="stroked"
-					color="yellow"
-					(click)="openOverlay(left, 'left-center')"
-				></fkt-button>
-			</div>
-			<div #right>
-				<fkt-button
-					text="Right Center"
-					theme="stroked"
-					color="primary"
-					(click)="openOverlay(right, 'right-center')"
-				></fkt-button>
-			</div>
-			<div #top>
-				<fkt-button
-					text="Top Center"
-					theme="stroked"
-					color="green"
-					(click)="openOverlay(top, 'top-center')"
-				></fkt-button>
-			</div>
-			<div #bottom>
-				<fkt-button
-					text="Bottom Center (Default)"
-					theme="stroked"
-					(click)="openOverlay(bottom, 'bottom-center')"
-				></fkt-button>
-			</div>
-		</div>
-    `,
-	standalone: true,
+	templateUrl: './fkt-simple-overlay-example.component.html',
 	styleUrl: './fkt-simple-overlay-example.component.scss',
 	imports: [FktButtonComponent]
 })

@@ -6,26 +6,7 @@ import { FktSpinnerComponent } from 'frakton-ng/spinner';
 	imports: [
 		FktSpinnerComponent
 	],
-	template: `
-		<div class="container">
-			<div class="container__item">
-				<fkt-spinner [size]="size()" [stroke]="stroke()" color="primary"/>
-				<p class="mt-2 text-sm text-gray-600">Primary</p>
-			</div>
-			<div class="container__item">
-				<fkt-spinner [size]="size()" [stroke]="stroke()" color="green"/>
-				<p class="mt-2 text-sm text-gray-600">Green</p>
-			</div>
-			<div class="container__item">
-				<fkt-spinner [size]="size()" [stroke]="stroke()" color="yellow"/>
-				<p class="mt-2 text-sm text-gray-600">Yellow</p>
-			</div>
-			<div class="container__item">
-				<fkt-spinner [size]="size()" [stroke]="stroke()" color="red"/>
-				<p class="mt-2 text-sm text-gray-600">Red</p>
-			</div>
-		</div>
-	`,
+	templateUrl: './fkt-spinner-example-color-themes.component.html',
 	styleUrl: './fkt-spinner-example-color-themes.component.scss'
 })
 export class FktSpinnerExampleColorThemesComponent {

@@ -1,5 +1,5 @@
 import { create } from 'storybook/theming';
-import fullLogo from '../assets/logo/full-logo-secondary-dark.svg';
+import fullLogo from '../assets/logo/full-logo-dark.svg';
 
 export default create({
 	base: 'dark',

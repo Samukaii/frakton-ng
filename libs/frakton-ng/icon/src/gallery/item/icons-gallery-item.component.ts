@@ -21,7 +21,6 @@ export class IconsGalleryItemComponent {
 		this.copied.set(true);
 
 		await navigator.clipboard.writeText('<fkt-icon\n' +
-			'\t\t\tclass="text-xl"\n' +
 			`\t\t\tname="${icon}"\n` +
 			'\t\t/>');
 

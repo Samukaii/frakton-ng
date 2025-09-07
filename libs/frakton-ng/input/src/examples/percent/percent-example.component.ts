@@ -6,23 +6,7 @@ import { SignalFormControl } from 'frakton-ng/forms';
 	selector: 'input-percent-example',
 	imports: [FktInputComponent],
 	styleUrl: './percent-example.component.scss',
-	template: `
-		<div class="container">
-			<fkt-input
-				[control]="control()"
-				[label]="label()"
-				[placeholder]="placeholder()"
-				transformer="percent"
-				type="text"
-			/>
-
-			<div class="container__info">
-				<p>Raw value: {{ control().value() || '(empty)' }}</p>
-				<p>Formatted display: {{ getFormattedValue() }}</p>
-				<p class="container__text">Automatically formats as percentage (e.g., 45.5%)</p>
-			</div>
-		</div>
-	`
+	templateUrl: './percent-example.component.html'
 })
 export class PercentExampleComponent {
 	control = input(new SignalFormControl(''));

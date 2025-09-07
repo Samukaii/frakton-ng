@@ -3,24 +3,7 @@ import { FktNavigatorComponent } from 'frakton-ng/navigator';
 
 @Component({
 	selector: 'item-navigation-example',
-	template: `
-		<div class="space-y-4">
-			<div class="text-center p-4 bg-gray-100 rounded">
-				<h3 class="font-medium">{{ currentItem().title }}</h3>
-				<p class="text-gray-600">{{ currentItem().description }}</p>
-			</div>
-			<fkt-navigator
-				[canGoToPrevious]="canGoToPrevious()"
-				[canGoToNext]="canGoToNext()"
-				(previous)="previousItem()"
-				(next)="nextItem()"
-			>
-				<div class="text-center text-sm text-gray-500">
-					Item {{ currentIndex() + 1 }} of {{ items.length }}
-				</div>
-			</fkt-navigator>
-		</div>
-	`,
+	templateUrl: './item-navigation-example.component.html',
 	imports: [FktNavigatorComponent]
 })
 export class ItemNavigationExampleComponent {

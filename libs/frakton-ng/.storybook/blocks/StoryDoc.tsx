@@ -12,7 +12,14 @@ type CanvasBlockProps = {
 			content: string;
 			language: 'typescript' | 'css' | 'html'
 		}[]
-	};
+	} | {
+		name: string;
+		files: {
+			name: string;
+			content: string;
+			language: 'typescript' | 'css' | 'html'
+		}[]
+	}[];
 };
 
 export const StoryDoc = (props: CanvasBlockProps) => {

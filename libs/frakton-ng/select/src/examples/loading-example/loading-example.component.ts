@@ -3,28 +3,15 @@ import { FktSelectComponent, FktSelectOption } from 'frakton-ng/select';
 import { SignalFormControl } from 'frakton-ng/forms';
 
 @Component({
-  selector: 'select-loading-example',
-  template: `
-    <fkt-select
-      [control]="control"
-      [label]="label()"
-      [placeholder]="placeholder()"
-      [options]="options()"
-      [loading]="loading()"
-    />
-    <div class="mt-4 p-4 bg-blue-50 text-blue-900 text-sm rounded">
-      <p>
-        <strong>Loading State:</strong> {{ loading() ? 'Loading options...' : 'Ready' }}
-      </p>
-    </div>
-  `,
-  standalone: true,
-  imports: [FktSelectComponent]
+	selector: 'select-loading-example',
+	templateUrl: './loading-example.component.html',
+	styleUrl: './loading-example.component.scss',
+	imports: [FktSelectComponent]
 })
 export class LoadingExampleComponent {
-  control = new SignalFormControl('');
-  label = input<string>();
-  placeholder = input<string>();
-  options = input.required<FktSelectOption[]>();
-  loading = input<boolean>(true);
+	control = new SignalFormControl('');
+	label = input<string>();
+	placeholder = input<string>();
+	options = input.required<FktSelectOption[]>();
+	loading = input<boolean>(true);
 }

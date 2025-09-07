@@ -3,20 +3,7 @@ import { FktNavigatorComponent } from 'frakton-ng/navigator';
 
 @Component({
 	selector: 'page-navigation-example',
-	template: `
-		<div class="space-y-4">
-			<fkt-navigator
-				[canGoToPrevious]="canGoToPrevious()"
-				[canGoToNext]="canGoToNext()"
-				(previous)="previousPage()"
-				(next)="nextPage()"
-			>
-				<div class="text-center text-gray-600">
-					Page {{ currentPage() }} of {{ totalPages() }}
-				</div>
-			</fkt-navigator>
-		</div>
-    `,
+	templateUrl: './page-navigation-example.component.html',
 	imports: [FktNavigatorComponent]
 })
 export class PageNavigationExampleComponent {

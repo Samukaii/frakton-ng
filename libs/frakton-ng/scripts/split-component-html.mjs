@@ -14,11 +14,16 @@ for (const component of components) {
 	const templateCodeLine = content.match(/@Component\s*\(\s*\{[\s\S]*?(template\s*:\s*`([\s\S]*?)`)[\s\S]*?}\s*\)/);
 	const newTemplateFileName = component.name.replace('.ts', '.html');
 
-	const newContent = content.replace(templateCodeLine[1], `templateUrl: './${newTemplateFileName}'`);
+	const fullTemplateCode = templateCodeLine?.[1];
+	const newTemplateContent = templateCodeLine?.[2]?.trim();
 
-	const newTemplateContent = templateCodeLine[2].trim();
+	if(!fullTemplateCode || !newTemplateContent)
+		throw new Error(`template not found in "${component.name}" file`);
 
-	if(fs.existsSync(component.parentPath + '/' + newTemplateFileName)) return;
+	const newContent = content.replace(fullTemplateCode, `templateUrl: './${newTemplateFileName}'`);
+
+
+	if(fs.existsSync(component.parentPath + '/' + newTemplateFileName)) continue;
 
 	fs.writeFileSync(component.parentPath + '/' + newTemplateFileName, newTemplateContent);
 	fs.writeFileSync(component.parentPath + '/' + component.name, newContent);

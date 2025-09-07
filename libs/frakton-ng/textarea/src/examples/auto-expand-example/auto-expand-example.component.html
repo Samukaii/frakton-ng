@@ -1,0 +1,18 @@
+<div class="container">
+	<div class="container__info">
+		<p class="container__info-text">Auto-expand is {{ autoExpand() ? 'enabled' : 'disabled' }}</p>
+		<p>The textarea will {{ autoExpand() ? 'automatically grow' : 'maintain fixed height' }} as you type.</p>
+	</div>
+
+	<fkt-textarea
+		[control]="control()"
+		[label]="label()"
+		[placeholder]="placeholder()"
+		[autoExpand]="autoExpand()"
+	/>
+
+	<div class="container__hint">
+		<p>Try typing multiple lines to see the auto-expand behavior.</p>
+		<p>Lines count: {{ lineCount() }}</p>
+	</div>
+</div>

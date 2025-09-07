@@ -14,18 +14,25 @@ type CanvasBlockProps = {
 			content: string;
 			language: 'typescript' | 'css' | 'html'
 		}[]
-	};
+	} | {
+		name: string;
+		files: {
+			name: string;
+			content: string;
+			language: 'typescript' | 'css' | 'html'
+		}[]
+	}[];
 };
 
 
 export const CanvasBlock = (props: CanvasBlockProps) => {
 	const resolvedOf = useOf(props.of || 'story', ['story', 'meta']);
-	const [tab, setTab] = useState('code');
+	const [tab, setTab] = useState('preview');
 
 	if (resolvedOf.type !== "story")
 		throw new Error(`"of" property must be a valid story`);
 
-	const code = 'code' in props ? props.code : '';
+	const sources = (Array.isArray(props.code) ? props.code : [props.code]);
 
 	return (
 		<div className="canvas-block">
@@ -61,7 +68,9 @@ export const CanvasBlock = (props: CanvasBlockProps) => {
 					<Controls include={Object.keys(resolvedOf.story.initialArgs)} of={props.of}/>
 				</If>
 				<If condition={tab === "code"}>
-					<FilesSource code={code!} of={props.of}/>
+					{sources.map(source => {
+						return <FilesSource code={source} of={props.of}/>
+					})}
 				</If>
 			</div>
 		</div>

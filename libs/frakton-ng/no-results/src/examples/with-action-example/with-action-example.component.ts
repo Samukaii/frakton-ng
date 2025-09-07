@@ -4,11 +4,7 @@ import { FktNoResults, FktNoResultsComponent } from "frakton-ng/no-results";
 
 @Component({
 	selector: 'with-action-example',
-	template: `
-		<fkt-no-results
-			[noResults]="actionableConfig"
-		/>
-	`,
+	templateUrl: './with-action-example.component.html',
 	imports: [FktNoResultsComponent]
 })
 export class WithActionExampleComponent {

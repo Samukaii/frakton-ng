@@ -1,0 +1,11 @@
+<div class="container">
+	<fkt-textarea
+		[control]="control()"
+		[label]="label()"
+		[placeholder]="placeholder()"
+	/>
+
+	<div class="container__info">
+		<p>Current value: {{ control().value() || '(empty)' }}</p>
+	</div>
+</div>

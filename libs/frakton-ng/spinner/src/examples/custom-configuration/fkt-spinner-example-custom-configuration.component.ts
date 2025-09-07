@@ -7,26 +7,7 @@ import { FktColor } from 'frakton-ng/core';
 	imports: [
 		FktSpinnerComponent
 	],
-	template: `
-		<div class="container">
-			<div class="container__item">
-				<fkt-spinner
-					[size]="size()"
-					[stroke]="8"
-					color="green"
-				/>
-				<p>Thick stroke (8px)</p>
-			</div>
-			<div class="container__item">
-				<fkt-spinner
-					[size]="size()"
-					[stroke]="2"
-					color="primary"
-				/>
-				<p>Thin stroke (2px)</p>
-			</div>
-		</div>
-	`,
+	templateUrl: './fkt-spinner-example-custom-configuration.component.html',
 	styleUrl: './fkt-spinner-example-custom-configuration.component.scss'
 })
 export class FktSpinnerExampleCustomConfigurationComponent {

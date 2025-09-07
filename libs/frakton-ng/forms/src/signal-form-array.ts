@@ -100,6 +100,16 @@ export class SignalFormArray<TControls extends SignalFormArrayControls<any>> {
 		});
 	}
 
+	markAllAsUntouched() {
+		this.#controls().forEach(control => {
+			if ('markAllAsUntouched' in control) {
+				control.markAllAsUntouched();
+				return;
+			}
+			control.markAsUntouched();
+		});
+	}
+
 	markAllAsDirty() {
 		this.#controls().forEach(control => {
 			if ('markAllAsDirty' in control) {
@@ -107,6 +117,16 @@ export class SignalFormArray<TControls extends SignalFormArrayControls<any>> {
 				return;
 			}
 			control.markAsDirty();
+		});
+	}
+
+	markAllAsPristine() {
+		this.#controls().forEach(control => {
+			if ('markAllAsPristine' in control) {
+				control.markAllAsPristine();
+				return;
+			}
+			control.markAsPristine();
 		});
 	}
 

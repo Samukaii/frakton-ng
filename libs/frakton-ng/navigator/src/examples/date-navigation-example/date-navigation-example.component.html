@@ -1,0 +1,12 @@
+<div class="container">
+	<fkt-navigator
+		[canGoToPrevious]="true"
+		[canGoToNext]="true"
+		(previous)="previousMonth()"
+		(next)="nextMonth()"
+	>
+		<div class="container__content">
+			{{ formattedDate() }}
+		</div>
+	</fkt-navigator>
+</div>

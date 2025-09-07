@@ -4,11 +4,7 @@ import { FktDialogService } from 'frakton-ng/dialog';
 
 @Component({
 	selector: 'confirmation-dialog-example',
-	template: `
-		<div class="container">
-			<fkt-button text="Delete Item" color="red" theme="raised" (click)="openDialog()" />
-		</div>
-	`,
+	templateUrl: './fkt-confirmation-dialog-example.component.html',
 	styleUrl: './fkt-confirmation-dialog-example.component.scss',
 	imports: [FktButtonComponent]
 })

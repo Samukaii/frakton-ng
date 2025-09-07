@@ -2,8 +2,9 @@ import {Meta} from '@storybook/addon-docs/blocks';
 import * as fktDialogStories from './fkt-dialog.stories';
 import {StoryDoc} from "../../.storybook/blocks/StoryDoc";
 import {rawExamples} from "./examples/raw-examples";
+import {SourceCode} from "../../.storybook/blocks/SourceCode";
 
-<Meta of={fktDialogStories} />
+<Meta of={fktDialogStories}/>
 
 The **FktDialog** service provides a powerful and flexible system for creating modal dialogs in your Angular applications.
 Built with modern Angular signals and reactive patterns, it supports advanced TypeScript inference, custom components, various sizing options, and pre-built confirmation dialogs with seamless data binding.
@@ -39,7 +40,7 @@ export interface FktDialogOptions<T> {
 		borderRadius?: string;             // Border radius (default: '1rem')
 		backgroundColor?: string;          // Background color (default: 'white')
 		backdropClick?: () => void;        // Backdrop click handler
-	};
+	}
 }
 
 export interface FktDialogRef<T> {
@@ -58,20 +59,38 @@ export interface FktConfirmActionOptions {
 }
 ```
 
+
 ## Examples
 
-<StoryDoc of={fktDialogStories.SimpleDialog} code={rawExamples.fktSimpleDialogExample}/>
-<StoryDoc of={fktDialogStories.FormDialog} code={rawExamples.fktFormDialogExample}/>
-<StoryDoc of={fktDialogStories.CustomDialog} code={rawExamples.fktCustomDialogExample}/>
-<StoryDoc of={fktDialogStories.ConfirmationDialog} code={rawExamples.fktConfirmationDialogExample}/>
-<StoryDoc of={fktDialogStories.FullScreenDialog} code={rawExamples.fktFullscreenDialogExample}/>
-<StoryDoc of={fktDialogStories.SmallDialog} code={rawExamples.fktSmallDialogExample}/>
+<StoryDoc of={fktDialogStories.SimpleDialog} code={[
+	rawExamples.fktSimpleDialogExample,
+	rawExamples.fktSimpleDialogDemo
+]}/>
+<StoryDoc of={fktDialogStories.FormDialog} code={[
+	rawExamples.fktFormDialogExample,
+	rawExamples.fktFormDialogDemo
+]}/>
+<StoryDoc of={fktDialogStories.CustomDialog} code={[
+	rawExamples.fktCustomDialogExample,
+	rawExamples.fktCustomDialogDemo
+]}/>
+<StoryDoc of={fktDialogStories.ConfirmationDialog} code={[
+	rawExamples.fktConfirmationDialogExample,
+]}/>
+<StoryDoc of={fktDialogStories.FullScreenDialog} code={[
+	rawExamples.fktFullscreenDialogExample,
+	rawExamples.fktFullscreenDialogExample
+]}/>
+<StoryDoc of={fktDialogStories.SmallDialog} code={[
+	rawExamples.fktSmallDialogExample,
+	rawExamples.fktSimpleDialogDemo
+]}/>
 
 ## TypeScript Inference & Component Design
 
-### Required: Signal-Based Component APIs
+### Required: Signal - Based Component APIs
 
-**Important**: The FktDialog service requires components to use Angular's signal-based APIs (`input()`, `output()`, `model()`) for proper TypeScript inference. Decorator-based components (`@Input`, `@Output`) are **not supported** due to TypeScript compilation limitations.
+**Important **: The FktDialog service requires components to use Angular's signal-based APIs (`input()`, `output()`, `model()`) for proper TypeScript inference. Decorator-based components (`@Input`, `@Output`) are **not supported** due to TypeScript compilation limitations.
 
 ```typescript
 // ✅ REQUIRED: Signal-based component (fully supported)
@@ -82,17 +101,17 @@ export interface FktConfirmActionOptions {
 export class MyDialogComponent {
 	// Signal inputs - Required for TypeScript inference
 	title = input('Default Title');
-	userData = input<User>();
-	config = input<DialogConfig>({ theme: 'light' });
+	userData = input <User> ();
+	config = input <DialogConfig> ({theme: 'light'});
 
 	// Signal outputs - Required for callback type inference
-	onSave = output<FormData>();
-	onCancel = output<void>();
-	onAction = output<{ type: string, payload: any }>();
+	onSave = output <FormData> ();
+	onCancel = output <void> ();
+	onAction = output <{type: string, payload: any}> ();
 
 	// Signal models - Required for two-way binding
 	counter = model(0);
-	items = model<string[]>([]);
+	items = model <string[]> ([]);
 }
 
 // Perfect TypeScript inference when using signal-based components:
@@ -102,17 +121,18 @@ const dialogRef = this.dialogService.open({
 		// ✅ Full IntelliSense for all inputs
 		title: 'Custom Title',          // string - auto-completed
 		userData: this.currentUser,     // User type enforced
-		config: { theme: 'dark' },      // DialogConfig type enforced
-
+		config: {
+			theme: 'dark'
+		},      // DialogConfig type enforced
 		// ✅ TypeScript automatically infers callback parameter types
 		onSave: (data) => {             // data is automatically typed as FormData
 			console.log('Form saved:', data);
 			dialogRef.close();
 		},
-		onCancel: () => {               // void - no parameters
+			onCancel: () => {               // void - no parameters
 			dialogRef.close();
 		},
-		onAction: (event) => {          // event is automatically typed as { type: string, payload: any }
+			onAction: (event) => {          // event is automatically typed as { type: string, payload: any }
 			this.handleAction(event.type, event.payload);
 		},
 
@@ -129,31 +149,31 @@ const dialogRef = this.dialogService.open({
 })
 export class DecoratorComponent {
 	@Input() title: string = 'Default';         // ❌ Won't work
-	@Input() userData?: User;                   // ❌ Won't work
-	@Output() onSave = new EventEmitter<FormData>(); // ❌ Won't work
+	@Input() userData ? : User;                   // ❌ Won't work
+	@Output() onSave = new EventEmitter <FormData> (); // ❌ Won't work
 }
 
 // This will result in TypeScript compilation errors:
 const willNotCompile = this.dialogService.open({
 	component: DecoratorComponent,  // ❌ TypeScript error
-	data: { /* ... */ }             // ❌ No inference available
+	data: { /* ... */} // ❌ No inference available
 });
 ```
 
 ### Component Agnostic Design Benefits
 
-Using signal-based APIs makes your dialog components truly **reusable** across different contexts:
+Using signal - based APIs makes your dialog components truly ** reusable ** across different contexts:
 
 ```typescript
 @Component({
-	selector: 'user-profile-form',
+selector: 'user-profile-form',
 	template: `
-		<div class="p-4">
-			<h3>{{ title() }}</h3>
+		<div class= "container">
+			<h3> {{title()}}</h3>
 			<form (ngSubmit)="handleSubmit()">
 				<input [(ngModel)]="name" placeholder="Name" [readonly]="readonly()" />
 				<input [(ngModel)]="email" placeholder="Email" [readonly]="readonly()" />
-				<div class="flex gap-2">
+				<div class= "container__actions">
 					@if (!readonly()) {
 						<button type="submit" [disabled]="!isValid()">Save</button>
 						<button type="button" (click)="handleCancel()">Cancel</button>
@@ -161,8 +181,7 @@ Using signal-based APIs makes your dialog components truly **reusable** across d
 				</div>
 			</form>
 		</div>
-	`,
-	standalone: true
+`,
 })
 export class UserProfileFormComponent {
 	// Signal inputs - work everywhere
@@ -172,8 +191,8 @@ export class UserProfileFormComponent {
 	readonly = input(false);
 
 	// Signal outputs - work everywhere
-	onSubmit = output<{ name: string, email: string }>();
-	onCancel = output<void>();
+	onSubmit = output <{name: string, email: string}> ();
+	onCancel = output <void> ();
 
 	// Internal component state
 	name = signal('');
@@ -185,7 +204,7 @@ export class UserProfileFormComponent {
 	}
 
 	isValid = computed(() =>
-		this.name().trim().length > 0 &&
+		this.name().trim().length> 0 &&
 		this.email().includes('@')
 	);
 
@@ -207,7 +226,7 @@ export class UserProfileFormComponent {
 
 // 1. ✅ In FktDialog (with automatic type inference)
 this.dialogService.open({
-	component: UserProfileFormComponent,
+component: UserProfileFormComponent,
 	data: {
 		title: 'Create New User',
 		initialName: '',
@@ -224,7 +243,7 @@ this.dialogService.open({
 
 // 2. ✅ In FktOverlay
 this.overlayService.open({
-	component: UserProfileFormComponent,
+component: UserProfileFormComponent,
 	data: {
 		title: 'Edit User',
 		initialName: user.name,
@@ -237,15 +256,15 @@ this.overlayService.open({
 
 // 3. ✅ As standalone component in templates
 @Component({
-	template: `
-		<user-profile-form
-			[title]="'User Settings'"
-			[initialName]="currentUser.name"
-			[initialEmail]="currentUser.email"
-			[readonly]="!canEditProfile"
-			(onSubmit)="updateProfile($event)"
-			(onCancel)="navigateBack()"
-		/>
+template: `
+	<user-profile-form
+		[title]="'User Settings'"
+		[initialName]="currentUser.name"
+		[initialEmail]="currentUser.email"
+		[readonly]="!canEditProfile"
+		(onSubmit)="updateProfile($event)"
+		(onCancel)="navigateBack()"
+	/>
 	`
 })
 export class ProfilePageComponent { /* ... */ }
@@ -273,32 +292,34 @@ type ComponentModels<T> = {
 type FktDialogData<T> =
 	& Partial<ComponentInputs<T>>   // All inputs become optional data properties
 	& ComponentOutputs<T>           // All outputs become required callback functions
-	& Partial<ComponentModels<T>>;  // All models become optional signal bindings
+	& Partial<ComponentModels<T>>; // All models become optional signal bindings
 
 // This magic only works with signal-based APIs!
 ```
 
 ### Migration from Decorator Components
 
-If you have existing decorator-based components, here's how to migrate them:
+If you have existing decorator - based components, here's how to migrate them:
 
 ```typescript
+import {EventEmitter, Input, input,Output, output} from "@angular/core";
+
 // Before: Decorator-based (won't work with FktDialog)
-@Component({ /* ... */ })
+@Component({ /* ... */})
 export class OldComponent {
 	@Input() title: string = '';
 	@Input() data?: MyData;
-	@Input() config: Config = { theme: 'light' };
+	@Input() config: Config = {theme: 'light'};
 	@Output() save = new EventEmitter<FormData>();
 	@Output() cancel = new EventEmitter<void>();
 }
 
 // After: Signal-based (works perfectly with FktDialog)
-@Component({ /* ... */ })
+@Component({ /* ... */})
 export class NewComponent {
 	title = input('');
 	data = input<MyData>();
-	config = input<Config>({ theme: 'light' });
+	config = input<Config>({theme: 'light'});
 	save = output<FormData>();
 	cancel = output<void>();
 
@@ -312,14 +333,14 @@ export class NewComponent {
 
 ## Dialog Sizing Options
 
-The dialog service provides flexible sizing through `panelOptions`:
+The dialog service provides flexible sizing through`panelOptions`:
 
 ### Predefined Sizes
-- **Small**: `width: '300px'` - Perfect for quick confirmations
-- **Medium**: `width: '500px'` - Standard forms and content
-- **Large**: `width: '700px'` - Detailed forms and complex content
-- **Extra Large**: `width: '900px'` - Data tables and comprehensive interfaces
-- **Full Screen**: `width: '90vw', height: '80vh'` - Immersive experiences
+- ** Small **: `width: '300px'` - Perfect for quick confirmations
+- ** Medium **: `width: '500px'` - Standard forms and content
+- ** Large **: `width: '700px'` - Detailed forms and complex content
+- ** Extra Large **: `width: '900px'` - Data tables and comprehensive interfaces
+- ** Full Screen **: `width: '90vw', height: '80vh'` - Immersive experiences
 
 ### Responsive Sizing
 ```typescript
@@ -386,9 +407,9 @@ panelOptions: {
 		if (this.hasUnsavedChanges()) {
 			if (confirm('Discard changes?')) {
 				dialogRef.close();
+			} else {
+				dialogRef.close();
 			}
-		} else {
-			dialogRef.close();
 		}
 	}
 }
@@ -397,63 +418,63 @@ panelOptions: {
 ## Best Practices
 
 ### Component Design
-- **Use signal-based APIs**: Required for TypeScript inference and reactivity
-- **Keep components focused**: Each dialog component should have a single responsibility
-- **Design for reusability**: Signal-based components work in dialogs, overlays, and standalone
-- **Handle edge cases**: Consider what happens when users navigate away or refresh
+- ** Use signal - based APIs **: Required for TypeScript inference and reactivity
+- ** Keep components focused **: Each dialog component should have a single responsibility
+- ** Design for reusability **: Signal - based components work in dialogs, overlays, and standalone
+- ** Handle edge cases **: Consider what happens when users navigate away or refresh
 
 ### Data Management
-- **Static vs Reactive**: Use static data for simple dialogs, reactive for live updates
-- **Callback functions**: Handle dialog outputs by passing callback functions in data
-- **State management**: Consider using signals for shared state across dialogs
-- **Validation**: Implement proper form validation and user feedback
+- ** Static vs Reactive **: Use static data for simple dialogs, reactive for live updates
+- ** Callback functions **: Handle dialog outputs by passing callback functions in data
+- ** State management **: Consider using signals for shared state across dialogs
+- ** Validation **: Implement proper form validation and user feedback
 
 ### Performance & Memory
-- **Close properly**: Always call close() to prevent memory leaks
-- **Limit concurrent dialogs**: Avoid opening too many dialogs simultaneously
-- **Optimize templates**: Keep dialog templates lightweight and efficient
-- **Lazy loading**: Consider loading heavy content only when needed
+- ** Close properly **: Always call close() to prevent memory leaks
+- ** Limit concurrent dialogs **: Avoid opening too many dialogs simultaneously
+- ** Optimize templates **: Keep dialog templates lightweight and efficient
+- ** Lazy loading **: Consider loading heavy content only when needed
 
 ### User Experience
-- **Appropriate sizing**: Choose sizes that fit content without overwhelming users
-- **Clear actions**: Make primary and secondary actions obvious
-- **Mobile friendly**: Test dialogs on various screen sizes
-- **Keyboard navigation**: Ensure dialogs are accessible via keyboard
-- **Focus management**: Handle focus properly when opening and closing
+- ** Appropriate sizing **: Choose sizes that fit content without overwhelming users
+- ** Clear actions **: Make primary and secondary actions obvious
+- ** Mobile friendly **: Test dialogs on various screen sizes
+- ** Keyboard navigation **: Ensure dialogs are accessible via keyboard
+- ** Focus management **: Handle focus properly when opening and closing
 
 ## Accessibility
 
-- **Focus Management**: Focus is automatically managed when dialogs open and close
-- **Keyboard Support**: ESC key closes dialogs, Tab navigation works within dialog content
-- **ARIA Attributes**: Dialogs include proper ARIA roles and labels automatically
-- **Screen Reader Support**: Dialog content is properly announced to screen readers
-- **Backdrop Interaction**: Clicking outside the dialog provides expected behavior
+- ** Focus Management **: Focus is automatically managed when dialogs open and close
+- ** Keyboard Support **: ESC key closes dialogs, Tab navigation works within dialog content
+- ** ARIA Attributes **: Dialogs include proper ARIA roles and labels automatically
+- ** Screen Reader Support **: Dialog content is properly announced to screen readers
+- ** Backdrop Interaction **: Clicking outside the dialog provides expected behavior
 
 ## Performance
 
-- **Efficient Rendering**: Dialogs use efficient DOM management and minimal re-renders
-- **Memory Safe**: Components are properly destroyed when dialogs close
-- **Position Optimization**: Dialog positioning calculations are optimized for performance
-- **Lazy Destruction**: Dialog elements are removed from DOM after closing animation
+- ** Efficient Rendering **: Dialogs use efficient DOM management and minimal re - renders
+- ** Memory Safe **: Components are properly destroyed when dialogs close
+- ** Position Optimization **: Dialog positioning calculations are optimized for performance
+- ** Lazy Destruction **: Dialog elements are removed from DOM after closing animation
 
 ## Common Use Cases
 
 ### Quick Actions
-- **Confirmations**: Delete actions, save confirmations, navigation warnings
-- **Input Collection**: Single field inputs, quick settings, preferences
-- **Status Updates**: Success messages, error notifications, progress updates
+- ** Confirmations **: Delete actions, save confirmations, navigation warnings
+- ** Input Collection **: Single field inputs, quick settings, preferences
+- ** Status Updates **: Success messages, error notifications, progress updates
 
 ### Forms & Data Entry
-- **User Registration**: Account creation, profile setup, preferences
-- **Data Collection**: Surveys, feedback forms, contact information
-- **Content Creation**: Post creation, comment forms, media uploads
+- ** User Registration **: Account creation, profile setup, preferences
+- ** Data Collection **: Surveys, feedback forms, contact information
+- ** Content Creation **: Post creation, comment forms, media uploads
 
 ### Content Display
-- **Details View**: User profiles, item details, expanded information
-- **Media Preview**: Image galleries, video players, document viewers
-- **Help & Documentation**: Tutorials, feature explanations, guidelines
+- ** Details View **: User profiles, item details, expanded information
+- ** Media Preview **: Image galleries, video players, document viewers
+- ** Help & Documentation **: Tutorials, feature explanations, guidelines
 
 ### System Operations
-- **Settings Management**: Application preferences, user settings, system configuration
-- **Data Management**: Import/export operations, data processing, bulk actions
-- **Administrative Tasks**: User management, system monitoring, configuration
+- ** Settings Management **: Application preferences, user settings, system configuration
+- ** Data Management **: Import /export operations, data processing, bulk actions
+- ** Administrative Tasks **: User management, system monitoring, configuration

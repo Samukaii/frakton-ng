@@ -3,24 +3,7 @@ import { FktBadge, FktBadgeSelectorComponent } from "frakton-ng/badge-selector";
 
 @Component({
 	selector: 'order-status-example',
-	template: `
-		<div class="container">
-			<div class="container__item">
-				<h3>Order #1234 Status:</h3>
-				<fkt-badge-selector
-					[options]="options()"
-					[(currentBadgeId)]="currentBadgeId"
-				/>
-			</div>
-
-			<div class="container__status">
-				Current status:
-				<strong>
-					{{ currentStatusLabel() }}
-				</strong>
-			</div>
-		</div>
-	`,
+	templateUrl: './order-status-example.component.html',
 	styleUrl: './order-status-example.component.scss',
 	imports: [FktBadgeSelectorComponent]
 })

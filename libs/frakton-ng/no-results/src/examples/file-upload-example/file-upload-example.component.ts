@@ -3,11 +3,7 @@ import { FktNoResults, FktNoResultsComponent } from "frakton-ng/no-results";
 
 @Component({
 	selector: 'file-upload-example',
-	template: `
-		<fkt-no-results
-			[noResults]="filesConfig"
-		/>
-	`,
+	templateUrl: './file-upload-example.component.html',
 	imports: [FktNoResultsComponent]
 })
 export class FileUploadExampleComponent {

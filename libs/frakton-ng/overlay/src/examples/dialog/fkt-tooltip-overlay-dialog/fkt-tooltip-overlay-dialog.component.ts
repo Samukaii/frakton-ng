@@ -6,23 +6,7 @@ import { FktIconComponent } from 'frakton-ng/icon';
 	imports: [
 		FktIconComponent
 	],
-	template: `
-		<div class="container">
-			@if (type() === 'info') {
-				<fkt-icon name="information-circle" size="16"></fkt-icon>
-			}
-			@if (type() === 'warning') {
-				<fkt-icon name="exclamation-triangle" size="16"></fkt-icon>
-			}
-			@if (type() === 'error') {
-				<fkt-icon name="x-circle" size="16"></fkt-icon>
-			}
-			@if (type() === 'success') {
-				<fkt-icon name="check-circle" size="16"></fkt-icon>
-			}
-			<span class="container__text">{{ text() }}</span>
-		</div>
-	`,
+	templateUrl: './fkt-tooltip-overlay-dialog.component.html',
 	styleUrl: './fkt-tooltip-overlay-dialog.component.scss'
 })
 export class FktTooltipOverlayDialogComponent {

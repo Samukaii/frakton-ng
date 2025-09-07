@@ -1,0 +1,11 @@
+<div class="container">
+			@for (option of options(); track option.action) {
+				<fkt-button
+					[text]="option.label"
+					[icon]="option.icon"
+					[disabled]="option.disabled ?? false"
+					(click)="handleOptionClick(option)"
+				>
+				</fkt-button>
+			}
+		</div>

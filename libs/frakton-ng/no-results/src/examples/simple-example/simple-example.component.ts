@@ -4,11 +4,7 @@ import { FktNoResults, FktNoResultsComponent } from "frakton-ng/no-results";
 
 @Component({
 	selector: 'simple-example',
-	template: `
-		<fkt-no-results
-			[noResults]="simpleConfig"
-		/>
-	`,
+	templateUrl: './simple-example.component.html',
 	imports: [FktNoResultsComponent]
 })
 export class SimpleExampleComponent {

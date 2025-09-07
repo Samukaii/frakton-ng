@@ -1,0 +1,29 @@
+<div class="container">
+	<div>
+		<h3>Previous Disabled</h3>
+		<fkt-navigator
+			[canGoToPrevious]="false"
+			[canGoToNext]="true"
+			(previous)="onPrevious()"
+			(next)="onNext()"
+		/>
+	</div>
+	<div>
+		<h3>Next Disabled</h3>
+		<fkt-navigator
+			[canGoToPrevious]="true"
+			[canGoToNext]="false"
+			(previous)="onPrevious()"
+			(next)="onNext()"
+		/>
+	</div>
+	<div>
+		<h3>Both Disabled</h3>
+		<fkt-navigator
+			[canGoToPrevious]="false"
+			[canGoToNext]="false"
+			(previous)="onPrevious()"
+			(next)="onNext()"
+		/>
+	</div>
+</div>

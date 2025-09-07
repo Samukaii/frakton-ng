@@ -6,21 +6,7 @@ import { SignalFormControl } from 'frakton-ng/forms';
 	selector: 'input-basic-example',
 	imports: [FktInputComponent],
 	styleUrl: './basic-example.component.scss',
-	template: `
-		<div class="container">
-			<fkt-input
-				[control]="control()"
-				[label]="label()"
-				[placeholder]="placeholder()"
-				[type]="type()"
-				[spellcheck]="spellcheck()"
-			/>
-
-			<div class="container__text">
-				<p>Current value: {{ control().value() || '(empty)' }}</p>
-			</div>
-		</div>
-	`
+	templateUrl: './basic-example.component.html'
 })
 export class BasicExampleComponent {
 	control = input(new SignalFormControl(''));

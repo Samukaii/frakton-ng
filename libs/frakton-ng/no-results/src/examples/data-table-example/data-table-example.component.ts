@@ -3,11 +3,7 @@ import { FktNoResults, FktNoResultsComponent } from "frakton-ng/no-results";
 
 @Component({
 	selector: 'data-table-example',
-	template: `
-		<fkt-no-results
-			[noResults]="tableConfig"
-		/>
-	`,
+	templateUrl: './data-table-example.component.html',
 	imports: [FktNoResultsComponent]
 })
 export class DataTableExampleComponent {

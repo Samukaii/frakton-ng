@@ -4,14 +4,7 @@ import { FktButtonAction } from 'frakton-ng/button';
 
 @Component({
 	selector: 'demo-simple-dialog',
-	template: `
-		<h2 class="title">{{ title() }}</h2>
-		<p class="message">{{ message() }}</p>
-		<fkt-buttons-list
-			[actions]="actions()"
-			horizontalAlignment="end"
-		></fkt-buttons-list>
-	`,
+	templateUrl: './fkt-simple-dialog-demo.component.html',
 	styleUrl: './fkt-simple-dialog-demo.component.scss',
 	imports: [FktButtonsListComponent]
 })

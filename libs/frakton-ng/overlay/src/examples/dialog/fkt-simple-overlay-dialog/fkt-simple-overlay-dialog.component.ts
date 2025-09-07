@@ -6,19 +6,7 @@ import { FktButtonComponent } from 'frakton-ng/button';
 	imports: [
 		FktButtonComponent
 	],
-	template: `
-		<div class="container">
-			<h3 class="container__title">{{ title() }}</h3>
-			<p class="container__description">{{ message() }}</p>
-			<div class="container__actions">
-				<fkt-button
-					text="Close"
-					theme="stroked"
-					(click)="handleClose()"
-				></fkt-button>
-			</div>
-		</div>
-	`,
+	templateUrl: './fkt-simple-overlay-dialog.component.html',
 	styleUrl: './fkt-simple-overlay-dialog.component.scss'
 })
 export class FktSimpleOverlayDialogComponent {
