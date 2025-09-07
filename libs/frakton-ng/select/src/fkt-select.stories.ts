@@ -1,14 +1,16 @@
 import type { Meta, StoryObj } from '@storybook/angular';
 import { moduleMetadata } from '@storybook/angular';
 import { FktSelectComponent } from 'frakton-ng/select';
-import { DefaultExampleComponent } from './examples/default-example.component';
-import { PreselectedExampleComponent } from './examples/preselected-example.component';
-import { LargeListExampleComponent } from './examples/large-list-example.component';
-import { LoadingExampleComponent } from './examples/loading-example.component';
-import { EmptyStateExampleComponent } from './examples/empty-state-example.component';
-import { ValidationExampleComponent } from './examples/validation-example.component';
-import { DisabledExampleComponent } from './examples/disabled-example.component';
-import { AsyncLoadingExampleComponent } from './examples/async-loading-example.component';
+import {
+	AsyncLoadingExampleComponent,
+	DefaultExampleComponent,
+	DisabledExampleComponent,
+	EmptyStateExampleComponent,
+	LargeListExampleComponent,
+	LoadingExampleComponent,
+	PreselectedExampleComponent,
+	ValidationExampleComponent
+} from './examples';
 
 const meta: Meta<FktSelectComponent> = {
 	title: 'Components/Form/Select',
@@ -30,14 +32,17 @@ const meta: Meta<FktSelectComponent> = {
 	argTypes: {
 		control: {
 			control: false,
+			type: {
+				name: "object",
+				value: {},
+				required: true
+			},
 			table: {
 				category: "Attributes",
 				type: {
-					summary: 'SignalFormControl<any>',
+					summary: 'SignalFormControl<T>',
+					detail: "import {SignalFormControl} from 'frakton-ng/forms'"
 				},
-				defaultValue: {
-					summary: "Required - SignalFormControl instance"
-				}
 			},
 			description: 'The form control that manages the select state and validation'
 		},
@@ -80,16 +85,15 @@ const meta: Meta<FktSelectComponent> = {
 				value: {
 					name: 'object',
 					value: {}
-				}
+				},
+				required: true
 			},
 			table: {
 				category: "Attributes",
 				type: {
-					summary: "FktSelectOption[]"
+					summary: "FktSelectOption[]",
+					detail: "import {FktSelectOption} from 'frakton-ng/select'"
 				},
-				defaultValue: {
-					summary: "Required - Array of options"
-				}
 			},
 			description: 'Array of options to display in the dropdown'
 		},
@@ -111,7 +115,8 @@ const meta: Meta<FktSelectComponent> = {
 			table: {
 				category: "Attributes",
 				type: {
-					summary: "FktNoResults"
+					summary: "FktNoResults",
+					detail: "import {FktNoResults} from 'frakton-ng/no-results'"
 				},
 				defaultValue: {
 					summary: "{ label: 'Sem resultados' }"
@@ -125,29 +130,29 @@ const meta: Meta<FktSelectComponent> = {
 type Story = StoryObj<FktSelectComponent>;
 
 const basicOptions = [
-	{ value: "option1", label: "Option 1" },
-	{ value: "option2", label: "Option 2" },
-	{ value: "option3", label: "Option 3" },
-	{ value: "option4", label: "Option 4" },
+	{value: "option1", label: "Option 1"},
+	{value: "option2", label: "Option 2"},
+	{value: "option3", label: "Option 3"},
+	{value: "option4", label: "Option 4"},
 ];
 
 const countryOptions = [
-	{ value: "us", label: "United States" },
-	{ value: "ca", label: "Canada" },
-	{ value: "uk", label: "United Kingdom" },
-	{ value: "de", label: "Germany" },
-	{ value: "fr", label: "France" },
-	{ value: "es", label: "Spain" },
-	{ value: "it", label: "Italy" },
-	{ value: "jp", label: "Japan" },
+	{value: "us", label: "United States"},
+	{value: "ca", label: "Canada"},
+	{value: "uk", label: "United Kingdom"},
+	{value: "de", label: "Germany"},
+	{value: "fr", label: "France"},
+	{value: "es", label: "Spain"},
+	{value: "it", label: "Italy"},
+	{value: "jp", label: "Japan"},
 ];
 
-const largeOptionList = Array.from({ length: 50 }, (_, i) => ({
+const largeOptionList = Array.from({length: 50}, (_, i) => ({
 	value: `item-${i + 1}`,
 	label: `Item ${i + 1}`
 }));
 
-export const Default: Story = {
+export const BasicSelect: Story = {
 	render: (args) => ({
 		template: '<select-default-example [label]="label" [placeholder]="placeholder" [options]="options" [loading]="loading" [noResults]="noResults"></select-default-example>',
 		props: {
@@ -169,7 +174,7 @@ export const Default: Story = {
 	}
 };
 
-export const WithPreselected: Story = {
+export const PreSelectedOption: Story = {
 	render: (args) => ({
 		template: '<select-preselected-example [label]="label" [placeholder]="placeholder" [options]="options"></select-preselected-example>',
 		props: {
@@ -190,7 +195,7 @@ export const WithPreselected: Story = {
 	}
 };
 
-export const WithLargeList: Story = {
+export const LargeOptionsList: Story = {
 	render: (args) => ({
 		template: '<select-large-list-example [label]="label" [placeholder]="placeholder" [options]="options"></select-large-list-example>',
 		props: {
@@ -211,7 +216,7 @@ export const WithLargeList: Story = {
 	}
 };
 
-export const Loading: Story = {
+export const LoadingState: Story = {
 	render: (args) => ({
 		template: '<select-loading-example [label]="label" [placeholder]="placeholder" [options]="options" [loading]="loading"></select-loading-example>',
 		props: {
@@ -269,10 +274,10 @@ export const WithValidation: Story = {
 		label: "Priority (Required)",
 		placeholder: "Select priority",
 		options: [
-			{ value: "low", label: "Low Priority" },
-			{ value: "medium", label: "Medium Priority" },
-			{ value: "high", label: "High Priority" },
-			{ value: "urgent", label: "Urgent" },
+			{value: "low", label: "Low Priority"},
+			{value: "medium", label: "Medium Priority"},
+			{value: "high", label: "High Priority"},
+			{value: "urgent", label: "Urgent"},
 		],
 	},
 	parameters: {
@@ -284,7 +289,7 @@ export const WithValidation: Story = {
 	}
 };
 
-export const Disabled: Story = {
+export const DisabledState: Story = {
 	render: (args) => ({
 		template: '<select-disabled-example [label]="label" [placeholder]="placeholder" [options]="options"></select-disabled-example>',
 		props: {

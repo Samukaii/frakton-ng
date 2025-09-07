@@ -66,18 +66,7 @@ export const userMainAction: FktButtonAction = {
 	imports: [
 		FktTableComponent
 	],
-	template: `
-		<fkt-table
-			[data]="tableData()"
-			[columnsFn]="columnsFn"
-			[classesFn]="classesFn"
-			[actionsFn]="actionsFn"
-			[mainAction]="mainAction()"
-			[loading]="loading()"
-			[noHeaderWhenEmpty]="noHeaderWhenEmpty()"
-			[noResults]="noResults()"
-		/>
-	`,
+	templateUrl: './fkt-table-examples-table-with-actions.component.html',
 	styleUrl: './fkt-table-examples-table-with-actions.component.scss'
 })
 export class FktTableExamplesTableWithActionsComponent {

@@ -6,7 +6,7 @@ import { FktButtonAction } from 'frakton-ng/button';
 import { FktNoResults } from 'frakton-ng/no-results';
 import { FktAutocompleteOption } from './fkt-autocomplete.types';
 import { AUTOCOMPLETE_AUTO_CREATED_OPTION } from './static/autocomplete-auto-created-option';
-import {FktAutocompleteOptionsComponent} from './options/fkt-autocomplete-options.component';
+import { FktAutocompleteOptionsComponent } from './options/fkt-autocomplete-options.component';
 import { MarkUsed, outsideClickEffect } from 'frakton-ng/internal/utils';
 
 @Component({

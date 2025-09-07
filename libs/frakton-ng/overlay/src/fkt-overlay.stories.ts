@@ -6,7 +6,7 @@ import {
 	FktFormOverlayExampleComponent,
 	FktInteractiveOverlayExampleComponent,
 	FktSimpleOverlayExampleComponent
-} from './example';
+} from './examples';
 
 const meta: Meta = {
 	title: 'Components/Overlay/Overlay',
@@ -33,7 +33,7 @@ export const SimpleOverlay: StoryObj = {
 	}),
 };
 
-export const TooltipOverlay: StoryObj = {
+export const CustomTooltipOverlay: StoryObj = {
 	render: () => ({
 		template: '<custom-tooltip-overlay-example/>',
 	}),

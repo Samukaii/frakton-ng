@@ -1,2 +1,2 @@
-export { OrderStatusExampleComponent } from './order-status-example.component';
-export { PriorityExampleComponent } from './priority-example.component';
+export { OrderStatusExampleComponent } from './order-status/order-status-example.component';
+export { PriorityExampleComponent } from './priority/priority-example.component';

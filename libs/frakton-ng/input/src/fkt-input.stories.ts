@@ -13,7 +13,6 @@ import {
 	NumberExampleComponent,
 	PasswordExampleComponent,
 	PercentExampleComponent,
-	SearchExampleComponent,
 	SuffixExampleComponent,
 	ValidationExampleComponent
 } from './examples';
@@ -36,7 +35,6 @@ const meta: Meta<FktInputComponent> = {
 				SuffixExampleComponent,
 				FormIntegrationExampleComponent,
 				LoginFormExampleComponent,
-				SearchExampleComponent
 			]
 		})
 	],
@@ -44,17 +42,24 @@ const meta: Meta<FktInputComponent> = {
 		control: {
 			control: false,
 			description: 'The SignalFormControl instance that manages the component state and validation',
+			type: {
+				name: "object",
+				value: {},
+				required: true,
+			},
 			table: {
-				category: 'Props',
-				type: { summary: 'SignalFormControl<any>' },
-				defaultValue: { summary: 'Required' }
+				category: 'Attributes',
+				type: {
+					summary: 'SignalFormControl<string>',
+					detail: "import {SignalFormControl} from 'frakton-ng/forms';"
+				},
 			}
 		},
 		label: {
 			control: 'text',
 			description: 'Label text displayed above the input field',
 			table: {
-				category: 'Props',
+				category: 'Attributes',
 				type: { summary: 'string' },
 				defaultValue: { summary: "''" }
 			}
@@ -63,7 +68,7 @@ const meta: Meta<FktInputComponent> = {
 			control: 'text',
 			description: 'Placeholder text shown when the input is empty',
 			table: {
-				category: 'Props',
+				category: 'Attributes',
 				type: { summary: 'string' },
 				defaultValue: { summary: "''" }
 			}
@@ -73,18 +78,24 @@ const meta: Meta<FktInputComponent> = {
 			options: fktInputTypes,
 			description: 'The type of input field determining its behavior and validation',
 			table: {
-				category: 'Props',
-				type: { summary: 'FktInputType' },
+				category: 'Attributes',
+				type: {
+					summary: 'FktInputType',
+					detail: "import {FktInputType} from 'frakton-ng/input';"
+				},
 				defaultValue: { summary: "'text'" }
 			}
 		},
 		transformer: {
 			control: 'select',
-			options: [...fktInputTransformers, undefined],
+			options: [...fktInputTransformers],
 			description: 'Data transformer for automatic formatting of input values',
 			table: {
-				category: 'Props',
-				type: { summary: 'FktInputTransformer' },
+				category: 'Attributes',
+				type: {
+					summary: 'FktInputTransformer',
+					detail: "import {FktInputTransformer} from 'frakton-ng/input';"
+				},
 				defaultValue: { summary: 'undefined' }
 			}
 		},
@@ -92,7 +103,7 @@ const meta: Meta<FktInputComponent> = {
 			control: 'boolean',
 			description: 'Enable or disable spell checking for the input',
 			table: {
-				category: 'Props',
+				category: 'Attributes',
 				type: { summary: 'boolean' },
 				defaultValue: { summary: 'true' }
 			}
@@ -103,7 +114,7 @@ const meta: Meta<FktInputComponent> = {
 type Story = StoryObj<FktInputComponent>;
 
 // Default text input story
-export const Default: Story = {
+export const BasicInput: Story = {
 	render: (args) => ({
 		template: `<input-basic-example [control]="control" [label]="label" [placeholder]="placeholder" [type]="type" [spellcheck]="spellcheck"></input-basic-example>`,
 		props: {
@@ -127,7 +138,7 @@ export const Default: Story = {
 };
 
 // Password input story
-export const Password: Story = {
+export const PasswordField: Story = {
 	render: (args) => ({
 		template: `<input-password-example [control]="control" [label]="label" [placeholder]="placeholder"></input-password-example>`,
 		props: {
@@ -148,30 +159,7 @@ export const Password: Story = {
 	}
 };
 
-// Number input story
-export const Number: Story = {
-	render: (args) => ({
-		template: `<input-number-example [control]="control" [label]="label" [placeholder]="placeholder"></input-number-example>`,
-		props: {
-			...args
-		}
-	}),
-	args: {
-		control: new SignalFormControl(''),
-		label: 'Age',
-		placeholder: 'Enter your age'
-	},
-	parameters: {
-		docs: {
-			description: {
-				story: 'A numeric input that only accepts numbers and shows numeric keypad on mobile devices.'
-			}
-		}
-	}
-};
-
-// Email input story
-export const Email: Story = {
+export const EmailField: Story = {
 	render: (args) => ({
 		template: `<input-email-example [control]="control" [label]="label" [placeholder]="placeholder"></input-email-example>`,
 		props: {
@@ -192,8 +180,30 @@ export const Email: Story = {
 	}
 };
 
+// Number input story
+export const NumericField: Story = {
+	render: (args) => ({
+		template: `<input-number-example [control]="control" [label]="label" [placeholder]="placeholder"></input-number-example>`,
+		props: {
+			...args
+		}
+	}),
+	args: {
+		control: new SignalFormControl(''),
+		label: 'Age',
+		placeholder: 'Enter your age'
+	},
+	parameters: {
+		docs: {
+			description: {
+				story: 'A numeric input that only accepts numbers and shows numeric keypad on mobile devices.'
+			}
+		}
+	}
+};
+
 // Currency transformer story
-export const Currency: Story = {
+export const CurrencyTransformer: Story = {
 	render: (args) => ({
 		template: `<input-currency-example [control]="control" [label]="label" [placeholder]="placeholder"></input-currency-example>`,
 		props: {
@@ -215,7 +225,7 @@ export const Currency: Story = {
 };
 
 // Percentage transformer story
-export const Percent: Story = {
+export const PercentTransformer: Story = {
 	render: (args) => ({
 		template: `<input-percent-example [control]="control" [label]="label" [placeholder]="placeholder"></input-percent-example>`,
 		props: {
@@ -237,7 +247,7 @@ export const Percent: Story = {
 };
 
 // Hour transformer story
-export const Hour: Story = {
+export const HourTransformer: Story = {
 	render: (args) => ({
 		template: `<input-hour-example [control]="control" [label]="label" [placeholder]="placeholder"></input-hour-example>`,
 		props: {
@@ -286,7 +296,7 @@ export const WithValidation: Story = {
 };
 
 // Disabled state story
-export const Disabled: Story = {
+export const DisabledState: Story = {
 	render: (args) => ({
 		template: `<input-disabled-example [control]="control" [label]="label" [placeholder]="placeholder"></input-disabled-example>`,
 		props: {
@@ -312,7 +322,7 @@ export const Disabled: Story = {
 };
 
 // Suffix content story
-export const WithSuffix: Story = {
+export const WithCustomSuffix: Story = {
 	render: (args) => ({
 		template: `<input-suffix-example [control]="control" [label]="label" [placeholder]="placeholder"></input-suffix-example>`,
 		props: {

@@ -1,7 +1,9 @@
-import { Meta, Story } from '@storybook/addon-docs/blocks';
+import {ArgTypes, Meta} from '@storybook/addon-docs/blocks';
 import * as fktBadgeSelectorStories from './fkt-badge-selector.stories';
+import {StoryDoc} from "../../.storybook/blocks/StoryDoc";
+import {rawExamples} from "./examples/raw-examples";
 
-<Meta of={fktBadgeSelectorStories} />
+<Meta of={fktBadgeSelectorStories}/>
 
 The **FktBadgeSelector** component provides an interactive dropdown for selecting from a list of badge options. Built with Angular signals and the overlay system, it offers a clean interface for choosing status, categories, or other badge-represented values.
 
@@ -17,24 +19,38 @@ The **FktBadgeSelector** component provides an interactive dropdown for selectin
 
 ## Configuration Options
 
-### Input Properties
-- **`options`** (required): `FktBadge<Id>[]` - Array of badge options to display
-- **`currentBadgeId`**: `Id` - Currently selected badge ID (supports two-way binding)
+<ArgTypes />
 
-### FktBadge Interface
-```typescript
-interface FktBadge<Id extends string = string> {
-  id: Id;           // Unique identifier for the badge option
-  name: string;     // Display text shown in the badge
-  color: FktBadgeColor; // Badge color (green, red, blue, orange)
+### Types
+```ts
+import {FktBadgeColor} from "frakton-ng/badge";
+
+export interface FktBadge<Id extends string = string> {
+	id: Id;
+	name: string;
+	color: FktBadgeColor;
 }
 ```
 
 ### Two-Way Binding
 The component supports Angular's two-way binding syntax:
-```typescript
-[(currentBadgeId)]="selectedValue"
+```html
+<fkt-badge-selector
+  [options]="statusOptions"
+  [(currentBadgeId)]="selectedStatus"
+/>
 ```
+
+## Examples
+
+<StoryDoc of={fktBadgeSelectorStories.Preview}/>
+<StoryDoc of={fktBadgeSelectorStories.OrderStatus} code={rawExamples.orderStatusExample}/>
+<StoryDoc of={fktBadgeSelectorStories.Priority} code={rawExamples.priorityExample}/>
+<StoryDoc of={fktBadgeSelectorStories.ProjectStatus}/>
+<StoryDoc of={fktBadgeSelectorStories.UserStatus}/>
+<StoryDoc of={fktBadgeSelectorStories.TeamAssignment}/>
+<StoryDoc of={fktBadgeSelectorStories.Category}/>
+
 
 ## Use Cases
 
@@ -80,149 +96,3 @@ Essential for settings and preferences:
 - **Efficient Rendering**: Optimized change detection with Angular signals
 - **Memory Management**: Proper cleanup of overlay references
 - **Type Safety**: Compile-time type checking for badge IDs
-
-## Examples
-
-### Basic Badge Selector
-
-Interactive badge selector with predefined status options. Click to open dropdown and select an option.
-
-<Story of={fktBadgeSelectorStories.Preview} />
-
-```typescript
-@Component({
-  selector: 'app-example',
-  template: `
-    <fkt-badge-selector
-      [options]="statusOptions"
-      [(currentBadgeId)]="selectedStatus"
-    />
-  `,
-  standalone: true,
-  imports: [FktBadgeSelectorComponent]
-})
-export class ExampleComponent {
-  selectedStatus = signal<string>('opt-1');
-
-  statusOptions = [
-    {
-      id: "opt-1",
-      color: "green" as const,
-      name: "Success"
-    },
-    {
-      id: "opt-2",
-      color: "red" as const,
-      name: "Cancelled"
-    },
-    {
-      id: "opt-3",
-      color: "blue" as const,
-      name: "Reserved"
-    },
-    {
-      id: "opt-4",
-      color: "orange" as const,
-      name: "Paused"
-    }
-  ];
-}
-```
-
-### Order Status Selector
-
-Badge selector for managing order status with multiple workflow states.
-
-<Story of={fktBadgeSelectorStories.OrderStatus} />
-
-```typescript
-@Component({
-  selector: 'app-example',
-  template: `
-    <div class="space-y-4">
-      <div class="flex items-center gap-3">
-        <span class="text-sm font-medium">Order #1234 Status:</span>
-        <fkt-badge-selector
-          [options]="orderStatusOptions"
-          [(currentBadgeId)]="currentOrderStatus"
-        />
-      </div>
-
-      <div class="text-sm text-gray-600">
-        Current status: {{ getCurrentStatusLabel() }}
-      </div>
-    </div>
-  `,
-  standalone: true,
-  imports: [FktBadgeSelectorComponent]
-})
-export class ExampleComponent {
-  orderStatusOptions = [
-    { id: "pending", color: "orange" as const, name: "Pending" },
-    { id: "confirmed", color: "blue" as const, name: "Confirmed" },
-    { id: "processing", color: "blue" as const, name: "Processing" },
-    { id: "shipped", color: "blue" as const, name: "Shipped" },
-    { id: "delivered", color: "green" as const, name: "Delivered" },
-    { id: "cancelled", color: "red" as const, name: "Cancelled" }
-  ];
-
-  currentOrderStatus = signal<string>('confirmed');
-
-  getCurrentStatusLabel(): string {
-    const status = this.orderStatusOptions.find(b => b.id === this.currentOrderStatus());
-    return status ? status.name : 'None';
-  }
-}
-```
-
-### Priority Level Selector
-
-Badge selector for task or issue priority levels with visual hierarchy.
-
-<Story of={fktBadgeSelectorStories.Priority} />
-
-```typescript
-@Component({
-  selector: 'app-example',
-  template: `
-    <div class="p-4 border rounded-lg">
-      <h3 class="text-lg font-semibold mb-3">Task Priority</h3>
-
-      <div class="flex items-center gap-3">
-        <label class="text-sm font-medium">Priority Level:</label>
-        <fkt-badge-selector
-          [options]="priorityOptions"
-          [(currentBadgeId)]="selectedPriority"
-        />
-      </div>
-
-      <div class="mt-3 text-sm text-gray-600">
-        {{ getPriorityDescription() }}
-      </div>
-    </div>
-  `,
-  standalone: true,
-  imports: [FktBadgeSelectorComponent]
-})
-export class ExampleComponent {
-  priorityOptions = [
-    { id: "low", color: "green" as const, name: "Low" },
-    { id: "medium", color: "orange" as const, name: "Medium" },
-    { id: "high", color: "red" as const, name: "High" },
-    { id: "critical", color: "red" as const, name: "Critical" }
-  ];
-
-  selectedPriority = signal<string>('medium');
-
-  getPriorityDescription(): string {
-    const descriptions = {
-      low: 'Tasks that can be completed when time permits',
-      medium: 'Tasks that should be completed within normal timeframes',
-      high: 'Tasks requiring prompt attention and completion',
-      critical: 'Urgent tasks requiring immediate action'
-    };
-
-    return descriptions[this.selectedPriority() as keyof typeof descriptions] || 'Select a priority level';
-  }
-}
-```

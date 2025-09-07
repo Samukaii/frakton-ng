@@ -1,5 +1,7 @@
-import {Canvas, Meta, Story} from '@storybook/addon-docs/blocks';
+import {ArgTypes, Meta} from '@storybook/addon-docs/blocks';
 import * as fktOverlayStories from './fkt-overlay.stories';
+import {rawExamples} from "./examples/raw-examples";
+import {StoryDoc} from "../../.storybook/blocks/StoryDoc";
 
 <Meta of={fktOverlayStories} />
 
@@ -18,892 +20,13 @@ Built with modern Angular signals and reactive patterns, it supports dynamic pos
 - **Advanced Control**: Outside click handling, auto-repositioning, and custom overlay IDs
 - **Responsive Design**: Smart viewport detection and mobile-friendly positioning
 
-## Simple Overlay
-
-Basic overlay positioning examples. Demonstrates how overlays can be positioned relative to anchor elements with different alignment options (top, bottom, left, right, center).
-
-<Canvas sourceState="none" of={fktOverlayStories.SimpleOverlay} />
-
-### Code
-```typescript
-@Component({
-	selector: 'fkt-simple-overlay-dialog',
-	imports: [
-		FktButtonComponent
-	],
-	template: `
-		<div class="container">
-			<h3 class="container__title">{{ title() }}</h3>
-			<p class="container__description">{{ message() }}</p>
-			<div class="container__actions">
-				<fkt-button
-					text="Close"
-					theme="stroked"
-					(click)="handleClose()"
-				></fkt-button>
-			</div>
-		</div>
-	`,
-	styleUrl: './fkt-simple-overlay-dialog.component.scss'
-})
-export class FktSimpleOverlayDialogComponent {
-	title = input('Simple Overlay');
-	message = input('This is a basic overlay example with signal support.');
-
-	onClose = output<void>();
-
-	handleClose() {
-		this.onClose.emit();
-	}
-}
-
-
-@Component({
-	selector: 'simple-overlay-example',
-	template: `
-		<div class="container">
-			<div #left>
-				<fkt-button
-					text="Left Center"
-					theme="stroked"
-					color="yellow"
-					(click)="openOverlay(left, 'left-center')"
-				></fkt-button>
-			</div>
-			<div #right>
-				<fkt-button
-					text="Right Center"
-					theme="stroked"
-					color="primary"
-					(click)="openOverlay(right, 'right-center')"
-				></fkt-button>
-			</div>
-			<div #top>
-				<fkt-button
-					text="Top Center"
-					theme="stroked"
-					color="green"
-					(click)="openOverlay(top, 'top-center')"
-				></fkt-button>
-			</div>
-			<div #bottom>
-				<fkt-button
-					text="Bottom Center (Default)"
-					theme="stroked"
-					(click)="openOverlay(bottom, 'bottom-center')"
-				></fkt-button>
-			</div>
-		</div>
-    `,
-	standalone: true,
-	styleUrl: './fkt-simple-overlay-example.component.scss',
-	imports: [FktButtonComponent]
-})
-export class FktSimpleOverlayExampleComponent {
-	private overlayService = inject(FktOverlayService);
-
-	messageSignal = signal('This overlay is positioned relative to the button!');
-
-	openOverlay(nativeElement: HTMLElement, position: FktGeometryPosition) {
-		const overlayRef = this.overlayService.open({
-			anchorElementRef: {nativeElement},
-			component: FktSimpleOverlayDialogComponent,
-			data: {
-				title: `Simple Overlay - ${position}`,
-				message: this.messageSignal,
-				onClose: () => {
-					console.log('Simple overlay closed');
-					overlayRef.close();
-				}
-			},
-			panelOptions: {
-				position: position,
-				disableAutoReposition: true,
-				width: '300px',
-				padding: '0',
-				borderRadius: '8px'
-			}
-		});
-	}
-}
-```
-
-## Custom Tooltip Overlay
-Dark-themed tooltip-style overlays with auto-close functionality. Perfect for contextual help, status messages, and informational content. Tooltips automatically close after 3 seconds.
-
-<Canvas sourceState="none" of={fktOverlayStories.TooltipOverlay} />
-
-### Code
-```typescript
-@Component({
-	selector: 'fkt-tooltip-overlay-dialog',
-	imports: [
-		FktIconComponent
-	],
-	template: `
-		<div class="container">
-			@if (type() === 'info') {
-				<fkt-icon name="information-circle" size="16"></fkt-icon>
-			}
-			@if (type() === 'warning') {
-				<fkt-icon name="exclamation-triangle" size="16"></fkt-icon>
-			}
-			@if (type() === 'error') {
-				<fkt-icon name="x-circle" size="16"></fkt-icon>
-			}
-			@if (type() === 'success') {
-				<fkt-icon name="check-circle" size="16"></fkt-icon>
-			}
-			<span class="container__text">{{ text() }}</span>
-		</div>
-	`,
-	styleUrl: './fkt-tooltip-overlay-dialog.component.scss'
-})
-export class FktTooltipOverlayDialogComponent {
-	text = input('Tooltip message');
-	type = input<'info' | 'warning' | 'error' | 'success'>('info');
-}
-
-@Component({
-	selector: 'custom-tooltip-overlay-example',
-	template: `
-		<div class="container">
-			<div #infoButton>
-				<fkt-button
-					text="Info Tooltip"
-					theme="stroked"
-					color="primary"
-					(click)="openTooltip(infoButton, 'info', 'This is an informational tooltip message.')"
-				></fkt-button>
-			</div>
-
-			<div #warningButton>
-				<fkt-button
-					text="Warning Tooltip"
-					theme="stroked"
-					color="yellow"
-					(click)="openTooltip(warningButton, 'warning', 'This is a warning tooltip message.')"
-				></fkt-button>
-			</div>
-
-			<div #errorButton>
-				<fkt-button
-					text="Error Tooltip"
-					theme="stroked"
-					color="red"
-					(click)="openTooltip(errorButton, 'error', 'This is an error tooltip message.')"
-				></fkt-button>
-			</div>
-
-			<div #successButton>
-				<fkt-button
-					text="Success Tooltip"
-					theme="stroked"
-					color="green"
-					(click)="openTooltip(successButton, 'success', 'This is a success tooltip message.')"
-				></fkt-button>
-			</div>
-		</div>
-	`,
-	styleUrl: './fkt-custom-tooltip-overlay-example.component.scss',
-	imports: [FktButtonComponent]
-})
-export class FktCustomTooltipOverlayExampleComponent {
-	private overlayService = inject(FktOverlayService);
-
-	private overlayRef: FktOverlayRef<FktTooltipOverlayDialogComponent> | null = null;
-
-	openTooltip(
-		nativeElement: HTMLElement,
-		type: 'info' | 'warning' | 'error' | 'success',
-		text: string,
-		position: FktGeometryPosition = 'bottom-center'
-	) {
-		if(this.overlayRef) return;
-
-		const colors: Record<'info' | 'warning' | 'error' | 'success', string> = {
-			info: "#3b82f6",
-			warning: "#eab308",
-			error: "#ef4444",
-			success: "#22c55e",
-		}
-
-		this.overlayRef = this.overlayService.open({
-			anchorElementRef: {nativeElement},
-			component: FktTooltipOverlayDialogComponent,
-			data: {
-				text: text,
-				type: type
-			},
-			panelOptions: {
-				position: position,
-				disableAutoReposition: true,
-				padding: '0.5rem 1rem',
-				backgroundColor: colors[type],
-				borderRadius: '6px',
-				boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
-				maxHeight: 'fit-content',
-				minWidth: 'fit-content',
-				width: 'fit-content',
-				outsideClick: () => {
-					this.overlayRef = null;
-				}
-			}
-		});
-	}
-}
-```
-
-
-## Dropdown Menu Overlay
-Action menus and dropdown selectors with icons and various configurations. Demonstrates how to create context menus, navigation dropdowns, and action buttons with custom styling.
-<Canvas sourceState="none" of={fktOverlayStories.DropdownMenuOverlay} />
-
-### Code
-```typescript
-export interface DropdownOption {
-	label: string;
-	icon: FktIconName;
-	action: string;
-	disabled?: boolean;
-}
-
-@Component({
-	selector: 'fkt-dropdown-overlay-dialog',
-	imports: [FktButtonComponent],
-	template: `
-		<div class="container">
-			@for (option of options(); track option.action) {
-				<fkt-button
-					[text]="option.label"
-					[icon]="option.icon"
-					[disabled]="option.disabled ?? false"
-					(click)="handleOptionClick(option)"
-				>
-				</fkt-button>
-			}
-		</div>
-	`,
-	standalone: true,
-	styleUrl: './fkt-dropdown-overlay-dialog.component.scss'
-})
-export class FktDropdownOverlayDialogComponent {
-	options = input<DropdownOption[]>([]);
-
-	onOptionSelect = output<string>();
-
-	handleOptionClick(option: DropdownOption) {
-		if (!option.disabled) {
-			this.onOptionSelect.emit(option.action);
-		}
-	}
-}
-
-@Component({
-	selector: 'dropdown-overlay-example',
-	template: `
-		<div class="container">
-			<div #fileActionsButton>
-				<fkt-button
-					text="File Actions"
-					theme="stroked"
-					color="primary"
-					iconPosition="right"
-					icon="chevron-down"
-					(click)="openFileActionsMenu(fileActionsButton)"
-				></fkt-button>
-			</div>
-			<div #userProfileButton>
-				<fkt-button
-					text="User Profile"
-					theme="stroked"
-					color="green"
-					iconPosition="right"
-					icon="chevron-down"
-					(click)="openUserProfileMenu(userProfileButton)"
-				></fkt-button>
-			</div>
-			<div #settingsButton>
-				<fkt-button
-					text="Settings"
-					theme="stroked"
-					color="primary"
-					iconPosition="right"
-					icon="chevron-down"
-					(click)="openSettingsMenu(settingsButton)"
-				></fkt-button>
-			</div>
-			<div #adminButton>
-				<fkt-button
-					text="Admin Actions"
-					theme="stroked"
-					color="red"
-					iconPosition="right"
-					icon="chevron-down"
-					(click)="openAdminMenu(adminButton)"
-				></fkt-button>
-			</div>
-		</div>
-	`,
-	styleUrl: './fkt-dropdown-overlay-example.component.scss',
-	imports: [FktButtonComponent]
-})
-export class FktDropdownOverlayExampleComponent {
-	private overlayService = inject(FktOverlayService);
-
-	openFileActionsMenu(nativeElement: HTMLElement) {
-		const options: DropdownOption[] = [
-			{ label: 'New File', icon: 'document-plus', action: 'new' },
-			{ label: 'Open File', icon: 'folder-open', action: 'open' },
-			{ label: 'Save', icon: 'document-check', action: 'save' },
-			{ label: 'Save As...', icon: 'document-duplicate', action: 'saveas' },
-			{ label: 'Export', icon: 'arrow-up-tray', action: 'export' },
-		];
-
-		this.openDropdownMenu(nativeElement, options, 'File action');
-	}
-
-	openUserProfileMenu(nativeElement: HTMLElement) {
-		const options: DropdownOption[] = [
-			{ label: 'View Profile', icon: 'user', action: 'profile' },
-			{ label: 'Edit Profile', icon: 'pencil', action: 'edit' },
-			{ label: 'Settings', icon: 'cog-6-tooth', action: 'settings' },
-			{ label: 'Notifications', icon: 'bell', action: 'notifications' },
-			{ label: 'Sign Out', icon: 'arrow-right-end-on-rectangle', action: 'signout' },
-		];
-
-		this.openDropdownMenu(nativeElement, options, 'Profile action');
-	}
-
-	openSettingsMenu(nativeElement: HTMLElement) {
-		const options: DropdownOption[] = [
-			{ label: 'General', icon: 'adjustments-horizontal', action: 'general' },
-			{ label: 'Appearance', icon: 'swatch', action: 'appearance' },
-			{ label: 'Privacy', icon: 'shield-check', action: 'privacy' },
-			{ label: 'Security', icon: 'lock-closed', action: 'security' },
-			{ label: 'Advanced', icon: 'wrench-screwdriver', action: 'advanced', disabled: true },
-		];
-
-		this.openDropdownMenu(nativeElement, options, 'Settings');
-	}
-
-	openAdminMenu(nativeElement: HTMLElement) {
-		const options: DropdownOption[] = [
-			{ label: 'User Management', icon: 'users', action: 'users' },
-			{ label: 'System Logs', icon: 'document-text', action: 'logs' },
-			{ label: 'Database', icon: 'circle-stack', action: 'database' },
-			{ label: 'Backup', icon: 'archive-box', action: 'backup' },
-			{ label: 'System Reset', icon: 'exclamation-triangle', action: 'reset' },
-		];
-
-		this.openDropdownMenu(nativeElement, options, 'Admin action');
-	}
-
-	private openDropdownMenu(nativeElement: HTMLElement, options: DropdownOption[], actionType: string) {
-		const overlayRef = this.overlayService.open({
-			anchorElementRef: {nativeElement},
-			component: FktDropdownOverlayDialogComponent,
-			data: {
-				options: options,
-				onOptionSelect: (action: string) => {
-					console.log(`${actionType} selected:`, action);
-					overlayRef.close();
-				}
-			},
-			panelOptions: {
-				position: 'bottom-start',
-				disableAutoReposition: true,
-				width: 'fit-content',
-				padding: '0',
-				borderRadius: '8px',
-				boxShadow: '0 4px 6px rgba(0, 0, 0, 0.07), 0 1px 3px rgba(0, 0, 0, 0.1)'
-			}
-		});
-	}
-}
-```
-
-## Form Overlay
-Forms and input collections within overlays. Shows how to handle form validation, submission, cancellation, and data binding in overlay contexts with different positioning options.
-
-<Canvas sourceState="none" of={fktOverlayStories.FormOverlay} />
-
-### Code
+### Types
 
 ```typescript
-export interface FormData {
-	name: string;
-	email: string;
-	message: string;
-}
+import {ComponentRef, ElementRef,Type} from "@angular/core";
+import {FktGeometryPosition} from "frakton-ng/core";
 
-@Component({
-	selector: 'fkt-form-overlay-dialog',
-	imports: [
-		FktInputComponent,
-		FormsModule,
-		FktIconComponent,
-		FktButtonComponent,
-		FktTextareaComponent
-	],
-	template: `
-		<div class="container">
-			<div class="container__header">
-				<fkt-icon name="document-text" class="container__header-icon"></fkt-icon>
-				<h3 class="container__header-title">{{ title() }}</h3>
-			</div>
 
-			<p class="container__description">{{ description() }}</p>
-
-			<form class="container__form" (ngSubmit)="handleSubmit()">
-				<fkt-input
-					[control]="form.controls.name"
-					label="Name"
-					placeholder="Enter your name"
-				></fkt-input>
-
-				<fkt-input
-					[control]="form.controls.email"
-					label="Email"
-					placeholder="Enter your email"
-					type="email"
-				></fkt-input>
-
-				<fkt-textarea
-					[control]="form.controls.message"
-					label="Message"
-					placeholder="Enter a message"
-				></fkt-textarea>
-
-				<div class="container__form-actions">
-					<fkt-button
-						text="Cancel"
-						theme="stroked"
-						type="button"
-						(click)="handleCancel()"
-					></fkt-button>
-					<fkt-button
-						text="Submit"
-						theme="raised"
-						type="submit"
-						[disabled]="!form.valid()"
-					></fkt-button>
-				</div>
-			</form>
-		</div>
-	`,
-	styleUrl: './fkt-form-overlay-dialog.component.scss'
-})
-export class FktFormOverlayDialogComponent implements OnInit {
-	title = input('Contact Form');
-	description = input('Please fill out your information below:');
-	initialData = input<FormData>();
-
-	onFormSubmit = output<FormData>();
-	onFormCancel = output<void>();
-
-	private fb = inject(SignalFormBuilder);
-	protected form = this.fb.group({
-		name: ['', SignalValidators.required()],
-		email: ['', [SignalValidators.required(), SignalValidators.email()]],
-		message: ['', SignalValidators.required()],
-	})
-
-	ngOnInit() {
-		const initialData = this.initialData();
-
-		if (!initialData) return;
-
-		this.form.patchValue(initialData);
-	}
-
-	protected handleSubmit() {
-		if (!this.form.valid()) return;
-
-		this.onFormSubmit.emit(this.form.value());
-	}
-
-	protected handleCancel() {
-		this.onFormCancel.emit();
-	}
-}
-
-@Component({
-	selector: 'form-overlay-example',
-	template: `
-		<div class="container">
-			<div #contactFormButton>
-				<fkt-button
-					text="Contact Form"
-					theme="stroked"
-					color="primary"
-					(click)="openContactForm(contactFormButton)"
-				></fkt-button>
-			</div>
-			<div #feedbackFormButton>
-				<fkt-button
-					text="Feedback Form"
-					theme="stroked"
-					color="green"
-					(click)="openFeedbackForm(feedbackFormButton)"
-				></fkt-button>
-			</div>
-
-			<div #settingsFormButton>
-				<fkt-button
-					text="User Settings"
-					theme="stroked"
-					color="primary"
-					(click)="openSettingsForm(settingsFormButton)"
-				></fkt-button>
-			</div>
-		</div>
-	`,
-	styleUrl: './fkt-form-overlay-example.component.scss',
-	imports: [FktButtonComponent]
-})
-export class FktFormOverlayExampleComponent {
-	private overlayService = inject(FktOverlayService);
-
-	openContactForm(nativeElement: HTMLElement) {
-		const overlayRef = this.overlayService.open({
-			anchorElementRef: {nativeElement},
-			component: FktFormOverlayDialogComponent,
-			data: {
-				title: 'Contact Us',
-				description: 'We would love to hear from you. Send us a message and we will respond as soon as possible.',
-				onFormSubmit: (formData: FormData) => {
-					console.log('Contact form submitted:', formData);
-					alert(`Thank you ${formData.name}! We received your message and will get back to you soon.`);
-					overlayRef.close();
-				},
-				onFormCancel: () => {
-					console.log('Contact form cancelled');
-					overlayRef.close();
-				}
-			},
-			panelOptions: {
-				position: 'bottom-start',
-				disableAutoReposition: true,
-				padding: '0',
-				width: 'fit-content',
-				maxHeight: 'fit-content',
-				borderRadius: '8px',
-				boxShadow: '0 4px 6px rgba(0, 0, 0, 0.07), 0 1px 3px rgba(0, 0, 0, 0.1)'
-			}
-		});
-	}
-
-	openFeedbackForm(nativeElement: HTMLElement) {
-		const overlayRef = this.overlayService.open({
-			anchorElementRef: {nativeElement},
-			component: FktFormOverlayDialogComponent,
-			data: {
-				title: 'Share Your Feedback',
-				description: 'Help us improve by sharing your thoughts and suggestions.',
-				initialData: {
-					name: 'John Doe',
-					email: 'john@example.com',
-					message: '',
-				},
-				onFormSubmit: (formData: FormData) => {
-					console.log('Feedback form submitted:', formData);
-					alert(`Thanks for your feedback, ${formData.name}!`);
-					overlayRef.close();
-				},
-				onFormCancel: () => {
-					console.log('Feedback form cancelled');
-					overlayRef.close();
-				}
-			},
-			panelOptions: {
-				position: 'bottom-start',
-				disableAutoReposition: true,
-				padding: '0',
-				width: 'fit-content',
-				maxHeight: 'fit-content',
-				borderRadius: '8px',
-				boxShadow: '0 4px 6px rgba(0, 0, 0, 0.07), 0 1px 3px rgba(0, 0, 0, 0.1)'
-			}
-		});
-	}
-
-	openSettingsForm(nativeElement: HTMLElement) {
-		const overlayRef = this.overlayService.open({
-			anchorElementRef: {nativeElement},
-			component: FktFormOverlayDialogComponent,
-			data: {
-				title: 'Update Profile',
-				description: 'Update your profile information below.',
-				initialData: {
-					name: 'Jane Smith',
-					email: 'jane.smith@company.com',
-					message: 'Full-stack developer with 5+ years of experience.',
-				},
-				onFormSubmit: (formData: FormData) => {
-					console.log('Settings form submitted:', formData);
-					alert(`Profile updated successfully, ${formData.name}!`);
-					overlayRef.close();
-				},
-				onFormCancel: () => {
-					console.log('Settings form cancelled');
-					overlayRef.close();
-				}
-			},
-			panelOptions: {
-				position: 'bottom-start',
-				disableAutoReposition: true,
-				padding: '0',
-				width: 'fit-content',
-				maxHeight: 'fit-content',
-				borderRadius: '8px',
-				boxShadow: '0 4px 6px rgba(0, 0, 0, 0.07), 0 1px 3px rgba(0, 0, 0, 0.1)'
-			}
-		});
-	}
-}
-```
-
-## Interactive Overlay
-Advanced overlays with bidirectional data binding and reactive content. Demonstrates signal-based communication between parent and overlay components, including counters, lists, and complex state management.
-
-<Canvas sourceState="none" of={fktOverlayStories.InteractiveOverlay} />
-
-### Code
-```typescript
-@Component({
-	selector: 'fkt-interactive-overlay-dialog',
-	imports: [
-		FktBadgeComponent,
-		FktIconComponent,
-		FktButtonComponent
-	],
-	template: `
-		<div class="container">
-			<div class="container__header">
-				<div>
-					<fkt-icon name="cursor-arrow-ripple" size="20" class="container__header-icon"></fkt-icon>
-					<h3 class="container__header-title">{{ title() }}</h3>
-				</div>
-			</div>
-
-			<p class="container__description">{{ description() }}</p>
-
-			<hr>
-
-			<div class="container__counter">
-				<div class="container__counter-title">
-					<h4>
-						Counter:
-					</h4>
-					<fkt-badge
-						[text]="counter().toString()"
-						color="green"
-					></fkt-badge>
-				</div>
-
-				<div class="container__counter-actions">
-					<fkt-button
-						icon="minus-circle"
-						theme="basic"
-						color="red"
-						(click)="decrement()"
-						[disabled]="counter() <= 0"
-					></fkt-button>
-					<fkt-button
-						icon="plus-circle"
-						theme="basic"
-						color="green"
-						(click)="increment()"
-					></fkt-button>
-					<fkt-button
-						text="Reset"
-						theme="stroked"
-						color="primary"
-						size="sm"
-						(click)="reset()"
-					></fkt-button>
-				</div>
-			</div>
-			<hr>
-
-			@if (currentItems().length > 0) {
-				<div class="container__items">
-					<h4 class="container__items-title">Items</h4>
-					<div class="container__items-list">
-						@for (item of currentItems(); track $index) {
-							<div class="container__items-item">
-								<span class="text-sm">{{ item }}</span>
-								<fkt-button
-									icon="x-mark"
-									theme="basic"
-									color="red"
-									[disabled]="currentItems().length <= 1"
-									(click)="removeItem($index)"
-								/>
-							</div>
-						}
-					</div>
-				</div>
-			}
-
-			<div class="container__items-actions">
-				<fkt-button
-					class="w-fit h-fit"
-					text="Add Item"
-					theme="stroked"
-					color="primary"
-					(click)="addItem()"
-				></fkt-button>
-				<fkt-button
-					text="Clear All"
-					theme="stroked"
-					color="red"
-					(click)="clearItems()"
-					[disabled]="currentItems().length <= 1"
-				></fkt-button>
-			</div>
-
-			<hr>
-
-			<div class="container__actions">
-				<fkt-button
-					text="Done"
-					theme="raised"
-					(click)="handleDone()"
-				></fkt-button>
-			</div>
-		</div>
-	`,
-	styleUrl: './fkt-interactive-overlay-dialog.component.scss'
-})
-export class FktInteractiveOverlayDialogComponent {
-	title = input('Interactive Demo');
-	description = input('This overlay demonstrates reactive signals and interactive components.');
-
-	counter = model(0);
-	currentItems = model<string[]>([]);
-
-	onDone = output<void>();
-
-	increment() {
-		const newValue = this.counter() + 1;
-		this.counter.set(newValue);
-	}
-
-	decrement() {
-		if (this.counter() > 0) {
-			const newValue = this.counter() - 1;
-			this.counter.set(newValue);
-		}
-	}
-
-	reset() {
-		this.counter.set(0);
-	}
-
-	addItem() {
-		const itemNumber = this.currentItems().length + 1;
-		const newItem = `Item ${itemNumber}`;
-		const newItems = [...this.currentItems(), newItem];
-		this.currentItems.set(newItems);
-	}
-
-	removeItem(index: number) {
-		const newItems = this.currentItems().filter((_, i) => i !== index);
-		this.currentItems.set(newItems);
-	}
-
-	clearItems() {
-		this.currentItems.set(['Initial Item']);
-	}
-
-	handleDone() {
-		this.onDone.emit();
-	}
-}
-
-@Component({
-	selector: 'interactive-overlay-example',
-	template: `
-		<div class="header">
-			<h4 class="header__title">Shared State</h4>
-			<hr>
-			<div class="header__info">
-				<span>Counter: <fkt-badge [text]="sharedCounter().toString()" color="green"></fkt-badge></span>
-				<span>Items: <fkt-badge [text]="sharedItems().length.toString()" color="orange"></fkt-badge></span>
-			</div>
-			<div class="header__description">
-				Changes made in overlays will update this shared state automatically.
-			</div>
-		</div>
-		<hr>
-
-		<div class="actions">
-			<fkt-button
-				text="Reset All"
-				theme="stroked"
-				color="red"
-				(click)="resetAll()"
-			></fkt-button>
-			<fkt-button
-				text="Counter Overlay"
-				theme="stroked"
-				color="primary"
-				(click)="openCounterOverlay()"
-			></fkt-button>
-		</div>
-    `,
-	standalone: true,
-	styleUrl: './fkt-interactive-overlay-example.component.scss',
-	imports: [FktButtonComponent, FktBadgeComponent]
-})
-export class FktInteractiveOverlayExampleComponent {
-	private overlayService = inject(FktOverlayService);
-
-	sharedCounter = signal(0);
-	sharedItems = signal<string[]>(['Initial Item']);
-
-	private elementRef = inject(ElementRef);
-
-	openCounterOverlay() {
-		const overlayRef = this.overlayService.open({
-			anchorElementRef: this.elementRef,
-			component: FktInteractiveOverlayDialogComponent,
-			data: {
-				title: 'Counter Demo',
-				description: 'This overlay demonstrates reactive counter functionality.',
-				counter: this.sharedCounter,
-				currentItems: this.sharedItems,
-				onDone: () => {
-					console.log('Counter overlay done');
-					overlayRef.close();
-				}
-			},
-			panelOptions: {
-				position: 'bottom-center',
-				padding: '0',
-				width: '600px',
-				disableAutoReposition: true,
-				maxHeight: 'fit-content',
-				borderRadius: '8px',
-				boxShadow: '0 4px 6px rgba(0, 0, 0, 0.07), 0 1px 3px rgba(0, 0, 0, 0.1)'
-			}
-		});
-	}
-
-	resetAll() {
-		this.sharedCounter.set(0);
-		this.sharedItems.set(['Initial Item']);
-	}
-}
-```
-
-## API Reference
-
-## FktOverlayOptions Interface
-
-```typescript
 export interface FktOverlayOptions<T> {
 	anchorElementRef?: ElementRef<HTMLElement>;
 	component: Type<T>;
@@ -924,16 +47,36 @@ export interface FktOverlayOptions<T> {
 		outsideClick?: (element: HTMLElement) => void;
 	}
 }
-```
 
-## FktOverlayRef Interface
-
-```typescript
 export interface FktOverlayRef<T> {
   componentRef: ComponentRef<T>;              // Reference to the overlay component
   close: () => void;                          // Method to close the overlay
 }
 ```
+
+## Examples
+
+<StoryDoc of={fktOverlayStories.SimpleOverlay} code={[
+	rawExamples.fktSimpleOverlayExample,
+	rawExamples.fktSimpleOverlayDialog
+]}/>
+<StoryDoc of={fktOverlayStories.CustomTooltipOverlay} code={[
+	rawExamples.fktCustomTooltipOverlayExample,
+	rawExamples.fktTooltipOverlayDialog
+]}/>
+<StoryDoc of={fktOverlayStories.DropdownMenuOverlay} code={[
+	rawExamples.fktDropdownOverlayExample,
+	rawExamples.fktDropdownOverlayDialog
+]}/>
+<StoryDoc of={fktOverlayStories.FormOverlay} code={[
+	rawExamples.fktFormOverlayExample,
+	rawExamples.fktFormOverlayDialog,
+]}/>
+<StoryDoc of={fktOverlayStories.InteractiveOverlay} code={[
+	rawExamples.fktInteractiveOverlayExample,
+	rawExamples.fktInteractiveOverlayDialog
+]}/>
+
 
 ## Positioning Options
 
@@ -1034,12 +177,12 @@ Using signal-based APIs makes your overlay components truly **reusable** across 
 @Component({
 	selector: 'user-profile-form',
 	template: `
-		<div class="p-4">
+		<div class="container">
 			<h3>{{ title() }}</h3>
 			<form (ngSubmit)="handleSubmit()">
 				<input [(ngModel)]="name" placeholder="Name" [readonly]="readonly()" />
 				<input [(ngModel)]="email" placeholder="Email" [readonly]="readonly()" />
-				<div class="flex gap-2">
+				<div class="container__actions">
 					@if (!readonly()) {
 						<button type="submit" [disabled]="!isValid()">Save</button>
 						<button type="button" (click)="handleCancel()">Cancel</button>
@@ -1048,7 +191,6 @@ Using signal-based APIs makes your overlay components truly **reusable** across 
 			</form>
 		</div>
 	`,
-	standalone: true
 })
 export class UserProfileFormComponent {
 	// Signal inputs - work everywhere
@@ -1136,33 +278,6 @@ this.dialog.open(UserProfileFormComponent, {
 export class ProfilePageComponent { /* ... */ }
 ```
 
-### How the TypeScript Inference Works
-
-The FktOverlay service uses advanced TypeScript reflection to analyze your component's signal-based API at compile time:
-
-```typescript
-// The overlay service automatically extracts:
-type ComponentInputs<T> = {
-	[K in keyof T as T[K] extends InputSignal<any> ? K : never]: InputValue<T[K]>
-};
-
-type ComponentOutputs<T> = {
-	[K in keyof T as T[K] extends OutputEmitterRef<any> ? K : never]: CallbackFor<T[K]>
-};
-
-type ComponentModels<T> = {
-	[K in keyof T as T[K] extends ModelSignal<any> ? K : never]: WritableSignal<ModelValue<T[K]>>
-};
-
-// Results in perfectly typed overlay data:
-type FktOverlayData<T> =
-	& Partial<ComponentInputs<T>>   // All inputs become optional data properties
-	& ComponentOutputs<T>           // All outputs become required callback functions
-	& Partial<ComponentModels<T>>;  // All models become optional signal bindings
-
-// This magic only works with signal-based APIs!
-```
-
 ### Migration from Decorator Components
 
 If you have existing decorator-based components, here's how to migrate them:
@@ -1219,16 +334,18 @@ data: {
 Customize behavior when users click outside the overlay:
 
 ```typescript
-panelOptions: {
-	outsideClick: (clickedElement: HTMLElement) => {
-		console.log('Clicked outside:', clickedElement);
-		// Add custom logic before closing
-		if (this.hasUnsavedChanges()) {
-			if (confirm('Discard changes?')) {
+{
+	panelOptions: {
+		outsideClick: (clickedElement: HTMLElement) => {
+			console.log('Clicked outside:', clickedElement);
+			// Add custom logic before closing
+			if (this.hasUnsavedChanges()) {
+				if (confirm('Discard changes?')) {
+					overlayRef.close();
+				}
+			} else {
 				overlayRef.close();
 			}
-		} else {
-			overlayRef.close();
 		}
 	}
 }

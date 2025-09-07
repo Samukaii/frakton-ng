@@ -1,0 +1,59 @@
+<div class="container">
+	<fkt-textarea
+		autoExpand
+		[control]="control"
+		[label]="label()"
+		[placeholder]="placeholder()"
+	/>
+
+	<div class="container__elements">
+		<!-- Character counter -->
+		<div class="container__character-counter">
+			<span class="container__character-counter__text">Character count:</span>
+			<span
+				class="container__character-counter__indicator"
+				[class.container__character-counter__indicator--valid]="characterCount() <= warningThreshold()"
+				[class.container__character-counter__indicator--warning]="characterCount() > warningThreshold() && characterCount() <= maxLength()"
+				[class.container__character-counter__indicator--invalid]="characterCount() > maxLength()"
+			>
+				{{ characterCount() }} / {{ maxLength() }}
+			</span>
+		</div>
+
+		<!-- Progress bar -->
+		<div class="container__progress-bar">
+			<div
+				[class.container__progress-bar--valid]="characterCount() <= warningThreshold()"
+				[class.container__progress-bar--warning]="characterCount() > warningThreshold() && characterCount() <= maxLength()"
+				[class.container__progress-bar--invalid]="characterCount() > maxLength()"
+				[style.width.%]="progressPercentage()"
+			></div>
+		</div>
+
+		<!-- Stats -->
+		<div class="container__stats">
+			<div>
+				<span>Words:</span> {{ wordCount() }}
+			</div>
+			<div>
+				<span>Lines:</span> {{ lineCount() }}
+			</div>
+			<div>
+				<span>Remaining:</span> {{ remainingCharacters() }}
+			</div>
+		</div>
+
+		<!-- Warning messages -->
+		@if (characterCount() > warningThreshold()) {
+			<div class="container__warning-messages">
+				@if (characterCount() <= maxLength()) {
+					<p class="container__warning-messages--warning">⚠️ You're approaching the character limit</p>
+				}
+				@if (characterCount() > maxLength()) {
+					<p class="container__warning-messages--invalid">❌ Character limit exceeded by {{ characterCount() - maxLength() }}
+						characters</p>
+				}
+			</div>
+		}
+	</div>
+</div>

@@ -126,7 +126,8 @@
 		"libs/**/*.ts"
 	],
 	"exclude": [
-		"**/*.spec.ts"
+		"**/*.spec.ts",
+		"**/**/examples/*.ts"
 	],
 	"files": [
 		"./globals.d.ts"

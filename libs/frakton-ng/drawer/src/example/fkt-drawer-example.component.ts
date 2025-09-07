@@ -2,12 +2,12 @@ import { Component, input } from '@angular/core';
 import { FktDrawerComponent } from 'frakton-ng/drawer';
 
 @Component({
-  selector: 'fkt-drawer-example',
+	selector: 'fkt-drawer-example',
 	imports: [
 		FktDrawerComponent
 	],
-  templateUrl: './fkt-drawer-example.component.html',
-  styleUrl: './fkt-drawer-example.component.scss'
+	templateUrl: './fkt-drawer-example.component.html',
+	styleUrl: './fkt-drawer-example.component.scss'
 })
 export class FktDrawerExampleComponent {
 	opened = input(false);

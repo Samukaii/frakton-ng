@@ -60,18 +60,7 @@ export const tasks: Task[] = [
 	imports: [
 		FktTableComponent
 	],
-	template: `
-		<fkt-table
-			[data]="data()"
-			[columnsFn]="columnsFn"
-			[classesFn]="classesFn"
-			[actionsFn]="actionsFn"
-			[mainAction]="mainAction()"
-			[loading]="loading()"
-			[noHeaderWhenEmpty]="noHeaderWhenEmpty()"
-			[noResults]="noResults()"
-		/>
-	`,
+	templateUrl: './fkt-table-examples-task-table.component.html',
 	styleUrl: './fkt-table-examples-task-table.component.scss'
 })
 export class FktTableExamplesTaskTableComponent {

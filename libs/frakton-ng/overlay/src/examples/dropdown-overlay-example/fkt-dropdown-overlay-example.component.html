@@ -1,0 +1,42 @@
+<div class="container">
+			<div #fileActionsButton>
+				<fkt-button
+					text="File Actions"
+					theme="stroked"
+					color="primary"
+					iconPosition="right"
+					icon="chevron-down"
+					(click)="openFileActionsMenu(fileActionsButton)"
+				></fkt-button>
+			</div>
+			<div #userProfileButton>
+				<fkt-button
+					text="User Profile"
+					theme="stroked"
+					color="green"
+					iconPosition="right"
+					icon="chevron-down"
+					(click)="openUserProfileMenu(userProfileButton)"
+				></fkt-button>
+			</div>
+			<div #settingsButton>
+				<fkt-button
+					text="Settings"
+					theme="stroked"
+					color="primary"
+					iconPosition="right"
+					icon="chevron-down"
+					(click)="openSettingsMenu(settingsButton)"
+				></fkt-button>
+			</div>
+			<div #adminButton>
+				<fkt-button
+					text="Admin Actions"
+					theme="stroked"
+					color="red"
+					iconPosition="right"
+					icon="chevron-down"
+					(click)="openAdminMenu(adminButton)"
+				></fkt-button>
+			</div>
+		</div>

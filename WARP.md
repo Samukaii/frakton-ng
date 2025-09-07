@@ -29,7 +29,6 @@ Example:
 ```ts
 @Component({
 	selector: 'textarea-form-integration-example',
-	standalone: true,
 	imports: [FktTextareaComponent, FktInputComponent, JsonPipe, FktButtonComponent],
 	template: `
 		<div class="w-full space-y-4">

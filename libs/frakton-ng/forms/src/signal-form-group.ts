@@ -119,6 +119,16 @@ export class SignalFormGroup<
 		});
 	}
 
+	markAllAsUntouched() {
+		this.controlsList.forEach(control => {
+			if ('markAllAsUntouched' in control) {
+				control.markAllAsUntouched();
+				return;
+			}
+			control.markAsUntouched();
+		});
+	}
+
 	markAllAsDirty() {
 		this.controlsList.forEach(control => {
 			if ('markAllAsDirty' in control) {
@@ -126,6 +136,16 @@ export class SignalFormGroup<
 				return;
 			}
 			control.markAsDirty();
+		});
+	}
+
+	markAllAsPristine() {
+		this.controlsList.forEach(control => {
+			if ('markAllAsPristine' in control) {
+				control.markAllAsPristine();
+				return;
+			}
+			control.markAsPristine();
 		});
 	}
 

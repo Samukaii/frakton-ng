@@ -1,0 +1,42 @@
+p {
+	margin: 0;
+}
+
+.container {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-md);
+
+	&__info {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-3xs);
+	}
+
+	&__value {
+		color: var(--color-gray-600);
+	}
+
+	&__status-container {
+		display: flex;
+		gap: var(--space-xs);
+
+		& > p {
+			line-height: 1rem;
+		}
+	}
+
+	&__status {
+		display: flex;
+		gap: var(--space-3xs);
+
+		fkt-icon {
+			font-size: var(--font-size-sm);
+		}
+
+		p {
+			line-height: 1rem;
+		}
+	}
+}

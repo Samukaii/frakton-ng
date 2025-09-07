@@ -48,7 +48,6 @@ import { injectWindowScroll } from 'frakton-ng/internal/di';
 			border-radius: var(--border-radius);
         }
     `,
-    standalone: true,
 	host: {
 		'[style.--height]': 'height()',
 		'[style.--width]': 'width()',

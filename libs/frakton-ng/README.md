@@ -76,7 +76,6 @@ import { FktButtonComponent } from '@frakton-ng/core';
 		  (click)="handleClick()"
 		></fkt-button>
 	  `,
-	standalone: true,
 	imports: [FktButtonComponent]
 })
 export class AppComponent {

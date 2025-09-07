@@ -1,4 +1,4 @@
-<p [class]="'flex-grow break-all  w-full block ' + (text().classes | call: getClasses)">
+<p [class]="(text().classes | call: getClasses)">
 	{{ text().value }}
 </p>
 

@@ -11,7 +11,7 @@ const meta: Meta<FktCheckboxComponent> = {
 			table: {
 				category: "Attributes",
 				type: {
-					summary: 'SignalFormControl<any>',
+					summary: 'SignalFormControl<boolean>',
 				},
 				defaultValue: {
 					summary: "Required - SignalFormControl instance"
@@ -40,8 +40,7 @@ const meta: Meta<FktCheckboxComponent> = {
 
 type Story = StoryObj<FktCheckboxComponent>;
 
-// Basic checkbox example
-export const Default: Story = {
+export const BasicCheckbox: Story = {
 	args: {
 		control: new SignalFormControl(false),
 		label: "Accept terms and conditions",
@@ -55,8 +54,7 @@ export const Default: Story = {
 	}
 };
 
-// Pre-checked checkbox
-export const Checked: Story = {
+export const PreCheckedCheckbox: Story = {
 	args: {
 		control: new SignalFormControl(true),
 		label: "Subscribe to newsletter",
@@ -70,8 +68,7 @@ export const Checked: Story = {
 	}
 };
 
-// Checkbox with longer label
-export const WithLongLabel: Story = {
+export const LongLabelText: Story = {
 	args: {
 		control: new SignalFormControl(false),
 		label: "I understand and agree to the Terms of Service, Privacy Policy, and Cookie Policy. I also consent to receiving marketing communications.",
@@ -85,8 +82,7 @@ export const WithLongLabel: Story = {
 	}
 };
 
-// Disabled checkbox
-export const Disabled: Story = {
+export const DisabledState: Story = {
 	args: {
 		control: (() => {
 			const control = new SignalFormControl(false);
@@ -104,7 +100,6 @@ export const Disabled: Story = {
 	}
 };
 
-// Checkbox with validation
 export const WithValidation: Story = {
 	args: {
 		control: new SignalFormControl(false, {
@@ -121,8 +116,7 @@ export const WithValidation: Story = {
 	}
 };
 
-// Disabled and checked
-export const DisabledChecked: Story = {
+export const DisabledAndChecked: Story = {
 	args: {
 		control: (() => {
 			const control = new SignalFormControl(true);
@@ -140,7 +134,5 @@ export const DisabledChecked: Story = {
 	}
 };
 
-// Legacy export for backward compatibility
-export const Preview: Story = Default;
 
 export default meta;

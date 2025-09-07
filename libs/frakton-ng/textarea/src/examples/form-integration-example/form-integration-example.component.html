@@ -1,0 +1,64 @@
+<div class="container">
+	<h3>Contact Form</h3>
+
+	<fkt-form (submit)="handleSubmit()" [form]="form">
+		<div class="container__form">
+			<fkt-input
+				[control]="form.controls.name"
+				[label]="'Name'"
+				[placeholder]="'Your name'"
+				[type]="'text'"
+			/>
+
+			<fkt-input
+				[control]="form.controls.email"
+				[label]="'Email'"
+				[placeholder]="'your@email.com'"
+				[type]="'email'"
+			/>
+
+			<fkt-textarea
+				[control]="form.controls.message"
+				[label]="'Message'"
+				[placeholder]="'Please describe your inquiry in detail...'"
+			/>
+
+			<fkt-textarea
+				[control]="form.controls.additionalInfo"
+				[label]="'Additional Information (Optional)'"
+				[placeholder]="'Any other details you would like to share...'"
+			/>
+
+			<div class="container__form__footer">
+				<div class="container__form__footer-message">
+						<span [class.container__form__footer-message--valid]="form.valid()">
+							{{ form.valid() ? '✓ Form is valid' : 'Please fill all required fields' }}
+						</span>
+				</div>
+
+				<div class="container__form__actions">
+					<fkt-button
+						(click)="resetForm()"
+						text="Reset"
+						theme="stroked"
+					>
+					</fkt-button>
+					<fkt-button
+						type="submit"
+						text="Submit"
+						[disabled]="!form.valid()"
+					>
+					</fkt-button>
+				</div>
+			</div>
+		</div>
+
+	</fkt-form>
+
+	@if (submittedData()) {
+		<div class="container__success-message">
+			<h4>Form Submitted Successfully!</h4>
+			<pre>{{ submittedData() | json }}</pre>
+		</div>
+	}
+</div>

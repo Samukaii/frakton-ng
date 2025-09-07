@@ -1,0 +1,12 @@
+<fkt-select
+	[control]="control"
+	[label]="label()"
+	[placeholder]="placeholder()"
+	[options]="options()"
+	[loading]="loading()"
+/>
+<div class="info">
+	<p>
+		<strong>Loading State:</strong> {{ loading() ? 'Loading options...' : 'Ready' }}
+	</p>
+</div>

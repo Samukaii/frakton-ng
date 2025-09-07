@@ -1,185 +1,18 @@
-import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
-import { Component } from '@angular/core';
-import { FktNoResultsComponent, FktNoResults } from 'frakton-ng/no-results';
+import { argsToTemplate, Meta, moduleMetadata, StoryObj } from '@storybook/angular';
+import { FktNoResults, FktNoResultsComponent } from 'frakton-ng/no-results';
+import {
+	CompactExampleComponent,
+	DataTableExampleComponent,
+	FileUploadExampleComponent,
+	SearchResultsExampleComponent,
+	SimpleExampleComponent,
+	WithActionExampleComponent,
+	WithIconAndDescriptionExampleComponent
+} from './examples';
+
 
 type Story = StoryObj<FktNoResultsComponent>;
 
-// Simple No Results
-@Component({
-	selector: 'simple-story',
-	template: `
-		<fkt-no-results
-			[noResults]="simpleConfig"
-		/>
-	`,
-	standalone: true,
-	imports: [FktNoResultsComponent]
-})
-class SimpleStoryComponent {
-	simpleConfig: FktNoResults = {
-		label: 'No results found'
-	};
-}
-
-// With Icon and Description
-@Component({
-	selector: 'with-icon-and-description-story',
-	template: `
-		<fkt-no-results
-			[noResults]="detailedConfig"
-		/>
-	`,
-	standalone: true,
-	imports: [FktNoResultsComponent]
-})
-class WithIconAndDescriptionStoryComponent {
-	detailedConfig: FktNoResults = {
-		label: 'No products available',
-		description: 'We couldn\'t find any products matching your criteria.',
-		icon: {name: 'shopping-bag', size: '96px'}
-	};
-}
-
-// With Action Button
-@Component({
-	selector: 'with-action-story',
-	template: `
-		<fkt-no-results
-			[noResults]="actionableConfig"
-		/>
-	`,
-	standalone: true,
-	imports: [FktNoResultsComponent]
-})
-class WithActionStoryComponent {
-	actionableConfig: FktNoResults = {
-		label: 'No tasks assigned',
-		description: 'You don\'t have any tasks assigned yet.',
-		icon: {name: 'clipboard-document-list'},
-		action: {
-			text: 'Create Task',
-			theme: 'raised',
-			identifier: 'create-task',
-			click: () => this.createNewTask()
-		}
-	};
-
-	createNewTask() {
-		console.log('Creating new task...');
-	}
-}
-
-// Search Results
-@Component({
-	selector: 'search-results-story',
-	template: `
-		<fkt-no-results
-			[noResults]="searchConfig"
-		/>
-	`,
-	standalone: true,
-	imports: [FktNoResultsComponent]
-})
-class SearchResultsStoryComponent {
-	searchQuery = 'angular components';
-
-	searchConfig: FktNoResults = {
-		label: 'No search results',
-		description: `No results found for "${this.searchQuery}". Try different keywords.`,
-		icon: {name: 'magnifying-glass', size: '80px'},
-		action: {
-			text: 'Clear Search',
-			theme: 'stroked',
-			identifier: 'clear-search',
-			click: () => this.clearSearch()
-		}
-	};
-
-	clearSearch() {
-		this.searchQuery = '';
-		console.log('Search cleared');
-	}
-}
-
-// Data Table
-@Component({
-	selector: 'data-table-story',
-	template: `
-		<fkt-no-results
-			[noResults]="tableConfig"
-		/>
-	`,
-	standalone: true,
-	imports: [FktNoResultsComponent]
-})
-class DataTableStoryComponent {
-	tableConfig: FktNoResults = {
-		label: 'No data available',
-		description: 'There are no records to display at this time.',
-		icon: {name: 'table-cells', size: '100px'},
-		action: {
-			text: 'Add Record',
-			theme: 'raised',
-			identifier: 'add-record',
-			click: () => this.openAddRecordModal()
-		}
-	};
-
-	openAddRecordModal() {
-		console.log('Opening add record modal...');
-	}
-}
-
-// File Upload
-@Component({
-	selector: 'file-upload-story',
-	template: `
-		<fkt-no-results
-			[noResults]="filesConfig"
-		/>
-	`,
-	standalone: true,
-	imports: [FktNoResultsComponent]
-})
-class FileUploadStoryComponent {
-	filesConfig: FktNoResults = {
-		label: 'No files found',
-		description: 'This folder is empty. Upload some files to get started.',
-		icon: {name: 'folder-open', size: '120px'},
-		action: {
-			text: 'Upload Files',
-			theme: 'raised',
-			icon: 'arrow-up-tray',
-			identifier: 'upload-files',
-			click: () => this.openFileUpload()
-		}
-	};
-
-	openFileUpload() {
-		console.log('Opening file upload dialog...');
-	}
-}
-
-// Compact
-@Component({
-	selector: 'compact-story',
-	template: `
-		<div class="w-64 h-48 border border-gray-300 p-4">
-			<fkt-no-results
-				[noResults]="compactConfig"
-			/>
-		</div>
-	`,
-	standalone: true,
-	imports: [FktNoResultsComponent]
-})
-class CompactStoryComponent {
-	compactConfig: FktNoResults = {
-		label: 'No data',
-		icon: {name: 'exclamation-circle', size: '60px'},
-		description: 'Data will appear here when available.'
-	};
-}
 
 const meta: Meta<FktNoResultsComponent> = {
 	title: 'Components/No results',
@@ -187,13 +20,13 @@ const meta: Meta<FktNoResultsComponent> = {
 	decorators: [
 		moduleMetadata({
 			imports: [
-				SimpleStoryComponent,
-				WithIconAndDescriptionStoryComponent,
-				WithActionStoryComponent,
-				SearchResultsStoryComponent,
-				DataTableStoryComponent,
-				FileUploadStoryComponent,
-				CompactStoryComponent,
+				SimpleExampleComponent,
+				WithIconAndDescriptionExampleComponent,
+				WithActionExampleComponent,
+				SearchResultsExampleComponent,
+				DataTableExampleComponent,
+				FileUploadExampleComponent,
+				CompactExampleComponent,
 			],
 		})
 	],
@@ -210,51 +43,100 @@ const meta: Meta<FktNoResultsComponent> = {
 };
 
 
-export const Simple: Story = {
+export const SimpleNoResults: Story = {
+	parameters: {
+		docs: {
+			description: {
+				story: "Basic no results display with just a label, perfect for minimal empty states."
+			}
+		}
+	},
 	render: (args) => ({
-		template: `<simple-story/>`
+		template: `<simple-example ${argsToTemplate(args)}/>`
 	})
 };
 
 
 export const WithIconAndDescription: Story = {
+	parameters: {
+		docs: {
+			description: {
+				story: "No results display with an icon and descriptive text for better user understanding."
+			}
+		}
+	},
 	render: (args) => ({
-		template: `<with-icon-and-description-story/>`
+		template: `<with-icon-and-description-example ${argsToTemplate(args)}/>`
 	})
 };
 
 
-export const WithAction: Story = {
+export const WithActionButton: Story = {
+	parameters: {
+		docs: {
+			description: {
+				story: "Complete no results state with an action button to guide users on next steps."
+			}
+		}
+	},
 	render: (args) => ({
-		template: `<with-action-story/>`
+		template: `<with-action-example ${argsToTemplate(args)}/>`
 	})
 };
 
 
 export const SearchResults: Story = {
+	parameters: {
+		docs: {
+			description: {
+				story: "No results state specifically designed for search scenarios with clear search action."
+			}
+		}
+	},
 	render: (args) => ({
-		template: `<search-results-story/>`
+		template: `<search-results-example ${argsToTemplate(args)}/>`
 	})
 };
 
 
-export const DataTable: Story = {
+export const DataTableEmptyState: Story = {
+	parameters: {
+		docs: {
+			description: {
+				story: "No results configuration optimized for data tables with add record functionality."
+			}
+		}
+	},
 	render: (args) => ({
-		template: `<data-table-story/>`
+		template: `<data-table-example ${argsToTemplate(args)}/>`
 	})
 };
 
 
-export const FileUpload: Story = {
+export const FileUploadEmptyState: Story = {
+	parameters: {
+		docs: {
+			description: {
+				story: "No results state for file management interfaces with upload functionality."
+			}
+		}
+	},
 	render: (args) => ({
-		template: `<file-upload-story/>`
+		template: `<file-upload-example ${argsToTemplate(args)}/>`
 	})
 };
 
 
-export const Compact: Story = {
+export const CompactSize: Story = {
+	parameters: {
+		docs: {
+			description: {
+				story: "Compact no results display for smaller containers or inline usage."
+			}
+		}
+	},
 	render: (args) => ({
-		template: `<compact-story/>`
+		template: `<compact-example ${argsToTemplate(args)}/>`
 	})
 };
 

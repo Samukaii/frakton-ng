@@ -1,0 +1,22 @@
+<div class="container">
+			<fkt-input
+				[control]="control()"
+				[label]="label()"
+				[placeholder]="placeholder()"
+				type="email"
+			/>
+
+			<div class="container__info">
+				<p class="container__value">Current value: {{ control().value() || '(empty)' }}</p>
+				<div class="container__status-container" [class]="statusInfo().classes">
+					<p>Status:</p>
+
+					<div class="container__status">
+						<fkt-icon [name]="statusInfo().icon"/>
+						<p>
+						{{ statusInfo().label }}
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>

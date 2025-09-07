@@ -1,0 +1,35 @@
+<div class="container">
+			<fkt-calendar-navigator
+				[mode]="internalMode()"
+				[currentDate]="internalDate()"
+			/>
+
+			<div class="container__info">
+				<div>
+					<fkt-badge
+						text="Mode: {{internalMode()}}"
+						color="blue">
+
+					</fkt-badge>
+				</div>
+
+				<strong class="container__info-selected">
+					Selected: {{ internalDate() | date:'fullDate' }}
+				</strong>
+			</div>
+
+			<div class="container__actions">
+				<fkt-button
+					(click)="goToToday()"
+					text="Today"
+				>
+				</fkt-button>
+
+				<fkt-button
+					(click)="toggleMode()"
+					theme="stroked"
+					text="Switch to {{ internalMode() === 'month' ? 'Year' : 'Month' }} mode"
+				>
+				</fkt-button>
+			</div>
+		</div>

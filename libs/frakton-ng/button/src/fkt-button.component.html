@@ -1,4 +1,4 @@
-<button (click)="$event.preventDefault()" [disabled]="disabled() || loading()" [class]="classes()">
+<button [type]="type()"  [disabled]="disabled() || loading()" [class]="classes()">
 	@if (loading()) {
 		<div class="spinner"></div>
 		<p>{{ loadingText() || text() }}</p>

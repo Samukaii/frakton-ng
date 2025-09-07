@@ -1,5 +1,7 @@
-import { Meta, Story, Controls, ArgTypes } from '@storybook/addon-docs/blocks';
+import {ArgTypes, Meta} from '@storybook/addon-docs/blocks';
 import * as stories from './fkt-input.stories';
+import {StoryDoc} from "../../.storybook/blocks/StoryDoc";
+import {rawExamples} from './examples/raw-examples';
 
 <Meta of={stories} />
 
@@ -23,264 +25,26 @@ _A versatile form input component with multiple types, data transformers, and co
 ### Types
 
 ```typescript
-// Input types supported by the component
+import {SignalFormControlTransformer} from "frakton-ng/forms";
+
 type FktInputType = 'text' | 'password' | 'number' | 'email';
 
-// Available data transformers
 type FktInputTransformer = 'currency' | 'percent' | 'hour' | SignalFormControlTransformer;
 ```
 
-## Basic Input
+## Examples
 
-A simple text input field with label and placeholder for general text entry.
-
-<Story of={stories.Default} />
-<p></p>
-___
-<Controls of={stories.Default} />
-
-```ts
-import { Component, input } from '@angular/core';
-import { FktInputComponent } from '../fkt-input.component';
-import { SignalFormControl } from '../../../form/signal-form-control';
-import { FktInputType } from '../fkt-input.types';
-
-@Component({
-	selector: 'input-basic-example',
-	standalone: true,
-	imports: [FktInputComponent],
-	template: `
-		<div class="w-full space-y-4">
-			<fkt-input
-				[control]="control()"
-				[label]="label()"
-				[placeholder]="placeholder()"
-				[type]="type()"
-				[spellcheck]="spellcheck()"
-			/>
-
-			<div class="text-sm text-gray-600">
-				<p>Current value: {{ control().value() || '(empty)' }}</p>
-				<p>Valid: {{ control().valid() ? '✓' : '✗' }}</p>
-			</div>
-		</div>
-	`
-})
-export class BasicExampleComponent {
-	control = input(new SignalFormControl(''));
-	label = input('Full Name');
-	placeholder = input('Enter your full name');
-	type = input<FktInputType>('text');
-	spellcheck = input(true);
-}
-```
-
-## Password Field
-
-Password input with show/hide toggle functionality and secure entry.
-
-<Story of={stories.Password} />
-<p></p>
-___
-<Controls of={stories.Password} />
-
-```ts
-import { Component, input } from '@angular/core';
-import { FktInputComponent } from '../fkt-input.component';
-import { SignalFormControl } from '../../../form/signal-form-control';
-
-@Component({
-	selector: 'input-password-example',
-	standalone: true,
-	imports: [FktInputComponent],
-	template: `
-		<div class="w-full space-y-4">
-			<fkt-input
-				[control]="control()"
-				[label]="label()"
-				[placeholder]="placeholder()"
-				type="password"
-			/>
-
-			<div class="text-sm text-gray-600">
-				<p>Password length: {{ control().value()?.length || 0 }} characters</p>
-				<p>Has value: {{ control().value() ? '✓' : '✗' }}</p>
-				<p class="text-xs text-gray-500">Click the eye icon to toggle password visibility</p>
-			</div>
-		</div>
-	`
-})
-export class PasswordExampleComponent {
-	control = input(new SignalFormControl(''));
-	label = input('Password');
-	placeholder = input('Enter your password');
-}
-```
-
-## Numeric Input
-
-Number input that accepts only numeric values and shows numeric keypad on mobile.
-
-<Story of={stories.Number} />
-<p></p>
-___
-<Controls of={stories.Number} />
-
-```ts
-import { Component, input } from '@angular/core';
-import { FktInputComponent } from '../fkt-input.component';
-import { SignalFormControl } from '../../../form/signal-form-control';
-
-@Component({
-	selector: 'input-number-example',
-	standalone: true,
-	imports: [FktInputComponent],
-	template: `
-		<div class="w-full space-y-4">
-			<fkt-input
-				[control]="control()"
-				[label]="label()"
-				[placeholder]="placeholder()"
-				type="number"
-			/>
-
-			<div class="text-sm text-gray-600">
-				<p>Current value: {{ control().value() || '(empty)' }}</p>
-				<p>Is numeric: {{ isNumeric() ? '✓' : '✗' }}</p>
-				<p class="text-xs text-gray-500">This input accepts only numeric values</p>
-			</div>
-		</div>
-	`
-})
-export class NumberExampleComponent {
-	control = input(new SignalFormControl(''));
-	label = input('Age');
-	placeholder = input('Enter your age');
-
-	isNumeric(): boolean {
-		const value = this.control().value();
-		return value !== null && value !== undefined && value !== '' && !isNaN(Number(value));
-	}
-}
-```
-
-## Currency Transformer
-
-Input with automatic currency formatting as values are entered.
-
-<Story of={stories.Currency} />
-<p></p>
-___
-<Controls of={stories.Currency} />
-
-```ts
-import { Component, input } from '@angular/core';
-import { FktInputComponent } from '../fkt-input.component';
-import { SignalFormControl } from '../../../form/signal-form-control';
-
-@Component({
-	selector: 'input-currency-example',
-	standalone: true,
-	imports: [FktInputComponent],
-	template: `
-		<div class="w-full space-y-4">
-			<fkt-input
-				[control]="control()"
-				[label]="label()"
-				[placeholder]="placeholder()"
-				transformer="currency"
-				type="text"
-			/>
-
-			<div class="text-sm text-gray-600">
-				<p>Raw value: {{ control().value() || '(empty)' }}</p>
-				<p>Formatted display: {{ getFormattedValue() }}</p>
-				<p class="text-xs text-gray-500">Automatically formats as currency (e.g., $1,234.56)</p>
-			</div>
-		</div>
-	`
-})
-export class CurrencyExampleComponent {
-	control = input(new SignalFormControl(''));
-	label = input('Product Price');
-	placeholder = input('0.00');
-
-	getFormattedValue(): string {
-		const value = this.control().value();
-		if (!value || value === '') return '(empty)';
-
-		// Simple currency formatting for display
-		const num = parseFloat(value.toString().replace(/[^\d.-]/g, ''));
-		return isNaN(num) ? value : new Intl.NumberFormat('en-US', {
-			style: 'currency',
-			currency: 'USD'
-		}).format(num);
-	}
-}
-```
-
-## Validation States
-
-Input with form validation showing real-time error feedback.
-
-<Story of={stories.WithValidation} />
-<p></p>
-___
-<Controls of={stories.WithValidation} />
-
-```ts
-import { Component, input, computed } from '@angular/core';
-import { FktInputComponent } from '../fkt-input.component';
-import { SignalFormControl } from '../../../form/signal-form-control';
-import { SignalValidators } from '../../../form/validators/signal-validators';
-
-@Component({
-	selector: 'input-validation-example',
-	standalone: true,
-	imports: [FktInputComponent],
-	template: `
-		<div class="w-full space-y-4">
-			<fkt-input
-				[control]="control()"
-				[label]="label()"
-				[placeholder]="placeholder()"
-				type="email"
-			/>
-
-			<div class="text-sm space-y-1">
-				<p class="text-gray-600">Current value: {{ control().value() || '(empty)' }}</p>
-				<p [class]="validationStatusClass()">Status: {{ validationStatus() }}</p>
-				<p class="text-xs text-gray-500">This field requires a valid email address</p>
-			</div>
-		</div>
-	`
-})
-export class ValidationExampleComponent {
-	control = input(new SignalFormControl('', {
-		validators: [
-			SignalValidators.required(),
-			SignalValidators.email()
-		]
-	}));
-	label = input('Email Address (Required)');
-	placeholder = input('Enter your email address');
-
-	validationStatus = computed(() => {
-		const control = this.control();
-		if (control.pending()) return 'Validating...';
-		if (control.valid()) return '✓ Valid';
-		if (control.invalid() && control.touched()) return '✗ Invalid';
-		return 'Pending validation';
-	});
-
-	validationStatusClass = computed(() => {
-		const control = this.control();
-		if (control.valid()) return 'text-green-600';
-		if (control.invalid() && control.touched()) return 'text-red-600';
-		return 'text-gray-600';
-	});
-}
-```
+<StoryDoc of={stories.BasicInput} code={rawExamples.basicExample}/>
+<StoryDoc of={stories.PasswordField} code={rawExamples.passwordExample}/>
+<StoryDoc of={stories.NumericField} code={rawExamples.numberExample}/>
+<StoryDoc of={stories.EmailField} code={rawExamples.emailExample}/>
+<StoryDoc of={stories.CurrencyTransformer} code={rawExamples.currencyExample}/>
+<StoryDoc of={stories.PercentTransformer} code={rawExamples.percentExample}/>
+<StoryDoc of={stories.HourTransformer} code={rawExamples.hourExample}/>
+<StoryDoc of={stories.WithValidation} code={rawExamples.validationExample}/>
+<StoryDoc of={stories.DisabledState} code={rawExamples.disabledExample}/>
+<StoryDoc of={stories.WithCustomSuffix} code={rawExamples.suffixExample}/>
+<StoryDoc of={stories.FormIntegration} code={rawExamples.formIntegrationExample}/>
 
 ## Use Cases
 - **User Registration Forms** - Email addresses, passwords, personal information with validation.

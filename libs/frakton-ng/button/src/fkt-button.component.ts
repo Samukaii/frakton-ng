@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, computed, input, } from '@angular/core';
-import { FktButtonTheme, FktButtonVariant } from './fkt-button.types';
+import { FktButtonIconPosition, FktButtonTheme, FktButtonVariant } from './fkt-button.types';
 import { FktIconComponent, FktIconName } from 'frakton-ng/icon';
 import { FktColor } from 'frakton-ng/core';
 
@@ -19,7 +19,8 @@ export class FktButtonComponent {
 	theme = input<FktButtonTheme>('raised');
 	variant = input<FktButtonVariant>('rounded');
 	icon = input<FktIconName>();
-	iconPosition = input<'left' | 'right'>('right');
+	type = input<"submit" | "reset" | "button">("button");
+	iconPosition = input<FktButtonIconPosition>('right');
 
 	protected classes = computed(() => {
 		let classes = '';

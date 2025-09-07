@@ -1,0 +1,12 @@
+<div class="container">
+	<fkt-navigator
+		[canGoToPrevious]="canGoToPrevious()"
+		[canGoToNext]="canGoToNext()"
+		(previous)="previousPage()"
+		(next)="nextPage()"
+	>
+		<div class="container__content">
+			Page {{ currentPage() }} of {{ totalPages() }}
+		</div>
+	</fkt-navigator>
+</div>

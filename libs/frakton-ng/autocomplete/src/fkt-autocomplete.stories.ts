@@ -8,14 +8,17 @@ const meta: Meta<FktAutocompleteComponent> = {
 	argTypes: {
 		control: {
 			control: false,
+			type: {
+				name: "object",
+				value: {},
+				required: true
+			},
 			table: {
 				category: "Attributes",
 				type: {
-					summary: 'SignalFormControl<any>',
+					summary: 'SignalFormControl<string>',
+					detail: "import {SignalFormControl} from 'frakton-ng/forms'"
 				},
-				defaultValue: {
-					summary: "Required - SignalFormControl instance"
-				}
 			},
 			description: 'The form control that manages the component state and validation'
 		},
@@ -28,7 +31,8 @@ const meta: Meta<FktAutocompleteComponent> = {
 			table: {
 				category: "Attributes",
 				type: {
-					summary: "FktAutocompleteOption[]"
+					summary: "FktAutocompleteOption[]",
+					detail: "import {FktAutocompleteOption} from 'frakton-ng/autocomplete'"
 				},
 				defaultValue: {
 					summary: "[]"
@@ -45,7 +49,8 @@ const meta: Meta<FktAutocompleteComponent> = {
 			table: {
 				category: "Attributes",
 				type: {
-					summary: "FktButtonAction[]"
+					summary: "FktButtonAction[]",
+					detail: "import {FktButtonAction} from 'frakton-ng/button'"
 				},
 				defaultValue: {
 					summary: "[]"
@@ -71,7 +76,8 @@ const meta: Meta<FktAutocompleteComponent> = {
 			table: {
 				category: "Attributes",
 				type: {
-					summary: "FktNoResults"
+					summary: "FktNoResults",
+					detail: "import {FktNoResults} from 'frakton-ng/no-results'"
 				},
 				defaultValue: {
 					summary: "{ label: 'Sem resultados' }"
@@ -138,7 +144,6 @@ const meta: Meta<FktAutocompleteComponent> = {
 
 type Story = StoryObj<FktAutocompleteComponent>;
 
-// Sample data for different use cases
 const basicOptions = [
 	{ value: "apple", label: "Apple" },
 	{ value: "banana", label: "Banana" },
@@ -174,8 +179,7 @@ const tagOptions = [
 	{ value: "java", label: "Java" },
 ];
 
-// Basic autocomplete example
-export const Default: Story = {
+export const BasicAutocomplete: Story = {
 	args: {
 		control: new SignalFormControl(''),
 		label: "Select a fruit",
@@ -191,7 +195,6 @@ export const Default: Story = {
 	}
 };
 
-// Autocomplete with a pre-selected value
 export const WithPreselectedValue: Story = {
 	args: {
 		control: new SignalFormControl('apple'),
@@ -208,8 +211,7 @@ export const WithPreselectedValue: Story = {
 	}
 };
 
-// Autocomplete with custom actions on each option
-export const WithActions: Story = {
+export const WithCustomActions: Story = {
 	args: {
 		control: new SignalFormControl(''),
 		label: "Manage tags",
@@ -239,8 +241,7 @@ export const WithActions: Story = {
 	}
 };
 
-// Autocomplete with auto-creation enabled
-export const WithAutoCreation: Story = {
+export const AutoCreationMode: Story = {
 	args: {
 		control: new SignalFormControl(''),
 		label: "Country (create new if not found)",
@@ -257,8 +258,7 @@ export const WithAutoCreation: Story = {
 	}
 };
 
-// Autocomplete with loading state
-export const WithLoadingState: Story = {
+export const LoadingState: Story = {
 	args: {
 		control: new SignalFormControl(''),
 		label: "Search (loading...)",
@@ -275,8 +275,7 @@ export const WithLoadingState: Story = {
 	}
 };
 
-// Autocomplete with no results
-export const WithNoResults: Story = {
+export const CustomNoResults: Story = {
 	args: {
 		control: new SignalFormControl(''),
 		label: "Search with no matches",
@@ -296,8 +295,7 @@ export const WithNoResults: Story = {
 	}
 };
 
-// Autocomplete with all features combined
-export const Complete: Story = {
+export const CompleteExample: Story = {
 	args: {
 		control: new SignalFormControl(''),
 		label: "Full-featured autocomplete",
@@ -331,8 +329,7 @@ export const Complete: Story = {
 	}
 };
 
-// Disabled state
-export const Disabled: Story = {
+export const DisabledState: Story = {
 	args: {
 		control: (() => {
 			const control = new SignalFormControl('apple');
@@ -351,8 +348,5 @@ export const Disabled: Story = {
 		}
 	}
 };
-
-// Legacy export for backward compatibility
-export const Preview: Story = Default;
 
 export default meta;

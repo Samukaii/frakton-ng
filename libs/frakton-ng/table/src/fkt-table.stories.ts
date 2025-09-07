@@ -36,18 +36,29 @@ const meta: Meta<FktTableComponent<any>> = {
 		data: {
 			control: 'object',
 			description: 'Array of data items to display in the table. Each item must extend FktIdentifiable.',
+			type: {
+				name: "object",
+				value: {},
+				required: true
+			},
 			table: {
 				type: {summary: 'T[]'},
-				defaultValue: {summary: '[]'},
 				category: "Attributes"
 			}
 		},
 		columnsFn: {
 			control: false,
 			description: 'Function that defines the columns for each data item. Returns an array of TableColumn configurations.',
+			type: {
+				name: "object",
+				value: {},
+				required: true
+			},
 			table: {
-				type: {summary: 'TableColumnFn<T>'},
-				defaultValue: {summary: 'required'},
+				type: {
+					summary: 'TableColumnFn<T>',
+					detail: "import {TableColumnFn} from 'frakton-ng/table'"
+				},
 				category: "Attributes"
 			}
 		},
@@ -55,7 +66,10 @@ const meta: Meta<FktTableComponent<any>> = {
 			control: false,
 			description: 'Optional function that returns CSS classes for each table row based on the data item.',
 			table: {
-				type: {summary: 'TableClassesFn<T>'},
+				type: {
+					summary: 'TableClassesFn<T>',
+					detail: "import {TableClassesFn} from 'frakton-ng/table'"
+				},
 				defaultValue: {summary: '() => ""'},
 				category: "Attributes"
 			}
@@ -64,8 +78,11 @@ const meta: Meta<FktTableComponent<any>> = {
 			control: false,
 			description: 'Optional function that returns an array of actions for each table row.',
 			table: {
-				type: {summary: 'TableActionFn<T>'},
-				defaultValue: {summary: '() => []'},
+				type: {
+					summary: 'TableActionFn<T>',
+					detail: "import {TableActionFn} from 'frakton-ng/table'"
+				},
+				defaultValue: {summary: 'undefined'},
 				category: "Attributes"
 			}
 		},
@@ -73,7 +90,10 @@ const meta: Meta<FktTableComponent<any>> = {
 			control: 'object',
 			description: 'Optional main action button displayed in the table header.',
 			table: {
-				type: {summary: 'FktButtonAction'},
+				type: {
+					summary: 'FktButtonAction',
+					detail: "import {FktButtonAction} from 'frakton-ng/button'"
+				},
 				defaultValue: {summary: 'undefined'},
 				category: "Attributes"
 			}
@@ -100,7 +120,10 @@ const meta: Meta<FktTableComponent<any>> = {
 			control: 'object',
 			description: 'Configuration for the empty state display when no data is available.',
 			table: {
-				type: {summary: 'FktNoResults'},
+				type: {
+					summary: 'FktNoResults',
+					detail: "import {FktNoResults} from 'frakton-ng/no-results'"
+				},
 				defaultValue: {summary: '{ label: "Sem resultados" }'},
 				category: "Attributes"
 			}
@@ -110,8 +133,14 @@ const meta: Meta<FktTableComponent<any>> = {
 
 type Story = StoryObj<FktTableComponent<any>>;
 
-// Basic Table
 export const BasicTable: Story = {
+	parameters: {
+		docs: {
+			description: {
+				story: "A simple table displaying user data with basic column configuration."
+			}
+		}
+	},
 	render: (args) => ({
 		template: `
 			<fkt-table-examples-basic-table
@@ -137,8 +166,14 @@ export const BasicTable: Story = {
 	}
 };
 
-// Table with Actions
-export const WithActions: Story = {
+export const TableWithActions: Story = {
+	parameters: {
+		docs: {
+			description: {
+				story: "Complete table with row actions, main header action, and conditional styling."
+			}
+		}
+	},
 	render: (args) => ({
 		template: `
 			<fkt-table-examples-table-with-actions
@@ -175,8 +210,14 @@ export const WithActions: Story = {
 	}
 };
 
-// Loading State
 export const LoadingState: Story = {
+	parameters: {
+		docs: {
+			description: {
+				story: "Table displaying loading spinner with customizable loading message."
+			}
+		}
+	},
 	render: (args) => ({
 		template: `
 			<fkt-table-examples-loading-state
@@ -204,8 +245,14 @@ export const LoadingState: Story = {
 	}
 };
 
-// Empty State
 export const EmptyState: Story = {
+	parameters: {
+		docs: {
+			description: {
+				story: "Table with comprehensive empty state configuration including action button."
+			}
+		}
+	},
 	render: (args) => ({
 		template: `
 			<fkt-table-examples-empty-state
@@ -242,8 +289,14 @@ export const EmptyState: Story = {
 	}
 };
 
-// Interactive States
 export const InteractiveStates: Story = {
+	parameters: {
+		docs: {
+			description: {
+				story: "Interactive example with state controls for testing different table states."
+			}
+		}
+	},
 	render: (args) => ({
 		template: `
 			<fkt-table-examples-interactive-states
@@ -281,7 +334,14 @@ export const InteractiveStates: Story = {
 };
 
 // Custom Cells
-export const CustomCells: Story = {
+export const CustomCellTypes: Story = {
+	parameters: {
+		docs: {
+			description: {
+				story: "Advanced example showing different cell types and custom formatting."
+			}
+		}
+	},
 	render: (args) => ({
 		template: `
 			<fkt-table-examples-custom-cells
@@ -299,8 +359,14 @@ export const CustomCells: Story = {
 	}
 };
 
-// Product Table Example
 export const ProductTable: Story = {
+	parameters: {
+		docs: {
+			description: {
+				story: "Real-world example with product data and inventory management actions."
+			}
+		}
+	},
 	render: (args) => ({
 		template: `
 			<fkt-table-examples-product-table
@@ -337,8 +403,14 @@ export const ProductTable: Story = {
 	}
 };
 
-// Task Table Example
 export const TaskTable: Story = {
+	parameters: {
+		docs: {
+			description: {
+				story: "Task management table with priority and status indicators."
+			}
+		}
+	},
 	render: (args) => ({
 		template: `
 			<fkt-table-examples-task-table

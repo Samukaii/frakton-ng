@@ -1,6 +1,11 @@
-import type { Meta } from '@storybook/angular';
+import type { Meta, StoryObj } from '@storybook/angular';
 import { FktComponentInputs, FktComponentTwoWayBindings } from 'frakton-ng/internal/types';
-import { FktButtonsListComponent, fktButtonsListOrientations } from 'frakton-ng/buttons-list';
+import {
+	FktButtonsListAlignment,
+	fktButtonsListAlignments,
+	FktButtonsListComponent,
+	fktButtonsListOrientations
+} from 'frakton-ng/buttons-list';
 
 const meta: Meta<FktButtonsListComponent<void>> = {
 	title: 'Components/Buttons list',
@@ -8,32 +13,97 @@ const meta: Meta<FktButtonsListComponent<void>> = {
 	argTypes: {
 		context: {
 			control: 'object',
+			table: {
+				category: "Attributes",
+				type: {
+					summary: 'T',
+				},
+				defaultValue: {
+					summary: "undefined",
+				},
+			},
 		},
 		orientation: {
 			control: 'select',
-			options: fktButtonsListOrientations
+			options: fktButtonsListOrientations,
+			table: {
+				category: "Attributes",
+				type: {
+					summary: 'FktButtonsListOrientation',
+					detail: "import {FktButtonsListOrientation} from 'frakton-ng/buttons-list'",
+				},
+				defaultValue: {
+					summary: "'horizontal'",
+				},
+			},
 		},
 		fill: {
-			control: 'boolean'
+			control: 'boolean',
+			table: {
+				category: "Attributes",
+				type: {
+					summary: 'boolean',
+				},
+				defaultValue: {
+					summary: "false",
+				},
+			},
+		},
+		verticalAlignment: {
+			control: 'select',
+			options: fktButtonsListAlignments,
+			table: {
+				category: "Attributes",
+				type: {
+					summary: 'FktButtonsListOrientation',
+					detail: "import {FktButtonsListOrientation} from 'frakton-ng/buttons-list'",
+				},
+				defaultValue: {
+					summary: "'start'",
+				},
+			},
+		},
+		horizontalAlignment: {
+			control: 'select',
+			options: fktButtonsListAlignments,
+			table: {
+				category: "Attributes",
+				type: {
+					summary: 'FktButtonsListAlignment',
+					detail: "import {FktButtonsListAlignment} from 'frakton-ng/buttons-list'",
+				},
+				defaultValue: {
+					summary: "'start'",
+				},
+			},
 		},
 		actions: {
 			control: 'object',
 			type: {
-				name: 'array',
-				value: {
-					name: "object",
-					value: {}
-				}
-			}
+				name: "array",
+				value: {name: "object", value: {}},
+				required: true
+			},
+			table: {
+				category: "Attributes",
+				type: {
+					detail: "import {FktButtonAction} from 'frakton-ng/button'",
+					summary: 'FktButtonAction<T>[]',
+				},
+				defaultValue: {
+					summary: "undefined",
+				},
+			},
 		}
 	}
 };
 
-type Story = {
-	args: Partial<FktComponentInputs<FktButtonsListComponent<void>>> & Partial<FktComponentTwoWayBindings<FktButtonsListComponent<void>>>
-}
-
-export const Preview: Story = {
+export const Preview: StoryObj = {
+	parameters: {
+		docs: {
+			story: "A horizontal list of action buttons with different themes and colors, perfect for form actions."
+		}
+	},
 	args: {
 		actions: [
 			{
@@ -78,7 +148,12 @@ export const Preview: Story = {
 	}
 };
 
-export const FormActions: Story = {
+export const FormActions: StoryObj = {
+	parameters: {
+		docs: {
+			story: "Form action buttons with cancel, save, and submit actions using different alignment options."
+		}
+	},
 	args: {
 		actions: [
 			{
@@ -104,7 +179,12 @@ export const FormActions: Story = {
 	}
 };
 
-export const VerticalList: Story = {
+export const VerticalList: StoryObj = {
+	parameters: {
+		docs: {
+			story: "Buttons arranged vertically with filled button style and center alignment."
+		}
+	},
 	args: {
 		actions: [
 			{
@@ -137,7 +217,12 @@ export const VerticalList: Story = {
 	}
 };
 
-export const IconOnlyActions: Story = {
+export const IconOnlyActions: StoryObj = {
+	parameters: {
+		docs: {
+			story: "Compact icon-only buttons with tooltips for space-efficient toolbars."
+		}
+	},
 	args: {
 		actions: [
 			{
@@ -165,7 +250,12 @@ export const IconOnlyActions: Story = {
 	}
 };
 
-export const DataTableActions: Story = {
+export const DataTableActions: StoryObj = {
+	parameters: {
+		docs: {
+			story: "Action buttons commonly used in data tables for row-level operations."
+		}
+	},
 	args: {
 		actions: [
 			{
@@ -196,7 +286,12 @@ export const DataTableActions: Story = {
 	}
 };
 
-export const BulkActions: Story = {
+export const BulkActions: StoryObj = {
+	parameters: {
+		docs: {
+			story: 'Demonstrates a group of bulk actions, such as selecting all items, exporting, or deleting selected entries. Each action can have a custom theme, color, icon, and label. Useful for batch operations in tables, lists, or admin panels.'
+		}
+	},
 	args: {
 		actions: [
 			{
@@ -224,7 +319,12 @@ export const BulkActions: Story = {
 	}
 };
 
-export const ToolbarActions: Story = {
+export const ToolbarActions: StoryObj = {
+	parameters: {
+		docs: {
+			story: 'Shows a classic horizontal toolbar with multiple actions, including "New", "Import", "Export", and "Refresh". Icons, themes, and tooltips are supported for enhanced usability in top toolbars and navigation bars.'
+		}
+	},
 	args: {
 		actions: [
 			{
@@ -260,7 +360,12 @@ export const ToolbarActions: Story = {
 	}
 };
 
-export const FloatingActions: Story = {
+export const FloatingActions: StoryObj = {
+	parameters: {
+		docs: {
+			story: 'Displays floating action buttons (FAB) in a vertical stack. Ideal for mobile or compact layouts where quick access to chat or add actions is needed. Each button can show an icon and tooltip for accessibility.'
+		}
+	},
 	args: {
 		actions: [
 			{
@@ -282,7 +387,12 @@ export const FloatingActions: Story = {
 	}
 };
 
-export const LoadingStates: Story = {
+export const LoadingStates: StoryObj = {
+	parameters: {
+		docs: {
+			story: 'Showcases actions in a loading state. Useful for asynchronous operations where feedback is required, such as saving data. The button can display a spinner and custom loading text until the process completes.'
+		}
+	},
 	args: {
 		actions: [
 			{
@@ -303,7 +413,12 @@ export const LoadingStates: Story = {
 	}
 };
 
-export const DisabledStates: Story = {
+export const DisabledStates: StoryObj = {
+	parameters: {
+		docs: {
+			story: 'Illustrates disabled actions, preventing user interaction. Use for workflows where certain steps are unavailable or conditional, such as submitting forms only after all required fields are completed.'
+		}
+	},
 	args: {
 		actions: [
 			{
@@ -322,9 +437,5 @@ export const DisabledStates: Story = {
 		]
 	}
 };
-
-// Aliases for MDX documentation compatibility
-export const VerticalOrientation = VerticalList;
-export const IconOnly = IconOnlyActions;
 
 export default meta;

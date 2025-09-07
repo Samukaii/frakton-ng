@@ -1,7 +1,10 @@
-import {Canvas, Meta, Story} from '@storybook/addon-docs/blocks';
+import {Meta} from '@storybook/addon-docs/blocks';
 import * as fktDialogStories from './fkt-dialog.stories';
+import {StoryDoc} from "../../.storybook/blocks/StoryDoc";
+import {rawExamples} from "./examples/raw-examples";
+import {SourceCode} from "../../.storybook/blocks/SourceCode";
 
-<Meta of={fktDialogStories} />
+<Meta of={fktDialogStories}/>
 
 The **FktDialog** service provides a powerful and flexible system for creating modal dialogs in your Angular applications.
 Built with modern Angular signals and reactive patterns, it supports advanced TypeScript inference, custom components, various sizing options, and pre-built confirmation dialogs with seamless data binding.
@@ -19,624 +22,75 @@ Built with modern Angular signals and reactive patterns, it supports advanced Ty
 - **Confirmation Dialogs**: Pre-built confirmation dialog with customizable actions and themes
 - **Accessibility**: ARIA attributes, focus management, and keyboard navigation support
 
-## Simple Dialog
+## Types
 
-Basic dialog examples demonstrating signal-based components and reactive content. Shows how dialogs maintain reactivity and handle simple interactions.
-
-<Canvas sourceState='none' of={fktDialogStories.SimpleDialog} />
-
-### Code
 ```typescript
-@Component({
-	selector: 'demo-simple-dialog',
-	template: `
-		<h2 class="title">{{ title() }}</h2>
-		<p class="message">{{ message() }}</p>
-		<fkt-buttons-list
-			[actions]="actions()"
-			horizontalAlignment="end"
-		></fkt-buttons-list>
-	`,
-	styleUrl: './fkt-simple-dialog-demo.component.scss',
-	imports: [FktButtonsListComponent]
-})
-export class FktSimpleDialogDemoComponent {
-	title = input('Simple Dialog');
-	message = input('This is a simple dialog with basic content.');
+import {ComponentRef, Type} from "@angular/core";
+import {FktButtonAction} from "frakton-ng/button";
 
-	closeDialog = output<void>();
-
-	actions = computed((): FktButtonAction[] => [
-		{
-			identifier: 'close',
-			text: 'Close',
-			theme: 'raised',
-			click: () => this.closeDialog.emit()
-		}
-	]);
+export interface FktDialogOptions<T> {
+	component: Type<T>;                    // Angular component to display
+	data: FktReactiveComponentData<T>;     // Data to pass to the component with signal support
+	panelOptions?: {                       // Panel configuration options
+		width?: string;                    // Dialog width (default: '100%')
+		height?: string;                   // Dialog height (default: 'fit-content')
+		maxHeight?: string;                // Maximum height (default: '90vh')
+		maxWidth?: string;                 // Maximum width (default: '1200px')
+		padding?: string;                  // Internal padding (default: '1rem')
+		borderRadius?: string;             // Border radius (default: '1rem')
+		backgroundColor?: string;          // Background color (default: 'white')
+		backdropClick?: () => void;        // Backdrop click handler
+	}
 }
 
-@Component({
-	selector: 'simple-dialog-example',
-	template: `
-		<div class="container">
-			<fkt-button
-				text="Open Simple Dialog"
-				theme="raised"
-				(click)="openDialog()"
-			/>
-			<fkt-button
-				text="Update Message"
-				theme="stroked"
-				color="green"
-				(click)="updateMessage()"
-			/>
-		</div>
-	`,
-	styleUrl: './fkt-simple-dialog-example.component.scss',
-	imports: [FktButtonComponent]
-})
-export class FktSimpleDialogExampleComponent {
-	private dialogService = inject(FktDialogService);
-	messageSignal = signal('This message comes from a reactive signal!');
+export interface FktDialogRef<T> {
+	componentRef: ComponentRef<T>;         // Reference to the dialog component
+	close: () => void;                     // Method to close the dialog
+}
 
-	openDialog() {
-		const dialogInstance = this.dialogService.open({
-			component: FktSimpleDialogDemoComponent,
-			data: {
-				title: 'Dynamic Simple Dialog',
-				message: this.messageSignal,  // Reactive signal
-				closeDialog: () => {
-					console.log('Dialog closed');
-					dialogInstance.close();
-				}
-			},
-			panelOptions: {
-				width: '400px',
-				padding: '2rem'
-			}
-		});
-	}
-
-	updateMessage() {
-		this.messageSignal.set('Message updated! See how it changes in open dialogs.');
-	}
+export interface FktConfirmActionOptions {
+	title: string;                         // Dialog title
+	description?: string;                  // Optional description
+	actions?: {
+		primary?: Partial<FktButtonAction>;   // Primary action button
+		secondary?: Partial<FktButtonAction>; // Secondary action button
+	};
+	backdropClick?: () => void;            // Backdrop click handler
 }
 ```
 
-## Form Dialog
 
-Advanced dialogs containing forms with validation, submission handling, and data binding. Demonstrates how to handle complex user interactions within dialog contexts.
+## Examples
 
-<Canvas sourceState='none' of={fktDialogStories.FormDialog} />
-
-### Code
-
-```typescript
-export interface FormData {
-	name: string;
-	email: string;
-}
-
-@Component({
-	selector: 'demo-form-dialog',
-	template: `
-		<h2 class="header">{{ title() }}</h2>
-		<p class="description">{{ description() }}</p>
-
-		<div class="form">
-			<fkt-input
-				[control]="form.controls.name"
-				label="Name"
-				placeholder="Enter your name"
-			></fkt-input>
-
-			<fkt-input
-				[control]="form.controls.email"
-				label="Email"
-				placeholder="Enter your email"
-				type="text"
-			></fkt-input>
-		</div>
-
-		<fkt-buttons-list
-			[actions]="actions()"
-			fill
-		></fkt-buttons-list>
-	`,
-	styleUrl: './fkt-form-dialog-demo.component.scss',
-	imports: [FktInputComponent, FktButtonsListComponent]
-})
-export class FktFormDialogDemoComponent {
-	title = input('Form Dialog');
-	description = input('Fill out the form below:');
-	initialName = input('');
-	initialEmail = input('');
-
-	submit = output<FormData>();
-	cancel = output<void>();
-
-	private fb = inject(SignalFormBuilder);
-
-	protected form = this.fb.strictGroup<FormData>({
-		name: ['', SignalValidators.required()],
-		email: ['', SignalValidators.email()],
-	})
-
-	protected actions = computed((): FktButtonAction[] => [
-		{
-			identifier: 'cancel',
-			text: 'Cancel',
-			theme: 'stroked',
-			click: () => {
-				this.cancel.emit();
-			}
-		},
-		{
-			identifier: 'save',
-			text: 'Save',
-			theme: 'raised',
-			click: () => {
-				this.submit.emit(this.form.value());
-			}
-		},
-	]);
-}
-
-@Component({
-	selector: 'form-dialog-example',
-	template: `
-		<div class="container">
-			<fkt-button
-				text="Contact Form"
-				theme="stroked"
-				color="primary"
-				(click)="openContactForm()"
-			/>
-			<fkt-button
-				text="User Registration"
-				theme="stroked"
-				color="green"
-				(click)="openRegistrationForm()"
-			/>
-			<fkt-button
-				text="Feedback Form"
-				theme="stroked"
-				color="yellow"
-				(click)="openFeedbackForm()"
-			/>
-		</div>
-	`,
-	styleUrl: 'fkt-form-dialog-example.component.scss',
-	imports: [FktButtonComponent]
-})
-export class FktFormDialogExampleComponent {
-	private dialogService = inject(FktDialogService);
-
-	protected openContactForm() {
-		const dialogInstance = this.dialogService.open({
-			component: FktFormDialogDemoComponent,
-			data: {
-				title: 'Contact Us',
-				description: 'We would love to hear from you. Send us a message and we will respond as soon as possible.',
-				initialName: '',
-				initialEmail: '',
-				submit: (formData: FormData) => {
-					console.log('Contact form submitted:', formData);
-					alert(`Thank you ${formData.name}! We received your message.`);
-					dialogInstance.close();
-				},
-				cancel: () => {
-					console.log('Contact form cancelled');
-					dialogInstance.close();
-				}
-			},
-			panelOptions: { width: '500px', padding: '2rem' }
-		});
-	}
-
-	protected openRegistrationForm() {
-		const dialogInstance = this.dialogService.open({
-			component: FktFormDialogDemoComponent,
-			data: {
-				title: 'User Registration',
-				description: 'Create your account by providing the required information.',
-				initialName: '',
-				initialEmail: '',
-				submit: (formData: FormData) => {
-					console.log('Registration form submitted:', formData);
-					alert(`Welcome ${formData.name}! Your account has been created.`);
-					dialogInstance.close();
-				},
-				cancel: () => dialogInstance.close()
-			},
-			panelOptions: { width: '500px', padding: '2rem' }
-		});
-	}
-
-	protected openFeedbackForm() {
-		const dialogInstance = this.dialogService.open({
-			component: FktFormDialogDemoComponent,
-			data: {
-				title: 'Share Your Feedback',
-				description: 'Help us improve by sharing your thoughts and suggestions.',
-				initialName: 'John Doe',
-				initialEmail: 'john@example.com',
-				submit: (formData: FormData) => {
-					console.log('Feedback form submitted:', formData);
-					alert(`Thanks for your feedback, ${formData.name}!`);
-					dialogInstance.close();
-				},
-				cancel: () => dialogInstance.close()
-			},
-			panelOptions: { width: '500px', padding: '2rem' }
-		});
-	}
-}
-```
-
-## Custom Dialog
-
-Advanced dialogs with complex content, icons, expandable details, and dynamic data. Shows custom styling, signal updates, and sophisticated user interactions.
-
-<Canvas sourceState='none' of={fktDialogStories.CustomDialog} />
-
-### Code
-```typescript
-@Component({
-	selector: 'demo-custom-dialog',
-	template: `
-		<div class="container">
-			<div>
-				<div class="container__header">
-					<fkt-icon [name]="iconName()"></fkt-icon>
-					<h2>{{title()}}</h2>
-				</div>
-
-				<div class="container__message">
-					<p>{{message()}}</p>
-				</div>
-
-				@if (showDetails()) {
-					<div class="container__details">
-						<h4>{{detailsTitle()}}</h4>
-						<ul>
-							@for (detail of details(); track detail) {
-								<li>• {{detail}}</li>
-							}
-						</ul>
-					</div>
-				}
-			</div>
-
-
-			<fkt-buttons-list
-				[actions]="actions()"
-				horizontalAlignment="end"
-				orientation="horizontal"
-			></fkt-buttons-list>
-		</div>
-	`,
-	styleUrl: './fkt-custom-dialog-demo.component.scss',
-	imports: [FktIconComponent, FktButtonsListComponent]
-})
-export class FktCustomDialogDemoComponent {
-	title = input('Custom Dialog');
-	message = input<string | undefined>('This is a custom dialog with rich content, icons, and conditional sections.');
-	iconName = input<FktIconName>('information-circle');
-	detailsTitle = input<string | undefined>('Additional Details:');
-	details = input([
-		'Feature will be available in the next update',
-		'You can subscribe to notifications',
-		'Contact support for more information'
-	]);
-
-	detailsToggled = output<boolean>();
-	dialogConfirmed = output<void>();
-
-	protected showDetails = signal(false);
-
-	protected actions = computed((): FktButtonAction[] => [
-		{
-			identifier: 'details',
-			text: this.showDetails() ? 'Hide Details' : 'Show Details',
-			theme: 'basic',
-			click: () => this.toggleDetails()
-		},
-		{
-			identifier: 'understand',
-			text: 'I Understand',
-			theme: 'raised',
-			click: () => this.dialogConfirmed.emit()
-		}
-	]);
-
-	private toggleDetails() {
-		this.showDetails.update(current => !current);
-		this.detailsToggled.emit(this.showDetails());
-	}
-}
-
-@Component({
-	selector: 'custom-dialog-example',
-	template: `
-		<div class="container">
-			<fkt-button text="Open Custom Dialog" theme="raised" (click)="openDialog()" />
-		</div>
-	`,
-	imports: [FktButtonComponent],
-	styleUrl: './fkt-custom-dialog-example.component.scss'
-})
-export class FktCustomDialogExampleComponent {
-	private dialogService = inject(FktDialogService);
-	counterSignal = signal(0);
-
-	protected openDialog() {
-		const customDetails = [
-			'This dialog demonstrates signal passing',
-			'Custom details can be provided dynamically',
-			`Counter value: ${this.counterSignal()}`
-		];
-
-		const dialogInstance = this.dialogService.open({
-			component: FktCustomDialogDemoComponent,
-			data: {
-				title: 'Advanced Custom Dialog',
-				message: 'This dialog shows advanced features with signals and dynamic content.',
-				iconName: 'cog-6-tooth',
-				detailsTitle: 'Technical Details:',
-				details: customDetails,
-				detailsToggled: (isVisible: boolean) => {
-					console.log('Details toggled:', isVisible);
-				},
-				dialogConfirmed: () => {
-					this.counterSignal.update(count => count + 1);
-					console.log('Dialog confirmed! Counter:', this.counterSignal());
-					dialogInstance.close();
-				}
-			},
-			panelOptions: { width: '600px', padding: '2rem' }
-		});
-	}
-}
-```
-
-## Confirmation Dialog
-
-Pre-built confirmation dialogs for destructive actions and important decisions. Demonstrates the built-in `confirm()` method with customizable buttons, colors, and actions.
-
-<Canvas sourceState='none' of={fktDialogStories.ConfirmationDialog} />
-
-### Code
-```typescript
-@Component({
-	selector: 'confirmation-dialog-example',
-	template: `
-		<div class="container">
-			<fkt-button text="Delete Item" color="red" theme="raised" (click)="openDialog()" />
-		</div>
-	`,
-	styleUrl: './fkt-confirmation-dialog-example.component.scss',
-	imports: [FktButtonComponent]
-})
-export class FktConfirmationDialogExampleComponent {
-	private dialogService = inject(FktDialogService);
-
-	openDialog() {
-		this.dialogService.confirm({
-			title: 'Delete Item',
-			description: 'This action cannot be undone. Are you sure you want to delete this item?',
-			actions: {
-				primary: {
-					text: 'Delete',
-					color: 'red',
-					click: () => {
-						console.log('Item deleted!');
-					}
-				},
-				secondary: {
-					text: 'Cancel'
-				}
-			},
-			backdropClick: () => {
-				console.log('Backdrop clicked - dialog cancelled');
-			}
-		});
-	}
-}
-```
-
-## Full Screen Dialog
-
-Large dialogs covering most of the viewport (90vw × 80vh). Perfect for immersive experiences, detailed forms, complex content, or applications that need maximum screen real estate.
-
-<Canvas sourceState='none' of={fktDialogStories.FullScreenDialog} />
-
-### Code
-```typescript
-@Component({
-	selector: 'demo-custom-dialog',
-	template: `
-		<div class="container">
-			<div>
-				<div class="container__header">
-					<fkt-icon [name]="iconName()"></fkt-icon>
-					<h2>{{title()}}</h2>
-				</div>
-
-				<div class="container__message">
-					<p>{{message()}}</p>
-				</div>
-
-				@if (showDetails()) {
-					<div class="container__details">
-						<h4>{{detailsTitle()}}</h4>
-						<ul>
-							@for (detail of details(); track detail) {
-								<li>• {{detail}}</li>
-							}
-						</ul>
-					</div>
-				}
-			</div>
-
-
-			<fkt-buttons-list
-				[actions]="actions()"
-				horizontalAlignment="end"
-				orientation="horizontal"
-			></fkt-buttons-list>
-		</div>
-	`,
-	styleUrl: './fkt-custom-dialog-demo.component.scss',
-	imports: [FktIconComponent, FktButtonsListComponent]
-})
-export class FktCustomDialogDemoComponent {
-	title = input('Custom Dialog');
-	message = input<string | undefined>('This is a custom dialog with rich content, icons, and conditional sections.');
-	iconName = input<FktIconName>('information-circle');
-	detailsTitle = input<string | undefined>('Additional Details:');
-	details = input([
-		'Feature will be available in the next update',
-		'You can subscribe to notifications',
-		'Contact support for more information'
-	]);
-
-	detailsToggled = output<boolean>();
-	dialogConfirmed = output<void>();
-
-	protected showDetails = signal(false);
-
-	protected actions = computed((): FktButtonAction[] => [
-		{
-			identifier: 'details',
-			text: this.showDetails() ? 'Hide Details' : 'Show Details',
-			theme: 'basic',
-			click: () => this.toggleDetails()
-		},
-		{
-			identifier: 'understand',
-			text: 'I Understand',
-			theme: 'raised',
-			click: () => this.dialogConfirmed.emit()
-		}
-	]);
-
-	private toggleDetails() {
-		this.showDetails.update(current => !current);
-		this.detailsToggled.emit(this.showDetails());
-	}
-}
-
-@Component({
-	selector: 'fullscreen-dialog-example',
-	template: `
-		<div class="container">
-			<fkt-button text="Open Full Screen" theme="raised" (click)="openDialog()" />
-		</div>
-	`,
-	styleUrl: './fkt-fullscreen-dialog-example.component.scss',
-	imports: [FktButtonComponent]
-})
-export class FktFullscreenDialogExampleComponent {
-	private dialogService = inject(FktDialogService);
-
-	protected openDialog() {
-		const dialogInstance = this.dialogService.open({
-			component: FktCustomDialogDemoComponent,
-			data: {
-				title: 'Full Screen Experience',
-				message: 'This dialog demonstrates full screen capabilities with responsive design.',
-				iconName: 'arrow-long-up' as FktIconName,
-				details: [
-					'Full viewport coverage',
-					'Responsive layout',
-					'Mobile-friendly design'
-				],
-				dialogConfirmed: () => dialogInstance.close()
-			},
-			panelOptions: {
-				width: '100%',
-				maxWidth: '100vw',
-				maxHeight: '100vh',
-				height: '100%',
-				padding: '2rem',
-				borderRadius: 'none'
-			}
-		});
-	}
-}
-```
-
-## Small Dialog
-
-Compact dialogs (300px width) perfect for quick confirmations, simple interactions, and mobile-friendly experiences. Ideal for lightweight operations and minimal UI disruption.
-
-<Canvas sourceState='none' of={fktDialogStories.SmallDialog} />
-
-### Code
-```typescript
-@Component({
-	selector: 'demo-simple-dialog',
-	template: `
-		<h2 class="title">{{ title() }}</h2>
-		<p class="message">{{ message() }}</p>
-		<fkt-buttons-list
-			[actions]="actions()"
-			horizontalAlignment="end"
-		></fkt-buttons-list>
-	`,
-	styleUrl: './fkt-simple-dialog-demo.component.scss',
-	imports: [FktButtonsListComponent]
-})
-export class FktSimpleDialogDemoComponent {
-	title = input('Simple Dialog');
-	message = input('This is a simple dialog with basic content.');
-
-	closeDialog = output<void>();
-
-	actions = computed((): FktButtonAction[] => [
-		{
-			identifier: 'close',
-			text: 'Close',
-			theme: 'raised',
-			click: () => this.closeDialog.emit()
-		}
-	]);
-}
-
-@Component({
-	selector: 'small-dialog-example',
-	template: `
-		<div class="container">
-			<fkt-button text="Open Small Dialog" theme="raised" (click)="openDialog()" />
-		</div>
-	`,
-	styleUrl: './fkt-small-dialog-example.component.scss',
-	imports: [FktButtonComponent]
-})
-export class FktSmallDialogExampleComponent {
-	private dialogService = inject(FktDialogService);
-
-	openDialog() {
-		const dialogInstance = this.dialogService.open({
-			component: FktSimpleDialogDemoComponent,
-			data: {
-				title: 'Compact Dialog',
-				message: 'Small dialogs are perfect for quick confirmations.',
-				closeDialog: () => dialogInstance.close()
-			},
-			panelOptions: { width: '300px', padding: '2rem' }
-		});
-	}
-}
-```
+<StoryDoc of={fktDialogStories.SimpleDialog} code={[
+	rawExamples.fktSimpleDialogExample,
+	rawExamples.fktSimpleDialogDemo
+]}/>
+<StoryDoc of={fktDialogStories.FormDialog} code={[
+	rawExamples.fktFormDialogExample,
+	rawExamples.fktFormDialogDemo
+]}/>
+<StoryDoc of={fktDialogStories.CustomDialog} code={[
+	rawExamples.fktCustomDialogExample,
+	rawExamples.fktCustomDialogDemo
+]}/>
+<StoryDoc of={fktDialogStories.ConfirmationDialog} code={[
+	rawExamples.fktConfirmationDialogExample,
+]}/>
+<StoryDoc of={fktDialogStories.FullScreenDialog} code={[
+	rawExamples.fktFullscreenDialogExample,
+	rawExamples.fktFullscreenDialogExample
+]}/>
+<StoryDoc of={fktDialogStories.SmallDialog} code={[
+	rawExamples.fktSmallDialogExample,
+	rawExamples.fktSimpleDialogDemo
+]}/>
 
 ## TypeScript Inference & Component Design
 
-### Required: Signal-Based Component APIs
+### Required: Signal - Based Component APIs
 
-**Important**: The FktDialog service requires components to use Angular's signal-based APIs (`input()`, `output()`, `model()`) for proper TypeScript inference. Decorator-based components (`@Input`, `@Output`) are **not supported** due to TypeScript compilation limitations.
+**Important **: The FktDialog service requires components to use Angular's signal-based APIs (`input()`, `output()`, `model()`) for proper TypeScript inference. Decorator-based components (`@Input`, `@Output`) are **not supported** due to TypeScript compilation limitations.
 
 ```typescript
 // ✅ REQUIRED: Signal-based component (fully supported)
@@ -647,17 +101,17 @@ export class FktSmallDialogExampleComponent {
 export class MyDialogComponent {
 	// Signal inputs - Required for TypeScript inference
 	title = input('Default Title');
-	userData = input<User>();
-	config = input<DialogConfig>({ theme: 'light' });
+	userData = input <User> ();
+	config = input <DialogConfig> ({theme: 'light'});
 
 	// Signal outputs - Required for callback type inference
-	onSave = output<FormData>();
-	onCancel = output<void>();
-	onAction = output<{ type: string, payload: any }>();
+	onSave = output <FormData> ();
+	onCancel = output <void> ();
+	onAction = output <{type: string, payload: any}> ();
 
 	// Signal models - Required for two-way binding
 	counter = model(0);
-	items = model<string[]>([]);
+	items = model <string[]> ([]);
 }
 
 // Perfect TypeScript inference when using signal-based components:
@@ -667,17 +121,18 @@ const dialogRef = this.dialogService.open({
 		// ✅ Full IntelliSense for all inputs
 		title: 'Custom Title',          // string - auto-completed
 		userData: this.currentUser,     // User type enforced
-		config: { theme: 'dark' },      // DialogConfig type enforced
-
+		config: {
+			theme: 'dark'
+		},      // DialogConfig type enforced
 		// ✅ TypeScript automatically infers callback parameter types
 		onSave: (data) => {             // data is automatically typed as FormData
 			console.log('Form saved:', data);
 			dialogRef.close();
 		},
-		onCancel: () => {               // void - no parameters
+			onCancel: () => {               // void - no parameters
 			dialogRef.close();
 		},
-		onAction: (event) => {          // event is automatically typed as { type: string, payload: any }
+			onAction: (event) => {          // event is automatically typed as { type: string, payload: any }
 			this.handleAction(event.type, event.payload);
 		},
 
@@ -694,31 +149,31 @@ const dialogRef = this.dialogService.open({
 })
 export class DecoratorComponent {
 	@Input() title: string = 'Default';         // ❌ Won't work
-	@Input() userData?: User;                   // ❌ Won't work
-	@Output() onSave = new EventEmitter<FormData>(); // ❌ Won't work
+	@Input() userData ? : User;                   // ❌ Won't work
+	@Output() onSave = new EventEmitter <FormData> (); // ❌ Won't work
 }
 
 // This will result in TypeScript compilation errors:
 const willNotCompile = this.dialogService.open({
 	component: DecoratorComponent,  // ❌ TypeScript error
-	data: { /* ... */ }             // ❌ No inference available
+	data: { /* ... */} // ❌ No inference available
 });
 ```
 
 ### Component Agnostic Design Benefits
 
-Using signal-based APIs makes your dialog components truly **reusable** across different contexts:
+Using signal - based APIs makes your dialog components truly ** reusable ** across different contexts:
 
 ```typescript
 @Component({
-	selector: 'user-profile-form',
+selector: 'user-profile-form',
 	template: `
-		<div class="p-4">
-			<h3>{{ title() }}</h3>
+		<div class= "container">
+			<h3> {{title()}}</h3>
 			<form (ngSubmit)="handleSubmit()">
 				<input [(ngModel)]="name" placeholder="Name" [readonly]="readonly()" />
 				<input [(ngModel)]="email" placeholder="Email" [readonly]="readonly()" />
-				<div class="flex gap-2">
+				<div class= "container__actions">
 					@if (!readonly()) {
 						<button type="submit" [disabled]="!isValid()">Save</button>
 						<button type="button" (click)="handleCancel()">Cancel</button>
@@ -726,8 +181,7 @@ Using signal-based APIs makes your dialog components truly **reusable** across d
 				</div>
 			</form>
 		</div>
-	`,
-	standalone: true
+`,
 })
 export class UserProfileFormComponent {
 	// Signal inputs - work everywhere
@@ -737,8 +191,8 @@ export class UserProfileFormComponent {
 	readonly = input(false);
 
 	// Signal outputs - work everywhere
-	onSubmit = output<{ name: string, email: string }>();
-	onCancel = output<void>();
+	onSubmit = output <{name: string, email: string}> ();
+	onCancel = output <void> ();
 
 	// Internal component state
 	name = signal('');
@@ -750,7 +204,7 @@ export class UserProfileFormComponent {
 	}
 
 	isValid = computed(() =>
-		this.name().trim().length > 0 &&
+		this.name().trim().length> 0 &&
 		this.email().includes('@')
 	);
 
@@ -772,7 +226,7 @@ export class UserProfileFormComponent {
 
 // 1. ✅ In FktDialog (with automatic type inference)
 this.dialogService.open({
-	component: UserProfileFormComponent,
+component: UserProfileFormComponent,
 	data: {
 		title: 'Create New User',
 		initialName: '',
@@ -789,7 +243,7 @@ this.dialogService.open({
 
 // 2. ✅ In FktOverlay
 this.overlayService.open({
-	component: UserProfileFormComponent,
+component: UserProfileFormComponent,
 	data: {
 		title: 'Edit User',
 		initialName: user.name,
@@ -802,15 +256,15 @@ this.overlayService.open({
 
 // 3. ✅ As standalone component in templates
 @Component({
-	template: `
-		<user-profile-form
-			[title]="'User Settings'"
-			[initialName]="currentUser.name"
-			[initialEmail]="currentUser.email"
-			[readonly]="!canEditProfile"
-			(onSubmit)="updateProfile($event)"
-			(onCancel)="navigateBack()"
-		/>
+template: `
+	<user-profile-form
+		[title]="'User Settings'"
+		[initialName]="currentUser.name"
+		[initialEmail]="currentUser.email"
+		[readonly]="!canEditProfile"
+		(onSubmit)="updateProfile($event)"
+		(onCancel)="navigateBack()"
+	/>
 	`
 })
 export class ProfilePageComponent { /* ... */ }
@@ -838,32 +292,34 @@ type ComponentModels<T> = {
 type FktDialogData<T> =
 	& Partial<ComponentInputs<T>>   // All inputs become optional data properties
 	& ComponentOutputs<T>           // All outputs become required callback functions
-	& Partial<ComponentModels<T>>;  // All models become optional signal bindings
+	& Partial<ComponentModels<T>>; // All models become optional signal bindings
 
 // This magic only works with signal-based APIs!
 ```
 
 ### Migration from Decorator Components
 
-If you have existing decorator-based components, here's how to migrate them:
+If you have existing decorator - based components, here's how to migrate them:
 
 ```typescript
+import {EventEmitter, Input, input,Output, output} from "@angular/core";
+
 // Before: Decorator-based (won't work with FktDialog)
-@Component({ /* ... */ })
+@Component({ /* ... */})
 export class OldComponent {
 	@Input() title: string = '';
 	@Input() data?: MyData;
-	@Input() config: Config = { theme: 'light' };
+	@Input() config: Config = {theme: 'light'};
 	@Output() save = new EventEmitter<FormData>();
 	@Output() cancel = new EventEmitter<void>();
 }
 
 // After: Signal-based (works perfectly with FktDialog)
-@Component({ /* ... */ })
+@Component({ /* ... */})
 export class NewComponent {
 	title = input('');
 	data = input<MyData>();
-	config = input<Config>({ theme: 'light' });
+	config = input<Config>({theme: 'light'});
 	save = output<FormData>();
 	cancel = output<void>();
 
@@ -875,60 +331,16 @@ export class NewComponent {
 }
 ```
 
-## API Reference
-
-### FktDialogOptions Interface
-
-```typescript
-export interface FktDialogOptions<T> {
-	component: Type<T>;                    // Angular component to display
-	data: FktReactiveComponentData<T>;     // Data to pass to the component with signal support
-	panelOptions?: {                       // Panel configuration options
-		width?: string;                    // Dialog width (default: '100%')
-		height?: string;                   // Dialog height (default: 'fit-content')
-		maxHeight?: string;                // Maximum height (default: '90vh')
-		maxWidth?: string;                 // Maximum width (default: '1200px')
-		padding?: string;                  // Internal padding (default: '1rem')
-		borderRadius?: string;             // Border radius (default: '1rem')
-		backgroundColor?: string;          // Background color (default: 'white')
-		backdropClick?: () => void;        // Backdrop click handler
-	};
-}
-```
-
-### FktDialogRef Interface
-
-```typescript
-export interface FktDialogRef<T> {
-	componentRef: ComponentRef<T>;         // Reference to the dialog component
-	close: () => void;                     // Method to close the dialog
-}
-```
-
-### Confirmation Dialog Options
-
-```typescript
-export interface FktConfirmActionOptions {
-	title: string;                         // Dialog title
-	description?: string;                  // Optional description
-	actions?: {
-		primary?: Partial<FktButtonAction>;   // Primary action button
-		secondary?: Partial<FktButtonAction>; // Secondary action button
-	};
-	backdropClick?: () => void;            // Backdrop click handler
-}
-```
-
 ## Dialog Sizing Options
 
-The dialog service provides flexible sizing through `panelOptions`:
+The dialog service provides flexible sizing through`panelOptions`:
 
 ### Predefined Sizes
-- **Small**: `width: '300px'` - Perfect for quick confirmations
-- **Medium**: `width: '500px'` - Standard forms and content
-- **Large**: `width: '700px'` - Detailed forms and complex content
-- **Extra Large**: `width: '900px'` - Data tables and comprehensive interfaces
-- **Full Screen**: `width: '90vw', height: '80vh'` - Immersive experiences
+- ** Small **: `width: '300px'` - Perfect for quick confirmations
+- ** Medium **: `width: '500px'` - Standard forms and content
+- ** Large **: `width: '700px'` - Detailed forms and complex content
+- ** Extra Large **: `width: '900px'` - Data tables and comprehensive interfaces
+- ** Full Screen **: `width: '90vw', height: '80vh'` - Immersive experiences
 
 ### Responsive Sizing
 ```typescript
@@ -995,9 +407,9 @@ panelOptions: {
 		if (this.hasUnsavedChanges()) {
 			if (confirm('Discard changes?')) {
 				dialogRef.close();
+			} else {
+				dialogRef.close();
 			}
-		} else {
-			dialogRef.close();
 		}
 	}
 }
@@ -1006,63 +418,63 @@ panelOptions: {
 ## Best Practices
 
 ### Component Design
-- **Use signal-based APIs**: Required for TypeScript inference and reactivity
-- **Keep components focused**: Each dialog component should have a single responsibility
-- **Design for reusability**: Signal-based components work in dialogs, overlays, and standalone
-- **Handle edge cases**: Consider what happens when users navigate away or refresh
+- ** Use signal - based APIs **: Required for TypeScript inference and reactivity
+- ** Keep components focused **: Each dialog component should have a single responsibility
+- ** Design for reusability **: Signal - based components work in dialogs, overlays, and standalone
+- ** Handle edge cases **: Consider what happens when users navigate away or refresh
 
 ### Data Management
-- **Static vs Reactive**: Use static data for simple dialogs, reactive for live updates
-- **Callback functions**: Handle dialog outputs by passing callback functions in data
-- **State management**: Consider using signals for shared state across dialogs
-- **Validation**: Implement proper form validation and user feedback
+- ** Static vs Reactive **: Use static data for simple dialogs, reactive for live updates
+- ** Callback functions **: Handle dialog outputs by passing callback functions in data
+- ** State management **: Consider using signals for shared state across dialogs
+- ** Validation **: Implement proper form validation and user feedback
 
 ### Performance & Memory
-- **Close properly**: Always call close() to prevent memory leaks
-- **Limit concurrent dialogs**: Avoid opening too many dialogs simultaneously
-- **Optimize templates**: Keep dialog templates lightweight and efficient
-- **Lazy loading**: Consider loading heavy content only when needed
+- ** Close properly **: Always call close() to prevent memory leaks
+- ** Limit concurrent dialogs **: Avoid opening too many dialogs simultaneously
+- ** Optimize templates **: Keep dialog templates lightweight and efficient
+- ** Lazy loading **: Consider loading heavy content only when needed
 
 ### User Experience
-- **Appropriate sizing**: Choose sizes that fit content without overwhelming users
-- **Clear actions**: Make primary and secondary actions obvious
-- **Mobile friendly**: Test dialogs on various screen sizes
-- **Keyboard navigation**: Ensure dialogs are accessible via keyboard
-- **Focus management**: Handle focus properly when opening and closing
+- ** Appropriate sizing **: Choose sizes that fit content without overwhelming users
+- ** Clear actions **: Make primary and secondary actions obvious
+- ** Mobile friendly **: Test dialogs on various screen sizes
+- ** Keyboard navigation **: Ensure dialogs are accessible via keyboard
+- ** Focus management **: Handle focus properly when opening and closing
 
 ## Accessibility
 
-- **Focus Management**: Focus is automatically managed when dialogs open and close
-- **Keyboard Support**: ESC key closes dialogs, Tab navigation works within dialog content
-- **ARIA Attributes**: Dialogs include proper ARIA roles and labels automatically
-- **Screen Reader Support**: Dialog content is properly announced to screen readers
-- **Backdrop Interaction**: Clicking outside the dialog provides expected behavior
+- ** Focus Management **: Focus is automatically managed when dialogs open and close
+- ** Keyboard Support **: ESC key closes dialogs, Tab navigation works within dialog content
+- ** ARIA Attributes **: Dialogs include proper ARIA roles and labels automatically
+- ** Screen Reader Support **: Dialog content is properly announced to screen readers
+- ** Backdrop Interaction **: Clicking outside the dialog provides expected behavior
 
 ## Performance
 
-- **Efficient Rendering**: Dialogs use efficient DOM management and minimal re-renders
-- **Memory Safe**: Components are properly destroyed when dialogs close
-- **Position Optimization**: Dialog positioning calculations are optimized for performance
-- **Lazy Destruction**: Dialog elements are removed from DOM after closing animation
+- ** Efficient Rendering **: Dialogs use efficient DOM management and minimal re - renders
+- ** Memory Safe **: Components are properly destroyed when dialogs close
+- ** Position Optimization **: Dialog positioning calculations are optimized for performance
+- ** Lazy Destruction **: Dialog elements are removed from DOM after closing animation
 
 ## Common Use Cases
 
 ### Quick Actions
-- **Confirmations**: Delete actions, save confirmations, navigation warnings
-- **Input Collection**: Single field inputs, quick settings, preferences
-- **Status Updates**: Success messages, error notifications, progress updates
+- ** Confirmations **: Delete actions, save confirmations, navigation warnings
+- ** Input Collection **: Single field inputs, quick settings, preferences
+- ** Status Updates **: Success messages, error notifications, progress updates
 
 ### Forms & Data Entry
-- **User Registration**: Account creation, profile setup, preferences
-- **Data Collection**: Surveys, feedback forms, contact information
-- **Content Creation**: Post creation, comment forms, media uploads
+- ** User Registration **: Account creation, profile setup, preferences
+- ** Data Collection **: Surveys, feedback forms, contact information
+- ** Content Creation **: Post creation, comment forms, media uploads
 
 ### Content Display
-- **Details View**: User profiles, item details, expanded information
-- **Media Preview**: Image galleries, video players, document viewers
-- **Help & Documentation**: Tutorials, feature explanations, guidelines
+- ** Details View **: User profiles, item details, expanded information
+- ** Media Preview **: Image galleries, video players, document viewers
+- ** Help & Documentation **: Tutorials, feature explanations, guidelines
 
 ### System Operations
-- **Settings Management**: Application preferences, user settings, system configuration
-- **Data Management**: Import/export operations, data processing, bulk actions
-- **Administrative Tasks**: User management, system monitoring, configuration
+- ** Settings Management **: Application preferences, user settings, system configuration
+- ** Data Management **: Import /export operations, data processing, bulk actions
+- ** Administrative Tasks **: User management, system monitoring, configuration
