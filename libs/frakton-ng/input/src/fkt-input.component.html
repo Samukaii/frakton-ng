@@ -1,24 +1,12 @@
-<div class="label-container">
-	<div
-		[class.error]="!!error.message()"
-		[class.float]="control().viewValue()"
-		[class.disabled]="control().disabled()"
-		aria-hidden="true"
-		class="label-wrapper">
-		<label
-		>{{ label() }}</label>
-	</div>
-
-</div>
-
-<div class="input">
+<div
+	[style.padding]="inputPadding()"
+	class="input">
 	<input
 		[spellcheck]="spellcheck() ? 'true' : 'false'"
 		[class.password]="type() === 'password'"
 		[class.error]="!!error.message()"
 		#input
 		[type]="inputType()"
-		[style.padding]="inputPadding()"
 		[placeholder]="placeholder()"
 		[signalFormControl]="control()"
 		[attr.aria-label]="label()"
@@ -50,6 +38,27 @@
 			</div>
 		}
 	</div>
+
+	<div class="border"
+		 [class.error]="!!error.message()"
+		 [class.float]="control().viewValue()"
+		 [class.disabled]="control().disabled()"
+	>
+		<div class="left">
+
+		</div>
+		<div
+			class="center">
+			<label
+				aria-hidden="true"
+			>{{ label() }}</label>
+		</div>
+
+		<div class="right">
+
+		</div>
+	</div>
+
 
 </div>
 

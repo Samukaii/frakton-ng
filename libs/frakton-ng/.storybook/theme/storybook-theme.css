@@ -293,7 +293,7 @@
 			color: #cecece;
 			padding: 0 .8rem;
 			font-size: .8rem !important;
-			transition: background-color 150ms;
+			transition: background-color 100ms;
 			border: none;
 			border-right: solid 1px #565059;
 			position: relative !important;
@@ -314,7 +314,7 @@
 			}
 
 			&:hover {
-				background-color: #4d474f;
+				background-color: #524e56;
 			}
 
 			p {
@@ -327,7 +327,11 @@
 			}
 
 			&.active {
-				border-bottom: solid 2px #f96262;
+				border-bottom: solid 2px #FED75F;
+
+				p {
+					color: #FED75F;
+				}
 			}
 		}
 	}
