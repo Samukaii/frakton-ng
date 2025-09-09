@@ -1,7 +1,8 @@
 import { Meta, Story, Controls, ArgTypes } from '@storybook/addon-docs/blocks';
 import * as stories from './[COMPONENT].stories';
+import {rawExamples} from './examples/rawExamples'
 
-<Meta of={stories} />
+`<Meta of={stories} />`
 
 # [ComponentName]
 
@@ -15,33 +16,32 @@ _A brief summary describing what the component does, its main purpose, and the c
 
 ## Configuration Options
 
-<ArgTypes/>
+`<ArgTypes/>`
 
 ### Types
 
 ```typescript
 // Relevant types (enums, unions, interfaces, etc.).
-type [YourType] = 'option1' | 'option2';
-type [YourType2] = 'option1' | 'option2';
+type YourType = 'option1' | 'option2'; // Comments explaining type
+
+interface YourInterface {
+	prop1: "Value 1" // Comments explaining prop,
+	prop2: "Value 2" // Comments explaining prop,
+	prop3: "Value 3" // Comments explaining prop,
+}
 ```
 
 Examples
 
-[Descriptive Example Name]
+[For simple stories using only argTypes or custom inline template]
 
-A short explanation of the scenario shown below.
+`<StoryDoc of={stories.[StoryName]}/>`
 
-<Story of={stories.[StoryName]} />
-<p></p> // For break space between story and line
-___
-<Controls of={stories.[StoryName]} />
+[For complex examples using external components]
 
-```ts
-//  The code used in the example above (Use exactly the code used in the story)
-// You must paste all example component snippet here including full component code, imports, template, etc. 
-// Do not make up the code. Use example used in the story
-```
-<!-- Repeat this block for additional examples -->
+`<StoryDoc of={stories.[StoryName]} code={rawExamples.[FileName}/>`
+
+[Repeat this block for additional examples]
 
 Use Cases
 

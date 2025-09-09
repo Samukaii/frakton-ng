@@ -12,11 +12,13 @@ Each component folder (e.g. `calendar-navigator/`) should be organized as follow
 ```
 calendar-navigator/
 │
-├── examples/                           # Demo/example components for Storybook
-│     └── month-mode-example.component.ts
-│     └── year-mode-example.component.ts
-│     └── form-integration-example.component.ts
-│     └── dynamic-mode-example.component.ts
+├── examples/                                    # Demo/example components for Storybook
+│     └── month-mode-example.component.ts       
+│     └── year-mode-example.component.ts        
+│     └── form-integration-example.component.ts 
+│     └── dynamic-mode-example.component.ts     
+│     └── index.ts                              # Barrel file
+|     └── raw-examples.ts                       # Metadata including raw files to expose in documentation
 │
 ├── fkt-calendar-navigator.component.html
 ├── fkt-calendar-navigator.component.scss
