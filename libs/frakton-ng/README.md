@@ -1,148 +1,90 @@
-Frakton NG
+# Frakton NG
+**Modern Angular UI. Enterprise-ready. Effortless developer experience.**
+[![npm version](https://img.shields.io/npm/v/frakton-ng?style=flat-square)](https://www.npmjs.com/package/frakton-ng)
 
-Frakton NG is a modern, opinionated, and enterprise-ready UI component library for Angular. Built with accessibility, performance, and developer experience in mind, Frakton NG accelerates the creation of visually stunning, scalable, and maintainable applications.
-
-> ✨ Why Frakton NG? 
-> - Robust and accessible: Components follow best practices and work for everyone. 
-> - Consistent design language: Out-of-the-box themes and design tokens for brand consistency. 
-> - Real productivity: Intuitive APIs, type-safe signals, advanced overlays, and DX you actually feel.
+Frakton NG is an **opinionated, accessible, and robust UI library** built from scratch for Angular.  
+Delivers speed, scalability, and real productivity — with a design language ready for real-world apps, not só pra tela de demo.
 
 ---
 
-## 📚 Documentation
+### ✨ Why Frakton NG?
 
-Explore full documentation, interactive demos, and the API reference:
+- **Serious DX:** Ergonomic APIs, overlays, and true type safety (Signals everywhere)
+- **Accessible by default:** WCAG & keyboard-friendly out-of-the-box
+- **Consistent design:** Token-based theming, ready for branding or vanilla use
+- **No bloat:** Standalone Angular components only. No wrappers, no nonsense.
+- **Productivity, not complexity:** Ship faster, maintain easier
 
-[Frakton NG Docs](https://samukaii.github.io/frakton-ng)
+[📚 See the docs & interactive demos →](https://samukaii.github.io/frakton-ng)
 
 ---
 
 ## 🚀 Installation
 
-Add Frakton NG to your project using your favorite package manager:
-
-```shell
-npm install @frakton-ng/core
+```bash
+npm install frakton-ng
 ```
-or
-```shell
-yarn add @frakton-ng/core
-```
-or
-```shell
-pnpm add @frakton-ng/core
-```
-
 
 ---
 
-## 🎨 Integration
+## 🎨 Styles & Themes
 
-Import the required styles and theme files into your app by adding them to the styles array in your angular.json:
+Add the Frakton NG styles in your angular.json:
 
 ```json
-{
-	"styles": [
-		"node_modules/@frakton-ng/core/assets/styles.css",
-		"node_modules/@frakton-ng/core/assets/themes/light.css",
-		"src/styles.css"
-	]
-}
+"styles": [
+  "node_modules/@frakton-ng/core/assets/styles.css",
+  "node_modules/@frakton-ng/core/assets/themes/light.css"
+]
 ```
 
-- `styles.css`: Base component styles, tokens, and resets.
-- `light.css`: The default light theme (you can customize or swap themes).
-- Custom themes: Create your own theme using the built-in design tokens.
+- styles.css: Core styles and resets
+- light.css: Default light theme
+- Custom themes: See theming docs
 
 
 
 ---
 
-## 🧑‍💻 Usage Example
-
-Here’s how to use a Frakton NG button in a standalone Angular component:
+## 🧑‍💻 Quick usage
 
 ```ts
-import { Component } from '@angular/core';
 import { FktButtonComponent } from '@frakton-ng/core';
 
 @Component({
-	selector: 'app-root',
-	template: `
-		<fkt-button 
-		  text="Click Me"
-		  theme="raised"
-		  color="primary"
-		  (click)="handleClick()"
-		></fkt-button>
-	  `,
-	imports: [FktButtonComponent]
+  template: `<fkt-button text="Click" (click)="..."></fkt-button>`,
+  imports: [FktButtonComponent],
+  standalone: true
 })
-export class AppComponent {
-	handleClick() {
-		console.log('Button clicked!');
-	}
-}
+export class AppComponent {}
 ```
 
 ---
 
 ## 🧩 Features
 
-- Angular-first: 100% standalone components, typed with Signals.
-- Ready for enterprise: Accessible, customizable, and scalable.
-- Modern overlay system: Ultra-flexible dialogs, tooltips, snackbars, with smart positioning and signal binding.
-- Themeable & token-based: Swap, extend, or create new themes easily using design tokens.
-- Best-in-class DX: API focused on productivity and ergonomics.
-- Built-in documentation: Full Storybook with real-world demos and custom playgrounds.
-- Open source, MIT licensed.
+- 100% standalone components (no module hell)
+- Accessible, WCAG-ready out of the box
+- Signal-first reactivity (no hacks)
+- Real overlays: dialogs, tooltips, snackbars — composable and nestable
+- Token-based theming (change or extend easily)
+- Built-in docs with real-world playgrounds
+- MIT licensed, open, forever
 
 ---
 
 ## ⚡️ Quick links
-- Full Docs & Storybook
-- Component Gallery
-- GitHub Issues / Feature requests
+
+- [📚 Docs & Demos](https://samukaii.github.io/frakton-ng)
+- [🐛 Issues](https://github.com/Samukaii/frakton-ng/issues)
 
 ---
 
 ## 🛠️ Contributing
 
-Frakton NG is in active development!
-If you want to report bugs, suggest new features, or contribute code, check out the contributing guide or open an issue.
-
+Found a bug or want to suggest something?
+Check `CONTRIBUTING.md` or open an issue.
 
 ---
 
-## 📦 License
-
 MIT © Samuel Alejandro
-frakton-ng/
-├── projects/
-│   ├── core/
-│   │   ├── src/
-│   │   │   └── public-api.ts
-│   │   ├── ng-package.json
-│   │   └── package.json (opcional, só para devtools)
-│   ├── button/
-│   │   ├── src/
-│   │   │   └── public-api.ts
-│   │   ├── ng-package.json
-│   │   └── package.json (opcional)
-│   ├── table/
-│   │   ├── src/
-│   │   │   └── public-api.ts
-│   │   ├── ng-package.json
-│   │   └── package.json (opcional)
-│   └── ... outros packages
-├── dist/
-│   ├── core/
-│   │   └── ... arquivos buildados do core (public-api.js, d.ts, etc)
-│   ├── button/
-│   │   └── ... arquivos buildados do button
-│   ├── table/
-│   │   └── ... arquivos buildados do table
-│   └── ... outros
-├── package.json        <-- O package.json RAIZ, que vai ser publicado!
-├── README.md
-└── ...outros arquivos
