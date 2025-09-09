@@ -5,6 +5,8 @@
 Frakton NG is an **opinionated, accessible, and robust UI library** built from scratch for Angular.  
 Delivers speed, scalability, and real productivity — with a design language ready for real-world apps, not só pra tela de demo.
 
+<img width="2312" height="1342" alt="image" src="https://github.com/user-attachments/assets/e17894d6-1c4b-4733-8289-7bb3678ab83f" />
+
 ---
 
 ### ✨ Why Frakton NG?
