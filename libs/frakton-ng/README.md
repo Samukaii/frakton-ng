@@ -3,7 +3,7 @@
 [![npm version](https://img.shields.io/npm/v/frakton-ng?style=flat-square)](https://www.npmjs.com/package/frakton-ng)
 
 Frakton NG is an **opinionated, accessible, and robust UI library** built from scratch for Angular.  
-Delivers speed, scalability, and real productivity — with a design language ready for real-world apps, not só pra tela de demo.
+Delivers speed, scalability, and real productivity — with a design language ready for real-world apps, not just for demo.
 
 <img width="2312" height="1342" alt="image" src="https://github.com/user-attachments/assets/11df3f3e-6392-40a4-ab83-09ddfa622e73" />
 
@@ -51,7 +51,7 @@ Add the Frakton NG styles in your angular.json:
 ## 🧑‍💻 Quick usage
 
 ```ts
-import { FktButtonComponent } from '@frakton-ng/core';
+import { FktButtonComponent } from 'frakton-ng/button';
 
 @Component({
   template: `<fkt-button text="Click" (click)="..."></fkt-button>`,
