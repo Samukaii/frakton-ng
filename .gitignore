@@ -5,6 +5,8 @@
 /out-tsc
 /bazel-out
 **/dist/
+bash.exe.stackdump
+.claude/
 
 # Node
 /node_modules

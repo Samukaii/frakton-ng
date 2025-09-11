@@ -9,7 +9,7 @@ import {
 } from './examples';
 
 const meta: Meta = {
-	title: 'Components/Overlay/Overlay',
+	title: 'Services/Overlay',
 	parameters: {
 		layout: 'centered',
 	},

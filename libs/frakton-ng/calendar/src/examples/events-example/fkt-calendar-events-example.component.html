@@ -1,0 +1,24 @@
+<div class="example-container">
+	<fkt-calendar
+		[(currentDate)]="currentDate"
+		[configFn]="eventDateConfig()"
+		[borderless]="borderless()"
+	/>
+	<div class="event-info">
+		<div class="click-history">
+			<div class="click-history-header">
+				<h4>Click History</h4>
+				<fkt-button text="Clear" (click)="clearHistory()" [disabled]="clickHistory().length === 0"></fkt-button>
+			</div>
+			<div class="history-items">
+				@if (clickHistory().length === 0) {
+					<p class="no-history">Click on any date to see interaction history</p>
+				} @else {
+					@for (item of clickHistory(); track item) {
+						<div class="history-item">{{ item }}</div>
+					}
+				}
+			</div>
+		</div>
+	</div>
+</div>

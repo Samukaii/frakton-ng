@@ -1,0 +1,21 @@
+<div class="example-container">
+	<fkt-calendar
+		[(currentDate)]="currentDate"
+		[configFn]="customDateConfig"
+		[borderless]="borderless()"
+	/>
+	<div class="legend">
+		<div class="legend-item">
+			<span class="legend-color weekend"></span>
+			<span>Weekends</span>
+		</div>
+		<div class="legend-item">
+			<span class="legend-color holiday"></span>
+			<span>Holidays</span>
+		</div>
+		<div class="legend-item">
+			<span class="legend-color past"></span>
+			<span>Past dates</span>
+		</div>
+	</div>
+</div>

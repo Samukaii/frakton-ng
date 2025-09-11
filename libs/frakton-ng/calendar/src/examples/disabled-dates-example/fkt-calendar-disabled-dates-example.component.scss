@@ -1,0 +1,148 @@
+:host {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+.example-container {
+	padding: 20px;
+	border-radius: 8px;
+	max-width: 800px;
+	height: fit-content;
+	width: 100%;
+	border: solid 1px var(--color-gray-200);
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+
+	h3 {
+		margin: 0 0 8px 0;
+		color: #333;
+		font-size: 18px;
+		font-weight: 600;
+	}
+
+	.description {
+		margin: 0 0 16px 0;
+		color: #666;
+		font-size: 14px;
+	}
+}
+
+.legend {
+	display: flex;
+	gap: 16px;
+	margin-top: 16px;
+	flex-wrap: wrap;
+
+	&-item {
+		display: flex;
+		align-items: center;
+		gap: 6px;
+		font-size: 12px;
+		color: #666;
+	}
+
+	&-color {
+		width: 12px;
+		height: 12px;
+		border-radius: 2px;
+		display: block;
+
+		&.past-date {
+			background: #e0e0e0;
+			border: 1px solid #bdbdbd;
+		}
+
+		&.weekend-disabled {
+			background: #fff3e0;
+			border: 1px solid #ff9800;
+		}
+
+		&.blacked-out {
+			background: #ffebee;
+			border: 1px solid #f44336;
+		}
+	}
+}
+
+.info-box {
+	margin-top: 16px;
+	padding: 12px;
+	background: var(--color-blue-50);
+	border-radius: var(--radius-md);
+	color: var(--color-blue-950);
+	border: .5px solid var(--color-blue-200);
+	width: 100%;
+
+	h4 {
+		margin: 0 0 8px 0;
+		font-size: 14px;
+		font-weight: 600;
+	}
+
+	ul {
+		margin: 0;
+		padding-left: 16px;
+		font-size: 13px;
+
+		li {
+			margin-bottom: 4px;
+		}
+	}
+}
+
+.selected-date {
+	margin: var(--space-md) 0 0;
+	border-radius: var(--radius-md);
+	border: solid 1px var(--color-green-200);
+	color: var(--color-green-950);
+	display: block;
+	width: 100%;
+	text-align: center;
+	padding: var(--space-xs) var(--space-md);
+	background-color: var(--color-green-50);
+}
+
+
+
+// Global styles for calendar date customization.
+// Always use ::ng-deep combined with :host or other local class to avoid style leaking
+:host ::ng-deep fkt-calendar {
+	.disabled {
+		cursor: not-allowed;
+		opacity: 0.4;
+	}
+
+	.past-date {
+		background-color: #a4a4a4;
+		color: #383838;
+	}
+
+	.weekend-disabled {
+		background-color: #fad592;
+		color: #a44b00;
+	}
+
+	.blacked-out {
+		background-color: #ffb8c2;
+		color: #d32f2f;
+		position: relative;
+
+		&::before {
+			content: '';
+			position: absolute;
+			top: 50%;
+			left: 10%;
+			right: 10%;
+			height: 1px;
+			background: #d32f2f;
+		}
+	}
+}

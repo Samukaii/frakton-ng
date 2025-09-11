@@ -10,7 +10,7 @@ import {
 } from './examples';
 
 const meta: Meta = {
-	title: 'Components/Overlay/Dialog',
+	title: 'Services/Dialog',
 	parameters: {
 		layout: 'centered',
 	},

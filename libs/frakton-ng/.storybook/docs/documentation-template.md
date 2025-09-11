@@ -1,8 +1,9 @@
-import { Meta, Story, Controls, ArgTypes } from '@storybook/addon-docs/blocks';
-import * as stories from './[COMPONENT].stories';
-import {rawExamples} from './examples/rawExamples'
+import { ArgTypes, Meta } from '@storybook/addon-docs/blocks';
+import * as [componentName]Stories from './[component-name].stories';
+import { rawExamples } from "./examples/raw-examples";
+import { StoryDoc } from "../../.storybook/blocks/StoryDoc";
 
-`<Meta of={stories} />`
+<Meta of={[componentName]Stories} />
 
 # [ComponentName]
 
@@ -10,38 +11,64 @@ _A brief summary describing what the component does, its main purpose, and the c
 
 ## Key Features
 
-- **[Feature 1]**: Short description.
-- **[Feature 2]**: ...
-- **[Feature 3]**: ...
+- **[Feature 1]**: Short description of key functionality
+- **[Feature 2]**: Description of another important feature
+- **[Feature 3]**: Additional notable capability
+- **[Feature 4]**: Signal-based architecture or other technical highlights
 
 ## Configuration Options
 
-`<ArgTypes/>`
+<ArgTypes/>
 
 ### Types
 
 ```typescript
-// Relevant types (enums, unions, interfaces, etc.).
-type YourType = 'option1' | 'option2'; // Comments explaining type
+// Core types and interfaces relevant to component usage
+export type [ComponentStep] = 'option1' | 'option2' | 'option3';
 
-interface YourInterface {
-	prop1: "Value 1" // Comments explaining prop,
-	prop2: "Value 2" // Comments explaining prop,
-	prop3: "Value 3" // Comments explaining prop,
+// Configuration interfaces for component customization
+export interface [ComponentConfig] {
+	property: string;                    // Description of property purpose
+	onClick?: () => void;               // Optional callback handler
+	isEnabled: boolean;                 // Boolean state description
+	classes: string[];                  // CSS classes array
 }
+
+// Partial options type (excludes mandatory fields)
+export type [ComponentOptions] = Partial<
+	Omit<[ComponentConfig], 'property' | 'isEnabled'>
+>;
+
+// Configuration function type for advanced customization
+export type [ComponentConfigFn] = (data: DataType) => [ComponentOptions];
 ```
 
-Examples
+## Examples
 
-[For simple stories using only argTypes or custom inline template]
+<StoryDoc of={[componentName]Stories.Basic} code={rawExamples.[componentName]BasicExample}/>
 
-`<StoryDoc of={stories.[StoryName]}/>`
+<StoryDoc of={[componentName]Stories.AdvancedFeature} code={rawExamples.[componentName]AdvancedExample}/>
 
-[For complex examples using external components]
+<StoryDoc of={[componentName]Stories.CustomStyling} code={rawExamples.[componentName]CustomExample}/>
 
-`<StoryDoc of={stories.[StoryName]} code={rawExamples.[FileName}/>`
+<StoryDoc of={[componentName]Stories.InteractiveFeatures} code={rawExamples.[componentName]InteractiveExample}/>
 
-[Repeat this block for additional examples]
+<StoryDoc of={[componentName]Stories.DisabledStates} code={rawExamples.[componentName]DisabledExample}/>
+
+## Component Architecture
+
+Brief explanation of the component's internal structure and sub-components:
+
+### Core Components
+- **[MainComponent]**: Primary component and state management
+- **[SubComponent1]**: Specific functionality description
+- **[SubComponent2]**: Another sub-component purpose
+
+### State Management
+Explanation of signal-based state management approach:
+- `signal1` controls primary behavior
+- `signal2` provides two-way binding
+- `signal3` tracks internal state
 
 Use Cases
 

@@ -1,4 +1,4 @@
-import { Component, input, model, output } from '@angular/core';
+import { Component, input, model, output, ViewEncapsulation } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { allMonths } from '../../static/all-months';
 import { FktCalendarDateConfigFn } from '../../fkt-calendar.types';
@@ -8,6 +8,7 @@ import { FktCalendarDateConfigFn } from '../../fkt-calendar.types';
 	imports: [DatePipe],
 	templateUrl: './calendar-month-selector.component.html',
 	styleUrl: './calendar-month-selector.component.scss',
+	encapsulation: ViewEncapsulation.None
 })
 export class CalendarMonthSelectorComponent {
 	headerLess = input(false);

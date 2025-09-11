@@ -4,46 +4,47 @@
 	}
 }
 
+.calendar__date {
+	user-select: none;
+	transition: var(--transition-base);
+	border: solid 1px transparent;
+	aspect-ratio: 1;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: var(--radius-full);
+	margin: var(--space-xs);
+}
+
+.calendar__date--clickable {
+	cursor: pointer;
+
+	&:hover {
+		background-color: var(--color-blue-200);
+	}
+}
+
+.calendar__date--today {
+	border: solid 1px var(--color-gray-500);
+}
+
+.calendar__date--current-date {
+	background-color: var(--color-blue-300);
+}
+
+.calendar__date--out-of-range {
+	opacity: 20%;
+}
+
 .calendar {
 	display: grid;
 	grid-template-columns: repeat(7, minmax(0, 1fr));
 	width: 100%;
-	gap: var(--space-xs);
 
 	&__weekday {
 		text-align: center;
 		text-transform: capitalize;
 	}
-
-	&__date {
-		user-select: none;
-		transition: var(--transition-base);
-		border: solid 1px transparent;
-		aspect-ratio: 1;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		border-radius: var(--radius-full);
-
-		&--clickable {
-			cursor: pointer;
-
-			&:hover {
-				background-color: var(--color-blue-200);
-			}
-		}
-
-		&--today {
-			border: solid 1px var(--color-gray-500);
-		}
-
-		&--current-date {
-			background-color: var(--color-blue-300);
-		}
-
-		&--out-of-range {
-			opacity: 20%;
-		}
-	}
 }
+
 

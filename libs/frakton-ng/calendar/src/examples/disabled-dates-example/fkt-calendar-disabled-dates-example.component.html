@@ -1,0 +1,31 @@
+<div class="example-container">
+	<fkt-calendar
+		[(currentDate)]="currentDate"
+		[configFn]="disabledDateConfig"
+		[borderless]="borderless()"
+	/>
+	<div class="legend">
+		<div class="legend-item">
+			<span class="legend-color past-date"></span>
+			<span>Past dates</span>
+		</div>
+		<div class="legend-item">
+			<span class="legend-color weekend-disabled"></span>
+			<span>Weekends</span>
+		</div>
+		<div class="legend-item">
+			<span class="legend-color blacked-out"></span>
+			<span>Blackout dates (15th of month, Dec 24-26)</span>
+		</div>
+	</div>
+
+	<div class="info-box">
+		<h4>Disabled Date Rules:</h4>
+		<ul>
+			<li>All past dates are disabled</li>
+			<li>Weekends (Saturday & Sunday) are disabled</li>
+			<li>15th of every month (maintenance day)</li>
+			<li>December 24-26 (holiday period)</li>
+		</ul>
+	</div>
+</div>

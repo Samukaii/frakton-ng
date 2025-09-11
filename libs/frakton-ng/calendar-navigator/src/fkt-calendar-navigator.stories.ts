@@ -31,7 +31,6 @@ const meta: Meta<FktCalendarNavigatorComponent> = {
 				type: {
 					summary: 'FktCalendarNavigatorMode',
 					detail: "import {FktCalendarNavigatorMode} from 'frakton-ng/calendar-navigator'",
-
 				},
 				defaultValue: {
 					summary: '"month"'
