@@ -1,6 +1,6 @@
 {
 	"name": "frakton-ng",
-	"version": "2.0.6",
+	"version": "2.0.7",
 	"description": "Frakton NG — Design System Angular: componentes UI modernos, acessíveis e escaláveis para acelerar o desenvolvimento de aplicações.",
 	"author": "Samuel Alejandro <samuelalejandro.dev@gmail.com>",
 	"license": "MIT",
@@ -29,7 +29,7 @@
 	"bugs": {
 		"url": "https://github.com/Samukaii/frakton-ng/issues"
 	},
-	"homepage": "https://github.com/Samukaii/frakton-ng",
+	"homepage": "https://samukaii.github.io/frakton-ng",
 	"keywords": [
 		"design-system",
 		"angular",
