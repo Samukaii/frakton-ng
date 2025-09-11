@@ -1,58 +1,174 @@
 Storybook Story Template & Guidelines
 
-Component Structure Example
+Component Stories Structure Example
 
 ```ts
-import type {Meta, StoryObj} from '@storybook/angular';
-import {moduleMetadata} from '@storybook/angular';
-import {ComponentName} from './[component-name].component';
-import {Example1, Example2} from './examples';
+import type { Meta, StoryObj } from '@storybook/angular';
+import { moduleMetadata } from '@storybook/angular';
+import {
+	[ComponentName]BasicExampleComponent,
+	[ComponentName]AdvancedExampleComponent,
+	[ComponentName]CustomStylingExampleComponent,
+	[ComponentName]InteractiveExampleComponent,
+	[ComponentName]DisabledStatesExampleComponent
+} from './examples';
 
-const meta: Meta<[ComponentName]> = {
+const meta: Meta = {
 	title: 'Components/[ComponentName]',
-	component: [ComponentName],
+	component: [ComponentName]Component,
 	decorators: [
 		moduleMetadata({
 			imports: [
-				[Example1],
-				[Example2]
-			]
+				[ComponentName]BasicExampleComponent,
+				[ComponentName]AdvancedExampleComponent,
+				[ComponentName]CustomStylingExampleComponent,
+				[ComponentName]InteractiveExampleComponent,
+				[ComponentName]DisabledStatesExampleComponent,
+			],
 		})
 	],
 	argTypes: {
-		// Always document controls, type, description, and defaults
-		[inputName]: {
-			control: '[control type]', // e.g., 'select', 'text', 'date'
-			options: [inputOptions],   // if applicable
-			description: '[Input description]',
+		configFn: {
+			control: 'object',
+			description: "Configuration function description here.",
 			table: {
-				type: {summary: '[Type summary]'},
-				defaultValue: {summary: '[Default value]'}
+				category: "Attributes",
+				type: {
+					summary: "[ComponentName]ConfigFn",
+					detail: 'import {[ComponentName]ConfigFn} from "frakton-ng/[package-name]"'
+				},
+				defaultValue: {
+					summary: "undefined"
+				}
 			}
 		},
-		// ...repeat for each input
+		currentValue: {
+			control: 'text',
+			description: "Current value description.",
+			table: {
+				category: "Attributes",
+				type: {summary: 'ModelSignal<ValueType>'},
+				defaultValue: {summary: 'defaultValue'}
+			}
+		},
+		booleanProp: {
+			control: 'boolean',
+			description: "Boolean property description.",
+			table: {
+				category: "Attributes",
+				type: {summary: 'boolean'},
+				defaultValue: {summary: "false"}
+			}
+		},
 	}
 };
 
-type Story = StoryObj<[ComponentName]>;
-
-// EXAMPLE STORIES:
-export const ExampleStory: Story = {
+export const Basic: StoryObj = {
 	render: (args) => ({
-		template: '<[example1-selector] [input1]="input1" [input2]="input2"></[example1-selector]>',
 		props: {
 			...args,
-			// Add conversions if needed (e.g., Date)
+			// Transform any Date arguments
+			currentDate: new Date(args["currentDate"])
 		},
+		template: `<[component-name]-basic-example ${argsToTemplate(args)} />`,
 	}),
 	args: {
-		// Set reasonable defaults
-		input1: '[default1]',
-		input2: '[default2]',
+		currentDate: new Date(),
+		booleanProp: false
+	},
+	parameters: {
+		docs: {
+			description: {
+				story: 'Basic implementation with standard functionality. Perfect starting point for most use cases.'
+			}
+		}
 	}
 };
 
-// Repeat for additional stories...
+export const AdvancedFeature: StoryObj = {
+	render: (args) => ({
+		props: {
+			...args,
+			currentDate: new Date(args["currentDate"])
+		},
+		template: `<[component-name]-advanced-example ${argsToTemplate(args)} />`,
+	}),
+	args: {
+		currentDate: new Date("2025-12-25T12:00:00.000Z"),
+		booleanProp: true
+	},
+	parameters: {
+		docs: {
+			description: {
+				story: 'Advanced features demonstration. Shows complex configuration and extended capabilities.'
+			}
+		}
+	}
+};
+
+export const CustomStyling: StoryObj = {
+	render: (args) => ({
+		props: {
+			...args,
+			currentDate: new Date(args["currentDate"])
+		},
+		template: `<[component-name]-custom-styling-example ${argsToTemplate(args)} />`,
+	}),
+	args: {
+		currentDate: new Date("2025-12-25T12:00:00.000Z"),
+		booleanProp: false
+	},
+	parameters: {
+		docs: {
+			description: {
+				story: 'Custom styling and theming examples. Demonstrates how to apply different visual styles and themes.'
+			}
+		}
+	}
+};
+
+export const InteractiveFeatures: StoryObj = {
+	render: (args) => ({
+		props: {
+			...args,
+			currentDate: new Date(args["currentDate"])
+		},
+		template: `<[component-name]-interactive-example ${argsToTemplate(args)} />`,
+	}),
+	args: {
+		currentDate: new Date(),
+		booleanProp: false
+	},
+	parameters: {
+		docs: {
+			description: {
+				story: 'Interactive functionality with callbacks and event handling. Shows user interaction patterns and data flow.'
+			}
+		}
+	}
+};
+
+export const DisabledStates: StoryObj = {
+	render: (args) => ({
+		props: {
+			...args,
+			currentDate: new Date(args["currentDate"])
+		},
+		template: `<[component-name]-disabled-states-example ${argsToTemplate(args)} />`,
+	}),
+	args: {
+		currentDate: new Date("2025-12-25T12:00:00.000Z"),
+		booleanProp: false
+	},
+	parameters: {
+		docs: {
+			description: {
+				story: 'Disabled states and conditional functionality. Perfect for forms, booking systems, and restricted access scenarios.'
+			}
+		}
+	}
+};
+
 export default meta;
 ```
 
@@ -60,64 +176,134 @@ export default meta;
 
 Guidelines
 
-1. Create Example Components:
+## 1. Example Component Structure
 
-Always place demo/example components in the examples folder inside the feature directory.
+### Required Example Components (Standard Set)
+Always create these 5 example components for comprehensive documentation:
 
-Name them clearly, e.g., MonthModeExampleComponent.
+- **`basic-example/`**: Simple, straightforward usage
+- **`[feature]-example/`**: Advanced or specialized feature demonstration  
+- **`custom-styling-example/`**: Visual customization and theming
+- **`interactive-example/`**: Event handling and user interactions
+- **`disabled-states-example/`**: Disabled, restricted, or conditional states
 
+### File Organization
+Each example component must have separate files:
+```
+examples/
+├── basic-example/
+│   ├── [component-name]-basic-example.component.ts
+│   ├── [component-name]-basic-example.component.html  
+│   └── [component-name]-basic-example.component.scss
+├── custom-styling-example/
+│   ├── [component-name]-custom-styling-example.component.ts
+│   ├── [component-name]-custom-styling-example.component.html
+│   └── [component-name]-custom-styling-example.component.scss
+└── ... (other examples)
+```
 
+## 2. Import Requirements
 
-2. Binding Inputs:
+### Component Imports
+- Always import from `'frakton-ng/[component-package]'` not relative paths
+- Include `DatePipe` when displaying dates in templates
+- Import required types and interfaces for configuration functions
 
-Always bind all relevant inputs using [inputName]="argName" so Storybook controls are interactive.
+```typescript
+import { Component, model } from '@angular/core';
+import { ComponentName, ComponentConfigFn } from 'frakton-ng/package-name';
+import { DatePipe } from '@angular/common';
+```
 
-Default args should match expected initial state/use cases.
+### Story Imports
+- Import all example components in stories file
+- Use `moduleMetadata` decorator for component registration
+- Set `layout: 'centered'` in parameters
 
-3. Strong Typing & Documentation:
+## 3. Documentation Standards
 
-Use TypeScript types everywhere (Meta, StoryObj).
+### Story Descriptions
+Each story must include a descriptive `parameters.docs.description.story` explaining:
+- What the example demonstrates
+- When to use this pattern
+- Key features highlighted
 
-Fill in description, table.type, and table.defaultValue in every argType.
+### Component Naming Convention
+- Component: `[ComponentName][Feature]ExampleComponent`
+- Selector: `[component-name]-[feature]-example`
+- Story export: `[FeatureName]` (PascalCase)
 
-4. Props Conversion:
+## 4. Raw Examples File
 
-If an input is a Date, always convert incoming args (from Storybook) using new Date(args.inputName).
+### Required Structure
+Create `raw-examples.ts` with raw-loader imports:
+```typescript
+import componentBasicExampleTemplate from "!!raw-loader!./basic-example/component-basic-example.component.html";
+import componentBasicExampleStyles from "!!raw-loader!./basic-example/component-basic-example.component.scss";
+import componentBasicExampleTypescript from "!!raw-loader!./basic-example/component-basic-example.component.ts";
 
-Explain this conversion if handing off to another dev.
+export const rawExamples = {
+	componentBasicExample: {
+		name: "ComponentBasicExample",
+		files: [
+			{
+				name: "component-basic-example.component.html",
+				content: componentBasicExampleTemplate as string,
+				language: "html" as "html",
+			},
+			{
+				name: "component-basic-example.component.ts", 
+				content: componentBasicExampleTypescript as string,
+				language: "typescript" as "typescript",
+			},
+			{
+				name: "component-basic-example.component.scss",
+				content: componentBasicExampleStyles as string,
+				language: "css" as "css",
+			},
+		]
+	},
+	// ... repeat for each example
+};
+```
 
-5. Consistent Structure:
+## 5. Component Implementation
 
-meta at the top, then all stories, then export default meta;.
+### Signal-Based Architecture
+- Use `model()` for two-way binding inputs
+- Use `input()` for one-way data flow
+- Use `signal()` for internal component state
+- Implement configuration functions with proper typing
 
-Each story should use its own example component for clarity.
-
-6. Naming:
-
-Use PascalCase for component and story names.
-
-Keep selector names descriptive in the template.
-
-7. Minimal Boilerplate:
-
-Only import and use components relevant to the current story.
+### Template Requirements
+- Always include example container with descriptive title
+- Show selected/current state when relevant
+- Use proper Angular pipes for data formatting
+- Include legends or helpers for complex examples
 
 ---
 
 Sample Minimal Story for Fast Reference
 
 ```ts
-export const MonthMode: Story = {
+export const MonthMode: StoryObj = {
 	render: (args) => ({
-		template: '<month-mode-example [mode]="mode" [currentDate]="currentDate"></month-mode-example>',
 		props: {
 			...args,
-			currentDate: new Date(args.currentDate) // Always ensure Date type is passed
+			currentDate: new Date(args["currentDate"]) // Always ensure Date type is passed
 		},
+		template: `<month-mode-example ${argsToTemplate(args)} />`,
 	}),
 	args: {
 		mode: 'month',
 		currentDate: new Date(),
+	},
+	parameters: {
+		docs: {
+			description: {
+				story: 'Description of what this story demonstrates and when to use it.'
+			}
+		}
 	}
 };
 ```

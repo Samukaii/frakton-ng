@@ -16,8 +16,6 @@ export const SourceCode = (props: PropsWithChildren<{ className: string }>) => {
 		}, 1000);
 	}
 
-	console.log(props);
-
 	const inlineCode = !props.className;
 
 	return <div className={"source-application-code" + (inlineCode ? " source-application-code--inline" : "")}><CodeOrSourceMdx {...props}/>

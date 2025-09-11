@@ -6,12 +6,6 @@
 	font-display: swap;
 }
 
-#storybook-explorer-tree {
-	.sidebar-item {
-		background-color: red !important;
-	}
-}
-
 .source-application-code {
 	position: relative;
 
