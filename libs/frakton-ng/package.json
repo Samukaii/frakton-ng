@@ -14,7 +14,10 @@
 		"update-version:patch": "node scripts/update-version.mjs patch",
 		"publish:major": "pnpm run update-version:major && pnpm run build && cd dist && pnpm publish --access public --git-checks=false",
 		"publish:minor": "pnpm run update-version:minor && pnpm run build && cd dist && pnpm publish --access public --git-checks=false",
-		"publish:patch": "pnpm run update-version:patch && pnpm run build && cd dist && pnpm publish --access public --git-checks=false"
+		"publish:patch": "pnpm run update-version:patch && pnpm run build && cd dist && pnpm publish --access public --git-checks=false",
+		"publish:major:next": "pnpm run update-version:major && pnpm run build && cd dist && pnpm publish --access public --git-checks=false --tag next",
+		"publish:minor:next": "pnpm run update-version:minor && pnpm run build && cd dist && pnpm publish --access public --git-checks=false --tag next",
+		"publish:patch:next": "pnpm run update-version:patch && pnpm run build && cd dist && pnpm publish --access public --git-checks=false --tag next"
 	},
 	"files": [
 		"fesm2022/",
