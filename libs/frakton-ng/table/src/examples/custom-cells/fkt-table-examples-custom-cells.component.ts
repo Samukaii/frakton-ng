@@ -77,7 +77,7 @@ export class FktTableExamplesCustomCellsComponent {
 						identifier: 'toggle-product-status',
 						icon: product.status === 'active' ? 'check-circle' : 'x-circle',
 						theme: 'basic',
-						color: product.status === 'active' ? 'green' : 'red',
+						color: product.status === 'active' ? 'success' : 'danger',
 						click: () => this.toggleProductStatus(product)
 					}]
 				}
@@ -189,7 +189,7 @@ export class FktTableExamplesCustomCellsComponent {
 			identifier: 'edit',
 			condition: product.status !== 'discontinued',
 			icon: 'pencil',
-			color: 'green',
+			color: 'success',
 			theme: 'basic',
 			click: () => console.log('Edit product:', product.name)
 		},
@@ -197,7 +197,7 @@ export class FktTableExamplesCustomCellsComponent {
 			identifier: 'delete',
 			condition: true,
 			icon: 'trash',
-			color: 'red',
+			color: 'danger',
 			theme: 'basic',
 			click: () => console.log('Delete product:', product.name)
 		}
@@ -208,7 +208,7 @@ export class FktTableExamplesCustomCellsComponent {
 			identifier: 'complete',
 			condition: task.status !== 'completed' && task.status !== 'cancelled',
 			icon: 'check',
-			color: 'green',
+			color: 'success',
 			theme: 'basic',
 			click: () => console.log('Complete task:', task.title)
 		},
@@ -224,7 +224,7 @@ export class FktTableExamplesCustomCellsComponent {
 			identifier: 'cancel',
 			condition: task.status !== 'completed' && task.status !== 'cancelled',
 			icon: 'x-mark',
-			color: 'red',
+			color: 'danger',
 			theme: 'basic',
 			click: () => console.log('Cancel task:', task.title)
 		}
@@ -317,11 +317,11 @@ export class FktTableExamplesCustomCellsComponent {
 	private getPriorityColor(priority: Task['priority']): FktColor {
 		switch (priority) {
 			case 'high':
-				return 'red';
+				return 'danger';
 			case 'medium':
-				return 'yellow';
+				return 'accent';
 			default:
-				return 'green';
+				return 'success';
 		}
 	}
 
@@ -358,13 +358,13 @@ export class FktTableExamplesCustomCellsComponent {
 	private getStatusColor(status: Task['status']): FktColor {
 		switch (status) {
 			case 'in-progress':
-				return 'yellow';
+				return 'accent';
 			case 'completed':
-				return 'green';
+				return 'success';
 			case 'cancelled':
-				return 'red';
+				return 'danger';
 			default:
-				return 'blue';
+				return 'info';
 		}
 	}
 

@@ -1,27 +1,18 @@
 import type { Meta, StoryObj } from '@storybook/angular';
-import { SignalFormControl, SignalValidators } from 'frakton-ng/forms';
 import { FktDatePickerComponent } from 'frakton-ng/date-picker';
+import { customDocsControl } from '../../.storybook/decorators/custom-docs-control';
+import { renderComponent } from '../../.storybook/decorators/render-component';
+import designTokens from './fkt-date-picker-design-tokens.json';
 
 const meta: Meta<FktDatePickerComponent> = {
 	title: 'Components/Form/Datepicker',
 	component: FktDatePickerComponent,
+	decorators: [
+		customDocsControl({
+			designTokens: designTokens as any
+		})
+	],
 	argTypes: {
-		control: {
-			control: false,
-			type: {
-				name: "object",
-				value: {},
-				required: true,
-			},
-			table: {
-				category: "Attributes",
-				type: {
-					summary: 'SignalFormControl<Date>',
-					detail: "import {SignalFormControl} from 'frakton-ng/forms';"
-				},
-			},
-			description: 'The form control that manages the date picker state and validation'
-		},
 		label: {
 			control: "text",
 			type: {
@@ -60,8 +51,8 @@ const meta: Meta<FktDatePickerComponent> = {
 type Story = StoryObj<FktDatePickerComponent>;
 
 export const BasicDatePicker: Story = {
+	render: renderComponent(FktDatePickerComponent),
 	args: {
-		control: new SignalFormControl(null),
 		label: "Birth Date",
 		placeholder: "Select your birth date",
 	},
@@ -75,8 +66,8 @@ export const BasicDatePicker: Story = {
 };
 
 export const WithPrefilledDate: Story = {
+	render: renderComponent(FktDatePickerComponent),
 	args: {
-		control: new SignalFormControl(new Date()),
 		label: "Event Date",
 		placeholder: "Select event date",
 	},
@@ -90,10 +81,8 @@ export const WithPrefilledDate: Story = {
 };
 
 export const RequiredValidation: Story = {
+	render: renderComponent(FktDatePickerComponent),
 	args: {
-		control: new SignalFormControl(null, {
-			validators: [SignalValidators.required()]
-		}),
 		label: "Due Date (Required)",
 		placeholder: "Please select a due date",
 	},
@@ -107,12 +96,8 @@ export const RequiredValidation: Story = {
 };
 
 export const DisabledState: Story = {
+	render: renderComponent(FktDatePickerComponent),
 	args: {
-		control: (() => {
-			const control = new SignalFormControl(new Date('2024-12-25'));
-			control.disable();
-			return control;
-		})(),
 		label: "Fixed Date",
 		placeholder: "This date cannot be changed",
 	},
@@ -126,8 +111,8 @@ export const DisabledState: Story = {
 };
 
 export const WithFormatHint: Story = {
+	render: renderComponent(FktDatePickerComponent),
 	args: {
-		control: new SignalFormControl(null),
 		label: "Start Date",
 		placeholder: "DD/MM/YYYY format",
 	},

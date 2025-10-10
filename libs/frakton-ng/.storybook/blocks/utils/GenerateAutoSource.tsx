@@ -1,6 +1,5 @@
-import {Source, useOf} from "@storybook/addon-docs/blocks";
+import {useOf} from "@storybook/addon-docs/blocks";
 import {ModuleExport, ResolvedModuleExportFromType} from "storybook/internal/types";
-import {SignalFormControl} from "frakton-ng/forms";
 import {isObjectLiteral, toKebabCase, toPascalCase} from "./index";
 
 interface AutoSourceProps {
@@ -70,17 +69,6 @@ const getComponentProperties = (resolvedOf: ResolvedModuleExportFromType<'story'
 			evaluatedProperty += `${obj}`;
 		}
 
-		if (obj instanceof SignalFormControl) {
-			let initialValue = obj.initialValue;
-
-			if (initialValue instanceof Date) {
-				evaluatedProperty += `new Date("${initialValue.toISOString()}")`
-
-			} else {
-				evaluatedProperty += `new SignalFormControl(${JSON.stringify(initialValue)})`;
-			}
-		}
-
 		return evaluatedProperty;
 	}
 
@@ -115,19 +103,6 @@ const getExtraImports = (resolvedOf: ResolvedModuleExportFromType<'story'>) => {
 	return extraImports;
 }
 
-const getInitialActions = (resolvedOf: ResolvedModuleExportFromType<'story'>) => {
-	const args = resolvedOf.story.initialArgs;
-	let actions: string[] = [];
-
-	Object.entries(args).forEach(([key, value]) => {
-		if (value instanceof SignalFormControl && value.disabled()) {
-			actions.push(`this.${key}.disable();`);
-		}
-	});
-
-	return actions;
-}
-
 const defaultTemplate = `
 import {Component} from '@angular/core';
 $IMPORTS
@@ -142,25 +117,6 @@ export class $EXAMPLE_COMPONENT_NAME {
 	$COMPONENT_PROPERTIES
 }
 `
-
-const withActionsTemplate = `
-import {Component, OnInit} from '@angular/core';
-$IMPORTS
-
-
-@Component({
-  selector: '$EXAMPLE_COMPONENT_SELECTOR',
-  templateUrl: '$TEMPLATE_URL',
-  imports: [$COMPONENT_NAME]
-})
-export class $EXAMPLE_COMPONENT_NAME implements OnInit {
-	$COMPONENT_PROPERTIES
-
-	ngOnInit() {
-		$INITIAL_ACTIONS
-	}
-}
-`;
 
 const createTemplate = (template: string, placeholders: Record<string, string>) => {
 	let initial = template;
@@ -190,7 +146,6 @@ export const generateAutoSource = (of: ModuleExport) => {
 
 	const componentProperties = getComponentProperties(resolvedOf);
 	const extraImports = getExtraImports(resolvedOf);
-	const initialActions = getInitialActions(resolvedOf);
 
 	const storyName = resolvedOf.story.name;
 	const exampleComponentName = `Fkt${toPascalCase(storyName)}Component`;
@@ -208,12 +163,9 @@ export const generateAutoSource = (of: ModuleExport) => {
 		"$TEMPLATE_URL": `./fkt-${toKebabCase(storyName)}-component.html`,
 		"$EXAMPLE_COMPONENT_NAME": exampleComponentName,
 		"$COMPONENT_PROPERTIES": componentProperties,
-		"$INITIAL_ACTIONS": initialActions.join('\n'),
 	}
 
 	let typescriptTemplate = createTemplate(defaultTemplate, placeholders);
-	if (initialActions.length)
-		typescriptTemplate = createTemplate(withActionsTemplate, placeholders);
 
 	return {
 		html: template,

@@ -1,16 +1,17 @@
-import { Component, input } from '@angular/core';
+import { Component, input, signal } from '@angular/core';
 import { FktSelectComponent, FktSelectOption } from 'frakton-ng/select';
-import { SignalFormControl } from 'frakton-ng/forms';
+import { Control, form } from '@angular/forms/signals';
 
 @Component({
 	selector: 'select-large-list-example',
 	templateUrl: './large-list-example.component.html',
 	styleUrl: './large-list-example.component.scss',
-	imports: [FktSelectComponent]
+	imports: [FktSelectComponent, Control]
 })
 export class LargeListExampleComponent {
-	control = new SignalFormControl('');
 	label = input<string>();
 	placeholder = input<string>();
 	options = input.required<FktSelectOption[]>();
+
+	protected control = form(signal(''));
 }

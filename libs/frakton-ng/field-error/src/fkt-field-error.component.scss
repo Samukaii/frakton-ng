@@ -8,6 +8,7 @@
 	height: var(--space-lg);
 	max-height: 0;
 	line-height: 1.25rem;
+	padding-left: 1rem;
 
 	&.active {
 		max-height: var(--space-lg);

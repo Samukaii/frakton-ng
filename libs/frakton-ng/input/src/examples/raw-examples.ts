@@ -4,21 +4,18 @@ import basicExampleTypescript from "!!raw-loader!./basic/basic-example.component
 import currencyExampleTemplate from "!!raw-loader!./currency/currency-example.component.html";
 import currencyExampleStyles from "!!raw-loader!./currency/currency-example.component.scss";
 import currencyExampleTypescript from "!!raw-loader!./currency/currency-example.component.ts";
+import customFormattingExampleTemplate from "!!raw-loader!./custom-formatting/custom-formatting-example.component.html";
+import customFormattingExampleStyles from "!!raw-loader!./custom-formatting/custom-formatting-example.component.scss";
+import customFormattingExampleTypescript from "!!raw-loader!./custom-formatting/custom-formatting-example.component.ts";
 import disabledExampleTemplate from "!!raw-loader!./disabled/disabled-example.component.html";
 import disabledExampleStyles from "!!raw-loader!./disabled/disabled-example.component.scss";
 import disabledExampleTypescript from "!!raw-loader!./disabled/disabled-example.component.ts";
 import emailExampleTemplate from "!!raw-loader!./email/email-example.component.html";
 import emailExampleStyles from "!!raw-loader!./email/email-example.component.scss";
 import emailExampleTypescript from "!!raw-loader!./email/email-example.component.ts";
-import formIntegrationExampleTemplate from "!!raw-loader!./form-integration/form-integration-example.component.html";
-import formIntegrationExampleStyles from "!!raw-loader!./form-integration/form-integration-example.component.scss";
-import formIntegrationExampleTypescript from "!!raw-loader!./form-integration/form-integration-example.component.ts";
 import hourExampleTemplate from "!!raw-loader!./hour/hour-example.component.html";
 import hourExampleStyles from "!!raw-loader!./hour/hour-example.component.scss";
 import hourExampleTypescript from "!!raw-loader!./hour/hour-example.component.ts";
-import loginFormExampleTemplate from "!!raw-loader!./login-form/login-form-example.component.html";
-import loginFormExampleStyles from "!!raw-loader!./login-form/login-form-example.component.scss";
-import loginFormExampleTypescript from "!!raw-loader!./login-form/login-form-example.component.ts";
 import numberExampleTemplate from "!!raw-loader!./number/number-example.component.html";
 import numberExampleStyles from "!!raw-loader!./number/number-example.component.scss";
 import numberExampleTypescript from "!!raw-loader!./number/number-example.component.ts";
@@ -28,12 +25,12 @@ import passwordExampleTypescript from "!!raw-loader!./password/password-example.
 import percentExampleTemplate from "!!raw-loader!./percent/percent-example.component.html";
 import percentExampleStyles from "!!raw-loader!./percent/percent-example.component.scss";
 import percentExampleTypescript from "!!raw-loader!./percent/percent-example.component.ts";
+import signupFormExampleTemplate from "!!raw-loader!./signup-form/signup-form-example.component.html";
+import signupFormExampleStyles from "!!raw-loader!./signup-form/signup-form-example.component.scss";
+import signupFormExampleTypescript from "!!raw-loader!./signup-form/signup-form-example.component.ts";
 import suffixExampleTemplate from "!!raw-loader!./suffix/suffix-example.component.html";
 import suffixExampleStyles from "!!raw-loader!./suffix/suffix-example.component.scss";
 import suffixExampleTypescript from "!!raw-loader!./suffix/suffix-example.component.ts";
-import validationExampleTemplate from "!!raw-loader!./validation/validation-example.component.html";
-import validationExampleStyles from "!!raw-loader!./validation/validation-example.component.scss";
-import validationExampleTypescript from "!!raw-loader!./validation/validation-example.component.ts";
 
 
 export const rawExamples = {
@@ -75,6 +72,27 @@ export const rawExamples = {
 			{
 				name: "currency-example.component.scss",
 				content: currencyExampleStyles as string,
+				language: "css" as "css",
+			},		
+		]
+	},
+	customFormattingExample: {
+		name: "CustomFormattingExample",
+		files: [
+		
+			{
+				name: "custom-formatting-example.component.html",
+				content: customFormattingExampleTemplate as string,
+				language: "html" as "html",
+			},		
+			{
+				name: "custom-formatting-example.component.ts",
+				content: customFormattingExampleTypescript as string,
+				language: "typescript" as "typescript",
+			},		
+			{
+				name: "custom-formatting-example.component.scss",
+				content: customFormattingExampleStyles as string,
 				language: "css" as "css",
 			},		
 		]
@@ -121,27 +139,6 @@ export const rawExamples = {
 			},		
 		]
 	},
-	formIntegrationExample: {
-		name: "FormIntegrationExample",
-		files: [
-		
-			{
-				name: "form-integration-example.component.html",
-				content: formIntegrationExampleTemplate as string,
-				language: "html" as "html",
-			},		
-			{
-				name: "form-integration-example.component.ts",
-				content: formIntegrationExampleTypescript as string,
-				language: "typescript" as "typescript",
-			},		
-			{
-				name: "form-integration-example.component.scss",
-				content: formIntegrationExampleStyles as string,
-				language: "css" as "css",
-			},		
-		]
-	},
 	hourExample: {
 		name: "HourExample",
 		files: [
@@ -159,27 +156,6 @@ export const rawExamples = {
 			{
 				name: "hour-example.component.scss",
 				content: hourExampleStyles as string,
-				language: "css" as "css",
-			},		
-		]
-	},
-	loginFormExample: {
-		name: "LoginFormExample",
-		files: [
-		
-			{
-				name: "login-form-example.component.html",
-				content: loginFormExampleTemplate as string,
-				language: "html" as "html",
-			},		
-			{
-				name: "login-form-example.component.ts",
-				content: loginFormExampleTypescript as string,
-				language: "typescript" as "typescript",
-			},		
-			{
-				name: "login-form-example.component.scss",
-				content: loginFormExampleStyles as string,
 				language: "css" as "css",
 			},		
 		]
@@ -247,6 +223,27 @@ export const rawExamples = {
 			},		
 		]
 	},
+	signupFormExample: {
+		name: "SignupFormExample",
+		files: [
+		
+			{
+				name: "signup-form-example.component.html",
+				content: signupFormExampleTemplate as string,
+				language: "html" as "html",
+			},		
+			{
+				name: "signup-form-example.component.ts",
+				content: signupFormExampleTypescript as string,
+				language: "typescript" as "typescript",
+			},		
+			{
+				name: "signup-form-example.component.scss",
+				content: signupFormExampleStyles as string,
+				language: "css" as "css",
+			},		
+		]
+	},
 	suffixExample: {
 		name: "SuffixExample",
 		files: [
@@ -264,27 +261,6 @@ export const rawExamples = {
 			{
 				name: "suffix-example.component.scss",
 				content: suffixExampleStyles as string,
-				language: "css" as "css",
-			},		
-		]
-	},
-	validationExample: {
-		name: "ValidationExample",
-		files: [
-		
-			{
-				name: "validation-example.component.html",
-				content: validationExampleTemplate as string,
-				language: "html" as "html",
-			},		
-			{
-				name: "validation-example.component.ts",
-				content: validationExampleTypescript as string,
-				language: "typescript" as "typescript",
-			},		
-			{
-				name: "validation-example.component.scss",
-				content: validationExampleStyles as string,
 				language: "css" as "css",
 			},		
 		]

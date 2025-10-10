@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/angular';
-import { moduleMetadata } from '@storybook/angular';
 import { FktSelectComponent } from 'frakton-ng/select';
 import {
 	AsyncLoadingExampleComponent,
@@ -11,41 +10,19 @@ import {
 	PreselectedExampleComponent,
 	ValidationExampleComponent
 } from './examples';
+import { customDocsControl } from '../../.storybook/decorators/custom-docs-control';
+import designTokens from './fkt-select-design-tokens.json';
+import { renderComponent } from '../../.storybook/decorators/render-component';
 
 const meta: Meta<FktSelectComponent> = {
 	title: 'Components/Form/Select',
 	component: FktSelectComponent,
 	decorators: [
-		moduleMetadata({
-			imports: [
-				DefaultExampleComponent,
-				PreselectedExampleComponent,
-				LargeListExampleComponent,
-				LoadingExampleComponent,
-				EmptyStateExampleComponent,
-				ValidationExampleComponent,
-				DisabledExampleComponent,
-				AsyncLoadingExampleComponent
-			]
-		})
+		customDocsControl({
+			designTokens: designTokens as any
+		}),
 	],
 	argTypes: {
-		control: {
-			control: false,
-			type: {
-				name: "object",
-				value: {},
-				required: true
-			},
-			table: {
-				category: "Attributes",
-				type: {
-					summary: 'SignalFormControl<T>',
-					detail: "import {SignalFormControl} from 'frakton-ng/forms'"
-				},
-			},
-			description: 'The form control that manages the select state and validation'
-		},
 		label: {
 			control: "text",
 			type: {
@@ -153,12 +130,7 @@ const largeOptionList = Array.from({length: 50}, (_, i) => ({
 }));
 
 export const BasicSelect: Story = {
-	render: (args) => ({
-		template: '<select-default-example [label]="label" [placeholder]="placeholder" [options]="options" [loading]="loading" [noResults]="noResults"></select-default-example>',
-		props: {
-			...args
-		}
-	}),
+	render: renderComponent(DefaultExampleComponent),
 	args: {
 		label: "Select Option",
 		placeholder: "Choose an option",
@@ -175,12 +147,7 @@ export const BasicSelect: Story = {
 };
 
 export const PreSelectedOption: Story = {
-	render: (args) => ({
-		template: '<select-preselected-example [label]="label" [placeholder]="placeholder" [options]="options"></select-preselected-example>',
-		props: {
-			...args
-		}
-	}),
+	render: renderComponent(PreselectedExampleComponent),
 	args: {
 		label: "Country",
 		placeholder: "Select your country",
@@ -196,12 +163,7 @@ export const PreSelectedOption: Story = {
 };
 
 export const LargeOptionsList: Story = {
-	render: (args) => ({
-		template: '<select-large-list-example [label]="label" [placeholder]="placeholder" [options]="options"></select-large-list-example>',
-		props: {
-			...args
-		}
-	}),
+	render: renderComponent(LargeListExampleComponent),
 	args: {
 		label: "Select Item",
 		placeholder: "Select from many options",
@@ -217,12 +179,7 @@ export const LargeOptionsList: Story = {
 };
 
 export const LoadingState: Story = {
-	render: (args) => ({
-		template: '<select-loading-example [label]="label" [placeholder]="placeholder" [options]="options" [loading]="loading"></select-loading-example>',
-		props: {
-			...args
-		}
-	}),
+	render: renderComponent(LoadingExampleComponent),
 	args: {
 		label: "Loading Options",
 		placeholder: "Loading...",
@@ -239,12 +196,7 @@ export const LoadingState: Story = {
 };
 
 export const EmptyState: Story = {
-	render: (args) => ({
-		template: '<select-empty-state-example [label]="label" [placeholder]="placeholder" [options]="options" [loading]="loading" [noResults]="noResults"></select-empty-state-example>',
-		props: {
-			...args
-		}
-	}),
+	render: renderComponent(EmptyStateExampleComponent),
 	args: {
 		label: "No Options Available",
 		placeholder: "Select an option",
@@ -264,12 +216,7 @@ export const EmptyState: Story = {
 };
 
 export const WithValidation: Story = {
-	render: (args) => ({
-		template: '<select-validation-example [label]="label" [placeholder]="placeholder" [options]="options"></select-validation-example>',
-		props: {
-			...args
-		}
-	}),
+	render: renderComponent(ValidationExampleComponent),
 	args: {
 		label: "Priority (Required)",
 		placeholder: "Select priority",
@@ -290,12 +237,7 @@ export const WithValidation: Story = {
 };
 
 export const DisabledState: Story = {
-	render: (args) => ({
-		template: '<select-disabled-example [label]="label" [placeholder]="placeholder" [options]="options"></select-disabled-example>',
-		props: {
-			...args
-		}
-	}),
+	render: renderComponent(DisabledExampleComponent),
 	args: {
 		label: "Disabled Select",
 		placeholder: "Cannot select",
@@ -311,12 +253,7 @@ export const DisabledState: Story = {
 };
 
 export const AsyncLoading: Story = {
-	render: (args) => ({
-		template: '<select-async-loading-example [label]="label" [placeholder]="placeholder"></select-async-loading-example>',
-		props: {
-			...args
-		}
-	}),
+	render: renderComponent(AsyncLoadingExampleComponent),
 	args: {
 		label: "Async Loaded Users",
 		placeholder: "Select a user",

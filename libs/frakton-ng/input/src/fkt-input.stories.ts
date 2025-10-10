@@ -1,67 +1,45 @@
-import type { Meta, StoryObj } from '@storybook/angular';
-import { moduleMetadata } from '@storybook/angular';
+import { Meta, StoryObj } from '@storybook/angular';
 import { FktInputComponent, fktInputTransformers, fktInputTypes } from 'frakton-ng/input';
-import { SignalFormControl, SignalValidators } from 'frakton-ng/forms';
 import {
 	BasicExampleComponent,
 	CurrencyExampleComponent,
+	CustomFormattingExampleComponent,
 	DisabledExampleComponent,
 	EmailExampleComponent,
-	FormIntegrationExampleComponent,
 	HourExampleComponent,
-	LoginFormExampleComponent,
 	NumberExampleComponent,
 	PasswordExampleComponent,
 	PercentExampleComponent,
-	SuffixExampleComponent,
-	ValidationExampleComponent
+	SignupFormExampleComponent,
+	SuffixExampleComponent
 } from './examples';
+import { customDocsControl } from '../../.storybook/decorators/custom-docs-control';
+import { renderComponent } from '../../.storybook/decorators/render-component';
+import designTokens from './fkt-input-design-tokens.json';
 
 const meta: Meta<FktInputComponent> = {
 	title: 'Components/Form/Input',
 	component: FktInputComponent,
+	parameters: {
+		// options: {
+		// 	showPanel: false,
+		// 	bottomPanelHeight: 0
+		// },
+		// controls: {disable: true}
+	},
 	decorators: [
-		moduleMetadata({
-			imports: [
-				BasicExampleComponent,
-				PasswordExampleComponent,
-				NumberExampleComponent,
-				EmailExampleComponent,
-				CurrencyExampleComponent,
-				PercentExampleComponent,
-				HourExampleComponent,
-				ValidationExampleComponent,
-				DisabledExampleComponent,
-				SuffixExampleComponent,
-				FormIntegrationExampleComponent,
-				LoginFormExampleComponent,
-			]
-		})
+		customDocsControl({
+			designTokens: designTokens as any
+		}),
 	],
 	argTypes: {
-		control: {
-			control: false,
-			description: 'The SignalFormControl instance that manages the component state and validation',
-			type: {
-				name: "object",
-				value: {},
-				required: true,
-			},
-			table: {
-				category: 'Attributes',
-				type: {
-					summary: 'SignalFormControl<string>',
-					detail: "import {SignalFormControl} from 'frakton-ng/forms';"
-				},
-			}
-		},
 		label: {
 			control: 'text',
 			description: 'Label text displayed above the input field',
 			table: {
 				category: 'Attributes',
-				type: { summary: 'string' },
-				defaultValue: { summary: "''" }
+				type: {summary: 'string'},
+				defaultValue: {summary: "''"}
 			}
 		},
 		placeholder: {
@@ -69,8 +47,8 @@ const meta: Meta<FktInputComponent> = {
 			description: 'Placeholder text shown when the input is empty',
 			table: {
 				category: 'Attributes',
-				type: { summary: 'string' },
-				defaultValue: { summary: "''" }
+				type: {summary: 'string'},
+				defaultValue: {summary: "''"}
 			}
 		},
 		type: {
@@ -83,10 +61,10 @@ const meta: Meta<FktInputComponent> = {
 					summary: 'FktInputType',
 					detail: "import {FktInputType} from 'frakton-ng/input';"
 				},
-				defaultValue: { summary: "'text'" }
+				defaultValue: {summary: "'text'"}
 			}
 		},
-		transformer: {
+		formatter: {
 			control: 'select',
 			options: [...fktInputTransformers],
 			description: 'Data transformer for automatic formatting of input values',
@@ -96,7 +74,7 @@ const meta: Meta<FktInputComponent> = {
 					summary: 'FktInputTransformer',
 					detail: "import {FktInputTransformer} from 'frakton-ng/input';"
 				},
-				defaultValue: { summary: 'undefined' }
+				defaultValue: {summary: 'undefined'}
 			}
 		},
 		spellcheck: {
@@ -104,8 +82,8 @@ const meta: Meta<FktInputComponent> = {
 			description: 'Enable or disable spell checking for the input',
 			table: {
 				category: 'Attributes',
-				type: { summary: 'boolean' },
-				defaultValue: { summary: 'true' }
+				type: {summary: 'boolean'},
+				defaultValue: {summary: 'true'}
 			}
 		}
 	}
@@ -113,22 +91,19 @@ const meta: Meta<FktInputComponent> = {
 
 type Story = StoryObj<FktInputComponent>;
 
-// Default text input story
+
 export const BasicInput: Story = {
-	render: (args) => ({
-		template: `<input-basic-example [control]="control" [label]="label" [placeholder]="placeholder" [type]="type" [spellcheck]="spellcheck"></input-basic-example>`,
-		props: {
-			...args
-		}
-	}),
+	render: renderComponent(BasicExampleComponent),
 	args: {
-		control: new SignalFormControl(''),
 		label: 'Full Name',
 		placeholder: 'Enter your full name',
 		type: 'text',
 		spellcheck: true
 	},
 	parameters: {
+		options: {
+			showPanel: true,
+		},
 		docs: {
 			description: {
 				story: 'A basic text input field with label and placeholder text for general text entry.'
@@ -137,16 +112,10 @@ export const BasicInput: Story = {
 	}
 };
 
-// Password input story
+
 export const PasswordField: Story = {
-	render: (args) => ({
-		template: `<input-password-example [control]="control" [label]="label" [placeholder]="placeholder"></input-password-example>`,
-		props: {
-			...args
-		}
-	}),
+	render: renderComponent(PasswordExampleComponent),
 	args: {
-		control: new SignalFormControl(''),
 		label: 'Password',
 		placeholder: 'Enter your password'
 	},
@@ -160,14 +129,8 @@ export const PasswordField: Story = {
 };
 
 export const EmailField: Story = {
-	render: (args) => ({
-		template: `<input-email-example [control]="control" [label]="label" [placeholder]="placeholder"></input-email-example>`,
-		props: {
-			...args
-		}
-	}),
+	render: renderComponent(EmailExampleComponent),
 	args: {
-		control: new SignalFormControl(''),
 		label: 'Email Address',
 		placeholder: 'Enter your email address'
 	},
@@ -180,16 +143,10 @@ export const EmailField: Story = {
 	}
 };
 
-// Number input story
+
 export const NumericField: Story = {
-	render: (args) => ({
-		template: `<input-number-example [control]="control" [label]="label" [placeholder]="placeholder"></input-number-example>`,
-		props: {
-			...args
-		}
-	}),
+	render: renderComponent(NumberExampleComponent),
 	args: {
-		control: new SignalFormControl(''),
 		label: 'Age',
 		placeholder: 'Enter your age'
 	},
@@ -202,16 +159,10 @@ export const NumericField: Story = {
 	}
 };
 
-// Currency transformer story
+
 export const CurrencyTransformer: Story = {
-	render: (args) => ({
-		template: `<input-currency-example [control]="control" [label]="label" [placeholder]="placeholder"></input-currency-example>`,
-		props: {
-			...args
-		}
-	}),
+	render: renderComponent(CurrencyExampleComponent),
 	args: {
-		control: new SignalFormControl(''),
 		label: 'Product Price',
 		placeholder: '0.00'
 	},
@@ -224,16 +175,10 @@ export const CurrencyTransformer: Story = {
 	}
 };
 
-// Percentage transformer story
+
 export const PercentTransformer: Story = {
-	render: (args) => ({
-		template: `<input-percent-example [control]="control" [label]="label" [placeholder]="placeholder"></input-percent-example>`,
-		props: {
-			...args
-		}
-	}),
+	render: renderComponent(PercentExampleComponent),
 	args: {
-		control: new SignalFormControl(''),
 		label: 'Completion Rate',
 		placeholder: 'Enter percentage'
 	},
@@ -246,16 +191,10 @@ export const PercentTransformer: Story = {
 	}
 };
 
-// Hour transformer story
+
 export const HourTransformer: Story = {
-	render: (args) => ({
-		template: `<input-hour-example [control]="control" [label]="label" [placeholder]="placeholder"></input-hour-example>`,
-		props: {
-			...args
-		}
-	}),
+	render: renderComponent(HourExampleComponent),
 	args: {
-		control: new SignalFormControl(''),
 		label: 'Work Duration',
 		placeholder: 'Enter time duration'
 	},
@@ -268,47 +207,26 @@ export const HourTransformer: Story = {
 	}
 };
 
-// Validation story
-export const WithValidation: Story = {
-	render: (args) => ({
-		template: `<input-validation-example [control]="control" [label]="label" [placeholder]="placeholder"></input-validation-example>`,
-		props: {
-			...args
-		}
-	}),
+
+export const CustomFormatting: Story = {
+	render: renderComponent(CustomFormattingExampleComponent),
 	args: {
-		control: new SignalFormControl('', {
-			validators: [
-				SignalValidators.required(),
-				SignalValidators.email()
-			]
-		}),
-		label: 'Email Address (Required)',
-		placeholder: 'Enter your email address'
+		label: 'CPF (Required)',
+		placeholder: 'Enter your CPF',
 	},
 	parameters: {
 		docs: {
 			description: {
-				story: 'Input with validation rules showing error states and validation feedback in real-time.'
+				story: 'Input with custom formatting showing error states and validation feedback in real-time.'
 			}
 		}
 	}
 };
 
-// Disabled state story
+
 export const DisabledState: Story = {
-	render: (args) => ({
-		template: `<input-disabled-example [control]="control" [label]="label" [placeholder]="placeholder"></input-disabled-example>`,
-		props: {
-			...args
-		}
-	}),
+	render: renderComponent(DisabledExampleComponent),
 	args: {
-		control: (() => {
-			const ctrl = new SignalFormControl('This field is disabled');
-			ctrl.disable();
-			return ctrl;
-		})(),
 		label: 'Disabled Field',
 		placeholder: 'This field is disabled'
 	},
@@ -321,16 +239,10 @@ export const DisabledState: Story = {
 	}
 };
 
-// Suffix content story
+
 export const WithCustomSuffix: Story = {
-	render: (args) => ({
-		template: `<input-suffix-example [control]="control" [label]="label" [placeholder]="placeholder"></input-suffix-example>`,
-		props: {
-			...args
-		}
-	}),
+	render: renderComponent(SuffixExampleComponent),
 	args: {
-		control: new SignalFormControl(''),
 		label: 'Search Products',
 		placeholder: 'Search products...'
 	},
@@ -343,19 +255,14 @@ export const WithCustomSuffix: Story = {
 	}
 };
 
-// Form integration story
-export const FormIntegration: Story = {
-	render: (args) => ({
-		template: `<input-form-integration-example></input-form-integration-example>`,
-		props: {
-			...args
-		}
-	}),
+
+export const Signup: Story = {
+	render: renderComponent(SignupFormExampleComponent),
 	args: {},
 	parameters: {
 		docs: {
 			description: {
-				story: 'Complete form integration example showing multiple input types working together with validation.'
+				story: 'A simple signup example with name, email, password and password confirmation fields'
 			}
 		}
 	}

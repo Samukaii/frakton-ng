@@ -1,37 +1,43 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, signal } from '@angular/core';
+import { Control, email, form, maxLength, minLength, required } from '@angular/forms/signals';
 import { FktTextareaComponent } from 'frakton-ng/textarea';
 import { FktInputComponent } from 'frakton-ng/input';
-import { SignalFormBuilder, SignalFormGroupValue, SignalValidators } from 'frakton-ng/forms';
 import { JsonPipe } from '@angular/common';
 import { FktButtonComponent } from 'frakton-ng/button';
-import { FktFormComponent } from 'frakton-ng/form';
+import { Generic } from 'frakton-ng/internal/types';
+import { FktFieldErrorComponent } from 'frakton-ng/field-error';
 
 @Component({
 	selector: 'textarea-form-integration-example',
-	imports: [FktTextareaComponent, FktInputComponent, JsonPipe, FktButtonComponent, FktFormComponent],
+	imports: [FktTextareaComponent, FktInputComponent, JsonPipe, FktButtonComponent, Control, FktFieldErrorComponent],
 	templateUrl: './form-integration-example.component.html',
 	styleUrl: './form-integration-example.component.scss'
 })
 export class FormIntegrationExampleComponent {
-	private fb = inject(SignalFormBuilder);
-
-	protected form = this.fb.group({
-		name: ['', SignalValidators.required()],
-		email: ['', [SignalValidators.required(), SignalValidators.email()]],
-		message: ['', [
-			SignalValidators.required(),
-			SignalValidators.minLength(10),
-			SignalValidators.maxLength(1000)
-		]],
+	protected data = signal({
+		name: '',
+		email: '',
+		message: '',
 		additionalInfo: ''
 	});
 
-	submittedData = signal<SignalFormGroupValue<typeof this.form> | null>(null);
+	protected form = form(this.data, path => {
+		required(path.name, {message: "Field is required"});
+
+		required(path.email, {message: "Field is required"});
+		email(path.email, {message: "Email is invalid"});
+
+		required(path.message, {message: "Field is required"});
+		minLength(path.message, 10,  {message: "Min length is 10"});
+		maxLength(path.message, 1000,  {message: "Max length is 1000"});
+	});
+
+	submittedData = signal<Generic | null>(null);
 
 	handleSubmit() {
-		if (this.form.valid()) {
+		if (this.form().valid()) {
 			const formData = {
-				...this.form.value(),
+				...this.form().value(),
 				submittedAt: new Date().toISOString()
 			};
 
@@ -47,8 +53,13 @@ export class FormIntegrationExampleComponent {
 	}
 
 	resetForm() {
-		this.form.reset();
-		this.form.markAllAsUntouched();
+		this.form().reset();
+		this.form().value.set({
+			name: '',
+			email: '',
+			message: '',
+			additionalInfo: ''
+		});
 		this.submittedData.set(null);
 	}
 }

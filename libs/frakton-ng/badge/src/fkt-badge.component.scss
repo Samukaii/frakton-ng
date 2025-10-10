@@ -15,40 +15,49 @@
 	font-size: var(--font-size-sm);
 
 	&.badge--opaque {
-		&.badge--red {
+		&.badge--danger {
 			background-color: var(--color-red-500);
 		}
 
-		&.badge--blue {
+		&.badge--info {
 			background-color: var(--color-blue-500);
 		}
 
-		&.badge--orange {
+		&.badge--accent {
+			background-color: var(--color-yellow-500);
+		}
+
+		&.badge--warning {
 			background-color: var(--color-orange-500);
 		}
 
-		&.badge--green {
+		&.badge--success {
 			background-color: var(--color-green-500);
 		}
 	}
 
 	&.badge--faded {
-		&.badge--red {
+		&.badge--danger {
 			background-color: var(--color-red-200);
 			color: var(--color-neutral-950);
 		}
 
-		&.badge--blue {
+		&.badge--info {
 			background-color: var(--color-blue-200);
 			color: var(--color-neutral-950);
 		}
 
-		&.badge--orange {
+		&.badge--warning {
 			background-color: var(--color-orange-200);
 			color: var(--color-neutral-950);
 		}
 
-		&.badge--green {
+		&.badge--accent {
+			background-color: var(--color-yellow-200);
+			color: var(--color-neutral-950);
+		}
+
+		&.badge--success {
 			background-color: var(--color-green-200);
 			color: var(--color-neutral-950);
 		}

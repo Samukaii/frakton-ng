@@ -1,0 +1,42 @@
+<div class="bar" (mousedown)="startMovement($event)" #bar>
+	<div class="horizontal" [style.background]="backgroundColor()"></div>
+	<div class="vertical"></div>
+</div>
+
+<div
+	role="presentation"
+	(mousedown)="startMovement($event)"
+	[style.left]="position().left"
+	[style.top]="position().top"
+	class="picker"
+>
+	<span [style.background-color]="pickerColor()">
+	<input
+		   aria-label="Color picker"
+		   min="0" max="100"
+		   step="1"
+		   aria-roledescription="2D slider"
+		   [attr.aria-valuetext]="description()"
+		   aria-orientation="horizontal"
+		   [tabIndex]="movingSaturation() ? 0 : -1"
+		   (keydown.arrowUp)="updateBrightness($event, 1)"
+		   (keydown.arrowDown)="updateBrightness($event, -1)"
+		   (keydown.arrowRight)="updateSaturation($event, 1)"
+		   (keydown.arrowLeft)="updateSaturation($event, -1)"
+		   type="range"
+		   value="62">
+	<input
+		aria-label="Color picker"
+		min="0" max="100" step="1"
+		aria-roledescription="2D slider"
+		[attr.aria-valuetext]="description()"
+		aria-orientation="vertical"
+		[tabIndex]="movingLightness() ? 0 : -1"
+		(keydown.arrowUp)="updateBrightness($event, 1)"
+		(keydown.arrowDown)="updateBrightness($event, -1)"
+		(keydown.arrowRight)="updateSaturation($event, 1)"
+		(keydown.arrowLeft)="updateSaturation($event, -1)"
+		tabindex="-1" aria-hidden="true"
+		type="range" value="51">
+	</span>
+</div>

@@ -1,0 +1,90 @@
+:host {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+
+	fkt-custom-controls-tabs {
+		--fkt-input-vertical-padding: var(--space-xs);
+		--fkt-input-horizontal-padding: var(--space-sm);
+		--fkt-input-font-size: var(--font-size-sm);
+		--fkt-input-border-radius: var(--radius-md);
+
+		--fkt-select-vertical-padding: var(--space-xs);
+		--fkt-select-horizontal-padding: var(--space-sm);
+		--fkt-select-font-size: var(--font-size-sm);
+		--fkt-select-border-radius: var(--radius-md);
+
+		--fkt-controls-table-background: var(--color-neutral-50);
+		--fkt-controls-table-text-color: var(--color-neutral-600);
+		--fkt-controls-table-border-color: var(--color-neutral-400);
+		--fkt-controls-table-component-text-color: var(--color-primary);
+		--fkt-controls-table-component-bg: rgba(60, 67, 77, 0.08);
+		--fkt-controls-table-component-active-bg: var(--color-primary);
+		--fkt-controls-table-component-active-text-color: var(--color-neutral-50);
+		--fkt-controls-table-component-hover-bg: var(--color-neutral-300);
+		--fkt-controls-table-category-bg: var(--color-neutral-200);
+		--fkt-controls-table-category-text-color: var(--color-primary);
+		--fkt-controls-table-numeric-control-bg: var(--color-neutral-300);
+		--fkt-controls-table-numeric-control-color: var(--color-neutral-500);
+		--fkt-controls-table-numeric-control-hover-bg: var(--color-neutral-400);
+
+		--fkt-controls-tabs-background: var(--color-neutral-50);
+		--fkt-controls-tabs-border-top-color: var(--color-neutral-400);
+		--fkt-controls-tabs-border-bottom-color: var(--color-neutral-400);
+		--fkt-controls-tabs-text-color: var(--color-neutral-600);
+		--fkt-controls-tabs-action-hover-color: var(--color-accent-translucent);
+		--fkt-controls-tabs-action-text-color: var(--color-accent);
+	}
+
+	&.view-mode--story fkt-custom-controls-tabs {
+		--fkt-input-border-color: var(--color-neutral-500);
+		--fkt-input-label-color: var(--color-neutral-100);
+		--fkt-input-text-color: var(--color-neutral-100);
+
+		--fkt-select-border-color: var(--color-neutral-500);
+
+		--fkt-color-picker-border-color: var(--color-neutral-500);
+		--fkt-color-picker-label-color: var(--color-neutral-400);
+		--fkt-color-picker-button-hover-bg: var(--color-neutral-600);
+
+		--fkt-controls-table-background: var(--color-neutral-700);
+		--fkt-controls-table-text-color: var(--color-neutral-400);
+		--fkt-controls-table-border-color: var(--color-neutral-900);
+		--fkt-controls-table-component-text-color: var(--color-neutral-50);
+		--fkt-controls-table-component-bg: var(--color-neutral-600);
+		--fkt-controls-table-component-active-bg: var(--color-primary);
+		--fkt-controls-table-component-active-text-color: var(--color-neutral-50);
+		--fkt-controls-table-component-hover-bg: var(--color-neutral-500);
+		--fkt-controls-table-category-bg: var(--color-primary);
+		--fkt-controls-table-category-text-color: var(--color-neutral-50);
+		--fkt-controls-table-numeric-control-bg: var(--color-neutral-600);
+		--fkt-controls-table-numeric-control-hover-bg: var(--color-neutral-500);
+		--fkt-controls-table-numeric-control-color: var(--color-neutral-50);
+
+		--fkt-controls-tabs-background: var(--color-neutral-700);
+		--fkt-controls-tabs-border-top-color: transparent;
+		--fkt-controls-tabs-border-bottom-color: var(--color-neutral-900);
+		--fkt-controls-tabs-text-color: var(--color-neutral-400);
+		--fkt-controls-tabs-action-hover-color: var(--color-accent-translucent);
+		--fkt-controls-tabs-action-text-color: var(--color-accent);
+
+		--fkt-color-picker-modal-background-color: var(--color-neutral-600);
+		--fkt-color-picker-modal-text-color: var(--color-neutral-50);
+		--fkt-color-picker-preview-value-color: var(--color-neutral-400);
+		--fkt-color-control-border-color: var(--color-neutral-500);
+
+		--fkt-button-primary-color: var(--color-neutral-50);
+		--fkt-button-on-primary-color: var(--color-primary);
+		--fkt-button-primary-translucent-color: rgba(255, 255, 255, 0.2);
+
+		--fkt-button-danger-color: #fb7777;
+		--fkt-button-danger-translucent-color: #fb777747;
+	}
+}
+
+
+.container {
+	min-height: 400px;
+	padding: 1rem;
+	height: 100%;
+}

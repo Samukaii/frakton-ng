@@ -66,22 +66,22 @@ export const Preview: StoryObj = {
 		options: [
 			{
 				id: "opt-1",
-				color: "green",
+				color: "success",
 				name: "Success"
 			},
 			{
 				id: "opt-2",
-				color: "red",
+				color: "danger",
 				name: "Cancelled"
 			},
 			{
 				id: "opt-3",
-				color: "blue",
+				color: "info",
 				name: "Reserved"
 			},
 			{
 				id: "opt-4",
-				color: "orange",
+				color: "warning",
 				name: "Paused"
 			},
 		],
@@ -103,11 +103,11 @@ export const OrderStatus: StoryObj = {
 	}),
 	args: {
 		options: [
-			{id: "pending", color: "orange", name: "Pending"},
-			{id: "processing", color: "blue", name: "Processing"},
-			{id: "shipped", color: "blue", name: "Shipped"},
-			{id: "delivered", color: "green", name: "Delivered"},
-			{id: "cancelled", color: "red", name: "Cancelled"}
+			{id: "pending", color: "warning", name: "Pending"},
+			{id: "processing", color: "info", name: "Processing"},
+			{id: "shipped", color: "info", name: "Shipped"},
+			{id: "delivered", color: "success", name: "Delivered"},
+			{id: "cancelled", color: "danger", name: "Cancelled"}
 		],
 		currentBadgeId: 'processing',
 	}
@@ -127,10 +127,10 @@ export const Priority: StoryObj = {
 	}),
 	args: {
 		options: [
-			{id: "low", color: "green", name: "Low"},
-			{id: "medium", color: "orange", name: "Medium"},
-			{id: "high", color: "red", name: "High"},
-			{id: "critical", color: "red", name: "Critical"}
+			{id: "low", color: "success", name: "Low"},
+			{id: "medium", color: "warning", name: "Medium"},
+			{id: "high", color: "danger", name: "High"},
+			{id: "critical", color: "danger", name: "Critical"}
 		],
 		currentBadgeId: 'medium',
 	}

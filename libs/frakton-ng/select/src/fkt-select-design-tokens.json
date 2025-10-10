@@ -1,0 +1,74 @@
+[
+  {
+    "description": "Vertical padding inside the select field (top and bottom spacing between border and content).",
+    "name": "--fkt-select-vertical-padding",
+    "reference": "--space-md",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": "1rem"
+  },
+  {
+    "description": "Horizontal padding inside the select field (left and right spacing between border and content).",
+    "name": "--fkt-select-horizontal-padding",
+    "reference": "--space-md",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": "1rem"
+  },
+  {
+    "description": "Border color of the select in its normal (default) state.",
+    "name": "--fkt-select-border-color",
+    "reference": "--color-neutral-400",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#D1D5DBFF"
+  },
+  {
+    "description": "Border color of the select when it gets focused",
+    "name": "--fkt-select-border-focus-color",
+    "reference": "--color-brand-secondary",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#ffb940"
+  },
+  {
+    "description": "Color of the label in its normal (default) state.",
+    "name": "--fkt-select-label-color",
+    "reference": "--color-neutral-500",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#6B7280FF"
+  },
+  {
+    "description": "Color of the label when it gets focused",
+    "name": "--fkt-select-label-focus-color",
+    "reference": "--color-brand-secondary",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#ffb940"
+  },
+  {
+    "description": "Border radius for select",
+    "name": "--fkt-select-border-radius",
+    "reference": "--radius-lg",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": ".5rem"
+  },
+  {
+    "description": "Font size for select text and placeholder.",
+    "name": "--fkt-select-font-size",
+    "reference": "--font-size-md",
+    "category": "Typography",
+    "type": "size",
+    "defaultValue": "1rem"
+  },
+  {
+    "description": "Color for text into select",
+    "name": "--fkt-select-text-color",
+    "reference": "--color-neutral-900",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#111827FF"
+  }
+]

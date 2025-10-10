@@ -11,5 +11,5 @@ import { FktIconComponent } from 'frakton-ng/icon';
 })
 export class FktTooltipOverlayDialogComponent {
 	text = input('Tooltip message');
-	type = input<'info' | 'warning' | 'error' | 'success'>('info');
+	type = input<'info' | 'warning' | 'danger' | 'success'>('info');
 }

@@ -21,6 +21,28 @@
 	font-family: Frakton, sans-serif;
 }
 
+.fkt-sr-only {
+	position: absolute !important;
+	width: 1px !important;
+	height: 1px !important;
+	padding: 0 !important;
+	margin: -1px !important;
+	overflow: hidden !important;
+	clip: rect(0, 0, 0, 0) !important;
+	white-space: nowrap !important;
+	border: 0 !important;
+}
+
+.fkt-transparency-bg {
+	--size: 25px;
+	--color1: #f3f3f3;
+	--color2: #d3d3d3;
+
+	background:
+		repeating-conic-gradient(var(--color1) 0 25%, var(--color2) 0 50%)
+		50% / var(--size) var(--size);
+}
+
 :root {
 	/* Spacing */
 	--space-3xs: .25rem; /* 4px */

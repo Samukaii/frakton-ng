@@ -96,7 +96,7 @@ export class FktDialogOverviewExampleComponent {
 			actions: {
 				primary: {
 					text: 'Delete',
-					color: 'red',
+					color: 'danger',
 					click: () => {
 						console.log('Item deleted!');
 					}

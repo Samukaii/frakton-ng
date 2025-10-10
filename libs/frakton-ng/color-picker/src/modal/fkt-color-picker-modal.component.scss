@@ -1,0 +1,65 @@
+// <design-tokens>
+/*
+Modal background color
+@name --fkt-color-picker-modal-background-color
+@reference --color-neutral-50
+@component Modal
+@category Colors
+@type color
+ */
+$modal-background-color: var(--fkt-color-picker-modal-background-color, var(--color-neutral-50));
+
+/*
+Modal text color
+@name --fkt-color-picker-modal-text-color
+@reference --color-neutral-950
+@component Modal
+@category Colors
+@type color
+ */
+$modal-text-color: var(--fkt-color-picker-modal-text-color, var(--color-neutral-950));
+
+/*
+Spacing between elements in the color picker modal.
+@name --fkt-color-picker-modal-gap
+@reference --space-xs
+@component Modal
+@category Spacing
+@type size
+ */
+$modal-gap: var(--fkt-color-picker-modal-gap, var(--space-xs));
+
+/*
+Height of the hue and alpha selector bars.
+@name --fkt-color-picker-modal-selector-height
+@reference 24px
+@component Modal
+@category Spacing
+@type size
+ */
+$selector-height: var(--fkt-color-picker-modal-selector-height, 24px);
+// </design-tokens>
+
+:host {
+	display: flex;
+	flex-direction: column;
+	gap: $modal-gap;
+	background-color: $modal-background-color;
+	color: $modal-text-color;
+
+	--fkt-select-vertical-padding: .5rem;
+	--fkt-select-horizontal-padding: .3rem;
+	--fkt-select-border-radius: .25rem;
+	--fkt-select-border-color: var(--color-neutral-500);
+	--fkt-select-text-color: $modal-text-color;
+
+	--fkt-input-text-color: $modal-text-color;
+}
+
+fkt-alpha-selector, fkt-hue-selector {
+	height: $selector-height;
+}
+
+fkt-saturation-lightness-selector {
+	height: 100%;
+}

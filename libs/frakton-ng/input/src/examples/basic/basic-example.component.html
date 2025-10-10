@@ -1,13 +1,9 @@
 <div class="container">
-			<fkt-input
-				[control]="control()"
-				[label]="label()"
-				[placeholder]="placeholder()"
-				[type]="type()"
-				[spellcheck]="spellcheck()"
-			/>
-
-			<div class="container__text">
-				<p>Current value: {{ control().value() || '(empty)' }}</p>
-			</div>
-		</div>
+	<fkt-input
+		[control]="field"
+		[label]="label()"
+		[placeholder]="placeholder()"
+		[type]="type()"
+		[spellcheck]="spellcheck()"
+	/>
+</div>

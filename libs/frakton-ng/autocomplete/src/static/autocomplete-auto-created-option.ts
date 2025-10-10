@@ -1,1 +1,1 @@
-export const AUTOCOMPLETE_AUTO_CREATED_OPTION = "autocomplete-auto-created-option";
+export const AUTOCOMPLETE_ADD_OPTION = "fkt-autocomplete-add-option-id";

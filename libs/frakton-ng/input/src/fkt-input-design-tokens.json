@@ -1,0 +1,74 @@
+[
+  {
+    "description": "Vertical padding inside the input field (top and bottom spacing between border and content).",
+    "name": "--fkt-input-vertical-padding",
+    "reference": "--space-md",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": "1rem"
+  },
+  {
+    "description": "Horizontal padding inside the input field (left and right spacing between border and content).",
+    "name": "--fkt-input-horizontal-padding",
+    "reference": "--space-md",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": "1rem"
+  },
+  {
+    "description": "Border color of the input in its normal (default) state.",
+    "name": "--fkt-input-border-color",
+    "reference": "--color-neutral-400",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#D1D5DBFF"
+  },
+  {
+    "description": "Border color of the input when it gets focused",
+    "name": "--fkt-input-border-focus-color",
+    "reference": "--color-brand-secondary",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#ffb940"
+  },
+  {
+    "description": "Color of the label in its normal (default) state.",
+    "name": "--fkt-input-label-color",
+    "reference": "--color-neutral-500",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#6B7280FF"
+  },
+  {
+    "description": "Color of the label when it gets focused",
+    "name": "--fkt-input-label-focus-color",
+    "reference": "--color-brand-secondary",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#ffb940"
+  },
+  {
+    "description": "Border radius for input",
+    "name": "--fkt-input-border-radius",
+    "reference": "--radius-lg",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": ".5rem"
+  },
+  {
+    "description": "Font size for input text and placeholder.",
+    "name": "--fkt-input-font-size",
+    "reference": "--font-size-md",
+    "category": "Typography",
+    "type": "size",
+    "defaultValue": "1rem"
+  },
+  {
+    "description": "Color for text written into input",
+    "name": "--fkt-input-text-color",
+    "reference": "--color-neutral-900",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#111827FF"
+  }
+]

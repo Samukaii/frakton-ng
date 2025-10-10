@@ -1,14 +1,26 @@
 import type { Meta, StoryObj } from '@storybook/angular';
-import { FktButtonComponent, fktButtonIconPosition, FktButtonIconPosition } from 'frakton-ng/button';
-import { FktComponentInputs } from 'frakton-ng/internal/types';
+import {
+	FktButtonComponent,
+	fktButtonIconPosition,
+	FktButtonIconPosition,
+	fktButtonThemes,
+	fktButtonShapes
+} from 'frakton-ng/button';
 import { fktColors } from 'frakton-ng/core';
-import { fktButtonThemes, fktButtonVariants } from 'frakton-ng/button';
 import { fontIconNames } from 'frakton-ng/icon';
-import { JsonPipe } from '@angular/common';
+import { TextVariantsExampleComponent, IconVariantsExampleComponent } from './examples';
+import { customDocsControl } from '../../.storybook/decorators/custom-docs-control';
+import { renderComponent } from '../../.storybook/decorators/render-component';
+import designTokens from './fkt-button-design-tokens.json';
 
 const meta: Meta<FktButtonComponent> = {
 	title: 'Components/Button',
 	component: FktButtonComponent,
+	decorators: [
+		customDocsControl({
+			designTokens: designTokens as any
+		}),
+	],
 	argTypes: {
 		loading: {
 			control: 'boolean',
@@ -86,14 +98,14 @@ const meta: Meta<FktButtonComponent> = {
 				},
 			},
 		},
-		variant: {
+		shape: {
 			control: 'select',
-			options: fktButtonVariants,
+			options: fktButtonShapes,
 			table: {
 				category: "Attributes",
 				type: {
-					summary: 'FktButtonVariant',
-					detail: "import {FktButtonVariant} from 'frakton-ng/button'",
+					summary: 'FktButtonShape',
+					detail: "import {FktButtonShape} from 'frakton-ng/button'",
 				},
 				defaultValue: {
 					summary: "'rounded'",
@@ -132,6 +144,7 @@ const meta: Meta<FktButtonComponent> = {
 };
 
 export const Raised: StoryObj = {
+	render: renderComponent(FktButtonComponent),
 	parameters: {
 		docs: {
 			description: {
@@ -147,6 +160,7 @@ export const Raised: StoryObj = {
 };
 
 export const Stroked: StoryObj = {
+	render: renderComponent(FktButtonComponent),
 	parameters: {
 		docs: {
 			description: {
@@ -163,6 +177,7 @@ export const Stroked: StoryObj = {
 };
 
 export const Disabled: StoryObj = {
+	render: renderComponent(FktButtonComponent),
 	parameters: {
 		docs: {
 			description: {
@@ -179,6 +194,7 @@ export const Disabled: StoryObj = {
 };
 
 export const WithIcon: StoryObj = {
+	render: renderComponent(FktButtonComponent),
 	parameters: {
 		docs: {
 			description: {
@@ -196,6 +212,7 @@ export const WithIcon: StoryObj = {
 };
 
 export const Basic: StoryObj = {
+	render: renderComponent(FktButtonComponent),
 	parameters: {
 		docs: {
 			description: {
@@ -212,6 +229,7 @@ export const Basic: StoryObj = {
 };
 
 export const IconOnly: StoryObj = {
+	render: renderComponent(FktButtonComponent),
 	parameters: {
 		docs: {
 			description: {
@@ -228,6 +246,7 @@ export const IconOnly: StoryObj = {
 };
 
 export const RectIcon: StoryObj = {
+	render: renderComponent(FktButtonComponent),
 	parameters: {
 		docs: {
 			description: {
@@ -237,14 +256,15 @@ export const RectIcon: StoryObj = {
 	},
 	args: {
 		icon: 'trash',
-		variant: 'rect',
+		shape: 'rect',
 		theme: 'basic',
-		color: 'red',
+		color: 'danger',
 		disabled: false
 	}
 };
 
 export const Loading: StoryObj = {
+	render: renderComponent(FktButtonComponent),
 	parameters: {
 		docs: {
 			description: {
@@ -263,6 +283,7 @@ export const Loading: StoryObj = {
 };
 
 export const WithLeftIcon: StoryObj = {
+	render: renderComponent(FktButtonComponent),
 	parameters: {
 		docs: {
 			description: {
@@ -275,209 +296,37 @@ export const WithLeftIcon: StoryObj = {
 		icon: 'trash',
 		iconPosition: 'left',
 		theme: 'raised',
-		color: 'green',
+		color: 'success',
 		disabled: false
 	}
 };
 
 export const TextVariants: StoryObj = {
-	render: (args) => ({
-		props: args,
-		template: `
-      <div class="demo-variants">
-        <div class="demo-variants__column">
-          <h2 class="demo-variants__title">Rounded</h2>
-          <div class="demo-variants__row">
-            <strong class="demo-variants__label">Raised</strong>
-            <fkt-button class="demo-variants__button" variant="rounded" text="Primary" theme="raised" color="primary"/>
-            <fkt-button class="demo-variants__button" variant="rounded" text="Green" theme="raised" color="green"/>
-            <fkt-button class="demo-variants__button" variant="rounded" text="Red" theme="raised" color="red"/>
-            <fkt-button class="demo-variants__button" variant="rounded" text="Yellow" theme="raised" color="yellow"/>
-          </div>
-          <div class="demo-variants__row">
-            <strong class="demo-variants__label">Stroked</strong>
-            <fkt-button class="demo-variants__button" variant="rounded" text="Primary" theme="stroked" color="primary"/>
-            <fkt-button class="demo-variants__button" variant="rounded" text="Green" theme="stroked" color="green"/>
-            <fkt-button class="demo-variants__button" variant="rounded" text="Red" theme="stroked" color="red"/>
-            <fkt-button class="demo-variants__button" variant="rounded" text="Yellow" theme="stroked" color="yellow"/>
-          </div>
-          <div class="demo-variants__row">
-            <strong class="demo-variants__label">Basic</strong>
-            <fkt-button class="demo-variants__button" variant="rounded" text="Primary" theme="basic" color="primary"/>
-            <fkt-button class="demo-variants__button" variant="rounded" text="Green" theme="basic" color="green"/>
-            <fkt-button class="demo-variants__button" variant="rounded" text="Red" theme="basic" color="red"/>
-            <fkt-button class="demo-variants__button" variant="rounded" text="Yellow" theme="basic" color="yellow"/>
-          </div>
-        </div>
-        <div class="demo-variants__column">
-          <h2 class="demo-variants__title">Rect</h2>
-          <div class="demo-variants__row">
-            <strong class="demo-variants__label">Raised</strong>
-            <fkt-button class="demo-variants__button" variant="rect" text="Primary" theme="raised" color="primary"/>
-            <fkt-button class="demo-variants__button" variant="rect" text="Green" theme="raised" color="green"/>
-            <fkt-button class="demo-variants__button" variant="rect" text="Red" theme="raised" color="red"/>
-            <fkt-button class="demo-variants__button" variant="rect" text="Yellow" theme="raised" color="yellow"/>
-          </div>
-          <div class="demo-variants__row">
-            <strong class="demo-variants__label">Stroked</strong>
-            <fkt-button class="demo-variants__button" variant="rect" text="Primary" theme="stroked" color="primary"/>
-            <fkt-button class="demo-variants__button" variant="rect" text="Green" theme="stroked" color="green"/>
-            <fkt-button class="demo-variants__button" variant="rect" text="Red" theme="stroked" color="red"/>
-            <fkt-button class="demo-variants__button" variant="rect" text="Yellow" theme="stroked" color="yellow"/>
-          </div>
-          <div class="demo-variants__row">
-            <strong class="demo-variants__label">Basic</strong>
-            <fkt-button class="demo-variants__button" variant="rect" text="Primary" theme="basic" color="primary"/>
-            <fkt-button class="demo-variants__button" variant="rect" text="Green" theme="basic" color="green"/>
-            <fkt-button class="demo-variants__button" variant="rect" text="Red" theme="basic" color="red"/>
-            <fkt-button class="demo-variants__button" variant="rect" text="Yellow" theme="basic" color="yellow"/>
-          </div>
-        </div>
-      </div>
-    `,
-		styles: [`
-      .demo-variants {
-        display: flex;
-        gap: var(--space-2xl);
-        justify-content: flex-start;
-        align-items: flex-start;
-        padding: var(--space-md) 0;
-      }
-      .demo-variants__column {
-        display: flex;
-        flex-direction: column;
-        gap: var(--space-xl);
-        min-width: 300px;
-      }
-      .demo-variants__title {
-        font-size: var(--font-size-xl);
-        font-weight: var(--font-semibold);
-        text-align: center;
-        border-bottom: 2px solid #e5e7eb;
-        margin-bottom: var(--space-sm);
-        padding-bottom: var(--space-3xs);
-        letter-spacing: 0.02em;
-      }
-      .demo-variants__row {
-        display: flex;
-        align-items: center;
-        gap: var(--space-sm);
-        margin-bottom: 0;
-      }
-      .demo-variants__label {
-        font-weight: var(--font-semibold);
-        min-width: 60px;
-        display: inline-block;
-      }
-      .demo-variants__button {
-        font-size: var(--font-size-md);
-        white-space: nowrap;
-      }
-    `]
-	}),
+	render: renderComponent(TextVariantsExampleComponent),
+	parameters: {
+		docs: {
+			description: {
+				story: "Comprehensive showcase of all button text variants across different themes, colors, and shapes."
+			}
+		}
+	},
 	args: {},
 };
 
 export const IconVariants: StoryObj = {
-	render: (args) => ({
-		props: args,
-		template: `
-      <div class="demo-variants">
-        <div class="demo-variants__column">
-          <h2 class="demo-variants__title">Rounded</h2>
-          <div class="demo-variants__row">
-            <strong class="demo-variants__label">Raised</strong>
-            <fkt-button class="demo-variants__button" variant="rounded" icon="plus" theme="raised" color="primary"/>
-            <fkt-button class="demo-variants__button" variant="rounded" icon="plus" theme="raised" color="green"/>
-            <fkt-button class="demo-variants__button" variant="rounded" icon="plus" theme="raised" color="red"/>
-            <fkt-button class="demo-variants__button" variant="rounded" icon="plus" theme="raised" color="yellow"/>
-          </div>
-          <div class="demo-variants__row">
-            <strong class="demo-variants__label">Stroked</strong>
-            <fkt-button class="demo-variants__button" variant="rounded" icon="plus" theme="stroked" color="primary"/>
-            <fkt-button class="demo-variants__button" variant="rounded" icon="plus" theme="stroked" color="green"/>
-            <fkt-button class="demo-variants__button" variant="rounded" icon="plus" theme="stroked" color="red"/>
-            <fkt-button class="demo-variants__button" variant="rounded" icon="plus" theme="stroked" color="yellow"/>
-          </div>
-          <div class="demo-variants__row">
-            <strong class="demo-variants__label">Basic</strong>
-            <fkt-button class="demo-variants__button" variant="rounded" icon="plus" theme="basic" color="primary"/>
-            <fkt-button class="demo-variants__button" variant="rounded" icon="plus" theme="basic" color="green"/>
-            <fkt-button class="demo-variants__button" variant="rounded" icon="plus" theme="basic" color="red"/>
-            <fkt-button class="demo-variants__button" variant="rounded" icon="plus" theme="basic" color="yellow"/>
-          </div>
-        </div>
-        <div class="demo-variants__column">
-          <h2 class="demo-variants__title">Rect</h2>
-          <div class="demo-variants__row">
-            <strong class="demo-variants__label">Raised</strong>
-            <fkt-button class="demo-variants__button" variant="rect" icon="plus" theme="raised" color="primary"/>
-            <fkt-button class="demo-variants__button" variant="rect" icon="plus" theme="raised" color="green"/>
-            <fkt-button class="demo-variants__button" variant="rect" icon="plus" theme="raised" color="red"/>
-            <fkt-button class="demo-variants__button" variant="rect" icon="plus" theme="raised" color="yellow"/>
-          </div>
-          <div class="demo-variants__row">
-            <strong class="demo-variants__label">Stroked</strong>
-            <fkt-button class="demo-variants__button" variant="rect" icon="plus" theme="stroked" color="primary"/>
-            <fkt-button class="demo-variants__button" variant="rect" icon="plus" theme="stroked" color="green"/>
-            <fkt-button class="demo-variants__button" variant="rect" icon="plus" theme="stroked" color="red"/>
-            <fkt-button class="demo-variants__button" variant="rect" icon="plus" theme="stroked" color="yellow"/>
-          </div>
-          <div class="demo-variants__row">
-            <strong class="demo-variants__label">Basic</strong>
-            <fkt-button class="demo-variants__button" variant="rect" icon="plus" theme="basic" color="primary"/>
-            <fkt-button class="demo-variants__button" variant="rect" icon="plus" theme="basic" color="green"/>
-            <fkt-button class="demo-variants__button" variant="rect" icon="plus" theme="basic" color="red"/>
-            <fkt-button class="demo-variants__button" variant="rect" icon="plus" theme="basic" color="yellow"/>
-          </div>
-        </div>
-      </div>
-    `,
-		styles: [`
-      .demo-variants {
-        display: flex;
-        gap: var(--space-2xl);
-        justify-content: flex-start;
-        align-items: flex-start;
-        padding: var(--space-md) 0;
-      }
-      .demo-variants__column {
-        display: flex;
-        flex-direction: column;
-        gap: var(--space-xl);
-        min-width: 300px;
-      }
-      .demo-variants__title {
-        font-size: var(--font-size-xl);
-        font-weight: var(--font-semibold);
-        text-align: center;
-        border-bottom: 2px solid #e5e7eb;
-        margin-bottom: var(--space-sm);
-        padding-bottom: var(--space-3xs);
-        letter-spacing: 0.02em;
-      }
-      .demo-variants__row {
-        display: flex;
-        align-items: center;
-        gap: var(--space-sm);
-        margin-bottom: 0;
-      }
-      .demo-variants__label {
-        font-weight: var(--font-semibold);
-        min-width: 60px;
-        display: inline-block;
-      }
-      .demo-variants__button {
-        min-width: 85px;
-        font-size: var(--font-size-md);
-        white-space: nowrap;
-      }
-    `]
-	}),
+	render: renderComponent(IconVariantsExampleComponent),
+	parameters: {
+		docs: {
+			description: {
+				story: "Comprehensive showcase of all button icon variants across different themes, colors, and shapes."
+			}
+		}
+	},
 	args: {},
 };
 
 export const StrokedSecondary: StoryObj = {
+	render: renderComponent(FktButtonComponent),
 	parameters: {
 		docs: {
 			description: {
@@ -488,12 +337,13 @@ export const StrokedSecondary: StoryObj = {
 	args: {
 		text: 'Secondary',
 		theme: 'stroked',
-		color: 'yellow',
+		color: 'accent',
 		disabled: false
 	}
 };
 
 export const LongText: StoryObj = {
+	render: renderComponent(FktButtonComponent),
 	parameters: {
 		docs: {
 			description: {

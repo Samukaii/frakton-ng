@@ -66,7 +66,7 @@ export const SuccessBadge: Story = {
 	},
 	args: {
 		text: 'Success',
-		color: 'green',
+		color: 'success',
 		variant: 'opaque',
 	}
 };
@@ -81,7 +81,7 @@ export const ErrorBadge: Story = {
 	},
 	args: {
 		text: 'Error',
-		color: 'red',
+		color: 'danger',
 		variant: 'opaque',
 	}
 };
@@ -96,7 +96,7 @@ export const WarningBadge: Story = {
 	},
 	args: {
 		text: 'Warning',
-		color: 'orange',
+		color: 'warning',
 		variant: 'opaque',
 	}
 };
@@ -112,7 +112,7 @@ export const InfoBadge: Story = {
 	},
 	args: {
 		text: 'Info',
-		color: 'blue',
+		color: 'info',
 		variant: 'faded',
 	}
 };
@@ -193,7 +193,7 @@ export const CountBadge: Story = {
 	},
 	args: {
 		text: '5',
-		color: 'blue',
+		color: 'info',
 		variant: 'opaque',
 	}
 };
@@ -209,7 +209,7 @@ export const StatusBadge: Story = {
 	},
 	args: {
 		text: 'Online',
-		color: 'green',
+		color: 'success',
 		variant: 'opaque',
 	}
 };
@@ -224,7 +224,7 @@ export const PriorityBadge: Story = {
 	},
 	args: {
 		text: 'High Priority',
-		color: 'red',
+		color: 'danger',
 		variant: 'opaque',
 	}
 };
@@ -239,7 +239,7 @@ export const CategoryBadge: Story = {
 	},
 	args: {
 		text: 'Electronics',
-		color: 'blue',
+		color: 'info',
 		variant: 'faded',
 	}
 };
@@ -254,7 +254,7 @@ export const LongTextBadge: Story = {
 	},
 	args: {
 		text: 'Very Long Category Name',
-		color: 'blue',
+		color: 'info',
 		variant: 'faded',
 	}
 };

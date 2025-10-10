@@ -25,14 +25,39 @@
 		align-items: center;
 		padding: var(--space-xs) var(--space-md);
 		justify-content: space-between;
+
+		&:not(:last-child) {
+			border-bottom: 1px solid var(--color-neutral-200);
+		}
+
 		&:hover {
 			background-color: var(--color-neutral-200);
+		}
+
+		.label-container {
+			display: flex;
+			gap: var(--space-3xs);
+
+			fkt-icon {
+				line-height: 24px !important;
+				color: var(--color-green-600);
+			}
+
+			.label-icon-placeholder {
+				width: 24px;
+				height: 24px;
+			}
 		}
 
 		fkt-icon {
 			color: var(--color-neutral-700);
 			width: var(--space-xl);
 			height: var(--space-xl);
+		}
+
+		.label {
+			display: flex;
+			align-items: center;
 		}
 	}
 

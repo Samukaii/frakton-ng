@@ -11,10 +11,10 @@ type BadgeType = 'low' | 'medium' | 'high' | 'critical';
 })
 export class PriorityExampleComponent {
 	options = input<FktBadge<BadgeType>[]>([
-		{id: "low", color: "green", name: "Low"},
-		{id: "medium", color: "orange", name: "Medium"},
-		{id: "high", color: "red", name: "High"},
-		{id: "critical", color: "red", name: "Critical"}
+		{id: "low", color: "success", name: "Low"},
+		{id: "medium", color: "warning", name: "Medium"},
+		{id: "high", color: "danger", name: "High"},
+		{id: "critical", color: "danger", name: "Critical"}
 	]);
 
 	currentBadgeId = model<BadgeType>('medium');

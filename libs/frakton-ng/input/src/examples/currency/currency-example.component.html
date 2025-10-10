@@ -1,15 +1,16 @@
 <div class="container">
-			<fkt-input
-				[control]="control()"
-				[label]="label()"
-				[placeholder]="placeholder()"
-				transformer="currency"
-				type="text"
-			/>
+	<fkt-input
+		#input
+		[control]="control"
+		[label]="label()"
+		[placeholder]="placeholder()"
+		formatter="currency"
+		type="text"
+	/>
 
-			<div class="container__info">
-				<p>Raw value: {{ control().value() || '(empty)' }}</p>
-				<p>Formatted display: {{ formattedValue() }}</p>
-				<p class="container__text">Automatically formats as currency (e.g., $1,234.56)</p>
-			</div>
-		</div>
+	<div class="container__info">
+		<p>Raw value: {{ control().value() || '(empty)' }}</p>
+		<p>Formatted display: {{ input.formattedValue() || '(empty)' }}</p>
+		<p class="container__text">Automatically formats as currency (e.g., $1,234.56)</p>
+	</div>
+</div>

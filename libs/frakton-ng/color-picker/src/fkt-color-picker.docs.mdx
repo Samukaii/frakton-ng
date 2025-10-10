@@ -1,0 +1,53 @@
+import {ArgTypes, Meta} from '@storybook/addon-docs/blocks';
+import * as stories from './fkt-color-picker.stories';
+import {StoryDoc} from "../../.storybook/blocks/StoryDoc";
+
+<Meta of={stories} />
+
+# Color Picker
+
+_A comprehensive color picker component with multiple format support, alpha channel control, and seamless form integration. Built with Angular signals for reactive form handling._
+
+## Key Features
+
+- **Multiple Color Formats**: Support for HSL, RGB, and HEX color formats
+- **Alpha Channel Control**: Optional transparency/opacity support
+- **Form Integration**: Native Angular signals with FormValueControl interface
+- **Format Conversion**: Automatic conversion between different color formats
+- **Visual Preview**: Real-time color preview with transparency support
+- **Overlay Modal**: Full-featured color picker modal with intuitive controls
+- **Accessibility**: Keyboard navigation and screen reader support
+
+## Configuration Options
+
+<ArgTypes/>
+
+### Types
+
+```typescript
+import {FktColorPickerFormat} from "frakton-ng/color-picker";
+
+type FktColorPickerFormat = 'hsl' | 'rgb' | 'hex';
+```
+
+## Examples
+
+<StoryDoc of={stories.BasicColorPicker}/>
+<StoryDoc of={stories.HexFormat}/>
+<StoryDoc of={stories.RgbFormat}/>
+<StoryDoc of={stories.HslFormat}/>
+<StoryDoc of={stories.WithAlphaChannel}/>
+<StoryDoc of={stories.DisabledState}/>
+<StoryDoc of={stories.HiddenLabel}/>
+
+## Use Cases
+- **Design Systems** - Theme customization, brand color selection, and style guide implementation.
+- **Content Management** - Background colors, text colors, and visual element styling.
+- **E-commerce Applications** - Product customization, color variants, and visual preferences.
+- **Dashboard Configuration** - Chart colors, status indicators, and personalization settings.
+
+## Accessibility
+- **Keyboard Navigation**: Full keyboard support for color selection and modal interaction.
+- **Screen Reader Support**: ARIA labels and proper semantic structure for assistive technologies.
+- **Focus Management**: Clear focus indicators and logical tab order throughout the picker.
+- **High Contrast**: Supports high contrast modes and respects user color preferences.

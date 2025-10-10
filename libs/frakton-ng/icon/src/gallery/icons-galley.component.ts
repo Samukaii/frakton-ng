@@ -1,8 +1,7 @@
-import { Component, computed, inject } from '@angular/core';
+import { Component, computed, signal } from '@angular/core';
 import { FktInputComponent } from 'frakton-ng/input';
-import { SignalFormBuilder } from 'frakton-ng/forms';
 import { IconsGalleryItemComponent } from './item/icons-gallery-item.component';
-import { fontIconNames } from 'frakton-ng/icon';
+import { FktIconName, fontIconNames } from 'frakton-ng/icon';
 
 @Component({
   selector: 'fkt-icons-galley',
@@ -14,12 +13,12 @@ import { fontIconNames } from 'frakton-ng/icon';
   styleUrl: './icons-galley.component.scss'
 })
 export class IconsGalleyComponent {
-	allIcons  = fontIconNames;
+	allIcons  = fontIconNames as FktIconName[];
 
-	search = inject(SignalFormBuilder).control('');
+	search = signal('');
 
 	filteredIcons = computed(() => {
-		const search = this.search.value();
+		const search = this.search();
 
 		return this.allIcons.filter(icon => icon.toLowerCase().includes(search.toLowerCase()));
 	});

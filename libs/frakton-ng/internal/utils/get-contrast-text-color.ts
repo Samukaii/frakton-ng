@@ -1,9 +1,15 @@
-import { hexToRgb } from './hex-to-rgb';
+export const getContrastTextColor = (hexColor: string, darkColor = '#000000FF', lightColor = "#FFFFFFFF") => {
+	hexColor = hexColor.replace(/^#/, '');
 
-export const getContrastTextColor = (hex: string): 'black' | 'white' => {
-	const { r, g, b } = hexToRgb(hex);
+	if (hexColor.length === 3) {
+		hexColor = hexColor.split('').map(x => x + x).join('');
+	}
 
-	const brightness = (r * 299 + g * 587 + b * 114) / 1000;
+	const r = parseInt(hexColor.substring(0, 2), 16);
+	const g = parseInt(hexColor.substring(2, 4), 16);
+	const b = parseInt(hexColor.substring(4, 6), 16);
 
-	return brightness > 128 ? 'black' : 'white';
-}
+	const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+
+	return luminance > 0.5 ? darkColor : lightColor;
+};

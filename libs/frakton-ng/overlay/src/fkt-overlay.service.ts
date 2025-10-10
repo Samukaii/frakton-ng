@@ -1,6 +1,6 @@
-import { inject, Injectable, Injector, signal } from '@angular/core';
+import { inject, Injectable, Injector, signal, Type } from '@angular/core';
 import { FktOverlayAnchorComponent } from './anchor/fkt-overlay-anchor.component';
-import { createComponentBindings } from 'frakton-ng/internal/utils';
+import { createComponentBindings, getFocusableElementsSelectors } from 'frakton-ng/internal/utils';
 import { FktElementAnchorService } from 'frakton-ng/internal/services';
 import { FktGeometryPosition } from 'frakton-ng/internal/types';
 import { FktOverlayOptions, FktOverlayRef } from './fkt-overlay.types';
@@ -11,9 +11,15 @@ import { OVERLAY_INFO } from './tokens/overlay-info';
 })
 export class FktOverlayService {
 	private anchorService = inject(FktElementAnchorService);
-	private overlays = new Map<string, FktOverlayRef<any>>();
+	private overlays = signal(new Map<string, FktOverlayRef<any>>());
 
 	open<T>(options: FktOverlayOptions<T>) {
+		if (!options.panelOptions?.allowDuplicates) {
+			const ref = this.findRefByComponent(options.component);
+
+			if (ref) return ref;
+		}
+
 		if (options.panelOptions?.id && !this.canUseId(options.panelOptions.id))
 			throw new Error(
 				`The overlay id "${options.panelOptions.id}" is already in use. Please choose a different id.`,
@@ -33,16 +39,27 @@ export class FktOverlayService {
 		});
 
 		const close = () => {
-			this.overlays.delete(id);
+			this.overlays().delete(id);
+			const focusableElements = getFocusableElementsSelectors().join(', ')
+
+			const focusableChild = options.anchorElementRef?.nativeElement?.querySelector(focusableElements) as HTMLElement | null;
+			const elementToFocus = focusableChild ?? options.anchorElementRef?.nativeElement;
+
+			if (elementToFocus) elementToFocus.focus();
+
 			anchor.destroy();
 			componentRef.destroy();
 		}
+
+		const stackIndex = this.getLastZIndex() + 1;
 
 		const anchor = this.anchorService.createAnchor(
 			FktOverlayAnchorComponent,
 			{
 				anchor: options.anchorElementRef,
 				id,
+				stackIndex,
+				overlayRefs: this.overlays,
 				width: options.panelOptions?.width,
 				position: options.panelOptions?.position,
 				padding: options?.panelOptions?.padding,
@@ -53,13 +70,21 @@ export class FktOverlayService {
 				disableAutoReposition: options.panelOptions?.disableAutoReposition ?? false,
 				overflow: options.panelOptions?.overflow,
 				boxShadow: options.panelOptions?.boxShadow,
+				styles: options.panelOptions?.styles ?? {},
 				outsideClick: (element) => {
 					options?.panelOptions?.outsideClick?.(element);
+					close();
+				},
+				escapeKeyDown: () => {
 					close();
 				}
 			},
 			injector
 		);
+
+		const anchorElement = anchor.componentRef.location.nativeElement as HTMLElement;
+
+		anchorElement.style.zIndex = stackIndex.toString();
 
 		const componentRef = anchor.componentRef.instance
 			.container()
@@ -72,16 +97,37 @@ export class FktOverlayService {
 
 		const overlayRef: FktOverlayRef<T> = {
 			componentRef,
+			stackIndex,
 			close,
 		};
 
-		this.overlays.set(id, overlayRef);
+		this.registerOverlay(id, overlayRef);
 
 		return overlayRef;
 	}
 
+	private findRefByComponent(type: Type<any>) {
+		const overlays = Array.from(this.overlays().values());
+
+		return overlays.find(overlay => overlay.componentRef.componentType === type);
+	}
+
 	private canUseId(id: string) {
-		return !this.overlays.has(id);
+		return !this.overlays().has(id);
+	}
+
+	private registerOverlay(id: string, ref: FktOverlayRef<any>) {
+		const map = new Map(this.overlays());
+
+		map.set(id, ref);
+
+		this.overlays.set(map);
+	}
+
+	private getLastZIndex() {
+		const overlaysCount = this.overlays().size;
+
+		return overlaysCount + 9999;
 	}
 
 	private createId() {

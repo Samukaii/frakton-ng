@@ -1,0 +1,62 @@
+<div class="container">
+	<h3>Signup form</h3>
+
+	<form (submit)="onLogin()">
+		<div class="container__form">
+			<div>
+				<fkt-input
+					[control]="form.name"
+					label="Name"
+					placeholder="Enter your name"
+				/>
+				@for (error of form.name().errors(); track error.kind) {
+					<fkt-field-error [show]="form.name().touched()" [error]="error.message"/>
+				}
+			</div>
+
+			<div>
+				<fkt-input
+					[control]="form.email"
+					label="Email Address"
+					placeholder="Enter your email"
+					type="email"
+				/>
+				@for (error of form.email().errors(); track error.kind) {
+					<fkt-field-error [show]="form.email().touched()" [error]="error.message"/>
+				}
+			</div>
+
+			<div>
+				<fkt-input
+					[control]="form.password"
+					label="Password"
+					placeholder="Enter your password"
+					type="password"
+				/>
+				@for (error of form.password().errors(); track error.kind) {
+					<fkt-field-error [show]="form.password().touched()" [error]="error.message"/>
+				}
+			</div>
+
+			<div>
+				<fkt-input
+					[control]="form.passwordConfirmation"
+					label="Password confirmation"
+					placeholder="Confirm your password"
+					type="password"
+				/>
+				@for (error of form.passwordConfirmation().errors(); track error.kind) {
+					<fkt-field-error [show]="form.passwordConfirmation().touched()" [error]="error.message"/>
+				}
+			</div>
+		</div>
+		<div class="container__actions">
+			<fkt-button
+				[disabled]="form().invalid()"
+				text="Sign up"
+				type="submit"
+			>
+			</fkt-button>
+		</div>
+	</form>
+</div>

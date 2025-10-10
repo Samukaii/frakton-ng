@@ -1,6 +1,7 @@
-import {ArgTypes, Controls, Meta, Story} from '@storybook/addon-docs/blocks';
+import {ArgTypes, Meta} from '@storybook/addon-docs/blocks';
 import * as fktCheckboxStories from './fkt-checkbox.stories';
 import {StoryDoc} from "../../.storybook/blocks/StoryDoc";
+import {rawExamples} from "./examples/raw-examples";
 
 <Meta of={fktCheckboxStories} />
 
@@ -22,12 +23,10 @@ The **FktCheckbox** component provides a clean and accessible checkbox input wit
 
 ## Examples
 
-<StoryDoc of={fktCheckboxStories.BasicCheckbox}/>
-<StoryDoc of={fktCheckboxStories.PreCheckedCheckbox}/>
-<StoryDoc of={fktCheckboxStories.LongLabelText}/>
-<StoryDoc of={fktCheckboxStories.DisabledState}/>
-<StoryDoc of={fktCheckboxStories.WithValidation}/>
-<StoryDoc of={fktCheckboxStories.DisabledAndChecked}/>
+<StoryDoc of={fktCheckboxStories.BasicCheckbox} code={rawExamples.fktCheckboxBasicExample}/>
+<StoryDoc of={fktCheckboxStories.PreCheckedCheckbox} code={rawExamples.fktCheckboxPreCheckedExample}/>
+<StoryDoc of={fktCheckboxStories.DisabledState} code={rawExamples.fktCheckboxDisabledExample}/>
+<StoryDoc of={fktCheckboxStories.Validation} code={rawExamples.fktCheckboxValidationExample}/>
 
 ## Use Cases
 

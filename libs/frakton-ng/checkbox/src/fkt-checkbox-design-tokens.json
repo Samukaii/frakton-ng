@@ -1,0 +1,106 @@
+[
+  {
+    "description": "Size of the checkbox input (width and height).",
+    "name": "--fkt-checkbox-size",
+    "reference": "--space-lg",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": "1.25rem"
+  },
+  {
+    "description": "Border color of the checkbox in its default state.",
+    "name": "--fkt-checkbox-border-color",
+    "reference": "--color-neutral-500",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#6B7280FF"
+  },
+  {
+    "description": "Background color of the checkbox in its default state.",
+    "name": "--fkt-checkbox-background-color",
+    "reference": "--color-neutral-100",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#F9FAFBFF"
+  },
+  {
+    "description": "Border radius of the checkbox.",
+    "name": "--fkt-checkbox-border-radius",
+    "reference": "--radius-xs",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": ".125rem"
+  },
+  {
+    "description": "Border width of the checkbox.",
+    "name": "--fkt-checkbox-border-width",
+    "reference": "2px",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": "2px"
+  },
+  {
+    "description": "Background color of the checkbox when checked.",
+    "name": "--fkt-checkbox-checked-background-color",
+    "reference": "--color-gray-600",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#4A5565FF"
+  },
+  {
+    "description": "Border color of the checkbox when checked.",
+    "name": "--fkt-checkbox-checked-border-color",
+    "reference": "--color-gray-600",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#4A5565FF"
+  },
+  {
+    "description": "Color of the checkmark icon.",
+    "name": "--fkt-checkbox-checkmark-color",
+    "reference": "--color-neutral-100",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#F9FAFBFF"
+  },
+  {
+    "description": "Margin between checkbox and label text.",
+    "name": "--fkt-checkbox-label-margin",
+    "reference": "--space-xs",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": ".5rem"
+  },
+  {
+    "description": "Font size of the label text.",
+    "name": "--fkt-checkbox-label-font-size",
+    "reference": "--font-size-md",
+    "category": "Typography",
+    "type": "size",
+    "defaultValue": "1rem"
+  },
+  {
+    "description": "Color of the label text in invalid state.",
+    "name": "--fkt-checkbox-invalid-color",
+    "reference": "--color-red-500",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#FB2C36FF"
+  },
+  {
+    "description": "Opacity of the checkbox when disabled.",
+    "name": "--fkt-checkbox-disabled-opacity",
+    "reference": "0.4",
+    "category": "Effects",
+    "type": "number",
+    "defaultValue": "0.4"
+  },
+  {
+    "description": "Width of the checkmark stroke.",
+    "name": "--fkt-checkbox-checkmark-width",
+    "reference": "2px",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": "2px"
+  }
+]

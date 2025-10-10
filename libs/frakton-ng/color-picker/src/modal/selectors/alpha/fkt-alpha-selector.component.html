@@ -1,0 +1,27 @@
+<div #bar (mousedown)="startMovement()" class="bar fkt-transparency-bg">
+	<div class="gradient" [style.background]="background()"></div>
+</div>
+
+<div
+	(mousedown)="startMovement()"
+	(keydown.arrowRight)="updateAlpha($event, 1)"
+	(keydown.arrowLeft)="updateAlpha($event, -1)"
+	[style.left]="percentage()"
+	class="picker"
+	role="presentation"
+>
+	<div class="fkt-transparency-bg">
+		<span [style.background-color]="pickerColor()">
+		<input tabindex="0"
+			   [attr.aria-label]="locale.controls.opacity"
+			   min="0"
+			   max="360"
+			   step="1"
+			   aria-orientation="horizontal"
+			   [attr.aria-valuetext]="description()"
+			   [value]="value().alpha"
+			   type="range"
+		>
+		</span>
+	</div>
+</div>

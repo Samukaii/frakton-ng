@@ -1,0 +1,250 @@
+[
+  {
+    "description": "Gap between button content elements (icon and text).",
+    "name": "--fkt-button-content-gap",
+    "reference": "--space-xs",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": ".5rem"
+  },
+  {
+    "description": "Padding for button (vertical and horizontal).",
+    "name": "--fkt-button-padding-vertical",
+    "reference": "--space-xs",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": ".5rem"
+  },
+  {
+    "description": "Horizontal padding for button.",
+    "name": "--fkt-button-padding-horizontal",
+    "reference": "--space-md",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": "1rem"
+  },
+  {
+    "description": "Border radius for button (full rounded).",
+    "name": "--fkt-button-border-radius",
+    "reference": "--radius-full",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": "9999px"
+  },
+  {
+    "description": "Border radius for rectangular button shape.",
+    "name": "--fkt-button-rect-border-radius",
+    "reference": "--space-2xs",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": ".375rem"
+  },
+  {
+    "description": "Font weight for button text.",
+    "name": "--fkt-button-font-weight",
+    "reference": "--font-semibold",
+    "category": "Typography",
+    "type": "size",
+    "defaultValue": "600"
+  },
+  {
+    "description": "Font weight for icon-only buttons.",
+    "name": "--fkt-button-icon-font-weight",
+    "reference": "--font-normal",
+    "category": "Typography",
+    "type": "size",
+    "defaultValue": "400"
+  },
+  {
+    "description": "Border width for button.",
+    "name": "--fkt-button-border-width",
+    "reference": "2px",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": "2px"
+  },
+  {
+    "description": "Border width for icon-only buttons.",
+    "name": "--fkt-button-icon-border-width",
+    "reference": "1px",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": "1px"
+  },
+  {
+    "description": "Spinner size for loading state.",
+    "name": "--fkt-button-spinner-size",
+    "reference": "20px",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": "20px"
+  },
+  {
+    "description": "Spinner border width.",
+    "name": "--fkt-button-spinner-border-width",
+    "reference": "2px",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": "2px"
+  },
+  {
+    "description": "Button background disabled color.",
+    "name": "--fkt-button-disabled-color",
+    "reference": "--color-disabled",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#DDDCE0"
+  },
+  {
+    "description": "Button text disabled color.",
+    "name": "--fkt-button-on-disabled-color",
+    "reference": "--color-on-disabled",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#9E9FA2"
+  },
+  {
+    "description": "Primary button background and border color.",
+    "name": "--fkt-button-primary-color",
+    "reference": "--color-primary",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#1f2937"
+  },
+  {
+    "description": "Primary button text and icon color.",
+    "name": "--fkt-button-on-primary-color",
+    "reference": "--color-on-primary",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#F9fAFBFF"
+  },
+  {
+    "description": "Primary button hover background and border color.",
+    "name": "--fkt-button-primary-hover-color",
+    "reference": "--color-primary-hover",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#374151"
+  },
+  {
+    "description": "Success button background and border color.",
+    "name": "--fkt-button-success-color",
+    "reference": "--color-success",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#00C950FF"
+  },
+  {
+    "description": "Success button text and icon color.",
+    "name": "--fkt-button-on-success-color",
+    "reference": "--color-on-success",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#F9fAFBFF"
+  },
+  {
+    "description": "Success button hover background and border color.",
+    "name": "--fkt-button-success-hover-color",
+    "reference": "--color-success-hover",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#00C950FF"
+  },
+  {
+    "description": "Error button background and border color.",
+    "name": "--fkt-button-error-color",
+    "reference": "--color-error",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#E7000BFF"
+  },
+  {
+    "description": "Error button text and icon color.",
+    "name": "--fkt-button-on-error-color",
+    "reference": "--color-on-error",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#F9fAFBFF"
+  },
+  {
+    "description": "Error button hover background and border color.",
+    "name": "--fkt-button-error-hover-color",
+    "reference": "--color-error-hover",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#FB2C36FF"
+  },
+  {
+    "description": "Warning button background and border color.",
+    "name": "--fkt-button-warning-color",
+    "reference": "--color-warning",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#FF6900FF"
+  },
+  {
+    "description": "Warning button text and icon color.",
+    "name": "--fkt-button-on-warning-color",
+    "reference": "--color-on-warning",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#F9fAFBFF"
+  },
+  {
+    "description": "Warning button hover background and border color.",
+    "name": "--fkt-button-warning-hover-color",
+    "reference": "--color-warning-hover",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#FF8904FF"
+  },
+  {
+    "description": "Info button background and border color.",
+    "name": "--fkt-button-info-color",
+    "reference": "--color-info",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#155DFCFF"
+  },
+  {
+    "description": "Info button text and icon color.",
+    "name": "--fkt-button-on-info-color",
+    "reference": "--color-on-info",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#F9fAFBFF"
+  },
+  {
+    "description": "Info button hover background and border color.",
+    "name": "--fkt-button-info-hover-color",
+    "reference": "--color-info-hover",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#2B7FFFFF"
+  },
+  {
+    "description": "Accent button background and border color.",
+    "name": "--fkt-button-accent-color",
+    "reference": "--color-accent",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#F0B100FF"
+  },
+  {
+    "description": "Accent button text and icon color.",
+    "name": "--fkt-button-on-accent-color",
+    "reference": "--color-neutral-800",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#1f2937"
+  },
+  {
+    "description": "Accent button hover background and border color.",
+    "name": "--fkt-button-accent-hover-color",
+    "reference": "--color-yellow-400",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#FDC700FF"
+  }
+]

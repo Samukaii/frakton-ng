@@ -1,9 +1,9 @@
 <div class="navigator">
-			<fkt-calendar-navigator
-				[mode]="mode()"
-				[currentDate]="currentDate()"
-			/>
-		</div>
-		<div class="info">
-			Selected: {{ dateForm.controls.selectedDate.value() | date:'fullDate' }}
-		</div>
+	<fkt-calendar-navigator
+		[mode]="mode()"
+		[currentDate]="currentDate()"
+	/>
+</div>
+<div class="info">
+	Selected: {{ dateForm.selectedDate().value() | date:'fullDate' }}
+</div>

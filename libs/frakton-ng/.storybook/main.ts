@@ -14,6 +14,22 @@ const config: StorybookConfig = {
 	],
 
 	staticDirs: ['../assets', './theme', '.'],
+	managerHead: head => `
+	${head}
+    <style>
+      	/*div:has(> #storybook-panel-root) {*/
+		/*	display: none !important;*/
+		/*}*/
+
+		/*section.sb-bar {*/
+		/*	display: none !important;*/
+		/*}*/
+
+		/*#root > div {*/
+		/*	grid-template: "sidebar content content" 1fr "sidebar content content" minmax(0px, 313px) / minmax(0px, 300px) minmax(100px, 1fr) minmax(0px, 400px) !important;*/
+		/*}*/
+    </style>
+	`,
 	previewHead: (head) => `
     ${head}
     <style>
@@ -25,6 +41,11 @@ const config: StorybookConfig = {
           & > * { height: 100%; display: block; }
         }
       }
+
+      body {
+      	padding: 0 !important;
+      }
+
       #storybook-root { height: 100vh; }
     </style>
   `,

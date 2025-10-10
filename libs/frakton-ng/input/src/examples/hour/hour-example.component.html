@@ -1,15 +1,16 @@
 <div class="container">
 	<fkt-input
-		[control]="control()"
+		[control]="control"
 		[label]="label()"
 		[placeholder]="placeholder()"
-		transformer="hour"
+		#input
+		formatter="hour"
 		type="text"
 	/>
 
 	<div class="container__info">
 		<p>Raw value: {{ control().value() || '(empty)' }}</p>
-		<p>Formatted display: {{ getFormattedValue() }}</p>
+		<p>Formatted display: {{ input.formattedValue() }}</p>
 		<p class="container__text">Automatically formats as time duration (e.g., 8h 30m)</p>
 	</div>
 </div>

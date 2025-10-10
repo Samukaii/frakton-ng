@@ -13,16 +13,16 @@
 		</div>
 	</div>
 
-	<fkt-form [form]="form">
+	<form>
 		<div class="container__form">
 			<div>
 				<fkt-select
-					[control]="form.controls.position"
+					[control]="form.position"
 					[label]="'Tooltip Position'"
 					[options]="positionOptions"
 				></fkt-select>
 				<fkt-input
-					[control]="form.controls.text"
+					[control]="form.text"
 					[label]="'Tooltip Text'"
 					[placeholder]="'Enter tooltip message...'"
 					[type]="'text'"
@@ -30,9 +30,9 @@
 			</div>
 
 			<fkt-checkbox
-				[control]="form.controls.enabled"
+				[control]="form.enabled"
 				[label]="'Enable Tooltips'"
 			></fkt-checkbox>
 		</div>
-	</fkt-form>
+	</form>
 </div>

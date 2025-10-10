@@ -1,65 +1,122 @@
-import type { Meta, StoryObj } from '@storybook/angular';
-import { FktAutocompleteComponent } from 'frakton-ng/autocomplete';
-import { SignalFormControl } from 'frakton-ng/forms';
+import { Meta, StoryObj } from '@storybook/angular';
+import {
+	FktAutocompleteAutoCreationExampleComponent,
+	FktAutocompleteBasicExampleComponent,
+	FktAutocompleteCustomStylingExampleComponent,
+	FktAutocompleteEventsExampleComponent,
+	FktAutocompleteLoadingStatesExampleComponent
+} from './examples';
+import { FktAutocompleteComponent } from './fkt-autocomplete.component';
+import { customDocsControl } from '../../.storybook/decorators/custom-docs-control';
+import { renderComponent } from '../../.storybook/decorators/render-component';
+import designTokens from './fkt-autocomplete-design-tokens.json';
 
 const meta: Meta<FktAutocompleteComponent> = {
 	title: 'Components/Form/Autocomplete',
 	component: FktAutocompleteComponent,
+	decorators: [
+		customDocsControl({
+			designTokens: designTokens as any
+		}),
+	],
 	argTypes: {
-		control: {
-			control: false,
-			type: {
-				name: "object",
-				value: {},
-				required: true
-			},
+		value: {
+			control: "text",
+			description: "The field value, controlled via ModelSignal. Supports string, number, or null. Enables reactive two-way data binding.",
 			table: {
 				category: "Attributes",
 				type: {
-					summary: 'SignalFormControl<string>',
-					detail: "import {SignalFormControl} from 'frakton-ng/forms'"
+					summary: "ModelSignal<string | number | null>",
 				},
-			},
-			description: 'The form control that manages the component state and validation'
+				defaultValue: {
+					summary: "''"
+				}
+			}
+		},
+		touched: {
+			control: 'boolean',
+			description: "Indicates whether the field has been touched by the user. Useful for conditional validation or error display.",
+			table: {
+				category: "Attributes",
+				type: {
+					summary: "ModelSignal<boolean>",
+				},
+				defaultValue: {
+					summary: "false"
+				}
+			}
+		},
+		disabled: {
+			control: 'boolean',
+			description: "Disables the input field. Can be controlled externally or by Angular. Default is false.",
+			table: {
+				category: "Attributes",
+				type: {
+					summary: "boolean"
+				},
+				defaultValue: {
+					summary: "false"
+				}
+			}
+		},
+		invalid: {
+			control: 'boolean',
+			description: "Sets the field as invalid. Can be used for error styling or custom validation handling.",
+			table: {
+				category: "Attributes",
+				type: {
+					summary: "boolean"
+				},
+				defaultValue: {
+					summary: "false"
+				}
+			}
+		},
+		errors: {
+			control: 'object',
+			description: "Array of validation errors for the field. Each error follows the Angular signal format (ValidationError). Used to display validation messages or custom error handling. Should be readonly.",
+			table: {
+				category: "Attributes",
+				type: {
+					summary: "readonly WithOptionalField<ValidationError>[]",
+					detail: "import { ValidationError, WithOptionalField } from '@angular/forms/signals'"
+				},
+				defaultValue: {
+					summary: "[]"
+				}
+			}
 		},
 		options: {
 			control: "object",
-			type: {
-				name: "object",
-				value: {}
-			},
+			description: 'Array of options to display in the dropdown. Each option must have a value and label property.',
 			table: {
 				category: "Attributes",
 				type: {
 					summary: "FktAutocompleteOption[]",
-					detail: "import {FktAutocompleteOption} from 'frakton-ng/autocomplete'"
+					detail: 'import {FktAutocompleteOption} from "frakton-ng/autocomplete"'
 				},
 				defaultValue: {
 					summary: "[]"
 				}
-			},
-			description: 'Array of options to display in the dropdown'
+			}
 		},
 		actions: {
 			control: "object",
-			type: {
-				name: "object",
-				value: {}
-			},
+			description: 'Array of action buttons to display with each option. Useful for edit, delete, favorite operations.',
 			table: {
 				category: "Attributes",
 				type: {
 					summary: "FktButtonAction[]",
-					detail: "import {FktButtonAction} from 'frakton-ng/button'"
+					detail: 'import {FktButtonAction} from "frakton-ng/button"'
 				},
 				defaultValue: {
 					summary: "[]"
 				}
-			},
-			description: 'Array of action buttons to display with each option'
+			}
 		},
-		enableAutoCreation: {
+		allowAddOption: {
 			control: 'boolean',
+			description: 'Allow users to create new options by typing text not in the options list. Perfect for tag systems.',
 			table: {
 				category: "Attributes",
 				type: {
@@ -68,25 +125,41 @@ const meta: Meta<FktAutocompleteComponent> = {
 				defaultValue: {
 					summary: "false"
 				}
-			},
-			description: 'Allow users to create new options by typing text not in the options list'
+			}
 		},
 		noResults: {
 			control: 'object',
+			description: 'Configuration for the message shown when no options match the search criteria.',
 			table: {
 				category: "Attributes",
 				type: {
 					summary: "FktNoResults",
-					detail: "import {FktNoResults} from 'frakton-ng/no-results'"
+					detail: 'import {FktNoResults} from "frakton-ng/no-results"'
 				},
 				defaultValue: {
 					summary: "{ label: 'Sem resultados' }"
 				}
-			},
-			description: 'Configuration for the message shown when no options match'
+			}
+		},
+		addOptionLabel: {
+			description: "Customizes the label displayed when the user types a value not present in the options list " +
+				"(e.g., 'Add country \"{{inputValue}}\"'). Use '{{inputValue}}' as a placeholder for the user's input. " +
+				"This label only appears when 'allowAddOption' is enabled. Enables localization and dynamic messaging " +
+				"for custom option creation.",
+			control: "text",
+			table: {
+				category: "Attributes",
+				type: {
+					summary: "string",
+				},
+				defaultValue: {
+					summary: "undefined"
+				}
+			}
 		},
 		loading: {
 			control: 'boolean',
+			description: 'Show loading spinner in the dropdown while fetching data from API or performing search operations.',
 			table: {
 				category: "Attributes",
 				type: {
@@ -95,14 +168,11 @@ const meta: Meta<FktAutocompleteComponent> = {
 				defaultValue: {
 					summary: "false"
 				}
-			},
-			description: 'Show loading spinner in the dropdown'
+			}
 		},
 		label: {
 			control: "text",
-			type: {
-				name: "string",
-			},
+			description: 'Label text displayed above the input field for accessibility and user guidance.',
 			table: {
 				category: "Attributes",
 				type: {
@@ -111,14 +181,11 @@ const meta: Meta<FktAutocompleteComponent> = {
 				defaultValue: {
 					summary: "''"
 				}
-			},
-			description: 'Label text displayed above the input'
+			}
 		},
 		placeholder: {
 			control: "text",
-			type: {
-				name: "string",
-			},
+			description: 'Placeholder text shown in the input field when no value is selected.',
 			table: {
 				category: "Attributes",
 				type: {
@@ -127,8 +194,7 @@ const meta: Meta<FktAutocompleteComponent> = {
 				defaultValue: {
 					summary: "''"
 				}
-			},
-			description: 'Placeholder text for the input field'
+			}
 		},
 		search: {
 			table: {
@@ -137,86 +203,117 @@ const meta: Meta<FktAutocompleteComponent> = {
 					summary: "EventEmitter<string>"
 				}
 			},
-			description: 'Event emitted when user types in the input'
-		}
+			description: 'Event emitted when user types in the input field. Use for real-time search API calls.'
+		},
+		addOption: {
+			description:
+				"Triggered when the user selects a custom option they've typed (not present in the options list). " +
+				"This event only fires if 'allowAddOption' is enabled. Useful for implementing features like dynamic option creation, " +
+				"on-the-fly item registration, or triggering async backend calls for new entries. Receives an event object with the new input value.",
+			table: {
+				category: "Events",
+				type: {
+					summary: "EventEmitter<FktAutoCompleteAddOptionEvent>",
+					detail: "import { FktAutoCompleteAddOptionEvent } from 'frakton-ng/autocomplete'"
+				}
+			},
+		},
 	}
 };
 
-type Story = StoryObj<FktAutocompleteComponent>;
-
-const basicOptions = [
-	{ value: "apple", label: "Apple" },
-	{ value: "banana", label: "Banana" },
-	{ value: "cherry", label: "Cherry" },
-	{ value: "grape", label: "Grape" },
-	{ value: "orange", label: "Orange" },
-	{ value: "strawberry", label: "Strawberry" },
-];
-
-const countryOptions = [
-	{ value: "us", label: "United States" },
-	{ value: "ca", label: "Canada" },
-	{ value: "uk", label: "United Kingdom" },
-	{ value: "de", label: "Germany" },
-	{ value: "fr", label: "France" },
-	{ value: "es", label: "Spain" },
-	{ value: "it", label: "Italy" },
-	{ value: "jp", label: "Japan" },
-	{ value: "au", label: "Australia" },
-	{ value: "br", label: "Brazil" },
-];
-
-const tagOptions = [
-	{ value: "frontend", label: "Frontend" },
-	{ value: "backend", label: "Backend" },
-	{ value: "react", label: "React" },
-	{ value: "angular", label: "Angular" },
-	{ value: "vue", label: "Vue" },
-	{ value: "javascript", label: "JavaScript" },
-	{ value: "typescript", label: "TypeScript" },
-	{ value: "nodejs", label: "Node.js" },
-	{ value: "python", label: "Python" },
-	{ value: "java", label: "Java" },
-];
-
-export const BasicAutocomplete: Story = {
+export const Basic: StoryObj = {
+	render: renderComponent(FktAutocompleteBasicExampleComponent),
 	args: {
-		control: new SignalFormControl(''),
 		label: "Select a fruit",
 		placeholder: "Start typing...",
-		options: basicOptions,
+		options: [
+			{ value: "apple", label: "Apple" },
+			{ value: "banana", label: "Banana" },
+			{ value: "cherry", label: "Cherry" },
+			{ value: "grape", label: "Grape" },
+			{ value: "orange", label: "Orange" },
+			{ value: "strawberry", label: "Strawberry" },
+		]
 	},
 	parameters: {
 		docs: {
 			description: {
-				story: 'A basic autocomplete component with simple options. Click on the input field to see all options or start typing to filter them.'
+				story: 'Basic autocomplete implementation with predefined options. Perfect starting point showing essential functionality with search and selection capabilities.'
 			}
 		}
 	}
 };
 
-export const WithPreselectedValue: Story = {
+export const AutoCreation: StoryObj = {
+	render: renderComponent(FktAutocompleteAutoCreationExampleComponent),
 	args: {
-		control: new SignalFormControl('apple'),
-		label: "Favorite fruit",
-		placeholder: "Choose your favorite fruit",
-		options: basicOptions,
+		label: "Country (create new if not found)",
+		placeholder: "Type a country name",
+		allowAddOption: true,
+		addOptionLabel: 'Add country "{{inputValue}}"',
+		options: [
+			{ value: "us", label: "United States" },
+			{ value: "ca", label: "Canada" },
+			{ value: "uk", label: "United Kingdom" },
+			{ value: "de", label: "Germany" },
+			{ value: "fr", label: "France" },
+			{ value: "es", label: "Spain" },
+			{ value: "it", label: "Italy" },
+			{ value: "jp", label: "Japan" },
+			{ value: "au", label: "Australia" },
+			{ value: "br", label: "Brazil" },
+		]
 	},
 	parameters: {
 		docs: {
 			description: {
-				story: 'An autocomplete component with a pre-selected value. The control is initialized with "apple" as the default value.'
+				story: 'Auto-creation mode allows users to create new options by typing values not in the predefined list. Ideal for tag systems, category management, and dynamic data entry.'
 			}
 		}
 	}
 };
 
-export const WithCustomActions: Story = {
+export const CustomStyling: StoryObj = {
+	render: renderComponent(FktAutocompleteCustomStylingExampleComponent),
 	args: {
-		control: new SignalFormControl(''),
+		label: "Styled Autocomplete",
+		placeholder: "This field can be disabled",
+		disabled: false,
+		options: [
+			{ value: "apple", label: "Apple" },
+			{ value: "banana", label: "Banana" },
+			{ value: "cherry", label: "Cherry" },
+			{ value: "grape", label: "Grape" },
+			{ value: "orange", label: "Orange" },
+			{ value: "strawberry", label: "Strawberry" },
+		]
+	},
+	parameters: {
+		docs: {
+			description: {
+				story: 'Custom styling and disabled state demonstration. Shows how to apply visual customization and handle disabled states with interactive controls.'
+			}
+		}
+	}
+};
+
+export const Events: StoryObj = {
+	render: renderComponent(FktAutocompleteEventsExampleComponent),
+	args: {
 		label: "Manage tags",
 		placeholder: "Select or search for tags",
-		options: tagOptions,
+		options: [
+			{ value: "frontend", label: "Frontend" },
+			{ value: "backend", label: "Backend" },
+			{ value: "react", label: "React" },
+			{ value: "angular", label: "Angular" },
+			{ value: "vue", label: "Vue" },
+			{ value: "javascript", label: "JavaScript" },
+			{ value: "typescript", label: "TypeScript" },
+			{ value: "nodejs", label: "Node.js" },
+			{ value: "python", label: "Python" },
+			{ value: "java", label: "Java" },
+		],
 		actions: [
 			{
 				icon: "pencil",
@@ -225,8 +322,14 @@ export const WithCustomActions: Story = {
 				identifier: 'edit'
 			},
 			{
+				icon: "star",
+				color: 'accent',
+				theme: 'basic',
+				identifier: 'favorite'
+			},
+			{
 				icon: "trash",
-				color: 'red',
+				color: 'danger',
 				theme: 'basic',
 				identifier: 'delete'
 			}
@@ -235,115 +338,36 @@ export const WithCustomActions: Story = {
 	parameters: {
 		docs: {
 			description: {
-				story: 'An autocomplete with action buttons for each option. In this example, each tag has edit and delete actions available.'
+				story: 'Interactive functionality with event handling and custom actions. Demonstrates search events, value changes, and action button interactions with real-time event logging.'
 			}
 		}
 	}
 };
 
-export const AutoCreationMode: Story = {
+export const LoadingStates: StoryObj = {
+	render: renderComponent(FktAutocompleteLoadingStatesExampleComponent),
 	args: {
-		control: new SignalFormControl(''),
-		label: "Country (create new if not found)",
-		placeholder: "Type a country name",
-		options: countryOptions,
-		enableAutoCreation: true,
-	},
-	parameters: {
-		docs: {
-			description: {
-				story: 'An autocomplete that allows users to create new options. If you type something that doesn\'t exist in the list, you can select it as a new option.'
-			}
-		}
-	}
-};
-
-export const LoadingState: Story = {
-	args: {
-		control: new SignalFormControl(''),
-		label: "Search (loading...)",
+		label: "Search with Loading States",
 		placeholder: "Type to search",
-		options: [],
-		loading: true,
-	},
-	parameters: {
-		docs: {
-			description: {
-				story: 'An autocomplete showing a loading state. This is useful when options are being fetched from an API.'
-			}
-		}
-	}
-};
-
-export const CustomNoResults: Story = {
-	args: {
-		control: new SignalFormControl(''),
-		label: "Search with no matches",
-		placeholder: "Try searching for something",
-		options: [],
 		loading: false,
-		noResults: {
-			label: "No matching results found. Try a different search term."
-		}
-	},
-	parameters: {
-		docs: {
-			description: {
-				story: 'An autocomplete with a custom "no results" message. This appears when the options array is empty and not loading.'
-			}
-		}
-	}
-};
-
-export const CompleteExample: Story = {
-	args: {
-		control: new SignalFormControl(''),
-		label: "Full-featured autocomplete",
-		placeholder: "Search skills or add new ones",
-		options: tagOptions,
-		enableAutoCreation: true,
-		actions: [
-			{
-				icon: "star",
-				color: 'yellow',
-				theme: 'basic',
-				identifier: 'favorite'
-			},
-			{
-				icon: "information-circle",
-				color: 'primary',
-				theme: 'basic',
-				identifier: 'info'
-			}
+		options: [
+			{ value: "user1", label: "Alice Johnson" },
+			{ value: "user2", label: "Bob Smith" },
+			{ value: "user3", label: "Carol Davis" },
+			{ value: "user4", label: "David Wilson" },
+			{ value: "user5", label: "Emma Brown" },
+			{ value: "user6", label: "Frank Miller" },
+			{ value: "user7", label: "Grace Taylor" },
+			{ value: "user8", label: "Henry Anderson" },
 		],
 		noResults: {
-			label: "No skills found. Type to create a new one!"
+			label: "No users found. Try a different search term."
 		}
 	},
 	parameters: {
 		docs: {
 			description: {
-				story: 'A complete example showcasing all autocomplete features: pre-defined options, auto-creation, custom actions, and custom no-results message.'
-			}
-		}
-	}
-};
-
-export const DisabledState: Story = {
-	args: {
-		control: (() => {
-			const control = new SignalFormControl('apple');
-			control.disable();
-			return control;
-		})(),
-		label: "Disabled autocomplete",
-		placeholder: "This field is disabled",
-		options: basicOptions,
-	},
-	parameters: {
-		docs: {
-			description: {
-				story: 'An autocomplete component in disabled state. The dropdown won\'t open when clicked.'
+				story: 'Loading states and no results handling with simulated API calls. Perfect for async data fetching scenarios with realistic loading indicators and empty state messaging.'
 			}
 		}
 	}

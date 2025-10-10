@@ -1,0 +1,26 @@
+<div class="container">
+  <h3>Checkbox Validation Example</h3>
+  
+  <div class="form-field">
+    <fkt-checkbox
+      [control]="form.termsAccepted"
+      label="I accept the terms and conditions"
+    />
+    @for (error of form.termsAccepted().errors(); track error.kind) {
+      <fkt-field-error [show]="form.termsAccepted().touched()" [error]="error.message"/>
+    }
+  </div>
+
+  <div class="form-field">
+    <fkt-checkbox
+      [control]="form.newsletterSubscription"
+      label="Subscribe to newsletter (optional)"
+    />
+  </div>
+  
+  <div class="form-actions">
+    <p>Form is {{ form().valid() ? 'valid' : 'invalid' }}</p>
+    <p>Terms accepted: {{ form.termsAccepted().value() ? 'Yes' : 'No' }}</p>
+    <p>Newsletter subscription: {{ form.newsletterSubscription().value() ? 'Yes' : 'No' }}</p>
+  </div>
+</div>

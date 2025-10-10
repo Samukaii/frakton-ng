@@ -32,6 +32,19 @@
 		display: flex;
 		justify-content: space-between;
 
+		&:focus {
+			box-shadow: inset 0 0 0 2px var(--color-brand-secondary);
+			outline: none;
+		}
+
+		&:first-child {
+			border-radius: var(--radius-md) var(--radius-md) 0 0;
+		}
+
+		&:last-child {
+			border-radius: 0 0 var(--radius-md) var(--radius-md);
+		}
+
 		&:hover {
 			background-color: var(--color-neutral-200);
 		}

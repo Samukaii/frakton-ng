@@ -1,8 +1,14 @@
 <label
-	[class.disabled]="control().disabled()">
+	[class.invalid]="invalid()"
+	[class.disabled]="disabled()">
 	<input
 		type="checkbox"
-		[signalFormControl]="control()"
+		[disabled]="disabled()"
+		[checked]="checked()"
+		(blur)="touched.set(true)"
+		[attr.aria-invalid]="invalid()"
+		[attr.aria-errormessage]="errors()[0]?.message"
+		(change)="onChange($event)"
 	/>
 	<span >{{ label() }}</span>
 </label>

@@ -1,16 +1,16 @@
-import { Component, computed, input } from '@angular/core';
+import { Component, computed, input, signal } from '@angular/core';
 import { FktInputComponent } from '../../../index';
-import { SignalFormControl } from 'frakton-ng/forms';
 import { FktIconComponent } from 'frakton-ng/icon';
+import { Control, form } from '@angular/forms/signals';
 
 @Component({
 	selector: 'input-number-example',
-	imports: [FktInputComponent, FktIconComponent],
+	imports: [FktInputComponent, FktIconComponent, Control],
 	styleUrl: './number-example.component.scss',
 	templateUrl: './number-example.component.html'
 })
 export class NumberExampleComponent {
-	control = input(new SignalFormControl(''));
+	control = form(signal(''));
 	label = input('Age');
 	placeholder = input('Enter your age');
 

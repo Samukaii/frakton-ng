@@ -1,0 +1,32 @@
+.container {
+	padding: var(--space-xl);
+	margin-top: var(--space-xl);
+	border-radius: var(--radius-lg);
+	width: 100%;
+	max-width: 28rem;
+	border: solid 1px var(--color-gray-200);
+
+	h3 {
+		font-size: var(--font-size-xl);
+		font-weight: var(--font-semibold);
+		color: var(--color-gray-900);
+	}
+
+	&__form {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-sm);
+	}
+
+	&__actions {
+		display: flex;
+		margin-top: var(--space-sm);
+		flex-direction: column;
+		width: 100%;
+		gap: var(--space-sm);
+
+		fkt-button {
+			width: 100%;
+		}
+	}
+}

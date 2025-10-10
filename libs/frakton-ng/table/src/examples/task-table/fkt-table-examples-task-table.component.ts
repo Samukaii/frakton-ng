@@ -102,11 +102,11 @@ export class FktTableExamplesTaskTableComponent {
 					color: (() => {
 						switch (task.priority) {
 							case "high":
-								return "red";
+								return "danger";
 							case "medium":
-								return "orange";
+								return "warning";
 							default:
-								return "blue"
+								return "info"
 						}
 					})()
 				}
@@ -122,13 +122,13 @@ export class FktTableExamplesTaskTableComponent {
 					color: (() => {
 						switch (task.status) {
 							case "todo":
-								return "green";
+								return "success";
 							case "completed":
-								return "blue";
+								return "info";
 							case "in-progress":
-								return "orange";
+								return "warning";
 							default:
-								return "red"
+								return "danger"
 						}
 					})()
 				}
@@ -154,7 +154,7 @@ export class FktTableExamplesTaskTableComponent {
 			identifier: 'complete',
 			condition: task.status !== 'completed' && task.status !== 'cancelled',
 			icon: 'check',
-			color: 'green',
+			color: 'success',
 			theme: 'basic',
 			click: () => console.log('Complete task:', task.title)
 		},
@@ -170,7 +170,7 @@ export class FktTableExamplesTaskTableComponent {
 			identifier: 'cancel',
 			condition: task.status !== 'completed' && task.status !== 'cancelled',
 			icon: 'x-mark',
-			color: 'red',
+			color: 'danger',
 			theme: 'basic',
 			click: () => console.log('Cancel task:', task.title)
 		}

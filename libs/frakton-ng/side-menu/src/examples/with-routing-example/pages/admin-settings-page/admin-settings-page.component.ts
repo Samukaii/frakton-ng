@@ -1,8 +1,8 @@
-import { Component, inject } from "@angular/core";
+import { Component, signal } from "@angular/core";
 import { FktButtonComponent } from "frakton-ng/button";
 import { FktCheckboxComponent } from "frakton-ng/checkbox";
 import { FktInputComponent } from "frakton-ng/input";
-import { SignalFormBuilder } from "frakton-ng/forms";
+import { Control, form } from '@angular/forms/signals';
 
 @Component({
 	selector: 'admin-settings-page',
@@ -10,15 +10,16 @@ import { SignalFormBuilder } from "frakton-ng/forms";
 	imports: [
 		FktButtonComponent,
 		FktCheckboxComponent,
-		FktInputComponent
+		FktInputComponent,
+		Control
 	],
 	styleUrl: './admin-settings-page.component.scss'
 })
 export class AdminSettingsPageComponent {
-	private fb = inject(SignalFormBuilder);
-
-	protected form = this.fb.group({
+	private value = signal({
 		name: '',
 		darkMode: false,
 	})
+
+	protected form = form(this.value);
 }

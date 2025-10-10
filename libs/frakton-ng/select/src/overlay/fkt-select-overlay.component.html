@@ -1,4 +1,4 @@
-<ul class="overlay" role="listbox"
+<ul fktNavigableList childSelector="li" (select)="onKeyBoardSelect($event)" [(currentIndex)]="currentIndex" class="overlay" role="listbox"
 >
 	@if (loading()) {
 		<div class="spinner-container">
@@ -10,15 +10,12 @@
 				#option
 				role="option"
 				[id]="'fkt-select-option-' + option.value"
-				[class.active]="('fkt-select-option-' + option.value) === activeOptionId()"
 				(click)="select.emit(option)"
 				[attr.aria-label]="option.label"
-				[attr.aria-selected]="option.value === selected()"
 			>
 				{{ option.label }}
 				@if (option.value === selected()) {
 					<fkt-icon
-						aria-hidden="true"
 						name="check"
 					/>
 				}

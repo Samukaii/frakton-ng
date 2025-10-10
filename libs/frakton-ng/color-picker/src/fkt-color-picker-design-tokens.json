@@ -1,0 +1,236 @@
+[
+  {
+    "description": "Gap between color picker elements.",
+    "name": "--fkt-color-picker-gap",
+    "reference": "--space-xs",
+    "component": "Field",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": ".5rem"
+  },
+  {
+    "description": "Border radius for color picker elements.",
+    "name": "--fkt-color-picker-border-radius",
+    "reference": "--radius-md",
+    "component": "Field",
+    "category": "Shape",
+    "type": "size",
+    "defaultValue": ".375rem"
+  },
+  {
+    "description": "Border radius for color picker elements.",
+    "name": "--fkt-color-picker-preview-border-radius",
+    "reference": "--radius-md",
+    "component": "Field",
+    "category": "Shape",
+    "type": "size",
+    "defaultValue": ".375rem"
+  },
+  {
+    "description": "Border color for color picker elements.",
+    "name": "--fkt-color-picker-border-color",
+    "reference": "--color-neutral-400",
+    "component": "Field",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#D1D5DBFF"
+  },
+  {
+    "description": "Background color for button hover state.",
+    "name": "--fkt-color-picker-button-hover-bg",
+    "reference": "--color-neutral-200",
+    "component": "Field",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#F3F4F6FF"
+  },
+  {
+    "description": "Text color for color labels and descriptions.",
+    "name": "--fkt-color-picker-label-color",
+    "reference": "--color-neutral-900",
+    "component": "Field",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#111827FF"
+  },
+  {
+    "description": "Text color for preview color code.",
+    "name": "--fkt-color-picker-preview-value-color",
+    "reference": "--color-neutral-500",
+    "component": "Field",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#6B7280FF"
+  },
+  {
+    "description": "Width of the color preview area.",
+    "name": "--fkt-color-picker-preview-width",
+    "reference": "40px",
+    "component": "Field",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": "40px"
+  },
+  {
+    "description": "Height of the color preview area.",
+    "name": "--fkt-color-picker-preview-height",
+    "reference": "40px",
+    "component": "Field",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": "40px"
+  },
+  {
+    "description": "Modal background color",
+    "name": "--fkt-color-picker-modal-background-color",
+    "reference": "--color-neutral-50",
+    "component": "Modal",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#FFFFFFFF"
+  },
+  {
+    "description": "Modal text color",
+    "name": "--fkt-color-picker-modal-text-color",
+    "reference": "--color-neutral-950",
+    "component": "Modal",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#030712FF"
+  },
+  {
+    "description": "Spacing between elements in the color picker modal.",
+    "name": "--fkt-color-picker-modal-gap",
+    "reference": "--space-xs",
+    "component": "Modal",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": ".5rem"
+  },
+  {
+    "description": "Height of the hue and alpha selector bars.",
+    "name": "--fkt-color-picker-modal-selector-height",
+    "reference": "24px",
+    "component": "Modal",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": "24px"
+  },
+  {
+    "description": "Width of the format selector in color control.",
+    "name": "--fkt-color-control-format-width",
+    "reference": "76px",
+    "component": "Color controls",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": "76px"
+  },
+  {
+    "description": "Height of the color control elements.",
+    "name": "--fkt-color-control-element-height",
+    "reference": "46px",
+    "component": "Color controls",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": "46px"
+  },
+  {
+    "description": "Width of the color preview circle.",
+    "name": "--fkt-color-control-preview-width",
+    "reference": "40px",
+    "component": "Color controls",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": "40px"
+  },
+  {
+    "description": "Border color for control elements.",
+    "name": "--fkt-color-control-border-color",
+    "reference": "--color-neutral-400",
+    "component": "Color controls",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#D1D5DBFF"
+  },
+  {
+    "description": "Hover border color for control elements.",
+    "name": "--fkt-color-control-hover-border-color",
+    "reference": "--color-brand-secondary",
+    "component": "Color controls",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#ffb940"
+  },
+  {
+    "description": "Border radius for control elements.",
+    "name": "--fkt-color-control-border-radius",
+    "reference": "--radius-xl",
+    "component": "Color controls",
+    "category": "Shape",
+    "type": "size",
+    "defaultValue": ".75rem"
+  },
+  {
+    "description": "Focus shadow color for control elements.",
+    "name": "--fkt-color-control-focus-shadow-color",
+    "reference": "--color-brand-secondary",
+    "component": "Color controls",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#ffb940"
+  },
+  {
+    "description": "Padding for control value display.",
+    "name": "--fkt-color-control-value-padding",
+    "reference": "--space-sm",
+    "component": "Color controls",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": ".75rem"
+  },
+  {
+    "description": "Background color for color value display.",
+    "name": "--fkt-color-control-value-background",
+    "reference": "#00000000",
+    "component": "Color controls",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#00000000"
+  },
+  {
+    "description": "Text color for color value display.",
+    "name": "--fkt-color-control-value-color",
+    "reference": "--color-neutral-900",
+    "component": "Color controls",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#111827FF"
+  },
+  {
+    "description": "Gap between elements in the value display.",
+    "name": "--fkt-color-control-value-gap",
+    "reference": ".5rem",
+    "component": "Color controls",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": ".5rem"
+  },
+  {
+    "description": "Height of text description in value display.",
+    "name": "--fkt-color-control-description-height",
+    "reference": "30px",
+    "component": "Color controls",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": "30px"
+  },
+  {
+    "description": "Padding for color control item.",
+    "name": "--fkt-color-control-item-padding",
+    "reference": "--space-xs",
+    "component": "Color controls",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": ".5rem"
+  }
+]

@@ -1,15 +1,15 @@
-import { Component, computed, input } from '@angular/core';
-import { FktInputComponent } from '../../../index';
-import { SignalFormControl } from 'frakton-ng/forms';
+import { Component, computed, input, signal } from '@angular/core';
+import { Control, form } from '@angular/forms/signals';
+import { FktInputComponent } from 'frakton-ng/input';
 
 @Component({
 	selector: 'input-percent-example',
-	imports: [FktInputComponent],
+	imports: [FktInputComponent, Control],
 	styleUrl: './percent-example.component.scss',
 	templateUrl: './percent-example.component.html'
 })
 export class PercentExampleComponent {
-	control = input(new SignalFormControl(''));
+	control = form(signal(''));
 	label = input('Completion Rate');
 	placeholder = input('Enter percentage');
 

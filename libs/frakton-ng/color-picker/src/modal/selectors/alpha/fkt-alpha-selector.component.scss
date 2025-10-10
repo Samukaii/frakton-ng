@@ -1,0 +1,69 @@
+:host {
+	position: relative;
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+
+.bar {
+	width: 100%;
+	height: 100%;
+	cursor: pointer;
+	border-radius: var(--radius-lg);
+	overflow: hidden;
+
+	.gradient {
+		width: 100%;
+		height: 100%;
+	}
+}
+
+
+.picker {
+	position: absolute;
+	top: 50%;
+	left: 0;
+	background-color: white;
+	border-radius: 100%;
+	box-shadow: 0 0 0 1px var(--color-gray-300);
+	padding: 5px;
+	transform: translate(-50%, -50%);
+	cursor: pointer;
+	min-width: 24px;
+	max-width: 24px;
+	min-height: 24px;
+	max-height: 24px;
+	border: none;
+
+	&:focus-within {
+		box-shadow: 0 0 0 2px var(--color-brand-secondary);
+	}
+
+	input {
+		border: 0;
+		clip: rect(0px, 0px, 0px, 0px);
+		clip-path: inset(50%);
+		height: 100%;
+		margin: -1px;
+		overflow: hidden;
+		padding: 0;
+		position: absolute;
+		width: 100%;
+		white-space: nowrap;
+		opacity: 0.0001;
+		pointer-events: none;
+	}
+
+	span {
+		width: 14px;
+		height: 14px;
+		border-radius: 100%;
+		display: block;
+		box-shadow: 0 0 0 1px var(--color-gray-300);
+	}
+}

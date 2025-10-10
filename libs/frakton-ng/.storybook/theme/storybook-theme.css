@@ -6,6 +6,8 @@
 	font-display: swap;
 }
 
+
+
 .source-application-code {
 	position: relative;
 
@@ -347,7 +349,7 @@
 	}
 
 	.canvas-block__content {
-		padding: 1rem;
+		padding: 0;
 		display: flex;
 		flex-direction: column;
 		gap: var(--space-md);

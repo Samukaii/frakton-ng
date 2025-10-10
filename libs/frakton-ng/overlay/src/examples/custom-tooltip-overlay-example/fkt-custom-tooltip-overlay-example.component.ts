@@ -20,16 +20,16 @@ export class FktCustomTooltipOverlayExampleComponent {
 
 	openTooltip(
 		nativeElement: HTMLElement,
-		type: 'info' | 'warning' | 'error' | 'success',
+		type: 'info' | 'warning' | 'danger' | 'success',
 		text: string,
 		position: FktGeometryPosition = 'bottom-center'
 	) {
 		if (this.overlayRef) return;
 
-		const colors: Record<'info' | 'warning' | 'error' | 'success', string> = {
+		const colors: Record<'info' | 'warning' | 'danger' | 'success', string> = {
 			info: "#3b82f6",
 			warning: "#eab308",
-			error: "#ef4444",
+			danger: "#ef4444",
 			success: "#22c55e",
 		}
 

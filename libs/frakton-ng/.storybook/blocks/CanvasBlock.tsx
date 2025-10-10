@@ -1,8 +1,9 @@
-import {Canvas, Controls, useOf} from "@storybook/addon-docs/blocks";
+import {Canvas, Controls, Story, useOf} from "@storybook/addon-docs/blocks";
 import {ModuleExport} from "storybook/internal/types";
 import {useState} from "react";
 import {If} from "./If";
 import {FilesSource} from "./FilesSource";
+import {FktControls} from "./FktControls";
 
 type CanvasBlockProps = {
 	of: ModuleExport;
@@ -60,12 +61,9 @@ export const CanvasBlock = (props: CanvasBlockProps) => {
 			<div className="canvas-block__content">
 				<If condition={tab === "preview"}>
 					<div className="canvas-block__canvas">
-						<Canvas
-							className={props.fixedSize ? 'canvas-block__canvas--fixed-size' : ''}
-							sourceState={"none"}
-							of={props.of}/>
+
+						<Story of={props.of}/>
 					</div>
-					<Controls include={Object.keys(resolvedOf.story.initialArgs)} of={props.of}/>
 				</If>
 				<If condition={tab === "code"}>
 					{sources.map(source => {

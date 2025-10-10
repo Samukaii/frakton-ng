@@ -1,0 +1,47 @@
+// <design-tokens>
+/*
+Padding for color control item.
+@name --fkt-color-control-item-padding
+@reference --space-xs
+@component Color controls
+@category Spacing
+@type size
+*/
+$item-padding: var(--fkt-color-control-item-padding, var(--space-xs));
+
+/*
+Border color for control elements.
+@name --fkt-color-control-border-color
+@reference --color-neutral-400
+@component Field
+@category Colors
+@type color
+*/
+$border-color: var(--fkt-color-control-border-color, var(--color-neutral-400));
+
+/*
+Border radius for control elements.
+@name --fkt-color-control-border-radius
+@reference --radius-xl
+@component Field
+@category Shape
+@type size
+*/
+$control-border-radius: var(--fkt-color-control-border-radius, var(--radius-xl));
+// </design-tokens>
+
+:host {
+	padding: $item-padding;
+	transition: var(--transition-base);
+	border-left: solid 1px $border-color;
+	border-top: solid 1px $border-color;
+	border-bottom: solid 1px $border-color;
+	width: 100%;
+	display: flex;
+	align-items: center;
+
+	&.last {
+		border-right: solid 1px $border-color;
+		border-radius: 0 $control-border-radius 0 0;
+	}
+}

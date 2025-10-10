@@ -1,0 +1,232 @@
+// <design-tokens>
+/*
+Width of the format selector in color control.
+@name --fkt-color-control-format-width
+@reference 76px
+@component Color controls
+@category Spacing
+@type size
+*/
+$format-width: var(--fkt-color-control-format-width, 76px);
+
+/*
+Height of the color control elements.
+@name --fkt-color-control-element-height
+@reference 46px
+@component Color controls
+@category Spacing
+@type size
+*/
+$element-height: var(--fkt-color-control-element-height, 46px);
+
+/*
+Width of the color preview circle.
+@name --fkt-color-control-preview-width
+@reference 40px
+@component Color controls
+@category Spacing
+@type size
+*/
+$preview-width: var(--fkt-color-control-preview-width, 40px);
+
+/*
+Border color for control elements.
+@name --fkt-color-control-border-color
+@reference --color-neutral-400
+@component Color controls
+@category Colors
+@type color
+*/
+$border-color: var(--fkt-color-control-border-color, var(--color-neutral-400));
+
+/*
+Hover border color for control elements.
+@name --fkt-color-control-hover-border-color
+@reference --color-brand-secondary
+@component Color controls
+@category Colors
+@type color
+*/
+$hover-border-color: var(--fkt-color-control-hover-border-color, var(--color-brand-secondary));
+
+/*
+Border radius for control elements.
+@name --fkt-color-control-border-radius
+@reference --radius-xl
+@component Color controls
+@category Shape
+@type size
+*/
+$control-border-radius: var(--fkt-color-control-border-radius, var(--radius-xl));
+
+/*
+Focus shadow color for control elements.
+@name --fkt-color-control-focus-shadow-color
+@reference --color-brand-secondary
+@component Color controls
+@category Colors
+@type color
+*/
+$focus-shadow-color: var(--fkt-color-control-focus-shadow-color, var(--color-brand-secondary));
+
+/*
+Padding for control value display.
+@name --fkt-color-control-value-padding
+@reference --space-sm
+@component Color controls
+@category Spacing
+@type size
+*/
+$value-padding: var(--fkt-color-control-value-padding, var(--space-sm));
+
+/*
+Background color for color value display.
+@name --fkt-color-control-value-background
+@reference #00000000
+@component Color controls
+@category Colors
+@type color
+*/
+$value-background: var(--fkt-color-control-value-background, #00000000);
+
+/*
+Text color for color value display.
+@name --fkt-color-control-value-color
+@reference --color-neutral-900
+@component Color controls
+@category Colors
+@type color
+*/
+$value-color: var(--fkt-color-control-value-color, var(--color-neutral-900));
+
+/*
+Gap between elements in the value display.
+@name --fkt-color-control-value-gap
+@reference .5rem
+@component Color controls
+@category Spacing
+@type size
+*/
+$value-gap: var(--fkt-color-control-value-gap, .5rem);
+
+/*
+Height of text description in value display.
+@name --fkt-color-control-description-height
+@reference 30px
+@component Color controls
+@category Spacing
+@type size
+*/
+$description-height: var(--fkt-color-control-description-height, 30px);
+// </design-tokens>
+
+fkt-select {
+	width: $format-width !important;
+	height: $element-height;
+	display: flex;
+	align-items: center;
+
+	--fkt-select-vertical-padding: 0rem;
+	--fkt-select-horizontal-padding: var(--space-xs);
+	--fkt-select-border-radius: 0rem;
+	--fkt-select-border-color: transparent;
+	--fkt-select-border-focus-color: transparent;
+	--fkt-select-font-size: var(--font-size-sm);
+}
+
+.controls {
+	display: flex;
+	border-radius: var(--radius-md);
+	border: none;
+	padding: 0;
+	margin: 0;
+
+	& > fkt-color-control-item {
+		&.preview {
+			width: 0;
+			min-width: $preview-width;
+			aspect-ratio: 1;
+			border-right: none;
+			border-radius: $control-border-radius 0 0 0;
+
+			& > div {
+				border-radius: 100%;
+				width: 100%;
+				aspect-ratio: 1;
+				overflow: hidden;
+				border: solid 1px $border-color;
+			}
+
+			span {
+				display: block;
+				width: 100%;
+				height: 100%;
+			}
+		}
+
+		&.format {
+			width: $format-width;
+			padding: 0 !important;
+		}
+	}
+
+	::ng-deep {
+		fkt-color-control-item:not(.preview):hover {
+			border-color: $hover-border-color;
+
+			& + fkt-color-control-item {
+				border-left-color: $hover-border-color;
+			}
+
+			& + * fkt-color-control-item.first {
+				border-left-color: $hover-border-color;
+			}
+		}
+
+		fkt-color-control-item:not(.preview):focus-within {
+			box-shadow: 0 0 0 2px $focus-shadow-color;
+			border-color: transparent;
+
+			& + fkt-color-control-item {
+				border-left-color: transparent;
+			}
+
+			& + * fkt-color-control-item.first {
+				border-left-color: transparent;
+			}
+		}
+	}
+}
+
+.value {
+	display: flex;
+	margin: 0;
+	padding: $value-padding;
+	width: 100%;
+	font-family: monospace;
+	border: solid 1px $border-color;
+	border-top: none;
+	justify-content: space-between;
+	border-radius: 0 0 $control-border-radius $control-border-radius;
+	align-items: center;
+	box-sizing: border-box;
+
+	p {
+		font-family: monospace;
+		margin: 0;
+
+		&.text-description {
+			height: $description-height;
+		}
+	}
+
+	b {
+		font-family: monospace;
+	}
+
+	& > div {
+		display: flex;
+		flex-direction: column;
+		gap: $value-gap;
+	}
+}

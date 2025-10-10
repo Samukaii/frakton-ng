@@ -115,20 +115,20 @@ export const Preview: StoryObj = {
 			{
 				identifier: "action-2",
 				theme: "stroked",
-				color: "green",
+				color: "success",
 				text: "Action 2",
 				variant: "default"
 			},
 			{
 				identifier: "action-3",
 				theme: "basic",
-				color: "red",
+				color: "danger",
 				text: "Action 3"
 			},
 			{
 				identifier: "action-4",
 				theme: "raised",
-				color: "yellow",
+				color: "accent",
 				text: "Action 4"
 			},
 			{
@@ -142,7 +142,7 @@ export const Preview: StoryObj = {
 				theme: "basic",
 				icon: "trash",
 				variant: "rect",
-				color: "red"
+				color: "danger"
 			}
 		]
 	}
@@ -159,19 +159,19 @@ export const FormActions: StoryObj = {
 			{
 				identifier: "cancel",
 				theme: "basic",
-				color: "red",
+				color: "danger",
 				text: "Cancel"
 			},
 			{
 				identifier: "save-draft",
 				theme: "stroked",
-				color: "green",
+				color: "success",
 				text: "Save Draft"
 			},
 			{
 				identifier: "submit",
 				theme: "raised",
-				color: "green",
+				color: "success",
 				text: "Submit"
 			}
 		],

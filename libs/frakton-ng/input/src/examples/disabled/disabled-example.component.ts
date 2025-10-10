@@ -1,29 +1,28 @@
-import { Component, input, OnInit } from '@angular/core';
+import { Component, input, signal } from '@angular/core';
 import { FktInputComponent } from '../../../index';
-import { SignalFormControl } from 'frakton-ng/forms';
 import { FktBadgeComponent } from 'frakton-ng/badge';
 import { FktButtonComponent } from 'frakton-ng/button';
+import { applyWhen, Control, disabled, form } from '@angular/forms/signals';
 
 @Component({
 	selector: 'input-disabled-example',
-	imports: [FktInputComponent, FktBadgeComponent, FktButtonComponent],
+	imports: [FktInputComponent, FktBadgeComponent, FktButtonComponent, Control],
 	styleUrl: './disabled-example.component.scss',
 	templateUrl: './disabled-example.component.html'
 })
-export class DisabledExampleComponent implements OnInit {
-	control = input(new SignalFormControl('This field is disabled'));
+export class DisabledExampleComponent {
+	control = form(signal('This field is disabled'), (path) => {
+		applyWhen(path, () => this.disabled(),
+			(path) => {
+				disabled(path)
+			})
+	});
 	label = input('Disabled Field');
 	placeholder = input('This field is disabled');
+	disabled = signal(true);
 
-	ngOnInit() {
-		this.control().disable();
-	}
 
 	protected toggleField() {
-		const disabled = this.control().disabled();
-
-		if (disabled)
-			this.control().enable();
-		else this.control().disable();
+		this.disabled.update(disabled => !disabled);
 	}
 }

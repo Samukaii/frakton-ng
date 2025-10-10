@@ -1,0 +1,39 @@
+<fkt-saturation-lightness-selector
+	[value]="formattedColor()"
+	(valueChange)="onValueChange($event)"
+/>
+<fkt-hue-selector
+	[value]="formattedColor()"
+	(valueChange)="onValueChange($event)"
+/>
+
+@if (!disableAlphaChanel()) {
+	<fkt-alpha-selector [value]="formattedColor()" (valueChange)="onValueChange($event)"/>
+}
+
+<fkt-color-control [formatOptions]="formatOptions" [(currentFormat)]="currentFormat" [value]="formattedColor()"
+				   [disableAlphaChanel]="disableAlphaChanel()">
+	@switch (currentFormat()) {
+		@case ("hsl") {
+			<fkt-color-hsl-control
+				[disableAlphaChannel]="disableAlphaChanel()"
+				[value]="formattedColor()"
+				(valueChange)="onValueChange($event)"
+			/>
+		}
+		@case ("rgb") {
+			<fkt-color-rgb-control
+				[disableAlphaChannel]="disableAlphaChanel()"
+				[value]="formattedColor()"
+				(valueChange)="onValueChange($event)"
+			/>
+		}
+		@case ("hex") {
+			<fkt-color-hex-control
+				[disableAlphaChannel]="disableAlphaChanel()"
+				[value]="formattedColor()"
+				(valueChange)="onValueChange($event)"
+			/>
+		}
+	}
+</fkt-color-control>

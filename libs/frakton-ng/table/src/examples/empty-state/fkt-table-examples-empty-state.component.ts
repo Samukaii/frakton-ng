@@ -136,11 +136,11 @@ export class FktTableExamplesEmptyStateComponent {
 					color: (() => {
 						switch (user.role) {
 							case "admin":
-								return "blue";
+								return "info";
 							case "moderator":
-								return "orange";
+								return "warning";
 							default:
-								return "green"
+								return "success"
 						}
 					})(),
 					variant: "faded"
@@ -157,11 +157,11 @@ export class FktTableExamplesEmptyStateComponent {
 					color: (() => {
 						switch (user.status) {
 							case "active":
-								return "green";
+								return "success";
 							case "pending":
-								return "orange";
+								return "warning";
 							default:
-								return "red"
+								return "danger"
 						}
 					})()
 				}

@@ -1,17 +1,18 @@
-import { Component, input } from '@angular/core';
+import { Component, input, signal } from '@angular/core';
 import { FktSelectComponent, FktSelectOption } from 'frakton-ng/select';
-import { SignalFormControl } from 'frakton-ng/forms';
+import { Control, form } from '@angular/forms/signals';
 
 @Component({
 	selector: 'select-loading-example',
 	templateUrl: './loading-example.component.html',
 	styleUrl: './loading-example.component.scss',
-	imports: [FktSelectComponent]
+	imports: [FktSelectComponent, Control]
 })
 export class LoadingExampleComponent {
-	control = new SignalFormControl('');
 	label = input<string>();
 	placeholder = input<string>();
 	options = input.required<FktSelectOption[]>();
 	loading = input<boolean>(true);
+
+	protected control = form(signal(''));
 }

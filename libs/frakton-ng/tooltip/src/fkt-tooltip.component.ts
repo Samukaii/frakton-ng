@@ -19,11 +19,12 @@ export class FktTooltipComponent {
 	overlayInfo = inject(OVERLAY_INFO);
 
 	private colorMap: Record<FktColor, string> = {
-		red: '#ef4444',
-		green: '#22c55e',
+		danger: '#ef4444',
+		success: '#22c55e',
 		primary: '#1f2937',
-		yellow: '#eab308',
-		blue: '#2B7FFFFF',
+		accent: '#eab308',
+		warning: '#FF6900FF',
+		info: '#2B7FFFFF',
 	};
 
 	private tipPositionMap: Record<

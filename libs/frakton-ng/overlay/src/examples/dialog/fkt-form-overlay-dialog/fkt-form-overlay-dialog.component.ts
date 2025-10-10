@@ -1,11 +1,12 @@
-import { Component, inject, input, OnInit, output } from '@angular/core';
+import { Component, input, linkedSignal, output } from '@angular/core';
 import { FormData } from '../../form-overlay-example/fkt-form-overlay-example.component';
-import { SignalFormBuilder, SignalValidators } from 'frakton-ng/forms';
 import { FktInputComponent } from 'frakton-ng/input';
 import { FormsModule } from '@angular/forms';
 import { FktIconComponent } from 'frakton-ng/icon';
 import { FktTextareaComponent } from 'frakton-ng/textarea';
 import { FktButtonComponent } from 'frakton-ng/button';
+import { Control, email, form, required, submit } from '@angular/forms/signals';
+import { FktFieldErrorComponent } from 'frakton-ng/field-error';
 
 @Component({
 	selector: 'fkt-form-overlay-dialog',
@@ -14,12 +15,14 @@ import { FktButtonComponent } from 'frakton-ng/button';
 		FormsModule,
 		FktIconComponent,
 		FktButtonComponent,
-		FktTextareaComponent
+		FktTextareaComponent,
+		Control,
+		FktFieldErrorComponent
 	],
 	templateUrl: './fkt-form-overlay-dialog.component.html',
 	styleUrl: './fkt-form-overlay-dialog.component.scss'
 })
-export class FktFormOverlayDialogComponent implements OnInit {
+export class FktFormOverlayDialogComponent {
 	title = input('Contact Form');
 	description = input('Please fill out your information below:');
 	initialData = input<FormData>();
@@ -27,25 +30,31 @@ export class FktFormOverlayDialogComponent implements OnInit {
 	onFormSubmit = output<FormData>();
 	onFormCancel = output<void>();
 
-	private fb = inject(SignalFormBuilder);
-	protected form = this.fb.group({
-		name: ['', SignalValidators.required()],
-		email: ['', [SignalValidators.required(), SignalValidators.email()]],
-		message: ['', SignalValidators.required()],
-	})
-
-	ngOnInit() {
+	private value = linkedSignal(() => {
 		const initialData = this.initialData();
 
-		if (!initialData) return;
+		if (!initialData)
+			return {
+				name: '',
+				email: '',
+				message: ''
+			}
 
-		this.form.patchValue(initialData);
-	}
+		return initialData;
+	});
 
-	protected handleSubmit() {
-		if (!this.form.valid()) return;
+	protected form = form(this.value, path => {
+		required(path.name, {message: "Field is required"});
+		required(path.email, {message: "Field is required"});
+		required(path.name, {message: "Field is required"});
 
-		this.onFormSubmit.emit(this.form.value());
+		email(path.email, {message: "E-mail invalid"})
+	})
+
+	protected async handleSubmit() {
+		await submit(this.form, async () => {
+			this.onFormSubmit.emit(this.form().value());
+		});
 	}
 
 	protected handleCancel() {

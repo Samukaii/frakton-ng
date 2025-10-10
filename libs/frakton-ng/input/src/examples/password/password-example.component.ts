@@ -1,16 +1,15 @@
-import { Component, input } from '@angular/core';
+import { Component, input, signal } from '@angular/core';
 import { FktInputComponent } from '../../../index';
-import { SignalFormControl } from 'frakton-ng/forms';
-import { FktIconComponent } from 'frakton-ng/icon';
+import { Control, form } from '@angular/forms/signals';
 
 @Component({
 	selector: 'input-password-example',
-	imports: [FktInputComponent, FktIconComponent],
+	imports: [FktInputComponent, Control],
 	styleUrl: './password-example.component.scss',
 	templateUrl: './password-example.component.html'
 })
 export class PasswordExampleComponent {
-	control = input(new SignalFormControl(''));
+	control = form(signal(''));
 	label = input('Password');
 	placeholder = input('Enter your password');
 }

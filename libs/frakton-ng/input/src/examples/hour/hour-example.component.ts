@@ -1,15 +1,15 @@
-import { Component, computed, input } from '@angular/core';
+import { Component, computed, input, signal } from '@angular/core';
 import { FktInputComponent } from '../../../index';
-import { SignalFormControl } from 'frakton-ng/forms';
+import { Control, form } from '@angular/forms/signals';
 
 @Component({
 	selector: 'input-hour-example',
-	imports: [FktInputComponent],
+	imports: [FktInputComponent, Control],
 	styleUrl: './hour-example.component.scss',
 	templateUrl: './hour-example.component.html'
 })
 export class HourExampleComponent {
-	control = input(new SignalFormControl(''));
+	control = form(signal(''));
 	label = input('Work Duration');
 	placeholder = input('Enter time duration');
 

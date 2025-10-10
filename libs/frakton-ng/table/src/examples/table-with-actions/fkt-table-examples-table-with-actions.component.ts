@@ -107,7 +107,7 @@ export class FktTableExamplesTableWithActionsComponent {
 			condition: user.status !== 'inactive',
 			theme: 'basic',
 			icon: 'pencil',
-			color: 'green',
+			color: 'success',
 			click: () => this.editUser(user)
 		},
 		{
@@ -115,7 +115,7 @@ export class FktTableExamplesTableWithActionsComponent {
 			condition: true,
 			theme: 'basic',
 			icon: user.status === 'active' ? 'pause' : 'play',
-			color: user.status === 'active' ? 'yellow' : 'green',
+			color: user.status === 'active' ? 'accent' : 'success',
 			click: () => this.toggleUserStatus(user)
 		},
 		{
@@ -123,7 +123,7 @@ export class FktTableExamplesTableWithActionsComponent {
 			condition: user.role !== 'admin',
 			theme: 'basic',
 			icon: 'trash',
-			color: 'red',
+			color: 'danger',
 			click: () => this.deleteUser(user)
 		}
 	];
@@ -155,11 +155,11 @@ export class FktTableExamplesTableWithActionsComponent {
 					color: (() => {
 						switch (user.role) {
 							case "admin":
-								return "blue";
+								return "info";
 							case "moderator":
-								return "orange";
+								return "warning";
 							default:
-								return "green"
+								return "success"
 						}
 					})(),
 					variant: "faded"
@@ -176,11 +176,11 @@ export class FktTableExamplesTableWithActionsComponent {
 					color: (() => {
 						switch (user.status) {
 							case "active":
-								return "green";
+								return "success";
 							case "pending":
-								return "orange";
+								return "warning";
 							default:
-								return "red"
+								return "danger"
 						}
 					})()
 				}

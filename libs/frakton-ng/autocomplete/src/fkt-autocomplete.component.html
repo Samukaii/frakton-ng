@@ -1,8 +1,15 @@
 <fkt-input
-	[control]="control()"
 	[spellcheck]="false"
 	[label]="label()"
-	[transformer]="transformer"
 	[placeholder]="placeholder()"
+	[(value)]="searchValue"
+	[errors]="errors()"
+	[invalid]="invalid()"
+	[disabled]="disabled() || addingOptionLoading()"
+	[(touched)]="touched"
 	(click)="openOverlay()"
-/>
+>
+	@if (addingOptionLoading()) {
+		<fkt-spinner *fktFormControlSuffix [size]="15"/>
+	}
+</fkt-input>

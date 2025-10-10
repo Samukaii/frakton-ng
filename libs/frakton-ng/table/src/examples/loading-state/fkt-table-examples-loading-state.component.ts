@@ -131,11 +131,11 @@ export class FktTableExamplesLoadingStateComponent {
 					color: (() => {
 						switch (user.role) {
 							case "admin":
-								return "blue";
+								return "info";
 							case "moderator":
-								return "orange";
+								return "warning";
 							default:
-								return "green"
+								return "success"
 						}
 					})(),
 					variant: "faded"
@@ -152,11 +152,11 @@ export class FktTableExamplesLoadingStateComponent {
 					color: (() => {
 						switch (user.status) {
 							case "active":
-								return "green";
+								return "success";
 							case "pending":
-								return "orange";
+								return "accent";
 							default:
-								return "red"
+								return "danger"
 						}
 					})()
 				}
@@ -191,7 +191,7 @@ export class FktTableExamplesLoadingStateComponent {
 			condition: user.status !== 'inactive',
 			theme: 'basic',
 			icon: 'pencil',
-			color: 'green',
+			color: 'success',
 			click: () => console.log('Edit user:', user.name)
 		},
 		{
@@ -199,7 +199,7 @@ export class FktTableExamplesLoadingStateComponent {
 			condition: user.role === 'admin',
 			theme: 'basic',
 			icon: 'trash',
-			color: 'red',
+			color: 'danger',
 			click: () => console.log('Delete user:', user.name)
 		}
 	];

@@ -1,29 +1,25 @@
-import { Component, input, OnInit } from '@angular/core';
+import { Component, input, signal } from '@angular/core';
 import { FktSelectComponent, FktSelectOption } from 'frakton-ng/select';
-import { SignalFormControl } from 'frakton-ng/forms';
 import { FktButtonComponent } from 'frakton-ng/button';
+import { Control, disabled, form } from '@angular/forms/signals';
 
 @Component({
 	selector: 'select-disabled-example',
 	styleUrl: './disabled-example.component.scss',
 	templateUrl: './disabled-example.component.html',
-	imports: [FktSelectComponent, FktButtonComponent]
+	imports: [FktSelectComponent, FktButtonComponent, Control]
 })
-export class DisabledExampleComponent implements OnInit {
-	control = new SignalFormControl('option2');
+export class DisabledExampleComponent {
 	label = input<string>();
 	placeholder = input<string>();
 	options = input.required<FktSelectOption[]>();
 
-	ngOnInit() {
-		this.control.disable();
-	}
+	protected control = form(signal('option2'), path => {
+		disabled(path, this.disabled);
+	});
+	protected disabled = signal(true);
 
 	toggleDisabled() {
-		if (this.control.disabled()) {
-			this.control.enable();
-		} else {
-			this.control.disable();
-		}
+		this.disabled.update(disabled => !disabled);
 	}
 }

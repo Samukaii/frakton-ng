@@ -73,11 +73,13 @@ Example:
 					<div class="flex gap-2">
 						<fkt-button
 							(click)="resetForm()"
+							loadingText="Loading..."
 							text="Reset"
 							theme="stroked"
 						>
 						</fkt-button>
 						<fkt-button
+							loadingText="Loading..."
 							type="submit"
 							text="Submit"
 							[disabled]="!form.valid()"

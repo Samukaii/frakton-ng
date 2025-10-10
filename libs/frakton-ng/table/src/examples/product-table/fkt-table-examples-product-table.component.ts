@@ -106,7 +106,7 @@ export class FktTableExamplesProductTableComponent {
 				type: 'badge',
 				options: {
 					text: `$${product.price.toFixed(2)}`,
-					color: "green",
+					color: "success",
 					variant: "faded"
 				}
 			}
@@ -118,7 +118,7 @@ export class FktTableExamplesProductTableComponent {
 				type: 'badge',
 				options: {
 					text: product.stock.toString(),
-					color: "blue",
+					color: "info",
 					variant: "opaque"
 				}
 			}
@@ -140,7 +140,7 @@ export class FktTableExamplesProductTableComponent {
 			identifier: 'edit',
 			condition: product.status !== 'discontinued',
 			icon: 'pencil',
-			color: 'green',
+			color: 'success',
 			theme: 'basic',
 			click: () => console.log('Edit product:', product.name)
 		},
@@ -148,7 +148,7 @@ export class FktTableExamplesProductTableComponent {
 			identifier: 'delete',
 			condition: true,
 			icon: 'trash',
-			color: 'red',
+			color: 'danger',
 			theme: 'basic',
 			click: () => console.log('Delete product:', product.name)
 		}

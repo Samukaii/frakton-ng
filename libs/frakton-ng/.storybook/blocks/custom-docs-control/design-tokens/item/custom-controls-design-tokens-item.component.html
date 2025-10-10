@@ -1,0 +1,70 @@
+<td>
+
+	{{ designToken().name }}
+
+</td>
+<td>
+	{{ designToken().description }}
+
+</td>
+
+<td>
+	@if (designToken().reference === designToken().defaultValue) {
+		<p>{{ designToken().defaultValue }}</p>
+	} @else {
+		<a [fktTooltip]="designToken().defaultValue" position="top-center" href="#">
+			{{ designToken().reference }}
+		</a>
+	}
+
+</td>
+<td>
+	@switch (designToken().type) {
+		@case ("size") {
+			<fkt-input
+				[label]="designToken().name"
+				hideLabel
+				(inputKeyDown)="onKeyDown($event, designToken().control)"
+				placeholder="Enter a text value"
+				[(value)]="designToken().control"
+			>
+				<div *fktFormControlSuffix class="numeric-control">
+					<fkt-icon
+						(mousedown)="increaseNumber($any($event), designToken().control)"
+						name="chevron-up"/>
+					<fkt-icon
+						(mousedown)="decreaseNumber($any($event), designToken().control)"
+						name="chevron-down"/>
+				</div>
+			</fkt-input>
+		}
+		@case ("color") {
+			<fkt-color-picker
+				[(value)]="designToken().control"
+				label="Select the color"
+			/>
+		}
+	}
+</td>
+<td class="actions">
+	@if (hasChanges()) {
+		<div>
+			<fkt-button
+				(click)="resetToken()"
+				ariaLabel="Reset token"
+				fktTooltip="Reset token"
+				color="primary"
+				theme="basic"
+				icon="arrow-uturn-left"
+			/>
+			<fkt-button
+				(click)="copyToken()"
+				ariaLabel="Copy this token"
+				fktTooltip="Copy this token"
+				color="primary"
+				theme="stroked"
+				icon="clipboard-document-list"
+			/>
+		</div>
+	}
+</td>

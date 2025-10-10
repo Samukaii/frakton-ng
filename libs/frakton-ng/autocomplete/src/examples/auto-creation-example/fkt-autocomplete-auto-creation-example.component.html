@@ -1,0 +1,39 @@
+<div class="example-container">
+	<p class="description">Allows users to create new options by typing values not in the predefined list. Try typing
+		"New Zealand" or another country not in the list.</p>
+
+	<fkt-autocomplete
+		[control]="control"
+		[label]="label()"
+		[placeholder]="placeholder()"
+		[addOptionLabel]="addOptionLabel()"
+		[allowAddOption]="allowAddOption()"
+		(addOption)="onAutoCreate($event)"
+		[options]="filteredOptions()"
+		(search)="searchTerm.set($event)"
+	/>
+
+	@if (selectedOption()) {
+		<div class="selected-option">
+			<div class="title">
+				<h3>
+					Selected option
+				</h3>
+				<hr>
+			</div>
+
+			<div class="info">
+				<p>
+					<strong>Value:</strong> {{ selectedOption()?.value }}
+				</p>
+				<p>
+					<strong>Label:</strong> {{ selectedOption()?.label }}
+				</p>
+			</div>
+		</div>
+	}
+
+	<div class="info-box">
+		<strong>Tip:</strong> Type a country name that's not in the list to see the auto-creation feature in action.
+	</div>
+</div>

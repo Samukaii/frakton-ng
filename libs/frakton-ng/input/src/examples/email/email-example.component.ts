@@ -1,20 +1,18 @@
-import { Component, computed, input } from '@angular/core';
+import { Component, input, signal } from '@angular/core';
 import { FktInputComponent } from '../../../index';
-import { SignalFormControl } from 'frakton-ng/forms';
+import { Control, email, form, required } from '@angular/forms/signals';
 
 @Component({
 	selector: 'input-email-example',
-	imports: [FktInputComponent],
+	imports: [FktInputComponent, Control],
 	styleUrl: './email-example.component.scss',
 	templateUrl: './email-example.component.html'
 })
 export class EmailExampleComponent {
-	control = input(new SignalFormControl(''));
+	control = form(signal(''), (path) => {
+		required(path, {message: "Field is required"})
+		email(path, {message: "Email is invalid"})
+	});
 	label = input('Email Address');
 	placeholder = input('Enter your email address');
-
-	hasAtSymbol = computed(() => {
-		const value = this.control().value();
-		return value.includes('@');
-	});
 }

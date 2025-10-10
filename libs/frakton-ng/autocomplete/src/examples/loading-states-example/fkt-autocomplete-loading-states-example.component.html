@@ -1,0 +1,77 @@
+<div class="example-container">
+	<h3>Loading States & No Results</h3>
+	<p class="description">Demonstrates loading indicators and no results handling. Use the buttons to simulate different states or type to search with realistic delays.</p>
+
+	<div class="controls">
+		<fkt-button
+			(click)="simulateLoading()"
+			text="Simulate Loading (2s)"
+			color="blue"
+			theme="raised">
+		</fkt-button>
+		<fkt-button
+			(click)="simulateNoResults()"
+			text="Simulate No Results"
+			color="yellow"
+			theme="raised">
+		</fkt-button>
+		<fkt-button
+			(click)="resetToNormal()"
+			text="Reset to Normal"
+			color="green"
+			theme="raised">
+		</fkt-button>
+	</div>
+
+	<fkt-autocomplete
+		[control]="control"
+		[label]="label()"
+		[placeholder]="placeholder()"
+		[options]="filteredOptions()"
+		[loading]="loading()"
+		[noResults]="noResults()"
+		(search)="onSearch($event)"
+	/>
+
+	@if (selectedOption()) {
+		<div class="selected-option">
+			<div class="title">
+				<h3>
+					Selected option
+				</h3>
+				<hr>
+			</div>
+
+			<div class="info">
+				<p>
+					<strong>Value:</strong> {{ selectedOption()?.value }}
+				</p>
+				<p>
+					<strong>Label:</strong> {{ selectedOption()?.label }}
+				</p>
+			</div>
+		</div>
+	}
+
+	<div class="state-indicator">
+		<div class="state-item">
+			<span class="state-label">Current State:</span>
+			<span class="state-value" [class]="isLoading() ? 'loading-state' : 'ready-state'">
+				{{ isLoading() ? 'Loading...' : 'Ready' }}
+			</span>
+		</div>
+		<div class="state-item">
+			<span class="state-label">Options Count:</span>
+			<span class="state-value">{{ options().length }}</span>
+		</div>
+	</div>
+
+	<div class="usage-tips">
+		<h4>Try this:</h4>
+		<ul>
+			<li>Type "alice" to search and see loading state</li>
+			<li>Type "xyz" to see no results message</li>
+			<li>Use buttons above to manually trigger states</li>
+		</ul>
+	</div>
+</div>

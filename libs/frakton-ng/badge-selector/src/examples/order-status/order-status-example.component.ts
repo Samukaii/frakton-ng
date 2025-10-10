@@ -9,11 +9,11 @@ import { FktBadge, FktBadgeSelectorComponent } from "frakton-ng/badge-selector";
 })
 export class OrderStatusExampleComponent {
 	options = input<FktBadge[]>([
-		{id: "pending", color: "orange", name: "Pending"},
-		{id: "processing", color: "blue", name: "Processing"},
-		{id: "shipped", color: "blue", name: "Shipped"},
-		{id: "delivered", color: "green", name: "Delivered"},
-		{id: "cancelled", color: "red", name: "Cancelled"}
+		{id: "pending", color: "warning", name: "Pending"},
+		{id: "processing", color: "info", name: "Processing"},
+		{id: "shipped", color: "info", name: "Shipped"},
+		{id: "delivered", color: "success", name: "Delivered"},
+		{id: "cancelled", color: "danger", name: "Cancelled"}
 	]);
 
 	currentBadgeId = model<string>('processing');

@@ -1,19 +1,20 @@
-import { Component, input } from '@angular/core';
+import { Component, input, signal } from '@angular/core';
 import { FktSelectComponent, FktSelectOption } from 'frakton-ng/select';
-import { SignalFormControl } from 'frakton-ng/forms';
 import { FktNoResults } from 'frakton-ng/no-results';
+import { Control, form } from '@angular/forms/signals';
 
 @Component({
 	selector: 'select-empty-state-example',
 	templateUrl: './empty-state-example.component.html',
 	styleUrl: './empty-state-example.component.scss',
-	imports: [FktSelectComponent]
+	imports: [FktSelectComponent, Control]
 })
 export class EmptyStateExampleComponent {
-	control = new SignalFormControl('');
 	label = input<string>();
 	placeholder = input<string>();
 	options = input.required<FktSelectOption[]>();
 	loading = input<boolean>(false);
 	noResults = input<FktNoResults>();
+
+	protected control = form(signal(''))
 }

@@ -1,44 +1,50 @@
 <div class="container">
-			<div class="container__header">
-				<fkt-icon name="document-text" class="container__header-icon"></fkt-icon>
-				<h3 class="container__header-title">{{ title() }}</h3>
-			</div>
+	<div class="container__header">
+		<fkt-icon name="document-text" class="container__header-icon"></fkt-icon>
+		<h3 class="container__header-title">{{ title() }}</h3>
+	</div>
 
-			<p class="container__description">{{ description() }}</p>
+	<p class="container__description">{{ description() }}</p>
 
-			<form class="container__form" (ngSubmit)="handleSubmit()">
-				<fkt-input
-					[control]="form.controls.name"
-					label="Name"
-					placeholder="Enter your name"
-				></fkt-input>
+	<form class="container__form" (ngSubmit)="handleSubmit()">
+		<fkt-input
+			[control]="form.name"
+			label="Name"
+			placeholder="Enter your name"
+		></fkt-input>
+		<fkt-field-error [show]="form.name().invalid() && form.name().touched()"
+						 [error]="form.name().errors()[0]?.message"/>
 
-				<fkt-input
-					[control]="form.controls.email"
-					label="Email"
-					placeholder="Enter your email"
-					type="email"
-				></fkt-input>
+		<fkt-input
+			[control]="form.email"
+			label="Email"
+			placeholder="Enter your email"
+			type="email"
+		></fkt-input>
+		<fkt-field-error [show]="form.email().invalid() && form.email().touched()"
+						 [error]="form.email().errors()[0]?.message"/>
 
-				<fkt-textarea
-					[control]="form.controls.message"
-					label="Message"
-					placeholder="Enter a message"
-				></fkt-textarea>
+		<fkt-textarea
+			[control]="form.message"
+			label="Message"
+			placeholder="Enter a message"
+		></fkt-textarea>
+		<fkt-field-error [show]="form.message().invalid() && form.message().touched()"
+						 [error]="form.message().errors()[0]?.message"/>
 
-				<div class="container__form-actions">
-					<fkt-button
-						text="Cancel"
-						theme="stroked"
-						type="button"
-						(click)="handleCancel()"
-					></fkt-button>
-					<fkt-button
-						text="Submit"
-						theme="raised"
-						type="submit"
-						[disabled]="!form.valid()"
-					></fkt-button>
-				</div>
-			</form>
+		<div class="container__form-actions">
+			<fkt-button
+				text="Cancel"
+				theme="stroked"
+				type="button"
+				(click)="handleCancel()"
+			></fkt-button>
+			<fkt-button
+				text="Submit"
+				theme="raised"
+				type="submit"
+				[disabled]="!form().valid()"
+			></fkt-button>
 		</div>
+	</form>
+</div>

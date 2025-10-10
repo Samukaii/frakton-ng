@@ -1,24 +1,40 @@
-<div class="label-container">
-	<div
-		[class.error]="!!error.message()"
-		[class.float]="control().viewValue()"
-		[class.disabled]="control().disabled()"
-		class="label-wrapper">
-		<label
-			aria-hidden="true"
-		>{{ label() }}</label>
-	</div>
-</div>
-
 <div class="input">
 	<textarea
+		[spellcheck]="spellcheck()"
 		[attr.aria-label]="label()"
-		[class.error]="!!error.message()"
-		[signalFormControl]="control()"
+		[class.error]="invalid()"
+		[disabled]="disabled()"
+		[class.show-placeholder]="!!value() || focused()"
+		[class.no-resize]="noResize()"
+		(focus)="onFocus()"
+		(blur)="onBlur()"
+		[attr.aria-invalid]="invalid()"
+		[attr.aria-errormessage]="errors()[0]?.message"
+		[value]="value()"
+		(input)="onChange($event)"
 		#textarea
 		[placeholder]="placeholder()"
 	></textarea>
+
+	<div class="border"
+		 [class.error]="invalid() && touched()"
+		 [class.focused]="focused()"
+		 [class.float]="!!value() || focused()"
+		 [class.disabled]="disabled()"
+	>
+		<div class="left">
+
+		</div>
+		<div
+			class="center">
+			<label
+				aria-hidden="true"
+			>{{ label() }}</label>
+		</div>
+
+		<div class="right">
+
+		</div>
+	</div>
 </div>
 
-
-<fkt-field-error #error [control]="control()"/>

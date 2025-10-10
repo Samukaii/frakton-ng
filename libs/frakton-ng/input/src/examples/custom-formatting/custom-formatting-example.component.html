@@ -1,0 +1,9 @@
+<div class="container">
+	<fkt-input
+		[control]="control"
+		[label]="label()"
+		[placeholder]="placeholder()"
+		[formatter]="formatter"
+	/>
+	<fkt-field-error [error]="control().errors()[0].message" />
+</div>

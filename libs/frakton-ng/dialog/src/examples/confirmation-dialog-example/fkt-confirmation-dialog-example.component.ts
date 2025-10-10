@@ -18,7 +18,7 @@ export class FktConfirmationDialogExampleComponent {
 			actions: {
 				primary: {
 					text: 'Delete',
-					color: 'red',
+					color: 'danger',
 					click: () => {
 						console.log('Item deleted!');
 					}

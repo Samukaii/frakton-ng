@@ -1,0 +1,126 @@
+p {
+	margin: 0;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+hr {
+	border: none;
+	border-bottom: solid 1px var(--color-neutral-300);
+	margin: 0;
+}
+
+.example-container {
+	width: 100%;
+
+	.description {
+		margin-bottom: 1rem;
+		color: var(--color-text-secondary);
+		font-size: 0.875rem;
+	}
+
+	.selected-option {
+		margin-top: var(--space-xs);
+		padding: var(--space-sm);
+		border-radius: var(--radius-md);
+		font-size: var(--font-size-sm);
+		box-shadow: var(--shadow-md);
+		border: 1px solid var(--color-neutral-200);
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-xs);
+
+		.info {
+			display: flex;
+			flex-direction: column;
+			gap: var(--space-xs);
+		}
+
+		.title {
+			display: flex;
+			flex-direction: column;
+		}
+	}
+
+	.events-log {
+		margin-top: var(--space-xs);
+		padding: var(--space-sm);
+		border-radius: var(--radius-md);
+		font-size: var(--font-size-sm);
+		box-shadow: var(--shadow-md);
+		border: 1px solid var(--color-neutral-200);
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-xs);
+
+		h4 {
+			margin: 0 0 var(--space-xs);
+			font-size: var(--space-sm);
+			text-transform: uppercase;
+			font-weight: var(--font-semibold);
+		}
+
+		.last-event {
+			font-family: 'Monaco', 'Menlo', 'Consolas', monospace;
+			font-size: 0.8rem;
+			color: var(--color-text-secondary);
+			background-color: var(--color-neutral-200);
+			padding: 0.5rem;
+			border-radius: 3px;
+			border: 1px solid var(--color-neutral-200);
+		}
+	}
+
+	.actions-legend {
+		margin-top: 1.5rem;
+		padding: 1rem;
+		background-color: var(--color-blue-50);
+		box-shadow: var(--shadow-md);
+		border-radius: 4px;
+
+		h4 {
+			margin: 0 0 var(--space-xs);
+			font-size: var(--space-sm);
+			text-transform: uppercase;
+			font-weight: var(--font-semibold);
+		}
+
+		.legend-items {
+			display: flex;
+			flex-direction: column;
+			gap: 0.5rem;
+		}
+
+		.legend-item {
+			display: flex;
+			align-items: center;
+			gap: 0.5rem;
+			font-size: 0.875rem;
+			color: var(--color-text-secondary);
+
+			.icon-placeholder {
+				width: 20px;
+				height: 20px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				border-radius: 3px;
+				font-size: 12px;
+
+				&.edit-icon {
+					color: var(--color-gray-600);
+				}
+
+				&.favorite-icon {
+					color: var(--color-yellow-600);
+				}
+
+				&.delete-icon {
+					color: var(--color-red-600);
+				}
+			}
+		}
+	}
+}

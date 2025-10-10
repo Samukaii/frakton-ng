@@ -1,3 +1,123 @@
+// <design-tokens>
+/*
+Size of the checkbox input (width and height).
+@name --fkt-checkbox-size
+@reference --space-lg
+@category Spacing
+@type size
+*/
+$checkbox-size: var(--fkt-checkbox-size, var(--space-lg));
+
+/*
+Border color of the checkbox in its default state.
+@name --fkt-checkbox-border-color
+@reference --color-neutral-500
+@category Colors
+@type color
+*/
+$border-color: var(--fkt-checkbox-border-color, var(--color-neutral-500));
+
+/*
+Background color of the checkbox in its default state.
+@name --fkt-checkbox-background-color
+@reference --color-neutral-100
+@category Colors
+@type color
+*/
+$background-color: var(--fkt-checkbox-background-color, var(--color-neutral-100));
+
+/*
+Border radius of the checkbox.
+@name --fkt-checkbox-border-radius
+@reference --radius-xs
+@category Spacing
+@type size
+*/
+$border-radius: var(--fkt-checkbox-border-radius, var(--radius-xs));
+
+/*
+Border width of the checkbox.
+@name --fkt-checkbox-border-width
+@reference 2px
+@category Spacing
+@type size
+*/
+$border-width: var(--fkt-checkbox-border-width, 2px);
+
+/*
+Background color of the checkbox when checked.
+@name --fkt-checkbox-checked-background-color
+@reference --color-gray-600
+@category Colors
+@type color
+*/
+$checked-background-color: var(--fkt-checkbox-checked-background-color, var(--color-gray-600));
+
+/*
+Border color of the checkbox when checked.
+@name --fkt-checkbox-checked-border-color
+@reference --color-gray-600
+@category Colors
+@type color
+*/
+$checked-border-color: var(--fkt-checkbox-checked-border-color, var(--color-gray-600));
+
+/*
+Color of the checkmark icon.
+@name --fkt-checkbox-checkmark-color
+@reference --color-neutral-100
+@category Colors
+@type color
+*/
+$checkmark-color: var(--fkt-checkbox-checkmark-color, var(--color-neutral-100));
+
+/*
+Margin between checkbox and label text.
+@name --fkt-checkbox-label-margin
+@reference --space-xs
+@category Spacing
+@type size
+*/
+$label-margin: var(--fkt-checkbox-label-margin, var(--space-xs));
+
+/*
+Font size of the label text.
+@name --fkt-checkbox-label-font-size
+@reference --font-size-md
+@category Typography
+@type size
+*/
+$label-font-size: var(--fkt-checkbox-label-font-size, var(--font-size-md));
+
+/*
+Color of the label text in invalid state.
+@name --fkt-checkbox-invalid-color
+@reference --color-red-500
+@category Colors
+@type color
+*/
+$invalid-color: var(--fkt-checkbox-invalid-color, var(--color-red-500));
+
+/*
+Opacity of the checkbox when disabled.
+@name --fkt-checkbox-disabled-opacity
+@reference 0.4
+@category Effects
+@type number
+*/
+$disabled-opacity: var(--fkt-checkbox-disabled-opacity, 0.4);
+
+/*
+Width of the checkmark stroke.
+@name --fkt-checkbox-checkmark-width
+@reference 2px
+@category Spacing
+@type size
+*/
+$checkmark-width: var(--fkt-checkbox-checkmark-width, 2px);
+
+// </design-tokens>
+
 :host {
 	display: block;
 }
@@ -9,22 +129,22 @@ label {
 	cursor: pointer;
 
 	span {
-		margin-left: var(--space-xs);
-		font-size: var(--font-size-md);
+		margin-left: $label-margin;
+		font-size: $label-font-size;
 		user-select: none;
 	}
 
 	input[type="checkbox"] {
 		appearance: none;
-		width: var(--space-lg);
-		height: var(--space-lg);
-		border: 2px solid var(--color-neutral-500);
-		border-radius: var(--radius-xs);
+		width: $checkbox-size;
+		height: $checkbox-size;
+		border: $border-width solid $border-color;
+		border-radius: $border-radius;
 		outline: none;
 		transition: var(--transition-base);
 		position: relative;
 		cursor: pointer;
-		background: var(--color-neutral-100);
+		background: $background-color;
 
 		&::before {
 			content: '';
@@ -33,16 +153,16 @@ label {
 			left: 5px;
 			width: 4px;
 			height: 8px;
-			border-right: 2px solid var(--color-neutral-100);
-			border-bottom: 2px solid var(--color-neutral-100);
+			border-right: $checkmark-width solid $checkmark-color;
+			border-bottom: $checkmark-width solid $checkmark-color;
 			transform: rotate(45deg) scale(0);
 			transition: var(--transition-base);
 			pointer-events: none;
 		}
 
 		&:checked {
-			background-color: var(--color-gray-600);
-			border-color: var(--color-gray-600);
+			background-color: $checked-background-color;
+			border-color: $checked-border-color;
 
 			&::before {
 				transform: rotate(45deg) scale(1);
@@ -50,10 +170,14 @@ label {
 		}
 	}
 
+	&.invalid {
+		color: $invalid-color;
+	}
+
 	&.disabled {
 		filter: grayscale(1);
 		cursor: not-allowed;
-		opacity: 40%;
+		opacity: $disabled-opacity;
 
 		input[type="checkbox"] {
 			cursor: not-allowed;

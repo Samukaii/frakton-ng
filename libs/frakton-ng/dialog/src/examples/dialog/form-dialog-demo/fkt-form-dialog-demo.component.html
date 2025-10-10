@@ -1,22 +1,27 @@
 <h2 class="header">{{ title() }}</h2>
-		<p class="description">{{ description() }}</p>
+<p class="description">{{ description() }}</p>
 
-		<div class="form">
-			<fkt-input
-				[control]="form.controls.name"
-				label="Name"
-				placeholder="Enter your name"
-			></fkt-input>
+<div class="form">
+	<fkt-input
+		[control]="form.name"
+		label="Name"
+		placeholder="Enter your name"
+	></fkt-input>
+	<fkt-field-error [show]="form.name().invalid() && form.name().touched()"
+					 [error]="form.name().errors()[0]?.message"/>
 
-			<fkt-input
-				[control]="form.controls.email"
-				label="Email"
-				placeholder="Enter your email"
-				type="text"
-			></fkt-input>
-		</div>
 
-		<fkt-buttons-list
-			[actions]="actions()"
-			fill
-		></fkt-buttons-list>
+	<fkt-input
+		[control]="form.email"
+		label="Email"
+		placeholder="Enter your email"
+		type="text"
+	></fkt-input>
+	<fkt-field-error [show]="form.email().invalid() && form.email().touched()"
+					 [error]="form.email().errors()[0]?.message"/>
+</div>
+
+<fkt-buttons-list
+	[actions]="actions()"
+	fill
+></fkt-buttons-list>

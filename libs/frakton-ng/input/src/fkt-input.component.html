@@ -2,52 +2,39 @@
 	[style.padding]="inputPadding()"
 	class="input">
 	<input
-		[spellcheck]="spellcheck() ? 'true' : 'false'"
+		[spellcheck]="spellcheck() ? 'true' : ''"
 		[class.password]="type() === 'password'"
-		[class.error]="!!error.message()"
+		[class.error]="invalid() && touched()"
+		[class.show-placeholder]="!!formattedValue() || focused()"
+		[class.no-label]="hideLabel()"
+		[attr.aria-describedby]="ariaDescribedby()"
+		[step]="step()"
 		#input
-		[type]="inputType()"
+		[type]="inputType() !== 'number'? inputType() : 'text'"
+		[attr.inputmode]="inputType() === 'number' ? 'decimal' : 'text'"
 		[placeholder]="placeholder()"
-		[signalFormControl]="control()"
+		[fktControlFormatter]="formatterFn()"
+		(keydown)="onKeyDown($event)"
+		[(modelValue)]="value"
+		(focus)="onFocus()"
+		(blur)="onBlur()"
+		[attr.aria-invalid]="invalid()"
+		[attr.aria-errormessage]="errors()[0]?.message"
 		[attr.aria-label]="label()"
-		[transformer]="transformerValue()"
+		[disabled]="disabled()"
 	/>
 
-	<div class="input__suffix">
-		@if (type() === "password") {
-			<div class="input__suffix-password">
-				@if (showPassword()) {
-					<fkt-button
-						(click)="showPassword.set(false)"
-						theme="basic"
-						icon="eye-slash"
-					/>
-				} @else {
-					<fkt-button
-						(click)="showPassword.set(true)"
-						theme="basic"
-						icon="eye"
-					/>
-				}
-			</div>
-		} @else if (suffix()) {
-			<div class="input__suffix-content">
-				<ng-container
-					[ngTemplateOutlet]="suffix()!.templateRef"
-				/>
-			</div>
-		}
-	</div>
-
 	<div class="border"
-		 [class.error]="!!error.message()"
-		 [class.float]="control().viewValue()"
-		 [class.disabled]="control().disabled()"
+		 [class.error]="invalid() && touched()"
+		 [class.focused]="focused()"
+		 [class.float]="!!formattedValue() || focused()"
+		 [class.disabled]="disabled()"
 	>
 		<div class="left">
 
 		</div>
 		<div
+			[class.no-label]="hideLabel()"
 			class="center">
 			<label
 				aria-hidden="true"
@@ -55,11 +42,43 @@
 		</div>
 
 		<div class="right">
+			@if (suffix()) {
+				<div class="input__suffix-content">
+					<ng-container
+						[ngTemplateOutlet]="suffix()!.templateRef"
+					/>
+				</div>
 
+			}
+			@else if (type() === "number" && !hideNumericControl()) {
+				<div class="numeric-control">
+					<fkt-icon
+						(mousedown)="increaseNumber()"
+						name="chevron-up"/>
+					<fkt-icon
+						(mousedown)="decreaseNumber()"
+						name="chevron-down"/>
+				</div>
+			}
+			@else if (type() === "password") {
+				<div class="input__suffix-password" (click)="$event.stopImmediatePropagation()">
+					@if (showPassword()) {
+						<fkt-button
+							(click)="$event.stopImmediatePropagation(); showPassword.set(false)"
+							theme="basic"
+							ariaLabel="Hide password"
+							icon="eye-slash"
+						/>
+					} @else {
+						<fkt-button
+							(click)="$event.stopImmediatePropagation(); showPassword.set(true)"
+							theme="basic"
+							ariaLabel="Show password"
+							icon="eye"
+						/>
+					}
+				</div>
+			}
 		</div>
 	</div>
-
-
 </div>
-
-<fkt-field-error #error [control]="control()"/>

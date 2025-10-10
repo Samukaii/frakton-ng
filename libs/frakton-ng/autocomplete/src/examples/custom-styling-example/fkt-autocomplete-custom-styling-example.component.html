@@ -1,0 +1,45 @@
+<div class="example-container">
+	<p class="description">Demonstrates custom styling and disabled state functionality. Toggle the disabled state to
+		see visual and functional changes.</p>
+
+	<div class="custom-styled-autocomplete" [class.disabled-wrapper]="control().disabled()">
+		<fkt-autocomplete
+			[control]="control"
+			[label]="label()"
+			[placeholder]="placeholder()"
+			[options]="filteredOptions()"
+			(search)="searchTerm.set($event)"
+		/>
+	</div>
+
+	<fkt-button
+		[text]="(control().disabled() ? 'Enable': 'Disable') + ' Autocomplete'"
+		(click)="toggleDisabled()"
+	/>
+
+	@if (selectedOption()) {
+		<div class="selected-option">
+			<div class="title">
+				<h3>
+					Selected option
+				</h3>
+				<hr>
+			</div>
+
+			<div class="info">
+				<p>
+					<strong>Value:</strong> {{ selectedOption()?.value }}
+				</p>
+				<p>
+					<strong>Label:</strong> {{ selectedOption()?.label }}
+				</p>
+			</div>
+		</div>
+	}
+
+	<div class="status-indicator">
+		Status: <span [class]="control().disabled() ? 'disabled-status' : 'enabled-status'">
+			{{ control().disabled() ? 'Disabled' : 'Enabled' }}
+		</span>
+	</div>
+</div>

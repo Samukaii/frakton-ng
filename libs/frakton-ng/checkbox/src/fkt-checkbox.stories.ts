@@ -1,24 +1,24 @@
-import type { Meta, StoryObj } from '@storybook/angular';
-import { SignalFormControl, SignalValidators } from 'frakton-ng/forms';
-import { FktCheckboxComponent } from 'frakton-ng/checkbox';
+import {Meta, StoryObj} from '@storybook/angular';
+import {FktCheckboxComponent} from 'frakton-ng/checkbox';
+import {
+	FktCheckboxBasicExampleComponent,
+	FktCheckboxDisabledExampleComponent,
+	FktCheckboxPreCheckedExampleComponent,
+	FktCheckboxValidationExampleComponent
+} from './examples';
+import {customDocsControl} from "../../.storybook/decorators/custom-docs-control";
+import {renderComponent} from "../../.storybook/decorators/render-component";
+import designTokens from './fkt-checkbox-design-tokens.json';
 
 const meta: Meta<FktCheckboxComponent> = {
 	title: 'Components/Form/Checkbox',
 	component: FktCheckboxComponent,
+	decorators: [
+		customDocsControl({
+			designTokens: designTokens as any
+		})
+	],
 	argTypes: {
-		control: {
-			control: false,
-			table: {
-				category: "Attributes",
-				type: {
-					summary: 'SignalFormControl<boolean>',
-				},
-				defaultValue: {
-					summary: "Required - SignalFormControl instance"
-				}
-			},
-			description: 'The form control that manages the checkbox state and validation'
-		},
 		label: {
 			control: "text",
 			type: {
@@ -41,8 +41,8 @@ const meta: Meta<FktCheckboxComponent> = {
 type Story = StoryObj<FktCheckboxComponent>;
 
 export const BasicCheckbox: Story = {
+	render: renderComponent(FktCheckboxBasicExampleComponent),
 	args: {
-		control: new SignalFormControl(false),
 		label: "Accept terms and conditions",
 	},
 	parameters: {
@@ -55,8 +55,8 @@ export const BasicCheckbox: Story = {
 };
 
 export const PreCheckedCheckbox: Story = {
+	render: renderComponent(FktCheckboxPreCheckedExampleComponent),
 	args: {
-		control: new SignalFormControl(true),
 		label: "Subscribe to newsletter",
 	},
 	parameters: {
@@ -68,29 +68,8 @@ export const PreCheckedCheckbox: Story = {
 	}
 };
 
-export const LongLabelText: Story = {
-	args: {
-		control: new SignalFormControl(false),
-		label: "I understand and agree to the Terms of Service, Privacy Policy, and Cookie Policy. I also consent to receiving marketing communications.",
-	},
-	parameters: {
-		docs: {
-			description: {
-				story: 'A checkbox with a longer label text showing proper text wrapping and alignment behavior.'
-			}
-		}
-	}
-};
-
 export const DisabledState: Story = {
-	args: {
-		control: (() => {
-			const control = new SignalFormControl(false);
-			control.disable();
-			return control;
-		})(),
-		label: "This option is disabled",
-	},
+	render: renderComponent(FktCheckboxDisabledExampleComponent),
 	parameters: {
 		docs: {
 			description: {
@@ -100,13 +79,8 @@ export const DisabledState: Story = {
 	}
 };
 
-export const WithValidation: Story = {
-	args: {
-		control: new SignalFormControl(false, {
-			validators: [SignalValidators.requiredTrue()]
-		}),
-		label: "I accept the terms (required)",
-	},
+export const Validation: Story = {
+	render: renderComponent(FktCheckboxValidationExampleComponent),
 	parameters: {
 		docs: {
 			description: {
@@ -115,24 +89,5 @@ export const WithValidation: Story = {
 		}
 	}
 };
-
-export const DisabledAndChecked: Story = {
-	args: {
-		control: (() => {
-			const control = new SignalFormControl(true);
-			control.disable();
-			return control;
-		})(),
-		label: "This option is enabled by default",
-	},
-	parameters: {
-		docs: {
-			description: {
-				story: 'A checkbox that is both disabled and checked, showing read-only state with a selected value.'
-			}
-		}
-	}
-};
-
 
 export default meta;
