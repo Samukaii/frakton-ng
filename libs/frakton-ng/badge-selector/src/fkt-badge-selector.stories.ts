@@ -32,7 +32,7 @@ const meta: Meta<FktBadgeSelectorComponent<string>> = {
 			},
 		},
 		value: {
-			control: 'object',
+			control: 'text',
 			description: "Currently selected badge ID with two-way binding",
 			table: {
 				category: "Attributes",
