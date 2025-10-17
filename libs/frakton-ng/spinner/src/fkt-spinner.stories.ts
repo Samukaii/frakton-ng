@@ -7,22 +7,14 @@ import {
 	FktSpinnerExampleLoadingStateComponent,
 	FktSpinnerExampleSizeVariationsComponent
 } from './examples';
+import { customDocsControl } from '../../.storybook/decorators/custom-docs-control';
+import { renderComponent } from '../../.storybook/decorators/render-component';
 
 const meta: Meta<FktSpinnerComponent> = {
 	title: 'Components/Spinner',
 	component: FktSpinnerComponent,
-	parameters: {
-		layout: 'centered',
-	},
 	decorators: [
-		moduleMetadata({
-			imports: [
-				FktSpinnerExampleColorThemesComponent,
-				FktSpinnerExampleCustomConfigurationComponent,
-				FktSpinnerExampleLoadingStateComponent,
-				FktSpinnerExampleSizeVariationsComponent
-			]
-		})
+		customDocsControl(),
 	],
 	argTypes: {
 		color: {
@@ -30,27 +22,30 @@ const meta: Meta<FktSpinnerComponent> = {
 			description: 'Spinner color',
 			options: fktColors,
 			table: {
+				category: "Attributes",
 				type: {
 					summary: 'FktColor',
 					detail: "import {FktColor} from 'frakton-ng/core'"
 				},
-				defaultValue: { summary: 'primary' }
+				defaultValue: {summary: 'primary'}
 			}
 		},
 		size: {
 			control: "number",
 			description: 'Spinner size in px',
 			table: {
-				type: { summary: 'number' },
-				defaultValue: { summary: '40' }
+				category: "Attributes",
+				type: {summary: 'number'},
+				defaultValue: {summary: '40'}
 			}
 		},
 		stroke: {
 			control: "number",
 			description: 'Spinner stroke in px',
 			table: {
-				type: { summary: 'number' },
-				defaultValue: { summary: '4' }
+				category: "Attributes",
+				type: {summary: 'number'},
+				defaultValue: {summary: '4'}
 			}
 		},
 	}
@@ -59,6 +54,7 @@ const meta: Meta<FktSpinnerComponent> = {
 type Story = StoryObj<FktSpinnerComponent>;
 
 export const SizeVariations: Story = {
+	render: renderComponent(FktSpinnerExampleSizeVariationsComponent),
 	parameters: {
 		docs: {
 			description: {
@@ -66,12 +62,6 @@ export const SizeVariations: Story = {
 			}
 		}
 	},
-	render: (args) => ({
-		template: '<fkt-spinner-example-size-variations [stroke]="stroke" [color]="color"/>',
-		props: {
-			...args
-		}
-	}),
 	args: {
 		stroke: 4,
 		color: 'primary'
@@ -79,6 +69,7 @@ export const SizeVariations: Story = {
 };
 
 export const ColorThemes: Story = {
+	render: renderComponent(FktSpinnerExampleColorThemesComponent),
 	parameters: {
 		docs: {
 			description: {
@@ -86,12 +77,6 @@ export const ColorThemes: Story = {
 			}
 		}
 	},
-	render: (args) => ({
-		template: '<fkt-spinner-example-color-themes [size]="size" [stroke]="stroke"/>',
-		props: {
-			...args
-		}
-	}),
 	args: {
 		size: 40,
 		stroke: 4
@@ -99,6 +84,7 @@ export const ColorThemes: Story = {
 };
 
 export const LoadingState: Story = {
+	render: renderComponent(FktSpinnerExampleLoadingStateComponent),
 	parameters: {
 		docs: {
 			description: {
@@ -106,12 +92,6 @@ export const LoadingState: Story = {
 			}
 		}
 	},
-	render: (args) => ({
-		template: '<fkt-spinner-example-loading-state [size]="size" [stroke]="stroke" [color]="color"/>',
-		props: {
-			...args
-		}
-	}),
 	args: {
 		size: 40,
 		stroke: 4,
@@ -120,6 +100,7 @@ export const LoadingState: Story = {
 };
 
 export const CustomConfiguration: Story = {
+	render: renderComponent(FktSpinnerExampleCustomConfigurationComponent),
 	parameters: {
 		docs: {
 			description: {
@@ -127,12 +108,6 @@ export const CustomConfiguration: Story = {
 			}
 		}
 	},
-	render: (args) => ({
-		template: '<fkt-spinner-example-custom-configuration [size]="size" [color]="color"/>',
-		props: {
-			...args
-		}
-	}),
 	args: {
 		size: 96,
 		color: 'primary'

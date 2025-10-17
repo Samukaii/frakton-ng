@@ -13,6 +13,7 @@ interface NgModuleMetadata {
 }
 
 interface Options {
+	selector?: string;
 	designTokens?: DesignToken[];
 	metadata?: NgModuleMetadata;
 }
@@ -33,6 +34,7 @@ export const customDocsControl = (options?: Options): Decorator<any> => {
 
 		const props = {
 			component: result.props?.["component"],
+			selector: options?.selector,
 			argTypes: context.argTypes,
 			args: context.args,
 			designTokens: options?.designTokens ?? [],

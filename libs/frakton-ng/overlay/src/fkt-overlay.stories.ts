@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/angular';
-import { moduleMetadata } from '@storybook/angular';
 import {
 	FktCustomTooltipOverlayExampleComponent,
 	FktDropdownOverlayExampleComponent,
@@ -7,6 +6,8 @@ import {
 	FktInteractiveOverlayExampleComponent,
 	FktSimpleOverlayExampleComponent
 } from './examples';
+import { customDocsControl } from '../../.storybook/decorators/custom-docs-control';
+import { renderComponent } from '../../.storybook/decorators/render-component';
 
 const meta: Meta = {
 	title: 'Services/Overlay',
@@ -14,29 +15,24 @@ const meta: Meta = {
 		layout: 'centered',
 	},
 	decorators: [
-		moduleMetadata({
-			imports: [
-				FktSimpleOverlayExampleComponent,
-				FktCustomTooltipOverlayExampleComponent,
-				FktDropdownOverlayExampleComponent,
-				FktFormOverlayExampleComponent,
-				FktInteractiveOverlayExampleComponent,
-			],
-		})
+		customDocsControl(),
 	],
 };
 
 
 export const SimpleOverlay: StoryObj = {
-	render: () => ({
-		template: '<simple-overlay-example/>',
-	}),
+	render: renderComponent(FktSimpleOverlayExampleComponent),
+	parameters: {
+		docs: {
+			description: {
+				story: 'Simple overlay example'
+			}
+		}
+	}
 };
 
 export const CustomTooltipOverlay: StoryObj = {
-	render: () => ({
-		template: '<custom-tooltip-overlay-example/>',
-	}),
+	render: renderComponent(FktCustomTooltipOverlayExampleComponent),
 	parameters: {
 		docs: {
 			description: {
@@ -47,9 +43,7 @@ export const CustomTooltipOverlay: StoryObj = {
 };
 
 export const DropdownMenuOverlay: StoryObj = {
-	render: () => ({
-		template: '<dropdown-overlay-example/>',
-	}),
+	render: renderComponent(FktDropdownOverlayExampleComponent),
 	parameters: {
 		docs: {
 			description: {
@@ -60,9 +54,7 @@ export const DropdownMenuOverlay: StoryObj = {
 };
 
 export const FormOverlay: StoryObj = {
-	render: () => ({
-		template: '<form-overlay-example/>',
-	}),
+	render: renderComponent(FktFormOverlayExampleComponent),
 	parameters: {
 		docs: {
 			description: {
@@ -73,9 +65,7 @@ export const FormOverlay: StoryObj = {
 };
 
 export const InteractiveOverlay: StoryObj = {
-	render: () => ({
-		template: '<interactive-overlay-example/>',
-	}),
+	render: renderComponent(FktInteractiveOverlayExampleComponent),
 	parameters: {
 		docs: {
 			description: {

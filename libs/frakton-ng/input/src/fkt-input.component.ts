@@ -137,7 +137,9 @@ export class FktInputComponent<T = string> implements FormValueControl<T | null>
 		keysMap[event.key]?.(event);
 	}
 
-	protected increaseNumber = () => {
+	protected increaseNumber = (event: KeyboardEvent) => {
+		event.preventDefault();
+
 		const max = this.max();
 
 		const valueAsNumber = (!isNaN(+this.value()!) && this.value() !== null) ? +this.value()! : null;
@@ -150,7 +152,9 @@ export class FktInputComponent<T = string> implements FormValueControl<T | null>
 		this.value.set(updatedValue as unknown as T);
 	}
 
-	protected decreaseNumber = () => {
+	protected decreaseNumber = (event: KeyboardEvent) => {
+		event.preventDefault();
+
 		const min = this.min();
 
 		const valueAsNumber = (!isNaN(+this.value()!) && this.value() !== null) ? +this.value()! : null;

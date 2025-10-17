@@ -25,7 +25,7 @@
 				[label]="designToken().name"
 				hideLabel
 				(inputKeyDown)="onKeyDown($event, designToken().control)"
-				placeholder="Enter a text value"
+				placeholder="Enter the size"
 				[(value)]="designToken().control"
 			>
 				<div *fktFormControlSuffix class="numeric-control">
@@ -36,6 +36,47 @@
 						(mousedown)="decreaseNumber($any($event), designToken().control)"
 						name="chevron-down"/>
 				</div>
+			</fkt-input>
+		}
+		@case ("weight") {
+			<fkt-input
+				[label]="designToken().name"
+				hideLabel
+				(inputKeyDown)="onKeyDown($event, designToken().control)"
+				placeholder="Enter the weight"
+				[(value)]="designToken().control"
+			>
+				<div *fktFormControlSuffix class="numeric-control">
+					<fkt-icon
+						(mousedown)="increaseNumber($any($event), designToken().control)"
+						name="chevron-up"/>
+					<fkt-icon
+						(mousedown)="decreaseNumber($any($event), designToken().control)"
+						name="chevron-down"/>
+				</div>
+			</fkt-input>
+		}
+		@case ("opacity") {
+			<fkt-input
+				[label]="designToken().name"
+				hideLabel
+				type="number"
+				[min]="0"
+				[max]="1"
+				[step]="0.1"
+				[maxDecimals]="2"
+				placeholder="Enter the opacity"
+				[(value)]="designToken().control"
+			>
+			</fkt-input>
+		}
+		@case ("shadow") {
+			<fkt-input
+				[label]="designToken().name"
+				hideLabel
+				placeholder="Enter a shadow value"
+				[(value)]="designToken().control"
+			>
 			</fkt-input>
 		}
 		@case ("color") {

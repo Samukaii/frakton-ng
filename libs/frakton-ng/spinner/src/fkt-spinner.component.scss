@@ -12,18 +12,26 @@
 	animation: spin 1s linear infinite;
 
 	&.primary {
-		border-top-color: var(--color-gray-500);
+		border-top-color: var(--color-primary);
 	}
 
-	&.yellow {
-		border-top-color: var(--color-yellow-500);
+	&.accent {
+		border-top-color: var(--color-accent);
 	}
 
-	&.red {
-		border-top-color: var(--color-red-500);
+	&.info {
+		border-top-color: var(--color-info);
 	}
 
-	&.green {
-		border-top-color: var(--color-green-500);
+	&.success {
+		border-top-color: var(--color-success);
+	}
+
+	&.warning {
+		border-top-color: var(--color-warning);
+	}
+
+	&.danger {
+		border-top-color: var(--color-danger);
 	}
 }

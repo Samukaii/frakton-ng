@@ -9,14 +9,14 @@
 				/>
 				<fkt-button
 					text="Empty State"
-					color="yellow"
+					color="accent"
 					[theme]="currentState() === 'empty' ? 'raised' : 'stroked'"
 					[disabled]="false"
 					(click)="setState('empty')"
 				/>
 				<fkt-button
 					text="Populated State"
-					color="green"
+					color="success"
 					[theme]="currentState() === 'populated' ? 'raised' : 'stroked'"
 					[disabled]="false"
 					(click)="setState('populated')"

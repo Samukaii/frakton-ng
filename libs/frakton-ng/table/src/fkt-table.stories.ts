@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/angular';
-import { moduleMetadata } from '@storybook/angular';
 import { FktTableComponent } from 'frakton-ng/table';
 import { productData, taskData, userData } from './examples/table-mock-data';
 
@@ -14,23 +13,14 @@ import {
 	FktTableExamplesTableWithActionsComponent,
 	FktTableExamplesTaskTableComponent,
 } from './examples';
+import { customDocsControl } from '../../.storybook/decorators/custom-docs-control';
+import { renderComponent } from '../../.storybook/decorators/render-component';
 
 const meta: Meta<FktTableComponent<any>> = {
 	title: 'Components/Table',
 	component: FktTableComponent,
 	decorators: [
-		moduleMetadata({
-			imports: [
-				FktTableExamplesBasicTableComponent,
-				FktTableExamplesCustomCellsComponent,
-				FktTableExamplesEmptyStateComponent,
-				FktTableExamplesInteractiveStatesComponent,
-				FktTableExamplesLoadingStateComponent,
-				FktTableExamplesProductTableComponent,
-				FktTableExamplesTableWithActionsComponent,
-				FktTableExamplesTaskTableComponent,
-			]
-		})
+		customDocsControl(),
 	],
 	argTypes: {
 		data: {
@@ -134,6 +124,7 @@ const meta: Meta<FktTableComponent<any>> = {
 type Story = StoryObj<FktTableComponent<any>>;
 
 export const BasicTable: Story = {
+	render: renderComponent(FktTableExamplesBasicTableComponent),
 	parameters: {
 		docs: {
 			description: {
@@ -141,19 +132,6 @@ export const BasicTable: Story = {
 			}
 		}
 	},
-	render: (args) => ({
-		template: `
-			<fkt-table-examples-basic-table
-				[data]="data"
-				[loading]="loading"
-				[noHeaderWhenEmpty]="noHeaderWhenEmpty"
-				[noResults]="noResults"
-			/>
-		`,
-		props: {
-			...args
-		}
-	}),
 	args: {
 		data: userData.users,
 		loading: false,
@@ -167,6 +145,7 @@ export const BasicTable: Story = {
 };
 
 export const TableWithActions: Story = {
+	render: renderComponent(FktTableExamplesTableWithActionsComponent),
 	parameters: {
 		docs: {
 			description: {
@@ -174,20 +153,6 @@ export const TableWithActions: Story = {
 			}
 		}
 	},
-	render: (args) => ({
-		template: `
-			<fkt-table-examples-table-with-actions
-				[data]="data"
-				[mainAction]="mainAction"
-				[loading]="loading"
-				[noHeaderWhenEmpty]="noHeaderWhenEmpty"
-				[noResults]="noResults"
-			/>
-		`,
-		props: {
-			...args
-		}
-	}),
 	args: {
 		data: userData.users,
 		mainAction: userData.userMainAction,
@@ -211,6 +176,7 @@ export const TableWithActions: Story = {
 };
 
 export const LoadingState: Story = {
+	render: renderComponent(FktTableExamplesLoadingStateComponent),
 	parameters: {
 		docs: {
 			description: {
@@ -218,20 +184,6 @@ export const LoadingState: Story = {
 			}
 		}
 	},
-	render: (args) => ({
-		template: `
-			<fkt-table-examples-loading-state
-				[data]="data"
-				[mainAction]="mainAction"
-				[loading]="loading"
-				[noHeaderWhenEmpty]="noHeaderWhenEmpty"
-				[noResults]="noResults"
-			/>
-		`,
-		props: {
-			...args
-		}
-	}),
 	args: {
 		data: userData.users,
 		mainAction: userData.userMainAction,
@@ -246,6 +198,7 @@ export const LoadingState: Story = {
 };
 
 export const EmptyState: Story = {
+	render: renderComponent(FktTableExamplesEmptyStateComponent),
 	parameters: {
 		docs: {
 			description: {
@@ -253,20 +206,6 @@ export const EmptyState: Story = {
 			}
 		}
 	},
-	render: (args) => ({
-		template: `
-			<fkt-table-examples-empty-state
-				[data]="data"
-				[mainAction]="mainAction"
-				[loading]="loading"
-				[noHeaderWhenEmpty]="noHeaderWhenEmpty"
-				[noResults]="noResults"
-			/>
-		`,
-		props: {
-			...args
-		}
-	}),
 	args: {
 		data: [],
 		mainAction: userData.userMainAction,
@@ -290,6 +229,7 @@ export const EmptyState: Story = {
 };
 
 export const InteractiveStates: Story = {
+	render: renderComponent(FktTableExamplesInteractiveStatesComponent),
 	parameters: {
 		docs: {
 			description: {
@@ -297,20 +237,6 @@ export const InteractiveStates: Story = {
 			}
 		}
 	},
-	render: (args) => ({
-		template: `
-			<fkt-table-examples-interactive-states
-				[data]="data"
-				[mainAction]="mainAction"
-				[loading]="loading"
-				[noHeaderWhenEmpty]="noHeaderWhenEmpty"
-				[noResults]="noResults"
-			/>
-		`,
-		props: {
-			...args
-		}
-	}),
 	args: {
 		data: userData.users,
 		mainAction: userData.userMainAction,
@@ -335,6 +261,7 @@ export const InteractiveStates: Story = {
 
 // Custom Cells
 export const CustomCellTypes: Story = {
+	render: renderComponent(FktTableExamplesCustomCellsComponent),
 	parameters: {
 		docs: {
 			description: {
@@ -342,17 +269,6 @@ export const CustomCellTypes: Story = {
 			}
 		}
 	},
-	render: (args) => ({
-		template: `
-			<fkt-table-examples-custom-cells
-				[loading]="loading"
-				[noHeaderWhenEmpty]="noHeaderWhenEmpty"
-			/>
-		`,
-		props: {
-			...args
-		}
-	}),
 	args: {
 		loading: false,
 		noHeaderWhenEmpty: false
@@ -360,6 +276,7 @@ export const CustomCellTypes: Story = {
 };
 
 export const ProductTable: Story = {
+	render: renderComponent(FktTableExamplesProductTableComponent),
 	parameters: {
 		docs: {
 			description: {
@@ -367,20 +284,6 @@ export const ProductTable: Story = {
 			}
 		}
 	},
-	render: (args) => ({
-		template: `
-			<fkt-table-examples-product-table
-				[data]="data"
-				[mainAction]="mainAction"
-				[loading]="loading"
-				[noHeaderWhenEmpty]="noHeaderWhenEmpty"
-				[noResults]="noResults"
-			/>
-		`,
-		props: {
-			...args
-		}
-	}),
 	args: {
 		data: productData.products,
 		mainAction: productData.productMainAction,
@@ -404,6 +307,7 @@ export const ProductTable: Story = {
 };
 
 export const TaskTable: Story = {
+	render: renderComponent(FktTableExamplesTaskTableComponent),
 	parameters: {
 		docs: {
 			description: {
@@ -411,20 +315,6 @@ export const TaskTable: Story = {
 			}
 		}
 	},
-	render: (args) => ({
-		template: `
-			<fkt-table-examples-task-table
-				[data]="data"
-				[mainAction]="mainAction"
-				[loading]="loading"
-				[noHeaderWhenEmpty]="noHeaderWhenEmpty"
-				[noResults]="noResults"
-			/>
-		`,
-		props: {
-			...args
-		}
-	}),
 	args: {
 		data: taskData.tasks,
 		mainAction: taskData.taskMainAction,

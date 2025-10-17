@@ -1,4 +1,4 @@
-import { argsToTemplate, Meta, moduleMetadata, StoryObj } from '@storybook/angular';
+import { Meta, StoryObj } from '@storybook/angular';
 import { FktNoResults, FktNoResultsComponent } from 'frakton-ng/no-results';
 import {
 	CompactExampleComponent,
@@ -9,6 +9,8 @@ import {
 	WithActionExampleComponent,
 	WithIconAndDescriptionExampleComponent
 } from './examples';
+import { customDocsControl } from '../../.storybook/decorators/custom-docs-control';
+import { renderComponent } from '../../.storybook/decorators/render-component';
 
 
 type Story = StoryObj<FktNoResultsComponent>;
@@ -18,24 +20,35 @@ const meta: Meta<FktNoResultsComponent> = {
 	title: 'Components/No results',
 	component: FktNoResultsComponent,
 	decorators: [
-		moduleMetadata({
-			imports: [
-				SimpleExampleComponent,
-				WithIconAndDescriptionExampleComponent,
-				WithActionExampleComponent,
-				SearchResultsExampleComponent,
-				DataTableExampleComponent,
-				FileUploadExampleComponent,
-				CompactExampleComponent,
-			],
-		})
+		customDocsControl(),
 	],
 	argTypes: {
 		noResults: {
 			control: 'object',
+			description: "Configuration object for the no results display",
+			type: {
+				name: "object",
+				value: {},
+				required: true
+			},
 			table: {
+				category: 'Attributes',
 				type: {
 					summary: 'FktNoResults',
+					detail: "import {FktNoResults} from 'frakton-ng/no-results'",
+				},
+			}
+		},
+		borderless: {
+			control: "boolean",
+			description: "Whether to display the component without a border",
+			table: {
+				category: 'Attributes',
+				type: {
+					summary: 'boolean',
+				},
+				defaultValue: {
+					summary: '"false"'
 				}
 			}
 		}
@@ -44,6 +57,7 @@ const meta: Meta<FktNoResultsComponent> = {
 
 
 export const SimpleNoResults: Story = {
+	render: renderComponent(SimpleExampleComponent),
 	parameters: {
 		docs: {
 			description: {
@@ -51,13 +65,17 @@ export const SimpleNoResults: Story = {
 			}
 		}
 	},
-	render: (args) => ({
-		template: `<simple-example ${argsToTemplate(args)}/>`
-	})
+	args: {
+		noResults: {
+			label: 'No results found'
+		},
+		borderless: false
+	}
 };
 
 
 export const WithIconAndDescription: Story = {
+	render: renderComponent(WithIconAndDescriptionExampleComponent),
 	parameters: {
 		docs: {
 			description: {
@@ -65,13 +83,11 @@ export const WithIconAndDescription: Story = {
 			}
 		}
 	},
-	render: (args) => ({
-		template: `<with-icon-and-description-example ${argsToTemplate(args)}/>`
-	})
 };
 
 
 export const WithActionButton: Story = {
+	render: renderComponent(WithActionExampleComponent),
 	parameters: {
 		docs: {
 			description: {
@@ -79,13 +95,11 @@ export const WithActionButton: Story = {
 			}
 		}
 	},
-	render: (args) => ({
-		template: `<with-action-example ${argsToTemplate(args)}/>`
-	})
 };
 
 
 export const SearchResults: Story = {
+	render: renderComponent(SearchResultsExampleComponent),
 	parameters: {
 		docs: {
 			description: {
@@ -93,13 +107,11 @@ export const SearchResults: Story = {
 			}
 		}
 	},
-	render: (args) => ({
-		template: `<search-results-example ${argsToTemplate(args)}/>`
-	})
 };
 
 
 export const DataTableEmptyState: Story = {
+	render: renderComponent(DataTableExampleComponent),
 	parameters: {
 		docs: {
 			description: {
@@ -107,13 +119,11 @@ export const DataTableEmptyState: Story = {
 			}
 		}
 	},
-	render: (args) => ({
-		template: `<data-table-example ${argsToTemplate(args)}/>`
-	})
 };
 
 
 export const FileUploadEmptyState: Story = {
+	render: renderComponent(FileUploadExampleComponent),
 	parameters: {
 		docs: {
 			description: {
@@ -121,13 +131,11 @@ export const FileUploadEmptyState: Story = {
 			}
 		}
 	},
-	render: (args) => ({
-		template: `<file-upload-example ${argsToTemplate(args)}/>`
-	})
 };
 
 
 export const CompactSize: Story = {
+	render: renderComponent(CompactExampleComponent),
 	parameters: {
 		docs: {
 			description: {
@@ -135,9 +143,6 @@ export const CompactSize: Story = {
 			}
 		}
 	},
-	render: (args) => ({
-		template: `<compact-example ${argsToTemplate(args)}/>`
-	})
 };
 
 export default meta;

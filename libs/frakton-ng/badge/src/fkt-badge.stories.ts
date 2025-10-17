@@ -1,15 +1,19 @@
 import type { Meta, StoryObj } from '@storybook/angular';
 import { fktBadgeColors, FktBadgeComponent, fktBadgeVariants } from 'frakton-ng/badge';
+import { customDocsControl } from '../../.storybook/decorators/custom-docs-control';
+import { renderComponent } from '../../.storybook/decorators/render-component';
+import { Component } from '@angular/core';
 
 const meta: Meta<FktBadgeComponent> = {
 	title: 'Components/Badge',
 	component: FktBadgeComponent,
-	parameters: {
-		layout: "centered",
-	},
+	decorators: [
+		customDocsControl()
+	],
 	argTypes: {
 		text: {
 			control: 'text',
+			description: "The text content to display in the badge",
 			table: {
 				category: "Attributes",
 				type: {
@@ -23,6 +27,7 @@ const meta: Meta<FktBadgeComponent> = {
 		variant: {
 			control: 'select',
 			options: fktBadgeVariants,
+			description: "The visual variant of the badge",
 			table: {
 				category: "Attributes",
 				type: {
@@ -37,6 +42,7 @@ const meta: Meta<FktBadgeComponent> = {
 		color: {
 			control: 'select',
 			options: fktBadgeColors,
+			description: "The color theme of the badge",
 			type: {
 				name: "object",
 				value: {},
@@ -57,6 +63,7 @@ type Story = StoryObj<FktBadgeComponent>
 
 
 export const SuccessBadge: Story = {
+	render: renderComponent(FktBadgeComponent),
 	parameters: {
 		docs: {
 			description: {
@@ -72,6 +79,7 @@ export const SuccessBadge: Story = {
 };
 
 export const ErrorBadge: Story = {
+	render: renderComponent(FktBadgeComponent),
 	parameters: {
 		docs: {
 			description: {
@@ -87,6 +95,7 @@ export const ErrorBadge: Story = {
 };
 
 export const WarningBadge: Story = {
+	render: renderComponent(FktBadgeComponent),
 	parameters: {
 		docs: {
 			description: {
@@ -103,6 +112,7 @@ export const WarningBadge: Story = {
 
 
 export const InfoBadge: Story = {
+	render: renderComponent(FktBadgeComponent),
 	parameters: {
 		docs: {
 			description: {
@@ -117,8 +127,67 @@ export const InfoBadge: Story = {
 	}
 };
 
+@Component({
+	imports: [
+		FktBadgeComponent
+	],
+	styles: `
+		.container {
+			display: flex;
+			flex-direction: column;
+			gap: var(--space-md);
+		}
+
+		.container__item {
+			display: flex;
+			flex-direction: column;
+			gap: var(--space-xs);
+		}
+
+		.container__item h2 {
+			font-size: var(--font-size-lg);
+			font-weight: var(--font-semibold);
+			border-bottom: solid 1px var(--color-gray-200);
+			padding-bottom: var(--space-3xs);
+		}
+
+		.container__item > div {
+			display: flex;
+			align-items: center;
+			gap: var(--space-xs);
+			flex-wrap: wrap;
+		}
+	`,
+	template: `
+		<div class="container">
+			<div class="container__item">
+				<h2>Opaque Variant</h2>
+				<div>
+					<fkt-badge text="Success" color="success" variant="opaque"/>
+					<fkt-badge text="Danger" color="danger" variant="opaque"/>
+					<fkt-badge text="Info" color="info" variant="opaque"/>
+					<fkt-badge text="Warning" color="warning" variant="opaque"/>
+				</div>
+			</div>
+			<div class="container__item">
+				<h2>Faded Variant</h2>
+				<div>
+					<fkt-badge text="Success" color="success" variant="faded"/>
+					<fkt-badge text="Danger" color="danger" variant="faded"/>
+					<fkt-badge text="Info" color="info" variant="faded"/>
+					<fkt-badge text="Warning" color="warning" variant="faded"/>
+				</div>
+			</div>
+		</div>
+	`
+})
+class BadgeVariationsComponent {
+
+}
+
 
 export const BadgeVariations: StoryObj = {
+	render: renderComponent(BadgeVariationsComponent),
 	parameters: {
 		docs: {
 			description: {
@@ -126,64 +195,10 @@ export const BadgeVariations: StoryObj = {
 			}
 		}
 	},
-	render: (args) => ({
-		props: args,
-		styles: [`
-			.container {
-				display: flex;
-				flex-direction: column;
-				gap: var(--space-md);
-			}
-
-			.container__item {
-				display: flex;
-				flex-direction: column;
-				gap: var(--space-xs);
-			}
-
-			.container__item h2 {
-				font-size: var(--font-size-lg);
-				font-weight: var(--font-semibold);
-				border-bottom: solid 1px var(--color-gray-200);
-				padding-bottom: var(--space-3xs);
-			}
-
-			.container__item > div {
-				display: flex;
-				align-items: center;
-				gap: var(--space-xs);
-				flex-wrap: wrap;
-			}
-		`],
-		template: `
-			<div class="container">
-				<div class="container__item">
-					<h2>Opaque Variant</h2>
-					<div>
-						<fkt-badge text="Green" [color]="color" variant="opaque" />
-						<fkt-badge text="Red" color="red" variant="opaque" />
-						<fkt-badge text="Blue" color="blue" variant="opaque" />
-						<fkt-badge text="Orange" color="orange" variant="opaque" />
-					</div>
-				</div>
-				<div class="container__item">
-					<h2>Faded Variant</h2>
-					<div>
-						<fkt-badge text="Green" color="green" variant="faded" />
-						<fkt-badge text="Red" color="red" variant="faded" />
-						<fkt-badge text="Blue" color="blue" variant="faded" />
-						<fkt-badge text="Orange" color="orange" variant="faded" />
-					</div>
-				</div>
-			</div>
-		`
-	}),
-	args: {
-		color: "blue"
-	}
 };
 
 export const CountBadge: Story = {
+	render: renderComponent(FktBadgeComponent),
 	parameters: {
 		docs: {
 			description: {
@@ -199,6 +214,7 @@ export const CountBadge: Story = {
 };
 
 export const StatusBadge: Story = {
+	render: renderComponent(FktBadgeComponent),
 	parameters: {
 		docs: {
 			moduleImportName: "badge",
@@ -215,6 +231,7 @@ export const StatusBadge: Story = {
 };
 
 export const PriorityBadge: Story = {
+	render: renderComponent(FktBadgeComponent),
 	parameters: {
 		docs: {
 			description: {
@@ -230,6 +247,7 @@ export const PriorityBadge: Story = {
 };
 
 export const CategoryBadge: Story = {
+	render: renderComponent(FktBadgeComponent),
 	parameters: {
 		docs: {
 			description: {
@@ -245,6 +263,7 @@ export const CategoryBadge: Story = {
 };
 
 export const LongTextBadge: Story = {
+	render: renderComponent(FktBadgeComponent),
 	parameters: {
 		docs: {
 			description: {

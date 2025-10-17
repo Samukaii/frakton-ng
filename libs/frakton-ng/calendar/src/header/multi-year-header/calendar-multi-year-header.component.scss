@@ -1,11 +1,88 @@
+// <design-tokens>
+/*
+Multi-year header container gap between elements.
+@name --fkt-calendar-multi-year-header-gap
+@reference --space-sm
+@component Year Selector
+@category Spacing
+@type size
+*/
+$multi-year-header-gap: var(--fkt-calendar-multi-year-header-gap, var(--space-sm));
+
+/*
+Multi-year header element padding.
+@name --fkt-calendar-multi-year-header-padding
+@reference 0 --space-xs
+@component Year Selector
+@category Spacing
+@type size
+*/
+$multi-year-header-padding: var(--fkt-calendar-multi-year-header-padding, 0 var(--space-xs));
+
+/*
+Multi-year header element font weight.
+@name --fkt-calendar-multi-year-header-font-weight
+@reference --font-semibold
+@component Year Selector
+@category Typography
+@type weight
+*/
+$multi-year-header-font-weight: var(--fkt-calendar-multi-year-header-font-weight, var(--font-semibold));
+
+/*
+Multi-year header element font size.
+@name --fkt-calendar-multi-year-header-font-size
+@reference --font-size-lg
+@component Year Selector
+@category Typography
+@type size
+*/
+$multi-year-header-font-size: var(--fkt-calendar-multi-year-header-font-size, var(--font-size-lg));
+
+/*
+Multi-year header element text color.
+@name --fkt-calendar-multi-year-header-color
+@reference --color-neutral-900
+@component Year Selector
+@category Colors
+@type color
+*/
+$multi-year-header-color: var(--fkt-calendar-multi-year-header-color, var(--color-neutral-900));
+
+/*
+Multi-year header element background color.
+@name --fkt-calendar-multi-year-header-bg
+@reference #00000000
+@component Year Selector
+@category Colors
+@type color
+*/
+$multi-year-header-bg: var(--fkt-calendar-multi-year-header-bg, #00000000);
+
+/*
+Multi-year header element border radius.
+@name --fkt-calendar-multi-year-header-border-radius
+@reference --radius-md
+@component Year Selector
+@category Shape
+@type size
+*/
+$multi-year-header-border-radius: var(--fkt-calendar-multi-year-header-border-radius, var(--radius-md));
+
+// </design-tokens>
+
 .container {
 	display: flex;
 	align-items: center;
-	gap: var(--space-sm);
+	gap: $multi-year-header-gap;
 
 	strong {
-		padding: 0 var(--space-3xs);
-		font-weight: var(--font-semibold);
-		font-size: var(--font-size-lg);
+		padding: $multi-year-header-padding;
+		font-weight: $multi-year-header-font-weight;
+		font-size: $multi-year-header-font-size;
+		color: $multi-year-header-color;
+		background-color: $multi-year-header-bg;
+		border-radius: $multi-year-header-border-radius;
+		transition: var(--transition-base);
 	}
 }

@@ -3,6 +3,7 @@
     "description": "Vertical padding inside the input field (top and bottom spacing between border and content).",
     "name": "--fkt-input-vertical-padding",
     "reference": "--space-md",
+    "component": "Field",
     "category": "Spacing",
     "type": "size",
     "defaultValue": "1rem"
@@ -11,6 +12,7 @@
     "description": "Horizontal padding inside the input field (left and right spacing between border and content).",
     "name": "--fkt-input-horizontal-padding",
     "reference": "--space-md",
+    "component": "Field",
     "category": "Spacing",
     "type": "size",
     "defaultValue": "1rem"
@@ -19,6 +21,7 @@
     "description": "Border color of the input in its normal (default) state.",
     "name": "--fkt-input-border-color",
     "reference": "--color-neutral-400",
+    "component": "Field",
     "category": "Colors",
     "type": "color",
     "defaultValue": "#D1D5DBFF"
@@ -27,6 +30,7 @@
     "description": "Border color of the input when it gets focused",
     "name": "--fkt-input-border-focus-color",
     "reference": "--color-brand-secondary",
+    "component": "Field",
     "category": "Colors",
     "type": "color",
     "defaultValue": "#ffb940"
@@ -35,6 +39,7 @@
     "description": "Color of the label in its normal (default) state.",
     "name": "--fkt-input-label-color",
     "reference": "--color-neutral-500",
+    "component": "Field",
     "category": "Colors",
     "type": "color",
     "defaultValue": "#6B7280FF"
@@ -43,6 +48,7 @@
     "description": "Color of the label when it gets focused",
     "name": "--fkt-input-label-focus-color",
     "reference": "--color-brand-secondary",
+    "component": "Field",
     "category": "Colors",
     "type": "color",
     "defaultValue": "#ffb940"
@@ -51,6 +57,7 @@
     "description": "Border radius for input",
     "name": "--fkt-input-border-radius",
     "reference": "--radius-lg",
+    "component": "Field",
     "category": "Spacing",
     "type": "size",
     "defaultValue": ".5rem"
@@ -59,6 +66,7 @@
     "description": "Font size for input text and placeholder.",
     "name": "--fkt-input-font-size",
     "reference": "--font-size-md",
+    "component": "Field",
     "category": "Typography",
     "type": "size",
     "defaultValue": "1rem"
@@ -67,8 +75,117 @@
     "description": "Color for text written into input",
     "name": "--fkt-input-text-color",
     "reference": "--color-neutral-900",
+    "component": "Field",
     "category": "Colors",
     "type": "color",
     "defaultValue": "#111827FF"
+  },
+  {
+    "description": "Modal background color for date picker.",
+    "name": "--fkt-date-picker-modal-background-color",
+    "reference": "--color-neutral-50",
+    "component": "Modal",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#FFFFFFFF"
+  },
+  {
+    "description": "Modal text color for date picker.",
+    "name": "--fkt-date-picker-modal-text-color",
+    "reference": "--color-neutral-950",
+    "component": "Modal",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#030712FF"
+  },
+  {
+    "description": "Modal width for date picker.",
+    "name": "--fkt-date-picker-modal-width",
+    "reference": "400px",
+    "component": "Modal",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": "400px"
+  },
+  {
+    "description": "Modal padding for date picker.",
+    "name": "--fkt-date-picker-modal-padding",
+    "reference": "--space-md",
+    "component": "Modal",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": "1rem"
+  },
+  {
+    "description": "Modal border radius for date picker.",
+    "name": "--fkt-date-picker-modal-border-radius",
+    "reference": "--radius-lg",
+    "component": "Modal",
+    "category": "Shape",
+    "type": "size",
+    "defaultValue": ".5rem"
+  },
+  {
+    "description": "Modal border color for date picker.",
+    "name": "--fkt-date-picker-modal-border-color",
+    "reference": "--color-neutral-300",
+    "component": "Modal",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#E5E7EBFF"
+  },
+  {
+    "description": "Calendar cell size for date picker.",
+    "name": "--fkt-date-picker-cell-size",
+    "reference": "40px",
+    "component": "Modal",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": "40px"
+  },
+  {
+    "description": "Calendar cell hover background color.",
+    "name": "--fkt-date-picker-cell-hover-bg",
+    "reference": "--color-neutral-200",
+    "component": "Modal",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#F3F4F6FF"
+  },
+  {
+    "description": "Calendar cell selected background color.",
+    "name": "--fkt-date-picker-cell-selected-bg",
+    "reference": "--color-brand-primary",
+    "component": "Modal",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#4b5563"
+  },
+  {
+    "description": "Calendar cell selected text color.",
+    "name": "--fkt-date-picker-cell-selected-color",
+    "reference": "--color-neutral-50",
+    "component": "Modal",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#FFFFFFFF"
+  },
+  {
+    "description": "Calendar header text color.",
+    "name": "--fkt-date-picker-header-color",
+    "reference": "--color-neutral-700",
+    "component": "Modal",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#374151FF"
+  },
+  {
+    "description": "Gap between calendar elements.",
+    "name": "--fkt-date-picker-modal-gap",
+    "reference": "--space-xs",
+    "component": "Modal",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": ".5rem"
   }
 ]

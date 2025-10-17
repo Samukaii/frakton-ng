@@ -1,24 +1,20 @@
 import type { Meta, StoryObj } from '@storybook/angular';
-import { moduleMetadata } from '@storybook/angular';
-import { FktComponentInputs, FktComponentTwoWayBindings } from 'frakton-ng/internal/types';
 import { FktBadgeSelectorComponent } from 'frakton-ng/badge-selector';
 import { OrderStatusExampleComponent, PriorityExampleComponent } from './examples';
+import { customDocsControl } from '../../.storybook/decorators/custom-docs-control';
+import { renderComponent } from '../../.storybook/decorators/render-component';
 
 const meta: Meta<FktBadgeSelectorComponent<string>> = {
 	title: 'Components/Badge selector',
 	component: FktBadgeSelectorComponent,
 	decorators: [
-		moduleMetadata({
-			imports: [OrderStatusExampleComponent, PriorityExampleComponent]
-		})
+		customDocsControl(),
 	],
-	parameters: {
-		layout: "centered"
-	},
 	argTypes: {
 		options: {
 			control: 'object',
 			options: [],
+			description: "Array of badge options to display in the selector",
 			type: {
 				name: "array",
 				value: {name: "object", value: {}},
@@ -35,8 +31,9 @@ const meta: Meta<FktBadgeSelectorComponent<string>> = {
 				},
 			},
 		},
-		currentBadgeId: {
+		value: {
 			control: 'object',
+			description: "Currently selected badge ID with two-way binding",
 			table: {
 				category: "Attributes",
 				type: {
@@ -50,11 +47,8 @@ const meta: Meta<FktBadgeSelectorComponent<string>> = {
 	}
 };
 
-type Story = {
-	args: Partial<FktComponentInputs<FktBadgeSelectorComponent<string>>> & Partial<FktComponentTwoWayBindings<FktBadgeSelectorComponent<string>>>
-}
-
 export const Preview: StoryObj = {
+	render: renderComponent(FktBadgeSelectorComponent),
 	parameters: {
 		docs: {
 			description: {
@@ -85,11 +79,12 @@ export const Preview: StoryObj = {
 				name: "Paused"
 			},
 		],
-		currentBadgeId: 'opt-1' as any
+		value: 'opt-1' as any
 	}
 };
 
 export const OrderStatus: StoryObj = {
+	render: renderComponent(OrderStatusExampleComponent),
 	parameters: {
 		docs: {
 			description: {
@@ -97,10 +92,6 @@ export const OrderStatus: StoryObj = {
 			}
 		}
 	},
-	render: (args) => ({
-		props: args,
-		template: `<order-status-example [options]="options" [(currentBadgeId)]="currentBadgeId"></order-status-example>`
-	}),
 	args: {
 		options: [
 			{id: "pending", color: "warning", name: "Pending"},
@@ -109,11 +100,12 @@ export const OrderStatus: StoryObj = {
 			{id: "delivered", color: "success", name: "Delivered"},
 			{id: "cancelled", color: "danger", name: "Cancelled"}
 		],
-		currentBadgeId: 'processing',
+		value: 'processing',
 	}
 };
 
 export const Priority: StoryObj = {
+	render: renderComponent(PriorityExampleComponent),
 	parameters: {
 		docs: {
 			description: {
@@ -121,10 +113,6 @@ export const Priority: StoryObj = {
 			}
 		}
 	},
-	render: (args) => ({
-		props: args,
-		template: `<priority-example [options]="options" [(currentBadgeId)]="currentBadgeId"></priority-example>`
-	}),
 	args: {
 		options: [
 			{id: "low", color: "success", name: "Low"},
@@ -132,12 +120,13 @@ export const Priority: StoryObj = {
 			{id: "high", color: "danger", name: "High"},
 			{id: "critical", color: "danger", name: "Critical"}
 		],
-		currentBadgeId: 'medium',
+		value: 'medium',
 	}
 };
 
 
 export const ProjectStatus: StoryObj = {
+	render: renderComponent(FktBadgeSelectorComponent),
 	parameters: {
 		docs: {
 			description: {
@@ -148,17 +137,18 @@ Use this example for dashboards, kanbans or project summary views where it's imp
 	},
 	args: {
 		options: [
-			{ id: "planning", color: "blue", name: "Planning" },
-			{ id: "development", color: "orange", name: "Development" },
-			{ id: "testing", color: "orange", name: "Testing" },
-			{ id: "deployed", color: "green", name: "Deployed" },
-			{ id: "maintenance", color: "blue", name: "Maintenance" },
+			{ id: "planning", color: "info", name: "Planning" },
+			{ id: "development", color: "warning", name: "Development" },
+			{ id: "testing", color: "warning", name: "Testing" },
+			{ id: "deployed", color: "success", name: "Deployed" },
+			{ id: "maintenance", color: "info", name: "Maintenance" },
 		],
-		currentBadgeId: 'development' as any
+		value: 'development' as any
 	}
 };
 
 export const UserStatus: StoryObj = {
+	render: renderComponent(FktBadgeSelectorComponent),
 	parameters: {
 		docs: {
 			description: {
@@ -169,16 +159,17 @@ This is useful in chat apps, team dashboards, or any context where you want to p
 	},
 	args: {
 		options: [
-			{ id: "online", color: "green", name: "Online" },
-			{ id: "away", color: "orange", name: "Away" },
-			{ id: "busy", color: "red", name: "Busy" },
-			{ id: "offline", color: "blue", name: "Offline" },
+			{ id: "online", color: "success", name: "Online" },
+			{ id: "away", color: "warning", name: "Away" },
+			{ id: "busy", color: "danger", name: "Busy" },
+			{ id: "offline", color: "info", name: "Offline" },
 		],
-		currentBadgeId: 'online' as any
+		value: 'online' as any
 	}
 };
 
 export const TeamAssignment: StoryObj = {
+	render: renderComponent(FktBadgeSelectorComponent),
 	parameters: {
 		docs: {
 			description: {
@@ -189,16 +180,17 @@ Handy for project management tools, HR apps, or anywhere you want to display tea
 	},
 	args: {
 		options: [
-			{ id: "frontend", color: "blue", name: "Frontend Team" },
-			{ id: "backend", color: "green", name: "Backend Team" },
-			{ id: "devops", color: "orange", name: "DevOps Team" },
-			{ id: "qa", color: "red", name: "QA Team" },
+			{ id: "frontend", color: "info", name: "Frontend Team" },
+			{ id: "backend", color: "success", name: "Backend Team" },
+			{ id: "devops", color: "warning", name: "DevOps Team" },
+			{ id: "qa", color: "danger", name: "QA Team" },
 		],
-		currentBadgeId: 'frontend' as any
+		value: 'frontend' as any
 	}
 };
 
 export const Category: StoryObj = {
+	render: renderComponent(FktBadgeSelectorComponent),
 	parameters: {
 		docs: {
 			description: {
@@ -209,12 +201,12 @@ Use this pattern for e-commerce, content tagging, search filters, or any interfa
 	},
 	args: {
 		options: [
-			{ id: "electronics", color: "blue", name: "Electronics" },
-			{ id: "clothing", color: "green", name: "Clothing" },
-			{ id: "books", color: "orange", name: "Books" },
-			{ id: "home-garden", color: "red", name: "Home & Garden" },
+			{ id: "electronics", color: "info", name: "Electronics" },
+			{ id: "clothing", color: "success", name: "Clothing" },
+			{ id: "books", color: "warning", name: "Books" },
+			{ id: "home-garden", color: "danger", name: "Home & Garden" },
 		],
-		currentBadgeId: 'electronics' as any
+		value: 'electronics' as any
 	}
 };
 

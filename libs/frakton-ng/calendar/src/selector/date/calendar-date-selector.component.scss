@@ -1,3 +1,126 @@
+// <design-tokens>
+/*
+Calendar date cell background color on hover.
+@name --fkt-calendar-date-hover-bg
+@reference --color-neutral-200
+@component Date selector
+@category Colors
+@type color
+*/
+$date-hover-bg: var(--fkt-calendar-date-hover-bg, var(--color-neutral-200));
+
+/*
+Calendar date cell border color for today.
+@name --fkt-calendar-date-today-border-color
+@reference --color-neutral-600
+@component Date selector
+@category Colors
+@type color
+*/
+$date-today-border-color: var(--fkt-calendar-date-today-border-color, var(--color-neutral-600));
+
+/*
+Calendar date cell background color when selected.
+@name --fkt-calendar-date-selected-bg
+@reference --color-brand-primary
+@component Date selector
+@category Colors
+@type color
+*/
+$date-selected-bg: var(--fkt-calendar-date-selected-bg, var(--color-brand-primary));
+
+/*
+Calendar date cell text color when selected.
+@name --fkt-calendar-date-selected-color
+@reference --color-neutral-50
+@component Date selector
+@category Colors
+@type color
+*/
+$date-selected-color: var(--fkt-calendar-date-selected-color, var(--color-neutral-50));
+
+/*
+Calendar date cell opacity when out of range.
+@name --fkt-calendar-date-out-of-range-opacity
+@reference 0.3
+@component Date selector
+@category Effects
+@type opacity
+*/
+$date-out-of-range-opacity: var(--fkt-calendar-date-out-of-range-opacity, 0.3);
+
+/*
+Calendar date cell border radius.
+@name --fkt-calendar-date-border-radius
+@reference --radius-full
+@component Date selector
+@category Shape
+@type size
+*/
+$date-border-radius: var(--fkt-calendar-date-border-radius, var(--radius-full));
+
+/*
+Calendar date cell margin.
+@name --fkt-calendar-date-margin
+@reference --space-2xs
+@component Date selector
+@category Spacing
+@type size
+*/
+$date-margin: var(--fkt-calendar-date-margin, var(--space-2xs));
+
+/*
+Calendar date cell size (width and height).
+@name --fkt-calendar-date-size
+@reference 40px
+@component Date selector
+@category Spacing
+@type size
+*/
+$date-size: var(--fkt-calendar-date-size, 40px);
+
+/*
+Calendar weekday header text color.
+@name --fkt-calendar-weekday-color
+@reference --color-neutral-700
+@component Date selector
+@category Colors
+@type color
+*/
+$weekday-color: var(--fkt-calendar-weekday-color, var(--color-neutral-700));
+
+/*
+Calendar weekday header font weight.
+@name --fkt-calendar-weekday-font-weight
+@reference --font-medium
+@component Date selector
+@category Typography
+@type weight
+*/
+$weekday-font-weight: var(--fkt-calendar-weekday-font-weight, var(--font-medium));
+
+/*
+Calendar weekday header font size.
+@name --fkt-calendar-weekday-font-size
+@reference --font-size-sm
+@component Date selector
+@category Typography
+@type size
+*/
+$weekday-font-size: var(--fkt-calendar-weekday-font-size, var(--font-size-sm));
+
+/*
+Calendar grid gap between cells.
+@name --fkt-calendar-grid-gap
+@reference --space-2xs
+@component Date selector
+@category Spacing
+@type size
+*/
+$grid-gap: var(--fkt-calendar-grid-gap, var(--space-2xs));
+
+// </design-tokens>
+
 :host {
 	* {
 		box-sizing: border-box;
@@ -12,38 +135,46 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	border-radius: var(--radius-full);
-	margin: var(--space-xs);
+	border-radius: $date-border-radius;
+	margin: $date-margin;
+	min-width: $date-size;
+	min-height: $date-size;
 }
 
 .calendar__date--clickable {
 	cursor: pointer;
 
 	&:hover {
-		background-color: var(--color-blue-200);
+		background-color: $date-hover-bg;
 	}
 }
 
 .calendar__date--today {
-	border: solid 1px var(--color-gray-500);
+	border: solid 1px $date-today-border-color;
 }
 
 .calendar__date--current-date {
-	background-color: var(--color-blue-300);
+	background-color: $date-selected-bg;
+	color: $date-selected-color;
 }
 
 .calendar__date--out-of-range {
-	opacity: 20%;
+	opacity: $date-out-of-range-opacity;
 }
 
 .calendar {
 	display: grid;
 	grid-template-columns: repeat(7, minmax(0, 1fr));
 	width: 100%;
+	gap: $grid-gap;
 
 	&__weekday {
 		text-align: center;
 		text-transform: capitalize;
+		color: $weekday-color;
+		font-weight: $weekday-font-weight;
+		font-size: $weekday-font-size;
+		padding: $date-margin 0;
 	}
 }
 

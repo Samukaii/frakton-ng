@@ -3,6 +3,7 @@
 		<fkt-button
 			(click)="previous.emit()"
 			[disabled]="!canGoToPrevious()"
+			ariaLabel="Previous"
 			theme="basic"
 			icon="chevron-double-left"
 		/>
@@ -14,6 +15,7 @@
 		<fkt-button
 			(click)="next.emit()"
 			[disabled]="!canGoToNext()"
+			ariaLabel="Next"
 			theme="basic"
 			icon="chevron-double-right"
 		/>

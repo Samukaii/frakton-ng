@@ -1,12 +1,11 @@
-import { applicationConfig, Meta, StoryObj } from '@storybook/angular';
-import { moduleMetadata } from '@storybook/angular';
-import { FktSideMenuComponent, FktMenuGroup } from 'frakton-ng/side-menu';
+import { applicationConfig, Meta, moduleMetadata, StoryObj } from '@storybook/angular';
+import { FktMenuGroup, FktSideMenuComponent } from 'frakton-ng/side-menu';
 import {
+	AdminDashboardLayoutExampleComponent,
 	BasicSideMenuExampleComponent,
 	CollapsibleSideMenuExampleComponent,
-	MultiGroupSideMenuExampleComponent,
 	DynamicPermissionsSideMenuExampleComponent,
-	AdminDashboardLayoutExampleComponent
+	MultiGroupSideMenuExampleComponent
 } from './examples';
 import { provideRouter, Routes } from '@angular/router';
 import {
@@ -14,13 +13,16 @@ import {
 	WithRoutingExampleComponent
 } from './examples/with-routing-example/with-routing-example.component';
 import { Component } from '@angular/core';
+import { customDocsControl } from '../../.storybook/decorators/custom-docs-control';
+import { renderComponent } from '../../.storybook/decorators/render-component';
 
 @Component({
 	selector: 'fkt-empty',
 	template: ``,
 	styles: ``
 })
-class EmptyComponent {}
+class EmptyComponent {
+}
 
 const DEFAULT_ROUTES: Routes = [
 	{
@@ -36,36 +38,26 @@ const DEFAULT_ROUTES: Routes = [
 const meta: Meta<FktSideMenuComponent> = {
 	title: 'Components/Side Menu',
 	component: FktSideMenuComponent,
-	parameters: {
-		layout: 'fullscreen'
-	},
 	decorators: [
-		moduleMetadata({
-			imports: [
-				BasicSideMenuExampleComponent,
-				CollapsibleSideMenuExampleComponent,
-				MultiGroupSideMenuExampleComponent,
-				DynamicPermissionsSideMenuExampleComponent,
-				AdminDashboardLayoutExampleComponent,
-				WithRoutingExampleComponent
-			]
-		}),
+		customDocsControl(),
 	],
 	argTypes: {
 		groups: {
 			control: 'object',
 			description: 'Array of menu groups with their navigation items. Each group can have an optional name (displays as header) and contains menu items with name, icon, and path.',
 			table: {
-				type: { summary: 'FktMenuGroup[]' },
-				defaultValue: { summary: '[]' }
+				category: "Attributes",
+				type: {summary: 'FktMenuGroup[]'},
+				defaultValue: {summary: '[]'}
 			}
 		},
 		opened: {
 			control: 'boolean',
 			description: 'Controls whether the side menu is expanded (showing text labels) or collapsed (showing only icons with tooltips). Uses two-way binding.',
 			table: {
-				type: { summary: 'ModelSignal<boolean>' },
-				defaultValue: { summary: 'true' }
+				category: "Attributes",
+				type: {summary: 'ModelSignal<boolean>'},
+				defaultValue: {summary: 'true'}
 			}
 		}
 	}
@@ -76,10 +68,10 @@ type Story = StoryObj<FktSideMenuComponent>;
 const defaultMenuGroups: FktMenuGroup[] = [
 	{
 		items: [
-			{ name: 'Dashboard', icon: 'home', path: '/dashboard' },
-			{ name: 'Users', icon: 'users', path: '/users' },
-			{ name: 'Settings', icon: 'cog-6-tooth', path: '/settings' },
-			{ name: 'Reports', icon: 'chart-bar', path: '/reports' }
+			{name: 'Dashboard', icon: 'home', path: '/dashboard'},
+			{name: 'Users', icon: 'users', path: '/users'},
+			{name: 'Settings', icon: 'cog-6-tooth', path: '/settings'},
+			{name: 'Reports', icon: 'chart-bar', path: '/reports'}
 		]
 	}
 ];
@@ -87,12 +79,12 @@ const defaultMenuGroups: FktMenuGroup[] = [
 const collapsibleMenuGroups: FktMenuGroup[] = [
 	{
 		items: [
-			{ name: 'Dashboard', icon: 'home', path: '/dashboard' },
-			{ name: 'Analytics', icon: 'chart-bar', path: '/analytics' },
-			{ name: 'Users', icon: 'users', path: '/users' },
-			{ name: 'Products', icon: 'cube', path: '/products' },
-			{ name: 'Orders', icon: 'shopping-cart', path: '/orders' },
-			{ name: 'Settings', icon: 'cog-6-tooth', path: '/settings' }
+			{name: 'Dashboard', icon: 'home', path: '/dashboard'},
+			{name: 'Analytics', icon: 'chart-bar', path: '/analytics'},
+			{name: 'Users', icon: 'users', path: '/users'},
+			{name: 'Products', icon: 'cube', path: '/products'},
+			{name: 'Orders', icon: 'shopping-cart', path: '/orders'},
+			{name: 'Settings', icon: 'cog-6-tooth', path: '/settings'}
 		]
 	}
 ];
@@ -101,24 +93,24 @@ const multiGroupMenus: FktMenuGroup[] = [
 	{
 		name: 'Main',
 		items: [
-			{ name: 'Dashboard', icon: 'home', path: '/dashboard' },
-			{ name: 'Analytics', icon: 'chart-bar', path: '/analytics' },
-			{ name: 'Overview', icon: 'eye', path: '/overview' }
+			{name: 'Dashboard', icon: 'home', path: '/dashboard'},
+			{name: 'Analytics', icon: 'chart-bar', path: '/analytics'},
+			{name: 'Overview', icon: 'eye', path: '/overview'}
 		]
 	},
 	{
 		name: 'Management',
 		items: [
-			{ name: 'Users', icon: 'users', path: '/users' },
-			{ name: 'Products', icon: 'cube', path: '/products' },
-			{ name: 'Orders', icon: 'shopping-cart', path: '/orders' }
+			{name: 'Users', icon: 'users', path: '/users'},
+			{name: 'Products', icon: 'cube', path: '/products'},
+			{name: 'Orders', icon: 'shopping-cart', path: '/orders'}
 		]
 	},
 	{
 		items: [
-			{ name: 'Settings', icon: 'cog-6-tooth', path: '/settings' },
-			{ name: 'Profile', icon: 'user', path: '/profile' },
-			{ name: 'Help', icon: 'question-mark-circle', path: '/help' }
+			{name: 'Settings', icon: 'cog-6-tooth', path: '/settings'},
+			{name: 'Profile', icon: 'user', path: '/profile'},
+			{name: 'Help', icon: 'question-mark-circle', path: '/help'}
 		]
 	}
 ];
@@ -127,27 +119,27 @@ const permissionsMenuGroups: FktMenuGroup[] = [
 	{
 		name: 'Main',
 		items: [
-			{ name: 'Dashboard', icon: 'home', path: '/dashboard' },
-			{ name: 'Analytics', icon: 'chart-bar', path: '/analytics' }
+			{name: 'Dashboard', icon: 'home', path: '/dashboard'},
+			{name: 'Analytics', icon: 'chart-bar', path: '/analytics'}
 		]
 	},
 	{
 		name: 'Management',
 		items: [
-			{ name: 'Products', icon: 'cube', path: '/products' }
+			{name: 'Products', icon: 'cube', path: '/products'}
 		]
 	},
 	{
 		name: 'Reports',
 		items: [
-			{ name: 'Sales Report', icon: 'document-chart-bar', path: '/reports/sales' },
-			{ name: 'User Activity', icon: 'chart-pie', path: '/reports/activity' }
+			{name: 'Sales Report', icon: 'document-chart-bar', path: '/reports/sales'},
+			{name: 'User Activity', icon: 'chart-pie', path: '/reports/activity'}
 		]
 	},
 	{
 		items: [
-			{ name: 'Settings', icon: 'cog-6-tooth', path: '/settings' },
-			{ name: 'Profile', icon: 'user', path: '/profile' }
+			{name: 'Settings', icon: 'cog-6-tooth', path: '/settings'},
+			{name: 'Profile', icon: 'user', path: '/profile'}
 		]
 	}
 ];
@@ -156,37 +148,38 @@ const adminMenuGroups: FktMenuGroup[] = [
 	{
 		name: 'Overview',
 		items: [
-			{ name: 'Dashboard', icon: 'home', path: '/dashboard' },
-			{ name: 'Analytics', icon: 'chart-bar', path: '/analytics' },
-			{ name: 'Reports', icon: 'document-chart-bar', path: '/reports' }
+			{name: 'Dashboard', icon: 'home', path: '/dashboard'},
+			{name: 'Analytics', icon: 'chart-bar', path: '/analytics'},
+			{name: 'Reports', icon: 'document-chart-bar', path: '/reports'}
 		]
 	},
 	{
 		name: 'Management',
 		items: [
-			{ name: 'Users', icon: 'users', path: '/users' },
-			{ name: 'Products', icon: 'cube', path: '/products' },
-			{ name: 'Orders', icon: 'shopping-cart', path: '/orders' },
-			{ name: 'Inventory', icon: 'squares-2x2', path: '/inventory' }
+			{name: 'Users', icon: 'users', path: '/users'},
+			{name: 'Products', icon: 'cube', path: '/products'},
+			{name: 'Orders', icon: 'shopping-cart', path: '/orders'},
+			{name: 'Inventory', icon: 'squares-2x2', path: '/inventory'}
 		]
 	},
 	{
 		name: 'System',
 		items: [
-			{ name: 'Settings', icon: 'cog-6-tooth', path: '/settings' },
-			{ name: 'Security', icon: 'shield-check', path: '/security' },
-			{ name: 'Logs', icon: 'document-text', path: '/logs' }
+			{name: 'Settings', icon: 'cog-6-tooth', path: '/settings'},
+			{name: 'Security', icon: 'shield-check', path: '/security'},
+			{name: 'Logs', icon: 'document-text', path: '/logs'}
 		]
 	},
 	{
 		items: [
-			{ name: 'Profile', icon: 'user', path: '/profile' },
-			{ name: 'Help & Support', icon: 'question-mark-circle', path: '/support' }
+			{name: 'Profile', icon: 'user', path: '/profile'},
+			{name: 'Help & Support', icon: 'question-mark-circle', path: '/support'}
 		]
 	}
 ];
 
 export const BasicSideMenu: Story = {
+	render: renderComponent(BasicSideMenuExampleComponent),
 	parameters: {
 		docs: {
 			description: {
@@ -194,12 +187,6 @@ export const BasicSideMenu: Story = {
 			}
 		}
 	},
-	render: (args) => ({
-		template: '<basic-side-menu-example [groups]="groups" [opened]="opened"></basic-side-menu-example>',
-		props: {
-			...args
-		}
-	}),
 	decorators: [
 		applicationConfig({
 			providers: [provideRouter(DEFAULT_ROUTES)],
@@ -212,19 +199,14 @@ export const BasicSideMenu: Story = {
 };
 
 export const CollapsibleSideMenu: Story = {
-		parameters: {
+	render: renderComponent(CollapsibleSideMenuExampleComponent),
+	parameters: {
 		docs: {
 			description: {
 				story: "Side menu with toggle functionality demonstrating collapsed and expanded states."
 			}
 		}
 	},
-	render: (args) => ({
-		template: '<collapsible-side-menu-example [groups]="groups" [opened]="opened"></collapsible-side-menu-example>',
-		props: {
-			...args
-		}
-	}),
 	decorators: [
 		applicationConfig({
 			providers: [provideRouter(DEFAULT_ROUTES)],
@@ -237,19 +219,14 @@ export const CollapsibleSideMenu: Story = {
 };
 
 export const MultiGroupNavigation: Story = {
-		parameters: {
+	render: renderComponent(MultiGroupSideMenuExampleComponent),
+	parameters: {
 		docs: {
 			description: {
 				story: "Side menu with multiple groups, demonstrating named groups and divider groups."
 			}
 		}
 	},
-	render: (args) => ({
-		template: '<multi-group-side-menu-example [groups]="groups" [opened]="opened"></multi-group-side-menu-example>',
-		props: {
-			...args
-		}
-	}),
 	decorators: [
 		applicationConfig({
 			providers: [provideRouter(DEFAULT_ROUTES)],
@@ -262,19 +239,14 @@ export const MultiGroupNavigation: Story = {
 };
 
 export const DynamicMenuWithPermissions: Story = {
-		parameters: {
+	render: renderComponent(DynamicPermissionsSideMenuExampleComponent),
+	parameters: {
 		docs: {
 			description: {
 				story: "Advanced example showing dynamic menu generation based on user permissions."
 			}
 		}
 	},
-	render: (args) => ({
-		template: '<dynamic-permissions-side-menu-example [groups]="groups" [opened]="opened"></dynamic-permissions-side-menu-example>',
-		props: {
-			...args
-		}
-	}),
 	decorators: [
 		applicationConfig({
 			providers: [provideRouter(DEFAULT_ROUTES)],
@@ -287,19 +259,14 @@ export const DynamicMenuWithPermissions: Story = {
 };
 
 export const AdminDashboardLayout: Story = {
-		parameters: {
+	render: renderComponent(AdminDashboardLayoutExampleComponent),
+	parameters: {
 		docs: {
 			description: {
 				story: "Complete dashboard layout showcasing real-world usage with content integration."
 			}
 		}
 	},
-	render: (args) => ({
-		template: '<admin-dashboard-layout-example [groups]="groups" [opened]="opened"></admin-dashboard-layout-example>',
-		props: {
-			...args
-		}
-	}),
 	decorators: [
 		applicationConfig({
 			providers: [provideRouter(DEFAULT_ROUTES)],
@@ -312,19 +279,14 @@ export const AdminDashboardLayout: Story = {
 };
 
 export const WithRouting: Story = {
-		parameters: {
+	render: renderComponent(WithRoutingExampleComponent),
+	parameters: {
 		docs: {
 			description: {
 				story: "Complete dashboard layout showcasing real-world usage with content integration."
 			}
 		}
 	},
-	render: (args) => ({
-		template: '<with-routing-example [groups]="groups" [opened]="opened"></with-routing-example>',
-		props: {
-			...args
-		}
-	}),
 	decorators: [
 		applicationConfig({
 			providers: [provideRouter(WITH_ROUTING_EXAMPLE_ROUTES)],

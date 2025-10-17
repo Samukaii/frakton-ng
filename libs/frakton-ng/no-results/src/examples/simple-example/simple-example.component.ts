@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, input } from "@angular/core";
 import { FktNoResults, FktNoResultsComponent } from "frakton-ng/no-results";
 
 
@@ -8,7 +8,6 @@ import { FktNoResults, FktNoResultsComponent } from "frakton-ng/no-results";
 	imports: [FktNoResultsComponent]
 })
 export class SimpleExampleComponent {
-	simpleConfig: FktNoResults = {
-		label: 'No results found'
-	};
+	noResults =  input.required<FktNoResults>()
+	borderless = input(false)
 }

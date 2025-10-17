@@ -1,6 +1,6 @@
 import {
 	Component,
-	computed,
+	computed, effect,
 	input,
 	inputBinding,
 	OnInit,
@@ -16,14 +16,12 @@ import { ArgType } from '../../models/arg-type';
 import { ArgItem } from '../../models/arg-item';
 import { DesignTokenItem } from '../../models/design-token-item';
 import { CustomControlsTabsComponent } from './tabs/custom-controls-tabs.component';
-import { JsonPipe } from '@angular/common';
 
 
 @Component({
 	selector: 'fkt-custom-docs-control',
 	imports: [
-		CustomControlsTabsComponent,
-		JsonPipe
+		CustomControlsTabsComponent
 	],
 	templateUrl: './custom-docs-control.component.html',
 	styleUrl: './custom-docs-control.component.scss',
@@ -33,6 +31,7 @@ import { JsonPipe } from '@angular/common';
 })
 export class CustomDocsControlComponent implements OnInit {
 	component = input.required<Type<any>>();
+	selector = input<string>();
 	viewMode = input.required<'story' | 'docs'>();
 	targetComponent = input.required<Type<any>>();
 	args = input<Generic>();
@@ -44,9 +43,17 @@ export class CustomDocsControlComponent implements OnInit {
 	private viewRef = viewChild.required('template', {read: ViewContainerRef});
 
 	protected templateSelector = computed(() => {
-		const reflection = reflectComponentType(this.targetComponent());
+		let selector = this.selector() ?? ':host'
 
-		return reflection?.selector ?? ':host';
+		try {
+			const reflection = reflectComponentType(this.targetComponent())
+
+			if(reflection?.selector)
+				selector = reflection?.selector;
+		}
+		catch (e) {}
+
+		return selector;
 	})
 
 	protected designTokens = computed((): DesignTokenItem[] => {
@@ -77,6 +84,8 @@ export class CustomDocsControlComponent implements OnInit {
 		}))
 	});
 
+	a = effect(() => console.log(this.argsList()))
+
 	protected argsList = computed((): ArgItem<any>[] => {
 		const argTypes = this.argTypes();
 		const args = this.args();
@@ -101,17 +110,23 @@ export class CustomDocsControlComponent implements OnInit {
 		});
 	})
 
-
 	ngOnInit() {
 		const component = this.component();
 		const argTypes = this.argsList();
 
 		if (!component || !argTypes) return;
 
-		this.viewRef().createComponent(component, {
-			bindings: argTypes.map(arg => {
-				return inputBinding(arg.name, arg.control)
-			})
-		});
+		try {
+			this.viewRef().createComponent(component, {
+				bindings: argTypes.map(arg => {
+					return inputBinding(arg.name, arg.control)
+				})
+			});
+		}
+		catch (e) {
+			console.log(e)
+		}
+
+
 	}
 }

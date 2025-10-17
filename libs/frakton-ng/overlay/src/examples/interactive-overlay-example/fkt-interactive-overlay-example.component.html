@@ -2,8 +2,8 @@
 			<h4 class="header__title">Shared State</h4>
 			<hr>
 			<div class="header__info">
-				<span>Counter: <fkt-badge [text]="sharedCounter().toString()" color="green"></fkt-badge></span>
-				<span>Items: <fkt-badge [text]="sharedItems().length.toString()" color="orange"></fkt-badge></span>
+				<span>Counter: <fkt-badge [text]="sharedCounter().toString()" color="success"></fkt-badge></span>
+				<span>Items: <fkt-badge [text]="sharedItems().length.toString()" color="warning"></fkt-badge></span>
 			</div>
 			<div class="header__description">
 				Changes made in overlays will update this shared state automatically.
@@ -15,7 +15,7 @@
 			<fkt-button
 				text="Reset All"
 				theme="stroked"
-				color="red"
+				color="danger"
 				(click)="resetAll()"
 			></fkt-button>
 			<fkt-button

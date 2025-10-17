@@ -8,21 +8,14 @@ import {
 	LoadingExampleComponent,
 	PageNavigationExampleComponent
 } from './examples';
+import { customDocsControl } from '../../.storybook/decorators/custom-docs-control';
+import { renderComponent } from '../../.storybook/decorators/render-component';
 
 const meta: Meta<FktNavigatorComponent> = {
 	title: 'Components/Navigator',
 	component: FktNavigatorComponent,
 	decorators: [
-		moduleMetadata({
-			imports: [
-				BasicExampleComponent,
-				DateNavigationExampleComponent,
-				DisabledStateExampleComponent,
-				ItemNavigationExampleComponent,
-				LoadingExampleComponent,
-				PageNavigationExampleComponent
-			]
-		})
+		customDocsControl(),
 	],
 	argTypes: {
 		canGoToPrevious: {
@@ -55,6 +48,7 @@ const meta: Meta<FktNavigatorComponent> = {
 type Story = StoryObj<FktNavigatorComponent>;
 
 export const BasicNavigator: Story = {
+	render: renderComponent(BasicExampleComponent),
 	parameters: {
 		docs: {
 			description: {
@@ -62,12 +56,6 @@ export const BasicNavigator: Story = {
 			}
 		}
 	},
-	render: (args) => ({
-		template: `
-			<basic-example ${argsToTemplate(args)} />
-		`,
-		props: args
-	}),
 	args: {
 		canGoToNext: true,
 		canGoToPrevious: true,
@@ -75,6 +63,7 @@ export const BasicNavigator: Story = {
 };
 
 export const PageNavigation: Story = {
+	render: renderComponent(PageNavigationExampleComponent),
 	parameters: {
 		docs: {
 			description: {
@@ -82,16 +71,11 @@ export const PageNavigation: Story = {
 			}
 		}
 	},
-	render: (args) => ({
-		template: `
-			<page-navigation-example ${argsToTemplate(args)} />
-		`,
-		props: args
-	}),
 };
 
 
 export const DateNavigation: Story = {
+	render: renderComponent(DateNavigationExampleComponent),
 	parameters: {
 		docs: {
 			description: {
@@ -99,15 +83,10 @@ export const DateNavigation: Story = {
 			}
 		}
 	},
-	render: (args) => ({
-		template: `
-			<date-navigation-example ${argsToTemplate(args)} />
-		`,
-		props: args
-	})
 };
 
 export const ItemListNavigation: Story = {
+	render: renderComponent(ItemNavigationExampleComponent),
 	parameters: {
 		docs: {
 			description: {
@@ -115,15 +94,10 @@ export const ItemListNavigation: Story = {
 			}
 		}
 	},
-	render: (args) => ({
-		template: `
-			<item-navigation-example ${argsToTemplate(args)} />
-		`,
-		props: args
-	})
 };
 
 export const DisabledStates: Story = {
+	render: renderComponent(DisabledStateExampleComponent),
 	parameters: {
 		docs: {
 			description: {
@@ -131,15 +105,10 @@ export const DisabledStates: Story = {
 			}
 		}
 	},
-	render: (args) => ({
-		template: `
-			<disabled-states-example ${argsToTemplate(args)} />
-		`,
-		props: args
-	})
 };
 
 export const WithLoadingState: Story = {
+	render: renderComponent(LoadingExampleComponent),
 	parameters: {
 		docs: {
 			description: {
@@ -147,12 +116,6 @@ export const WithLoadingState: Story = {
 			}
 		}
 	},
-	render: (args) => ({
-		template: `
-			<loading-example ${argsToTemplate(args)} />
-		`,
-		props: args
-	})
 };
 
 export default meta;

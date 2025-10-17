@@ -17,7 +17,7 @@ export class PriorityExampleComponent {
 		{id: "critical", color: "danger", name: "Critical"}
 	]);
 
-	currentBadgeId = model<BadgeType>('medium');
+	value = model<BadgeType>('medium');
 
 	priorityDescription = computed(() => {
 		const descriptions: Record<BadgeType, string> = {
@@ -27,6 +27,6 @@ export class PriorityExampleComponent {
 			critical: 'Urgent tasks requiring immediate action'
 		};
 
-		return descriptions[this.currentBadgeId()] || 'Select a priority level';
+		return descriptions[this.value()] || 'Select a priority level';
 	})
 }

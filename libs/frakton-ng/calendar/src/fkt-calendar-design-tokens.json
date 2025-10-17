@@ -1,0 +1,596 @@
+[
+  {
+    "description": "Calendar container width.",
+    "name": "--fkt-calendar-width",
+    "reference": "100%",
+    "component": "Calendar",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": "100%"
+  },
+  {
+    "description": "Calendar container height.",
+    "name": "--fkt-calendar-height",
+    "reference": "fit-content",
+    "component": "Calendar",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": "fit-content"
+  },
+  {
+    "description": "Calendar border color when with-border variant is used.",
+    "name": "--fkt-calendar-border-color",
+    "reference": "--color-neutral-300",
+    "component": "Calendar",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#E5E7EBFF"
+  },
+  {
+    "description": "Calendar border radius when with-border variant is used.",
+    "name": "--fkt-calendar-border-radius",
+    "reference": "--radius-lg",
+    "component": "Calendar",
+    "category": "Shape",
+    "type": "size",
+    "defaultValue": ".5rem"
+  },
+  {
+    "description": "Calendar padding when with-border variant is used.",
+    "name": "--fkt-calendar-padding",
+    "reference": "--space-lg",
+    "component": "Calendar",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": "1.25rem"
+  },
+  {
+    "description": "Calendar box shadow when with-border variant is used.",
+    "name": "--fkt-calendar-box-shadow",
+    "reference": "--shadow-lg",
+    "component": "Calendar",
+    "category": "Effects",
+    "type": "shadow",
+    "defaultValue": "0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.2)"
+  },
+  {
+    "description": "Calendar background color.",
+    "name": "--fkt-calendar-background-color",
+    "reference": "--color-neutral-50",
+    "component": "Calendar",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#FFFFFFFF"
+  },
+  {
+    "description": "Calendar text color.",
+    "name": "--fkt-calendar-text-color",
+    "reference": "--color-neutral-900",
+    "component": "Calendar",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#111827FF"
+  },
+  {
+    "description": "Gap between calendar sections.",
+    "name": "--fkt-calendar-gap",
+    "reference": "--space-md",
+    "component": "Calendar",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": "1rem"
+  },
+  {
+    "description": "Month header container gap between elements.",
+    "name": "--fkt-calendar-month-header-gap",
+    "reference": "--space-sm",
+    "component": "Date selector",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": ".75rem"
+  },
+  {
+    "description": "Month header element vertical padding.",
+    "name": "--fkt-calendar-month-header-vertical-padding",
+    "reference": "--space-xs",
+    "component": "Date selector",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": ".5rem"
+  },
+  {
+    "description": "Month header element vertical padding.",
+    "name": "--fkt-calendar-month-header-horizontal-padding",
+    "reference": "--space-sm",
+    "component": "Date selector",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": ".75rem"
+  },
+  {
+    "description": "Month header element border radius.",
+    "name": "--fkt-calendar-month-header-border-radius",
+    "reference": "--radius-md",
+    "component": "Date selector",
+    "category": "Shape",
+    "type": "size",
+    "defaultValue": ".375rem"
+  },
+  {
+    "description": "Month header element font size.",
+    "name": "--fkt-calendar-month-header-font-size",
+    "reference": "--font-size-lg",
+    "component": "Date selector",
+    "category": "Typography",
+    "type": "size",
+    "defaultValue": "1.125rem"
+  },
+  {
+    "description": "Month header element font weight.",
+    "name": "--fkt-calendar-month-header-font-weight",
+    "reference": "--font-semibold",
+    "component": "Date selector",
+    "category": "Typography",
+    "type": "weight",
+    "defaultValue": "600"
+  },
+  {
+    "description": "Month header element hover background color.",
+    "name": "--fkt-calendar-month-header-hover-bg",
+    "reference": "--color-neutral-200",
+    "component": "Date selector",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#F3F4F6FF"
+  },
+  {
+    "description": "Month header element text color.",
+    "name": "--fkt-calendar-month-header-color",
+    "reference": "--color-neutral-900",
+    "component": "Date selector",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#111827FF"
+  },
+  {
+    "description": "Month header element active background color.",
+    "name": "--fkt-calendar-month-header-active-bg",
+    "reference": "--color-brand-primary",
+    "component": "Date selector",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#4b5563"
+  },
+  {
+    "description": "Month header element active text color.",
+    "name": "--fkt-calendar-month-header-active-color",
+    "reference": "--color-neutral-50",
+    "component": "Date selector",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#FFFFFFFF"
+  },
+  {
+    "description": "Multi-year header container gap between elements.",
+    "name": "--fkt-calendar-multi-year-header-gap",
+    "reference": "--space-sm",
+    "component": "Year Selector",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": ".75rem"
+  },
+  {
+    "description": "Multi-year header element padding.",
+    "name": "--fkt-calendar-multi-year-header-padding",
+    "reference": "0 --space-xs",
+    "component": "Year Selector",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": "0 --space-xs"
+  },
+  {
+    "description": "Multi-year header element font weight.",
+    "name": "--fkt-calendar-multi-year-header-font-weight",
+    "reference": "--font-semibold",
+    "component": "Year Selector",
+    "category": "Typography",
+    "type": "weight",
+    "defaultValue": "600"
+  },
+  {
+    "description": "Multi-year header element font size.",
+    "name": "--fkt-calendar-multi-year-header-font-size",
+    "reference": "--font-size-lg",
+    "component": "Year Selector",
+    "category": "Typography",
+    "type": "size",
+    "defaultValue": "1.125rem"
+  },
+  {
+    "description": "Multi-year header element text color.",
+    "name": "--fkt-calendar-multi-year-header-color",
+    "reference": "--color-neutral-900",
+    "component": "Year Selector",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#111827FF"
+  },
+  {
+    "description": "Multi-year header element background color.",
+    "name": "--fkt-calendar-multi-year-header-bg",
+    "reference": "#00000000",
+    "component": "Year Selector",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#00000000"
+  },
+  {
+    "description": "Multi-year header element border radius.",
+    "name": "--fkt-calendar-multi-year-header-border-radius",
+    "reference": "--radius-md",
+    "component": "Year Selector",
+    "category": "Shape",
+    "type": "size",
+    "defaultValue": ".375rem"
+  },
+  {
+    "description": "Year header container gap between elements.",
+    "name": "--fkt-calendar-year-header-gap",
+    "reference": "--space-sm",
+    "component": "Month selector",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": ".75rem"
+  },
+  {
+    "description": "Year header element padding.",
+    "name": "--fkt-calendar-year-header-padding",
+    "reference": "--space-xs --space-sm",
+    "component": "Month selector",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": "--space-xs --space-sm"
+  },
+  {
+    "description": "Year header element border radius.",
+    "name": "--fkt-calendar-year-header-border-radius",
+    "reference": "--radius-md",
+    "component": "Month selector",
+    "category": "Shape",
+    "type": "size",
+    "defaultValue": ".375rem"
+  },
+  {
+    "description": "Year header element font size.",
+    "name": "--fkt-calendar-year-header-font-size",
+    "reference": "--font-size-lg",
+    "component": "Month selector",
+    "category": "Typography",
+    "type": "size",
+    "defaultValue": "1.125rem"
+  },
+  {
+    "description": "Year header element font weight.",
+    "name": "--fkt-calendar-year-header-font-weight",
+    "reference": "--font-semibold",
+    "component": "Month selector",
+    "category": "Typography",
+    "type": "weight",
+    "defaultValue": "600"
+  },
+  {
+    "description": "Year header element hover background color.",
+    "name": "--fkt-calendar-year-header-hover-bg",
+    "reference": "--color-neutral-200",
+    "component": "Month selector",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#F3F4F6FF"
+  },
+  {
+    "description": "Year header element text color.",
+    "name": "--fkt-calendar-year-header-color",
+    "reference": "--color-neutral-900",
+    "component": "Month selector",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#111827FF"
+  },
+  {
+    "description": "Year header element active background color.",
+    "name": "--fkt-calendar-year-header-active-bg",
+    "reference": "--color-brand-primary",
+    "component": "Month selector",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#4b5563"
+  },
+  {
+    "description": "Year header element active text color.",
+    "name": "--fkt-calendar-year-header-active-color",
+    "reference": "--color-neutral-50",
+    "component": "Month selector",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#FFFFFFFF"
+  },
+  {
+    "description": "Calendar date cell background color on hover.",
+    "name": "--fkt-calendar-date-hover-bg",
+    "reference": "--color-neutral-200",
+    "component": "Date selector",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#F3F4F6FF"
+  },
+  {
+    "description": "Calendar date cell border color for today.",
+    "name": "--fkt-calendar-date-today-border-color",
+    "reference": "--color-neutral-600",
+    "component": "Date selector",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#4B5563FF"
+  },
+  {
+    "description": "Calendar date cell background color when selected.",
+    "name": "--fkt-calendar-date-selected-bg",
+    "reference": "--color-brand-primary",
+    "component": "Date selector",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#4b5563"
+  },
+  {
+    "description": "Calendar date cell text color when selected.",
+    "name": "--fkt-calendar-date-selected-color",
+    "reference": "--color-neutral-50",
+    "component": "Date selector",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#FFFFFFFF"
+  },
+  {
+    "description": "Calendar date cell opacity when out of range.",
+    "name": "--fkt-calendar-date-out-of-range-opacity",
+    "reference": "0.3",
+    "component": "Date selector",
+    "category": "Effects",
+    "type": "opacity",
+    "defaultValue": "0.3"
+  },
+  {
+    "description": "Calendar date cell border radius.",
+    "name": "--fkt-calendar-date-border-radius",
+    "reference": "--radius-full",
+    "component": "Date selector",
+    "category": "Shape",
+    "type": "size",
+    "defaultValue": "9999px"
+  },
+  {
+    "description": "Calendar date cell margin.",
+    "name": "--fkt-calendar-date-margin",
+    "reference": "--space-2xs",
+    "component": "Date selector",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": ".375rem"
+  },
+  {
+    "description": "Calendar date cell size (width and height).",
+    "name": "--fkt-calendar-date-size",
+    "reference": "40px",
+    "component": "Date selector",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": "40px"
+  },
+  {
+    "description": "Calendar weekday header text color.",
+    "name": "--fkt-calendar-weekday-color",
+    "reference": "--color-neutral-700",
+    "component": "Date selector",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#374151FF"
+  },
+  {
+    "description": "Calendar weekday header font weight.",
+    "name": "--fkt-calendar-weekday-font-weight",
+    "reference": "--font-medium",
+    "component": "Date selector",
+    "category": "Typography",
+    "type": "weight",
+    "defaultValue": "500"
+  },
+  {
+    "description": "Calendar weekday header font size.",
+    "name": "--fkt-calendar-weekday-font-size",
+    "reference": "--font-size-sm",
+    "component": "Date selector",
+    "category": "Typography",
+    "type": "size",
+    "defaultValue": "0.875rem"
+  },
+  {
+    "description": "Calendar grid gap between cells.",
+    "name": "--fkt-calendar-grid-gap",
+    "reference": "--space-2xs",
+    "component": "Date selector",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": ".375rem"
+  },
+  {
+    "description": "Month selector grid gap between items.",
+    "name": "--fkt-calendar-month-selector-gap",
+    "reference": "--space-sm",
+    "component": "Month selector",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": ".75rem"
+  },
+  {
+    "description": "Month selector vertical item padding.",
+    "name": "--fkt-calendar-month-selector-vertical-padding",
+    "reference": "--space-sm",
+    "component": "Month selector",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": ".75rem"
+  },
+  {
+    "description": "Month selector horizontal item padding.",
+    "name": "--fkt-calendar-month-selector-horizontal-padding",
+    "reference": "--space-md",
+    "component": "Month selector",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": "1rem"
+  },
+  {
+    "description": "Month selector item border radius.",
+    "name": "--fkt-calendar-month-selector-border-radius",
+    "reference": "--radius-md",
+    "component": "Month selector",
+    "category": "Shape",
+    "type": "size",
+    "defaultValue": ".375rem"
+  },
+  {
+    "description": "Month selector item hover background color.",
+    "name": "--fkt-calendar-month-selector-hover-bg",
+    "reference": "--color-neutral-200",
+    "component": "Month selector",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#F3F4F6FF"
+  },
+  {
+    "description": "Month selector item text color.",
+    "name": "--fkt-calendar-month-selector-color",
+    "reference": "--color-neutral-900",
+    "component": "Month selector",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#111827FF"
+  },
+  {
+    "description": "Month selector item selected background color.",
+    "name": "--fkt-calendar-month-selector-selected-bg",
+    "reference": "--color-brand-primary",
+    "component": "Month selector",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#4b5563"
+  },
+  {
+    "description": "Month selector item selected text color.",
+    "name": "--fkt-calendar-month-selector-selected-color",
+    "reference": "--color-neutral-50",
+    "component": "Month selector",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#FFFFFFFF"
+  },
+  {
+    "description": "Month selector item font size.",
+    "name": "--fkt-calendar-month-selector-font-size",
+    "reference": "--font-size-md",
+    "component": "Month selector",
+    "category": "Typography",
+    "type": "size",
+    "defaultValue": "1rem"
+  },
+  {
+    "description": "Month selector item font weight.",
+    "name": "--fkt-calendar-month-selector-font-weight",
+    "reference": "--font-medium",
+    "component": "Month selector",
+    "category": "Typography",
+    "type": "weight",
+    "defaultValue": "500"
+  },
+  {
+    "description": "Year selector grid gap between items.",
+    "name": "--fkt-calendar-year-selector-gap",
+    "reference": "--space-sm",
+    "component": "Year Selector",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": ".75rem"
+  },
+  {
+    "description": "Year selector item padding.",
+    "name": "--fkt-calendar-year-selector-padding",
+    "reference": "--space-sm --space-md",
+    "component": "Year Selector",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": "--space-sm --space-md"
+  },
+  {
+    "description": "Year selector item border radius.",
+    "name": "--fkt-calendar-year-selector-border-radius",
+    "reference": "--radius-md",
+    "component": "Year Selector",
+    "category": "Shape",
+    "type": "size",
+    "defaultValue": ".375rem"
+  },
+  {
+    "description": "Year selector item hover background color.",
+    "name": "--fkt-calendar-year-selector-hover-bg",
+    "reference": "--color-neutral-200",
+    "component": "Year Selector",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#F3F4F6FF"
+  },
+  {
+    "description": "Year selector item text color.",
+    "name": "--fkt-calendar-year-selector-color",
+    "reference": "--color-neutral-900",
+    "component": "Year Selector",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#111827FF"
+  },
+  {
+    "description": "Year selector item selected background color.",
+    "name": "--fkt-calendar-year-selector-selected-bg",
+    "reference": "--color-brand-primary",
+    "component": "Year Selector",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#4b5563"
+  },
+  {
+    "description": "Year selector item selected text color.",
+    "name": "--fkt-calendar-year-selector-selected-color",
+    "reference": "--color-neutral-50",
+    "component": "Year Selector",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#FFFFFFFF"
+  },
+  {
+    "description": "Year selector item font size.",
+    "name": "--fkt-calendar-year-selector-font-size",
+    "reference": "--font-size-md",
+    "component": "Year Selector",
+    "category": "Typography",
+    "type": "size",
+    "defaultValue": "1rem"
+  },
+  {
+    "description": "Year selector item font weight.",
+    "name": "--fkt-calendar-year-selector-font-weight",
+    "reference": "--font-medium",
+    "component": "Year Selector",
+    "category": "Typography",
+    "type": "weight",
+    "defaultValue": "500"
+  }
+]

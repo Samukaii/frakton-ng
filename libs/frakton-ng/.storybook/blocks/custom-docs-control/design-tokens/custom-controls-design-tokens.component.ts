@@ -78,6 +78,11 @@ export class CustomControlsDesignTokensComponent {
 				icon: "rectangle-group",
 				tokens: []
 			},
+			{
+				name: "Effects",
+				icon: "sparkles",
+				tokens: []
+			}
 		];
 
 		tokensFiltered.forEach((token) => {

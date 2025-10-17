@@ -1,15 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/angular';
-import { FktComponentInputs, FktComponentTwoWayBindings } from 'frakton-ng/internal/types';
-import {
-	FktButtonsListAlignment,
-	fktButtonsListAlignments,
-	FktButtonsListComponent,
-	fktButtonsListOrientations
-} from 'frakton-ng/buttons-list';
+import { fktButtonsListAlignments, FktButtonsListComponent, fktButtonsListOrientations } from 'frakton-ng/buttons-list';
+import { customDocsControl } from '../../.storybook/decorators/custom-docs-control';
+import { renderComponent } from '../../.storybook/decorators/render-component';
 
 const meta: Meta<FktButtonsListComponent<void>> = {
 	title: 'Components/Buttons list',
 	component: FktButtonsListComponent,
+	decorators: [
+		customDocsControl()
+	],
 	argTypes: {
 		context: {
 			control: 'object',
@@ -99,9 +98,13 @@ const meta: Meta<FktButtonsListComponent<void>> = {
 };
 
 export const Preview: StoryObj = {
+	render: renderComponent(FktButtonsListComponent),
 	parameters: {
 		docs: {
-			story: "A horizontal list of action buttons with different themes and colors, perfect for form actions."
+			description: {
+				story: "A horizontal list of action buttons with different themes and colors, perfect for form actions."
+			}
+
 		}
 	},
 	args: {
@@ -117,7 +120,7 @@ export const Preview: StoryObj = {
 				theme: "stroked",
 				color: "success",
 				text: "Action 2",
-				variant: "default"
+				shape: "default"
 			},
 			{
 				identifier: "action-3",
@@ -141,7 +144,7 @@ export const Preview: StoryObj = {
 				identifier: "action-6",
 				theme: "basic",
 				icon: "trash",
-				variant: "rect",
+				shape: "rect",
 				color: "danger"
 			}
 		]
@@ -149,9 +152,12 @@ export const Preview: StoryObj = {
 };
 
 export const FormActions: StoryObj = {
+	render: renderComponent(FktButtonsListComponent),
 	parameters: {
 		docs: {
-			story: "Form action buttons with cancel, save, and submit actions using different alignment options."
+			description: {
+				story: "Form action buttons with cancel, save, and submit actions using different alignment options."
+			}
 		}
 	},
 	args: {
@@ -180,9 +186,12 @@ export const FormActions: StoryObj = {
 };
 
 export const VerticalList: StoryObj = {
+	render: renderComponent(FktButtonsListComponent),
 	parameters: {
 		docs: {
-			story: "Buttons arranged vertically with filled button style and center alignment."
+			description: {
+				story: "Buttons arranged vertically with filled button style and center alignment."
+			}
 		}
 	},
 	args: {
@@ -218,9 +227,12 @@ export const VerticalList: StoryObj = {
 };
 
 export const IconOnlyActions: StoryObj = {
+	render: renderComponent(FktButtonsListComponent),
 	parameters: {
 		docs: {
-			story: "Compact icon-only buttons with tooltips for space-efficient toolbars."
+			description: {
+				story: "Compact icon-only buttons with tooltips for space-efficient toolbars."
+			}
 		}
 	},
 	args: {
@@ -230,30 +242,36 @@ export const IconOnlyActions: StoryObj = {
 				theme: "basic",
 				color: "primary",
 				icon: "pencil",
-				tooltip: "Edit"
+				tooltip: "Edit",
+				ariaLabel: "Edit",
 			},
 			{
 				identifier: "duplicate",
 				theme: "basic",
-				color: "green",
+				color: "success",
 				icon: "trash",
-				tooltip: "Duplicate"
+				tooltip: "Duplicate",
+				ariaLabel: "Duplicate",
 			},
 			{
 				identifier: "delete",
 				theme: "basic",
-				color: "red",
+				color: "danger",
 				icon: "trash",
-				tooltip: "Delete"
+				tooltip: "Delete",
+				ariaLabel: "Delete",
 			}
 		]
 	}
 };
 
 export const DataTableActions: StoryObj = {
+	render: renderComponent(FktButtonsListComponent),
 	parameters: {
 		docs: {
-			story: "Action buttons commonly used in data tables for row-level operations."
+			description: {
+				story: "Action buttons commonly used in data tables for row-level operations."
+			}
 		}
 	},
 	args: {
@@ -263,23 +281,26 @@ export const DataTableActions: StoryObj = {
 				theme: "basic",
 				color: "primary",
 				icon: "eye",
-				variant: "rect",
-				tooltip: "View Details"
+				shape: "rect",
+				ariaLabel: "View Details",
+				tooltip: "View Details",
 			},
 			{
 				identifier: "edit",
 				theme: "basic",
-				color: "green",
+				color: "success",
 				icon: "pencil",
-				variant: "rect",
-				tooltip: "Edit Item"
+				shape: "rect",
+				ariaLabel: "Edit Item",
+				tooltip: "Edit Item",
 			},
 			{
 				identifier: "delete",
 				theme: "basic",
-				color: "red",
+				color: "danger",
 				icon: "trash",
-				variant: "rect",
+				shape: "rect",
+				ariaLabel: "Delete Item",
 				tooltip: "Delete Item"
 			}
 		]
@@ -287,9 +308,12 @@ export const DataTableActions: StoryObj = {
 };
 
 export const BulkActions: StoryObj = {
+	render: renderComponent(FktButtonsListComponent),
 	parameters: {
 		docs: {
-			story: 'Demonstrates a group of bulk actions, such as selecting all items, exporting, or deleting selected entries. Each action can have a custom theme, color, icon, and label. Useful for batch operations in tables, lists, or admin panels.'
+			description: {
+				story: 'Demonstrates a group of bulk actions, such as selecting all items, exporting, or deleting selected entries. Each action can have a custom theme, color, icon, and label. Useful for batch operations in tables, lists, or admin panels.'
+			}
 		}
 	},
 	args: {
@@ -303,7 +327,7 @@ export const BulkActions: StoryObj = {
 			{
 				identifier: "export",
 				theme: "stroked",
-				color: "green",
+				color: "success",
 				text: "Export",
 				icon: "trash",
 				iconPosition: "right"
@@ -311,7 +335,7 @@ export const BulkActions: StoryObj = {
 			{
 				identifier: "delete-selected",
 				theme: "raised",
-				color: "red",
+				color: "danger",
 				text: "Delete Selected"
 			}
 		],
@@ -320,9 +344,12 @@ export const BulkActions: StoryObj = {
 };
 
 export const ToolbarActions: StoryObj = {
+	render: renderComponent(FktButtonsListComponent),
 	parameters: {
 		docs: {
-			story: 'Shows a classic horizontal toolbar with multiple actions, including "New", "Import", "Export", and "Refresh". Icons, themes, and tooltips are supported for enhanced usability in top toolbars and navigation bars.'
+			description: {
+				story: 'Shows a classic horizontal toolbar with multiple actions, including "New", "Import", "Export", and "Refresh". Icons, themes, and tooltips are supported for enhanced usability in top toolbars and navigation bars.'
+			}
 		}
 	},
 	args: {
@@ -345,7 +372,7 @@ export const ToolbarActions: StoryObj = {
 			{
 				identifier: "export",
 				theme: "stroked",
-				color: "green",
+				color: "success",
 				text: "Export",
 				icon: "trash"
 			},
@@ -354,16 +381,20 @@ export const ToolbarActions: StoryObj = {
 				theme: "basic",
 				color: "primary",
 				icon: "trash",
-				tooltip: "Refresh Data"
+				tooltip: "Refresh Data",
+				ariaLabel: "Refresh Data",
 			}
 		]
 	}
 };
 
 export const FloatingActions: StoryObj = {
+	render: renderComponent(FktButtonsListComponent),
 	parameters: {
 		docs: {
-			story: 'Displays floating action buttons (FAB) in a vertical stack. Ideal for mobile or compact layouts where quick access to chat or add actions is needed. Each button can show an icon and tooltip for accessibility.'
+			description: {
+				story: 'Displays floating action buttons (FAB) in a vertical stack. Ideal for mobile or compact layouts where quick access to chat or add actions is needed. Each button can show an icon and tooltip for accessibility.'
+			}
 		}
 	},
 	args: {
@@ -371,16 +402,18 @@ export const FloatingActions: StoryObj = {
 			{
 				identifier: "chat",
 				theme: "raised",
-				color: "green",
+				color: "success",
 				icon: "trash",
-				tooltip: "Open Chat"
+				tooltip: "Open Chat",
+				ariaLabel: "Open Chat",
 			},
 			{
 				identifier: "add",
 				theme: "raised",
 				color: "primary",
 				icon: "plus",
-				tooltip: "Add New Item"
+				tooltip: "Add New Item",
+				ariaLabel: "Add New Item",
 			}
 		],
 		orientation: "vertical"
@@ -388,9 +421,12 @@ export const FloatingActions: StoryObj = {
 };
 
 export const LoadingStates: StoryObj = {
+	render: renderComponent(FktButtonsListComponent),
 	parameters: {
 		docs: {
-			story: 'Showcases actions in a loading state. Useful for asynchronous operations where feedback is required, such as saving data. The button can display a spinner and custom loading text until the process completes.'
+			description: {
+				story: 'Showcases actions in a loading state. Useful for asynchronous operations where feedback is required, such as saving data. The button can display a spinner and custom loading text until the process completes.'
+			}
 		}
 	},
 	args: {
@@ -414,9 +450,12 @@ export const LoadingStates: StoryObj = {
 };
 
 export const DisabledStates: StoryObj = {
+	render: renderComponent(FktButtonsListComponent),
 	parameters: {
 		docs: {
-			story: 'Illustrates disabled actions, preventing user interaction. Use for workflows where certain steps are unavailable or conditional, such as submitting forms only after all required fields are completed.'
+			description: {
+				story: 'Illustrates disabled actions, preventing user interaction. Use for workflows where certain steps are unavailable or conditional, such as submitting forms only after all required fields are completed.'
+			}
 		}
 	},
 	args: {

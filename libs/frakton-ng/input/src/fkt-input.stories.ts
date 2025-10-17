@@ -20,13 +20,6 @@ import designTokens from './fkt-input-design-tokens.json';
 const meta: Meta<FktInputComponent> = {
 	title: 'Components/Form/Input',
 	component: FktInputComponent,
-	parameters: {
-		// options: {
-		// 	showPanel: false,
-		// 	bottomPanelHeight: 0
-		// },
-		// controls: {disable: true}
-	},
 	decorators: [
 		customDocsControl({
 			designTokens: designTokens as any

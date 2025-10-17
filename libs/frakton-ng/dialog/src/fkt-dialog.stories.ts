@@ -1,37 +1,24 @@
 import type { Meta, StoryObj } from '@storybook/angular';
-import { moduleMetadata } from '@storybook/angular';
 import {
-	FktSmallDialogExampleComponent,
 	FktConfirmationDialogExampleComponent,
 	FktCustomDialogExampleComponent,
 	FktFormDialogExampleComponent,
 	FktFullscreenDialogExampleComponent,
-	FktSimpleDialogExampleComponent
+	FktSimpleDialogExampleComponent,
+	FktSmallDialogExampleComponent
 } from './examples';
+import { customDocsControl } from '../../.storybook/decorators/custom-docs-control';
+import { renderComponent } from '../../.storybook/decorators/render-component';
 
 const meta: Meta = {
 	title: 'Services/Dialog',
-	parameters: {
-		layout: 'centered',
-	},
 	decorators: [
-		moduleMetadata({
-			imports: [
-				FktSimpleDialogExampleComponent,
-				FktFormDialogExampleComponent,
-				FktCustomDialogExampleComponent,
-				FktConfirmationDialogExampleComponent,
-				FktFullscreenDialogExampleComponent,
-				FktSmallDialogExampleComponent,
-			],
-		})
+		customDocsControl(),
 	],
 };
 
 export const SimpleDialog: StoryObj = {
-	render: () => ({
-		template: '<simple-dialog-example/>',
-	}),
+	render: renderComponent(FktSimpleDialogExampleComponent),
 	parameters: {
 		docs: {
 			description: {
@@ -42,9 +29,7 @@ export const SimpleDialog: StoryObj = {
 };
 
 export const FormDialog = {
-	render: () => ({
-		template: '<form-dialog-example/>',
-	}),
+	render: renderComponent(FktFormDialogExampleComponent),
 	parameters: {
 		docs: {
 			description: {
@@ -55,9 +40,7 @@ export const FormDialog = {
 };
 
 export const CustomDialog = {
-	render: () => ({
-		template: '<custom-dialog-example/>',
-	}),
+	render: renderComponent(FktCustomDialogExampleComponent),
 	parameters: {
 		docs: {
 			description: {
@@ -68,9 +51,7 @@ export const CustomDialog = {
 };
 
 export const ConfirmationDialog = {
-	render: () => ({
-		template: '<confirmation-dialog-example/>',
-	}),
+	render: renderComponent(FktConfirmationDialogExampleComponent),
 	parameters: {
 		docs: {
 			description: {
@@ -81,9 +62,7 @@ export const ConfirmationDialog = {
 };
 
 export const FullScreenDialog = {
-	render: () => ({
-		template: '<fullscreen-dialog-example/>',
-	}),
+	render: renderComponent(FktFullscreenDialogExampleComponent),
 	parameters: {
 		docs: {
 			description: {
@@ -94,9 +73,7 @@ export const FullScreenDialog = {
 };
 
 export const SmallDialog = {
-	render: () => ({
-		template: '<small-dialog-example/>',
-	}),
+	render: renderComponent(FktSmallDialogExampleComponent),
 	parameters: {
 		docs: {
 			description: {

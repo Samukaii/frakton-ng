@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/angular';
-import { moduleMetadata } from '@storybook/angular';
 import { FktCalendarNavigatorComponent, fktCalendarNavigatorModes } from 'frakton-ng/calendar-navigator';
 import {
 	DynamicModeExampleComponent,
@@ -7,19 +6,14 @@ import {
 	MonthModeExampleComponent,
 	YearModeExampleComponent
 } from './examples';
+import { customDocsControl } from '../../.storybook/decorators/custom-docs-control';
+import { renderComponent } from '../../.storybook/decorators/render-component';
 
 const meta: Meta<FktCalendarNavigatorComponent> = {
 	title: 'Components/Calendar navigator',
 	component: FktCalendarNavigatorComponent,
 	decorators: [
-		moduleMetadata({
-			imports: [
-				MonthModeExampleComponent,
-				YearModeExampleComponent,
-				FormIntegrationExampleComponent,
-				DynamicModeExampleComponent
-			]
-		})
+		customDocsControl(),
 	],
 	argTypes: {
 		mode: {
@@ -28,6 +22,7 @@ const meta: Meta<FktCalendarNavigatorComponent> = {
 			description: 'Display mode for the navigator. Can be "month" or "year".',
 			value: 'month',
 			table: {
+				category: 'Attributes',
 				type: {
 					summary: 'FktCalendarNavigatorMode',
 					detail: "import {FktCalendarNavigatorMode} from 'frakton-ng/calendar-navigator'",
@@ -40,7 +35,10 @@ const meta: Meta<FktCalendarNavigatorComponent> = {
 		currentDate: {
 			control: 'date',
 			description: 'The currently selected date. Supports two-way binding.',
-			table: {type: {summary: 'Date'}, defaultValue: {summary: 'new Date()'}}
+			table: {
+				category: 'Attributes',
+				type: {summary: 'Date'}, defaultValue: {summary: 'new Date()'}
+			}
 		},
 	}
 };
@@ -48,6 +46,7 @@ const meta: Meta<FktCalendarNavigatorComponent> = {
 type Story = StoryObj<FktCalendarNavigatorComponent>;
 
 export const MonthModeNavigator: Story = {
+	render: renderComponent(MonthModeExampleComponent),
 	parameters: {
 		docs: {
 			description: {
@@ -55,13 +54,6 @@ export const MonthModeNavigator: Story = {
 			}
 		}
 	},
-	render: (args) => ({
-		template: '<month-mode-example [mode]="mode" [currentDate]="currentDate"></month-mode-example>',
-		props: {
-			...args,
-			currentDate: new Date(args.currentDate)
-		},
-	}),
 	args: {
 		mode: 'month',
 		currentDate: new Date(),
@@ -69,6 +61,7 @@ export const MonthModeNavigator: Story = {
 };
 
 export const YearModeNavigator: Story = {
+	render: renderComponent(YearModeExampleComponent),
 	parameters: {
 		docs: {
 			description: {
@@ -76,13 +69,6 @@ export const YearModeNavigator: Story = {
 			}
 		}
 	},
-	render: (args) => ({
-		template: '<year-mode-example [mode]="mode" [currentDate]="currentDate"></year-mode-example>',
-		props: {
-			...args,
-			currentDate: new Date(args.currentDate)
-		},
-	}),
 	args: {
 		mode: 'year',
 		currentDate: new Date(),
@@ -90,6 +76,7 @@ export const YearModeNavigator: Story = {
 };
 
 export const FormIntegration: Story = {
+	render: renderComponent(FormIntegrationExampleComponent),
 	parameters: {
 		docs: {
 			description: {
@@ -97,13 +84,6 @@ export const FormIntegration: Story = {
 			}
 		}
 	},
-	render: (args) => ({
-		template: '<form-integration-example [mode]="mode" [currentDate]="currentDate"></form-integration-example>',
-		props: {
-			...args,
-			currentDate: new Date(args.currentDate)
-		},
-	}),
 	args: {
 		mode: 'month',
 		currentDate: new Date(),
@@ -111,6 +91,7 @@ export const FormIntegration: Story = {
 };
 
 export const DynamicModeSwitching: Story = {
+	render: renderComponent(DynamicModeExampleComponent),
 	parameters: {
 		docs: {
 			description: {
@@ -118,13 +99,6 @@ export const DynamicModeSwitching: Story = {
 			}
 		}
 	},
-	render: (args) => ({
-		template: '<dynamic-mode-example [mode]="mode" [currentDate]="currentDate"></dynamic-mode-example>',
-		props: {
-			...args,
-			currentDate: new Date(args.currentDate)
-		},
-	}),
 	args: {
 		mode: 'month',
 		currentDate: new Date(),

@@ -57,6 +57,15 @@
 														[(value)]="arg.control"
 													/>
 												}
+												@case ('number') {
+													<fkt-input
+														hideLabel
+														[label]="arg.name"
+														placeholder="Enter a number"
+														type="number"
+														[(value)]="arg.control"
+													/>
+												}
 												@case ('boolean') {
 													<fkt-checkbox
 														[label]="arg.name"

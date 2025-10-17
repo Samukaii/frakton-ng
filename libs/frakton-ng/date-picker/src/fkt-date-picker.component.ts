@@ -3,10 +3,11 @@ import { FktInputComponent } from 'frakton-ng/input';
 import { FormControlSuffixDirective, dateFormatter } from 'frakton-ng/forms';
 import { FktOverlayRef, FktOverlayService } from 'frakton-ng/overlay';
 import { FktDatePickerModalComponent } from './modal/fkt-date-picker-modal.component';
-import { isValidDateString, MarkUsed, outsideClickEffect } from 'frakton-ng/internal/utils';
+import { getElementDesignTokens, isValidDateString, MarkUsed, outsideClickEffect } from 'frakton-ng/internal/utils';
 import { FktGeometryPosition } from 'frakton-ng/internal/types';
 import { FktButtonComponent } from 'frakton-ng/button';
 import { FormValueControl, ValidationError, WithOptionalField } from '@angular/forms/signals';
+import { getElementDesignToken } from '../../internal/utils/get-element-design-token';
 
 @Component({
 	selector: 'fkt-date-picker',
@@ -28,12 +29,11 @@ export class FktDatePickerComponent implements FormValueControl<Date | string | 
 	protected inputValue = computed(() => {
 		const value = this.value();
 
-		if (value instanceof Date)
-			return value.toISOString();
+		if(!value) return null;
 
-		const isValidDate = isValidDateString(value ?? "");
+		const isValidDate = isValidDateString(value instanceof Date ? value.toISOString() : (value ?? ""));
 
-		return isValidDate ? value : null;
+		return isValidDate ? new Date(value) : null;
 	})
 
 	private overlay = inject(FktOverlayService);
@@ -58,12 +58,15 @@ export class FktDatePickerComponent implements FormValueControl<Date | string | 
 			return;
 		}
 
+		const tokens = getElementDesignTokens(ref);
+		const backgroundColor = getElementDesignToken(ref, '--fkt-date-picker-modal-background-color', '--color-neutral-50');
+
 		this.overlayRef = this.overlay.open({
 			component: FktDatePickerModalComponent,
 			data: {
 				currentDate: this.getCurrentDate(this.value()),
 				select: date => {
-					this.onValueChange(date.toISOString());
+					this.onValueChange(date);
 					this.closeModal();
 				},
 			},
@@ -73,6 +76,8 @@ export class FktDatePickerComponent implements FormValueControl<Date | string | 
 				width: 'fit-content',
 				position,
 				maxHeight: 'fit-content',
+				backgroundColor,
+				styles: tokens
 			},
 		});
 	}
@@ -91,11 +96,9 @@ export class FktDatePickerComponent implements FormValueControl<Date | string | 
 		this.overlayRef = null;
 	}
 
-	protected onValueChange($event: string | null) {
-		const value = isValidDateString(typeof $event === "string" ? $event : "") ? $event : null;
+	protected onValueChange($event: Date | null) {
+		if($event === null) return this.value.set(null);
 
-		if(value === null) return this.value.set(null);
-
-		this.value.set(this.valueFormat() === "iso-string" ? value : new Date(value))
+		this.value.set(this.valueFormat() === "iso-string" ? new Date($event).toISOString() : new Date($event))
 	}
 }

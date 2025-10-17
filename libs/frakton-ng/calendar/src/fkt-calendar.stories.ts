@@ -1,4 +1,4 @@
-import { argsToTemplate, Meta, moduleMetadata, StoryObj } from '@storybook/angular';
+import type { Meta, StoryObj } from '@storybook/angular';
 import {
 	FktCalendarBasicExampleComponent,
 	FktCalendarBorderlessExampleComponent,
@@ -7,28 +7,25 @@ import {
 	FktCalendarEventsExampleComponent
 } from './examples';
 import { FktCalendarComponent } from './fkt-calendar.component';
+import { customDocsControl } from '../../.storybook/decorators/custom-docs-control';
+import { renderComponent } from '../../.storybook/decorators/render-component';
+import designTokens from './fkt-calendar-design-tokens.json';
 
-const meta: Meta = {
+const meta: Meta<FktCalendarComponent> = {
 	title: 'Components/Calendar',
 	component: FktCalendarComponent,
 	decorators: [
-		moduleMetadata({
-			imports: [
-				FktCalendarBasicExampleComponent,
-				FktCalendarBorderlessExampleComponent,
-				FktCalendarCustomStylingExampleComponent,
-				FktCalendarEventsExampleComponent,
-				FktCalendarDisabledDatesExampleComponent,
-			],
+		customDocsControl({
+			designTokens: designTokens as any
 		})
 	],
 	argTypes: {
 		configFn: {
 			control: 'object',
-			description: "Advanced configuration function for customizing each date cell in the calendar. " +
-				"Use this to dynamically set appearance, state, or behavior based on date properties, selection, " +
-				"holidays, and more. Perfect for highlighting weekends, marking special dates, or disabling " +
-				"selections on specific conditions.",
+			type: {
+				name: "object",
+				value: {}
+			},
 			table: {
 				category: "Attributes",
 				type: {
@@ -38,39 +35,49 @@ const meta: Meta = {
 				defaultValue: {
 					summary: "undefined"
 				}
-			}
+			},
+			description: "Advanced configuration function for customizing each date cell in the calendar. Use this to dynamically set appearance, state, or behavior based on date properties, selection, holidays, and more."
 		},
 		currentDate: {
 			control: 'date',
-			description: "Currently selected date in the calendar. Should be a ModelSignal<Date> for reactive " +
-				"two-way binding. Defaults to the current day (new Date()).",
+			type: {
+				name: "object",
+				value: {}
+			},
 			table: {
 				category: "Attributes",
-				type: {summary: 'ModelSignal<Date>'},
-				defaultValue: {summary: 'new Date()'}
-			}
+				type: {
+					summary: 'ModelSignal<Date>'
+				},
+				defaultValue: {
+					summary: 'new Date()'
+				}
+			},
+			description: "Currently selected date in the calendar. Should be a ModelSignal<Date> for reactive two-way binding. Defaults to the current day."
 		},
 		borderless: {
 			control: 'boolean',
-			description: "Removes the calendar border for a cleaner, modern look. Use when embedding the calendar " +
-				"in cards, dialogs, or layouts where borders would interfere with design.",
+			type: {
+				name: "boolean",
+			},
 			table: {
 				category: "Attributes",
-				type: {summary: 'boolean'},
-				defaultValue: {summary: "false"}
-			}
+				type: {
+					summary: 'boolean'
+				},
+				defaultValue: {
+					summary: "false"
+				}
+			},
+			description: "Removes the calendar border for a cleaner, modern look. Use when embedding the calendar in cards, dialogs, or layouts where borders would interfere with design."
 		},
 	}
 };
 
-export const Basic: StoryObj = {
-	render: (args) => ({
-		props: {
-			...args,
-			currentDate: new Date(args["currentDate"])
-		},
-		template: `<fkt-calendar-basic-example ${argsToTemplate(args)} />`,
-	}),
+type Story = StoryObj<FktCalendarComponent>;
+
+export const Basic: Story = {
+	render: renderComponent(FktCalendarBasicExampleComponent),
 	args: {
 		currentDate: new Date(),
 		borderless: false
@@ -84,14 +91,8 @@ export const Basic: StoryObj = {
 	}
 };
 
-export const BorderlessMode: StoryObj = {
-	render: (args) => ({
-		props: {
-			...args,
-			currentDate: new Date(args["currentDate"])
-		},
-		template: `<fkt-calendar-borderless-example ${argsToTemplate(args)} />`,
-	}),
+export const BorderlessMode: Story = {
+	render: renderComponent(FktCalendarBorderlessExampleComponent),
 	args: {
 		currentDate: new Date(),
 		borderless: true
@@ -105,14 +106,8 @@ export const BorderlessMode: StoryObj = {
 	}
 };
 
-export const CustomDateStyling: StoryObj = {
-	render: (args) => ({
-		props: {
-			...args,
-			currentDate: new Date(args["currentDate"])
-		},
-		template: `<fkt-calendar-custom-styling-example ${argsToTemplate(args)} />`,
-	}),
+export const CustomDateStyling: Story = {
+	render: renderComponent(FktCalendarCustomStylingExampleComponent),
 	args: {
 		currentDate: new Date("2025-12-25T12:00:00.000Z"),
 		borderless: false
@@ -126,14 +121,8 @@ export const CustomDateStyling: StoryObj = {
 	}
 };
 
-export const EventsAndCallbacks: StoryObj = {
-	render: (args) => ({
-		props: {
-			...args,
-			currentDate: new Date(args["currentDate"])
-		},
-		template: `<fkt-calendar-events-example ${argsToTemplate(args)} />`,
-	}),
+export const EventsAndCallbacks: Story = {
+	render: renderComponent(FktCalendarEventsExampleComponent),
 	args: {
 		currentDate: new Date(),
 		borderless: false
@@ -147,14 +136,8 @@ export const EventsAndCallbacks: StoryObj = {
 	}
 };
 
-export const DisabledDates: StoryObj = {
-	render: (args) => ({
-		props: {
-			...args,
-			currentDate: new Date(args["currentDate"])
-		},
-		template: `<fkt-calendar-disabled-dates-example ${argsToTemplate(args)} />`,
-	}),
+export const DisabledDates: Story = {
+	render: renderComponent(FktCalendarDisabledDatesExampleComponent),
 	args: {
 		currentDate: new Date("2025-12-25T12:00:00.000Z"),
 		borderless: false

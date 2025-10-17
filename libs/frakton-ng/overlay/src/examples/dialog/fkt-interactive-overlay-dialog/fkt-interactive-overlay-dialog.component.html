@@ -17,7 +17,7 @@
 					</h4>
 					<fkt-badge
 						[text]="counter().toString()"
-						color="green"
+						color="success"
 					></fkt-badge>
 				</div>
 
@@ -25,14 +25,14 @@
 					<fkt-button
 						icon="minus-circle"
 						theme="basic"
-						color="red"
+						color="danger"
 						(click)="decrement()"
 						[disabled]="counter() <= 0"
 					></fkt-button>
 					<fkt-button
 						icon="plus-circle"
 						theme="basic"
-						color="green"
+						color="success"
 						(click)="increment()"
 					></fkt-button>
 					<fkt-button
@@ -56,7 +56,7 @@
 								<fkt-button
 									icon="x-mark"
 									theme="basic"
-									color="red"
+									color="danger"
 									[disabled]="currentItems().length <= 1"
 									(click)="removeItem($index)"
 								/>
@@ -76,7 +76,7 @@
 				<fkt-button
 					text="Clear All"
 					theme="stroked"
-					color="red"
+					color="danger"
 					(click)="clearItems()"
 					[disabled]="currentItems().length <= 1"
 				></fkt-button>

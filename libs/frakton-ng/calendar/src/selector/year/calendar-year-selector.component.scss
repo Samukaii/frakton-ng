@@ -1,3 +1,96 @@
+// <design-tokens>
+/*
+Year selector grid gap between items.
+@name --fkt-calendar-year-selector-gap
+@reference --space-sm
+@component Year Selector
+@category Spacing
+@type size
+*/
+$year-selector-gap: var(--fkt-calendar-year-selector-gap, var(--space-sm));
+
+/*
+Year selector item padding.
+@name --fkt-calendar-year-selector-padding
+@reference --space-sm --space-md
+@component Year Selector
+@category Spacing
+@type size
+*/
+$year-selector-padding: var(--fkt-calendar-year-selector-padding, var(--space-sm) var(--space-md));
+
+/*
+Year selector item border radius.
+@name --fkt-calendar-year-selector-border-radius
+@reference --radius-md
+@component Year Selector
+@category Shape
+@type size
+*/
+$year-selector-border-radius: var(--fkt-calendar-year-selector-border-radius, var(--radius-md));
+
+/*
+Year selector item hover background color.
+@name --fkt-calendar-year-selector-hover-bg
+@reference --color-neutral-200
+@component Year Selector
+@category Colors
+@type color
+*/
+$year-selector-hover-bg: var(--fkt-calendar-year-selector-hover-bg, var(--color-neutral-200));
+
+/*
+Year selector item text color.
+@name --fkt-calendar-year-selector-color
+@reference --color-neutral-900
+@component Year Selector
+@category Colors
+@type color
+*/
+$year-selector-color: var(--fkt-calendar-year-selector-color, var(--color-neutral-900));
+
+/*
+Year selector item selected background color.
+@name --fkt-calendar-year-selector-selected-bg
+@reference --color-brand-primary
+@component Year Selector
+@category Colors
+@type color
+*/
+$year-selector-selected-bg: var(--fkt-calendar-year-selector-selected-bg, var(--color-brand-primary));
+
+/*
+Year selector item selected text color.
+@name --fkt-calendar-year-selector-selected-color
+@reference --color-neutral-50
+@component Year Selector
+@category Colors
+@type color
+*/
+$year-selector-selected-color: var(--fkt-calendar-year-selector-selected-color, var(--color-neutral-50));
+
+/*
+Year selector item font size.
+@name --fkt-calendar-year-selector-font-size
+@reference --font-size-md
+@component Year Selector
+@category Typography
+@type size
+*/
+$year-selector-font-size: var(--fkt-calendar-year-selector-font-size, var(--font-size-md));
+
+/*
+Year selector item font weight.
+@name --fkt-calendar-year-selector-font-weight
+@reference --font-medium
+@component Year Selector
+@category Typography
+@type weight
+*/
+$year-selector-font-weight: var(--fkt-calendar-year-selector-font-weight, var(--font-medium));
+
+// </design-tokens>
+
 :host {
 	display: block;
 	width: 100%;
@@ -8,18 +101,26 @@
 	display: grid;
 	grid-template-columns: repeat(3, minmax(0, 1fr));
 	width: 100%;
-	gap: var(--space-xs);
+	gap: $year-selector-gap;
 
 	&__year {
 		text-align: center;
 		text-transform: capitalize;
 		cursor: pointer;
 		transition: var(--transition-base);
-		padding: var(--space-3xs) var(--space-xs);
-		border-radius: var(--radius-md);
+		padding: $year-selector-padding;
+		border-radius: $year-selector-border-radius;
+		color: $year-selector-color;
+		font-size: $year-selector-font-size;
+		font-weight: $year-selector-font-weight;
 
 		&:hover {
-			background-color: var(--color-blue-100);
+			background-color: $year-selector-hover-bg;
+		}
+
+		&.selected {
+			background-color: $year-selector-selected-bg;
+			color: $year-selector-selected-color;
 		}
 	}
 }

@@ -1,27 +1,21 @@
 import type { Meta, StoryObj } from '@storybook/angular';
-import { moduleMetadata } from '@storybook/angular';
 import { FktTooltipDirective } from 'frakton-ng/tooltip';
 import { fktGeometryPositions } from 'frakton-ng/internal/types';
-
+import { customDocsControl } from '../../.storybook/decorators/custom-docs-control';
+import { renderComponent } from '../../.storybook/decorators/render-component';
 import {
 	BasicTooltipExampleComponent,
 	DifferentElementsExampleComponent,
 	InteractiveTooltipExampleComponent,
 	PositioningTooltipExampleComponent
 } from './examples';
+import { FktTooltipComponent } from './fkt-tooltip.component';
 
 const meta: Meta<FktTooltipDirective> = {
 	title: 'Components/Tooltip',
-	component: FktTooltipDirective,
+	component: FktTooltipComponent,
 	decorators: [
-		moduleMetadata({
-			imports: [
-				BasicTooltipExampleComponent,
-				PositioningTooltipExampleComponent,
-				InteractiveTooltipExampleComponent,
-				DifferentElementsExampleComponent
-			]
-		})
+		customDocsControl()
 	],
 	argTypes: {
 		fktTooltip: {
@@ -59,9 +53,7 @@ const meta: Meta<FktTooltipDirective> = {
 type Story = StoryObj<FktTooltipDirective>;
 
 export const BasicTooltips: Story = {
-	render: () => ({
-		template: '<basic-tooltip-example></basic-tooltip-example>'
-	}),
+	render: renderComponent(BasicTooltipExampleComponent),
 	parameters: {
 		docs: {
 			description: {
@@ -72,9 +64,7 @@ export const BasicTooltips: Story = {
 };
 
 export const Positioning: Story = {
-	render: () => ({
-		template: '<positioning-tooltip-example></positioning-tooltip-example>'
-	}),
+	render: renderComponent(PositioningTooltipExampleComponent),
 	parameters: {
 		docs: {
 			description: {
@@ -85,9 +75,7 @@ export const Positioning: Story = {
 };
 
 export const InteractiveControls: Story = {
-	render: () => ({
-		template: '<interactive-tooltip-example></interactive-tooltip-example>'
-	}),
+	render: renderComponent(InteractiveTooltipExampleComponent),
 	parameters: {
 		docs: {
 			description: {
@@ -98,9 +86,7 @@ export const InteractiveControls: Story = {
 };
 
 export const DifferentElements: Story = {
-	render: () => ({
-		template: '<different-elements-example></different-elements-example>'
-	}),
+	render: renderComponent(DifferentElementsExampleComponent),
 	parameters: {
 		docs: {
 			description: {

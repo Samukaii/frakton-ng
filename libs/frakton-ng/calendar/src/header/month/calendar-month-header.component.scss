@@ -1,32 +1,147 @@
+// <design-tokens>
+/*
+Month header container gap between elements.
+@name --fkt-calendar-month-header-gap
+@reference --space-sm
+@component Date selector
+@category Spacing
+@type size
+*/
+$header-gap: var(--fkt-calendar-month-header-gap, var(--space-sm));
+
+/*
+Month header element vertical padding.
+@name --fkt-calendar-month-header-vertical-padding
+@reference --space-xs
+@component Date selector
+@category Spacing
+@type size
+*/
+$header-padding: var(--fkt-calendar-month-header-vertical-padding, var(--space-xs));
+
+/*
+Month header element vertical padding.
+@name --fkt-calendar-month-header-horizontal-padding
+@reference --space-sm
+@component Date selector
+@category Spacing
+@type size
+*/
+$header-padding: var(--fkt-calendar-month-header-horizontal-padding, var(--space-sm));
+
+/*
+Month header element border radius.
+@name --fkt-calendar-month-header-border-radius
+@reference --radius-md
+@component Date selector
+@category Shape
+@type size
+*/
+$header-border-radius: var(--fkt-calendar-month-header-border-radius, var(--radius-md));
+
+/*
+Month header element font size.
+@name --fkt-calendar-month-header-font-size
+@reference --font-size-lg
+@component Date selector
+@category Typography
+@type size
+*/
+$header-font-size: var(--fkt-calendar-month-header-font-size, var(--font-size-lg));
+
+/*
+Month header element font weight.
+@name --fkt-calendar-month-header-font-weight
+@reference --font-semibold
+@component Date selector
+@category Typography
+@type weight
+*/
+$header-font-weight: var(--fkt-calendar-month-header-font-weight, var(--font-semibold));
+
+/*
+Month header element hover background color.
+@name --fkt-calendar-month-header-hover-bg
+@reference --color-neutral-200
+@component Date selector
+@category Colors
+@type color
+*/
+$header-hover-bg: var(--fkt-calendar-month-header-hover-bg, var(--color-neutral-200));
+
+/*
+Month header element text color.
+@name --fkt-calendar-month-header-color
+@reference --color-neutral-900
+@component Date selector
+@category Colors
+@type color
+*/
+$header-color: var(--fkt-calendar-month-header-color, var(--color-neutral-900));
+
+/*
+Month header element active background color.
+@name --fkt-calendar-month-header-active-bg
+@reference --color-brand-primary
+@component Date selector
+@category Colors
+@type color
+*/
+$header-active-bg: var(--fkt-calendar-month-header-active-bg, var(--color-brand-primary));
+
+/*
+Month header element active text color.
+@name --fkt-calendar-month-header-active-color
+@reference --color-neutral-50
+@component Date selector
+@category Colors
+@type color
+*/
+$header-active-color: var(--fkt-calendar-month-header-active-color, var(--color-neutral-50));
+
+// </design-tokens>
+
 .container {
 	display: flex;
 	align-items: center;
-	gap: var(--space-sm);
+	gap: $header-gap;
 
 	&__month {
 		cursor: pointer;
 		transition: var(--transition-base);
-		padding: var(--space-3xs) var(--space-xs);
-		border-radius: var(--radius-md);
+		padding: $header-padding;
+		border-radius: $header-border-radius;
 		text-transform: capitalize;
-		font-size: var(--font-size-lg);
-		font-weight: var(--font-semibold);
+		font-size: $header-font-size;
+		font-weight: $header-font-weight;
+		color: $header-color;
 
 		&:hover {
-			background-color: var(--color-blue-100);
+			background-color: $header-hover-bg;
+		}
+
+		&.active {
+			background-color: $header-active-bg;
+			color: $header-active-color;
 		}
 	}
 
 	&__year {
 		cursor: pointer;
 		transition: var(--transition-base);
-		padding: var(--space-3xs) var(--space-xs);
-		border-radius: var(--radius-md);
-		font-size: var(--font-size-lg);
-		font-weight: var(--font-semibold);
+		padding: $header-padding;
+		border-radius: $header-border-radius;
+		font-size: $header-font-size;
+		font-weight: $header-font-weight;
+		color: $header-color;
 
 		&:hover {
-			background-color: var(--color-blue-100);
+			background-color: $header-hover-bg;
+		}
+
+		&.active {
+			background-color: $header-active-bg;
+			color: $header-active-color;
 		}
 	}
 }

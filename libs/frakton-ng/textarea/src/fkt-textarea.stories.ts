@@ -15,13 +15,6 @@ import designTokens from './fkt-textarea-design-tokens.json';
 const meta: Meta<FktTextareaComponent> = {
 	title: 'Components/Form/Textarea',
 	component: FktTextareaComponent,
-	parameters: {
-		options: {
-			showPanel: false,
-			bottomPanelHeight: 0
-		},
-		controls: {disable: true}
-	},
 	decorators: [
 		customDocsControl({
 			designTokens: designTokens as any

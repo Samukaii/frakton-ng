@@ -16,10 +16,10 @@ export class OrderStatusExampleComponent {
 		{id: "cancelled", color: "danger", name: "Cancelled"}
 	]);
 
-	currentBadgeId = model<string>('processing');
+	value = model<string>('processing');
 
 	protected currentStatusLabel = computed(() => {
-		const statusId = this.currentBadgeId();
+		const statusId = this.value();
 
 		const status = this.options().find(
 			status => status.id === statusId

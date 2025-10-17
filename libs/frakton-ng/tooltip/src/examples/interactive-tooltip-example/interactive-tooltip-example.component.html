@@ -2,9 +2,9 @@
 	<div
 		class="container__interactive-button">
 		<div
-			[fktTooltip]="form.controls.text.value()"
-			[position]="form.controls.position.value()"
-			[tooltipEnabled]="form.controls.enabled.value()"
+			[fktTooltip]="form.text().value()"
+			[position]="form.position().value()"
+			[tooltipEnabled]="form.enabled().value()"
 			disableAutoReposition
 		>
 			<p>

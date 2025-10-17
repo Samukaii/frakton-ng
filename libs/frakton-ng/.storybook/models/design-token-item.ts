@@ -6,7 +6,7 @@ export interface DesignTokenItem {
 	category: string;
 	component?: string;
 	description: string;
-	type: 'size' | 'color';
+	type: 'size' | 'color' | 'shadow' | 'weight' | 'opacity';
 	defaultValue: string;
 	control: WritableSignal<string>;
 }
