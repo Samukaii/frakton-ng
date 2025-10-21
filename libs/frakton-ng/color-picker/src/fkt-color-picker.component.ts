@@ -1,3 +1,4 @@
+
 import { booleanAttribute, Component, computed, inject, input, model, signal, Signal } from '@angular/core';
 import { FormValueControl, ValidationError, WithOptionalField } from '@angular/forms/signals';
 import { FktOverlayService } from 'frakton-ng/overlay';
@@ -82,7 +83,7 @@ export class FktColorPickerComponent implements FormValueControl<string | null> 
 
 	protected openPicker(nativeElement: HTMLElement) {
 		const tokens = getElementDesignTokens(nativeElement);
-		const globalBackgroundColor = getElementDesignToken(nativeElement, '--color-neutral-50');
+		const globalBackgroundColor = getElementDesignToken(nativeElement, '--fkt-color-modal-background');
 		const backgroundColor = tokens['--fkt-color-picker-modal-background-color'] ?? globalBackgroundColor ?? '#FFF';
 
 		this.overlay.open({

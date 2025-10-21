@@ -6,10 +6,10 @@
 
 .info {
 	padding: var(--space-md);
-	background-color: var(--color-blue-50);
+	background-color: var(--fkt-color-info-translucent);
+	color: var(--fkt-color-info);
 	border-radius: var(--radius-md);
 	font-size: var(--font-size-sm);
-	color: var(--color-blue-900);
 
 	p {
 		margin: var(--space-xs) 0 0;

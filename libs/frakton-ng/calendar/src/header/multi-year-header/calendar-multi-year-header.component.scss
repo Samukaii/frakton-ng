@@ -42,12 +42,12 @@ $multi-year-header-font-size: var(--fkt-calendar-multi-year-header-font-size, va
 /*
 Multi-year header element text color.
 @name --fkt-calendar-multi-year-header-color
-@reference --color-neutral-900
+@reference --fkt-color-neutral-900
 @component Year Selector
 @category Colors
 @type color
 */
-$multi-year-header-color: var(--fkt-calendar-multi-year-header-color, var(--color-neutral-900));
+$multi-year-header-color: var(--fkt-calendar-multi-year-header-color, var(--fkt-color-neutral-900));
 
 /*
 Multi-year header element background color.

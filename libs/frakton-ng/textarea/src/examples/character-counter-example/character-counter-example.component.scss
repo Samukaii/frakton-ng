@@ -21,7 +21,7 @@
 
 		&__text {
 			font-size: var(--font-size-sm);
-			color: var(--color-gray-600);
+			color: var(--fkt-color-neutral-600);
 		}
 
 		&__indicator {
@@ -29,7 +29,7 @@
 			font-weight: var(--font-medium);
 
 			&--valid {
-				color: var(--color-gray-700);
+				color: var(--fkt-color-neutral-700);
 			}
 
 			&--warning {
@@ -37,14 +37,14 @@
 			}
 
 			&--invalid {
-				color: var(--color-red-600);
+				color: var(--fkt-color-danger);
 			}
 		}
 	}
 
 	&__progress-bar {
 		width: 100%;
-		background-color: var(--color-gray-200);
+		background-color: var(--fkt-color-neutral-200);
 		border-radius: var(--radius-full);
 		height: .5rem;
 
@@ -62,7 +62,7 @@
 		}
 
 		&--invalid {
-			background-color: var(--color-red-500);
+			background-color: var(--fkt-color-danger);
 		}
 	}
 
@@ -72,7 +72,7 @@
 		gap: var(--space-xs);
 		font-size: var(--font-size-sm);
 		line-height: 1rem;
-		color: var(--color-gray-600);
+		color: var(--fkt-color-neutral-600);
 
 		span {
 			font-weight: var(--font-medium);
@@ -87,7 +87,7 @@
 		}
 
 		&--invalid {
-			color: var(--color-red-600);
+			color: var(--fkt-color-danger);
 		}
 	}
 }

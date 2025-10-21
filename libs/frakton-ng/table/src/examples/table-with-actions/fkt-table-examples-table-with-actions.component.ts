@@ -100,6 +100,7 @@ export class FktTableExamplesTableWithActionsComponent {
 			theme: 'basic',
 			icon: 'eye',
 			color: 'primary',
+			ariaLabel: 'View user',
 			click: () => this.viewUser(user)
 		},
 		{
@@ -108,6 +109,7 @@ export class FktTableExamplesTableWithActionsComponent {
 			theme: 'basic',
 			icon: 'pencil',
 			color: 'success',
+			ariaLabel: 'Edit user',
 			click: () => this.editUser(user)
 		},
 		{
@@ -116,6 +118,7 @@ export class FktTableExamplesTableWithActionsComponent {
 			theme: 'basic',
 			icon: user.status === 'active' ? 'pause' : 'play',
 			color: user.status === 'active' ? 'accent' : 'success',
+			ariaLabel: user.status === 'active' ? 'Deactivate user' : 'Activate user',
 			click: () => this.toggleUserStatus(user)
 		},
 		{
@@ -124,6 +127,7 @@ export class FktTableExamplesTableWithActionsComponent {
 			theme: 'basic',
 			icon: 'trash',
 			color: 'danger',
+			ariaLabel: 'Delete user',
 			click: () => this.deleteUser(user)
 		}
 	];

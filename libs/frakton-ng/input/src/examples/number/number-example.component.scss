@@ -9,19 +9,19 @@ p {
 
 	&__info {
 		font-size: var(--font-size-sm);
-		color: var(--color-gray-600);
+		color: var(--fkt-color-neutral-600);
 
 		&--valid {
 			color: var(--color-green-600);
 		}
 
 		&--invalid {
-			color: var(--color-red-600);
+			color: var(--fkt-color-danger);
 		}
 	}
 
 	&__text {
 		font-size: var(--font-size-xs);
-		color: var(--color-gray-500);
+		color: var(--fkt-color-neutral-500);
 	}
 }

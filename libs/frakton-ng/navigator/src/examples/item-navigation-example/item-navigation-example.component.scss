@@ -10,7 +10,7 @@ h3 {
 	&__header {
 		text-align: center;
 		padding: var(--space-md);
-		background-color: var(--color-gray-100);
+		background-color: var(--fkt-color-neutral-100);
 		border-radius: var(--radius-md);
 
 		h3 {
@@ -18,13 +18,13 @@ h3 {
 		}
 
 		p {
-			color: var(--color-gray-600);
+			color: var(--fkt-color-neutral-600);
 		}
 	}
 
 	&__content {
 		text-align: center;
 		font-size: var(--font-size-sm);
-		color: var(--color-gray-500);
+		color: var(--fkt-color-neutral-500);
 	}
 }

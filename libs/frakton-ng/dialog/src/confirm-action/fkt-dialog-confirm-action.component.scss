@@ -20,7 +20,7 @@ p, h3 {
 
 	fkt-icon {
 		font-size: 80px;
-		color: var(--color-red-500);
+		color: var(--fkt-color-danger);
 	}
 
 	&__title {
@@ -32,7 +32,7 @@ p, h3 {
 	}
 
 	&__description {
-		color: var(--color-neutral-500);
+		color: var(--fkt-color-neutral-500);
 	}
 }
 

@@ -7,6 +7,7 @@ export interface FktOverlayOptions<T> {
 	data: FktReactiveComponentData<T>;
 	panelOptions?: {
 		overflow?: 'hidden' | 'visible' | 'scroll' | 'auto';
+		focusTriggerOnClose?: boolean;
 		id?: string;
 		maxHeight?: string;
 		minWidth?: string;

@@ -142,6 +142,7 @@ export class FktTableExamplesProductTableComponent {
 			icon: 'pencil',
 			color: 'success',
 			theme: 'basic',
+			ariaLabel: 'Edit product',
 			click: () => console.log('Edit product:', product.name)
 		},
 		{
@@ -150,6 +151,7 @@ export class FktTableExamplesProductTableComponent {
 			icon: 'trash',
 			color: 'danger',
 			theme: 'basic',
+			ariaLabel: 'Delete product',
 			click: () => console.log('Delete product:', product.name)
 		}
 	];

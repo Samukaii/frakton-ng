@@ -12,12 +12,12 @@ $item-padding: var(--fkt-color-control-item-padding, var(--space-xs));
 /*
 Border color for control elements.
 @name --fkt-color-control-border-color
-@reference --color-neutral-400
+@reference --fkt-color-neutral-400
 @component Field
 @category Colors
 @type color
 */
-$border-color: var(--fkt-color-control-border-color, var(--color-neutral-400));
+$border-color: var(--fkt-color-control-border-color, var(--fkt-color-neutral-400));
 
 /*
 Border radius for control elements.

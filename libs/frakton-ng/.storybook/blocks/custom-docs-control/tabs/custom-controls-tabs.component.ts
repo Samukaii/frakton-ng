@@ -1,4 +1,4 @@
-import { Component, computed, input, linkedSignal, signal } from '@angular/core';
+import { Component, computed, input, linkedSignal, model, signal } from '@angular/core';
 import { FktCheckboxComponent } from "frakton-ng/checkbox";
 import { FktIconComponent, FktIconName } from "frakton-ng/icon";
 import { FktInputComponent } from "frakton-ng/input";
@@ -7,6 +7,9 @@ import { DesignTokenItem } from '../../../models/design-token-item';
 import { ArgItem } from '../../../models/arg-item';
 import { CustomControlsDesignTokensComponent } from '../design-tokens/custom-controls-design-tokens.component';
 import { FktNavigableListDirective } from 'frakton-ng/navigable-list';
+import { FktToggleComponent } from 'frakton-ng/toggle';
+import { FktButtonComponent } from 'frakton-ng/button';
+import { FktTooltipDirective } from 'frakton-ng/tooltip';
 
 interface Tab {
 	key: string;
@@ -18,12 +21,14 @@ interface Tab {
 @Component({
 	selector: 'fkt-custom-controls-tabs',
 	imports: [
-		FktCheckboxComponent,
 		FktIconComponent,
 		FktInputComponent,
 		FktSelectComponent,
 		CustomControlsDesignTokensComponent,
-		FktNavigableListDirective
+		FktNavigableListDirective,
+		FktToggleComponent,
+		FktButtonComponent,
+		FktTooltipDirective,
 	],
 	templateUrl: './custom-controls-tabs.component.html',
 	styleUrl: './custom-controls-tabs.component.scss',
@@ -32,6 +37,7 @@ interface Tab {
 	}
 })
 export class CustomControlsTabsComponent {
+	currentTheme = model<'dark' | 'light'>('light');
 	argsList = input.required<ArgItem<any>[]>();
 	designTokens = input.required<DesignTokenItem[]>();
 	templateSelector = input.required<string>();
@@ -79,11 +85,23 @@ export class CustomControlsTabsComponent {
 		return this.canShowControls() || this.canShowDesignTokens();
 	});
 
-	selectTabByIndex($event: number | null) {
+	protected buttonThemeLabel = computed(() => {
+		return this.currentTheme() === 'dark' ? 'Switch to light mode' : 'switch to dark mode';
+	});
+
+	protected buttonThemeIcon = computed(() => {
+		return this.currentTheme() === 'dark' ? 'sun' : 'moon';
+	})
+
+	protected selectTabByIndex($event: number | null) {
 		const tab = this.tabs()[$event ?? -1];
 
 		if (!tab) return;
 
 		this.currentTab.set(tab.key);
+	}
+
+	protected toggleTheme() {
+		this.currentTheme.update(theme => theme === 'dark' ? 'light' : 'dark');
 	}
 }

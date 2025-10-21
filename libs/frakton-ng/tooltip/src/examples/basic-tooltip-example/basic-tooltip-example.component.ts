@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { FktButtonComponent } from 'frakton-ng/button';
 import { FktTooltipDirective } from 'frakton-ng/tooltip';
+import { FktColor } from 'frakton-ng/core';
 
 @Component({
 	selector: 'basic-tooltip-example',
@@ -9,4 +10,5 @@ import { FktTooltipDirective } from 'frakton-ng/tooltip';
 	imports: [FktButtonComponent, FktTooltipDirective]
 })
 export class BasicTooltipExampleComponent {
+	tooltipColor = input<FktColor>('primary')
 }

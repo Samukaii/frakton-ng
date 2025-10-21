@@ -15,11 +15,12 @@ export class DisabledExampleComponent {
 	options = input.required<FktSelectOption[]>();
 
 	protected control = form(signal('option2'), path => {
-		disabled(path, this.disabled);
+		disabled(path, () => this.disabled());
 	});
 	protected disabled = signal(true);
 
 	toggleDisabled() {
 		this.disabled.update(disabled => !disabled);
+		console.log(this.disabled())
 	}
 }

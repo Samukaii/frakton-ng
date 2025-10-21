@@ -1,4 +1,4 @@
-import { AfterViewInit, Directive, ElementRef, inject } from '@angular/core';
+import { AfterViewInit, Directive, ElementRef, inject, input } from '@angular/core';
 import { getFocusableElementsSelectors } from 'frakton-ng/internal/utils';
 
 @Directive({
@@ -8,7 +8,9 @@ import { getFocusableElementsSelectors } from 'frakton-ng/internal/utils';
 	}
 })
 export class FktFocusTrapDirective implements AfterViewInit {
+	preventScroll = input(true);
 	private element = inject(ElementRef).nativeElement as HTMLElement;
+
 
 	private selectors = getFocusableElementsSelectors();
 
@@ -22,10 +24,10 @@ export class FktFocusTrapDirective implements AfterViewInit {
 		const last = nodes[nodes.length - 1];
 
 		if (event.shiftKey && document.activeElement === first) {
-			last.focus();
+			last.focus({preventScroll: this.preventScroll()});
 			event.preventDefault();
 		} else if (!event.shiftKey && document.activeElement === last) {
-			first.focus();
+			first.focus({preventScroll: this.preventScroll()});
 			event.preventDefault();
 		}
 	}
@@ -37,7 +39,7 @@ export class FktFocusTrapDirective implements AfterViewInit {
 	ngAfterViewInit() {
 		setTimeout(() => {
 			const nodes = this.element.querySelectorAll(this.getSelectors());
-			if (nodes.length) (nodes[0] as HTMLElement).focus();
+			if (nodes.length) (nodes[0] as HTMLElement).focus({preventScroll: this.preventScroll()});
 		}, 100);
 	}
 }

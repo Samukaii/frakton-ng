@@ -3,12 +3,15 @@ import { FktBadgeSelectorComponent } from 'frakton-ng/badge-selector';
 import { OrderStatusExampleComponent, PriorityExampleComponent } from './examples';
 import { customDocsControl } from '../../.storybook/decorators/custom-docs-control';
 import { renderComponent } from '../../.storybook/decorators/render-component';
+import designTokens from './fkt-badge-selector-design-tokens.json';
 
 const meta: Meta<FktBadgeSelectorComponent<string>> = {
 	title: 'Components/Badge selector',
 	component: FktBadgeSelectorComponent,
 	decorators: [
-		customDocsControl(),
+		customDocsControl({
+			designTokens: designTokens as any
+		}),
 	],
 	argTypes: {
 		options: {

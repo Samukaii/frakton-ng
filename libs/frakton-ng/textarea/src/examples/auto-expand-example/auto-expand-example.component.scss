@@ -6,8 +6,8 @@
 
 	&__info {
 		font-size: var(--font-size-sm);
-		color: var(--color-gray-600);
-		background-color: var(--color-blue-50);
+		color: var(--fkt-color-neutral-600);
+		background-color: #155DFC14;
 		padding: var(--space-sm);
 		border-radius: var(--border-radius-md);
 
@@ -18,6 +18,6 @@
 
 	&__hint {
 		font-size: var(--font-size-sm);
-		color: var(--color-gray-600);
+		color: var(--fkt-color-neutral-600);
 	}
 }

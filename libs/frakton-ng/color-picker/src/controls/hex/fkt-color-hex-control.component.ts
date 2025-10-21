@@ -96,4 +96,19 @@ export class FktColorHexControlComponent {
 			fromModel: false,
 		});
 	}
+
+	// onBlur() {
+	// 	const {hex} = this.asHex();
+	//
+	// 	const expanded = fktColorFormatters.hex.extract(hex);
+	// 	console.log(expanded)
+	//
+	// 	if (!expanded) return;
+	// 	const converted = fktColorFormatters.hex.toHsv(expanded);
+	//
+	// 	this.value.set({
+	// 		...this.value(),
+	// 		...converted,
+	// 	})
+	// }
 }

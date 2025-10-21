@@ -12,7 +12,7 @@ type Threshold<T extends ColorDescriptionKey> = {
 const hueThresholds: Threshold<'hue'>[] = [
 	{max: 15, label: 'red'},
 	{max: 30, label: 'redOrange'},
-	{max: 45, label: 'orange'},
+	{max: 40, label: 'orange'},
 	{max: 60, label: 'yellowOrange'},
 	{max: 72, label: 'yellow'},
 	{max: 80, label: 'yellowLime'},
@@ -96,20 +96,13 @@ export const getColorDescription = (
 		alpha: alpha[alphaLabel],
 	};
 
-	if(satLabel === 'faded' && lightLabel !== "medium") {
-		desc.hue = hue[hueLabel];
-		desc.lightness = saturation[satLabel];
-		desc.saturation = lightness[lightLabel];
-	}
-
-
-	if(lightLabel === 'extremelyPale') {
+	if (lightLabel === 'extremelyPale') {
 		desc.hue = lightness['white'];
 		desc.saturation = locale.ariaColorDescriptions.phrases.slightlyTintedWithHue.replace('{{hue}}', hue[hueLabel]);
 		delete desc.lightness;
 	}
 
-	if(satLabel === 'gray') {
+	if (satLabel === 'gray') {
 		delete desc.saturation;
 		desc.hue = saturation[satLabel]
 		desc.lightness = lightness[lightLabel]
@@ -121,25 +114,37 @@ export const getColorDescription = (
 		delete desc.saturation;
 	}
 
-	if((lightLabel === 'dark' || lightLabel === 'veryDark') && satLabel !== "gray")
+	if ((lightLabel === 'dark' || lightLabel === 'veryDark') && satLabel !== "gray")
 		delete desc.saturation;
 
-	if(lightLabel === "medium")
+	if (lightLabel === "medium")
 		delete desc.lightness;
 
 	if (color.alpha === 100)
 		delete desc.alpha;
 
-	if(alphaLabel === 'transparent') {
+	if (alphaLabel === 'transparent') {
 		delete desc.lightness;
 		delete desc.hue;
 		delete desc.saturation;
 	}
 
-	return [
+	let order = [
 		desc.hue,
 		desc.lightness,
 		desc.saturation,
 		desc.alpha,
-	].filter(Boolean).join(' ');
+	]
+
+	if (satLabel === 'faded' && lightLabel !== "medium") {
+		order = [
+			desc.hue,
+			desc.saturation,
+			desc.lightness,
+			desc.alpha,
+		]
+	}
+
+
+	return order.filter(Boolean).join(' ');
 };

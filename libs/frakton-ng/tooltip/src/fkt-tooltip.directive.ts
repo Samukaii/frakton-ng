@@ -1,8 +1,10 @@
 import { booleanAttribute, Directive, ElementRef, inject, input } from '@angular/core';
 import { FktOverlayRef, FktOverlayService } from 'frakton-ng/overlay';
 import { FktGeometryPosition } from 'frakton-ng/internal/types';
-import { outsideMouseEnterWatcher } from 'frakton-ng/internal/utils';
+import { getElementDesignTokens, outsideMouseEnterWatcher } from 'frakton-ng/internal/utils';
 import { FktTooltipComponent } from './fkt-tooltip.component';
+import { FktColor } from 'frakton-ng/core';
+import { getElementDesignToken } from '../../internal/utils/get-element-design-token';
 
 @Directive({
 	selector: '[fktTooltip]',
@@ -13,6 +15,7 @@ import { FktTooltipComponent } from './fkt-tooltip.component';
 export class FktTooltipDirective {
 	fktTooltip = input.required<string>();
 	tooltipEnabled = input(true);
+	tooltipColor = input<FktColor>('primary');
 	disableAutoReposition = input(false, {transform: booleanAttribute});
 	position = input<FktGeometryPosition>('bottom-center');
 
@@ -27,15 +30,19 @@ export class FktTooltipDirective {
 
 		if (this.overlayRef) return;
 
+		const tokens = getElementDesignTokens(this.elementRef.nativeElement);
+
 		this.overlayRef = this.overlay.open({
 			component: FktTooltipComponent,
 			data: {
 				text: this.fktTooltip(),
+				color: this.tooltipColor,
 			},
 			panelOptions: {
 				width: 'fit-content',
 				maxHeight: 'fit-content',
 				minWidth: 'fit-content',
+				focusTriggerOnClose: false,
 				position: this.position(),
 				borderRadius: '0px',
 				overflow: 'visible',
@@ -43,6 +50,7 @@ export class FktTooltipDirective {
 				boxShadow: 'none',
 				backgroundColor: 'transparent',
 				disableAutoReposition: this.disableAutoReposition(),
+				styles: tokens
 			},
 			anchorElementRef: this.elementRef,
 		});

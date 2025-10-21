@@ -16,7 +16,7 @@
 	max-width: 800px;
 	height: fit-content;
 	width: 100%;
-	border: solid 1px var(--color-gray-200);
+	border: solid 1px var(--fkt-color-neutral-200);
 	display: flex;
 	align-items: center;
 	flex-direction: column;
@@ -75,7 +75,7 @@
 .info-box {
 	margin-top: 16px;
 	padding: 12px;
-	background: var(--color-blue-50);
+	background: #155DFC14;
 	border-radius: var(--radius-md);
 	color: var(--color-blue-950);
 	border: .5px solid var(--color-blue-200);

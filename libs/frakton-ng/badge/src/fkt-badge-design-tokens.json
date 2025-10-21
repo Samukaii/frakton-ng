@@ -1,0 +1,170 @@
+[
+  {
+    "description": "Border radius for badge component.",
+    "name": "--fkt-badge-border-radius",
+    "reference": "--radius-md",
+    "category": "Shape",
+    "type": "size",
+    "defaultValue": "--radius-md"
+  },
+  {
+    "description": "Gap between icon and text in badge.",
+    "name": "--fkt-badge-gap",
+    "reference": "--space-xs",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": "--space-xs"
+  },
+  {
+    "description": "Padding for badge component.",
+    "name": "--fkt-badge-padding",
+    "reference": "var(--space-3xs) var(--space-xs)",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": "var(--space-3xs) var(--space-xs)"
+  },
+  {
+    "description": "Font weight for badge text.",
+    "name": "--fkt-badge-font-weight",
+    "reference": "--font-semibold",
+    "category": "Typography",
+    "type": "size",
+    "defaultValue": "--font-semibold"
+  },
+  {
+    "description": "Font size for badge text.",
+    "name": "--fkt-badge-font-size",
+    "reference": "--font-size-sm",
+    "category": "Typography",
+    "type": "size",
+    "defaultValue": "--font-size-sm"
+  },
+  {
+    "description": "Background color for danger badge in opaque theme.",
+    "name": "--fkt-badge-danger-background",
+    "reference": "--fkt-color-danger",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "--fkt-color-danger"
+  },
+  {
+    "description": "Text color for danger badge in opaque theme.",
+    "name": "--fkt-badge-danger-color",
+    "reference": "--fkt-color-on-danger",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "--fkt-color-on-danger"
+  },
+  {
+    "description": "Background color for info badge in opaque theme.",
+    "name": "--fkt-badge-info-background",
+    "reference": "--fkt-color-info",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "--fkt-color-info"
+  },
+  {
+    "description": "Text color for info badge in opaque theme.",
+    "name": "--fkt-badge-info-color",
+    "reference": "--fkt-color-on-info",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "--fkt-color-on-info"
+  },
+  {
+    "description": "Background color for accent badge in opaque theme.",
+    "name": "--fkt-badge-accent-background",
+    "reference": "--fkt-color-accent",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "--fkt-color-accent"
+  },
+  {
+    "description": "Text color for accent badge in opaque theme.",
+    "name": "--fkt-badge-accent-color",
+    "reference": "--fkt-color-on-accent",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "--fkt-color-on-accent"
+  },
+  {
+    "description": "Background color for warning badge in opaque theme.",
+    "name": "--fkt-badge-warning-background",
+    "reference": "--fkt-color-warning",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "--fkt-color-warning"
+  },
+  {
+    "description": "Text color for warning badge in opaque theme.",
+    "name": "--fkt-badge-warning-color",
+    "reference": "--fkt-color-on-warning",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "--fkt-color-on-warning"
+  },
+  {
+    "description": "Background color for success badge in opaque theme.",
+    "name": "--fkt-badge-success-background",
+    "reference": "--fkt-color-success",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "--fkt-color-success"
+  },
+  {
+    "description": "Text color for success badge in opaque theme.",
+    "name": "--fkt-badge-success-color",
+    "reference": "--fkt-color-on-success",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "--fkt-color-on-success"
+  },
+  {
+    "description": "Text color for faded theme badges.",
+    "name": "--fkt-badge-faded-text-color",
+    "reference": "--fkt-color-neutral-900",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "--fkt-color-neutral-900"
+  },
+  {
+    "description": "Background color for danger badge in faded theme.",
+    "name": "--fkt-badge-danger-faded-background",
+    "reference": "--fkt-color-danger-translucent",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "--fkt-color-danger-translucent"
+  },
+  {
+    "description": "Background color for info badge in faded theme.",
+    "name": "--fkt-badge-info-faded-background",
+    "reference": "--fkt-color-info-translucent",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "--fkt-color-info-translucent"
+  },
+  {
+    "description": "Background color for warning badge in faded theme.",
+    "name": "--fkt-badge-warning-faded-background",
+    "reference": "--fkt-color-warning-translucent",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "--fkt-color-warning-translucent"
+  },
+  {
+    "description": "Background color for accent badge in faded theme.",
+    "name": "--fkt-badge-accent-faded-background",
+    "reference": "--fkt-color-accent-translucent",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "--fkt-color-accent-translucent"
+  },
+  {
+    "description": "Background color for success badge in faded theme.",
+    "name": "--fkt-badge-success-faded-background",
+    "reference": "--fkt-color-success-translucent",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "--fkt-color-success-translucent"
+  }
+]

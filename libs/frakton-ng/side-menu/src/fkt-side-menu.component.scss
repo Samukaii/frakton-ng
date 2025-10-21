@@ -1,3 +1,265 @@
+// <design-tokens>
+/*
+Border top width for the side menu.
+@name --fkt-side-menu-border-top-width
+@reference 1px
+@component Side Menu
+@category Shape
+@type size
+*/
+$side-menu-border-top-width: var(--fkt-side-menu-border-top-width, 1px);
+
+/*
+Border color for the side menu.
+@name --fkt-side-menu-border-color
+@reference --fkt-color-neutral-700
+@component Side Menu
+@category Colors
+@type color
+*/
+$side-menu-border-color: var(--fkt-side-menu-border-color, var(--fkt-color-neutral-700));
+
+/*
+Background color for the side menu.
+@name --fkt-side-menu-background-color
+@reference --fkt-color-neutral-900
+@component Side Menu
+@category Colors
+@type color
+*/
+$side-menu-background-color: var(--fkt-side-menu-background-color, var(--fkt-color-neutral-900));
+
+/*
+Transition duration for menu group animations.
+@name --fkt-side-menu-group-transition
+@reference --transition-slow
+@component Side Menu
+@category Effects
+@type transition
+*/
+$side-menu-group-transition: var(--fkt-side-menu-group-transition, var(--transition-slow));
+
+/*
+Bottom margin for group headings.
+@name --fkt-side-menu-group-heading-margin-bottom
+@reference --space-3xs
+@component Side Menu
+@category Spacing
+@type size
+*/
+$side-menu-group-heading-margin-bottom: var(--fkt-side-menu-group-heading-margin-bottom, var(--space-3xs));
+
+/*
+Top margin for group headings.
+@name --fkt-side-menu-group-heading-margin-top
+@reference --space-md
+@component Side Menu
+@category Spacing
+@type size
+*/
+$side-menu-group-heading-margin-top: var(--fkt-side-menu-group-heading-margin-top, var(--space-md));
+
+/*
+Color for group headings.
+@name --fkt-side-menu-group-heading-color
+@reference --fkt-color-neutral-400
+@component Side Menu
+@category Colors
+@type color
+*/
+$side-menu-group-heading-color: var(--fkt-side-menu-group-heading-color, var(--fkt-color-neutral-400));
+
+/*
+Font size for group headings.
+@name --fkt-side-menu-group-heading-font-size
+@reference --font-size-md
+@component Side Menu
+@category Typography
+@type font-size
+*/
+$side-menu-group-heading-font-size: var(--fkt-side-menu-group-heading-font-size, var(--font-size-md));
+
+/*
+Font weight for group headings.
+@name --fkt-side-menu-group-heading-font-weight
+@reference --font-normal
+@component Side Menu
+@category Typography
+@type font-weight
+*/
+$side-menu-group-heading-font-weight: var(--fkt-side-menu-group-heading-font-weight, var(--font-normal));
+
+/*
+Gap between menu items.
+@name --fkt-side-menu-items-gap
+@reference --space-xs
+@component Side Menu
+@category Spacing
+@type size
+*/
+$side-menu-items-gap: var(--fkt-side-menu-items-gap, var(--space-xs));
+
+/*
+Padding for menu items.
+@name --fkt-side-menu-item-padding
+@reference --space-sm
+@component Side Menu
+@category Spacing
+@type size
+*/
+$side-menu-item-padding: var(--fkt-side-menu-item-padding, var(--space-sm));
+
+/*
+Gap within menu items (icon and text).
+@name --fkt-side-menu-item-gap
+@reference --space-xs
+@component Side Menu
+@category Spacing
+@type size
+*/
+$side-menu-item-gap: var(--fkt-side-menu-item-gap, var(--space-xs));
+
+/*
+Border radius for menu items.
+@name --fkt-side-menu-item-border-radius
+@reference --space-xs
+@component Side Menu
+@category Shape
+@type size
+*/
+$side-menu-item-border-radius: var(--fkt-side-menu-item-border-radius, var(--space-xs));
+
+/*
+Text color for menu items.
+@name --fkt-side-menu-item-color
+@reference --fkt-color-neutral-100
+@component Side Menu
+@category Colors
+@type color
+*/
+$side-menu-item-color: var(--fkt-side-menu-item-color, var(--fkt-color-neutral-100));
+
+/*
+Background color for menu items.
+@name --fkt-side-menu-item-background-color
+@reference --fkt-color-neutral-700
+@component Side Menu
+@category Colors
+@type color
+*/
+$side-menu-item-background-color: var(--fkt-side-menu-item-background-color, var(--fkt-color-neutral-700));
+
+/*
+Width for expanded menu items.
+@name --fkt-side-menu-item-width
+@reference 350px
+@component Side Menu
+@category Spacing
+@type size
+*/
+$side-menu-item-width: var(--fkt-side-menu-item-width, 350px);
+
+/*
+Transition duration for menu items.
+@name --fkt-side-menu-item-transition
+@reference --transition-slow
+@component Side Menu
+@category Effects
+@type transition
+*/
+$side-menu-item-transition: var(--fkt-side-menu-item-transition, var(--transition-slow));
+
+/*
+Fast transition duration for menu item hover states.
+@name --fkt-side-menu-item-transition-fast
+@reference --transition-fast
+@component Side Menu
+@category Effects
+@type transition
+*/
+$side-menu-item-transition-fast: var(--fkt-side-menu-item-transition-fast, var(--transition-fast));
+
+/*
+Background color for menu items on hover.
+@name --fkt-side-menu-item-hover-background-color
+@reference --fkt-color-neutral-600
+@component Side Menu
+@category Colors
+@type color
+*/
+$side-menu-item-hover-background-color: var(--fkt-side-menu-item-hover-background-color, var(--fkt-color-neutral-600));
+
+/*
+Width for collapsed menu items.
+@name --fkt-side-menu-item-collapsed-width
+@reference 48px
+@component Side Menu
+@category Spacing
+@type size
+*/
+$side-menu-item-collapsed-width: var(--fkt-side-menu-item-collapsed-width, 48px);
+
+/*
+Font size for menu item icons.
+@name --fkt-side-menu-item-icon-font-size
+@reference --font-size-2xl
+@component Side Menu
+@category Typography
+@type font-size
+*/
+$side-menu-item-icon-font-size: var(--fkt-side-menu-item-icon-font-size, var(--font-size-2xl));
+
+/*
+Padding for menu content sections.
+@name --fkt-side-menu-content-padding
+@reference --space-sm
+@component Side Menu
+@category Spacing
+@type size
+*/
+$side-menu-content-padding: var(--fkt-side-menu-content-padding, var(--space-sm));
+
+/*
+Gap for menu content sections.
+@name --fkt-side-menu-content-gap
+@reference --space-xs
+@component Side Menu
+@category Spacing
+@type size
+*/
+$side-menu-content-gap: var(--fkt-side-menu-content-gap, var(--space-xs));
+
+/*
+Bottom margin for list separators.
+@name --fkt-side-menu-separator-margin-bottom
+@reference --space-md
+@component Side Menu
+@category Spacing
+@type size
+*/
+$side-menu-separator-margin-bottom: var(--fkt-side-menu-separator-margin-bottom, var(--space-md));
+
+/*
+Top margin for closed list separators.
+@name --fkt-side-menu-separator-closed-margin-top
+@reference --space-md
+@component Side Menu
+@category Spacing
+@type size
+*/
+$side-menu-separator-closed-margin-top: var(--fkt-side-menu-separator-closed-margin-top, var(--space-md));
+
+/*
+Border color for separator lines.
+@name --fkt-side-menu-separator-border-color
+@reference --fkt-color-neutral-600
+@component Side Menu
+@category Colors
+@type color
+*/
+$side-menu-separator-border-color: var(--fkt-side-menu-separator-border-color, var(--fkt-color-neutral-600));
+// </design-tokens>
+
 :host {
 	height: 100%;
 	width: 100%;
@@ -25,63 +287,63 @@ fkt-drawer {
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
-		border-top-width: 1px;
-		border-color: var(--color-gray-700);
+		border-top-width: $side-menu-border-top-width;
+		border-color: $side-menu-border-color;
 		width: 100%;
 		height: 100%;
 		overflow-y: auto;
-		background-color: var(--color-gray-900);
+		background-color: $side-menu-background-color;
 
 		&__group {
 			overflow: hidden;
-			transition: var(--transition-slow);
+			transition: $side-menu-group-transition;
 			transition-property: max-height;
 
 			h2 {
-				margin-bottom: var(--space-3xs);
-				margin-top: var(--space-md);
-				color: var(--color-gray-400);
-				font-size: var(--font-size-md);
-				font-weight: var(--font-normal);
+				margin-bottom: $side-menu-group-heading-margin-bottom;
+				margin-top: $side-menu-group-heading-margin-top;
+				color: $side-menu-group-heading-color;
+				font-size: $side-menu-group-heading-font-size;
+				font-weight: $side-menu-group-heading-font-weight;
 			}
 		}
 
 		&__items {
 			display: flex;
 			flex-direction: column;
-			gap: var(--space-xs);
+			gap: $side-menu-items-gap;
 
 			&-item {
 				display: flex;
-				padding: var(--space-sm);
-				gap: var(--space-xs);
+				padding: $side-menu-item-padding;
+				gap: $side-menu-item-gap;
 				align-items: center;
-				border-radius: var(--space-xs);
-				color: var(--color-neutral-100);
-				background-color: var(--color-gray-700);
+				border-radius: $side-menu-item-border-radius;
+				color: $side-menu-item-color;
+				background-color: $side-menu-item-background-color;
 				cursor: pointer;
-				width: 350px;
+				width: $side-menu-item-width;
 				max-width: 100%;
-				transition: var(--transition-slow);
+				transition: $side-menu-item-transition;
 
 				p {
 					white-space: nowrap;
-					transition: var(--transition-slow);
+					transition: $side-menu-item-transition;
 					opacity: 1;
 					overflow: hidden;
 				}
 
 				fkt-icon {
-					font-size: var(--font-size-2xl) !important;
+					font-size: $side-menu-item-icon-font-size !important;
 				}
 
 				&:hover {
-					transition: var(--transition-fast);
-					background-color: var(--color-gray-600);
+					transition: $side-menu-item-transition-fast;
+					background-color: $side-menu-item-hover-background-color;
 				}
 
 				&--collapsed {
-					width: 48px;
+					width: $side-menu-item-collapsed-width;
 					p {
 						opacity: 0;
 					}
@@ -92,13 +354,13 @@ fkt-drawer {
 		&__content {
 			display: flex;
 			z-index: 20;
-			padding: var(--space-sm);
+			padding: $side-menu-content-padding;
 			flex-direction: column;
 
 			&__content {
 				display: flex;
 				flex-direction: column;
-				gap: var(--space-xs);
+				gap: $side-menu-content-gap;
 			}
 		}
 
@@ -107,16 +369,16 @@ fkt-drawer {
 			flex-direction: column;
 
 			&-separator {
-				margin-bottom: var(--space-md);
-				transition: var(--transition-slow);
+				margin-bottom: $side-menu-separator-margin-bottom;
+				transition: $side-menu-group-transition;
 
 				hr {
-					border-color: var(--color-gray-600);
+					border-color: $side-menu-separator-border-color;
 					margin: 0;
 				}
 
 				&--closed {
-					margin-top: var(--space-md);
+					margin-top: $side-menu-separator-closed-margin-top;
 				}
 
 				&--first {

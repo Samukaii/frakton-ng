@@ -11,20 +11,20 @@ $checkbox-size: var(--fkt-checkbox-size, var(--space-lg));
 /*
 Border color of the checkbox in its default state.
 @name --fkt-checkbox-border-color
-@reference --color-neutral-500
+@reference --fkt-color-neutral-500
 @category Colors
 @type color
 */
-$border-color: var(--fkt-checkbox-border-color, var(--color-neutral-500));
+$border-color: var(--fkt-checkbox-border-color, var(--fkt-color-neutral-500));
 
 /*
 Background color of the checkbox in its default state.
 @name --fkt-checkbox-background-color
-@reference --color-neutral-100
+@reference --fkt-color-neutral-100
 @category Colors
 @type color
 */
-$background-color: var(--fkt-checkbox-background-color, var(--color-neutral-100));
+$background-color: var(--fkt-checkbox-background-color, var(--fkt-color-neutral-100));
 
 /*
 Border radius of the checkbox.
@@ -47,29 +47,29 @@ $border-width: var(--fkt-checkbox-border-width, 2px);
 /*
 Background color of the checkbox when checked.
 @name --fkt-checkbox-checked-background-color
-@reference --color-gray-600
+@reference --fkt-color-primary
 @category Colors
 @type color
 */
-$checked-background-color: var(--fkt-checkbox-checked-background-color, var(--color-gray-600));
+$checked-background-color: var(--fkt-checkbox-checked-background-color, var(--fkt-color-primary));
 
 /*
 Border color of the checkbox when checked.
 @name --fkt-checkbox-checked-border-color
-@reference --color-gray-600
+@reference --fkt-color-primary
 @category Colors
 @type color
 */
-$checked-border-color: var(--fkt-checkbox-checked-border-color, var(--color-gray-600));
+$checked-border-color: var(--fkt-checkbox-checked-border-color, var(--fkt-color-primary));
 
 /*
 Color of the checkmark icon.
 @name --fkt-checkbox-checkmark-color
-@reference --color-neutral-100
+@reference --fkt-color-neutral-100
 @category Colors
 @type color
 */
-$checkmark-color: var(--fkt-checkbox-checkmark-color, var(--color-neutral-100));
+$checkmark-color: var(--fkt-checkbox-checkmark-color, var(--fkt-color-neutral-100));
 
 /*
 Margin between checkbox and label text.
@@ -92,11 +92,11 @@ $label-font-size: var(--fkt-checkbox-label-font-size, var(--font-size-md));
 /*
 Color of the label text in invalid state.
 @name --fkt-checkbox-invalid-color
-@reference --color-red-500
+@reference --fkt-color-danger
 @category Colors
 @type color
 */
-$invalid-color: var(--fkt-checkbox-invalid-color, var(--color-red-500));
+$invalid-color: var(--fkt-checkbox-invalid-color, var(--fkt-color-danger));
 
 /*
 Opacity of the checkbox when disabled.

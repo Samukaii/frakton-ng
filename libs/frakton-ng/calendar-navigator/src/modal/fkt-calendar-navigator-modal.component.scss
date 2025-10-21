@@ -1,7 +1,29 @@
+// <design-tokens>
+/*
+Padding for calendar navigator modal.
+@name --fkt-calendar-navigator-modal-padding
+@reference --space-md
+@component Modal
+@category Spacing
+@type size
+*/
+$modal-padding: var(--fkt-calendar-navigator-modal-padding, var(--space-md));
+
+/*
+Minimum width for calendar navigator modal.
+@name --fkt-calendar-navigator-modal-min-width
+@reference 400px
+@component Modal
+@category Spacing
+@type size
+*/
+$modal-min-width: var(--fkt-calendar-navigator-modal-min-width, 400px);
+// </design-tokens>
+
 :host {
 	display: block;
 	height: fit-content;
 	width: fit-content;
-	padding: var(--space-md);
-	min-width: 400px;
+	padding: $modal-padding;
+	min-width: $modal-min-width;
 }

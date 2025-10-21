@@ -78,6 +78,7 @@ export class FktTableExamplesCustomCellsComponent {
 						icon: product.status === 'active' ? 'check-circle' : 'x-circle',
 						theme: 'basic',
 						color: product.status === 'active' ? 'success' : 'danger',
+						ariaLabel: product.status === 'active' ? 'Deactivate product' : 'Activate product',
 						click: () => this.toggleProductStatus(product)
 					}]
 				}
@@ -119,6 +120,7 @@ export class FktTableExamplesCustomCellsComponent {
 							tooltip: "Change priority",
 							theme: 'basic',
 							condition: true,
+							ariaLabel: 'Change priority',
 							click: () => this.changePriority(task)
 						}
 					]
@@ -139,6 +141,7 @@ export class FktTableExamplesCustomCellsComponent {
 							theme: 'basic',
 							color: this.getStatusColor(task.status),
 							icon: this.getStatusIcon(task.status),
+							ariaLabel: 'Change task status',
 							click: () => this.changeTaskStatus(task)
 						}
 					]
@@ -191,6 +194,7 @@ export class FktTableExamplesCustomCellsComponent {
 			icon: 'pencil',
 			color: 'success',
 			theme: 'basic',
+			ariaLabel: 'Edit product',
 			click: () => console.log('Edit product:', product.name)
 		},
 		{
@@ -199,6 +203,7 @@ export class FktTableExamplesCustomCellsComponent {
 			icon: 'trash',
 			color: 'danger',
 			theme: 'basic',
+			ariaLabel: 'Delete product',
 			click: () => console.log('Delete product:', product.name)
 		}
 	];
@@ -210,6 +215,7 @@ export class FktTableExamplesCustomCellsComponent {
 			icon: 'check',
 			color: 'success',
 			theme: 'basic',
+			ariaLabel: 'Complete task',
 			click: () => console.log('Complete task:', task.title)
 		},
 		{
@@ -218,6 +224,7 @@ export class FktTableExamplesCustomCellsComponent {
 			icon: 'pencil',
 			color: 'primary',
 			theme: 'basic',
+			ariaLabel: 'Edit task',
 			click: () => console.log('Edit task:', task.title)
 		},
 		{
@@ -226,6 +233,7 @@ export class FktTableExamplesCustomCellsComponent {
 			icon: 'x-mark',
 			color: 'danger',
 			theme: 'basic',
+			ariaLabel: 'Cancel task',
 			click: () => console.log('Cancel task:', task.title)
 		}
 	];

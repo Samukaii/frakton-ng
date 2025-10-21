@@ -32,22 +32,22 @@ $preview-width: var(--fkt-color-control-preview-width, 40px);
 /*
 Border color for control elements.
 @name --fkt-color-control-border-color
-@reference --color-neutral-400
+@reference --fkt-color-neutral-400
 @component Color controls
 @category Colors
 @type color
 */
-$border-color: var(--fkt-color-control-border-color, var(--color-neutral-400));
+$border-color: var(--fkt-color-control-border-color, var(--fkt-color-neutral-400));
 
 /*
 Hover border color for control elements.
 @name --fkt-color-control-hover-border-color
-@reference --color-brand-secondary
+@reference --fkt-color-brand-secondary
 @component Color controls
 @category Colors
 @type color
 */
-$hover-border-color: var(--fkt-color-control-hover-border-color, var(--color-brand-secondary));
+$hover-border-color: var(--fkt-color-control-hover-border-color, var(--fkt-color-brand-secondary));
 
 /*
 Border radius for control elements.
@@ -62,12 +62,12 @@ $control-border-radius: var(--fkt-color-control-border-radius, var(--radius-xl))
 /*
 Focus shadow color for control elements.
 @name --fkt-color-control-focus-shadow-color
-@reference --color-brand-secondary
+@reference --fkt-color-brand-secondary
 @component Color controls
 @category Colors
 @type color
 */
-$focus-shadow-color: var(--fkt-color-control-focus-shadow-color, var(--color-brand-secondary));
+$focus-shadow-color: var(--fkt-color-control-focus-shadow-color, var(--fkt-color-brand-secondary));
 
 /*
 Padding for control value display.
@@ -92,12 +92,12 @@ $value-background: var(--fkt-color-control-value-background, #00000000);
 /*
 Text color for color value display.
 @name --fkt-color-control-value-color
-@reference --color-neutral-900
+@reference --fkt-color-neutral-900
 @component Color controls
 @category Colors
 @type color
 */
-$value-color: var(--fkt-color-control-value-color, var(--color-neutral-900));
+$value-color: var(--fkt-color-control-value-color, var(--fkt-color-neutral-900));
 
 /*
 Gap between elements in the value display.

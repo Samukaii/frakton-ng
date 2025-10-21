@@ -52,48 +52,49 @@ $year-header-font-weight: var(--fkt-calendar-year-header-font-weight, var(--font
 /*
 Year header element hover background color.
 @name --fkt-calendar-year-header-hover-bg
-@reference --color-neutral-200
+@reference --fkt-color-primary-translucent
 @component Month selector
 @category Colors
 @type color
 */
-$year-header-hover-bg: var(--fkt-calendar-year-header-hover-bg, var(--color-neutral-200));
+$year-header-hover-bg: var(--fkt-calendar-year-header-hover-bg, var(--fkt-color-primary-translucent));
 
 /*
 Year header element text color.
 @name --fkt-calendar-year-header-color
-@reference --color-neutral-900
+@reference --fkt-color-neutral-900
 @component Month selector
 @category Colors
 @type color
 */
-$year-header-color: var(--fkt-calendar-year-header-color, var(--color-neutral-900));
+$year-header-color: var(--fkt-calendar-year-header-color, var(--fkt-color-neutral-900));
 
 /*
 Year header element active background color.
 @name --fkt-calendar-year-header-active-bg
-@reference --color-brand-primary
+@reference --fkt-color-brand-primary
 @component Month selector
 @category Colors
 @type color
 */
-$year-header-active-bg: var(--fkt-calendar-year-header-active-bg, var(--color-brand-primary));
+$year-header-active-bg: var(--fkt-calendar-year-header-active-bg, var(--fkt-color-brand-primary));
 
 /*
 Year header element active text color.
 @name --fkt-calendar-year-header-active-color
-@reference --color-neutral-50
+@reference --fkt-color-neutral-50
 @component Month selector
 @category Colors
 @type color
 */
-$year-header-active-color: var(--fkt-calendar-year-header-active-color, var(--color-neutral-50));
+$year-header-active-color: var(--fkt-calendar-year-header-active-color, var(--fkt-color-neutral-50));
 
 // </design-tokens>
 
 .container {
 	display: flex;
 	align-items: center;
+	justify-content: center;
 	gap: $year-header-gap;
 
 	strong {

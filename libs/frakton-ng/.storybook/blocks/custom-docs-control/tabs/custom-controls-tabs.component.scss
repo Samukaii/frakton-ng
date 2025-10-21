@@ -10,7 +10,7 @@
 		display: flex;
 	}
 
-	& > button {
+	.actions > button {
 		background-color: transparent;
 		color: var(--fkt-controls-tabs-action-text-color);
 		font-weight: var(--font-semibold);
@@ -60,12 +60,12 @@
 		}
 
 		&:hover {
-			color: var(--color-brand-secondary);
+			color: var(--fkt-color-brand-secondary);
 		}
 
 		&:focus {
-			border-bottom: solid 3px var(--color-brand-secondary);
-			color: var(--color-brand-secondary);
+			border-bottom: solid 3px var(--fkt-color-brand-secondary);
+			color: var(--fkt-color-brand-secondary);
 		}
 
 		&:first-child {
@@ -81,8 +81,8 @@
 		}
 
 		&.active {
-			border-bottom: solid 3px var(--color-brand-secondary);
-			color: var(--color-brand-secondary);
+			border-bottom: solid 3px var(--fkt-color-brand-secondary);
+			color: var(--fkt-color-brand-secondary);
 
 			p {
 				font-weight: var(--font-semibold);

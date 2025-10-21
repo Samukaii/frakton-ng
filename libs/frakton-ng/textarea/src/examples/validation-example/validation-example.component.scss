@@ -23,14 +23,14 @@
 			}
 
 			&--invalid {
-				color: var(--color-red-600);
+				color: var(--fkt-color-danger);
 			}
 		}
 	}
 
 	&__info {
 		font-size: var(--font-size-sm);
-		color: var(--color-gray-600);
+		color: var(--fkt-color-neutral-600);
 		display: flex;
 		flex-direction: column;
 		gap: var(--space-xs);

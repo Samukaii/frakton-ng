@@ -2,22 +2,22 @@
 /*
 Modal background color for date picker.
 @name --fkt-date-picker-modal-background-color
-@reference --color-neutral-50
+@reference --fkt-color-modal-background
 @component Modal
 @category Colors
 @type color
 */
-$modal-background-color: var(--fkt-date-picker-modal-background-color, var(--color-neutral-50));
+$modal-background-color: var(--fkt-date-picker-modal-background-color, var(--fkt-color-modal-background));
 
 /*
 Modal text color for date picker.
 @name --fkt-date-picker-modal-text-color
-@reference --color-neutral-950
+@reference --fkt-color-neutral-950
 @component Modal
 @category Colors
 @type color
 */
-$modal-text-color: var(--fkt-date-picker-modal-text-color, var(--color-neutral-950));
+$modal-text-color: var(--fkt-date-picker-modal-text-color, var(--fkt-color-neutral-950));
 
 /*
 Modal width for date picker.
@@ -52,12 +52,12 @@ $modal-border-radius: var(--fkt-date-picker-modal-border-radius, var(--radius-lg
 /*
 Modal border color for date picker.
 @name --fkt-date-picker-modal-border-color
-@reference --color-neutral-300
+@reference --fkt-color-neutral-300
 @component Modal
 @category Colors
 @type color
 */
-$modal-border-color: var(--fkt-date-picker-modal-border-color, var(--color-neutral-300));
+$modal-border-color: var(--fkt-date-picker-modal-border-color, var(--fkt-color-neutral-300));
 
 /*
 Calendar cell size for date picker.
@@ -72,42 +72,42 @@ $cell-size: var(--fkt-date-picker-cell-size, 40px);
 /*
 Calendar cell hover background color.
 @name --fkt-date-picker-cell-hover-bg
-@reference --color-neutral-200
+@reference --fkt-color-neutral-200
 @component Modal
 @category Colors
 @type color
 */
-$cell-hover-bg: var(--fkt-date-picker-cell-hover-bg, var(--color-neutral-200));
+$cell-hover-bg: var(--fkt-date-picker-cell-hover-bg, var(--fkt-color-neutral-200));
 
 /*
 Calendar cell selected background color.
 @name --fkt-date-picker-cell-selected-bg
-@reference --color-brand-primary
+@reference --fkt-color-brand-primary
 @component Modal
 @category Colors
 @type color
 */
-$cell-selected-bg: var(--fkt-date-picker-cell-selected-bg, var(--color-brand-primary));
+$cell-selected-bg: var(--fkt-date-picker-cell-selected-bg, var(--fkt-color-brand-primary));
 
 /*
 Calendar cell selected text color.
 @name --fkt-date-picker-cell-selected-color
-@reference --color-neutral-50
+@reference --fkt-color-neutral-50
 @component Modal
 @category Colors
 @type color
 */
-$cell-selected-color: var(--fkt-date-picker-cell-selected-color, var(--color-neutral-50));
+$cell-selected-color: var(--fkt-date-picker-cell-selected-color, var(--fkt-color-neutral-50));
 
 /*
 Calendar header text color.
 @name --fkt-date-picker-header-color
-@reference --color-neutral-700
+@reference --fkt-color-neutral-700
 @component Modal
 @category Colors
 @type color
 */
-$header-color: var(--fkt-date-picker-header-color, var(--color-neutral-700));
+$header-color: var(--fkt-date-picker-header-color, var(--fkt-color-neutral-700));
 
 /*
 Gap between calendar elements.

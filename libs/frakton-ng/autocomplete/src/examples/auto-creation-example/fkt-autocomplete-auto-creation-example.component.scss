@@ -8,7 +8,7 @@ p {
 
 hr {
 	border: none;
-	border-bottom: solid 1px var(--color-neutral-300);
+	border-bottom: solid 1px var(--fkt-color-neutral-300);
 	margin: 0;
 }
 
@@ -25,7 +25,7 @@ hr {
 
 	.description {
 		margin-bottom: 1rem;
-		color: var(--color-neutral-600);
+		color: var(--fkt-color-neutral-600);
 		font-size: var(--font-size-sm);
 	}
 
@@ -35,7 +35,7 @@ hr {
 		border-radius: var(--radius-md);
 		font-size: var(--font-size-sm);
 		box-shadow: var(--shadow-md);
-		border: 1px solid var(--color-neutral-200);
+		border: 1px solid var(--fkt-color-neutral-200);
 		display: flex;
 		flex-direction: column;
 		gap: var(--space-xs);
@@ -56,13 +56,13 @@ hr {
 		margin-top: 1rem;
 		padding: 0.75rem;
 		width: 100%;
-		background-color: var(--color-info-background, #e3f2fd);
-		border-left: 4px solid var(--color-info, #2196f3);
+		background-color: var(--fkt-color-info-translucent, #e3f2fd);
+		border-left: 4px solid var(--fkt-color-info, #2196f3);
 		border-radius: 4px;
 		font-size: 0.875rem;
 
 		strong {
-			color: var(--color-info, #2196f3);
+			color: var(--fkt-color-info, #2196f3);
 		}
 	}
 }

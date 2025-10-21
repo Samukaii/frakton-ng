@@ -7,17 +7,17 @@ import { FktIconComponent } from 'frakton-ng/icon';
 import { FktNavigableListDirective } from 'frakton-ng/navigable-list';
 
 @Component({
-	selector: 'fkt-fkt-select-overlay',
+	selector: 'fkt-fkt-select-options',
 	imports: [
 		FktSpinnerComponent,
 		FktNoResultsComponent,
 		FktIconComponent,
 		FktNavigableListDirective,
 	],
-	templateUrl: './fkt-select-overlay.component.html',
-	styleUrl: './fkt-select-overlay.component.scss',
+	templateUrl: './fkt-select-options.component.html',
+	styleUrl: './fkt-select-options.component.scss',
 })
-export class FktSelectOverlayComponent {
+export class FktSelectOptionsComponent {
 	hostElement = input.required<HTMLElement>();
 	options = input.required<FktAutocompleteOption[]>();
 	loading = input<boolean | undefined>(false);

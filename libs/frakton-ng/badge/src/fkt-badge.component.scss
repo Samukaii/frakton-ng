@@ -1,3 +1,194 @@
+// <design-tokens>
+/*
+Border radius for badge component.
+@name --fkt-badge-border-radius
+@reference --radius-md
+@category Shape
+@type size
+*/
+$badge-border-radius: var(--fkt-badge-border-radius, var(--radius-md));
+
+/*
+Gap between icon and text in badge.
+@name --fkt-badge-gap
+@reference --space-xs
+@category Spacing
+@type size
+*/
+$badge-gap: var(--fkt-badge-gap, var(--space-xs));
+
+/*
+Padding for badge component.
+@name --fkt-badge-padding
+@reference var(--space-3xs) var(--space-xs)
+@category Spacing
+@type size
+*/
+$badge-padding: var(--fkt-badge-padding, var(--space-3xs) var(--space-xs));
+
+/*
+Font weight for badge text.
+@name --fkt-badge-font-weight
+@reference --font-semibold
+@category Typography
+@type size
+*/
+$badge-font-weight: var(--fkt-badge-font-weight, var(--font-semibold));
+
+/*
+Font size for badge text.
+@name --fkt-badge-font-size
+@reference --font-size-sm
+@category Typography
+@type size
+*/
+$badge-font-size: var(--fkt-badge-font-size, var(--font-size-sm));
+
+/*
+Background color for danger badge in opaque theme.
+@name --fkt-badge-danger-background
+@reference --fkt-color-danger
+@category Colors
+@type color
+*/
+$badge-danger-background: var(--fkt-badge-danger-background, var(--fkt-color-danger));
+
+/*
+Text color for danger badge in opaque theme.
+@name --fkt-badge-danger-color
+@reference --fkt-color-on-danger
+@category Colors
+@type color
+*/
+$badge-danger-color: var(--fkt-badge-danger-color, var(--fkt-color-on-danger));
+
+/*
+Background color for info badge in opaque theme.
+@name --fkt-badge-info-background
+@reference --fkt-color-info
+@category Colors
+@type color
+*/
+$badge-info-background: var(--fkt-badge-info-background, var(--fkt-color-info));
+
+/*
+Text color for info badge in opaque theme.
+@name --fkt-badge-info-color
+@reference --fkt-color-on-info
+@category Colors
+@type color
+*/
+$badge-info-color: var(--fkt-badge-info-color, var(--fkt-color-on-info));
+
+/*
+Background color for accent badge in opaque theme.
+@name --fkt-badge-accent-background
+@reference --fkt-color-accent
+@category Colors
+@type color
+*/
+$badge-accent-background: var(--fkt-badge-accent-background, var(--fkt-color-accent));
+
+/*
+Text color for accent badge in opaque theme.
+@name --fkt-badge-accent-color
+@reference --fkt-color-on-accent
+@category Colors
+@type color
+*/
+$badge-accent-color: var(--fkt-badge-accent-color, var(--fkt-color-on-accent));
+
+/*
+Background color for warning badge in opaque theme.
+@name --fkt-badge-warning-background
+@reference --fkt-color-warning
+@category Colors
+@type color
+*/
+$badge-warning-background: var(--fkt-badge-warning-background, var(--fkt-color-warning));
+
+/*
+Text color for warning badge in opaque theme.
+@name --fkt-badge-warning-color
+@reference --fkt-color-on-warning
+@category Colors
+@type color
+*/
+$badge-warning-color: var(--fkt-badge-warning-color, var(--fkt-color-on-warning));
+
+/*
+Background color for success badge in opaque theme.
+@name --fkt-badge-success-background
+@reference --fkt-color-success
+@category Colors
+@type color
+*/
+$badge-success-background: var(--fkt-badge-success-background, var(--fkt-color-success));
+
+/*
+Text color for success badge in opaque theme.
+@name --fkt-badge-success-color
+@reference --fkt-color-on-success
+@category Colors
+@type color
+*/
+$badge-success-color: var(--fkt-badge-success-color, var(--fkt-color-on-success));
+
+/*
+Text color for faded theme badges.
+@name --fkt-badge-faded-text-color
+@reference --fkt-color-neutral-900
+@category Colors
+@type color
+*/
+$badge-faded-text-color: var(--fkt-badge-faded-text-color, var(--fkt-color-neutral-900));
+
+/*
+Background color for danger badge in faded theme.
+@name --fkt-badge-danger-faded-background
+@reference --fkt-color-danger-translucent
+@category Colors
+@type color
+*/
+$badge-danger-faded-background: var(--fkt-badge-danger-faded-background, var(--fkt-color-danger-translucent));
+
+/*
+Background color for info badge in faded theme.
+@name --fkt-badge-info-faded-background
+@reference --fkt-color-info-translucent
+@category Colors
+@type color
+*/
+$badge-info-faded-background: var(--fkt-badge-info-faded-background, var(--fkt-color-info-translucent));
+
+/*
+Background color for warning badge in faded theme.
+@name --fkt-badge-warning-faded-background
+@reference --fkt-color-warning-translucent
+@category Colors
+@type color
+*/
+$badge-warning-faded-background: var(--fkt-badge-warning-faded-background, var(--fkt-color-warning-translucent));
+
+/*
+Background color for accent badge in faded theme.
+@name --fkt-badge-accent-faded-background
+@reference --fkt-color-accent-translucent
+@category Colors
+@type color
+*/
+$badge-accent-faded-background: var(--fkt-badge-accent-faded-background, var(--fkt-color-accent-translucent));
+
+/*
+Background color for success badge in faded theme.
+@name --fkt-badge-success-faded-background
+@reference --fkt-color-success-translucent
+@category Colors
+@type color
+*/
+$badge-success-faded-background: var(--fkt-badge-success-faded-background, var(--fkt-color-success-translucent));
+// </design-tokens>
+
 .badge {
 	display: flex;
 	justify-content: center;
@@ -5,61 +196,61 @@
 
 	height: fit-content;
 	width: fit-content;
-	border-radius: var(--radius-md);
+	border-radius: $badge-border-radius;
 
-	color: var(--color-neutral-100);
-
-	gap: var(--space-xs);
-	padding: var(--space-3xs) var(--space-xs);
-	font-weight: var(--font-semibold);
-	font-size: var(--font-size-sm);
+	gap: $badge-gap;
+	padding: $badge-padding;
+	font-weight: $badge-font-weight;
+	font-size: $badge-font-size;
 
 	&.badge--opaque {
 		&.badge--danger {
-			background-color: var(--color-red-500);
+			background-color: $badge-danger-background;
+			color: $badge-danger-color;
 		}
 
 		&.badge--info {
-			background-color: var(--color-blue-500);
+			background-color: $badge-info-background;
+			color: $badge-info-color;
 		}
 
 		&.badge--accent {
-			background-color: var(--color-yellow-500);
+			background-color: $badge-accent-background;
+			color: $badge-accent-color;
 		}
 
 		&.badge--warning {
-			background-color: var(--color-orange-500);
+			background-color: $badge-warning-background;
+			color: $badge-warning-color;
 		}
 
 		&.badge--success {
-			background-color: var(--color-green-500);
+			background-color: $badge-success-background;
+			color: $badge-success-color;
 		}
 	}
 
 	&.badge--faded {
+		color: $badge-faded-text-color;
+
 		&.badge--danger {
-			background-color: var(--color-red-200);
-			color: var(--color-neutral-950);
+			background-color: $badge-danger-faded-background;
 		}
 
 		&.badge--info {
-			background-color: var(--color-blue-200);
-			color: var(--color-neutral-950);
+			background-color: $badge-info-faded-background;
 		}
 
 		&.badge--warning {
-			background-color: var(--color-orange-200);
-			color: var(--color-neutral-950);
+			background-color: $badge-warning-faded-background;
 		}
 
 		&.badge--accent {
-			background-color: var(--color-yellow-200);
-			color: var(--color-neutral-950);
+			background-color: $badge-accent-faded-background;
 		}
 
 		&.badge--success {
-			background-color: var(--color-green-200);
-			color: var(--color-neutral-950);
+			background-color: $badge-success-faded-background;
 		}
 	}
 }

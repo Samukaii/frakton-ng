@@ -25,7 +25,7 @@ h3, h4 {
 
 			&-message {
 				font-size: var(--font-size-sm);
-				color: var(--color-gray-600);
+				color: var(--fkt-color-neutral-600);
 
 				&--valid {
 					color: var(--color-green-600);
@@ -54,7 +54,7 @@ h3, h4 {
 		pre {
 			margin-top: var(--space-xs);
 			font-size: var(--font-size-sm);
-			color: var(--color-gray-700);
+			color: var(--fkt-color-neutral-700);
 		}
 	}
 }

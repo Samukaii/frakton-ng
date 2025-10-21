@@ -92,7 +92,12 @@ const extract = (hex: string): FktColorPickerHEX | null => {
 
 	if(!expanded) return null;
 
-	const [red, green, blue, alpha] = expanded.replace('#', '');
+	const withoutHexCode = expanded.replace('#', '');
+
+	const red = withoutHexCode.slice(0, 2).toUpperCase();
+	const green = withoutHexCode.slice(2, 4).toUpperCase();
+	const blue = withoutHexCode.slice(4, 6).toUpperCase();
+	const alpha = withoutHexCode.slice(6, 8).toUpperCase();
 
 	return {red, green, blue, alpha};
 }

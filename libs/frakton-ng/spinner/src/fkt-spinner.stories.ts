@@ -9,12 +9,22 @@ import {
 } from './examples';
 import { customDocsControl } from '../../.storybook/decorators/custom-docs-control';
 import { renderComponent } from '../../.storybook/decorators/render-component';
+import designTokens from './fkt-spinner-design-tokens.json';
 
 const meta: Meta<FktSpinnerComponent> = {
-	title: 'Components/Spinner',
+	title: 'Components/Feedback/Spinner',
 	component: FktSpinnerComponent,
+	parameters: {
+		docs: {
+			description: {
+				component: 'A loading spinner component with customizable size, stroke width, and color themes for indicating loading states.'
+			}
+		}
+	},
 	decorators: [
-		customDocsControl(),
+		customDocsControl({
+			designTokens: designTokens as any
+		}),
 	],
 	argTypes: {
 		color: {

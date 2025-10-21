@@ -101,241 +101,241 @@ $spinner-border-width: var(--fkt-button-spinner-border-width, 2px);
 /*
 Button background disabled color.
 @name --fkt-button-disabled-color
-@reference --color-disabled
+@reference --fkt-color-disabled
 @category Colors
 @type color
 */
-$disabled-color: var(--fkt-button-disabled-color, var(--color-disabled));
+$disabled-color: var(--fkt-button-disabled-color, var(--fkt-color-disabled));
 
 /*
 Button text disabled color.
 @name --fkt-button-on-disabled-color
-@reference --color-on-disabled
+@reference --fkt-color-on-disabled
 @category Colors
 @type color
 */
-$disabled-on-color: var(--fkt-button-on-disabled-color, var(--color-on-disabled));
+$disabled-on-color: var(--fkt-button-on-disabled-color, var(--fkt-color-on-disabled));
 
 /*
 Primary button background and border color.
 @name --fkt-button-primary-color
-@reference --color-primary
+@reference --fkt-color-primary
 @category Colors
 @type color
 */
-$primary-color: var(--fkt-button-primary-color, var(--color-primary));
+$primary-color: var(--fkt-button-primary-color, var(--fkt-color-primary));
 
 /*
 Primary button text and icon color.
 @name --fkt-button-on-primary-color
-@reference --color-on-primary
+@reference --fkt-color-on-primary
 @category Colors
 @type color
 */
-$on-primary-color: var(--fkt-button-on-primary-color, var(--color-on-primary));
+$on-primary-color: var(--fkt-button-on-primary-color, var(--fkt-color-on-primary));
 
 /*
 Primary button hover background and border color.
 @name --fkt-button-primary-hover-color
-@reference --color-primary-hover
+@reference --fkt-color-primary-hover
 @category Colors
 @type color
 */
-$primary-hover-color: var(--fkt-button-primary-hover-color, var(--color-primary-hover));
+$primary-hover-color: var(--fkt-button-primary-hover-color, var(--fkt-color-primary-hover));
 
 /*
 Success button translucent background color (used for basic theme hover).
 @name --fkt-button-primary-translucent-color
-@reference --color-primary-translucent
+@reference --fkt-color-primary-translucent
 @category Colors
 @type color
 */
-$primary-translucent-color: var(--fkt-button-primary-translucent-color, var(--color-primary-translucent));
+$primary-translucent-color: var(--fkt-button-primary-translucent-color, var(--fkt-color-primary-translucent));
 
 // Color variants - Success
 /*
 Success button background and border color.
 @name --fkt-button-success-color
-@reference --color-success
+@reference --fkt-color-success
 @category Colors
 @type color
 */
-$success-color: var(--fkt-button-success-color, var(--color-success));
+$success-color: var(--fkt-button-success-color, var(--fkt-color-success));
 
 /*
 Success button text and icon color.
 @name --fkt-button-on-success-color
-@reference --color-on-success
+@reference --fkt-color-on-success
 @category Colors
 @type color
 */
-$on-success-color: var(--fkt-button-on-success-color, var(--color-on-success));
+$on-success-color: var(--fkt-button-on-success-color, var(--fkt-color-on-success));
 
 /*
 Success button hover background and border color.
 @name --fkt-button-success-hover-color
-@reference --color-success-hover
+@reference --fkt-color-success-hover
 @category Colors
 @type color
 */
-$success-hover-color: var(--fkt-button-success-hover-color, var(--color-success-hover));
+$success-hover-color: var(--fkt-button-success-hover-color, var(--fkt-color-success-hover));
 
 /*
 Success button translucent background color (used for basic theme hover).
 @name --fkt-button-success-translucent-color
-@reference --color-success-translucent
+@reference --fkt-color-success-translucent
 @category Colors
 @type color
 */
-$success-translucent-color: var(--fkt-button-success-translucent-color, var(--color-success-translucent));
+$success-translucent-color: var(--fkt-button-success-translucent-color, var(--fkt-color-success-translucent));
 
 // Color variants - Error
 /*
 Error button background and border color.
 @name --fkt-button-danger-color
-@reference --color-danger
+@reference --fkt-color-danger
 @category Colors
 @type color
 */
-$danger-color: var(--fkt-button-danger-color, var(--color-danger));
+$danger-color: var(--fkt-button-danger-color, var(--fkt-color-danger));
 
 /*
 Error button text and icon color.
 @name --fkt-button-on-danger-color
-@reference --color-on-danger
+@reference --fkt-color-on-danger
 @category Colors
 @type color
 */
-$on-danger-color: var(--fkt-button-on-danger-color, var(--color-on-danger));
+$on-danger-color: var(--fkt-button-on-danger-color, var(--fkt-color-on-danger));
 
 /*
 Error button hover background and border color.
 @name --fkt-button-danger-hover-color
-@reference --color-danger-hover
+@reference --fkt-color-danger-hover
 @category Colors
 @type color
 */
-$danger-hover-color: var(--fkt-button-danger-hover-color, var(--color-danger-hover));
+$danger-hover-color: var(--fkt-button-danger-hover-color, var(--fkt-color-danger-hover));
 
 /*
 Danger button translucent background color (used for basic theme hover).
 @name --fkt-button-danger-translucent-color
-@reference --color-danger-translucent
+@reference --fkt-color-danger-translucent
 @category Colors
 @type color
 */
-$danger-translucent-color: var(--fkt-button-danger-translucent-color, var(--color-danger-translucent));
+$danger-translucent-color: var(--fkt-button-danger-translucent-color, var(--fkt-color-danger-translucent));
 
 // Color variants - Warning
 /*
 Warning button background and border color.
 @name --fkt-button-warning-color
-@reference --color-warning
+@reference --fkt-color-warning
 @category Colors
 @type color
 */
-$warning-color: var(--fkt-button-warning-color, var(--color-warning));
+$warning-color: var(--fkt-button-warning-color, var(--fkt-color-warning));
 
 /*
 Warning button text and icon color.
 @name --fkt-button-on-warning-color
-@reference --color-on-warning
+@reference --fkt-color-on-warning
 @category Colors
 @type color
 */
-$on-warning-color: var(--fkt-button-on-warning-color, var(--color-on-warning));
+$on-warning-color: var(--fkt-button-on-warning-color, var(--fkt-color-on-warning));
 
 /*
 Warning button hover background and border color.
 @name --fkt-button-warning-hover-color
-@reference --color-warning-hover
+@reference --fkt-color-warning-hover
 @category Colors
 @type color
 */
-$warning-hover-color: var(--fkt-button-warning-hover-color, var(--color-warning-hover));
+$warning-hover-color: var(--fkt-button-warning-hover-color, var(--fkt-color-warning-hover));
 
 /*
 Warning button translucent background color (used for basic theme hover).
 @name --fkt-button-warning-translucent-color
-@reference --color-warning-translucent
+@reference --fkt-color-warning-translucent
 @category Colors
 @type color
 */
-$warning-translucent-color: var(--fkt-button-warning-translucent-color, var(--color-warning-translucent));
+$warning-translucent-color: var(--fkt-button-warning-translucent-color, var(--fkt-color-warning-translucent));
 
 // Color variants - Info
 /*
 Info button background and border color.
 @name --fkt-button-info-color
-@reference --color-info
+@reference --fkt-color-info
 @category Colors
 @type color
 */
-$info-color: var(--fkt-button-info-color, var(--color-info));
+$info-color: var(--fkt-button-info-color, var(--fkt-color-info));
 
 /*
 Info button text and icon color.
 @name --fkt-button-on-info-color
-@reference --color-on-info
+@reference --fkt-color-on-info
 @category Colors
 @type color
 */
-$on-info-color: var(--fkt-button-on-info-color, var(--color-on-info));
+$on-info-color: var(--fkt-button-on-info-color, var(--fkt-color-on-info));
 
 /*
 Info button hover background and border color.
 @name --fkt-button-info-hover-color
-@reference --color-info-hover
+@reference --fkt-color-info-hover
 @category Colors
 @type color
 */
-$info-hover-color: var(--fkt-button-info-hover-color, var(--color-info-hover));
+$info-hover-color: var(--fkt-button-info-hover-color, var(--fkt-color-info-hover));
 
 /*
 Success button translucent background color (used for basic theme hover).
 @name --fkt-button-info-translucent-color
-@reference --color-info-translucent
+@reference --fkt-color-info-translucent
 @category Colors
 @type color
 */
-$info-translucent-color: var(--fkt-button-info-translucent-color, var(--color-info-translucent));
+$info-translucent-color: var(--fkt-button-info-translucent-color, var(--fkt-color-info-translucent));
 
 // Color variants - Accent
 /*
 Accent button background and border color.
 @name --fkt-button-accent-color
-@reference --color-accent
+@reference --fkt-color-accent
 @category Colors
 @type color
 */
-$accent-color: var(--fkt-button-accent-color, var(--color-accent));
+$accent-color: var(--fkt-button-accent-color, var(--fkt-color-accent));
 
 /*
 Accent button text and icon color.
 @name --fkt-button-on-accent-color
-@reference --color-neutral-800
+@reference --fkt-color-on-accent
 @category Colors
 @type color
 */
-$on-accent-color: var(--fkt-button-on-accent-color, var(--color-on-accent));
+$on-accent-color: var(--fkt-button-on-accent-color, var(--fkt-color-on-accent));
 
 /*
 Accent button hover background and border color.
 @name --fkt-button-accent-hover-color
-@reference --color-yellow-400
+@reference --fkt-color-accent
 @category Colors
 @type color
 */
-$accent-hover-color: var(--fkt-button-accent-hover-color, var(--color-yellow-400));
+$accent-hover-color: var(--fkt-button-accent-hover-color, var(--fkt-color-accent));
 
 /*
 Accent button translucent background color (used for basic theme hover).
 @name --fkt-button-accent-translucent-color
-@reference --color-accent-translucent
+@reference --fkt-color-accent-translucent
 @category Colors
 @type color
 */
-$accent-translucent-color: var(--fkt-button-accent-translucent-color, var(--color-accent-translucent));
+$accent-translucent-color: var(--fkt-button-accent-translucent-color, var(--fkt-color-accent-translucent));
 
 // </design-tokens>
 

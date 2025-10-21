@@ -108,6 +108,9 @@
 			],
 			"frakton-ng/tooltip": [
 				"libs/frakton-ng/tooltip"
+			],
+			"frakton-ng/toggle": [
+				"libs/frakton-ng/toggle"
 			]
 		},
 		"strict": true,

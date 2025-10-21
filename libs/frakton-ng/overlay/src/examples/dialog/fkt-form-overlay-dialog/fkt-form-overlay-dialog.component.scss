@@ -16,23 +16,23 @@ h3 {
 		padding: var(--space-xs);
 		gap: var(--space-xs);
 		align-items: center;
-		border: solid 1px var(--color-gray-200);
+		border: solid 1px var(--fkt-color-neutral-200);
 
 		&-icon {
-			color: var(--color-gray-600);
+			color: var(--fkt-color-neutral-600);
 		}
 
 		&-title {
 			font-size: var(--font-size-lg);
 			font-weight: var(--font-semibold);
-			color: var(--color-gray-900);
+			color: var(--fkt-color-neutral-900);
 		}
 	}
 
 	&__description {
 		font-size: var(--font-size-sm);
 		line-height: 1.25rem;
-		color: var(--color-gray-600);
+		color: var(--fkt-color-neutral-600);
 	}
 
 	&__form {

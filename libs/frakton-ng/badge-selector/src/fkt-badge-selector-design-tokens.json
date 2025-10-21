@@ -1,0 +1,72 @@
+[
+  {
+    "description": "Scale factor for badge on hover effect.",
+    "name": "--fkt-badge-selector-hover-scale",
+    "reference": "105%",
+    "category": "Effects",
+    "type": "scale",
+    "defaultValue": "105%"
+  },
+  {
+    "description": "Gap between icon and text in badge content.",
+    "name": "--fkt-badge-selector-content-gap",
+    "reference": "--space-xs",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": "--space-xs"
+  },
+  {
+    "description": "Padding for badge selector modal container.",
+    "name": "--fkt-badge-selector-modal-padding",
+    "reference": "--space-xs",
+    "component": "Modal",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": "--space-xs"
+  },
+  {
+    "description": "Gap between elements in modal container.",
+    "name": "--fkt-badge-selector-modal-gap",
+    "reference": "--space-xs",
+    "component": "Modal",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": "--space-xs"
+  },
+  {
+    "description": "Gap between items in modal rows.",
+    "name": "--fkt-badge-selector-modal-row-gap",
+    "reference": "--space-xs",
+    "component": "Modal",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": "--space-xs"
+  },
+  {
+    "description": "Scale factor for badge hover effect in modal.",
+    "name": "--fkt-badge-selector-modal-badge-hover-scale",
+    "reference": "105%",
+    "component": "Modal",
+    "category": "Effects",
+    "type": "scale",
+    "defaultValue": "105%"
+  },
+  {
+    "description": "Gap between icon and text in modal badge content.",
+    "name": "--fkt-badge-selector-modal-badge-content-gap",
+    "reference": "--space-xs",
+    "component": "Modal",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": "--space-xs"
+  },
+  {
+    "description": "Font size for icons in modal badges.",
+    "name": "--fkt-badge-selector-modal-icon-font-size",
+    "reference": "--font-size-sm",
+    "component": "Modal",
+    "category": "Typography",
+    "type": "size",
+    "defaultValue": "--font-size-sm"
+  }
+]

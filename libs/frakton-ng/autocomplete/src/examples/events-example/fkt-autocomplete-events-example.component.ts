@@ -48,6 +48,7 @@ export class FktAutocompleteEventsExampleComponent {
 			color: 'primary',
 			theme: 'basic',
 			identifier: 'edit',
+			ariaLabel: 'Edit option',
 			click: () => {
 				this.lastEvent.set("edit")
 			}
@@ -57,6 +58,7 @@ export class FktAutocompleteEventsExampleComponent {
 			color: 'accent',
 			theme: 'basic',
 			identifier: 'favorite',
+			ariaLabel: 'Favorite option',
 			click: () => {
 				this.lastEvent.set("favorite")
 			}
@@ -66,6 +68,7 @@ export class FktAutocompleteEventsExampleComponent {
 			color: 'danger',
 			theme: 'basic',
 			identifier: 'delete',
+			ariaLabel: 'Delete option',
 			click: () => {
 				this.lastEvent.set("delete")
 			}

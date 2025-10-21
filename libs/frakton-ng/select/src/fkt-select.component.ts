@@ -1,5 +1,5 @@
 import { booleanAttribute, Component, computed, inject, input, model, output, signal } from '@angular/core';
-import { FktSelectOverlayComponent } from './overlay/fkt-select-overlay.component';
+import { FktSelectOptionsComponent } from './options/fkt-select-options.component';
 import { FktOverlayRef, FktOverlayService } from 'frakton-ng/overlay';
 import { FktNoResults } from 'frakton-ng/no-results';
 import { FktAutocompleteOption } from 'frakton-ng/autocomplete';
@@ -7,13 +7,13 @@ import { FktIconComponent } from 'frakton-ng/icon';
 import { ElementIdGeneratorService } from 'frakton-ng/internal/services';
 import { FktSelectOption } from './fkt-select.types';
 import { FormValueControl, ValidationError, WithOptionalField } from '@angular/forms/signals';
-import { FktControlFormatterDirective } from '../../forms/src/fkt-control-formatter.directive';
+import { getElementDesignTokens } from 'frakton-ng/internal/utils';
+import { getElementDesignToken } from '../../internal/utils/get-element-design-token';
 
 @Component({
 	selector: 'fkt-select',
 	imports: [
-		FktIconComponent,
-		FktControlFormatterDirective
+		FktIconComponent
 	],
 	templateUrl: './fkt-select.component.html',
 	styleUrl: './fkt-select.component.scss',
@@ -47,7 +47,7 @@ export class FktSelectComponent implements FormValueControl<string | number | nu
 	protected labelId =  this.idGenerator.next('fkt-select-label');
 	protected listBoxId =  this.idGenerator.next('fkt-select-list-box');
 
-	private overlayRef = signal<FktOverlayRef<FktSelectOverlayComponent> | null>(null);
+	private overlayRef = signal<FktOverlayRef<FktSelectOptionsComponent> | null>(null);
 
 	protected opened = computed(() => !!this.overlayRef());
 
@@ -72,10 +72,14 @@ export class FktSelectComponent implements FormValueControl<string | number | nu
 		if(this.disabled())
 			return;
 
+		const tokens = getElementDesignTokens(nativeElement);
+		const globalBackgroundColor = getElementDesignToken(nativeElement, '--fkt-color-neutral-100');
+		const backgroundColor = tokens['--fkt-select-overlay-background-color'] ?? globalBackgroundColor ?? '#FFF';
+
 		this.selectOpened.emit();
 
 		const overlayRef = this.overlayService.open({
-			component: FktSelectOverlayComponent,
+			component: FktSelectOptionsComponent,
 			data: {
 				hostElement: nativeElement,
 				options: this.options,
@@ -93,7 +97,8 @@ export class FktSelectComponent implements FormValueControl<string | number | nu
 					this.closeOverlay();
 				},
 				maxHeight: '420px',
-
+				styles: tokens,
+				backgroundColor
 			}
 		});
 

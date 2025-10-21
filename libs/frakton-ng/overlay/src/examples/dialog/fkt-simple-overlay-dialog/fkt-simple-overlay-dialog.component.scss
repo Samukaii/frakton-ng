@@ -15,11 +15,11 @@ h3, p {
 	&__title {
 		font-size: var(--font-size-lg);
 		font-weight: var(--font-semibold);
-		color: var(--color-gray-900);
+		color: var(--fkt-color-neutral-900);
 	}
 
 	&__description {
-		color: var(--color-gray-600);
+		color: var(--fkt-color-neutral-600);
 	}
 
 	&__actions {

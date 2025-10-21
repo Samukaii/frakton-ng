@@ -1,0 +1,47 @@
+[
+  {
+    "description": "Default size for the spinner.",
+    "name": "--fkt-spinner-size",
+    "reference": "80px",
+    "component": "Feedback",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": "80px"
+  },
+  {
+    "description": "Default stroke width for the spinner border.",
+    "name": "--fkt-spinner-stroke",
+    "reference": "6px",
+    "component": "Feedback",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": "6px"
+  },
+  {
+    "description": "Background color for the spinner border.",
+    "name": "--fkt-spinner-border-color",
+    "reference": "--fkt-color-neutral-200",
+    "component": "Feedback",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "--fkt-color-neutral-200"
+  },
+  {
+    "description": "Border radius for the spinner (full circle).",
+    "name": "--fkt-spinner-border-radius",
+    "reference": "--radius-full",
+    "component": "Feedback",
+    "category": "Shape",
+    "type": "size",
+    "defaultValue": "--radius-full"
+  },
+  {
+    "description": "Animation duration for the spinner rotation.",
+    "name": "--fkt-spinner-animation-duration",
+    "reference": "1s",
+    "component": "Feedback",
+    "category": "Animation",
+    "type": "size",
+    "defaultValue": "1s"
+  }
+]

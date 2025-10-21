@@ -14,7 +14,7 @@ interface NgModuleMetadata {
 
 interface Options {
 	selector?: string;
-	designTokens?: DesignToken[];
+	designTokens?: any[];
 	metadata?: NgModuleMetadata;
 }
 

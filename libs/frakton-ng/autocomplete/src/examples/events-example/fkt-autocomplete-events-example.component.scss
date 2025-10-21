@@ -8,7 +8,7 @@ p {
 
 hr {
 	border: none;
-	border-bottom: solid 1px var(--color-neutral-300);
+	border-bottom: solid 1px var(--fkt-color-neutral-300);
 	margin: 0;
 }
 
@@ -27,7 +27,7 @@ hr {
 		border-radius: var(--radius-md);
 		font-size: var(--font-size-sm);
 		box-shadow: var(--shadow-md);
-		border: 1px solid var(--color-neutral-200);
+		border: 1px solid var(--fkt-color-neutral-200);
 		display: flex;
 		flex-direction: column;
 		gap: var(--space-xs);
@@ -50,7 +50,7 @@ hr {
 		border-radius: var(--radius-md);
 		font-size: var(--font-size-sm);
 		box-shadow: var(--shadow-md);
-		border: 1px solid var(--color-neutral-200);
+		border: 1px solid var(--fkt-color-neutral-200);
 		display: flex;
 		flex-direction: column;
 		gap: var(--space-xs);
@@ -66,17 +66,17 @@ hr {
 			font-family: 'Monaco', 'Menlo', 'Consolas', monospace;
 			font-size: 0.8rem;
 			color: var(--color-text-secondary);
-			background-color: var(--color-neutral-200);
+			background-color: var(--fkt-color-neutral-200);
 			padding: 0.5rem;
 			border-radius: 3px;
-			border: 1px solid var(--color-neutral-200);
+			border: 1px solid var(--fkt-color-neutral-200);
 		}
 	}
 
 	.actions-legend {
 		margin-top: 1.5rem;
 		padding: 1rem;
-		background-color: var(--color-blue-50);
+		background-color: var(--fkt-color-neutral-200);
 		box-shadow: var(--shadow-md);
 		border-radius: 4px;
 
@@ -110,15 +110,15 @@ hr {
 				font-size: 12px;
 
 				&.edit-icon {
-					color: var(--color-gray-600);
+					color: var(--fkt-color-primary);
 				}
 
 				&.favorite-icon {
-					color: var(--color-yellow-600);
+					color: var(--fkt-color-warning);
 				}
 
 				&.delete-icon {
-					color: var(--color-red-600);
+					color: var(--fkt-color-danger);
 				}
 			}
 		}

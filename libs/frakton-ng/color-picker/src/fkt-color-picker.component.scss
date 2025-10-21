@@ -32,42 +32,42 @@ $preview-border-radius: var(--fkt-color-picker-preview-border-radius, var(--radi
 /*
 Border color for color picker elements.
 @name --fkt-color-picker-border-color
-@reference --color-neutral-400
+@reference --fkt-color-neutral-400
 @component Field
 @category Colors
 @type color
 */
-$border-color: var(--fkt-color-picker-border-color, var(--color-neutral-400));
+$border-color: var(--fkt-color-picker-border-color, var(--fkt-color-neutral-400));
 
 /*
 Background color for button hover state.
 @name --fkt-color-picker-button-hover-bg
-@reference --color-neutral-200
+@reference --fkt-color-neutral-200
 @component Field
 @category Colors
 @type color
 */
-$button-hover-bg: var(--fkt-color-picker-button-hover-bg, var(--color-neutral-200));
+$button-hover-bg: var(--fkt-color-picker-button-hover-bg, var(--fkt-color-neutral-200));
 
 /*
 Text color for color labels and descriptions.
 @name --fkt-color-picker-label-color
-@reference --color-neutral-900
+@reference --fkt-color-neutral-900
 @component Field
 @category Colors
 @type color
 */
-$label-color: var(--fkt-color-picker-label-color, var(--color-neutral-900));
+$label-color: var(--fkt-color-picker-label-color, var(--fkt-color-neutral-900));
 
 /*
 Text color for preview color code.
 @name --fkt-color-picker-preview-value-color
-@reference --color-neutral-500
+@reference --fkt-color-neutral-500
 @component Field
 @category Colors
 @type color
 */
-$preview-value: var(--fkt-color-picker-preview-value-color, var(--color-neutral-500));
+$preview-value: var(--fkt-color-picker-preview-value-color, var(--fkt-color-neutral-500));
 
 /*
 Width of the color preview area.

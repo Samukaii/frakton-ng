@@ -29,7 +29,7 @@
   {
     "description": "Border color for color picker elements.",
     "name": "--fkt-color-picker-border-color",
-    "reference": "--color-neutral-400",
+    "reference": "--fkt-color-neutral-400",
     "component": "Field",
     "category": "Colors",
     "type": "color",
@@ -38,7 +38,7 @@
   {
     "description": "Background color for button hover state.",
     "name": "--fkt-color-picker-button-hover-bg",
-    "reference": "--color-neutral-200",
+    "reference": "--fkt-color-neutral-200",
     "component": "Field",
     "category": "Colors",
     "type": "color",
@@ -47,7 +47,7 @@
   {
     "description": "Text color for color labels and descriptions.",
     "name": "--fkt-color-picker-label-color",
-    "reference": "--color-neutral-900",
+    "reference": "--fkt-color-neutral-900",
     "component": "Field",
     "category": "Colors",
     "type": "color",
@@ -56,7 +56,7 @@
   {
     "description": "Text color for preview color code.",
     "name": "--fkt-color-picker-preview-value-color",
-    "reference": "--color-neutral-500",
+    "reference": "--fkt-color-neutral-500",
     "component": "Field",
     "category": "Colors",
     "type": "color",
@@ -83,7 +83,7 @@
   {
     "description": "Modal background color",
     "name": "--fkt-color-picker-modal-background-color",
-    "reference": "--color-neutral-50",
+    "reference": "--fkt-color-modal-background",
     "component": "Modal",
     "category": "Colors",
     "type": "color",
@@ -92,7 +92,7 @@
   {
     "description": "Modal text color",
     "name": "--fkt-color-picker-modal-text-color",
-    "reference": "--color-neutral-950",
+    "reference": "--fkt-color-neutral-950",
     "component": "Modal",
     "category": "Colors",
     "type": "color",
@@ -146,7 +146,7 @@
   {
     "description": "Border color for control elements.",
     "name": "--fkt-color-control-border-color",
-    "reference": "--color-neutral-400",
+    "reference": "--fkt-color-neutral-400",
     "component": "Color controls",
     "category": "Colors",
     "type": "color",
@@ -155,7 +155,7 @@
   {
     "description": "Hover border color for control elements.",
     "name": "--fkt-color-control-hover-border-color",
-    "reference": "--color-brand-secondary",
+    "reference": "--fkt-color-brand-secondary",
     "component": "Color controls",
     "category": "Colors",
     "type": "color",
@@ -173,7 +173,7 @@
   {
     "description": "Focus shadow color for control elements.",
     "name": "--fkt-color-control-focus-shadow-color",
-    "reference": "--color-brand-secondary",
+    "reference": "--fkt-color-brand-secondary",
     "component": "Color controls",
     "category": "Colors",
     "type": "color",
@@ -200,7 +200,7 @@
   {
     "description": "Text color for color value display.",
     "name": "--fkt-color-control-value-color",
-    "reference": "--color-neutral-900",
+    "reference": "--fkt-color-neutral-900",
     "component": "Color controls",
     "category": "Colors",
     "type": "color",

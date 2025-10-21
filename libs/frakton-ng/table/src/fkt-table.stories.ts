@@ -15,12 +15,22 @@ import {
 } from './examples';
 import { customDocsControl } from '../../.storybook/decorators/custom-docs-control';
 import { renderComponent } from '../../.storybook/decorators/render-component';
+import designTokens from './fkt-table-design-tokens.json';
 
 const meta: Meta<FktTableComponent<any>> = {
-	title: 'Components/Table',
+	title: 'Components/Display/Table',
 	component: FktTableComponent,
+	parameters: {
+		docs: {
+			description: {
+				component: 'A flexible data table component with support for custom columns, actions, loading states, and empty state configurations.'
+			}
+		}
+	},
 	decorators: [
-		customDocsControl(),
+		customDocsControl({
+			designTokens: designTokens as any
+		}),
 	],
 	argTypes: {
 		data: {

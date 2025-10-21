@@ -1,0 +1,40 @@
+* {
+	box-sizing: border-box;
+}
+
+.container {
+	width: 50px;
+	height: 25px;
+	border-radius: var(--radius-full);
+	cursor: pointer;
+	display: flex;
+	justify-content: flex-start;
+	transition: var(--transition-base);
+	background-color: var(--fkt-color-neutral-400);
+	padding: var(--space-3xs);
+	outline: 2px solid transparent;
+
+	&:focus {
+		outline: 2px solid var(--fkt-color-accent);
+	}
+
+	.toggle {
+		height: 100%;
+		width: auto;
+		aspect-ratio: 1;
+		position: relative;
+		border-radius: var(--radius-full);
+		background-color: var(--fkt-color-on-primary);
+		transition: var(--transition-base);
+		left: 0;
+	}
+
+	&.enabled {
+		background-color: var(--fkt-color-primary);
+
+		.toggle {
+			left: 100%;
+			transform: translateX(-100%);
+		}
+	}
+}

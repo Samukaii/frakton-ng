@@ -13,6 +13,7 @@
                 [shape]="'rect'"
                 [theme]="'basic'"
                 [color]="'primary'"
+                [ariaLabel]="menuOpened() ? 'Close menu' : 'Open menu'"
                 (click)="toggleMenu()"
               />
               <h1 class="admin-dashboard-example__title">{{ currentPageTitle() }}</h1>
@@ -23,6 +24,7 @@
                 [shape]="'rect'"
                 [theme]="'basic'"
                 [color]="'primary'"
+                ariaLabel="Notifications"
               />
               <div class="admin-dashboard-example__avatar"></div>
             </div>

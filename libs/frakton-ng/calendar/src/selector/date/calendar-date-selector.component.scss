@@ -2,42 +2,42 @@
 /*
 Calendar date cell background color on hover.
 @name --fkt-calendar-date-hover-bg
-@reference --color-neutral-200
+@reference --fkt-color-primary-translucent
 @component Date selector
 @category Colors
 @type color
 */
-$date-hover-bg: var(--fkt-calendar-date-hover-bg, var(--color-neutral-200));
+$date-hover-bg: var(--fkt-calendar-date-hover-bg, var(--fkt-color-primary-translucent));
 
 /*
 Calendar date cell border color for today.
 @name --fkt-calendar-date-today-border-color
-@reference --color-neutral-600
+@reference --fkt-color-neutral-600
 @component Date selector
 @category Colors
 @type color
 */
-$date-today-border-color: var(--fkt-calendar-date-today-border-color, var(--color-neutral-600));
+$date-today-border-color: var(--fkt-calendar-date-today-border-color, var(--fkt-color-neutral-600));
 
 /*
 Calendar date cell background color when selected.
 @name --fkt-calendar-date-selected-bg
-@reference --color-brand-primary
+@reference --fkt-color-primary
 @component Date selector
 @category Colors
 @type color
 */
-$date-selected-bg: var(--fkt-calendar-date-selected-bg, var(--color-brand-primary));
+$date-selected-bg: var(--fkt-calendar-date-selected-bg, var(--fkt-color-primary));
 
 /*
 Calendar date cell text color when selected.
 @name --fkt-calendar-date-selected-color
-@reference --color-neutral-50
+@reference --fkt-color-on-primary
 @component Date selector
 @category Colors
 @type color
 */
-$date-selected-color: var(--fkt-calendar-date-selected-color, var(--color-neutral-50));
+$date-selected-color: var(--fkt-calendar-date-selected-color, var(--fkt-color-on-primary));
 
 /*
 Calendar date cell opacity when out of range.
@@ -82,12 +82,12 @@ $date-size: var(--fkt-calendar-date-size, 40px);
 /*
 Calendar weekday header text color.
 @name --fkt-calendar-weekday-color
-@reference --color-neutral-700
+@reference --fkt-color-neutral-700
 @component Date selector
 @category Colors
 @type color
 */
-$weekday-color: var(--fkt-calendar-weekday-color, var(--color-neutral-700));
+$weekday-color: var(--fkt-calendar-weekday-color, var(--fkt-color-neutral-700));
 
 /*
 Calendar weekday header font weight.

@@ -3,6 +3,7 @@
     "description": "Vertical padding inside the select field (top and bottom spacing between border and content).",
     "name": "--fkt-select-vertical-padding",
     "reference": "--space-md",
+    "component": "Field",
     "category": "Spacing",
     "type": "size",
     "defaultValue": "1rem"
@@ -11,6 +12,7 @@
     "description": "Horizontal padding inside the select field (left and right spacing between border and content).",
     "name": "--fkt-select-horizontal-padding",
     "reference": "--space-md",
+    "component": "Field",
     "category": "Spacing",
     "type": "size",
     "defaultValue": "1rem"
@@ -18,7 +20,8 @@
   {
     "description": "Border color of the select in its normal (default) state.",
     "name": "--fkt-select-border-color",
-    "reference": "--color-neutral-400",
+    "reference": "--fkt-color-neutral-400",
+    "component": "Field",
     "category": "Colors",
     "type": "color",
     "defaultValue": "#D1D5DBFF"
@@ -26,7 +29,8 @@
   {
     "description": "Border color of the select when it gets focused",
     "name": "--fkt-select-border-focus-color",
-    "reference": "--color-brand-secondary",
+    "reference": "--fkt-color-brand-secondary",
+    "component": "Field",
     "category": "Colors",
     "type": "color",
     "defaultValue": "#ffb940"
@@ -34,7 +38,8 @@
   {
     "description": "Color of the label in its normal (default) state.",
     "name": "--fkt-select-label-color",
-    "reference": "--color-neutral-500",
+    "reference": "--fkt-color-neutral-500",
+    "component": "Field",
     "category": "Colors",
     "type": "color",
     "defaultValue": "#6B7280FF"
@@ -42,7 +47,8 @@
   {
     "description": "Color of the label when it gets focused",
     "name": "--fkt-select-label-focus-color",
-    "reference": "--color-brand-secondary",
+    "reference": "--fkt-color-brand-secondary",
+    "component": "Field",
     "category": "Colors",
     "type": "color",
     "defaultValue": "#ffb940"
@@ -51,6 +57,7 @@
     "description": "Border radius for select",
     "name": "--fkt-select-border-radius",
     "reference": "--radius-lg",
+    "component": "Field",
     "category": "Spacing",
     "type": "size",
     "defaultValue": ".5rem"
@@ -59,6 +66,7 @@
     "description": "Font size for select text and placeholder.",
     "name": "--fkt-select-font-size",
     "reference": "--font-size-md",
+    "component": "Field",
     "category": "Typography",
     "type": "size",
     "defaultValue": "1rem"
@@ -66,9 +74,118 @@
   {
     "description": "Color for text into select",
     "name": "--fkt-select-text-color",
-    "reference": "--color-neutral-900",
+    "reference": "--fkt-color-neutral-900",
+    "component": "Field",
     "category": "Colors",
     "type": "color",
     "defaultValue": "#111827FF"
+  },
+  {
+    "description": "Padding for spinner container in select options overlay.",
+    "name": "--fkt-select-options-spinner-padding",
+    "reference": "--space-md",
+    "component": "Options",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": "1rem"
+  },
+  {
+    "description": "Background color for the select options overlay.",
+    "name": "--fkt-select-options-background-color",
+    "reference": "--fkt-color-neutral-100",
+    "component": "Options",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#F9FAFBFF"
+  },
+  {
+    "description": "Text color for the select options overlay.",
+    "name": "--fkt-select-options-text-color",
+    "reference": "--fkt-color-neutral-950",
+    "component": "Options",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#030712FF"
+  },
+  {
+    "description": "Box shadow for the select options overlay.",
+    "name": "--fkt-select-options-shadow",
+    "reference": "--shadow-md",
+    "component": "Options",
+    "category": "Effects",
+    "type": "shadow",
+    "defaultValue": "0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)"
+  },
+  {
+    "description": "Border radius for the select options overlay.",
+    "name": "--fkt-select-options-border-radius",
+    "reference": "--radius-md",
+    "component": "Options",
+    "category": "Shape",
+    "type": "size",
+    "defaultValue": ".375rem"
+  },
+  {
+    "description": "Border color for the select options overlay.",
+    "name": "--fkt-select-options-border-color",
+    "reference": "--fkt-color-neutral-200",
+    "component": "Options",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#F3F4F6FF"
+  },
+  {
+    "description": "Padding for select options overlay items.",
+    "name": "--fkt-select-options-item-padding",
+    "reference": "var(--space-xs) var(--space-md)",
+    "component": "Options",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": "var(--space-xs) var(--space-md)"
+  },
+  {
+    "description": "Background color for focused overlay items.",
+    "name": "--fkt-select-options-item-focus-background",
+    "reference": "--fkt-color-accent-translucent",
+    "component": "Options",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#FDC70033"
+  },
+  {
+    "description": "Background color for hovered overlay items.",
+    "name": "--fkt-select-options-item-hover-background",
+    "reference": "--fkt-color-accent-translucent-2",
+    "component": "Options",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#FDC70019"
+  },
+  {
+    "description": "Background color for active/selected overlay items.",
+    "name": "--fkt-select-options-item-active-background",
+    "reference": "--fkt-color-neutral-200",
+    "component": "Options",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#F3F4F6FF"
+  },
+  {
+    "description": "Color for icons in overlay items.",
+    "name": "--fkt-select-options-icon-color",
+    "reference": "--fkt-color-neutral-700",
+    "component": "Options",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#374151FF"
+  },
+  {
+    "description": "Size for icons in overlay items.",
+    "name": "--fkt-select-options-icon-size",
+    "reference": "--space-xl",
+    "component": "Options",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": "1.5rem"
   }
 ]

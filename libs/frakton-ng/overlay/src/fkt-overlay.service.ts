@@ -45,7 +45,7 @@ export class FktOverlayService {
 			const focusableChild = options.anchorElementRef?.nativeElement?.querySelector(focusableElements) as HTMLElement | null;
 			const elementToFocus = focusableChild ?? options.anchorElementRef?.nativeElement;
 
-			if (elementToFocus) elementToFocus.focus();
+			if (elementToFocus && options.panelOptions?.focusTriggerOnClose !== false) elementToFocus.focus();
 
 			anchor.destroy();
 			componentRef.destroy();

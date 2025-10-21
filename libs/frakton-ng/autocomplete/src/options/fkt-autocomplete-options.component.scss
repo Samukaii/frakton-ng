@@ -1,6 +1,139 @@
+// <design-tokens>
+/*
+Background color for the autocomplete options overlay.
+@name --fkt-autocomplete-options-background-color
+@reference --fkt-color-neutral-100
+@component Options
+@category Colors
+@type color
+*/
+$options-background-color: var(--fkt-autocomplete-options-background-color, var(--fkt-color-neutral-100));
+
+/*
+Text color for the autocomplete options overlay.
+@name --fkt-autocomplete-options-text-color
+@reference --fkt-color-neutral-950
+@component Options
+@category Colors
+@type color
+*/
+$options-text-color: var(--fkt-autocomplete-options-text-color, var(--fkt-color-neutral-950));
+
+/*
+Border color for the autocomplete options overlay.
+@name --fkt-autocomplete-options-border-color
+@reference --fkt-color-neutral-200
+@component Options
+@category Colors
+@type color
+*/
+$options-border-color: var(--fkt-autocomplete-options-border-color, var(--fkt-color-neutral-200));
+
+/*
+Border radius for the autocomplete options overlay.
+@name --fkt-autocomplete-options-border-radius
+@reference --radius-md
+@component Options
+@category Shape
+@type size
+*/
+$options-border-radius: var(--fkt-autocomplete-options-border-radius, var(--radius-md));
+
+/*
+Box shadow for the autocomplete options overlay.
+@name --fkt-autocomplete-options-shadow
+@reference --shadow-md
+@component Options
+@category Effects
+@type shadow
+*/
+$options-shadow: var(--fkt-autocomplete-options-shadow, var(--shadow-md));
+
+/*
+Padding for each option item in the list.
+@name --fkt-autocomplete-options-item-padding
+@reference var(--space-xs) var(--space-md)
+@component Options
+@category Spacing
+@type size
+*/
+$options-item-padding: var(--fkt-autocomplete-options-item-padding, var(--space-xs) var(--space-md));
+
+/*
+Background color for option items on hover.
+@name --fkt-autocomplete-options-item-hover-background
+@reference --fkt-color-neutral-200
+@component Options
+@category Colors
+@type color
+*/
+$options-item-hover-background: var(--fkt-autocomplete-options-item-hover-background, var(--fkt-color-neutral-200));
+
+/*
+Gap between elements in option label container.
+@name --fkt-autocomplete-options-label-gap
+@reference --space-3xs
+@component Options
+@category Spacing
+@type size
+*/
+$options-label-gap: var(--fkt-autocomplete-options-label-gap, var(--space-3xs));
+
+/*
+Color for success/check icons in options.
+@name --fkt-autocomplete-options-success-icon-color
+@reference --color-green-600
+@component Options
+@category Colors
+@type color
+*/
+$options-success-icon-color: var(--fkt-autocomplete-options-success-icon-color, var(--color-green-600));
+
+/*
+Color for action icons in options.
+@name --fkt-autocomplete-options-icon-color
+@reference --fkt-color-neutral-700
+@component Options
+@category Colors
+@type color
+*/
+$options-icon-color: var(--fkt-autocomplete-options-icon-color, var(--fkt-color-neutral-700));
+
+/*
+Size for action icons in options.
+@name --fkt-autocomplete-options-icon-size
+@reference --space-xl
+@component Options
+@category Spacing
+@type size
+*/
+$options-icon-size: var(--fkt-autocomplete-options-icon-size, var(--space-xl));
+
+/*
+Minimum height for no results component.
+@name --fkt-autocomplete-options-no-results-min-height
+@reference 250px
+@component Options
+@category Spacing
+@type size
+*/
+$options-no-results-min-height: var(--fkt-autocomplete-options-no-results-min-height, 250px);
+
+/*
+Padding for spinner container.
+@name --fkt-autocomplete-options-spinner-padding
+@reference --space-md
+@component Options
+@category Spacing
+@type size
+*/
+$options-spinner-padding: var(--fkt-autocomplete-options-spinner-padding, var(--space-md));
+// </design-tokens>
+
 :host {
 	display: block;
 	width: 100%;
+	color: $options-text-color;
 
 	* {
 		box-sizing: border-box;
@@ -9,11 +142,11 @@
 
 .overlay {
 	margin: 0;
-	background-color: var(--color-neutral-100);
+	background-color: $options-background-color;
 	width: 100%;
-	box-shadow: var(--shadow-md);
-	border-radius: var(--radius-md);
-	border: solid 1px var(--color-neutral-200);
+	box-shadow: $options-shadow;
+	border-radius: $options-border-radius;
+	border: solid 1px $options-border-color;
 	z-index: 10;
 	padding: 0;
 
@@ -23,24 +156,20 @@
 		cursor: pointer;
 		display: flex;
 		align-items: center;
-		padding: var(--space-xs) var(--space-md);
+		padding: $options-item-padding;
 		justify-content: space-between;
 
-		&:not(:last-child) {
-			border-bottom: 1px solid var(--color-neutral-200);
-		}
-
 		&:hover {
-			background-color: var(--color-neutral-200);
+			background-color: $options-item-hover-background;
 		}
 
 		.label-container {
 			display: flex;
-			gap: var(--space-3xs);
+			gap: $options-label-gap;
 
 			fkt-icon {
 				line-height: 24px !important;
-				color: var(--color-green-600);
+				color: $options-success-icon-color;
 			}
 
 			.label-icon-placeholder {
@@ -50,9 +179,9 @@
 		}
 
 		fkt-icon {
-			color: var(--color-neutral-700);
-			width: var(--space-xl);
-			height: var(--space-xl);
+			color: $options-icon-color;
+			width: $options-icon-size;
+			height: $options-icon-size;
 		}
 
 		.label {
@@ -62,7 +191,7 @@
 	}
 
 	fkt-no-results {
-		min-height: 250px;
+		min-height: $options-no-results-min-height;
 	}
 }
 
@@ -71,5 +200,5 @@
 	width: 100%;
 	justify-content: center;
 	align-items: center;
-	padding: var(--space-md);
+	padding: $options-spinner-padding;
 }

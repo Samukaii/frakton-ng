@@ -156,6 +156,7 @@ export class FktTableExamplesTaskTableComponent {
 			icon: 'check',
 			color: 'success',
 			theme: 'basic',
+			ariaLabel: 'Complete task',
 			click: () => console.log('Complete task:', task.title)
 		},
 		{
@@ -164,6 +165,7 @@ export class FktTableExamplesTaskTableComponent {
 			icon: 'pencil',
 			color: 'primary',
 			theme: 'basic',
+			ariaLabel: 'Edit task',
 			click: () => console.log('Edit task:', task.title)
 		},
 		{
@@ -172,6 +174,7 @@ export class FktTableExamplesTaskTableComponent {
 			icon: 'x-mark',
 			color: 'danger',
 			theme: 'basic',
+			ariaLabel: 'Cancel task',
 			click: () => console.log('Cancel task:', task.title)
 		}
 	];

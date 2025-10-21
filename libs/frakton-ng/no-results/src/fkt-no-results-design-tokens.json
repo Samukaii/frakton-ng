@@ -1,0 +1,101 @@
+[
+  {
+    "description": "Gap between icon and content in the no-results component.",
+    "name": "--fkt-no-results-gap",
+    "reference": "--space-md",
+    "component": "No Results",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": "1rem"
+  },
+  {
+    "description": "Minimum height of the no-results component container.",
+    "name": "--fkt-no-results-min-height",
+    "reference": "400px",
+    "component": "No Results",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": "400px"
+  },
+  {
+    "description": "Border color for the no-results component when border variant is applied.",
+    "name": "--fkt-no-results-border-color",
+    "reference": "--fkt-color-neutral-200",
+    "component": "No Results",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#F3F4F6FF"
+  },
+  {
+    "description": "Border width for the no-results component when border variant is applied.",
+    "name": "--fkt-no-results-border-width",
+    "reference": "1px",
+    "component": "No Results",
+    "category": "Shape",
+    "type": "size",
+    "defaultValue": "1px"
+  },
+  {
+    "description": "Color of the icon in the no-results component.",
+    "name": "--fkt-no-results-icon-color",
+    "reference": "--fkt-color-neutral-800",
+    "component": "No Results",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#1F2937FF"
+  },
+  {
+    "description": "Font size of the title in the no-results component.",
+    "name": "--fkt-no-results-title-font-size",
+    "reference": "--font-size-lg",
+    "component": "No Results",
+    "category": "Typography",
+    "type": "font-size",
+    "defaultValue": "1.125rem"
+  },
+  {
+    "description": "Line height of the title in the no-results component.",
+    "name": "--fkt-no-results-title-line-height",
+    "reference": "1.75rem",
+    "component": "No Results",
+    "category": "Typography",
+    "type": "size",
+    "defaultValue": "1.75rem"
+  },
+  {
+    "description": "Font weight of the title in the no-results component.",
+    "name": "--fkt-no-results-title-font-weight",
+    "reference": "--font-semibold",
+    "component": "No Results",
+    "category": "Typography",
+    "type": "font-weight",
+    "defaultValue": "600"
+  },
+  {
+    "description": "Color of the title in the no-results component.",
+    "name": "--fkt-no-results-title-color",
+    "reference": "--fkt-color-neutral-800",
+    "component": "No Results",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#1F2937FF"
+  },
+  {
+    "description": "Bottom margin of the description in the no-results component.",
+    "name": "--fkt-no-results-description-margin-bottom",
+    "reference": "--space-sm",
+    "component": "No Results",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": ".75rem"
+  },
+  {
+    "description": "Color of the description in the no-results component.",
+    "name": "--fkt-no-results-description-color",
+    "reference": "--fkt-color-neutral-800",
+    "component": "No Results",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#1F2937FF"
+  }
+]

@@ -65,6 +65,9 @@ export class FktInputComponent<T = string> implements FormValueControl<T | null>
 	step = input(1);
 
 	inputPadding = input('var(--fkt-input-vertical-padding, var(--space-md)) var(--fkt-input-horizontal-padding, var(--space-md))');
+	inputBlur = output<FocusEvent>();
+	inputFocus = output<FocusEvent>();
+	inputKeyDown = output<KeyboardEvent>()
 	type = input<FktInputType, FktInputType>('text', {
 		transform: (value: FktInputType) => {
 			if (fktInputTypes.includes(value)) return value;
@@ -74,7 +77,6 @@ export class FktInputComponent<T = string> implements FormValueControl<T | null>
 	});
 	formatter = input<FktInputTransformer<T>>();
 	spellcheck = input(true);
-	inputKeyDown = output<KeyboardEvent>();
 
 	public element = viewChild.required('input', {read: ElementRef});
 	protected formatterDirective = viewChild('input', {read: FktControlFormatterDirective});
@@ -114,11 +116,13 @@ export class FktInputComponent<T = string> implements FormValueControl<T | null>
 		return transformer;
 	});
 
-	protected onFocus() {
+	protected onFocus($event: FocusEvent) {
+		this.inputFocus.emit($event);
 		this.focused.set(true);
 	}
 
-	protected onBlur() {
+	protected onBlur($event: FocusEvent) {
+		this.inputBlur.emit($event);
 		this.focused.set(false);
 		this.touched.set(true)
 	}

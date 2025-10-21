@@ -184,6 +184,7 @@ export class FktTableExamplesLoadingStateComponent {
 			theme: 'basic',
 			icon: 'eye',
 			color: 'primary',
+			ariaLabel: 'View user',
 			click: () => console.log('View user:', user.name)
 		},
 		{
@@ -192,6 +193,7 @@ export class FktTableExamplesLoadingStateComponent {
 			theme: 'basic',
 			icon: 'pencil',
 			color: 'success',
+			ariaLabel: 'Edit user',
 			click: () => console.log('Edit user:', user.name)
 		},
 		{
@@ -200,6 +202,7 @@ export class FktTableExamplesLoadingStateComponent {
 			theme: 'basic',
 			icon: 'trash',
 			color: 'danger',
+			ariaLabel: 'Delete user',
 			click: () => console.log('Delete user:', user.name)
 		}
 	];

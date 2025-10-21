@@ -2,12 +2,15 @@ import type { Meta, StoryObj } from '@storybook/angular';
 import { fktButtonsListAlignments, FktButtonsListComponent, fktButtonsListOrientations } from 'frakton-ng/buttons-list';
 import { customDocsControl } from '../../.storybook/decorators/custom-docs-control';
 import { renderComponent } from '../../.storybook/decorators/render-component';
+import designTokens from './fkt-buttons-list-design-tokens.json';
 
 const meta: Meta<FktButtonsListComponent<void>> = {
 	title: 'Components/Buttons list',
 	component: FktButtonsListComponent,
 	decorators: [
-		customDocsControl()
+		customDocsControl({
+			designTokens: designTokens as any
+		})
 	],
 	argTypes: {
 		context: {

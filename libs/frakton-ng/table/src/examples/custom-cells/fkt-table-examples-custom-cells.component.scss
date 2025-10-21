@@ -8,7 +8,7 @@
 			font-size: var(--font-size-lg);
 			font-weight: var(--font-semibold);
 			margin-bottom: var(--space-md);
-			color: var(--color-gray-800);
+			color: var(--fkt-color-neutral-800);
 		}
 	}
 }
@@ -23,7 +23,7 @@
 	}
 
 	.table-task-in-progress {
-		background-color: var(--color-blue-50);
+		background-color: #155DFC14;
 
 		&:hover {
 			background-color: var(--color-blue-100) !important;
@@ -47,14 +47,14 @@
 	}
 
 	.table-product-discontinued {
-		background-color: var(--color-gray-50);
+		background-color: var(--fkt-color-neutral-50);
 		opacity: 60%;
 		filter: grayscale(1);
 		cursor: pointer;
 		pointer-events: none;
 
 		&:hover {
-			background-color: var(--color-gray-100) !important;
+			background-color: var(--fkt-color-neutral-100) !important;
 		}
 	}
 }

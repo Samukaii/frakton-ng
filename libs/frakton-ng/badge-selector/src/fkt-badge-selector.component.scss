@@ -1,3 +1,23 @@
+// <design-tokens>
+/*
+Scale factor for badge on hover effect.
+@name --fkt-badge-selector-hover-scale
+@reference 105%
+@category Effects
+@type scale
+*/
+$badge-selector-hover-scale: var(--fkt-badge-selector-hover-scale, 105%);
+
+/*
+Gap between icon and text in badge content.
+@name --fkt-badge-selector-content-gap
+@reference --space-xs
+@category Spacing
+@type size
+*/
+$badge-selector-content-gap: var(--fkt-badge-selector-content-gap, var(--space-xs));
+// </design-tokens>
+
 :host {
 	width: fit-content;
 	display: flex;
@@ -13,13 +33,13 @@
 	display: block;
 
 	&:hover {
-		scale: 105%;
+		scale: $badge-selector-hover-scale;
 	}
 
 	&__content {
 		display: flex;
 		align-items: center;
-		gap: var(--space-xs);
+		gap: $badge-selector-content-gap;
 
 		p {
 			margin: 0;

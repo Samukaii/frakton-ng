@@ -1,6 +1,6 @@
 .container {
 	padding: var(--space-md);
-	border: solid 1px var(--color-gray-400);
+	border: solid 1px var(--fkt-color-neutral-400);
 	border-radius: var(--space-md);
 
 	h3 {
@@ -23,6 +23,6 @@
 	&__description {
 		margin-top: var(--space-sm);
 		font-size: var(--font-size-sm);
-		color: var(--color-gray-600);
+		color: var(--fkt-color-neutral-600);
 	}
 }

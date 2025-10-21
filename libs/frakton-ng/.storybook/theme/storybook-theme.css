@@ -63,9 +63,9 @@
 		}
 
 		&:hover {
-			background-color: var(--color-gray-800);
+			background-color: var(--fkt-color-neutral-800);
 			color: white;
-			border-color: var(--color-gray-600);
+			border-color: var(--fkt-color-neutral-600);
 
 			p {
 				color: white;
@@ -264,9 +264,9 @@
 			}
 
 			&:hover {
-				background-color: var(--color-gray-800);
+				background-color: var(--fkt-color-neutral-800);
 				color: white;
-				border-color: var(--color-gray-600);
+				border-color: var(--fkt-color-neutral-600);
 
 				p {
 					color: white;
@@ -336,7 +336,7 @@
 .canvas-block {
 	display: flex;
 	flex-direction: column;
-	border: solid 1px var(--color-gray-200);
+	border: solid 1px var(--fkt-color-neutral-200);
 	box-shadow: rgba(0, 0, 0, 0.1) 0 1px 3px 0;
 	margin: 25px 1px 40px !important;
 
@@ -344,7 +344,7 @@
 		margin: 0 !important;
 		box-shadow: none !important;
 		border: none !important;
-		border-bottom: solid 1px var(--color-gray-200) !important;
+		border-bottom: solid 1px var(--fkt-color-neutral-200) !important;
 		min-height: 400px;
 	}
 
@@ -398,10 +398,10 @@
 			font-size: .9rem !important;
 			transition: background-color 150ms;
 			border: none;
-			border-right: solid 1px var(--color-gray-200);
+			border-right: solid 1px var(--fkt-color-neutral-200);
 			position: relative !important;
 			cursor: pointer !important;
-			border-bottom: solid 1px var(--color-gray-200);
+			border-bottom: solid 1px var(--fkt-color-neutral-200);
 			display: flex;
 			justify-content: center;
 			gap: var(--space-xs);
@@ -417,7 +417,7 @@
 			}
 
 			&.active {
-				border-bottom: solid 2px var(--color-gray-800);
+				border-bottom: solid 2px var(--fkt-color-neutral-800);
 			}
 		}
 	}

@@ -18,15 +18,15 @@
   {
     "description": "Border color of the textarea in its normal (default) state.",
     "name": "--fkt-textarea-border-color",
-    "reference": "--color-neutral-800",
+    "reference": "--fkt-color-neutral-400",
     "category": "Colors",
     "type": "color",
-    "defaultValue": "#1f2937"
+    "defaultValue": "#D1D5DBFF"
   },
   {
     "description": "Border color of the textarea when it gets focused",
     "name": "--fkt-textarea-border-focus-color",
-    "reference": "--color-brand-secondary",
+    "reference": "--fkt-color-brand-secondary",
     "category": "Colors",
     "type": "color",
     "defaultValue": "#ffb940"
@@ -34,15 +34,15 @@
   {
     "description": "Color of the label in its normal (default) state.",
     "name": "--fkt-textarea-label-color",
-    "reference": "--color-neutral-500",
+    "reference": "--fkt-color-neutral-500",
     "category": "Colors",
     "type": "color",
-    "defaultValue": "#6b7280"
+    "defaultValue": "#6B7280FF"
   },
   {
     "description": "Color of the label when it gets focused",
     "name": "--fkt-textarea-label-focus-color",
-    "reference": "--color-brand-secondary",
+    "reference": "--fkt-color-brand-secondary",
     "category": "Colors",
     "type": "color",
     "defaultValue": "#ffb940"
@@ -66,17 +66,17 @@
   {
     "description": "Color for text written into textarea",
     "name": "--fkt-textarea-text-color",
-    "reference": "--color-neutral-900",
+    "reference": "--fkt-color-neutral-900",
     "category": "Colors",
     "type": "color",
-    "defaultValue": "#111827"
+    "defaultValue": "#111827FF"
   },
   {
     "description": "Color for placeholder text in textarea",
     "name": "--fkt-textarea-placeholder-color",
-    "reference": "--color-neutral-500",
+    "reference": "--fkt-color-neutral-500",
     "category": "Colors",
     "type": "color",
-    "defaultValue": "#6b7280"
+    "defaultValue": "#6B7280FF"
   }
 ]

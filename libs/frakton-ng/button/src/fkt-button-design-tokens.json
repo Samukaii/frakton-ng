@@ -90,7 +90,7 @@
   {
     "description": "Button background disabled color.",
     "name": "--fkt-button-disabled-color",
-    "reference": "--color-disabled",
+    "reference": "--fkt-color-disabled",
     "category": "Colors",
     "type": "color",
     "defaultValue": "#DDDCE0"
@@ -98,7 +98,7 @@
   {
     "description": "Button text disabled color.",
     "name": "--fkt-button-on-disabled-color",
-    "reference": "--color-on-disabled",
+    "reference": "--fkt-color-on-disabled",
     "category": "Colors",
     "type": "color",
     "defaultValue": "#9E9FA2"
@@ -106,7 +106,7 @@
   {
     "description": "Primary button background and border color.",
     "name": "--fkt-button-primary-color",
-    "reference": "--color-primary",
+    "reference": "--fkt-color-primary",
     "category": "Colors",
     "type": "color",
     "defaultValue": "#1f2937"
@@ -114,7 +114,7 @@
   {
     "description": "Primary button text and icon color.",
     "name": "--fkt-button-on-primary-color",
-    "reference": "--color-on-primary",
+    "reference": "--fkt-color-on-primary",
     "category": "Colors",
     "type": "color",
     "defaultValue": "#F9fAFBFF"
@@ -122,15 +122,23 @@
   {
     "description": "Primary button hover background and border color.",
     "name": "--fkt-button-primary-hover-color",
-    "reference": "--color-primary-hover",
+    "reference": "--fkt-color-primary-hover",
     "category": "Colors",
     "type": "color",
     "defaultValue": "#374151"
   },
   {
+    "description": "Success button translucent background color (used for basic theme hover).",
+    "name": "--fkt-button-primary-translucent-color",
+    "reference": "--fkt-color-primary-translucent",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "rgba(55, 65, 81, 0.2)"
+  },
+  {
     "description": "Success button background and border color.",
     "name": "--fkt-button-success-color",
-    "reference": "--color-success",
+    "reference": "--fkt-color-success",
     "category": "Colors",
     "type": "color",
     "defaultValue": "#00C950FF"
@@ -138,7 +146,7 @@
   {
     "description": "Success button text and icon color.",
     "name": "--fkt-button-on-success-color",
-    "reference": "--color-on-success",
+    "reference": "--fkt-color-on-success",
     "category": "Colors",
     "type": "color",
     "defaultValue": "#F9fAFBFF"
@@ -146,39 +154,55 @@
   {
     "description": "Success button hover background and border color.",
     "name": "--fkt-button-success-hover-color",
-    "reference": "--color-success-hover",
+    "reference": "--fkt-color-success-hover",
     "category": "Colors",
     "type": "color",
     "defaultValue": "#00C950FF"
   },
   {
+    "description": "Success button translucent background color (used for basic theme hover).",
+    "name": "--fkt-button-success-translucent-color",
+    "reference": "--fkt-color-success-translucent",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#00C95033"
+  },
+  {
     "description": "Error button background and border color.",
-    "name": "--fkt-button-error-color",
-    "reference": "--color-error",
+    "name": "--fkt-button-danger-color",
+    "reference": "--fkt-color-danger",
     "category": "Colors",
     "type": "color",
     "defaultValue": "#E7000BFF"
   },
   {
     "description": "Error button text and icon color.",
-    "name": "--fkt-button-on-error-color",
-    "reference": "--color-on-error",
+    "name": "--fkt-button-on-danger-color",
+    "reference": "--fkt-color-on-danger",
     "category": "Colors",
     "type": "color",
     "defaultValue": "#F9fAFBFF"
   },
   {
     "description": "Error button hover background and border color.",
-    "name": "--fkt-button-error-hover-color",
-    "reference": "--color-error-hover",
+    "name": "--fkt-button-danger-hover-color",
+    "reference": "--fkt-color-danger-hover",
     "category": "Colors",
     "type": "color",
     "defaultValue": "#FB2C36FF"
   },
   {
+    "description": "Danger button translucent background color (used for basic theme hover).",
+    "name": "--fkt-button-danger-translucent-color",
+    "reference": "--fkt-color-danger-translucent",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#FB2C3633"
+  },
+  {
     "description": "Warning button background and border color.",
     "name": "--fkt-button-warning-color",
-    "reference": "--color-warning",
+    "reference": "--fkt-color-warning",
     "category": "Colors",
     "type": "color",
     "defaultValue": "#FF6900FF"
@@ -186,7 +210,7 @@
   {
     "description": "Warning button text and icon color.",
     "name": "--fkt-button-on-warning-color",
-    "reference": "--color-on-warning",
+    "reference": "--fkt-color-on-warning",
     "category": "Colors",
     "type": "color",
     "defaultValue": "#F9fAFBFF"
@@ -194,15 +218,23 @@
   {
     "description": "Warning button hover background and border color.",
     "name": "--fkt-button-warning-hover-color",
-    "reference": "--color-warning-hover",
+    "reference": "--fkt-color-warning-hover",
     "category": "Colors",
     "type": "color",
     "defaultValue": "#FF8904FF"
   },
   {
+    "description": "Warning button translucent background color (used for basic theme hover).",
+    "name": "--fkt-button-warning-translucent-color",
+    "reference": "--fkt-color-warning-translucent",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#FF890433"
+  },
+  {
     "description": "Info button background and border color.",
     "name": "--fkt-button-info-color",
-    "reference": "--color-info",
+    "reference": "--fkt-color-info",
     "category": "Colors",
     "type": "color",
     "defaultValue": "#155DFCFF"
@@ -210,7 +242,7 @@
   {
     "description": "Info button text and icon color.",
     "name": "--fkt-button-on-info-color",
-    "reference": "--color-on-info",
+    "reference": "--fkt-color-on-info",
     "category": "Colors",
     "type": "color",
     "defaultValue": "#F9fAFBFF"
@@ -218,15 +250,23 @@
   {
     "description": "Info button hover background and border color.",
     "name": "--fkt-button-info-hover-color",
-    "reference": "--color-info-hover",
+    "reference": "--fkt-color-info-hover",
     "category": "Colors",
     "type": "color",
     "defaultValue": "#2B7FFFFF"
   },
   {
+    "description": "Success button translucent background color (used for basic theme hover).",
+    "name": "--fkt-button-info-translucent-color",
+    "reference": "--fkt-color-info-translucent",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#2B7FFF33"
+  },
+  {
     "description": "Accent button background and border color.",
     "name": "--fkt-button-accent-color",
-    "reference": "--color-accent",
+    "reference": "--fkt-color-accent",
     "category": "Colors",
     "type": "color",
     "defaultValue": "#F0B100FF"
@@ -234,17 +274,25 @@
   {
     "description": "Accent button text and icon color.",
     "name": "--fkt-button-on-accent-color",
-    "reference": "--color-neutral-800",
+    "reference": "--fkt-color-on-accent",
     "category": "Colors",
     "type": "color",
-    "defaultValue": "#1f2937"
+    "defaultValue": "#1F2937FF"
   },
   {
     "description": "Accent button hover background and border color.",
     "name": "--fkt-button-accent-hover-color",
-    "reference": "--color-yellow-400",
+    "reference": "--fkt-color-accent",
     "category": "Colors",
     "type": "color",
-    "defaultValue": "#FDC700FF"
+    "defaultValue": "#F0B100FF"
+  },
+  {
+    "description": "Accent button translucent background color (used for basic theme hover).",
+    "name": "--fkt-button-accent-translucent-color",
+    "reference": "--fkt-color-accent-translucent",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#FDC70033"
   }
 ]

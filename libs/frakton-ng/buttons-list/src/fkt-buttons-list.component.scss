@@ -1,6 +1,17 @@
+// <design-tokens>
+/*
+Gap between buttons in the buttons list.
+@name --fkt-buttons-list-gap
+@reference --space-xs
+@category Spacing
+@type size
+*/
+$buttons-list-gap: var(--fkt-buttons-list-gap, var(--space-xs));
+// </design-tokens>
+
 :host {
 	display: flex;
-	gap: var(--space-xs);
+	gap: $buttons-list-gap;
 
 	&.horizontal {
 		justify-content: var(--horizontal-alignment);

@@ -3,12 +3,15 @@ import { fktBadgeColors, FktBadgeComponent, fktBadgeVariants } from 'frakton-ng/
 import { customDocsControl } from '../../.storybook/decorators/custom-docs-control';
 import { renderComponent } from '../../.storybook/decorators/render-component';
 import { Component } from '@angular/core';
+import designTokens from './fkt-badge-design-tokens.json';
 
 const meta: Meta<FktBadgeComponent> = {
 	title: 'Components/Badge',
 	component: FktBadgeComponent,
 	decorators: [
-		customDocsControl()
+		customDocsControl({
+			designTokens: designTokens as any
+		})
 	],
 	argTypes: {
 		text: {
@@ -147,7 +150,7 @@ export const InfoBadge: Story = {
 		.container__item h2 {
 			font-size: var(--font-size-lg);
 			font-weight: var(--font-semibold);
-			border-bottom: solid 1px var(--color-gray-200);
+			border-bottom: solid 1px var(--fkt-color-neutral-200);
 			padding-bottom: var(--space-3xs);
 		}
 

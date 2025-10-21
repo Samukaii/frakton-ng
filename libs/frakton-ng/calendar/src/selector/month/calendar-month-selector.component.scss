@@ -42,42 +42,42 @@ $month-selector-border-radius: var(--fkt-calendar-month-selector-border-radius, 
 /*
 Month selector item hover background color.
 @name --fkt-calendar-month-selector-hover-bg
-@reference --color-neutral-200
+@reference --fkt-color-primary-translucent
 @component Month selector
 @category Colors
 @type color
 */
-$month-selector-hover-bg: var(--fkt-calendar-month-selector-hover-bg, var(--color-neutral-200));
+$month-selector-hover-bg: var(--fkt-calendar-month-selector-hover-bg, var(--fkt-color-primary-translucent));
 
 /*
 Month selector item text color.
 @name --fkt-calendar-month-selector-color
-@reference --color-neutral-900
+@reference --fkt-color-neutral-900
 @component Month selector
 @category Colors
 @type color
 */
-$month-selector-color: var(--fkt-calendar-month-selector-color, var(--color-neutral-900));
+$month-selector-color: var(--fkt-calendar-month-selector-color, var(--fkt-color-neutral-900));
 
 /*
 Month selector item selected background color.
 @name --fkt-calendar-month-selector-selected-bg
-@reference --color-brand-primary
+@reference --fkt-color-brand-primary
 @component Month selector
 @category Colors
 @type color
 */
-$month-selector-selected-bg: var(--fkt-calendar-month-selector-selected-bg, var(--color-brand-primary));
+$month-selector-selected-bg: var(--fkt-calendar-month-selector-selected-bg, var(--fkt-color-brand-primary));
 
 /*
 Month selector item selected text color.
 @name --fkt-calendar-month-selector-selected-color
-@reference --color-neutral-50
+@reference --fkt-color-neutral-50
 @component Month selector
 @category Colors
 @type color
 */
-$month-selector-selected-color: var(--fkt-calendar-month-selector-selected-color, var(--color-neutral-50));
+$month-selector-selected-color: var(--fkt-calendar-month-selector-selected-color, var(--fkt-color-neutral-50));
 
 /*
 Month selector item font size.

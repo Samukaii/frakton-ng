@@ -1,3 +1,55 @@
+// <design-tokens>
+/*
+Default size for the spinner.
+@name --fkt-spinner-size
+@reference 80px
+@component Feedback
+@category Spacing
+@type size
+*/
+$size: var(--fkt-spinner-size, 80px);
+
+/*
+Default stroke width for the spinner border.
+@name --fkt-spinner-stroke
+@reference 6px
+@component Feedback
+@category Spacing
+@type size
+*/
+$stroke: var(--fkt-spinner-stroke, 6px);
+
+/*
+Background color for the spinner border.
+@name --fkt-spinner-border-color
+@reference --fkt-color-neutral-200
+@component Feedback
+@category Colors
+@type color
+*/
+$border-color: var(--fkt-spinner-border-color, var(--fkt-color-neutral-200));
+
+/*
+Border radius for the spinner (full circle).
+@name --fkt-spinner-border-radius
+@reference --radius-full
+@component Feedback
+@category Shape
+@type size
+*/
+$border-radius: var(--fkt-spinner-border-radius, var(--radius-full));
+
+/*
+Animation duration for the spinner rotation.
+@name --fkt-spinner-animation-duration
+@reference 1s
+@component Feedback
+@category Animation
+@type size
+*/
+$animation-duration: var(--fkt-spinner-animation-duration, 1s);
+// </design-tokens>
+
 @keyframes spin {
 	to {
 		transform: rotate(360deg);
@@ -5,33 +57,33 @@
 }
 
 .spinner {
-	width: var(--size, 80px);
-	height: var(--size, 80px);
-	border: solid var(--stroke, 6px) var(--color-gray-200);
-	border-radius: var(--radius-full);
-	animation: spin 1s linear infinite;
+	width: var(--size, $size);
+	height: var(--size, $size);
+	border: solid var(--stroke, $stroke) $border-color;
+	border-radius: $border-radius;
+	animation: spin $animation-duration linear infinite;
 
 	&.primary {
-		border-top-color: var(--color-primary);
+		border-top-color: var(--fkt-color-primary);
 	}
 
 	&.accent {
-		border-top-color: var(--color-accent);
+		border-top-color: var(--fkt-color-accent);
 	}
 
 	&.info {
-		border-top-color: var(--color-info);
+		border-top-color: var(--fkt-color-info);
 	}
 
 	&.success {
-		border-top-color: var(--color-success);
+		border-top-color: var(--fkt-color-success);
 	}
 
 	&.warning {
-		border-top-color: var(--color-warning);
+		border-top-color: var(--fkt-color-warning);
 	}
 
 	&.danger {
-		border-top-color: var(--color-danger);
+		border-top-color: var(--fkt-color-danger);
 	}
 }

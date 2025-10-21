@@ -34,7 +34,7 @@ import { FktFocusTrapDirective } from 'frakton-ng/focus-trap';
 			min-width: var(--min-width, 200px);
 			max-height: var(--max-height, 300px);
 			overflow: var(--overflow, auto);
-			background-color: var(--background-color, white);
+			background-color: var(--background-color, var(--fkt-color-modal-background));
 			box-shadow: var(--box-shadow, -4px 7px 20px 0px rgba(0, 0, 0, 0.18));
 			padding: var(--padding);
 			border-radius: var(--border-radius, 10px);

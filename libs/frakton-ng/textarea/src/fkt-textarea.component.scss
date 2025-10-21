@@ -20,38 +20,38 @@
 	/*
 	Border color of the textarea in its normal (default) state.
 	@name --fkt-textarea-border-color
-	@reference --color-neutral-800
+	@reference --fkt-color-neutral-400
 	@category Colors
 	@type color
  	*/
-	$border-color: var(--fkt-textarea-border-color, var(--color-neutral-800));
+	$border-color: var(--fkt-textarea-border-color, var(--fkt-color-neutral-400));
 
 	/*
 	Border color of the textarea when it gets focused
 	@name --fkt-textarea-border-focus-color
-	@reference --color-brand-secondary
+	@reference --fkt-color-brand-secondary
 	@category Colors
 	@type color
  	*/
-	$border-focus-color: var(--fkt-textarea-border-focus-color, var(--color-brand-secondary));
+	$border-focus-color: var(--fkt-textarea-border-focus-color, var(--fkt-color-brand-secondary));
 
 	/*
 	Color of the label in its normal (default) state.
 	@name --fkt-textarea-label-color
-	@reference --color-neutral-500
+	@reference --fkt-color-neutral-500
 	@category Colors
 	@type color
  	*/
-	$label-color: var(--fkt-textarea-label-color, var(--color-neutral-500));
+	$label-color: var(--fkt-textarea-label-color, var(--fkt-color-neutral-500));
 
 	/*
 	Color of the label when it gets focused
 	@name --fkt-textarea-label-focus-color
-	@reference --color-brand-secondary
+	@reference --fkt-color-brand-secondary
 	@category Colors
 	@type color
  	*/
-	$label-focus-color: var(--fkt-textarea-label-focus-color, var(--color-brand-secondary));
+	$label-focus-color: var(--fkt-textarea-label-focus-color, var(--fkt-color-brand-secondary));
 
 	/*
 	Border radius for textarea
@@ -73,20 +73,20 @@
 	/*
 	Color for text written into textarea
 	@name --fkt-textarea-text-color
-	@reference --color-neutral-900
+	@reference --fkt-color-neutral-900
 	@category Colors
 	@type color
  	*/
-	$text-color: var(--fkt-textarea-text-color, var(--color-neutral-900));
+	$text-color: var(--fkt-textarea-text-color, var(--fkt-color-neutral-900));
 
 	/*
 	Color for placeholder text in textarea
 	@name --fkt-textarea-placeholder-color
-	@reference --color-neutral-500
+	@reference --fkt-color-neutral-500
 	@category Colors
 	@type color
  	*/
-	$placeholder-color: var(--fkt-textarea-placeholder-color, var(--color-neutral-500));
+	$placeholder-color: var(--fkt-textarea-placeholder-color, var(--fkt-color-neutral-500));
 
 	// </design-tokens>
 	display: block;
@@ -111,7 +111,7 @@
 			top: 15px;
 			transition: var(--transition-base);
 			color: $label-color;
-			background-color: var(--color-neutral-100);
+			background-color: var(--fkt-color-neutral-100);
 
 			&.disabled label {
 				opacity: 40%;
@@ -120,7 +120,7 @@
 			}
 
 			&.error {
-				color: var(--color-error);
+				color: var(--fkt-color-danger);
 			}
 		}
 	}
@@ -165,7 +165,7 @@
 			}
 
 			&.error {
-				border-color: var(--color-error);
+				border-color: var(--fkt-color-danger);
 			}
 
 			&.password {
@@ -252,7 +252,7 @@
 					}
 
 					&.error {
-						color: var(--color-error);
+						color: var(--fkt-color-danger);
 					}
 				}
 			}
@@ -271,11 +271,11 @@
 
 			&.error {
 				.center, .left, .right {
-					border-color: var(--color-error);
+					border-color: var(--fkt-color-danger);
 				}
 
 				.center label {
-					color: var(--color-error);
+					color: var(--fkt-color-danger);
 				}
 			}
 

@@ -26,6 +26,7 @@
 						icon="minus-circle"
 						theme="basic"
 						color="danger"
+						ariaLabel="Decrease counter"
 						(click)="decrement()"
 						[disabled]="counter() <= 0"
 					></fkt-button>
@@ -33,6 +34,7 @@
 						icon="plus-circle"
 						theme="basic"
 						color="success"
+						ariaLabel="Increase counter"
 						(click)="increment()"
 					></fkt-button>
 					<fkt-button
@@ -57,6 +59,7 @@
 									icon="x-mark"
 									theme="basic"
 									color="danger"
+									ariaLabel="Remove item"
 									[disabled]="currentItems().length <= 1"
 									(click)="removeItem($index)"
 								/>

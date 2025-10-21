@@ -1,4 +1,4 @@
-import { Component, input, model, signal } from '@angular/core';
+import { booleanAttribute, Component, input, model, signal } from '@angular/core';
 import { CalendarDateSelectorComponent } from './selector/date/calendar-date-selector.component';
 import { CalendarMonthSelectorComponent } from './selector/month/calendar-month-selector.component';
 import { CalendarYearSelectorComponent } from './selector/year/calendar-year-selector.component';
@@ -26,7 +26,9 @@ import { FktCalendarDateConfigFn, FktCalendarStep } from './fkt-calendar.types';
 export class FktCalendarComponent {
 	configFn = input<FktCalendarDateConfigFn>(() => ({}));
 	currentDate = model(new Date());
-	borderless = input(false);
+	borderless = input(false, {
+		transform: booleanAttribute
+	});
 
 	protected step = signal<FktCalendarStep>('date');
 	private lastStep = this.step();

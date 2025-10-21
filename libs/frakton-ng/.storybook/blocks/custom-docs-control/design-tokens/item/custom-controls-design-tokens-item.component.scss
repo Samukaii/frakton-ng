@@ -42,7 +42,7 @@
 		font-weight: var(--font-semibold);
 
 		&:hover {
-			background-color: var(--fkt-controls-table-numeric-control-hover-bg); //var(--color-neutral-400);
+			background-color: var(--fkt-controls-table-numeric-control-hover-bg); //var(--fkt-color-neutral-400);
 		}
 	}
 }
@@ -59,7 +59,7 @@
 
 a {
 	text-decoration: none;
-	color: var(--color-accent);
+	color: var(--fkt-color-accent);
 	border: none;
 	border-bottom: solid 1px transparent;
 	padding: var(--space-3xs);
@@ -70,7 +70,7 @@ a {
 
 
 	&:hover {
-		border-bottom: solid 1px var(--color-accent);
+		border-bottom: solid 1px var(--fkt-color-accent);
 	}
 }
 

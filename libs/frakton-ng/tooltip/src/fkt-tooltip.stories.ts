@@ -3,6 +3,7 @@ import { FktTooltipDirective } from 'frakton-ng/tooltip';
 import { fktGeometryPositions } from 'frakton-ng/internal/types';
 import { customDocsControl } from '../../.storybook/decorators/custom-docs-control';
 import { renderComponent } from '../../.storybook/decorators/render-component';
+import designTokens from './fkt-tooltip-design-tokens.json';
 import {
 	BasicTooltipExampleComponent,
 	DifferentElementsExampleComponent,
@@ -10,12 +11,13 @@ import {
 	PositioningTooltipExampleComponent
 } from './examples';
 import { FktTooltipComponent } from './fkt-tooltip.component';
+import { fktColors } from 'frakton-ng/core';
 
 const meta: Meta<FktTooltipDirective> = {
 	title: 'Components/Tooltip',
 	component: FktTooltipComponent,
 	decorators: [
-		customDocsControl()
+		customDocsControl({designTokens})
 	],
 	argTypes: {
 		fktTooltip: {
@@ -23,6 +25,7 @@ const meta: Meta<FktTooltipDirective> = {
 			description: 'The tooltip text to display',
 
 			table: {
+				category: "Attributes",
 				type: {summary: 'string'},
 				defaultValue: {summary: 'Required - tooltip message'}
 			}
@@ -31,6 +34,7 @@ const meta: Meta<FktTooltipDirective> = {
 			control: 'boolean',
 			description: 'Whether the tooltip is enabled or disabled',
 			table: {
+				category: "Attributes",
 				type: {summary: 'boolean'},
 				defaultValue: {summary: 'true'}
 			}
@@ -40,11 +44,25 @@ const meta: Meta<FktTooltipDirective> = {
 			options: fktGeometryPositions,
 			description: 'Position of the tooltip relative to the trigger element',
 			table: {
+				category: "Attributes",
 				type: {
 					summary: 'FktGeometryPosition',
 					detail: "import {FktGeometryPosition} from ''"
 				},
 				defaultValue: {summary: 'bottom-center'}
+			}
+		},
+		tooltipColor: {
+			control: 'select',
+			options: fktColors,
+			description: 'Tooltip color theme',
+			table: {
+				category: "Attributes",
+				type: {
+					summary: 'FktColor',
+					detail: "import {FktColor} from 'frakton-ng/core'"
+				},
+				defaultValue: {summary: 'primary'}
 			}
 		}
 	}
@@ -54,6 +72,9 @@ type Story = StoryObj<FktTooltipDirective>;
 
 export const BasicTooltips: Story = {
 	render: renderComponent(BasicTooltipExampleComponent),
+	args: {
+		tooltipColor: 'primary'
+	},
 	parameters: {
 		docs: {
 			description: {
@@ -65,6 +86,9 @@ export const BasicTooltips: Story = {
 
 export const Positioning: Story = {
 	render: renderComponent(PositioningTooltipExampleComponent),
+	args: {
+		tooltipColor: 'primary'
+	},
 	parameters: {
 		docs: {
 			description: {
@@ -76,6 +100,9 @@ export const Positioning: Story = {
 
 export const InteractiveControls: Story = {
 	render: renderComponent(InteractiveTooltipExampleComponent),
+	args: {
+		tooltipColor: 'primary'
+	},
 	parameters: {
 		docs: {
 			description: {
@@ -87,6 +114,9 @@ export const InteractiveControls: Story = {
 
 export const DifferentElements: Story = {
 	render: renderComponent(DifferentElementsExampleComponent),
+	args: {
+		tooltipColor: 'primary'
+	},
 	parameters: {
 		docs: {
 			description: {

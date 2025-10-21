@@ -15,6 +15,7 @@ import {
 import { Component } from '@angular/core';
 import { customDocsControl } from '../../.storybook/decorators/custom-docs-control';
 import { renderComponent } from '../../.storybook/decorators/render-component';
+import designTokens from './fkt-side-menu-design-tokens.json';
 
 @Component({
 	selector: 'fkt-empty',
@@ -39,7 +40,7 @@ const meta: Meta<FktSideMenuComponent> = {
 	title: 'Components/Side Menu',
 	component: FktSideMenuComponent,
 	decorators: [
-		customDocsControl(),
+		customDocsControl({designTokens}),
 	],
 	argTypes: {
 		groups: {

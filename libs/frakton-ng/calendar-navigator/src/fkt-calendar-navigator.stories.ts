@@ -8,12 +8,15 @@ import {
 } from './examples';
 import { customDocsControl } from '../../.storybook/decorators/custom-docs-control';
 import { renderComponent } from '../../.storybook/decorators/render-component';
+import designTokens from './fkt-calendar-navigator-design-tokens.json';
 
 const meta: Meta<FktCalendarNavigatorComponent> = {
 	title: 'Components/Calendar navigator',
 	component: FktCalendarNavigatorComponent,
 	decorators: [
-		customDocsControl(),
+		customDocsControl({
+			designTokens: designTokens as any
+		}),
 	],
 	argTypes: {
 		mode: {

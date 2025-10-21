@@ -5,7 +5,7 @@
 		display: flex;
 		gap: var(--space-xs);
 		padding: var(--space-md);
-		background-color: var(--color-gray-50);
+		background-color: var(--fkt-color-neutral-50);
 		border-radius: var(--radius-lg);
 		margin-bottom: var(--space-md);
 	}
@@ -29,14 +29,14 @@
 	}
 
 	.table-user-inactive {
-		background-color: var(--color-gray-50);
+		background-color: var(--fkt-color-neutral-50);
 		opacity: 60%;
 		filter: grayscale(1);
 		cursor: pointer;
 		pointer-events: none;
 
 		&:hover {
-			background-color: var(--color-gray-100) !important;
+			background-color: var(--fkt-color-neutral-100) !important;
 		}
 	}
 }

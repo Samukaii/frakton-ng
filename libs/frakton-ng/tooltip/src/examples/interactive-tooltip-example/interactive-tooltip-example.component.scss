@@ -30,15 +30,15 @@ ul {
 
 	&__interactive-button {
 		padding-bottom: var(--space-md);
-		border-bottom: solid 1px var(--color-gray-200);
+		border-bottom: solid 1px var(--fkt-color-neutral-200);
 		display: flex;
 		justify-content: center;
 
 		& > div {
 			width: 200px;
 			height: 200px;
-			background-color: var(--color-gray-600);
-			color: white;
+			background-color: var(--fkt-color-neutral-600);
+			color: var(--fkt-color-neutral-100);
 			display: flex;
 			justify-content: center;
 			align-items: center;

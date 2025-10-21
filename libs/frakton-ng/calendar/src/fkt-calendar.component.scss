@@ -22,12 +22,12 @@ $calendar-height: var(--fkt-calendar-height, fit-content);
 /*
 Calendar border color when with-border variant is used.
 @name --fkt-calendar-border-color
-@reference --color-neutral-300
+@reference --fkt-color-neutral-300
 @component Calendar
 @category Colors
 @type color
 */
-$calendar-border-color: var(--fkt-calendar-border-color, var(--color-neutral-300));
+$calendar-border-color: var(--fkt-calendar-border-color, var(--fkt-color-neutral-300));
 
 /*
 Calendar border radius when with-border variant is used.
@@ -62,22 +62,22 @@ $calendar-box-shadow: var(--fkt-calendar-box-shadow, var(--shadow-lg));
 /*
 Calendar background color.
 @name --fkt-calendar-background-color
-@reference --color-neutral-50
+@reference --fkt-color-modal-background
 @component Calendar
 @category Colors
 @type color
 */
-$calendar-background-color: var(--fkt-calendar-background-color, var(--color-neutral-50));
+$calendar-background-color: var(--fkt-calendar-background-color, var(--fkt-color-modal-background));
 
 /*
 Calendar text color.
 @name --fkt-calendar-text-color
-@reference --color-neutral-900
+@reference --fkt-color-neutral-900
 @component Calendar
 @category Colors
 @type color
 */
-$calendar-text-color: var(--fkt-calendar-text-color, var(--color-neutral-900));
+$calendar-text-color: var(--fkt-calendar-text-color, var(--fkt-color-neutral-900));
 
 /*
 Gap between calendar sections.

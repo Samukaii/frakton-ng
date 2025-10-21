@@ -4,12 +4,12 @@
 	border-radius: var(--radius-lg);
 	width: 100%;
 	max-width: 28rem;
-	border: solid 1px var(--color-gray-200);
+	border: solid 1px var(--fkt-color-neutral-200);
 
 	h3 {
 		font-size: var(--font-size-xl);
 		font-weight: var(--font-semibold);
-		color: var(--color-gray-900);
+		color: var(--fkt-color-neutral-900);
 	}
 
 	&__form {

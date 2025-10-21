@@ -11,6 +11,7 @@ import {
 } from './examples';
 import { customDocsControl } from '../../.storybook/decorators/custom-docs-control';
 import { renderComponent } from '../../.storybook/decorators/render-component';
+import designTokens from './fkt-no-results-design-tokens.json';
 
 
 type Story = StoryObj<FktNoResultsComponent>;
@@ -20,7 +21,7 @@ const meta: Meta<FktNoResultsComponent> = {
 	title: 'Components/No results',
 	component: FktNoResultsComponent,
 	decorators: [
-		customDocsControl(),
+		customDocsControl({designTokens}),
 	],
 	argTypes: {
 		noResults: {

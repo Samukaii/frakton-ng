@@ -1,6 +1,6 @@
 import {
 	Component,
-	computed, effect,
+	computed, effect, ElementRef, inject,
 	input,
 	inputBinding,
 	OnInit,
@@ -26,7 +26,8 @@ import { CustomControlsTabsComponent } from './tabs/custom-controls-tabs.compone
 	templateUrl: './custom-docs-control.component.html',
 	styleUrl: './custom-docs-control.component.scss',
 	host: {
-		'[class.view-mode--story]': "viewMode() === 'story'"
+		'[class.view-mode--story]': "viewMode() === 'story'",
+		'[class.dark]': "currentTheme() === 'dark'"
 	}
 })
 export class CustomDocsControlComponent implements OnInit {
@@ -40,7 +41,10 @@ export class CustomDocsControlComponent implements OnInit {
 		alias: "designTokens",
 	});
 
+	protected currentTheme = signal<'light' | 'dark'>('light');
+
 	private viewRef = viewChild.required('template', {read: ViewContainerRef});
+	private elementRef = viewChild.required('container', {read: ElementRef});
 
 	protected templateSelector = computed(() => {
 		let selector = this.selector() ?? ':host'
@@ -58,8 +62,19 @@ export class CustomDocsControlComponent implements OnInit {
 
 	protected designTokens = computed((): DesignTokenItem[] => {
 		const tokens = this.rawDesignTokens();
+		this.currentTheme();
 
 		return tokens.map(token => {
+			let defaultValue = token.defaultValue;
+
+			if(token.reference.startsWith('--')) {
+				const element = this.elementRef().nativeElement as HTMLElement;
+
+				const result = getComputedStyle(element).getPropertyValue(token.reference);
+
+				if(result) defaultValue = result;
+			}
+
 			return {
 				name: token.name,
 				type: token.type,
@@ -67,8 +82,8 @@ export class CustomDocsControlComponent implements OnInit {
 				category: token.category,
 				description: token.description,
 				component: token.component,
-				defaultValue: token.defaultValue,
-				control: signal(token.defaultValue),
+				defaultValue: defaultValue,
+				control: signal(defaultValue),
 			}
 		})
 	});
@@ -83,8 +98,6 @@ export class CustomDocsControlComponent implements OnInit {
 			return [[token.name, token.control()]]
 		}))
 	});
-
-	a = effect(() => console.log(this.argsList()))
 
 	protected argsList = computed((): ArgItem<any>[] => {
 		const argTypes = this.argTypes();
@@ -126,7 +139,5 @@ export class CustomDocsControlComponent implements OnInit {
 		catch (e) {
 			console.log(e)
 		}
-
-
 	}
 }

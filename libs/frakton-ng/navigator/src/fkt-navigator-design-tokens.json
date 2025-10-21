@@ -1,0 +1,10 @@
+[
+  {
+    "description": "Gap between navigator sections (start, center, end).",
+    "name": "--fkt-navigator-gap",
+    "reference": "--space-xs",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": "--space-xs"
+  }
+]

@@ -19,10 +19,11 @@ import { FktNoResults } from 'frakton-ng/no-results';
 import { FktAutoCompleteAddOptionEvent, FktAutocompleteOption } from './fkt-autocomplete.types';
 import { AUTOCOMPLETE_ADD_OPTION } from './static/autocomplete-auto-created-option';
 import { FktAutocompleteOptionsComponent } from './options/fkt-autocomplete-options.component';
-import { MarkUsed, outsideClickEffect } from 'frakton-ng/internal/utils';
+import { getElementDesignTokens, MarkUsed, outsideClickEffect } from 'frakton-ng/internal/utils';
 import { FormValueControl, ValidationError, WithOptionalField } from '@angular/forms/signals';
 import { FktSpinnerComponent } from 'frakton-ng/spinner';
 import { FormControlSuffixDirective } from 'frakton-ng/forms';
+import { getElementDesignToken } from '../../internal/utils/get-element-design-token';
 
 @Component({
 	selector: 'fkt-autocomplete',
@@ -126,6 +127,10 @@ export class FktAutocompleteComponent implements FormValueControl<string | numbe
 	protected openOverlay() {
 		if (!!this.overlay || this.disabled()) return;
 
+		const tokens = getElementDesignTokens(this.inputComponent().nativeElement);
+		const globalBackgroundColor = getElementDesignToken(this.inputComponent().nativeElement, '--fkt-color-neutral-100');
+		const backgroundColor = tokens['--fkt-autocomplete-options-background-color'] ?? globalBackgroundColor ?? '#FFF';
+
 		this.overlay = this.overlayService.open({
 			anchorElementRef: this.inputComponent(),
 			component: FktAutocompleteOptionsComponent,
@@ -140,6 +145,10 @@ export class FktAutocompleteComponent implements FormValueControl<string | numbe
 					this.selectOption(option);
 				},
 			},
+			panelOptions: {
+				styles: tokens,
+				backgroundColor
+			}
 		});
 	}
 

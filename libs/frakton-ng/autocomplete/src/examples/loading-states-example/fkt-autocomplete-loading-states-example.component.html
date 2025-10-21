@@ -56,8 +56,8 @@
 	<div class="state-indicator">
 		<div class="state-item">
 			<span class="state-label">Current State:</span>
-			<span class="state-value" [class]="isLoading() ? 'loading-state' : 'ready-state'">
-				{{ isLoading() ? 'Loading...' : 'Ready' }}
+			<span class="state-value" [class]="loading() ? 'loading-state' : 'ready-state'">
+				{{ loading() ? 'Loading...' : 'Ready' }}
 			</span>
 		</div>
 		<div class="state-item">

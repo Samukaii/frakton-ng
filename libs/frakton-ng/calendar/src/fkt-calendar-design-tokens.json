@@ -20,7 +20,7 @@
   {
     "description": "Calendar border color when with-border variant is used.",
     "name": "--fkt-calendar-border-color",
-    "reference": "--color-neutral-300",
+    "reference": "--fkt-color-neutral-300",
     "component": "Calendar",
     "category": "Colors",
     "type": "color",
@@ -56,7 +56,7 @@
   {
     "description": "Calendar background color.",
     "name": "--fkt-calendar-background-color",
-    "reference": "--color-neutral-50",
+    "reference": "--fkt-color-modal-background",
     "component": "Calendar",
     "category": "Colors",
     "type": "color",
@@ -65,7 +65,7 @@
   {
     "description": "Calendar text color.",
     "name": "--fkt-calendar-text-color",
-    "reference": "--color-neutral-900",
+    "reference": "--fkt-color-neutral-900",
     "component": "Calendar",
     "category": "Colors",
     "type": "color",
@@ -137,16 +137,16 @@
   {
     "description": "Month header element hover background color.",
     "name": "--fkt-calendar-month-header-hover-bg",
-    "reference": "--color-neutral-200",
+    "reference": "--fkt-color-primary-translucent",
     "component": "Date selector",
     "category": "Colors",
     "type": "color",
-    "defaultValue": "#F3F4F6FF"
+    "defaultValue": "rgba(55, 65, 81, 0.2)"
   },
   {
     "description": "Month header element text color.",
     "name": "--fkt-calendar-month-header-color",
-    "reference": "--color-neutral-900",
+    "reference": "--fkt-color-neutral-900",
     "component": "Date selector",
     "category": "Colors",
     "type": "color",
@@ -155,7 +155,7 @@
   {
     "description": "Month header element active background color.",
     "name": "--fkt-calendar-month-header-active-bg",
-    "reference": "--color-brand-primary",
+    "reference": "--fkt-color-brand-primary",
     "component": "Date selector",
     "category": "Colors",
     "type": "color",
@@ -164,7 +164,7 @@
   {
     "description": "Month header element active text color.",
     "name": "--fkt-calendar-month-header-active-color",
-    "reference": "--color-neutral-50",
+    "reference": "--fkt-color-neutral-50",
     "component": "Date selector",
     "category": "Colors",
     "type": "color",
@@ -209,7 +209,7 @@
   {
     "description": "Multi-year header element text color.",
     "name": "--fkt-calendar-multi-year-header-color",
-    "reference": "--color-neutral-900",
+    "reference": "--fkt-color-neutral-900",
     "component": "Year Selector",
     "category": "Colors",
     "type": "color",
@@ -281,16 +281,16 @@
   {
     "description": "Year header element hover background color.",
     "name": "--fkt-calendar-year-header-hover-bg",
-    "reference": "--color-neutral-200",
+    "reference": "--fkt-color-primary-translucent",
     "component": "Month selector",
     "category": "Colors",
     "type": "color",
-    "defaultValue": "#F3F4F6FF"
+    "defaultValue": "rgba(55, 65, 81, 0.2)"
   },
   {
     "description": "Year header element text color.",
     "name": "--fkt-calendar-year-header-color",
-    "reference": "--color-neutral-900",
+    "reference": "--fkt-color-neutral-900",
     "component": "Month selector",
     "category": "Colors",
     "type": "color",
@@ -299,7 +299,7 @@
   {
     "description": "Year header element active background color.",
     "name": "--fkt-calendar-year-header-active-bg",
-    "reference": "--color-brand-primary",
+    "reference": "--fkt-color-brand-primary",
     "component": "Month selector",
     "category": "Colors",
     "type": "color",
@@ -308,7 +308,7 @@
   {
     "description": "Year header element active text color.",
     "name": "--fkt-calendar-year-header-active-color",
-    "reference": "--color-neutral-50",
+    "reference": "--fkt-color-neutral-50",
     "component": "Month selector",
     "category": "Colors",
     "type": "color",
@@ -317,16 +317,16 @@
   {
     "description": "Calendar date cell background color on hover.",
     "name": "--fkt-calendar-date-hover-bg",
-    "reference": "--color-neutral-200",
+    "reference": "--fkt-color-primary-translucent",
     "component": "Date selector",
     "category": "Colors",
     "type": "color",
-    "defaultValue": "#F3F4F6FF"
+    "defaultValue": "rgba(55, 65, 81, 0.2)"
   },
   {
     "description": "Calendar date cell border color for today.",
     "name": "--fkt-calendar-date-today-border-color",
-    "reference": "--color-neutral-600",
+    "reference": "--fkt-color-neutral-600",
     "component": "Date selector",
     "category": "Colors",
     "type": "color",
@@ -335,20 +335,20 @@
   {
     "description": "Calendar date cell background color when selected.",
     "name": "--fkt-calendar-date-selected-bg",
-    "reference": "--color-brand-primary",
+    "reference": "--fkt-color-primary",
     "component": "Date selector",
     "category": "Colors",
     "type": "color",
-    "defaultValue": "#4b5563"
+    "defaultValue": "#1f2937"
   },
   {
     "description": "Calendar date cell text color when selected.",
     "name": "--fkt-calendar-date-selected-color",
-    "reference": "--color-neutral-50",
+    "reference": "--fkt-color-on-primary",
     "component": "Date selector",
     "category": "Colors",
     "type": "color",
-    "defaultValue": "#FFFFFFFF"
+    "defaultValue": "#F9fAFBFF"
   },
   {
     "description": "Calendar date cell opacity when out of range.",
@@ -389,7 +389,7 @@
   {
     "description": "Calendar weekday header text color.",
     "name": "--fkt-calendar-weekday-color",
-    "reference": "--color-neutral-700",
+    "reference": "--fkt-color-neutral-700",
     "component": "Date selector",
     "category": "Colors",
     "type": "color",
@@ -461,16 +461,16 @@
   {
     "description": "Month selector item hover background color.",
     "name": "--fkt-calendar-month-selector-hover-bg",
-    "reference": "--color-neutral-200",
+    "reference": "--fkt-color-primary-translucent",
     "component": "Month selector",
     "category": "Colors",
     "type": "color",
-    "defaultValue": "#F3F4F6FF"
+    "defaultValue": "rgba(55, 65, 81, 0.2)"
   },
   {
     "description": "Month selector item text color.",
     "name": "--fkt-calendar-month-selector-color",
-    "reference": "--color-neutral-900",
+    "reference": "--fkt-color-neutral-900",
     "component": "Month selector",
     "category": "Colors",
     "type": "color",
@@ -479,7 +479,7 @@
   {
     "description": "Month selector item selected background color.",
     "name": "--fkt-calendar-month-selector-selected-bg",
-    "reference": "--color-brand-primary",
+    "reference": "--fkt-color-brand-primary",
     "component": "Month selector",
     "category": "Colors",
     "type": "color",
@@ -488,7 +488,7 @@
   {
     "description": "Month selector item selected text color.",
     "name": "--fkt-calendar-month-selector-selected-color",
-    "reference": "--color-neutral-50",
+    "reference": "--fkt-color-neutral-50",
     "component": "Month selector",
     "category": "Colors",
     "type": "color",
@@ -542,16 +542,16 @@
   {
     "description": "Year selector item hover background color.",
     "name": "--fkt-calendar-year-selector-hover-bg",
-    "reference": "--color-neutral-200",
+    "reference": "--fkt-color-primary-translucent",
     "component": "Year Selector",
     "category": "Colors",
     "type": "color",
-    "defaultValue": "#F3F4F6FF"
+    "defaultValue": "rgba(55, 65, 81, 0.2)"
   },
   {
     "description": "Year selector item text color.",
     "name": "--fkt-calendar-year-selector-color",
-    "reference": "--color-neutral-900",
+    "reference": "--fkt-color-neutral-900",
     "component": "Year Selector",
     "category": "Colors",
     "type": "color",
@@ -560,7 +560,7 @@
   {
     "description": "Year selector item selected background color.",
     "name": "--fkt-calendar-year-selector-selected-bg",
-    "reference": "--color-brand-primary",
+    "reference": "--fkt-color-brand-primary",
     "component": "Year Selector",
     "category": "Colors",
     "type": "color",
@@ -569,7 +569,7 @@
   {
     "description": "Year selector item selected text color.",
     "name": "--fkt-calendar-year-selector-selected-color",
-    "reference": "--color-neutral-50",
+    "reference": "--fkt-color-neutral-50",
     "component": "Year Selector",
     "category": "Colors",
     "type": "color",

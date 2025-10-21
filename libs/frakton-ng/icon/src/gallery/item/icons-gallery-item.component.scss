@@ -20,7 +20,7 @@ p {
 		height: 130px;
 		overflow: hidden;
 		justify-content: center;
-		border: solid 1px var(--color-gray-200);
+		border: solid 1px var(--fkt-color-neutral-200);
 		align-items: center;
 		flex-direction: column;
 
@@ -64,7 +64,7 @@ p {
 		}
 
 		&-action {
-			background-color: var(--color-gray-100);
+			background-color: var(--fkt-color-neutral-100);
 			cursor: pointer;
 			transition: var(--transition-base);
 			font-size: var(--font-size-sm);

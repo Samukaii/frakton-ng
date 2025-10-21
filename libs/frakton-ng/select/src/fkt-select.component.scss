@@ -4,6 +4,7 @@
 	Vertical padding inside the select field (top and bottom spacing between border and content).
 	@name --fkt-select-vertical-padding
 	@reference --space-md
+	@component Field
 	@category Spacing
 	@type size
  	*/
@@ -12,6 +13,7 @@
 	Horizontal padding inside the select field (left and right spacing between border and content).
 	@name --fkt-select-horizontal-padding
 	@reference --space-md
+	@component Field
 	@category Spacing
 	@type size
  	*/
@@ -20,43 +22,48 @@
 	/*
 	Border color of the select in its normal (default) state.
 	@name --fkt-select-border-color
-	@reference --color-neutral-400
+	@reference --fkt-color-neutral-400
+	@component Field
 	@category Colors
 	@type color
  	*/
-	$border-color: var(--fkt-select-border-color, var(--color-neutral-400));
+	$border-color: var(--fkt-select-border-color, var(--fkt-color-neutral-400));
 
 	/*
 	Border color of the select when it gets focused
 	@name --fkt-select-border-focus-color
-	@reference --color-brand-secondary
+	@reference --fkt-color-brand-secondary
+	@component Field
 	@category Colors
 	@type color
  	*/
-	$border-focus-color: var(--fkt-select-border-focus-color, var(--color-brand-secondary));
+	$border-focus-color: var(--fkt-select-border-focus-color, var(--fkt-color-brand-secondary));
 
 	/*
 	Color of the label in its normal (default) state.
 	@name --fkt-select-label-color
-	@reference --color-neutral-500
+	@reference --fkt-color-neutral-500
+	@component Field
 	@category Colors
 	@type color
  	*/
-	$label-color: var(--fkt-select-label-color, var(--color-neutral-500));
+	$label-color: var(--fkt-select-label-color, var(--fkt-color-neutral-500));
 
 	/*
 	Color of the label when it gets focused
 	@name --fkt-select-label-focus-color
-	@reference --color-brand-secondary
+	@reference --fkt-color-brand-secondary
+	@component Field
 	@category Colors
 	@type color
  	*/
-	$label-focus-color: var(--fkt-select-label-focus-color, var(--color-brand-secondary));
+	$label-focus-color: var(--fkt-select-label-focus-color, var(--fkt-color-brand-secondary));
 
 	/*
 	Border radius for select
 	@name --fkt-select-border-radius
 	@reference --radius-lg
+	@component Field
 	@category Spacing
 	@type size
  	*/
@@ -66,6 +73,7 @@
 	Font size for select text and placeholder.
 	@name --fkt-select-font-size
 	@reference --font-size-md
+	@component Field
 	@category Typography
 	@type size
  	*/
@@ -73,11 +81,12 @@
 	/*
 	Color for text into select
 	@name --fkt-select-text-color
-	@reference --color-neutral-900
+	@reference --fkt-color-neutral-900
+	@component Field
 	@category Colors
 	@type color
  	*/
-	$text-color: var(--fkt-select-text-color, var(--color-neutral-900));
+	$text-color: var(--fkt-select-text-color, var(--fkt-color-neutral-900));
 
 	// </design-tokens>
 
@@ -87,6 +96,7 @@
 	transition: var(--transition-base);
 	scroll-behavior: smooth;
 	width: 100%;
+	cursor: pointer;
 
 	* {
 		box-sizing: border-box;
@@ -107,14 +117,14 @@
 			padding: 0 var(--space-3xs);
 			transition: var(--transition-base);
 			left: var(--space-sm);
-			background-color: var(--color-neutral-100);
-			color: var(--color-gray-800);
+			background-color: var(--fkt-color-neutral-100);
+			color: var(--fkt-color-neutral-800);
 			font-weight: var(--font-normal);
 			font-size: var(--font-size-sm);
 			margin-bottom: var(--space-3xs);
 
 			&.error {
-				color: var(--color-red-500);
+				color: var(--fkt-color-danger);
 			}
 
 			&.float {
@@ -142,22 +152,21 @@
 			justify-content: space-between;
 			align-items: center;
 			background-color: transparent;
-			cursor: pointer;
 
 			&:hover {
-				border-color: var(--color-gray-600);
+				border-color: var(--fkt-color-neutral-600);
 			}
 
 			&:focus {
-				border-color: var(--color-gray-950);
+				border-color: var(--fkt-color-neutral-950);
 			}
 
 			&.error {
-				border-color: var(--color-red-500);
+				border-color: var(--fkt-color-danger);
 			}
 
 			.placeholder {
-				color: var(--color-gray-400);
+				color: var(--fkt-color-neutral-400);
 				opacity: 0;
 			}
 
@@ -218,7 +227,7 @@
 					}
 
 					&.error {
-						color: var(--color-error);
+						color: var(--fkt-color-danger);
 					}
 				}
 
@@ -245,11 +254,11 @@
 
 			&.error {
 				.center, .left, .right {
-					border-color: var(--color-error);
+					border-color: var(--fkt-color-danger);
 				}
 
 				.center label {
-					color: var(--color-error);
+					color: var(--fkt-color-danger);
 				}
 			}
 
@@ -321,15 +330,15 @@
 		user-select: none;
 
 		.label-container label {
-			color: var(--color-gray-400);
+			color: var(--fkt-color-neutral-400);
 			z-index: 50;
 			scale: 90%;
 			translate: calc(var(--space-3xs) * -1) calc(var(--space-xl) * -1);
 		}
 
 		.select__container {
-			border-color: var(--color-gray-200);
-			color: var(--color-gray-400);
+			border-color: var(--fkt-color-neutral-200);
+			color: var(--fkt-color-neutral-400);
 			cursor: not-allowed;
 		}
 	}

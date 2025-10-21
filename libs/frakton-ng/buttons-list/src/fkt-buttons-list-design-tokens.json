@@ -1,0 +1,10 @@
+[
+  {
+    "description": "Gap between buttons in the buttons list.",
+    "name": "--fkt-buttons-list-gap",
+    "reference": "--space-xs",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": "--space-xs"
+  }
+]

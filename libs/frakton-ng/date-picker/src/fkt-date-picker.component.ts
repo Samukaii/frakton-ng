@@ -59,7 +59,7 @@ export class FktDatePickerComponent implements FormValueControl<Date | string | 
 		}
 
 		const tokens = getElementDesignTokens(ref);
-		const backgroundColor = getElementDesignToken(ref, '--fkt-date-picker-modal-background-color', '--color-neutral-50');
+		const backgroundColor = getElementDesignToken(ref, '--fkt-date-picker-modal-background-color', '--fkt-color-neutral-50');
 
 		this.overlayRef = this.overlay.open({
 			component: FktDatePickerModalComponent,

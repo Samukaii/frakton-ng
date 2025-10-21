@@ -24,7 +24,7 @@
 	left: 0;
 	background-color: white;
 	border-radius: 100%;
-	box-shadow: 0 0 0 1px var(--color-gray-300);
+	box-shadow: 0 0 0 1px var(--fkt-color-neutral-300);
 	padding: 5px;
 	transform: translate(-50%, -50%);
 	cursor: pointer;
@@ -35,7 +35,7 @@
 	border: none;
 
 	&:focus-within {
-		box-shadow: 0 0 0 2px var(--color-brand-secondary);
+		box-shadow: 0 0 0 2px var(--fkt-color-brand-secondary);
 	}
 
 	input {
@@ -58,6 +58,6 @@
 		height: 14px;
 		border-radius: 100%;
 		display: block;
-		box-shadow: 0 0 0 1px var(--color-gray-300);
+		box-shadow: 0 0 0 1px var(--fkt-color-neutral-300);
 	}
 }

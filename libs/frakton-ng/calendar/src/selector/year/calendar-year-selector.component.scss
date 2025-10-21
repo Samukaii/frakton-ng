@@ -32,42 +32,42 @@ $year-selector-border-radius: var(--fkt-calendar-year-selector-border-radius, va
 /*
 Year selector item hover background color.
 @name --fkt-calendar-year-selector-hover-bg
-@reference --color-neutral-200
+@reference --fkt-color-primary-translucent
 @component Year Selector
 @category Colors
 @type color
 */
-$year-selector-hover-bg: var(--fkt-calendar-year-selector-hover-bg, var(--color-neutral-200));
+$year-selector-hover-bg: var(--fkt-calendar-year-selector-hover-bg, var(--fkt-color-primary-translucent));
 
 /*
 Year selector item text color.
 @name --fkt-calendar-year-selector-color
-@reference --color-neutral-900
+@reference --fkt-color-neutral-900
 @component Year Selector
 @category Colors
 @type color
 */
-$year-selector-color: var(--fkt-calendar-year-selector-color, var(--color-neutral-900));
+$year-selector-color: var(--fkt-calendar-year-selector-color, var(--fkt-color-neutral-900));
 
 /*
 Year selector item selected background color.
 @name --fkt-calendar-year-selector-selected-bg
-@reference --color-brand-primary
+@reference --fkt-color-brand-primary
 @component Year Selector
 @category Colors
 @type color
 */
-$year-selector-selected-bg: var(--fkt-calendar-year-selector-selected-bg, var(--color-brand-primary));
+$year-selector-selected-bg: var(--fkt-calendar-year-selector-selected-bg, var(--fkt-color-brand-primary));
 
 /*
 Year selector item selected text color.
 @name --fkt-calendar-year-selector-selected-color
-@reference --color-neutral-50
+@reference --fkt-color-neutral-50
 @component Year Selector
 @category Colors
 @type color
 */
-$year-selector-selected-color: var(--fkt-calendar-year-selector-selected-color, var(--color-neutral-50));
+$year-selector-selected-color: var(--fkt-calendar-year-selector-selected-color, var(--fkt-color-neutral-50));
 
 /*
 Year selector item font size.

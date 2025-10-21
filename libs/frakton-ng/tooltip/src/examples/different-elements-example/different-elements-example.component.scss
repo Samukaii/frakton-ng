@@ -31,7 +31,7 @@ h3, h4, p {
 
 		h4 {
 			font-weight: var(--font-semibold);
-			color: var(--color-gray-700);
+			color: var(--fkt-color-neutral-700);
 			text-align: center;
 			width: 100%;
 		}
@@ -48,13 +48,13 @@ h3, h4, p {
 		display: flex;
 		flex-direction: column;
 		gap: var(--space-sm);
-		border-top: solid 1px var(--color-gray-200);
+		border-top: solid 1px var(--fkt-color-neutral-200);
 		padding-top: var(--space-xs);
 		margin-top: var(--space-xs);
 
 		h4 {
 			font-weight: var(--font-semibold);
-			color: var(--color-gray-700);
+			color: var(--fkt-color-neutral-700);
 			text-align: center;
 			width: 100%;
 		}
@@ -75,13 +75,13 @@ h3, h4, p {
 		display: flex;
 		flex-direction: column;
 		gap: var(--space-sm);
-		border-top: solid 1px var(--color-gray-200);
+		border-top: solid 1px var(--fkt-color-neutral-200);
 		padding-top: var(--space-xs);
 		margin-top: var(--space-xs);
 
 		h4 {
 			font-weight: var(--font-semibold);
-			color: var(--color-gray-700);
+			color: var(--fkt-color-neutral-700);
 			text-align: center;
 			width: 100%;
 		}
@@ -98,13 +98,13 @@ h3, h4, p {
 		display: flex;
 		flex-direction: column;
 		gap: var(--space-sm);
-		border-top: solid 1px var(--color-gray-200);
+		border-top: solid 1px var(--fkt-color-neutral-200);
 		padding-top: var(--space-xs);
 		margin-top: var(--space-xs);
 
 		h4 {
 			font-weight: var(--font-semibold);
-			color: var(--color-gray-700);
+			color: var(--fkt-color-neutral-700);
 			text-align: center;
 			width: 100%;
 		}
@@ -117,8 +117,8 @@ h3, h4, p {
 			align-items: center;
 
 			p {
-				color: var(--color-gray-800);
-				border-bottom: dashed 1px var(--color-gray-400);
+				color: var(--fkt-color-neutral-800);
+				border-bottom: dashed 1px var(--fkt-color-neutral-400);
 				display: inline-block;
 				width: fit-content;
 				padding-bottom: var(--space-xs);
@@ -139,13 +139,13 @@ h3, h4, p {
 		display: flex;
 		flex-direction: column;
 		gap: var(--space-sm);
-		border-top: solid 1px var(--color-gray-200);
+		border-top: solid 1px var(--fkt-color-neutral-200);
 		padding-top: var(--space-xs);
 		margin-top: var(--space-xs);
 
 		h4 {
 			font-weight: var(--font-semibold);
-			color: var(--color-gray-700);
+			color: var(--fkt-color-neutral-700);
 			text-align: center;
 			width: 100%;
 		}
@@ -171,7 +171,7 @@ h3, h4, p {
 			div:last-child {
 				padding: var(--space-xs) var(--space-sm);
 				border-radius: var(--radius-md);
-				border: solid 1px var(--color-gray-300);
+				border: solid 1px var(--fkt-color-neutral-300);
 				width: fit-content;
 				transition: var(--transition-base);
 				transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
@@ -180,11 +180,11 @@ h3, h4, p {
 				align-items: center;
 
 				:hover {
-					background-color: var(--color-gray-50);
+					background-color: var(--fkt-color-neutral-50);
 				}
 
 				small {
-					color: var(--color-gray-500);
+					color: var(--fkt-color-neutral-500);
 				}
 			}
 		}
@@ -195,13 +195,13 @@ h3, h4, p {
 		flex-direction: column;
 		justify-content: center;
 		gap: var(--space-sm);
-		border-top: solid 1px var(--color-gray-200);
+		border-top: solid 1px var(--fkt-color-neutral-200);
 		padding-top: var(--space-xs);
 		margin-top: var(--space-xs);
 
 		h4 {
 			font-weight: var(--font-semibold);
-			color: var(--color-gray-700);
+			color: var(--fkt-color-neutral-700);
 			text-align: center;
 			width: 100%;
 		}
@@ -232,7 +232,7 @@ h3, h4, p {
 				border-radius: var(--radius-full);
 				width: var(--space-sm);
 				height: var(--space-sm);
-				background-color: var(--color-red-500);
+				background-color: var(--fkt-color-danger);
 				cursor: pointer;
 			}
 		}
@@ -240,8 +240,8 @@ h3, h4, p {
 
 	&__tip {
 		font-size: var(--font-size-xs);
-		color: var(--color-gray-500);
-		background-color: var(--color-gray-50);
+		color: var(--fkt-color-neutral-500);
+		background-color: var(--fkt-color-neutral-50);
 		padding: var(--space-sm);
 		border-radius: var(--radius-md);
 	}

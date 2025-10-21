@@ -1,3 +1,65 @@
+// <design-tokens>
+/*
+Padding for badge selector modal container.
+@name --fkt-badge-selector-modal-padding
+@reference --space-xs
+@component Modal
+@category Spacing
+@type size
+*/
+$modal-padding: var(--fkt-badge-selector-modal-padding, var(--space-xs));
+
+/*
+Gap between elements in modal container.
+@name --fkt-badge-selector-modal-gap
+@reference --space-xs
+@component Modal
+@category Spacing
+@type size
+*/
+$modal-gap: var(--fkt-badge-selector-modal-gap, var(--space-xs));
+
+/*
+Gap between items in modal rows.
+@name --fkt-badge-selector-modal-row-gap
+@reference --space-xs
+@component Modal
+@category Spacing
+@type size
+*/
+$modal-row-gap: var(--fkt-badge-selector-modal-row-gap, var(--space-xs));
+
+/*
+Scale factor for badge hover effect in modal.
+@name --fkt-badge-selector-modal-badge-hover-scale
+@reference 105%
+@component Modal
+@category Effects
+@type scale
+*/
+$modal-badge-hover-scale: var(--fkt-badge-selector-modal-badge-hover-scale, 105%);
+
+/*
+Gap between icon and text in modal badge content.
+@name --fkt-badge-selector-modal-badge-content-gap
+@reference --space-xs
+@component Modal
+@category Spacing
+@type size
+*/
+$modal-badge-content-gap: var(--fkt-badge-selector-modal-badge-content-gap, var(--space-xs));
+
+/*
+Font size for icons in modal badges.
+@name --fkt-badge-selector-modal-icon-font-size
+@reference --font-size-sm
+@component Modal
+@category Typography
+@type size
+*/
+$modal-icon-font-size: var(--fkt-badge-selector-modal-icon-font-size, var(--font-size-sm));
+// </design-tokens>
+
 * {
 	box-sizing: border-box;
 }
@@ -7,22 +69,20 @@ p {
 }
 
 .container {
-	padding: var(--space-xs);
+	padding: $modal-padding;
 	display: flex;
 	flex-direction: column;
-	gap: var(--space-xs);
+	gap: $modal-gap;
 
 	&__first-row {
 		display: flex;
-		gap: var(--space-xs);
+		gap: $modal-row-gap;
 	}
-
 
 	&__second-row {
 		display: flex;
 		flex-wrap: wrap;
-		gap: var(--space-xs);
-
+		gap: $modal-row-gap;
 	}
 
 	&__badge {
@@ -30,20 +90,20 @@ p {
 		cursor: pointer;
 
 		&:hover {
-			scale: 105%;
+			scale: $modal-badge-hover-scale;
 		}
 
 		&-content {
 			display: flex;
 			align-items: center;
-			gap: var(--space-xs);
+			gap: $modal-badge-content-gap;
 
 			p {
 				white-space: nowrap;
 			}
 
 			fkt-icon {
-				font-size: var(--font-size-sm) !important;
+				font-size: $modal-icon-font-size !important;
 			}
 		}
 	}

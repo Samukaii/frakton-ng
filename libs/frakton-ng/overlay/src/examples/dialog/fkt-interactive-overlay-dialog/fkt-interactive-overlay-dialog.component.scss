@@ -8,7 +8,7 @@ h3, h4, p {
 
 hr {
 	border: none;
-	border-bottom: solid 1px var(--color-gray-300);
+	border-bottom: solid 1px var(--fkt-color-neutral-300);
 	margin: 0;
 }
 
@@ -31,11 +31,11 @@ hr {
 		}
 
 		&-icon {
-			color: var(--color-gray-600);
+			color: var(--fkt-color-neutral-600);
 		}
 
 		&-title {
-			color: var(--color-gray-900);
+			color: var(--fkt-color-neutral-900);
 			font-size: var(--font-size-lg);
 			font-weight: var(--font-semibold);
 		}
@@ -43,7 +43,7 @@ hr {
 
 	&__description {
 		font-size: var(--font-size-sm);
-		color: var(--color-gray-600);
+		color: var(--fkt-color-neutral-600);
 	}
 
 	&__counter {
@@ -62,7 +62,7 @@ hr {
 			h4 {
 				font-size: var(--font-size-md);
 				font-weight: var(--font-semibold);
-				color: var(--color-gray-700);
+				color: var(--fkt-color-neutral-700);
 			}
 		}
 
@@ -80,7 +80,7 @@ hr {
 		&-title {
 			font-size: var(--font-size-md);
 			font-weight: var(--font-semibold);
-			color: var(--color-gray-700);
+			color: var(--fkt-color-neutral-700);
 		}
 
 		&-list {
@@ -96,7 +96,7 @@ hr {
 			align-items: center;
 			justify-content: space-between;
 			padding: var(--space-xs) var(--space-sm);
-			border: solid 1px var(--color-gray-300);
+			border: solid 1px var(--fkt-color-neutral-300);
 			border-radius: var(--radius-md);
 
 			span {
