@@ -7,15 +7,15 @@
 
 Frakton NG is a **next-generation Angular UI library** that separates what matters: enforced accessibility and modern architecture, with complete visual freedom. Built with Angular 21+ signals, standalone components, and a comprehensive design token system.
 
-[📚 See the docs & interactive demos →](https://samukaii.github.io/frakton-ng)
-
----
+<br/>
 
 ## 🖼️ **See It In Action**
+[See the docs & interactive demos →](https://samukaii.github.io/frakton-ng)
 
 <img width="2315" height="1341" alt="image" src="https://github.com/user-attachments/assets/fd97b2f9-146b-42e4-89ac-332ae2d40507" />
 
----
+<br/>
+<br/>
 
 ## 🎯 **The Philosophy**
 
@@ -35,13 +35,13 @@ Unlike traditional UI libraries, Frakton NG is **opinionated about the right thi
 -  **Theming**: Multi-theme support with runtime token inheritance
 -  **Layout**: No imposed spacing, sizing, or visual constraints
 
-[📚 See the docs & interactive demos →](https://samukaii.github.io/frakton-ng)
+[See the docs & interactive demos →](https://samukaii.github.io/frakton-ng)
 
----
+<br/>
 
 ## 🔥 **Why Choose Frakton NG Over Alternatives?**
 
-### **vs. Angular Material**
+### **Angular Material**
 
 | Frakton NG                                                      | Angular Material                                              |
 |-----------------------------------------------------------------|---------------------------------------------------------------|
@@ -51,7 +51,7 @@ Unlike traditional UI libraries, Frakton NG is **opinionated about the right thi
 | ✅ **TypeScript inference** - Overlay data automatically typed   | ❌ **Manual typing** - No automatic type inference             |
 | ✅ **Modern patterns** - Standalone components, new control flow | ⚠️ **Mixed patterns** - Still uses NgModules                  |
 
-### **vs. PrimeNG**
+### **PrimeNG**
 
 | Frakton NG                                                            | PrimeNG                                            |
 |-----------------------------------------------------------------------|----------------------------------------------------|
@@ -60,7 +60,7 @@ Unlike traditional UI libraries, Frakton NG is **opinionated about the right thi
 | ✅ **Token-based theming** - Granular control                          | ⚠️ **Theme switching** - Predefined theme sets     |
 | ✅ **Advanced overlays** - Type-safe, theme-inheriting                 | ❌ **Basic overlays** - Limited positioning options |
 
-### **vs. Ng-Bootstrap**
+### **Ng-Bootstrap**
 
 | Frakton NG                                                   | Ng-Bootstrap                                              |
 |--------------------------------------------------------------|-----------------------------------------------------------|
@@ -69,7 +69,7 @@ Unlike traditional UI libraries, Frakton NG is **opinionated about the right thi
 | ✅ **No external dependencies** - Self-contained              | ❌ **External dependency** - Requires Bootstrap CSS        |
 | ✅ **Modern Angular** - Signals, standalone, latest patterns  | ⚠️ **Legacy Angular** - Decorator-based architecture      |
 
----
+<br/>
 
 ## 🚀 **Installation & Setup**
 
@@ -120,9 +120,9 @@ export class AppComponent {
 }
 ```
 
----
+<br/>
 
-## 🌟 **What Makes Frakton NG Unique**
+## **What Makes Frakton NG Unique**
 
 ### **Overlay Type Safety (First in Angular Ecosystem)**
 Automatic TypeScript inference for overlay component data - no other Angular UI library offers this:
@@ -147,7 +147,7 @@ const ref = overlay.open({
 });
 ```
 
-### **🚫 Zero-Conflict Architecture**
+### **Zero-Conflict Architecture**
 No CSS resets means perfect compatibility with existing projects:
 
 ```html
@@ -158,10 +158,10 @@ No CSS resets means perfect compatibility with existing projects:
 <!-- All work together perfectly - no style conflicts -->
 ```
 
-### **♿ Runtime Accessibility Enforcement**
+### **Runtime Accessibility Enforcement**
 Most libraries document accessibility - Frakton NG **enforces** it:
 
-```typescript
+```html
 // Throws actual errors for accessibility violations
 <fkt-button icon="save" />  
 // ❌ Error: "When no text is provided, ariaLabel is required"
@@ -170,7 +170,7 @@ Most libraries document accessibility - Frakton NG **enforces** it:
 // ✅ Automatically announces "Bright red-orange" to screen readers
 ```
 
-### **🚀 Signal-Native Performance**
+### **Signal-Native Performance**
 Built entirely on Angular signals for optimal reactivity:
 
 ```typescript
@@ -183,6 +183,9 @@ loading = input(false);
 classes = computed(() => `btn-${this.loading() ? 'loading' : ''}`);
 // Only recomputes when inputs actually change
 ```
+
+<br/>
+
 
 ### **Complete Visual Freedom**
 - **Design token architecture**: Three-tier fallback system (component → global → default)
@@ -211,7 +214,7 @@ Interactive documentation that goes beyond traditional UI libraries:
 
 <img width="2308" height="1342" alt="image" src="https://github.com/user-attachments/assets/f79c59fc-f76c-4da2-8869-11fe321cd5d5" />
 
----
+<br/>
 
 ## 📊 **Performance & Bundle Size**
 
@@ -223,7 +226,8 @@ Frakton NG is built for production applications:
 - **Overlay-efficient**: Reuses DOM nodes, proper cleanup
 - **Memory conscious**: Automatic subscription management
 
----
+<br/>
+
 
 ## 🎯 **Perfect For**
 
@@ -245,21 +249,19 @@ Frakton NG is built for production applications:
 - Teams needing token-based theming architecture
 - Projects requiring comprehensive documentation integration
 
+<br/>
 
----
 
 ## ⚡️ Quick links
 
-- [📚 Docs & Demos](https://samukaii.github.io/frakton-ng)
-- [🐛 Issues](https://github.com/Samukaii/frakton-ng/issues)
+- [Docs & Demos](https://samukaii.github.io/frakton-ng)
+- [Issues](https://github.com/Samukaii/frakton-ng/issues)
 
----
 
 ## 🛠️ Contributing
 
 Found a bug or want to suggest something?
 Check `CONTRIBUTING.md` or open an issue.
 
----
 
 MIT © Samuel Alejandro
