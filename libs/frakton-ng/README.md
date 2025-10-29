@@ -13,7 +13,7 @@ Frakton NG is a **next-generation Angular UI library** that separates what matte
 
 ## 🖼️ **See It In Action**
 
-<img width="2312" height="1342" alt="Frakton NG Interactive Documentation - showing live control playground, design token editing, and real-time component customization" src="https://github.com/user-attachments/assets/11df3f3e-6392-40a4-ab83-09ddfa622e73" />
+<img width="2315" height="1341" alt="image" src="https://github.com/user-attachments/assets/fd97b2f9-146b-42e4-89ac-332ae2d40507" />
 
 ---
 
@@ -30,10 +30,10 @@ Unlike traditional UI libraries, Frakton NG is **opinionated about the right thi
 
 ### **Completely Flexible (Your Choice)**
 
-- 🎨 **Visual design**: All components use design tokens so you can customize every aspect of your product.
-- 🌈 **Color system**: Semantic colors OR custom hex values with automatic contrast
-- 🎭 **Theming**: Multi-theme support with runtime token inheritance
-- 📏 **Layout**: No imposed spacing, sizing, or visual constraints
+-  **Visual design**: All components use design tokens so you can customize every aspect of your product.
+-  **Color system**: Semantic colors OR custom hex values with automatic contrast
+-  **Theming**: Multi-theme support with runtime token inheritance
+-  **Layout**: No imposed spacing, sizing, or visual constraints
 
 [📚 See the docs & interactive demos →](https://samukaii.github.io/frakton-ng)
 
@@ -124,7 +124,7 @@ export class AppComponent {
 
 ## 🌟 **What Makes Frakton NG Unique**
 
-### **🧬 Overlay Type Safety (First in Angular Ecosystem)**
+### **Overlay Type Safety (First in Angular Ecosystem)**
 Automatic TypeScript inference for overlay component data - no other Angular UI library offers this:
 
 ```typescript
@@ -184,27 +184,32 @@ classes = computed(() => `btn-${this.loading() ? 'loading' : ''}`);
 // Only recomputes when inputs actually change
 ```
 
-### **🎨 Complete Visual Freedom**
+### **Complete Visual Freedom**
 - **Design token architecture**: Three-tier fallback system (component → global → default)
-- **Custom color intelligence**: Accepts hex colors with automatic contrast calculation  
+- **Custom color intelligence**: Accepts hex colors with automatic contrast calculation
 - **Theme inheritance**: Overlays automatically inherit design tokens from anchor elements
 - **Zero visual opinions**: Every visual aspect is controlled via tokens
 
-### **🎭 Advanced Overlay System**
+<img width="2315" height="1342" alt="image" src="https://github.com/user-attachments/assets/86cb542f-b9a2-4e63-9642-37a9ca8f3b3b" />
+
+### **Advanced Overlay System**
 - **Intelligent positioning**: 12 anchor positions with smart viewport-aware repositioning
 - **Z-index management**: Automatic stacking without conflicts
 - **Focus management**: Proper focus trapping and restoration
 - **Theme inheritance**: Child overlays automatically match parent themes
 - **Memory efficient**: Proper cleanup prevents memory leaks
 
-### **📚 Exceptional Documentation Experience**
+### **Exceptional Documentation Experience**
 Interactive documentation that goes beyond traditional UI libraries:
 
 - **Live Control Playground**: Real-time component property editing with instant visual feedback
-- **Design Token Playground**: Interactive token editing to see styling changes immediately  
+- **Design Token Playground**: Interactive token editing to see styling changes immediately
 - **Code Examples**: Auto-generated code snippets for every component configuration
 - **Storybook Integration**: Professional documentation with live editing capabilities
-- **Component Anatomy**: Visual breakdowns showing design token relationships
+
+<img width="2312" height="1340" alt="image" src="https://github.com/user-attachments/assets/9705e48f-8e7c-47b4-8f7e-b78accbb5478" />
+
+<img width="2308" height="1342" alt="image" src="https://github.com/user-attachments/assets/f79c59fc-f76c-4da2-8869-11fe321cd5d5" />
 
 ---
 
