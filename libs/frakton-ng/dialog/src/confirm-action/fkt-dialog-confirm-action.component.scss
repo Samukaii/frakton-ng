@@ -7,7 +7,7 @@ p, h3 {
 }
 
 :host {
-	padding: var(--space-xs);
+	padding: var(--fkt-space-xs);
 	width: 400px;
 	display: block;
 }
@@ -24,10 +24,10 @@ p, h3 {
 	}
 
 	&__title {
-		font-size: var(--font-size-lg);
+		font-size: var(--fkt-font-size-lg);
 		text-align: center;
-		font-weight: var(--font-semibold);
-		margin: var(--space-md) 0;
+		font-weight: var(--fkt-font-semibold);
+		margin: var(--fkt-space-md) 0;
 		width: 300px;
 	}
 
@@ -38,7 +38,7 @@ p, h3 {
 
 .actions {
 	display: flex;
-	margin-top: var(--space-md);
+	margin-top: var(--fkt-space-md);
 	justify-content: center;
 
 	fkt-buttons-list {

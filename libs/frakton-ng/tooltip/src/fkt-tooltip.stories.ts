@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/angular';
 import { FktTooltipDirective } from 'frakton-ng/tooltip';
 import { fktGeometryPositions } from 'frakton-ng/internal/types';
-import { customDocsControl } from '../../.storybook/decorators/custom-docs-control';
+import { fktStoryRenderer } from '../../.storybook/decorators/fkt-story-renderer';
 import { renderComponent } from '../../.storybook/decorators/render-component';
 import designTokens from './fkt-tooltip-design-tokens.json';
 import {
@@ -14,10 +14,10 @@ import { FktTooltipComponent } from './fkt-tooltip.component';
 import { fktColors } from 'frakton-ng/core';
 
 const meta: Meta<FktTooltipDirective> = {
-	title: 'Components/Tooltip',
+	title: 'Components/Overlay/Tooltip',
 	component: FktTooltipComponent,
 	decorators: [
-		customDocsControl({designTokens})
+		fktStoryRenderer({designTokens})
 	],
 	argTypes: {
 		fktTooltip: {

@@ -9,17 +9,17 @@ h3, h4, p {
 .container {
 	display: flex;
 	flex-direction: column;
-	gap: var(--space-xl);
+	gap: var(--fkt-space-xl);
 
 	h3 {
-		font-size: var(--font-size-lg);
-		font-weight: var(--font-semibold);
+		font-size: var(--fkt-font-size-lg);
+		font-weight: var(--fkt-font-semibold);
 	}
 
 	&__examples {
 		display: flex;
 		flex-direction: column;
-		gap: var(--space-md);
+		gap: var(--fkt-space-md);
 	}
 
 	&__buttons {
@@ -27,10 +27,10 @@ h3, h4, p {
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		gap: var(--space-sm);
+		gap: var(--fkt-space-sm);
 
 		h4 {
-			font-weight: var(--font-semibold);
+			font-weight: var(--fkt-font-semibold);
 			color: var(--fkt-color-neutral-700);
 			text-align: center;
 			width: 100%;
@@ -39,7 +39,7 @@ h3, h4, p {
 		& > div {
 			display: flex;
 			justify-content: center;
-			gap: var(--space-xs);
+			gap: var(--fkt-space-xs);
 			width: fit-content;
 		}
 	}
@@ -47,13 +47,13 @@ h3, h4, p {
 	&__icons {
 		display: flex;
 		flex-direction: column;
-		gap: var(--space-sm);
+		gap: var(--fkt-space-sm);
 		border-top: solid 1px var(--fkt-color-neutral-200);
-		padding-top: var(--space-xs);
-		margin-top: var(--space-xs);
+		padding-top: var(--fkt-space-xs);
+		margin-top: var(--fkt-space-xs);
 
 		h4 {
-			font-weight: var(--font-semibold);
+			font-weight: var(--fkt-font-semibold);
 			color: var(--fkt-color-neutral-700);
 			text-align: center;
 			width: 100%;
@@ -62,10 +62,10 @@ h3, h4, p {
 		& > div {
 			display: flex;
 			justify-content: center;
-			gap: var(--space-sm);
+			gap: var(--fkt-space-sm);
 
 			fkt-icon {
-				color: var(--color-blue-500);
+				color: var(--fkt-color-info);
 				cursor: pointer;
 			}
 		}
@@ -74,13 +74,13 @@ h3, h4, p {
 	&__badges {
 		display: flex;
 		flex-direction: column;
-		gap: var(--space-sm);
+		gap: var(--fkt-space-sm);
 		border-top: solid 1px var(--fkt-color-neutral-200);
-		padding-top: var(--space-xs);
-		margin-top: var(--space-xs);
+		padding-top: var(--fkt-space-xs);
+		margin-top: var(--fkt-space-xs);
 
 		h4 {
-			font-weight: var(--font-semibold);
+			font-weight: var(--fkt-font-semibold);
 			color: var(--fkt-color-neutral-700);
 			text-align: center;
 			width: 100%;
@@ -90,20 +90,20 @@ h3, h4, p {
 			justify-content: center;
 			display: flex;
 			flex-wrap: wrap;
-			gap: var(--space-xs);
+			gap: var(--fkt-space-xs);
 		}
 	}
 
 	&__texts {
 		display: flex;
 		flex-direction: column;
-		gap: var(--space-sm);
+		gap: var(--fkt-space-sm);
 		border-top: solid 1px var(--fkt-color-neutral-200);
-		padding-top: var(--space-xs);
-		margin-top: var(--space-xs);
+		padding-top: var(--fkt-space-xs);
+		margin-top: var(--fkt-space-xs);
 
 		h4 {
-			font-weight: var(--font-semibold);
+			font-weight: var(--fkt-font-semibold);
 			color: var(--fkt-color-neutral-700);
 			text-align: center;
 			width: 100%;
@@ -112,7 +112,7 @@ h3, h4, p {
 		& > div {
 			display: flex;
 			flex-direction: column;
-			gap: var(--space-xs);
+			gap: var(--fkt-space-xs);
 			justify-content: center;
 			align-items: center;
 
@@ -121,14 +121,14 @@ h3, h4, p {
 				border-bottom: dashed 1px var(--fkt-color-neutral-400);
 				display: inline-block;
 				width: fit-content;
-				padding-bottom: var(--space-xs);
-				margin-bottom: var(--space-xs);
+				padding-bottom: var(--fkt-space-xs);
+				margin-bottom: var(--fkt-space-xs);
 				cursor: help;
 			}
 
 			span {
-				font-weight: var(--font-semibold);
-				color: var(--color-blue-600);
+				font-weight: var(--fkt-font-semibold);
+				color: var(--fkt-color-info);
 				width: fit-content;
 				cursor: help;
 			}
@@ -138,13 +138,13 @@ h3, h4, p {
 	&__interactive {
 		display: flex;
 		flex-direction: column;
-		gap: var(--space-sm);
+		gap: var(--fkt-space-sm);
 		border-top: solid 1px var(--fkt-color-neutral-200);
-		padding-top: var(--space-xs);
-		margin-top: var(--space-xs);
+		padding-top: var(--fkt-space-xs);
+		margin-top: var(--fkt-space-xs);
 
 		h4 {
-			font-weight: var(--font-semibold);
+			font-weight: var(--fkt-font-semibold);
 			color: var(--fkt-color-neutral-700);
 			text-align: center;
 			width: 100%;
@@ -152,28 +152,28 @@ h3, h4, p {
 
 		& > div {
 			display: flex;
-			gap: var(--space-xs);
+			gap: var(--fkt-space-xs);
 			justify-content: center;
 
 			div:first-child {
 				display: flex;
 				justify-content: center;
 				align-items: center;
-				border-radius: var(--radius-md);
+				border-radius: var(--fkt-radius-md);
 				width: 3rem;
 				height: 3rem;
-				font-weight: var(--font-bold);
+				font-weight: var(--fkt-font-bold);
 				color: #ffffff;
-				background-image: linear-gradient(to bottom right, var(--color-purple-400), var(--color-purple-600));
+				background-image: linear-gradient(to bottom right, #C27AFFFF, #9810FAFF);
 				cursor: pointer;
 			}
 
 			div:last-child {
-				padding: var(--space-xs) var(--space-sm);
-				border-radius: var(--radius-md);
+				padding: var(--fkt-space-xs) var(--fkt-space-sm);
+				border-radius: var(--fkt-radius-md);
 				border: solid 1px var(--fkt-color-neutral-300);
 				width: fit-content;
-				transition: var(--transition-base);
+				transition: var(--fkt-transition-base);
 				transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
 				cursor: pointer;
 				display: flex;
@@ -194,13 +194,13 @@ h3, h4, p {
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
-		gap: var(--space-sm);
+		gap: var(--fkt-space-sm);
 		border-top: solid 1px var(--fkt-color-neutral-200);
-		padding-top: var(--space-xs);
-		margin-top: var(--space-xs);
+		padding-top: var(--fkt-space-xs);
+		margin-top: var(--fkt-space-xs);
 
 		h4 {
-			font-weight: var(--font-semibold);
+			font-weight: var(--fkt-font-semibold);
 			color: var(--fkt-color-neutral-700);
 			text-align: center;
 			width: 100%;
@@ -210,28 +210,28 @@ h3, h4, p {
 			display: flex;
 			align-items: center;
 			justify-content: center;
-			gap: var(--space-sm);
+			gap: var(--fkt-space-sm);
 
 			.container__status--available {
-				border-radius: var(--radius-full);
-				width: var(--space-sm);
-				height: var(--space-sm);
-				background-color: var(--color-green-500);
+				border-radius: var(--fkt-radius-full);
+				width: var(--fkt-space-sm);
+				height: var(--fkt-space-sm);
+				background-color: var(--fkt-color-success);
 				cursor: pointer;
 			}
 
 			.container__status--warning {
-				border-radius: var(--radius-full);
-				width: var(--space-sm);
-				height: var(--space-sm);
-				background-color: var(--color-yellow-500);
+				border-radius: var(--fkt-radius-full);
+				width: var(--fkt-space-sm);
+				height: var(--fkt-space-sm);
+				background-color: var(--fkt-color-accent);
 				cursor: pointer;
 			}
 
 			.container__status--unavailable {
-				border-radius: var(--radius-full);
-				width: var(--space-sm);
-				height: var(--space-sm);
+				border-radius: var(--fkt-radius-full);
+				width: var(--fkt-space-sm);
+				height: var(--fkt-space-sm);
 				background-color: var(--fkt-color-danger);
 				cursor: pointer;
 			}
@@ -239,10 +239,10 @@ h3, h4, p {
 	}
 
 	&__tip {
-		font-size: var(--font-size-xs);
+		font-size: var(--fkt-font-size-xs);
 		color: var(--fkt-color-neutral-500);
 		background-color: var(--fkt-color-neutral-50);
-		padding: var(--space-sm);
-		border-radius: var(--radius-md);
+		padding: var(--fkt-space-sm);
+		border-radius: var(--fkt-radius-md);
 	}
 }

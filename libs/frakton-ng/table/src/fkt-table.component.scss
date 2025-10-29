@@ -2,12 +2,12 @@
 /*
 Border radius for the table container.
 @name --fkt-table-border-radius
-@reference --space-sm
+@reference --fkt-space-sm
 @component Display
 @category Shape
 @type size
 */
-$border-radius: var(--fkt-table-border-radius, var(--space-sm));
+$border-radius: var(--fkt-table-border-radius, var(--fkt-space-sm));
 
 /*
 Border color for the table container.
@@ -42,12 +42,12 @@ $row-border-color: var(--fkt-table-row-border-color, var(--fkt-color-neutral-300
 /*
 Padding for table header cells.
 @name --fkt-table-header-cell-padding
-@reference --space-md
+@reference --fkt-space-md
 @component Display
 @category Spacing
 @type size
 */
-$header-cell-padding: var(--fkt-table-header-cell-padding, var(--space-md));
+$header-cell-padding: var(--fkt-table-header-cell-padding, var(--fkt-space-md));
 
 /*
 Color for table header title text.
@@ -62,12 +62,12 @@ $header-title-color: var(--fkt-table-header-title-color, var(--fkt-color-neutral
 /*
 Font weight for table header title.
 @name --fkt-table-header-title-font-weight
-@reference --font-semibold
+@reference --fkt-font-semibold
 @component Display
 @category Typography
 @type font
 */
-$header-title-font-weight: var(--fkt-table-header-title-font-weight, var(--font-semibold));
+$header-title-font-weight: var(--fkt-table-header-title-font-weight, var(--fkt-font-semibold));
 
 /*
 Color for table header actions text.
@@ -82,12 +82,12 @@ $header-actions-color: var(--fkt-table-header-actions-color, var(--fkt-color-neu
 /*
 Font weight for table header actions.
 @name --fkt-table-header-actions-font-weight
-@reference --font-bold
+@reference --fkt-font-bold
 @component Display
 @category Typography
 @type font
 */
-$header-actions-font-weight: var(--fkt-table-header-actions-font-weight, var(--font-bold));
+$header-actions-font-weight: var(--fkt-table-header-actions-font-weight, var(--fkt-font-bold));
 
 /*
 Color for table header cell text.
@@ -102,22 +102,22 @@ $header-cell-color: var(--fkt-table-header-cell-color, var(--fkt-color-neutral-9
 /*
 Font size for table body text.
 @name --fkt-table-font-size
-@reference --font-size-sm
+@reference --fkt-font-size-sm
 @component Display
 @category Typography
 @type size
 */
-$font-size: var(--fkt-table-font-size, var(--font-size-sm));
+$font-size: var(--fkt-table-font-size, var(--fkt-font-size-sm));
 
 /*
 Gap between no results items.
 @name --fkt-table-no-results-gap
-@reference --space-md
+@reference --fkt-space-md
 @component Display
 @category Spacing
 @type size
 */
-$no-results-gap: var(--fkt-table-no-results-gap, var(--space-md));
+$no-results-gap: var(--fkt-table-no-results-gap, var(--fkt-space-md));
 
 /*
 Minimum height for no results state.
@@ -132,12 +132,12 @@ $no-results-min-height: var(--fkt-table-no-results-min-height, 400px);
 /*
 Padding for no data header section.
 @name --fkt-table-no-data-header-padding
-@reference var(--space-xs) var(--space-md)
+@reference var(--fkt-space-xs) var(--fkt-space-md)
 @component Display
 @category Spacing
 @type size
 */
-$no-data-header-padding: var(--fkt-table-no-data-header-padding, var(--space-xs) var(--space-md));
+$no-data-header-padding: var(--fkt-table-no-data-header-padding, var(--fkt-space-xs) var(--fkt-space-md));
 
 /*
 Minimum height for no data header section.

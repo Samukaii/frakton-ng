@@ -7,13 +7,13 @@ import {
 	FktSimpleDialogExampleComponent,
 	FktSmallDialogExampleComponent
 } from './examples';
-import { customDocsControl } from '../../.storybook/decorators/custom-docs-control';
+import { fktStoryRenderer } from '../../.storybook/decorators/fkt-story-renderer';
 import { renderComponent } from '../../.storybook/decorators/render-component';
 
 const meta: Meta = {
-	title: 'Services/Dialog',
+	title: 'Components/Overlay/Dialog',
 	decorators: [
-		customDocsControl(),
+		fktStoryRenderer(),
 	],
 };
 

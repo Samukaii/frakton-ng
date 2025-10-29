@@ -2,21 +2,21 @@
 	width: 100%;
 	display: flex;
 	flex-direction: column;
-	gap: var(--space-md);
+	gap: var(--fkt-space-md);
 
 	&__status {
 		display: flex;
 		align-items: center;
-		gap: var(--space-md);
+		gap: var(--fkt-space-md);
 
 		span {
-			font-size: var(--font-size-sm);
+			font-size: var(--fkt-font-size-sm);
 			color: var(--fkt-color-neutral-600);
 		}
 	}
 
 	&__message {
-		font-size: var(--font-size-sm);
+		font-size: var(--fkt-font-size-sm);
 		color: var(--fkt-color-neutral-600);
 	}
 

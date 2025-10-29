@@ -10,7 +10,7 @@ import {
 	PreselectedExampleComponent,
 	ValidationExampleComponent
 } from './examples';
-import { customDocsControl } from '../../.storybook/decorators/custom-docs-control';
+import { fktStoryRenderer } from '../../.storybook/decorators/fkt-story-renderer';
 import designTokens from './fkt-select-design-tokens.json';
 import { renderComponent } from '../../.storybook/decorators/render-component';
 
@@ -18,7 +18,7 @@ const meta: Meta<FktSelectComponent> = {
 	title: 'Components/Form/Select',
 	component: FktSelectComponent,
 	decorators: [
-		customDocsControl({
+		fktStoryRenderer({
 			designTokens: designTokens as any
 		}),
 	],

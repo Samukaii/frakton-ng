@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { FktColorPickerComponent, fktColorPickerFormats } from 'frakton-ng/color-picker';
-import { customDocsControl } from '../../.storybook/decorators/custom-docs-control';
+import { fktStoryRenderer } from '../../.storybook/decorators/fkt-story-renderer';
 import { renderComponent } from '../../.storybook/decorators/render-component';
 import designTokens from './fkt-color-picker-design-tokens.json';
 
@@ -15,7 +15,7 @@ const meta: Meta<FktColorPickerComponent> = {
 		}
 	},
 	decorators: [
-		customDocsControl({
+		fktStoryRenderer({
 			designTokens: designTokens as any
 		}),
 	],

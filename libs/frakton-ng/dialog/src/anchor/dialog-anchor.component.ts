@@ -67,10 +67,11 @@ export class DialogAnchorComponent  {
 	maxHeight = input('90vh');
 	maxWidth = input('1200px');
 	borderRadius = input('1rem');
-	backgroundColor = input('white');
+	backgroundColor = input('var(--fkt-color-modal-background)');
 	padding = input('1rem');
 
     container = viewChild.required('container', { read: ViewContainerRef });
 
 	protected windowScroll = injectWindowScroll();
 }
+

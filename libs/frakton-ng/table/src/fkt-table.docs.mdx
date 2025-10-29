@@ -1,6 +1,6 @@
 import {ArgTypes, Canvas, Controls, Meta} from '@storybook/addon-docs/blocks';
 import * as stories from './fkt-table.stories';
-import {StoryDoc} from "../../.storybook/blocks/StoryDoc";
+import {FktStoryRenderer} from "../../.storybook/blocks/FktStoryRenderer/FktStoryRenderer";
 import {rawExamples} from './examples/raw-examples';
 
 <Meta of={stories} />
@@ -61,14 +61,14 @@ interface FktIdentifiable {
 
 ## Examples
 
-<StoryDoc of={stories.BasicTable} code={rawExamples.fktTableExamplesBasicTable}/>
-<StoryDoc of={stories.TableWithActions} code={rawExamples.fktTableExamplesTableWithActions}/>
-<StoryDoc of={stories.LoadingState} code={rawExamples.fktTableExamplesLoadingState}/>
-<StoryDoc of={stories.EmptyState} code={rawExamples.fktTableExamplesEmptyState}/>
-<StoryDoc of={stories.InteractiveStates} code={rawExamples.fktTableExamplesInteractiveStates}/>
-<StoryDoc of={stories.CustomCellTypes} code={rawExamples.fktTableExamplesCustomCells}/>
-<StoryDoc of={stories.ProductTable} code={rawExamples.fktTableExamplesProductTable}/>
-<StoryDoc of={stories.TaskTable} code={rawExamples.fktTableExamplesTaskTable}/>
+<FktStoryRenderer of={stories.BasicTable} code={rawExamples.fktTableExamplesBasicTable}/>
+<FktStoryRenderer of={stories.TableWithActions} code={rawExamples.fktTableExamplesTableWithActions}/>
+<FktStoryRenderer of={stories.LoadingState} code={rawExamples.fktTableExamplesLoadingState}/>
+<FktStoryRenderer of={stories.EmptyState} code={rawExamples.fktTableExamplesEmptyState}/>
+<FktStoryRenderer of={stories.InteractiveStates} code={rawExamples.fktTableExamplesInteractiveStates}/>
+<FktStoryRenderer of={stories.CustomCellTypes} code={rawExamples.fktTableExamplesCustomCells}/>
+<FktStoryRenderer of={stories.ProductTable} code={rawExamples.fktTableExamplesProductTable}/>
+<FktStoryRenderer of={stories.TaskTable} code={rawExamples.fktTableExamplesTaskTable}/>
 
 ## Use Cases
 

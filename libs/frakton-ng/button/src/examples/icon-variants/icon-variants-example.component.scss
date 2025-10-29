@@ -6,8 +6,8 @@
 .demo-variants {
 	display: flex;
 	flex-direction: column;
-	gap: var(--space-2xl);
-	padding: var(--space-md) 0;
+	gap: var(--fkt-space-2xl);
+	padding: var(--fkt-space-md) 0;
 	justify-content: center;
 	max-width: 750px;
 }
@@ -15,17 +15,17 @@
 .demo-variants__column {
 	display: flex;
 	flex-direction: column;
-	gap: var(--space-xl);
+	gap: var(--fkt-space-xl);
 	min-width: 300px;
 }
 
 .demo-variants__title {
-	font-size: var(--font-size-xl);
-	font-weight: var(--font-semibold);
+	font-size: var(--fkt-font-size-xl);
+	font-weight: var(--fkt-font-semibold);
 	text-align: center;
 	border-bottom: 2px solid #e5e7eb;
-	margin-bottom: var(--space-sm);
-	padding-bottom: var(--space-3xs);
+	margin-bottom: var(--fkt-space-sm);
+	padding-bottom: var(--fkt-space-3xs);
 	letter-spacing: 0.02em;
 }
 
@@ -33,17 +33,17 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	gap: var(--space-sm);
+	gap: var(--fkt-space-sm);
 	margin-bottom: 0;
 }
 
 .demo-variants__label {
-	font-weight: var(--font-semibold);
+	font-weight: var(--fkt-font-semibold);
 	min-width: 60px;
 	display: inline-block;
 }
 
 .demo-variants__button {
-	font-size: var(--font-size-md);
+	font-size: var(--fkt-font-size-md);
 	white-space: nowrap;
 }

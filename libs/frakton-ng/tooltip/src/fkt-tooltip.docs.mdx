@@ -1,6 +1,6 @@
 import { Meta, Story, ArgTypes } from '@storybook/addon-docs/blocks';
 import * as fktTooltipStories from './fkt-tooltip.stories';
-import {StoryDoc} from "../../.storybook/blocks/StoryDoc";
+import {FktStoryRenderer} from "../../.storybook/blocks/FktStoryRenderer/FktStoryRenderer";
 import {rawExamples} from './examples/raw-examples';
 
 <Meta of={fktTooltipStories} />
@@ -38,10 +38,10 @@ type FktGeometryPosition =
 
 ## Examples
 
-<StoryDoc of={fktTooltipStories.BasicTooltips} code={rawExamples.basicTooltipExample}/>
-<StoryDoc of={fktTooltipStories.Positioning} code={rawExamples.positioningTooltipExample}/>
-<StoryDoc of={fktTooltipStories.InteractiveControls} code={rawExamples.interactiveTooltipExample}/>
-<StoryDoc of={fktTooltipStories.DifferentElements} code={rawExamples.differentElementsExample}/>
+<FktStoryRenderer of={fktTooltipStories.BasicTooltips} code={rawExamples.basicTooltipExample}/>
+<FktStoryRenderer of={fktTooltipStories.Positioning} code={rawExamples.positioningTooltipExample}/>
+<FktStoryRenderer of={fktTooltipStories.InteractiveControls} code={rawExamples.interactiveTooltipExample}/>
+<FktStoryRenderer of={fktTooltipStories.DifferentElements} code={rawExamples.differentElementsExample}/>
 
 ## Use Cases
 

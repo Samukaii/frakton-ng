@@ -2,7 +2,7 @@
   {
     "description": "Gap between button content elements (icon and text).",
     "name": "--fkt-button-content-gap",
-    "reference": "--space-xs",
+    "reference": "--fkt-space-xs",
     "category": "Spacing",
     "type": "size",
     "defaultValue": ".5rem"
@@ -10,7 +10,7 @@
   {
     "description": "Padding for button (vertical and horizontal).",
     "name": "--fkt-button-padding-vertical",
-    "reference": "--space-xs",
+    "reference": "--fkt-space-xs",
     "category": "Spacing",
     "type": "size",
     "defaultValue": ".5rem"
@@ -18,7 +18,7 @@
   {
     "description": "Horizontal padding for button.",
     "name": "--fkt-button-padding-horizontal",
-    "reference": "--space-md",
+    "reference": "--fkt-space-md",
     "category": "Spacing",
     "type": "size",
     "defaultValue": "1rem"
@@ -26,7 +26,7 @@
   {
     "description": "Border radius for button (full rounded).",
     "name": "--fkt-button-border-radius",
-    "reference": "--radius-full",
+    "reference": "--fkt-radius-full",
     "category": "Spacing",
     "type": "size",
     "defaultValue": "9999px"
@@ -34,7 +34,7 @@
   {
     "description": "Border radius for rectangular button shape.",
     "name": "--fkt-button-rect-border-radius",
-    "reference": "--space-2xs",
+    "reference": "--fkt-space-2xs",
     "category": "Spacing",
     "type": "size",
     "defaultValue": ".375rem"
@@ -42,7 +42,7 @@
   {
     "description": "Font weight for button text.",
     "name": "--fkt-button-font-weight",
-    "reference": "--font-semibold",
+    "reference": "--fkt-font-semibold",
     "category": "Typography",
     "type": "size",
     "defaultValue": "600"
@@ -50,7 +50,7 @@
   {
     "description": "Font weight for icon-only buttons.",
     "name": "--fkt-button-icon-font-weight",
-    "reference": "--font-normal",
+    "reference": "--fkt-font-normal",
     "category": "Typography",
     "type": "size",
     "defaultValue": "400"
@@ -130,7 +130,7 @@
   {
     "description": "Success button translucent background color (used for basic theme hover).",
     "name": "--fkt-button-primary-translucent-color",
-    "reference": "--fkt-color-primary-translucent",
+    "reference": "--fkt-color-primary-opacity-20",
     "category": "Colors",
     "type": "color",
     "defaultValue": "rgba(55, 65, 81, 0.2)"
@@ -162,7 +162,7 @@
   {
     "description": "Success button translucent background color (used for basic theme hover).",
     "name": "--fkt-button-success-translucent-color",
-    "reference": "--fkt-color-success-translucent",
+    "reference": "--fkt-color-success-opacity-20",
     "category": "Colors",
     "type": "color",
     "defaultValue": "#00C95033"
@@ -194,7 +194,7 @@
   {
     "description": "Danger button translucent background color (used for basic theme hover).",
     "name": "--fkt-button-danger-translucent-color",
-    "reference": "--fkt-color-danger-translucent",
+    "reference": "--fkt-color-danger-opacity-20",
     "category": "Colors",
     "type": "color",
     "defaultValue": "#FB2C3633"
@@ -226,7 +226,7 @@
   {
     "description": "Warning button translucent background color (used for basic theme hover).",
     "name": "--fkt-button-warning-translucent-color",
-    "reference": "--fkt-color-warning-translucent",
+    "reference": "--fkt-color-warning-opacity-20",
     "category": "Colors",
     "type": "color",
     "defaultValue": "#FF890433"
@@ -258,7 +258,7 @@
   {
     "description": "Success button translucent background color (used for basic theme hover).",
     "name": "--fkt-button-info-translucent-color",
-    "reference": "--fkt-color-info-translucent",
+    "reference": "--fkt-color-info-opacity-20",
     "category": "Colors",
     "type": "color",
     "defaultValue": "#2B7FFF33"
@@ -290,7 +290,7 @@
   {
     "description": "Accent button translucent background color (used for basic theme hover).",
     "name": "--fkt-button-accent-translucent-color",
-    "reference": "--fkt-color-accent-translucent",
+    "reference": "--fkt-color-accent-opacity-20",
     "category": "Colors",
     "type": "color",
     "defaultValue": "#FDC70033"

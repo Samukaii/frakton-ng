@@ -3,7 +3,7 @@ import { IconsGalleyComponent } from './gallery/icons-galley.component';
 import { FktIconComponent } from 'frakton-ng/icon';
 
 const meta: Meta = {
-	title: 'Components/Icon',
+	title: 'Components/Data display/Icon',
 	component: IconsGalleyComponent,
 	decorators: [
 		() => ({

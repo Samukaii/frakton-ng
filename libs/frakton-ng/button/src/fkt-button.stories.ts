@@ -9,15 +9,15 @@ import {
 import { fktColors } from 'frakton-ng/core';
 import { fontIconNames } from 'frakton-ng/icon';
 import { TextVariantsExampleComponent, IconVariantsExampleComponent } from './examples';
-import { customDocsControl } from '../../.storybook/decorators/custom-docs-control';
+import { fktStoryRenderer } from '../../.storybook/decorators/fkt-story-renderer';
 import { renderComponent } from '../../.storybook/decorators/render-component';
 import designTokens from './fkt-button-design-tokens.json';
 
 const meta: Meta<FktButtonComponent> = {
-	title: 'Components/Button',
+	title: 'Components/Actions/Button',
 	component: FktButtonComponent,
 	decorators: [
-		customDocsControl({
+		fktStoryRenderer({
 			designTokens: designTokens as any
 		}),
 	],
@@ -45,6 +45,18 @@ const meta: Meta<FktButtonComponent> = {
 					summary: "false",
 				},
 			},
+		},
+		ariaLabel: {
+			control: 'text',
+			table: {
+				category: "Attributes",
+				type: {
+					summary: 'string',
+				},
+				defaultValue: {
+					summary: "''",
+				},
+			}
 		},
 		text: {
 			control: 'text',
@@ -81,6 +93,18 @@ const meta: Meta<FktButtonComponent> = {
 				},
 				defaultValue: {
 					summary: "'primary'",
+				},
+			},
+		},
+		labelColor: {
+			control: 'color',
+			table: {
+				category: "Attributes",
+				type: {
+					summary: 'string',
+				},
+				defaultValue: {
+					summary: "''",
 				},
 			},
 		},
@@ -239,6 +263,7 @@ export const IconOnly: StoryObj = {
 	},
 	args: {
 		icon: 'plus',
+		ariaLabel: 'Icon only example',
 		theme: 'raised',
 		color: 'primary',
 		disabled: false
@@ -256,6 +281,7 @@ export const RectIcon: StoryObj = {
 	},
 	args: {
 		icon: 'trash',
+		ariaLabel: 'Rect icon example',
 		shape: 'rect',
 		theme: 'basic',
 		color: 'danger',

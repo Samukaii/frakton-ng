@@ -52,12 +52,12 @@ $hover-border-color: var(--fkt-color-control-hover-border-color, var(--fkt-color
 /*
 Border radius for control elements.
 @name --fkt-color-control-border-radius
-@reference --radius-xl
+@reference --fkt-radius-xl
 @component Color controls
 @category Shape
 @type size
 */
-$control-border-radius: var(--fkt-color-control-border-radius, var(--radius-xl));
+$control-border-radius: var(--fkt-color-control-border-radius, var(--fkt-radius-xl));
 
 /*
 Focus shadow color for control elements.
@@ -72,12 +72,12 @@ $focus-shadow-color: var(--fkt-color-control-focus-shadow-color, var(--fkt-color
 /*
 Padding for control value display.
 @name --fkt-color-control-value-padding
-@reference --space-sm
+@reference --fkt-space-sm
 @component Color controls
 @category Spacing
 @type size
 */
-$value-padding: var(--fkt-color-control-value-padding, var(--space-sm));
+$value-padding: var(--fkt-color-control-value-padding, var(--fkt-space-sm));
 
 /*
 Background color for color value display.
@@ -127,16 +127,16 @@ fkt-select {
 	align-items: center;
 
 	--fkt-select-vertical-padding: 0rem;
-	--fkt-select-horizontal-padding: var(--space-xs);
+	--fkt-select-horizontal-padding: var(--fkt-space-xs);
 	--fkt-select-border-radius: 0rem;
 	--fkt-select-border-color: transparent;
 	--fkt-select-border-focus-color: transparent;
-	--fkt-select-font-size: var(--font-size-sm);
+	--fkt-select-font-size: var(--fkt-font-size-sm);
 }
 
 .controls {
 	display: flex;
-	border-radius: var(--radius-md);
+	border-radius: var(--fkt-radius-md);
 	border: none;
 	padding: 0;
 	margin: 0;

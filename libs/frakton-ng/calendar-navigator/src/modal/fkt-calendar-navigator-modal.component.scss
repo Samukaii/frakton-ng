@@ -2,12 +2,12 @@
 /*
 Padding for calendar navigator modal.
 @name --fkt-calendar-navigator-modal-padding
-@reference --space-md
+@reference --fkt-space-md
 @component Modal
 @category Spacing
 @type size
 */
-$modal-padding: var(--fkt-calendar-navigator-modal-padding, var(--space-md));
+$modal-padding: var(--fkt-calendar-navigator-modal-padding, var(--fkt-space-md));
 
 /*
 Minimum width for calendar navigator modal.

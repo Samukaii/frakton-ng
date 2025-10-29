@@ -7,7 +7,7 @@ import {
 	FktAutocompleteLoadingStatesExampleComponent
 } from './examples';
 import { FktAutocompleteComponent } from './fkt-autocomplete.component';
-import { customDocsControl } from '../../.storybook/decorators/custom-docs-control';
+import { fktStoryRenderer } from '../../.storybook/decorators/fkt-story-renderer';
 import { renderComponent } from '../../.storybook/decorators/render-component';
 import designTokens from './fkt-autocomplete-design-tokens.json';
 
@@ -15,7 +15,7 @@ const meta: Meta<FktAutocompleteComponent> = {
 	title: 'Components/Form/Autocomplete',
 	component: FktAutocompleteComponent,
 	decorators: [
-		customDocsControl({
+		fktStoryRenderer({
 			designTokens: designTokens as any
 		}),
 	],
@@ -278,7 +278,6 @@ export const CustomStyling: StoryObj = {
 	args: {
 		label: "Styled Autocomplete",
 		placeholder: "This field can be disabled",
-		disabled: false,
 		options: [
 			{ value: "apple", label: "Apple" },
 			{ value: "banana", label: "Banana" },
@@ -314,26 +313,6 @@ export const Events: StoryObj = {
 			{ value: "python", label: "Python" },
 			{ value: "java", label: "Java" },
 		],
-		actions: [
-			{
-				icon: "pencil",
-				color: 'primary',
-				theme: 'basic',
-				identifier: 'edit'
-			},
-			{
-				icon: "star",
-				color: 'accent',
-				theme: 'basic',
-				identifier: 'favorite'
-			},
-			{
-				icon: "trash",
-				color: 'danger',
-				theme: 'basic',
-				identifier: 'delete'
-			}
-		]
 	},
 	parameters: {
 		docs: {
@@ -350,16 +329,6 @@ export const LoadingStates: StoryObj = {
 		label: "Search with Loading States",
 		placeholder: "Type to search",
 		loading: false,
-		options: [
-			{ value: "user1", label: "Alice Johnson" },
-			{ value: "user2", label: "Bob Smith" },
-			{ value: "user3", label: "Carol Davis" },
-			{ value: "user4", label: "David Wilson" },
-			{ value: "user5", label: "Emma Brown" },
-			{ value: "user6", label: "Frank Miller" },
-			{ value: "user7", label: "Grace Taylor" },
-			{ value: "user8", label: "Henry Anderson" },
-		],
 		noResults: {
 			label: "No users found. Try a different search term."
 		}

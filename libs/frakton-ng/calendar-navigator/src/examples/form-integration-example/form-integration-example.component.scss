@@ -1,11 +1,11 @@
 .navigator {
 	border-bottom: solid 1px var(--fkt-color-neutral-200);
-	padding-bottom: var(--space-xs);
-	margin-bottom: var(--space-md);
+	padding-bottom: var(--fkt-space-xs);
+	margin-bottom: var(--fkt-space-md);
 }
 
 .info {
 	color: var(--fkt-color-neutral-500);
 	text-align: center;
-	font-weight: var(--font-semibold);
+	font-weight: var(--fkt-font-semibold);
 }

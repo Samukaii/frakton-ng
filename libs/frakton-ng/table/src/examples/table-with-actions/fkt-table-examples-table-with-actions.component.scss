@@ -1,22 +1,22 @@
 :host ::ng-deep {
 	.table-user-active {
-		background-color: var(--color-red-50);
+		background-color: var(--fkt-color-danger-opacity-10);
 
 		&:hover {
-			background-color: var(--color-red-100) !important;
+			background-color: var(--fkt-color-danger-opacity-20) !important;
 		}
 	}
 
 	.table-user-pending {
-		background-color: var(--color-yellow-50);
+		background-color: var(--fkt-color-accent-opacity-10);
 
 		&:hover {
-			background-color: var(--color-yellow-100) !important;
+			background-color: var(--fkt-color-accent-opacity-20) !important;
 		}
 	}
 
 	.table-user-inactive {
-		background-color: var(--fkt-color-neutral-50);
+		background-color: var(--fkt-color-neutral-100);
 		opacity: 60%;
 		filter: grayscale(1);
 		cursor: pointer;
@@ -26,4 +26,8 @@
 			background-color: var(--fkt-color-neutral-100) !important;
 		}
 	}
+}
+
+fkt-table {
+	background-color: var(--fkt-color-neutral-100);
 }

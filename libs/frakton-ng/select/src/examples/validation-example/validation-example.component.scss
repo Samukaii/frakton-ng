@@ -1,18 +1,18 @@
 :host {
 	display: flex;
 	flex-direction: column;
-	gap: var(--space-md);
+	gap: var(--fkt-space-md);
 }
 
 .info {
-	padding: var(--space-md);
-	background-color: var(--fkt-color-info-translucent);
+	padding: var(--fkt-space-md);
+	background-color: var(--fkt-color-info-opacity-20);
 	color: var(--fkt-color-info);
-	border-radius: var(--radius-md);
-	font-size: var(--font-size-sm);
+	border-radius: var(--fkt-radius-md);
+	font-size: var(--fkt-font-size-sm);
 
 	div {
-		margin-top: var(--space-xs);
-		font-weight: var(--font-semibold);
+		margin-top: var(--fkt-space-xs);
+		font-weight: var(--fkt-font-semibold);
 	}
 }

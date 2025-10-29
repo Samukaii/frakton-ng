@@ -1,6 +1,10 @@
 import { inject, Injectable, Injector, signal, Type } from '@angular/core';
 import { FktOverlayAnchorComponent } from './anchor/fkt-overlay-anchor.component';
-import { createComponentBindings, getFocusableElementsSelectors } from 'frakton-ng/internal/utils';
+import {
+	createComponentBindings,
+	getElementDesignTokens,
+	getFocusableElementsSelectors
+} from 'frakton-ng/internal/utils';
 import { FktElementAnchorService } from 'frakton-ng/internal/services';
 import { FktGeometryPosition } from 'frakton-ng/internal/types';
 import { FktOverlayOptions, FktOverlayRef } from './fkt-overlay.types';
@@ -53,6 +57,14 @@ export class FktOverlayService {
 
 		const stackIndex = this.getLastZIndex() + 1;
 
+		let styles = options.panelOptions?.styles ?? {};
+
+		if(options.panelOptions?.inheritDesignTokens && options.anchorElementRef) {
+			const tokens = getElementDesignTokens(options.anchorElementRef.nativeElement)
+
+			styles = {...styles, ...tokens}
+		}
+
 		const anchor = this.anchorService.createAnchor(
 			FktOverlayAnchorComponent,
 			{
@@ -70,7 +82,7 @@ export class FktOverlayService {
 				disableAutoReposition: options.panelOptions?.disableAutoReposition ?? false,
 				overflow: options.panelOptions?.overflow,
 				boxShadow: options.panelOptions?.boxShadow,
-				styles: options.panelOptions?.styles ?? {},
+				styles,
 				outsideClick: (element) => {
 					options?.panelOptions?.outsideClick?.(element);
 					close();

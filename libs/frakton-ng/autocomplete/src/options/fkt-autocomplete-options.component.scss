@@ -2,12 +2,12 @@
 /*
 Background color for the autocomplete options overlay.
 @name --fkt-autocomplete-options-background-color
-@reference --fkt-color-neutral-100
+@reference --fkt-color-modal-background
 @component Options
 @category Colors
 @type color
 */
-$options-background-color: var(--fkt-autocomplete-options-background-color, var(--fkt-color-neutral-100));
+$options-background-color: var(--fkt-autocomplete-options-background-color, var(--fkt-color-modal-background));
 
 /*
 Text color for the autocomplete options overlay.
@@ -32,62 +32,62 @@ $options-border-color: var(--fkt-autocomplete-options-border-color, var(--fkt-co
 /*
 Border radius for the autocomplete options overlay.
 @name --fkt-autocomplete-options-border-radius
-@reference --radius-md
+@reference --fkt-radius-md
 @component Options
 @category Shape
 @type size
 */
-$options-border-radius: var(--fkt-autocomplete-options-border-radius, var(--radius-md));
+$options-border-radius: var(--fkt-autocomplete-options-border-radius, var(--fkt-radius-md));
 
 /*
 Box shadow for the autocomplete options overlay.
 @name --fkt-autocomplete-options-shadow
-@reference --shadow-md
+@reference --fkt-shadow-md
 @component Options
 @category Effects
 @type shadow
 */
-$options-shadow: var(--fkt-autocomplete-options-shadow, var(--shadow-md));
+$options-shadow: var(--fkt-autocomplete-options-shadow, var(--fkt-shadow-md));
 
 /*
 Padding for each option item in the list.
 @name --fkt-autocomplete-options-item-padding
-@reference var(--space-xs) var(--space-md)
+@reference var(--fkt-space-xs) var(--fkt-space-md)
 @component Options
 @category Spacing
 @type size
 */
-$options-item-padding: var(--fkt-autocomplete-options-item-padding, var(--space-xs) var(--space-md));
+$options-item-padding: var(--fkt-autocomplete-options-item-padding, var(--fkt-space-xs) var(--fkt-space-md));
 
 /*
 Background color for option items on hover.
 @name --fkt-autocomplete-options-item-hover-background
-@reference --fkt-color-neutral-200
+@reference --fkt-color-primary-opacity-10
 @component Options
 @category Colors
 @type color
 */
-$options-item-hover-background: var(--fkt-autocomplete-options-item-hover-background, var(--fkt-color-neutral-200));
+$options-item-hover-background: var(--fkt-autocomplete-options-item-hover-background, var(--fkt-color-primary-opacity-10));
 
 /*
 Gap between elements in option label container.
 @name --fkt-autocomplete-options-label-gap
-@reference --space-3xs
+@reference --fkt-space-3xs
 @component Options
 @category Spacing
 @type size
 */
-$options-label-gap: var(--fkt-autocomplete-options-label-gap, var(--space-3xs));
+$options-label-gap: var(--fkt-autocomplete-options-label-gap, var(--fkt-space-3xs));
 
 /*
 Color for success/check icons in options.
 @name --fkt-autocomplete-options-success-icon-color
-@reference --color-green-600
+@reference --fkt-color-success
 @component Options
 @category Colors
 @type color
 */
-$options-success-icon-color: var(--fkt-autocomplete-options-success-icon-color, var(--color-green-600));
+$options-success-icon-color: var(--fkt-autocomplete-options-success-icon-color, var(--fkt-color-success));
 
 /*
 Color for action icons in options.
@@ -102,12 +102,12 @@ $options-icon-color: var(--fkt-autocomplete-options-icon-color, var(--fkt-color-
 /*
 Size for action icons in options.
 @name --fkt-autocomplete-options-icon-size
-@reference --space-xl
+@reference --fkt-space-xl
 @component Options
 @category Spacing
 @type size
 */
-$options-icon-size: var(--fkt-autocomplete-options-icon-size, var(--space-xl));
+$options-icon-size: var(--fkt-autocomplete-options-icon-size, var(--fkt-space-xl));
 
 /*
 Minimum height for no results component.
@@ -122,12 +122,12 @@ $options-no-results-min-height: var(--fkt-autocomplete-options-no-results-min-he
 /*
 Padding for spinner container.
 @name --fkt-autocomplete-options-spinner-padding
-@reference --space-md
+@reference --fkt-space-md
 @component Options
 @category Spacing
 @type size
 */
-$options-spinner-padding: var(--fkt-autocomplete-options-spinner-padding, var(--space-md));
+$options-spinner-padding: var(--fkt-autocomplete-options-spinner-padding, var(--fkt-space-md));
 // </design-tokens>
 
 :host {
@@ -146,13 +146,13 @@ $options-spinner-padding: var(--fkt-autocomplete-options-spinner-padding, var(--
 	width: 100%;
 	box-shadow: $options-shadow;
 	border-radius: $options-border-radius;
-	border: solid 1px $options-border-color;
 	z-index: 10;
 	padding: 0;
+	border: none;
 
 
 	li {
-		transition: var(--transition-base);
+		transition: var(--fkt-transition-base);
 		cursor: pointer;
 		display: flex;
 		align-items: center;

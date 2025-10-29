@@ -13,7 +13,7 @@
 	&__side-content {
 		width: var(--show-width, 250px);
 		max-width: 0;
-		transition: var(--transition-base);
+		transition: var(--fkt-transition-base);
 		z-index: 20;
 		overflow: hidden;
 		height: 100%;
@@ -38,7 +38,7 @@
 
 	&__backdrop {
 		position: absolute;
-		transition: var(--transition-base);
+		transition: var(--fkt-transition-base);
 		pointer-events: none;
 		width: 100%;
 		height: 100%;

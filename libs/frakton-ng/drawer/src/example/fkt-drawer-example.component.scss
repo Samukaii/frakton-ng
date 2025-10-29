@@ -7,20 +7,21 @@
 .side-content {
 	height: 100%;
 	width: 100%;
-	background-color: white;
-	border: dashed 2px var(--fkt-color-neutral-200);
-	font-weight: var(--font-semibold);
+	background-color: var(--fkt-color-modal-background);
+	border: dashed 2px var(--fkt-color-neutral-400);
+	font-weight: var(--fkt-font-semibold);
 	display: flex;
 	justify-content: center;
 	align-items: center;
 }
 
 .main-content {
+	box-sizing: border-box;
 	height: 100%;
 	width: 100%;
-	background-color: white;
-	border: dashed 2px var(--fkt-color-neutral-200);
-	font-weight: var(--font-semibold);
+	background-color: var(--fkt-color-neutral-background);
+	border: dashed 2px var(--fkt-color-neutral-400);
+	font-weight: var(--fkt-font-semibold);
 	display: flex;
 	justify-content: center;
 	align-items: center;

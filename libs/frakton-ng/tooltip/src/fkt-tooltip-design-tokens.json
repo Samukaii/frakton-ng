@@ -2,7 +2,7 @@
   {
     "description": "Padding for the tooltip host element.",
     "name": "--fkt-tooltip-padding",
-    "reference": "--space-xs",
+    "reference": "--fkt-space-xs",
     "component": "Tooltip",
     "category": "Spacing",
     "type": "size",
@@ -20,7 +20,7 @@
   {
     "description": "Font size for the tooltip content.",
     "name": "--fkt-tooltip-font-size",
-    "reference": "--font-size-sm",
+    "reference": "--fkt-font-size-sm",
     "component": "Tooltip",
     "category": "Typography",
     "type": "font-size",
@@ -29,7 +29,7 @@
   {
     "description": "Font weight for the tooltip content.",
     "name": "--fkt-tooltip-font-weight",
-    "reference": "--font-semibold",
+    "reference": "--fkt-font-semibold",
     "component": "Tooltip",
     "category": "Typography",
     "type": "font-weight",
@@ -38,7 +38,7 @@
   {
     "description": "Padding for the tooltip content.",
     "name": "--fkt-tooltip-content-padding",
-    "reference": "--space-xs",
+    "reference": "--fkt-space-xs",
     "component": "Tooltip",
     "category": "Spacing",
     "type": "size",

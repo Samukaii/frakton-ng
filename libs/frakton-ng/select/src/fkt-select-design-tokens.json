@@ -2,7 +2,7 @@
   {
     "description": "Vertical padding inside the select field (top and bottom spacing between border and content).",
     "name": "--fkt-select-vertical-padding",
-    "reference": "--space-md",
+    "reference": "--fkt-space-md",
     "component": "Field",
     "category": "Spacing",
     "type": "size",
@@ -11,7 +11,7 @@
   {
     "description": "Horizontal padding inside the select field (left and right spacing between border and content).",
     "name": "--fkt-select-horizontal-padding",
-    "reference": "--space-md",
+    "reference": "--fkt-space-md",
     "component": "Field",
     "category": "Spacing",
     "type": "size",
@@ -56,7 +56,7 @@
   {
     "description": "Border radius for select",
     "name": "--fkt-select-border-radius",
-    "reference": "--radius-lg",
+    "reference": "--fkt-radius-lg",
     "component": "Field",
     "category": "Spacing",
     "type": "size",
@@ -65,7 +65,7 @@
   {
     "description": "Font size for select text and placeholder.",
     "name": "--fkt-select-font-size",
-    "reference": "--font-size-md",
+    "reference": "--fkt-font-size-md",
     "component": "Field",
     "category": "Typography",
     "type": "size",
@@ -83,7 +83,7 @@
   {
     "description": "Padding for spinner container in select options overlay.",
     "name": "--fkt-select-options-spinner-padding",
-    "reference": "--space-md",
+    "reference": "--fkt-space-md",
     "component": "Options",
     "category": "Spacing",
     "type": "size",
@@ -110,7 +110,7 @@
   {
     "description": "Box shadow for the select options overlay.",
     "name": "--fkt-select-options-shadow",
-    "reference": "--shadow-md",
+    "reference": "--fkt-shadow-md",
     "component": "Options",
     "category": "Effects",
     "type": "shadow",
@@ -119,7 +119,7 @@
   {
     "description": "Border radius for the select options overlay.",
     "name": "--fkt-select-options-border-radius",
-    "reference": "--radius-md",
+    "reference": "--fkt-radius-md",
     "component": "Options",
     "category": "Shape",
     "type": "size",
@@ -137,16 +137,16 @@
   {
     "description": "Padding for select options overlay items.",
     "name": "--fkt-select-options-item-padding",
-    "reference": "var(--space-xs) var(--space-md)",
+    "reference": "var(--fkt-space-xs) var(--fkt-space-md)",
     "component": "Options",
     "category": "Spacing",
     "type": "size",
-    "defaultValue": "var(--space-xs) var(--space-md)"
+    "defaultValue": "var(--fkt-space-xs) var(--fkt-space-md)"
   },
   {
     "description": "Background color for focused overlay items.",
     "name": "--fkt-select-options-item-focus-background",
-    "reference": "--fkt-color-accent-translucent",
+    "reference": "--fkt-color-accent-opacity-20",
     "component": "Options",
     "category": "Colors",
     "type": "color",
@@ -155,7 +155,7 @@
   {
     "description": "Background color for hovered overlay items.",
     "name": "--fkt-select-options-item-hover-background",
-    "reference": "--fkt-color-accent-translucent-2",
+    "reference": "--fkt-color-accent-opacity-10",
     "component": "Options",
     "category": "Colors",
     "type": "color",
@@ -182,7 +182,7 @@
   {
     "description": "Size for icons in overlay items.",
     "name": "--fkt-select-options-icon-size",
-    "reference": "--space-xl",
+    "reference": "--fkt-space-xl",
     "component": "Options",
     "category": "Spacing",
     "type": "size",

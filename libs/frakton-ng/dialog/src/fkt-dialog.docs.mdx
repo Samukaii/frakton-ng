@@ -1,8 +1,8 @@
 import {Meta} from '@storybook/addon-docs/blocks';
 import * as fktDialogStories from './fkt-dialog.stories';
-import {StoryDoc} from "../../.storybook/blocks/StoryDoc";
+import {FktStoryRenderer} from "../../.storybook/blocks/FktStoryRenderer/FktStoryRenderer";
 import {rawExamples} from "./examples/raw-examples";
-import {SourceCode} from "../../.storybook/blocks/SourceCode";
+import {FktCode} from "../../.storybook/blocks/mdx/FktCode/FktCode";
 
 <Meta of={fktDialogStories}/>
 
@@ -62,26 +62,26 @@ export interface FktConfirmActionOptions {
 
 ## Examples
 
-<StoryDoc of={fktDialogStories.SimpleDialog} code={[
+<FktStoryRenderer of={fktDialogStories.SimpleDialog} code={[
 	rawExamples.fktSimpleDialogExample,
 	rawExamples.fktSimpleDialogDemo
 ]}/>
-<StoryDoc of={fktDialogStories.FormDialog} code={[
+<FktStoryRenderer of={fktDialogStories.FormDialog} code={[
 	rawExamples.fktFormDialogExample,
 	rawExamples.fktFormDialogDemo
 ]}/>
-<StoryDoc of={fktDialogStories.CustomDialog} code={[
+<FktStoryRenderer of={fktDialogStories.CustomDialog} code={[
 	rawExamples.fktCustomDialogExample,
 	rawExamples.fktCustomDialogDemo
 ]}/>
-<StoryDoc of={fktDialogStories.ConfirmationDialog} code={[
+<FktStoryRenderer of={fktDialogStories.ConfirmationDialog} code={[
 	rawExamples.fktConfirmationDialogExample,
 ]}/>
-<StoryDoc of={fktDialogStories.FullScreenDialog} code={[
+<FktStoryRenderer of={fktDialogStories.FullScreenDialog} code={[
 	rawExamples.fktFullscreenDialogExample,
 	rawExamples.fktFullscreenDialogExample
 ]}/>
-<StoryDoc of={fktDialogStories.SmallDialog} code={[
+<FktStoryRenderer of={fktDialogStories.SmallDialog} code={[
 	rawExamples.fktSmallDialogExample,
 	rawExamples.fktSimpleDialogDemo
 ]}/>

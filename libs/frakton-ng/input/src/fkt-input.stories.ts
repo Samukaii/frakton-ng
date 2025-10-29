@@ -13,7 +13,7 @@ import {
 	SignupFormExampleComponent,
 	SuffixExampleComponent
 } from './examples';
-import { customDocsControl } from '../../.storybook/decorators/custom-docs-control';
+import { fktStoryRenderer } from '../../.storybook/decorators/fkt-story-renderer';
 import { renderComponent } from '../../.storybook/decorators/render-component';
 import designTokens from './fkt-input-design-tokens.json';
 
@@ -21,7 +21,7 @@ const meta: Meta<FktInputComponent> = {
 	title: 'Components/Form/Input',
 	component: FktInputComponent,
 	decorators: [
-		customDocsControl({
+		fktStoryRenderer({
 			designTokens: designTokens as any
 		}),
 	],

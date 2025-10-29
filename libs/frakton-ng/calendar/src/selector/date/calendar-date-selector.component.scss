@@ -2,12 +2,12 @@
 /*
 Calendar date cell background color on hover.
 @name --fkt-calendar-date-hover-bg
-@reference --fkt-color-primary-translucent
+@reference --fkt-color-primary-opacity-20
 @component Date selector
 @category Colors
 @type color
 */
-$date-hover-bg: var(--fkt-calendar-date-hover-bg, var(--fkt-color-primary-translucent));
+$date-hover-bg: var(--fkt-calendar-date-hover-bg, var(--fkt-color-primary-opacity-20));
 
 /*
 Calendar date cell border color for today.
@@ -52,22 +52,22 @@ $date-out-of-range-opacity: var(--fkt-calendar-date-out-of-range-opacity, 0.3);
 /*
 Calendar date cell border radius.
 @name --fkt-calendar-date-border-radius
-@reference --radius-full
+@reference --fkt-radius-full
 @component Date selector
 @category Shape
 @type size
 */
-$date-border-radius: var(--fkt-calendar-date-border-radius, var(--radius-full));
+$date-border-radius: var(--fkt-calendar-date-border-radius, var(--fkt-radius-full));
 
 /*
 Calendar date cell margin.
 @name --fkt-calendar-date-margin
-@reference --space-2xs
+@reference --fkt-space-2xs
 @component Date selector
 @category Spacing
 @type size
 */
-$date-margin: var(--fkt-calendar-date-margin, var(--space-2xs));
+$date-margin: var(--fkt-calendar-date-margin, var(--fkt-space-2xs));
 
 /*
 Calendar date cell size (width and height).
@@ -92,32 +92,32 @@ $weekday-color: var(--fkt-calendar-weekday-color, var(--fkt-color-neutral-700));
 /*
 Calendar weekday header font weight.
 @name --fkt-calendar-weekday-font-weight
-@reference --font-medium
+@reference --fkt-font-medium
 @component Date selector
 @category Typography
 @type weight
 */
-$weekday-font-weight: var(--fkt-calendar-weekday-font-weight, var(--font-medium));
+$weekday-font-weight: var(--fkt-calendar-weekday-font-weight, var(--fkt-font-medium));
 
 /*
 Calendar weekday header font size.
 @name --fkt-calendar-weekday-font-size
-@reference --font-size-sm
+@reference --fkt-font-size-sm
 @component Date selector
 @category Typography
 @type size
 */
-$weekday-font-size: var(--fkt-calendar-weekday-font-size, var(--font-size-sm));
+$weekday-font-size: var(--fkt-calendar-weekday-font-size, var(--fkt-font-size-sm));
 
 /*
 Calendar grid gap between cells.
 @name --fkt-calendar-grid-gap
-@reference --space-2xs
+@reference --fkt-space-2xs
 @component Date selector
 @category Spacing
 @type size
 */
-$grid-gap: var(--fkt-calendar-grid-gap, var(--space-2xs));
+$grid-gap: var(--fkt-calendar-grid-gap, var(--fkt-space-2xs));
 
 // </design-tokens>
 
@@ -129,7 +129,7 @@ $grid-gap: var(--fkt-calendar-grid-gap, var(--space-2xs));
 
 .calendar__date {
 	user-select: none;
-	transition: var(--transition-base);
+	transition: var(--fkt-transition-base);
 	border: solid 1px transparent;
 	aspect-ratio: 1;
 	display: flex;

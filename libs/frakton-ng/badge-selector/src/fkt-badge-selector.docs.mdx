@@ -1,6 +1,6 @@
 import {ArgTypes, Meta} from '@storybook/addon-docs/blocks';
 import * as fktBadgeSelectorStories from './fkt-badge-selector.stories';
-import {StoryDoc} from "../../.storybook/blocks/StoryDoc";
+import {FktStoryRenderer} from "../../.storybook/blocks/FktStoryRenderer/FktStoryRenderer";
 import {rawExamples} from "./examples/raw-examples";
 
 <Meta of={fktBadgeSelectorStories}/>
@@ -43,13 +43,13 @@ The component supports Angular's two-way binding syntax:
 
 ## Examples
 
-<StoryDoc of={fktBadgeSelectorStories.Preview}/>
-<StoryDoc of={fktBadgeSelectorStories.OrderStatus} code={rawExamples.orderStatusExample}/>
-<StoryDoc of={fktBadgeSelectorStories.Priority} code={rawExamples.priorityExample}/>
-<StoryDoc of={fktBadgeSelectorStories.ProjectStatus}/>
-<StoryDoc of={fktBadgeSelectorStories.UserStatus}/>
-<StoryDoc of={fktBadgeSelectorStories.TeamAssignment}/>
-<StoryDoc of={fktBadgeSelectorStories.Category}/>
+<FktStoryRenderer of={fktBadgeSelectorStories.Preview}/>
+<FktStoryRenderer of={fktBadgeSelectorStories.OrderStatus} code={rawExamples.orderStatusExample}/>
+<FktStoryRenderer of={fktBadgeSelectorStories.Priority} code={rawExamples.priorityExample}/>
+<FktStoryRenderer of={fktBadgeSelectorStories.ProjectStatus}/>
+<FktStoryRenderer of={fktBadgeSelectorStories.UserStatus}/>
+<FktStoryRenderer of={fktBadgeSelectorStories.TeamAssignment}/>
+<FktStoryRenderer of={fktBadgeSelectorStories.Category}/>
 
 
 ## Use Cases

@@ -2,11 +2,11 @@
 /*
 Gap between buttons in the buttons list.
 @name --fkt-buttons-list-gap
-@reference --space-xs
+@reference --fkt-space-xs
 @category Spacing
 @type size
 */
-$buttons-list-gap: var(--fkt-buttons-list-gap, var(--space-xs));
+$buttons-list-gap: var(--fkt-buttons-list-gap, var(--fkt-space-xs));
 // </design-tokens>
 
 :host {

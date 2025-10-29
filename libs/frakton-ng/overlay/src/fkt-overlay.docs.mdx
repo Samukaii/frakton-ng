@@ -1,7 +1,7 @@
 import {ArgTypes, Meta} from '@storybook/addon-docs/blocks';
 import * as fktOverlayStories from './fkt-overlay.stories';
 import {rawExamples} from "./examples/raw-examples";
-import {StoryDoc} from "../../.storybook/blocks/StoryDoc";
+import {FktStoryRenderer} from "../../.storybook/blocks/FktStoryRenderer/FktStoryRenderer";
 
 <Meta of={fktOverlayStories} />
 
@@ -56,23 +56,23 @@ export interface FktOverlayRef<T> {
 
 ## Examples
 
-<StoryDoc of={fktOverlayStories.SimpleOverlay} code={[
+<FktStoryRenderer of={fktOverlayStories.SimpleOverlay} code={[
 	rawExamples.fktSimpleOverlayExample,
 	rawExamples.fktSimpleOverlayDialog
 ]}/>
-<StoryDoc of={fktOverlayStories.CustomTooltipOverlay} code={[
+<FktStoryRenderer of={fktOverlayStories.CustomTooltipOverlay} code={[
 	rawExamples.fktCustomTooltipOverlayExample,
 	rawExamples.fktTooltipOverlayDialog
 ]}/>
-<StoryDoc of={fktOverlayStories.DropdownMenuOverlay} code={[
+<FktStoryRenderer of={fktOverlayStories.DropdownMenuOverlay} code={[
 	rawExamples.fktDropdownOverlayExample,
 	rawExamples.fktDropdownOverlayDialog
 ]}/>
-<StoryDoc of={fktOverlayStories.FormOverlay} code={[
+<FktStoryRenderer of={fktOverlayStories.FormOverlay} code={[
 	rawExamples.fktFormOverlayExample,
 	rawExamples.fktFormOverlayDialog,
 ]}/>
-<StoryDoc of={fktOverlayStories.InteractiveOverlay} code={[
+<FktStoryRenderer of={fktOverlayStories.InteractiveOverlay} code={[
 	rawExamples.fktInteractiveOverlayExample,
 	rawExamples.fktInteractiveOverlayDialog
 ]}/>

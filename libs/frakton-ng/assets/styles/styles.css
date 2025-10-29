@@ -21,6 +21,95 @@
 	font-family: Frakton, sans-serif;
 }
 
+:root {
+	/* Spacing */
+	--fkt-space-3xs: .25rem; /* 4px */
+	--fkt-space-2xs: .375rem; /* 6px */
+	--fkt-space-xs: .5rem; /* 8px */
+	--fkt-space-sm: .75rem; /* 12px */
+	--fkt-space-md: 1rem; /* 16px */
+	--fkt-space-lg: 1.25rem; /* 20px */
+	--fkt-space-xl: 1.5rem; /* 24px */
+	--fkt-space-2xl: 2rem; /* 32px */
+	--fkt-space-3xl: 2.5rem; /* 40px */
+	--fkt-space-4xl: 3rem; /* 48px */
+	--fkt-space-5xl: 3.5rem; /* 56px */
+	--fkt-space-6xl: 4rem; /* 64px */
+
+	/* Border Radius */
+	--fkt-radius-xs: .125rem; /* 2px */
+	--fkt-radius-sm: .25rem; /* 4px */
+	--fkt-radius-md: .375rem; /* 6px */
+	--fkt-radius-lg: .5rem; /* 8px */
+	--fkt-radius-xl: .75rem; /* 12px */
+	--fkt-radius-2xl: 1rem; /* 16px */
+	--fkt-radius-3xl: 1.5rem; /* 24px */
+	--fkt-radius-4xl: 2rem; /* 32px */
+	--fkt-radius-full: 9999px;
+
+	/* Font Sizes */
+	--fkt-font-size-xs: 0.75rem;    /* 12px */
+	--fkt-font-size-sm: 0.875rem;   /* 14px */
+	--fkt-font-size-md: 1rem;       /* 16px */
+	--fkt-font-size-lg: 1.125rem;   /* 18px */
+	--fkt-font-size-xl: 1.25rem;    /* 20px */
+	--fkt-font-size-2xl: 1.5rem;    /* 24px */
+	--fkt-font-size-3xl: 2rem;      /* 32px */
+	--fkt-font-size-4xl: 3rem;      /* 48px */
+
+	--fkt-font-thin: 100;
+	--fkt-font-extralight: 200;
+	--fkt-font-light: 300;
+	--fkt-font-normal: 400;
+	--fkt-font-medium: 500;
+	--fkt-font-semibold: 600;
+	--fkt-font-bold: 700;
+	--fkt-font-extrabold: 800;
+	--fkt-font-black: 900;
+
+	--fkt-shadow-2xs: 0 1px rgb(0 0 0 / 0.05);
+	--fkt-shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+	--fkt-shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+	--fkt-shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+	--fkt-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.2);
+	--fkt-shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.3);
+	--fkt-shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+
+	/* Line Heights */
+	--fkt-line-height-xs: 1;
+	--fkt-line-height-sm: 1.25;
+	--fkt-line-height-md: 1.5;
+	--fkt-line-height-lg: 1.75;
+	--fkt-line-height-xl: 2;
+
+	/* Transition Duration */
+	--fkt-transition-timing-fast: 120ms;
+	--fkt-transition-timing-normal: 250ms;
+	--fkt-transition-timing-slow: 400ms;
+	--fkt-transition-timing-xslow: 600ms;
+
+	/* Transition Easing */
+	--fkt-transition-ease: cubic-bezier(0.4, 0, 0.2, 1);
+	--fkt-transition-in: cubic-bezier(0.4, 0, 1, 1);
+	--fkt-transition-out: cubic-bezier(0, 0, 0.2, 1);
+	--fkt-transition-linear: linear;
+
+	/* Transition Property (exemplo de preset) */
+	--fkt-transition-base: all var(--fkt-transition-timing-fast) var(--fkt-transition-ease);
+	--fkt-transition-slow: all var(--fkt-transition-timing-slow) var(--fkt-transition-ease);
+
+	/* Animation Delay */
+	--fkt-transition-delay-none: 0ms;
+	--fkt-transition-delay-short: 50ms;
+	--fkt-transition-delay-long: 200ms;
+}
+
+.fkt-vertical-separator {
+	margin: 0;
+	border: none;
+	border-bottom: solid 1px var(--fkt-color-neutral-300);
+}
+
 .fkt-sr-only {
 	position: absolute !important;
 	width: 1px !important;
@@ -41,110 +130,4 @@
 	background:
 		repeating-conic-gradient(var(--color1) 0 25%, var(--color2) 0 50%)
 		50% / var(--size) var(--size);
-}
-
-:root {
-	/* Spacing */
-	--space-3xs: .25rem; /* 4px */
-	--space-2xs: .375rem; /* 6px */
-	--space-xs: .5rem; /* 8px */
-	--space-sm: .75rem; /* 12px */
-	--space-md: 1rem; /* 16px */
-	--space-lg: 1.25rem; /* 20px */
-	--space-xl: 1.5rem; /* 24px */
-	--space-2xl: 2rem; /* 32px */
-	--space-3xl: 2.5rem; /* 40px */
-	--space-4xl: 3rem; /* 48px */
-	--space-5xl: 3.5rem; /* 56px */
-	--space-6xl: 4rem; /* 64px */
-
-	/* Border Radius */
-	--radius-xs: .125rem; /* 2px */
-	--radius-sm: .25rem; /* 4px */
-	--radius-md: .375rem; /* 6px */
-	--radius-lg: .5rem; /* 8px */
-	--radius-xl: .75rem; /* 12px */
-	--radius-2xl: 1rem; /* 16px */
-	--radius-3xl: 1.5rem; /* 24px */
-	--radius-4xl: 2rem; /* 32px */
-	--radius-full: 9999px;
-
-	/* Font Sizes */
-	--font-size-xs: 0.75rem;    /* 12px */
-	--font-size-sm: 0.875rem;   /* 14px */
-	--font-size-md: 1rem;       /* 16px */
-	--font-size-lg: 1.125rem;   /* 18px */
-	--font-size-xl: 1.25rem;    /* 20px */
-	--font-size-2xl: 1.5rem;    /* 24px */
-	--font-size-3xl: 2rem;      /* 32px */
-	--font-size-4xl: 3rem;      /* 48px */
-
-	--font-thin: 100;
-	--font-extralight: 200;
-	--font-light: 300;
-	--font-normal: 400;
-	--font-medium: 500;
-	--font-semibold: 600;
-	--font-bold: 700;
-	--font-extrabold: 800;
-	--font-black: 900;
-
-	--shadow-2xs: 0 1px rgb(0 0 0 / 0.05);
-	--shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-	--shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
-	--shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-	--shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.2);
-	--shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.3);
-	--shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
-
-	/* Line Heights */
-	--line-height-xs: 1;
-	--line-height-sm: 1.25;
-	--line-height-md: 1.5;
-	--line-height-lg: 1.75;
-	--line-height-xl: 2;
-
-	/* Component Heights */
-	--height-input-sm: 32px;
-	--height-input-md: 40px;
-	--height-input-lg: 48px;
-
-	/* Component Widths (exemplo para botões) */
-	--width-button-sm: 80px;
-	--width-button-md: 120px;
-	--width-button-lg: 160px;
-
-	/* Icon Sizes */
-	--icon-size-xs: 12px;
-	--icon-size-sm: 16px;
-	--icon-size-md: 20px;
-	--icon-size-lg: 24px;
-	--icon-size-xl: 32px;
-
-	/* Transition Duration */
-	--transition-timing-fast: 120ms;
-	--transition-timing-normal: 250ms;
-	--transition-timing-slow: 400ms;
-	--transition-timing-xslow: 600ms;
-
-	/* Transition Easing */
-	--transition-ease: cubic-bezier(0.4, 0, 0.2, 1);
-	--transition-in: cubic-bezier(0.4, 0, 1, 1);
-	--transition-out: cubic-bezier(0, 0, 0.2, 1);
-	--transition-linear: linear;
-
-	/* Transition Property (exemplo de preset) */
-	--transition-base: all var(--transition-timing-fast) var(--transition-ease);
-	--transition-slow: all var(--transition-timing-slow) var(--transition-ease);
-
-	/* Animation Delay */
-	--transition-delay-none: 0ms;
-	--transition-delay-short: 50ms;
-	--transition-delay-long: 200ms;
-}
-
-.vertical-separator {
-	margin: 0;
-	border: none;
-	border-bottom: solid 1px var(--fkt-color-neutral-300);
 }

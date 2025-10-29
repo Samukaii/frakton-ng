@@ -7,15 +7,15 @@ import {
 	FktCalendarEventsExampleComponent
 } from './examples';
 import { FktCalendarComponent } from './fkt-calendar.component';
-import { customDocsControl } from '../../.storybook/decorators/custom-docs-control';
+import { fktStoryRenderer } from '../../.storybook/decorators/fkt-story-renderer';
 import { renderComponent } from '../../.storybook/decorators/render-component';
 import designTokens from './fkt-calendar-design-tokens.json';
 
 const meta: Meta<FktCalendarComponent> = {
-	title: 'Components/Calendar',
+	title: 'Components/Navigation/Calendar',
 	component: FktCalendarComponent,
 	decorators: [
-		customDocsControl({
+		fktStoryRenderer({
 			designTokens: designTokens as any
 		})
 	],

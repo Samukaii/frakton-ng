@@ -5,13 +5,13 @@
 .container {
 	width: 50px;
 	height: 25px;
-	border-radius: var(--radius-full);
+	border-radius: var(--fkt-radius-full);
 	cursor: pointer;
 	display: flex;
 	justify-content: flex-start;
-	transition: var(--transition-base);
+	transition: var(--fkt-transition-base);
 	background-color: var(--fkt-color-neutral-400);
-	padding: var(--space-3xs);
+	padding: var(--fkt-space-3xs);
 	outline: 2px solid transparent;
 
 	&:focus {
@@ -23,9 +23,9 @@
 		width: auto;
 		aspect-ratio: 1;
 		position: relative;
-		border-radius: var(--radius-full);
+		border-radius: var(--fkt-radius-full);
 		background-color: var(--fkt-color-on-primary);
-		transition: var(--transition-base);
+		transition: var(--fkt-transition-base);
 		left: 0;
 	}
 

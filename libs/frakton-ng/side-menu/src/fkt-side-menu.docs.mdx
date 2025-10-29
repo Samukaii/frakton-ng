@@ -1,6 +1,6 @@
 import {Meta, Story, Controls, ArgTypes, Canvas} from '@storybook/addon-docs/blocks';
 import * as stories from './fkt-side-menu.stories';
-import {StoryDoc} from "../../.storybook/blocks/StoryDoc";
+import {FktStoryRenderer} from "../../.storybook/blocks/FktStoryRenderer/FktStoryRenderer";
 import {rawExamples} from "./examples/raw-examples";
 
 <Meta of={stories} />
@@ -44,12 +44,12 @@ interface FktMenuGroup {
 
 ## Examples
 
-<StoryDoc of={stories.BasicSideMenu} fixedSize={true} code={rawExamples.basicSideMenuExample}/>
-<StoryDoc of={stories.CollapsibleSideMenu} fixedSize={true} code={rawExamples.collapsibleSideMenuExample}/>
-<StoryDoc of={stories.MultiGroupNavigation} fixedSize={true} code={rawExamples.multiGroupSideMenuExample}/>
-<StoryDoc of={stories.DynamicMenuWithPermissions} fixedSize={true} code={rawExamples.dynamicPermissionsSideMenuExample}/>
-<StoryDoc of={stories.AdminDashboardLayout} fixedSize={true} code={rawExamples.adminDashboardLayoutExample}/>
-<StoryDoc of={stories.WithRouting} fixedSize={true} code={[
+<FktStoryRenderer of={stories.BasicSideMenu} fixedSize={true} code={rawExamples.basicSideMenuExample}/>
+<FktStoryRenderer of={stories.CollapsibleSideMenu} fixedSize={true} code={rawExamples.collapsibleSideMenuExample}/>
+<FktStoryRenderer of={stories.MultiGroupNavigation} fixedSize={true} code={rawExamples.multiGroupSideMenuExample}/>
+<FktStoryRenderer of={stories.DynamicMenuWithPermissions} fixedSize={true} code={rawExamples.dynamicPermissionsSideMenuExample}/>
+<FktStoryRenderer of={stories.AdminDashboardLayout} fixedSize={true} code={rawExamples.adminDashboardLayoutExample}/>
+<FktStoryRenderer of={stories.WithRouting} fixedSize={true} code={[
 	rawExamples.withRoutingExample,
 	rawExamples.adminDashboardPage,
 	rawExamples.adminUsersPage,

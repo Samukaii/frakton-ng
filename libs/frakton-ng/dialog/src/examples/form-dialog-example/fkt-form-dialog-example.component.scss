@@ -1,5 +1,6 @@
 .container {
 	display: flex;
 	justify-content: center;
-	gap: var(--space-xs);
+	gap: var(--fkt-space-xs);
+	color: var(--fkt-color-neutral-950);
 }

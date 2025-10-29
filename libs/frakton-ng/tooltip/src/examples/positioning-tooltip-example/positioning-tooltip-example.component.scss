@@ -5,11 +5,11 @@ h4 {
 .container {
 	display: flex;
 	flex-direction: column;
-	gap: var(--space-xl);
+	gap: var(--fkt-space-xl);
 
 	.container__title {
-		font-size: var(--font-size-lg);
-		font-weight: var(--font-semibold);
+		font-size: var(--fkt-font-size-lg);
+		font-weight: var(--fkt-font-semibold);
 		width: 100%;
 		text-align: center;
 	}
@@ -23,7 +23,7 @@ h4 {
 	.container__item {
 		display: flex;
 		flex-direction: column;
-		gap: var(--space-sm);
+		gap: var(--fkt-space-sm);
 	}
 
 	.container__item-title {
@@ -35,13 +35,13 @@ h4 {
 
 	.container__item-buttons {
 		display: flex;
-		gap: var(--space-sm);
+		gap: var(--fkt-space-sm);
 		justify-content: center;
 	}
 
 	.container__item-cols {
 		display: flex;
 		flex-direction: column;
-		gap: var(--space-xs);
+		gap: var(--fkt-space-xs);
 	}
 }

@@ -13,12 +13,12 @@ import {
 	FktTableExamplesTableWithActionsComponent,
 	FktTableExamplesTaskTableComponent,
 } from './examples';
-import { customDocsControl } from '../../.storybook/decorators/custom-docs-control';
+import { fktStoryRenderer } from '../../.storybook/decorators/fkt-story-renderer';
 import { renderComponent } from '../../.storybook/decorators/render-component';
 import designTokens from './fkt-table-design-tokens.json';
 
 const meta: Meta<FktTableComponent<any>> = {
-	title: 'Components/Display/Table',
+	title: 'Components/Data display/Table',
 	component: FktTableComponent,
 	parameters: {
 		docs: {
@@ -28,7 +28,7 @@ const meta: Meta<FktTableComponent<any>> = {
 		}
 	},
 	decorators: [
-		customDocsControl({
+		fktStoryRenderer({
 			designTokens: designTokens as any
 		}),
 	],

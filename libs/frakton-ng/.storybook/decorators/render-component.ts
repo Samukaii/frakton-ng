@@ -1,9 +1,19 @@
 import { Type } from '@angular/core';
 
-export const renderComponent = (component: Type<any>) => {
+interface FktStoryRenderComponentOptions {
+	customDimensions?: {
+		width?: string;
+		height?: string;
+	};
+	noPadding?: boolean;
+}
+
+export const renderComponent = (component: Type<any>, options?: FktStoryRenderComponentOptions) => {
 	return () => ({
 		props: {
-			component
+			component,
+			customDimensions: options?.customDimensions,
+			noPadding: options?.noPadding,
 		},
 	})
 }

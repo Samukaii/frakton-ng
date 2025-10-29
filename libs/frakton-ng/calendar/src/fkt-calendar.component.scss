@@ -32,32 +32,32 @@ $calendar-border-color: var(--fkt-calendar-border-color, var(--fkt-color-neutral
 /*
 Calendar border radius when with-border variant is used.
 @name --fkt-calendar-border-radius
-@reference --radius-lg
+@reference --fkt-radius-lg
 @component Calendar
 @category Shape
 @type size
 */
-$calendar-border-radius: var(--fkt-calendar-border-radius, var(--radius-lg));
+$calendar-border-radius: var(--fkt-calendar-border-radius, var(--fkt-radius-lg));
 
 /*
 Calendar padding when with-border variant is used.
 @name --fkt-calendar-padding
-@reference --space-lg
+@reference --fkt-space-lg
 @component Calendar
 @category Spacing
 @type size
 */
-$calendar-padding: var(--fkt-calendar-padding, var(--space-lg));
+$calendar-padding: var(--fkt-calendar-padding, var(--fkt-space-lg));
 
 /*
 Calendar box shadow when with-border variant is used.
 @name --fkt-calendar-box-shadow
-@reference --shadow-lg
+@reference --fkt-shadow-lg
 @component Calendar
 @category Effects
 @type shadow
 */
-$calendar-box-shadow: var(--fkt-calendar-box-shadow, var(--shadow-lg));
+$calendar-box-shadow: var(--fkt-calendar-box-shadow, var(--fkt-shadow-lg));
 
 /*
 Calendar background color.
@@ -82,12 +82,12 @@ $calendar-text-color: var(--fkt-calendar-text-color, var(--fkt-color-neutral-900
 /*
 Gap between calendar sections.
 @name --fkt-calendar-gap
-@reference --space-md
+@reference --fkt-space-md
 @component Calendar
 @category Spacing
 @type size
 */
-$calendar-gap: var(--fkt-calendar-gap, var(--space-md));
+$calendar-gap: var(--fkt-calendar-gap, var(--fkt-space-md));
 
 // </design-tokens>
 

@@ -19,14 +19,14 @@ p {
 
 	&__tab {
 		display: flex;
-		padding: var(--space-md);
+		padding: var(--fkt-space-md);
 		width: 100%;
-		gap: var(--space-xs);
+		gap: var(--fkt-space-xs);
 		justify-content: center;
 		border-color: transparent;
 		border-left: solid 1px var(--fkt-color-neutral-300);
 		cursor: pointer;
-		transition: var(--transition-base);
+		transition: var(--fkt-transition-base);
 
 		&:hover {
 			background-color: var(--fkt-color-neutral-200);
@@ -41,7 +41,7 @@ p {
 .content {
 	display: flex;
 	width: 100%;
-	padding: var(--space-md);
+	padding: var(--fkt-space-md);
 
 	& > * {
 		width: 100%;

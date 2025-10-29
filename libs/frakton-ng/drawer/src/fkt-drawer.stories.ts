@@ -2,14 +2,14 @@ import type { Meta, StoryObj } from '@storybook/angular';
 import { FktComponentInputs } from 'frakton-ng/internal/types';
 import { fktSidebarModes } from 'frakton-ng/drawer';
 import { FktDrawerExampleComponent } from './example/fkt-drawer-example.component';
-import { customDocsControl } from '../../.storybook/decorators/custom-docs-control';
+import { fktStoryRenderer } from '../../.storybook/decorators/fkt-story-renderer';
 import { renderComponent } from '../../.storybook/decorators/render-component';
 
 const meta: Meta<FktDrawerExampleComponent> = {
-	title: 'Components/Drawer',
+	title: 'Components/Overlay/Drawer',
 	component: FktDrawerExampleComponent,
 	decorators: [
-		customDocsControl()
+		fktStoryRenderer()
 	],
 	argTypes: {
 		mode: {

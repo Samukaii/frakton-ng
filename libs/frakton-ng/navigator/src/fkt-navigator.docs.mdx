@@ -1,6 +1,6 @@
 import {ArgTypes, Meta} from '@storybook/addon-docs/blocks';
 import * as fktNavigatorStories from './fkt-navigator.stories';
-import {StoryDoc} from "../../.storybook/blocks/StoryDoc";
+import {FktStoryRenderer} from "../../.storybook/blocks/FktStoryRenderer/FktStoryRenderer";
 import {rawExamples} from "./examples/raw-examples";
 
 
@@ -24,12 +24,12 @@ The **FktNavigator** component provides a reusable navigation control with previ
 
 ## Examples
 
-<StoryDoc of={fktNavigatorStories.BasicNavigator} code={rawExamples.basicExample}/>
-<StoryDoc of={fktNavigatorStories.PageNavigation} code={rawExamples.pageNavigationExample}/>
-<StoryDoc of={fktNavigatorStories.DateNavigation} code={rawExamples.dateNavigationExample}/>
-<StoryDoc of={fktNavigatorStories.ItemListNavigation} code={rawExamples.itemNavigationExample}/>
-<StoryDoc of={fktNavigatorStories.DisabledStates} code={rawExamples.disabledStateExample}/>
-<StoryDoc of={fktNavigatorStories.WithLoadingState} code={rawExamples.loadingExample}/>
+<FktStoryRenderer of={fktNavigatorStories.BasicNavigator} code={rawExamples.basicExample}/>
+<FktStoryRenderer of={fktNavigatorStories.PageNavigation} code={rawExamples.pageNavigationExample}/>
+<FktStoryRenderer of={fktNavigatorStories.DateNavigation} code={rawExamples.dateNavigationExample}/>
+<FktStoryRenderer of={fktNavigatorStories.ItemListNavigation} code={rawExamples.itemNavigationExample}/>
+<FktStoryRenderer of={fktNavigatorStories.DisabledStates} code={rawExamples.disabledStateExample}/>
+<FktStoryRenderer of={fktNavigatorStories.WithLoadingState} code={rawExamples.loadingExample}/>
 
 ### Content Projection
 The component accepts any content between its tags, which will be centered between the navigation buttons.

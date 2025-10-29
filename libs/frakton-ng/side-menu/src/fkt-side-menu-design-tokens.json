@@ -1,44 +1,26 @@
 [
   {
-    "description": "Border top width for the side menu.",
-    "name": "--fkt-side-menu-border-top-width",
-    "reference": "1px",
-    "component": "Side Menu",
-    "category": "Shape",
-    "type": "size",
-    "defaultValue": "1px"
-  },
-  {
-    "description": "Border color for the side menu.",
-    "name": "--fkt-side-menu-border-color",
-    "reference": "--fkt-color-neutral-700",
-    "component": "Side Menu",
-    "category": "Colors",
-    "type": "color",
-    "defaultValue": "#374151FF"
-  },
-  {
     "description": "Background color for the side menu.",
     "name": "--fkt-side-menu-background-color",
-    "reference": "--fkt-color-neutral-900",
+    "reference": "#0f172a",
     "component": "Side Menu",
     "category": "Colors",
     "type": "color",
-    "defaultValue": "#111827FF"
+    "defaultValue": "#0f172a"
   },
   {
     "description": "Transition duration for menu group animations.",
     "name": "--fkt-side-menu-group-transition",
-    "reference": "--transition-slow",
+    "reference": "--fkt-transition-slow",
     "component": "Side Menu",
     "category": "Effects",
     "type": "transition",
-    "defaultValue": "all var(--transition-timing-slow) var(--transition-ease)"
+    "defaultValue": "all var(--fkt-transition-timing-slow) var(--fkt-transition-ease)"
   },
   {
     "description": "Bottom margin for group headings.",
     "name": "--fkt-side-menu-group-heading-margin-bottom",
-    "reference": "--space-3xs",
+    "reference": "--fkt-space-3xs",
     "component": "Side Menu",
     "category": "Spacing",
     "type": "size",
@@ -47,7 +29,7 @@
   {
     "description": "Top margin for group headings.",
     "name": "--fkt-side-menu-group-heading-margin-top",
-    "reference": "--space-md",
+    "reference": "--fkt-space-md",
     "component": "Side Menu",
     "category": "Spacing",
     "type": "size",
@@ -56,16 +38,16 @@
   {
     "description": "Color for group headings.",
     "name": "--fkt-side-menu-group-heading-color",
-    "reference": "--fkt-color-neutral-400",
+    "reference": "#94a3b8",
     "component": "Side Menu",
     "category": "Colors",
     "type": "color",
-    "defaultValue": "#D1D5DBFF"
+    "defaultValue": "#94a3b8"
   },
   {
     "description": "Font size for group headings.",
     "name": "--fkt-side-menu-group-heading-font-size",
-    "reference": "--font-size-md",
+    "reference": "--fkt-font-size-md",
     "component": "Side Menu",
     "category": "Typography",
     "type": "font-size",
@@ -74,7 +56,7 @@
   {
     "description": "Font weight for group headings.",
     "name": "--fkt-side-menu-group-heading-font-weight",
-    "reference": "--font-normal",
+    "reference": "--fkt-font-normal",
     "component": "Side Menu",
     "category": "Typography",
     "type": "font-weight",
@@ -83,7 +65,7 @@
   {
     "description": "Gap between menu items.",
     "name": "--fkt-side-menu-items-gap",
-    "reference": "--space-xs",
+    "reference": "--fkt-space-xs",
     "component": "Side Menu",
     "category": "Spacing",
     "type": "size",
@@ -92,7 +74,7 @@
   {
     "description": "Padding for menu items.",
     "name": "--fkt-side-menu-item-padding",
-    "reference": "--space-sm",
+    "reference": "--fkt-space-sm",
     "component": "Side Menu",
     "category": "Spacing",
     "type": "size",
@@ -101,7 +83,7 @@
   {
     "description": "Gap within menu items (icon and text).",
     "name": "--fkt-side-menu-item-gap",
-    "reference": "--space-xs",
+    "reference": "--fkt-space-xs",
     "component": "Side Menu",
     "category": "Spacing",
     "type": "size",
@@ -110,7 +92,7 @@
   {
     "description": "Border radius for menu items.",
     "name": "--fkt-side-menu-item-border-radius",
-    "reference": "--space-xs",
+    "reference": "--fkt-space-xs",
     "component": "Side Menu",
     "category": "Shape",
     "type": "size",
@@ -119,20 +101,20 @@
   {
     "description": "Text color for menu items.",
     "name": "--fkt-side-menu-item-color",
-    "reference": "--fkt-color-neutral-100",
+    "reference": "#f1f5f9",
     "component": "Side Menu",
     "category": "Colors",
     "type": "color",
-    "defaultValue": "#F9FAFBFF"
+    "defaultValue": "#f1f5f9"
   },
   {
     "description": "Background color for menu items.",
     "name": "--fkt-side-menu-item-background-color",
-    "reference": "--fkt-color-neutral-700",
+    "reference": "#334155",
     "component": "Side Menu",
     "category": "Colors",
     "type": "color",
-    "defaultValue": "#374151FF"
+    "defaultValue": "#334155"
   },
   {
     "description": "Width for expanded menu items.",
@@ -146,29 +128,29 @@
   {
     "description": "Transition duration for menu items.",
     "name": "--fkt-side-menu-item-transition",
-    "reference": "--transition-slow",
+    "reference": "--fkt-transition-slow",
     "component": "Side Menu",
     "category": "Effects",
     "type": "transition",
-    "defaultValue": "all var(--transition-timing-slow) var(--transition-ease)"
+    "defaultValue": "all var(--fkt-transition-timing-slow) var(--fkt-transition-ease)"
   },
   {
     "description": "Fast transition duration for menu item hover states.",
     "name": "--fkt-side-menu-item-transition-fast",
-    "reference": "--transition-fast",
+    "reference": "--fkt-transition-base",
     "component": "Side Menu",
     "category": "Effects",
     "type": "transition",
-    "defaultValue": "--transition-fast"
+    "defaultValue": "all var(--fkt-transition-timing-fast) var(--fkt-transition-ease)"
   },
   {
     "description": "Background color for menu items on hover.",
     "name": "--fkt-side-menu-item-hover-background-color",
-    "reference": "--fkt-color-neutral-600",
+    "reference": "#475569",
     "component": "Side Menu",
     "category": "Colors",
     "type": "color",
-    "defaultValue": "#4B5563FF"
+    "defaultValue": "#475569"
   },
   {
     "description": "Width for collapsed menu items.",
@@ -182,7 +164,7 @@
   {
     "description": "Font size for menu item icons.",
     "name": "--fkt-side-menu-item-icon-font-size",
-    "reference": "--font-size-2xl",
+    "reference": "--fkt-font-size-2xl",
     "component": "Side Menu",
     "category": "Typography",
     "type": "font-size",
@@ -191,7 +173,7 @@
   {
     "description": "Padding for menu content sections.",
     "name": "--fkt-side-menu-content-padding",
-    "reference": "--space-sm",
+    "reference": "--fkt-space-sm",
     "component": "Side Menu",
     "category": "Spacing",
     "type": "size",
@@ -200,7 +182,7 @@
   {
     "description": "Gap for menu content sections.",
     "name": "--fkt-side-menu-content-gap",
-    "reference": "--space-xs",
+    "reference": "--fkt-space-xs",
     "component": "Side Menu",
     "category": "Spacing",
     "type": "size",
@@ -209,7 +191,7 @@
   {
     "description": "Bottom margin for list separators.",
     "name": "--fkt-side-menu-separator-margin-bottom",
-    "reference": "--space-md",
+    "reference": "--fkt-space-md",
     "component": "Side Menu",
     "category": "Spacing",
     "type": "size",
@@ -218,7 +200,7 @@
   {
     "description": "Top margin for closed list separators.",
     "name": "--fkt-side-menu-separator-closed-margin-top",
-    "reference": "--space-md",
+    "reference": "--fkt-space-md",
     "component": "Side Menu",
     "category": "Spacing",
     "type": "size",
@@ -227,10 +209,10 @@
   {
     "description": "Border color for separator lines.",
     "name": "--fkt-side-menu-separator-border-color",
-    "reference": "--fkt-color-neutral-600",
+    "reference": "#475569",
     "component": "Side Menu",
     "category": "Colors",
     "type": "color",
-    "defaultValue": "#4B5563FF"
+    "defaultValue": "#475569"
   }
 ]

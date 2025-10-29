@@ -1,6 +1,6 @@
 import {ArgTypes, Meta} from '@storybook/addon-docs/blocks';
 import * as fktCalendarNavigatorStories from './fkt-calendar-navigator.stories';
-import {StoryDoc} from "../../.storybook/blocks/StoryDoc";
+import {FktStoryRenderer} from "../../.storybook/blocks/FktStoryRenderer/FktStoryRenderer";
 import {rawExamples} from "./examples/raw-examples";
 
 <Meta of={fktCalendarNavigatorStories} />
@@ -27,10 +27,10 @@ type FktCalendarNavigatorMode = 'month' | 'year';
 
 ## Examples
 
-<StoryDoc of={fktCalendarNavigatorStories.MonthModeNavigator} code={rawExamples.monthModeExample}/>
-<StoryDoc of={fktCalendarNavigatorStories.YearModeNavigator} code={rawExamples.yearModeExample}/>
-<StoryDoc of={fktCalendarNavigatorStories.FormIntegration} code={rawExamples.formIntegrationExample}/>
-<StoryDoc of={fktCalendarNavigatorStories.DynamicModeSwitching} code={rawExamples.dynamicModeExample}/>
+<FktStoryRenderer of={fktCalendarNavigatorStories.MonthModeNavigator} code={rawExamples.monthModeExample}/>
+<FktStoryRenderer of={fktCalendarNavigatorStories.YearModeNavigator} code={rawExamples.yearModeExample}/>
+<FktStoryRenderer of={fktCalendarNavigatorStories.FormIntegration} code={rawExamples.formIntegrationExample}/>
+<FktStoryRenderer of={fktCalendarNavigatorStories.DynamicModeSwitching} code={rawExamples.dynamicModeExample}/>
 
 ### Navigation Behavior
 - **Month Mode**: Previous/Next buttons navigate by month, Month/Year labels open selection modals

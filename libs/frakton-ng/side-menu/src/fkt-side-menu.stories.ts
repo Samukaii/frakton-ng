@@ -1,4 +1,4 @@
-import { applicationConfig, Meta, moduleMetadata, StoryObj } from '@storybook/angular';
+import { applicationConfig, Meta, StoryObj } from '@storybook/angular';
 import { FktMenuGroup, FktSideMenuComponent } from 'frakton-ng/side-menu';
 import {
 	AdminDashboardLayoutExampleComponent,
@@ -13,7 +13,7 @@ import {
 	WithRoutingExampleComponent
 } from './examples/with-routing-example/with-routing-example.component';
 import { Component } from '@angular/core';
-import { customDocsControl } from '../../.storybook/decorators/custom-docs-control';
+import { fktStoryRenderer } from '../../.storybook/decorators/fkt-story-renderer';
 import { renderComponent } from '../../.storybook/decorators/render-component';
 import designTokens from './fkt-side-menu-design-tokens.json';
 
@@ -37,10 +37,19 @@ const DEFAULT_ROUTES: Routes = [
 ]
 
 const meta: Meta<FktSideMenuComponent> = {
-	title: 'Components/Side Menu',
+	title: 'Components/Navigation/Side Menu',
 	component: FktSideMenuComponent,
 	decorators: [
-		customDocsControl({designTokens}),
+		fktStoryRenderer({
+			designTokens,
+			noPadding: true,
+			customDimensions: {
+				height: "1000px"
+			},
+			applicationConfig: {
+				providers: [provideRouter(DEFAULT_ROUTES)],
+			}
+		}),
 	],
 	argTypes: {
 		groups: {

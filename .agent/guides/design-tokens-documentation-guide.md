@@ -120,7 +120,7 @@ Gap between example elements.
 @category Spacing
 @type size
 */
-$gap: var(--fkt-example-gap, var(--space-xs));
+$gap: var(--fkt-example-gap, var(--fkt-space-xs));
 
 /*
 Background color for example component.

@@ -2,11 +2,11 @@
 /*
 Size of the checkbox input (width and height).
 @name --fkt-checkbox-size
-@reference --space-lg
+@reference --fkt-space-lg
 @category Spacing
 @type size
 */
-$checkbox-size: var(--fkt-checkbox-size, var(--space-lg));
+$checkbox-size: var(--fkt-checkbox-size, var(--fkt-space-lg));
 
 /*
 Border color of the checkbox in its default state.
@@ -20,20 +20,20 @@ $border-color: var(--fkt-checkbox-border-color, var(--fkt-color-neutral-500));
 /*
 Background color of the checkbox in its default state.
 @name --fkt-checkbox-background-color
-@reference --fkt-color-neutral-100
+@reference transparent
 @category Colors
 @type color
 */
-$background-color: var(--fkt-checkbox-background-color, var(--fkt-color-neutral-100));
+$background-color: var(--fkt-checkbox-background-color, transparent);
 
 /*
 Border radius of the checkbox.
 @name --fkt-checkbox-border-radius
-@reference --radius-xs
+@reference --fkt-radius-xs
 @category Spacing
 @type size
 */
-$border-radius: var(--fkt-checkbox-border-radius, var(--radius-xs));
+$border-radius: var(--fkt-checkbox-border-radius, var(--fkt-radius-xs));
 
 /*
 Border width of the checkbox.
@@ -74,20 +74,20 @@ $checkmark-color: var(--fkt-checkbox-checkmark-color, var(--fkt-color-neutral-10
 /*
 Margin between checkbox and label text.
 @name --fkt-checkbox-label-margin
-@reference --space-xs
+@reference --fkt-space-xs
 @category Spacing
 @type size
 */
-$label-margin: var(--fkt-checkbox-label-margin, var(--space-xs));
+$label-margin: var(--fkt-checkbox-label-margin, var(--fkt-space-xs));
 
 /*
 Font size of the label text.
 @name --fkt-checkbox-label-font-size
-@reference --font-size-md
+@reference --fkt-font-size-md
 @category Typography
 @type size
 */
-$label-font-size: var(--fkt-checkbox-label-font-size, var(--font-size-md));
+$label-font-size: var(--fkt-checkbox-label-font-size, var(--fkt-font-size-md));
 
 /*
 Color of the label text in invalid state.
@@ -141,7 +141,7 @@ label {
 		border: $border-width solid $border-color;
 		border-radius: $border-radius;
 		outline: none;
-		transition: var(--transition-base);
+		transition: var(--fkt-transition-base);
 		position: relative;
 		cursor: pointer;
 		background: $background-color;
@@ -156,7 +156,7 @@ label {
 			border-right: $checkmark-width solid $checkmark-color;
 			border-bottom: $checkmark-width solid $checkmark-color;
 			transform: rotate(45deg) scale(0);
-			transition: var(--transition-base);
+			transition: var(--fkt-transition-base);
 			pointer-events: none;
 		}
 

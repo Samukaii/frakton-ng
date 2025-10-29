@@ -1,29 +1,29 @@
 .container {
-	padding: var(--space-xl);
-	margin-top: var(--space-xl);
-	border-radius: var(--radius-lg);
+	padding: var(--fkt-space-xl);
+	margin-top: var(--fkt-space-xl);
+	border-radius: var(--fkt-radius-lg);
 	width: 100%;
 	max-width: 28rem;
 	border: solid 1px var(--fkt-color-neutral-200);
 
 	h3 {
-		font-size: var(--font-size-xl);
-		font-weight: var(--font-semibold);
+		font-size: var(--fkt-font-size-xl);
+		font-weight: var(--fkt-font-semibold);
 		color: var(--fkt-color-neutral-900);
 	}
 
 	&__form {
 		display: flex;
 		flex-direction: column;
-		gap: var(--space-sm);
+		gap: var(--fkt-space-sm);
 	}
 
 	&__actions {
 		display: flex;
-		margin-top: var(--space-sm);
+		margin-top: var(--fkt-space-sm);
 		flex-direction: column;
 		width: 100%;
-		gap: var(--space-sm);
+		gap: var(--fkt-space-sm);
 
 		fkt-button {
 			width: 100%;

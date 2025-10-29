@@ -1,14 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/angular';
 import { fktButtonsListAlignments, FktButtonsListComponent, fktButtonsListOrientations } from 'frakton-ng/buttons-list';
-import { customDocsControl } from '../../.storybook/decorators/custom-docs-control';
+import { fktStoryRenderer } from '../../.storybook/decorators/fkt-story-renderer';
 import { renderComponent } from '../../.storybook/decorators/render-component';
 import designTokens from './fkt-buttons-list-design-tokens.json';
 
 const meta: Meta<FktButtonsListComponent<void>> = {
-	title: 'Components/Buttons list',
+	title: 'Components/Actions/Buttons list',
 	component: FktButtonsListComponent,
 	decorators: [
-		customDocsControl({
+		fktStoryRenderer({
 			designTokens: designTokens as any
 		})
 	],
@@ -141,14 +141,16 @@ export const Preview: StoryObj = {
 				identifier: "action-5",
 				theme: "raised",
 				icon: "plus",
-				color: "primary"
+				color: "primary",
+				ariaLabel: "Action 5"
 			},
 			{
 				identifier: "action-6",
 				theme: "basic",
 				icon: "trash",
 				shape: "rect",
-				color: "danger"
+				color: "danger",
+				ariaLabel: "Action 6"
 			}
 		]
 	}

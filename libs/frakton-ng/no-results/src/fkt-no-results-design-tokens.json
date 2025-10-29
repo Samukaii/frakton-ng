@@ -2,7 +2,7 @@
   {
     "description": "Gap between icon and content in the no-results component.",
     "name": "--fkt-no-results-gap",
-    "reference": "--space-md",
+    "reference": "--fkt-space-md",
     "component": "No Results",
     "category": "Spacing",
     "type": "size",
@@ -47,7 +47,7 @@
   {
     "description": "Font size of the title in the no-results component.",
     "name": "--fkt-no-results-title-font-size",
-    "reference": "--font-size-lg",
+    "reference": "--fkt-font-size-lg",
     "component": "No Results",
     "category": "Typography",
     "type": "font-size",
@@ -65,7 +65,7 @@
   {
     "description": "Font weight of the title in the no-results component.",
     "name": "--fkt-no-results-title-font-weight",
-    "reference": "--font-semibold",
+    "reference": "--fkt-font-semibold",
     "component": "No Results",
     "category": "Typography",
     "type": "font-weight",
@@ -83,7 +83,7 @@
   {
     "description": "Bottom margin of the description in the no-results component.",
     "name": "--fkt-no-results-description-margin-bottom",
-    "reference": "--space-sm",
+    "reference": "--fkt-space-sm",
     "component": "No Results",
     "category": "Spacing",
     "type": "size",

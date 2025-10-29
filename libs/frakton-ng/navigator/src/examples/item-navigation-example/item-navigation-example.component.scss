@@ -5,16 +5,16 @@ h3 {
 .container {
 	display: flex;
 	flex-direction: column;
-	gap: var(--space-md);
+	gap: var(--fkt-space-md);
 
 	&__header {
 		text-align: center;
-		padding: var(--space-md);
+		padding: var(--fkt-space-md);
 		background-color: var(--fkt-color-neutral-100);
-		border-radius: var(--radius-md);
+		border-radius: var(--fkt-radius-md);
 
 		h3 {
-			font-weight: var(--font-medium);
+			font-weight: var(--fkt-font-medium);
 		}
 
 		p {
@@ -24,7 +24,7 @@ h3 {
 
 	&__content {
 		text-align: center;
-		font-size: var(--font-size-sm);
+		font-size: var(--fkt-font-size-sm);
 		color: var(--fkt-color-neutral-500);
 	}
 }

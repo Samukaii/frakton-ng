@@ -1,6 +1,6 @@
 import {ArgTypes, Meta} from '@storybook/addon-docs/blocks';
 import * as stories from './fkt-textarea.stories';
-import {StoryDoc} from "../../.storybook/blocks/StoryDoc";
+import {FktStoryRenderer} from "../../.storybook/blocks/FktStoryRenderer/FktStoryRenderer";
 import {rawExamples} from "./examples/raw-examples";
 
 <Meta of={stories} />
@@ -25,12 +25,12 @@ A multi-line text input component with reactive form integration, validation sup
 
 ## Examples
 
-<StoryDoc of={stories.BasicUsage} code={rawExamples.basicExample}/>
-<StoryDoc of={stories.Validation} code={rawExamples.validationExample}/>
-<StoryDoc of={stories.AutoExpand} code={rawExamples.autoExpandExample}/>
-<StoryDoc of={stories.FormIntegration} code={rawExamples.formIntegrationExample}/>
-<StoryDoc of={stories.CharacterCounter} code={rawExamples.characterCounterExample}/>
-<StoryDoc of={stories.DisabledState} code={rawExamples.disabledExample}/>
+<FktStoryRenderer of={stories.BasicUsage} code={rawExamples.basicExample}/>
+<FktStoryRenderer of={stories.Validation} code={rawExamples.validationExample}/>
+<FktStoryRenderer of={stories.AutoExpand} code={rawExamples.autoExpandExample}/>
+<FktStoryRenderer of={stories.FormIntegration} code={rawExamples.formIntegrationExample}/>
+<FktStoryRenderer of={stories.CharacterCounter} code={rawExamples.characterCounterExample}/>
+<FktStoryRenderer of={stories.DisabledState} code={rawExamples.disabledExample}/>
 
 ## Use Cases
 

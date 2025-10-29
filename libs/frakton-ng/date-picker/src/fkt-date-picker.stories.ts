@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/angular';
 import { FktDatePickerComponent } from 'frakton-ng/date-picker';
-import { customDocsControl } from '../../.storybook/decorators/custom-docs-control';
+import { fktStoryRenderer } from '../../.storybook/decorators/fkt-story-renderer';
 import { renderComponent } from '../../.storybook/decorators/render-component';
 import designTokens from './fkt-date-picker-design-tokens.json';
 
@@ -8,7 +8,7 @@ const meta: Meta<FktDatePickerComponent> = {
 	title: 'Components/Form/Datepicker',
 	component: FktDatePickerComponent,
 	decorators: [
-		customDocsControl({
+		fktStoryRenderer({
 			designTokens: designTokens as any
 		})
 	],

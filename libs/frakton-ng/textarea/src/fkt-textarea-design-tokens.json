@@ -2,7 +2,7 @@
   {
     "description": "Vertical padding inside the textarea field (top and bottom spacing between border and content).",
     "name": "--fkt-textarea-vertical-padding",
-    "reference": "--space-md",
+    "reference": "--fkt-space-md",
     "category": "Spacing",
     "type": "size",
     "defaultValue": "1rem"
@@ -10,7 +10,7 @@
   {
     "description": "Horizontal padding inside the textarea field (left and right spacing between border and content).",
     "name": "--fkt-textarea-horizontal-padding",
-    "reference": "--space-md",
+    "reference": "--fkt-space-md",
     "category": "Spacing",
     "type": "size",
     "defaultValue": "1rem"
@@ -50,7 +50,7 @@
   {
     "description": "Border radius for textarea",
     "name": "--fkt-textarea-border-radius",
-    "reference": "--radius-lg",
+    "reference": "--fkt-radius-lg",
     "category": "Spacing",
     "type": "size",
     "defaultValue": ".5rem"
@@ -58,7 +58,7 @@
   {
     "description": "Font size for textarea text and placeholder.",
     "name": "--fkt-textarea-font-size",
-    "reference": "--font-size-md",
+    "reference": "--fkt-font-size-md",
     "category": "Typography",
     "type": "size",
     "defaultValue": "1rem"

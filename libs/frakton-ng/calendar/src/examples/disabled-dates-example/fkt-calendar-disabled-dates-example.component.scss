@@ -46,7 +46,7 @@
 		align-items: center;
 		gap: 6px;
 		font-size: 12px;
-		color: #666;
+		color: var(--fkt-color-neutral-600);
 	}
 
 	&-color {
@@ -56,18 +56,18 @@
 		display: block;
 
 		&.past-date {
-			background: #e0e0e0;
-			border: 1px solid #bdbdbd;
+			background-color: var(--fkt-color-neutral-300);
+			border: 1px solid var(--fkt-color-neutral-500);
 		}
 
 		&.weekend-disabled {
-			background: #fff3e0;
-			border: 1px solid #ff9800;
+			background: var(--fkt-color-warning-opacity-20);
+			border: 1px solid var(--fkt-color-warning);
 		}
 
 		&.blacked-out {
-			background: #ffebee;
-			border: 1px solid #f44336;
+			background: var(--fkt-color-danger-opacity-20);
+			border: 1px solid var(--fkt-color-warning);
 		}
 	}
 }
@@ -75,10 +75,10 @@
 .info-box {
 	margin-top: 16px;
 	padding: 12px;
-	background: #155DFC14;
-	border-radius: var(--radius-md);
-	color: var(--color-blue-950);
-	border: .5px solid var(--color-blue-200);
+	background: var(--fkt-color-info-opacity-10);
+	border-radius: var(--fkt-radius-md);
+	color: var(--fkt-color-neutral-900);
+	border: .5px solid var(--fkt-color-info-opacity-50);
 	width: 100%;
 
 	h4 {
@@ -98,41 +98,27 @@
 	}
 }
 
-.selected-date {
-	margin: var(--space-md) 0 0;
-	border-radius: var(--radius-md);
-	border: solid 1px var(--color-green-200);
-	color: var(--color-green-950);
-	display: block;
-	width: 100%;
-	text-align: center;
-	padding: var(--space-xs) var(--space-md);
-	background-color: var(--color-green-50);
-}
-
-
-
 // Global styles for calendar date customization.
 // Always use ::ng-deep combined with :host or other local class to avoid style leaking
 :host ::ng-deep fkt-calendar {
 	.disabled {
 		cursor: not-allowed;
-		opacity: 0.4;
+		opacity: 1;
 	}
 
 	.past-date {
-		background-color: #a4a4a4;
-		color: #383838;
+		background-color: var(--fkt-color-neutral-300);
+		color: var(--fkt-color-neutral-500);
 	}
 
 	.weekend-disabled {
-		background-color: #fad592;
-		color: #a44b00;
+		background-color: var(--fkt-color-warning-opacity-20);
+		color: var(--fkt-color-warning);
 	}
 
 	.blacked-out {
-		background-color: #ffb8c2;
-		color: #d32f2f;
+		background-color: var(--fkt-color-danger-opacity-20);
+		color: var(--fkt-color-danger);
 		position: relative;
 
 		&::before {
@@ -142,7 +128,7 @@
 			left: 10%;
 			right: 10%;
 			height: 1px;
-			background: #d32f2f;
+			background: var(--fkt-color-danger);
 		}
 	}
 }

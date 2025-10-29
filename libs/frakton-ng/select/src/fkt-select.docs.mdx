@@ -1,6 +1,6 @@
 import {ArgTypes, Meta} from '@storybook/addon-docs/blocks';
 import * as stories from './fkt-select.stories';
-import {StoryDoc} from "../../.storybook/blocks/StoryDoc";
+import {FktStoryRenderer} from "../../.storybook/blocks/FktStoryRenderer/FktStoryRenderer";
 import {rawExamples} from './examples/raw-examples';
 
 <Meta of={stories} />
@@ -46,14 +46,14 @@ interface FktNoResults {
 
 ## Examples
 
-<StoryDoc of={stories.BasicSelect} code={rawExamples.defaultExample}/>
-<StoryDoc of={stories.PreSelectedOption} code={rawExamples.preselectedExample}/>
-<StoryDoc of={stories.LargeOptionsList} code={rawExamples.largeListExample}/>
-<StoryDoc of={stories.LoadingState} code={rawExamples.loadingExample}/>
-<StoryDoc of={stories.EmptyState} code={rawExamples.emptyStateExample}/>
-<StoryDoc of={stories.WithValidation} code={rawExamples.validationExample}/>
-<StoryDoc of={stories.DisabledState} code={rawExamples.disabledExample}/>
-<StoryDoc of={stories.AsyncLoading} code={rawExamples.asyncLoading}/>
+<FktStoryRenderer of={stories.BasicSelect} code={rawExamples.defaultExample}/>
+<FktStoryRenderer of={stories.PreSelectedOption} code={rawExamples.preselectedExample}/>
+<FktStoryRenderer of={stories.LargeOptionsList} code={rawExamples.largeListExample}/>
+<FktStoryRenderer of={stories.LoadingState} code={rawExamples.loadingExample}/>
+<FktStoryRenderer of={stories.EmptyState} code={rawExamples.emptyStateExample}/>
+<FktStoryRenderer of={stories.WithValidation} code={rawExamples.validationExample}/>
+<FktStoryRenderer of={stories.DisabledState} code={rawExamples.disabledExample}/>
+<FktStoryRenderer of={stories.AsyncLoading} code={rawExamples.asyncLoading}/>
 
 ## Use Cases
 

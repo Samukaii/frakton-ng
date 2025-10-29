@@ -1,36 +1,19 @@
 <div class="dynamic-permissions-example">
-      <fkt-side-menu
-        [groups]="dynamicMenuGroups()"
-        [opened]="opened()"
-      >
-        <div class="dynamic-permissions-example__content">
-          <div class="dynamic-permissions-example__controls">
-            <h1 class="dynamic-permissions-example__title">User Role: {{ currentRole() }}</h1>
-            <div class="dynamic-permissions-example__role-selector">
-              <fkt-button
-                [text]="'Admin'"
-                [theme]="currentRole() === 'Admin' ? 'raised' : 'stroked'"
-                [color]="'red'"
-                (click)="setRole('admin')"
-              />
-              <fkt-button
-                [text]="'Manager'"
-                [theme]="currentRole() === 'Manager' ? 'raised' : 'stroked'"
-                [color]="'yellow'"
-                (click)="setRole('manager')"
-              />
-              <fkt-button
-                [text]="'User'"
-                [theme]="currentRole() === 'User' ? 'raised' : 'stroked'"
-                [color]="'green'"
-                (click)="setRole('user')"
-              />
-            </div>
-          </div>
-          <p class="dynamic-permissions-example__description">
-            The menu items change based on the selected user role.
-            Switch between roles to see how the navigation adapts dynamically.
-          </p>
-        </div>
-      </fkt-side-menu>
-    </div>
+	<fkt-side-menu
+		[groups]="dynamicMenuGroups()"
+		[opened]="opened()"
+	>
+		<div class="dynamic-permissions-example__content">
+			<div class="dynamic-permissions-example__controls">
+				<h1 class="dynamic-permissions-example__title">User Role: {{ currentRoleName() }}</h1>
+				<div class="dynamic-permissions-example__role-selector">
+					<fkt-badge-selector [options]="roles" [(value)]="userRole"/>
+				</div>
+			</div>
+			<p class="dynamic-permissions-example__description">
+				The menu items change based on the selected user role.
+				Switch between roles to see how the navigation adapts dynamically.
+			</p>
+		</div>
+	</fkt-side-menu>
+</div>

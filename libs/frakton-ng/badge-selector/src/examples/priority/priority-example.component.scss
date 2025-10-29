@@ -1,28 +1,28 @@
 .container {
-	padding: var(--space-md);
+	padding: var(--fkt-space-md);
 	border: solid 1px var(--fkt-color-neutral-400);
-	border-radius: var(--space-md);
+	border-radius: var(--fkt-space-md);
 
 	h3 {
-		font-size: var(--font-size-lg);
-		font-weight: var(--font-semibold);
-		margin-bottom: var(--space-sm);
+		font-size: var(--fkt-font-size-lg);
+		font-weight: var(--fkt-font-semibold);
+		margin-bottom: var(--fkt-space-sm);
 	}
 
 	&__selector {
 		display: flex;
 		align-items: center;
-		gap: var(--space-sm);
+		gap: var(--fkt-space-sm);
 
 		label {
-			font-size: var(--font-size-sm);
-			font-weight: var(--font-medium);
+			font-size: var(--fkt-font-size-sm);
+			font-weight: var(--fkt-font-medium);
 		}
 	}
 
 	&__description {
-		margin-top: var(--space-sm);
-		font-size: var(--font-size-sm);
+		margin-top: var(--fkt-space-sm);
+		font-size: var(--fkt-font-size-sm);
 		color: var(--fkt-color-neutral-600);
 	}
 }

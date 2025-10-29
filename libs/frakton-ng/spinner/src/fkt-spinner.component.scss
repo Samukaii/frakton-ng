@@ -32,12 +32,12 @@ $border-color: var(--fkt-spinner-border-color, var(--fkt-color-neutral-200));
 /*
 Border radius for the spinner (full circle).
 @name --fkt-spinner-border-radius
-@reference --radius-full
+@reference --fkt-radius-full
 @component Feedback
 @category Shape
 @type size
 */
-$border-radius: var(--fkt-spinner-border-radius, var(--radius-full));
+$border-radius: var(--fkt-spinner-border-radius, var(--fkt-radius-full));
 
 /*
 Animation duration for the spinner rotation.

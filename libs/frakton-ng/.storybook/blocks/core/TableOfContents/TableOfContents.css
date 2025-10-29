@@ -1,0 +1,25 @@
+.fkt-storybook-toc-container {
+	ul ul {
+		display: flex;
+		flex-direction: column;
+		border-left: solid 1px var(--fkt-color-neutral-300);
+	}
+
+	li {
+		list-style: none;
+		margin: 0 !important;
+		padding-top: var(--fkt-space-3xs);
+
+		a {
+			text-decoration: none;
+			color: var(--fkt-color-neutral-600);
+			font-size: var(--fkt-font-size-sm);
+		}
+
+		a.active {
+			color: var(--fkt-color-accent);
+			font-weight: var(--fkt-font-semibold);
+		}
+	}
+}
+

@@ -2,7 +2,7 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	gap: var(--space-xs);
+	gap: var(--fkt-space-xs);
 
 	& > * {
 		width: fit-content;

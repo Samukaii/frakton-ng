@@ -2,19 +2,19 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	gap: var(--space-md);
+	gap: var(--fkt-space-md);
 
 	&__loading {
 		display: flex;
 		align-items: center;
-		gap: var(--space-sm);
+		gap: var(--fkt-space-sm);
 		color: var(--fkt-color-neutral-600);
 	}
 
 	&__success {
-		color: var(--color-green-600);
+		color: var(--fkt-color-success);
 		display: flex;
 		align-items: center;
-		gap: var(--space-xs);
+		gap: var(--fkt-space-xs);
 	}
 }

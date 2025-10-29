@@ -6,16 +6,16 @@ import {
 	FktInteractiveOverlayExampleComponent,
 	FktSimpleOverlayExampleComponent
 } from './examples';
-import { customDocsControl } from '../../.storybook/decorators/custom-docs-control';
+import { fktStoryRenderer } from '../../.storybook/decorators/fkt-story-renderer';
 import { renderComponent } from '../../.storybook/decorators/render-component';
 
 const meta: Meta = {
-	title: 'Services/Overlay',
+	title: 'Components/Overlay/Overlay',
 	parameters: {
 		layout: 'centered',
 	},
 	decorators: [
-		customDocsControl(),
+		fktStoryRenderer(),
 	],
 };
 

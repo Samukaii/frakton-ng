@@ -2,12 +2,12 @@
 /*
 Padding for the tooltip host element.
 @name --fkt-tooltip-padding
-@reference --space-xs
+@reference --fkt-space-xs
 @component Tooltip
 @category Spacing
 @type size
 */
-$tooltip-padding: var(--fkt-tooltip-padding, var(--space-xs));
+$tooltip-padding: var(--fkt-tooltip-padding, var(--fkt-space-xs));
 
 /*
 Border radius for the tooltip content.
@@ -22,32 +22,32 @@ $tooltip-border-radius: var(--fkt-tooltip-border-radius, 6px);
 /*
 Font size for the tooltip content.
 @name --fkt-tooltip-font-size
-@reference --font-size-sm
+@reference --fkt-font-size-sm
 @component Tooltip
 @category Typography
 @type font-size
 */
-$tooltip-font-size: var(--fkt-tooltip-font-size, var(--font-size-sm));
+$tooltip-font-size: var(--fkt-tooltip-font-size, var(--fkt-font-size-sm));
 
 /*
 Font weight for the tooltip content.
 @name --fkt-tooltip-font-weight
-@reference --font-semibold
+@reference --fkt-font-semibold
 @component Tooltip
 @category Typography
 @type font-weight
 */
-$tooltip-font-weight: var(--fkt-tooltip-font-weight, var(--font-semibold));
+$tooltip-font-weight: var(--fkt-tooltip-font-weight, var(--fkt-font-semibold));
 
 /*
 Padding for the tooltip content.
 @name --fkt-tooltip-content-padding
-@reference --space-xs
+@reference --fkt-space-xs
 @component Tooltip
 @category Spacing
 @type size
 */
-$tooltip-content-padding: var(--fkt-tooltip-content-padding, var(--space-xs));
+$tooltip-content-padding: var(--fkt-tooltip-content-padding, var(--fkt-space-xs));
 
 /*
 Box shadow for the tooltip content.

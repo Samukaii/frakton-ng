@@ -2,12 +2,12 @@
 /*
 Gap between icon and content in the no-results component.
 @name --fkt-no-results-gap
-@reference --space-md
+@reference --fkt-space-md
 @component No Results
 @category Spacing
 @type size
 */
-$no-results-gap: var(--fkt-no-results-gap, var(--space-md));
+$no-results-gap: var(--fkt-no-results-gap, var(--fkt-space-md));
 
 /*
 Minimum height of the no-results component container.
@@ -52,12 +52,12 @@ $no-results-icon-color: var(--fkt-no-results-icon-color, var(--fkt-color-neutral
 /*
 Font size of the title in the no-results component.
 @name --fkt-no-results-title-font-size
-@reference --font-size-lg
+@reference --fkt-font-size-lg
 @component No Results
 @category Typography
 @type font-size
 */
-$no-results-title-font-size: var(--fkt-no-results-title-font-size, var(--font-size-lg));
+$no-results-title-font-size: var(--fkt-no-results-title-font-size, var(--fkt-font-size-lg));
 
 /*
 Line height of the title in the no-results component.
@@ -72,12 +72,12 @@ $no-results-title-line-height: var(--fkt-no-results-title-line-height, 1.75rem);
 /*
 Font weight of the title in the no-results component.
 @name --fkt-no-results-title-font-weight
-@reference --font-semibold
+@reference --fkt-font-semibold
 @component No Results
 @category Typography
 @type font-weight
 */
-$no-results-title-font-weight: var(--fkt-no-results-title-font-weight, var(--font-semibold));
+$no-results-title-font-weight: var(--fkt-no-results-title-font-weight, var(--fkt-font-semibold));
 
 /*
 Color of the title in the no-results component.
@@ -92,12 +92,12 @@ $no-results-title-color: var(--fkt-no-results-title-color, var(--fkt-color-neutr
 /*
 Bottom margin of the description in the no-results component.
 @name --fkt-no-results-description-margin-bottom
-@reference --space-sm
+@reference --fkt-space-sm
 @component No Results
 @category Spacing
 @type size
 */
-$no-results-description-margin-bottom: var(--fkt-no-results-description-margin-bottom, var(--space-sm));
+$no-results-description-margin-bottom: var(--fkt-no-results-description-margin-bottom, var(--fkt-space-sm));
 
 /*
 Color of the description in the no-results component.

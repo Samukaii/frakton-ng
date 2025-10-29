@@ -9,7 +9,7 @@ p {
 .container {
 	display: flex;
 	align-items: flex-end;
-	gap: var(--space-md);
+	gap: var(--fkt-space-md);
 
 	&__item {
 		display: flex;
@@ -17,8 +17,8 @@ p {
 		align-items: center;
 
 		p {
-			margin-top: var(--space-xs);
-			font-size: var(--font-size-sm);
+			margin-top: var(--fkt-space-xs);
+			font-size: var(--fkt-font-size-sm);
 			color: var(--fkt-color-neutral-600);
 		}
 	}

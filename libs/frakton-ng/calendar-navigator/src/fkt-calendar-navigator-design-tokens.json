@@ -2,11 +2,11 @@
   {
     "description": "Padding for calendar navigator modal.",
     "name": "--fkt-calendar-navigator-modal-padding",
-    "reference": "--space-md",
+    "reference": "--fkt-space-md",
     "component": "Modal",
     "category": "Spacing",
     "type": "size",
-    "defaultValue": "--space-md"
+    "defaultValue": "--fkt-space-md"
   },
   {
     "description": "Minimum width for calendar navigator modal.",

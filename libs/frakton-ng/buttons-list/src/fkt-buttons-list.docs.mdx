@@ -1,6 +1,6 @@
 import {ArgTypes, Meta} from '@storybook/addon-docs/blocks';
 import * as fktButtonsListStories from './fkt-buttons-list.stories';
-import {StoryDoc} from "../../.storybook/blocks/StoryDoc";
+import {FktStoryRenderer} from "../../.storybook/blocks/FktStoryRenderer/FktStoryRenderer";
 
 <Meta of={fktButtonsListStories} />
 
@@ -44,16 +44,16 @@ interface FktButtonAction<Context = any> {
 
 ## Examples
 
-<StoryDoc of={fktButtonsListStories.Preview}/>
-<StoryDoc of={fktButtonsListStories.FormActions}/>
-<StoryDoc of={fktButtonsListStories.VerticalList}/>
-<StoryDoc of={fktButtonsListStories.IconOnlyActions}/>
-<StoryDoc of={fktButtonsListStories.DataTableActions}/>
-<StoryDoc of={fktButtonsListStories.BulkActions}/>
-<StoryDoc of={fktButtonsListStories.ToolbarActions}/>
-<StoryDoc of={fktButtonsListStories.FloatingActions}/>
-<StoryDoc of={fktButtonsListStories.LoadingStates}/>
-<StoryDoc of={fktButtonsListStories.DisabledStates}/>
+<FktStoryRenderer of={fktButtonsListStories.Preview}/>
+<FktStoryRenderer of={fktButtonsListStories.FormActions}/>
+<FktStoryRenderer of={fktButtonsListStories.VerticalList}/>
+<FktStoryRenderer of={fktButtonsListStories.IconOnlyActions}/>
+<FktStoryRenderer of={fktButtonsListStories.DataTableActions}/>
+<FktStoryRenderer of={fktButtonsListStories.BulkActions}/>
+<FktStoryRenderer of={fktButtonsListStories.ToolbarActions}/>
+<FktStoryRenderer of={fktButtonsListStories.FloatingActions}/>
+<FktStoryRenderer of={fktButtonsListStories.LoadingStates}/>
+<FktStoryRenderer of={fktButtonsListStories.DisabledStates}/>
 
 ### Layout Options
 

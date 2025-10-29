@@ -8,15 +8,15 @@ import {
 	LoadingExampleComponent,
 	PageNavigationExampleComponent
 } from './examples';
-import { customDocsControl } from '../../.storybook/decorators/custom-docs-control';
+import { fktStoryRenderer } from '../../.storybook/decorators/fkt-story-renderer';
 import { renderComponent } from '../../.storybook/decorators/render-component';
 import designTokens from './fkt-navigator-design-tokens.json';
 
 const meta: Meta<FktNavigatorComponent> = {
-	title: 'Components/Navigator',
+	title: 'Components/Navigation/Navigator',
 	component: FktNavigatorComponent,
 	decorators: [
-		customDocsControl({designTokens}),
+		fktStoryRenderer({designTokens}),
 	],
 	argTypes: {
 		canGoToPrevious: {

@@ -28,7 +28,7 @@ export class FktAutocompleteCustomStylingExampleComponent {
 	protected filteredOptions = linkedSignal(() => {
 		const searchTerm = this.searchTerm();
 
-		return this.options()//.filter(option => option.label.toLowerCase().includes(searchTerm.toLowerCase()));
+		return this.options().filter(option => option.label.toLowerCase().includes(searchTerm.toLowerCase()));
 	});
 
 	protected control = form(signal(''), path => {
@@ -41,9 +41,5 @@ export class FktAutocompleteCustomStylingExampleComponent {
 
 	protected toggleDisabled() {
 		this.disabled.update(disabled => !disabled);
-	}
-
-	protected onSearch(searchTerm: string) {
-		console.log('Search term:', searchTerm);
 	}
 }

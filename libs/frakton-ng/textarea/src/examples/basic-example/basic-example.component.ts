@@ -11,6 +11,7 @@ import { Control, form } from '@angular/forms/signals';
 export class BasicExampleComponent {
 	label = input('Description');
 	placeholder = input('Enter a detailed description...');
+	spellcheck = input(true);
 
 	protected control = form(signal(''));
 }

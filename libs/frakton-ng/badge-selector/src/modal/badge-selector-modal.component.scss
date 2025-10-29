@@ -2,32 +2,32 @@
 /*
 Padding for badge selector modal container.
 @name --fkt-badge-selector-modal-padding
-@reference --space-xs
+@reference --fkt-space-xs
 @component Modal
 @category Spacing
 @type size
 */
-$modal-padding: var(--fkt-badge-selector-modal-padding, var(--space-xs));
+$modal-padding: var(--fkt-badge-selector-modal-padding, var(--fkt-space-xs));
 
 /*
 Gap between elements in modal container.
 @name --fkt-badge-selector-modal-gap
-@reference --space-xs
+@reference --fkt-space-xs
 @component Modal
 @category Spacing
 @type size
 */
-$modal-gap: var(--fkt-badge-selector-modal-gap, var(--space-xs));
+$modal-gap: var(--fkt-badge-selector-modal-gap, var(--fkt-space-xs));
 
 /*
 Gap between items in modal rows.
 @name --fkt-badge-selector-modal-row-gap
-@reference --space-xs
+@reference --fkt-space-xs
 @component Modal
 @category Spacing
 @type size
 */
-$modal-row-gap: var(--fkt-badge-selector-modal-row-gap, var(--space-xs));
+$modal-row-gap: var(--fkt-badge-selector-modal-row-gap, var(--fkt-space-xs));
 
 /*
 Scale factor for badge hover effect in modal.
@@ -42,22 +42,22 @@ $modal-badge-hover-scale: var(--fkt-badge-selector-modal-badge-hover-scale, 105%
 /*
 Gap between icon and text in modal badge content.
 @name --fkt-badge-selector-modal-badge-content-gap
-@reference --space-xs
+@reference --fkt-space-xs
 @component Modal
 @category Spacing
 @type size
 */
-$modal-badge-content-gap: var(--fkt-badge-selector-modal-badge-content-gap, var(--space-xs));
+$modal-badge-content-gap: var(--fkt-badge-selector-modal-badge-content-gap, var(--fkt-space-xs));
 
 /*
 Font size for icons in modal badges.
 @name --fkt-badge-selector-modal-icon-font-size
-@reference --font-size-sm
+@reference --fkt-font-size-sm
 @component Modal
 @category Typography
 @type size
 */
-$modal-icon-font-size: var(--fkt-badge-selector-modal-icon-font-size, var(--font-size-sm));
+$modal-icon-font-size: var(--fkt-badge-selector-modal-icon-font-size, var(--fkt-font-size-sm));
 // </design-tokens>
 
 * {

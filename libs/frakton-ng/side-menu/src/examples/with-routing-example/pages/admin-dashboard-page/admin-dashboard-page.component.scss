@@ -10,26 +10,26 @@
 .admin-page {
 	padding: 40px 24px;
 	height: 100%;
-	background: #fafbfc;
+	background: var(--fkt-color-neutral-background);
 }
 
 .admin-page__title {
 	font-size: 2.2rem;
 	margin-bottom: 18px;
 	font-weight: 700;
-	color: #30363d;
+	color: var(--fkt-color-neutral-800);
 }
 
 .admin-page__content {
-	background: #fff;
+	background: var(--fkt-color-modal-background);
 	border-radius: 10px;
-	box-shadow: 0 2px 12px #0f172a12;
+	box-shadow: var(--fkt-shadow-md);
 	padding: 32px;
 }
 
 .admin-dashboard__welcome {
 	margin-bottom: 24px;
-	color: #58617a;
+	color: var(--fkt-color-neutral-800);
 }
 
 .admin-dashboard__stats {
@@ -38,7 +38,7 @@
 }
 
 .admin-dashboard__stat {
-	background: #f3f4f6;
+	background: var(--fkt-color-neutral-200);
 	border-radius: 8px;
 	padding: 24px 18px;
 	flex: 1;
@@ -47,13 +47,13 @@
 
 .admin-dashboard__stat-label {
 	font-size: 1rem;
-	color: #767e95;
+	color: var(--fkt-color-neutral-600);
 }
 
 .admin-dashboard__stat-value {
 	font-size: 2rem;
 	font-weight: 600;
-	color: #4A5565FF;
+	color: var(--fkt-color-neutral-800);
 	margin-top: 8px;
 	display: block;
 }

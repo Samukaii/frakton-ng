@@ -1,6 +1,6 @@
 import {ArgTypes, Controls, Meta, Story} from '@storybook/addon-docs/blocks';
 import * as fktDatePickerStories from './fkt-date-picker.stories';
-import {StoryDoc} from "../../.storybook/blocks/StoryDoc";
+import {FktStoryRenderer} from "../../.storybook/blocks/FktStoryRenderer/FktStoryRenderer";
 
 <Meta of={fktDatePickerStories} />
 
@@ -36,11 +36,11 @@ The component supports various date input formats:
 
 ## Examples
 
-<StoryDoc of={fktDatePickerStories.BasicDatePicker}/>
-<StoryDoc of={fktDatePickerStories.WithPrefilledDate}/>
-<StoryDoc of={fktDatePickerStories.RequiredValidation}/>
-<StoryDoc of={fktDatePickerStories.DisabledState}/>
-<StoryDoc of={fktDatePickerStories.WithFormatHint}/>
+<FktStoryRenderer of={fktDatePickerStories.BasicDatePicker}/>
+<FktStoryRenderer of={fktDatePickerStories.WithPrefilledDate}/>
+<FktStoryRenderer of={fktDatePickerStories.RequiredValidation}/>
+<FktStoryRenderer of={fktDatePickerStories.DisabledState}/>
+<FktStoryRenderer of={fktDatePickerStories.WithFormatHint}/>
 
 ## Use Cases
 

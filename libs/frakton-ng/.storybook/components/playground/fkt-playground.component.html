@@ -1,0 +1,20 @@
+<div #container
+	 class="fkt-playground-component-container"
+	 [style.width]="customDimensions()?.width ?? 'auto'"
+	 [style.height]="customDimensions()?.height ?? '100%'"
+	 [class.no-padding]="noPadding()"
+>
+	<div [style]="designTokensStyle()">
+		<ng-template #template/>
+	</div>
+</div>
+
+<fkt-playground-tabs
+	[attr.data-fkt-theme]="theme()"
+	[(currentTheme)]="theme"
+	[argsList]="argsList()"
+	[(expanded)]="expanded"
+	[templateSelector]="templateSelector()"
+	[designTokens]="designTokens()"
+/>
+

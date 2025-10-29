@@ -1,6 +1,6 @@
 import {ArgTypes, Meta} from '@storybook/addon-docs/blocks';
 import * as fktSpinnerStories from './fkt-spinner.stories';
-import {StoryDoc} from "../../.storybook/blocks/StoryDoc";
+import {FktStoryRenderer} from "../../.storybook/blocks/FktStoryRenderer/FktStoryRenderer";
 import {rawExamples} from "./examples/raw-examples";
 
 <Meta of={fktSpinnerStories} />
@@ -29,10 +29,10 @@ type FktColor = 'primary' | 'yellow' | 'red' | 'green';
 
 ## Examples
 
-<StoryDoc of={fktSpinnerStories.SizeVariations} code={rawExamples.fktSpinnerExampleSizeVariations}/>
-<StoryDoc of={fktSpinnerStories.ColorThemes} code={rawExamples.fktSpinnerExampleColorThemes}/>
-<StoryDoc of={fktSpinnerStories.LoadingState} code={rawExamples.fktSpinnerExampleLoadingState}/>
-<StoryDoc of={fktSpinnerStories.CustomConfiguration} code={rawExamples.fktSpinnerExampleCustomConfiguration}/>
+<FktStoryRenderer of={fktSpinnerStories.SizeVariations} code={rawExamples.fktSpinnerExampleSizeVariations}/>
+<FktStoryRenderer of={fktSpinnerStories.ColorThemes} code={rawExamples.fktSpinnerExampleColorThemes}/>
+<FktStoryRenderer of={fktSpinnerStories.LoadingState} code={rawExamples.fktSpinnerExampleLoadingState}/>
+<FktStoryRenderer of={fktSpinnerStories.CustomConfiguration} code={rawExamples.fktSpinnerExampleCustomConfiguration}/>
 
 ## Use Cases
 

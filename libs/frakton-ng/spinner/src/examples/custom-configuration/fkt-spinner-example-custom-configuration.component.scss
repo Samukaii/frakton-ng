@@ -8,15 +8,15 @@ p {
 
 .container {
 	display: flex;
-	gap: var(--space-md);
+	gap: var(--fkt-space-md);
 	align-items: flex-end;
 
 	&__item {
 		text-align: center;
 
 		p {
-			margin-top: var(--space-xs);
-			font-size: var(--font-size-sm);
+			margin-top: var(--fkt-space-xs);
+			font-size: var(--fkt-font-size-sm);
 			color: var(--fkt-color-neutral-600);
 		}
 	}

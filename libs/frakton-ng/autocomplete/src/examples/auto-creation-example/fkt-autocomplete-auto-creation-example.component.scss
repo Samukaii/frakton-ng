@@ -16,7 +16,7 @@ hr {
 	width: 100%;
 	display: flex;
 	flex-direction: column;
-	gap: var(--space-md);
+	gap: var(--fkt-space-md);
 
 	h3 {
 		margin: 0 0 0.5rem;
@@ -26,24 +26,24 @@ hr {
 	.description {
 		margin-bottom: 1rem;
 		color: var(--fkt-color-neutral-600);
-		font-size: var(--font-size-sm);
+		font-size: var(--fkt-font-size-sm);
 	}
 
 	.selected-option {
-		margin-top: var(--space-xs);
-		padding: var(--space-sm);
-		border-radius: var(--radius-md);
-		font-size: var(--font-size-sm);
-		box-shadow: var(--shadow-md);
+		margin-top: var(--fkt-space-xs);
+		padding: var(--fkt-space-sm);
+		border-radius: var(--fkt-radius-md);
+		font-size: var(--fkt-font-size-sm);
+		box-shadow: var(--fkt-shadow-md);
 		border: 1px solid var(--fkt-color-neutral-200);
 		display: flex;
 		flex-direction: column;
-		gap: var(--space-xs);
+		gap: var(--fkt-space-xs);
 
 		.info {
 			display: flex;
 			flex-direction: column;
-			gap: var(--space-xs);
+			gap: var(--fkt-space-xs);
 		}
 
 		.title {
@@ -56,7 +56,7 @@ hr {
 		margin-top: 1rem;
 		padding: 0.75rem;
 		width: 100%;
-		background-color: var(--fkt-color-info-translucent, #e3f2fd);
+		background-color: var(--fkt-color-info-opacity-10, #e3f2fd);
 		border-left: 4px solid var(--fkt-color-info, #2196f3);
 		border-radius: 4px;
 		font-size: 0.875rem;

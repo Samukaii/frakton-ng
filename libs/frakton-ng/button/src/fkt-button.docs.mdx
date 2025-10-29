@@ -1,6 +1,6 @@
 import {ArgTypes, Meta} from '@storybook/addon-docs/blocks';
 import * as fktButtonStories from './fkt-button.stories';
-import {StoryDoc} from "../../.storybook/blocks/StoryDoc";
+import {FktStoryRenderer} from "../../.storybook/blocks/FktStoryRenderer/FktStoryRenderer";
 
 <Meta of={fktButtonStories} />
 
@@ -30,19 +30,19 @@ export type FktButtonIconPosition = 'left' | 'right';
 
 ## Examples
 
-<StoryDoc of={fktButtonStories.Raised}/>
-<StoryDoc of={fktButtonStories.Stroked}/>
-<StoryDoc of={fktButtonStories.Disabled}/>
-<StoryDoc of={fktButtonStories.WithIcon}/>
-<StoryDoc of={fktButtonStories.Basic}/>
-<StoryDoc of={fktButtonStories.IconOnly}/>
-<StoryDoc of={fktButtonStories.RectIcon}/>
-<StoryDoc of={fktButtonStories.Loading}/>
-<StoryDoc of={fktButtonStories.WithLeftIcon}/>
-<StoryDoc of={fktButtonStories.TextVariants}/>
-<StoryDoc of={fktButtonStories.IconVariants}/>
-<StoryDoc of={fktButtonStories.StrokedSecondary}/>
-<StoryDoc of={fktButtonStories.LongText}/>
+<FktStoryRenderer of={fktButtonStories.Raised}/>
+<FktStoryRenderer of={fktButtonStories.Stroked}/>
+<FktStoryRenderer of={fktButtonStories.Disabled}/>
+<FktStoryRenderer of={fktButtonStories.WithIcon}/>
+<FktStoryRenderer of={fktButtonStories.Basic}/>
+<FktStoryRenderer of={fktButtonStories.IconOnly}/>
+<FktStoryRenderer of={fktButtonStories.RectIcon}/>
+<FktStoryRenderer of={fktButtonStories.Loading}/>
+<FktStoryRenderer of={fktButtonStories.WithLeftIcon}/>
+<FktStoryRenderer of={fktButtonStories.TextVariants}/>
+<FktStoryRenderer of={fktButtonStories.IconVariants}/>
+<FktStoryRenderer of={fktButtonStories.StrokedSecondary}/>
+<FktStoryRenderer of={fktButtonStories.LongText}/>
 
 
 ## Accessibility

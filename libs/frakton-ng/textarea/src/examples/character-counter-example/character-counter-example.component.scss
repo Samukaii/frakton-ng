@@ -2,7 +2,7 @@
 	width: 100%;
 	display: flex;
 	flex-direction: column;
-	gap: var(--space-md);
+	gap: var(--fkt-space-md);
 
 	fkt-textarea {
 		width: 100%;
@@ -11,7 +11,7 @@
 	&__elements {
 		display: flex;
 		flex-direction: column;
-		gap: var(--space-xs);
+		gap: var(--fkt-space-xs);
 	}
 
 	&__character-counter {
@@ -20,20 +20,20 @@
 		align-items: center;
 
 		&__text {
-			font-size: var(--font-size-sm);
+			font-size: var(--fkt-font-size-sm);
 			color: var(--fkt-color-neutral-600);
 		}
 
 		&__indicator {
-			font-size: var(--font-size-sm);
-			font-weight: var(--font-medium);
+			font-size: var(--fkt-font-size-sm);
+			font-weight: var(--fkt-font-medium);
 
 			&--valid {
 				color: var(--fkt-color-neutral-700);
 			}
 
 			&--warning {
-				color: var(--color-yellow-600);
+				color: var(--fkt-color-accent);
 			}
 
 			&--invalid {
@@ -45,20 +45,20 @@
 	&__progress-bar {
 		width: 100%;
 		background-color: var(--fkt-color-neutral-200);
-		border-radius: var(--radius-full);
+		border-radius: var(--fkt-radius-full);
 		height: .5rem;
 
 		div {
 			height: 100%;
-			transition: var(--transition-base);
+			transition: var(--fkt-transition-base);
 		}
 
 		&--valid {
-			background-color: var(--color-green-500);
+			background-color: var(--fkt-color-success);
 		}
 
 		&--warning {
-			background-color: var(--color-yellow-500);
+			background-color: var(--fkt-color-accent);
 		}
 
 		&--invalid {
@@ -69,21 +69,21 @@
 	&__stats {
 		display: grid;
 		grid-template-columns: repeat(3, minmax(0, 1fr));
-		gap: var(--space-xs);
-		font-size: var(--font-size-sm);
+		gap: var(--fkt-space-xs);
+		font-size: var(--fkt-font-size-sm);
 		line-height: 1rem;
 		color: var(--fkt-color-neutral-600);
 
 		span {
-			font-weight: var(--font-medium);
+			font-weight: var(--fkt-font-medium);
 		}
 	}
 
 	&__warning-messages {
-		font-size: var(--font-size-sm);
+		font-size: var(--fkt-font-size-sm);
 
 		&--warning {
-			color: var(--color-yellow-600);
+			color: var(--fkt-color-accent);
 		}
 
 		&--invalid {

@@ -5,15 +5,15 @@ p {
 .container {
 	display: flex;
 	flex-direction: column;
-	gap: var(--space-xs);
+	gap: var(--fkt-space-xs);
 
 	&__info {
-		font-size: var(--font-size-sm);
+		font-size: var(--fkt-font-size-sm);
 		color: var(--fkt-color-neutral-600);
 	}
 
 	&__text {
-		font-size: var(--font-size-xs);
+		font-size: var(--fkt-font-size-xs);
 		color: var(--fkt-color-neutral-500);
 	}
 }

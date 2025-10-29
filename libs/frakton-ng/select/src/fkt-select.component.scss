@@ -3,21 +3,21 @@
 	/*
 	Vertical padding inside the select field (top and bottom spacing between border and content).
 	@name --fkt-select-vertical-padding
-	@reference --space-md
+	@reference --fkt-space-md
 	@component Field
 	@category Spacing
 	@type size
  	*/
-	$vertical-padding: var(--fkt-select-vertical-padding, var(--space-md));
+	$vertical-padding: var(--fkt-select-vertical-padding, var(--fkt-space-md));
 	/*
 	Horizontal padding inside the select field (left and right spacing between border and content).
 	@name --fkt-select-horizontal-padding
-	@reference --space-md
+	@reference --fkt-space-md
 	@component Field
 	@category Spacing
 	@type size
  	*/
-	$horizontal-padding: var(--fkt-select-horizontal-padding, var(--space-md));
+	$horizontal-padding: var(--fkt-select-horizontal-padding, var(--fkt-space-md));
 
 	/*
 	Border color of the select in its normal (default) state.
@@ -62,22 +62,22 @@
 	/*
 	Border radius for select
 	@name --fkt-select-border-radius
-	@reference --radius-lg
+	@reference --fkt-radius-lg
 	@component Field
 	@category Spacing
 	@type size
  	*/
-	$border-radius: var(--fkt-select-border-radius, var(--radius-lg));
+	$border-radius: var(--fkt-select-border-radius, var(--fkt-radius-lg));
 
 	/*
 	Font size for select text and placeholder.
 	@name --fkt-select-font-size
-	@reference --font-size-md
+	@reference --fkt-font-size-md
 	@component Field
 	@category Typography
 	@type size
  	*/
-	$font-size: var(--fkt-select-font-size, var(--font-size-md));
+	$font-size: var(--fkt-select-font-size, var(--fkt-font-size-md));
 	/*
 	Color for text into select
 	@name --fkt-select-text-color
@@ -91,9 +91,9 @@
 	// </design-tokens>
 
 	display: block;
-	border-radius: var(--radius-full);
+	border-radius: var(--fkt-radius-full);
 	position: relative;
-	transition: var(--transition-base);
+	transition: var(--fkt-transition-base);
 	scroll-behavior: smooth;
 	width: 100%;
 	cursor: pointer;
@@ -108,20 +108,20 @@
 
 	.label-container {
 		display: flex;
-		gap: var(--space-xs);
+		gap: var(--fkt-space-xs);
 		align-items: center;
 
 		label {
 			top: 15px;
 			position: absolute;
-			padding: 0 var(--space-3xs);
-			transition: var(--transition-base);
-			left: var(--space-sm);
+			padding: 0 var(--fkt-space-3xs);
+			transition: var(--fkt-transition-base);
+			left: var(--fkt-space-sm);
 			background-color: var(--fkt-color-neutral-100);
 			color: var(--fkt-color-neutral-800);
-			font-weight: var(--font-normal);
-			font-size: var(--font-size-sm);
-			margin-bottom: var(--space-3xs);
+			font-weight: var(--fkt-font-normal);
+			font-size: var(--fkt-font-size-sm);
+			margin-bottom: var(--fkt-space-3xs);
 
 			&.error {
 				color: var(--fkt-color-danger);
@@ -130,7 +130,7 @@
 			&.float {
 				z-index: 50;
 				scale: 90%;
-				translate: calc(var(--space-3xs) * -1) calc(var(--space-xl) * -1);
+				translate: calc(var(--fkt-space-3xs) * -1) calc(var(--fkt-space-xl) * -1);
 			}
 		}
 
@@ -146,8 +146,8 @@
 			outline: none;
 			height: 20px;
 			width: 100%;
-			transition: var(--transition-base);
-			border-radius: var(--radius-lg);
+			transition: var(--fkt-transition-base);
+			border-radius: var(--fkt-radius-lg);
 			display: flex;
 			justify-content: space-between;
 			align-items: center;
@@ -215,8 +215,8 @@
 				label {
 					position: relative;
 					pointer-events: none;
-					font-size: var(--font-size-sm);
-					transition: var(--transition-base);
+					font-size: var(--fkt-font-size-sm);
+					transition: var(--fkt-transition-base);
 					color: $label-color;
 					white-space: nowrap;
 
@@ -288,8 +288,8 @@
 
 					label {
 						z-index: 50;
-						font-size: var(--font-size-xs);
-						margin: 0 var(--space-3xs);
+						font-size: var(--fkt-font-size-xs);
+						margin: 0 var(--fkt-space-3xs);
 						translate: 0 calc(calc(calc($vertical-padding + .5rem) * -1) - 1px)
 					}
 				}
@@ -311,14 +311,14 @@
 
 	&.opened {
 		.label-container label {
-			color: var(--color-yellow-500);
+			color: var(--fkt-color-accent);
 			z-index: 50;
 			scale: 90%;
-			translate: calc(var(--space-3xs) * -1) calc(var(--space-xl) * -1);
+			translate: calc(var(--fkt-space-3xs) * -1) calc(var(--fkt-space-xl) * -1);
 		}
 
 		.select__container {
-			border-color: var(--color-yellow-500);
+			border-color: var(--fkt-color-accent);
 
 			.placeholder {
 				opacity: 1;
@@ -333,7 +333,7 @@
 			color: var(--fkt-color-neutral-400);
 			z-index: 50;
 			scale: 90%;
-			translate: calc(var(--space-3xs) * -1) calc(var(--space-xl) * -1);
+			translate: calc(var(--fkt-space-3xs) * -1) calc(var(--fkt-space-xl) * -1);
 		}
 
 		.select__container {
@@ -344,6 +344,6 @@
 	}
 
 	fkt-field-error {
-		padding-left: var(--space-sm);
+		padding-left: var(--fkt-space-sm);
 	}
 }

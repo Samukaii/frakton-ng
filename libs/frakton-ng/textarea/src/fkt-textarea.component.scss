@@ -3,19 +3,19 @@
 	/*
 	Vertical padding inside the textarea field (top and bottom spacing between border and content).
 	@name --fkt-textarea-vertical-padding
-	@reference --space-md
+	@reference --fkt-space-md
 	@category Spacing
 	@type size
  	*/
-	$textarea-vertical-padding: var(--fkt-textarea-vertical-padding, var(--space-md));
+	$textarea-vertical-padding: var(--fkt-textarea-vertical-padding, var(--fkt-space-md));
 	/*
 	Horizontal padding inside the textarea field (left and right spacing between border and content).
 	@name --fkt-textarea-horizontal-padding
-	@reference --space-md
+	@reference --fkt-space-md
 	@category Spacing
 	@type size
  	*/
-	$textarea-horizontal-padding: var(--fkt-textarea-horizontal-padding, var(--space-md));
+	$textarea-horizontal-padding: var(--fkt-textarea-horizontal-padding, var(--fkt-space-md));
 
 	/*
 	Border color of the textarea in its normal (default) state.
@@ -56,20 +56,20 @@
 	/*
 	Border radius for textarea
 	@name --fkt-textarea-border-radius
-	@reference --radius-lg
+	@reference --fkt-radius-lg
 	@category Spacing
 	@type size
  	*/
-	$border-radius: var(--fkt-textarea-border-radius, var(--radius-lg));
+	$border-radius: var(--fkt-textarea-border-radius, var(--fkt-radius-lg));
 
 	/*
 	Font size for textarea text and placeholder.
 	@name --fkt-textarea-font-size
-	@reference --font-size-md
+	@reference --fkt-font-size-md
 	@category Typography
 	@type size
  	*/
-	$font-size: var(--fkt-textarea-font-size, var(--font-size-md));
+	$font-size: var(--fkt-textarea-font-size, var(--fkt-font-size-md));
 	/*
 	Color for text written into textarea
 	@name --fkt-textarea-text-color
@@ -93,7 +93,7 @@
 	border-radius: $border-radius;
 	position: relative;
 	border-color: $border-color;
-	transition: var(--transition-base);
+	transition: var(--fkt-transition-base);
 	scroll-behavior: smooth;
 	width: 100%;
 
@@ -105,11 +105,11 @@
 		.label-wrapper {
 			position: absolute;
 			pointer-events: none;
-			padding: 0 var(--space-3xs);
+			padding: 0 var(--fkt-space-3xs);
 			font-size: $font-size;
 			left: .75rem;
 			top: 15px;
-			transition: var(--transition-base);
+			transition: var(--fkt-transition-base);
 			color: $label-color;
 			background-color: var(--fkt-color-neutral-100);
 
@@ -169,7 +169,7 @@
 			}
 
 			&.password {
-				padding-right: var(--space-3xl);
+				padding-right: var(--fkt-space-3xl);
 			}
 		}
 
@@ -240,7 +240,7 @@
 					position: relative;
 					pointer-events: none;
 					font-size: $font-size;
-					transition: var(--transition-base);
+					transition: var(--fkt-transition-base);
 					color: $label-color;
 					white-space: nowrap;
 					margin: 17px 4px 0 4px;
@@ -305,8 +305,8 @@
 
 					label {
 						z-index: 50;
-						font-size: var(--font-size-xs);
-						translate: 0 calc((calc(var(--space-xl) * -1)) - 1px);
+						font-size: var(--fkt-font-size-xs);
+						translate: 0 calc((calc(var(--fkt-space-xl) * -1)) - 1px);
 					}
 				}
 			}
@@ -315,6 +315,6 @@
 	}
 
 	fkt-field-error {
-		padding-left: var(--space-sm);
+		padding-left: var(--fkt-space-sm);
 	}
 }

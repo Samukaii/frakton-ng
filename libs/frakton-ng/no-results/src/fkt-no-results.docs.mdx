@@ -1,6 +1,6 @@
 import {ArgTypes, Meta} from '@storybook/addon-docs/blocks';
 import * as fktNoResultsStories from './fkt-no-results.stories';
-import {StoryDoc} from "../../.storybook/blocks/StoryDoc";
+import {FktStoryRenderer} from "../../.storybook/blocks/FktStoryRenderer/FktStoryRenderer";
 import {rawExamples} from "./examples/raw-examples";
 
 <Meta of={fktNoResultsStories} />
@@ -38,13 +38,13 @@ interface FktNoResults {
 
 ## Examples
 
-<StoryDoc of={fktNoResultsStories.SimpleNoResults} code={rawExamples.simpleExample}/>
-<StoryDoc of={fktNoResultsStories.WithIconAndDescription} code={rawExamples.withIconAndDescriptionExample}/>
-<StoryDoc of={fktNoResultsStories.WithActionButton} code={rawExamples.withActionExample}/>
-<StoryDoc of={fktNoResultsStories.SearchResults} code={rawExamples.searchResultsExample}/>
-<StoryDoc of={fktNoResultsStories.DataTableEmptyState} code={rawExamples.dataTableExample}/>
-<StoryDoc of={fktNoResultsStories.FileUploadEmptyState} code={rawExamples.fileUploadExample}/>
-<StoryDoc of={fktNoResultsStories.CompactSize} code={rawExamples.compactExample}/>
+<FktStoryRenderer of={fktNoResultsStories.SimpleNoResults} code={rawExamples.simpleExample}/>
+<FktStoryRenderer of={fktNoResultsStories.WithIconAndDescription} code={rawExamples.withIconAndDescriptionExample}/>
+<FktStoryRenderer of={fktNoResultsStories.WithActionButton} code={rawExamples.withActionExample}/>
+<FktStoryRenderer of={fktNoResultsStories.SearchResults} code={rawExamples.searchResultsExample}/>
+<FktStoryRenderer of={fktNoResultsStories.DataTableEmptyState} code={rawExamples.dataTableExample}/>
+<FktStoryRenderer of={fktNoResultsStories.FileUploadEmptyState} code={rawExamples.fileUploadExample}/>
+<FktStoryRenderer of={fktNoResultsStories.CompactSize} code={rawExamples.compactExample}/>
 
 ## Use Cases
 

@@ -5,10 +5,10 @@
 
 	&.with-border {
 		border: solid 1px var(--fkt-color-neutral-950);
-		border-radius: var(--radius-lg);
+		border-radius: var(--fkt-radius-lg);
 	}
 
 	&.with-shadow {
-		box-shadow: var(--shadow-lg);
+		box-shadow: var(--fkt-shadow-lg);
 	}
 }

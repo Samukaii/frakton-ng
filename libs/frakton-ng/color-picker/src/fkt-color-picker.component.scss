@@ -2,32 +2,32 @@
 /*
 Gap between color picker elements.
 @name --fkt-color-picker-gap
-@reference --space-xs
+@reference --fkt-space-xs
 @component Field
 @category Spacing
 @type size
 */
-$gap: var(--fkt-color-picker-gap, var(--space-xs));
+$gap: var(--fkt-color-picker-gap, var(--fkt-space-xs));
 
 /*
 Border radius for color picker elements.
 @name --fkt-color-picker-border-radius
-@reference --radius-md
+@reference --fkt-radius-md
 @component Field
 @category Shape
 @type size
 */
-$border-radius: var(--fkt-color-picker-border-radius, var(--radius-md));
+$border-radius: var(--fkt-color-picker-border-radius, var(--fkt-radius-md));
 
 /*
 Border radius for color picker elements.
 @name --fkt-color-picker-preview-border-radius
-@reference --radius-md
+@reference --fkt-radius-md
 @component Field
 @category Shape
 @type size
 */
-$preview-border-radius: var(--fkt-color-picker-preview-border-radius, var(--radius-md));
+$preview-border-radius: var(--fkt-color-picker-preview-border-radius, var(--fkt-radius-md));
 
 /*
 Border color for color picker elements.
@@ -112,7 +112,7 @@ button {
 	border: solid 1px $border-color;
 	width: 100%;
 	cursor: pointer;
-	transition: var(--transition-base);
+	transition: var(--fkt-transition-base);
 	color: $label-color;
 
 	&:hover {
@@ -121,7 +121,7 @@ button {
 
 	.preview-container {
 		display: flex;
-		gap: var(--space-xs);
+		gap: var(--fkt-space-xs);
 		align-items: center;
 
 		.fkt-transparency-bg {
@@ -148,11 +148,11 @@ button {
 		.content {
 			display: flex;
 			flex-direction: column;
-			gap: var(--space-3xs);
+			gap: var(--fkt-space-3xs);
 			align-items: flex-start;
 
 			.label {
-				font-weight: var(--font-semibold);
+				font-weight: var(--fkt-font-semibold);
 			}
 
 			.preview-value {
@@ -163,7 +163,7 @@ button {
 
 	.actions {
 		display: flex;
-		gap: var(--space-xs);
+		gap: var(--fkt-space-xs);
 		justify-content: flex-end;
 	}
 }

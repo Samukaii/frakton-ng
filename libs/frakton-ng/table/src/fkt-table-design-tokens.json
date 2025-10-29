@@ -2,11 +2,11 @@
   {
     "description": "Border radius for the table container.",
     "name": "--fkt-table-border-radius",
-    "reference": "--space-sm",
+    "reference": "--fkt-space-sm",
     "component": "Display",
     "category": "Shape",
     "type": "size",
-    "defaultValue": "--space-sm"
+    "defaultValue": "--fkt-space-sm"
   },
   {
     "description": "Border color for the table container.",
@@ -38,11 +38,11 @@
   {
     "description": "Padding for table header cells.",
     "name": "--fkt-table-header-cell-padding",
-    "reference": "--space-md",
+    "reference": "--fkt-space-md",
     "component": "Display",
     "category": "Spacing",
     "type": "size",
-    "defaultValue": "--space-md"
+    "defaultValue": "--fkt-space-md"
   },
   {
     "description": "Color for table header title text.",
@@ -56,11 +56,11 @@
   {
     "description": "Font weight for table header title.",
     "name": "--fkt-table-header-title-font-weight",
-    "reference": "--font-semibold",
+    "reference": "--fkt-font-semibold",
     "component": "Display",
     "category": "Typography",
     "type": "font",
-    "defaultValue": "--font-semibold"
+    "defaultValue": "--fkt-font-semibold"
   },
   {
     "description": "Color for table header actions text.",
@@ -74,11 +74,11 @@
   {
     "description": "Font weight for table header actions.",
     "name": "--fkt-table-header-actions-font-weight",
-    "reference": "--font-bold",
+    "reference": "--fkt-font-bold",
     "component": "Display",
     "category": "Typography",
     "type": "font",
-    "defaultValue": "--font-bold"
+    "defaultValue": "--fkt-font-bold"
   },
   {
     "description": "Color for table header cell text.",
@@ -92,20 +92,20 @@
   {
     "description": "Font size for table body text.",
     "name": "--fkt-table-font-size",
-    "reference": "--font-size-sm",
+    "reference": "--fkt-font-size-sm",
     "component": "Display",
     "category": "Typography",
     "type": "size",
-    "defaultValue": "--font-size-sm"
+    "defaultValue": "--fkt-font-size-sm"
   },
   {
     "description": "Gap between no results items.",
     "name": "--fkt-table-no-results-gap",
-    "reference": "--space-md",
+    "reference": "--fkt-space-md",
     "component": "Display",
     "category": "Spacing",
     "type": "size",
-    "defaultValue": "--space-md"
+    "defaultValue": "--fkt-space-md"
   },
   {
     "description": "Minimum height for no results state.",
@@ -119,11 +119,11 @@
   {
     "description": "Padding for no data header section.",
     "name": "--fkt-table-no-data-header-padding",
-    "reference": "var(--space-xs) var(--space-md)",
+    "reference": "var(--fkt-space-xs) var(--fkt-space-md)",
     "component": "Display",
     "category": "Spacing",
     "type": "size",
-    "defaultValue": "var(--space-xs) var(--space-md)"
+    "defaultValue": "var(--fkt-space-xs) var(--fkt-space-md)"
   },
   {
     "description": "Minimum height for no data header section.",
@@ -164,10 +164,10 @@
   {
     "description": "Gap between action cell elements.",
     "name": "--fkt-table-cell-action-gap",
-    "reference": "--space-xs",
+    "reference": "--fkt-space-xs",
     "component": "Display",
     "category": "Spacing",
     "type": "size",
-    "defaultValue": "--space-xs"
+    "defaultValue": "--fkt-space-xs"
   }
 ]

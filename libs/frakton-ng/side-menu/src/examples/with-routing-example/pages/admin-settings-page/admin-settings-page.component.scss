@@ -10,20 +10,20 @@
 .admin-page {
 	padding: 40px 24px;
 	height: 100%;
-	background: #fafbfc;
+	background: var(--fkt-color-neutral-background);
 }
 
 .admin-page__title {
 	font-size: 2.2rem;
 	margin-bottom: 18px;
 	font-weight: 700;
-	color: #30363d;
+	color: var(--fkt-color-neutral-800);
 }
 
 .admin-page__content {
-	background: #fff;
+	background: var(--fkt-color-modal-background);
 	border-radius: 10px;
-	box-shadow: 0 2px 12px #0f172a12;
+	box-shadow: var(--fkt-shadow-md);
 	padding: 32px;
 }
 

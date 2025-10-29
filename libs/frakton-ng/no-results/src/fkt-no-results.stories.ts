@@ -9,7 +9,7 @@ import {
 	WithActionExampleComponent,
 	WithIconAndDescriptionExampleComponent
 } from './examples';
-import { customDocsControl } from '../../.storybook/decorators/custom-docs-control';
+import { fktStoryRenderer } from '../../.storybook/decorators/fkt-story-renderer';
 import { renderComponent } from '../../.storybook/decorators/render-component';
 import designTokens from './fkt-no-results-design-tokens.json';
 
@@ -18,10 +18,10 @@ type Story = StoryObj<FktNoResultsComponent>;
 
 
 const meta: Meta<FktNoResultsComponent> = {
-	title: 'Components/No results',
+	title: 'Components/Feedback/No results',
 	component: FktNoResultsComponent,
 	decorators: [
-		customDocsControl({designTokens}),
+		fktStoryRenderer({designTokens}),
 	],
 	argTypes: {
 		noResults: {

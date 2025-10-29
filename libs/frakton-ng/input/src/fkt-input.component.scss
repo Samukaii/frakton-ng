@@ -2,21 +2,21 @@
 /*
 Vertical padding inside the input field (top and bottom spacing between border and content).
 @name --fkt-input-vertical-padding
-@reference --space-md
+@reference --fkt-space-md
 @component Field
 @category Spacing
 @type size
  */
-$input-vertical-padding: var(--fkt-input-vertical-padding, var(--space-md));
+$input-vertical-padding: var(--fkt-input-vertical-padding, var(--fkt-space-md));
 /*
 Horizontal padding inside the input field (left and right spacing between border and content).
 @name --fkt-input-horizontal-padding
-@reference --space-md
+@reference --fkt-space-md
 @component Field
 @category Spacing
 @type size
  */
-$input-horizontal-padding: var(--fkt-input-horizontal-padding, var(--space-md));
+$input-horizontal-padding: var(--fkt-input-horizontal-padding, var(--fkt-space-md));
 
 /*
 Border color of the input in its normal (default) state.
@@ -61,22 +61,22 @@ $label-focus-color: var(--fkt-input-label-focus-color, var(--fkt-color-brand-sec
 /*
 Border radius for input
 @name --fkt-input-border-radius
-@reference --radius-lg
+@reference --fkt-radius-lg
 @component Field
 @category Spacing
 @type size
  */
-$border-radius: var(--fkt-input-border-radius, var(--radius-lg));
+$border-radius: var(--fkt-input-border-radius, var(--fkt-radius-lg));
 
 /*
 Font size for input text and placeholder.
 @name --fkt-input-font-size
-@reference --font-size-md
+@reference --fkt-font-size-md
 @component Field
 @category Typography
 @type size
  */
-$font-size: var(--fkt-input-font-size, var(--font-size-md));
+$font-size: var(--fkt-input-font-size, var(--fkt-font-size-md));
 /*
 Color for text written into input
 @name --fkt-input-text-color
@@ -98,7 +98,7 @@ $text-color: var(--fkt-input-text-color, var(--fkt-color-neutral-900));
 	border-radius: $border-radius;
 	position: relative;
 	border-color: $border-color;
-	transition: var(--transition-base);
+	transition: var(--fkt-transition-base);
 	scroll-behavior: smooth;
 	width: 100%;
 
@@ -111,13 +111,13 @@ $text-color: var(--fkt-input-text-color, var(--fkt-color-neutral-900));
 		padding-right: .2rem;
 
 		fkt-icon {
-			font-size: var(--font-size-xs);
+			font-size: var(--fkt-font-size-xs);
 			background-color: var(--fkt-color-neutral-300);
-			transition: var(--transition-base);
+			transition: var(--fkt-transition-base);
 			cursor: pointer;
 			color: var(--fkt-color-neutral-500);
 			padding: 0 .2rem;
-			font-weight: var(--font-semibold);
+			font-weight: var(--fkt-font-semibold);
 
 			&:hover {
 				background-color: var(--fkt-color-neutral-400);
@@ -173,8 +173,8 @@ $text-color: var(--fkt-input-text-color, var(--fkt-color-neutral-900));
 				label {
 					position: relative;
 					pointer-events: none;
-					font-size: var(--font-size-sm);
-					transition: var(--transition-base);
+					font-size: var(--fkt-font-size-sm);
+					transition: var(--fkt-transition-base);
 					color: $label-color;
 					white-space: nowrap;
 
@@ -249,8 +249,8 @@ $text-color: var(--fkt-input-text-color, var(--fkt-color-neutral-900));
 
 					label {
 						z-index: 50;
-						font-size: var(--font-size-xs);
-						margin: 0 var(--space-3xs);
+						font-size: var(--fkt-font-size-xs);
+						margin: 0 var(--fkt-space-3xs);
 						translate: 0 calc(calc(calc($input-vertical-padding + .5rem) * -1) - 1px)
 					}
 				}
@@ -283,7 +283,7 @@ $text-color: var(--fkt-input-text-color, var(--fkt-color-neutral-900));
 			}
 
 			&.password {
-				padding-right: var(--space-3xl);
+				padding-right: var(--fkt-space-3xl);
 			}
 
 			&.show-placeholder {

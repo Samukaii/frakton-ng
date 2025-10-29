@@ -2,65 +2,65 @@
 /*
 Gap between button content elements (icon and text).
 @name --fkt-button-content-gap
-@reference --space-xs
+@reference --fkt-space-xs
 @category Spacing
 @type size
 */
-$content-gap: var(--fkt-button-content-gap, var(--space-xs));
+$content-gap: var(--fkt-button-content-gap, var(--fkt-space-xs));
 
 /*
 Padding for button (vertical and horizontal).
 @name --fkt-button-padding-vertical
-@reference --space-xs
+@reference --fkt-space-xs
 @category Spacing
 @type size
 */
-$padding-vertical: var(--fkt-button-padding-vertical, var(--space-xs));
+$padding-vertical: var(--fkt-button-padding-vertical, var(--fkt-space-xs));
 
 /*
 Horizontal padding for button.
 @name --fkt-button-padding-horizontal
-@reference --space-md
+@reference --fkt-space-md
 @category Spacing
 @type size
 */
-$padding-horizontal: var(--fkt-button-padding-horizontal, var(--space-md));
+$padding-horizontal: var(--fkt-button-padding-horizontal, var(--fkt-space-md));
 
 /*
 Border radius for button (full rounded).
 @name --fkt-button-border-radius
-@reference --radius-full
+@reference --fkt-radius-full
 @category Spacing
 @type size
 */
-$border-radius: var(--fkt-button-border-radius, var(--radius-full));
+$border-radius: var(--fkt-button-border-radius, var(--fkt-radius-full));
 
 /*
 Border radius for rectangular button shape.
 @name --fkt-button-rect-border-radius
-@reference --space-2xs
+@reference --fkt-space-2xs
 @category Spacing
 @type size
 */
-$rect-border-radius: var(--fkt-button-rect-border-radius, var(--space-2xs));
+$rect-border-radius: var(--fkt-button-rect-border-radius, var(--fkt-space-2xs));
 
 /*
 Font weight for button text.
 @name --fkt-button-font-weight
-@reference --font-semibold
+@reference --fkt-font-semibold
 @category Typography
 @type size
 */
-$font-weight: var(--fkt-button-font-weight, var(--font-semibold));
+$font-weight: var(--fkt-button-font-weight, var(--fkt-font-semibold));
 
 /*
 Font weight for icon-only buttons.
 @name --fkt-button-icon-font-weight
-@reference --font-normal
+@reference --fkt-font-normal
 @category Typography
 @type size
 */
-$icon-font-weight: var(--fkt-button-icon-font-weight, var(--font-normal));
+$icon-font-weight: var(--fkt-button-icon-font-weight, var(--fkt-font-normal));
 
 /*
 Border width for button.
@@ -146,11 +146,11 @@ $primary-hover-color: var(--fkt-button-primary-hover-color, var(--fkt-color-prim
 /*
 Success button translucent background color (used for basic theme hover).
 @name --fkt-button-primary-translucent-color
-@reference --fkt-color-primary-translucent
+@reference --fkt-color-primary-opacity-20
 @category Colors
 @type color
 */
-$primary-translucent-color: var(--fkt-button-primary-translucent-color, var(--fkt-color-primary-translucent));
+$primary-translucent-color: var(--fkt-button-primary-translucent-color, var(--fkt-color-primary-opacity-20));
 
 // Color variants - Success
 /*
@@ -183,11 +183,11 @@ $success-hover-color: var(--fkt-button-success-hover-color, var(--fkt-color-succ
 /*
 Success button translucent background color (used for basic theme hover).
 @name --fkt-button-success-translucent-color
-@reference --fkt-color-success-translucent
+@reference --fkt-color-success-opacity-20
 @category Colors
 @type color
 */
-$success-translucent-color: var(--fkt-button-success-translucent-color, var(--fkt-color-success-translucent));
+$success-translucent-color: var(--fkt-button-success-translucent-color, var(--fkt-color-success-opacity-20));
 
 // Color variants - Error
 /*
@@ -220,11 +220,11 @@ $danger-hover-color: var(--fkt-button-danger-hover-color, var(--fkt-color-danger
 /*
 Danger button translucent background color (used for basic theme hover).
 @name --fkt-button-danger-translucent-color
-@reference --fkt-color-danger-translucent
+@reference --fkt-color-danger-opacity-20
 @category Colors
 @type color
 */
-$danger-translucent-color: var(--fkt-button-danger-translucent-color, var(--fkt-color-danger-translucent));
+$danger-translucent-color: var(--fkt-button-danger-translucent-color, var(--fkt-color-danger-opacity-20));
 
 // Color variants - Warning
 /*
@@ -257,11 +257,11 @@ $warning-hover-color: var(--fkt-button-warning-hover-color, var(--fkt-color-warn
 /*
 Warning button translucent background color (used for basic theme hover).
 @name --fkt-button-warning-translucent-color
-@reference --fkt-color-warning-translucent
+@reference --fkt-color-warning-opacity-20
 @category Colors
 @type color
 */
-$warning-translucent-color: var(--fkt-button-warning-translucent-color, var(--fkt-color-warning-translucent));
+$warning-translucent-color: var(--fkt-button-warning-translucent-color, var(--fkt-color-warning-opacity-20));
 
 // Color variants - Info
 /*
@@ -294,11 +294,11 @@ $info-hover-color: var(--fkt-button-info-hover-color, var(--fkt-color-info-hover
 /*
 Success button translucent background color (used for basic theme hover).
 @name --fkt-button-info-translucent-color
-@reference --fkt-color-info-translucent
+@reference --fkt-color-info-opacity-20
 @category Colors
 @type color
 */
-$info-translucent-color: var(--fkt-button-info-translucent-color, var(--fkt-color-info-translucent));
+$info-translucent-color: var(--fkt-button-info-translucent-color, var(--fkt-color-info-opacity-20));
 
 // Color variants - Accent
 /*
@@ -331,11 +331,11 @@ $accent-hover-color: var(--fkt-button-accent-hover-color, var(--fkt-color-accent
 /*
 Accent button translucent background color (used for basic theme hover).
 @name --fkt-button-accent-translucent-color
-@reference --fkt-color-accent-translucent
+@reference --fkt-color-accent-opacity-20
 @category Colors
 @type color
 */
-$accent-translucent-color: var(--fkt-button-accent-translucent-color, var(--fkt-color-accent-translucent));
+$accent-translucent-color: var(--fkt-button-accent-translucent-color, var(--fkt-color-accent-opacity-20));
 
 // </design-tokens>
 
@@ -347,7 +347,7 @@ $accent-translucent-color: var(--fkt-button-accent-translucent-color, var(--fkt-
 
 p {
 	margin: 0;
-	font-size: var(--font-size-md);
+	font-size: var(--fkt-font-size-md);
 }
 
 
@@ -393,7 +393,7 @@ button {
 }
 
 .theme-raised {
-	transition: var(--transition-base);
+	transition: var(--fkt-transition-base);
 	display: flex;
 	align-items: center;
 	gap: $content-gap;
@@ -402,7 +402,7 @@ button {
 	border: $border-width solid;
 	padding: $padding-vertical $padding-horizontal;
 	border-radius: $border-radius;
-	box-shadow: var(--shadow-md);
+	box-shadow: var(--fkt-shadow-md);
 
 	.spinner {
 		border: $spinner-border-width solid #e5e7eb;
@@ -410,7 +410,7 @@ button {
 	}
 
 	&:hover:not(:disabled) {
-		box-shadow: var(--shadow-lg);
+		box-shadow: var(--fkt-shadow-lg);
 	}
 
 	&.shape-rounded {
@@ -679,7 +679,7 @@ button {
 }
 
 .theme-basic {
-	transition: var(--transition-base);
+	transition: var(--fkt-transition-base);
 	display: flex;
 	align-items: center;
 	gap: $content-gap;

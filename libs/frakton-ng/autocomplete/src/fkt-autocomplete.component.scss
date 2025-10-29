@@ -2,19 +2,19 @@
 /*
 Vertical padding inside the input field (top and bottom spacing between border and content).
 @name --fkt-input-vertical-padding
-@reference --space-md
+@reference --fkt-space-md
 @category Spacing
 @type size
  */
-$input-vertical-padding: var(--fkt-input-vertical-padding, var(--space-md));
+$input-vertical-padding: var(--fkt-input-vertical-padding, var(--fkt-space-md));
 /*
 Horizontal padding inside the input field (left and right spacing between border and content).
 @name --fkt-input-horizontal-padding
-@reference --space-md
+@reference --fkt-space-md
 @category Spacing
 @type size
  */
-$input-horizontal-padding: var(--fkt-input-horizontal-padding, var(--space-md));
+$input-horizontal-padding: var(--fkt-input-horizontal-padding, var(--fkt-space-md));
 
 /*
 Border color of the input in its normal (default) state.
@@ -55,20 +55,20 @@ $label-focus-color: var(--fkt-input-label-focus-color, var(--fkt-color-brand-sec
 /*
 Border radius for input
 @name --fkt-input-border-radius
-@reference --radius-lg
+@reference --fkt-radius-lg
 @category Spacing
 @type size
  */
-$border-radius: var(--fkt-input-border-radius, var(--radius-lg));
+$border-radius: var(--fkt-input-border-radius, var(--fkt-radius-lg));
 
 /*
 Font size for input text and placeholder.
 @name --fkt-input-font-size
-@reference --font-size-md
+@reference --fkt-font-size-md
 @category Typography
 @type size
  */
-$font-size: var(--fkt-input-font-size, var(--font-size-md));
+$font-size: var(--fkt-input-font-size, var(--fkt-font-size-md));
 /*
 Color for text written into input
 @name --fkt-input-text-color

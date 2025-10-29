@@ -5,6 +5,7 @@ import { getElementDesignTokens, outsideMouseEnterWatcher } from 'frakton-ng/int
 import { FktTooltipComponent } from './fkt-tooltip.component';
 import { FktColor } from 'frakton-ng/core';
 import { getElementDesignToken } from '../../internal/utils/get-element-design-token';
+import { isElementTextTruncated } from '../../internal/utils/is-element-text-truncated';
 
 @Directive({
 	selector: '[fktTooltip]',
@@ -15,6 +16,9 @@ import { getElementDesignToken } from '../../internal/utils/get-element-design-t
 export class FktTooltipDirective {
 	fktTooltip = input.required<string>();
 	tooltipEnabled = input(true);
+	detectOverflow = input(false, {
+		transform: booleanAttribute
+	});
 	tooltipColor = input<FktColor>('primary');
 	disableAutoReposition = input(false, {transform: booleanAttribute});
 	position = input<FktGeometryPosition>('bottom-center');
@@ -23,10 +27,13 @@ export class FktTooltipDirective {
 	private overlayRef: FktOverlayRef<FktTooltipComponent> | null = null;
 	private elementRef = inject(ElementRef);
 
-	outsideWatcher = outsideMouseEnterWatcher();
+	private outsideWatcher = outsideMouseEnterWatcher();
 
 	show() {
 		if (!this.tooltipEnabled()) return;
+
+		if(this.detectOverflow() && !isElementTextTruncated(this.elementRef.nativeElement))
+			return
 
 		if (this.overlayRef) return;
 

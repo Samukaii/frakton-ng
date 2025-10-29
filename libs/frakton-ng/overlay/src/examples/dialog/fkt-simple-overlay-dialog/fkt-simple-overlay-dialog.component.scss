@@ -7,14 +7,14 @@ h3, p {
 }
 
 .container {
-	padding: var(--space-md);
+	padding: var(--fkt-space-md);
 	display: flex;
 	flex-direction: column;
-	gap: var(--space-sm);
+	gap: var(--fkt-space-sm);
 
 	&__title {
-		font-size: var(--font-size-lg);
-		font-weight: var(--font-semibold);
+		font-size: var(--fkt-font-size-lg);
+		font-weight: var(--fkt-font-semibold);
 		color: var(--fkt-color-neutral-900);
 	}
 
@@ -24,7 +24,7 @@ h3, p {
 
 	&__actions {
 		display: flex;
-		gap: var(--space-xs);
+		gap: var(--fkt-space-xs);
 		justify-content: flex-end;
 	}
 }

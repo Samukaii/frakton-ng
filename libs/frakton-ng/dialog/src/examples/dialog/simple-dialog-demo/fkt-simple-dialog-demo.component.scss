@@ -7,14 +7,14 @@ h2, p {
 }
 
 .title {
-	font-size: var(--font-size-xl);
-	font-weight: var(--font-semibold);
-	margin-bottom: var(--space-md);
+	font-size: var(--fkt-font-size-xl);
+	font-weight: var(--fkt-font-semibold);
+	margin-bottom: var(--fkt-space-md);
 }
 
 .message {
 	color: var(--fkt-color-neutral-600);
-	margin-bottom: var(--space-xl);
+	margin-bottom: var(--fkt-space-xl);
 }
 
 fkt-buttons-list {

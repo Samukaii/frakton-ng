@@ -6,7 +6,7 @@ import {
 	FktCheckboxPreCheckedExampleComponent,
 	FktCheckboxValidationExampleComponent
 } from './examples';
-import {customDocsControl} from "../../.storybook/decorators/custom-docs-control";
+import {fktStoryRenderer} from "../../.storybook/decorators/fkt-story-renderer";
 import {renderComponent} from "../../.storybook/decorators/render-component";
 import designTokens from './fkt-checkbox-design-tokens.json';
 
@@ -14,7 +14,7 @@ const meta: Meta<FktCheckboxComponent> = {
 	title: 'Components/Form/Checkbox',
 	component: FktCheckboxComponent,
 	decorators: [
-		customDocsControl({
+		fktStoryRenderer({
 			designTokens: designTokens as any
 		})
 	],

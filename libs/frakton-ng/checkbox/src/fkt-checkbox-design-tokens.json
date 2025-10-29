@@ -2,7 +2,7 @@
   {
     "description": "Size of the checkbox input (width and height).",
     "name": "--fkt-checkbox-size",
-    "reference": "--space-lg",
+    "reference": "--fkt-space-lg",
     "category": "Spacing",
     "type": "size",
     "defaultValue": "1.25rem"
@@ -13,20 +13,20 @@
     "reference": "--fkt-color-neutral-500",
     "category": "Colors",
     "type": "color",
-    "defaultValue": "#6B7280FF"
+    "defaultValue": "#64748b"
   },
   {
     "description": "Background color of the checkbox in its default state.",
     "name": "--fkt-checkbox-background-color",
-    "reference": "--fkt-color-neutral-100",
+    "reference": "transparent",
     "category": "Colors",
     "type": "color",
-    "defaultValue": "#F9FAFBFF"
+    "defaultValue": "transparent"
   },
   {
     "description": "Border radius of the checkbox.",
     "name": "--fkt-checkbox-border-radius",
-    "reference": "--radius-xs",
+    "reference": "--fkt-radius-xs",
     "category": "Spacing",
     "type": "size",
     "defaultValue": ".125rem"
@@ -61,12 +61,12 @@
     "reference": "--fkt-color-neutral-100",
     "category": "Colors",
     "type": "color",
-    "defaultValue": "#F9FAFBFF"
+    "defaultValue": "#f1f5f9"
   },
   {
     "description": "Margin between checkbox and label text.",
     "name": "--fkt-checkbox-label-margin",
-    "reference": "--space-xs",
+    "reference": "--fkt-space-xs",
     "category": "Spacing",
     "type": "size",
     "defaultValue": ".5rem"
@@ -74,7 +74,7 @@
   {
     "description": "Font size of the label text.",
     "name": "--fkt-checkbox-label-font-size",
-    "reference": "--font-size-md",
+    "reference": "--fkt-font-size-md",
     "category": "Typography",
     "type": "size",
     "defaultValue": "1rem"

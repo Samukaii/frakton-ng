@@ -2,42 +2,52 @@
 /*
 Multi-year header container gap between elements.
 @name --fkt-calendar-multi-year-header-gap
-@reference --space-sm
+@reference --fkt-space-sm
 @component Year Selector
 @category Spacing
 @type size
 */
-$multi-year-header-gap: var(--fkt-calendar-multi-year-header-gap, var(--space-sm));
+$multi-year-header-gap: var(--fkt-calendar-multi-year-header-gap, var(--fkt-space-sm));
 
 /*
 Multi-year header element padding.
-@name --fkt-calendar-multi-year-header-padding
-@reference 0 --space-xs
+@name --fkt-calendar-multi-year-header-horizontal-padding
+@reference --fkt-space-xs
 @component Year Selector
 @category Spacing
 @type size
 */
-$multi-year-header-padding: var(--fkt-calendar-multi-year-header-padding, 0 var(--space-xs));
+$multi-year-header-horizontal-padding: var(--fkt-calendar-multi-year-header-horizontal-padding, var(--fkt-space-xs));
+
+/*
+Multi-year header element padding.
+@name --fkt-calendar-multi-year-header-vertical-padding
+@reference 0
+@component Year Selector
+@category Spacing
+@type size
+*/
+$multi-year-header-vertical-padding: var(--fkt-calendar-multi-year-header-vertical-padding, 0);
 
 /*
 Multi-year header element font weight.
 @name --fkt-calendar-multi-year-header-font-weight
-@reference --font-semibold
+@reference --fkt-font-semibold
 @component Year Selector
 @category Typography
 @type weight
 */
-$multi-year-header-font-weight: var(--fkt-calendar-multi-year-header-font-weight, var(--font-semibold));
+$multi-year-header-font-weight: var(--fkt-calendar-multi-year-header-font-weight, var(--fkt-font-semibold));
 
 /*
 Multi-year header element font size.
 @name --fkt-calendar-multi-year-header-font-size
-@reference --font-size-lg
+@reference --fkt-font-size-lg
 @component Year Selector
 @category Typography
 @type size
 */
-$multi-year-header-font-size: var(--fkt-calendar-multi-year-header-font-size, var(--font-size-lg));
+$multi-year-header-font-size: var(--fkt-calendar-multi-year-header-font-size, var(--fkt-font-size-lg));
 
 /*
 Multi-year header element text color.
@@ -62,12 +72,12 @@ $multi-year-header-bg: var(--fkt-calendar-multi-year-header-bg, #00000000);
 /*
 Multi-year header element border radius.
 @name --fkt-calendar-multi-year-header-border-radius
-@reference --radius-md
+@reference --fkt-radius-md
 @component Year Selector
 @category Shape
 @type size
 */
-$multi-year-header-border-radius: var(--fkt-calendar-multi-year-header-border-radius, var(--radius-md));
+$multi-year-header-border-radius: var(--fkt-calendar-multi-year-header-border-radius, var(--fkt-radius-md));
 
 // </design-tokens>
 
@@ -77,12 +87,12 @@ $multi-year-header-border-radius: var(--fkt-calendar-multi-year-header-border-ra
 	gap: $multi-year-header-gap;
 
 	strong {
-		padding: $multi-year-header-padding;
+		padding: $multi-year-header-vertical-padding $multi-year-header-horizontal-padding;
 		font-weight: $multi-year-header-font-weight;
 		font-size: $multi-year-header-font-size;
 		color: $multi-year-header-color;
 		background-color: $multi-year-header-bg;
 		border-radius: $multi-year-header-border-radius;
-		transition: var(--transition-base);
+		transition: var(--fkt-transition-base);
 	}
 }

@@ -1,0 +1,125 @@
+.files-source {
+	pre.prismjs, code.prismjs {
+		border-radius: 0 !important;
+		max-height: 800px;
+		overflow-y: auto;
+	}
+
+	.files-source__code {
+		position: relative;
+
+		& > * {
+			margin: 0 !important;
+			border: none;
+			box-shadow: none;
+			border-radius: 0;
+		}
+
+		button:not(.files-source__button) {
+			display: none;
+		}
+
+		button.files-source__button {
+			font-size: var(--fkt-font-size-sm);
+			background-color: white;
+			color: black;
+			border-radius: var(--fkt-radius-full);
+			padding: var(--fkt-space-3xs) var(--fkt-space-sm);
+			position: absolute;
+			cursor: pointer;
+			top: 0;
+			right: 0;
+			margin: 1rem !important;
+			display: flex;
+			align-items: center;
+			gap: var(--fkt-space-3xs);
+			transition: var(--fkt-transition-base);
+			border: solid 1px white;
+			box-shadow: var(--fkt-shadow-xl);
+
+			span, p {
+				color: black;
+			}
+
+			p {
+				font-weight: var(--fkt-font-semibold);
+				margin: 0;
+			}
+
+			.frakton-icon {
+				font-size: var(--fkt-font-size-md);
+			}
+
+			&.files-source__button--copied {
+				background-color: var(--fkt-color-success);
+				color: var(--fkt-color-on-success);
+				border-color: var(--fkt-color-success);
+
+				p, span {
+					color: white;
+				}
+
+				&:hover {
+					background-color: var(--fkt-color-success-hover);
+					color: var(--fkt-color-on-success);
+					border-color: var(--fkt-color-success-hover);
+				}
+			}
+
+			&:hover {
+				background-color: #E5E7EBFF;
+				color: #FFFFFF;
+				border-color: #E5E7EBFF;
+			}
+		}
+	}
+
+	.files-source__tabs {
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+		height: 40px;
+
+		button {
+			background-color: #242A35;
+			font-weight: var(--fkt-font-semibold);
+			width: 100%;
+			height: 100%;
+			color: #1e1e1e;
+			padding: 0 .8rem;
+			font-size: .8rem !important;
+			transition: background-color 100ms;
+			border: none;
+			border-right: solid 1px #374151;
+			position: relative !important;
+			cursor: pointer !important;
+			border-bottom: solid 1px #374151;
+			display: flex;
+			justify-content: center;
+			gap: var(--fkt-space-xs);
+			align-items: center;
+
+
+			&:hover {
+				background-color: #374151;
+			}
+
+			p {
+				margin: 0;
+				max-width: 260px;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				color: white;
+				white-space: nowrap;
+			}
+
+			&.active {
+				border-bottom: solid 2px #FED75F;
+
+				p {
+					color: #FED75F;
+				}
+			}
+		}
+	}
+}

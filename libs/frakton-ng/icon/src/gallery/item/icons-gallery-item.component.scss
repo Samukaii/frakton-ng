@@ -8,30 +8,30 @@ p {
 .container {
 	display: flex;
 	flex-direction: column;
-	gap: var(--space-xs);
+	gap: var(--fkt-space-xs);
 
 	&__card {
 		display: flex;
 		position: relative;
-		gap: var(--space-3xs);
-		padding: var(--space-xs);
-		border-radius: var(--radius-md);
+		gap: var(--fkt-space-3xs);
+		padding: var(--fkt-space-xs);
+		border-radius: var(--fkt-radius-md);
 		width: 120px;
 		height: 130px;
 		overflow: hidden;
 		justify-content: center;
-		border: solid 1px var(--fkt-color-neutral-200);
+		border: solid 1px var(--fkt-color-neutral-400);
 		align-items: center;
 		flex-direction: column;
 
 		&-icon {
-			font-size: var(--font-size-xl);
+			font-size: var(--fkt-font-size-xl);
 		}
 
 		&-copied {
-			color: var(--color-green-500);
-			font-weight: var(--font-weight-semibold);
-			font-size: var(--font-size-md);
+			color: var(--fkt-color-success);
+			font-weight: var(--fkt-font-weight-semibold);
+			font-size: var(--fkt-font-size-md);
 		}
 
 		&-actions-container {
@@ -40,10 +40,10 @@ p {
 			opacity: 0;
 			pointer-events: none;
 			cursor: auto;
-			transition: var(--transition-base);
+			transition: var(--fkt-transition-base);
 			flex-direction: column;
 			width: 100%;
-			padding: var(--space-3xs);
+			padding: var(--fkt-space-3xs);
 			align-items: center;
 			justify-content: center;
 			height: 100%;
@@ -58,28 +58,28 @@ p {
 		&-actions-list {
 			display: flex;
 			flex-direction: column;
-			gap: var(--space-xs);
+			gap: var(--fkt-space-xs);
 			width: 100%;
 			height: 100%;
 		}
 
 		&-action {
-			background-color: var(--fkt-color-neutral-100);
+			background-color: var(--fkt-color-neutral-400);
 			cursor: pointer;
-			transition: var(--transition-base);
-			font-size: var(--font-size-sm);
+			transition: var(--fkt-transition-base);
+			font-size: var(--fkt-font-size-sm);
 			height: 100%;
-			border-radius: var(--radius-md);
+			border-radius: var(--fkt-radius-md);
 			display: flex;
 			justify-content: center;
-			font-weight: var(--font-weight-semibold);
+			font-weight: var(--fkt-font-weight-semibold);
 			align-items: center;
 			width: 100%;
 		}
 	}
 
 	&__icon-name {
-		font-size: var(--font-size-sm);
+		font-size: var(--fkt-font-size-sm);
 		text-align: center;
 		overflow: hidden;
 		text-overflow: ellipsis;

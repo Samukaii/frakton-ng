@@ -1,6 +1,6 @@
 import { Component, computed, input, signal } from '@angular/core';
 import { FktMenuGroup, FktSideMenuComponent } from 'frakton-ng/side-menu';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktBadge, FktBadgeSelectorComponent } from 'frakton-ng/badge-selector';
 
 interface UserPermissions {
 	canViewAnalytics: boolean;
@@ -14,20 +14,39 @@ interface UserPermissions {
 	selector: 'dynamic-permissions-side-menu-example',
 	templateUrl: './dynamic-permissions-side-menu-example.component.html',
 	styleUrl: './dynamic-permissions-side-menu-example.component.scss',
-	imports: [FktSideMenuComponent, FktButtonComponent]
+	imports: [FktSideMenuComponent, FktBadgeSelectorComponent]
 })
 export class DynamicPermissionsSideMenuExampleComponent {
 	groups = input.required<FktMenuGroup[]>();
 	opened = input<boolean>(true);
 
-	private userRole = signal<'admin' | 'manager' | 'user'>('manager');
+	protected userRole = signal<'admin' | 'manager' | 'user'>('user');
 
-	currentRole = computed(() => {
-		const role = this.userRole();
-		return role.charAt(0).toUpperCase() + role.slice(1);
-	});
+	protected currentRoleName = computed(() => {
+		const current = this.userRole();
 
-	userPermissions = computed<UserPermissions>(() => {
+		return this.roles.find((role) => role.id === current)?.name;
+	})
+
+	protected roles: FktBadge[] = [
+		{
+			id: "admin",
+			name: "Admin",
+			color: "danger"
+		},
+		{
+			id: "manager",
+			name: "Manager",
+			color: "warning"
+		},
+		{
+			id: "user",
+			name: "User",
+			color: "info"
+		},
+	]
+
+	protected userPermissions = computed<UserPermissions>(() => {
 		const role = this.userRole();
 		switch (role) {
 			case 'admin':
@@ -58,7 +77,7 @@ export class DynamicPermissionsSideMenuExampleComponent {
 		}
 	});
 
-	dynamicMenuGroups = computed<FktMenuGroup[]>(() => {
+	protected dynamicMenuGroups = computed<FktMenuGroup[]>(() => {
 		const permissions = this.userPermissions();
 		const groups: FktMenuGroup[] = [
 			{
@@ -125,7 +144,7 @@ export class DynamicPermissionsSideMenuExampleComponent {
 		return groups;
 	});
 
-	setRole(role: 'admin' | 'manager' | 'user'): void {
+	protected setRole(role: 'admin' | 'manager' | 'user'): void {
 		this.userRole.set(role);
 	}
 }

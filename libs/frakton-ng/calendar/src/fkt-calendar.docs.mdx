@@ -1,7 +1,7 @@
 import { ArgTypes, Meta } from '@storybook/addon-docs/blocks';
 import * as fktCalendarStories from './fkt-calendar.stories';
 import { rawExamples } from "./examples/raw-examples";
-import { StoryDoc } from "../../.storybook/blocks/StoryDoc";
+import { FktStoryRenderer } from "../../.storybook/blocks/FktStoryRenderer/FktStoryRenderer";
 
 <Meta of={fktCalendarStories} />
 
@@ -49,15 +49,15 @@ export type FktCalendarDateConfigFn = (date: Date) => FktCalendarDateOptions;
 
 ## Examples
 
-<StoryDoc of={fktCalendarStories.Basic} code={rawExamples.fktCalendarBasicExample}/>
+<FktStoryRenderer of={fktCalendarStories.Basic} code={rawExamples.fktCalendarBasicExample}/>
 
-<StoryDoc of={fktCalendarStories.BorderlessMode} code={rawExamples.fktCalendarBorderlessExample}/>
+<FktStoryRenderer of={fktCalendarStories.BorderlessMode} code={rawExamples.fktCalendarBorderlessExample}/>
 
-<StoryDoc of={fktCalendarStories.CustomDateStyling} code={rawExamples.fktCalendarCustomExample}/>
+<FktStoryRenderer of={fktCalendarStories.CustomDateStyling} code={rawExamples.fktCalendarCustomExample}/>
 
-<StoryDoc of={fktCalendarStories.EventsAndCallbacks} code={rawExamples.fktCalendarEventsExample}/>
+<FktStoryRenderer of={fktCalendarStories.EventsAndCallbacks} code={rawExamples.fktCalendarEventsExample}/>
 
-<StoryDoc of={fktCalendarStories.DisabledDates} code={rawExamples.fktCalendarDisabledExample}/>
+<FktStoryRenderer of={fktCalendarStories.DisabledDates} code={rawExamples.fktCalendarDisabledExample}/>
 
 ## Component Architecture
 

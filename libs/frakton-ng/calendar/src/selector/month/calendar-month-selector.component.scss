@@ -2,52 +2,52 @@
 /*
 Month selector grid gap between items.
 @name --fkt-calendar-month-selector-gap
-@reference --space-sm
+@reference --fkt-space-sm
 @component Month selector
 @category Spacing
 @type size
 */
-$month-selector-gap: var(--fkt-calendar-month-selector-gap, var(--space-sm));
+$month-selector-gap: var(--fkt-calendar-month-selector-gap, var(--fkt-space-sm));
 
 /*
 Month selector vertical item padding.
 @name --fkt-calendar-month-selector-vertical-padding
-@reference --space-sm
+@reference --fkt-space-sm
 @component Month selector
 @category Spacing
 @type size
 */
-$month-selector-vertical-padding: var(--fkt-calendar-month-selector-vertical-padding, var(--space-sm));
+$month-selector-vertical-padding: var(--fkt-calendar-month-selector-vertical-padding, var(--fkt-space-sm));
 
 /*
 Month selector horizontal item padding.
 @name --fkt-calendar-month-selector-horizontal-padding
-@reference --space-md
+@reference --fkt-space-md
 @component Month selector
 @category Spacing
 @type size
 */
-$month-selector-horizontal-padding: var(--fkt-calendar-month-selector-horizontal-padding, var(--space-md));
+$month-selector-horizontal-padding: var(--fkt-calendar-month-selector-horizontal-padding, var(--fkt-space-md));
 
 /*
 Month selector item border radius.
 @name --fkt-calendar-month-selector-border-radius
-@reference --radius-md
+@reference --fkt-radius-md
 @component Month selector
 @category Shape
 @type size
 */
-$month-selector-border-radius: var(--fkt-calendar-month-selector-border-radius, var(--radius-md));
+$month-selector-border-radius: var(--fkt-calendar-month-selector-border-radius, var(--fkt-radius-md));
 
 /*
 Month selector item hover background color.
 @name --fkt-calendar-month-selector-hover-bg
-@reference --fkt-color-primary-translucent
+@reference --fkt-color-primary-opacity-20
 @component Month selector
 @category Colors
 @type color
 */
-$month-selector-hover-bg: var(--fkt-calendar-month-selector-hover-bg, var(--fkt-color-primary-translucent));
+$month-selector-hover-bg: var(--fkt-calendar-month-selector-hover-bg, var(--fkt-color-primary-opacity-20));
 
 /*
 Month selector item text color.
@@ -82,22 +82,22 @@ $month-selector-selected-color: var(--fkt-calendar-month-selector-selected-color
 /*
 Month selector item font size.
 @name --fkt-calendar-month-selector-font-size
-@reference --font-size-md
+@reference --fkt-font-size-md
 @component Month selector
 @category Typography
 @type size
 */
-$month-selector-font-size: var(--fkt-calendar-month-selector-font-size, var(--font-size-md));
+$month-selector-font-size: var(--fkt-calendar-month-selector-font-size, var(--fkt-font-size-md));
 
 /*
 Month selector item font weight.
 @name --fkt-calendar-month-selector-font-weight
-@reference --font-medium
+@reference --fkt-font-medium
 @component Month selector
 @category Typography
 @type weight
 */
-$month-selector-font-weight: var(--fkt-calendar-month-selector-font-weight, var(--font-medium));
+$month-selector-font-weight: var(--fkt-calendar-month-selector-font-weight, var(--fkt-font-medium));
 
 // </design-tokens>
 
@@ -117,7 +117,7 @@ $month-selector-font-weight: var(--fkt-calendar-month-selector-font-weight, var(
 		text-align: center;
 		text-transform: capitalize;
 		cursor: pointer;
-		transition: var(--transition-base);
+		transition: var(--fkt-transition-base);
 		padding: $month-selector-vertical-padding $month-selector-horizontal-padding;
 		border-radius: $month-selector-border-radius;
 		color: $month-selector-color;

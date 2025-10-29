@@ -2,7 +2,7 @@
   {
     "description": "Vertical padding inside the input field (top and bottom spacing between border and content).",
     "name": "--fkt-input-vertical-padding",
-    "reference": "--space-md",
+    "reference": "--fkt-space-md",
     "category": "Spacing",
     "type": "size",
     "defaultValue": "1rem"
@@ -10,7 +10,7 @@
   {
     "description": "Horizontal padding inside the input field (left and right spacing between border and content).",
     "name": "--fkt-input-horizontal-padding",
-    "reference": "--space-md",
+    "reference": "--fkt-space-md",
     "category": "Spacing",
     "type": "size",
     "defaultValue": "1rem"
@@ -50,7 +50,7 @@
   {
     "description": "Border radius for input",
     "name": "--fkt-input-border-radius",
-    "reference": "--radius-lg",
+    "reference": "--fkt-radius-lg",
     "category": "Spacing",
     "type": "size",
     "defaultValue": ".5rem"
@@ -58,7 +58,7 @@
   {
     "description": "Font size for input text and placeholder.",
     "name": "--fkt-input-font-size",
-    "reference": "--font-size-md",
+    "reference": "--fkt-font-size-md",
     "category": "Typography",
     "type": "size",
     "defaultValue": "1rem"

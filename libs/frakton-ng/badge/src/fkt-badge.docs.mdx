@@ -1,6 +1,6 @@
 import {ArgTypes, Meta} from '@storybook/addon-docs/blocks';
 import * as fktBadgeStories from './fkt-badge.stories';
-import {StoryDoc} from "../../.storybook/blocks/StoryDoc";
+import {FktStoryRenderer} from "../../.storybook/blocks/FktStoryRenderer/FktStoryRenderer";
 
 <Meta of={fktBadgeStories}/>
 
@@ -29,16 +29,16 @@ export type FktBadgeVariant = 'opaque' | 'faded';
 
 ## Examples
 
-<StoryDoc of={fktBadgeStories.SuccessBadge}/>
-<StoryDoc of={fktBadgeStories.ErrorBadge}/>
-<StoryDoc of={fktBadgeStories.WarningBadge}/>
-<StoryDoc of={fktBadgeStories.InfoBadge}/>
-<StoryDoc of={fktBadgeStories.BadgeVariations}/>
-<StoryDoc of={fktBadgeStories.CountBadge}/>
-<StoryDoc of={fktBadgeStories.StatusBadge}/>
-<StoryDoc of={fktBadgeStories.PriorityBadge}/>
-<StoryDoc of={fktBadgeStories.CategoryBadge}/>
-<StoryDoc of={fktBadgeStories.LongTextBadge}/>
+<FktStoryRenderer of={fktBadgeStories.SuccessBadge}/>
+<FktStoryRenderer of={fktBadgeStories.ErrorBadge}/>
+<FktStoryRenderer of={fktBadgeStories.WarningBadge}/>
+<FktStoryRenderer of={fktBadgeStories.InfoBadge}/>
+<FktStoryRenderer of={fktBadgeStories.BadgeVariations}/>
+<FktStoryRenderer of={fktBadgeStories.CountBadge}/>
+<FktStoryRenderer of={fktBadgeStories.StatusBadge}/>
+<FktStoryRenderer of={fktBadgeStories.PriorityBadge}/>
+<FktStoryRenderer of={fktBadgeStories.CategoryBadge}/>
+<FktStoryRenderer of={fktBadgeStories.LongTextBadge}/>
 
 ## Use Cases
 

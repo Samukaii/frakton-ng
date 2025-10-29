@@ -6,17 +6,17 @@ h3, h4 {
 	width: 100%;
 	display: flex;
 	flex-direction: column;
-	gap: var(--space-md);
+	gap: var(--fkt-space-md);
 
 	h3 {
-		font-size: var(--font-size-lg);
-		font-weight: var(--font-semibold);
+		font-size: var(--fkt-font-size-lg);
+		font-weight: var(--fkt-font-semibold);
 	}
 
 	&__form {
 		display: flex;
 		flex-direction: column;
-		gap: var(--space-sm);
+		gap: var(--fkt-space-sm);
 
 		&__footer {
 			display: flex;
@@ -24,36 +24,36 @@ h3, h4 {
 			justify-content: space-between;
 
 			&-message {
-				font-size: var(--font-size-sm);
+				font-size: var(--fkt-font-size-sm);
 				color: var(--fkt-color-neutral-600);
 
 				&--valid {
-					color: var(--color-green-600);
+					color: var(--fkt-color-success);
 				}
 			}
 		}
 
 		&__actions {
 			display: flex;
-			gap: var(--space-xs);
+			gap: var(--fkt-space-xs);
 		}
 	}
 
 	&__success-message {
-		margin-top: var(--space-md);
-		padding: var(--space-md);
-		background-color: var(--color-green-50);
-		border: solid 1px var(--color-green-200);
-		border-radius: var(--radius-md);
+		margin-top: var(--fkt-space-md);
+		padding: var(--fkt-space-md);
+		background-color: var(--fkt-color-success-opacity-10);
+		border: solid 1px var(--fkt-color-success-opacity-30);
+		border-radius: var(--fkt-radius-md);
 
 		h4 {
-			font-weight: var(--font-medium);
-			color: var(--color-green-800);
+			font-weight: var(--fkt-font-medium);
+			color: var(--fkt-color-success);
 		}
 
 		pre {
-			margin-top: var(--space-xs);
-			font-size: var(--font-size-sm);
+			margin-top: var(--fkt-space-xs);
+			font-size: var(--fkt-font-size-sm);
 			color: var(--fkt-color-neutral-700);
 		}
 	}

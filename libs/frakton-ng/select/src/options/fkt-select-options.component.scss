@@ -2,12 +2,12 @@
 /*
 Padding for spinner container in select options overlay.
 @name --fkt-select-options-spinner-padding
-@reference --space-md
+@reference --fkt-space-md
 @component Options
 @category Spacing
 @type size
 */
-$options-spinner-padding: var(--fkt-select-options-spinner-padding, var(--space-md));
+$options-spinner-padding: var(--fkt-select-options-spinner-padding, var(--fkt-space-md));
 
 /*
 Background color for the select options overlay.
@@ -32,22 +32,22 @@ $options-text-color: var(--fkt-select-options-text-color, var(--fkt-color-neutra
 /*
 Box shadow for the select options overlay.
 @name --fkt-select-options-shadow
-@reference --shadow-md
+@reference --fkt-shadow-md
 @component Options
 @category Effects
 @type shadow
 */
-$options-shadow: var(--fkt-select-options-shadow, var(--shadow-md));
+$options-shadow: var(--fkt-select-options-shadow, var(--fkt-shadow-md));
 
 /*
 Border radius for the select options overlay.
 @name --fkt-select-options-border-radius
-@reference --radius-md
+@reference --fkt-radius-md
 @component Options
 @category Shape
 @type size
 */
-$options-border-radius: var(--fkt-select-options-border-radius, var(--radius-md));
+$options-border-radius: var(--fkt-select-options-border-radius, var(--fkt-radius-md));
 
 /*
 Border color for the select options overlay.
@@ -62,32 +62,32 @@ $options-border-color: var(--fkt-select-options-border-color, var(--fkt-color-ne
 /*
 Padding for select options overlay items.
 @name --fkt-select-options-item-padding
-@reference var(--space-xs) var(--space-md)
+@reference var(--fkt-space-xs) var(--fkt-space-md)
 @component Options
 @category Spacing
 @type size
 */
-$options-item-padding: var(--fkt-select-options-item-padding, var(--space-xs) var(--space-md));
+$options-item-padding: var(--fkt-select-options-item-padding, var(--fkt-space-xs) var(--fkt-space-md));
 
 /*
 Background color for focused overlay items.
 @name --fkt-select-options-item-focus-background
-@reference --fkt-color-accent-translucent
+@reference --fkt-color-accent-opacity-20
 @component Options
 @category Colors
 @type color
 */
-$options-item-focus-background: var(--fkt-select-options-item-focus-background, var(--fkt-color-accent-translucent));
+$options-item-focus-background: var(--fkt-select-options-item-focus-background, var(--fkt-color-accent-opacity-20));
 
 /*
 Background color for hovered overlay items.
 @name --fkt-select-options-item-hover-background
-@reference --fkt-color-accent-translucent-2
+@reference --fkt-color-accent-opacity-10
 @component Options
 @category Colors
 @type color
 */
-$options-item-hover-background: var(--fkt-select-options-item-hover-background, var(--fkt-color-accent-translucent-2));
+$options-item-hover-background: var(--fkt-select-options-item-hover-background, var(--fkt-color-accent-opacity-10));
 
 /*
 Background color for active/selected overlay items.
@@ -112,12 +112,12 @@ $options-icon-color: var(--fkt-select-options-icon-color, var(--fkt-color-neutra
 /*
 Size for icons in overlay items.
 @name --fkt-select-options-icon-size
-@reference --space-xl
+@reference --fkt-space-xl
 @component Options
 @category Spacing
 @type size
 */
-$options-icon-size: var(--fkt-select-options-icon-size, var(--space-xl));
+$options-icon-size: var(--fkt-select-options-icon-size, var(--fkt-space-xl));
 // </design-tokens>
 
 :host {
@@ -151,7 +151,7 @@ $options-icon-size: var(--fkt-select-options-icon-size, var(--space-xl));
 	li {
 		padding: $options-item-padding;
 		cursor: pointer;
-		transition: var(--transition-base);
+		transition: var(--fkt-transition-base);
 		display: flex;
 		justify-content: space-between;
 

@@ -27,21 +27,21 @@ ul {
 	&__header {
 		display: flex;
 		align-items: center;
-		margin-bottom: var(--space-md);
-		gap: var(--space-xs);
+		margin-bottom: var(--fkt-space-md);
+		gap: var(--fkt-space-xs);
 
 		fkt-icon {
-			color: var(--color-blue-500);
+			color: var(--fkt-color-info);
 		}
 
 		h2 {
-			font-size: var(--font-size-xl);
-			font-weight: var(--font-semibold);
+			font-size: var(--fkt-font-size-xl);
+			font-weight: var(--fkt-font-semibold);
 		}
 	}
 
 	&__message {
-		margin-bottom: var(--space-xl);
+		margin-bottom: var(--fkt-space-xl);
 
 		p {
 			color: var(--fkt-color-neutral-600);
@@ -51,21 +51,21 @@ ul {
 
 	&__details {
 		background-color: var(--fkt-color-neutral-50);
-		border-radius: var(--radius-lg);
-		margin-bottom: var(--space-xl);
-		padding: var(--space-md);
+		border-radius: var(--fkt-radius-lg);
+		margin-bottom: var(--fkt-space-xl);
+		padding: var(--fkt-space-md);
 
 		h4 {
-			font-weight: var(--font-medium);
-			margin-bottom: var(--space-xs);
+			font-weight: var(--fkt-font-medium);
+			margin-bottom: var(--fkt-space-xs);
 		}
 
 		ul {
 			color: var(--fkt-color-neutral-600);
-			font-size: var(--font-size-sm);
+			font-size: var(--fkt-font-size-sm);
 			display: flex;
 			flex-direction: column;
-			gap: var(--space-xs);
+			gap: var(--fkt-space-xs);
 		}
 	}
 

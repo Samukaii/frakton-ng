@@ -1,15 +1,15 @@
 import type { Meta, StoryObj } from '@storybook/angular';
 import { fktBadgeColors, FktBadgeComponent, fktBadgeVariants } from 'frakton-ng/badge';
-import { customDocsControl } from '../../.storybook/decorators/custom-docs-control';
+import { fktStoryRenderer } from '../../.storybook/decorators/fkt-story-renderer';
 import { renderComponent } from '../../.storybook/decorators/render-component';
 import { Component } from '@angular/core';
 import designTokens from './fkt-badge-design-tokens.json';
 
 const meta: Meta<FktBadgeComponent> = {
-	title: 'Components/Badge',
+	title: 'Components/Data display/Badge',
 	component: FktBadgeComponent,
 	decorators: [
-		customDocsControl({
+		fktStoryRenderer({
 			designTokens: designTokens as any
 		})
 	],
@@ -138,26 +138,26 @@ export const InfoBadge: Story = {
 		.container {
 			display: flex;
 			flex-direction: column;
-			gap: var(--space-md);
+			gap: var(--fkt-space-md);
 		}
 
 		.container__item {
 			display: flex;
 			flex-direction: column;
-			gap: var(--space-xs);
+			gap: var(--fkt-space-xs);
 		}
 
 		.container__item h2 {
-			font-size: var(--font-size-lg);
-			font-weight: var(--font-semibold);
+			font-size: var(--fkt-font-size-lg);
+			font-weight: var(--fkt-font-semibold);
 			border-bottom: solid 1px var(--fkt-color-neutral-200);
-			padding-bottom: var(--space-3xs);
+			padding-bottom: var(--fkt-space-3xs);
 		}
 
 		.container__item > div {
 			display: flex;
 			align-items: center;
-			gap: var(--space-xs);
+			gap: var(--fkt-space-xs);
 			flex-wrap: wrap;
 		}
 	`,

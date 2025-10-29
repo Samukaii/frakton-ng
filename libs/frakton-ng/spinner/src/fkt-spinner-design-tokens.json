@@ -29,11 +29,11 @@
   {
     "description": "Border radius for the spinner (full circle).",
     "name": "--fkt-spinner-border-radius",
-    "reference": "--radius-full",
+    "reference": "--fkt-radius-full",
     "component": "Feedback",
     "category": "Shape",
     "type": "size",
-    "defaultValue": "--radius-full"
+    "defaultValue": "--fkt-radius-full"
   },
   {
     "description": "Animation duration for the spinner rotation.",

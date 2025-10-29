@@ -1,6 +1,6 @@
 import {ArgTypes, Meta} from '@storybook/addon-docs/blocks';
 import * as stories from './fkt-input.stories';
-import {StoryDoc} from "../../.storybook/blocks/StoryDoc";
+import {FktStoryRenderer} from "../../.storybook/blocks/FktStoryRenderer/FktStoryRenderer";
 import {rawExamples} from './examples/raw-examples';
 
 <Meta of={stories} />
@@ -34,17 +34,17 @@ type FktInputTransformer = 'currency' | 'percent' | 'hour' | SignalFormControlTr
 
 ## Examples
 
-<StoryDoc of={stories.BasicInput} code={rawExamples.basicExample}/>
-<StoryDoc of={stories.PasswordField} code={rawExamples.passwordExample}/>
-<StoryDoc of={stories.NumericField} code={rawExamples.numberExample}/>
-<StoryDoc of={stories.EmailField} code={rawExamples.emailExample}/>
-<StoryDoc of={stories.CurrencyTransformer} code={rawExamples.currencyExample}/>
-<StoryDoc of={stories.PercentTransformer} code={rawExamples.percentExample}/>
-<StoryDoc of={stories.HourTransformer} code={rawExamples.hourExample}/>
-<StoryDoc of={stories.CustomFormatting} code={rawExamples.customFormattingExample}/>
-<StoryDoc of={stories.DisabledState} code={rawExamples.disabledExample}/>
-<StoryDoc of={stories.WithCustomSuffix} code={rawExamples.suffixExample}/>
-<StoryDoc of={stories.Signup} code={rawExamples.signupFormExample}/>
+<FktStoryRenderer of={stories.BasicInput} code={rawExamples.basicExample}/>
+<FktStoryRenderer of={stories.PasswordField} code={rawExamples.passwordExample}/>
+<FktStoryRenderer of={stories.NumericField} code={rawExamples.numberExample}/>
+<FktStoryRenderer of={stories.EmailField} code={rawExamples.emailExample}/>
+<FktStoryRenderer of={stories.CurrencyTransformer} code={rawExamples.currencyExample}/>
+<FktStoryRenderer of={stories.PercentTransformer} code={rawExamples.percentExample}/>
+<FktStoryRenderer of={stories.HourTransformer} code={rawExamples.hourExample}/>
+<FktStoryRenderer of={stories.CustomFormatting} code={rawExamples.customFormattingExample}/>
+<FktStoryRenderer of={stories.DisabledState} code={rawExamples.disabledExample}/>
+<FktStoryRenderer of={stories.WithCustomSuffix} code={rawExamples.suffixExample}/>
+<FktStoryRenderer of={stories.Signup} code={rawExamples.signupFormExample}/>
 
 ## Use Cases
 - **User Registration Forms** - Email addresses, passwords, personal information with validation.

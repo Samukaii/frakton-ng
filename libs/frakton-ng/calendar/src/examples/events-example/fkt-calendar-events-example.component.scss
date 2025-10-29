@@ -35,25 +35,6 @@
 	width: 100%;
 }
 
-.legend {
-	display: flex;
-	flex-direction: column;
-	gap: 8px;
-	font-size: 14px;
-	color: #666;
-
-	&-dot {
-		width: 8px;
-		height: 8px;
-		border-radius: 50%;
-		display: block;
-
-		&.has-events {
-			background: #4caf50;
-		}
-	}
-}
-
 .click-history {
 	width: 100%;
 
@@ -67,15 +48,15 @@
 			margin: 0;
 			font-size: 14px;
 			font-weight: 600;
-			color: #333;
+			color: var(--fkt-color-neutral-600);
 			flex: 1;
 		}
 
 		button {
 			padding: 4px 8px;
 			font-size: 12px;
-			border: 1px solid #ddd;
-			background: white;
+			border: 1px solid var(--fkt-color-neutral-400);
+			background: var(--fkt-color-neutral-100);
 			border-radius: 4px;
 			cursor: pointer;
 
@@ -93,9 +74,9 @@
 	.history-items {
 		max-height: 300px;
 		overflow-y: auto;
-		border: 1px solid #e0e0e0;
+		border: 1px solid var(--fkt-color-neutral-400);
 		border-radius: 4px;
-		background: white;
+		background: var(--color-neutral-100);
 	}
 
 	.no-history {
@@ -107,10 +88,10 @@
 	}
 
 	.history-item {
-		padding: var(--space-md);
-		border-bottom: 1px solid #f0f0f0;
+		padding: var(--fkt-space-md);
+		border-bottom: 1px solid var(--fkt-color-neutral-400);
 		font-size: 12px;
-		color: #666;
+		color: var(--fkt-color-neutral-950);
 
 		&:last-child {
 			border-bottom: none;
@@ -121,7 +102,7 @@
 .selected-date {
 	margin-top: 16px;
 	font-weight: 500;
-	color: #333;
+	color: var(--fkt-color-neutral-600);
 	font-size: 14px;
 }
 
@@ -129,6 +110,6 @@
 :host ::ng-deep {
 	.has-events {
 		position: relative;
-		background: var(--color-green-100);
+		background: var(--fkt-color-success-opacity-20);
 	}
 }

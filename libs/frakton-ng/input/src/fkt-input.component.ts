@@ -64,7 +64,7 @@ export class FktInputComponent<T = string> implements FormValueControl<T | null>
 	maxDecimals = input(0);
 	step = input(1);
 
-	inputPadding = input('var(--fkt-input-vertical-padding, var(--space-md)) var(--fkt-input-horizontal-padding, var(--space-md))');
+	inputPadding = input('var(--fkt-input-vertical-padding, var(--fkt-space-md)) var(--fkt-input-horizontal-padding, var(--fkt-space-md))');
 	inputBlur = output<FocusEvent>();
 	inputFocus = output<FocusEvent>();
 	inputKeyDown = output<KeyboardEvent>()
