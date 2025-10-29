@@ -8,7 +8,7 @@
 
 Frakton NG is a **next-generation Angular UI library** that separates what matters: enforced accessibility and modern architecture, with complete visual freedom. Built with Angular 21+ signals, standalone components, and a comprehensive design token system.
 
-- **📦 Bundle Size**: 653.2KB unpacked / 131.7KB gzipped
+- **📦 Bundle Size**: 653KB unpacked / 131KB gzipped
 - **🧩 Components**: 25+ production-ready
 - **🚀 Zero Dependencies**: Only Angular required
 
@@ -91,10 +91,10 @@ Add to your `angular.json`:
 
 ```json
 {
-	"styles": [
-		"node_modules/frakton-ng/assets/styles.css",
-		"node_modules/frakton-ng/assets/themes/light.css"
-	]
+  "styles": [
+    "node_modules/frakton-ng/assets/styles.css",
+    "node_modules/frakton-ng/assets/themes/light.css"
+  ]
 }
 ```
 
@@ -110,21 +110,21 @@ Add to your `angular.json`:
 import {FktButtonComponent} from 'frakton-ng/button';
 
 @Component({
-	template: `
-		<fkt-button 
-			text="Save Changes" 
-			color="#FF6B35"           <!-- Custom hex color -->
-			theme="raised"
-			icon="check"
-			[loading]="isSaving()"
-			(click)="save()">
-		</fkt-button>
-  	`,
-	imports: [FktButtonComponent],
-	standalone: true
+  template: `
+    <fkt-button 
+      text="Save Changes" 
+      color="#FF6B35"           <!-- Custom hex color -->
+      theme="raised"
+      icon="check"
+      [loading]="isSaving()"
+      (click)="save()">
+    </fkt-button>
+  `,
+  imports: [FktButtonComponent],
+  standalone: true
 })
 export class AppComponent {
-	isSaving = signal(false);
+  isSaving = signal(false);
 }
 ```
 
@@ -140,19 +140,19 @@ Automatic TypeScript inference for overlay component data - no other Angular UI 
 // Your overlay component uses signals
 @Component({...})
 export class UserEditDialog {
-	userId = input.required<string>();
-	onSave = output<{ name: string, email: string }>();
+  userId = input.required<string>();
+  onSave = output<{ name: string, email: string }>();
 }
 
 // Overlay service automatically infers ALL types
 const ref = overlay.open({
-	component: UserEditDialog,
-	data: {
-		userId: user.id,              // ✅ Auto-typed as string
-		onSave: (userData) => {       // ✅ userData auto-typed as {name: string, email: string}
-			this.updateUser(userData);  // TypeScript knows the exact shape
-		}
-	}
+  component: UserEditDialog,
+  data: {
+    userId: user.id,              // ✅ Auto-typed as string
+    onSave: (userData) => {       // ✅ userData auto-typed as {name: string, email: string}
+      this.updateUser(userData);  // TypeScript knows the exact shape
+    }
+  }
 });
 ```
 
@@ -188,18 +188,18 @@ Built entirely on Angular signals for optimal reactivity:
 ```typescript
 // Traditional approach (heavy change detection)
 export class TraditionalComponent {
-	@Input() loading = false;
+  @Input() loading = false;
 
-	get classes() {
-		return `btn-${this.loading ? 'loading' : ''}`;
-	}
+  get classes() {
+    return `btn-${this.loading ? 'loading' : ''}`;
+  }
 }
 
 // Frakton approach (signal-optimized)  
 export class FraktonComponent {
-	loading = input(false);
-	classes = computed(() => `btn-${this.loading() ? 'loading' : ''}`);
-	// Only recomputes when inputs actually change
+  loading = input(false);
+  classes = computed(() => `btn-${this.loading() ? 'loading' : ''}`);
+  // Only recomputes when inputs actually change
 }
 ```
 
