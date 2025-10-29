@@ -2,8 +2,7 @@ import { ChangeDetectionStrategy, Component, computed, effect, input, } from '@a
 import { FktButtonIconPosition, FktButtonShape, FktButtonTheme } from './fkt-button.types';
 import { FktIconComponent, FktIconName } from 'frakton-ng/icon';
 import { FktColor, fktColors, FktLabelColor } from 'frakton-ng/core';
-import { fktColorFormatters, getContrastTextColor, MarkUsed } from 'frakton-ng/internal/utils';
-import { lightenColor } from '../../internal/utils/lighten-color';
+import { fktColorFormatters, getContrastTextColor, MarkUsed, lightenColor } from 'frakton-ng/internal/utils';
 
 @Component({
 	selector: 'fkt-button',

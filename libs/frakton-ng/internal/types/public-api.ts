@@ -1,3 +1,7 @@
+export * from './fkt-color-picker-hex';
+export * from './fkt-color-picker-hsl';
+export * from './fkt-color-picker-hsv';
+export * from './fkt-color-picker-rgb';
 export * from './fkt-component-data';
 export * from './fkt-component-input-names';
 export * from './fkt-component-inputs';

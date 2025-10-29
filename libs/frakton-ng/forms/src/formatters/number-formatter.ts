@@ -1,4 +1,6 @@
 import { FktControlFormatter } from '../types';
+import { partiallyRoundDecimal } from 'frakton-ng/internal/utils';
+import { roundDecimal } from 'frakton-ng/internal/utils';
 
 interface Options {
 	min?: number;
@@ -15,14 +17,6 @@ const isNumber = (value: unknown): value is (string | number) => {
 
 	return !isNaN(+value);
 };
-
-const roundDecimal = (value: number, decimalDigits: number) => {
-	return +value.toFixed(decimalDigits);
-}
-
-export const partiallyRoundDecimal = (value: number, decimalDigits: number) => {
-	return value.toString().length > value.toFixed(2).length ? roundDecimal(value, decimalDigits) : value;
-}
 
 export const numberFormatter = (options?: Options): FktControlFormatter<number, string> => {
 	return {

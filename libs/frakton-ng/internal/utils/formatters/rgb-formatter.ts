@@ -1,5 +1,4 @@
-import { FktColorPickerRGB } from "../../../color-picker/src/models/fkt-color-picker-rgb";
-import { FktColorPickerHSV } from "../../../color-picker/src/models/fkt-color-picker-hsv";
+import { FktColorPickerHSV, FktColorPickerRGB } from "frakton-ng/internal/types";
 
 const fromHsv = (
 	hsv: FktColorPickerHSV

@@ -8,9 +8,9 @@ import { FktTooltipDirective } from 'frakton-ng/tooltip';
 import { getColorDescription } from '../../helpers/get-color-description';
 import { fktColorFormatters } from 'frakton-ng/internal/utils';
 import { FKT_COLOR_PICKER_LOCALE_TOKEN } from '../../injection-tokens/fkt-color-picker-locale-token';
-import { capitalize } from '../../../../internal/utils/capitalize';
-import { debouncedComputed } from '../../../../internal/utils/debounced-computed';
-import { FktColorPickerHSV } from '../../models/fkt-color-picker-hsv';
+import { capitalize } from 'frakton-ng/internal/utils';
+import { debouncedComputed } from 'frakton-ng/internal/utils';
+import { FktColorPickerHSV } from 'frakton-ng/internal/types';
 
 
 @Component({

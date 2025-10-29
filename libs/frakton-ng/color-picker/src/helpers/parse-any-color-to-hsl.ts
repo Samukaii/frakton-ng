@@ -1,5 +1,5 @@
-import { fktColorFormatters } from '../../../internal/utils/fkt-color-formatters';
-import { FktColorPickerHSV } from '../models/fkt-color-picker-hsv';
+import { fktColorFormatters } from 'frakton-ng/internal/utils';
+import { FktColorPickerHSV } from 'frakton-ng/internal/types';
 
 export const parseAnyColorToHSV = (value: string): FktColorPickerHSV | null  => {
 	if(!value) return null;

@@ -4,9 +4,9 @@ import { FktInputComponent } from "frakton-ng/input";
 import { MarkUsed } from 'frakton-ng/internal/utils';
 import { FktControlFormatter } from 'frakton-ng/forms';
 import { FktColorControlItemComponent } from '../../components/item/fkt-color-control-item.component';
-import { fktColorFormatters } from '../../../../internal/utils/fkt-color-formatters';
+import { fktColorFormatters } from 'frakton-ng/internal/utils';
+import { FktColorPickerHSV } from 'frakton-ng/internal/types';
 import { FKT_COLOR_PICKER_LOCALE_TOKEN } from '../../injection-tokens/fkt-color-picker-locale-token';
-import { FktColorPickerHSV } from '../../models/fkt-color-picker-hsv';
 
 
 @Component({

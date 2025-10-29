@@ -4,13 +4,12 @@ import { FormValueControl, ValidationError, WithOptionalField } from '@angular/f
 import { FktOverlayService } from 'frakton-ng/overlay';
 import { FktColorPickerModalComponent } from './modal/fkt-color-picker-modal.component';
 import { FktColorPickerFormat } from './fkt-color-picker.types';
-import { fktColorFormatters, getElementDesignTokens } from 'frakton-ng/internal/utils';
+import { fktColorFormatters, getElementDesignTokens, getElementDesignToken } from 'frakton-ng/internal/utils';
 import { parseAnyColorToHSV } from './helpers/parse-any-color-to-hsl';
-import { FktColorPickerHSV } from './models/fkt-color-picker-hsv';
-import { getElementDesignToken } from '../../internal/utils/get-element-design-token';
+import { FktColorPickerHSV } from 'frakton-ng/internal/types';
 import { FktButtonComponent } from 'frakton-ng/button';
 import { getColorDescription } from './helpers/get-color-description';
-import { capitalize } from '../../internal/utils/capitalize';
+import { capitalize } from 'frakton-ng/internal/utils';
 import { FKT_COLOR_PICKER_LOCALE_TOKEN } from './injection-tokens/fkt-color-picker-locale-token';
 
 @Component({

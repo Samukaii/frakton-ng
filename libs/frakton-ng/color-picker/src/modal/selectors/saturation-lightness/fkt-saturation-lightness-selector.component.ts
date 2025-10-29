@@ -1,6 +1,6 @@
 import { Component, computed, ElementRef, inject, model, signal, viewChild } from '@angular/core';
-import { fktColorFormatters } from '../../../../../internal/utils/fkt-color-formatters';
-import { FktColorPickerHSV } from '../../../models/fkt-color-picker-hsv';
+import { fktColorFormatters } from 'frakton-ng/internal/utils';
+import { FktColorPickerHSV } from 'frakton-ng/internal/types';
 import { clampNumber } from 'frakton-ng/internal/utils';
 import { FKT_COLOR_PICKER_LOCALE_TOKEN } from '../../../injection-tokens/fkt-color-picker-locale-token';
 import { getColorDescription } from '../../../helpers/get-color-description';

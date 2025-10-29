@@ -1,4 +1,4 @@
-import { Component, computed, ElementRef, inject, input } from '@angular/core';
+import { Component, computed, inject, input } from '@angular/core';
 import { FktColor } from 'frakton-ng/core';
 import { OVERLAY_INFO } from "frakton-ng/overlay";
 import { FktGeometryPosition } from "frakton-ng/internal/types";

@@ -3,11 +3,10 @@ import { FktInputComponent } from 'frakton-ng/input';
 import { FormControlSuffixDirective, dateFormatter } from 'frakton-ng/forms';
 import { FktOverlayRef, FktOverlayService } from 'frakton-ng/overlay';
 import { FktDatePickerModalComponent } from './modal/fkt-date-picker-modal.component';
-import { getElementDesignTokens, isValidDateString, MarkUsed, outsideClickEffect } from 'frakton-ng/internal/utils';
+import { getElementDesignTokens, getElementDesignToken, isValidDateString, MarkUsed, outsideClickEffect } from 'frakton-ng/internal/utils';
 import { FktGeometryPosition } from 'frakton-ng/internal/types';
 import { FktButtonComponent } from 'frakton-ng/button';
 import { FormValueControl, ValidationError, WithOptionalField } from '@angular/forms/signals';
-import { getElementDesignToken } from '../../internal/utils/get-element-design-token';
 
 @Component({
 	selector: 'fkt-date-picker',

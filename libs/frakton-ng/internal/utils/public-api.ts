@@ -12,9 +12,16 @@ export * from './is-element-over-rect';
 export * from './get-focusable-elements-selectors';
 export * from './fkt-color-formatters';
 export * from './get-contrast-text-color';
+export * from './get-element-design-token';
 export * from './get-element-design-tokens';
 export * from './element-size-signal';
 export * from './is-valid-date-string';
 export * from './wait';
 export * from './is-iso-date-string';
 export * from './geometry-position-calculations';
+export * from "./partially-round-decimal";
+export * from "./lighten-color";
+export * from "./is-element-text-truncated";
+export * from "./capitalize";
+export * from "./debounced-computed";
+

@@ -7,8 +7,7 @@ import { FktIconComponent } from 'frakton-ng/icon';
 import { ElementIdGeneratorService } from 'frakton-ng/internal/services';
 import { FktSelectOption } from './fkt-select.types';
 import { FormValueControl, ValidationError, WithOptionalField } from '@angular/forms/signals';
-import { getElementDesignTokens } from 'frakton-ng/internal/utils';
-import { getElementDesignToken } from '../../internal/utils/get-element-design-token';
+import { getElementDesignTokens, getElementDesignToken } from 'frakton-ng/internal/utils';
 
 @Component({
 	selector: 'fkt-select',

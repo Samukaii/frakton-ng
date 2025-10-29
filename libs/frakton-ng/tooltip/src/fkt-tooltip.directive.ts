@@ -4,8 +4,7 @@ import { FktGeometryPosition } from 'frakton-ng/internal/types';
 import { getElementDesignTokens, outsideMouseEnterWatcher } from 'frakton-ng/internal/utils';
 import { FktTooltipComponent } from './fkt-tooltip.component';
 import { FktColor } from 'frakton-ng/core';
-import { getElementDesignToken } from '../../internal/utils/get-element-design-token';
-import { isElementTextTruncated } from '../../internal/utils/is-element-text-truncated';
+import { isElementTextTruncated } from 'frakton-ng/internal/utils';
 
 @Directive({
 	selector: '[fktTooltip]',

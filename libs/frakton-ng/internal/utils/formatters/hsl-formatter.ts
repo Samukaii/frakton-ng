@@ -1,6 +1,5 @@
-import { FktColorPickerHSL } from "../../../color-picker/src/models/fkt-color-picker-hsl";
-import { FktColorPickerHSV } from "../../../color-picker/src/models/fkt-color-picker-hsv";
-import { partiallyRoundDecimal } from '../../../forms/src/formatters/number-formatter';
+import { FktColorPickerHSL, FktColorPickerHSV } from 'frakton-ng/internal/types';
+import { partiallyRoundDecimal } from '../partially-round-decimal';
 
 const fromHsv = (hsv: FktColorPickerHSV): FktColorPickerHSL => {
 	const hue = hsv.hue;

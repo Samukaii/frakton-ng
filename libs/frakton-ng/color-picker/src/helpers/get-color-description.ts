@@ -1,4 +1,4 @@
-import { FktColorPickerHSL } from '../models/fkt-color-picker-hsl';
+import { FktColorPickerHSL } from 'frakton-ng/internal/types';
 import { FktColorPickerLocale } from '../models/fkt-color-picker-locale';
 
 type ColorDescription = FktColorPickerLocale['ariaColorDescriptions'];

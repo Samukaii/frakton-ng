@@ -3,8 +3,8 @@ import { Control, form } from '@angular/forms/signals';
 import { FktInputComponent } from "frakton-ng/input";
 import { FktColorControlItemComponent } from '../../components/item/fkt-color-control-item.component';
 import { FKT_COLOR_PICKER_LOCALE_TOKEN } from '../../injection-tokens/fkt-color-picker-locale-token';
-import { FktColorPickerHSV } from '../../models/fkt-color-picker-hsv';
-import { fktColorFormatters } from '../../../../internal/utils/fkt-color-formatters';
+import { FktColorPickerHSV } from 'frakton-ng/internal/types';
+import { fktColorFormatters } from 'frakton-ng/internal/utils';
 
 @Component({
   selector: 'fkt-color-hsl-control',

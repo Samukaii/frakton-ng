@@ -11,7 +11,7 @@ import { FktAutocompleteOption } from 'frakton-ng/autocomplete';
 import { FktColorHexControlComponent } from '../controls/hex/fkt-color-hex-control.component';
 import { fktColorFormatters } from 'frakton-ng/internal/utils';
 import { parseAnyColorToHSV } from '../helpers/parse-any-color-to-hsl';
-import { FktColorPickerHSV } from '../models/fkt-color-picker-hsv';
+import { FktColorPickerHSV } from 'frakton-ng/internal/types';
 import { FktColorControlComponent } from '../components/control/fkt-color-control.component';
 
 @Component({
