@@ -1,6 +1,6 @@
 @font-face {
 	font-family: 'Frakton';
-	src: url('../fonts/frakton.ttf') format('truetype');
+	src: url('../fonts/frakton.woff2') format('woff2');
 	font-weight: normal;
 	font-style: normal;
 	font-display: swap;
@@ -8,9 +8,7 @@
 
 @font-face {
 	font-family: 'Frakton Icons';
-	src: url('../fonts/frakton-icons/frakton-icons.woff2') format('woff2'),
-	url('../fonts/frakton-icons/frakton-icons.woff') format('woff'),
-	url('../fonts/frakton-icons/frakton-icons.ttf') format('truetype');
+	src: url('../fonts/frakton-icons.woff2') format('woff2');
 	font-weight: normal;
 	font-style: normal;
 	font-display: swap;
