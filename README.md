@@ -124,7 +124,7 @@ export class AppComponent {
 
 ## 🌟 **What Makes Frakton NG Unique**
 
-### ** Overlay Type Safety (First in Angular Ecosystem)**
+### **Overlay Type Safety (First in Angular Ecosystem)**
 Automatic TypeScript inference for overlay component data - no other Angular UI library offers this:
 
 ```typescript
@@ -184,7 +184,7 @@ classes = computed(() => `btn-${this.loading() ? 'loading' : ''}`);
 // Only recomputes when inputs actually change
 ```
 
-### ** Complete Visual Freedom**
+### **Complete Visual Freedom**
 - **Design token architecture**: Three-tier fallback system (component → global → default)
 - **Custom color intelligence**: Accepts hex colors with automatic contrast calculation
 - **Theme inheritance**: Overlays automatically inherit design tokens from anchor elements
@@ -192,14 +192,14 @@ classes = computed(() => `btn-${this.loading() ? 'loading' : ''}`);
 
 <img width="2315" height="1342" alt="image" src="https://github.com/user-attachments/assets/86cb542f-b9a2-4e63-9642-37a9ca8f3b3b" />
 
-### ** Advanced Overlay System**
+### **Advanced Overlay System**
 - **Intelligent positioning**: 12 anchor positions with smart viewport-aware repositioning
 - **Z-index management**: Automatic stacking without conflicts
 - **Focus management**: Proper focus trapping and restoration
 - **Theme inheritance**: Child overlays automatically match parent themes
 - **Memory efficient**: Proper cleanup prevents memory leaks
 
-### ** Exceptional Documentation Experience**
+### **Exceptional Documentation Experience**
 Interactive documentation that goes beyond traditional UI libraries:
 
 - **Live Control Playground**: Real-time component property editing with instant visual feedback
@@ -208,7 +208,8 @@ Interactive documentation that goes beyond traditional UI libraries:
 - **Storybook Integration**: Professional documentation with live editing capabilities
 
 <img width="2312" height="1340" alt="image" src="https://github.com/user-attachments/assets/9705e48f-8e7c-47b4-8f7e-b78accbb5478" />
-<img width="2314" height="1343" alt="image" src="https://github.com/user-attachments/assets/22cd0873-9c09-4cfd-93b1-b3d8c44ba869" />
+
+<img width="2308" height="1342" alt="image" src="https://github.com/user-attachments/assets/f79c59fc-f76c-4da2-8869-11fe321cd5d5" />
 
 ---
 
