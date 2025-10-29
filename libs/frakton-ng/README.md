@@ -1,13 +1,14 @@
 # Frakton NG
 
 **Architecturally opinionated. Visually unlimited. Enterprise-ready.**
+
 [![npm version](https://img.shields.io/npm/v/frakton-ng?style=flat-square)](https://www.npmjs.com/package/frakton-ng)
 
 > A new kind of Angular UI library: enforced accessibility, signal-native architecture, and absolute visual freedom through a modern token system.
 
 Frakton NG is a **next-generation Angular UI library** that separates what matters: enforced accessibility and modern architecture, with complete visual freedom. Built with Angular 21+ signals, standalone components, and a comprehensive design token system.
 
-- **📦 Bundle Size**: 651KB unpacked / 133KB gzipped
+- **📦 Bundle Size**: 653.2KB unpacked / 131.7KB gzipped
 - **🧩 Components**: 25+ production-ready
 - **🚀 Zero Dependencies**: Only Angular required
 
@@ -89,10 +90,12 @@ npm install frakton-ng
 Add to your `angular.json`:
 
 ```json
-"styles": [
-"node_modules/frakton-ng/assets/styles.css",
-"node_modules/frakton-ng/assets/themes/light.css"
-]
+{
+	"styles": [
+		"node_modules/frakton-ng/assets/styles.css",
+		"node_modules/frakton-ng/assets/themes/light.css"
+	]
+}
 ```
 
 **Available themes:**
@@ -108,15 +111,15 @@ import {FktButtonComponent} from 'frakton-ng/button';
 
 @Component({
 	template: `
-    <fkt-button 
-      text="Save Changes" 
-      color="#FF6B35"           <!-- Custom hex color -->
-      theme="raised"
-      icon="check"
-      [loading]="isSaving()"
-      (click)="save()">
-    </fkt-button>
-  `,
+		<fkt-button 
+			text="Save Changes" 
+			color="#FF6B35"           <!-- Custom hex color -->
+			theme="raised"
+			icon="check"
+			[loading]="isSaving()"
+			(click)="save()">
+		</fkt-button>
+  	`,
 	imports: [FktButtonComponent],
 	standalone: true
 })
@@ -170,12 +173,12 @@ No CSS resets means perfect compatibility with existing projects:
 Most libraries document accessibility - Frakton NG **enforces** it:
 
 ```html
-// Throws actual errors for accessibility violations
+<!--Throws actual errors for accessibility violations-->
 <fkt-button icon="save"/>
-// ❌ Error: "When no text is provided, ariaLabel is required"
+<!--❌ Error: "When no text is provided, ariaLabel is required"-->
 
 <fkt-color-picker value="#FF5733"/>
-// ✅ Automatically announces "Bright red-orange" to screen readers
+<!--✅ Automatically announces "Bright red-orange" to screen readers-->
 ```
 
 ### **Signal-Native Performance**
@@ -184,18 +187,20 @@ Built entirely on Angular signals for optimal reactivity:
 
 ```typescript
 // Traditional approach (heavy change detection)
-@Input()
-loading = false;
-get
-classes()
-{
-	return `btn-${this.loading ? 'loading' : ''}`;
+export class TraditionalComponent {
+	@Input() loading = false;
+
+	get classes() {
+		return `btn-${this.loading ? 'loading' : ''}`;
+	}
 }
 
 // Frakton approach (signal-optimized)  
-loading = input(false);
-classes = computed(() => `btn-${this.loading() ? 'loading' : ''}`);
-// Only recomputes when inputs actually change
+export class FraktonComponent {
+	loading = input(false);
+	classes = computed(() => `btn-${this.loading() ? 'loading' : ''}`);
+	// Only recomputes when inputs actually change
+}
 ```
 
 <br/>
@@ -278,6 +283,8 @@ Interactive documentation that goes beyond traditional UI libraries:
 - **Overlay** - Powerful positioning system primitive
 - **Tooltip** - Contextual help and information
 
+<br/>
+
 ### **Bundle Efficiency**
 
 | Metric            | Frakton NG           | Angular Material | PrimeNG      |
@@ -286,6 +293,8 @@ Interactive documentation that goes beyond traditional UI libraries:
 | **Gzipped Size**  | **133KB**            | ~800KB           | ~1.2MB       |
 | **Dependencies**  | **0** (only Angular) | 15+ packages     | 20+ packages |
 | **Tree Shaking**  | ✅ Component-level    | ⚠️ Module-level  | ❌ Limited    |
+
+<br/>
 
 ## 📊 **Performance & Architecture**
 
