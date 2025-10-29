@@ -1,6 +1,6 @@
 {
 	"name": "frakton-ng",
-	"version": "21.0.3-next",
+	"version": "21.0.7-next",
 	"description": "Frakton NG — Design System Angular: componentes UI modernos, acessíveis e escaláveis para acelerar o desenvolvimento de aplicações.",
 	"author": "Samuel Alejandro <samuelalejandro.dev@gmail.com>",
 	"license": "MIT",
@@ -19,12 +19,6 @@
 		"publish:minor:next": "pnpm run update-version:minor && pnpm run build && cd dist && pnpm publish --access public --git-checks=false --tag next",
 		"publish:patch:next": "pnpm run update-version:patch && pnpm run build && cd dist && pnpm publish --access public --git-checks=false --tag next"
 	},
-	"files": [
-		"fesm2022/",
-		"index.d.ts",
-		"assets/",
-		"README.md"
-	],
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/Samukaii/frakton-ng.git"

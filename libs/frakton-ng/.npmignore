@@ -1,1 +1,29 @@
+# Nested package.json's are only needed for development.
+**/package.json
+
+# Ignore maps
 *.map
+**/*.map
+
+# Ignore testes e specs
+*.spec.*
+*.test.*
+
+# Ignore arquivos de configuração
+*.tsconfig*
+*.eslint*
+*.prettier*
+*.npmignore
+
+# Ignore docs e root readmes (se quiser manter só 1 README principal)
+# README.md
+
+# Ignore arquivos de build temporários (se for o caso)
+tmp/
+build/
+src/
+scripts/
+coverage/
+
+# Ignore outros arquivos desnecessários que o build possa gerar
+*.log

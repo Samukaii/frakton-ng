@@ -7,9 +7,14 @@
 
 Frakton NG is a **next-generation Angular UI library** that separates what matters: enforced accessibility and modern architecture, with complete visual freedom. Built with Angular 21+ signals, standalone components, and a comprehensive design token system.
 
+- **📦 Bundle Size**: 651KB unpacked / 133KB gzipped 
+- **🧩 Components**: 25+ production-ready 
+- **🚀 Zero Dependencies**: Only Angular required
+
 <br/>
 
 ## 🖼️ **See It In Action**
+
 [See the docs & interactive demos →](https://samukaii.github.io/frakton-ng)
 
 <img width="2315" height="1341" alt="image" src="https://github.com/user-attachments/assets/fd97b2f9-146b-42e4-89ac-332ae2d40507" />
@@ -30,10 +35,10 @@ Unlike traditional UI libraries, Frakton NG is **opinionated about the right thi
 
 ### **Completely Flexible (Your Choice)**
 
--  **Visual design**: All components use design tokens so you can customize every aspect of your product.
--  **Color system**: Semantic colors OR custom hex values with automatic contrast
--  **Theming**: Multi-theme support with runtime token inheritance
--  **Layout**: No imposed spacing, sizing, or visual constraints
+- **Visual design**: All components use design tokens so you can customize every aspect of your product.
+- **Color system**: Semantic colors OR custom hex values with automatic contrast
+- **Theming**: Multi-theme support with runtime token inheritance
+- **Layout**: No imposed spacing, sizing, or visual constraints
 
 [See the docs & interactive demos →](https://samukaii.github.io/frakton-ng)
 
@@ -125,58 +130,67 @@ export class AppComponent {
 ## **What Makes Frakton NG Unique**
 
 ### **Overlay Type Safety (First in Angular Ecosystem)**
+
 Automatic TypeScript inference for overlay component data - no other Angular UI library offers this:
 
 ```typescript
 // Your overlay component uses signals
 @Component({...})
 export class UserEditDialog {
-  userId = input.required<string>();
-  onSave = output<{name: string, email: string}>();
+	userId = input.required<string>();
+	onSave = output<{ name: string, email: string }>();
 }
 
 // Overlay service automatically infers ALL types
 const ref = overlay.open({
-  component: UserEditDialog,
-  data: {
-    userId: user.id,              // ✅ Auto-typed as string
-    onSave: (userData) => {       // ✅ userData auto-typed as {name: string, email: string}
-      this.updateUser(userData);  // TypeScript knows the exact shape
-    }
-  }
+	component: UserEditDialog,
+	data: {
+		userId: user.id,              // ✅ Auto-typed as string
+		onSave: (userData) => {       // ✅ userData auto-typed as {name: string, email: string}
+			this.updateUser(userData);  // TypeScript knows the exact shape
+		}
+	}
 });
 ```
 
 ### **Zero-Conflict Architecture**
+
 No CSS resets means perfect compatibility with existing projects:
 
 ```html
 <!-- Mix and match with ANY other UI library -->
 <mat-toolbar>Angular Material</mat-toolbar>
-<p-button>PrimeNG</p-button>  
+<p-button>PrimeNG</p-button>
 <fkt-button>Frakton NG</fkt-button>
 <!-- All work together perfectly - no style conflicts -->
 ```
 
 ### **Runtime Accessibility Enforcement**
+
 Most libraries document accessibility - Frakton NG **enforces** it:
 
 ```html
 // Throws actual errors for accessibility violations
-<fkt-button icon="save" />  
+<fkt-button icon="save"/>
 // ❌ Error: "When no text is provided, ariaLabel is required"
 
-<fkt-color-picker value="#FF5733" />
+<fkt-color-picker value="#FF5733"/>
 // ✅ Automatically announces "Bright red-orange" to screen readers
 ```
 
 ### **Signal-Native Performance**
+
 Built entirely on Angular signals for optimal reactivity:
 
 ```typescript
 // Traditional approach (heavy change detection)
-@Input() loading = false;
-get classes() { return `btn-${this.loading ? 'loading' : ''}`; }
+@Input()
+loading = false;
+get
+classes()
+{
+	return `btn-${this.loading ? 'loading' : ''}`;
+}
 
 // Frakton approach (signal-optimized)  
 loading = input(false);
@@ -186,8 +200,8 @@ classes = computed(() => `btn-${this.loading() ? 'loading' : ''}`);
 
 <br/>
 
-
 ### **Complete Visual Freedom**
+
 - **Design token architecture**: Three-tier fallback system (component → global → default)
 - **Custom color intelligence**: Accepts hex colors with automatic contrast calculation
 - **Theme inheritance**: Overlays automatically inherit design tokens from anchor elements
@@ -196,6 +210,7 @@ classes = computed(() => `btn-${this.loading() ? 'loading' : ''}`);
 <img width="2315" height="1342" alt="image" src="https://github.com/user-attachments/assets/86cb542f-b9a2-4e63-9642-37a9ca8f3b3b" />
 
 ### **Advanced Overlay System**
+
 - **Intelligent positioning**: 12 anchor positions with smart viewport-aware repositioning
 - **Z-index management**: Automatic stacking without conflicts
 - **Focus management**: Proper focus trapping and restoration
@@ -203,6 +218,7 @@ classes = computed(() => `btn-${this.loading() ? 'loading' : ''}`);
 - **Memory efficient**: Proper cleanup prevents memory leaks
 
 ### **Exceptional Documentation Experience**
+
 Interactive documentation that goes beyond traditional UI libraries:
 
 - **Live Control Playground**: Real-time component property editing with instant visual feedback
@@ -217,18 +233,73 @@ Interactive documentation that goes beyond traditional UI libraries:
 <br/>
 <br/>
 
-## 📊 **Performance & Bundle Size**
+## 📦 **Complete Component Library**
+
+### **25+ Production-Ready Components**
+
+#### **Actions**
+
+- **Button** - Multi-theme with icon support and loading states
+- **Buttons List** - Grouped action buttons with consistent styling
+
+#### **Data Display**
+
+- **Badge** - Status indicators and labels
+- **Icon** - Complete HeroIcons integration (600+ icons)
+- **Table** - Advanced data tables with sorting and actions
+
+#### **Feedback**
+
+- **No Results** - Empty state messaging
+- **Spinner** - Loading indicators with size variants
+
+#### **Form Controls**
+
+- **Autocomplete** - Smart search with auto-creation
+- **Badge Selector** - Visual selection interface
+- **Checkbox** - Enhanced checkboxes with validation
+- **Color Picker** - Advanced color selection with semantic intelligence
+- **Date Picker** - Calendar-based date selection
+- **Input** - Enhanced text inputs with formatting
+- **Select** - Dropdown selection with search
+- **Textarea** - Multi-line text input with auto-resize
+
+#### **Navigation**
+
+- **Calendar** - Standalone calendar with custom behaviors
+- **Calendar Navigator** - Date navigation interface
+- **Navigator** - Generic navigation primitive
+- **Side Menu** - Collapsible navigation menus
+
+#### **Overlay**
+
+- **Dialog** - Modal dialogs with type-safe data passing
+- **Drawer** - Slide-out panels
+- **Overlay** - Powerful positioning system primitive
+- **Tooltip** - Contextual help and information
+
+### **Bundle Efficiency**
+
+| Metric            | Frakton NG           | Angular Material | PrimeNG      |
+|-------------------|----------------------|------------------|--------------|
+| **Unpacked Size** | **651KB**            | ~3.5MB           | ~6MB         |
+| **Gzipped Size**  | **133KB**            | ~800KB           | ~1.2MB       |
+| **Dependencies**  | **0** (only Angular) | 15+ packages     | 20+ packages |
+| **Tree Shaking**  | ✅ Component-level    | ⚠️ Module-level  | ❌ Limited    |
+
+## 📊 **Performance & Architecture**
 
 Frakton NG is built for production applications:
 
+- **Zero Dependencies**: Only Angular core required - no external libraries
 - **Tree-shakeable**: Import only the components you use
 - **Signal-optimized**: Minimal change detection overhead
 - **CSS-in-JS free**: No runtime style generation
 - **Overlay-efficient**: Reuses DOM nodes, proper cleanup
 - **Memory conscious**: Automatic subscription management
+- **Bundle Efficient**: 5x smaller than Material, 9x smaller than PrimeNG
 
 <br/>
-
 
 ## 🎯 **Perfect For**
 
@@ -252,7 +323,6 @@ Frakton NG is built for production applications:
 
 <br/>
 
-
 ## ⚡️ Quick links
 
 - [Docs & Demos](https://samukaii.github.io/frakton-ng)
@@ -264,6 +334,5 @@ Frakton NG is built for production applications:
 
 Found a bug or want to suggest something?
 Check `CONTRIBUTING.md` or open an issue.
-
 
 MIT © Samuel Alejandro
