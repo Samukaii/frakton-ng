@@ -257,6 +257,7 @@ Frakton NG is built for production applications:
 - [Docs & Demos](https://samukaii.github.io/frakton-ng)
 - [Issues](https://github.com/Samukaii/frakton-ng/issues)
 
+<br/>
 
 ## 🛠️ Contributing
 
