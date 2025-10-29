@@ -1,6 +1,6 @@
 @font-face {
 	font-family: 'Frakton';
-	src: url('../fonts/frakton.woff2') format('woff2');
+	src: url('../../.storybook/assets/fonts/frakton.woff2') format('woff2');
 	font-weight: normal;
 	font-style: normal;
 	font-display: swap;
