@@ -1,5 +1,4 @@
 import { create } from 'storybook/theming';
-import fullLogo from '../../assets/logo/full-logo-dark.svg';
 
 export const dark = create({
 	base: 'dark',

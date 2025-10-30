@@ -1,13 +1,14 @@
-<section class="fkt-storybook-wrapper__toolbar">
-  <span class="fkt-sr-only" id=":r0:">Toolbar</span>
-  <div class="fkt-storybook-wrapper__actions">
+@if (viewMode() === 'story') {
+  <section class="fkt-storybook-wrapper__toolbar">
+    <span class="fkt-sr-only" id=":r0:">Toolbar</span>
+    <div class="fkt-storybook-wrapper__actions">
           <span class="fkt-storybook-wrapper__version-tag">
             21.0.0-next.10 (Beta)
           </span>
-    <button [attr.aria-label]="buttonThemeLabel()" (click)="toggleTheme()">
-      <fkt-icon [name]="buttonThemeIcon()"/>
-    </button>
-    <a href="https://github.com/Samukaii/frakton-ng" target="_blank" rel="noopener noreferrer">
+      <button [attr.aria-label]="buttonThemeLabel()" (click)="toggleTheme()">
+        <fkt-icon [name]="buttonThemeIcon()"/>
+      </button>
+      <a href="https://github.com/Samukaii/frakton-ng" target="_blank" rel="noopener noreferrer">
 					<span>
 						<svg viewBox="0 0 98 98" width="20" height="20" xmlns="http://www.w3.org/2000/svg">
 		<path fill-rule="evenodd" clip-rule="evenodd"
@@ -15,9 +16,12 @@
           fill="currentColor"/>
 	</svg>
 					</span>
-    </a>
-  </div>
-</section>
+      </a>
+    </div>
+  </section>
+
+}
+
 
 <div #container
      class="fkt-playground-component-container"
