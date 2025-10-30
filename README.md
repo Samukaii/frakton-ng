@@ -8,7 +8,7 @@
 
 Frakton NG is a **next-generation Angular UI library** that separates what matters: enforced accessibility and modern architecture, with complete visual freedom. Built with Angular 21+ signals, standalone components, and a comprehensive design token system.
 
-- **📦 Bundle Size**: 653KB unpacked / 131KB gzipped
+- **📦 Bundle Size**: < 700kb unpacked and < 150kb gzip
 - **🧩 Components**: 25+ production-ready
 - **🚀 Zero Dependencies**: Only Angular required
 
