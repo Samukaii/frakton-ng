@@ -1,0 +1,5 @@
+.story-renderer__heading {
+	a {
+		margin-left: -24px !important;
+	}
+}

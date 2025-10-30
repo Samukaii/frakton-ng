@@ -1,0 +1,74 @@
+@font-face {
+	font-family: 'JetBrains Mono';
+	src: url('../../assets/fonts/source-code-pro.woff2') format('woff2');
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}
+
+
+.frakton-icon {
+	font-family: 'Frakton Icons', sans-serif !important;
+  font-style: normal;
+}
+
+.sbdocs.sbdocs-wrapper {
+	padding: 0 !important;
+	transition: .3s ease;
+}
+
+.sbdocs.sbdocs-content {
+	max-width: 100% !important;
+	box-sizing: border-box;
+}
+
+.sbdocs-toc--custom {
+	nav {
+		position: sticky !important;
+		width: 14rem !important;
+	}
+}
+
+table.docblock-argstable {
+	tbody tr:not([title]) td {
+		background-color: #f1f5f9 !important;
+	}
+
+	tbody tr[title] td {
+		background-color: #1f2937 !important;
+
+		span, svg {
+			color: #F9fAFBFF !important;
+		}
+	}
+}
+
+[data-fkt-theme="dark"] {
+	table.docblock-argstable {
+		tbody tr:not([title]) td {
+			background-color: rgb(36, 42, 53) !important;
+		}
+	}
+}
+
+.toc-list {
+	display: flex;
+	flex-direction: column;
+	gap: .5rem;
+	margin-top: .5rem;
+	max-height: 80vh;
+	overflow-y: auto;
+	padding-left: 1.5rem;
+
+	border-left: solid 1px var(--fkt-color-neutral-300, white) !important;
+
+	li.toc-list-item {
+		a {
+			transition: var(--fkt-transition-base);
+
+			&:hover {
+				color: var(--fkt-color-brand-secondary);
+			}
+		}
+	}
+}
