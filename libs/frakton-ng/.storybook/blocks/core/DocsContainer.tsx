@@ -53,7 +53,7 @@ export const DocsContainer: FC<PropsWithChildren<DocsContainerProps>> = ({childr
 				<span className="fkt-sr-only" id=":r0:">Toolbar</span>
 				<div className="fkt-storybook-wrapper__actions">
           <span className="fkt-storybook-wrapper__version-tag">
-            21.0.0-next.10 (Beta)
+            21.0.0-next.11 (Beta)
           </span>
 					<button onClick={() => toggleTheme()}>
 					<span className="frakton-icon">
