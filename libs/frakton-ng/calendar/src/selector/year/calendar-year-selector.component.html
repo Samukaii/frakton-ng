@@ -1,9 +1,10 @@
 <div class="container">
 	@for (year of years(); track $index) {
-		<div
-			(click)="selectYear(year)"
-			class="container__year">
-			{{ year | date: 'yyyy' }}
-		</div>
+    <fkt-button
+      (click)="selectYear(year)"
+      [text]="$any(year | date: 'yyyy')"
+      theme="basic"
+      shape="rect"
+    />
 	}
 </div>

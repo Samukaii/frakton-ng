@@ -77,9 +77,9 @@ a {
 	font-weight: var(--fkt-font-semibold);
 	width: fit-content;
 	white-space: nowrap;
+  outline: none;
 
-
-	&:hover {
+	&:hover, &:focus-visible {
 		border-bottom: solid 1px var(--fkt-color-accent);
 	}
 }

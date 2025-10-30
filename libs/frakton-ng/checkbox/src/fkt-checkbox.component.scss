@@ -172,6 +172,10 @@ label {
 
 	&.invalid {
 		color: $invalid-color;
+
+    input[type="checkbox"] {
+      border-color: $invalid-color;
+    }
 	}
 
 	&.disabled {

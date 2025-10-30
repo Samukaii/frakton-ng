@@ -4,18 +4,19 @@ import { FktTooltipDirective } from 'frakton-ng/tooltip';
 import { FktDrawerComponent } from 'frakton-ng/drawer';
 import { RouterLink } from '@angular/router';
 import { FktMenuGroup } from './fkt-side-menu.types';
+import { FktButtonComponent } from 'frakton-ng/button';
 
 /**
  * A component that displays a collapsible side navigation menu with grouped menu items.
- * 
+ *
  * @example
  * ```html
- * <fkt-side-menu 
+ * <fkt-side-menu
  *   [groups]="menuGroups"
  *   [(opened)]="isMenuOpen">
  * </fkt-side-menu>
  * ```
- * 
+ *
  * @example
  * ```typescript
  * export class MyComponent {
@@ -34,12 +35,13 @@ import { FktMenuGroup } from './fkt-side-menu.types';
  */
 @Component({
 	selector: 'fkt-side-menu',
-	imports: [
-		FktDrawerComponent,
-		FktIconComponent,
-		FktTooltipDirective,
-		RouterLink,
-	],
+  imports: [
+    FktDrawerComponent,
+    FktIconComponent,
+    FktTooltipDirective,
+    RouterLink,
+    FktButtonComponent,
+  ],
 	templateUrl: './fkt-side-menu.component.html',
 	styleUrl: './fkt-side-menu.component.scss',
 })
@@ -49,7 +51,7 @@ export class FktSideMenuComponent {
 	 * @required
 	 */
 	groups = input.required<FktMenuGroup[]>()
-	
+
 	/**
 	 * Whether the side menu is opened with two-way binding
 	 * @default true

@@ -1,9 +1,10 @@
 <div class="container">
 	@for (month of months; track month) {
-		<div
-			(click)="selectMonth(month)"
-			class="container__month">
-			{{ month | date: 'MMMM' }}
-		</div>
+    <fkt-button
+      (click)="selectMonth(month)"
+      [text]="$any(month | date: 'MMMM')"
+      theme="basic"
+      shape="rect"
+    />
 	}
 </div>

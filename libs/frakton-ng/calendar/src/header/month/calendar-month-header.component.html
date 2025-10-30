@@ -3,16 +3,20 @@
 	(previous)="previous()"
 >
 	<div class="container">
-		<strong
+		<fkt-button
 			(click)="monthClick.emit()"
+      [text]="$any(currentDate() | date: 'MMMM')"
+      theme="basic"
+      shape="rect"
 			class="container__month">
-			{{ currentDate() | date: 'MMMM' }}
-		</strong>
+		</fkt-button>
 
-		<strong
+		<fkt-button
 			(click)="yearClick.emit()"
+      theme="basic"
+      shape="rect"
+      [text]="$any(currentDate() | date: 'yyyy')"
 			class="container__year">
-			{{ currentDate() | date: 'yyyy' }}
-		</strong>
+		</fkt-button>
 	</div>
 </fkt-navigator>

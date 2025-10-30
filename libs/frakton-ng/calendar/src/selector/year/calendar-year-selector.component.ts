@@ -1,10 +1,11 @@
 import { Component, computed, input, model, output } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { FktCalendarDateConfigFn } from '../../fkt-calendar.types';
+import { FktButtonComponent } from 'frakton-ng/button';
 
 @Component({
 	selector: 'fkt-calendar-year-selector',
-	imports: [DatePipe],
+  imports: [DatePipe, FktButtonComponent],
 	templateUrl: './calendar-year-selector.component.html',
 	styleUrl: './calendar-year-selector.component.scss',
 })

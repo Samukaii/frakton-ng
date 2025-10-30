@@ -12,12 +12,12 @@ $options-spinner-padding: var(--fkt-select-options-spinner-padding, var(--fkt-sp
 /*
 Background color for the select options overlay.
 @name --fkt-select-options-background-color
-@reference --fkt-color-neutral-100
+@reference --fkt-color-modal-background
 @component Options
 @category Colors
 @type color
 */
-$options-background-color: var(--fkt-select-options-background-color, var(--fkt-color-neutral-100));
+$options-background-color: var(--fkt-select-options-background-color, var(--fkt-color-modal-background));
 
 /*
 Text color for the select options overlay.
@@ -70,24 +70,14 @@ Padding for select options overlay items.
 $options-item-padding: var(--fkt-select-options-item-padding, var(--fkt-space-xs) var(--fkt-space-md));
 
 /*
-Background color for focused overlay items.
-@name --fkt-select-options-item-focus-background
-@reference --fkt-color-accent-opacity-20
-@component Options
-@category Colors
-@type color
-*/
-$options-item-focus-background: var(--fkt-select-options-item-focus-background, var(--fkt-color-accent-opacity-20));
-
-/*
 Background color for hovered overlay items.
 @name --fkt-select-options-item-hover-background
-@reference --fkt-color-accent-opacity-10
+@reference --fkt-color-primary-opacity-10
 @component Options
 @category Colors
 @type color
 */
-$options-item-hover-background: var(--fkt-select-options-item-hover-background, var(--fkt-color-accent-opacity-10));
+$options-item-hover-background: var(--fkt-select-options-item-hover-background, var(--fkt-color-primary-opacity-10));
 
 /*
 Background color for active/selected overlay items.
@@ -157,8 +147,8 @@ $options-icon-size: var(--fkt-select-options-icon-size, var(--fkt-space-xl));
 
 		&:focus {
 			outline: none;
-			background-color: $options-item-focus-background;
-			border-color: $options-item-focus-background;
+			background-color: $options-item-hover-background;
+			border-color: $options-item-hover-background;
 		}
 
 		&:first-child {

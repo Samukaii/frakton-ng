@@ -4,17 +4,29 @@
 	--fkt-color-brand-secondary: #ffb940;
 
 	/* Neutrals */
-	--fkt-color-neutral-950: #FFFFFFFF;
-	--fkt-color-neutral-900: #FFFFFFFF;
-	--fkt-color-neutral-800: #F7F9Fa;
-	--fkt-color-neutral-700: #F3F4F6FF;
-	--fkt-color-neutral-600: #E5E7EBFF;
-	--fkt-color-neutral-500: #D1D5DBFF;
-	--fkt-color-neutral-400: #6B7280FF;
-	--fkt-color-neutral-300: #4B5563FF;
-	--fkt-color-neutral-200: #374151FF;
-	--fkt-color-neutral-100: #1F2937FF;
-	--fkt-color-neutral-50: #111827FF;
+	/*--fkt-color-neutral-950: #FFFFFFFF;*/
+	/*--fkt-color-neutral-900: #FFFFFFFF;*/
+	/*--fkt-color-neutral-800: #F7F9Fa;*/
+	/*--fkt-color-neutral-700: #F3F4F6FF;*/
+	/*--fkt-color-neutral-600: #E5E7EBFF;*/
+	/*--fkt-color-neutral-500: #D1D5DBFF;*/
+	/*--fkt-color-neutral-400: #6B7280FF;*/
+	/*--fkt-color-neutral-300: #4B5563FF;*/
+	/*--fkt-color-neutral-200: #374151FF;*/
+	/*--fkt-color-neutral-100: #1F2937FF;*/
+	/*--fkt-color-neutral-50: #111827FF;*/
+
+  --fkt-color-neutral-950: #f8fafc;
+  --fkt-color-neutral-900: #f1f5f9;
+  --fkt-color-neutral-800: #e2e8f0;
+  --fkt-color-neutral-700: #cbd5e1;
+  --fkt-color-neutral-600: #94a3b8;
+  --fkt-color-neutral-500: #64748b;
+  --fkt-color-neutral-400: #475569;
+  --fkt-color-neutral-300: #334155;
+  --fkt-color-neutral-200: #1e293b;
+  --fkt-color-neutral-100: #0f172a;
+  --fkt-color-neutral-50: #020617;
 
 	--fkt-color-neutral-background: #1f2329;
 	--fkt-color-modal-background: #242A35;
@@ -22,6 +34,7 @@
 	/* States */
 	--fkt-color-disabled: var(--fkt-color-neutral-400);
 	--fkt-color-on-disabled: var(--fkt-color-neutral-600);
+  --fkt-color-focus-outline: var(--fkt-color-accent);
 
 	/* Semantic Colors */
 

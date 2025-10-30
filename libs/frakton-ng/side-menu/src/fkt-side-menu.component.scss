@@ -170,6 +170,16 @@ Background color for menu items on hover.
 $side-menu-item-hover-background-color: var(--fkt-side-menu-item-hover-background-color, #475569);
 
 /*
+Focus outline color when menu item gets focused.
+@name --fkt-side-menu-item-focus-outline-color
+@reference --fkt-color-focus-outline
+@component Side Menu
+@category Colors
+@type color
+*/
+$side-menu-item-focus-outline-color: var(--fkt-side-menu-item-focus-outline-color, var(--fkt-color-focus-outline));
+
+/*
 Width for collapsed menu items.
 @name --fkt-side-menu-item-collapsed-width
 @reference 48px
@@ -188,6 +198,16 @@ Font size for menu item icons.
 @type font-size
 */
 $side-menu-item-icon-font-size: var(--fkt-side-menu-item-icon-font-size, var(--fkt-font-size-2xl));
+
+/*
+Font size for menu item text.
+@name --fkt-side-menu-item-font-size
+@reference --fkt-font-size-md
+@component Side Menu
+@category Typography
+@type font-size
+*/
+$side-menu-item-font-size: var(--fkt-side-menu-item-font-size, var(--fkt-font-size-md));
 
 /*
 Padding for menu content sections.
@@ -300,9 +320,12 @@ fkt-drawer {
 				color: $side-menu-item-color;
 				background-color: $side-menu-item-background-color;
 				cursor: pointer;
+        border: none;
 				width: $side-menu-item-width;
 				max-width: 100%;
 				transition: $side-menu-item-transition;
+        font-size: $side-menu-item-font-size;
+        outline: none;
 
 				p {
 					white-space: nowrap;
@@ -319,6 +342,10 @@ fkt-drawer {
 					transition: $side-menu-item-transition-fast;
 					background-color: $side-menu-item-hover-background-color;
 				}
+
+        &:focus-visible {
+          box-shadow: 0 0 0 2px $side-menu-item-focus-outline-color;
+        }
 
 				&--collapsed {
 					width: $side-menu-item-collapsed-width;

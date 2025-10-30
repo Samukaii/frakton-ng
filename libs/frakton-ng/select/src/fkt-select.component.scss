@@ -32,12 +32,12 @@
 	/*
 	Border color of the select when it gets focused
 	@name --fkt-select-border-focus-color
-	@reference --fkt-color-brand-secondary
+	@reference --fkt-color-focus-outline
 	@component Field
 	@category Colors
 	@type color
  	*/
-	$border-focus-color: var(--fkt-select-border-focus-color, var(--fkt-color-brand-secondary));
+	$border-focus-color: var(--fkt-select-border-focus-color, var(--fkt-color-focus-outline));
 
 	/*
 	Color of the label in its normal (default) state.
@@ -52,12 +52,22 @@
 	/*
 	Color of the label when it gets focused
 	@name --fkt-select-label-focus-color
-	@reference --fkt-color-brand-secondary
+	@reference --fkt-color-focus-outline
 	@component Field
 	@category Colors
 	@type color
  	*/
-	$label-focus-color: var(--fkt-select-label-focus-color, var(--fkt-color-brand-secondary));
+	$label-focus-color: var(--fkt-select-label-focus-color, var(--fkt-color-focus-outline));
+
+  /*
+  Color of the label and border when it gets invalid
+  @name --fkt-select-invalid-color
+  @reference --fkt-color-danger
+  @component Field
+  @category Colors
+  @type color
+ */
+  $invalid-color: var(--fkt-select-invalid-color, var(--fkt-color-danger));
 
 	/*
 	Border radius for select
@@ -81,12 +91,12 @@
 	/*
 	Color for text into select
 	@name --fkt-select-text-color
-	@reference --fkt-color-neutral-900
+	@reference --fkt-color-neutral-950
 	@component Field
 	@category Colors
 	@type color
  	*/
-	$text-color: var(--fkt-select-text-color, var(--fkt-color-neutral-900));
+	$text-color: var(--fkt-select-text-color, var(--fkt-color-neutral-950));
 
 	// </design-tokens>
 
@@ -124,7 +134,7 @@
 			margin-bottom: var(--fkt-space-3xs);
 
 			&.error {
-				color: var(--fkt-color-danger);
+				color: var($invalid-color);
 			}
 
 			&.float {
@@ -158,11 +168,11 @@
 			}
 
 			&:focus {
-				border-color: var(--fkt-color-neutral-950);
+				border-color: var(--fkt-color-focus-outline);
 			}
 
 			&.error {
-				border-color: var(--fkt-color-danger);
+				border-color: $invalid-color;
 			}
 
 			.placeholder {
@@ -227,7 +237,7 @@
 					}
 
 					&.error {
-						color: var(--fkt-color-danger);
+						color: $invalid-color;
 					}
 				}
 
@@ -254,11 +264,11 @@
 
 			&.error {
 				.center, .left, .right {
-					border-color: var(--fkt-color-danger);
+					border-color: $invalid-color;
 				}
 
 				.center label {
-					color: var(--fkt-color-danger);
+					color: $invalid-color;
 				}
 			}
 

@@ -24,16 +24,16 @@
     "component": "Field",
     "category": "Colors",
     "type": "color",
-    "defaultValue": "#D1D5DBFF"
+    "defaultValue": "#94a3b8"
   },
   {
     "description": "Border color of the select when it gets focused",
     "name": "--fkt-select-border-focus-color",
-    "reference": "--fkt-color-brand-secondary",
+    "reference": "--fkt-color-focus-outline",
     "component": "Field",
     "category": "Colors",
     "type": "color",
-    "defaultValue": "#ffb940"
+    "defaultValue": "var(--fkt-color-accent)"
   },
   {
     "description": "Color of the label in its normal (default) state.",
@@ -42,16 +42,25 @@
     "component": "Field",
     "category": "Colors",
     "type": "color",
-    "defaultValue": "#6B7280FF"
+    "defaultValue": "#64748b"
   },
   {
     "description": "Color of the label when it gets focused",
     "name": "--fkt-select-label-focus-color",
-    "reference": "--fkt-color-brand-secondary",
+    "reference": "--fkt-color-focus-outline",
     "component": "Field",
     "category": "Colors",
     "type": "color",
-    "defaultValue": "#ffb940"
+    "defaultValue": "var(--fkt-color-accent)"
+  },
+  {
+    "description": "Color of the label and border when it gets invalid",
+    "name": "--fkt-select-invalid-color",
+    "reference": "--fkt-color-danger",
+    "component": "Field",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#E7000BFF"
   },
   {
     "description": "Border radius for select",
@@ -74,11 +83,11 @@
   {
     "description": "Color for text into select",
     "name": "--fkt-select-text-color",
-    "reference": "--fkt-color-neutral-900",
+    "reference": "--fkt-color-neutral-950",
     "component": "Field",
     "category": "Colors",
     "type": "color",
-    "defaultValue": "#111827FF"
+    "defaultValue": "#020617"
   },
   {
     "description": "Padding for spinner container in select options overlay.",
@@ -92,11 +101,11 @@
   {
     "description": "Background color for the select options overlay.",
     "name": "--fkt-select-options-background-color",
-    "reference": "--fkt-color-neutral-100",
+    "reference": "--fkt-color-modal-background",
     "component": "Options",
     "category": "Colors",
     "type": "color",
-    "defaultValue": "#F9FAFBFF"
+    "defaultValue": "#f1f5f9"
   },
   {
     "description": "Text color for the select options overlay.",
@@ -105,7 +114,7 @@
     "component": "Options",
     "category": "Colors",
     "type": "color",
-    "defaultValue": "#030712FF"
+    "defaultValue": "#020617"
   },
   {
     "description": "Box shadow for the select options overlay.",
@@ -132,7 +141,7 @@
     "component": "Options",
     "category": "Colors",
     "type": "color",
-    "defaultValue": "#F3F4F6FF"
+    "defaultValue": "#e2e8f0"
   },
   {
     "description": "Padding for select options overlay items.",
@@ -144,22 +153,13 @@
     "defaultValue": "var(--fkt-space-xs) var(--fkt-space-md)"
   },
   {
-    "description": "Background color for focused overlay items.",
-    "name": "--fkt-select-options-item-focus-background",
-    "reference": "--fkt-color-accent-opacity-20",
-    "component": "Options",
-    "category": "Colors",
-    "type": "color",
-    "defaultValue": "#FDC70033"
-  },
-  {
     "description": "Background color for hovered overlay items.",
     "name": "--fkt-select-options-item-hover-background",
-    "reference": "--fkt-color-accent-opacity-10",
+    "reference": "--fkt-color-primary-opacity-10",
     "component": "Options",
     "category": "Colors",
     "type": "color",
-    "defaultValue": "#FDC70019"
+    "defaultValue": "rgba(55, 65, 81, 0.1)"
   },
   {
     "description": "Background color for active/selected overlay items.",
@@ -168,7 +168,7 @@
     "component": "Options",
     "category": "Colors",
     "type": "color",
-    "defaultValue": "#F3F4F6FF"
+    "defaultValue": "#e2e8f0"
   },
   {
     "description": "Color for icons in overlay items.",
@@ -177,7 +177,7 @@
     "component": "Options",
     "category": "Colors",
     "type": "color",
-    "defaultValue": "#374151FF"
+    "defaultValue": "#334155"
   },
   {
     "description": "Size for icons in overlay items.",

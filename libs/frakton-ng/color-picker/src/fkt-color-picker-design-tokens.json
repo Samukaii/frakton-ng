@@ -33,7 +33,7 @@
     "component": "Field",
     "category": "Colors",
     "type": "color",
-    "defaultValue": "#D1D5DBFF"
+    "defaultValue": "#94a3b8"
   },
   {
     "description": "Background color for button hover state.",
@@ -42,7 +42,16 @@
     "component": "Field",
     "category": "Colors",
     "type": "color",
-    "defaultValue": "#F3F4F6FF"
+    "defaultValue": "#e2e8f0"
+  },
+  {
+    "description": "Outline color when button gets focused",
+    "name": "--fkt-color-picker-button-focus-outline",
+    "reference": "--fkt-color-focus-outline",
+    "component": "Field",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "var(--fkt-color-accent)"
   },
   {
     "description": "Text color for color labels and descriptions.",
@@ -51,7 +60,7 @@
     "component": "Field",
     "category": "Colors",
     "type": "color",
-    "defaultValue": "#111827FF"
+    "defaultValue": "#0f172a"
   },
   {
     "description": "Text color for preview color code.",
@@ -60,7 +69,7 @@
     "component": "Field",
     "category": "Colors",
     "type": "color",
-    "defaultValue": "#6B7280FF"
+    "defaultValue": "#64748b"
   },
   {
     "description": "Width of the color preview area.",
@@ -87,7 +96,7 @@
     "component": "Modal",
     "category": "Colors",
     "type": "color",
-    "defaultValue": "#FFFFFFFF"
+    "defaultValue": "#f1f5f9"
   },
   {
     "description": "Modal text color",
@@ -96,7 +105,7 @@
     "component": "Modal",
     "category": "Colors",
     "type": "color",
-    "defaultValue": "#030712FF"
+    "defaultValue": "#020617"
   },
   {
     "description": "Spacing between elements in the color picker modal.",
@@ -150,7 +159,7 @@
     "component": "Color controls",
     "category": "Colors",
     "type": "color",
-    "defaultValue": "#D1D5DBFF"
+    "defaultValue": "#94a3b8"
   },
   {
     "description": "Hover border color for control elements.",
@@ -204,7 +213,7 @@
     "component": "Color controls",
     "category": "Colors",
     "type": "color",
-    "defaultValue": "#111827FF"
+    "defaultValue": "#0f172a"
   },
   {
     "description": "Gap between elements in the value display.",

@@ -14,9 +14,10 @@
 	padding: var(--fkt-space-3xs);
 	outline: 2px solid transparent;
 
-	&:focus {
-		outline: 2px solid var(--fkt-color-accent);
-	}
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--fkt-color-focus-outline);
+  }
 
 	.toggle {
 		height: 100%;

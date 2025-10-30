@@ -16,7 +16,7 @@
 		--fkt-select-border-radius: var(--fkt-radius-md);
 
 		--fkt-controls-table-background: var(--fkt-color-modal-background);
-		--fkt-controls-table-text-color: var(--fkt-color-neutral-600);
+		--fkt-controls-table-text-color: var(--fkt-color-neutral-700);
 		--fkt-controls-table-border-color: var(--fkt-color-neutral-300);
 		--fkt-controls-table-component-text-color: var(--fkt-color-primary);
 		--fkt-controls-table-component-bg: rgba(60, 67, 77, 0.08);
@@ -24,7 +24,7 @@
 		--fkt-controls-table-component-active-text-color: var(--fkt-color-neutral-50);
 		--fkt-controls-table-component-hover-bg: var(--fkt-color-neutral-300);
 		--fkt-controls-table-category-bg: var(--fkt-color-neutral-200);
-		--fkt-controls-table-category-text-color: var(--fkt-color-neutral-600);
+		--fkt-controls-table-category-text-color: var(--fkt-color-neutral-700);
 		--fkt-controls-table-numeric-control-bg: var(--fkt-color-neutral-300);
 		--fkt-controls-table-numeric-control-color: var(--fkt-color-neutral-500);
 		--fkt-controls-table-numeric-control-hover-bg: var(--fkt-color-neutral-400);
@@ -38,6 +38,61 @@
 	}
 }
 
+.fkt-storybook-wrapper__toolbar {
+  background-color: var(--fkt-storybook-toolbar-background);
+  width: 100%;
+  box-shadow: var(--fkt-storybook-shadow);
+  transition: .3s ease;
+  display: flex;
+  justify-content: flex-end;
+  box-sizing: border-box;
+  padding: .5rem 1rem;
+
+  .fkt-storybook-wrapper__version-tag {
+    display: flex;
+    align-items: center;
+    color: var(--fkt-color-warning);
+    border: solid 1px var(--fkt-color-warning);
+    padding: .5rem;
+    box-sizing: border-box;
+    white-space: nowrap;
+    border-radius: var(--fkt-radius-md);
+    font-size: var(--fkt-font-size-sm);
+    font-weight: var(--fkt-font-semibold);
+  }
+
+
+  .fkt-storybook-wrapper__actions {
+    display: flex;
+    gap: .5rem;
+  }
+
+  button, a {
+    background: transparent;
+    color: var(--fkt-color-neutral-800);
+    padding: .3rem;
+    transition: var(--fkt-transition-base);
+    border-radius: var(--fkt-radius-md);
+    cursor: pointer;
+    border: solid 1px var(--fkt-color-neutral-400);
+    box-sizing: border-box;
+    min-height: 0;
+    aspect-ratio: 1;
+
+    &:hover {
+      background-color: var(--fkt-color-neutral-800);
+      color: var(--fkt-color-neutral-50);
+    }
+  }
+
+  a span {
+    width: 20px;
+  }
+
+  button span {
+    font-size: 1.25rem;
+  }
+}
 
 .fkt-playground-component-container {
 	color: var(--fkt-color-neutral-950);

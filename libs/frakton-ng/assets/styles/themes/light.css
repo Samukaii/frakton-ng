@@ -21,6 +21,7 @@
 	/* States */
 	--fkt-color-disabled: #DDDCE0;
 	--fkt-color-on-disabled: #9E9FA2;
+  --fkt-color-focus-outline: var(--fkt-color-accent);
 
 	/* Semantic Colors */
 

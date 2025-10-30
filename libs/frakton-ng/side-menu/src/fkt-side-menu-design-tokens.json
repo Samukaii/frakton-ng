@@ -153,6 +153,15 @@
     "defaultValue": "#475569"
   },
   {
+    "description": "Focus outline color when menu item gets focused.",
+    "name": "--fkt-side-menu-item-focus-outline-color",
+    "reference": "--fkt-color-focus-outline",
+    "component": "Side Menu",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "var(--fkt-color-accent)"
+  },
+  {
     "description": "Width for collapsed menu items.",
     "name": "--fkt-side-menu-item-collapsed-width",
     "reference": "48px",
@@ -169,6 +178,15 @@
     "category": "Typography",
     "type": "font-size",
     "defaultValue": "1.5rem"
+  },
+  {
+    "description": "Font size for menu item text.",
+    "name": "--fkt-side-menu-item-font-size",
+    "reference": "--fkt-font-size-md",
+    "component": "Side Menu",
+    "category": "Typography",
+    "type": "font-size",
+    "defaultValue": "1rem"
   },
   {
     "description": "Padding for menu content sections.",

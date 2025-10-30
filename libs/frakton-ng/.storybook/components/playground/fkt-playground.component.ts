@@ -22,6 +22,7 @@ import { ArgItem } from '../../models/arg-item';
 import { DesignTokenItem } from '../../models/design-token-item';
 import { FktPlaygroundTabsComponent } from './tabs/fkt-playground-tabs.component';
 import { getGlobalTheme } from '../../utils/get-global.theme';
+import { FktIconComponent } from 'frakton-ng/icon';
 
 
 export const globalTheme = () => {
@@ -54,9 +55,10 @@ export const globalTheme = () => {
 
 @Component({
 	selector: 'fkt-playground',
-	imports: [
-		FktPlaygroundTabsComponent
-	],
+  imports: [
+    FktPlaygroundTabsComponent,
+    FktIconComponent
+  ],
 	templateUrl: './fkt-playground.component.html',
 	styleUrl: './fkt-playground.component.scss',
 	host: {
@@ -164,6 +166,18 @@ export class FktPlaygroundComponent implements OnInit {
 			}
 		});
 	})
+
+  protected buttonThemeLabel = computed(() => {
+    return this.theme() === 'dark' ? 'Switch to light mode' : 'Switch to dark mode';
+  });
+
+  protected buttonThemeIcon = computed(() => {
+    return this.theme() === 'dark' ? 'sun' : 'moon';
+  })
+
+  protected toggleTheme() {
+    this.theme.update(theme => theme === 'dark' ? 'light' : 'dark');
+  }
 
 	ngOnInit() {
 		const component = this.component();

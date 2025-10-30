@@ -7,7 +7,6 @@ import { FktIconComponent } from 'frakton-ng/icon';
 import { ElementIdGeneratorService } from 'frakton-ng/internal/services';
 import { FktSelectOption } from './fkt-select.types';
 import { FormValueControl, ValidationError, WithOptionalField } from '@angular/forms/signals';
-import { getElementDesignTokens, getElementDesignToken } from 'frakton-ng/internal/utils';
 
 @Component({
 	selector: 'fkt-select',
@@ -71,10 +70,6 @@ export class FktSelectComponent implements FormValueControl<string | number | nu
 		if(this.disabled())
 			return;
 
-		const tokens = getElementDesignTokens(nativeElement);
-		const globalBackgroundColor = getElementDesignToken(nativeElement, '--fkt-color-neutral-100');
-		const backgroundColor = tokens['--fkt-select-overlay-background-color'] ?? globalBackgroundColor ?? '#FFF';
-
 		this.selectOpened.emit();
 
 		const overlayRef = this.overlayService.open({
@@ -96,8 +91,7 @@ export class FktSelectComponent implements FormValueControl<string | number | nu
 					this.closeOverlay();
 				},
 				maxHeight: '420px',
-				styles: tokens,
-				backgroundColor
+        inheritDesignTokens: true
 			}
 		});
 

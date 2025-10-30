@@ -108,6 +108,15 @@ Button background disabled color.
 $disabled-color: var(--fkt-button-disabled-color, var(--fkt-color-disabled));
 
 /*
+Outline button color when it gets focused.
+@name --fkt-color-focus-outline
+@reference --fkt-color-disabled
+@category Colors
+@type color
+*/
+$focus-color: var(--fkt-button-focus-outline-color, var(--fkt-color-focus-outline));
+
+/*
 Button text disabled color.
 @name --fkt-button-on-disabled-color
 @reference --fkt-color-on-disabled
@@ -360,6 +369,11 @@ button {
 	background: none;
 	font-family: inherit;
 	font-size: inherit;
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px $focus-color;
+  }
 
 	&:disabled {
 		cursor: not-allowed;

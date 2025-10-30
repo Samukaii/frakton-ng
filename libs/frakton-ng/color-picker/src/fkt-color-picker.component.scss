@@ -47,7 +47,17 @@ Background color for button hover state.
 @category Colors
 @type color
 */
-$button-hover-bg: var(--fkt-color-picker-button-hover-bg, var(--fkt-color-neutral-200));
+$button-hover-bg: var(--fkt-color-picker-button-hover-bg, var(--fkt-color-neutral-300));
+
+/*
+Outline color when button gets focused
+@name --fkt-color-picker-button-focus-outline
+@reference --fkt-color-focus-outline
+@component Field
+@category Colors
+@type color
+*/
+$button-focus-color: var(--fkt-color-picker-button-focus-outline, var(--fkt-color-focus-outline));
 
 /*
 Text color for color labels and descriptions.
@@ -67,7 +77,7 @@ Text color for preview color code.
 @category Colors
 @type color
 */
-$preview-value: var(--fkt-color-picker-preview-value-color, var(--fkt-color-neutral-500));
+$preview-value: var(--fkt-color-picker-preview-value-color, var(--fkt-color-neutral-600));
 
 /*
 Width of the color preview area.
@@ -118,6 +128,11 @@ button {
 	&:hover {
 		background-color: $button-hover-bg;
 	}
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px $button-focus-color;
+  }
 
 	.preview-container {
 		display: flex;

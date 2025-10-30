@@ -1,9 +1,9 @@
 import { Component, computed, inject, input, model } from '@angular/core';
 import { FktInputComponent } from 'frakton-ng/input';
-import { FormControlSuffixDirective, dateFormatter } from 'frakton-ng/forms';
+import { dateFormatter, FormControlSuffixDirective } from 'frakton-ng/forms';
 import { FktOverlayRef, FktOverlayService } from 'frakton-ng/overlay';
 import { FktDatePickerModalComponent } from './modal/fkt-date-picker-modal.component';
-import { getElementDesignTokens, getElementDesignToken, isValidDateString, MarkUsed, outsideClickEffect } from 'frakton-ng/internal/utils';
+import { isValidDateString, MarkUsed, outsideClickEffect } from 'frakton-ng/internal/utils';
 import { FktGeometryPosition } from 'frakton-ng/internal/types';
 import { FktButtonComponent } from 'frakton-ng/button';
 import { FormValueControl, ValidationError, WithOptionalField } from '@angular/forms/signals';
@@ -57,9 +57,6 @@ export class FktDatePickerComponent implements FormValueControl<Date | string | 
 			return;
 		}
 
-		const tokens = getElementDesignTokens(ref);
-		const backgroundColor = getElementDesignToken(ref, '--fkt-date-picker-modal-background-color', '--fkt-color-neutral-50');
-
 		this.overlayRef = this.overlay.open({
 			component: FktDatePickerModalComponent,
 			data: {
@@ -75,8 +72,7 @@ export class FktDatePickerComponent implements FormValueControl<Date | string | 
 				width: 'fit-content',
 				position,
 				maxHeight: 'fit-content',
-				backgroundColor,
-				styles: tokens
+        inheritDesignTokens: true
 			},
 		});
 	}

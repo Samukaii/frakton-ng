@@ -38,11 +38,11 @@
 	/*
 	Color of the label in its normal (default) state.
 	@name --fkt-textarea-label-color
-	@reference --fkt-color-neutral-500
+	@reference --fkt-color-neutral-900
 	@category Colors
 	@type color
  	*/
-	$label-color: var(--fkt-textarea-label-color, var(--fkt-color-neutral-500));
+	$label-color: var(--fkt-textarea-label-color, var(--fkt-color-neutral-900));
 
 	/*
 	Color of the label when it gets focused
