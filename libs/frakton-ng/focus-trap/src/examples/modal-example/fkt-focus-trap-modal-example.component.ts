@@ -32,7 +32,7 @@ import { FktDialogService } from 'frakton-ng/dialog';
         color: var(--fkt-color-text-base);
       }
 
-      p {
+      & > p {
         margin: 0 0 var(--fkt-space-md) 0;
         color: var(--fkt-color-text-muted);
       }
