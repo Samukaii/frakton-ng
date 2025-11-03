@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, effect, input, } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, effect, ElementRef, input, viewChild, } from '@angular/core';
 import { FktButtonIconPosition, FktButtonShape, FktButtonTheme } from './fkt-button.types';
 import { FktIconComponent, FktIconName } from 'frakton-ng/icon';
 import { FktColor, fktColors, FktLabelColor } from 'frakton-ng/core';
@@ -21,6 +21,7 @@ export class FktButtonComponent {
 	disabled = input(false);
 	text = input('');
 	ariaLabel = input('');
+	tabIndex = input<number>(0);
 	loadingText = input('');
 	color = input<FktColor>('primary');
 	labelColor = input<FktLabelColor>('auto');
@@ -35,6 +36,12 @@ export class FktButtonComponent {
 		if (!this.text() && !this.ariaLabel())
 			throw new Error('Accessibility error: When no text is provided, ariaLabel is required')
 	});
+
+  private button = viewChild.required<unknown, ElementRef<HTMLButtonElement>>('button', {read: ElementRef});
+
+  focus() {
+    this.button().nativeElement.focus();
+  }
 
 	protected buttonAriaLabel = computed(() => {
 		const loading = this.loading();

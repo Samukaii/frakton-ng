@@ -1,0 +1,25 @@
+<div class="example-container">
+  <p class="instructions">
+    Click the button below to open a dialog using FktDialogService.
+    The Frakton Dialog component automatically includes focus trap functionality.
+  </p>
+
+  <fkt-button text="Open Dialog" (click)="openDialog()" />
+
+  <div class="info-section">
+    <h4>About Frakton Dialogs</h4>
+    <p>
+      The <code>FktDialogService</code> automatically implements focus trap using the same
+      <code>fktFocusTrap</code> directive demonstrated in other examples. This ensures:
+    </p>
+    <ul>
+      <li>Focus is trapped within the dialog content</li>
+      <li>Tab navigation cycles within the dialog</li>
+      <li>Accessibility guidelines are followed</li>
+      <li>No additional setup required</li>
+    </ul>
+  </div>
+
+  <p class="outside-info">This content remains accessible when no dialog is open.</p>
+  <fkt-button text="Another Button" theme="basic" />
+</div>

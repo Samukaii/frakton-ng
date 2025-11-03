@@ -3,12 +3,15 @@
 **Architecturally opinionated. Visually unlimited. Enterprise-ready.**
 
 [![npm version](https://img.shields.io/npm/v/frakton-ng?style=flat-square)](https://www.npmjs.com/package/frakton-ng)
+![bundlephobia](https://badgen.net/bundlephobia/minzip/frakton-ng)
+![bundlephobia](https://badgen.net/bundlephobia/min/frakton-ng)
+![bundlephobia](https://badgen.net/bundlephobia/tree-shaking/frakton-ng)
 
 > A new kind of Angular UI library: enforced accessibility, signal-native architecture, and absolute visual freedom through a modern token system.
 
 Frakton NG is a **next-generation Angular UI library** that separates what matters: enforced accessibility and modern architecture, with complete visual freedom. Built with Angular 21+ signals, standalone components, and a comprehensive design token system.
 
-- **📦 Bundle Size**: < 700kb unpacked and < 150kb gzip
+- **📦 Bundle Size**: < 700kb unpacked and < 150kb gzipped
 - **🧩 Components**: 25+ production-ready
 - **🚀 Zero Dependencies**: Only Angular required
 
@@ -287,12 +290,10 @@ Interactive documentation that goes beyond traditional UI libraries:
 
 ### **Bundle Efficiency**
 
-| Metric            | Frakton NG           | Angular Material | PrimeNG      |
-|-------------------|----------------------|------------------|--------------|
-| **Unpacked Size** | **651KB**            | ~3.5MB           | ~6MB         |
-| **Gzipped Size**  | **133KB**            | ~800KB           | ~1.2MB       |
-| **Dependencies**  | **0** (only Angular) | 15+ packages     | 20+ packages |
-| **Tree Shaking**  | ✅ Component-level    | ⚠️ Module-level  | ❌ Limited    |
+| Metric            | Frakton NG        | Angular Material                    | PrimeNG                             |
+|-------------------|-------------------|-------------------------------------|-------------------------------------|
+| **Unpacked Size** | **651KB**         | ~8.5MB                              | ~11.4 MB                            |
+| **Tree Shaking**  | ✅ Component-level | ⚠️ Module-level and component-level | ⚠️ Module-level and component-level |
 
 <br/>
 

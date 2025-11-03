@@ -1,4 +1,6 @@
 <button
+  #button
+  [tabIndex]="tabIndex()"
 	[attr.aria-busy]="loading()"
 	[attr.aria-label]="buttonAriaLabel()"
 	[type]="type()" [disabled]="disabled() || loading()" [class]="classes()">

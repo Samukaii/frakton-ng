@@ -9,6 +9,7 @@ import { FormValueControl } from '@angular/forms/signals';
 })
 export class FktToggleComponent implements FormValueControl<boolean> {
 	value = model(false)
+  disabled = input(false);
 
 	label = input.required<string>();
 	hideLabel = input(false, {

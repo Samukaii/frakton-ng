@@ -1,5 +1,6 @@
 import { AfterViewInit, Directive, ElementRef, inject, input } from '@angular/core';
 import { getFocusableElementsSelectors } from 'frakton-ng/internal/utils';
+import { filterElementsWithTabIndex } from '../../internal/utils/filter-elements-with-tab-index';
 
 @Directive({
 	selector: '[fktFocusTrap]',
@@ -11,13 +12,12 @@ export class FktFocusTrapDirective implements AfterViewInit {
 	preventScroll = input(true);
 	private element = inject(ElementRef).nativeElement as HTMLElement;
 
-
 	private selectors = getFocusableElementsSelectors();
 
 	protected handleTab(event: KeyboardEvent) {
 		if (event.key !== 'Tab') return;
 
-		const nodes = Array.from(this.element.querySelectorAll(this.getSelectors())) as HTMLElement[];
+		const nodes = filterElementsWithTabIndex(Array.from(this.element.querySelectorAll(this.getSelectors())) as HTMLElement[]);
 		if (!nodes.length) return;
 
 		const first = nodes[0];

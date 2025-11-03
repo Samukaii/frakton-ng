@@ -6,6 +6,18 @@
 	font-display: swap;
 }
 
+@font-face {
+  font-family: 'Frakton';
+  src: url('../../assets/fonts/frakton.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+* {
+  font-family: 'Frakton', sans-serif;
+}
+
 
 .frakton-icon {
 	font-family: 'Frakton Icons', sans-serif !important;
@@ -27,6 +39,14 @@
 		position: sticky !important;
 		width: 14rem !important;
 	}
+}
+.source-application-code.source-application-code--inline code {
+  color: var(--fkt-color-info);
+  background-color: var(--fkt-color-info-opacity-10);
+  border: none;
+  border-radius: var(--fkt-radius-sm);
+  padding: var(--fkt-space-3xs);
+  font-weight: var(--fkt-font-semibold);
 }
 
 table.docblock-argstable {

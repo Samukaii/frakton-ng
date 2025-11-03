@@ -122,60 +122,68 @@ $grid-gap: var(--fkt-calendar-grid-gap, var(--fkt-space-2xs));
 // </design-tokens>
 
 :host {
-	* {
-		box-sizing: border-box;
-	}
+  * {
+    box-sizing: border-box;
+  }
 }
 
 .calendar__date {
-	user-select: none;
-	transition: var(--fkt-transition-base);
-	border: solid 1px transparent;
-	aspect-ratio: 1;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	border-radius: $date-border-radius;
-	margin: $date-margin;
-	min-width: $date-size;
-	min-height: $date-size;
+  user-select: none;
+  transition: var(--fkt-transition-base);
+  border: solid 1px transparent;
+  aspect-ratio: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: $date-border-radius;
+  margin: $date-margin;
+  min-width: $date-size;
+  min-height: $date-size;
+  outline: none;
+
+  &:focus-visible {
+    box-shadow: var(--fkt-focus-ring-shadow);
+  }
 }
 
 .calendar__date--clickable {
-	cursor: pointer;
+  cursor: pointer;
 
-	&:hover {
-		background-color: $date-hover-bg;
-	}
+  &:hover {
+    background-color: $date-hover-bg;
+  }
 }
 
 .calendar__date--today {
-	border: solid 1px $date-today-border-color;
+  border: solid 1px $date-today-border-color;
 }
 
 .calendar__date--current-date {
-	background-color: $date-selected-bg;
-	color: $date-selected-color;
+  background-color: $date-selected-bg;
+  color: $date-selected-color;
 }
 
 .calendar__date--out-of-range {
-	opacity: $date-out-of-range-opacity;
+  opacity: $date-out-of-range-opacity;
+}
+
+.calendar__dates, .calendar__row {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
 }
 
 .calendar {
-	display: grid;
-	grid-template-columns: repeat(7, minmax(0, 1fr));
-	width: 100%;
-	gap: $grid-gap;
+  width: 100%;
+  gap: $grid-gap;
 
-	&__weekday {
-		text-align: center;
-		text-transform: capitalize;
-		color: $weekday-color;
-		font-weight: $weekday-font-weight;
-		font-size: $weekday-font-size;
-		padding: $date-margin 0;
-	}
+  &__weekday {
+    text-align: center;
+    text-transform: capitalize;
+    color: $weekday-color;
+    font-weight: $weekday-font-weight;
+    font-size: $weekday-font-size;
+    padding: $date-margin 0;
+  }
 }
 
 

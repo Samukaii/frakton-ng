@@ -11,9 +11,6 @@ import { renderComponent } from '../../.storybook/decorators/render-component';
 
 const meta: Meta = {
 	title: 'Components/Overlay/Overlay',
-	parameters: {
-		layout: 'centered',
-	},
 	decorators: [
 		fktStoryRenderer(),
 	],

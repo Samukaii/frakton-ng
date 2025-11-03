@@ -1,0 +1,15 @@
+<div class="example-container">
+  <p class="instructions">Try tabbing through the elements below. Focus will be trapped within the container.</p>
+  
+  <div class="focus-trap-container" fktFocusTrap [preventScroll]="preventScroll()">
+    <h3>Focus Trap Demo</h3>
+    <p>This container traps focus. Use Tab and Shift+Tab to navigate.</p>
+    
+    <fkt-button text="First Button" />
+    <fkt-button text="Second Button" />
+    <fkt-button text="Third Button" />
+  </div>
+  
+  <p class="outside-info">This content is outside the focus trap and won't be reachable via Tab navigation.</p>
+  <fkt-button text="Outside Button (Not Focusable)" />
+</div>

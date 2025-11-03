@@ -21,6 +21,7 @@ $input-horizontal-padding: var(--fkt-input-horizontal-padding, var(--fkt-space-m
 /*
 Border color of the input in its normal (default) state.
 @name --fkt-input-border-color
+
 @reference --fkt-color-neutral-400
 @component Field
 @category Colors
@@ -41,12 +42,12 @@ $border-focus-color: var(--fkt-input-border-focus-color, var(--fkt-color-brand-s
 /*
 Color of the label in its normal (default) state.
 @name --fkt-input-label-color
-@reference --fkt-color-neutral-500
+@reference --fkt-color-neutral-900
 @component Field
 @category Colors
 @type color
  */
-$label-color: var(--fkt-input-label-color, var(--fkt-color-neutral-500));
+$label-color: var(--fkt-input-label-color, var(--fkt-color-neutral-900));
 
 /*
 Color of the label when it gets focused

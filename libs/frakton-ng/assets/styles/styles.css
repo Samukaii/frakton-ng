@@ -1,22 +1,9 @@
 @font-face {
-	font-family: 'Frakton';
-	src: url('../../.storybook/assets/fonts/frakton.woff2') format('woff2');
-	font-weight: normal;
-	font-style: normal;
-	font-display: swap;
-}
-
-@font-face {
 	font-family: 'Frakton Icons';
 	src: url('../fonts/frakton-icons.woff2') format('woff2');
 	font-weight: normal;
 	font-style: normal;
 	font-display: swap;
-}
-
-
-* {
-	font-family: Frakton, sans-serif;
 }
 
 :root {
@@ -72,6 +59,8 @@
 	--fkt-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.2);
 	--fkt-shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.3);
 	--fkt-shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+
+  --fkt-focus-ring-shadow: 0 0 0 2px var(--fkt-color-focus-outline);
 
 	/* Line Heights */
 	--fkt-line-height-xs: 1;

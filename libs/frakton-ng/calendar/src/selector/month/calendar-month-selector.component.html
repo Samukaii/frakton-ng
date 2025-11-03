@@ -1,10 +1,18 @@
-<div class="container">
-	@for (month of months; track month) {
+<div
+  class="container"
+  role="grid"
+  (keydown)="onGridKeydown($event)"
+>
+  @for (month of months; track month) {
     <fkt-button
-      (click)="selectMonth(month)"
-      [text]="$any(month | date: 'MMMM')"
+      role="gridcell"
+      [tabIndex]="$index === focusedIndex() ? 0 : -1"
+      [text]="(months[$index] | date: 'MMMM') ?? ''"
       theme="basic"
       shape="rect"
+      (click)="selectMonth($index)"
+      (focus)="focusedIndex.set($index)"
+      [class.selected]="$index === selectedIndex"
     />
-	}
+  }
 </div>

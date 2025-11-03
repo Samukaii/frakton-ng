@@ -168,6 +168,10 @@ label {
 				transform: rotate(45deg) scale(1);
 			}
 		}
+
+    &:focus-visible {
+      box-shadow: var(--fkt-focus-ring-shadow);
+    }
 	}
 
 	&.invalid {

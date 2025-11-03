@@ -38,11 +38,11 @@
   {
     "description": "Color of the label in its normal (default) state.",
     "name": "--fkt-select-label-color",
-    "reference": "--fkt-color-neutral-500",
+    "reference": "--fkt-color-neutral-900",
     "component": "Field",
     "category": "Colors",
     "type": "color",
-    "defaultValue": "#64748b"
+    "defaultValue": "#0f172a"
   },
   {
     "description": "Color of the label when it gets focused",

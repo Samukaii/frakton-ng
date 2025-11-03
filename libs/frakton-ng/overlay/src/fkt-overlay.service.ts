@@ -17,6 +17,15 @@ export class FktOverlayService {
 	private anchorService = inject(FktElementAnchorService);
 	private overlays = signal(new Map<string, FktOverlayRef<any>>());
 
+  // Controle de duplicatas
+  // Gerenciamento de ID
+  // Auto criação de id
+  // Injeção de dependências via DI customizada
+  // Retorno de foco ao fechar
+  // Gerenciamento de z-index
+  // Herança de design tokens
+  // Criação da âncora
+
 	open<T>(options: FktOverlayOptions<T>) {
 		if (!options.panelOptions?.allowDuplicates) {
 			const ref = this.findRefByComponent(options.component);

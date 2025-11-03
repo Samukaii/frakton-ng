@@ -24,7 +24,7 @@
     "component": "Field",
     "category": "Colors",
     "type": "color",
-    "defaultValue": "#D1D5DBFF"
+    "defaultValue": "#94a3b8"
   },
   {
     "description": "Border color of the input when it gets focused",
@@ -38,11 +38,11 @@
   {
     "description": "Color of the label in its normal (default) state.",
     "name": "--fkt-input-label-color",
-    "reference": "--fkt-color-neutral-500",
+    "reference": "--fkt-color-neutral-900",
     "component": "Field",
     "category": "Colors",
     "type": "color",
-    "defaultValue": "#6B7280FF"
+    "defaultValue": "#0f172a"
   },
   {
     "description": "Color of the label when it gets focused",
@@ -78,7 +78,7 @@
     "component": "Field",
     "category": "Colors",
     "type": "color",
-    "defaultValue": "#111827FF"
+    "defaultValue": "#0f172a"
   },
   {
     "description": "Modal background color for date picker.",
@@ -87,7 +87,7 @@
     "component": "Modal",
     "category": "Colors",
     "type": "color",
-    "defaultValue": "#FFFFFFFF"
+    "defaultValue": "#f1f5f9"
   },
   {
     "description": "Modal text color for date picker.",
@@ -96,7 +96,7 @@
     "component": "Modal",
     "category": "Colors",
     "type": "color",
-    "defaultValue": "#030712FF"
+    "defaultValue": "#020617"
   },
   {
     "description": "Modal width for date picker.",
@@ -132,7 +132,7 @@
     "component": "Modal",
     "category": "Colors",
     "type": "color",
-    "defaultValue": "#E5E7EBFF"
+    "defaultValue": "#cbd5e1"
   },
   {
     "description": "Calendar cell size for date picker.",
@@ -150,7 +150,7 @@
     "component": "Modal",
     "category": "Colors",
     "type": "color",
-    "defaultValue": "#F3F4F6FF"
+    "defaultValue": "#e2e8f0"
   },
   {
     "description": "Calendar cell selected background color.",
@@ -168,7 +168,7 @@
     "component": "Modal",
     "category": "Colors",
     "type": "color",
-    "defaultValue": "#FFFFFFFF"
+    "defaultValue": "#f8fafc"
   },
   {
     "description": "Calendar header text color.",
@@ -177,7 +177,7 @@
     "component": "Modal",
     "category": "Colors",
     "type": "color",
-    "defaultValue": "#374151FF"
+    "defaultValue": "#334155"
   },
   {
     "description": "Gap between calendar elements.",

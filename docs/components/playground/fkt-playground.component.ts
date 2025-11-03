@@ -55,10 +55,10 @@ export const globalTheme = () => {
 
 @Component({
 	selector: 'fkt-playground',
-  imports: [
-    FktPlaygroundTabsComponent,
-    FktIconComponent
-  ],
+	imports: [
+		FktPlaygroundTabsComponent,
+		FktIconComponent
+	],
 	templateUrl: './fkt-playground.component.html',
 	styleUrl: './fkt-playground.component.scss',
 	host: {
@@ -75,7 +75,7 @@ export class FktPlaygroundComponent implements OnInit {
 	args = input<Generic>();
 	argTypes = input<Record<string, ArgType>>();
 	noPadding = input(false);
-	customDimensions = input<{width?: string; height?: string}>();
+	customDimensions = input<{ width?: string; height?: string }>();
 	rawDesignTokens = input<DesignToken[]>([], {
 		alias: "designTokens",
 	});
@@ -93,12 +93,12 @@ export class FktPlaygroundComponent implements OnInit {
 	protected templateSelector = computed(() => {
 		let selector = this.selector() ?? ':host'
 
-		try {
-			const reflection = reflectComponentType(this.targetComponent())
-
-			if (reflection?.selector)
-				selector = reflection?.selector;
-		} catch (e) {
+		if (!this.selector()) {
+			try {
+				const reflection = reflectComponentType(this.targetComponent())
+				if (reflection?.selector)
+					selector = reflection?.selector;
+			} catch (e) {}
 		}
 
 		return selector;
@@ -167,17 +167,17 @@ export class FktPlaygroundComponent implements OnInit {
 		});
 	})
 
-  protected buttonThemeLabel = computed(() => {
-    return this.theme() === 'dark' ? 'Switch to light mode' : 'Switch to dark mode';
-  });
+	protected buttonThemeLabel = computed(() => {
+		return this.theme() === 'dark' ? 'Switch to light mode' : 'Switch to dark mode';
+	});
 
-  protected buttonThemeIcon = computed(() => {
-    return this.theme() === 'dark' ? 'sun' : 'moon';
-  })
+	protected buttonThemeIcon = computed(() => {
+		return this.theme() === 'dark' ? 'sun' : 'moon';
+	})
 
-  protected toggleTheme() {
-    this.theme.update(theme => theme === 'dark' ? 'light' : 'dark');
-  }
+	protected toggleTheme() {
+		this.theme.update(theme => theme === 'dark' ? 'light' : 'dark');
+	}
 
 	ngOnInit() {
 		const component = this.component();
