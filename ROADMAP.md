@@ -4,15 +4,6 @@
 
 Frakton-ng is an Angular component library designed with excellence in developer experience (DX) and flexibility using Angular best practices. The library follows a zero-conflict architecture (no reset.css) to enable seamless integration with other UI libraries.
 
-## Release Strategy
-
-### Version Alignment
-- **Major versions** synchronized with Angular releases
-- **Minor releases** every 3 months
-- **Breaking changes philosophy** follows Angular's approach:
-  - New API → Next version → Developer preview → Experimental → Stable release
-  - Existing APIs maintained, deprecated after 1-2 majors, removed after 2+ additional majors (depending on usage)
-
 ## Current Component Library (21 Components)
 
 ### Essential Components
