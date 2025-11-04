@@ -8,7 +8,7 @@ export const dark = create({
 	fontCode: 'monospace',
 
 	brandTitle: 'Frakton NG',
-	brandUrl: 'https://example.com',
+	brandUrl: 'https://samukaii.github.io/frakton-ng',
 	brandImage: fullLogo,
 	brandTarget: '_self',
 
