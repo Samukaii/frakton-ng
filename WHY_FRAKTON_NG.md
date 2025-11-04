@@ -115,7 +115,7 @@ const overlayRef = this.overlayService.open({
 - **Signal Requirement**: Enforces modern Angular practices
 - **Automatic Type Inference**: Complete TypeScript safety
 - **Memory Management**: Automatic cleanup and focus restoration
-- **Intelligent Positioning**: 12 positions with smart fallbacks
+- **Intelligent Positioning**: 16 positions with smart fallbacks
 
 ### 3. Semantic Color Intelligence
 

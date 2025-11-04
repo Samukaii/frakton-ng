@@ -219,7 +219,7 @@ export class FraktonComponent {
 
 ### **Advanced Overlay System**
 
-- **Intelligent positioning**: 12 anchor positions with smart viewport-aware repositioning
+- **Intelligent positioning**: 16 anchor positions with smart viewport-aware repositioning
 - **Z-index management**: Automatic stacking without conflicts
 - **Focus management**: Proper focus trapping and restoration
 - **Theme inheritance**: Child overlays automatically match parent themes

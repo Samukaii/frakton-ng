@@ -13,7 +13,7 @@ Built with modern Angular signals and reactive patterns, it supports dynamic pos
 - **Advanced TypeScript Inference**: Automatic type inference for overlay data based on component signal inputs, outputs, and models
 - **Signal-Based Architecture**: Built for Angular's new signal APIs with full reactivity support
 - **Component Agnostic Design**: Overlay components work anywhere - in overlays, dialogs, or standalone
-- **Intelligent Positioning**: Automatic positioning with 12 different anchor positions and smart fallbacks
+- **Intelligent Positioning**: Automatic positioning with 16 different anchor positions and smart fallbacks
 - **Dynamic Styling**: Real-time style updates and theme-aware overlays
 - **Memory Safe**: Automatic lifecycle management with proper cleanup and destroy callbacks
 - **Performance Optimized**: Efficient DOM management and minimal re-renders
@@ -44,7 +44,7 @@ export interface FktOverlayOptions<T> {
 		position?: FktGeometryPosition;
 		disableAutoReposition?: boolean;
 		disableAutoClose?: boolean;
-		outsideClick?: (element: HTMLElement) => void;
+		onOutsideClick?: (element: HTMLElement) => void;
 	}
 }
 
@@ -94,6 +94,10 @@ The overlay supports intelligent positioning with the following options:
 - **`right-start`**: Right of anchor, aligned to the top
 - **`right-center`**: Right of anchor, centered
 - **`right-end`**: Right of anchor, aligned to the bottom
+- **`top-left`**: Top left corner
+- **`top-right`**: Top right corner
+- **`bottom-left`**: Bottom left corner
+- **`bottom-right`**: Bottom right corner
 
 ## TypeScript Inference & Component Design
 
@@ -355,12 +359,14 @@ Customize behavior when users click outside the overlay:
 Fine-tune overlay positioning behavior:
 
 ```typescript
-panelOptions: {
-	position: 'bottom-start',
-	disableAutoReposition: true, // Stays in position even if off-screen
-	width: 'fit-content', // Adapts to content size
-	maxHeight: '400px', // Prevents oversized overlays
-	overflow: 'auto' // Adds scrolling when needed
+interface FktOverlayPanelOptions {
+	panelOptions: {
+		position: 'bottom-start',
+		disableAutoReposition: true, // Stays in position even if off-screen
+		width: 'fit-content', // Adapts to content size
+		maxHeight: '400px', // Prevents oversized overlays
+		overflow: 'auto' // Adds scrolling when needed
+	}
 }
 ```
 
