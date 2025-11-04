@@ -32,7 +32,8 @@ const config: StorybookConfig = {
 
 			--fkt-storybook-sidebar-icon-border-color: rgba(0,0,0,0.2);
 			--fkt-storybook-sidebar-hover-color: rgba(239,180,74,0.3);
-			--fkt-storybook-sidebar-background-color: #efb44a;
+			--fkt-storybook-sidebar-item-background-color: #efb44a;
+			--fkt-storybook-sidebar-background-color: #F1F5F9FF;
 
 			--fkt-storybook-sidebar-story-icon-color: #efb44a;
 			--fkt-storybook-sidebar-document-icon-color: #bd1313;
@@ -46,7 +47,8 @@ const config: StorybookConfig = {
 
 			--fkt-storybook-sidebar-icon-border-color: rgba(255,255,255,0.2);
 			--fkt-storybook-sidebar-hover-color: rgba(239,180,74,0.3);
-			--fkt-storybook-sidebar-background-color: #efb44a;
+			--fkt-storybook-sidebar-item-background-color: #efb44a;
+			--fkt-storybook-sidebar-background-color: #242A35FF;
 
 			--fkt-storybook-sidebar-story-icon-color: #efb44a;
 			--fkt-storybook-sidebar-document-icon-color: #fb6262;
@@ -65,6 +67,7 @@ const config: StorybookConfig = {
 				z-index: 4;
 				box-shadow: var(--fkt-storybook-shadow);
 				transition: .3s ease;
+				background-color: var(--fkt-storybook-sidebar-background-color) !important;
 
 				.sidebar-item {
 					&:hover {
@@ -72,7 +75,7 @@ const config: StorybookConfig = {
 					}
 
 					&[data-selected="true"] {
-						background-color: var(--fkt-storybook-sidebar-background-color);
+						background-color: var(--fkt-storybook-sidebar-item-background-color);
 
 						&[data-nodetype="group"] button > div::after,
 						&[data-nodetype="component"] button > div::after,
@@ -212,9 +215,15 @@ const config: StorybookConfig = {
 			}
 		}
 
-		.search-field, .sidebar-header {
+		.search-field {
 			& > div:has(button) {
 				display: none;
+			}
+		}
+
+		.sidebar-header {
+			button:not([title="Close menu"]) {
+				display: none !important;
 			}
 		}
 
