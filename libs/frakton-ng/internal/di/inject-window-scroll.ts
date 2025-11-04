@@ -1,7 +1,7 @@
-import { DestroyRef, DOCUMENT, inject, signal } from '@angular/core';
+import { DestroyRef, inject, signal } from '@angular/core';
 import { FktGeometryPoint } from 'frakton-ng/internal/types';
 import { WINDOW } from './tokens';
-import { debounce } from '../utils/debounce';
+import { debounce } from 'frakton-ng/internal/utils';
 
 export const injectWindowScroll = (debounceTime  = 0) => {
 	const destroyRef = inject(DestroyRef);

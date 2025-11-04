@@ -5,17 +5,17 @@
 	<div class="container">
 		<fkt-button
 			(click)="monthClick.emit()"
-      [text]="$any(currentDate() | date: 'MMMM')"
-      theme="basic"
-      shape="rect"
+			[text]="$any(currentDate() | date: 'MMMM')"
+			theme="basic"
+			shape="rect"
 			class="container__month">
 		</fkt-button>
 
 		<fkt-button
 			(click)="yearClick.emit()"
-      theme="basic"
-      shape="rect"
-      [text]="$any(currentDate() | date: 'yyyy')"
+			theme="basic"
+			shape="rect"
+			[text]="$any(currentDate() | date: 'yyyy')"
 			class="container__year">
 		</fkt-button>
 	</div>

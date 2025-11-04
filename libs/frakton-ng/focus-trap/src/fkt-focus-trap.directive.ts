@@ -1,6 +1,5 @@
 import { AfterViewInit, Directive, ElementRef, inject, input } from '@angular/core';
-import { getFocusableElementsSelectors } from 'frakton-ng/internal/utils';
-import { filterElementsWithTabIndex } from '../../internal/utils/filter-elements-with-tab-index';
+import { getFocusableElementsSelectors, filterElementsWithTabIndex } from 'frakton-ng/internal/utils';
 
 @Directive({
 	selector: '[fktFocusTrap]',

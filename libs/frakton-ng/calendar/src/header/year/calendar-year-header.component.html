@@ -5,6 +5,7 @@
 	<div class="container">
     <fkt-button
       [text]="$any(currentDate() | date: 'yyyy')"
+	  (click)="yearClick.emit()"
       theme="basic"
       shape="rect"
     />

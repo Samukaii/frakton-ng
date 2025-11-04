@@ -23,4 +23,6 @@ export * from "./lighten-color";
 export * from "./is-element-text-truncated";
 export * from "./capitalize";
 export * from "./debounced-computed";
+export * from "./debounce";
+export * from "./filter-elements-with-tab-index";
 
