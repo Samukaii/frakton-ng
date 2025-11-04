@@ -105,7 +105,7 @@ export class FktDialogOverviewExampleComponent {
 					text: 'Cancel'
 				}
 			},
-			backdropClick: () => {
+			onBackdropClick: () => {
 				console.log('Backdrop clicked - dialog cancelled');
 			}
 		});
