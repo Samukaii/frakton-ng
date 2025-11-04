@@ -1,5 +1,6 @@
 * {
 	box-sizing: border-box;
+	color: var(--fkt-color-neutral-950);
 }
 
 h2, h4, p {
@@ -50,7 +51,7 @@ ul {
 	}
 
 	&__details {
-		background-color: var(--fkt-color-neutral-50);
+		background-color: var(--fkt-color-info-opacity-10);
 		border-radius: var(--fkt-radius-lg);
 		margin-bottom: var(--fkt-space-xl);
 		padding: var(--fkt-space-md);

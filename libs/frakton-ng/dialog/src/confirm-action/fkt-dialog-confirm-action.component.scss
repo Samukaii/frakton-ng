@@ -1,5 +1,6 @@
 * {
 	box-sizing: border-box;
+	color: var(--fkt-color-neutral-950);
 }
 
 p, h3 {
@@ -32,7 +33,7 @@ p, h3 {
 	}
 
 	&__description {
-		color: var(--fkt-color-neutral-500);
+		color: var(--fkt-color-neutral-600);
 	}
 }
 
