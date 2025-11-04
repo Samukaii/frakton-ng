@@ -96,7 +96,7 @@ export class FktColorPickerComponent implements FormValueControl<string | null> 
 				width: "500px",
 				padding: '1rem',
 				maxHeight: 'fit-content',
-				inheritDesignTokens: true
+				inheritDesignTokensFrom: nativeElement
 			}
 		})
 	}

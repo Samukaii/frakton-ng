@@ -42,8 +42,8 @@ export class FktSelectComponent implements FormValueControl<string | number | nu
 	private overlayService = inject(FktOverlayService);
 	private idGenerator = inject(ElementIdGeneratorService);
 
-	protected labelId =  this.idGenerator.next('fkt-select-label');
-	protected listBoxId =  this.idGenerator.next('fkt-select-list-box');
+	protected labelId = this.idGenerator.next('fkt-select-label');
+	protected listBoxId = this.idGenerator.next('fkt-select-list-box');
 
 	private overlayRef = signal<FktOverlayRef<FktSelectOptionsComponent> | null>(null);
 
@@ -54,7 +54,7 @@ export class FktSelectComponent implements FormValueControl<string | number | nu
 	protected activeOptionId = signal(null);
 
 	protected handleKeydown(element: HTMLDivElement, event: KeyboardEvent) {
-		switch(event.key) {
+		switch (event.key) {
 			case 'ArrowDown':
 			case 'ArrowUp':
 			case 'Space':
@@ -67,7 +67,7 @@ export class FktSelectComponent implements FormValueControl<string | number | nu
 	}
 
 	protected openOverlay(nativeElement: HTMLDivElement) {
-		if(this.disabled())
+		if (this.disabled())
 			return;
 
 		this.selectOpened.emit();
@@ -87,11 +87,11 @@ export class FktSelectComponent implements FormValueControl<string | number | nu
 			},
 			anchorElementRef: {nativeElement},
 			panelOptions: {
-				outsideClick: () => {
+				onAutoClose: () => {
 					this.closeOverlay();
 				},
 				maxHeight: '420px',
-        inheritDesignTokens: true
+				inheritDesignTokensFrom: nativeElement
 			}
 		});
 

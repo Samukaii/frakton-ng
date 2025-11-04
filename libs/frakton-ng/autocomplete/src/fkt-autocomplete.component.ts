@@ -1,16 +1,16 @@
 import {
-  booleanAttribute,
-  Component,
-  computed,
-  effect,
-  ElementRef,
-  inject,
-  input,
-  model,
-  output,
-  signal,
-  untracked,
-  viewChild,
+	booleanAttribute,
+	Component,
+	computed,
+	effect,
+	ElementRef,
+	inject,
+	input,
+	model,
+	output,
+	signal,
+	untracked,
+	viewChild,
 } from '@angular/core';
 import { FktInputComponent } from 'frakton-ng/input';
 import { FktOverlayRef, FktOverlayService } from 'frakton-ng/overlay';
@@ -141,7 +141,7 @@ export class FktAutocompleteComponent implements FormValueControl<string | numbe
 				},
 			},
 			panelOptions: {
-        inheritDesignTokens: true
+				inheritDesignTokensFrom: this.inputComponent().nativeElement
 			}
 		});
 	}
