@@ -11,6 +11,7 @@ import { filterElementsWithTabIndex } from '../../internal/utils/filter-elements
 export class FktFocusTrapDirective implements AfterViewInit {
 	preventScroll = input(true);
 	private element = inject(ElementRef).nativeElement as HTMLElement;
+	private restoreFocusElement: Element | null = null;
 
 	private selectors = getFocusableElementsSelectors();
 
@@ -36,7 +37,15 @@ export class FktFocusTrapDirective implements AfterViewInit {
 		return this.selectors.join(', ')
 	}
 
+	public restoreFocus(): void {
+		if(!this.restoreFocusElement) return;
+
+		if(this.restoreFocusElement instanceof HTMLElement)
+			this.restoreFocusElement.focus({preventScroll: this.preventScroll()});
+	}
+
 	ngAfterViewInit() {
+		this.restoreFocusElement = document.activeElement;
 		setTimeout(() => {
 			const nodes = this.element.querySelectorAll(this.getSelectors());
 			if (nodes.length) (nodes[0] as HTMLElement).focus({preventScroll: this.preventScroll()});

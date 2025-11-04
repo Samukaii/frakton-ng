@@ -77,7 +77,6 @@ export class FktFocusTrapModalExampleComponent {
       },
       panelOptions: {
         width: '500px',
-        backdropClick: () => dialogRef.close()
       }
     });
   }
