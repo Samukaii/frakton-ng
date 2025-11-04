@@ -1,15 +1,31 @@
 import { FktComponentData, FktReactiveComponentData } from 'frakton-ng/internal/types';
 import { FktDialogConfirmActionComponent } from './confirm-action/fkt-dialog-confirm-action.component';
 import { Type } from '@angular/core';
-import { DialogAnchorComponent } from './anchor/dialog-anchor.component';
 
 export interface FktConfirmActionOptions
 	extends FktComponentData<FktDialogConfirmActionComponent> {
-	backdropClick?: () => void;
+	inheritDesignTokensFrom?: HTMLElement | Record<string, string>;
+	onBackdropClick?: () => void;
+	onEscapeKeyDown?: () => void;
 }
 
 export interface FktDialogOptions<T> {
 	component: Type<T>;
 	data: FktReactiveComponentData<T>;
-	panelOptions?: Partial<FktReactiveComponentData<DialogAnchorComponent>>;
+	panelOptions?: {
+		focusTriggerOnClose?: boolean;
+		id?: string;
+		onBackdropClick?: () => void;
+		onEscapeKeyDown?: () => void;
+		height?: string;
+		width?: string;
+		maxHeight?: string;
+		maxWidth?: string;
+		borderRadius?: string;
+		backgroundColor?: string;
+		padding?: string;
+		allowDuplicates?: false;
+		styles?: Record<string, string>;
+		inheritDesignTokensFrom?: HTMLElement | Record<string, string>;
+	}
 }
