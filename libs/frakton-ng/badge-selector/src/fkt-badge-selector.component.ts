@@ -79,7 +79,7 @@ export class FktBadgeSelectorComponent<Id extends string> implements FormValueCo
 				minWidth: 'fit-content',
 				width: 'fit-content',
 				maxHeight: 'fit-content',
-				outsideClick: () => {
+				onAutoClose: () => {
 					this.close();
 				}
 			},

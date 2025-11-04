@@ -50,7 +50,7 @@ export class FktCustomTooltipOverlayExampleComponent {
 				maxHeight: 'fit-content',
 				minWidth: 'fit-content',
 				width: 'fit-content',
-				outsideClick: () => {
+				onAutoClose: () => {
 					this.overlayRef = null;
 				}
 			}

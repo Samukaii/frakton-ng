@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, ElementRef, inject } from '@angular/core';
 import { FktButtonComponent } from 'frakton-ng/button';
 import { FktDialogService } from 'frakton-ng/dialog';
 
