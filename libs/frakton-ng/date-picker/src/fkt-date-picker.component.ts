@@ -72,7 +72,7 @@ export class FktDatePickerComponent implements FormValueControl<Date | string | 
 				width: 'fit-content',
 				position,
 				maxHeight: 'fit-content',
-        inheritDesignTokens: true
+                inheritDesignTokensFrom: ref
 			},
 		});
 	}
