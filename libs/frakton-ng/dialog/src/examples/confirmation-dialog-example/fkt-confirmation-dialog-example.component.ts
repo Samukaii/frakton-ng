@@ -10,6 +10,7 @@ import { FktDialogService } from 'frakton-ng/dialog';
 })
 export class FktConfirmationDialogExampleComponent {
 	private dialogService = inject(FktDialogService);
+	private elementRef = inject(ElementRef)
 
 	openDialog() {
 		this.dialogService.confirm({
@@ -27,7 +28,8 @@ export class FktConfirmationDialogExampleComponent {
 					text: 'Cancel'
 				}
 			},
-			backdropClick: () => {
+			inheritDesignTokensFrom: this.elementRef.nativeElement,
+			onBackdropClick: () => {
 				console.log('Backdrop clicked - dialog cancelled');
 			}
 		});
