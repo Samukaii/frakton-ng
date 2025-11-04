@@ -20,9 +20,12 @@ export interface FktOverlayOptions<T> {
 		allowDuplicates?: boolean;
 		disableAutoReposition?: boolean;
 		disableAutoClose?: boolean;
-		inheritDesignTokens?: boolean;
+		inheritDesignTokensFrom?: HTMLElement | Record<string, string>;
 		styles?: Generic;
-		outsideClick?: (element: HTMLElement) => void;
+		onAutoClose?: () => void;
+		onOutsideClick?: (element: HTMLElement) => void;
+		onScroll?: () => void;
+		onEscapeKeyDown?: () => void;
 	}
 }
 

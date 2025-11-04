@@ -1,10 +1,6 @@
 import { inject, Injectable, Injector, signal, Type } from '@angular/core';
 import { FktOverlayAnchorComponent } from './anchor/fkt-overlay-anchor.component';
-import {
-	createComponentBindings,
-	getElementDesignTokens,
-	getFocusableElementsSelectors
-} from 'frakton-ng/internal/utils';
+import { createComponentBindings, getElementDesignTokens } from 'frakton-ng/internal/utils';
 import { FktElementAnchorService } from 'frakton-ng/internal/services';
 import { FktGeometryPosition } from 'frakton-ng/internal/types';
 import { FktOverlayOptions, FktOverlayRef } from './fkt-overlay.types';
@@ -16,15 +12,6 @@ import { OVERLAY_INFO } from './tokens/overlay-info';
 export class FktOverlayService {
 	private anchorService = inject(FktElementAnchorService);
 	private overlays = signal(new Map<string, FktOverlayRef<any>>());
-
-  // Controle de duplicatas
-  // Gerenciamento de ID
-  // Auto criação de id
-  // Injeção de dependências via DI customizada
-  // Retorno de foco ao fechar
-  // Gerenciamento de z-index
-  // Herança de design tokens
-  // Criação da âncora
 
 	open<T>(options: FktOverlayOptions<T>) {
 		if (!options.panelOptions?.allowDuplicates) {
@@ -53,23 +40,32 @@ export class FktOverlayService {
 
 		const close = () => {
 			this.overlays().delete(id);
-			const focusableElements = getFocusableElementsSelectors().join(', ')
 
-			const focusableChild = options.anchorElementRef?.nativeElement?.querySelector(focusableElements) as HTMLElement | null;
-			const elementToFocus = focusableChild ?? options.anchorElementRef?.nativeElement;
-
-			if (elementToFocus && options.panelOptions?.focusTriggerOnClose !== false) elementToFocus.focus();
+			if (options.panelOptions?.focusTriggerOnClose !== false)
+				anchor.componentRef.instance.restoreFocus();
 
 			anchor.destroy();
 			componentRef.destroy();
+		}
+
+		const autoClose = () => {
+			options?.panelOptions?.onAutoClose?.();
+
+			if(options?.panelOptions?.disableAutoClose !== false) close();
 		}
 
 		const stackIndex = this.getLastZIndex() + 1;
 
 		let styles = options.panelOptions?.styles ?? {};
 
-		if(options.panelOptions?.inheritDesignTokens && options.anchorElementRef) {
-			const tokens = getElementDesignTokens(options.anchorElementRef.nativeElement)
+		if (options.panelOptions?.inheritDesignTokensFrom) {
+			const inheritedTokens = options?.panelOptions.inheritDesignTokensFrom
+
+			let tokens: Record<string, string>;
+
+			if (inheritedTokens instanceof HTMLElement)
+				tokens = getElementDesignTokens(inheritedTokens);
+			else tokens = inheritedTokens;
 
 			styles = {...styles, ...tokens}
 		}
@@ -92,12 +88,16 @@ export class FktOverlayService {
 				overflow: options.panelOptions?.overflow,
 				boxShadow: options.panelOptions?.boxShadow,
 				styles,
+				scroll: () => {
+					options?.panelOptions?.onScroll?.();
+				},
 				outsideClick: (element) => {
-					options?.panelOptions?.outsideClick?.(element);
-					close();
+					options?.panelOptions?.onOutsideClick?.(element);
+					autoClose();
 				},
 				escapeKeyDown: () => {
-					close();
+					options?.panelOptions?.onEscapeKeyDown?.();
+					autoClose();
 				}
 			},
 			injector

@@ -4,7 +4,7 @@ import {
 	effect,
 	ElementRef,
 	inject,
-	input,
+	input, linkedSignal,
 	output,
 	signal,
 	viewChild,
@@ -12,21 +12,24 @@ import {
 } from '@angular/core';
 import { FktGeometryAlignmentService } from 'frakton-ng/internal/services';
 import { elementSizeSignal, isElementInside, MarkUsed, outsideClickEffect } from 'frakton-ng/internal/utils';
-import { FktGeometryPosition, Generic } from 'frakton-ng/internal/types';
+import { FktGeometryPoint, FktGeometryPosition, Generic } from 'frakton-ng/internal/types';
 import { OVERLAY_INFO } from '../tokens/overlay-info';
 import { FktOverlayRef } from '../fkt-overlay.types';
 import { FktFocusTrapDirective } from 'frakton-ng/focus-trap';
+import { injectWindowScroll } from 'frakton-ng/internal/di';
+import { JsonPipe } from '@angular/common';
 
 @Component({
 	selector: 'fkt-overlay-anchor',
 	template: `
-		<div [style]="styles()" (keydown.esc)="$event.stopPropagation(); escapeKeyDown.emit()" fktFocusTrap role="dialog" class="overlay-container">
+		<div [style]="styles()" (keydown.esc)="$event.stopPropagation(); escapeKeyDown.emit()" fktFocusTrap
+			 role="dialog" class="overlay-container">
 			<ng-template #container></ng-template>
 		</div>`,
 	styles: `
 		:host {
 			position: absolute;
-			height: fit-content ;
+			height: fit-content;
 			opacity: 0;
 		}
 
@@ -55,12 +58,11 @@ import { FktFocusTrapDirective } from 'frakton-ng/focus-trap';
 		'[id]': 'id()',
 	},
 	imports: [
-		FktFocusTrapDirective
+		FktFocusTrapDirective,
+		JsonPipe
 	]
 })
 export class FktOverlayAnchorComponent {
-	container = viewChild.required('container', {read: ViewContainerRef});
-
 	id = input.required<string>();
 	stackIndex = input.required<number>();
 	overlayRefs = input.required<Map<string, FktOverlayRef<any>>>();
@@ -79,10 +81,26 @@ export class FktOverlayAnchorComponent {
 	styles = input<Generic>({});
 	escapeKeyDown = output();
 	outsideClick = output<HTMLElement>();
-
 	closeClick = output();
+	scroll = output();
+
+	public container = viewChild.required('container', {read: ViewContainerRef});
+	private focusTrap = viewChild.required(FktFocusTrapDirective);
+
+
 	private alignmentService = inject(FktGeometryAlignmentService);
 	private overlayInfo = inject(OVERLAY_INFO);
+	protected windowScroll = injectWindowScroll();
+
+	protected windowScrollChange = linkedSignal<FktGeometryPoint, FktGeometryPoint | null>({
+		source: this.windowScroll,
+		computation: (source, previous) => {
+			if(!previous)
+				return null;
+
+			return source;
+		}
+	})
 
 	private childrenOverlays = computed(() => {
 		const overlayRefs = this.overlayRefs();
@@ -93,7 +111,7 @@ export class FktOverlayAnchorComponent {
 	});
 
 	@MarkUsed()
-	protected autoClose = outsideClickEffect((element) => {
+	protected autoCloseOnOutsideClick = outsideClickEffect((element) => {
 		if (!(element instanceof HTMLElement))
 			return;
 
@@ -114,6 +132,15 @@ export class FktOverlayAnchorComponent {
 		this.outsideClick.emit(element);
 	});
 
+	@MarkUsed()
+	protected autoCloseOnScroll = effect(() => {
+		const change = this.windowScrollChange();
+
+		if(change === null)
+			return;
+
+		this.scroll.emit();
+	});
 
 	private elementRef = inject(ElementRef);
 
@@ -131,6 +158,7 @@ export class FktOverlayAnchorComponent {
 
 	protected alignedPosition = computed(() => {
 		const anchor = this.anchor() as ElementRef<HTMLElement>;
+		this.windowScroll();
 
 		const anchorRect = anchor.nativeElement.getBoundingClientRect();
 		const size = this.sizeSignal();
@@ -161,4 +189,8 @@ export class FktOverlayAnchorComponent {
 			}, 100);
 		}
 	});
+
+	public restoreFocus() {
+		this.focusTrap().restoreFocus();
+	}
 }
