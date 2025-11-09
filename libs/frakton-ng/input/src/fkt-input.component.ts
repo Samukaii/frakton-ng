@@ -41,8 +41,8 @@ import {
 	styleUrl: './fkt-input.component.scss',
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FktInputComponent<T = string> implements FormValueControl<T | null> {
-	value = model<T | null>(null);
+export class FktInputComponent implements FormValueControl<string> {
+	value = model<string>("0");
 	touched = model(false);
 	disabled = input(false);
 	invalid = input(false);
@@ -59,8 +59,8 @@ export class FktInputComponent<T = string> implements FormValueControl<T | null>
 		transform: booleanAttribute
 	});
 
-	min = input<number>();
-	max = input<number>();
+	minNumber = input<number>();
+	maxNumber = input<number>();
 	maxDecimals = input(0);
 	step = input(1);
 
@@ -75,7 +75,7 @@ export class FktInputComponent<T = string> implements FormValueControl<T | null>
 			return "text";
 		}
 	});
-	formatter = input<FktInputTransformer<T>>();
+	formatter = input<FktInputTransformer<string | number>>();
 	spellcheck = input(true);
 
 	public element = viewChild.required('input', {read: ElementRef});
@@ -108,8 +108,8 @@ export class FktInputComponent<T = string> implements FormValueControl<T | null>
 
 		if (transformer === 'hour') return hourFormatter;
 		if (type === 'number') return numberFormatter({
-			min: this.min(),
-			max: this.max(),
+			min: this.minNumber(),
+			max: this.maxNumber(),
 			maxDecimals: this.maxDecimals()
 		});
 
@@ -144,7 +144,7 @@ export class FktInputComponent<T = string> implements FormValueControl<T | null>
 	protected increaseNumber = (event?: KeyboardEvent) => {
 		event?.preventDefault();
 
-		const max = this.max();
+		const max = this.maxNumber();
 
 		const valueAsNumber = (!isNaN(+this.value()!) && this.value() !== null) ? +this.value()! : null;
 
@@ -153,13 +153,13 @@ export class FktInputComponent<T = string> implements FormValueControl<T | null>
 
 		if (max !== undefined && updatedValue > max) return;
 
-		this.value.set(updatedValue as unknown as T);
+		this.value.set(updatedValue as unknown as string);
 	}
 
 	protected decreaseNumber = (event?: KeyboardEvent) => {
 		event?.preventDefault();
 
-		const min = this.min();
+		const min = this.minNumber();
 
 		const valueAsNumber = (!isNaN(+this.value()!) && this.value() !== null) ? +this.value()! : null;
 
@@ -169,6 +169,6 @@ export class FktInputComponent<T = string> implements FormValueControl<T | null>
 
 		if (min !== undefined && updatedValue < min) return;
 
-		this.value.set(updatedValue as unknown as T);
+		this.value.set(updatedValue as unknown as string);
 	}
 }

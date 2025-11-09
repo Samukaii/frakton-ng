@@ -1,20 +1,19 @@
-import { Component, effect, inject, input, linkedSignal, model } from '@angular/core';
-import { Control, form } from '@angular/forms/signals';
+import { Component, effect, inject, input, linkedSignal, model, WritableSignal } from '@angular/core';
+import { Field, form } from '@angular/forms/signals';
 import { FktInputComponent } from "frakton-ng/input";
-import { MarkUsed } from 'frakton-ng/internal/utils';
+import { fktColorFormatters, MarkUsed } from 'frakton-ng/internal/utils';
 import { FktColorControlItemComponent } from '../../components/item/fkt-color-control-item.component';
-import { fktColorFormatters } from 'frakton-ng/internal/utils';
 import { FKT_COLOR_PICKER_LOCALE_TOKEN } from '../../injection-tokens/fkt-color-picker-locale-token';
 import { FktColorPickerHSV } from 'frakton-ng/internal/types';
 
 
 @Component({
   selector: 'fkt-color-rgb-control',
-	imports: [
-		FktInputComponent,
-		Control,
-		FktColorControlItemComponent
-	],
+    imports: [
+        FktInputComponent,
+        FktColorControlItemComponent,
+        Field
+    ],
   templateUrl: './fkt-color-rgb-control.component.html',
   styleUrl: './fkt-color-rgb-control.component.scss'
 })
@@ -28,11 +27,13 @@ export class FktColorRgbControlComponent {
 		return fktColorFormatters.rgb.fromHsv(this.value());
 	});
 
-	protected form = form(this.asRgb);
+	protected form = form(this.asRgb as any as WritableSignal<{ alpha: string; blue: string }>);
 
 	@MarkUsed()
 	protected updateForm = effect(() => {
 		const {alpha} = this.asRgb();
+
+        const a = this.form.alpha;
 
 		const converted = fktColorFormatters.rgb.toHsv(this.asRgb());
 		const result = {

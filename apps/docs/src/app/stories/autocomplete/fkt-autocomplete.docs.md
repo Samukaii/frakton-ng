@@ -1,0 +1,95 @@
+# FktAutocomplete
+
+A powerful and flexible autocomplete input component with dropdown options, search functionality, and support for custom actions. Built with Angular signals and reactive patterns, it offers seamless integration with forms and dynamic data sources.
+
+## Key Features
+
+- **Real-time Search**: Filter options as user types with search event emission for API integration
+- **Auto-creation**: Allow users to create new options by typing custom values not in predefined list
+- **Action Buttons**: Add custom actions to each option (edit, delete, favorite, etc.) with event callbacks
+- **Loading States**: Built-in support for async data loading with loading indicators and spinners
+- **Custom No Results**: Configurable messaging when no options match search criteria
+- **Form Integration**: Seamless integration with SignalFormControl and Angular reactive forms
+- **Keyboard Navigation**: Full keyboard support for accessibility (Arrow keys, Enter, Escape)
+- **Signal-Based Architecture**: Built with modern Angular signals for optimal performance
+
+## Configuration Options
+
+<arg-types></arg-types>
+
+### Types
+
+```typescript
+// Core option interface for autocomplete items
+export interface FktAutocompleteOption {
+    value: string | number;  // Unique identifier for the option
+    label: string;           // Display text shown to user
+}
+
+// Configuration for no results message
+export interface FktNoResults {
+    label: string;           // Message text when no options match
+}
+
+// Action button configuration (from frakton-ng/button)
+export interface FktButtonAction {
+    icon: string;            // Icon name for the action button
+    color: string;           // Button color theme
+    theme: string;           // Button visual theme
+    identifier: string;     // Unique identifier for action handling
+}
+```
+
+## Examples
+
+<story-examples></story-examples>
+
+## Component Architecture
+
+The FktAutocomplete component is built with a modular architecture using Angular signals:
+
+### Core Components
+
+- **FktAutocompleteComponent**: Main component managing state, search, and user interactions
+- **Input Integration**: Built-in integration with Angular reactive forms and validation
+
+### State Management
+
+Signal-based reactive state management provides optimal performance:
+
+- `selectedValue` signal controls the current selection with two-way binding
+- `options` signal manages the available option list with reactive updates
+- `loading` signal provides loading state management for async operations
+- `search` event emission enables real-time API integration for dynamic option loading
+
+## Use Cases
+
+**User Selection Systems**: Perfect for selecting users, customers, or any entity from large datasets in CRM systems, task management, and user assignment scenarios.
+
+**Tag Management**: Ideal for tag-based systems with creation capabilities including blog post tagging, product categorization, skill tagging for profiles, and content classification.
+
+**Location Selection**: Great for location-based inputs such as country/state selection, city autocomplete with API integration, and address suggestion systems.
+
+**Product & Service Search**: Excellent for product catalogs including e-commerce product search, inventory selection, service picking, and dynamic catalog browsing.
+
+**Dynamic Data Entry**: Perfect for scenarios requiring flexible data input with both predefined options and user-created values.
+
+## Accessibility
+
+**Keyboard Navigation**: Full keyboard support with arrow keys for option navigation, Enter key for selection, Escape key to close dropdown, and Tab for focus management.
+
+**Screen Reader Support**: Proper ARIA labels and announcements, role attributes for dropdown behavior, live region updates for search results, and clear option identification.
+
+**Focus Management**: Logical focus flow between input and options, visible focus indicators for all interactive elements, and proper focus restoration after selection.
+
+**High Contrast**: Full support for system high contrast modes, clear visual boundaries for all states, and sufficient color contrast ratios.
+
+**Label Association**: Proper label-input relationships for screen readers, descriptive placeholder text, and clear error messaging integration.
+
+## Performance
+
+**Signal-Based Reactivity**: Built with Angular signals for efficient change detection, minimal re-renders, and optimized performance with large option lists.
+
+**Lazy Loading**: Support for dynamic option loading, efficient search debouncing, and memory-optimized rendering for large datasets.
+
+**Async Integration**: Designed for real-time API integration with built-in loading states, error handling, and search result management.

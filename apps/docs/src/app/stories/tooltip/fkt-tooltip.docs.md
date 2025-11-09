@@ -1,0 +1,80 @@
+# Tooltip
+
+_A lightweight tooltip directive that provides contextual information on hover. Built with Angular signals and overlay system, it offers flexible positioning and seamless integration with any HTML element._
+
+## Key Features
+
+- **Universal Directive**: Works with any HTML element or Angular component
+- **Smart Positioning**: 16 different position options with intelligent viewport detection
+- **Overlay Integration**: Built on top of the powerful FktOverlay system
+- **Mouse Interaction**: Shows on mouseenter, hides when mouse leaves element area
+- **Configurable**: Enable/disable tooltips dynamically
+- **Lightweight**: Minimal overhead with efficient event handling
+- **Accessible**: Proper ARIA attributes and screen reader support
+- **Signal-Based**: Reactive updates with Angular signals
+
+## Configuration Options
+
+<arg-types></arg-types>
+
+### Types
+
+```typescript
+// Available positioning options (16 total positions)
+type FktGeometryPosition =
+    | 'top-start' | 'top-center' | 'top-end'
+    | 'right-start' | 'right-center' | 'right-end'
+    | 'bottom-start' | 'bottom-center' | 'bottom-end'
+    | 'left-start' | 'left-center' | 'left-end'
+    | 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
+```
+
+## Examples
+
+<story-examples></story-examples>
+
+## Use Cases
+
+### UI Element Enhancement
+
+Perfect for adding contextual help to interface elements:
+
+- Button descriptions and action explanations
+- Icon clarifications and feature descriptions
+- Form field hints and validation messages
+- Navigation assistance and guidance
+
+### Information Architecture
+
+Ideal for providing additional context without cluttering:
+
+- Technical term definitions
+- Status indicator explanations
+- Feature availability notifications
+- Help text and usage instructions
+
+### Accessibility Support
+
+Essential for inclusive design:
+
+- Alternative descriptions for icons
+- Expanded explanations for abbreviations
+- Context for interactive elements
+- Supplementary information for screen readers
+
+## Accessibility
+
+- **Mouse Interaction**: Shows on mouseenter, hides when mouse leaves element area
+- **Keyboard Support**: Tooltips do not interfere with keyboard navigation
+- **Screen Reader Support**: Tooltip content is accessible to assistive technologies
+- **Focus Management**: Does not trap or redirect focus from the trigger element
+- **ARIA Attributes**: Proper ARIA labeling for enhanced accessibility
+- **High Contrast**: Supports system high contrast modes for visibility
+
+## Performance
+
+- **Lazy Loading**: Tooltip overlays are created only when needed (on first hover)
+- **Memory Management**: Automatic cleanup when directive is destroyed
+- **Event Optimization**: Efficient mouse event handling with proper cleanup
+- **Positioning Cache**: Intelligent position calculation to minimize recomputation
+- **Overlay Reuse**: Efficient overlay management through the FktOverlay system

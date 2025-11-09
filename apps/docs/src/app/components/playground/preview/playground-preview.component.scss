@@ -1,0 +1,54 @@
+:host {
+	margin: 0 !important;
+	box-shadow: none !important;
+	border: none !important;
+	border-bottom: solid 1px var(--fkt-color-neutral-200) !important;
+	min-height: 400px;
+
+	.fkt-playground-component-container {
+		color: var(--fkt-color-neutral-950);
+		min-height: 400px;
+		padding: 1rem;
+
+		& > div {
+			height: 100%;
+		}
+
+		&.no-padding {
+			padding: 0;
+		}
+	}
+
+	fkt-playground-panel {
+		--fkt-input-vertical-padding: var(--fkt-space-xs);
+		--fkt-input-horizontal-padding: var(--fkt-space-sm);
+		--fkt-input-font-size: var(--fkt-font-size-sm);
+		--fkt-input-border-radius: var(--fkt-radius-md);
+
+		--fkt-select-vertical-padding: var(--fkt-space-xs);
+		--fkt-select-horizontal-padding: var(--fkt-space-sm);
+		--fkt-select-font-size: var(--fkt-font-size-sm);
+		--fkt-select-border-radius: var(--fkt-radius-md);
+
+		--fkt-controls-table-background: var(--fkt-color-modal-background);
+		--fkt-controls-table-text-color: var(--fkt-color-neutral-700);
+		--fkt-controls-table-border-color: var(--fkt-color-neutral-300);
+		--fkt-controls-table-component-text-color: var(--fkt-color-primary);
+		--fkt-controls-table-component-bg: rgba(60, 67, 77, 0.08);
+		--fkt-controls-table-component-active-bg: var(--fkt-color-primary);
+		--fkt-controls-table-component-active-text-color: var(--fkt-color-neutral-50);
+		--fkt-controls-table-component-hover-bg: var(--fkt-color-neutral-300);
+		--fkt-controls-table-category-bg: var(--fkt-color-neutral-200);
+		--fkt-controls-table-category-text-color: var(--fkt-color-neutral-700);
+		--fkt-controls-table-numeric-control-bg: var(--fkt-color-neutral-300);
+		--fkt-controls-table-numeric-control-color: var(--fkt-color-neutral-500);
+		--fkt-controls-table-numeric-control-hover-bg: var(--fkt-color-neutral-400);
+
+		--fkt-controls-tabs-background: var(--fkt-color-modal-background);
+		--fkt-controls-tabs-border-top-color: var(--fkt-color-neutral-300);
+		--fkt-controls-tabs-border-bottom-color: var(--fkt-color-neutral-300);
+		--fkt-controls-tabs-text-color: var(--fkt-color-neutral-600);
+		--fkt-controls-tabs-action-hover-color: var(--fkt-color-accent-opacity-20);
+		--fkt-controls-tabs-action-text-color: var(--fkt-color-accent);
+	}
+}

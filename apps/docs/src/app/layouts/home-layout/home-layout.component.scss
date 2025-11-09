@@ -1,0 +1,19 @@
+:host {
+	display: flex;
+	height: 100%;
+	width: 100%;
+}
+
+app-side-menu {
+	z-index: 30000;
+}
+
+.container {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}
+
+.content {
+	overflow-y: auto;
+}

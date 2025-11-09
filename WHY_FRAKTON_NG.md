@@ -66,11 +66,11 @@ Unlike traditional component libraries, Frakton NG introduces **zero global styl
 
 ### 1. Revolutionary Documentation System
 
-**Hybrid Angular-React Architecture**
-Frakton NG pioneered the first successful Angular component integration within React-based Storybook:
+**Angular-Native Documentation Architecture**
+Frakton NG features a custom documentation system built entirely in Angular, DX-inspired by Storybook but fully native:
 
 ```typescript
-// Angular components running inside React Storybook
+// Pure Angular documentation components
 @Component({
   selector: 'fkt-playground',
   template: `
@@ -90,6 +90,7 @@ export class FktPlaygroundComponent {
 - **Interactive Playgrounds**: Real-time design token editing
 - **Multi-format Examples**: Complete, copy-paste ready code
 - **Type-Safe Documentation**: Automatic API inference
+- **Pure Angular**: No React dependencies, fully Angular-native
 
 ### 2. Advanced Overlay System
 

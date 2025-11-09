@@ -1,0 +1,31 @@
+<div class="example-container">
+	<p class="description">Simple autocomplete with predefined options. Click to see all options or start typing to filter them.</p>
+
+	<fkt-autocomplete
+		[field]="control"
+		[label]="label()"
+		[placeholder]="placeholder()"
+		[options]="filteredOptions()"
+		(search)="searchTerm.set($event)"
+	/>
+
+	@if (selectedOption()) {
+		<div class="selected-option">
+			<div class="title">
+				<h3>
+					Selected option
+				</h3>
+				<hr>
+			</div>
+
+			<div class="info">
+				<p>
+					<strong>Value:</strong> {{ selectedOption()?.value }}
+				</p>
+				<p>
+					<strong>Label:</strong> {{ selectedOption()?.label }}
+				</p>
+			</div>
+		</div>
+	}
+</div>

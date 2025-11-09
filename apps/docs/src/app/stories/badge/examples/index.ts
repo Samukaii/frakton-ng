@@ -1,0 +1,1 @@
+export { BadgeVariationsExampleComponent } from './badge-variations-example.component';

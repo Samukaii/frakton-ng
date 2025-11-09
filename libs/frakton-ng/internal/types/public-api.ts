@@ -5,6 +5,8 @@ export * from './fkt-color-picker-rgb';
 export * from './fkt-component-data';
 export * from './fkt-component-input-names';
 export * from './fkt-component-inputs';
+export * from './fkt-component-inputs-and-models';
+export * from './fkt-component-inputs-and-model-names';
 export * from './fkt-component-output-names';
 export * from './fkt-component-outputs';
 export * from './fkt-component-two-way-binding-names';

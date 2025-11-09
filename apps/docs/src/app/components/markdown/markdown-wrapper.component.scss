@@ -1,0 +1,70 @@
+.copy-button {
+	--fkt-button-padding-vertical: var(--fkt-space-2xs);
+	--fkt-button-padding-horizontal: var(--fkt-space-sm);
+	--fkt-button-content-gap: var(--fkt-space-3xs);
+	--fkt-button-primary-color: white;
+	--fkt-button-primary-hover-color: #b2b2b2;
+	--fkt-button-icon-font-weight: 500;
+	--fkt-font-size-md: 14px;
+}
+
+.container {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: row-reverse;
+	justify-content: space-between;
+
+	.placeholder {
+		flex: .2;
+	}
+
+	fkt-table-of-contents {
+		flex: .2;
+	}
+
+	.docs {
+		max-width: 1200px;
+		flex: 1;
+	}
+}
+
+
+markdown ::ng-deep {
+	font-size: var(--fkt-font-size-sm);
+	color: var(--fkt-color-neutral-900);
+
+	h2 {
+		font-size: 24px;
+		margin: 20px 0 8px;
+		padding: 0 0 4px;
+		cursor: text;
+		position: relative;
+		color: var(--fkt-color-neutral-900);
+		border-bottom: 1px solid var(--fkt-color-neutral-300);
+	}
+
+	li {
+		margin-top: 3.5px;
+		padding: 3px 0;
+	}
+
+	h3 {
+		font-size: 20px;
+		margin: 20px 0px 8px;
+		padding: 0px;
+		cursor: text;
+		position: relative;
+		color: var(--fkt-color-neutral-900);
+		font-weight: 700;
+	}
+
+	strong {
+		font-size: var(--fkt-font-size-sm);
+	}
+
+	pre {
+		border: solid 1px #1b1d20;
+		box-shadow: var(--fkt-shadow-xl);
+	}
+}

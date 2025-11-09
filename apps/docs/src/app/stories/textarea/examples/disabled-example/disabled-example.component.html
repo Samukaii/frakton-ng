@@ -1,0 +1,25 @@
+<div class="container">
+	<fkt-textarea
+		autoExpand
+		[field]="control"
+		[label]="label()"
+		[placeholder]="placeholder()"
+	/>
+
+	<div class="container__status">
+		<fkt-button
+			(click)="toggleDisabled()"
+			[text]="(control().disabled() ? 'Enable' : 'Disable') + ' textarea'"
+		>
+		</fkt-button>
+
+		<span>
+			Status: <strong>{{ control().disabled() ? 'Disabled' : 'Enabled' }}</strong>
+		</span>
+	</div>
+
+	<div class="container__message">
+		<p>Disabled textareas prevent user interaction while preserving the current value.</p>
+		<p>Common use cases include read-only views, locked fields, or conditional editing.</p>
+	</div>
+</div>

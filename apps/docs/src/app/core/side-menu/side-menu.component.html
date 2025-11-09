@@ -1,0 +1,14 @@
+<nav>
+	<div class="header">
+		<a class="header__logo" routerLink="#">
+			<img [src]="fraktonLogo()" alt="Frakton logo">
+		</a>
+	</div>
+
+  <ul class="root-menu">
+    @for (item of menuTree(); track item) {
+      <fkt-side-menu-group [item]="item" [expanded]="true"/>
+    }
+  </ul>
+</nav>
+

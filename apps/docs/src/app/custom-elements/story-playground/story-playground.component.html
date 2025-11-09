@@ -1,0 +1,14 @@
+<ng-template #storiesTemplate>
+	@for (story of stories(); track story.name) {
+		<fkt-story-renderer
+			[title]="story.name"
+			[description]="story.story.description"
+		/>
+	}
+</ng-template>
+
+@if (injector()) {
+	<ng-container [ngTemplateOutlet]="storiesTemplate" [ngTemplateOutletInjector]="injector()">
+
+	</ng-container>
+}

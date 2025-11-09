@@ -1,0 +1,367 @@
+Project 'storybook-docs' contains extension with invalid name (generatedAt).
+Project 'storybook-docs' contains extension with invalid name (userSince).
+Project 'storybook-docs' contains extension with invalid name (hasCustomBabel).
+Project 'storybook-docs' contains extension with invalid name (hasCustomWebpack).
+Project 'storybook-docs' contains extension with invalid name (hasStaticDirs).
+Project 'storybook-docs' contains extension with invalid name (hasStorybookEslint).
+Project 'storybook-docs' contains extension with invalid name (refCount).
+Project 'storybook-docs' contains extension with invalid name (testPackages).
+Project 'storybook-docs' contains extension with invalid name (hasRouterPackage).
+Project 'storybook-docs' contains extension with invalid name (packageManager).
+Project 'storybook-docs' contains extension with invalid name (preview).
+Project 'storybook-docs' contains extension with invalid name (framework).
+Project 'storybook-docs' contains extension with invalid name (builder).
+Project 'storybook-docs' contains extension with invalid name (renderer).
+Project 'storybook-docs' contains extension with invalid name (portableStoriesFileCount).
+Project 'storybook-docs' contains extension with invalid name (applicationFileCount).
+Project 'storybook-docs' contains extension with invalid name (storybookVersion).
+Project 'storybook-docs' contains extension with invalid name (storybookVersionSpecifier).
+Project 'storybook-docs' contains extension with invalid name (language).
+Project 'storybook-docs' contains extension with invalid name (storybookPackages).
+Project 'storybook-docs' contains extension with invalid name (addons).
+[34mBuilding Angular Package[39m
+[37m[39m
+[37m------------------------------------------------------------------------------[39m
+[37mBuilding entry point 'frakton-ng'[39m
+[37m------------------------------------------------------------------------------[39m
+- Compiling with Angular sources in partial compilation mode.
+[32m√[39m Compiling with Angular sources in partial compilation mode.
+- Writing FESM and DTS bundles
+[32m√[39m Writing FESM and DTS bundles
+- Copying assets
+[32m√[39m Copying assets
+- Writing package manifest
+[34mi[39m Removing scripts section in package.json as it's considered a potential security vulnerability.
+[32m√[39m Writing package manifest
+[32m√[39m Built frakton-ng
+[37m[39m
+[37m------------------------------------------------------------------------------[39m
+[37mBuilding entry point 'frakton-ng/internal/types'[39m
+[37m------------------------------------------------------------------------------[39m
+- Compiling with Angular sources in partial compilation mode.
+[32m√[39m Compiling with Angular sources in partial compilation mode.
+- Writing FESM and DTS bundles
+[32m√[39m Writing FESM and DTS bundles
+[32m√[39m Built frakton-ng/internal/types
+[37m[39m
+[37m------------------------------------------------------------------------------[39m
+[37mBuilding entry point 'frakton-ng/internal/utils'[39m
+[37m------------------------------------------------------------------------------[39m
+- Compiling with Angular sources in partial compilation mode.
+[32m√[39m Compiling with Angular sources in partial compilation mode.
+- Writing FESM and DTS bundles
+[32m√[39m Writing FESM and DTS bundles
+[32m√[39m Built frakton-ng/internal/utils
+[37m[39m
+[37m------------------------------------------------------------------------------[39m
+[37mBuilding entry point 'frakton-ng/internal/di'[39m
+[37m------------------------------------------------------------------------------[39m
+- Compiling with Angular sources in partial compilation mode.
+[32m√[39m Compiling with Angular sources in partial compilation mode.
+- Writing FESM and DTS bundles
+[32m√[39m Writing FESM and DTS bundles
+[32m√[39m Built frakton-ng/internal/di
+[37m[39m
+[37m------------------------------------------------------------------------------[39m
+[37mBuilding entry point 'frakton-ng/internal/services'[39m
+[37m------------------------------------------------------------------------------[39m
+- Compiling with Angular sources in partial compilation mode.
+[32m√[39m Compiling with Angular sources in partial compilation mode.
+- Writing FESM and DTS bundles
+[32m√[39m Writing FESM and DTS bundles
+[32m√[39m Built frakton-ng/internal/services
+[37m[39m
+[37m------------------------------------------------------------------------------[39m
+[37mBuilding entry point 'frakton-ng/focus-trap'[39m
+[37m------------------------------------------------------------------------------[39m
+- Compiling with Angular sources in partial compilation mode.
+[32m√[39m Compiling with Angular sources in partial compilation mode.
+- Writing FESM and DTS bundles
+[32m√[39m Writing FESM and DTS bundles
+[32m√[39m Built frakton-ng/focus-trap
+[37m[39m
+[37m------------------------------------------------------------------------------[39m
+[37mBuilding entry point 'frakton-ng/overlay'[39m
+[37m------------------------------------------------------------------------------[39m
+- Compiling with Angular sources in partial compilation mode.
+[32m√[39m Compiling with Angular sources in partial compilation mode.
+[32m√[39m Generating FESM and DTS bundles
+[32m√[39m Built frakton-ng/overlay
+- Compiling with Angular sources in partial compilation mode.
+[37m[39m
+[37m------------------------------------------------------------------------------[39m
+[37mBuilding entry point 'frakton-ng/icon'[39m
+[37m------------------------------------------------------------------------------[39m
+[32m√[39m Compiling with Angular sources in partial compilation mode.
+[32m√[39m Generating FESM and DTS bundles
+[32m√[39m Built frakton-ng/icon
+[37m[39m
+[37m------------------------------------------------------------------------------[39m
+[37mBuilding entry point 'frakton-ng/badge'[39m
+[37m------------------------------------------------------------------------------[39m
+- Compiling with Angular sources in partial compilation mode.
+[32m√[39m Compiling with Angular sources in partial compilation mode.
+- Writing FESM and DTS bundles
+[32m√[39m Writing FESM and DTS bundles
+[32m√[39m Built frakton-ng/badge
+[37m[39m
+[37m------------------------------------------------------------------------------[39m
+[37mBuilding entry point 'frakton-ng/badge-selector'[39m
+[37m------------------------------------------------------------------------------[39m
+- Compiling with Angular sources in partial compilation mode.
+[32m√[39m Compiling with Angular sources in partial compilation mode.
+- Writing FESM and DTS bundles
+[32m√[39m Writing FESM and DTS bundles
+[32m√[39m Built frakton-ng/badge-selector
+[37m[39m
+[37m------------------------------------------------------------------------------[39m
+[37mBuilding entry point 'frakton-ng/internal/pipes'[39m
+[37m------------------------------------------------------------------------------[39m
+- Compiling with Angular sources in partial compilation mode.
+[32m√[39m Compiling with Angular sources in partial compilation mode.
+- Writing FESM and DTS bundles
+[32m√[39m Writing FESM and DTS bundles
+[32m√[39m Built frakton-ng/internal/pipes
+[37m[39m
+[37m------------------------------------------------------------------------------[39m
+[37mBuilding entry point 'frakton-ng/core'[39m
+[37m------------------------------------------------------------------------------[39m
+- Compiling with Angular sources in partial compilation mode.
+[32m√[39m Compiling with Angular sources in partial compilation mode.
+- Writing FESM and DTS bundles
+[32m√[39m Writing FESM and DTS bundles
+[32m√[39m Built frakton-ng/core
+[37m[39m
+[37m------------------------------------------------------------------------------[39m
+[37mBuilding entry point 'frakton-ng/button'[39m
+[37m------------------------------------------------------------------------------[39m
+- Compiling with Angular sources in partial compilation mode.
+[32m√[39m Compiling with Angular sources in partial compilation mode.
+[32m√[39m Generating FESM and DTS bundles
+[32m√[39m Built frakton-ng/button
+[37m[39m
+[37m------------------------------------------------------------------------------[39m
+[37mBuilding entry point 'frakton-ng/navigator'[39m
+[37m------------------------------------------------------------------------------[39m
+- Compiling with Angular sources in partial compilation mode.
+[32m√[39m Compiling with Angular sources in partial compilation mode.
+- Writing FESM and DTS bundles
+[32m√[39m Writing FESM and DTS bundles
+[32m√[39m Built frakton-ng/navigator
+[37m[39m
+[37m------------------------------------------------------------------------------[39m
+[37mBuilding entry point 'frakton-ng/calendar'[39m
+[37m------------------------------------------------------------------------------[39m
+- Compiling with Angular sources in partial compilation mode.
+[32m√[39m Compiling with Angular sources in partial compilation mode.
+- Writing FESM and DTS bundles
+[32m√[39m Writing FESM and DTS bundles
+[32m√[39m Built frakton-ng/calendar
+[37m[39m
+[37m------------------------------------------------------------------------------[39m
+[37mBuilding entry point 'frakton-ng/calendar-navigator'[39m
+[37m------------------------------------------------------------------------------[39m
+- Compiling with Angular sources in partial compilation mode.
+[32m√[39m Compiling with Angular sources in partial compilation mode.
+- Writing FESM and DTS bundles
+[32m√[39m Writing FESM and DTS bundles
+[32m√[39m Built frakton-ng/calendar-navigator
+[37m[39m
+[37m------------------------------------------------------------------------------[39m
+[37mBuilding entry point 'frakton-ng/card'[39m
+[37m------------------------------------------------------------------------------[39m
+- Compiling with Angular sources in partial compilation mode.
+[32m√[39m Compiling with Angular sources in partial compilation mode.
+- Writing FESM and DTS bundles
+[32m√[39m Writing FESM and DTS bundles
+[32m√[39m Built frakton-ng/card
+[37m[39m
+[37m------------------------------------------------------------------------------[39m
+[37mBuilding entry point 'frakton-ng/checkbox'[39m
+[37m------------------------------------------------------------------------------[39m
+- Compiling with Angular sources in partial compilation mode.
+
+[32m√[39m Compiling with Angular sources in partial compilation mode.
+- Writing FESM and DTS bundles
+[32m√[39m Writing FESM and DTS bundles
+[32m√[39m Built frakton-ng/checkbox
+[37m[39m
+[37m------------------------------------------------------------------------------[39m
+[37mBuilding entry point 'frakton-ng/forms'[39m
+[37m------------------------------------------------------------------------------[39m
+- Compiling with Angular sources in partial compilation mode.
+[32m√[39m Compiling with Angular sources in partial compilation mode.
+- Writing FESM and DTS bundles
+[32m√[39m Writing FESM and DTS bundles
+[32m√[39m Built frakton-ng/forms
+[37m[39m
+[37m------------------------------------------------------------------------------[39m
+[37mBuilding entry point 'frakton-ng/input'[39m
+[37m------------------------------------------------------------------------------[39m
+- Compiling with Angular sources in partial compilation mode.
+[32m√[39m Compiling with Angular sources in partial compilation mode.
+[32m√[39m Generating FESM and DTS bundles
+[32m√[39m Built frakton-ng/input
+[37m[39m
+[37m------------------------------------------------------------------------------[39m
+[37mBuilding entry point 'frakton-ng/tooltip'[39m
+[37m------------------------------------------------------------------------------[39m
+- Compiling with Angular sources in partial compilation mode.
+[32m√[39m Compiling with Angular sources in partial compilation mode.
+- Writing FESM and DTS bundles
+[32m√[39m Writing FESM and DTS bundles
+[32m√[39m Built frakton-ng/tooltip
+[37m[39m
+[37m------------------------------------------------------------------------------[39m
+[37mBuilding entry point 'frakton-ng/buttons-list'[39m
+[37m------------------------------------------------------------------------------[39m
+- Compiling with Angular sources in partial compilation mode.
+[32m√[39m Compiling with Angular sources in partial compilation mode.
+- Writing FESM and DTS bundles
+[32m√[39m Writing FESM and DTS bundles
+[32m√[39m Built frakton-ng/buttons-list
+[37m[39m
+[37m------------------------------------------------------------------------------[39m
+[37mBuilding entry point 'frakton-ng/no-results'[39m
+[37m------------------------------------------------------------------------------[39m
+- Compiling with Angular sources in partial compilation mode.
+[32m√[39m Compiling with Angular sources in partial compilation mode.
+- Writing FESM and DTS bundles
+[32m√[39m Writing FESM and DTS bundles
+[32m√[39m Built frakton-ng/no-results
+[37m[39m
+[37m------------------------------------------------------------------------------[39m
+[37mBuilding entry point 'frakton-ng/spinner'[39m
+[37m------------------------------------------------------------------------------[39m
+- Compiling with Angular sources in partial compilation mode.
+[32m√[39m Compiling with Angular sources in partial compilation mode.
+- Writing FESM and DTS bundles
+[32m√[39m Writing FESM and DTS bundles
+[32m√[39m Built frakton-ng/spinner
+[37m[39m
+[37m------------------------------------------------------------------------------[39m
+[37mBuilding entry point 'frakton-ng/autocomplete'[39m
+[37m------------------------------------------------------------------------------[39m
+- Compiling with Angular sources in partial compilation mode.
+[32m√[39m Compiling with Angular sources in partial compilation mode.
+- Writing FESM and DTS bundles
+[32m√[39m Writing FESM and DTS bundles
+[32m√[39m Built frakton-ng/autocomplete
+[37m[39m
+[37m------------------------------------------------------------------------------[39m
+[37mBuilding entry point 'frakton-ng/navigable-list'[39m
+[37m------------------------------------------------------------------------------[39m
+- Compiling with Angular sources in partial compilation mode.
+[32m√[39m Compiling with Angular sources in partial compilation mode.
+- Writing FESM and DTS bundles
+[32m√[39m Writing FESM and DTS bundles
+[32m√[39m Built frakton-ng/navigable-list
+[37m[39m
+[37m------------------------------------------------------------------------------[39m
+[37mBuilding entry point 'frakton-ng/select'[39m
+[37m------------------------------------------------------------------------------[39m
+- Compiling with Angular sources in partial compilation mode.
+[32m√[39m Compiling with Angular sources in partial compilation mode.
+[32m√[39m Generating FESM and DTS bundles
+[32m√[39m Built frakton-ng/select
+[37m[39m
+[37m------------------------------------------------------------------------------[39m
+[37mBuilding entry point 'frakton-ng/color-picker'[39m
+[37m------------------------------------------------------------------------------[39m
+- Compiling with Angular sources in partial compilation mode.
+[32m√[39m Compiling with Angular sources in partial compilation mode.
+- Writing FESM and DTS bundles
+[32m√[39m Writing FESM and DTS bundles
+[32m√[39m Built frakton-ng/color-picker
+[37m[39m
+[37m------------------------------------------------------------------------------[39m
+[37mBuilding entry point 'frakton-ng/date-picker'[39m
+[37m------------------------------------------------------------------------------[39m
+- Compiling with Angular sources in partial compilation mode.
+[32m√[39m Compiling with Angular sources in partial compilation mode.
+- Writing FESM and DTS bundles
+[32m√[39m Writing FESM and DTS bundles
+[32m√[39m Built frakton-ng/date-picker
+[37m[39m
+[37m------------------------------------------------------------------------------[39m
+[37mBuilding entry point 'frakton-ng/dialog'[39m
+[37m------------------------------------------------------------------------------[39m
+- Compiling with Angular sources in partial compilation mode.
+[32m√[39m Compiling with Angular sources in partial compilation mode.
+- Writing FESM and DTS bundles
+[32m√[39m Writing FESM and DTS bundles
+[32m√[39m Built frakton-ng/dialog
+[37m[39m
+[37m------------------------------------------------------------------------------[39m
+[37mBuilding entry point 'frakton-ng/field-error'[39m
+[37m------------------------------------------------------------------------------[39m
+- Compiling with Angular sources in partial compilation mode.
+[32m√[39m Compiling with Angular sources in partial compilation mode.
+- Writing FESM and DTS bundles
+[32m√[39m Writing FESM and DTS bundles
+[32m√[39m Built frakton-ng/field-error
+[37m[39m
+[37m------------------------------------------------------------------------------[39m
+[37mBuilding entry point 'frakton-ng/drawer'[39m
+[37m------------------------------------------------------------------------------[39m
+- Compiling with Angular sources in partial compilation mode.
+[32m√[39m Compiling with Angular sources in partial compilation mode.
+- Writing FESM and DTS bundles
+[32m√[39m Writing FESM and DTS bundles
+[32m√[39m Built frakton-ng/drawer
+[37m[39m
+[37m------------------------------------------------------------------------------[39m
+[37mBuilding entry point 'frakton-ng/side-menu'[39m
+[37m------------------------------------------------------------------------------[39m
+- Compiling with Angular sources in partial compilation mode.
+
+[32m√[39m Compiling with Angular sources in partial compilation mode.
+- Writing FESM and DTS bundles
+[32m√[39m Writing FESM and DTS bundles
+[32m√[39m Built frakton-ng/side-menu
+[37m[39m
+[37m------------------------------------------------------------------------------[39m
+[37mBuilding entry point 'frakton-ng/table'[39m
+[37m------------------------------------------------------------------------------[39m
+- Compiling with Angular sources in partial compilation mode.
+[32m√[39m Compiling with Angular sources in partial compilation mode.
+- Writing FESM and DTS bundles
+[32m√[39m Writing FESM and DTS bundles
+[32m√[39m Built frakton-ng/table
+[37m[39m
+[37m------------------------------------------------------------------------------[39m
+[37mBuilding entry point 'frakton-ng/textarea'[39m
+[37m------------------------------------------------------------------------------[39m
+- Compiling with Angular sources in partial compilation mode.
+
+[32m√[39m Compiling with Angular sources in partial compilation mode.
+- Writing FESM and DTS bundles
+[32m√[39m Writing FESM and DTS bundles
+[32m√[39m Built frakton-ng/textarea
+[37m[39m
+[37m------------------------------------------------------------------------------[39m
+[37mBuilding entry point 'frakton-ng/tabs'[39m
+[37m------------------------------------------------------------------------------[39m
+- Compiling with Angular sources in partial compilation mode.
+[32m√[39m Compiling with Angular sources in partial compilation mode.
+- Writing FESM and DTS bundles
+[32m√[39m Writing FESM and DTS bundles
+[32m√[39m Built frakton-ng/tabs
+[37m[39m
+[37m------------------------------------------------------------------------------[39m
+[37mBuilding entry point 'frakton-ng/toggle'[39m
+[37m------------------------------------------------------------------------------[39m
+- Compiling with Angular sources in partial compilation mode.
+[32m√[39m Compiling with Angular sources in partial compilation mode.
+- Writing FESM and DTS bundles
+[32m√[39m Writing FESM and DTS bundles
+[32m√[39m Built frakton-ng/toggle
+[32m[39m
+[32m------------------------------------------------------------------------------[39m
+[32mBuilt Angular Package[39m
+[32m- from: C:/Users/samuel/programming/frakton-ng/libs/frakton-ng[39m
+[32m- to:   C:/Users/samuel/programming/frakton-ng/libs/frakton-ng/dist[39m
+[32m------------------------------------------------------------------------------[39m
+[37m[37m[39m[37m[39m
+[37m[37mBuild at: [1m2025-11-08T06:59:51.643Z[22m - Time: [1m19239[22mms[39m[37m[39m
+[37m[37m[39m[37m[39m

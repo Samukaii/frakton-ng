@@ -1,0 +1,28 @@
+/* You can add global styles to this file, and also import other style files */
+@font-face {
+	font-family: 'Frakton';
+	src: url('/fonts/frakton.woff2') format('woff2');
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}
+
+body, html {
+	padding: 0;
+	margin: 0;
+}
+
+body {
+	height: 100vh;
+	width: 100vw;
+	font-family: "Frakton", sans-serif;
+	background-color: var(--fkt-color-neutral-background);
+	--fkt-panel-shadow: rgb(179 187 199) 0px 4px 21px 1px;
+}
+
+
+body[data-fkt-theme="dark"] {
+	--fkt-panel-shadow: rgb(24, 27, 32) 0px 4px 21px 1px;
+	--fkt-toolbar-background: rgb(36, 42, 53);
+}
+

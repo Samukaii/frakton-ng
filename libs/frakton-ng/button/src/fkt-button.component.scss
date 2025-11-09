@@ -56,11 +56,20 @@ $font-weight: var(--fkt-button-font-weight, var(--fkt-font-semibold));
 /*
 Font weight for icon-only buttons.
 @name --fkt-button-icon-font-weight
-@reference --fkt-font-normal
+@reference --fkt-font-semibold
 @category Typography
 @type size
 */
-$icon-font-weight: var(--fkt-button-icon-font-weight, var(--fkt-font-normal));
+$icon-font-weight: var(--fkt-button-icon-font-weight, var(--fkt-font-semibold));
+
+/*
+Font weight for icon-only buttons.
+@name --fkt-button-icon-font-size
+@reference --fkt-font-size-xl
+@category Typography
+@type size
+*/
+$icon-font-size: var(--fkt-button-icon-font-size, var(--fkt-font-size-xl));
 
 /*
 Border width for button.
@@ -370,10 +379,15 @@ button {
 	font-family: inherit;
 	font-size: inherit;
 
-  &:focus-visible {
-    outline: none;
-    box-shadow: 0 0 0 2px $focus-color;
-  }
+	fkt-icon {
+		font-weight: $icon-font-weight;
+		font-size: $icon-font-size;
+	}
+
+	&:focus-visible {
+		outline: none;
+		box-shadow: 0 0 0 2px $focus-color;
+	}
 
 	&:disabled {
 		cursor: not-allowed;
@@ -552,7 +566,6 @@ button {
 	padding: $padding-vertical $padding-horizontal;
 	border-radius: $border-radius;
 	background-color: transparent;
-
 
 
 	&.shape-rounded {

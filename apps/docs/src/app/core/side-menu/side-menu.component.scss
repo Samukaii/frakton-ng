@@ -1,0 +1,32 @@
+.header {
+	margin-bottom: 1rem;
+	border-bottom: solid 1px var(--fkt-color-neutral-300);
+
+	&__logo {
+		height: fit-content;
+		display: block;
+
+		img {
+			width: 150px;
+		}
+	}
+}
+
+.root-menu {
+	display: flex;
+	flex-direction: column;
+	gap: var(--fkt-space-xs);
+	padding: 0;
+}
+
+:host {
+	display: block;
+	width: 300px;
+	background-color: var(--fkt-color-modal-background);
+	padding: 1rem;
+	color: var(--fkt-color-neutral-900);
+	height: 100%;
+	box-sizing: border-box;
+    z-index: 30000;
+	box-shadow: var(--fkt-panel-shadow);
+}

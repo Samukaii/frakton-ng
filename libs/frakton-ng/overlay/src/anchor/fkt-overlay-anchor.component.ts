@@ -4,7 +4,8 @@ import {
 	effect,
 	ElementRef,
 	inject,
-	input, linkedSignal,
+	input,
+	linkedSignal,
 	output,
 	signal,
 	viewChild,
@@ -17,7 +18,6 @@ import { OVERLAY_INFO } from '../tokens/overlay-info';
 import { FktOverlayRef } from '../fkt-overlay.types';
 import { FktFocusTrapDirective } from 'frakton-ng/focus-trap';
 import { injectWindowScroll } from 'frakton-ng/internal/di';
-import { JsonPipe } from '@angular/common';
 
 @Component({
 	selector: 'fkt-overlay-anchor',
@@ -58,8 +58,7 @@ import { JsonPipe } from '@angular/common';
 		'[id]': 'id()',
 	},
 	imports: [
-		FktFocusTrapDirective,
-		JsonPipe
+		FktFocusTrapDirective
 	]
 })
 export class FktOverlayAnchorComponent {

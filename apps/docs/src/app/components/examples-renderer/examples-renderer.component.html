@@ -1,0 +1,7 @@
+
+@for (story of storyInfoService.storyData.stories; track story.name) {
+	<fkt-story-renderer
+		[title]="story.name"
+		[description]="story.story.description"
+	/>
+}

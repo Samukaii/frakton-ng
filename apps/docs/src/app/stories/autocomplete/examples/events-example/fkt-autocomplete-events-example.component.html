@@ -1,0 +1,58 @@
+<div class="example-container">
+	<h3>Events & Actions</h3>
+	<p class="description">Demonstrates event handling and custom actions. Each option has edit, favorite, and delete actions. All events are logged below.</p>
+
+	<fkt-autocomplete
+		[field]="control"
+		[label]="label()"
+		[placeholder]="placeholder()"
+		[actions]="actions()"
+		[options]="filteredOptions()"
+		(search)="searchTerm.set($event)"
+	/>
+
+	@if (selectedOption()) {
+		<div class="selected-option">
+			<div class="title">
+				<h3>
+					Selected option
+				</h3>
+				<hr>
+			</div>
+
+			<div class="info">
+				<p>
+					<strong>Value:</strong> {{ selectedOption()?.value }}
+				</p>
+				<p>
+					<strong>Label:</strong> {{ selectedOption()?.label }}
+				</p>
+			</div>
+		</div>
+	}
+
+	<div class="events-log">
+		<h4>Event Log</h4>
+		<div class="last-event">
+			{{ lastEvent() || 'No events yet. Try searching or clicking actions.' }}
+		</div>
+	</div>
+
+	<div class="actions-legend">
+		<h4>Available Actions</h4>
+		<div class="legend-items">
+			<div class="legend-item">
+				<span class="icon-placeholder edit-icon"><fkt-icon name="pencil-square"/></span>
+				<span>Edit - Modify the tag</span>
+			</div>
+			<div class="legend-item">
+				<span class="icon-placeholder favorite-icon"><fkt-icon name="star"/></span>
+				<span>Favorite - Mark as favorite</span>
+			</div>
+			<div class="legend-item">
+				<span class="icon-placeholder delete-icon"><fkt-icon name="trash"/></span>
+				<span>Delete - Remove the tag</span>
+			</div>
+		</div>
+	</div>
+</div>

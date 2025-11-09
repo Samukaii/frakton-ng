@@ -1,0 +1,36 @@
+@if (isVisible() && hasItems()) {
+	<nav class="toc-nav" aria-label="Table of contents">
+		<ul class="toc-list">
+			@for (item of tocItems(); track item.id) {
+				<ng-container
+					*ngTemplateOutlet="tocItemTemplate; context: { $implicit: item, level: 1 }"
+				/>
+			}
+		</ul>
+	</nav>
+}
+
+<ng-template #tocItemTemplate let-item let-level="level">
+	<li class="toc-item" [attr.data-level]="level">
+		<a
+			class="toc-link"
+			[class.toc-link--active]="isActive(item.id)"
+			[href]="'#' + item.id"
+			[class.last]="!hasChildren(item)"
+			(click)="scrollToHeading(item.id); $event.preventDefault()"
+			[attr.aria-current]="isActive(item.id) ? 'location' : null"
+		>
+			{{ item.text }}
+		</a>
+
+		@if (hasChildren(item)) {
+			<ul class="toc-sublist">
+				@for (child of item.children; track child.id) {
+					<ng-container
+						*ngTemplateOutlet="tocItemTemplate; context: { $implicit: child, level: level + 1 }"
+					/>
+				}
+			</ul>
+		}
+	</li>
+</ng-template>

@@ -1,0 +1,63 @@
+:host {
+    z-index: 20000;
+}
+
+.toolbar {
+    background-color: var(--fkt-color-modal-background);
+    width: 100%;
+    box-shadow: var(--fkt-panel-shadow);
+    transition: .3s ease;
+    display: flex;
+    justify-content: flex-end;
+    box-sizing: border-box;
+    padding: .5rem 1rem;
+
+    img {
+        height: 31px;
+    }
+
+    &__version-tag {
+        display: flex;
+        align-items: center;
+        color: var(--fkt-color-warning);
+        border: solid 1px var(--fkt-color-warning);
+        padding: .5rem;
+        box-sizing: border-box;
+        white-space: nowrap;
+        border-radius: var(--fkt-radius-md);
+        font-size: var(--fkt-font-size-sm);
+        font-weight: var(--fkt-font-semibold);
+    }
+
+
+    &__actions {
+        display: flex;
+        gap: .5rem;
+
+        button, a {
+            background: transparent;
+            color: var(--fkt-color-neutral-800);
+            padding: .3rem;
+            transition: var(--fkt-transition-base);
+            border-radius: var(--fkt-radius-md);
+            cursor: pointer;
+            border: solid 1px var(--fkt-color-neutral-400);
+            box-sizing: border-box;
+            min-height: 0;
+            aspect-ratio: 1;
+
+            &:hover {
+                background-color: var(--fkt-color-neutral-800);
+                color: var(--fkt-color-neutral-50);
+            }
+        }
+
+        a span {
+            width: 20px;
+        }
+
+        button span {
+            font-size: 1.25rem;
+        }
+    }
+}

@@ -1,0 +1,41 @@
+.fkt-warning-notes {
+	background-color: var(--fkt-color-warning-opacity-10);
+	padding: var(--fkt-space-md);
+	box-sizing: border-box;
+	border-radius: var(--fkt-radius-md);
+	border: solid 1px var(--fkt-color-warning-opacity-30);
+	display: flex;
+	align-items: center;
+	gap: var(--fkt-space-xs);
+	color: var(--fkt-color-neutral-900);
+	margin-top: var(--fkt-space-xl);
+
+	.fkt-warning-notes__title {
+		margin-bottom: var(--fkt-space-md);
+		display: block;
+	}
+
+	.fkt-warning-notes__want-contribute {
+		margin-top: 1rem;
+	}
+
+	.frakton-icon {
+		font-size: 36px;
+	}
+
+	p {
+		margin: 0;
+	}
+
+	a {
+		color: var(--fkt-color-warning);
+		font-weight: var(--fkt-font-semibold);
+		border-bottom: solid 1px transparent;
+		transition: var(--fkt-transition-base);
+
+		&:hover {
+			border-color: var(--fkt-color-warning);
+		}
+	}
+
+}
