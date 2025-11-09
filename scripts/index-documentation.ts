@@ -11,6 +11,11 @@ const result = fs.readdirSync('apps/docs/src/app/stories', {
 const storyFolders = result.filter(story => story.isDirectory());
 
 storyFolders.forEach(folder => {
+    const directory = `libs/frakton-ng/${folder.name}/src`;
+
+    if(!fs.existsSync(directory))
+        return;
+
 	generateDesignTokens({
 		directory: `libs/frakton-ng/${folder.name}/src`,
 		outputPath: `apps/docs/src/app/stories/${folder.name}/fkt-${folder.name}-design-tokens.json`
