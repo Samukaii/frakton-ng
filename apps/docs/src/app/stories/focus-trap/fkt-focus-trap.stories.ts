@@ -12,6 +12,7 @@ import documentation from './fkt-focus-trap.docs.md' with { loader: "text" };
 const meta: Meta = {
 	title: "Components/Accessibility/FocusTrap",
 	component: FktFocusTrapDirective,
+    description: "A directive that traps keyboard focus within a container, ensuring proper accessibility for modals, forms, and other interactive elements that require contained navigation.",
 	documentation,
 	argTypes: {
 		preventScroll: {

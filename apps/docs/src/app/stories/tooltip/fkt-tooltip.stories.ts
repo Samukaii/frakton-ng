@@ -24,6 +24,7 @@ const positionOptions: FktGeometryPosition[] = [
 const meta: Meta = {
 	title: "Components/Overlays/Tooltip",
 	component: FktTooltipDirective,
+    description: "A lightweight tooltip directive that provides contextual information on hover. Built with Angular signals and overlay system, it offers flexible positioning and seamless integration with any HTML element.",
 	documentation,
 	designTokens: designTokens as DesignToken[],
 	argTypes: {

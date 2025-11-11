@@ -1,5 +1,3 @@
-The **FktIcon** component provides a comprehensive icon system with a curated set of icons for various UI elements and interactions. Built with scalable vector graphics for crisp display at any size and seamless integration with the design system.
-
 ## Key Features
 
 - **Comprehensive Icon Library**: Curated set of icons covering common UI needs
@@ -17,10 +15,6 @@ The **FktIcon** component provides a comprehensive icon system with a curated se
 ### Icon Library
 
 The component includes a comprehensive icon library with icons for navigation, actions, status indicators, and common UI elements. Use the Gallery example below to explore all available icons.
-
-## Examples
-
-<story-examples></story-examples>
 
 ## Use Cases
 

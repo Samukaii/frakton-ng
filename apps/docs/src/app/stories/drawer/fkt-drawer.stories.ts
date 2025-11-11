@@ -7,6 +7,7 @@ import documentation from './fkt-drawer.docs.md' with { loader: "text" };
 const meta: Meta = {
 	title: "Components/Navigation/Drawer",
 	component: FktDrawerComponent,
+    description: "The FktDrawer component provides a slide-out navigation panel that can either push content aside or overlay on top of it. Built with Angular signals and modern design patterns, it offers flexible positioning and smooth animations.",
 	documentation,
 	argTypes: {
 		opened: {
@@ -54,7 +55,7 @@ export const Overlay: Story<FktDrawerComponent> = {
 	description: "Drawer in overlay mode that floats over the content with backdrop.",
 	args: {
 		opened: false,
-		mode: 'overlay', 
+		mode: 'overlay',
 		width: '300px'
 	}
 };

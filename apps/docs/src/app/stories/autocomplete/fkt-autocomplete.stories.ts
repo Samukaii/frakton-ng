@@ -10,10 +10,13 @@ import { Meta } from '@/models/meta';
 import { Story } from '@/models/story';
 // @ts-expect-error
 import documentation from './fkt-autocomplete.docs.md' with { loader: "text" };
+import designTokens from './fkt-autocomplete-design-tokens.json';
 
 const meta: Meta = {
 	title: "Components/Form/Autocomplete",
 	component: FktAutocompleteComponent,
+    designTokens: designTokens as any,
+    description: "A powerful and flexible autocomplete input component with dropdown options, search functionality, and support for custom actions. Built with Angular signals and reactive patterns, it offers seamless integration with forms and dynamic data sources.",
 	documentation,
 	argTypes: {
 		value: {

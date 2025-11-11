@@ -1,5 +1,3 @@
-The **FktSpinner** component provides a customizable loading indicator with configurable size, stroke width, and color themes. It's designed to give users visual feedback during loading states and async operations.
-
 ## Key Features
 
 - **Configurable Size**: Adjustable spinner diameter
@@ -20,10 +18,6 @@ The **FktSpinner** component provides a customizable loading indicator with conf
 ```typescript
 type FktColor = 'primary' | 'yellow' | 'red' | 'green';
 ```
-
-## Examples
-
-<story-examples></story-examples>
 
 ## Use Cases
 

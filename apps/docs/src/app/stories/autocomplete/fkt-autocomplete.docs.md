@@ -1,7 +1,3 @@
-# FktAutocomplete
-
-A powerful and flexible autocomplete input component with dropdown options, search functionality, and support for custom actions. Built with Angular signals and reactive patterns, it offers seamless integration with forms and dynamic data sources.
-
 ## Key Features
 
 - **Real-time Search**: Filter options as user types with search event emission for API integration
@@ -39,10 +35,6 @@ export interface FktButtonAction {
     identifier: string;     // Unique identifier for action handling
 }
 ```
-
-## Examples
-
-<story-examples></story-examples>
 
 ## Component Architecture
 

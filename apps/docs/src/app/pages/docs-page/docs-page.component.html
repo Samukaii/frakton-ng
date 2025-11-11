@@ -1,15 +1,31 @@
-<div class="container">
-	<fkt-table-of-contents excludedContainerSelector="fkt-playground"/>
-	@if (!currentStoryData.isLoading() && docs()) {
-		<div class="docs">
-			<fkt-markdown
-				[data]="docs()!"
-			/>
-		</div>
+<fkt-tabs-list hideTabsWhenOnlyOne [(activeTab)]="activeTab">
+    <fkt-tab [hidden]="!hasStories()" key="features" label="Features">
+        <div class="examples">
+            @if (!currentStoryData.isLoading() && docs()) {
+                <h1>{{ title() }}</h1>
+                <em>{{ description() }}</em>
+                <fkt-story-examples/>
+            } @else {
+                <fkt-spinner/>
+            }
+        </div>
+    </fkt-tab>
 
-	} @else if (currentStoryData.isLoading()) {
-		<fkt-spinner/>
-	}
-	<div class="placeholder"></div>
 
-</div>
+    <fkt-tab key="api-reference" label="API">
+        <div class="container">
+            @if (!currentStoryData.isLoading() && docs()) {
+                <div class="docs">
+                    <fkt-markdown
+                        [data]="docs()!"
+                    />
+                </div>
+
+            } @else if (currentStoryData.isLoading()) {
+                <fkt-spinner/>
+            }
+        </div>
+    </fkt-tab>
+</fkt-tabs-list>
+
+

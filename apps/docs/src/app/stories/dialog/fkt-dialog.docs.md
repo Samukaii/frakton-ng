@@ -1,6 +1,3 @@
-The **FktDialog** service provides a powerful and flexible system for creating modal dialogs in your Angular applications.
-Built with modern Angular signals and reactive patterns, it supports advanced TypeScript inference, custom components, various sizing options, and pre-built confirmation dialogs with seamless data binding.
-
 ## Key Features
 
 - **Advanced TypeScript Inference**: Automatic type inference for dialog data based on component signal inputs, outputs, and models
@@ -50,10 +47,6 @@ export interface FktConfirmActionOptions {
     backdropClick?: () => void;            // Backdrop click handler
 }
 ```
-
-## Examples
-
-<story-examples></story-examples>
 
 ## TypeScript Inference & Component Design
 

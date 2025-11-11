@@ -13,13 +13,14 @@
 	.fkt-warning-notes__title {
 		margin-bottom: var(--fkt-space-md);
 		display: block;
+        font-size: var(--fkt-font-size-md);
 	}
 
 	.fkt-warning-notes__want-contribute {
 		margin-top: 1rem;
 	}
 
-	.frakton-icon {
+	fkt-icon {
 		font-size: 36px;
 	}
 

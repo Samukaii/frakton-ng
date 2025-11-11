@@ -1,5 +1,5 @@
 import { FktDialogService } from 'frakton-ng/dialog';
-import { 
+import {
 	FktConfirmationDialogExampleComponent,
 	FktCustomDialogExampleComponent,
 	FktDialogOverviewExampleComponent,
@@ -16,6 +16,8 @@ import documentation from './fkt-dialog.docs.md' with { loader: "text" };
 const meta: Meta = {
 	title: "Components/Overlays/Dialog",
 	component: FktDialogService,
+    description: "The FktDialog service provides a powerful and flexible system for creating modal dialogs in your Angular applications.\n" +
+        "Built with modern Angular signals and reactive patterns, it supports advanced TypeScript inference, custom components, various sizing options, and pre-built confirmation dialogs with seamless data binding.",
 	documentation,
 	argTypes: {
 		open: {
@@ -25,7 +27,7 @@ const meta: Meta = {
 			description: 'Opens a dialog with the specified options'
 		},
 		confirm: {
-			category: "Methods", 
+			category: "Methods",
 			type: 'function',
 			control: 'text',
 			description: 'Opens a confirmation dialog with predefined actions'

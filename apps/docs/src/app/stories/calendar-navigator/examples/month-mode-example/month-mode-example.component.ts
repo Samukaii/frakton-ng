@@ -7,7 +7,7 @@ import { FktCalendarNavigatorComponent, FktCalendarNavigatorMode } from 'frakton
 	styleUrl: './month-mode-example.component.scss',
 	imports: [FktCalendarNavigatorComponent]
 })
-export class ExampleComponent {
+export class MonthModeExampleComponent {
 	currentDate = input(new Date());
 	mode = input<FktCalendarNavigatorMode>('month');
 }

@@ -10,7 +10,7 @@ import { FktBadgeComponent } from 'frakton-ng/badge';
 	styleUrl: './dynamic-mode-example.component.scss',
 	imports: [FktCalendarNavigatorComponent, DatePipe, FktButtonComponent, FktBadgeComponent]
 })
-export class ExampleComponent {
+export class DynamicModeExampleComponent {
 	protected currentDate = input(new Date());
 	protected mode = input<FktCalendarNavigatorMode>('month');
 

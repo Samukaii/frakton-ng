@@ -1,7 +1,3 @@
-
-
-The **FktNoResults** component provides a consistent and configurable way to display empty states when no data is available. It supports custom icons, descriptions, and action buttons to guide users on what to do next.
-
 ## Key Features
 
 - **Custom Icons**: Configurable icon with adjustable size
@@ -31,9 +27,6 @@ interface FktNoResults {
 }
 ```
 
-## Examples
-
-<story-examples></story-examples>
 
 ## Use Cases
 

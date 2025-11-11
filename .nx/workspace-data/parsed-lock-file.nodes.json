@@ -143,13 +143,13 @@
       "hash": "sha512-p0GO2H8hiZjRHI9sm4tXTF3OpWaEnkqvB0GBGJfGp8RvpPfDA2t3j2NAUNtd75H+B0xdfyWLmNq9YJGpy6gznA=="
     }
   },
-  "npm:@angular-devkit/architect@0.2100.0-rc.1": {
+  "npm:@angular-devkit/architect@0.2100.0-rc.0": {
     "type": "npm",
-    "name": "npm:@angular-devkit/architect@0.2100.0-rc.1",
+    "name": "npm:@angular-devkit/architect@0.2100.0-rc.0",
     "data": {
-      "version": "0.2100.0-rc.1",
+      "version": "0.2100.0-rc.0",
       "packageName": "@angular-devkit/architect",
-      "hash": "sha512-oSy7SipH25zbjER8qps2yveRm5wkLJZWOCH/3BT3OKJozhsTnZ2zAuXRUakxcrDJmlVpTOw1zTX23ZOpubVpkw=="
+      "hash": "sha512-GHNScfffNVVVKLjqD+ZViDccZGFl7ssrPIXtct/AryeeTyE5QKUmZa+NtxIErM4W+vhwb19EQy9KhIm+pG7qOg=="
     }
   },
   "npm:@angular-devkit/core@20.3.9": {
@@ -165,9 +165,9 @@
     "type": "npm",
     "name": "npm:@angular-devkit/core",
     "data": {
-      "version": "21.0.0-rc.1",
+      "version": "21.0.0-rc.0",
       "packageName": "@angular-devkit/core",
-      "hash": "sha512-4wXTri1az5LXvNPYTdMsvucd5hqmsbKpq+x674kfIZROo6XVQlkMYkuo7dUUMvD4G3eTgz/fUlEo9urJTkEXdw=="
+      "hash": "sha512-7cTo6gruB30aCz0+MPg8ukAqhUVf/cOsIMog1KRpQNoMYxmI6Xivnks+7Km1Qx3uxmdJ5vtXBkEOhzattQdG2w=="
     }
   },
   "npm:@angular-devkit/schematics@20.3.9": {
@@ -183,9 +183,9 @@
     "type": "npm",
     "name": "npm:@angular-devkit/schematics",
     "data": {
-      "version": "21.0.0-rc.1",
+      "version": "21.0.0-rc.0",
       "packageName": "@angular-devkit/schematics",
-      "hash": "sha512-pIvbsWQGWMxkbiqLB5Jqz/KIuABK18m2aTMFJLTc8eaftTZ1zlIprYb2VD5de6cw9GDi8Few3BjJAeojBm4S0Q=="
+      "hash": "sha512-Z5QltTtZa6ZLrrtc4IQNmlxyirMYiHGX3fep/Z1/TeubXzlbBD8trWezdezkYLau48npbaUQ9oVWLDZPu1PEgA=="
     }
   },
   "npm:@angular-eslint/builder": {
@@ -255,36 +255,36 @@
     "type": "npm",
     "name": "npm:@angular/build",
     "data": {
-      "version": "21.0.0-rc.1",
+      "version": "21.0.0-rc.0",
       "packageName": "@angular/build",
-      "hash": "sha512-awLzEE/veUtJ09GH/GCuS3BO4vl5p8ScVnENrvSBSHutXbXlBA1tk0ShCYKs7lhyCwjwiZuWu1BPfbvPgfRlAw=="
+      "hash": "sha512-rLHEOrIzYkIkQ7Crakv8o2PO/ZeidLWl94xDP61WjoVEFckemErIb/S9CCbGo4IWM2Oh71ETmSNoi8EMTcKu6A=="
     }
   },
   "npm:@angular/cli": {
     "type": "npm",
     "name": "npm:@angular/cli",
     "data": {
-      "version": "21.0.0-rc.1",
+      "version": "21.0.0-rc.0",
       "packageName": "@angular/cli",
-      "hash": "sha512-KGHchlLeDsJkFUOeKldBZg6pQdlt2tVmYBNo+wT9HL3JvIupBjWp7U1sX1t8zISYVKmNCY5lBJHd5oo4WlEyLw=="
+      "hash": "sha512-GmN6gg15r734M8W8ZylH6tNgv0xjq+2reEXx8nTIhueuRrHneqQq8dLdSSgq4GqJApQgKURDvB7XimFpZgwItQ=="
     }
   },
   "npm:@angular/common": {
     "type": "npm",
     "name": "npm:@angular/common",
     "data": {
-      "version": "21.0.0-rc.1",
+      "version": "21.0.0-rc.0",
       "packageName": "@angular/common",
-      "hash": "sha512-CDOqiXAOGt8owBKOWXnvcmt1ZhKgEybgWTn44cLFPdFK13l6ial09R5dDe+tqKAT2FOwB0AXpB9My3jEn3FHCA=="
+      "hash": "sha512-wZg/eNYdI/u6zU5DnfXM5tAmjByTXlPlWk4ve9LMZMyKAaw8jqrN0k210519D72saytkE7TPohL2aFGr/O8LGw=="
     }
   },
   "npm:@angular/compiler-cli": {
     "type": "npm",
     "name": "npm:@angular/compiler-cli",
     "data": {
-      "version": "21.0.0-rc.1",
+      "version": "21.0.0-rc.0",
       "packageName": "@angular/compiler-cli",
-      "hash": "sha512-tYBqNDsDOPTF11ol3CHwe1/rNmhC94jM8P6vBMEY7YTfriH6awD3scvFAuJWz3VS1ojzhNu/eX2rzzOcCCC92A=="
+      "hash": "sha512-sEljEVfXxMrSq4cBbbmCbgAhr+NKU971bXxGVm4JHJ7gKLW5s5S7r/rlHGMVCe3GfBwydRF8UrtE0Q2SZltEAg=="
     }
   },
   "npm:@angular/compiler": {
@@ -300,27 +300,27 @@
     "type": "npm",
     "name": "npm:@angular/core",
     "data": {
-      "version": "21.0.0-rc.1",
+      "version": "21.0.0-rc.0",
       "packageName": "@angular/core",
-      "hash": "sha512-ZPV+9usViVFnHPrd1NECrLjERYTRf3ycjG6XH6cCeneWxj8nFtvuNdLOVhWT5fvPYVJfdfYrwG52+Oi36AkaSg=="
+      "hash": "sha512-dRhlcCfrAbUsNycZ7eqxu54knq1ejKmyznmaJTwqA7sHIfgxC4C78tE2r6rylNECcvvB3EySV749yLHJJNDNfw=="
     }
   },
   "npm:@angular/elements": {
     "type": "npm",
     "name": "npm:@angular/elements",
     "data": {
-      "version": "21.0.0-next.3",
+      "version": "21.0.0-rc.0",
       "packageName": "@angular/elements",
-      "hash": "sha512-iaqg2Rr50Jy7p3VXodElYXysBc1Afn16rs5f8fZde+qBpoZQbpB3zhM4iVAgnQZF8zpdpYbRfbQOsGe+yECoYw=="
+      "hash": "sha512-rKN3yE6Y30bRW1mT2GoEFaeD+zfdFXLKECxVSRmU9GYs2INxG56ClMC3Drr7bj7yOEVsTdt+kn+7LArjcYSy+A=="
     }
   },
   "npm:@angular/forms": {
     "type": "npm",
     "name": "npm:@angular/forms",
     "data": {
-      "version": "21.0.0-rc.1",
+      "version": "21.0.0-rc.0",
       "packageName": "@angular/forms",
-      "hash": "sha512-xxs+TRLbKHPACrxLZUve/yAza0h3+PU4xMoQhBDLgQQk4145wvGc2c/t5CNwBso7C4pB5zaxRsEt2DLecuFexg=="
+      "hash": "sha512-ppGTKrFYAwXHwAXPoqkj63L7n6QvLgpLlp/No6mvDnn9/x34ZrcabvZWuxqj64+Mf1JJZSK8hYKbhzNz/zskcA=="
     }
   },
   "npm:@angular/platform-browser-dynamic": {
@@ -336,18 +336,18 @@
     "type": "npm",
     "name": "npm:@angular/platform-browser",
     "data": {
-      "version": "21.0.0-rc.1",
+      "version": "21.0.0-rc.0",
       "packageName": "@angular/platform-browser",
-      "hash": "sha512-1uu2JPC+da9hJfVOvoCSKxDYiyw9XPG6bVgNn1j/UEyUy3knvRMU/L/iDlLDQiSX1hLu0NdWF58eNbgHxqo+Fg=="
+      "hash": "sha512-h6zj3cMXkXlKEAk2O1tAYc1rFJfC7zHEUmWfB/9KeGxDaBzf2A9LRLcsiApUx0Jt8qnGxPRGZq28vuAiXBCyiA=="
     }
   },
   "npm:@angular/router": {
     "type": "npm",
     "name": "npm:@angular/router",
     "data": {
-      "version": "21.0.0-rc.1",
+      "version": "21.0.0-rc.0",
       "packageName": "@angular/router",
-      "hash": "sha512-TGpvzEh6PgOwEKCKffQQQPB08MSnO3n/JSkAgWliEMQpnbP9aLFFyInFnlNxD2j2IhJ7xbneIrywTxBxcGJhrw=="
+      "hash": "sha512-iel8D+n+aqsrKgUvGJbBvNhLl10DKxEfTy6qIKk34FP01wgOJ3ni/pvnY3KYzEfGPGtAwuiM5hV0lDj+RlC+vw=="
     }
   },
   "npm:@antfu/install-pkg": {
@@ -4872,9 +4872,9 @@
     "type": "npm",
     "name": "npm:@schematics/angular",
     "data": {
-      "version": "21.0.0-rc.1",
+      "version": "21.0.0-rc.0",
       "packageName": "@schematics/angular",
-      "hash": "sha512-WHAKFvQUoXB+1+vDIa7NWPF5UFoHJaVhhfXBZq8+jHSyHn6cp0IqZhtHs5hF3XPORMP+BSWzPCIhFFEQMR+4NQ=="
+      "hash": "sha512-yLHNXvlQ3+Z+23QPOFLWwr61G68abowJWt6MKXPZPnzi6Oh/ZlJTTQCGXWPkcq6IzfcTnq4zZSrPbh6fykiEYA=="
     }
   },
   "npm:@sigstore/bundle": {

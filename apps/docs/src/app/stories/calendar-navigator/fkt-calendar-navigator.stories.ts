@@ -8,6 +8,7 @@ import documentation from './fkt-calendar-navigator.docs.md' with { loader: "tex
 const meta: Meta = {
 	title: "Components/Navigation/Calendar Navigator",
 	component: FktCalendarNavigatorComponent,
+    description: "The FktCalendarNavigator component provides an interactive calendar header with navigation controls and modal-based date selection. It displays the current month/year and allows users to navigate between dates with modal overlays for detailed selection.",
 	documentation,
 	argTypes: {
 		mode: {

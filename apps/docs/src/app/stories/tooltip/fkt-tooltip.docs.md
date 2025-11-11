@@ -1,7 +1,3 @@
-# Tooltip
-
-_A lightweight tooltip directive that provides contextual information on hover. Built with Angular signals and overlay system, it offers flexible positioning and seamless integration with any HTML element._
-
 ## Key Features
 
 - **Universal Directive**: Works with any HTML element or Angular component
@@ -28,10 +24,6 @@ type FktGeometryPosition =
     | 'left-start' | 'left-center' | 'left-end'
     | 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
 ```
-
-## Examples
-
-<story-examples></story-examples>
 
 ## Use Cases
 

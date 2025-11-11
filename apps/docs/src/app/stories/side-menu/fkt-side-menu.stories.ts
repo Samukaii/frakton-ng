@@ -4,9 +4,11 @@ import { Meta } from '@/models/meta';
 import { Story } from '@/models/story';
 // @ts-expect-error
 import documentation from './fkt-side-menu.docs.md' with { loader: 'text' };
+import { provideRouter } from '@angular/router';
 
 const meta: Meta<FktSideMenuComponent> = {
 	title: "Components/Navigation/Side Menu",
+    description: "A responsive and customizable side navigation menu component with collapsible states, grouped menu items, and integrated routing support. Built with Angular signals for optimal performance and provides tooltips for collapsed states.",
 	component: FktSideMenuComponent,
 	documentation,
 	argTypes: {
@@ -144,6 +146,9 @@ const adminMenuGroups: FktMenuGroup[] = [
 
 export const BasicSideMenu: Story<FktSideMenuComponent> = {
 	description: "Basic side menu with simple menu groups and items for standard navigation.",
+    providers: [
+        provideRouter([])
+    ],
 	args: {
 		groups: defaultMenuGroups,
 		opened: true
@@ -152,6 +157,9 @@ export const BasicSideMenu: Story<FktSideMenuComponent> = {
 
 export const CollapsibleSideMenu: Story<FktSideMenuComponent> = {
 	description: "Side menu in collapsed state showing only icons with tooltips for space-efficient navigation.",
+    providers: [
+        provideRouter([])
+    ],
 	args: {
 		groups: collapsibleMenuGroups,
 		opened: true
@@ -160,6 +168,9 @@ export const CollapsibleSideMenu: Story<FktSideMenuComponent> = {
 
 export const MultipleGroups: Story<FktSideMenuComponent> = {
 	description: "Side menu with multiple grouped sections for organized navigation in complex applications.",
+    providers: [
+        provideRouter([])
+    ],
 	args: {
 		groups: multiGroupMenus,
 		opened: true
@@ -169,6 +180,9 @@ export const MultipleGroups: Story<FktSideMenuComponent> = {
 export const DynamicMenuWithPermissions: Story<DynamicPermissionsSideMenuExampleComponent> = {
 	component: DynamicPermissionsSideMenuExampleComponent,
 	description: "Advanced example showing dynamic menu generation based on user permissions.",
+    providers: [
+        provideRouter([])
+    ],
 	args: {
 		groups: permissionsMenuGroups,
 		opened: true
@@ -178,6 +192,9 @@ export const DynamicMenuWithPermissions: Story<DynamicPermissionsSideMenuExample
 export const AdminDashboardLayout: Story<AdminDashboardLayoutExampleComponent> = {
 	component: AdminDashboardLayoutExampleComponent,
 	description: "Complete dashboard layout showcasing real-world usage with content integration.",
+    providers: [
+        provideRouter([])
+    ],
 	args: {
 		groups: adminMenuGroups,
 		opened: true
@@ -187,6 +204,9 @@ export const AdminDashboardLayout: Story<AdminDashboardLayoutExampleComponent> =
 export const WithRouting: Story<WithRoutingExampleComponent> = {
 	component: WithRoutingExampleComponent,
 	description: "Complete dashboard layout showcasing real-world usage with content integration.",
+    providers: [
+        provideRouter([])
+    ],
 	args: {
 		groups: [
 			{

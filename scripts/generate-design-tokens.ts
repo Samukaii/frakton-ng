@@ -142,15 +142,6 @@ export const generateDesignTokens = (options: GenerateDesignTokensOptions) => {
 
 		const tokens = styleFileNames.map(getTokens).filter(token => !!token).flat();
 
-		if (tokens.length === 0) {
-			console.warn('Warning: No design tokens found in any SCSS files');
-			console.log('Make sure your SCSS files contain design token blocks with the format:');
-			console.log('// <design-tokens>');
-			console.log('/* Token documentation */');
-			console.log('// </design-tokens>');
-			return;
-		}
-
 		const cleanedTokens = removeRepeatedTokens(tokens);
 
 		fs.writeFileSync(options.outputPath, JSON.stringify(cleanedTokens, null, 2));

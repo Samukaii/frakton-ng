@@ -15,6 +15,7 @@ import documentation from './fkt-no-results.docs.md' with { loader: "text" };
 
 const meta: Meta = {
 	title: "Components/Feedback/No Results",
+    description: "The FktNoResults component provides a consistent and configurable way to display empty states when no data is available. It supports custom icons, descriptions, and action buttons to guide users on what to do next.",
 	component: FktNoResultsComponent,
 	documentation,
 	argTypes: {

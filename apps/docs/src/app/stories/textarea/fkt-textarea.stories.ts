@@ -15,6 +15,7 @@ import documentation from './fkt-textarea.docs.md' with { loader: "text" };
 const meta: Meta = {
 	title: "Components/Form/Textarea",
 	component: FktTextareaComponent,
+    description: "A multi-line text input component with reactive form integration, validation support, and optional auto-expand functionality for capturing longer text content from users.",
 	documentation,
 	argTypes: {
 		label: {

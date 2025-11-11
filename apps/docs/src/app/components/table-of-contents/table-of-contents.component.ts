@@ -1,4 +1,4 @@
-import { Component, computed, input, signal } from '@angular/core';
+import { Component, computed, effect, input, signal } from '@angular/core';
 import { NgTemplateOutlet } from '@angular/common';
 
 export interface TocItem {
@@ -25,6 +25,10 @@ export class TableOfContentsComponent {
 	protected readonly isVisible = signal(false);
 
 	protected readonly hasItems = computed(() => this.tocItems().length > 0);
+
+    a = effect(() => {
+        console.log(this.tocItems());
+    })
 
 	public generate() {
 		this.generateTableOfContents();
@@ -70,7 +74,7 @@ export class TableOfContentsComponent {
 	}
 
 	private getHeadings() {
-		const contentElement = document.querySelector('.docs');
+		const contentElement = document.querySelector('app-docs-page');
 		if (!contentElement) {
 			return [];
 		}
@@ -96,7 +100,7 @@ export class TableOfContentsComponent {
 	}
 
 	private setupIntersectionObserver() {
-		const contentElement = document.querySelector('app-docs-page');
+		const contentElement = document.querySelector('app-home-layout');
 
 		const headings = this.getHeadings();
 

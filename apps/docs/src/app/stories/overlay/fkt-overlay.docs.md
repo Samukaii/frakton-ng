@@ -1,6 +1,3 @@
-The **FktOverlay** service provides a powerful and flexible system for creating positioned overlays in your Angular applications.
-Built with modern Angular signals and reactive patterns, it supports dynamic positioning, intelligent repositioning, and seamless data binding between parent and overlay components.
-
 ## Key Features
 
 - **Advanced TypeScript Inference**: Automatic type inference for overlay data based on component signal inputs, outputs, and models
@@ -46,10 +43,6 @@ export interface FktOverlayRef<T> {
     close: () => void;                          // Method to close the overlay
 }
 ```
-
-## Examples
-
-<story-examples></story-examples>
 
 ## Positioning Options
 

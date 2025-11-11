@@ -65,12 +65,12 @@
 		}
 
 		&:hover {
-			color: var(--fkt-color-brand-secondary);
+			color: var(--fkt-color-accent);
 		}
 
 		&:focus {
 			border-bottom: solid 3px var(--fkt-color-focus-outline);
-			color: var(--fkt-color-brand-secondary);
+			color: var(--fkt-color-accent);
 		}
 
 		&:first-child {
@@ -86,8 +86,8 @@
 		}
 
 		&.active {
-			border-bottom: solid 3px var(--fkt-color-brand-secondary);
-			color: var(--fkt-color-brand-secondary);
+			border-bottom: solid 3px var(--fkt-color-accent);
+			color: var(--fkt-color-accent);
 
 			p {
 				font-weight: var(--fkt-font-semibold);

@@ -22,11 +22,8 @@
 :host {
 	display: block;
 	width: 300px;
-	background-color: var(--fkt-color-modal-background);
-	padding: 1rem;
 	color: var(--fkt-color-neutral-900);
 	height: 100%;
 	box-sizing: border-box;
     z-index: 30000;
-	box-shadow: var(--fkt-panel-shadow);
 }

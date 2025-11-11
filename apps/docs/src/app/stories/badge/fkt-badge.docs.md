@@ -1,5 +1,3 @@
-The **FktBadge** component provides a visual indicator for status, categories, counts, and other contextual information. Built with Angular signals and flexible styling options, it offers semantic color coding and variant styles for different visual prominence levels.
-
 ## Key Features
 
 - **Semantic Colors**: Green, red, blue, and orange color options for different states
@@ -20,10 +18,6 @@ export type FktBadgeColor = 'green' | 'red' | 'blue' | 'orange';
 
 export type FktBadgeVariant = 'opaque' | 'faded';
 ```
-
-## Examples
-
-<story-examples></story-examples>
 
 ## Use Cases
 

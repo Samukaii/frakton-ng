@@ -1,22 +1,22 @@
 <div class="canvas-block">
-	<div class="canvas-block__tabs">
-		<button
-			[class.active]="currentTab() === 'preview'"
-			(click)="currentTab.set('preview')"
-		>
-			<fkt-icon name="cube">
-			</fkt-icon>
-			Preview
-		</button>
-		<button
-			[class.active]="currentTab() === 'code'"
-			(click)="currentTab.set('code')"
-		>
-			<fkt-icon name="code-bracket">
-			</fkt-icon>
-			Code
-		</button>
-	</div>
+<!--	<div class="canvas-block__tabs">-->
+<!--		<button-->
+<!--			[class.active]="currentTab() === 'preview'"-->
+<!--			(click)="currentTab.set('preview')"-->
+<!--		>-->
+<!--			<fkt-icon name="cube">-->
+<!--			</fkt-icon>-->
+<!--			Preview-->
+<!--		</button>-->
+<!--		<button-->
+<!--			[class.active]="currentTab() === 'code'"-->
+<!--			(click)="currentTab.set('code')"-->
+<!--		>-->
+<!--			<fkt-icon name="code-bracket">-->
+<!--			</fkt-icon>-->
+<!--			Code-->
+<!--		</button>-->
+<!--	</div>-->
 
 	<div class="canvas-block__content">
 		@if (currentTab() === 'preview') {

@@ -1,48 +1,35 @@
 import fs from 'fs';
 import { generateDesignTokens } from './generate-design-tokens';
 import { generateExternalExamples } from './generate-external-examples';
-import path from 'path';
 import { generateStoryIndexer } from './generate-story-indexer';
+import { SCRIPTS_CONFIG } from './config';
+import { fetchStoryFiles } from './fetch-story-files';
+import { fetchStoryFolders } from './fetch-story-folders';
 
-const result = fs.readdirSync('apps/docs/src/app/stories', {
-	withFileTypes: true,
-})
 
-const storyFolders = result.filter(story => story.isDirectory());
+const storyFolders = fetchStoryFolders();
 
 storyFolders.forEach(folder => {
-    const directory = `libs/frakton-ng/${folder.name}/src`;
+    const directory = `${SCRIPTS_CONFIG.general.libsFolder}/${folder.name}/src`;
 
     if(!fs.existsSync(directory))
         return;
 
-	generateDesignTokens({
-		directory: `libs/frakton-ng/${folder.name}/src`,
-		outputPath: `apps/docs/src/app/stories/${folder.name}/fkt-${folder.name}-design-tokens.json`
-	});
+    generateDesignTokens({
+        directory: `${SCRIPTS_CONFIG.general.libsFolder}/${folder.name}/src`,
+        outputPath: `${SCRIPTS_CONFIG.general.storiesFolder}/${folder.name}/fkt-${folder.name}-design-tokens.json`
+    });
 
-	const externalExamplesFolder = `${folder.parentPath}/${folder.name}/examples`;
+    const externalExamplesFolder = `${folder.parentPath}/${folder.name}/examples`;
 
-	const existsExamples = fs.existsSync(externalExamplesFolder);
+    const existsExamples = fs.existsSync(externalExamplesFolder);
 
-	if(existsExamples) {
-		generateExternalExamples({
-			directory: externalExamplesFolder,
-			outputPath: `${externalExamplesFolder}/raw-examples.ts`
-		})
-	}
+    if(existsExamples) {
+        generateExternalExamples({
+            directory: externalExamplesFolder,
+            outputPath: `${externalExamplesFolder}/raw-examples.ts`
+        })
+    }
 })
 
-const getStoryPaths = () => {
-	const result = fs.readdirSync('apps/docs/src/app/stories', {
-		withFileTypes: true,
-		recursive: true
-	})
-	const storyDirents = result.filter(story => story.isFile() && (story.name.endsWith('.stories.ts') || story.name.endsWith('.docs.md')));
-
-	return storyDirents.map(dirent => {
-		return path.resolve(`${dirent.parentPath}/${dirent.name}`).replaceAll('\\', '/')
-	});
-}
-
-generateStoryIndexer(getStoryPaths());
+generateStoryIndexer(fetchStoryFiles());

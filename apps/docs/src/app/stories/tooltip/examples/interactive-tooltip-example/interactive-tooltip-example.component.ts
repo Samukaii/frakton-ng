@@ -5,13 +5,12 @@ import { FktCheckboxComponent } from 'frakton-ng/checkbox';
 import { FktTooltipDirective } from 'frakton-ng/tooltip';
 import { FktGeometryPosition, fktGeometryPositions } from 'frakton-ng/internal/types';
 import { Field, form } from '@angular/forms/signals';
-import { FktIconComponent } from 'frakton-ng/icon';
 
 @Component({
 	selector: 'interactive-tooltip-example',
 	styleUrl: './interactive-tooltip-example.component.scss',
 	templateUrl: './interactive-tooltip-example.component.html',
-	imports: [FktSelectComponent, FktInputComponent, FktCheckboxComponent, FktTooltipDirective, Field, FktIconComponent]
+    imports: [FktSelectComponent, FktInputComponent, FktCheckboxComponent, FktTooltipDirective, Field]
 })
 export class InteractiveTooltipExampleComponent {
 	tooltipColor = input('primary');

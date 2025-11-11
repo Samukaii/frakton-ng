@@ -8,6 +8,7 @@ import documentation from './fkt-navigator.docs.md' with { loader: "text" };
 const meta: Meta = {
 	title: "Components/Navigation/Navigator",
 	component: FktNavigatorComponent,
+    description: "The FktNavigator component provides a reusable navigation control with previous/next buttons and a flexible content area. It's designed to be a consistent navigation pattern across different components and contexts.",
 	documentation,
 	argTypes: {
 		canGoToPrevious: {

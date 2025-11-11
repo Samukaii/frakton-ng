@@ -13,6 +13,8 @@ import documentation from './fkt-overlay.docs.md' with { loader: "text" };
 
 const meta: Meta = {
 	title: "Components/Overlays/Overlay",
+    description: "The FktOverlay service provides a powerful and flexible system for creating positioned overlays in your Angular applications.\n" +
+        "Built with modern Angular signals and reactive patterns, it supports dynamic positioning, intelligent repositioning, and seamless data binding between parent and overlay components.",
 	component: FktOverlayService,
 	documentation,
 	argTypes: {

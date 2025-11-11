@@ -3,11 +3,10 @@
 	box-shadow: none !important;
 	border: none !important;
 	border-bottom: solid 1px var(--fkt-color-neutral-200) !important;
-	min-height: 400px;
+	min-height: fit-content;
 
 	.fkt-playground-component-container {
 		color: var(--fkt-color-neutral-950);
-		min-height: 400px;
 		padding: 1rem;
 
 		& > div {
@@ -30,7 +29,7 @@
 		--fkt-select-font-size: var(--fkt-font-size-sm);
 		--fkt-select-border-radius: var(--fkt-radius-md);
 
-		--fkt-controls-table-background: var(--fkt-color-modal-background);
+		--fkt-controls-table-background: var(--fkt-color-card-background);
 		--fkt-controls-table-text-color: var(--fkt-color-neutral-700);
 		--fkt-controls-table-border-color: var(--fkt-color-neutral-300);
 		--fkt-controls-table-component-text-color: var(--fkt-color-primary);
@@ -44,7 +43,7 @@
 		--fkt-controls-table-numeric-control-color: var(--fkt-color-neutral-500);
 		--fkt-controls-table-numeric-control-hover-bg: var(--fkt-color-neutral-400);
 
-		--fkt-controls-tabs-background: var(--fkt-color-modal-background);
+		--fkt-controls-tabs-background: var(--fkt-color-card-background);
 		--fkt-controls-tabs-border-top-color: var(--fkt-color-neutral-300);
 		--fkt-controls-tabs-border-bottom-color: var(--fkt-color-neutral-300);
 		--fkt-controls-tabs-text-color: var(--fkt-color-neutral-600);

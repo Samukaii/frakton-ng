@@ -28,8 +28,9 @@
   --fkt-color-neutral-100: #0f172a;
   --fkt-color-neutral-50: #020617;
 
-	--fkt-color-neutral-background: #1f2329;
 	--fkt-color-modal-background: #242A35;
+    --fkt-color-neutral-background: #171a20;
+    --fkt-color-card-background: #181D26;
 
 	/* States */
 	--fkt-color-disabled: var(--fkt-color-neutral-400);

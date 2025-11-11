@@ -90,6 +90,11 @@ li {
 			&:hover {
 				border-color: var(--fkt-color-neutral-800);
 			}
+
+            &.active {
+                border-color: var(--fkt-color-neutral-800);
+                font-weight: var(--fkt-font-semibold);
+            }
 		}
 
 	}

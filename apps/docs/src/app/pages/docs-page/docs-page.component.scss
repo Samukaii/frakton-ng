@@ -1,19 +1,37 @@
 :host {
-	padding: 3rem 20px;
 	display: flex;
-	justify-content: center;
-	max-height: calc(100vh - 50px);
+    flex-direction: column;
+	align-items: center;
 	overflow-y: auto;
 	box-sizing: border-box;
+    width: 100%;
+}
 
+* {
+    color: var(--fkt-color-neutral-700);
+}
+
+em {
+    color: var(--fkt-color-neutral-600);
+    font-style: normal;
+    margin-bottom: 2rem;
+    display: block;
+}
+
+.examples {
+    width: 100%;
+
+    fkt-story-examples {
+        width: 100%;
+        display: block;
+    }
 }
 
 .container {
 	width: 100%;
 	height: 100%;
 	display: flex;
-	flex-direction: row-reverse;
-	justify-content: space-between;
+	justify-content: center;
 
 	.placeholder {
 		flex: .2;
@@ -24,7 +42,7 @@
 	}
 
 	.docs {
-		max-width: 1200px;
+		width: 100%;
 		flex: 1;
 	}
 }

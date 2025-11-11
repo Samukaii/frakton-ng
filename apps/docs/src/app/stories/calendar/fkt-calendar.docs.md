@@ -1,7 +1,3 @@
-# Calendar
-
-The **FktCalendar** component provides a comprehensive date selection interface with multiple view modes and extensive customization options. Built with Angular signals for optimal performance and reactivity, it supports date, month, and year selection with configurable styling and behavior.
-
 ## Key Features
 
 - **Multi-View Navigation**: Seamlessly switch between date, month, and year selection modes
@@ -39,10 +35,6 @@ export type FktCalendarDateOptions = Partial<
 // Configuration function type for customizing dates
 export type FktCalendarDateConfigFn = (date: Date) => FktCalendarDateOptions;
 ```
-
-## Examples
-
-<story-examples></story-examples>
 
 ## Component Architecture
 

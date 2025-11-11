@@ -11,6 +11,7 @@ import documentation from './fkt-button.docs.md' with { loader: "text" };
 
 const meta: Meta = {
 	title: "Components/Actions/Button",
+    description: "The FktButton component provides a versatile and customizable button with multiple themes, variants, and styling options. Built with Angular signals and modern design patterns, it supports various visual styles, icons, loading states, and accessibility features.",
 	component: FktButtonComponent,
 	loadType: 'eagerly',
 	documentation,

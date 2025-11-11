@@ -1,21 +1,36 @@
-import { Component, computed, effect, inject, input, resource, signal, untracked, viewChild } from '@angular/core';
+import {
+    Component,
+    computed,
+    effect,
+    inject,
+    input, inputBinding,
+    resource,
+    signal,
+    untracked,
+    viewChild,
+    ViewContainerRef
+} from '@angular/core';
 import { STORIES_MAP } from '@/stories/stories-map';
-import { FktButtonComponent } from 'frakton-ng/button';
 import { FktSpinnerComponent } from 'frakton-ng/spinner';
 import { MarkUsed } from 'frakton-ng/internal/utils';
-import { TableOfContentsComponent } from '@/components/table-of-contents/table-of-contents.component';
 import { StoryLoaderService } from '@/core/services/story-loader.service';
 import { MarkdownWrapperComponent } from '@/components/markdown/markdown-wrapper.component';
+import { FktTabComponent, FktTabLazyDirective, FktTabsListComponent } from 'frakton-ng/tabs';
+import { StoryExamplesComponent } from '@/custom-elements/story-playground/story-examples.component';
+import { TableOfContentsService } from '@/core/services/table-of-contents.service';
+import { FeaturesComponent } from '@/pages/docs-page/features/features.component';
 
 
 @Component({
 	selector: 'app-docs-page',
-	imports: [
-		FktSpinnerComponent,
-		FktButtonComponent,
-		TableOfContentsComponent,
-		MarkdownWrapperComponent
-	],
+    imports: [
+        FktSpinnerComponent,
+        MarkdownWrapperComponent,
+        FktTabsListComponent,
+        FktTabComponent,
+        FktTabLazyDirective,
+        StoryExamplesComponent
+    ],
 	templateUrl: './docs-page.component.html',
 	styleUrl: './docs-page.component.scss',
 })
@@ -24,19 +39,21 @@ export class DocsPageComponent {
 	protected readonly stories = STORIES_MAP;
 
 	private readonly storyLoader = inject(StoryLoaderService);
+	private readonly tableOfContentsService = inject(TableOfContentsService);
 
 	protected readonly isLoading = signal(false);
 	protected readonly copied = signal<boolean>(false);
+    protected activeTab = signal('features');
 
-	protected readonly tableOfContents = viewChild.required(TableOfContentsComponent);
 
 	@MarkUsed()
 	protected readonly injectOnLoad = effect(() => {
+        this.activeTab();
 		this.docs();
 
 		untracked(() => {
 			setTimeout(() => {
-				this.tableOfContents().generate();
+				this.tableOfContentsService.generate();
 			})
 		})
 	})
@@ -68,17 +85,31 @@ export class DocsPageComponent {
 		}
 	})
 
+    protected readonly hasStories = computed(() => {
+        const data = this.currentStoryData.value();
+
+        if(!data) return false;
+
+        return data.stories.length > 0;
+    })
+
+    title = computed(() => {
+        const data = this.currentStoryData.value();
+
+        const fullTitle = data?.meta?.title;
+
+        return fullTitle?.split('/').at(-1) ?? ''
+    })
+
+    description = computed(() => {
+        const data = this.currentStoryData.value();
+
+        return data?.meta?.description ?? '';
+    })
+
 	protected readonly docs = computed(() => {
 		const storyData = this.currentStoryData.value();
 
 		return storyData?.meta?.documentation;
 	});
-
-	protected copy() {
-		this.copied.set(true);
-
-		setTimeout(() => {
-			this.copied.set(false);
-		}, 1000)
-	}
 }

@@ -236,10 +236,6 @@ export class MyPageComponent {
 }
 ```
 
-## Examples
-
-<story-examples></story-examples>
-
 ## API Reference
 
 ### Inputs

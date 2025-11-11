@@ -1,9 +1,3 @@
-
-
-# Side Menu
-
-_A responsive and customizable side navigation menu component with collapsible states, grouped menu items, and integrated routing support. Built with Angular signals for optimal performance and provides tooltips for collapsed states._
-
 ## Key Features
 
 - **Collapsible Navigation**: Seamless transition between expanded and collapsed states
@@ -36,10 +30,6 @@ interface FktMenuGroup {
     items: FktMenuItem[];   // Array of menu items in this group
 }
 ```
-
-## Examples
-
-<story-examples></story-examples>
 
 ## Use Cases
 

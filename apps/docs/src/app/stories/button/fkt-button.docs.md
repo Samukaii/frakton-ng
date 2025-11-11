@@ -1,5 +1,3 @@
-The **FktButton** component provides a versatile and customizable button with multiple themes, variants, and styling options. Built with Angular signals and modern design patterns, it supports various visual styles, icons, loading states, and accessibility features.
-
 ## Key Features
 
 - **Multiple Themes**: Raised, stroked, and basic visual themes
@@ -22,10 +20,6 @@ export type FktButtonVariant = 'rounded' | 'rect';
 export type FktButtonTheme = 'raised' | 'stroked' | 'basic';
 export type FktButtonIconPosition = 'left' | 'right';
 ```
-
-## Examples
-
-<story-examples></story-examples>
 
 ## Accessibility
 

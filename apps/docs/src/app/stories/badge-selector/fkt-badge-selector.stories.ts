@@ -8,6 +8,7 @@ import documentation from './fkt-badge-selector.docs.md' with { loader: "text" }
 const meta: Meta = {
 	title: "Components/Form/Badge Selector",
 	component: FktBadgeSelectorComponent,
+    description: "The FktBadgeSelector component provides an interactive dropdown for selecting from a list of badge options. Built with Angular signals and the overlay system, it offers a clean interface for choosing status, categories, or other badge-represented values.",
 	documentation,
 	argTypes: {
 		options: {

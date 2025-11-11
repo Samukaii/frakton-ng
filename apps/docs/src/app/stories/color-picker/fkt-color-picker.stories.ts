@@ -7,6 +7,7 @@ import documentation from './fkt-color-picker.docs.md' with { loader: "text" };
 const meta: Meta = {
 	title: "Components/Form/Color Picker",
 	component: FktColorPickerComponent,
+    description: "A sophisticated color picker component featuring semantic color descriptions, international localization, advanced visual selectors, and seamless Angular signals integration. Built for professional design tools and user-friendly color selection.",
 	documentation,
 	argTypes: {
 		label: {

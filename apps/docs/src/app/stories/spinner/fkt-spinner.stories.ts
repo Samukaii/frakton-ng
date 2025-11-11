@@ -14,6 +14,7 @@ import documentation from './fkt-spinner.docs.md' with { loader: "text" };
 const meta: Meta = {
 	title: "Components/Feedback/Spinner",
 	component: FktSpinnerComponent,
+    description: "The FktSpinner component provides a customizable loading indicator with configurable size, stroke width, and color themes. It's designed to give users visual feedback during loading states and async operations.",
 	documentation,
 	argTypes: {
 		color: {

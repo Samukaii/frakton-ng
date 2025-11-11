@@ -9,6 +9,7 @@ export interface Meta<Component = any> {
 	title: string;
 	loadType?: 'lazy' | 'eagerly';
 	component?: Type<Component>;
+    description: string;
 	documentation: string;
 	argTypes: Record<FktComponentInputsAndModelNames<Component>, ArgType>;
 	designTokens?: DesignToken[]

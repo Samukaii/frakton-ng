@@ -8,6 +8,7 @@ import { Story } from '@/models/story';
 const meta: Meta = {
 	title: 'Components/Actions/Buttons list',
 	component: FktButtonsListComponent,
+    description: "The FktButtonsList component provides a flexible container for displaying multiple buttons with consistent spacing and alignment. Built with Angular signals and customizable layout options, it supports both horizontal and vertical orientations with various alignment strategies.",
 	designTokens: designTokens as any,
 	documentation,
 	argTypes: {

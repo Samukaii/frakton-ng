@@ -1,8 +1,17 @@
-export const scriptsConfig = {
+const libFolder = 'libs/frakton-ng';
+const documentationFolder = 'apps/docs/src/app';
+const storiesFolder = `${documentationFolder}/stories`;
+
+export const SCRIPTS_CONFIG = {
+    general: {
+        libsFolder: libFolder,
+        documentationFolder,
+        storiesFolder
+    },
 	designTokens: {
 		globalStyles: {
-			styles: "libs/frakton-ng/assets/styles/styles.css",
-			themes: "libs/frakton-ng/assets/styles/themes/light.css",
+			styles: `${libFolder}/assets/styles/styles.css`,
+			themes: `${libFolder}/assets/styles/themes/light.css`,
 		}
 	}
 }

@@ -1,19 +1,34 @@
 :host {
     z-index: 20000;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(8px);
+    background: var(--fkt-toolbar-background);
+    height: 5rem;
 }
 
 .toolbar {
-    background-color: var(--fkt-color-modal-background);
+    z-index: 1;
     width: 100%;
-    box-shadow: var(--fkt-panel-shadow);
     transition: .3s ease;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     box-sizing: border-box;
-    padding: .5rem 1rem;
+    padding: .5rem 0;
 
-    img {
-        height: 31px;
+    max-width: 1750px;
+
+    .logo {
+        display: flex;
+        gap: var(--fkt-space-xs);
+        height: 36px;
+        align-items: center;
+
+        img {
+            height: 100%;
+        }
     }
 
     &__version-tag {
@@ -21,7 +36,8 @@
         align-items: center;
         color: var(--fkt-color-warning);
         border: solid 1px var(--fkt-color-warning);
-        padding: .5rem;
+        padding: .25rem .5rem;
+        height: fit-content;
         box-sizing: border-box;
         white-space: nowrap;
         border-radius: var(--fkt-radius-md);
@@ -38,6 +54,11 @@
             background: transparent;
             color: var(--fkt-color-neutral-800);
             padding: .3rem;
+            height: 36px;
+            width: 36px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             transition: var(--fkt-transition-base);
             border-radius: var(--fkt-radius-md);
             cursor: pointer;

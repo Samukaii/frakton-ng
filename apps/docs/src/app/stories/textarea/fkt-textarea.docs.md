@@ -1,7 +1,3 @@
-# FktTextarea
-
-A multi-line text input component with reactive form integration, validation support, and optional auto-expand functionality for capturing longer text content from users._
-
 ## Key Features
 
 - **Multi-line Text Input**: Expandable textarea for capturing longer text content
@@ -15,10 +11,6 @@ A multi-line text input component with reactive form integration, validation sup
 ## Configuration Options
 
 <arg-types></arg-types>
-
-## Examples
-
-<story-examples></story-examples>
 
 ## Use Cases
 

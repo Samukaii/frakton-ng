@@ -1,7 +1,3 @@
-# Focus Trap
-
-_A directive that traps keyboard focus within a container, ensuring proper accessibility for modals, forms, and other interactive elements that require contained navigation._
-
 ## Key Features
 
 - **Automatic Focus Management**: Automatically focuses the first focusable element when applied
@@ -44,10 +40,6 @@ import {FktFocusTrapDirective} from 'frakton-ng/focus-trap';
     <div>Plain div (not tabbable, not focusable)</div>
 </div>
 ```
-
-## Examples
-
-<story-examples></story-examples>
 
 ## Integration with Frakton Components
 

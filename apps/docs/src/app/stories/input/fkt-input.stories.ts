@@ -7,6 +7,7 @@ import documentation from './fkt-input.docs.md' with { loader: "text" };
 const meta: Meta = {
 	title: "Components/Form/Input",
 	component: FktInputComponent,
+    description: "A versatile form input component with multiple types, data transformers, and comprehensive validation support. Built with Angular signals for reactive form integration.",
 	documentation,
 	argTypes: {
 		label: {

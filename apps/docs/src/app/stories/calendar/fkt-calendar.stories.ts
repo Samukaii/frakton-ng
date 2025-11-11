@@ -14,6 +14,7 @@ import documentation from './fkt-calendar.docs.md' with { loader: "text" };
 const meta: Meta = {
 	title: "Components/Navigation/Calendar",
 	component: FktCalendarComponent,
+    description: "The FktCalendar component provides a comprehensive date selection interface with multiple view modes and extensive customization options. Built with Angular signals for optimal performance and reactivity, it supports date, month, and year selection with configurable styling and behavior.",
 	documentation,
 	argTypes: {
 		configFn: {

@@ -41,8 +41,8 @@ import {
 	styleUrl: './fkt-input.component.scss',
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FktInputComponent implements FormValueControl<string> {
-	value = model<string>("0");
+export class FktInputComponent<T=string> implements FormValueControl<T | null> {
+	value = model<T | null>(null);
 	touched = model(false);
 	disabled = input(false);
 	invalid = input(false);
@@ -75,7 +75,7 @@ export class FktInputComponent implements FormValueControl<string> {
 			return "text";
 		}
 	});
-	formatter = input<FktInputTransformer<string | number>>();
+	formatter = input<FktInputTransformer<T>>();
 	spellcheck = input(true);
 
 	public element = viewChild.required('input', {read: ElementRef});
@@ -153,7 +153,7 @@ export class FktInputComponent implements FormValueControl<string> {
 
 		if (max !== undefined && updatedValue > max) return;
 
-		this.value.set(updatedValue as unknown as string);
+		this.value.set(updatedValue as unknown as T);
 	}
 
 	protected decreaseNumber = (event?: KeyboardEvent) => {
@@ -169,6 +169,6 @@ export class FktInputComponent implements FormValueControl<string> {
 
 		if (min !== undefined && updatedValue < min) return;
 
-		this.value.set(updatedValue as unknown as string);
+		this.value.set(updatedValue as unknown as T);
 	}
 }

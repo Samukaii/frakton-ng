@@ -6,6 +6,7 @@ import { toPascalCase } from '@/utils/to-pascal-case';
 import { reflectComponentType } from '@angular/core';
 
 interface GenerateAutoSourceOptions {
+    id: string;
 	meta: Meta;
 	story: { name: string; story: Story<any>; }
 }
@@ -139,10 +140,9 @@ const createTemplate = (template: string, placeholders: Record<string, string>) 
 }
 
 export const generateAutoSource = (options: GenerateAutoSourceOptions) => {
-	const fileName = 'fileName'
-	const moduleName = fileName.match(/.*\/(frakton-ng\/.*)\/src/)?.[1] ?? 'frakton-ng';
+	const moduleName = `frakton-ng/${options.id}`
 
-	const componentName = options.story.story.component?.name ?? options.meta.component?.name;
+	const componentName = (options.story.story.component?.name ?? options.meta.component?.name)?.replace('_', '');
 
 	if(!componentName)
 		throw new Error(`Failed to read componentName. Please assure your story has a component declared in story level or meta level`)

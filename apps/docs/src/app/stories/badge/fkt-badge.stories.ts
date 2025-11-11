@@ -8,6 +8,7 @@ import documentation from './fkt-badge.docs.md' with { loader: "text" };
 const meta: Meta = {
 	title: "Components/Data Display/Badge",
 	component: FktBadgeComponent,
+    description: "The FktBadge component provides a visual indicator for status, categories, counts, and other contextual information. Built with Angular signals and flexible styling options, it offers semantic color coding and variant styles for different visual prominence levels.",
 	documentation,
 	argTypes: {
 		text: {

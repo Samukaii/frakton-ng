@@ -1,0 +1,32 @@
+<!--<pre>{{argTypes() | json}}</pre>-->
+
+<table class="args-table">
+    <thead>
+    <tr>
+        <td>
+            Name
+        </td>
+        <td>
+            Type
+        </td>
+        <td>
+            Description
+        </td>
+        <td>
+            Default
+        </td>
+    </tr>
+
+    </thead>
+
+    <tbody>
+        @for (type of argTypes(); track type.name) {
+            <tr>
+                <td>{{type.name}}</td>
+                <td><pre>{{type.argType.type}}</pre></td>
+                <td>{{type.argType.description}}</td>
+                <td><pre>{{type.argType.defaultValue}}</pre></td>
+            </tr>
+        }
+    </tbody>
+</table>

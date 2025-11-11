@@ -16,6 +16,7 @@ import documentation from './fkt-select.docs.md' with { loader: "text" };
 
 const meta: Meta = {
 	title: "Components/Form/Select",
+    description: "A dropdown selection component that provides a clean and accessible interface for choosing options. Built with Angular signals and reactive forms, it offers a styled alternative to native select elements with enhanced functionality and consistent design.",
 	component: FktSelectComponent,
 	documentation,
 	argTypes: {

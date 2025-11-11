@@ -1,19 +1,6 @@
-<ng-template #buttonTemplate>
-	<span class="copy-button" data-fkt-theme="dark">
-		<fkt-button
-			[icon]="copied() ? 'check':'clipboard-document'"
-			iconPosition="left"
-			[color]="copied() ? 'success' : 'primary'"
-			[text]="copied() ? 'Copied' : 'Copy'"
-			(click)="copy()"
-		/>
-	</span>
-
-</ng-template>
-
 <markdown
 	clipboard
 	[disableSanitizer]="true"
-	[clipboardButtonTemplate]="buttonTemplate"
+	[clipboardButtonComponent]="copyButtonComponent"
 	[data]="data()"
 />

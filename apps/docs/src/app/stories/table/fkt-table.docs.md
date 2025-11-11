@@ -1,7 +1,3 @@
-# Table
-
-_A powerful and flexible table component for displaying tabular data with dynamic columns, row actions, loading states, and customizable empty states. Built with Angular signals for optimal performance and provides extensive customization options for real-world data display scenarios._
-
 ## Key Features
 
 - **Dynamic Column Configuration**: Function-based column definitions that adapt to your data structure
@@ -51,10 +47,6 @@ interface FktIdentifiable {
     id: number | string;   // Required unique identifier
 }
 ```
-
-## Examples
-
-<story-examples></story-examples>
 
 ## Use Cases
 

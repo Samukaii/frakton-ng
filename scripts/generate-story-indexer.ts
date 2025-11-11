@@ -1,4 +1,4 @@
-import { StoryScrapper } from './utils/story-scrapper';
+import { StoryFileScrapper } from './utils/story-file-scrapper';
 import path from 'path';
 import fs from 'fs';
 import { kebabToCamel } from './utils/kebab-to-camel';
@@ -7,20 +7,18 @@ const getRelativePath = (file: string) => {
 	return path.relative(path.resolve('./apps/docs/src/app/stories'), file).replace('\\', '/');
 }
 
-const getStoryStrings = (scrapper: StoryScrapper, file: string) => {
+const getStoryStrings = (scrapper: StoryFileScrapper, file: string) => {
 	const relativePath = getRelativePath(file);
 
 	const folder = path.dirname(relativePath);
 
-	console.log(scrapper.getMeta(file));
+	const storyFile = scrapper.getOne(file);
 
-	const meta = scrapper.getMeta(file);
-
-	if(!meta) return null;
+	if(!storyFile) return null;
 
 	const obj = {
 		id: folder,
-		title: meta.title!,
+		title: storyFile.meta.title!,
 	}
 
 	const examplesFolder = `${folder}/examples/raw-examples`;
@@ -41,7 +39,7 @@ const getStoryStrings = (scrapper: StoryScrapper, file: string) => {
 
 	let importStatement: string | null = null;
 
-	if(meta.loadType === 'eagerly') {
+	if(storyFile.meta.loadType === 'eagerly') {
 		const varName = `${kebabToCamel(obj.id)}Story`;
 
 		importStatement = `import * as ${varName} from "./${relativePath.replace('.ts', '')}"`
@@ -95,7 +93,7 @@ const scrapMdFile = (file: string) => {
 	}
 }
 
-export const getMdStrings = (scrapper: StoryScrapper, file: string) => {
+export const getMdStrings = (scrapper: StoryFileScrapper, file: string) => {
 	const result = scrapMdFile(file);
 
 	if (!result) return null;
@@ -147,7 +145,7 @@ export const getMdStrings = (scrapper: StoryScrapper, file: string) => {
 }
 
 export const generateStoryIndexer = (files: string[]) => {
-	const scrapper = new StoryScrapper(files);
+	const scrapper = new StoryFileScrapper(files);
 
 	const objs: string[] = [];
 	const importStatements: string[] = [];

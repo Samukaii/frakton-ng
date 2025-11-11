@@ -1,5 +1,3 @@
-The **FktButtonsList** component provides a flexible container for displaying multiple buttons with consistent spacing and alignment. Built with Angular signals and customizable layout options, it supports both horizontal and vertical orientations with various alignment strategies.
-
 ## Key Features
 
 - **Flexible Layouts**: Horizontal and vertical orientation options

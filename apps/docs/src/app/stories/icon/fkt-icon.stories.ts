@@ -7,6 +7,7 @@ import documentation from './fkt-icon.docs.md' with { loader: "text" };
 
 const meta: Meta = {
 	title: "Components/Data Display/Icon",
+    description: "The FktIcon component provides a comprehensive icon system with a curated set of icons for various UI elements and interactions. Built with scalable vector graphics for crisp display at any size and seamless integration with the design system.",
 	component: FktIconComponent,
 	documentation,
 	argTypes: {

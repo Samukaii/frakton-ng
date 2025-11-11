@@ -1,6 +1,9 @@
 import { Component, input, signal } from '@angular/core';
 import { MarkdownComponent } from "ngx-markdown";
 import { FktButtonComponent } from 'frakton-ng/button';
+import {
+    MarkdownWrapperCopyButtonComponent
+} from '@/components/markdown/copy-button/markdown-wrapper-copy-button.component';
 
 
 @Component({
@@ -16,6 +19,7 @@ export class MarkdownWrapperComponent {
 	data = input.required<string>();
 
 	protected readonly copied = signal<boolean>(false);
+    protected readonly copyButtonComponent = MarkdownWrapperCopyButtonComponent;
 
 	protected copy() {
 		this.copied.set(true);

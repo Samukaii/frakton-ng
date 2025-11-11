@@ -1,5 +1,3 @@
-The **FktBadgeSelector** component provides an interactive dropdown for selecting from a list of badge options. Built with Angular signals and the overlay system, it offers a clean interface for choosing status, categories, or other badge-represented values.
-
 ## Key Features
 
 - **Interactive Selection**: Click to open dropdown with available badge options
@@ -37,10 +35,6 @@ The component supports Angular's two-way binding syntax:
     [(value)]="selectedStatus"
 />
 ```
-
-## Examples
-
-<story-examples></story-examples>
 
 ## Use Cases
 

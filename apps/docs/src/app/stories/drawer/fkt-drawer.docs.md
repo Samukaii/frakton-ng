@@ -1,5 +1,3 @@
-The **FktDrawer** component provides a slide-out navigation panel that can either push content aside or overlay on top of it. Built with Angular signals and modern design patterns, it offers flexible positioning and smooth animations.
-
 ## Key Features
 
 - **Dual Display Modes**: Push mode (displaces content) and overlay mode (floats over content)
@@ -19,10 +17,6 @@ export type FktDrawerTypes = 'overlay' | 'push';
 ```
 
 <arg-types></arg-types>
-
-## Examples
-
-<story-examples></story-examples>
 
 ## Use Cases
 

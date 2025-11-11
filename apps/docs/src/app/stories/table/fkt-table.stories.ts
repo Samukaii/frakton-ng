@@ -17,6 +17,7 @@ import documentation from './fkt-table.docs.md' with { loader: "text" };
 const meta: Meta = {
 	title: "Components/Data Display/Table",
 	component: FktTableComponent,
+    description: "A powerful and flexible table component for displaying tabular data with dynamic columns, row actions, loading states, and customizable empty states. Built with Angular signals for optimal performance and provides extensive customization options for real-world data display scenarios.",
 	documentation,
 	argTypes: {
 		data: {

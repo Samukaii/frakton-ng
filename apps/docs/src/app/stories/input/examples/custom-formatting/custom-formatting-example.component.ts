@@ -1,13 +1,13 @@
 import { Component, computed, input, signal } from '@angular/core';
 import { FktInputComponent } from 'frakton-ng/input';
-import { FktIconComponent, FktIconName } from 'frakton-ng/icon';
+import { FktIconName } from 'frakton-ng/icon';
 import { Field, form, maxLength, minLength, required } from '@angular/forms/signals';
 import { FktControlFormatter } from 'frakton-ng/forms';
 import { FktFieldErrorComponent } from 'frakton-ng/field-error';
 
 @Component({
 	selector: 'input-custom-formatting-example',
-	imports: [FktInputComponent, FktIconComponent, Field, FktFieldErrorComponent],
+    imports: [FktInputComponent, Field, FktFieldErrorComponent],
 	styleUrl: './custom-formatting-example.component.scss',
 	templateUrl: './custom-formatting-example.component.html'
 })

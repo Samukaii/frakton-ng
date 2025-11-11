@@ -1,7 +1,3 @@
-# Color Picker
-
-_A sophisticated color picker component featuring semantic color descriptions, international localization, advanced visual selectors, and seamless Angular signals integration. Built for professional design tools and user-friendly color selection._
-
 ## Key Features
 
 ### **Advanced Color Selection**
@@ -133,10 +129,6 @@ The modal provides intuitive visual controls for precise color selection:
 1. **2D Color Area**: Interactive saturation and lightness selection with visual feedback
 2. **Hue Spectrum**: Full color spectrum slider for hue selection
 3. **Alpha Control**: Transparency adjustment with visual alpha indicators
-
-## Examples
-
-<story-examples></story-examples>
 
 ## Integration Examples
 

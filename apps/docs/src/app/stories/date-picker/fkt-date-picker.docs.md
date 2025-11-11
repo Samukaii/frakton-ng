@@ -1,5 +1,3 @@
-The **FktDatePicker** component provides an intuitive and accessible date selection interface. Built with Angular signals and reactive forms, it offers a clean input field with a calendar overlay for date selection.
-
 ## Key Features
 
 - **Calendar Interface**: Beautiful calendar modal with month/year navigation
@@ -30,10 +28,6 @@ The component supports various date input formats:
 - **Today Highlight**: Current date is visually highlighted
 - **Weekend Styling**: Weekends can have different styling
 - **Outside Click**: Calendar closes when clicking outside
-
-## Examples
-
-<story-examples></story-examples>
 
 ## Use Cases
 

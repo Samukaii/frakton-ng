@@ -1,5 +1,3 @@
-The **FktCheckbox** component provides a clean and accessible checkbox input with custom styling. Built with Angular signals and reactive forms, it offers seamless integration with form validation and state management.
-
 ## Key Features
 
 - **Custom Styling**: Beautiful, consistent checkbox design that works across all browsers
@@ -13,10 +11,6 @@ The **FktCheckbox** component provides a clean and accessible checkbox input wit
 ## Configuration Options
 
 <arg-types></arg-types>
-
-## Examples
-
-<story-examples></story-examples>
 
 ## Use Cases
 

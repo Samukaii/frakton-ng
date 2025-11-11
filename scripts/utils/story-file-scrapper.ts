@@ -1,15 +1,21 @@
 import { Node, ObjectLiteralExpression, Project } from "ts-morph";
 import path from 'path';
 
-export class StoryScrapper {
+interface StoryFileInfo {
+    meta: {
+        title: string; loadType: 'lazy' | 'eagerly';
+    }
+}
+
+export class StoryFileScrapper {
 	private readonly project: Project;
-	private readonly metaMap = new Map<string, { title: string; loadType: 'lazy' | 'eagerly' }>();
+	private readonly storiesMap = new Map<string, StoryFileInfo>();
 
 	constructor(files: string[]) {
 		this.project = new Project();
 
 		this.addFiles(files);
-		this.scanMetas();
+		this.scanAll();
 	}
 
 	private addFiles(files: string[]) {
@@ -20,21 +26,21 @@ export class StoryScrapper {
 		})
 	}
 
-	public getMeta(path: string) {
-		return this.metaMap.get(path);
+	public getOne(path: string) {
+		return this.storiesMap.get(path);
 	}
 
 	public hasTitle(title: string) {
-		const all = this.getAllMeta();
+		const all = this.getAll();
 
-		return !!all.find(([, story]) => story.title === title);
+		return !!all.find(([, story]) => story.meta.title === title);
 	}
 
-	public getAllMeta() {
-		return Array.from(this.metaMap.entries());
+	public getAll() {
+		return Array.from(this.storiesMap.entries());
 	}
 
-	private scanMetas() {
+	private scanAll() {
 		return this.project.getSourceFiles().forEach((sourceFile) => {
 			const defaultExport = sourceFile.getDefaultExportSymbol();
 
@@ -72,7 +78,12 @@ export class StoryScrapper {
 
 				const loadType = (this.getStringProperty(initializer, 'loadType') ?? 'lazy') as 'lazy' | 'eagerly';
 
-				this.metaMap.set(sourceFile.getFilePath(), {title: title, loadType});
+				this.storiesMap.set(sourceFile.getFilePath(), {
+                    meta: {
+                        title: title,
+                        loadType
+                    }
+                });
 			}
 		})
 	}

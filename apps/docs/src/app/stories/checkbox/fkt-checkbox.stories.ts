@@ -13,6 +13,7 @@ import documentation from './fkt-checkbox.docs.md' with { loader: "text" };
 const meta: Meta = {
 	title: "Components/Form/Checkbox",
 	component: FktCheckboxComponent,
+    description: "The FktCheckbox component provides a clean and accessible checkbox input with custom styling. Built with Angular signals and reactive forms, it offers seamless integration with form validation and state management.",
 	documentation,
 	argTypes: {
 		label: {

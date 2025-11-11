@@ -1,33 +1,70 @@
-import { Component, computed, contentChildren, effect, model, untracked } from '@angular/core';
+import {
+    booleanAttribute,
+    Component,
+    computed,
+    contentChildren,
+    effect, input,
+    model,
+    untracked,
+    viewChild,
+    ViewContainerRef
+} from '@angular/core';
 import { FktIconComponent } from 'frakton-ng/icon';
 import { NgTemplateOutlet } from '@angular/common';
 import { MarkUsed } from 'frakton-ng/internal/utils';
 import { FktTabComponent } from './tab/fkt-tab.component';
+import { FktNavigableListDirective } from 'frakton-ng/navigable-list';
 
 @Component({
 	selector: 'fkt-tabs-list',
-	imports: [
-		FktIconComponent,
-		NgTemplateOutlet
-	],
+    imports: [
+        FktIconComponent,
+        NgTemplateOutlet,
+        FktNavigableListDirective
+    ],
 	templateUrl: './fkt-tabs-list.component.html',
 	styleUrl: './fkt-tabs-list.component.scss'
 })
 export class FktTabsListComponent {
 	tabs = contentChildren(FktTabComponent);
 	activeTab = model<string>();
+    hideTabsWhenOnlyOne = input(false, {
+        transform: booleanAttribute
+    })
+
+    protected visibleTabs = computed(() => {
+        this.tabs().forEach(a => a.hidden());
+
+        return this.tabs().filter(tab => !tab.hidden())
+    })
 
 	protected activeTabComponent = computed(() => {
 		const activeTab = this.activeTab();
 
 		if (!activeTab) return null;
 
-		return this.tabs().find(tab => tab.key()===activeTab) ?? null;
+		return this.visibleTabs().find(tab => tab.key()===activeTab) ?? null;
 	});
+
+    private ref = viewChild.required("ref", {read: ViewContainerRef});
+
+    renderTab = effect(() => {
+        const ref = this.ref();
+
+        const currentComponent = this.activeTabComponent() ?? this.visibleTabs()[0];
+
+        console.log(currentComponent);
+
+        if(!currentComponent) return;
+
+        this.ref().clear();
+
+        ref.createEmbeddedView(currentComponent.template());
+    })
 
 	@MarkUsed()
 	protected selectFirstTab = effect(() => {
-		const tabs = this.tabs();
+		const tabs = this.visibleTabs();
 		const activeTab = this.activeTab();
 
 		untracked(() => {
@@ -60,4 +97,12 @@ export class FktTabsListComponent {
 	selectTab(key: string) {
 		this.activeTab.set(key);
 	}
+
+    keyboardSelect(index: number) {
+        const tabs = this.visibleTabs();
+
+        const selected = tabs[index];
+
+        this.selectTab(selected.key());
+    }
 }

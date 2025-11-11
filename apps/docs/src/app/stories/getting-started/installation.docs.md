@@ -9,8 +9,6 @@ Welcome to **Frakton NG** - the next-generation Angular UI library that combines
 
 ### 1. Install the Package
 
-<beta-alert></beta-alert>
-
 ```bash
 npm install frakton-ng@next
 ```

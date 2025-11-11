@@ -10,18 +10,15 @@ import { injectRouteParams } from '@/utils/inject-route-params';
 
 
 @Component({
-	selector: 'fkt-story-playground',
+	selector: 'fkt-story-examples',
 	imports: [
 		StoryRendererComponent,
 		NgTemplateOutlet,
 	],
-	providers: [
-		StoryInfoService
-	],
-	templateUrl: './story-playground.component.html',
-	styleUrl: './story-playground.component.scss'
+	templateUrl: './story-examples.component.html',
+	styleUrl: './story-examples.component.scss'
 })
-export class StoryPlaygroundComponent {
+export class StoryExamplesComponent {
 	private loader = inject(StoryLoaderService);
 
 	private readonly routeParams = injectRouteParams();
@@ -56,6 +53,10 @@ export class StoryPlaygroundComponent {
 
 		return Injector.create({
 			providers: [
+                {
+                    provide: StoryLoaderService,
+                    useValue: this.loader,
+                },
 				{
 					provide: STORY_ITEM_TOKEN,
 					useValue: story,

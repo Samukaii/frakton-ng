@@ -1,5 +1,3 @@
-The **FktCalendarNavigator** component provides an interactive calendar header with navigation controls and modal-based date selection. It displays the current month/year and allows users to navigate between dates with modal overlays for detailed selection.
-
 ## Key Features
 
 - **Multiple Modes**: Switch between 'month' and 'year' display modes
@@ -19,10 +17,6 @@ The **FktCalendarNavigator** component provides an interactive calendar header w
 ```typescript
 type FktCalendarNavigatorMode = 'month' | 'year';
 ```
-
-## Examples
-
-<story-examples></story-examples>
 
 ### Navigation Behavior
 

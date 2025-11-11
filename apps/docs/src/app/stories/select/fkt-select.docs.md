@@ -1,9 +1,3 @@
-
-
-# FktSelect
-
-_A dropdown selection component that provides a clean and accessible interface for choosing options. Built with Angular signals and reactive forms, it offers a styled alternative to native select elements with enhanced functionality and consistent design._
-
 ## Key Features
 
 - **Custom Styling**: Beautiful dropdown design that works consistently across all browsers
@@ -38,10 +32,6 @@ interface FktNoResults {
     action?: FktButtonAction;
 }
 ```
-
-## Examples
-
-<story-examples></story-examples>
 
 ## Use Cases
 

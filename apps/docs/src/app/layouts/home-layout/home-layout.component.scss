@@ -1,19 +1,84 @@
 :host {
-	display: flex;
-	height: 100%;
-	width: 100%;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    overflow-y: auto;
+
+
 }
 
-app-side-menu {
-	z-index: 30000;
+.pattern {
+    width: 100%;
+    height: 300px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0.2;
+    filter: blur(0px);
+    z-index: -1;
+
+    mask-image: linear-gradient(black, transparent);
+    --s: 100px; /* control the size*/
+    --c1: var(--pattern-color-primary);
+    --c2: var(--pattern-color-secondary);
+
+    --c3: #9aa2ac;
+
+    --_g: var(--c1) 17.67%, #0000 0 82.33%, var(--c1) 0;
+    background: linear-gradient(45deg, var(--_g)),
+    linear-gradient(-45deg, var(--_g)),
+    conic-gradient(var(--c2) 75%, var(--c1) 0) calc(var(--s) / 4) calc(var(--s) / 4);
+    background-size: var(--s) var(--s);
+}
+
+::ng-deep {
+    body {
+        --pattern-color-primary: #355490;
+        --pattern-color-secondary: #143a84;
+
+        &[data-fkt-theme="dark"] {
+            --pattern-color-primary: #484a64;
+            --pattern-color-secondary: #3c3e59;
+        }
+    }
+
+}
+
+fkt-toolbar {
+    width: 100%;
+    position: fixed;
+    top: 0;
+}
+
+fkt-side-menu {
+    z-index: 30000;
+    position: sticky;
+    height: fit-content;
+    width: 300px;
+    top: 5rem;
+}
+
+fkt-table-of-contents {
+    z-index: 30000;
+    position: sticky;
+    height: fit-content;
+    width: 300px;
+    top: 5rem;
 }
 
 .container {
-	display: flex;
-	flex-direction: column;
-	width: 100%;
+    padding-top: 6rem;
+    display: flex;
+    width: 100%;
+    height: fit-content;
+    max-width: 1750px;
+    justify-content: center;
+    gap: var(--fkt-space-6xl);
 }
 
 .content {
-	overflow-y: auto;
+    width: 100%;
+    max-width: 1200px;
 }

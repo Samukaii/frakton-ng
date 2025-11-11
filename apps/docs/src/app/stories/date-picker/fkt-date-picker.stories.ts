@@ -6,6 +6,7 @@ import documentation from './fkt-date-picker.docs.md' with { loader: "text" };
 
 const meta: Meta = {
 	title: "Components/Form/Date Picker",
+    description: "The FktDatePicker component provides an intuitive and accessible date selection interface. Built with Angular signals and reactive forms, it offers a clean input field with a calendar overlay for date selection.",
 	component: FktDatePickerComponent,
 	documentation,
 	argTypes: {

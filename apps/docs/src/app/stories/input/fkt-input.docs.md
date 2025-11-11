@@ -1,7 +1,3 @@
-# Input
-
-_A versatile form input component with multiple types, data transformers, and comprehensive validation support. Built with Angular signals for reactive form integration._
-
 ## Key Features
 
 - **Multiple Input Types**: Text, password, number, and email with optimized behavior
@@ -25,9 +21,10 @@ type FktInputType = 'text' | 'password' | 'number' | 'email';
 type FktInputTransformer = 'currency' | 'percent' | 'hour' | SignalFormControlTransformer;
 ```
 
-## Examples
+[//]: # (## Examples)
 
-<story-examples></story-examples>
+[//]: # ()
+[//]: # (<story-examples></story-examples>)
 
 ## Use Cases
 

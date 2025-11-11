@@ -1,5 +1,3 @@
-The **FktNavigator** component provides a reusable navigation control with previous/next buttons and a flexible content area. It's designed to be a consistent navigation pattern across different components and contexts.
-
 ## Key Features
 
 - **Flexible Content**: Center content area using Angular's content projection
@@ -14,9 +12,6 @@ The **FktNavigator** component provides a reusable navigation control with previ
 
 <arg-types></arg-types>
 
-## Examples
-
-<story-examples></story-examples>
 
 ### Content Projection
 

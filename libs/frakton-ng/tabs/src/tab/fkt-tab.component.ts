@@ -1,4 +1,4 @@
-import { Component, computed, contentChild, input, TemplateRef, viewChild } from '@angular/core';
+import { Component, computed, contentChild, ElementRef, input, TemplateRef, viewChild } from '@angular/core';
 import { FktIconName } from 'frakton-ng/icon';
 import { FktTabLazyDirective } from '../fkt-tab-lazy.directive';
 
@@ -13,6 +13,7 @@ export class FktTabComponent {
 	label = input.required<string>();
 	key = input.required<string>();
 	icon = input<FktIconName>();
+	hidden = input(false);
 	private containerTemplate = viewChild.required('tab', {read: TemplateRef});
 	private lazyContent = contentChild(FktTabLazyDirective);
 

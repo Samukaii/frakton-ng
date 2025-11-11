@@ -9,7 +9,7 @@ import { form } from '@angular/forms/signals';
 	styleUrl: './form-integration-example.component.scss',
 	imports: [FktCalendarNavigatorComponent, DatePipe]
 })
-export class ExampleComponent {
+export class FormIntegrationExampleComponent {
 	currentDate = input(new Date());
 	mode = input<FktCalendarNavigatorMode>('month');
 

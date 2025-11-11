@@ -1,9 +1,15 @@
-<fkt-side-menu/>
+<div class="pattern">
+
+</div>
+
+<fkt-toolbar/>
 <div class="container">
-	<fkt-toolbar/>
+    <fkt-side-menu/>
 
-	<div class="content">
-		<router-outlet/>
+    <div class="content">
+        <router-outlet/>
 
-	</div>
+    </div>
+    <fkt-table-of-contents excludedContainerSelector="fkt-playground"/>
+
 </div>

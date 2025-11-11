@@ -11,6 +11,7 @@
 
 <fkt-playground-panel
 	[(currentTheme)]="themeService.currentTheme"
+    [storyName]="storyName()"
 	[argsList]="argsList()"
 	[(expanded)]="expanded"
 	[templateSelector]="templateSelector()"

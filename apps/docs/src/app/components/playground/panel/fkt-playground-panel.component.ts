@@ -9,6 +9,7 @@ import { FktNavigableListDirective } from 'frakton-ng/navigable-list';
 import { FktToggleComponent } from 'frakton-ng/toggle';
 import { FktButtonComponent } from 'frakton-ng/button';
 import { FktTooltipDirective } from 'frakton-ng/tooltip';
+import { SourceCodeComponent } from '@/components/playground/source-code/source-code.component';
 
 interface Tab {
 	key: string;
@@ -19,16 +20,17 @@ interface Tab {
 
 @Component({
 	selector: 'fkt-playground-panel',
-	imports: [
-		FktIconComponent,
-		FktInputComponent,
-		FktSelectComponent,
-		FktPlaygroundDesignTokensComponent,
-		FktNavigableListDirective,
-		FktToggleComponent,
-		FktButtonComponent,
-		FktTooltipDirective,
-	],
+    imports: [
+        FktIconComponent,
+        FktInputComponent,
+        FktSelectComponent,
+        FktPlaygroundDesignTokensComponent,
+        FktNavigableListDirective,
+        FktToggleComponent,
+        FktButtonComponent,
+        FktTooltipDirective,
+        SourceCodeComponent,
+    ],
 	templateUrl: './fkt-playground-panel.component.html',
 	styleUrl: './fkt-playground-panel.component.scss',
 	host: {
@@ -36,6 +38,7 @@ interface Tab {
 	}
 })
 export class FktPlaygroundPanelComponent {
+    storyName = input.required<string>();
 	currentTheme = model<'dark' | 'light'>('light');
 	argsList = input.required<ArgItem<any>[]>();
 	designTokens = input.required<DesignTokenItem[]>();
@@ -50,6 +53,12 @@ export class FktPlaygroundPanelComponent {
 
 	protected tabs = computed((): Tab[] => {
 		return [
+            {
+                label: "Code",
+                key: "code",
+                icon: 'code-bracket',
+                condition: true,
+            },
 			{
 				label: "Playground",
 				key: "controls",
@@ -61,7 +70,7 @@ export class FktPlaygroundPanelComponent {
 				key: "styling",
 				icon: 'paint-brush',
 				condition: this.canShowDesignTokens(),
-			}
+			},
 		]
 	});
 
@@ -77,10 +86,6 @@ export class FktPlaygroundPanelComponent {
 
 	protected canShowDesignTokens = computed(() => {
 		return this.designTokens().length > 0;
-	});
-
-	protected canShowTabs = computed(() => {
-		return this.canShowControls() || this.canShowDesignTokens();
 	});
 
 	protected buttonThemeLabel = computed(() => {
