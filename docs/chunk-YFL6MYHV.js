@@ -4,9 +4,9 @@ import"./chunk-A25UGBQK.js";var e=`<div class="container">\r
 		[label]="label()"\r
 	/>\r
 </div>\r
-`;var t=`.container {
-  padding: var(--fkt-space-md);
-}
+`;var t=`.container {\r
+  padding: var(--fkt-space-md);\r
+}\r
 `;var o=`import { Component, input, signal } from '@angular/core';\r
 import { FktCheckboxComponent } from 'frakton-ng/checkbox';\r
 import { Field, form } from '@angular/forms/signals';\r
@@ -32,9 +32,9 @@ export class FktCheckboxBasicExampleComponent {\r
     label="This checkbox can be disabled"\r
   />\r
 </div>\r
-`;var c=`.container {
-  padding: var(--fkt-space-md);
-}
+`;var c=`.container {\r
+  padding: var(--fkt-space-md);\r
+}\r
 `;var n=`import { Component, input, signal } from '@angular/core';\r
 import { FktCheckboxComponent } from 'frakton-ng/checkbox';\r
 import { Field, form } from '@angular/forms/signals';\r
@@ -59,9 +59,9 @@ export class FktCheckboxDisabledExampleComponent {\r
     [label]="label()"\r
   />\r
 </div>\r
-`;var l=`.container {
-  padding: var(--fkt-space-md);
-}
+`;var l=`.container {\r
+  padding: var(--fkt-space-md);\r
+}\r
 `;var m=`import { Component, input, signal } from '@angular/core';\r
 import { FktCheckboxComponent } from 'frakton-ng/checkbox';\r
 import { Field, form } from '@angular/forms/signals';\r
@@ -105,25 +105,25 @@ export class FktCheckboxPreCheckedExampleComponent {\r
     <p>Newsletter subscription: {{ form.newsletterSubscription().value() ? 'Yes' : 'No' }}</p>\r
   </div>\r
 </div>\r
-`;var i=`.container {
-  padding: var(--fkt-space-md);
-}
-
-.form-field {
-  margin-bottom: var(--fkt-space-md);
-}
-
-.form-actions {
-  margin-top: var(--fkt-space-lg);
-  padding: var(--fkt-space-md);
-  background-color: var(--fkt-color-neutral-100);
-  border-radius: var(--fkt-radius-md);
-
-  p {
-    margin: var(--fkt-space-xs) 0;
-    font-size: var(--fkt-font-size-sm);
-  }
-}
+`;var i=`.container {\r
+  padding: var(--fkt-space-md);\r
+}\r
+\r
+.form-field {\r
+  margin-bottom: var(--fkt-space-md);\r
+}\r
+\r
+.form-actions {\r
+  margin-top: var(--fkt-space-lg);\r
+  padding: var(--fkt-space-md);\r
+  background-color: var(--fkt-color-neutral-100);\r
+  border-radius: var(--fkt-radius-md);\r
+\r
+  p {\r
+    margin: var(--fkt-space-xs) 0;\r
+    font-size: var(--fkt-font-size-sm);\r
+  }\r
+}\r
 `;var p=`import { Component, input, signal } from '@angular/core';\r
 import { FktCheckboxComponent } from 'frakton-ng/checkbox';\r
 import { Field, form, required } from '@angular/forms/signals';\r

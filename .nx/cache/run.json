@@ -1,9 +1,32 @@
 {
   "run": {
-    "command": "nx serve docs",
-    "startTime": "2025-11-10T23:32:39.827Z",
-    "endTime": "2025-11-10T23:56:18.026Z",
+    "command": "nx build docs",
+    "startTime": "2025-11-12T09:29:29.759Z",
+    "endTime": "2025-11-12T09:30:10.976Z",
     "inner": false
   },
-  "tasks": []
+  "tasks": [
+    {
+      "taskId": "frakton-ng:build:production",
+      "target": "build",
+      "projectName": "frakton-ng",
+      "hash": "1146411843967275138",
+      "startTime": "2025-11-12T09:29:29.808Z",
+      "endTime": "2025-11-12T09:29:52.401Z",
+      "params": "",
+      "cacheStatus": "cache-miss",
+      "status": 0
+    },
+    {
+      "taskId": "docs:build:production",
+      "target": "build",
+      "projectName": "docs",
+      "hash": "3902146595084203646",
+      "startTime": "2025-11-12T09:29:52.642Z",
+      "endTime": "2025-11-12T09:30:10.884Z",
+      "params": "",
+      "cacheStatus": "cache-miss",
+      "status": 0
+    }
+  ]
 }
