@@ -1,8 +1,7 @@
-import { Meta } from "./meta";
-import { Story } from "./story";
 import { ActiveStory } from '@/models/active-story';
+import { ActiveMeta } from '@/models/active-meta';
 
 export interface StoryResolved {
-	meta: Meta,
+	meta: ActiveMeta<any>,
 	stories: ActiveStory<any>[]
 }

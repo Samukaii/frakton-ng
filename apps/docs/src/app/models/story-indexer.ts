@@ -4,6 +4,7 @@ import { ExternalExample } from "./external-example";
 export interface StoryIndexer {
 	id: string,
 	title: string,
+    componentName?: string,
     description?: string,
 	file: () => Promise<Record<string, any>>
 	designTokens?: DesignToken[];
@@ -11,6 +12,7 @@ export interface StoryIndexer {
     stories?: {
         id: string;
         name: string;
+        componentName: string | null,
         description: string;
     }[]
 }

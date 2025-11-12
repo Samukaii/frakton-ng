@@ -6,6 +6,7 @@ import { pascalToKebab } from './pascal-to-kebab';
 interface StoryIndexedInfo {
     meta: {
         id: string;
+        componentName: string;
         title: string;
         description: string;
         loadType: 'lazy' | 'eagerly';
@@ -13,6 +14,7 @@ interface StoryIndexedInfo {
     stories: {
         id: string;
         name: string;
+        componentName?: string;
         description: string;
     }[]
 }
@@ -81,11 +83,13 @@ export class StoryFileScrapper {
                 return [];
 
             const description = this.getStringProperty(initializer, 'description')!;
+            const componentName = this.getStringProperty(initializer, 'component')!;
 
             return {
                 id: pascalToKebab(name),
                 name,
-                description
+                description,
+                componentName
             }
         })
     }
@@ -105,13 +109,10 @@ export class StoryFileScrapper {
             return;
 
         const title = this.getStringProperty(initializer, 'title');
-
-        if (!title)
-            return;
-
         const description = this.getStringProperty(initializer, 'description');
+        const componentName = this.getStringProperty(initializer, 'component');
 
-        if (!description)
+        if (!title || !description || !componentName)
             return;
 
         const loadType = (this.getStringProperty(initializer, 'loadType') ?? 'lazy') as 'lazy' | 'eagerly';
@@ -120,6 +121,7 @@ export class StoryFileScrapper {
 
         return {
             id,
+            componentName,
             title: title,
             description,
             loadType
@@ -150,6 +152,6 @@ export class StoryFileScrapper {
         if (Node.isStringLiteral(valueNode))
             return valueNode.getLiteralValue() ?? null;
 
-        return null;
+        return valueNode?.getText() ?? null;
     }
 }

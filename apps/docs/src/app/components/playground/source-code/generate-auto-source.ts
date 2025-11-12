@@ -1,13 +1,13 @@
-import { Meta } from '@/models/meta';
 import { isObjectLiteral } from '@/utils/is-object-literal';
 import { toKebabCase } from '@/utils/to-kebab-case';
 import { toPascalCase } from '@/utils/to-pascal-case';
 import { reflectComponentType } from '@angular/core';
 import { ActiveStory } from '@/models/active-story';
+import { ActiveMeta } from '@/models/active-meta';
 
 interface GenerateAutoSourceOptions {
     id: string;
-	meta: Meta;
+	meta: ActiveMeta<any>;
 	story: ActiveStory<any>
 }
 
@@ -142,7 +142,7 @@ const createTemplate = (template: string, placeholders: Record<string, string>) 
 export const generateAutoSource = (options: GenerateAutoSourceOptions) => {
 	const moduleName = `frakton-ng/${options.id}`
 
-	const componentName = (options.story.component?.name ?? options.meta.component?.name)?.replace('_', '');
+	const componentName = (options.story.componentName ?? options.meta.componentName)?.replace('_', '');
 
 	if(!componentName)
 		throw new Error(`Failed to read componentName. Please assure your story has a component declared in story level or meta level`)

@@ -33,3 +33,4 @@ storyFolders.forEach(folder => {
 })
 
 generateStoryIndexer(fetchStoryFiles());
+

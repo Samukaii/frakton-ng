@@ -13,11 +13,7 @@ const getStoryStrings = (scrapper: StoryFileScrapper, file: string) => {
 
 	if(!storyFile) return null;
 
-	const obj = {
-		id: folder,
-		title: storyFile.meta.title!,
-        description: storyFile.meta.description!,
-	}
+	const obj = storyFile.meta;
 
 	const examplesFolder = `${folder}/examples/raw-examples`;
 
@@ -31,6 +27,7 @@ const getStoryStrings = (scrapper: StoryFileScrapper, file: string) => {
 \{
 	id: "${obj.id}",
 	title: "${obj.title}",
+	componentName: "${obj.componentName}",
 	description: \`${obj.description}\`,
 	file: () => import("./${relativePath.replace('.ts', '')}"),
 	${externalExamplesSnippet}
@@ -38,6 +35,7 @@ const getStoryStrings = (scrapper: StoryFileScrapper, file: string) => {
 	    {
 	        id: "${story.id}",
 	        name: "${story.name}",
+	        componentName: ${story.componentName ? `"${story.componentName}"` : "null"},
 	        description: \`${story.description}\`,
 	    }`)}
     ]
@@ -53,6 +51,7 @@ const getStoryStrings = (scrapper: StoryFileScrapper, file: string) => {
 \{
 	id: "${obj.id}",
 	title: "${obj.title}",
+	componentName: "${obj.componentName}",
 	description: "${obj.description}",
 	file: async () => ${varName}, // Imported eagerly for instant loading
 	${externalExamplesSnippet}
@@ -60,6 +59,7 @@ const getStoryStrings = (scrapper: StoryFileScrapper, file: string) => {
 	    {
 	        id: "${story.id}",
 	        name: "${story.name}",
+	        componentName: ${story.componentName ? `"${story.componentName}"` : "null"},
 	        description: "${story.description}",
 	    }`)}
     ]

@@ -17,14 +17,18 @@ export class StoryLoaderService {
         const response = await currentStory.file();
 
         const storyData: StoryResolved = {
-            meta: response['default'],
+            meta: {
+                ...response['default'],
+                componentName: currentStory.componentName,
+            },
             stories: []
         };
 
         currentStory.stories?.forEach(story => {
             storyData.stories.push({
                 ...response[story.name as keyof typeof response],
-                name: story.name
+                name: story.name,
+                componentName: story.componentName,
             })
         })
 

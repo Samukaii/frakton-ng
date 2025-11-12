@@ -16,13 +16,11 @@ export class StoryInfoService {
 	}
 
     getComponentName() {
-        const component = this.getComponent();
-
-        return component?.name?.replace('_', '') ?? null;
+        return this.activeStory.componentName ?? this.meta.componentName
     }
 
     async fetchExternalExamples() {
-        const storyComponent = this.activeStory?.component?.name?.replace('_', '');
+        const storyComponent = this.activeStory?.componentName;
 
         if(!storyComponent) return null;
 
