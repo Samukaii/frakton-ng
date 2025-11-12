@@ -14,5 +14,5 @@ import { CodeHighlightComponent } from '@/components/code-highlight/code-highlig
 export class FeaturesComponent {
     title = input.required<string>();
     description = input<string>();
-    importStatement = input("");
+    importStatement = input<string>();
 }

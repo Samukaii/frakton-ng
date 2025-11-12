@@ -3,9 +3,11 @@
 
 <h2>Import</h2>
 
-<fkt-code-highlight
-    [text]="importStatement()"
-    language="typescript"
-/>
+@if (importStatement()) {
+    <fkt-code-highlight
+        [text]="importStatement()!"
+        language="typescript"
+    />
+}
 
 <fkt-story-examples/>

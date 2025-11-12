@@ -145,7 +145,9 @@ export class DocsPageComponent implements OnInit {
     importStatement = computed(() => {
         const indexer = this.currentIndexer();
         const data = this.currentStoryData.value();
-        const componentName = data?.meta?.component?.name.replaceAll('_', '');
+        const componentName = data?.meta?.componentName;
+
+        if(!componentName) return;
 
         return `import {${componentName}} from "frakton-ng/${indexer?.id}";`
     })
