@@ -11,6 +11,10 @@ const meta: Meta<FktSideMenuComponent> = {
     description: "A responsive and customizable side navigation menu component with collapsible states, grouped menu items, and integrated routing support. Built with Angular signals for optimal performance and provides tooltips for collapsed states.",
 	component: FktSideMenuComponent,
 	documentation,
+    noPadding: true,
+    customDimensions: {
+        height: "800px"
+    },
 	argTypes: {
 		groups: {
 			control: 'object',

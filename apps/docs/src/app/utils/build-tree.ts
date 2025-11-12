@@ -1,8 +1,8 @@
-import { StoryItem } from "@/models/story-item";
+import { StoryIndexer } from "@/models/story-indexer";
 import { MenuGroup } from "@/models/menu.group";
 import { MenuItem } from "@/models/menu.item";
 
-export function buildTree(items: StoryItem[]): (MenuGroup | MenuItem)[] {
+export function buildTree(items: StoryIndexer[]): (MenuGroup | MenuItem)[] {
 	type Node = { [segment: string]: Node | MenuItem };
 
 	const root: Node = {};

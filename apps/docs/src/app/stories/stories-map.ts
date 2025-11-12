@@ -1,9 +1,9 @@
-import { StoryItem } from '@/models/story-item';
+import { StoryIndexer } from '@/models/story-indexer';
 //@ts-expect-error
 import gettingStartedInstallation from "./getting-started/installation.docs.md" with {loader: "text"}
 import * as buttonStory from "./button/fkt-button.stories"
 
-export const STORIES_MAP: StoryItem[] = [	{
+export const STORIES_MAP: StoryIndexer[] = [	{
 		id: "getting-started-installation",
 		title: "Getting Started/Installation",
 		file: async () => ({
@@ -114,7 +114,7 @@ export const STORIES_MAP: StoryItem[] = [	{
 		id: "drawer",
 		title: "Components/Navigation/Drawer",
 		file: () => import("./drawer/fkt-drawer.stories"),
-		
+		externalExamples: () => import("./drawer/examples/raw-examples").then(file => file.default),
 	},
 	{
 		id: "focus-trap",

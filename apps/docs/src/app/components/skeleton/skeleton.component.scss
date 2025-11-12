@@ -1,0 +1,19 @@
+:host {
+    background: linear-gradient(
+            90deg,
+            var(--fkt-color-neutral-300) 0%,
+            var(--fkt-color-neutral-200) 50%,
+            var(--fkt-color-neutral-300) 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+    100% {
+        background-position: 200% 0;
+    }
+}

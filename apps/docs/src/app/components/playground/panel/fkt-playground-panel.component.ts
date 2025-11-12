@@ -38,11 +38,9 @@ interface Tab {
 	}
 })
 export class FktPlaygroundPanelComponent {
-    storyName = input.required<string>();
 	currentTheme = model<'dark' | 'light'>('light');
 	argsList = input.required<ArgItem<any>[]>();
 	designTokens = input.required<DesignTokenItem[]>();
-	templateSelector = input.required<string>();
 	expanded = model(true);
 
 	protected currentTab = linkedSignal<string>(() => {

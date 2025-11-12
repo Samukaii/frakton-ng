@@ -54,21 +54,21 @@
 	position: relative;
 
 	&:hover {
-		color: var(--fkt-color-accent);
+		color: var(--fkt-color-link);
 	}
 
 	&:focus-visible {
-		color: var(--fkt-color-accent);
+		color: var(--fkt-color-link);
 		outline: none;
 		text-decoration: underline;
 	}
 
 	&--active {
 		font-weight: var(--fkt-font-semibold);
-		color: var(--fkt-color-accent);
+		color: var(--fkt-color-link);
 
 		&:hover {
-			color: var(--fkt-color-accent);
+			color: var(--fkt-color-link);
 		}
 	}
 }

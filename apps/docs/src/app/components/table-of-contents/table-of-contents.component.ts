@@ -26,10 +26,6 @@ export class TableOfContentsComponent {
 
 	protected readonly hasItems = computed(() => this.tocItems().length > 0);
 
-    a = effect(() => {
-        console.log(this.tocItems());
-    })
-
 	public generate() {
 		this.generateTableOfContents();
 		this.setupIntersectionObserver();

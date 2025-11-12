@@ -92,8 +92,9 @@ li {
 			}
 
             &.active {
-                border-color: var(--fkt-color-neutral-800);
+                border-color: var(--fkt-color-link);
                 font-weight: var(--fkt-font-semibold);
+                color: var(--fkt-color-link);
             }
 		}
 

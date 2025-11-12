@@ -3,14 +3,14 @@ import {
     Component,
     computed,
     contentChildren,
-    effect, input,
+    effect,
+    input,
     model,
     untracked,
     viewChild,
     ViewContainerRef
 } from '@angular/core';
 import { FktIconComponent } from 'frakton-ng/icon';
-import { NgTemplateOutlet } from '@angular/common';
 import { MarkUsed } from 'frakton-ng/internal/utils';
 import { FktTabComponent } from './tab/fkt-tab.component';
 import { FktNavigableListDirective } from 'frakton-ng/navigable-list';
@@ -19,7 +19,6 @@ import { FktNavigableListDirective } from 'frakton-ng/navigable-list';
 	selector: 'fkt-tabs-list',
     imports: [
         FktIconComponent,
-        NgTemplateOutlet,
         FktNavigableListDirective
     ],
 	templateUrl: './fkt-tabs-list.component.html',

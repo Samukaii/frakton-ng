@@ -1,14 +1,12 @@
 <fkt-tabs-list hideTabsWhenOnlyOne [(activeTab)]="activeTab">
     <fkt-tab [hidden]="!hasStories()" key="features" label="Features">
-        <div class="examples">
-            @if (!currentStoryData.isLoading() && docs()) {
-                <h1>{{ title() }}</h1>
-                <em>{{ description() }}</em>
-                <fkt-story-examples/>
-            } @else {
-                <fkt-spinner/>
-            }
-        </div>
+        @if (!currentStoryData.isLoading() && docs()) {
+            <fkt-features
+                [title]="title()"
+                [description]="description()"
+                [importStatement]="importStatement()"
+            />
+        }
     </fkt-tab>
 
 
@@ -20,12 +18,36 @@
                         [data]="docs()!"
                     />
                 </div>
-
-            } @else if (currentStoryData.isLoading()) {
-                <fkt-spinner/>
             }
         </div>
     </fkt-tab>
 </fkt-tabs-list>
+
+@if (currentStoryData.isLoading() || !docs()) {
+    <fkt-skeleton-container>
+    </fkt-skeleton-container>
+
+    <fkt-skeleton-container>
+        <fkt-skeleton height="40px" width="200px" marginBottom="1rem"/>
+        <fkt-skeleton height="20px" width="80%"/>
+        <fkt-skeleton height="20px" width="40%"/>
+    </fkt-skeleton-container>
+
+    <fkt-skeleton-container>
+        <fkt-skeleton width="200px" height="30px" marginBottom="1rem"/>
+        <fkt-skeleton height="20px" width="60%" marginBottom="2rem"/>
+        <fkt-skeleton height="200px" width="100%"/>
+    </fkt-skeleton-container>
+    <fkt-skeleton-container>
+        <fkt-skeleton width="200px" height="30px" marginBottom="1rem"/>
+        <fkt-skeleton height="20px" width="60%" marginBottom="2rem"/>
+        <fkt-skeleton height="200px" width="100%"/>
+    </fkt-skeleton-container>
+    <fkt-skeleton-container>
+        <fkt-skeleton width="200px" height="30px" marginBottom="1rem"/>
+        <fkt-skeleton height="20px" width="60%" marginBottom="2rem"/>
+        <fkt-skeleton height="200px" width="100%"/>
+    </fkt-skeleton-container>
+}
 
 

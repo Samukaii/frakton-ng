@@ -121,10 +121,6 @@
 	--fkt-color-text-muted: var(--fkt-color-neutral-600);
 	--fkt-color-text-inverse: var(--fkt-color-neutral-100);
 
-	/* Backgrounds */
-	--fkt-color-bg-base: var(--fkt-color-neutral-100);
-	--fkt-color-bg-alt: var(--fkt-color-neutral-200);
-
 	/* Border */
 	--fkt-color-border: var(--fkt-color-neutral-500);
 }

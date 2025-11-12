@@ -13,10 +13,6 @@ import { ThemeService } from '../services/theme.service';
 export class ToolbarComponent {
 	protected readonly themeService = inject(ThemeService);
 
-    protected logo = computed(() => {
-        return this.themeService.currentTheme() === 'dark' ? "logos/logo-one-line-dark.svg" : "logos/logo-one-line-light.svg";
-    })
-
 	protected buttonThemeLabel = computed(() => {
 		return this.themeService.currentTheme() === 'dark' ? 'Switch to light mode' : 'Switch to dark mode';
 	});
@@ -28,10 +24,4 @@ export class ToolbarComponent {
 	protected toggleTheme() {
 		this.themeService.toggleTheme();
 	}
-
-	fraktonLogo = computed(() => {
-		const theme = this.themeService.currentTheme();
-
-		return theme === 'light' ? 'logos/full-logo.svg' : 'logos/full-logo-dark.svg';
-	})
 }

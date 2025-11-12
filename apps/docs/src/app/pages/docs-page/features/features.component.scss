@@ -6,3 +6,12 @@
         display: block;
     }
 }
+
+
+fkt-code-highlight {
+    height: fit-content;
+    display: block;
+    border-radius: var(--fkt-radius-md);
+    overflow: hidden;
+    margin-bottom: 2rem;
+}

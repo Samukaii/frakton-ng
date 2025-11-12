@@ -1,9 +1,10 @@
-import { Component, computed, input, linkedSignal } from '@angular/core';
+import { Component, computed, inject, input, linkedSignal, reflectComponentType } from '@angular/core';
 import { FktButtonComponent } from 'frakton-ng/button';
 import { FktTooltipDirective } from 'frakton-ng/tooltip';
 import { DesignTokenItem } from '../../../models/design-token-item';
 import { FktPlaygroundDesignTokensItemComponent } from './item/fkt-playground-design-tokens-item.component';
 import { FktIconComponent, FktIconName } from 'frakton-ng/icon';
+import { STORY_META_TOKEN } from '@/tokens/story-meta.token';
 
 @Component({
 	selector: 'fkt-playground-design-tokens',
@@ -22,7 +23,23 @@ import { FktIconComponent, FktIconName } from 'frakton-ng/icon';
 export class FktPlaygroundDesignTokensComponent {
 	expanded = input(true);
 	designTokens = input.required<DesignTokenItem[]>();
-	templateSelector = input.required<string>();
+
+    meta = inject(STORY_META_TOKEN);
+
+    templateSelector = computed(() => {
+        const component = this.meta.component;
+
+        if(!component) return ':host';
+
+        try {
+            const reflection = reflectComponentType(component)
+            if (reflection?.selector)
+                return reflection?.selector;
+        } catch (e) {
+        }
+
+        return ':host';
+    });
 
 	currentComponent = linkedSignal(() => {
 		const components = this.components();

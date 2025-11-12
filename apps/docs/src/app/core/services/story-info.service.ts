@@ -1,41 +1,32 @@
 import { inject, Injectable } from '@angular/core';
-import { STORY_ITEM_TOKEN } from '@/tokens/story-item.token';
-import { STORY_DATA_TOKEN } from '@/tokens/story-data.token';
+import { STORY_INDEXER_TOKEN } from '@/tokens/story-indexer.token';
 import { StoryLoaderService } from '@/core/services/story-loader.service';
+import { STORY_META_TOKEN } from '@/tokens/story-meta.token';
+import { ACTIVE_STORY_TOKEN } from '@/tokens/active-story.token';
 
 @Injectable()
 export class StoryInfoService {
-	public readonly storyItem = inject(STORY_ITEM_TOKEN);
-	public readonly storyData = inject(STORY_DATA_TOKEN);
+	public readonly indexer = inject(STORY_INDEXER_TOKEN);
+	public readonly meta = inject(STORY_META_TOKEN);
+	public readonly activeStory = inject(ACTIVE_STORY_TOKEN);
     private readonly storyLoader = inject(StoryLoaderService);
 
-	getMeta() {
-		return this.storyData.meta;
+	getComponent() {
+		return this.activeStory?.component ?? this.meta.component ?? null;
 	}
 
-	getStory(name: string) {
-		return this.storyData.stories.find(story => story.name === name) ?? null;
-	}
-
-	getStoryComponent(name: string) {
-		const meta = this.getMeta();
-		const story = this.getStory(name);
-
-		return story?.story?.component ?? meta.component ?? null;
-	}
-
-    getStoryComponentName(name: string) {
-        const component = this.getStoryComponent(name);
+    getComponentName() {
+        const component = this.getComponent();
 
         return component?.name?.replace('_', '') ?? null;
     }
 
-    async getExternalExamples(storyName: string) {
-        const storyComponent = this.getStory(storyName)?.story?.component?.name?.replace('_', '');
+    async fetchExternalExamples() {
+        const storyComponent = this.activeStory?.component?.name?.replace('_', '');
 
         if(!storyComponent) return null;
 
-        const examples = await this.storyLoader.loadExternalExamples(this.storyItem);
+        const examples = await this.storyLoader.loadExternalExamples(this.indexer);
 
         if(!examples) return null;
 

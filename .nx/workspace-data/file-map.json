@@ -115,60 +115,116 @@
   "fileMap": {
     "nonProjectFiles": [
       {
-        "file": ".editorconfig",
-        "hash": "6019378581935249016"
+        "file": "package.json",
+        "hash": "1578289208295460867"
       },
       {
-        "file": ".agent/guides/design-tokens-documentation-guide.md",
-        "hash": "4791159377170420386"
+        "file": "scripts/utils/kebab-to-pascal-case.ts",
+        "hash": "11570568947441205539"
+      },
+      {
+        "file": "pnpm-lock.yaml",
+        "hash": "18156410277950185164"
+      },
+      {
+        "file": "scripts/utils/kebab-to-camel.ts",
+        "hash": "4474711083404533879"
+      },
+      {
+        "file": "scripts/generate-design-tokens.ts",
+        "hash": "3821755673516270018"
       },
       {
         "file": "globals.d.ts",
         "hash": "13486888821967188300"
       },
       {
-        "file": "tsconfig.scripts.json",
-        "hash": "6728010566359784079"
-      },
-      {
-        "file": ".prettierrc",
-        "hash": "16117882425360397805"
-      },
-      {
-        "file": "angular.json",
-        "hash": "6434142869007070869"
-      },
-      {
-        "file": "package.json",
-        "hash": "1578289208295460867"
-      },
-      {
-        "file": "LICENSE.md",
-        "hash": "15181466372650807457"
-      },
-      {
-        "file": "CONTRIBUTING.md",
-        "hash": "4972135383093012053"
-      },
-      {
-        "file": "README.md",
-        "hash": "17892862659998093883"
+        "file": ".agent/tasks/standardize-library-entry.md",
+        "hash": "4399824121777347251"
       },
       {
         "file": ".prettierignore",
         "hash": "5407418692668764289"
       },
       {
+        "file": ".prettierrc",
+        "hash": "16117882425360397805"
+      },
+      {
+        "file": "jest.preset.js",
+        "hash": "9430166341120122740"
+      },
+      {
+        "file": "scripts/models/design-token.ts",
+        "hash": "16423015795001192272"
+      },
+      {
+        "file": ".agent/guides/storybook-stories-guide.md",
+        "hash": "8729534583337812128"
+      },
+      {
+        "file": "LICENSE.md",
+        "hash": "15181466372650807457"
+      },
+      {
         "file": "scripts/fetch-story-files.ts",
         "hash": "11184627838822490856"
       },
       {
-        "file": ".gitignore",
-        "hash": "3834040003024956045"
-      },
-      {
         "file": "scripts/utils/story-file-scrapper.ts",
         "hash": "5648121196149124559"
+      },
+      {
+        "file": "WARP.md",
+        "hash": "9587798839874187687"
+      },
+      {
+        "file": "tsconfig.json",
+        "hash": "18385670736183374655"
+      },
+      {
+        "file": ".vscode/extensions.json",
+        "hash": "15820374054593880452"
+      },
+      {
+        "file": "nx.json",
+        "hash": "15523074304910379084"
+      },
+      {
+        "file": "scripts/config.ts",
+        "hash": "253694999077125922"
+      },
+      {
+        "file": "scripts/generate-story-indexer.ts",
+        "hash": "11004301504441722693"
+      },
+      {
+        "file": "scripts/index-documentation.ts",
+        "hash": "13160209141139336729"
+      },
+      {
+        "file": "eslint.config.mjs",
+        "hash": "3098211363265672338"
+      },
+      {
+        "file": "angular.json",
+        "hash": "6434142869007070869"
+      },
+      {
+        "file": "README.md",
+        "hash": "17892862659998093883"
+      },
+      {
+        "file": "tsconfig.scripts.json",
+        "hash": "6728010566359784079"
+      },
+      {
+        "file": "jest.config.ts",
+        "hash": "15228680758197409424"
+      },
+      {
+        "file": ".agent/guides/design-tokens-documentation-guide.md",
+        "hash": "4791159377170420386"
       },
       {
         "file": "WHY_FRAKTON_NG.md",
@@ -179,84 +235,28 @@
         "hash": "17821753130726054200"
       },
       {
-        "file": "scripts/utils/kebab-to-pascal-case.ts",
-        "hash": "11570568947441205539"
-      },
-      {
-        "file": "jest.preset.js",
-        "hash": "9430166341120122740"
-      },
-      {
-        "file": "scripts/utils/kebab-to-camel.ts",
-        "hash": "4474711083404533879"
-      },
-      {
-        "file": ".agent/guides/storybook-stories-guide.md",
-        "hash": "8729534583337812128"
-      },
-      {
         "file": "scripts/generate-external-examples.ts",
         "hash": "15074762850260011392"
       },
       {
-        "file": "pnpm-lock.yaml",
-        "hash": "18156410277950185164"
-      },
-      {
-        "file": "scripts/models/design-token.ts",
-        "hash": "16423015795001192272"
-      },
-      {
-        "file": "CONTRIBUTORS.md",
-        "hash": "15963664211067603380"
-      },
-      {
-        "file": "scripts/generate-design-tokens.ts",
-        "hash": "3821755673516270018"
-      },
-      {
-        "file": "scripts/config.ts",
-        "hash": "253694999077125922"
-      },
-      {
-        "file": "scripts/generate-story-indexer.ts",
-        "hash": "15963614500045607643"
-      },
-      {
-        "file": "nx.json",
-        "hash": "15523074304910379084"
-      },
-      {
-        "file": "jest.config.ts",
-        "hash": "15228680758197409424"
-      },
-      {
-        "file": ".vscode/extensions.json",
-        "hash": "15820374054593880452"
+        "file": ".editorconfig",
+        "hash": "6019378581935249016"
       },
       {
         "file": "scripts/fetch-story-folders.ts",
         "hash": "3341323851624282759"
       },
       {
-        "file": "tsconfig.json",
-        "hash": "18385670736183374655"
+        "file": "CONTRIBUTING.md",
+        "hash": "4972135383093012053"
       },
       {
-        "file": "eslint.config.mjs",
-        "hash": "3098211363265672338"
+        "file": "CONTRIBUTORS.md",
+        "hash": "15963664211067603380"
       },
       {
-        "file": "scripts/index-documentation.ts",
-        "hash": "13160209141139336729"
-      },
-      {
-        "file": ".agent/tasks/standardize-library-entry.md",
-        "hash": "4399824121777347251"
-      },
-      {
-        "file": "WARP.md",
-        "hash": "9587798839874187687"
+        "file": ".gitignore",
+        "hash": "3834040003024956045"
       }
     ],
     "projectFileMap": {
@@ -355,21 +355,6 @@
           ]
         },
         {
-          "file": "apps/docs/src/app/components/examples-renderer/examples-renderer.component.html",
-          "hash": "3532449010004932526"
-        },
-        {
-          "file": "apps/docs/src/app/components/examples-renderer/examples-renderer.component.scss",
-          "hash": "3244421341483603138"
-        },
-        {
-          "file": "apps/docs/src/app/components/examples-renderer/examples-renderer.component.ts",
-          "hash": "16581598856548363172",
-          "deps": [
-            "npm:@angular/core"
-          ]
-        },
-        {
           "file": "apps/docs/src/app/components/markdown/copy-button/markdown-wrapper-copy-button.component.html",
           "hash": "17708569823015129652"
         },
@@ -395,11 +380,10 @@
         },
         {
           "file": "apps/docs/src/app/components/markdown/markdown-wrapper.component.ts",
-          "hash": "16261068912899159384",
+          "hash": "10994704999454786091",
           "deps": [
             "npm:@angular/core",
-            "npm:ngx-markdown",
-            "frakton-ng"
+            "npm:ngx-markdown"
           ]
         },
         {
@@ -412,7 +396,7 @@
         },
         {
           "file": "apps/docs/src/app/components/playground/design-tokens/fkt-playground-design-tokens.component.ts",
-          "hash": "1024105101159247987",
+          "hash": "11377583903081297786",
           "deps": [
             "npm:@angular/core",
             "frakton-ng"
@@ -424,7 +408,7 @@
         },
         {
           "file": "apps/docs/src/app/components/playground/design-tokens/item/fkt-playground-design-tokens-item.component.scss",
-          "hash": "13442921675664520048"
+          "hash": "11166327458659223166"
         },
         {
           "file": "apps/docs/src/app/components/playground/design-tokens/item/fkt-playground-design-tokens-item.component.ts",
@@ -436,15 +420,15 @@
         },
         {
           "file": "apps/docs/src/app/components/playground/fkt-playground.component.html",
-          "hash": "15278522670786701986"
+          "hash": "11232600727215241055"
         },
         {
           "file": "apps/docs/src/app/components/playground/fkt-playground.component.scss",
-          "hash": "8431187082878777753"
+          "hash": "2294198471010911920"
         },
         {
           "file": "apps/docs/src/app/components/playground/fkt-playground.component.ts",
-          "hash": "11197822185181421986",
+          "hash": "3845308177919093940",
           "deps": [
             "npm:@angular/core",
             "frakton-ng"
@@ -452,31 +436,15 @@
         },
         {
           "file": "apps/docs/src/app/components/playground/panel/fkt-playground-panel.component.html",
-          "hash": "10823072486479229471"
+          "hash": "12454776387585849348"
         },
         {
           "file": "apps/docs/src/app/components/playground/panel/fkt-playground-panel.component.scss",
-          "hash": "4639042269026452138"
+          "hash": "7727333187566041443"
         },
         {
           "file": "apps/docs/src/app/components/playground/panel/fkt-playground-panel.component.ts",
-          "hash": "200819768463056884",
-          "deps": [
-            "npm:@angular/core",
-            "frakton-ng"
-          ]
-        },
-        {
-          "file": "apps/docs/src/app/components/playground/preview/playground-preview.component.html",
-          "hash": "7094166612366391463"
-        },
-        {
-          "file": "apps/docs/src/app/components/playground/preview/playground-preview.component.scss",
-          "hash": "657324178304806747"
-        },
-        {
-          "file": "apps/docs/src/app/components/playground/preview/playground-preview.component.ts",
-          "hash": "1975402898447641240",
+          "hash": "35694754170211811",
           "deps": [
             "npm:@angular/core",
             "frakton-ng"
@@ -484,30 +452,60 @@
         },
         {
           "file": "apps/docs/src/app/components/playground/source-code/generate-auto-source.ts",
-          "hash": "7950555964753653406",
+          "hash": "1619350544575552864",
           "deps": [
             "npm:@angular/core"
           ]
         },
         {
           "file": "apps/docs/src/app/components/playground/source-code/source-code.component.html",
-          "hash": "2163423760003486202"
+          "hash": "3753375428707513580"
         },
         {
           "file": "apps/docs/src/app/components/playground/source-code/source-code.component.scss",
-          "hash": "17231923482394944818"
+          "hash": "10190781018289673124"
         },
         {
           "file": "apps/docs/src/app/components/playground/source-code/source-code.component.ts",
-          "hash": "5384864252799751902",
+          "hash": "4521242942280930122",
           "deps": [
             "npm:@angular/core",
             "frakton-ng"
           ]
         },
         {
+          "file": "apps/docs/src/app/components/skeleton-container/skeleton-container.component.html",
+          "hash": "11812619856547691913"
+        },
+        {
+          "file": "apps/docs/src/app/components/skeleton-container/skeleton-container.component.scss",
+          "hash": "18034884155581552372"
+        },
+        {
+          "file": "apps/docs/src/app/components/skeleton-container/skeleton-container.component.ts",
+          "hash": "6512706943224124712",
+          "deps": [
+            "npm:@angular/core"
+          ]
+        },
+        {
+          "file": "apps/docs/src/app/components/skeleton/skeleton.component.html",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": "apps/docs/src/app/components/skeleton/skeleton.component.scss",
+          "hash": "4234530109580499269"
+        },
+        {
+          "file": "apps/docs/src/app/components/skeleton/skeleton.component.ts",
+          "hash": "14741310256154415396",
+          "deps": [
+            "npm:@angular/core"
+          ]
+        },
+        {
           "file": "apps/docs/src/app/components/story-renderer/story-renderer.component.html",
-          "hash": "16686416682949710485"
+          "hash": "3212059850809664168"
         },
         {
           "file": "apps/docs/src/app/components/story-renderer/story-renderer.component.scss",
@@ -515,9 +513,10 @@
         },
         {
           "file": "apps/docs/src/app/components/story-renderer/story-renderer.component.ts",
-          "hash": "113212200540226851",
+          "hash": "9608715834981202512",
           "deps": [
-            "npm:@angular/core"
+            "npm:@angular/core",
+            "npm:@angular/common"
           ]
         },
         {
@@ -526,11 +525,11 @@
         },
         {
           "file": "apps/docs/src/app/components/table-of-contents/table-of-contents.component.scss",
-          "hash": "10275595436667405343"
+          "hash": "8826489810905016537"
         },
         {
           "file": "apps/docs/src/app/components/table-of-contents/table-of-contents.component.ts",
-          "hash": "8856588069618973078",
+          "hash": "16217766295382306920",
           "deps": [
             "npm:@angular/core",
             "npm:@angular/common"
@@ -538,21 +537,21 @@
         },
         {
           "file": "apps/docs/src/app/core/services/story-info.service.ts",
-          "hash": "8099753463028139939",
+          "hash": "18417646108446334614",
           "deps": [
             "npm:@angular/core"
           ]
         },
         {
           "file": "apps/docs/src/app/core/services/story-loader.service.ts",
-          "hash": "13926945308699521671",
+          "hash": "12632664043777680707",
           "deps": [
             "npm:@angular/core"
           ]
         },
         {
           "file": "apps/docs/src/app/core/services/table-of-contents.service.ts",
-          "hash": "674867486701029107",
+          "hash": "13927068795715279144",
           "deps": [
             "npm:@angular/core",
             "npm:rxjs"
@@ -560,9 +559,10 @@
         },
         {
           "file": "apps/docs/src/app/core/services/theme.service.ts",
-          "hash": "13045370059408319435",
+          "hash": "5468653412867789680",
           "deps": [
-            "npm:@angular/core"
+            "npm:@angular/core",
+            "frakton-ng"
           ]
         },
         {
@@ -571,7 +571,7 @@
         },
         {
           "file": "apps/docs/src/app/core/side-menu/group/side-menu-group.component.scss",
-          "hash": "9690309485553798844"
+          "hash": "9221222994345017916"
         },
         {
           "file": "apps/docs/src/app/core/side-menu/group/side-menu-group.component.ts",
@@ -585,7 +585,7 @@
         },
         {
           "file": "apps/docs/src/app/core/side-menu/side-menu.component.html",
-          "hash": "1175126758879902353"
+          "hash": "9683595498980431732"
         },
         {
           "file": "apps/docs/src/app/core/side-menu/side-menu.component.scss",
@@ -593,23 +593,22 @@
         },
         {
           "file": "apps/docs/src/app/core/side-menu/side-menu.component.ts",
-          "hash": "3336405205409452649",
+          "hash": "8592119733353141700",
           "deps": [
-            "npm:@angular/core",
-            "npm:@angular/router"
+            "npm:@angular/core"
           ]
         },
         {
           "file": "apps/docs/src/app/core/toolbar/toolbar.component.html",
-          "hash": "17858172946505801161"
+          "hash": "6669965942713847027"
         },
         {
           "file": "apps/docs/src/app/core/toolbar/toolbar.component.scss",
-          "hash": "2269144928678568639"
+          "hash": "2295044927774229881"
         },
         {
           "file": "apps/docs/src/app/core/toolbar/toolbar.component.ts",
-          "hash": "17480120422785360231",
+          "hash": "12326842239453711844",
           "deps": [
             "npm:@angular/core",
             "frakton-ng"
@@ -648,7 +647,7 @@
         },
         {
           "file": "apps/docs/src/app/custom-elements/story-playground/story-examples.component.html",
-          "hash": "10748174125773286171"
+          "hash": "10465622031482495548"
         },
         {
           "file": "apps/docs/src/app/custom-elements/story-playground/story-examples.component.scss",
@@ -656,10 +655,9 @@
         },
         {
           "file": "apps/docs/src/app/custom-elements/story-playground/story-examples.component.ts",
-          "hash": "706018966201989710",
+          "hash": "16062480632192433553",
           "deps": [
-            "npm:@angular/core",
-            "npm:@angular/common"
+            "npm:@angular/core"
           ]
         },
         {
@@ -668,7 +666,7 @@
         },
         {
           "file": "apps/docs/src/app/layouts/home-layout/home-layout.component.scss",
-          "hash": "10885687145728435000"
+          "hash": "15593818902031832506"
         },
         {
           "file": "apps/docs/src/app/layouts/home-layout/home-layout.component.ts",
@@ -676,6 +674,14 @@
           "deps": [
             "npm:@angular/core",
             "npm:@angular/router"
+          ]
+        },
+        {
+          "file": "apps/docs/src/app/models/active-story.ts",
+          "hash": "13205570739729782038",
+          "deps": [
+            "npm:@angular/core",
+            "frakton-ng"
           ]
         },
         {
@@ -719,23 +725,23 @@
         },
         {
           "file": "apps/docs/src/app/models/meta.ts",
-          "hash": "7435742876002992188",
+          "hash": "2487088960137392777",
           "deps": [
             "npm:@angular/core",
             "frakton-ng"
           ]
         },
         {
-          "file": "apps/docs/src/app/models/story-item.ts",
-          "hash": "14646547585427604487"
+          "file": "apps/docs/src/app/models/story-indexer.ts",
+          "hash": "8651736546167934476"
         },
         {
-          "file": "apps/docs/src/app/models/story.data.ts",
-          "hash": "3295888217753388230"
+          "file": "apps/docs/src/app/models/story.resolved.ts",
+          "hash": "13134417399015186981"
         },
         {
           "file": "apps/docs/src/app/models/story.ts",
-          "hash": "9512618522976428883",
+          "hash": "9550561033445173975",
           "deps": [
             "npm:@angular/core",
             "frakton-ng"
@@ -743,7 +749,7 @@
         },
         {
           "file": "apps/docs/src/app/pages/docs-page/docs-page.component.html",
-          "hash": "2739252099352038529"
+          "hash": "9544742091814701217"
         },
         {
           "file": "apps/docs/src/app/pages/docs-page/docs-page.component.scss",
@@ -751,7 +757,7 @@
         },
         {
           "file": "apps/docs/src/app/pages/docs-page/docs-page.component.ts",
-          "hash": "6187595893509443545",
+          "hash": "17329263573311005677",
           "deps": [
             "npm:@angular/core",
             "frakton-ng"
@@ -759,15 +765,15 @@
         },
         {
           "file": "apps/docs/src/app/pages/docs-page/features/features.component.html",
-          "hash": "919404142055528748"
+          "hash": "8010424326593682857"
         },
         {
           "file": "apps/docs/src/app/pages/docs-page/features/features.component.scss",
-          "hash": "2680674036981602584"
+          "hash": "5348449717812222331"
         },
         {
           "file": "apps/docs/src/app/pages/docs-page/features/features.component.ts",
-          "hash": "6056360658102324706",
+          "hash": "17662340626738125628",
           "deps": [
             "npm:@angular/core"
           ]
@@ -1534,6 +1540,10 @@
           ]
         },
         {
+          "file": "apps/docs/src/app/stories/dialog/fkt-dialog-design-tokens.json",
+          "hash": "9444422325801888874"
+        },
+        {
           "file": "apps/docs/src/app/stories/dialog/fkt-dialog.docs.md",
           "hash": "17503867571882335437"
         },
@@ -1545,12 +1555,108 @@
           ]
         },
         {
+          "file": "apps/docs/src/app/stories/drawer/examples/narrow-example/narrow-example.component.html",
+          "hash": "2672441104818568301"
+        },
+        {
+          "file": "apps/docs/src/app/stories/drawer/examples/narrow-example/narrow-example.component.scss",
+          "hash": "17302090836351940889"
+        },
+        {
+          "file": "apps/docs/src/app/stories/drawer/examples/narrow-example/narrow-example.component.ts",
+          "hash": "12129305928862551917",
+          "deps": [
+            "npm:@angular/core",
+            "frakton-ng"
+          ]
+        },
+        {
+          "file": "apps/docs/src/app/stories/drawer/examples/opened-example/opened-example.component.html",
+          "hash": "13594171925806983728"
+        },
+        {
+          "file": "apps/docs/src/app/stories/drawer/examples/opened-example/opened-example.component.scss",
+          "hash": "17270205708312528782"
+        },
+        {
+          "file": "apps/docs/src/app/stories/drawer/examples/opened-example/opened-example.component.ts",
+          "hash": "3452414341003857898",
+          "deps": [
+            "npm:@angular/core",
+            "frakton-ng"
+          ]
+        },
+        {
+          "file": "apps/docs/src/app/stories/drawer/examples/overlay-example/overlay-example.component.html",
+          "hash": "17159039735274565257"
+        },
+        {
+          "file": "apps/docs/src/app/stories/drawer/examples/overlay-example/overlay-example.component.scss",
+          "hash": "1962832997211462115"
+        },
+        {
+          "file": "apps/docs/src/app/stories/drawer/examples/overlay-example/overlay-example.component.ts",
+          "hash": "7729104732884220109",
+          "deps": [
+            "npm:@angular/core",
+            "frakton-ng"
+          ]
+        },
+        {
+          "file": "apps/docs/src/app/stories/drawer/examples/push-example.component.scss",
+          "hash": "11515602286611716905"
+        },
+        {
+          "file": "apps/docs/src/app/stories/drawer/examples/push-example/push-example.component.html",
+          "hash": "198457679566833035"
+        },
+        {
+          "file": "apps/docs/src/app/stories/drawer/examples/push-example/push-example.component.scss",
+          "hash": "4248580917187758154"
+        },
+        {
+          "file": "apps/docs/src/app/stories/drawer/examples/push-example/push-example.component.ts",
+          "hash": "2529289240119754399",
+          "deps": [
+            "npm:@angular/core",
+            "frakton-ng"
+          ]
+        },
+        {
+          "file": "apps/docs/src/app/stories/drawer/examples/raw-examples.ts",
+          "hash": "12463419610235033256"
+        },
+        {
+          "file": "apps/docs/src/app/stories/drawer/examples/wide-example.component.scss",
+          "hash": "7533101338864729432"
+        },
+        {
+          "file": "apps/docs/src/app/stories/drawer/examples/wide-example/wide-example.component.html",
+          "hash": "12094779621914586967"
+        },
+        {
+          "file": "apps/docs/src/app/stories/drawer/examples/wide-example/wide-example.component.scss",
+          "hash": "533148799929798993"
+        },
+        {
+          "file": "apps/docs/src/app/stories/drawer/examples/wide-example/wide-example.component.ts",
+          "hash": "13694799946940657382",
+          "deps": [
+            "npm:@angular/core",
+            "frakton-ng"
+          ]
+        },
+        {
+          "file": "apps/docs/src/app/stories/drawer/fkt-drawer-design-tokens.json",
+          "hash": "9444422325801888874"
+        },
+        {
           "file": "apps/docs/src/app/stories/drawer/fkt-drawer.docs.md",
           "hash": "18136305305304349248"
         },
         {
           "file": "apps/docs/src/app/stories/drawer/fkt-drawer.stories.ts",
-          "hash": "9813363217106178950",
+          "hash": "719499062886805775",
           "deps": [
             "frakton-ng"
           ]
@@ -1561,7 +1667,7 @@
         },
         {
           "file": "apps/docs/src/app/stories/focus-trap/examples/basic-example/fkt-focus-trap-basic-example.component.scss",
-          "hash": "13574103177558495230"
+          "hash": "9605208613841074198"
         },
         {
           "file": "apps/docs/src/app/stories/focus-trap/examples/basic-example/fkt-focus-trap-basic-example.component.ts",
@@ -1577,7 +1683,7 @@
         },
         {
           "file": "apps/docs/src/app/stories/focus-trap/examples/form-example/fkt-focus-trap-form-example.component.scss",
-          "hash": "17930673932398881057"
+          "hash": "1164343444855198788"
         },
         {
           "file": "apps/docs/src/app/stories/focus-trap/examples/form-example/fkt-focus-trap-form-example.component.ts",
@@ -1612,6 +1718,10 @@
           "hash": "5147510058139721310"
         },
         {
+          "file": "apps/docs/src/app/stories/focus-trap/fkt-focus-trap-design-tokens.json",
+          "hash": "9444422325801888874"
+        },
+        {
           "file": "apps/docs/src/app/stories/focus-trap/fkt-focus-trap.docs.md",
           "hash": "5931923730219850770"
         },
@@ -1633,6 +1743,10 @@
         {
           "file": "apps/docs/src/app/stories/getting-started/theming-styling.docs.md",
           "hash": "12567762974026788389"
+        },
+        {
+          "file": "apps/docs/src/app/stories/icon/fkt-icon-design-tokens.json",
+          "hash": "9444422325801888874"
         },
         {
           "file": "apps/docs/src/app/stories/icon/fkt-icon.docs.md",
@@ -2311,6 +2425,10 @@
           ]
         },
         {
+          "file": "apps/docs/src/app/stories/overlay/fkt-overlay-design-tokens.json",
+          "hash": "9444422325801888874"
+        },
+        {
           "file": "apps/docs/src/app/stories/overlay/fkt-overlay.docs.md",
           "hash": "15807485998595530466"
         },
@@ -2482,11 +2600,11 @@
         },
         {
           "file": "apps/docs/src/app/stories/side-menu/examples/admin-dashboard-layout/admin-dashboard-layout-example.component.html",
-          "hash": "7210298644770895876"
+          "hash": "10014097108682230511"
         },
         {
           "file": "apps/docs/src/app/stories/side-menu/examples/admin-dashboard-layout/admin-dashboard-layout-example.component.scss",
-          "hash": "11439657830826565745"
+          "hash": "8945684212917689027"
         },
         {
           "file": "apps/docs/src/app/stories/side-menu/examples/admin-dashboard-layout/admin-dashboard-layout-example.component.ts",
@@ -2574,7 +2692,7 @@
         },
         {
           "file": "apps/docs/src/app/stories/side-menu/examples/with-routing-example/pages/admin-dashboard-page/admin-dashboard-page.component.scss",
-          "hash": "3049161838352010569"
+          "hash": "1153650774062380262"
         },
         {
           "file": "apps/docs/src/app/stories/side-menu/examples/with-routing-example/pages/admin-dashboard-page/admin-dashboard-page.component.ts",
@@ -2589,7 +2707,7 @@
         },
         {
           "file": "apps/docs/src/app/stories/side-menu/examples/with-routing-example/pages/admin-settings-page/admin-settings-page.component.scss",
-          "hash": "11868766903987823902"
+          "hash": "14684215593550290279"
         },
         {
           "file": "apps/docs/src/app/stories/side-menu/examples/with-routing-example/pages/admin-settings-page/admin-settings-page.component.ts",
@@ -2606,7 +2724,7 @@
         },
         {
           "file": "apps/docs/src/app/stories/side-menu/examples/with-routing-example/pages/admin-users-page/admin-users-page.component.scss",
-          "hash": "13114417415977500861"
+          "hash": "12643054663078159755"
         },
         {
           "file": "apps/docs/src/app/stories/side-menu/examples/with-routing-example/pages/admin-users-page/admin-users-page.component.ts",
@@ -2643,7 +2761,7 @@
         },
         {
           "file": "apps/docs/src/app/stories/side-menu/fkt-side-menu.stories.ts",
-          "hash": "9035991314795621079",
+          "hash": "13557556258561226021",
           "deps": [
             "frakton-ng",
             "npm:@angular/router"
@@ -2738,7 +2856,7 @@
         },
         {
           "file": "apps/docs/src/app/stories/stories-map.ts",
-          "hash": "15387470648397823943"
+          "hash": "6445950096694838682"
         },
         {
           "file": "apps/docs/src/app/stories/table/examples/basic-table/fkt-table-examples-basic-table.component.html",
@@ -3110,22 +3228,43 @@
           ]
         },
         {
-          "file": "apps/docs/src/app/tokens/story-data.token.ts",
-          "hash": "15230792436352492369",
+          "file": "apps/docs/src/app/tokens/active-story.token.ts",
+          "hash": "8162490660670960121",
           "deps": [
             "npm:@angular/core"
           ]
         },
         {
-          "file": "apps/docs/src/app/tokens/story-item.token.ts",
+          "file": "apps/docs/src/app/tokens/all-stories.token.ts",
+          "hash": "105367669536439052",
+          "deps": [
+            "npm:@angular/core"
+          ]
+        },
+        {
+          "file": "apps/docs/src/app/tokens/story-indexer.token.ts",
           "hash": "4524984812399584674",
           "deps": [
             "npm:@angular/core"
           ]
         },
         {
+          "file": "apps/docs/src/app/tokens/story-meta.token.ts",
+          "hash": "15986948966952803068",
+          "deps": [
+            "npm:@angular/core"
+          ]
+        },
+        {
+          "file": "apps/docs/src/app/tokens/story-resolved.token.ts",
+          "hash": "15230792436352492369",
+          "deps": [
+            "npm:@angular/core"
+          ]
+        },
+        {
           "file": "apps/docs/src/app/utils/build-tree.ts",
-          "hash": "14461115153992773639"
+          "hash": "14135487083125006670"
         },
         {
           "file": "apps/docs/src/app/utils/find-active-child-route.ts",
@@ -3191,7 +3330,7 @@
         },
         {
           "file": "apps/docs/src/styles/globals.scss",
-          "hash": "1495298066346737826"
+          "hash": "264114510328885625"
         },
         {
           "file": "apps/docs/src/styles/prism-js-theme.css",
@@ -3236,11 +3375,11 @@
         },
         {
           "file": "libs/frakton-ng/assets/styles/themes/dark.css",
-          "hash": "7784546721985676775"
+          "hash": "9135247339205944100"
         },
         {
           "file": "libs/frakton-ng/assets/styles/themes/light.css",
-          "hash": "5923264694125012231"
+          "hash": "4220107554301280473"
         },
         {
           "file": "libs/frakton-ng/autocomplete/index.ts",
@@ -5119,10 +5258,9 @@
         },
         {
           "file": "libs/frakton-ng/tabs/src/fkt-tabs-list.component.ts",
-          "hash": "18120666847067575016",
+          "hash": "9805846409564106622",
           "deps": [
-            "npm:@angular/core",
-            "npm:@angular/common"
+            "npm:@angular/core"
           ]
         },
         {

@@ -17,7 +17,7 @@
 
 	&__header {
 		border-bottom: 1px solid var(--fkt-color-neutral-200);
-		background-color: var(--fkt-color-modal-background);
+		background-color: var(--fkt-color-card-background);
 
 		padding: 16px 24px;
 		display: flex;
@@ -47,6 +47,10 @@
 	&__avatar {
 		width: 32px;
 		height: 32px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #f1f5f9;
 		background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 		border-radius: 50%;
 	}
@@ -70,7 +74,7 @@
 	}
 
 	&__card {
-		background: var(--fkt-color-modal-background);
+		background: var(--fkt-color-card-background);
 		border-radius: 8px;
 		padding: 24px;
 		border: 1px solid var(--fkt-color-neutral-300);
@@ -84,7 +88,7 @@
 	}
 
 	&__card-label {
-		color: var(--fkt-color-neutral-500);
+		color: var(--fkt-color-neutral-600);
 		font-size: 14px;
 		font-weight: 500;
 	}
@@ -134,7 +138,7 @@
 	}
 
 	&__activity {
-		background: var(--fkt-color-modal-background);
+		background: var(--fkt-color-card-background);
 		border-radius: 8px;
 		padding: 24px;
 		border: 1px solid var(--fkt-color-neutral-300);

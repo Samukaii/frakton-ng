@@ -1,34 +1,23 @@
 <div class="canvas-block">
-<!--	<div class="canvas-block__tabs">-->
-<!--		<button-->
-<!--			[class.active]="currentTab() === 'preview'"-->
-<!--			(click)="currentTab.set('preview')"-->
-<!--		>-->
-<!--			<fkt-icon name="cube">-->
-<!--			</fkt-icon>-->
-<!--			Preview-->
-<!--		</button>-->
-<!--		<button-->
-<!--			[class.active]="currentTab() === 'code'"-->
-<!--			(click)="currentTab.set('code')"-->
-<!--		>-->
-<!--			<fkt-icon name="code-bracket">-->
-<!--			</fkt-icon>-->
-<!--			Code-->
-<!--		</button>-->
-<!--	</div>-->
+    <div class="canvas-block__content">
+        <div #container
+             class="fkt-playground-component-container"
+             [style.width]="customDimensions()?.width ?? 'auto'"
+             [style.height]="customDimensions()?.height ?? '100%'"
+             [class.no-padding]="noPadding()"
+        >
+            <div [style]="designTokensStyle()">
+                <ng-template #template/>
+            </div>
+        </div>
 
-	<div class="canvas-block__content">
-		@if (currentTab() === 'preview') {
-			<fkt-playground-preview
-				[storyName]="storyName()"
-			/>
-		} @else {
-			<fkt-source-code
-				[storyName]="storyName()"
-			/>
-		}
-	</div>
+        <fkt-playground-panel
+            [(currentTheme)]="themeService.currentTheme"
+            [argsList]="argsList()"
+            [(expanded)]="expanded"
+            [designTokens]="designTokens()"
+        />
+    </div>
 </div>
 
 

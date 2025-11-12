@@ -3,12 +3,21 @@ import { Meta } from '@/models/meta';
 import { Story } from '@/models/story';
 // @ts-expect-error
 import documentation from './fkt-drawer.docs.md' with { loader: "text" };
+import { PushExampleComponent } from './examples/push-example/push-example.component';
+import { OverlayExampleComponent } from './examples/overlay-example/overlay-example.component';
+import { OpenedExampleComponent } from './examples/opened-example/opened-example.component';
+import { WideExampleComponent } from './examples/wide-example/wide-example.component';
+import { NarrowExampleComponent } from './examples/narrow-example/narrow-example.component';
 
 const meta: Meta = {
 	title: "Components/Navigation/Drawer",
 	component: FktDrawerComponent,
     description: "The FktDrawer component provides a slide-out navigation panel that can either push content aside or overlay on top of it. Built with Angular signals and modern design patterns, it offers flexible positioning and smooth animations.",
 	documentation,
+    customDimensions: {
+        height: "800px",
+    },
+    noPadding: true,
 	argTypes: {
 		opened: {
 			control: 'boolean',
@@ -42,8 +51,9 @@ const meta: Meta = {
 	}
 }
 
-export const Push: Story<FktDrawerComponent> = {
+export const Push: Story<PushExampleComponent> = {
 	description: "Drawer in push mode that displaces the main content when opened.",
+	component: PushExampleComponent,
 	args: {
 		opened: false,
 		mode: 'push',
@@ -51,8 +61,9 @@ export const Push: Story<FktDrawerComponent> = {
 	}
 };
 
-export const Overlay: Story<FktDrawerComponent> = {
+export const Overlay: Story<OverlayExampleComponent> = {
 	description: "Drawer in overlay mode that floats over the content with backdrop.",
+	component: OverlayExampleComponent,
 	args: {
 		opened: false,
 		mode: 'overlay',
@@ -60,8 +71,9 @@ export const Overlay: Story<FktDrawerComponent> = {
 	}
 };
 
-export const Opened: Story<FktDrawerComponent> = {
+export const Opened: Story<OpenedExampleComponent> = {
 	description: "Drawer in opened state showing expanded navigation content.",
+	component: OpenedExampleComponent,
 	args: {
 		opened: true,
 		mode: 'push',
@@ -69,8 +81,9 @@ export const Opened: Story<FktDrawerComponent> = {
 	}
 };
 
-export const Wide: Story<FktDrawerComponent> = {
+export const Wide: Story<WideExampleComponent> = {
 	description: "Drawer with wider width for more content and better readability.",
+	component: WideExampleComponent,
 	args: {
 		opened: false,
 		mode: 'push',
@@ -78,8 +91,9 @@ export const Wide: Story<FktDrawerComponent> = {
 	}
 };
 
-export const Narrow: Story<FktDrawerComponent> = {
+export const Narrow: Story<NarrowExampleComponent> = {
 	description: "Compact drawer with minimal width for icon-based navigation.",
+	component: NarrowExampleComponent,
 	args: {
 		opened: false,
 		mode: 'push',

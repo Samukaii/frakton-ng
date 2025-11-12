@@ -1,24 +1,24 @@
 import { Meta } from '@/models/meta';
-import { Story } from '@/models/story';
 import { isObjectLiteral } from '@/utils/is-object-literal';
 import { toKebabCase } from '@/utils/to-kebab-case';
 import { toPascalCase } from '@/utils/to-pascal-case';
 import { reflectComponentType } from '@angular/core';
+import { ActiveStory } from '@/models/active-story';
 
 interface GenerateAutoSourceOptions {
     id: string;
 	meta: Meta;
-	story: { name: string; story: Story<any>; }
+	story: ActiveStory<any>
 }
 
 const getTemplate = (options: GenerateAutoSourceOptions) => {
-	const component = options.story.story.component ?? options.meta.component;
+	const component = options.story.component ?? options.meta.component;
 
 	if(!component) return '';
 
 	const reflection = reflectComponentType(component);
 	const selector = reflection?.selector ?? 'fkt-example'
-	const args = options.story.story.args;
+	const args = options.story.args;
 
 	let element = `<${selector}`;
 
@@ -32,7 +32,7 @@ const getTemplate = (options: GenerateAutoSourceOptions) => {
 }
 
 const getComponentProperties = (options: GenerateAutoSourceOptions) => {
-	const args = options.story.story.args;
+	const args = options.story.args;
 
 	let componentProperties = '';
 
@@ -101,7 +101,7 @@ const getComponentProperties = (options: GenerateAutoSourceOptions) => {
 }
 
 const getExtraImports = (options: GenerateAutoSourceOptions) => {
-	const args = options.story.story.args;
+	const args = options.story.args;
 	let extraImports = '';
 
 	Object.keys(args).forEach((key) => {
@@ -142,7 +142,7 @@ const createTemplate = (template: string, placeholders: Record<string, string>) 
 export const generateAutoSource = (options: GenerateAutoSourceOptions) => {
 	const moduleName = `frakton-ng/${options.id}`
 
-	const componentName = (options.story.story.component?.name ?? options.meta.component?.name)?.replace('_', '');
+	const componentName = (options.story.component?.name ?? options.meta.component?.name)?.replace('_', '');
 
 	if(!componentName)
 		throw new Error(`Failed to read componentName. Please assure your story has a component declared in story level or meta level`)

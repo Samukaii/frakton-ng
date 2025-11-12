@@ -5,7 +5,8 @@
 <section class="toolbar">
     <span class="fkt-sr-only" id=":r0:">Toolbar</span>
     <div class="logo">
-        <img [src]="logo()" alt="">
+        <img [style]="{display: themeService.currentTheme() === 'dark' ? 'block' : 'none'}" src="logos/logo-one-line-dark.svg" alt="">
+        <img [style]="{display: themeService.currentTheme() === 'light' ? 'block' : 'none'}" src="logos/logo-one-line-light.svg" alt="">
         <span class="toolbar__version-tag">
             Beta
           </span>

@@ -1,7 +1,13 @@
-<h3>{{title() | pascalToHumanReadable}}</h3>
+<h3>{{storyName() | pascalToHumanReadable}}</h3>
 
-<p>{{description()}}</p>
+<p>{{activeStory()?.description}}</p>
 
-<fkt-playground
-	[storyName]="title()"
-/>
+<ng-template #playground>
+    <fkt-playground/>
+</ng-template>
+
+@if (injector()) {
+    <ng-container [ngTemplateOutlet]="playground" [ngTemplateOutletInjector]="injector()">
+
+    </ng-container>
+}

@@ -19,11 +19,16 @@ body {
 	background-color: var(--fkt-color-neutral-background);
 	--fkt-panel-shadow: rgb(179 187 199) 0px 4px 21px 1px;
     --fkt-toolbar-background: #E2E8F066;
+    --fkt-color-link: #FFA700;
+    --fkt-color-link-opacity-20: rgba(255, 167, 0, 0.2);
 }
 
 
 body[data-fkt-theme="dark"] {
 	--fkt-panel-shadow: rgb(24, 27, 32) 0px 4px 21px 1px;
 	--fkt-toolbar-background: #1F232966;
+
+    --fkt-color-link: var(--fkt-color-accent);
+    --fkt-color-link-opacity-20: var(--fkt-color-accent-opacity-20);
 }
 

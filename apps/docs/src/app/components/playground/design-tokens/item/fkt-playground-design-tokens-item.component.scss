@@ -69,7 +69,7 @@
 
 a {
 	text-decoration: none;
-	color: var(--fkt-color-accent);
+	color: var(--fkt-color-link);
 	border: none;
 	border-bottom: solid 1px transparent;
 	padding: var(--fkt-space-3xs);
@@ -80,7 +80,7 @@ a {
   outline: none;
 
 	&:hover, &:focus-visible {
-		border-bottom: solid 1px var(--fkt-color-accent);
+		border-bottom: solid 1px var(--fkt-color-link);
 	}
 }
 

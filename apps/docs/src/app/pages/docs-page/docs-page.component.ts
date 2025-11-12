@@ -1,35 +1,24 @@
-import {
-    Component,
-    computed,
-    effect,
-    inject,
-    input, inputBinding,
-    resource,
-    signal,
-    untracked,
-    viewChild,
-    ViewContainerRef
-} from '@angular/core';
+import { Component, computed, effect, inject, input, linkedSignal, resource, signal, untracked } from '@angular/core';
 import { STORIES_MAP } from '@/stories/stories-map';
-import { FktSpinnerComponent } from 'frakton-ng/spinner';
 import { MarkUsed } from 'frakton-ng/internal/utils';
 import { StoryLoaderService } from '@/core/services/story-loader.service';
 import { MarkdownWrapperComponent } from '@/components/markdown/markdown-wrapper.component';
-import { FktTabComponent, FktTabLazyDirective, FktTabsListComponent } from 'frakton-ng/tabs';
-import { StoryExamplesComponent } from '@/custom-elements/story-playground/story-examples.component';
+import { FktTabComponent, FktTabsListComponent } from 'frakton-ng/tabs';
 import { TableOfContentsService } from '@/core/services/table-of-contents.service';
 import { FeaturesComponent } from '@/pages/docs-page/features/features.component';
+import { SkeletonComponent } from '@/components/skeleton/skeleton.component';
+import { SkeletonContainerComponent } from '@/components/skeleton-container/skeleton-container.component';
 
 
 @Component({
 	selector: 'app-docs-page',
     imports: [
-        FktSpinnerComponent,
         MarkdownWrapperComponent,
         FktTabsListComponent,
         FktTabComponent,
-        FktTabLazyDirective,
-        StoryExamplesComponent
+        SkeletonComponent,
+        SkeletonContainerComponent,
+        FeaturesComponent
     ],
 	templateUrl: './docs-page.component.html',
 	styleUrl: './docs-page.component.scss',
@@ -43,7 +32,11 @@ export class DocsPageComponent {
 
 	protected readonly isLoading = signal(false);
 	protected readonly copied = signal<boolean>(false);
-    protected activeTab = signal('features');
+    protected activeTab = linkedSignal(() => {
+        this.docId();
+
+        return 'features'
+    });
 
 
 	@MarkUsed()
@@ -58,7 +51,7 @@ export class DocsPageComponent {
 		})
 	})
 
-	private readonly currentStory = computed(() => {
+	private readonly currentIndexer = computed(() => {
 		const docId = this.docId();
 
 		const found = this.stories.find(story => {
@@ -70,14 +63,14 @@ export class DocsPageComponent {
 
 	protected readonly currentStoryData = resource({
 		defaultValue: null,
-		params: () => ({currentStory: this.currentStory()}),
+		params: () => ({indexer: this.currentIndexer()}),
 		loader: async ({params}) => {
-			const currentStory = params.currentStory;
+			const indexer = params.indexer;
 
-			if(!currentStory)
+			if(!indexer)
 				return null;
 
-			const data = this.storyLoader.loadData(currentStory);
+			const data = this.storyLoader.loadData(indexer);
 
 			this.isLoading.set(false);
 
@@ -105,6 +98,14 @@ export class DocsPageComponent {
         const data = this.currentStoryData.value();
 
         return data?.meta?.description ?? '';
+    })
+
+    importStatement = computed(() => {
+        const indexer = this.currentIndexer();
+        const data = this.currentStoryData.value();
+        const componentName = data?.meta?.component?.name.replaceAll('_', '');
+
+        return `import {${componentName}} from "frakton-ng/${indexer?.id}";`
     })
 
 	protected readonly docs = computed(() => {

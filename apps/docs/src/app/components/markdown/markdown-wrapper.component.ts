@@ -1,6 +1,5 @@
 import { Component, input, signal } from '@angular/core';
 import { MarkdownComponent } from "ngx-markdown";
-import { FktButtonComponent } from 'frakton-ng/button';
 import {
     MarkdownWrapperCopyButtonComponent
 } from '@/components/markdown/copy-button/markdown-wrapper-copy-button.component';
@@ -8,10 +7,9 @@ import {
 
 @Component({
 	selector: 'fkt-markdown',
-	imports: [
-		FktButtonComponent,
-		MarkdownComponent
-	],
+    imports: [
+        MarkdownComponent
+    ],
 	templateUrl: './markdown-wrapper.component.html',
 	styleUrl: './markdown-wrapper.component.scss'
 })

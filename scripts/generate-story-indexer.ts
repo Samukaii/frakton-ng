@@ -173,10 +173,10 @@ export const generateStoryIndexer = (files: string[]) => {
 	});
 
 	const result = `\
-import { StoryItem } from '@/models/story-item';
+import { StoryIndexer } from '@/models/story-indexer';
 ${importStatements.join('\n')}
 
-export const STORIES_MAP: StoryItem[] = [${objs.map(a => a.split('\n').map(q => `\t${q}`).join('\n')).join('\n')}
+export const STORIES_MAP: StoryIndexer[] = [${objs.map(a => a.split('\n').map(q => `\t${q}`).join('\n')).join('\n')}
 ];
 `;
 
