@@ -1,5 +1,11 @@
 import { ApplicationConfig, provideBrowserGlobalErrorListeners, provideZoneChangeDetection, } from '@angular/core';
-import { provideRouter, withComponentInputBinding, withInMemoryScrolling, withViewTransitions } from '@angular/router';
+import {
+    provideRouter,
+    withComponentInputBinding,
+    withHashLocation,
+    withInMemoryScrolling,
+    withViewTransitions
+} from '@angular/router';
 import { appRoutes } from './app.routes';
 import { provideMarkdown, SANITIZE } from 'ngx-markdown';
 import DOMPurify from 'dompurify';
@@ -29,6 +35,7 @@ export const appConfig: ApplicationConfig = {
         provideRouter(appRoutes,
             withComponentInputBinding(),
             withViewTransitions(),
+            withHashLocation(),
             withInMemoryScrolling({
                 anchorScrolling: "enabled",
                 scrollPositionRestoration: "top",
