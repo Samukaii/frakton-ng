@@ -10,6 +10,7 @@ import { StoryResolved } from '@/models/story.resolved';
 import { ACTIVE_STORY_TOKEN } from '@/tokens/active-story.token';
 import { STORY_META_TOKEN } from '@/tokens/story-meta.token';
 import { ALL_STORIES_TOKEN } from '@/tokens/all-stories.token';
+import { pascalToKebab } from '@/utils/pascal-to-kebab';
 
 @Component({
 	selector: 'fkt-story-renderer',
@@ -25,6 +26,10 @@ export class StoryRendererComponent {
     storyName = input.required<string>();
     indexer = input.required<StoryIndexer>()
     storyResolved = input.required<StoryResolved>()
+
+    storyId = computed(() => {
+        return pascalToKebab(this.storyName());
+    })
 
     private readonly loader = inject(StoryLoaderService);
 
@@ -69,4 +74,5 @@ export class StoryRendererComponent {
         })
 
     })
+    protected readonly pascalToKebab = pascalToKebab;
 }

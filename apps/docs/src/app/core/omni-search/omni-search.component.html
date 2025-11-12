@@ -1,0 +1,30 @@
+<div (click)="$event.stopPropagation()" class="overview">
+    <fkt-input hideLabel [(value)]="search" label="Pesquisar" placeholder="Search documentation">
+        <fkt-icon name="magnifying-glass" *fktFormControlSuffix>
+
+        </fkt-icon>
+    </fkt-input>
+
+    <ul fktNavigableList childSelector="a" (select)="keyboardSelect($event)" class="list">
+        @for (item of filtered(); track item.id) {
+            <li>
+                <a (click)="close.emit()" [class]="item.type" [routerLink]="item.link">
+                    @if (item.type === 'section') {
+                        <fkt-icon name="hashtag"/>
+                    } @else {
+                        <fkt-icon name="document-text"/>
+                    }
+                    <div class="info">
+                        <h3 [innerHTML]="item.title">
+                        </h3>
+                        @if (item.description) {
+                            <p [innerHTML]="item.description"></p>
+                        }
+                    </div>
+
+                </a>
+            </li>
+
+        }
+    </ul>
+</div>

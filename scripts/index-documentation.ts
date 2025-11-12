@@ -12,7 +12,7 @@ const storyFolders = fetchStoryFolders();
 storyFolders.forEach(folder => {
     const directory = `${SCRIPTS_CONFIG.general.libsFolder}/${folder.name}/src`;
 
-    if(!fs.existsSync(directory))
+    if (!fs.existsSync(directory))
         return;
 
     generateDesignTokens({
@@ -24,7 +24,7 @@ storyFolders.forEach(folder => {
 
     const existsExamples = fs.existsSync(externalExamplesFolder);
 
-    if(existsExamples) {
+    if (existsExamples) {
         generateExternalExamples({
             directory: externalExamplesFolder,
             outputPath: `${externalExamplesFolder}/raw-examples.ts`

@@ -21,15 +21,12 @@ export class StoryLoaderService {
             stories: []
         };
 
-        for (const storyKey in response) {
-            if (storyKey === 'default')
-                continue;
-
+        currentStory.stories?.forEach(story => {
             storyData.stories.push({
-                ...response[storyKey as keyof typeof response],
-                name: storyKey
+                ...response[story.name as keyof typeof response],
+                name: story.name
             })
-        }
+        })
 
         this.dataCache.set(currentStory.id, storyData);
 

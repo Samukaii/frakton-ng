@@ -5,18 +5,30 @@
 <section class="toolbar">
     <span class="fkt-sr-only" id=":r0:">Toolbar</span>
     <div class="logo">
-        <img [style]="{display: themeService.currentTheme() === 'dark' ? 'block' : 'none'}" src="logos/logo-one-line-dark.svg" alt="">
-        <img [style]="{display: themeService.currentTheme() === 'light' ? 'block' : 'none'}" src="logos/logo-one-line-light.svg" alt="">
+        <img [style]="{display: themeService.currentTheme() === 'dark' ? 'block' : 'none'}"
+             src="logos/logo-one-line-dark.svg" alt="">
+        <img [style]="{display: themeService.currentTheme() === 'light' ? 'block' : 'none'}"
+             src="logos/logo-one-line-light.svg" alt="">
         <span class="toolbar__version-tag">
             Beta
           </span>
     </div>
     <div class="toolbar__actions">
+        <button (click)="openSearch()" class="search-trigger">
+            <div class="text">
+                <fkt-icon name="magnifying-glass"/>
+                Search
+            </div>
+            <div class="shortcuts">
+                <kbd>⌘</kbd>
+                <kbd>K</kbd>
+            </div>
+        </button>
 
-        <button [attr.aria-label]="buttonThemeLabel()" (click)="toggleTheme()">
+        <button class="tool" [attr.aria-label]="buttonThemeLabel()" (click)="toggleTheme()">
             <fkt-icon [name]="buttonThemeIcon()"/>
         </button>
-        <a href="https://github.com/Samukaii/frakton-ng" target="_blank" rel="noopener noreferrer">
+        <a class="tool" href="https://github.com/Samukaii/frakton-ng" target="_blank" rel="noopener noreferrer">
 					<span>
 						<svg viewBox="0 0 98 98" width="20" height="20" xmlns="http://www.w3.org/2000/svg">
 		<path fill-rule="evenodd" clip-rule="evenodd"

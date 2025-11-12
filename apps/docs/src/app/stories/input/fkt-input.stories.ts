@@ -3,10 +3,12 @@ import { Meta } from '@/models/meta';
 import { Story } from '@/models/story';
 // @ts-expect-error
 import documentation from './fkt-input.docs.md' with { loader: "text" };
+import designTokens from './fkt-input-design-tokens.json';
 
 const meta: Meta = {
 	title: "Components/Form/Input",
 	component: FktInputComponent,
+    designTokens: designTokens as any,
     description: "A versatile form input component with multiple types, data transformers, and comprehensive validation support. Built with Angular signals for reactive form integration.",
 	documentation,
 	argTypes: {

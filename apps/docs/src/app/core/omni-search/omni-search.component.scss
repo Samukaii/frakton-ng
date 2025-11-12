@@ -1,0 +1,91 @@
+fkt-input {
+    background-color: var(--fkt-color-modal-background);
+    backdrop-filter: blur(16px);
+    --fkt-input-border-radius: 1rem;
+
+}
+
+:host {
+    height: 100%;
+}
+
+.overview {
+    padding: 1rem;
+    border-radius: var(--fkt-radius-md);
+
+
+}
+
+.list {
+    padding: 0;
+    max-height: 50vh;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    border-radius: var(--fkt-radius-xl);
+    background-color: var(--fkt-color-modal-background);
+    backdrop-filter: blur(16px);
+
+    ::ng-deep .highlight {
+        color: var(--fkt-color-link);
+    }
+
+    h3 {
+        font-size: var(--fkt-font-size-md);
+        margin: 0;
+        color: var(--fkt-color-neutral-900);
+    }
+
+
+    li {
+        display: flex;
+        flex-direction: column;
+        list-style: none;
+        border-bottom: solid 1px var(--fkt-color-neutral-300);
+        gap: var(--fkt-space-xs);
+        cursor: pointer;
+        transition: var(--fkt-transition-base);
+
+        a {
+            padding: 1rem;
+            text-decoration: none;
+            display: flex;
+            gap: var(--fkt-space-xs);
+            color: var(--fkt-color-neutral-900);
+            outline: none;
+
+            .info {
+                display: flex;
+                gap: var(--fkt-space-xs);
+                flex-direction: column;
+            }
+
+            &.section {
+                padding-left: 2rem;
+            }
+
+            &:hover, &:focus-visible {
+                background-color: var(--fkt-color-neutral-900);
+
+                color: var(--fkt-color-neutral-100);
+
+                h3 {
+                    color: var(--fkt-color-neutral-100);
+                }
+
+                p {
+                    color: var(--fkt-color-neutral-400);
+                }
+            }
+        }
+
+        p {
+            color: var(--fkt-color-neutral-600);
+            margin: 0;
+        }
+
+
+    }
+}
+
+

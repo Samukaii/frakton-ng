@@ -4,7 +4,7 @@ import { FktFocusTrapDirective } from 'frakton-ng/focus-trap';
 @Component({
 	selector: 'fkt-dialog-host',
 	template: `
-		<div class="backdrop" (click)="backdropClick.emit()"></div>
+		<div class="backdrop" [style]="backdropStyles()" (click)="backdropClick.emit()"></div>
 		<div [style]="computedStyles()" fktFocusTrap (keydown.esc)="$event.stopPropagation(); escapeKeyDown.emit()"
 			 class="container">
 			<ng-template #container></ng-template>
@@ -60,6 +60,7 @@ export class DialogAnchorComponent {
 	maxWidth = input<string | undefined>('1200px');
 	borderRadius = input<string | undefined>('1rem');
 	backgroundColor = input<string | undefined>('var(--fkt-color-modal-background)');
+    backdropStyles = input<Record<string, string> | undefined>({'background-color': "red"});
 	padding = input<string | undefined>('1rem');
 
 	container = viewChild.required('container', {read: ViewContainerRef});

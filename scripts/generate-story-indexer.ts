@@ -2,10 +2,7 @@ import { StoryFileScrapper } from './utils/story-file-scrapper';
 import path from 'path';
 import fs from 'fs';
 import { kebabToCamel } from './utils/kebab-to-camel';
-
-const getRelativePath = (file: string) => {
-	return path.relative(path.resolve('./apps/docs/src/app/stories'), file).replace('\\', '/');
-}
+import { getRelativePath } from './utils/get-relative-path';
 
 const getStoryStrings = (scrapper: StoryFileScrapper, file: string) => {
 	const relativePath = getRelativePath(file);
@@ -19,6 +16,7 @@ const getStoryStrings = (scrapper: StoryFileScrapper, file: string) => {
 	const obj = {
 		id: folder,
 		title: storyFile.meta.title!,
+        description: storyFile.meta.description!,
 	}
 
 	const examplesFolder = `${folder}/examples/raw-examples`;
@@ -33,8 +31,16 @@ const getStoryStrings = (scrapper: StoryFileScrapper, file: string) => {
 \{
 	id: "${obj.id}",
 	title: "${obj.title}",
+	description: \`${obj.description}\`,
 	file: () => import("./${relativePath.replace('.ts', '')}"),
 	${externalExamplesSnippet}
+	stories: [${storyFile.stories.map(story => `
+	    {
+	        id: "${story.id}",
+	        name: "${story.name}",
+	        description: \`${story.description}\`,
+	    }`)}
+    ]
 },`
 
 	let importStatement: string | null = null;
@@ -47,8 +53,16 @@ const getStoryStrings = (scrapper: StoryFileScrapper, file: string) => {
 \{
 	id: "${obj.id}",
 	title: "${obj.title}",
+	description: "${obj.description}",
 	file: async () => ${varName}, // Imported eagerly for instant loading
 	${externalExamplesSnippet}
+    stories: [${storyFile.stories.map(story => `
+	    {
+	        id: "${story.id}",
+	        name: "${story.name}",
+	        description: "${story.description}",
+	    }`)}
+    ]
 },`
 	}
 
@@ -180,5 +194,11 @@ export const STORIES_MAP: StoryIndexer[] = [${objs.map(a => a.split('\n').map(q 
 ];
 `;
 
-	fs.writeFileSync(path.resolve('./apps/docs/src/app/stories/stories-map.ts'), result);
+    try {
+        fs.writeFileSync(path.resolve('./apps/docs/src/app/stories/stories-map.ts'), result);
+
+    }
+    catch (e) {
+        console.error(e);
+    }
 }

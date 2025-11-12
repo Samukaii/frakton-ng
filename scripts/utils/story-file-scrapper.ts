@@ -1,104 +1,155 @@
-import { Node, ObjectLiteralExpression, Project } from "ts-morph";
+import { Expression, Node, Project, SourceFile } from "ts-morph";
 import path from 'path';
+import { getRelativePath } from './get-relative-path';
+import { pascalToKebab } from './pascal-to-kebab';
 
-interface StoryFileInfo {
+interface StoryIndexedInfo {
     meta: {
-        title: string; loadType: 'lazy' | 'eagerly';
-    }
+        id: string;
+        title: string;
+        description: string;
+        loadType: 'lazy' | 'eagerly';
+    },
+    stories: {
+        id: string;
+        name: string;
+        description: string;
+    }[]
 }
 
 export class StoryFileScrapper {
-	private readonly project: Project;
-	private readonly storiesMap = new Map<string, StoryFileInfo>();
+    private readonly project: Project;
+    private readonly indexedMap = new Map<string, StoryIndexedInfo>();
 
-	constructor(files: string[]) {
-		this.project = new Project();
+    constructor(files: string[]) {
+        this.project = new Project();
 
-		this.addFiles(files);
-		this.scanAll();
-	}
+        this.addFiles(files);
+        this.scanAll();
+    }
 
-	private addFiles(files: string[]) {
-		files.forEach(file => {
-			if (path.extname(file) !== '.ts') return;
+    private addFiles(files: string[]) {
+        files.forEach(file => {
+            if (path.extname(file) !== '.ts') return;
 
-			this.project.addSourceFileAtPath(file)
-		})
-	}
+            this.project.addSourceFileAtPath(file)
+        })
+    }
 
-	public getOne(path: string) {
-		return this.storiesMap.get(path);
-	}
+    public getOne(path: string) {
+        return this.indexedMap.get(path);
+    }
 
-	public hasTitle(title: string) {
-		const all = this.getAll();
+    public hasTitle(title: string) {
+        const all = this.getAll();
 
-		return !!all.find(([, story]) => story.meta.title === title);
-	}
+        return !!all.find(({story}) => story.meta.title === title);
+    }
 
-	public getAll() {
-		return Array.from(this.storiesMap.entries());
-	}
+    public getAll() {
+        return Array.from(this.indexedMap.entries()).map(([path, story]) => ({path, story}));
+    }
 
-	private scanAll() {
-		return this.project.getSourceFiles().forEach((sourceFile) => {
-			const defaultExport = sourceFile.getDefaultExportSymbol();
+    private scanAll() {
+        return this.project.getSourceFiles().forEach((sourceFile) => {
+            const meta = this.getMetaInfo(sourceFile);
 
-			const declarations = defaultExport?.getAliasedSymbol()?.getDeclarations() ?? [];
+            if (!meta) return;
 
-			for (const declaration of declarations) {
-				if (!Node.isVariableDeclaration(declaration))
-					continue;
+            this.indexedMap.set(sourceFile.getFilePath(), {
+                meta,
+                stories: this.getStories(sourceFile)
+            });
+        })
+    }
 
-				const initializer = declaration.getInitializer();
+    private getStories(sourceFile: SourceFile) {
+        const metaDeclaration = this.getMetaDeclaration(sourceFile)
+        const declarations = Array.from(sourceFile.getExportedDeclarations());
 
-				if (!initializer)
-					continue;
+        return declarations.flatMap(([name, declaration]) => {
+            const first = Array.from(declaration)[0];
 
-				if (!Node.isObjectLiteralExpression(initializer))
-					continue;
+            if (name === 'default' || name === metaDeclaration?.getName())
+                return [];
 
-				const property = initializer.getProperty('title');
+            if (!Node.isVariableDeclaration(first)) return [];
 
-				if (!property)
-					continue;
+            const initializer = first.getInitializer();
 
-				if (!Node.isPropertyAssignment(property))
-					continue;
+            if (!Node.isObjectLiteralExpression(initializer))
+                return [];
 
-				const valueNode = property.getInitializer();
+            const description = this.getStringProperty(initializer, 'description')!;
 
-				if (!Node.isStringLiteral(valueNode))
-					continue;
+            return {
+                id: pascalToKebab(name),
+                name,
+                description
+            }
+        })
+    }
 
-				const title = this.getStringProperty(initializer, 'title');
+    private getMetaInfo(sourceFile: SourceFile) {
+        const defaultExport = sourceFile.getDefaultExportSymbol();
 
-				if(!title)
-					continue;
+        const declaration = defaultExport?.getAliasedSymbol()?.getDeclarations()[0];
 
-				const loadType = (this.getStringProperty(initializer, 'loadType') ?? 'lazy') as 'lazy' | 'eagerly';
 
-				this.storiesMap.set(sourceFile.getFilePath(), {
-                    meta: {
-                        title: title,
-                        loadType
-                    }
-                });
-			}
-		})
-	}
+        if (!Node.isVariableDeclaration(declaration))
+            return;
 
-	private getStringProperty(initializer: ObjectLiteralExpression, propertyName: string) {
-		const property = initializer.getProperty(propertyName);
+        const initializer = declaration.getInitializer();
 
-		if (!Node.isPropertyAssignment(property))
-			return null;
+        if (!initializer)
+            return;
 
-		const valueNode = property.getInitializer();
+        const title = this.getStringProperty(initializer, 'title');
 
-		if (Node.isStringLiteral(valueNode))
-			return valueNode.getLiteralValue() ?? null;
+        if (!title)
+            return;
 
-		return null;
-	}
+        const description = this.getStringProperty(initializer, 'description');
+
+        if (!description)
+            return;
+
+        const loadType = (this.getStringProperty(initializer, 'loadType') ?? 'lazy') as 'lazy' | 'eagerly';
+
+        const id = path.dirname(getRelativePath(sourceFile.getFilePath()));
+
+        return {
+            id,
+            title: title,
+            description,
+            loadType
+        }
+    }
+
+    private getMetaDeclaration(sourceFile: SourceFile) {
+        const defaultExport = sourceFile.getDefaultExportSymbol();
+
+        const metaDeclaration = defaultExport?.getAliasedSymbol()?.getDeclarations()[0];
+
+        if (!Node.isVariableDeclaration(metaDeclaration)) return null;
+
+        return metaDeclaration;
+    }
+
+    private getStringProperty(initializer: Expression, propertyName: string) {
+        if (!Node.isObjectLiteralExpression(initializer))
+            return null;
+
+        const property = initializer.getProperty(propertyName);
+
+        if (!Node.isPropertyAssignment(property))
+            return null;
+
+        const valueNode = property.getInitializer();
+
+        if (Node.isStringLiteral(valueNode))
+            return valueNode.getLiteralValue() ?? null;
+
+        return null;
+    }
 }

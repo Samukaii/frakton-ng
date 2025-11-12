@@ -20,17 +20,6 @@
     z-index: -1;
 
     mask-image: linear-gradient(black, transparent);
-    //--s: 100px; /* control the size*/
-    //--c1: var(--pattern-color-primary);
-    //--c2: var(--pattern-color-secondary);
-    //
-    //--c3: #9aa2ac;
-    //
-    //--_g: var(--c1) 17.67%, #0000 0 82.33%, var(--c1) 0;
-    //background: linear-gradient(45deg, var(--_g)),
-    //linear-gradient(-45deg, var(--_g)),
-    //conic-gradient(var(--c2) 75%, var(--c1) 0) calc(var(--s) / 4) calc(var(--s) / 4);
-    //background-size: var(--s) var(--s);
 
     --s: 160px; /* control the size*/
     --c1: var(--pattern-color-primary);
@@ -49,12 +38,10 @@
 ::ng-deep {
     body {
         --pattern-color-primary: #3f88e5;
-        //--pattern-color-secondary: #538bf6;
         --pattern-color-secondary: #7ba4f4;
 
         &[data-fkt-theme="dark"] {
             --pattern-color-primary: #2e2f3c;
-            //--pattern-color-secondary: #32344d;
             --pattern-color-secondary: #393b59;
         }
     }

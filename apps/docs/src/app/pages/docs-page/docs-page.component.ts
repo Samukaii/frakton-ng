@@ -1,4 +1,15 @@
-import { Component, computed, effect, inject, input, linkedSignal, resource, signal, untracked } from '@angular/core';
+import {
+    Component,
+    computed, DestroyRef,
+    effect,
+    inject,
+    input,
+    linkedSignal,
+    OnInit,
+    resource,
+    signal,
+    untracked
+} from '@angular/core';
 import { STORIES_MAP } from '@/stories/stories-map';
 import { MarkUsed } from 'frakton-ng/internal/utils';
 import { StoryLoaderService } from '@/core/services/story-loader.service';
@@ -8,10 +19,13 @@ import { TableOfContentsService } from '@/core/services/table-of-contents.servic
 import { FeaturesComponent } from '@/pages/docs-page/features/features.component';
 import { SkeletonComponent } from '@/components/skeleton/skeleton.component';
 import { SkeletonContainerComponent } from '@/components/skeleton-container/skeleton-container.component';
+import { injectCurrentRoute } from '@/utils/inject-current-route';
+import { startWith, Subscription } from 'rxjs';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 
 @Component({
-	selector: 'app-docs-page',
+    selector: 'app-docs-page',
     imports: [
         MarkdownWrapperComponent,
         FktTabsListComponent,
@@ -20,68 +34,96 @@ import { SkeletonContainerComponent } from '@/components/skeleton-container/skel
         SkeletonContainerComponent,
         FeaturesComponent
     ],
-	templateUrl: './docs-page.component.html',
-	styleUrl: './docs-page.component.scss',
+    templateUrl: './docs-page.component.html',
+    styleUrl: './docs-page.component.scss',
 })
-export class DocsPageComponent {
-	docId = input<string>();
-	protected readonly stories = STORIES_MAP;
+export class DocsPageComponent implements OnInit {
+    docId = input<string>();
+    protected readonly stories = STORIES_MAP;
 
-	private readonly storyLoader = inject(StoryLoaderService);
-	private readonly tableOfContentsService = inject(TableOfContentsService);
+    activeRoute = injectCurrentRoute();
 
-	protected readonly isLoading = signal(false);
-	protected readonly copied = signal<boolean>(false);
+    private readonly storyLoader = inject(StoryLoaderService);
+    private readonly tableOfContentsService = inject(TableOfContentsService);
+    private readonly destroyRef = inject(DestroyRef);
+
+    protected readonly isLoading = signal(false);
+    protected readonly copied = signal<boolean>(false);
     protected activeTab = linkedSignal(() => {
         this.docId();
 
         return 'features'
     });
 
+    lastSub: Subscription | null = null;
 
-	@MarkUsed()
-	protected readonly injectOnLoad = effect(() => {
+    ngOnInit() {
+
+    }
+
+    a = effect(() => {
+        this.activeRoute();
+        this.docId();
         this.activeTab();
-		this.docs();
 
-		untracked(() => {
-			setTimeout(() => {
-				this.tableOfContentsService.generate();
-			})
-		})
-	})
+        this.lastSub?.unsubscribe();
 
-	private readonly currentIndexer = computed(() => {
-		const docId = this.docId();
+        this.lastSub = this.activeRoute().fragment.pipe(startWith(this.activeRoute().snapshot.fragment), takeUntilDestroyed(this.destroyRef)).subscribe((fragment) => {
+            if (!fragment) return;
 
-		const found = this.stories.find(story => {
-			return story.id === docId
-		});
+            setTimeout(() => {
+                document.getElementById(fragment)?.scrollIntoView({
+                    behavior: 'smooth',
+                    block: "center"
+                });
+            }, 100)
+        })
+    })
 
-		return found ?? null;
-	})
 
-	protected readonly currentStoryData = resource({
-		defaultValue: null,
-		params: () => ({indexer: this.currentIndexer()}),
-		loader: async ({params}) => {
-			const indexer = params.indexer;
+    @MarkUsed()
+    protected readonly injectOnLoad = effect(() => {
+        this.activeTab();
+        this.docs();
 
-			if(!indexer)
-				return null;
+        untracked(() => {
+            setTimeout(() => {
+                this.tableOfContentsService.generate();
+            })
+        })
+    })
 
-			const data = this.storyLoader.loadData(indexer);
+    private readonly currentIndexer = computed(() => {
+        const docId = this.docId();
 
-			this.isLoading.set(false);
+        const found = this.stories.find(story => {
+            return story.id === docId
+        });
 
-			return data;
-		}
-	})
+        return found ?? null;
+    })
+
+    protected readonly currentStoryData = resource({
+        defaultValue: null,
+        params: () => ({indexer: this.currentIndexer()}),
+        loader: async ({params}) => {
+            const indexer = params.indexer;
+
+            if (!indexer)
+                return null;
+
+            const data = this.storyLoader.loadData(indexer);
+
+            this.isLoading.set(false);
+
+            return data;
+        }
+    })
 
     protected readonly hasStories = computed(() => {
         const data = this.currentStoryData.value();
 
-        if(!data) return false;
+        if (!data) return false;
 
         return data.stories.length > 0;
     })
@@ -108,9 +150,9 @@ export class DocsPageComponent {
         return `import {${componentName}} from "frakton-ng/${indexer?.id}";`
     })
 
-	protected readonly docs = computed(() => {
-		const storyData = this.currentStoryData.value();
+    protected readonly docs = computed(() => {
+        const storyData = this.currentStoryData.value();
 
-		return storyData?.meta?.documentation;
-	});
+        return storyData?.meta?.documentation;
+    });
 }
