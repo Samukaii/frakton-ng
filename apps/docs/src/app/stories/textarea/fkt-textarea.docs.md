@@ -1,0 +1,30 @@
+## Key Features
+
+- **Multi-line Text Input**: Expandable textarea for capturing longer text content
+- **Auto-expand Mode**: Automatically adjusts height to fit content (optional)
+- **Form Integration**: Seamless integration with Angular reactive forms via SignalFormControl
+- **Validation Support**: Built-in error display with customizable validation rules
+- **Programmatic Focus**: Public method for focusing the textarea programmatically
+- **Disabled State**: Support for disabled/read-only states with visual feedback
+- **Responsive Design**: Adapts to container width and screen sizes
+
+## Configuration Options
+
+<arg-types></arg-types>
+
+## Use Cases
+
+- **Contact Forms**: Capture detailed messages and inquiries from users
+- **Content Management**: Create and edit articles, blog posts, and documentation
+- **Feedback Collection**: Gather user reviews, comments, and suggestions
+- **Data Entry**: Input descriptions, notes, and multi-line data in business applications
+- **Social Media**: Compose posts, tweets, and status updates with character limits
+- **Code Editors**: Input and display code snippets with proper formatting
+- **Support Tickets**: Describe issues and provide detailed problem reports
+
+## Accessibility
+
+- **Keyboard Navigation**: Full keyboard support with Tab for focus and standard text navigation
+- **Screen Reader Support**: Proper ARIA labels and error announcements
+- **Focus Management**: Clear visual focus indicators and programmatic focus control via the `focus()` method
+- **Error Communication**: Validation errors are properly associated with the textarea and announced to assistive technologies

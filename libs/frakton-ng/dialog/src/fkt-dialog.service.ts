@@ -58,6 +58,7 @@ export class FktDialogService {
 			stackIndex,
 			styles,
 			...options?.panelOptions,
+            backdropStyles: options?.backdropStyles,
 			escapeKeyDown: () => {
 				options?.panelOptions?.onEscapeKeyDown?.()
 				close();
@@ -113,7 +114,7 @@ export class FktDialogService {
 				onBackdropClick: () => {
 					options?.onBackdropClick?.();
 				}
-			}
+			},
 		})
 
 		return instance;

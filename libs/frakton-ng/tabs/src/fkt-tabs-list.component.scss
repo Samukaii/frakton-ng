@@ -9,31 +9,35 @@ p {
 :host {
 	display: flex;
 	flex-direction: column;
+    width: 100%;
 }
 
 .container {
 	display: flex;
-	flex-direction: column;
-	border: solid 1px var(--fkt-color-neutral-300);
+	border-bottom: solid 1px var(--fkt-color-neutral-300);
 	overflow: hidden;
 
 	&__tab {
 		display: flex;
 		padding: var(--fkt-space-md);
-		width: 100%;
+		width: fit-content;
 		gap: var(--fkt-space-xs);
 		justify-content: center;
-		border-color: transparent;
-		border-left: solid 1px var(--fkt-color-neutral-300);
+        border: solid 1px transparent;
 		cursor: pointer;
+        background: transparent;
 		transition: var(--fkt-transition-base);
+        color: var(--fkt-color-neutral-800);
+        font-weight: var(--fkt-font-semibold);
+        font-size: var(--fkt-font-size-md);
+        outline: none;
 
-		&:hover {
-			background-color: var(--fkt-color-neutral-200);
+		&:hover, &:focus-visible {
+            border-bottom: solid 1px var(--fkt-color-neutral-400);
 		}
 
 		&--active {
-			border-bottom: solid 2px var(--fkt-color-neutral-500);
+			border-bottom: solid 1px var(--fkt-color-neutral-600);
 		}
 	}
 }

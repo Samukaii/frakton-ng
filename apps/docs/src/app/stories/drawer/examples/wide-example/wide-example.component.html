@@ -1,0 +1,126 @@
+<div class="wide-example">
+  <fkt-drawer
+    [opened]="opened()"
+    mode="push"
+    width="500px">
+    <div side-content class="drawer-content">
+      <div class="drawer-header">
+        <h3>Product Categories</h3>
+        <p>Browse our extensive product catalog</p>
+      </div>
+
+      <div class="search-section">
+        <input type="text" placeholder="Search categories..." class="search-input">
+      </div>
+
+      <div class="categories-list">
+        @for (category of categories; track category.id) {
+          <button
+            class="category-item"
+            [class.active]="selectedCategory() === category.id"
+            (click)="selectCategory(category.id)">
+            <div class="category-info">
+              <span class="category-name">{{ category.name }}</span>
+              <span class="category-count">{{ category.count }} items</span>
+            </div>
+            <div class="category-arrow">›</div>
+          </button>
+        }
+      </div>
+
+      <div class="filters-section">
+        <h4>Filters</h4>
+
+        <div class="filter-group">
+          <label>Price Range</label>
+          <div class="price-inputs">
+            <input type="number" placeholder="Min" class="price-input">
+            <span>-</span>
+            <input type="number" placeholder="Max" class="price-input">
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <label>Rating</label>
+          <div class="rating-options">
+            <label class="rating-option">
+              <input type="checkbox">
+              ⭐⭐⭐⭐⭐ & up
+            </label>
+            <label class="rating-option">
+              <input type="checkbox">
+              ⭐⭐⭐⭐ & up
+            </label>
+            <label class="rating-option">
+              <input type="checkbox">
+              ⭐⭐⭐ & up
+            </label>
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <label>Availability</label>
+          <label class="checkbox-option">
+            <input type="checkbox">
+            In Stock
+          </label>
+          <label class="checkbox-option">
+            <input type="checkbox">
+            On Sale
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div side-main class="main-content">
+    <header class="header">
+      <button class="toggle-btn" (click)="toggleDrawer()">
+        <fkt-icon name="funnel"></fkt-icon>
+        Categories & Filters
+      </button>
+      <h2>Wide Drawer Example</h2>
+      <div class="header-actions">
+        <button class="action-btn">
+          <fkt-icon name="arrows-up-down"></fkt-icon>
+          Sort
+        </button>
+        <button class="action-btn">
+          <fkt-icon name="view-columns"></fkt-icon>
+          View
+        </button>
+      </div>
+    </header>
+
+    <div class="content">
+      <div class="breadcrumb">
+        <span>Home</span>
+        <span>›</span>
+        <span>{{ selectedCategoryName() }}</span>
+      </div>
+
+      <div class="content-description">
+        <h3>Product Catalog</h3>
+        <p>This wide drawer (350px) provides more space for detailed navigation, filters, and search options. Perfect for e-commerce sites, data dashboards, and complex applications.</p>
+      </div>
+
+      <div class="products-grid">
+        @for (i of [1,2,3,4,5,6]; track i) {
+          <div class="product-card">
+            <div class="product-image">
+              <fkt-icon name="shopping-bag"></fkt-icon>
+            </div>
+            <div class="product-info">
+              <h4>Product {{ i }}</h4>
+              <p class="product-description">High-quality product with excellent features and ratings.</p>
+              <div class="product-meta">
+                <span class="price">$99.99</span>
+                <span class="rating">⭐⭐⭐⭐⭐</span>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+    </div>
+  </fkt-drawer>
+</div>

@@ -4,7 +4,6 @@ import { FktTooltipDirective } from 'frakton-ng/tooltip';
 import { FktDrawerComponent } from 'frakton-ng/drawer';
 import { RouterLink } from '@angular/router';
 import { FktMenuGroup } from './fkt-side-menu.types';
-import { FktButtonComponent } from 'frakton-ng/button';
 
 /**
  * A component that displays a collapsible side navigation menu with grouped menu items.
@@ -35,13 +34,13 @@ import { FktButtonComponent } from 'frakton-ng/button';
  */
 @Component({
 	selector: 'fkt-side-menu',
-  imports: [
-    FktDrawerComponent,
-    FktIconComponent,
-    FktTooltipDirective,
-    RouterLink,
-    FktButtonComponent,
-  ],
+	imports: [
+		FktDrawerComponent,
+		FktIconComponent,
+		FktTooltipDirective,
+		RouterLink,
+
+	],
 	templateUrl: './fkt-side-menu.component.html',
 	styleUrl: './fkt-side-menu.component.scss',
 })

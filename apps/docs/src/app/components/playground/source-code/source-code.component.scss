@@ -1,0 +1,234 @@
+.files-source {
+    position: relative;
+	pre.prismjs, code.prismjs {
+		border-radius: 0 !important;
+		max-height: 800px;
+		overflow-y: auto;
+	}
+
+    max-height: 0;
+    overflow: auto;
+    transition: var(--fkt-transition-base);
+
+    &.expanded {
+        max-height: 640px;
+    }
+
+	.files-source__code {
+		position: relative;
+		--fkt-button-padding-vertical: var(--fkt-space-2xs);
+		--fkt-button-padding-horizontal: var(--fkt-space-sm);
+		--fkt-button-content-gap: var(--fkt-space-3xs);
+		--fkt-button-primary-color: white;
+		--fkt-button-on-primary-color: black;
+		--fkt-button-primary-hover-color: #b2b2b2;
+		--fkt-font-size-md: 14px;
+
+        max-height: 0;
+        overflow: auto;
+        transition: var(--fkt-transition-base);
+
+        &.expanded {
+            max-height: 600px;
+            height: 600px;
+        }
+
+		fkt-button {
+			position: absolute;
+			cursor: pointer;
+			top: 0;
+			right: 0;
+			margin: 1rem;
+            --fkt-button-icon-font-weight: 500;
+
+			span, p {
+				color: black;
+			}
+
+			p {
+				font-weight: var(--fkt-font-semibold);
+				margin: 0;
+			}
+
+			.frakton-icon {
+				font-size: var(--fkt-font-size-md);
+			}
+
+			&.files-source__button--copied {
+				background-color: var(--fkt-color-success);
+				color: var(--fkt-color-on-success);
+				border-color: var(--fkt-color-success);
+
+				p, span {
+					color: white;
+				}
+
+				&:hover {
+					background-color: var(--fkt-color-success-hover);
+					color: var(--fkt-color-on-success);
+					border-color: var(--fkt-color-success-hover);
+				}
+			}
+		}
+	}
+
+	.files-source__tabs {
+		display: flex;
+        gap: 1rem;
+		align-items: center;
+		justify-content: flex-start;
+		height: fit-content;
+        width: fit-content;
+        position: absolute;
+        right: 0;
+        top: 0;
+        margin: 2rem;
+        opacity: 0;
+        transition: var(--fkt-transition-slow);
+
+
+        .tabs-container {
+            border-radius: var(--fkt-radius-full);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            height: fit-content;
+            width: fit-content;
+        }
+
+        .copy-button {
+            border-radius: var(--fkt-radius-full);
+            height: 40px;
+            padding: .5rem 1rem;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            width: fit-content;
+        }
+
+		button {
+			background-color: #ffffff30;
+			font-weight: var(--fkt-font-semibold);
+			width: fit-content;
+			height: 40px;
+			color: white;
+			padding: .5rem 1rem;
+
+			font-size: .9rem !important;
+			border: none;
+			border-right: solid 1px #374151;
+			position: relative !important;
+			cursor: pointer !important;
+			border-bottom: solid 1px #374151;
+			display: flex;
+			justify-content: center;
+			gap: .25rem;
+			align-items: center;
+            backdrop-filter: blur(4px);
+            transition: var(--fkt-transition-slow);
+
+            fkt-icon {
+                font-weight: 500;
+            }
+
+
+			&:hover, &:focus-visible {
+                background-color: rgba(255, 255, 255, 0.38);
+                outline: none;
+			}
+
+			p {
+				margin: 0;
+				max-width: 260px;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				color: white;
+				white-space: nowrap;
+			}
+
+
+            &.copied {
+                background: var(--fkt-color-success);
+                color: var(--fkt-color-on-success);
+            }
+
+            &:not(.active) {
+                svg path {
+                    fill: white;
+                }
+            }
+
+
+
+			&.active {
+                --html-background-color: #F4BF75;
+                --ts-background-color: #0288d1;
+                --scss-background-color: #F24D7C;
+
+                --html-text-color: #59462A;
+                --ts-text-color: white;
+                --scss-text-color: white;
+
+
+                &[data-language="html"] {
+                    background: var(--html-background-color);
+                    p {
+                        color: var(--html-text-color);
+                    }
+
+                    svg path {
+                        fill: var(--html-text-color);
+                    }
+                }
+
+                &[data-language="typescript"] {
+                    background: var(--ts-background-color);
+
+                    p {
+                        color: var(--ts-text-color);
+                    }
+
+                    svg path {
+                        fill: var(--ts-text-color);
+                    }
+                }
+
+                &[data-language="css"] {
+                    background: var(--scss-background-color);
+
+                    p {
+                        color: var(--scss-text-color);
+                    }
+
+                    svg path {
+                        fill: var(--scss-text-color);
+                    }
+                }
+			}
+		}
+	}
+
+    fkt-code-highlight {
+        height: 100%;
+        box-sizing: border-box;
+    }
+}
+
+
+:host {
+    &:hover {
+        .files-source .files-source__tabs {
+            opacity: 1;
+        }
+    }
+}
+
+.loading {
+    width: 100%;
+    padding: var(--fkt-space-md);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

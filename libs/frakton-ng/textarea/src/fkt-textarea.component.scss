@@ -130,6 +130,7 @@
 		padding: $textarea-vertical-padding $textarea-horizontal-padding;
 
 		textarea {
+			font-family: inherit;
 			border: none;
 			box-sizing: border-box;
 			outline: none;

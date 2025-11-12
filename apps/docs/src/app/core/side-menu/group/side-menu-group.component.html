@@ -1,0 +1,69 @@
+@let menuItem = item();
+
+@if ('children' in menuItem) {
+	<li class="root-menu__item">
+		<button (click)="expanded.set(!expanded())" class="root-menu__title">
+			<div class="info">
+				<div class="icon">
+					<fkt-icon
+						[name]="icon()"
+					/>
+				</div>
+
+				<span>
+              		{{ menuItem.title }}
+            	</span>
+			</div>
+
+			<div class="expand-icon" [class.expand-icon--expanded]="expanded()">
+				<fkt-icon
+					name="chevron-down"
+				/>
+			</div>
+		</button>
+
+		<div class="root-menu__content" [style.max-height.px]="expanded() ? expandedMaxHeight() : 0">
+			<ng-container *ngTemplateOutlet="template; context: {list: menuItem.children}">
+
+			</ng-container>
+		</div>
+
+	</li>
+} @else {
+	<a href="#" [routerLink]="`docs/${menuItem.id}`" routerLinkActive="active" class="root-menu__title">
+		<div class="info">
+			<div class="icon">
+				<fkt-icon
+					[name]="icon()"
+				/>
+			</div>
+
+			<span>
+              		{{ menuItem.title }}
+            	</span>
+		</div>
+	</a>
+}
+
+<ng-template #template let-list="list">
+	<ul class="submenu">
+		@for (item of list; track item) {
+			@if ('children' in item) {
+				<li class="submenu-group">
+					<div class="submenu__group-title">
+						{{ item.title }}
+					</div>
+					<ng-container *ngTemplateOutlet="template; context: {list: item.children}">
+
+					</ng-container>
+				</li>
+			} @else {
+				<li class="submenu__item">
+					<a href="#" [routerLink]="`docs/${item.id}`" routerLinkActive="active">
+						{{ item.title }}
+					</a>
+				</li>
+			}
+		}
+	</ul>
+</ng-template>

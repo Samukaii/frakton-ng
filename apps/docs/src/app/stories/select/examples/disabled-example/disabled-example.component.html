@@ -1,0 +1,12 @@
+<fkt-select
+	[field]="control"
+	[label]="label()"
+	[placeholder]="placeholder()"
+	[options]="options()"
+/>
+<fkt-button
+	(click)="toggleDisabled()"
+	theme="stroked"
+	[text]="control().disabled() ? 'Enable field' : 'Disable field'"
+>
+</fkt-button>

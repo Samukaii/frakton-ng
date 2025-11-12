@@ -1,0 +1,42 @@
+:host {
+    width: 100%;
+    display: block;
+}
+
+.args-table {
+    width: 100%;
+    border-collapse: collapse;
+
+    thead {
+        td {
+            font-weight: var(--fkt-font-semibold);
+            padding: var(--fkt-space-sm);
+            font-size: var(--fkt-font-size-md);
+        }
+    }
+
+    td {
+        padding: var(--fkt-space-xs);
+        font-size: var(--fkt-font-size-sm);
+    }
+
+    tr {
+        border-bottom: solid 1px var(--fkt-color-neutral-300);
+    }
+
+    tbody {
+
+    }
+
+    pre {
+        padding: var(--fkt-space-3xs);
+        border-radius: var(--fkt-radius-sm);
+        font-size: var(--fkt-font-size-xs);
+        box-shadow: none;
+        background-color: var(--fkt-color-neutral-300);
+        font-weight: var(--fkt-font-semibold);
+        width: fit-content;
+        border: none;
+    }
+}
+

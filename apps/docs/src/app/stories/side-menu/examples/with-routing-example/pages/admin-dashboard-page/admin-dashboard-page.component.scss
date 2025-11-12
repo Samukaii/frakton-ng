@@ -1,0 +1,60 @@
+* {
+	box-sizing: border-box;
+}
+
+:host {
+	display: block;
+	height: 100%;
+}
+
+.admin-page {
+	padding: 40px 24px;
+	height: 100%;
+	background: var(--fkt-color-neutral-background);
+}
+
+.admin-page__title {
+	font-size: 2.2rem;
+	margin-bottom: 18px;
+	font-weight: 700;
+	color: var(--fkt-color-neutral-800);
+}
+
+.admin-page__content {
+	background: var(--fkt-color-card-background);
+	border-radius: 10px;
+	box-shadow: var(--fkt-shadow-md);
+	padding: 32px;
+}
+
+.admin-dashboard__welcome {
+	margin-bottom: 24px;
+	color: var(--fkt-color-neutral-800);
+}
+
+.admin-dashboard__stats {
+	display: flex;
+	gap: 32px;
+}
+
+.admin-dashboard__stat {
+	background: var(--fkt-color-neutral-200);
+	border-radius: 8px;
+	padding: 24px 18px;
+	flex: 1;
+	text-align: center;
+}
+
+.admin-dashboard__stat-label {
+	font-size: 1rem;
+	color: var(--fkt-color-neutral-600);
+}
+
+.admin-dashboard__stat-value {
+	font-size: 2rem;
+	font-weight: 600;
+	color: var(--fkt-color-neutral-800);
+	margin-top: 8px;
+	display: block;
+}
+

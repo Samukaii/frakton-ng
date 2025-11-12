@@ -1,0 +1,11 @@
+<fkt-select
+	[field]="control"
+	[label]="label()"
+	[placeholder]="placeholder()"
+	[options]="options()"
+	[loading]="loading()"
+	[noResults]="noResults()"
+/>
+<div class="info">
+	<strong>Selected Value:</strong> {{ control().value() || 'None' }}
+</div>

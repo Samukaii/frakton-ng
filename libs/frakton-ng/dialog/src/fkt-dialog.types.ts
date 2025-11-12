@@ -10,6 +10,10 @@ export interface FktConfirmActionOptions
 }
 
 export interface FktDialogOptions<T> {
+    backdropStyles?: {
+        'backdropFilter'?: string;
+        'backgroundColor'?: string;
+    };
 	component: Type<T>;
 	data: FktReactiveComponentData<T>;
 	panelOptions?: {

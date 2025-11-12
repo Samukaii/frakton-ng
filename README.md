@@ -232,7 +232,7 @@ Interactive documentation that goes beyond traditional UI libraries:
 - **Live Control Playground**: Real-time component property editing with instant visual feedback
 - **Design Token Playground**: Interactive token editing to see styling changes immediately
 - **Code Examples**: Auto-generated code snippets for every component configuration
-- **Storybook Integration**: Professional documentation with live editing capabilities
+- **Angular-Native Documentation**: Custom documentation system DX-inspired by Storybook but fully Angular
 
 <img width="2312" height="1340" alt="image" src="https://github.com/user-attachments/assets/9705e48f-8e7c-47b4-8f7e-b78accbb5478" />
 

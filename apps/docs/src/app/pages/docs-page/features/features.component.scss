@@ -1,0 +1,17 @@
+:host {
+    width: 100%;
+
+    fkt-story-examples {
+        width: 100%;
+        display: block;
+    }
+}
+
+
+fkt-code-highlight {
+    height: fit-content;
+    display: block;
+    border-radius: var(--fkt-radius-md);
+    overflow: hidden;
+    margin-bottom: 2rem;
+}

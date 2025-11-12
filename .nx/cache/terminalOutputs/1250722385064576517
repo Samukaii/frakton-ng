@@ -1,0 +1,79 @@
+Project 'storybook-docs' contains extension with invalid name (generatedAt).
+Project 'storybook-docs' contains extension with invalid name (userSince).
+Project 'storybook-docs' contains extension with invalid name (hasCustomBabel).
+Project 'storybook-docs' contains extension with invalid name (hasCustomWebpack).
+Project 'storybook-docs' contains extension with invalid name (hasStaticDirs).
+Project 'storybook-docs' contains extension with invalid name (hasStorybookEslint).
+Project 'storybook-docs' contains extension with invalid name (refCount).
+Project 'storybook-docs' contains extension with invalid name (testPackages).
+Project 'storybook-docs' contains extension with invalid name (hasRouterPackage).
+Project 'storybook-docs' contains extension with invalid name (packageManager).
+Project 'storybook-docs' contains extension with invalid name (preview).
+Project 'storybook-docs' contains extension with invalid name (framework).
+Project 'storybook-docs' contains extension with invalid name (builder).
+Project 'storybook-docs' contains extension with invalid name (renderer).
+Project 'storybook-docs' contains extension with invalid name (portableStoriesFileCount).
+Project 'storybook-docs' contains extension with invalid name (applicationFileCount).
+Project 'storybook-docs' contains extension with invalid name (storybookVersion).
+Project 'storybook-docs' contains extension with invalid name (storybookVersionSpecifier).
+Project 'storybook-docs' contains extension with invalid name (language).
+Project 'storybook-docs' contains extension with invalid name (storybookPackages).
+Project 'storybook-docs' contains extension with invalid name (addons).
+[34mBuilding Angular Package[39m
+[37m[39m
+[37m------------------------------------------------------------------------------[39m
+[37mBuilding entry point 'frakton-ng'[39m
+[37m------------------------------------------------------------------------------[39m
+- Compiling with Angular sources in partial compilation mode.
+[32m√[39m Compiling with Angular sources in partial compilation mode.
+- Writing FESM and DTS bundles
+[32m√[39m Writing FESM and DTS bundles
+- Copying assets
+[32m√[39m Copying assets
+- Writing package manifest
+[34mi[39m Removing scripts section in package.json as it's considered a potential security vulnerability.
+[32m√[39m Writing package manifest
+[32m√[39m Built frakton-ng
+[37m[39m
+[37m------------------------------------------------------------------------------[39m
+[37mBuilding entry point 'frakton-ng/internal/types'[39m
+[37m------------------------------------------------------------------------------[39m
+- Compiling with Angular sources in partial compilation mode.
+[31m×[39m Compiling with Angular sources in partial compilation mode.
+[1m[31m[96mlibs/frakton-ng/internal/types/fkt-component-input-names.ts[0m:[93m1[0m:[93m42[0m - [91merror[0m[90m TS2792: [0mCannot find module '@angular/core'. Did you mean to set the 'moduleResolution' option to 'nodenext', or to add aliases to the 'paths' option?[39m[22m
+[1m[31m[39m[22m
+[1m[31m[7m1[0m import { InputSignal, ModelSignal } from '@angular/core';[39m[22m
+[1m[31m[7m [0m [91m                                         ~~~~~~~~~~~~~~~[0m[39m[22m
+[1m[31m[96mlibs/frakton-ng/internal/types/fkt-component-inputs.ts[0m:[93m1[0m:[93m29[0m - [91merror[0m[90m TS2792: [0mCannot find module '@angular/core'. Did you mean to set the 'moduleResolution' option to 'nodenext', or to add aliases to the 'paths' option?[39m[22m
+[1m[31m[39m[22m
+[1m[31m[7m1[0m import { InputSignal } from '@angular/core';[39m[22m
+[1m[31m[7m [0m [91m                            ~~~~~~~~~~~~~~~[0m[39m[22m
+[1m[31m[96mlibs/frakton-ng/internal/types/fkt-component-output-names.ts[0m:[93m1[0m:[93m34[0m - [91merror[0m[90m TS2792: [0mCannot find module '@angular/core'. Did you mean to set the 'moduleResolution' option to 'nodenext', or to add aliases to the 'paths' option?[39m[22m
+[1m[31m[39m[22m
+[1m[31m[7m1[0m import { OutputEmitterRef } from "@angular/core";[39m[22m
+[1m[31m[7m [0m [91m                                 ~~~~~~~~~~~~~~~[0m[39m[22m
+[1m[31m[96mlibs/frakton-ng/internal/types/fkt-component-outputs.ts[0m:[93m1[0m:[93m34[0m - [91merror[0m[90m TS2792: [0mCannot find module '@angular/core'. Did you mean to set the 'moduleResolution' option to 'nodenext', or to add aliases to the 'paths' option?[39m[22m
+[1m[31m[39m[22m
+[1m[31m[7m1[0m import { OutputEmitterRef } from "@angular/core";[39m[22m
+[1m[31m[7m [0m [91m                                 ~~~~~~~~~~~~~~~[0m[39m[22m
+[1m[31m[96mlibs/frakton-ng/internal/types/fkt-component-two-way-binding-names.ts[0m:[93m1[0m:[93m29[0m - [91merror[0m[90m TS2792: [0mCannot find module '@angular/core'. Did you mean to set the 'moduleResolution' option to 'nodenext', or to add aliases to the 'paths' option?[39m[22m
+[1m[31m[39m[22m
+[1m[31m[7m1[0m import { ModelSignal } from '@angular/core';[39m[22m
+[1m[31m[7m [0m [91m                            ~~~~~~~~~~~~~~~[0[39m[22m[1m[31mm[39m[22m
+[1m[31m[96mlibs/frakton-ng/internal/types/fkt-component-two-way-bindings.ts[0m:[93m1[0m:[93m45[0m - [91merror[0m[90m TS2792: [0mCannot find module '@angular/core'. Did you mean to set the 'moduleResolution' option to 'nodenext', or to add aliases to the 'paths' option?[39m[22m
+[1m[31m[39m[22m
+[1m[31m[7m1[0m import { ModelSignal, WritableSignal } from '@angular/core';[39m[22m
+[1m[31m[7m [0m [91m                                            ~~~~~~~~~~~~~~~[0m[39m[22m
+[1m[31m[96mlibs/frakton-ng/internal/types/fkt-infer-form-value.ts[0m:[93m1[0m:[93m27[0m - [91merror[0m[90m TS2792: [0mCannot find module '@angular/forms'. Did you mean to set the 'moduleResolution' option to 'nodenext', or to add aliases to the 'paths' option?[39m[22m
+[1m[31m[39m[22m
+[1m[31m[7m1[0m import { FormGroup } from "@angular/forms";[39m[22m
+[1m[31m[7m [0m [91m                          ~~~~~~~~~~~~~~~~[0m[39m[22m
+[1m[31m[96mlibs/frakton-ng/internal/types/fkt-infer-form-value-fn.ts[0m:[93m1[0m:[93m27[0m - [91merror[0m[90m TS2792: [0mCannot find module '@angular/forms'. Did you mean to set the 'moduleResolution' option to 'nodenext', or to add aliases to the 'paths' option?[39m[22m
+[1m[31m[39m[22m
+[1m[31m[7m1[0m import { FormGroup } from "@angular/forms";[39m[22m
+[1m[31m[7m [0m [91m                          ~~~~~~~~~~~~~~~~[0m[39m[22m
+[1m[31m[96mlibs/frakton-ng/internal/types/fkt-or-signal.ts[0m:[93m1[0m:[93m24[0m - [91merror[0m[90m TS2792: [0mCannot find module '@angular/core'. Did you mean to set the 'moduleResolution' option to 'nodenext', or to add aliases to the 'paths' option?[39m[22m
+[1m[31m[39m[22m
+[1m[31m[7m1[0m import { Signal } from "@angular/core";[39m[22m
+[1m[31m[7m [0m [91m                       ~~~~~~~~~~~~~~~[0m[39m[22m
+[1m[31m[39m[22m

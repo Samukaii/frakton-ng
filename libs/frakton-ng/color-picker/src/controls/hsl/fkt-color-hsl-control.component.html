@@ -3,9 +3,9 @@
 		hideLabel
 		hideNumericControl
 		[label]="locale.controls.hsl.hue"
-		[control]="form.hue"
-		[min]="0"
-		[max]="360"
+		[field]="form.hue"
+		[minNumber]="0"
+		[maxNumber]="360"
 		[step]="5"
 		type="number"
 	/>
@@ -15,9 +15,9 @@
 		hideLabel
 		hideNumericControl
 		[label]="locale.controls.hsl.saturation"
-		[control]="form.saturation"
-		[min]="0"
-		[max]="100"
+		[field]="form.saturation"
+		[minNumber]="0"
+		[maxNumber]="100"
 		type="number"
 	/>
 </fkt-color-control-item>
@@ -26,9 +26,9 @@
 		hideLabel
 		hideNumericControl
 		[label]="locale.controls.hsl.lightness"
-		[control]="form.lightness"
-		[min]="0"
-		[max]="100"
+		[field]="form.lightness"
+		[minNumber]="0"
+		[maxNumber]="100"
 		type="number"
 	/>
 </fkt-color-control-item>
@@ -38,9 +38,9 @@
 			hideLabel
 			hideNumericControl
 			[label]="locale.controls.opacity"
-			[control]="form.alpha"
-			[min]="0"
-			[max]="100"
+			[field]="form.alpha"
+			[minNumber]="0"
+			[maxNumber]="100"
 			[maxDecimals]="2"
 			type="number"
 		/>

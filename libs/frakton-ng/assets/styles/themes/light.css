@@ -17,6 +17,7 @@
 
 	--fkt-color-neutral-background: #e2e8f0;
 	--fkt-color-modal-background: #f1f5f9;
+	--fkt-color-card-background: #e9eff6;
 
 	/* States */
 	--fkt-color-disabled: #DDDCE0;
@@ -119,10 +120,6 @@
 	--fkt-color-text-base: var(--fkt-color-neutral-900);
 	--fkt-color-text-muted: var(--fkt-color-neutral-600);
 	--fkt-color-text-inverse: var(--fkt-color-neutral-100);
-
-	/* Backgrounds */
-	--fkt-color-bg-base: var(--fkt-color-neutral-100);
-	--fkt-color-bg-alt: var(--fkt-color-neutral-200);
 
 	/* Border */
 	--fkt-color-border: var(--fkt-color-neutral-500);

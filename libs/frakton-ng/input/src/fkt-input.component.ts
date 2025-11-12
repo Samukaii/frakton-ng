@@ -41,7 +41,7 @@ import {
 	styleUrl: './fkt-input.component.scss',
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FktInputComponent<T = string> implements FormValueControl<T | null> {
+export class FktInputComponent<T=string> implements FormValueControl<T | null> {
 	value = model<T | null>(null);
 	touched = model(false);
 	disabled = input(false);
@@ -59,8 +59,8 @@ export class FktInputComponent<T = string> implements FormValueControl<T | null>
 		transform: booleanAttribute
 	});
 
-	min = input<number>();
-	max = input<number>();
+	minNumber = input<number>();
+	maxNumber = input<number>();
 	maxDecimals = input(0);
 	step = input(1);
 
@@ -108,8 +108,8 @@ export class FktInputComponent<T = string> implements FormValueControl<T | null>
 
 		if (transformer === 'hour') return hourFormatter;
 		if (type === 'number') return numberFormatter({
-			min: this.min(),
-			max: this.max(),
+			min: this.minNumber(),
+			max: this.maxNumber(),
 			maxDecimals: this.maxDecimals()
 		});
 
@@ -144,7 +144,7 @@ export class FktInputComponent<T = string> implements FormValueControl<T | null>
 	protected increaseNumber = (event?: KeyboardEvent) => {
 		event?.preventDefault();
 
-		const max = this.max();
+		const max = this.maxNumber();
 
 		const valueAsNumber = (!isNaN(+this.value()!) && this.value() !== null) ? +this.value()! : null;
 
@@ -159,7 +159,7 @@ export class FktInputComponent<T = string> implements FormValueControl<T | null>
 	protected decreaseNumber = (event?: KeyboardEvent) => {
 		event?.preventDefault();
 
-		const min = this.min();
+		const min = this.minNumber();
 
 		const valueAsNumber = (!isNaN(+this.value()!) && this.value() !== null) ? +this.value()! : null;
 
