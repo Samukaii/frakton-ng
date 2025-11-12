@@ -141,7 +141,10 @@
               "{options.outputPath}"
             ],
             "options": {
-              "outputPath": "dist/apps/docs",
+              "outputPath": {
+                "base": "docs",
+                "browser": ""
+              },
               "browser": "apps/docs/src/main.ts",
               "polyfills": [
                 "zone.js"
@@ -17499,5 +17502,5 @@
   },
   "version": "6.0",
   "errors": [],
-  "computedAt": 1762937851493
+  "computedAt": 1762939027013
 }

@@ -115,156 +115,480 @@
   "fileMap": {
     "nonProjectFiles": [
       {
-        "file": "scripts/config.ts",
-        "hash": "253694999077125922"
+        "file": "scripts/utils/kebab-to-camel.ts",
+        "hash": "4474711083404533879"
       },
       {
-        "file": "package.json",
-        "hash": "1578289208295460867"
-      },
-      {
-        "file": "scripts/fetch-story-folders.ts",
-        "hash": "3341323851624282759"
-      },
-      {
-        "file": "scripts/utils/kebab-to-pascal-case.ts",
-        "hash": "11570568947441205539"
-      },
-      {
-        "file": "globals.d.ts",
-        "hash": "13486888821967188300"
-      },
-      {
-        "file": ".prettierrc",
-        "hash": "16117882425360397805"
-      },
-      {
-        "file": "pnpm-lock.yaml",
-        "hash": "18156410277950185164"
-      },
-      {
-        "file": "scripts/index-documentation.ts",
-        "hash": "12982146753358117422"
+        "file": "docs/chunk-EIVGX3SO.js",
+        "hash": "12540883241465227830"
       },
       {
         "file": "scripts/models/design-token.ts",
         "hash": "16423015795001192272"
       },
       {
-        "file": "eslint.config.mjs",
-        "hash": "3098211363265672338"
+        "file": "docs/chunk-CWP26KB7.js",
+        "hash": "862063083783901165"
       },
       {
-        "file": "README.md",
-        "hash": "17892862659998093883"
-      },
-      {
-        "file": "CONTRIBUTORS.md",
-        "hash": "15963664211067603380"
-      },
-      {
-        "file": "scripts/utils/get-relative-path.ts",
-        "hash": "3819653337902403831"
-      },
-      {
-        "file": "scripts/utils/kebab-to-camel.ts",
-        "hash": "4474711083404533879"
-      },
-      {
-        "file": "CONTRIBUTING.md",
-        "hash": "4972135383093012053"
+        "file": "docs/logos/logo-one-line-light.svg",
+        "hash": "6134063948652969871"
       },
       {
         "file": "jest.config.ts",
         "hash": "15228680758197409424"
       },
       {
-        "file": "tsconfig.json",
-        "hash": "18385670736183374655"
+        "file": "docs/chunk-MA3TSNCW.js",
+        "hash": "16506861379418600929"
       },
       {
-        "file": ".agent/guides/storybook-stories-guide.md",
-        "hash": "8729534583337812128"
+        "file": "docs/media/frakton-icons-Z34CYKQR.woff2",
+        "hash": "14647626466716155364"
       },
       {
-        "file": "nx.json",
-        "hash": "15523074304910379084"
+        "file": "docs/chunk-3GUE2GWG.js",
+        "hash": "5672944335642673202"
       },
       {
-        "file": "scripts/utils/story-file-scrapper.ts",
-        "hash": "8547365456508169000"
+        "file": "docs/chunk-4AMXTHWG.js",
+        "hash": "10239137491159972472"
+      },
+      {
+        "file": "docs/chunk-X45ILTXN.js",
+        "hash": "11603884994671373672"
+      },
+      {
+        "file": "CONTRIBUTORS.md",
+        "hash": "15963664211067603380"
+      },
+      {
+        "file": "docs/fonts/frakton.woff2",
+        "hash": "6742370076312610956"
+      },
+      {
+        "file": "docs/chunk-NOV32TWT.js",
+        "hash": "8899093659745432292"
+      },
+      {
+        "file": "docs/prerendered-routes.json",
+        "hash": "15049165521752226651"
+      },
+      {
+        "file": "angular.json",
+        "hash": "6434142869007070869"
+      },
+      {
+        "file": "docs/chunk-BAHANKFU.js",
+        "hash": "10075830832041907508"
+      },
+      {
+        "file": "docs/chunk-I7PTK4BR.js",
+        "hash": "5442240460573938909"
+      },
+      {
+        "file": "package.json",
+        "hash": "1578289208295460867"
+      },
+      {
+        "file": "scripts/utils/get-relative-path.ts",
+        "hash": "3819653337902403831"
+      },
+      {
+        "file": "docs/polyfills-7R4CRVNH.js",
+        "hash": "11367369648440959011"
+      },
+      {
+        "file": "docs/chunk-YWFOTGKE.js",
+        "hash": "9699891084890008072"
+      },
+      {
+        "file": "docs/favicon.svg",
+        "hash": "2475025700787551024"
       },
       {
         "file": ".agent/guides/design-tokens-documentation-guide.md",
         "hash": "4791159377170420386"
       },
       {
-        "file": "LICENSE.md",
-        "hash": "15181466372650807457"
+        "file": "docs/chunk-F2GKCB6T.js",
+        "hash": "16318136164882231854"
       },
       {
-        "file": "ROADMAP.md",
-        "hash": "17821753130726054200"
+        "file": ".agent/guides/storybook-stories-guide.md",
+        "hash": "8729534583337812128"
       },
       {
-        "file": ".gitignore",
-        "hash": "3834040003024956045"
+        "file": "CONTRIBUTING.md",
+        "hash": "4972135383093012053"
       },
       {
-        "file": "scripts/generate-story-indexer.ts",
-        "hash": "2678239339443840910"
+        "file": "docs/scripts-4I7IPLME.js",
+        "hash": "479055890067793056"
       },
       {
         "file": "jest.preset.js",
         "hash": "9430166341120122740"
       },
       {
-        "file": ".editorconfig",
-        "hash": "6019378581935249016"
+        "file": "docs/chunk-QFMANRT6.js",
+        "hash": "5315302734295966477"
       },
       {
-        "file": "scripts/generate-design-tokens.ts",
-        "hash": "3821755673516270018"
+        "file": "docs/chunk-75AMHDCP.js",
+        "hash": "15143218140318725717"
       },
       {
-        "file": "scripts/utils/pascal-to-kebab.ts",
-        "hash": "6824661100496163190"
-      },
-      {
-        "file": "tsconfig.scripts.json",
-        "hash": "6728010566359784079"
-      },
-      {
-        "file": ".vscode/extensions.json",
-        "hash": "15820374054593880452"
-      },
-      {
-        "file": "scripts/generate-external-examples.ts",
-        "hash": "15074762850260011392"
-      },
-      {
-        "file": "WHY_FRAKTON_NG.md",
-        "hash": "12379328401145525567"
-      },
-      {
-        "file": "WARP.md",
-        "hash": "9587798839874187687"
+        "file": "docs/chunk-7AVX3BTV.js",
+        "hash": "7666524654179473291"
       },
       {
         "file": ".prettierignore",
         "hash": "5407418692668764289"
       },
       {
+        "file": "docs/chunk-7JKXEK2X.js",
+        "hash": "2095577293934089954"
+      },
+      {
+        "file": "docs/chunk-SSKDGOIP.js",
+        "hash": "12241613188029995475"
+      },
+      {
+        "file": "WARP.md",
+        "hash": "9587798839874187687"
+      },
+      {
+        "file": "docs/index.html",
+        "hash": "4186568212125190563"
+      },
+      {
+        "file": "docs/chunk-BEU2YUDW.js",
+        "hash": "17720730121311548415"
+      },
+      {
+        "file": "docs/chunk-BXWRRZR7.js",
+        "hash": "11603089118911786905"
+      },
+      {
+        "file": "LICENSE.md",
+        "hash": "15181466372650807457"
+      },
+      {
+        "file": "docs/chunk-S7WYO5H5.js",
+        "hash": "16419999041885390438"
+      },
+      {
+        "file": "eslint.config.mjs",
+        "hash": "3098211363265672338"
+      },
+      {
+        "file": "docs/fonts/inter-variable.woff2",
+        "hash": "8796146239453995781"
+      },
+      {
+        "file": ".gitignore",
+        "hash": "3834040003024956045"
+      },
+      {
+        "file": "docs/chunk-BS36NVWI.js",
+        "hash": "13542684286317309048"
+      },
+      {
+        "file": "docs/chunk-ZDRJFH4F.js",
+        "hash": "14926845982960991241"
+      },
+      {
+        "file": "docs/chunk-76KMDMIX.js",
+        "hash": "6916284446427538081"
+      },
+      {
+        "file": "scripts/index-documentation.ts",
+        "hash": "12982146753358117422"
+      },
+      {
+        "file": "docs/chunk-TR4TDSHJ.js",
+        "hash": "3063089820236149784"
+      },
+      {
+        "file": "docs/chunk-DSY5ZUYQ.js",
+        "hash": "2285348750237068677"
+      },
+      {
+        "file": ".vscode/extensions.json",
+        "hash": "15820374054593880452"
+      },
+      {
+        "file": "docs/chunk-GNRSHEAO.js",
+        "hash": "8498358511636554229"
+      },
+      {
+        "file": "docs/chunk-KI4A6YQJ.js",
+        "hash": "7969047632864775835"
+      },
+      {
+        "file": "docs/chunk-7MA6MUJO.js",
+        "hash": "1033612114770219944"
+      },
+      {
+        "file": "docs/chunk-XMARXKF5.js",
+        "hash": "6755996038120304134"
+      },
+      {
+        "file": "docs/chunk-Z5D3HEX2.js",
+        "hash": "15794060940092186142"
+      },
+      {
         "file": "scripts/fetch-story-files.ts",
         "hash": "11184627838822490856"
+      },
+      {
+        "file": "docs/chunk-M5LKCV34.js",
+        "hash": "16787515230856830329"
+      },
+      {
+        "file": "docs/chunk-YSGEPIXV.js",
+        "hash": "6430381361243799115"
+      },
+      {
+        "file": "scripts/fetch-story-folders.ts",
+        "hash": "3341323851624282759"
+      },
+      {
+        "file": "docs/chunk-QZXYR55Z.js",
+        "hash": "4333477000124251090"
+      },
+      {
+        "file": "docs/logos/logo-one-line-dark.svg",
+        "hash": "15008519640432271468"
+      },
+      {
+        "file": "docs/chunk-M2BUDNJM.js",
+        "hash": "6831748950061820249"
+      },
+      {
+        "file": "docs/chunk-P4G22BFN.js",
+        "hash": "7018846238996421965"
+      },
+      {
+        "file": "docs/chunk-7BDPT3QJ.js",
+        "hash": "15048086345422961554"
+      },
+      {
+        "file": "docs/chunk-A25UGBQK.js",
+        "hash": "9916906462870035596"
+      },
+      {
+        "file": "docs/chunk-PNPNLOBB.js",
+        "hash": "326712356225317884"
+      },
+      {
+        "file": "docs/chunk-QUJMTIGB.js",
+        "hash": "9641694259354004186"
+      },
+      {
+        "file": "docs/chunk-VONCIUEJ.js",
+        "hash": "14238614806902913121"
+      },
+      {
+        "file": "scripts/utils/story-file-scrapper.ts",
+        "hash": "8547365456508169000"
+      },
+      {
+        "file": "docs/chunk-WT6ORQGI.js",
+        "hash": "13991816556533010696"
+      },
+      {
+        "file": "docs/chunk-35VUSWQV.js",
+        "hash": "11553814034211291138"
+      },
+      {
+        "file": ".prettierrc",
+        "hash": "16117882425360397805"
+      },
+      {
+        "file": "WHY_FRAKTON_NG.md",
+        "hash": "12379328401145525567"
+      },
+      {
+        "file": "docs/chunk-MUTX6BWL.js",
+        "hash": "1942665906561334646"
       },
       {
         "file": ".agent/tasks/standardize-library-entry.md",
         "hash": "4399824121777347251"
       },
       {
-        "file": "angular.json",
-        "hash": "6434142869007070869"
+        "file": "docs/chunk-MOP4FULD.js",
+        "hash": "1236417236098836071"
+      },
+      {
+        "file": "docs/chunk-DRIPUQYP.js",
+        "hash": "18442280848293294115"
+      },
+      {
+        "file": "docs/chunk-OMEFU2KU.js",
+        "hash": "4737198926465468028"
+      },
+      {
+        "file": "docs/chunk-FY4XSVEU.js",
+        "hash": "17841280785983203372"
+      },
+      {
+        "file": "docs/chunk-Q5KPX33S.js",
+        "hash": "11835887114429879186"
+      },
+      {
+        "file": ".editorconfig",
+        "hash": "6019378581935249016"
+      },
+      {
+        "file": "docs/chunk-ZDDXMWKX.js",
+        "hash": "12416834882624646635"
+      },
+      {
+        "file": "docs/chunk-TEGDCTZR.js",
+        "hash": "10131278440327862365"
+      },
+      {
+        "file": "globals.d.ts",
+        "hash": "13486888821967188300"
+      },
+      {
+        "file": "scripts/generate-story-indexer.ts",
+        "hash": "2678239339443840910"
+      },
+      {
+        "file": "docs/styles-WIKXJ3QO.css",
+        "hash": "11778446783030199307"
+      },
+      {
+        "file": "docs/chunk-KL2M4NB5.js",
+        "hash": "18040601892933592897"
+      },
+      {
+        "file": "docs/3rdpartylicenses.txt",
+        "hash": "1547718175488376722"
+      },
+      {
+        "file": "docs/chunk-IZD2X5KJ.js",
+        "hash": "3253182227962738554"
+      },
+      {
+        "file": "docs/chunk-ZUH2TCJ2.js",
+        "hash": "6325358290958938019"
+      },
+      {
+        "file": "docs/chunk-BFZF23OL.js",
+        "hash": "9496197858509787470"
+      },
+      {
+        "file": "docs/chunk-7ZKWKOG6.js",
+        "hash": "9398000109250573835"
+      },
+      {
+        "file": "scripts/utils/kebab-to-pascal-case.ts",
+        "hash": "11570568947441205539"
+      },
+      {
+        "file": "docs/logos/full-logo-dark.svg",
+        "hash": "6641642299956925941"
+      },
+      {
+        "file": "docs/chunk-CWG4WCSE.js",
+        "hash": "14606357273962828399"
+      },
+      {
+        "file": "tsconfig.json",
+        "hash": "18385670736183374655"
+      },
+      {
+        "file": "docs/chunk-6S4JIL5X.js",
+        "hash": "8428479754194823327"
+      },
+      {
+        "file": "docs/chunk-FKQPQIKZ.js",
+        "hash": "12301685544128319887"
+      },
+      {
+        "file": "docs/chunk-W6PMA7WS.js",
+        "hash": "12914440402038641958"
+      },
+      {
+        "file": "tsconfig.scripts.json",
+        "hash": "6728010566359784079"
+      },
+      {
+        "file": "scripts/generate-design-tokens.ts",
+        "hash": "3821755673516270018"
+      },
+      {
+        "file": "docs/logos/full-logo.svg",
+        "hash": "10213852181605893075"
+      },
+      {
+        "file": "README.md",
+        "hash": "17892862659998093883"
+      },
+      {
+        "file": "docs/chunk-U5JDGOFT.js",
+        "hash": "7803122871301896031"
+      },
+      {
+        "file": "docs/chunk-44SOLRKO.js",
+        "hash": "10841481156138235160"
+      },
+      {
+        "file": "ROADMAP.md",
+        "hash": "17821753130726054200"
+      },
+      {
+        "file": "pnpm-lock.yaml",
+        "hash": "18156410277950185164"
+      },
+      {
+        "file": "scripts/config.ts",
+        "hash": "253694999077125922"
+      },
+      {
+        "file": "nx.json",
+        "hash": "15523074304910379084"
+      },
+      {
+        "file": "docs/chunk-J32JSFPI.js",
+        "hash": "10397529637878513841"
+      },
+      {
+        "file": "docs/chunk-JZXHFDX7.js",
+        "hash": "2208092172506771003"
+      },
+      {
+        "file": "docs/chunk-4CIHTCPA.js",
+        "hash": "726553495329575028"
+      },
+      {
+        "file": "scripts/utils/pascal-to-kebab.ts",
+        "hash": "6824661100496163190"
+      },
+      {
+        "file": "docs/main-OU6353B2.js",
+        "hash": "13464849299628620314"
+      },
+      {
+        "file": "docs/chunk-6QB3RJ5Q.js",
+        "hash": "9903009995482694532"
+      },
+      {
+        "file": "docs/chunk-BM7LPKM5.js",
+        "hash": "17626489983433787261"
+      },
+      {
+        "file": "scripts/generate-external-examples.ts",
+        "hash": "15074762850260011392"
+      },
+      {
+        "file": "docs/chunk-7ISKRTSV.js",
+        "hash": "13092461981849607535"
       }
     ],
     "projectFileMap": {
@@ -282,7 +606,7 @@
         },
         {
           "file": "apps/docs/project.json",
-          "hash": "11473587651589161043"
+          "hash": "2020714730408125658"
         },
         {
           "file": "apps/docs/public/favicon.svg",
@@ -3386,6 +3710,39 @@
           "hash": "6782768722500734007"
         }
       ],
+      "docs-e2e": [
+        {
+          "file": "apps/docs-e2e/eslint.config.mjs",
+          "hash": "3416720234598360044",
+          "deps": [
+            "npm:eslint-plugin-playwright"
+          ]
+        },
+        {
+          "file": "apps/docs-e2e/playwright.config.ts",
+          "hash": "15825985154082669675",
+          "deps": [
+            "npm:@playwright/test",
+            "npm:@nx/playwright",
+            "npm:@nx/devkit"
+          ]
+        },
+        {
+          "file": "apps/docs-e2e/project.json",
+          "hash": "7392076245673999483"
+        },
+        {
+          "file": "apps/docs-e2e/src/example.spec.ts",
+          "hash": "15177736881900603901",
+          "deps": [
+            "npm:@playwright/test"
+          ]
+        },
+        {
+          "file": "apps/docs-e2e/tsconfig.json",
+          "hash": "3877195912656649357"
+        }
+      ],
       "frakton-ng": [
         {
           "file": "libs/frakton-ng/.npmignore",
@@ -5413,39 +5770,6 @@
         {
           "file": "libs/frakton-ng/tsconfig.spec.json",
           "hash": "5216527453521548985"
-        }
-      ],
-      "docs-e2e": [
-        {
-          "file": "apps/docs-e2e/eslint.config.mjs",
-          "hash": "3416720234598360044",
-          "deps": [
-            "npm:eslint-plugin-playwright"
-          ]
-        },
-        {
-          "file": "apps/docs-e2e/playwright.config.ts",
-          "hash": "15825985154082669675",
-          "deps": [
-            "npm:@playwright/test",
-            "npm:@nx/playwright",
-            "npm:@nx/devkit"
-          ]
-        },
-        {
-          "file": "apps/docs-e2e/project.json",
-          "hash": "7392076245673999483"
-        },
-        {
-          "file": "apps/docs-e2e/src/example.spec.ts",
-          "hash": "15177736881900603901",
-          "deps": [
-            "npm:@playwright/test"
-          ]
-        },
-        {
-          "file": "apps/docs-e2e/tsconfig.json",
-          "hash": "3877195912656649357"
         }
       ]
     }

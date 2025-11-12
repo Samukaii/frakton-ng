@@ -10,7 +10,10 @@
 			"executor": "@angular/build:application",
 			"outputs": ["{options.outputPath}"],
 			"options": {
-				"outputPath": "dist/apps/docs",
+				"outputPath": {
+                    "base": "docs",
+                    "browser": ""
+                },
 				"browser": "apps/docs/src/main.ts",
 				"polyfills": ["zone.js"],
 				"tsConfig": "apps/docs/tsconfig.app.json",
