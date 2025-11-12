@@ -1,8 +1,8 @@
 {
   "run": {
     "command": "nx build docs",
-    "startTime": "2025-11-12T09:41:02.430Z",
-    "endTime": "2025-11-12T09:41:19.934Z",
+    "startTime": "2025-11-12T09:48:34.274Z",
+    "endTime": "2025-11-12T09:48:52.018Z",
     "inner": false
   },
   "tasks": [
@@ -11,8 +11,8 @@
       "target": "build",
       "projectName": "frakton-ng",
       "hash": "1146411843967275138",
-      "startTime": "2025-11-12T09:41:02.474Z",
-      "endTime": "2025-11-12T09:41:02.502Z",
+      "startTime": "2025-11-12T09:48:34.315Z",
+      "endTime": "2025-11-12T09:48:34.342Z",
       "params": "",
       "cacheStatus": "local-cache-hit",
       "status": 0
@@ -21,9 +21,9 @@
       "taskId": "docs:build:production",
       "target": "build",
       "projectName": "docs",
-      "hash": "10616497297760878164",
-      "startTime": "2025-11-12T09:41:02.524Z",
-      "endTime": "2025-11-12T09:41:19.830Z",
+      "hash": "16196952337651179117",
+      "startTime": "2025-11-12T09:48:34.369Z",
+      "endTime": "2025-11-12T09:48:51.894Z",
       "params": "",
       "cacheStatus": "cache-miss",
       "status": 0
