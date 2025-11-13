@@ -8,7 +8,10 @@
 ![bundlephobia](https://badgen.net/bundlephobia/tree-shaking/frakton-ng)
 
 > A new kind of Angular UI library: enforced accessibility, signal-native architecture, and absolute visual freedom through a modern token system.
+<img width="2000" height="1341" alt="image" src="https://github.com/user-attachments/assets/87015aa9-f876-4a11-a707-825eaa8e55dc" />
 
+<br/>
+<br/>
 Frakton NG is a **next-generation Angular UI library** that separates what matters: enforced accessibility and modern architecture, with complete visual freedom. Built with Angular 21+ signals, standalone components, and a comprehensive design token system.
 
 - **📦 Bundle Size**: < 700kb unpacked and < 150kb gzipped
@@ -21,7 +24,7 @@ Frakton NG is a **next-generation Angular UI library** that separates what matte
 
 [See the docs & interactive demos →](https://samukaii.github.io/frakton-ng)
 
-<img width="2315" height="1341" alt="image" src="https://github.com/user-attachments/assets/fd97b2f9-146b-42e4-89ac-332ae2d40507" />
+<img width="2266" height="1341" alt="image" src="https://github.com/user-attachments/assets/edc62523-f557-4c99-934f-306346d3b174" />
 
 <br/>
 <br/>
@@ -215,7 +218,6 @@ export class FraktonComponent {
 - **Theme inheritance**: Overlays automatically inherit design tokens from anchor elements
 - **Zero visual opinions**: Every visual aspect is controlled via tokens
 
-<img width="2315" height="1342" alt="image" src="https://github.com/user-attachments/assets/86cb542f-b9a2-4e63-9642-37a9ca8f3b3b" />
 
 ### **Advanced Overlay System**
 
@@ -233,10 +235,6 @@ Interactive documentation that goes beyond traditional UI libraries:
 - **Design Token Playground**: Interactive token editing to see styling changes immediately
 - **Code Examples**: Auto-generated code snippets for every component configuration
 - **Angular-Native Documentation**: Custom documentation system DX-inspired by Storybook but fully Angular
-
-<img width="2312" height="1340" alt="image" src="https://github.com/user-attachments/assets/9705e48f-8e7c-47b4-8f7e-b78accbb5478" />
-
-<img width="2308" height="1342" alt="image" src="https://github.com/user-attachments/assets/f79c59fc-f76c-4da2-8869-11fe321cd5d5" />
 
 <br/>
 <br/>
@@ -292,7 +290,7 @@ Interactive documentation that goes beyond traditional UI libraries:
 
 | Metric            | Frakton NG        | Angular Material                    | PrimeNG                             |
 |-------------------|-------------------|-------------------------------------|-------------------------------------|
-| **Unpacked Size** | **651KB**         | ~8.5MB                              | ~11.4 MB                            |
+| **Unpacked Size** | **698KB**         | ~8.5MB                              | ~11.4 MB                            |
 | **Tree Shaking**  | ✅ Component-level | ⚠️ Module-level and component-level | ⚠️ Module-level and component-level |
 
 <br/>
