@@ -8,7 +8,8 @@
 ![bundlephobia](https://badgen.net/bundlephobia/tree-shaking/frakton-ng)
 
 > A new kind of Angular UI library: enforced accessibility, signal-native architecture, and absolute visual freedom through a modern token system.
-<img width="2000" height="1341" alt="image" src="https://github.com/user-attachments/assets/87015aa9-f876-4a11-a707-825eaa8e55dc" />
+<img width="2452" height="1644" alt="image" src="https://github.com/user-attachments/assets/02a41442-9742-41bc-871e-caeebf299ebb" />
+
 
 <br/>
 <br/>
