@@ -1,0 +1,14 @@
+<fkt-select
+	[field]="control"
+	[label]="label()"
+	[placeholder]="placeholder()"
+	[options]="options()"
+/>
+<div class="info">
+	<p>
+		Scrollable dropdown with {{ options().length }} options
+	</p>
+	<p>
+		<strong>Selected:</strong> {{ control().value() || 'None' }}
+	</p>
+</div>

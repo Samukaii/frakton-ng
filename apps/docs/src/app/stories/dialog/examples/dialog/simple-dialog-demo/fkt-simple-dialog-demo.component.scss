@@ -1,0 +1,23 @@
+* {
+	box-sizing: border-box;
+	color: var(--fkt-color-neutral-900);
+}
+
+h2, p {
+	margin: 0;
+}
+
+.title {
+	font-size: var(--fkt-font-size-xl);
+	font-weight: var(--fkt-font-semibold);
+	margin-bottom: var(--fkt-space-md);
+}
+
+.message {
+	color: var(--fkt-color-neutral-600);
+	margin-bottom: var(--fkt-space-xl);
+}
+
+fkt-buttons-list {
+	width: 100%;
+}

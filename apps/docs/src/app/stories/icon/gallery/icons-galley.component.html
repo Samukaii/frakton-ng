@@ -1,0 +1,11 @@
+<div class="gallery">
+	<fkt-input [(value)]="search" label="Pesquisar..." placeholder="Informe aqui o ícone que você procura"/>
+	<div class="gallery__item">
+		@for (icon of filteredIcons(); track icon) {
+			<fkt-icons-gallery-item
+				[icon]="icon"
+			/>
+		}
+	</div>
+</div>
+

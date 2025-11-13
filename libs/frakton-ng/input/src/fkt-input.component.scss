@@ -1,45 +1,135 @@
+// <design-tokens>
+/*
+Vertical padding inside the input field (top and bottom spacing between border and content).
+@name --fkt-input-vertical-padding
+@reference --fkt-space-md
+@component Field
+@category Spacing
+@type size
+ */
+$input-vertical-padding: var(--fkt-input-vertical-padding, var(--fkt-space-md));
+/*
+Horizontal padding inside the input field (left and right spacing between border and content).
+@name --fkt-input-horizontal-padding
+@reference --fkt-space-md
+@component Field
+@category Spacing
+@type size
+ */
+$input-horizontal-padding: var(--fkt-input-horizontal-padding, var(--fkt-space-md));
+
+/*
+Border color of the input in its normal (default) state.
+@name --fkt-input-border-color
+@reference --fkt-color-neutral-400
+@component Field
+@category Colors
+@type color
+ */
+$border-color: var(--fkt-input-border-color, var(--fkt-color-neutral-400));
+
+/*
+Border color of the input when it gets focused
+@name --fkt-input-border-focus-color
+@reference --fkt-color-brand-secondary
+@component Field
+@category Colors
+@type color
+ */
+$border-focus-color: var(--fkt-input-border-focus-color, var(--fkt-color-brand-secondary));
+
+/*
+Color of the label in its normal (default) state.
+@name --fkt-input-label-color
+@reference --fkt-color-neutral-900
+@component Field
+@category Colors
+@type color
+ */
+$label-color: var(--fkt-input-label-color, var(--fkt-color-neutral-900));
+
+/*
+Color of the label when it gets focused
+@name --fkt-input-label-focus-color
+@reference --fkt-color-brand-secondary
+@component Field
+@category Colors
+@type color
+ */
+$label-focus-color: var(--fkt-input-label-focus-color, var(--fkt-color-brand-secondary));
+
+/*
+Border radius for input
+@name --fkt-input-border-radius
+@reference --fkt-radius-lg
+@component Field
+@category Spacing
+@type size
+ */
+$border-radius: var(--fkt-input-border-radius, var(--fkt-radius-lg));
+
+/*
+Font size for input text and placeholder.
+@name --fkt-input-font-size
+@reference --fkt-font-size-md
+@component Field
+@category Typography
+@type size
+ */
+$font-size: var(--fkt-input-font-size, var(--fkt-font-size-md));
+/*
+Color for text written into input
+@name --fkt-input-text-color
+@reference --fkt-color-neutral-900
+@component Field
+@category Colors
+@type color
+ */
+$text-color: var(--fkt-input-text-color, var(--fkt-color-neutral-900));
+
+// </design-tokens>
+
+* {
+	box-sizing: border-box;
+}
+
 :host {
 	display: block;
-	border-radius: var(--radius-md);
+	border-radius: $border-radius;
 	position: relative;
-	border-color: var(--color-neutral-800);
-	transition: var(--transition-base);
+	border-color: $border-color;
+	transition: var(--fkt-transition-base);
 	scroll-behavior: smooth;
 	width: 100%;
-	margin-top: var(--space-xs);
 
-	.label-container {
+	.numeric-control {
+		width: fit-content;
 		display: flex;
-		gap: .5rem;
-		align-items: center;
+		flex-direction: column;
+		pointer-events: auto;
+		gap: .2rem;
+		padding-right: .2rem;
 
-		.label-wrapper {
-			position: absolute;
-			pointer-events: none;
-			padding: 0 var(--space-3xs);
-			font-size: var(--font-size-sm);
-			left: .75rem;
-			top: 15px;
-			transition: var(--transition-base);
-			color: var(--color-neutral-500);
-			background-color: var(--color-neutral-100);
+		fkt-icon {
+			font-size: var(--fkt-font-size-xs);
+			background-color: var(--fkt-color-neutral-300);
+			transition: var(--fkt-transition-base);
+			cursor: pointer;
+			color: var(--fkt-color-neutral-500);
+			padding: 0 .2rem;
+			font-weight: var(--fkt-font-semibold);
 
-			&.disabled label {
-				opacity: 40%;
-				filter: grayscale(1);
-				cursor: not-allowed;
-			}
-
-			&.error {
-				color: var(--color-error);
+			&:hover {
+				background-color: var(--fkt-color-neutral-400);
 			}
 		}
 	}
 
 	.input {
+		width: 100%;
 		position: relative;
-		border-radius: .5rem;
-		min-height: 50px;
+		border-radius: $border-radius;
+		min-height: calc(20px + calc($input-vertical-padding * 2));
 		box-sizing: border-box;
 		display: flex;
 		align-items: center;
@@ -57,21 +147,21 @@
 
 			.left {
 				height: 100%;
-				border-radius: var(--radius-lg) 0 0 var(--radius-lg);
+				border-radius: $border-radius 0 0 $border-radius;
 				border-style: solid;
-				border-color: var(--color-border);
+				border-color: $border-color;
 				border-top-width: 1px;
 				border-bottom-width: 1px;
 				border-left-width: 1px;
 				border-right-width: 0;
-				width: 1rem;
+				width: $input-horizontal-padding;
 			}
 
 			.center {
 				height: 100%;
 				position: relative;
 				border-style: solid;
-				border-color: var(--color-border);
+				border-color: $border-color;
 				border-top-width: 1px;
 				border-bottom-width: 1px;
 				border-left-width: 0;
@@ -83,9 +173,9 @@
 				label {
 					position: relative;
 					pointer-events: none;
-					font-size: var(--font-size-sm);
-					transition: var(--transition-base);
-					color: var(--color-neutral-500);
+					font-size: var(--fkt-font-size-sm);
+					transition: var(--fkt-transition-base);
+					color: $label-color;
 					white-space: nowrap;
 
 					&.disabled {
@@ -95,37 +185,62 @@
 					}
 
 					&.error {
-						color: var(--color-error);
+						color: var(--fkt-color-danger);
+					}
+				}
+
+				&.no-label {
+					width: 0;
+
+					label {
+						display: none;
 					}
 				}
 			}
 
 			.right {
 				height: 100%;
-				border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+				border-radius: 0 $border-radius $border-radius 0;
 				border-style: solid;
-				border-color: var(--color-border);
+				border-color: $border-color;
 				border-top-width: 1px;
 				border-bottom-width: 1px;
 				border-left-width: 0;
 				border-right-width: 1px;
 				width: 100%;
+				display: flex;
+				justify-content: flex-end;
+				align-items: center;
 			}
 
 			&.error {
 				.center, .left, .right {
-					border-color: var(--color-error);
+					border-color: var(--fkt-color-danger);
 				}
 
 				.center label {
-					color: var(--color-error);
+					color: var(--fkt-color-danger);
 				}
 			}
 
-			&.disabled .center label {
-				opacity: 40%;
-				filter: grayscale(1);
-				cursor: not-allowed;
+			&.disabled {
+				.center, .left, .right {
+					opacity: 60%;
+					filter: grayscale(1);
+					cursor: not-allowed;
+				}
+			}
+
+			&.focused {
+				.center {
+					label {
+						color: $label-focus-color;
+					}
+				}
+
+				.left, .right, .center {
+					border-color: $border-focus-color;
+				}
 			}
 
 			&.float {
@@ -134,8 +249,9 @@
 
 					label {
 						z-index: 50;
-						scale: 90% 90%;
-						translate: 0 calc((calc(var(--space-xl) * -1)) - 1px);
+						font-size: var(--fkt-font-size-xs);
+						margin: 0 var(--fkt-space-3xs);
+						translate: 0 calc(calc(calc($input-vertical-padding + .5rem) * -1) - 1px)
 					}
 				}
 			}
@@ -145,14 +261,15 @@
 		input {
 			box-sizing: border-box;
 			outline: none;
-			font-size: var(--font-size-md);
+			font-size: $font-size;
 			width: 100%;
 			border: none;
 			background-color: transparent;
+			color: $text-color;
 
 			&::placeholder {
 				opacity: 0;
-				color: var(--color-neutral-500);
+				color: var(--fkt-color-neutral-500);
 			}
 
 			&:disabled {
@@ -162,18 +279,30 @@
 			}
 
 			&.error {
-				border-color: var(--color-error);
+				border-color: var(--fkt-color-danger);
 			}
 
 			&.password {
-				padding-right: var(--space-3xl);
+				padding-right: var(--fkt-space-3xl);
+			}
+
+			&.show-placeholder {
+				&::placeholder {
+					opacity: 1;
+				}
+			}
+
+			&.no-label {
+				&::placeholder {
+					opacity: 1;
+				}
 			}
 		}
 
 		&__suffix {
-			position: absolute;
 			pointer-events: none;
 			top: 0;
+			left: 0;
 			width: 100%;
 			display: flex;
 			align-items: center;
@@ -181,9 +310,7 @@
 			height: 100%;
 
 			&-password {
-				position: absolute;
-				top: .5rem;
-				right: .5rem;
+				margin-right: .5rem;
 				cursor: pointer;
 
 				fkt-button {
@@ -196,40 +323,5 @@
 				margin-right: .5rem;
 			}
 		}
-	}
-
-	&:focus-within {
-		.input {
-			input {
-				transition: 150ms cubic-bezier(0.4, 0, 0.2, 1);
-				border-color: var(--color-brand-secondary);
-
-				&::placeholder {
-					opacity: 1;
-				}
-			}
-
-			.border {
-				.center {
-					border-top-width: 0;
-
-					label {
-						color: var(--color-brand-secondary);
-						z-index: 50;
-						scale: 90% 90%;
-						translate: 0 calc((calc(var(--space-xl) * -1)) - 1px);
-					}
-				}
-
-				.left, .right, .center {
-					border-color: var(--color-brand-secondary);
-				}
-			}
-		}
-	}
-
-
-	fkt-field-error {
-		padding-left: var(--space-sm);
 	}
 }

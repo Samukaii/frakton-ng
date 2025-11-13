@@ -1,0 +1,371 @@
+Project 'storybook-docs' contains extension with invalid name (generatedAt).
+Project 'storybook-docs' contains extension with invalid name (userSince).
+Project 'storybook-docs' contains extension with invalid name (hasCustomBabel).
+Project 'storybook-docs' contains extension with invalid name (hasCustomWebpack).
+Project 'storybook-docs' contains extension with invalid name (hasStaticDirs).
+Project 'storybook-docs' contains extension with invalid name (hasStorybookEslint).
+Project 'storybook-docs' contains extension with invalid name (refCount).
+Project 'storybook-docs' contains extension with invalid name (testPackages).
+Project 'storybook-docs' contains extension with invalid name (hasRouterPackage).
+Project 'storybook-docs' contains extension with invalid name (packageManager).
+Project 'storybook-docs' contains extension with invalid name (preview).
+Project 'storybook-docs' contains extension with invalid name (framework).
+Project 'storybook-docs' contains extension with invalid name (builder).
+Project 'storybook-docs' contains extension with invalid name (renderer).
+Project 'storybook-docs' contains extension with invalid name (portableStoriesFileCount).
+Project 'storybook-docs' contains extension with invalid name (applicationFileCount).
+Project 'storybook-docs' contains extension with invalid name (storybookVersion).
+Project 'storybook-docs' contains extension with invalid name (storybookVersionSpecifier).
+Project 'storybook-docs' contains extension with invalid name (language).
+Project 'storybook-docs' contains extension with invalid name (storybookPackages).
+Project 'storybook-docs' contains extension with invalid name (addons).
+[33m❯[39m Building...
+[32m✔[39m Building...
+[37mApplication bundle generation failed. [11.330 seconds][39m
+[37m[39m
+[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8113: FktIconComponent is not used within the template of CustomFormattingExampleComponent[0m [1m[35m[plugin angular-compiler][0m[39m[22m
+[1m[33m[39m[22m
+[1m[33m    apps/docs/src/app/stories/input/examples/custom-formatting/custom-formatting-example.component.ts:10:30:[39m[22m
+[1m[33m[37m      10 │ ...ts: [FktInputComponent, [32mFktIconComponent[37m, Control, FktFieldErro...[39m[22m
+[1m[33m         ╵                            [32m~~~~~~~~~~~~~~~~[0m[39m[22m
+[1m[33m[39m[22m
+[1m[33m[39m[22m
+[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m[39m[22m
+[1m[33m[39m[22m
+[1m[33m    apps/docs/src/app/stories/select/examples/validation-example/validation-example.component.html:7:101:[39m[22m
+[1m[33m[37m      7 │ ... && control().touched()" [error]="control().errors()[0]?.[32mmessage[37m"/>[39m[22m
+[1m[33m        ╵                                                             [32m~~~~~~~[0m[39m[22m
+[1m[33m[39m[22m
+[1m[33m  Warning occurs in the template of component ValidationExampleComponent.[39m[22m
+[1m[33m[39m[22m
+[1m[33m    apps/docs/src/app/stories/select/examples/validation-example/validation-example.component.ts:8:14:[39m[22m
+[1m[33m[37m      8 │   templateUrl: [32m'./validation-example.component.html'[37m,[39m[22m
+[1m[33m        ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m[39m[22m
+[1m[33m[39m[22m
+[1m[33m[39m[22m
+[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m[39m[22m
+[1m[33m[39m[22m
+[1m[33m    apps/docs/src/app/stories/textarea/examples/form-integration-example/form-integration-example.component.html:14:43:[39m[22m
+[1m[33m[37m      14 │                  [error]="form.name().errors()[0]?.[32mmessage[37m"/>[39m[22m
+[1m[33m         ╵                                                    [32m~~~~~~~[0m[39m[22m
+[1m[33m[39m[22m
+[1m[33m  Warning occurs in the template of component FormIntegrationExampleComponent.[39m[22m
+[1m[33m[39m[22m
+[1m[33m    apps/docs/src/ap[39m[22m[1m[33mp/stories/textarea/examples/form-integration-example/form-integration-example.component.ts:13:14:[39m[22m
+[1m[33m[37m      13 │   templateUrl: [32m'./form-integration-example.component.html'[37m,[39m[22m
+[1m[33m         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m[39m[22m
+[1m[33m[39m[22m
+[1m[33m[39m[22m
+[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m[39m[22m
+[1m[33m[39m[22m
+[1m[33m    apps/docs/src/app/stories/textarea/examples/form-integration-example/form-integration-example.component.html:24:44:[39m[22m
+[1m[33m[37m      24 │                  [error]="form.email().errors()[0]?.[32mmessage[37m"/>[39m[22m
+[1m[33m         ╵                                                     [32m~~~~~~~[0m[39m[22m
+[1m[33m[39m[22m
+[1m[33m  Warning occurs in the template of component FormIntegrationExampleComponent.[39m[22m
+[1m[33m[39m[22m
+[1m[33m    apps/docs/src/app/stories/textarea/examples/form-integration-example/form-integration-example.component.ts:13:14:[39m[22m
+[1m[33m[37m      13 │   templateUrl: [32m'./form-integration-example.component.html'[37m,[39m[22m
+[1m[33m         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m[39m[22m
+[1m[33m[39m[22m
+[1m[33m[39m[22m
+[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m[39m[22m
+[1m[33m[39m[22m
+[1m[33m    apps/docs/src/app/stories/textarea/examples/form-integration-example/form-integration-example.component.html:35:46:[39m[22m
+[1m[33m[37m      35 │                  [error]="form.message().errors()[0]?.[32mmessage[37m"/>[39m[22m
+[1m[33m         ╵                                                       [32m~~~~~~~[0m[39m[22m
+[1m[33m[39m[22m
+[1m[33m  Warning occurs in the template of component FormIntegrationExampleComponent.[39m[22m
+[1m[33m[39m[22m
+[1m[33m    apps/docs/src/app/stories/textarea/examples/form-integration-example/form-integration-example.component.ts:13:14:[39m[22m
+[1m[33m[37m      13 │   templateUrl: [32m'./form-integratio[39m[22m[1m[33mn-example.component.html'[37m,[39m[22m
+[1m[33m         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m[39m[22m
+[1m[33m[39m[22m
+[1m[33m[39m[22m
+[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m[39m[22m
+[1m[33m[39m[22m
+[1m[33m    apps/docs/src/app/stories/textarea/examples/form-integration-example/form-integration-example.component.html:46:53:[39m[22m
+[1m[33m[37m      46 │ ...            [error]="form.additionalInfo().errors()[0]?.[32mmessage[37m"/>[39m[22m
+[1m[33m         ╵                                                            [32m~~~~~~~[0m[39m[22m
+[1m[33m[39m[22m
+[1m[33m  Warning occurs in the template of component FormIntegrationExampleComponent.[39m[22m
+[1m[33m[39m[22m
+[1m[33m    apps/docs/src/app/stories/textarea/examples/form-integration-example/form-integration-example.component.ts:13:14:[39m[22m
+[1m[33m[37m      13 │   templateUrl: [32m'./form-integration-example.component.html'[37m,[39m[22m
+[1m[33m         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m[39m[22m
+[1m[33m[39m[22m
+[1m[33m[39m[22m
+[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m[39m[22m
+[1m[33m[39m[22m
+[1m[33m    apps/docs/src/app/stories/textarea/examples/validation-example/validation-example.component.html:9:103:[39m[22m
+[1m[33m[37m      9 │ ... && control().touched()" [error]="control().errors()[0]?.[32mmessage[37m"/>[39m[22m
+[1m[33m        ╵                                                             [32m~~~~~~~[0m[39m[22m
+[1m[33m[39m[22m
+[1m[33m  Warning occurs in the template of component ValidationExampleComponent.[39m[22m
+[1m[33m[39m[22m
+[1m[33m    apps/docs/src/app/stories/textarea/examples/validation-example/validation-example.component.ts:9:14:[39m[22m
+[1m[33m[37m      9 │   templateUrl: [32m'./validation-example.component.html'[37m,[39m[22m
+[1m[33m        ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m[39m[22m
+[1m[33m[39m[22m
+[1m[33m[39m[22m
+[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: Th[39m[22m[1m[33me left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m[39m[22m
+[1m[33m[39m[22m
+[1m[33m    libs/frakton-ng/checkbox/src/fkt-checkbox.component.html:10:41:[39m[22m
+[1m[33m[37m      10 │     [attr.aria-errormessage]="errors()[0]?.[32mmessage[37m"[39m[22m
+[1m[33m         ╵                                            [32m~~~~~~~[0m[39m[22m
+[1m[33m[39m[22m
+[1m[33m  Warning occurs in the template of component FktCheckboxComponent.[39m[22m
+[1m[33m[39m[22m
+[1m[33m    libs/frakton-ng/checkbox/src/fkt-checkbox.component.ts:8:14:[39m[22m
+[1m[33m[37m      8 │   templateUrl: [32m'./fkt-checkbox.component.html'[37m,[39m[22m
+[1m[33m        ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m[39m[22m
+[1m[33m[39m[22m
+[1m[33m[39m[22m
+[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m[39m[22m
+[1m[33m[39m[22m
+[1m[33m    libs/frakton-ng/input/src/fkt-input.component.html:22:41:[39m[22m
+[1m[33m[37m      22 │     [attr.aria-errormessage]="errors()[0]?.[32mmessage[37m"[39m[22m
+[1m[33m         ╵                                            [32m~~~~~~~[0m[39m[22m
+[1m[33m[39m[22m
+[1m[33m  Warning occurs in the template of component FktInputComponent.[39m[22m
+[1m[33m[39m[22m
+[1m[33m    libs/frakton-ng/input/src/fkt-input.component.ts:40:14:[39m[22m
+[1m[33m[37m      40 │   templateUrl: [32m'./fkt-input.component.html'[37m,[39m[22m
+[1m[33m         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m[39m[22m
+[1m[33m[39m[22m
+[1m[33m[39m[22m
+[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m[39m[22m
+[1m[33m[39m[22m
+[1m[33m    libs/frakton-ng/select/src/fkt-select.component.html:21:41:[39m[22m
+[1m[33m[37m      21 │     [attr.aria-errormessage]="errors()[0]?.[32mmessage[37m"[39m[22m
+[1m[33m         ╵                                            [32m~~~~~~~[0m[39m[22m
+[1m[33m[39m[22m
+[1m[33m  Warning occurs in the template of component FktSelectComponent.[39m[22m
+[1m[33m[39m[22m
+[1m[33m    libs/[39m[22m[1m[33mfrakton-ng/select/src/fkt-select.component.ts:16:14:[39m[22m
+[1m[33m[37m      16 │   templateUrl: [32m'./fkt-select.component.html'[37m,[39m[22m
+[1m[33m         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m[39m[22m
+[1m[33m[39m[22m
+[1m[33m[39m[22m
+[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m[39m[22m
+[1m[33m[39m[22m
+[1m[33m    libs/frakton-ng/textarea/src/fkt-textarea.component.html:12:41:[39m[22m
+[1m[33m[37m      12 │     [attr.aria-errormessage]="errors()[0]?.[32mmessage[37m"[39m[22m
+[1m[33m         ╵                                            [32m~~~~~~~[0m[39m[22m
+[1m[33m[39m[22m
+[1m[33m  Warning occurs in the template of component FktTextareaComponent.[39m[22m
+[1m[33m[39m[22m
+[1m[33m    libs/frakton-ng/textarea/src/fkt-textarea.component.ts:23:14:[39m[22m
+[1m[33m[37m      23 │   templateUrl: [32m'./fkt-textarea.component.html'[37m,[39m[22m
+[1m[33m         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m[39m[22m
+[1m[33m[39m[22m
+[1m[33m[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2353: Object literal may only specify known properties, and 'size' does not exist in type 'Partial<FktComponentInputsAndModels<FktIconComponent>>'.[0m [1m[35m[plugin angular-compiler][0m[39m[22m
+[1m[31m[39m[22m
+[1m[31m    apps/docs/src/app/stories/icon/fkt-icon.stories.ts:50:2:[39m[22m
+[1m[31m[37m      50 │     [32msize[37m: '2rem'[39m[22m
+[1m[31m         ╵     [32m~~~~[0m[39m[22m
+[1m[31m[39m[22m
+[1m[31m  The expected type comes from property 'args' which is declared here on type 'Story<FktIconComponent>'[39m[22m
+[1m[31m[39m[22m
+[1m[31m    apps/docs/src/app/models/story.ts:7:1:[39m[22m
+[1m[31m[37m      7 │   [32margs[37m: Partial<FktComponentInputsAndModels<T>>[39m[22m
+[1m[31m        ╵   [32m~~~~[0m[39m[22m
+[1m[31m[39m[22m
+[1m[31m[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2353: Object literal may only specify known properties, and 'color' does not exist in type 'Partial<FktComponentInputsAndModels<FktIconComponent>>'.[0m [1m[35m[plugin angular-compiler][0m[39m[22m
+[1m[31m[39m[22m
+[1m[31m    apps/docs/src/app/stories/icon/fkt-icon.stories.ts:58:2:[39m[22m
+[1m[31m[37m      58 │     [32mcolor[37m: '#e74c3c'[39m[22m
+[1m[31m         ╵     [32m~~~~~[0m[39m[22m
+[1m[31m[39m[22m
+[1m[31m  The expected type comes from property 'args' which is declared here on type 'Story<FktIconComponent>'[39m[22m
+[1m[31m[39m[22m
+[1m[31m    apps/docs/src/app/models/story.ts:7:1:[39m[22m
+[1m[31m[37m      7 │   [32margs[37m: Partial<FktComponentInputsAndModels<T>>[39m[22m
+[1m[31m        ╵   [32m~~~~[0m[39m[22m
+[1m[31m[39m[22m
+[1m[31m[39m[22m
+[37mWatch mode enabled. Watching for file changes...[39m
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[37m[1mInitial chunk files[22m[2m | [22m[1mNames[22m                     [2m | [22m [1mRaw size[22m[39m
+[37m[32mmain.js[39m[37m            [2m | [22m[2mmain[22m                      [2m | [22m[36m288.92 kB[39m[37m[2m | [22m[39m
+[37m[32mchunk-GFGKXQIY.js[39m[37m  [2m | [22m[2m-[22m                         [2m | [22m[36m133.66 kB[39m[37m[2m | [22m[39m
+[37m[32mscripts.js[39m[37m         [2m | [22m[2mscripts[22m                   [2m | [22m [36m74.91 kB[39m[37m[2m | [22m[39m
+[37m[32mchunk-ASHPJE6V.js[39m[37m  [2m | [22m[2m-[22m                         [2m | [22m [36m56.26 kB[39m[37m[2m | [22m[39m
+[37m[32mchunk-GOP63THE.js[39m[37m  [2m | [22m[2m-[22m                         [2m | [22m [36m51.51 kB[39m[37m[2m | [22m[39m
+[37m[32mchunk-Z6KCKNPQ.js[39m[37m  [2m | [22m[2m-[22m                         [2m | [22m [36m50.52 kB[39m[37m[2m | [22m[39m
+[37m[32mchunk-FGBRFTI3.js[39m[37m  [2m | [22m[2m-[22m                         [2m | [22m [36m47.27 kB[39m[37m[2m | [22m[39m
+[37m[32mchunk-AZYLS4EY.js[39m[37m  [2m | [22m[2m-[22m                         [2m | [22m [36m35.53 kB[39m[37m[2m | [22m[39m
+[37m[32mchunk-Y7NHSXSE.js[39m[37m  [2m | [22m[2m-[22m                         [2m | [22m [36m28.04 kB[39m[37m[2m | [22m[39m
+[37m[32mstyles.css[39m[37m         [2m | [22m[2mstyles[22m                    [2m | [22m [36m17.30 kB[39m[37m[2m | [22m[39m
+[37m[32mchunk-AQWPSYHE.js[39m[37m  [2m | [22m[2m-[22m                         [2m | [22m [36m15.79 kB[39m[37m[2m | [22m[39m
+[37m[32mchunk-2SFLWLDM.js[39m[37m  [2m | [22m[2m-[22m                         [2m | [22m  [36m2.08 kB[39m[37m[2m | [22m[39m
+[37m[32mpolyfills.js[39m[37m       [2m | [22m[2mpolyfills[22m                 [2m | [22m [36m95 bytes[39m[37m[2m | [22m[39m
+[37m[39m
+[37m[1m [22m                  [2m | [22m[1mInitial total[22m             [2m | [22m[1m801.87 kB[22m[39m
+[37m[39m
+[37m[1mLazy chunk files[22m   [2m | [22m[1mNames[22m                     [2m | [22m [1mRaw size[22m[39m
+[37m[32mchunk-DUSWVVP7.js[39m[37m  [2m | [22m[2mfkt-table-stories[22m         [2m | [22m[36m149.57 kB[39m[37m[2m | [22m[39m
+[37m[39m[37m[32mchunk-VSAXLKEQ.js[39m[37m  [2m | [22m[2mfkt-autocomplete-stories[22m  [2m | [22m[36m124.09 kB[39m[37m[2m | [22m[39m
+[37m[32mchunk-IKVTDNFT.js[39m[37m  [2m | [22m[2mfkt-date-picker-stories[22m   [2m | [22m[36m101.01 kB[39m[37m[2m | [22m[39m
+[37m[32mchunk-TVMCV3KZ.js[39m[37m  [2m | [22m[2mfkt-textarea-stories[22m      [2m | [22m [36m93.13 kB[39m[37m[2m | [22m[39m
+[37m[32mchunk-SAO2CYMA.js[39m[37m  [2m | [22m[2mraw-examples[22m              [2m | [22m [36m70.05 kB[39m[37m[2m | [22m[39m
+[37m[32mchunk-FS5I2ZY3.js[39m[37m  [2m | [22m[2mfkt-select-stories[22m        [2m | [22m [36m54.38 kB[39m[37m[2m | [22m[39m
+[37m[32mchunk-ILTPWTNB.js[39m[37m  [2m | [22m[2mfkt-button-stories[22m        [2m | [22m [36m54.29 kB[39m[37m[2m | [22m[39m
+[37m[32mchunk-MAYQ4UAE.js[39m[37m  [2m | [22m[2mfkt-badge-selector-stories[22m[2m | [22m [36m43.43 kB[39m[37m[2m | [22m[39m
+[37m[32mchunk-QS7E7LUS.js[39m[37m  [2m | [22m[2mraw-examples[22m              [2m | [22m [36m39.72 kB[39m[37m[2m | [22m[39m
+[37m[32mchunk-IS3PEJAU.js[39m[37m  [2m | [22m[2mraw-examples[22m              [2m | [22m [36m39.06 kB[39m[37m[2m | [22m[39m
+[37m[32mchunk-TLKR2TZU.js[39m[37m  [2m | [22m[2mfkt-checkbox-stories[22m      [2m | [22m [36m37.60 kB[39m[37m[2m | [22m[39m
+[37m[32mchunk-55VGAKTR.js[39m[37m  [2m | [22m[2mraw-examples[22m              [2m | [22m [36m31.41 kB[39m[37m[2m | [22m[39m
+[37m[32mchunk-PUQZ4ORF.js[39m[37m  [2m | [22m[2mraw-examples[22m              [2m | [22m [36m26.48 kB[39m[37m[2m | [22m[39m
+[37m[32mchunk-LEQTUADN.js[39m[37m  [2m | [22m[2mfkt-icon-stories[22m          [2m | [22m [36m22.27 kB[39m[37m[2m | [22m[39m
+[37m[32mchunk-YKX6SX3Z.js[39m[37m  [2m | [22m[2mtheming-styling-docs-md[22m   [2m | [22m [36m20.91 kB[39m[37m[2m | [22m[39m
+[37m[2m...and 13 more lazy chunks files. Use "--verbose" to show all the files.[22m[39m
+[37m[39m
+[37mApplication bundle generation complete. [6.764 seconds][39m
+[37m[39m
+[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8113: FktIconComponent is not used within the template of CustomFormattingExampleComponent[0m [1m[35m[plugin angular-compiler][0m[39m[22m
+[1m[33m[39m[22m
+[1m[33m    apps/docs/src/app/stories/input/examples/custom-formatting/custom-formatting-example.component.ts:10:30:[39m[22m
+[1m[33m[37m      10 │ ...ts: [FktInputComponent, [32mFktIconComponent[37m, Control, FktFieldErro...[39m[22m
+[1m[33m         ╵                            [32m~~~~~~~~~~~~~~~~[0m[39m[22m
+[1m[33m[39m[22m
+[1m[33m[39m[22m
+[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m[39m[22m
+[1m[33m[39m[22m
+[1m[33m    apps/docs/src/app/stories/select/examples/validation-example/validation-example.component.html:7:101:[39m[22m
+[1m[33m[37m      7 │ ... && control().touched()" [error]="control().errors()[0]?.[32mmessage[37m"/>[39m[22m
+[1m[33m        ╵                                                             [32m~~~~~~~[0m[39m[22m
+[1m[33m[39m[22m
+[1m[33m  Warning occurs in the template of component ValidationExampleComponent.[39m[22m
+[1m[33m[39m[22m
+[1m[33m    apps/docs/src/app/stories/select/examples/validation-example/validation-example.component.ts:8:14:[39m[22m
+[1m[33m[37m      8 │   templateUrl: [32m'./validation-example.component.html'[37m,[39m[22m
+[1m[33m        ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m[39m[22m
+[1m[33m[39m[22m
+[1m[33m[39m[22m
+[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m[39m[22m
+[1m[33m[39m[22m
+[1m[33m    apps/docs/src/app/stories/textarea/examples/form-integration-example/form-integration-example.component.html:14:43:[39m[22m
+[1m[33m[37m      14 │                  [error]="form.name().errors()[0]?.[32mmessage[37m"/>[39m[22m
+[1m[33m         ╵                                                    [32m~~~~~~~[0m[39m[22m
+[1m[33m[39m[22m
+[1m[33m  Warning occurs in the template of component FormIntegrationExampleComponent.[39m[22m
+[1m[33m[39m[22m
+[1m[33m    apps/docs/src/ap[39m[22m[1m[33mp/stories/textarea/examples/form-integration-example/form-integration-example.component.ts:13:14:[39m[22m
+[1m[33m[37m      13 │   templateUrl: [32m'./form-integration-example.component.html'[37m,[39m[22m
+[1m[33m         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m[39m[22m
+[1m[33m[39m[22m
+[1m[33m[39m[22m
+[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m[39m[22m
+[1m[33m[39m[22m
+[1m[33m    apps/docs/src/app/stories/textarea/examples/form-integration-example/form-integration-example.component.html:24:44:[39m[22m
+[1m[33m[37m      24 │                  [error]="form.email().errors()[0]?.[32mmessage[37m"/>[39m[22m
+[1m[33m         ╵                                                     [32m~~~~~~~[0m[39m[22m
+[1m[33m[39m[22m
+[1m[33m  Warning occurs in the template of component FormIntegrationExampleComponent.[39m[22m
+[1m[33m[39m[22m
+[1m[33m    apps/docs/src/app/stories/textarea/examples/form-integration-example/form-integration-example.component.ts:13:14:[39m[22m
+[1m[33m[37m      13 │   templateUrl: [32m'./form-integration-example.component.html'[37m,[39m[22m
+[1m[33m         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m[39m[22m
+[1m[33m[39m[22m
+[1m[33m[39m[22m
+[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m[39m[22m
+[1m[33m[39m[22m
+[1m[33m    apps/docs/src/app/stories/textarea/examples/form-integration-example/form-integration-example.component.html:35:46:[39m[22m
+[1m[33m[37m      35 │                  [error]="form.message().errors()[0]?.[32mmessage[37m"/>[39m[22m
+[1m[33m         ╵                                                       [32m~~~~~~~[0m[39m[22m
+[1m[33m[39m[22m
+[1m[33m  Warning occurs in the template of component FormIntegrationExampleComponent.[39m[22m
+[1m[33m[39m[22m
+[1m[33m    apps/docs/src/app/stories/textarea/examples/form-integration-example/form-integration-example.component.ts:13:14:[39m[22m
+[1m[33m[37m      13 │   templateUrl: [32m'./form-integratio[39m[22m[1m[33mn-example.component.html'[37m,[39m[22m
+[1m[33m         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m[39m[22m
+[1m[33m[39m[22m
+[1m[33m[39m[22m
+[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m[39m[22m
+[1m[33m[39m[22m
+[1m[33m    apps/docs/src/app/stories/textarea/examples/form-integration-example/form-integration-example.component.html:46:53:[39m[22m
+[1m[33m[37m      46 │ ...            [error]="form.additionalInfo().errors()[0]?.[32mmessage[37m"/>[39m[22m
+[1m[33m         ╵                                                            [32m~~~~~~~[0m[39m[22m
+[1m[33m[39m[22m
+[1m[33m  Warning occurs in the template of component FormIntegrationExampleComponent.[39m[22m
+[1m[33m[39m[22m
+[1m[33m    apps/docs/src/app/stories/textarea/examples/form-integration-example/form-integration-example.component.ts:13:14:[39m[22m
+[1m[33m[37m      13 │   templateUrl: [32m'./form-integration-example.component.html'[37m,[39m[22m
+[1m[33m         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m[39m[22m
+[1m[33m[39m[22m
+[1m[33m[39m[22m
+[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m[39m[22m
+[1m[33m[39m[22m
+[1m[33m    apps/docs/src/app/stories/textarea/examples/validation-example/validation-example.component.html:9:103:[39m[22m
+[1m[33m[37m      9 │ ... && control().touched()" [error]="control().errors()[0]?.[32mmessage[37m"/>[39m[22m
+[1m[33m        ╵                                                             [32m~~~~~~~[0m[39m[22m
+[1m[33m[39m[22m
+[1m[33m  Warning occurs in the template of component ValidationExampleComponent.[39m[22m
+[1m[33m[39m[22m
+[1m[33m    apps/docs/src/app/stories/textarea/examples/validation-example/validation-example.component.ts:9:14:[39m[22m
+[1m[33m[37m      9 │   templateUrl: [32m'./validation-example.component.html'[37m,[39m[22m
+[1m[33m        ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m[39m[22m
+[1m[33m[39m[22m
+[1m[33m[39m[22m
+[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: Th[39m[22m[1m[33me left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m[39m[22m
+[1m[33m[39m[22m
+[1m[33m    libs/frakton-ng/checkbox/src/fkt-checkbox.component.html:10:41:[39m[22m
+[1m[33m[37m      10 │     [attr.aria-errormessage]="errors()[0]?.[32mmessage[37m"[39m[22m
+[1m[33m         ╵                                            [32m~~~~~~~[0m[39m[22m
+[1m[33m[39m[22m
+[1m[33m  Warning occurs in the template of component FktCheckboxComponent.[39m[22m
+[1m[33m[39m[22m
+[1m[33m    libs/frakton-ng/checkbox/src/fkt-checkbox.component.ts:8:14:[39m[22m
+[1m[33m[37m      8 │   templateUrl: [32m'./fkt-checkbox.component.html'[37m,[39m[22m
+[1m[33m        ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m[39m[22m
+[1m[33m[39m[22m
+[1m[33m[39m[22m
+[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m[39m[22m
+[1m[33m[39m[22m
+[1m[33m    libs/frakton-ng/input/src/fkt-input.component.html:22:41:[39m[22m
+[1m[33m[37m      22 │     [attr.aria-errormessage]="errors()[0]?.[32mmessage[37m"[39m[22m
+[1m[33m         ╵                                            [32m~~~~~~~[0m[39m[22m
+[1m[33m[39m[22m
+[1m[33m  Warning occurs in the template of component FktInputComponent.[39m[22m
+[1m[33m[39m[22m
+[1m[33m    libs/frakton-ng/input/src/fkt-input.component.ts:40:14:[39m[22m
+[1m[33m[37m      40 │   templateUrl: [32m'./fkt-input.component.html'[37m,[39m[22m
+[1m[33m         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m[39m[22m
+[1m[33m[39m[22m
+[1m[33m[39m[22m
+[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m[39m[22m
+[1m[33m[39m[22m
+[1m[33m    libs/frakton-ng/select/src/fkt-select.component.html:21:41:[39m[22m
+[1m[33m[37m      21 │     [attr.aria-errormessage]="errors()[0]?.[32mmessage[37m"[39m[22m
+[1m[33m         ╵                                            [32m~~~~~~~[0m[39m[22m
+[1m[33m[39m[22m
+[1m[33m  Warning occurs in the template of component FktSelectComponent.[39m[22m
+[1m[33m[39m[22m
+[1m[33m    libs/[39m[22m[1m[33mfrakton-ng/select/src/fkt-select.component.ts:16:14:[39m[22m
+[1m[33m[37m      16 │   templateUrl: [32m'./fkt-select.component.html'[37m,[39m[22m
+[1m[33m         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m[39m[22m
+[1m[33m[39m[22m
+[1m[33m[39m[22m
+[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m[39m[22m
+[1m[33m[39m[22m
+[1m[33m    libs/frakton-ng/textarea/src/fkt-textarea.component.html:12:41:[39m[22m
+[1m[33m[37m      12 │     [attr.aria-errormessage]="errors()[0]?.[32mmessage[37m"[39m[22m
+[1m[33m         ╵                                            [32m~~~~~~~[0m[39m[22m
+[1m[33m[39m[22m
+[1m[33m  Warning occurs in the template of component FktTextareaComponent.[39m[22m
+[1m[33m[39m[22m
+[1m[33m    libs/frakton-ng/textarea/src/fkt-textarea.component.ts:23:14:[39m[22m
+[1m[33m[37m      23 │   templateUrl: [32m'./fkt-textarea.component.html'[37m,[39m[22m
+[1m[33m         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m[39m[22m
+[1m[33m[39m[22m
+[1m[33m[39m[22m
+[37mNOTE: Raw file sizes do not reflect development server per-request transformations.[39m
+
+[0m[7m[1m[31m NX [39m[22m[27m[0m  [31mPort 4200 is already in use[39m
+
+Pass --verbose to see the stacktrace.
+

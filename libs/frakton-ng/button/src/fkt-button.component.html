@@ -1,9 +1,17 @@
-<button [type]="type()"  [disabled]="disabled() || loading()" [class]="classes()">
+<button
+  #button
+  [tabIndex]="tabIndex()"
+	[attr.aria-busy]="loading()"
+	[attr.aria-label]="buttonAriaLabel()"
+	[type]="type()" [disabled]="disabled() || loading()" [class]="classes()">
 	@if (loading()) {
-		<div class="spinner"></div>
-		<p>{{ loadingText() || text() }}</p>
+		<div aria-hidden="true" class="spinner"></div>
+		@if (loadingText() || text()) {
+			<p aria-hidden="true">{{ loadingText() || text() }}</p>
+		}
 	} @else {
 		<div
+			aria-hidden="true"
 			[class.icon-left]="iconPosition() === 'left'"
 			class="button-content"
 		>

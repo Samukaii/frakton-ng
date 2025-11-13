@@ -1,0 +1,15 @@
+<div class="container">
+	@if (type() === 'info') {
+		<fkt-icon name="information-circle" size="16"></fkt-icon>
+	}
+	@if (type() === 'warning') {
+		<fkt-icon name="exclamation-triangle" size="16"></fkt-icon>
+	}
+	@if (type() === 'danger') {
+		<fkt-icon name="x-circle" size="16"></fkt-icon>
+	}
+	@if (type() === 'success') {
+		<fkt-icon name="check-circle" size="16"></fkt-icon>
+	}
+	<span class="container__text">{{ text() }}</span>
+</div>

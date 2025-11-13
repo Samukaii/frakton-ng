@@ -1,0 +1,25 @@
+p {
+	margin: 0;
+}
+
+.container {
+	display: flex;
+	flex-direction: column;
+	gap: var(--fkt-space-md);
+
+	&__info {
+		font-size: var(--fkt-font-size-sm);
+		color: var(--fkt-color-neutral-600);
+	}
+
+	&__text {
+		font-size: var(--fkt-font-size-xs);
+		color: var(--fkt-color-neutral-500);
+	}
+
+	&__status {
+		display: flex;
+		gap: var(--fkt-space-xs);
+		align-items: center;
+	}
+}

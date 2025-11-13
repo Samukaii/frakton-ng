@@ -45,7 +45,7 @@
 						"configDir": "libs/frakton-ng/.storybook",
 						"browserTarget": "frakton-ng:build:production",
 						"compodoc": false,
-						"outputDir": "docs"
+						"outputDir": "storybook-docs"
 					}
 				}
 			}

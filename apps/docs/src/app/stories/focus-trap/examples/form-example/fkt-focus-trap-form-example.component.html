@@ -1,0 +1,35 @@
+<div class="example-container">
+  <p class="instructions">This form demonstrates focus trap with various form controls. Tab navigation is contained within the form.</p>
+
+  <form class="form-container" fktFocusTrap [preventScroll]="preventScroll()">
+    <h3>Registration Form</h3>
+    <p>All form controls are included in the focus trap cycle.</p>
+
+    <div class="form-row">
+      <fkt-input label="First Name" placeholder="Enter your first name" />
+      <fkt-input label="Last Name" placeholder="Enter your last name" />
+    </div>
+
+    <fkt-input label="Email Address" type="email" placeholder="Enter your email" />
+
+    <fkt-input label="Password" type="password" placeholder="Enter your password" />
+
+    <fkt-select
+      label="Country"
+      placeholder="Select your country"
+      [options]="countryOptions()"
+    />
+
+    <fkt-checkbox label="I agree to the terms and conditions" />
+
+    <fkt-checkbox label="Subscribe to newsletter" />
+
+    <div class="form-actions">
+      <fkt-button text="Reset" theme="basic" (click)="resetForm()" />
+      <fkt-button text="Submit" color="primary" (click)="submitForm()" />
+    </div>
+  </form>
+
+  <p class="outside-info">Elements outside the form are not accessible via keyboard navigation when focus is trapped.</p>
+  <fkt-button text="External Button" theme="basic" />
+</div>

@@ -1,0 +1,101 @@
+import{g as d}from"./chunk-IV5KECAD.js";import"./chunk-ZNZREETU.js";import"./chunk-NCLCKPE2.js";import{b as H}from"./chunk-PKTYJMV7.js";import"./chunk-JHRAHIWB.js";import"./chunk-LBOAZH2J.js";import"./chunk-HJNPW7FY.js";import{Ab as c,Bb as a,Bc as C,Cb as o,Db as x,Gc as h,Ma as s,Mb as N,Ob as T,ac as l,bc as W,eb as m,ec as g,fc as u,gc as f,ja as F,ub as O,vb as E,wc as M,xb as S,yb as B,zb as z}from"./chunk-I22COHRS.js";import"./chunk-A25UGBQK.js";var y=class i{currentDate=h(new Date);borderless=C(!1);static \u0275fac=function(e){return new(e||i)};static \u0275cmp=m({type:i,selectors:[["fkt-calendar-basic-example"]],inputs:{currentDate:[1,"currentDate"],borderless:[1,"borderless"]},outputs:{currentDate:"currentDateChange"},decls:2,vars:2,consts:[[1,"example-container"],[3,"currentDateChange","currentDate","borderless"]],template:function(e,t){e&1&&(a(0,"div",0)(1,"fkt-calendar",1),f("currentDateChange",function(r){return u(t.currentDate,r)||(t.currentDate=r),r}),o()()),e&2&&(s(),g("currentDate",t.currentDate),c("borderless",t.borderless()))},dependencies:[d],styles:["[_nghost-%COMP%]{width:100%;height:100%;display:flex;justify-content:center}h3[_ngcontent-%COMP%], p[_ngcontent-%COMP%]{width:fit-content}.example-container[_ngcontent-%COMP%]{padding:20px;border-radius:8px;width:100%;max-width:800px;height:fit-content;border:solid 1px var(--fkt-color-neutral-200);display:flex;align-items:center;flex-direction:column}.example-container[_ngcontent-%COMP%]   h3[_ngcontent-%COMP%]{margin:0 0 16px;color:#333;font-size:18px;font-weight:600}.selected-date[_ngcontent-%COMP%]{margin-top:16px;font-weight:500;color:#333;font-size:14px}"]})};var k=class i{currentDate=h(new Date);borderless=C(!0);static \u0275fac=function(e){return new(e||i)};static \u0275cmp=m({type:i,selectors:[["fkt-calendar-borderless-example"]],inputs:{currentDate:[1,"currentDate"],borderless:[1,"borderless"]},outputs:{currentDate:"currentDateChange"},decls:2,vars:2,consts:[[1,"example-container"],[3,"currentDateChange","currentDate","borderless"]],template:function(e,t){e&1&&(a(0,"div",0)(1,"fkt-calendar",1),f("currentDateChange",function(r){return u(t.currentDate,r)||(t.currentDate=r),r}),o()()),e&2&&(s(),g("currentDate",t.currentDate),c("borderless",t.borderless()))},dependencies:[d],styles:["[_nghost-%COMP%]{width:100%;height:100%;display:flex;justify-content:center}*[_ngcontent-%COMP%]{box-sizing:border-box}.example-container[_ngcontent-%COMP%]{color:#fff;width:100%;max-width:800px;height:fit-content;display:flex;align-items:center;flex-direction:column}"]})};var b=class i{currentDate=h(new Date("2025-12-25T12:00:00.000Z"));borderless=C(!1);customDateConfig=n=>{let e=new Date,t=n.getDay()===0||n.getDay()===6,p=this.isHoliday(n),r=n<e;return{classes:[...t?["weekend"]:[],...p?["holiday"]:[],...r?["past"]:[]],isToday:this.isSameDay(n,e)}};isHoliday(n){let e=n.getMonth(),t=n.getDate();return e===11&&t===25||e===0&&t===1}isSameDay(n,e){return n.getDate()===e.getDate()&&n.getMonth()===e.getMonth()&&n.getFullYear()===e.getFullYear()}static \u0275fac=function(e){return new(e||i)};static \u0275cmp=m({type:i,selectors:[["fkt-calendar-custom-styling-example"]],inputs:{currentDate:[1,"currentDate"],borderless:[1,"borderless"]},outputs:{currentDate:"currentDateChange"},decls:15,vars:3,consts:[[1,"example-container"],[3,"currentDateChange","currentDate","configFn","borderless"],[1,"legend"],[1,"legend-item"],[1,"legend-color","weekend"],[1,"legend-color","holiday"],[1,"legend-color","past"]],template:function(e,t){e&1&&(a(0,"div",0)(1,"fkt-calendar",1),f("currentDateChange",function(r){return u(t.currentDate,r)||(t.currentDate=r),r}),o(),a(2,"div",2)(3,"div",3),x(4,"span",4),a(5,"span"),l(6,"Weekends"),o()(),a(7,"div",3),x(8,"span",5),a(9,"span"),l(10,"Holidays"),o()(),a(11,"div",3),x(12,"span",6),a(13,"span"),l(14,"Past dates"),o()()()()),e&2&&(s(),g("currentDate",t.currentDate),c("configFn",t.customDateConfig)("borderless",t.borderless()))},dependencies:[d],styles:["[_nghost-%COMP%]{width:100%;height:100%;display:flex;justify-content:center}.example-container[_ngcontent-%COMP%]{padding:20px;border-radius:8px;width:100%;max-width:800px;height:fit-content;border:solid 1px var(--fkt-color-neutral-200);display:flex;align-items:center;flex-direction:column}.example-container[_ngcontent-%COMP%]   h3[_ngcontent-%COMP%]{margin:0 0 8px;color:#333;font-size:18px;font-weight:600}.example-container[_ngcontent-%COMP%]   .description[_ngcontent-%COMP%]{margin:0 0 16px;color:#666;font-size:14px}.legend[_ngcontent-%COMP%]{display:flex;gap:16px;margin-top:16px;flex-wrap:wrap;justify-content:center}.legend-item[_ngcontent-%COMP%]{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--fkt-color-neutral-600)}.legend-color[_ngcontent-%COMP%]{width:12px;height:12px;border-radius:2px;display:block}.legend-color.weekend[_ngcontent-%COMP%]{background:var(--fkt-color-info-opacity-20);border:1px solid var(--fkt-color-info)}.legend-color.holiday[_ngcontent-%COMP%]{background:var(--fkt-color-danger-opacity-20);border:1px solid var(--fkt-color-danger)}.legend-color.past[_ngcontent-%COMP%]{background:var(--fkt-color-neutral-300);border:1px solid var(--fkt-color-neutral-400)}.selected-date[_ngcontent-%COMP%]{margin-top:16px;font-weight:500;color:#333;font-size:14px}[_nghost-%COMP%]     .weekend{background-color:var(--fkt-color-info-opacity-20)!important;color:var(--fkt-color-info)!important}[_nghost-%COMP%]     .holiday{background-color:var(--fkt-color-danger-opacity-20)!important;color:var(--fkt-color-danger)!important;font-weight:600!important}[_nghost-%COMP%]     .past{background-color:var(--fkt-color-neutral-300)!important;color:var(--fkt-color-neutral-500)!important;opacity:.6}"]})};function I(i,n){i&1&&(a(0,"p",7),l(1,"Click on any date to see interaction history"),o())}function L(i,n){if(i&1&&(a(0,"div",8),l(1),o()),i&2){let e=n.$implicit;s(),W(e)}}function R(i,n){if(i&1&&B(0,L,2,1,"div",8,S),i&2){let e=T();z(e.clickHistory())}}var D=class i{currentDate=h(new Date);borderless=C(!1);eventDates=F([]);clickHistory=M(()=>this.eventDates().map(e=>`${new Date().toLocaleTimeString()}: Clicked ${new Date(e).toLocaleDateString()}`));eventDateConfig=M(()=>{let n=this.eventDates();return e=>({onClick:()=>this.handleDateClick(e),classes:n.includes(e.toISOString())?["has-events"]:[]})});handleDateClick(n){this.eventDates.update(e=>[...e,n.toISOString()])}clearHistory(){this.eventDates.set([])}static \u0275fac=function(e){return new(e||i)};static \u0275cmp=m({type:i,selectors:[["fkt-calendar-events-example"]],inputs:{currentDate:[1,"currentDate"],borderless:[1,"borderless"]},outputs:{currentDate:"currentDateChange"},decls:11,vars:5,consts:[[1,"example-container"],[3,"currentDateChange","currentDate","configFn","borderless"],[1,"event-info"],[1,"click-history"],[1,"click-history-header"],["text","Clear",3,"click","disabled"],[1,"history-items"],[1,"no-history"],[1,"history-item"]],template:function(e,t){e&1&&(a(0,"div",0)(1,"fkt-calendar",1),f("currentDateChange",function(r){return u(t.currentDate,r)||(t.currentDate=r),r}),o(),a(2,"div",2)(3,"div",3)(4,"div",4)(5,"h4"),l(6,"Click History"),o(),a(7,"fkt-button",5),N("click",function(){return t.clearHistory()}),o()(),a(8,"div",6),O(9,I,2,0,"p",7)(10,R,2,0),o()()()()),e&2&&(s(),g("currentDate",t.currentDate),c("configFn",t.eventDateConfig())("borderless",t.borderless()),s(6),c("disabled",t.clickHistory().length===0),s(2),E(t.clickHistory().length===0?9:10))},dependencies:[d,H],styles:["[_nghost-%COMP%]{width:100%;height:100%;display:flex;justify-content:center}.example-container[_ngcontent-%COMP%]{padding:20px;border:solid 1px var(--fkt-color-neutral-200);border-radius:8px;display:flex;align-items:center;flex-direction:column;width:100%;max-width:800px;height:fit-content}.example-container[_ngcontent-%COMP%]   h3[_ngcontent-%COMP%]{margin:0 0 8px;color:#333;font-size:18px;font-weight:600}.example-container[_ngcontent-%COMP%]   .description[_ngcontent-%COMP%]{margin:0 0 16px;color:#666;font-size:14px}.event-info[_ngcontent-%COMP%]{margin-top:16px;width:100%}.click-history[_ngcontent-%COMP%]{width:100%}.click-history-header[_ngcontent-%COMP%]{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}.click-history-header[_ngcontent-%COMP%]   h4[_ngcontent-%COMP%]{margin:0;font-size:14px;font-weight:600;color:var(--fkt-color-neutral-600);flex:1}.click-history-header[_ngcontent-%COMP%]   button[_ngcontent-%COMP%]{padding:4px 8px;font-size:12px;border:1px solid var(--fkt-color-neutral-400);background:var(--fkt-color-neutral-100);border-radius:4px;cursor:pointer}.click-history-header[_ngcontent-%COMP%]   button[_ngcontent-%COMP%]:hover:not(:disabled){background:#f5f5f5}.click-history-header[_ngcontent-%COMP%]   button[_ngcontent-%COMP%]:disabled{opacity:.5;cursor:not-allowed}.click-history[_ngcontent-%COMP%]   .history-items[_ngcontent-%COMP%]{max-height:300px;overflow-y:auto;border:1px solid var(--fkt-color-neutral-400);border-radius:4px;background:var(--color-neutral-100)}.click-history[_ngcontent-%COMP%]   .no-history[_ngcontent-%COMP%]{padding:12px;text-align:center;color:var(--fkt-color-neutral-500);font-size:12px;margin:0}.click-history[_ngcontent-%COMP%]   .history-item[_ngcontent-%COMP%]{padding:var(--fkt-space-md);border-bottom:1px solid var(--fkt-color-neutral-400);font-size:12px;color:var(--fkt-color-neutral-950)}.click-history[_ngcontent-%COMP%]   .history-item[_ngcontent-%COMP%]:last-child{border-bottom:none}.selected-date[_ngcontent-%COMP%]{margin-top:16px;font-weight:500;color:var(--fkt-color-neutral-600);font-size:14px}[_nghost-%COMP%]     .has-events{position:relative;background:var(--fkt-color-success-opacity-20)}"]})};var v=class i{currentDate=h(new Date);borderless=C(!1);disabledDateConfig=n=>{let t=n<new Date,p=n.getDay()===0||n.getDay()===6,r=this.isBlackedOutDate(n),P=t||p||r;return{classes:[...t?["past-date"]:[],...p?["weekend-disabled"]:[],...r?["blacked-out"]:[],...P?["disabled"]:[]],onClick:P?void 0:()=>{console.log("Date selected:",n)}}};isBlackedOutDate(n){let e=n.getMonth(),t=n.getDate();return e===11&&t>=24&&t<=26||t===15}static \u0275fac=function(e){return new(e||i)};static \u0275cmp=m({type:i,selectors:[["fkt-calendar-disabled-dates-example"]],inputs:{currentDate:[1,"currentDate"],borderless:[1,"borderless"]},outputs:{currentDate:"currentDateChange"},decls:27,vars:3,consts:[[1,"example-container"],[3,"currentDateChange","currentDate","configFn","borderless"],[1,"legend"],[1,"legend-item"],[1,"legend-color","past-date"],[1,"legend-color","weekend-disabled"],[1,"legend-color","blacked-out"],[1,"info-box"]],template:function(e,t){e&1&&(a(0,"div",0)(1,"fkt-calendar",1),f("currentDateChange",function(r){return u(t.currentDate,r)||(t.currentDate=r),r}),o(),a(2,"div",2)(3,"div",3),x(4,"span",4),a(5,"span"),l(6,"Past dates"),o()(),a(7,"div",3),x(8,"span",5),a(9,"span"),l(10,"Weekends"),o()(),a(11,"div",3),x(12,"span",6),a(13,"span"),l(14,"Blackout dates (15th of month, Dec 24-26)"),o()()(),a(15,"div",7)(16,"h4"),l(17,"Disabled Date Rules:"),o(),a(18,"ul")(19,"li"),l(20,"All past dates are disabled"),o(),a(21,"li"),l(22,"Weekends (Saturday & Sunday) are disabled"),o(),a(23,"li"),l(24,"15th of every month (maintenance day)"),o(),a(25,"li"),l(26,"December 24-26 (holiday period)"),o()()()()),e&2&&(s(),g("currentDate",t.currentDate),c("configFn",t.disabledDateConfig)("borderless",t.borderless()))},dependencies:[d],styles:['[_nghost-%COMP%]{width:100%;height:100%;display:flex;justify-content:center;align-items:center}*[_ngcontent-%COMP%]{box-sizing:border-box}.example-container[_ngcontent-%COMP%]{padding:20px;border-radius:8px;max-width:800px;height:fit-content;width:100%;border:solid 1px var(--fkt-color-neutral-200);display:flex;align-items:center;flex-direction:column}.example-container[_ngcontent-%COMP%]   h3[_ngcontent-%COMP%]{margin:0 0 8px;color:#333;font-size:18px;font-weight:600}.example-container[_ngcontent-%COMP%]   .description[_ngcontent-%COMP%]{margin:0 0 16px;color:#666;font-size:14px}.legend[_ngcontent-%COMP%]{display:flex;gap:16px;margin-top:16px;flex-wrap:wrap}.legend-item[_ngcontent-%COMP%]{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--fkt-color-neutral-600)}.legend-color[_ngcontent-%COMP%]{width:12px;height:12px;border-radius:2px;display:block}.legend-color.past-date[_ngcontent-%COMP%]{background-color:var(--fkt-color-neutral-300);border:1px solid var(--fkt-color-neutral-500)}.legend-color.weekend-disabled[_ngcontent-%COMP%]{background:var(--fkt-color-warning-opacity-20);border:1px solid var(--fkt-color-warning)}.legend-color.blacked-out[_ngcontent-%COMP%]{background:var(--fkt-color-danger-opacity-20);border:1px solid var(--fkt-color-warning)}.info-box[_ngcontent-%COMP%]{margin-top:16px;padding:12px;background:var(--fkt-color-info-opacity-10);border-radius:var(--fkt-radius-md);color:var(--fkt-color-neutral-900);border:.5px solid var(--fkt-color-info-opacity-50);width:100%}.info-box[_ngcontent-%COMP%]   h4[_ngcontent-%COMP%]{margin:0 0 8px;font-size:14px;font-weight:600}.info-box[_ngcontent-%COMP%]   ul[_ngcontent-%COMP%]{margin:0;padding-left:16px;font-size:13px}.info-box[_ngcontent-%COMP%]   ul[_ngcontent-%COMP%]   li[_ngcontent-%COMP%]{margin-bottom:4px}[_nghost-%COMP%]     fkt-calendar .disabled{cursor:not-allowed;opacity:1}[_nghost-%COMP%]     fkt-calendar .past-date{background-color:var(--fkt-color-neutral-300);color:var(--fkt-color-neutral-500)}[_nghost-%COMP%]     fkt-calendar .weekend-disabled{background-color:var(--fkt-color-warning-opacity-20);color:var(--fkt-color-warning)}[_nghost-%COMP%]     fkt-calendar .blacked-out{background-color:var(--fkt-color-danger-opacity-20);color:var(--fkt-color-danger);position:relative}[_nghost-%COMP%]     fkt-calendar .blacked-out:before{content:"";position:absolute;top:50%;left:10%;right:10%;height:1px;background:var(--fkt-color-danger)}']})};var A=`## Key Features\r
+\r
+- **Multi-View Navigation**: Seamlessly switch between date, month, and year selection modes\r
+- **Signal-Based Architecture**: Built with modern Angular signals for optimal performance and reactivity\r
+- **Extensive Customization**: Configure date appearance, behavior, and styling through flexible configuration functions\r
+- **Borderless Design**: Optional borderless mode for seamless integration into existing layouts\r
+- **Responsive Design**: Automatically adapts to different screen sizes and viewport constraints\r
+- **Two-Way Data Binding**: Full support for Angular's two-way binding with models\r
+- **Accessibility Ready**: Built with accessibility considerations and keyboard navigation support\r
+\r
+## Configuration Options\r
+\r
+<arg-types></arg-types>\r
+\r
+### Types\r
+\r
+\`\`\`typescript\r
+// Calendar step types - defines the current view mode\r
+export type FktCalendarStep = 'date' | 'month' | 'year';\r
+\r
+// Date configuration interface for customizing individual dates\r
+export interface FktCalendarDateConfig {\r
+    date: string;                    // ISO date string for the date\r
+    onClick?: () => void;            // Custom click handler for the date\r
+    isCurrentDate: boolean;          // Whether this date is currently selected\r
+    isToday: boolean;               // Whether this date is today\r
+    classes: string[];              // CSS classes to apply to the date\r
+}\r
+\r
+// Partial options for date configuration (excludes mandatory fields)\r
+export type FktCalendarDateOptions = Partial<\r
+    Omit<FktCalendarDateConfig, 'date' | 'isCurrentDate'>\r
+>;\r
+\r
+// Configuration function type for customizing dates\r
+export type FktCalendarDateConfigFn = (date: Date) => FktCalendarDateOptions;\r
+\`\`\`\r
+\r
+## Component Architecture\r
+\r
+The FktCalendar component is built with a modular architecture consisting of several specialized sub-components:\r
+\r
+### Core Components\r
+\r
+- **FktCalendarComponent**: Main calendar container and state management\r
+- **CalendarDateSelectorComponent**: Date grid and individual date selection\r
+- **CalendarMonthSelectorComponent**: Month selection grid\r
+- **CalendarYearSelectorComponent**: Year selection grid\r
+\r
+### Header Components\r
+\r
+- **CalendarMonthHeaderComponent**: Navigation for date view (month/year selection)\r
+- **CalendarYearHeaderComponent**: Navigation for month view (year selection)\r
+- **CalendarMultiYearHeaderComponent**: Navigation for year view (multi-year range)\r
+\r
+### State Management\r
+\r
+The calendar uses a signal-based state management approach:\r
+\r
+- \`step\` signal controls the current view mode\r
+- \`currentDate\` model provides two-way binding for the selected date\r
+- \`lastStep\` tracks previous view for proper navigation\r
+\r
+## Use Cases\r
+\r
+**Date Pickers**: Perfect for form inputs requiring date selection with calendar interface.\r
+\r
+**Event Schedulers**: Ideal for scheduling applications where users need to select dates for events or appointments.\r
+\r
+**Date Range Selectors**: Great for booking systems, report date ranges, and period selection interfaces.\r
+\r
+**Dashboard Filters**: Useful for analytics dashboards requiring date-based filtering and navigation.\r
+\r
+**Content Management**: Excellent for CMS systems where content publication dates need to be selected.\r
+\r
+**Booking Systems**: Perfect for reservation systems, hotel bookings, and appointment scheduling.\r
+\r
+## Accessibility\r
+\r
+**Keyboard Navigation**: Full keyboard support with arrow keys, Enter, and Escape for navigation and selection.\r
+\r
+**Screen Reader Support**: Proper ARIA labels and announcements for date information and navigation state.\r
+\r
+**Focus Management**: Logical tab order and visible focus indicators throughout all calendar views.\r
+\r
+**High Contrast Support**: Compatible with high contrast themes and user accessibility preferences.\r
+\r
+**Semantic HTML**: Proper semantic structure with appropriate heading hierarchy and landmarks.\r
+\r
+## Performance\r
+\r
+**Signal-Based Reactivity**: Efficient change detection using Angular signals for optimal performance.\r
+\r
+**Component Modularity**: Lazy loading of sub-components reduces initial bundle size.\r
+\r
+**Efficient Rendering**: Only re-renders components when relevant data changes.\r
+\r
+**Memory Management**: Proper cleanup of event listeners and subscriptions.\r
+\r
+**Optimized Calculations**: Efficient date calculations and caching for better performance.\r
+`;var Y={title:"Components/Navigation/Calendar",component:d,description:"The FktCalendar component provides a comprehensive date selection interface with multiple view modes and extensive customization options. Built with Angular signals for optimal performance and reactivity, it supports date, month, and year selection with configurable styling and behavior.",documentation:A,argTypes:{configFn:{control:"text",category:"Attributes",type:"FktCalendarDateConfigFn",import:"import {FktCalendarDateConfigFn} from 'frakton-ng/calendar'",defaultValue:"() => ({})",description:"Function to configure individual calendar dates"},currentDate:{control:"text",category:"Form Control",type:"Date",defaultValue:"new Date()",description:"Currently selected date"},borderless:{control:"boolean",category:"Attributes",type:"boolean",defaultValue:"false",description:"Whether to display the calendar without a border"}}},_e={component:y,description:"Basic calendar with date selection functionality and month/year navigation.",args:{currentDate:new Date,borderless:!1}},we={component:k,description:"Calendar displayed without border for seamless integration into containers.",args:{currentDate:new Date,borderless:!0}},Me={component:v,description:"Calendar with disabled dates to restrict user selection to valid date ranges.",args:{currentDate:new Date("2025-12-25T12:00:00.000Z"),borderless:!1}},Pe={component:D,description:"Calendar displaying events and highlighting dates with special significance.",args:{currentDate:new Date,borderless:!1}},Fe={component:b,description:"Calendar with custom styling and visual indicators for different date states.",args:{currentDate:new Date("2025-12-25T12:00:00.000Z"),borderless:!1}},Oe=Y;export{_e as BasicCalendar,we as BorderlessCalendar,Fe as CustomStyling,Me as WithDisabledDates,Pe as WithEvents,Oe as default};

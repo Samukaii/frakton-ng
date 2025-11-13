@@ -1,10 +1,14 @@
 <fkt-input
 	#input
 	[label]="label() ?? ''"
-	(click)="openModal(input.element()?.nativeElement!, 'bottom-start')"
 	[placeholder]="placeholder() ?? ''"
-	[transformer]="transformer"
-	[control]="control()"
+	[formatter]="formatter"
+	[value]="inputValue()"
+	(valueChange)="onValueChange($event)"
+	[disabled]="disabled()"
+	[errors]="errors()"
+	[invalid]="invalid()"
+	[(touched)]="touched"
 >
 	<div #ref *fktFormControlSuffix>
 		<fkt-button
@@ -12,6 +16,7 @@
 			(click)="$event.stopImmediatePropagation(); openModal(ref, 'bottom-end')"
 			icon="calendar"
 			color="primary"
+			ariaLabel="Open calendar"
 		/>
 	</div>
 </fkt-input>

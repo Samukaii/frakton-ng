@@ -1,0 +1,49 @@
+.validation-example {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: var(--fkt-space-md);
+
+	&__container {
+		display: flex;
+		flex-direction: column;
+		gap: var(--fkt-space-xs);
+	}
+
+	&__status {
+		font-size: var(--fkt-font-size-sm);
+
+		&-label {
+			font-weight: var(--fkt-font-semibold);
+		}
+
+		&-content {
+			&--valid {
+				color: var(--fkt-color-success);
+			}
+
+			&--invalid {
+				color: var(--fkt-color-danger);
+			}
+		}
+	}
+
+	&__info {
+		font-size: var(--fkt-font-size-sm);
+		color: var(--fkt-color-neutral-600);
+		display: flex;
+		flex-direction: column;
+		gap: var(--fkt-space-xs);
+
+		&-label {
+			display: flex;
+			gap: var(--fkt-space-xs);
+
+			strong {
+				font-weight: var(--fkt-font-semibold);
+			}
+		}
+	}
+
+
+}

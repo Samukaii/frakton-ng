@@ -7,6 +7,9 @@ import { FktIconName } from './fkt-icon-name';
 	imports: [],
 	templateUrl: './fkt-icon.component.html',
 	styleUrl: './fkt-icon.component.scss',
+	host: {
+		'[attr.aria-hidden]': 'true'
+	}
 })
 export class FktIconComponent {
 	name = input.required<FktIconName>();

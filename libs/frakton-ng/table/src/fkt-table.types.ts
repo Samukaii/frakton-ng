@@ -1,16 +1,7 @@
 import { tableCellsMapping } from './cells/table-cells-mapping';
 import { FktIdentifiable } from 'frakton-ng/core';
 import { FktButtonAction } from 'frakton-ng/button';
-import { FktIconName } from 'frakton-ng/icon';
 import { FktComponentData } from 'frakton-ng/internal/types';
-
-export interface FktTableAction extends FktButtonAction {
-	classes?: string[];
-	name: string;
-	condition: boolean;
-	icon: FktIconName;
-	click: () => void;
-}
 
 export type FktTableActionFn<T extends FktIdentifiable> = (item: T) => FktButtonAction[];
 type FktTableCellsMapping = typeof tableCellsMapping;

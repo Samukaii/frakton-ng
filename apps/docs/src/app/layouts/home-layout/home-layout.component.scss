@@ -1,0 +1,87 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    overflow-y: auto;
+
+
+}
+
+.pattern {
+    width: 100%;
+    height: 200px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0.2;
+    filter: blur(0px);
+    z-index: -1;
+
+    mask-image: linear-gradient(black, transparent);
+
+    --s: 160px; /* control the size*/
+    --c1: var(--pattern-color-primary);
+    --c2: var(--pattern-color-secondary);
+
+    --_c: 5%, #0000 75%, var(--c1) 0;
+    --_g: / var(--s) var(--s) conic-gradient(at var(--_c));
+    --_l: / var(--s) var(--s) conic-gradient(at 50% var(--_c));
+    background: 0 calc(7 * var(--s) / 10) var(--_l),
+    calc(var(--s) / 2) calc(var(--s) / 5) var(--_l),
+    calc(var(--s) / 5) 0 var(--_g),
+    calc(7 * var(--s) / 10) calc(var(--s) / 2) var(--_g),
+    conic-gradient(at 90% 90%, var(--c1) 75%, var(--c2) 0) 0 0/calc(var(--s)/2) calc(var(--s) / 2);
+}
+
+::ng-deep {
+    body {
+        --pattern-color-primary: #3f88e5;
+        --pattern-color-secondary: #7ba4f4;
+
+        &[data-fkt-theme="dark"] {
+            --pattern-color-primary: #2e2f3c;
+            --pattern-color-secondary: #393b59;
+        }
+    }
+
+}
+
+fkt-toolbar {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 2;
+}
+
+fkt-side-menu {
+    z-index: 1;
+    position: sticky;
+    height: fit-content;
+    width: 300px;
+    top: 5rem;
+}
+
+fkt-table-of-contents {
+    z-index: 1;
+    position: sticky;
+    height: fit-content;
+    width: 300px;
+    top: 5rem;
+}
+
+.container {
+    padding-top: 6rem;
+    display: flex;
+    width: 100%;
+    height: fit-content;
+    max-width: 1750px;
+    justify-content: center;
+    gap: var(--fkt-space-6xl);
+}
+
+.content {
+    width: 100%;
+    max-width: 1200px;
+}

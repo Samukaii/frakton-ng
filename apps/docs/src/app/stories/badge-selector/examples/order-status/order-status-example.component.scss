@@ -1,0 +1,25 @@
+.container {
+	border: solid 1px var(--fkt-color-neutral-400);
+	display: flex;
+	flex-direction: column;
+	border-radius: var(--fkt-radius-md);
+	padding: var(--fkt-space-md);
+	gap: var(--fkt-space-md);
+
+	&__item {
+		display: flex;
+		align-items: center;
+		gap: var(--fkt-space-sm);
+
+		h3 {
+			margin: 0;
+			font-size: var(--fkt-font-size-sm);
+			font-weight: var(--fkt-font-semibold);
+		}
+	}
+
+	&__status {
+		font-size: var(--fkt-font-size-sm);
+		color: var(--fkt-color-neutral-600);
+	}
+}

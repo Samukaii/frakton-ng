@@ -1,32 +1,18 @@
+// <design-tokens>
+/*
+Month header container gap between elements.
+@name --fkt-calendar-month-header-gap
+@reference --fkt-space-sm
+@component Date selector
+@category Spacing
+@type size
+*/
+$header-gap: var(--fkt-calendar-month-header-gap, var(--fkt-space-sm));
+
+// </design-tokens>
+
 .container {
 	display: flex;
 	align-items: center;
-	gap: var(--space-sm);
-
-	&__month {
-		cursor: pointer;
-		transition: var(--transition-base);
-		padding: var(--space-3xs) var(--space-xs);
-		border-radius: var(--radius-md);
-		text-transform: capitalize;
-		font-size: var(--font-size-lg);
-		font-weight: var(--font-semibold);
-
-		&:hover {
-			background-color: var(--color-blue-100);
-		}
-	}
-
-	&__year {
-		cursor: pointer;
-		transition: var(--transition-base);
-		padding: var(--space-3xs) var(--space-xs);
-		border-radius: var(--radius-md);
-		font-size: var(--font-size-lg);
-		font-weight: var(--font-semibold);
-
-		&:hover {
-			background-color: var(--color-blue-100);
-		}
-	}
+	gap: $header-gap;
 }

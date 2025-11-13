@@ -1,47 +1,56 @@
-<div class="label-container">
-	<label
-		aria-hidden="true"
-		[class.error]="!!error.message()"
-		[class.float]="control().viewValue()"
-	>{{ label() }}</label>
-</div>
-
-<div class="select">
+<div
+	#element
+	(keydown)="handleKeydown(element, $event)"
+	tabindex="0"
+	(click)="openOverlay(element)"
+	class="select">
 	<div
-		#element
 		class="select__container"
 		[class.opened]="opened()"
-		[class.error]="!!error.message()"
-		(click)="openOverlay(element)"
-		(keydown)="handleKeydown(element, $event)"
+		[class.error]="invalid()"
+		[class.show-placeholder]="!!selectedOption()?.label || focused()"
 		role="combobox"
 		aria-haspopup="listbox"
-		tabindex="0"
 		[attr.aria-labelledby]="labelId"
 		[attr.aria-expanded]="opened()"
 		[attr.aria-controls]="opened() ? listBoxId : null"
 		[attr.aria-activedescendant]="opened() ? activeOptionId() : null"
-		[attr.aria-disabled]="control().disabled()"
+		[attr.aria-disabled]="disabled()"
 		[attr.aria-label]="label()"
-		[attr.aria-invalid]="!!error.message()"
-		[attr.aria-errormessage]="!!error.message() ? errorId : null"
+		[attr.aria-invalid]="invalid()"
+		[attr.aria-errormessage]="errors()[0]?.message"
 	>
 		<div>
 			@if (selectedOption()?.label) {
-				<span>
+				<span class="selected-option">
 				{{ selectedOption()?.label }}
 				</span>
 			} @else if (opened()) {
 				<span class="placeholder" aria-hidden="true">{{ placeholder() }}</span>
 			}
 		</div>
-		<fkt-icon aria-hidden="true" name="chevron-down"/>
+		<fkt-icon name="chevron-down"/>
+	</div>
+
+	<div class="border"
+		 [class.error]="invalid() && touched()"
+		 [class.focused]="opened()"
+		 [class.float]="!!selectedOption()?.label || opened()"
+		 [class.disabled]="disabled()"
+	>
+		<div class="left">
+
+		</div>
+		<div
+			[class.hide-label]="hideLabel()"
+			class="center">
+			<label
+				aria-hidden="true"
+			>{{ label() }}</label>
+		</div>
+
+		<div class="right">
+
+		</div>
 	</div>
 </div>
-
-<fkt-field-error
-	#error
-	[id]="errorId"
-	aria-live="polite"
-	[control]="control()"
-/>

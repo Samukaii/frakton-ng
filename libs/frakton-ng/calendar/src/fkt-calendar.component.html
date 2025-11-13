@@ -5,7 +5,7 @@
 			(monthClick)="selectStep('month')"
 			[(currentDate)]="currentDate"
 		/>
-		<hr class="vertical-separator">
+		<hr class="fkt-vertical-separator">
 		<fkt-calendar-date-selector
 			[configFn]="configFn()"
 			[(currentDate)]="currentDate"
@@ -16,9 +16,8 @@
 			(yearClick)="selectStep('year')"
 			[(currentDate)]="currentDate"
 		/>
-		<hr class="vertical-separator">
+		<hr class="fkt-vertical-separator">
 		<fkt-calendar-month-selector
-			[configFn]="configFn()"
 			[(currentDate)]="currentDate"
 			(back)="goBackToLastStep()"
 		/>
@@ -27,7 +26,7 @@
 		<fkt-calendar-multi-year-header
 			[(currentDate)]="currentDate"
 		/>
-		<hr class="vertical-separator">
+		<hr class="fkt-vertical-separator">
 		<fkt-calendar-year-selector
 			[configFn]="configFn()"
 			[(currentDate)]="currentDate"

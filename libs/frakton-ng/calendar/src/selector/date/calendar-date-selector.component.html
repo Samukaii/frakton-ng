@@ -1,17 +1,37 @@
-<div class="calendar">
-	@for (weekday of weekdays(); track weekday) {
-		<div class="calendar__weekday">
-			{{ weekday | date: 'EEE' }}
-		</div>
-	}
-	@for (day of days(); track day.date) {
-		<div
-			[class.calendar__date--clickable]="day.onClick"
-			[class.calendar__date--today]="day.isToday"
-			[class.calendar__date--current-date]="day.isCurrentDate"
-			(click)="day.onClick?.()"
-			[class]="'calendar__date ' + (day.classes | toClass)">
-			{{ day.date | date: 'dd' }}
-		</div>
-	}
+<div
+  class="calendar"
+  role="grid"
+  aria-label="Calendário"
+>
+  <div class="calendar__row" role="row">
+    @for (weekday of weekdays(); track weekday) {
+      <div
+        class="calendar__weekday"
+        role="columnheader"
+        aria-label="{{ weekday | date: 'EEEE' }}"
+      >
+        {{ weekday | date: 'EEE' }}
+      </div>
+    }
+  </div>
+  <div class="calendar__dates" role="rowgroup">
+    @for (day of days(); track day.date) {
+      <div
+        role="gridcell"
+        [class]="`calendar__date ${day.classes | toClass }`"
+        [tabindex]="$index === focusedIndex() ? 0 : -1"
+        [attr.aria-selected]="day.isCurrentDate"
+        [attr.aria-disabled]="!day.onClick"
+        [class.calendar__date--clickable]="day.onClick"
+        [class.calendar__date--today]="day.isToday"
+        [class.calendar__date--current-date]="day.isCurrentDate"
+        (click)="day.onClick?.()"
+        (keydown)="onKeydown($event, day, $index)"
+        [attr.data-calendar-idx]="$index"
+      >
+        {{ day.date | date: 'dd' }}
+      </div>
+    }
+  </div>
 </div>
+<!--[aria-label]="formatAriaLabel(new Date(day.date), {isToday: day.isToday, isCurrent: day.isCurrentDate})"-->

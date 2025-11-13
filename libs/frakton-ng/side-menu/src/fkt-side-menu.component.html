@@ -28,7 +28,7 @@
 						<div
 							class="menu__items">
 							@for (menu of group.items; track menu.path) {
-								<div
+								<button
 									[fktTooltip]="menu.name"
 									[routerLink]="menu.path"
 									position="right-center"
@@ -41,7 +41,7 @@
 									<p>
 										{{ menu.name }}
 									</p>
-								</div>
+								</button>
 							}
 						</div>
 					}

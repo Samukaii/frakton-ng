@@ -1,5 +1,6 @@
 * {
 	box-sizing: border-box;
+	color: var(--fkt-color-neutral-950);
 }
 
 p, h3 {
@@ -7,7 +8,7 @@ p, h3 {
 }
 
 :host {
-	padding: var(--space-xs);
+	padding: var(--fkt-space-xs);
 	width: 400px;
 	display: block;
 }
@@ -20,25 +21,25 @@ p, h3 {
 
 	fkt-icon {
 		font-size: 80px;
-		color: var(--color-red-500);
+		color: var(--fkt-color-danger);
 	}
 
 	&__title {
-		font-size: var(--font-size-lg);
+		font-size: var(--fkt-font-size-lg);
 		text-align: center;
-		font-weight: var(--font-semibold);
-		margin: var(--space-md) 0;
+		font-weight: var(--fkt-font-semibold);
+		margin: var(--fkt-space-md) 0;
 		width: 300px;
 	}
 
 	&__description {
-		color: var(--color-neutral-500);
+		color: var(--fkt-color-neutral-600);
 	}
 }
 
 .actions {
 	display: flex;
-	margin-top: var(--space-md);
+	margin-top: var(--fkt-space-md);
 	justify-content: center;
 
 	fkt-buttons-list {

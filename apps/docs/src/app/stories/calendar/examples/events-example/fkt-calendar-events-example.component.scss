@@ -1,0 +1,115 @@
+:host {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+}
+
+.example-container {
+	padding: 20px;
+	border: solid 1px var(--fkt-color-neutral-200);
+	border-radius: 8px;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	width: 100%;
+	max-width: 800px;
+	height: fit-content;
+
+	h3 {
+		margin: 0 0 8px 0;
+		color: #333;
+		font-size: 18px;
+		font-weight: 600;
+	}
+
+	.description {
+		margin: 0 0 16px 0;
+		color: #666;
+		font-size: 14px;
+	}
+}
+
+.event-info {
+	margin-top: 16px;
+	width: 100%;
+}
+
+.click-history {
+	width: 100%;
+
+	&-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-bottom: 8px;
+
+		h4 {
+			margin: 0;
+			font-size: 14px;
+			font-weight: 600;
+			color: var(--fkt-color-neutral-600);
+			flex: 1;
+		}
+
+		button {
+			padding: 4px 8px;
+			font-size: 12px;
+			border: 1px solid var(--fkt-color-neutral-400);
+			background: var(--fkt-color-neutral-100);
+			border-radius: 4px;
+			cursor: pointer;
+
+			&:hover:not(:disabled) {
+				background: #f5f5f5;
+			}
+
+			&:disabled {
+				opacity: 0.5;
+				cursor: not-allowed;
+			}
+		}
+	}
+
+	.history-items {
+		max-height: 300px;
+		overflow-y: auto;
+		border: 1px solid var(--fkt-color-neutral-400);
+		border-radius: 4px;
+		background: var(--color-neutral-100);
+	}
+
+	.no-history {
+		padding: 12px;
+		text-align: center;
+		color: var(--fkt-color-neutral-500);
+		font-size: 12px;
+		margin: 0;
+	}
+
+	.history-item {
+		padding: var(--fkt-space-md);
+		border-bottom: 1px solid var(--fkt-color-neutral-400);
+		font-size: 12px;
+		color: var(--fkt-color-neutral-950);
+
+		&:last-child {
+			border-bottom: none;
+		}
+	}
+}
+
+.selected-date {
+	margin-top: 16px;
+	font-weight: 500;
+	color: var(--fkt-color-neutral-600);
+	font-size: 14px;
+}
+
+// Global styles for calendar date events
+:host ::ng-deep {
+	.has-events {
+		position: relative;
+		background: var(--fkt-color-success-opacity-20);
+	}
+}

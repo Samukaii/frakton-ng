@@ -1,3 +1,363 @@
+// <design-tokens>
+/*
+Gap between button content elements (icon and text).
+@name --fkt-button-content-gap
+@reference --fkt-space-xs
+@category Spacing
+@type size
+*/
+$content-gap: var(--fkt-button-content-gap, var(--fkt-space-xs));
+
+/*
+Padding for button (vertical and horizontal).
+@name --fkt-button-padding-vertical
+@reference --fkt-space-xs
+@category Spacing
+@type size
+*/
+$padding-vertical: var(--fkt-button-padding-vertical, var(--fkt-space-xs));
+
+/*
+Horizontal padding for button.
+@name --fkt-button-padding-horizontal
+@reference --fkt-space-md
+@category Spacing
+@type size
+*/
+$padding-horizontal: var(--fkt-button-padding-horizontal, var(--fkt-space-md));
+
+/*
+Border radius for button (full rounded).
+@name --fkt-button-border-radius
+@reference --fkt-radius-full
+@category Spacing
+@type size
+*/
+$border-radius: var(--fkt-button-border-radius, var(--fkt-radius-full));
+
+/*
+Border radius for rectangular button shape.
+@name --fkt-button-rect-border-radius
+@reference --fkt-space-2xs
+@category Spacing
+@type size
+*/
+$rect-border-radius: var(--fkt-button-rect-border-radius, var(--fkt-space-2xs));
+
+/*
+Font weight for button text.
+@name --fkt-button-font-weight
+@reference --fkt-font-semibold
+@category Typography
+@type size
+*/
+$font-weight: var(--fkt-button-font-weight, var(--fkt-font-semibold));
+
+/*
+Font weight for icon-only buttons.
+@name --fkt-button-icon-font-weight
+@reference --fkt-font-semibold
+@category Typography
+@type size
+*/
+$icon-font-weight: var(--fkt-button-icon-font-weight, var(--fkt-font-semibold));
+
+/*
+Font weight for icon-only buttons.
+@name --fkt-button-icon-font-size
+@reference --fkt-font-size-xl
+@category Typography
+@type size
+*/
+$icon-font-size: var(--fkt-button-icon-font-size, var(--fkt-font-size-xl));
+
+/*
+Border width for button.
+@name --fkt-button-border-width
+@reference 2px
+@category Spacing
+@type size
+*/
+$border-width: var(--fkt-button-border-width, 2px);
+
+/*
+Border width for icon-only buttons.
+@name --fkt-button-icon-border-width
+@reference 1px
+@category Spacing
+@type size
+*/
+$icon-border-width: var(--fkt-button-icon-border-width, 1px);
+
+/*
+Spinner size for loading state.
+@name --fkt-button-spinner-size
+@reference 20px
+@category Spacing
+@type size
+*/
+$spinner-size: var(--fkt-button-spinner-size, 20px);
+
+/*
+Spinner border width.
+@name --fkt-button-spinner-border-width
+@reference 2px
+@category Spacing
+@type size
+*/
+$spinner-border-width: var(--fkt-button-spinner-border-width, 2px);
+
+/*
+Button background disabled color.
+@name --fkt-button-disabled-color
+@reference --fkt-color-disabled
+@category Colors
+@type color
+*/
+$disabled-color: var(--fkt-button-disabled-color, var(--fkt-color-disabled));
+
+/*
+Outline button color when it gets focused.
+@name --fkt-color-focus-outline
+@reference --fkt-color-disabled
+@category Colors
+@type color
+*/
+$focus-color: var(--fkt-button-focus-outline-color, var(--fkt-color-focus-outline));
+
+/*
+Button text disabled color.
+@name --fkt-button-on-disabled-color
+@reference --fkt-color-on-disabled
+@category Colors
+@type color
+*/
+$disabled-on-color: var(--fkt-button-on-disabled-color, var(--fkt-color-on-disabled));
+
+/*
+Primary button background and border color.
+@name --fkt-button-primary-color
+@reference --fkt-color-primary
+@category Colors
+@type color
+*/
+$primary-color: var(--fkt-button-primary-color, var(--fkt-color-primary));
+
+/*
+Primary button text and icon color.
+@name --fkt-button-on-primary-color
+@reference --fkt-color-on-primary
+@category Colors
+@type color
+*/
+$on-primary-color: var(--fkt-button-on-primary-color, var(--fkt-color-on-primary));
+
+/*
+Primary button hover background and border color.
+@name --fkt-button-primary-hover-color
+@reference --fkt-color-primary-hover
+@category Colors
+@type color
+*/
+$primary-hover-color: var(--fkt-button-primary-hover-color, var(--fkt-color-primary-hover));
+
+/*
+Success button translucent background color (used for basic theme hover).
+@name --fkt-button-primary-translucent-color
+@reference --fkt-color-primary-opacity-20
+@category Colors
+@type color
+*/
+$primary-translucent-color: var(--fkt-button-primary-translucent-color, var(--fkt-color-primary-opacity-20));
+
+// Color variants - Success
+/*
+Success button background and border color.
+@name --fkt-button-success-color
+@reference --fkt-color-success
+@category Colors
+@type color
+*/
+$success-color: var(--fkt-button-success-color, var(--fkt-color-success));
+
+/*
+Success button text and icon color.
+@name --fkt-button-on-success-color
+@reference --fkt-color-on-success
+@category Colors
+@type color
+*/
+$on-success-color: var(--fkt-button-on-success-color, var(--fkt-color-on-success));
+
+/*
+Success button hover background and border color.
+@name --fkt-button-success-hover-color
+@reference --fkt-color-success-hover
+@category Colors
+@type color
+*/
+$success-hover-color: var(--fkt-button-success-hover-color, var(--fkt-color-success-hover));
+
+/*
+Success button translucent background color (used for basic theme hover).
+@name --fkt-button-success-translucent-color
+@reference --fkt-color-success-opacity-20
+@category Colors
+@type color
+*/
+$success-translucent-color: var(--fkt-button-success-translucent-color, var(--fkt-color-success-opacity-20));
+
+// Color variants - Error
+/*
+Error button background and border color.
+@name --fkt-button-danger-color
+@reference --fkt-color-danger
+@category Colors
+@type color
+*/
+$danger-color: var(--fkt-button-danger-color, var(--fkt-color-danger));
+
+/*
+Error button text and icon color.
+@name --fkt-button-on-danger-color
+@reference --fkt-color-on-danger
+@category Colors
+@type color
+*/
+$on-danger-color: var(--fkt-button-on-danger-color, var(--fkt-color-on-danger));
+
+/*
+Error button hover background and border color.
+@name --fkt-button-danger-hover-color
+@reference --fkt-color-danger-hover
+@category Colors
+@type color
+*/
+$danger-hover-color: var(--fkt-button-danger-hover-color, var(--fkt-color-danger-hover));
+
+/*
+Danger button translucent background color (used for basic theme hover).
+@name --fkt-button-danger-translucent-color
+@reference --fkt-color-danger-opacity-20
+@category Colors
+@type color
+*/
+$danger-translucent-color: var(--fkt-button-danger-translucent-color, var(--fkt-color-danger-opacity-20));
+
+// Color variants - Warning
+/*
+Warning button background and border color.
+@name --fkt-button-warning-color
+@reference --fkt-color-warning
+@category Colors
+@type color
+*/
+$warning-color: var(--fkt-button-warning-color, var(--fkt-color-warning));
+
+/*
+Warning button text and icon color.
+@name --fkt-button-on-warning-color
+@reference --fkt-color-on-warning
+@category Colors
+@type color
+*/
+$on-warning-color: var(--fkt-button-on-warning-color, var(--fkt-color-on-warning));
+
+/*
+Warning button hover background and border color.
+@name --fkt-button-warning-hover-color
+@reference --fkt-color-warning-hover
+@category Colors
+@type color
+*/
+$warning-hover-color: var(--fkt-button-warning-hover-color, var(--fkt-color-warning-hover));
+
+/*
+Warning button translucent background color (used for basic theme hover).
+@name --fkt-button-warning-translucent-color
+@reference --fkt-color-warning-opacity-20
+@category Colors
+@type color
+*/
+$warning-translucent-color: var(--fkt-button-warning-translucent-color, var(--fkt-color-warning-opacity-20));
+
+// Color variants - Info
+/*
+Info button background and border color.
+@name --fkt-button-info-color
+@reference --fkt-color-info
+@category Colors
+@type color
+*/
+$info-color: var(--fkt-button-info-color, var(--fkt-color-info));
+
+/*
+Info button text and icon color.
+@name --fkt-button-on-info-color
+@reference --fkt-color-on-info
+@category Colors
+@type color
+*/
+$on-info-color: var(--fkt-button-on-info-color, var(--fkt-color-on-info));
+
+/*
+Info button hover background and border color.
+@name --fkt-button-info-hover-color
+@reference --fkt-color-info-hover
+@category Colors
+@type color
+*/
+$info-hover-color: var(--fkt-button-info-hover-color, var(--fkt-color-info-hover));
+
+/*
+Success button translucent background color (used for basic theme hover).
+@name --fkt-button-info-translucent-color
+@reference --fkt-color-info-opacity-20
+@category Colors
+@type color
+*/
+$info-translucent-color: var(--fkt-button-info-translucent-color, var(--fkt-color-info-opacity-20));
+
+// Color variants - Accent
+/*
+Accent button background and border color.
+@name --fkt-button-accent-color
+@reference --fkt-color-accent
+@category Colors
+@type color
+*/
+$accent-color: var(--fkt-button-accent-color, var(--fkt-color-accent));
+
+/*
+Accent button text and icon color.
+@name --fkt-button-on-accent-color
+@reference --fkt-color-on-accent
+@category Colors
+@type color
+*/
+$on-accent-color: var(--fkt-button-on-accent-color, var(--fkt-color-on-accent));
+
+/*
+Accent button hover background and border color.
+@name --fkt-button-accent-hover-color
+@reference --fkt-color-accent
+@category Colors
+@type color
+*/
+$accent-hover-color: var(--fkt-button-accent-hover-color, var(--fkt-color-accent));
+
+/*
+Accent button translucent background color (used for basic theme hover).
+@name --fkt-button-accent-translucent-color
+@reference --fkt-color-accent-opacity-20
+@category Colors
+@type color
+*/
+$accent-translucent-color: var(--fkt-button-accent-translucent-color, var(--fkt-color-accent-opacity-20));
+
+// </design-tokens>
+
+
 :host {
 	display: block;
 	width: fit-content;
@@ -5,7 +365,7 @@
 
 p {
 	margin: 0;
-	font-size: var(--font-size-md);
+	font-size: var(--fkt-font-size-md);
 }
 
 
@@ -18,7 +378,16 @@ button {
 	background: none;
 	font-family: inherit;
 	font-size: inherit;
-	outline: none;
+
+	fkt-icon {
+		font-weight: $icon-font-weight;
+		font-size: $icon-font-size;
+	}
+
+	&:focus-visible {
+		outline: none;
+		box-shadow: 0 0 0 2px $focus-color;
+	}
 
 	&:disabled {
 		cursor: not-allowed;
@@ -29,7 +398,7 @@ button {
 .button-content {
 	display: flex;
 	align-items: center;
-	gap: var(--space-xs);
+	gap: $content-gap;
 
 	&.icon-left {
 		flex-direction: row-reverse;
@@ -37,10 +406,10 @@ button {
 }
 
 .spinner {
-	width: 20px;
-	height: 20px;
-	border: 2px solid #e5e7eb;
-	border-top-color: currentColor;
+	width: $spinner-size;
+	height: $spinner-size;
+	border: $spinner-border-width solid #e5e7eb;
+	border-top-color: #ffffff61;
 	border-radius: 50%;
 	animation: spin 1s linear infinite;
 }
@@ -52,96 +421,137 @@ button {
 }
 
 .theme-raised {
-	transition: var(--transition-base);
+	transition: var(--fkt-transition-base);
 	display: flex;
-	gap: var(--space-xs);
-	font-weight: var(--font-semibold);
+	align-items: center;
+	gap: $content-gap;
+	font-weight: $font-weight;
 	color: white;
-	border: 2px solid;
-	padding: var(--space-xs) var(--space-md);
-	border-radius: var(--radius-full);
-	box-shadow: var(--shadow-md);
+	border: $border-width solid;
+	padding: $padding-vertical $padding-horizontal;
+	border-radius: $border-radius;
+	box-shadow: var(--fkt-shadow-md);
 
-	&:disabled {
-		opacity: 0.4;
-		box-shadow: none;
-
-		&:hover {
-			box-shadow: none;
-		}
+	.spinner {
+		border: $spinner-border-width solid #e5e7eb;
+		border-top-color: #ffffff61;
 	}
 
 	&:hover:not(:disabled) {
-		box-shadow: var(--shadow-lg);
+		box-shadow: var(--fkt-shadow-lg);
 	}
 
-	&.variant-rounded {
+	&.shape-rounded {
 		&.icon-only {
-			padding: var(--space-xs);
+			padding: $padding-vertical;
+			border-width: $icon-border-width;
+			font-weight: $icon-font-weight;
 		}
 	}
 
-	&.variant-rect {
-		border-radius: var(--space-2xs);
+	&.shape-rect {
+		border-radius: $rect-border-radius;
 
 		&.icon-only {
-			padding: var(--space-xs);
+			padding: $padding-vertical;
+			border-width: $icon-border-width;
+			font-weight: $icon-font-weight;
 		}
 	}
 
 	&.color-primary {
-		background-color: var(--color-neutral-800);
-		border-color: var(--color-neutral-800);
+		background-color: $primary-color;
+		border-color: $primary-color;
+		color: $on-primary-color;
 
 		&:hover:not(:disabled) {
-			background-color: var(--color-neutral-700);
-			border-color: var(--color-neutral-700);
+			background-color: $primary-hover-color;
+			border-color: $primary-hover-color;
 		}
 	}
 
-	&.color-yellow {
-		background-color: var(--color-yellow-500);
-		border-color: var(--color-yellow-500);
-		color: var(--color-neutral-800);
+	&.color-accent {
+		background-color: $accent-color;
+		border-color: $accent-color;
+		color: $on-accent-color;
 
 		&:hover:not(:disabled) {
-			background-color: var(--color-yellow-400);
-			border-color: var(--color-yellow-400);
-		}
-
-		&:disabled:hover {
-			background-color: var(--color-yellow-600);
-			border-color: var(--color-yellow-600);
+			background-color: $accent-hover-color;
+			border-color: $accent-hover-color;
 		}
 	}
 
-	&.color-red {
-		background-color: var(--color-red-600);
-		border-color: var(--color-red-600);
+	&.color-warning {
+		background-color: $warning-color;
+		border-color: $warning-color;
+		color: $on-warning-color;
 
 		&:hover:not(:disabled) {
-			background-color: var(--color-red-500);
-			border-color: var(--color-red-500);
-		}
-
-		&:disabled:hover {
-			background-color: var(--color-red-700);
-			border-color: var(--color-red-700);
+			background-color: $warning-hover-color;
+			border-color: $warning-hover-color;
 		}
 	}
 
-	&.color-green {
-		background-color: var(--color-green-600);
-		border-color: var(--color-green-600);
+	&.color-danger {
+		background-color: $danger-color;
+		border-color: $danger-color;
+		color: $on-danger-color;
 
 		&:hover:not(:disabled) {
-			background-color: var(--color-green-500);
-			border-color: var(--color-green-500);
+			background-color: $danger-hover-color;
+			border-color: $danger-hover-color;
+		}
+	}
+
+	&.color-info {
+		background-color: $info-color;
+		border-color: $info-color;
+		color: $on-info-color;
+
+		&:hover:not(:disabled) {
+			background-color: $info-hover-color;
+			border-color: $info-hover-color;
+		}
+	}
+
+	&.color-success {
+		background-color: $success-color;
+		border-color: $success-color;
+		color: $on-success-color;
+
+		&:hover:not(:disabled) {
+			background-color: $success-hover-color;
+			border-color: $success-hover-color;
+		}
+	}
+
+	&.color-custom {
+		background-color: var(--custom-color);
+		border-color: var(--custom-color);
+		color: var(--custom-label-color);
+
+		&:hover:not(:disabled) {
+			background-color: var(--custom-hover-color);
+			border-color: var(--custom-hover-color);
+		}
+	}
+
+	&:disabled {
+		box-shadow: none;
+		background-color: $disabled-color;
+		border-color: $disabled-color;
+		color: $disabled-on-color;
+
+		.spinner {
+			border: $spinner-border-width solid $disabled-on-color;
+			border-top-color: #ffffff61;
 		}
 
-		&:disabled:hover {
-			background-color: var(--color-green-700);
-			border-color: var(--color-green-700);
+		&:hover {
+			box-shadow: none;
+			background-color: $disabled-color;
+			border-color: $disabled-color;
+			color: $disabled-on-color;
 		}
 	}
 }
@@ -150,126 +560,281 @@ button {
 	transition: background-color 0.3s ease;
 	display: flex;
 	align-items: center;
-	gap: var(--space-xs);
-	font-weight: var(--font-semibold);
-	border: 2px solid;
-	padding: var(--space-xs) var(--space-md);
-	border-radius: var(--radius-full);
+	gap: $content-gap;
+	font-weight: $font-weight;
+	border: $border-width solid;
+	padding: $padding-vertical $padding-horizontal;
+	border-radius: $border-radius;
 	background-color: transparent;
 
-	&:disabled {
-		opacity: 0.6;
-		filter: grayscale(100%);
-	}
 
-	&.variant-rounded {
+	&.shape-rounded {
 		&.icon-only {
-			padding: var(--space-xs);
+			padding: $padding-vertical;
+			border-width: $icon-border-width;
+			font-weight: $icon-font-weight;
 		}
 	}
 
-	&.variant-rect {
-		border-radius: var(--space-2xs);
+	&.shape-rect {
+		border-radius: $rect-border-radius;
 
 		&.icon-only {
-			padding: var(--space-xs);
+			padding: $padding-vertical;
+			border-width: $icon-border-width;
+			font-weight: $icon-font-weight;
 		}
 	}
 
-	&.color-yellow {
-		color: var(--color-yellow-500);
-		border-color: var(--color-yellow-500);
+	&.color-accent {
+		color: $accent-color;
+		border-color: $accent-color;
+
+		.spinner {
+			border: $spinner-border-width solid $accent-color;
+			border-top-color: $accent-translucent-color;
+		}
 
 		&:hover:not(:disabled) {
-			background-color: var(--color-yellow-500);
-			color: var(--color-neutral-100);
+			background-color: $accent-color;
+			color: $on-accent-color;
+		}
+	}
+
+	&.color-warning {
+		color: $warning-color;
+		border-color: $warning-color;
+
+		.spinner {
+			border: $spinner-border-width solid $warning-color;
+			border-top-color: $warning-translucent-color;
+		}
+
+		&:hover:not(:disabled) {
+			background-color: $warning-color;
+			color: $on-warning-color;
 		}
 	}
 
 	&.color-primary {
-		color: var(--color-gray-800);
-		border-color: var(--color-gray-800);
+		color: $primary-color;
+		border-color: $primary-color;
+
+		.spinner {
+			border: $spinner-border-width solid $primary-color;
+			border-top-color: $primary-translucent-color;
+		}
 
 		&:hover:not(:disabled) {
-			background-color: var(--color-gray-800);
-			color: var(--color-neutral-100);
+			background-color: $primary-color;
+			color: $on-primary-color;
 		}
 	}
 
-	&.color-red {
-		color: var(--color-red-500);
-		border-color: var(--color-red-500);
+	&.color-danger {
+		color: $danger-color;
+		border-color: $danger-color;
+
+		.spinner {
+			border: $spinner-border-width solid $danger-color;
+			border-top-color: $danger-translucent-color;
+		}
 
 		&:hover:not(:disabled) {
-			background-color: var(--color-red-500);
-			color: var(--color-neutral-100);
+			background-color: $danger-color;
+			color: $on-danger-color;
 		}
 	}
 
-	&.color-green {
-		color: var(--color-green-500);
-		border-color: var(--color-green-500);
+	&.color-success {
+		color: $success-color;
+		border-color: $success-color;
+
+		.spinner {
+			border: $spinner-border-width solid $success-color;
+			border-top-color: $success-translucent-color;
+		}
 
 		&:hover:not(:disabled) {
-			background-color: var(--color-green-500);
-			color: var(--color-neutral-100);
+			background-color: $success-color;
+			color: $on-success-color;
+		}
+	}
+
+	&.color-info {
+		color: $info-color;
+		border-color: $info-color;
+
+		.spinner {
+			border: $spinner-border-width solid $info-color;
+			border-top-color: $info-translucent-color;
+		}
+
+		&:hover:not(:disabled) {
+			background-color: $info-color;
+			color: $on-info-color;
+		}
+	}
+
+	&.color-custom {
+		color: var(--custom-color);
+		border-color: var(--custom-color);
+
+		&:hover:not(:disabled) {
+			background-color: var(--custom-color);
+			color: var(--custom-label-color);
+		}
+	}
+
+	&:hover {
+		.spinner {
+			border: $spinner-border-width solid #e5e7eb;
+			border-top-color: #ffffff61;
+		}
+	}
+
+	&:disabled {
+		background-color: $disabled-color;
+		border-color: $disabled-color;
+		color: $disabled-on-color;
+
+		.spinner {
+			border: $spinner-border-width solid $disabled-on-color;
+			border-top-color: rgba(0, 0, 0, 0.1);
 		}
 	}
 }
 
 .theme-basic {
-	transition: var(--transition-base);
+	transition: var(--fkt-transition-base);
 	display: flex;
 	align-items: center;
-	gap: var(--space-xs);
-	font-weight: var(--font-semibold);
-	padding: var(--space-xs) var(--space-md);
-	border-radius: var(--radius-full);
+	gap: $content-gap;
+	font-weight: $font-weight;
+	padding: $padding-vertical $padding-horizontal;
+	border-radius: $border-radius;
 	background-color: transparent;
-	border: none;
+	border: $border-width solid transparent;
 
-	&:hover:not(:disabled) {
-		background-color: rgba(0, 0, 0, 0.09);
-	}
-
-	&:disabled {
-		opacity: 0.6;
-		filter: grayscale(100%);
-		background-color: var(--color-neutral-400);
-
-		&:hover {
-			background-color: var(--color-neutral-400);
-		}
-	}
-
-	&.variant-rounded {
+	&.shape-rounded {
 		&.icon-only {
-			padding: var(--space-xs);
+			padding: $padding-vertical;
+			border-width: $icon-border-width;
+			font-weight: $icon-font-weight;
 		}
 	}
 
-	&.variant-rect {
-		border-radius: var(--space-2xs);
+	&.shape-rect {
+		border-radius: $rect-border-radius;
 
 		&.icon-only {
-			padding: var(--space-xs);
+			padding: $padding-vertical;
+			border-width: $icon-border-width;
+			font-weight: $icon-font-weight;
 		}
 	}
 
-	&.color-yellow {
-		color: var(--color-yellow-500);
+	&.color-accent {
+		color: $accent-color;
+
+		.spinner {
+			border: $spinner-border-width solid $accent-color;
+			border-top-color: $accent-translucent-color;
+		}
+
+		&:hover:not(:disabled) {
+			background-color: $accent-translucent-color;
+		}
+	}
+
+	&.color-warning {
+		color: $warning-color;
+
+		.spinner {
+			border: $spinner-border-width solid $warning-color;
+			border-top-color: $warning-translucent-color;
+		}
+
+		&:hover:not(:disabled) {
+			background-color: $warning-translucent-color;
+		}
 	}
 
 	&.color-primary {
-		color: var(--color-gray-800);
+		color: $primary-color;
+
+		.spinner {
+			border: $spinner-border-width solid $primary-color;
+			border-top-color: $primary-translucent-color;
+		}
+
+		&:hover:not(:disabled) {
+			background-color: $primary-translucent-color;
+		}
 	}
 
-	&.color-red {
-		color: var(--color-red-500);
+	&.color-danger {
+		color: $danger-color;
+
+		.spinner {
+			border: $spinner-border-width solid $danger-color;
+			border-top-color: $danger-translucent-color;
+		}
+
+		&:hover:not(:disabled) {
+			background-color: $danger-translucent-color;
+		}
 	}
 
-	&.color-green {
-		color: var(--color-green-500);
+	&.color-success {
+		color: $success-color;
+
+		.spinner {
+			border: $spinner-border-width solid $success-color;
+			border-top-color: $success-translucent-color;
+		}
+
+		&:hover:not(:disabled) {
+			background-color: $success-translucent-color;
+		}
+	}
+
+	&.color-info {
+		color: $info-color;
+
+		.spinner {
+			border: $spinner-border-width solid $info-color;
+			border-top-color: $info-translucent-color;
+		}
+
+		&:hover:not(:disabled) {
+			background-color: $info-translucent-color;
+		}
+	}
+
+	&.color-custom {
+		color: var(--custom-color);
+
+		.spinner {
+			border: $spinner-border-width solid var(--custom-color);
+			border-top-color: var(--custom-translucent-color);
+		}
+
+		&:hover:not(:disabled) {
+			background-color: var(--custom-translucent-color);
+		}
+	}
+
+	&:disabled:not(.loading) {
+		background-color: $disabled-color;
+		border-color: $disabled-color;
+		color: $disabled-on-color;
+
+		&:hover {
+			background-color: $disabled-color;
+			border-color: $disabled-color;
+			color: $disabled-on-color;
+		}
 	}
 }
 

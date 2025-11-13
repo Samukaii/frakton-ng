@@ -1,0 +1,184 @@
+// <design-tokens>
+/*
+Gap between color picker elements.
+@name --fkt-color-picker-gap
+@reference --fkt-space-xs
+@component Field
+@category Spacing
+@type size
+*/
+$gap: var(--fkt-color-picker-gap, var(--fkt-space-xs));
+
+/*
+Border radius for color picker elements.
+@name --fkt-color-picker-border-radius
+@reference --fkt-radius-md
+@component Field
+@category Shape
+@type size
+*/
+$border-radius: var(--fkt-color-picker-border-radius, var(--fkt-radius-md));
+
+/*
+Border radius for color picker elements.
+@name --fkt-color-picker-preview-border-radius
+@reference --fkt-radius-md
+@component Field
+@category Shape
+@type size
+*/
+$preview-border-radius: var(--fkt-color-picker-preview-border-radius, var(--fkt-radius-md));
+
+/*
+Border color for color picker elements.
+@name --fkt-color-picker-border-color
+@reference --fkt-color-neutral-400
+@component Field
+@category Colors
+@type color
+*/
+$border-color: var(--fkt-color-picker-border-color, var(--fkt-color-neutral-400));
+
+/*
+Background color for button hover state.
+@name --fkt-color-picker-button-hover-bg
+@reference --fkt-color-neutral-200
+@component Field
+@category Colors
+@type color
+*/
+$button-hover-bg: var(--fkt-color-picker-button-hover-bg, var(--fkt-color-neutral-300));
+
+/*
+Outline color when button gets focused
+@name --fkt-color-picker-button-focus-outline
+@reference --fkt-color-focus-outline
+@component Field
+@category Colors
+@type color
+*/
+$button-focus-color: var(--fkt-color-picker-button-focus-outline, var(--fkt-color-focus-outline));
+
+/*
+Text color for color labels and descriptions.
+@name --fkt-color-picker-label-color
+@reference --fkt-color-neutral-900
+@component Field
+@category Colors
+@type color
+*/
+$label-color: var(--fkt-color-picker-label-color, var(--fkt-color-neutral-900));
+
+/*
+Text color for preview color code.
+@name --fkt-color-picker-preview-value-color
+@reference --fkt-color-neutral-500
+@component Field
+@category Colors
+@type color
+*/
+$preview-value: var(--fkt-color-picker-preview-value-color, var(--fkt-color-neutral-600));
+
+/*
+Width of the color preview area.
+@name --fkt-color-picker-preview-width
+@reference 40px
+@component Field
+@category Spacing
+@type size
+*/
+$preview-width: var(--fkt-color-picker-preview-width, 40px);
+
+/*
+Height of the color preview area.
+@name --fkt-color-picker-preview-height
+@reference 40px
+@component Field
+@category Spacing
+@type size
+*/
+$preview-height: var(--fkt-color-picker-preview-height, 40px);
+
+// </design-tokens>
+
+:host {
+	display: flex;
+	gap: $gap;
+}
+
+p {
+	margin: 0;
+	color: $label-color;
+}
+
+button {
+	display: flex;
+	background: transparent;
+	gap: $gap;
+	align-items: center;
+	justify-content: space-between;
+	padding: $gap;
+	border-radius: $border-radius;
+	border: solid 1px $border-color;
+	width: 100%;
+	cursor: pointer;
+	transition: var(--fkt-transition-base);
+	color: $label-color;
+
+	&:hover {
+		background-color: $button-hover-bg;
+	}
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px $button-focus-color;
+  }
+
+	.preview-container {
+		display: flex;
+		gap: var(--fkt-space-xs);
+		align-items: center;
+
+		.fkt-transparency-bg {
+			border-radius: $preview-border-radius;
+			border: solid 1px $border-color;
+			overflow: hidden;
+		}
+
+		.preview-circle {
+			width: $preview-width;
+			height: $preview-height;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+
+			.no-color {
+				width: 1px;
+				height: 100%;
+				transform: rotateZ(-45deg);
+				background-color: red;
+			}
+		}
+
+		.content {
+			display: flex;
+			flex-direction: column;
+			gap: var(--fkt-space-3xs);
+			align-items: flex-start;
+
+			.label {
+				font-weight: var(--fkt-font-semibold);
+			}
+
+			.preview-value {
+				color: $preview-value;
+			}
+		}
+	}
+
+	.actions {
+		display: flex;
+		gap: var(--fkt-space-xs);
+		justify-content: flex-end;
+	}
+}

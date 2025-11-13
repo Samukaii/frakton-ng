@@ -1,0 +1,125 @@
+<div class="opened-example">
+  <fkt-drawer 
+    [opened]="opened()" 
+    mode="push" 
+    width="250px">
+    <div side-content class="drawer-content">
+      <div class="logo-section">
+        <div class="logo">
+          <fkt-icon name="building-office"></fkt-icon>
+        </div>
+        <h3>Admin Panel</h3>
+      </div>
+      
+      <nav class="navigation">
+        <div class="nav-section">
+          <div class="nav-label">MAIN</div>
+          <a href="#" class="nav-item active">
+            <span class="icon">
+              <fkt-icon name="chart-bar"></fkt-icon>
+            </span>
+            <span>Dashboard</span>
+          </a>
+          <a href="#" class="nav-item">
+            <span class="icon">
+              <fkt-icon name="users"></fkt-icon>
+            </span>
+            <span>Users</span>
+          </a>
+          <a href="#" class="nav-item">
+            <span class="icon">
+              <fkt-icon name="cube"></fkt-icon>
+            </span>
+            <span>Products</span>
+          </a>
+        </div>
+        
+        <div class="nav-section">
+          <div class="nav-label">ANALYTICS</div>
+          <a href="#" class="nav-item">
+            <span class="icon">
+              <fkt-icon name="document-chart-bar"></fkt-icon>
+            </span>
+            <span>Reports</span>
+          </a>
+          <a href="#" class="nav-item">
+            <span class="icon">
+              <fkt-icon name="chart-pie"></fkt-icon>
+            </span>
+            <span>Analytics</span>
+          </a>
+        </div>
+        
+        <div class="nav-section">
+          <div class="nav-label">SETTINGS</div>
+          <a href="#" class="nav-item">
+            <span class="icon">
+              <fkt-icon name="cog-6-tooth"></fkt-icon>
+            </span>
+            <span>Configuration</span>
+          </a>
+          <a href="#" class="nav-item">
+            <span class="icon">
+              <fkt-icon name="wrench"></fkt-icon>
+            </span>
+            <span>Tools</span>
+          </a>
+        </div>
+      </nav>
+      
+      <div class="user-section">
+        <div class="user-avatar">
+          <fkt-icon name="user-circle"></fkt-icon>
+        </div>
+        <div class="user-info">
+          <div class="user-name">John Doe</div>
+          <div class="user-role">Administrator</div>
+        </div>
+      </div>
+    </div>
+
+    <div side-main class="main-content">
+    <header class="header">
+      <button class="toggle-btn" (click)="toggleDrawer()">
+        @if (opened()) {
+          <fkt-icon name="chevron-left"></fkt-icon>
+          Collapse
+        } @else {
+          <fkt-icon name="chevron-right"></fkt-icon>
+          Expand
+        }
+      </button>
+      <h2>Opened State Example</h2>
+    </header>
+    
+    <div class="content">
+      <div class="welcome-card">
+        <h3>Welcome to the Admin Dashboard</h3>
+        <p>This example shows the drawer in its opened state by default, demonstrating how it looks when fully expanded with navigation content.</p>
+      </div>
+      
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-value">1,234</div>
+          <div class="stat-label">Total Users</div>
+        </div>
+        
+        <div class="stat-card">
+          <div class="stat-value">567</div>
+          <div class="stat-label">Active Sessions</div>
+        </div>
+        
+        <div class="stat-card">
+          <div class="stat-value">89%</div>
+          <div class="stat-label">Uptime</div>
+        </div>
+        
+        <div class="stat-card">
+          <div class="stat-value">$12.3k</div>
+          <div class="stat-label">Revenue</div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </fkt-drawer>
+</div>

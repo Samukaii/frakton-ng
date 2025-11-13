@@ -1,0 +1,39 @@
+<div class="push-example">
+  <fkt-drawer 
+    [opened]="opened()" 
+    mode="push" 
+    width="250px">
+    <div side-content class="drawer-content">
+      <h3>Navigation Menu</h3>
+      <nav>
+        <a href="#" class="nav-item">Dashboard</a>
+        <a href="#" class="nav-item">Profile</a>
+        <a href="#" class="nav-item">Settings</a>
+        <a href="#" class="nav-item">Analytics</a>
+        <a href="#" class="nav-item">Reports</a>
+        <a href="#" class="nav-item">Help</a>
+      </nav>
+    </div>
+
+    <div side-main class="main-content">
+    <header class="header">
+      <button class="toggle-btn" (click)="toggleDrawer()">
+        <fkt-icon name="bars-3"></fkt-icon>
+        Toggle Menu
+      </button>
+      <h2>Push Mode Drawer</h2>
+    </header>
+    
+    <div class="content">
+      <p>This drawer pushes the main content to the side when opened. The content moves and resizes to accommodate the drawer.</p>
+      <p>Try clicking the toggle button to see how the drawer pushes the main content area.</p>
+      
+      <div class="demo-content">
+        <h4>Sample Content</h4>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      </div>
+    </div>
+    </div>
+  </fkt-drawer>
+</div>

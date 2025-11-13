@@ -1,0 +1,12 @@
+@let indexer = storyIndexer();
+@let resolved = storyResolved.value();
+
+@if (indexer && resolved) {
+    @for (story of stories(); track story.name) {
+        <fkt-story-renderer
+            [storyName]="story.name"
+            [indexer]="indexer"
+            [storyResolved]="resolved"
+        />
+    }
+}

@@ -9,21 +9,41 @@ import { FktGeometryPosition } from "frakton-ng/internal/types";
 	templateUrl: './fkt-tooltip.component.html',
 	styleUrl: './fkt-tooltip.component.scss',
 	host: {
-		'[style.--color]': 'tooltipColor()',
+		'[style.--background-color]': 'tooltipColor().background',
+		'[style.--text-color]': 'tooltipColor().text',
 	},
 })
 export class FktTooltipComponent {
 	text = input.required<string>();
 	color = input<FktColor>();
 
-	overlayInfo = inject(OVERLAY_INFO);
+	private overlayInfo = inject(OVERLAY_INFO);
 
-	private colorMap: Record<FktColor, string> = {
-		red: '#ef4444',
-		green: '#22c55e',
-		primary: '#1f2937',
-		yellow: '#eab308',
-		blue: '#2B7FFFFF',
+	private colorMap: Record<FktColor, { background: string; text: string }> = {
+		danger: {
+			background: 'var(--fkt-tooltip-color-danger, var(--fkt-color-danger))',
+			text: "var(--fkt-tooltip-color-on-danger, var(--fkt-color-on-danger))"
+		},
+		success: {
+			background: 'var(--fkt-tooltip-color-success, var(--fkt-color-success))',
+			text: "var(--fkt-tooltip-color-on-success, var(--fkt-color-on-success))"
+		},
+		primary: {
+			background: 'var(--fkt-tooltip-color-primary, var(--fkt-color-primary))',
+			text: "var(--fkt-tooltip-color-on-primary, var(--fkt-color-on-primary))"
+		},
+		accent: {
+			background: 'var(--fkt-tooltip-color-accent, var(--fkt-color-accent))',
+			text: "var(--fkt-tooltip-color-on-accent, var(--fkt-color-on-accent))"
+		},
+		warning: {
+			background: 'var(--fkt-tooltip-color-warning, var(--fkt-color-warning))',
+			text: "var(--fkt-tooltip-color-on-warning, var(--fkt-color-on-warning))"
+		},
+		info: {
+			background: 'var(--fkt-tooltip-color-info, var(--fkt-color-info))',
+			text: "var(--fkt-tooltip-color-on-info, var(--fkt-color-on-info))"
+		},
 	};
 
 	private tipPositionMap: Record<
@@ -51,7 +71,7 @@ export class FktTooltipComponent {
 		'top-start': 'bottom-start',
 	};
 
-	tooltipColor = computed(() => {
+	protected tooltipColor = computed(() => {
 		return this.colorMap[this.color() ?? 'primary'];
 	});
 

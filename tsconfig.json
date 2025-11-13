@@ -2,6 +2,7 @@
 	"compileOnSave": false,
 	"compilerOptions": {
 		"baseUrl": "./",
+		"esModuleInterop": true,
 		"paths": {
 			"frakton-ng/autocomplete": [
 				"libs/frakton-ng/autocomplete"
@@ -30,6 +31,15 @@
 			"frakton-ng/checkbox": [
 				"libs/frakton-ng/checkbox"
 			],
+			"frakton-ng/color-picker": [
+				"libs/frakton-ng/color-picker"
+			],
+			"frakton-ng/focus-trap": [
+				"libs/frakton-ng/focus-trap"
+			],
+			"frakton-ng/navigable-list": [
+				"libs/frakton-ng/navigable-list"
+			],
 			"frakton-ng/core": [
 				"libs/frakton-ng/core"
 			],
@@ -44,9 +54,6 @@
 			],
 			"frakton-ng/field-error": [
 				"libs/frakton-ng/field-error"
-			],
-			"frakton-ng/form": [
-				"libs/frakton-ng/form"
 			],
 			"frakton-ng/forms": [
 				"libs/frakton-ng/forms"
@@ -101,6 +108,9 @@
 			],
 			"frakton-ng/tooltip": [
 				"libs/frakton-ng/tooltip"
+			],
+			"frakton-ng/toggle": [
+				"libs/frakton-ng/toggle"
 			]
 		},
 		"strict": true,

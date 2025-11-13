@@ -1,15 +1,16 @@
 :host {
 	display: flex;
 	justify-content: flex-start;
-	font-size: var(--font-size-xs);
+	font-size: var(--fkt-font-size-xs);
 	overflow: hidden;
-	color: var(--color-red-500);
-	transition: var(--transition-base);
-	height: var(--space-lg);
+	color: var(--fkt-color-danger);
+	transition: var(--fkt-transition-base);
+	height: var(--fkt-space-lg);
 	max-height: 0;
 	line-height: 1.25rem;
+	padding-left: 1rem;
 
 	&.active {
-		max-height: var(--space-lg);
+		max-height: var(--fkt-space-lg);
 	}
 }

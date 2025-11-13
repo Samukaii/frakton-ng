@@ -1,3 +1,15 @@
+// <design-tokens>
+/*
+Gap between action cell elements.
+@name --fkt-table-cell-action-gap
+@reference --fkt-space-xs
+@component Display
+@category Spacing
+@type size
+*/
+$gap: var(--fkt-table-cell-action-gap, var(--fkt-space-xs));
+// </design-tokens>
+
 * {
 	box-sizing: border-box;
 }
@@ -9,7 +21,7 @@ p {
 :host {
 	display: flex;
 	width: 100%;
-	gap: var(--space-xs);
+	gap: $gap;
 	align-items: center;
 	justify-content: space-between;
 }

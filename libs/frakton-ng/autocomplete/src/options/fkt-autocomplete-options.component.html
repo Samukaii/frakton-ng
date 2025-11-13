@@ -7,14 +7,27 @@
 		@for (option of options(); track option.value) {
 			<li
 				(click)="select.emit(option)"
-			>{{ option.label }}
-				<div>
+			>
+				<div class="label-container">
 					@if (option.value === selected()) {
 						<fkt-icon
 							name="check"
 						/>
+					} @else if(selected()) {
+						<div class="label-icon-placeholder"></div>
 					}
 
+					<div class="label">
+						@if (option.value === AUTOCOMPLETE_ADD_OPTION) {
+							<fkt-icon name="plus"/>
+							{{ option.label | call: formatAddOption }}
+						} @else {
+							{{ option.label }}
+						}
+					</div>
+				</div>
+
+				<div>
 					<fkt-buttons-list
 						(click)="$event.stopPropagation()"
 						[context]="option"

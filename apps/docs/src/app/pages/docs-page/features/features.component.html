@@ -1,0 +1,13 @@
+<h1>{{ title() }}</h1>
+<p>{{ description() }}</p>
+
+<h2>Import</h2>
+
+@if (importStatement()) {
+    <fkt-code-highlight
+        [text]="importStatement()!"
+        language="typescript"
+    />
+}
+
+<fkt-story-examples/>

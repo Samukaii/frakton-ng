@@ -1,12 +1,124 @@
+// <design-tokens>
+/*
+Gap between icon and content in the no-results component.
+@name --fkt-no-results-gap
+@reference --fkt-space-md
+@component No Results
+@category Spacing
+@type size
+*/
+$no-results-gap: var(--fkt-no-results-gap, var(--fkt-space-md));
+
+/*
+Minimum height of the no-results component container.
+@name --fkt-no-results-min-height
+@reference 400px
+@component No Results
+@category Spacing
+@type size
+*/
+$no-results-min-height: var(--fkt-no-results-min-height, 400px);
+
+/*
+Border color for the no-results component when border variant is applied.
+@name --fkt-no-results-border-color
+@reference --fkt-color-neutral-200
+@component No Results
+@category Colors
+@type color
+*/
+$no-results-border-color: var(--fkt-no-results-border-color, var(--fkt-color-neutral-200));
+
+/*
+Border width for the no-results component when border variant is applied.
+@name --fkt-no-results-border-width
+@reference 1px
+@component No Results
+@category Shape
+@type size
+*/
+$no-results-border-width: var(--fkt-no-results-border-width, 1px);
+
+/*
+Color of the icon in the no-results component.
+@name --fkt-no-results-icon-color
+@reference --fkt-color-neutral-800
+@component No Results
+@category Colors
+@type color
+*/
+$no-results-icon-color: var(--fkt-no-results-icon-color, var(--fkt-color-neutral-800));
+
+/*
+Font size of the title in the no-results component.
+@name --fkt-no-results-title-font-size
+@reference --fkt-font-size-lg
+@component No Results
+@category Typography
+@type font-size
+*/
+$no-results-title-font-size: var(--fkt-no-results-title-font-size, var(--fkt-font-size-lg));
+
+/*
+Line height of the title in the no-results component.
+@name --fkt-no-results-title-line-height
+@reference 1.75rem
+@component No Results
+@category Typography
+@type size
+*/
+$no-results-title-line-height: var(--fkt-no-results-title-line-height, 1.75rem);
+
+/*
+Font weight of the title in the no-results component.
+@name --fkt-no-results-title-font-weight
+@reference --fkt-font-semibold
+@component No Results
+@category Typography
+@type font-weight
+*/
+$no-results-title-font-weight: var(--fkt-no-results-title-font-weight, var(--fkt-font-semibold));
+
+/*
+Color of the title in the no-results component.
+@name --fkt-no-results-title-color
+@reference --fkt-color-neutral-800
+@component No Results
+@category Colors
+@type color
+*/
+$no-results-title-color: var(--fkt-no-results-title-color, var(--fkt-color-neutral-800));
+
+/*
+Bottom margin of the description in the no-results component.
+@name --fkt-no-results-description-margin-bottom
+@reference --fkt-space-sm
+@component No Results
+@category Spacing
+@type size
+*/
+$no-results-description-margin-bottom: var(--fkt-no-results-description-margin-bottom, var(--fkt-space-sm));
+
+/*
+Color of the description in the no-results component.
+@name --fkt-no-results-description-color
+@reference --fkt-color-neutral-800
+@component No Results
+@category Colors
+@type color
+*/
+$no-results-description-color: var(--fkt-no-results-description-color, var(--fkt-color-neutral-800));
+// </design-tokens>
+
 :host {
 	display: flex;
-	gap: var(--space-md);
+	gap: $no-results-gap;
 	justify-content: center;
 	align-items: center;
-	min-height: 400px;
+	min-height: $no-results-min-height;
 
 	&.with-border {
-		border: solid 1px var(--color-gray-200);
+		border: solid $no-results-border-width $no-results-border-color;
 	}
 }
 
@@ -19,7 +131,7 @@ h1, h2, h3, p {
 }
 
 fkt-icon {
-	color: var(--color-gray-800);
+	color: $no-results-icon-color;
 }
 
 .container {
@@ -27,14 +139,14 @@ fkt-icon {
 	flex-direction: column;
 
 	&__title {
-		font-size: var(--font-size-lg);
-		line-height: 1.75rem;
-		font-weight: var(--font-semibold);
-		color: var(--color-gray-800);
+		font-size: $no-results-title-font-size;
+		line-height: $no-results-title-line-height;
+		font-weight: $no-results-title-font-weight;
+		color: $no-results-title-color;
 	}
 
 	&__description {
-		margin-bottom: var(--space-sm);
-		color: var(--color-gray-800);
+		margin-bottom: $no-results-description-margin-bottom;
+		color: $no-results-description-color;
 	}
 }

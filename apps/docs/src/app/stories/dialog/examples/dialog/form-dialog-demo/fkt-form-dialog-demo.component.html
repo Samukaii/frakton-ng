@@ -1,0 +1,27 @@
+<h2 class="header">{{ title() }}</h2>
+<p class="description">{{ description() }}</p>
+
+<div class="form">
+	<fkt-input
+		[field]="form.name"
+		label="Name"
+		placeholder="Enter your name"
+	></fkt-input>
+	<fkt-field-error [show]="form.name().invalid() && form.name().touched()"
+					 [error]="form.name().errors()[0]?.message"/>
+
+
+	<fkt-input
+		[field]="form.email"
+		label="Email"
+		placeholder="Enter your email"
+		type="text"
+	></fkt-input>
+	<fkt-field-error [show]="form.email().invalid() && form.email().touched()"
+					 [error]="form.email().errors()[0]?.message"/>
+</div>
+
+<fkt-buttons-list
+	[actions]="actions()"
+	fill
+></fkt-buttons-list>

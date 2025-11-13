@@ -1,0 +1,49 @@
+<fkt-color-control-item isFirst>
+	<fkt-input
+		hideLabel
+		hideNumericControl
+		[label]="locale.controls.hsl.hue"
+		[field]="form.hue"
+		[minNumber]="0"
+		[maxNumber]="360"
+		[step]="5"
+		type="number"
+	/>
+</fkt-color-control-item>
+<fkt-color-control-item>
+	<fkt-input
+		hideLabel
+		hideNumericControl
+		[label]="locale.controls.hsl.saturation"
+		[field]="form.saturation"
+		[minNumber]="0"
+		[maxNumber]="100"
+		type="number"
+	/>
+</fkt-color-control-item>
+<fkt-color-control-item [isLast]="disableAlphaChannel()">
+	<fkt-input
+		hideLabel
+		hideNumericControl
+		[label]="locale.controls.hsl.lightness"
+		[field]="form.lightness"
+		[minNumber]="0"
+		[maxNumber]="100"
+		type="number"
+	/>
+</fkt-color-control-item>
+@if (!disableAlphaChannel()) {
+	<fkt-color-control-item isLast>
+		<fkt-input
+			hideLabel
+			hideNumericControl
+			[label]="locale.controls.opacity"
+			[field]="form.alpha"
+			[minNumber]="0"
+			[maxNumber]="100"
+			[maxDecimals]="2"
+			type="number"
+		/>
+	</fkt-color-control-item>
+}
+

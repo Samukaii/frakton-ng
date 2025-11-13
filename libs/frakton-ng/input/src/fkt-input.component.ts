@@ -1,52 +1,91 @@
 import {
+	booleanAttribute,
 	ChangeDetectionStrategy,
 	Component,
 	computed,
 	contentChild,
 	ElementRef,
 	input,
+	model,
+	output,
 	signal,
 	viewChild,
 } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
-import { FktFieldErrorComponent } from 'frakton-ng/field-error';
-import {
-	currencyTransformer,
-	FormControlSuffixDirective,
-	hourTransformer,
-	percentTransformer,
-	SignalFormControl,
-	SignalFormControlDirective
-} from 'frakton-ng/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgTemplateOutlet } from '@angular/common';
 import { FktButtonComponent } from 'frakton-ng/button';
-import { FktInputTransformer, FktInputType } from './fkt-input.types';
+import { FktInputTransformer, FktInputType, fktInputTypes } from './fkt-input.types';
+import { FormValueControl, ValidationError, WithOptionalField, } from '@angular/forms/signals';
+import { FktIconComponent } from 'frakton-ng/icon';
+import {
+	currencyFormatter,
+	FktControlFormatterDirective,
+	FormControlSuffixDirective,
+	hourFormatter,
+	numberFormatter,
+	percentFormatter
+} from 'frakton-ng/forms';
+
 
 @Component({
 	selector: 'fkt-input',
 	imports: [
 		ReactiveFormsModule,
-		FktFieldErrorComponent,
-		SignalFormControlDirective,
 		NgTemplateOutlet,
 		FktButtonComponent,
+		FormsModule,
+		FktControlFormatterDirective,
+		FktIconComponent,
 	],
 	templateUrl: './fkt-input.component.html',
 	styleUrl: './fkt-input.component.scss',
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FktInputComponent {
-	control = input.required<SignalFormControl<any>>();
-	label = input('');
+export class FktInputComponent<T=string> implements FormValueControl<T | null> {
+	value = model<T | null>(null);
+	touched = model(false);
+	disabled = input(false);
+	invalid = input(false);
+	errors = input<readonly WithOptionalField<ValidationError>[]>([]);
+
+	label = input.required<string>();
+	ariaDescribedby = input<string>();
 	placeholder = input('');
-	inputPadding = input('.5rem 1rem');
-	type = input<FktInputType>('text');
-	transformer = input<FktInputTransformer>();
+
+	hideLabel = input(false, {
+		transform: booleanAttribute
+	});
+	hideNumericControl = input(false, {
+		transform: booleanAttribute
+	});
+
+	minNumber = input<number>();
+	maxNumber = input<number>();
+	maxDecimals = input(0);
+	step = input(1);
+
+	inputPadding = input('var(--fkt-input-vertical-padding, var(--fkt-space-md)) var(--fkt-input-horizontal-padding, var(--fkt-space-md))');
+	inputBlur = output<FocusEvent>();
+	inputFocus = output<FocusEvent>();
+	inputKeyDown = output<KeyboardEvent>()
+	type = input<FktInputType, FktInputType>('text', {
+		transform: (value: FktInputType) => {
+			if (fktInputTypes.includes(value)) return value;
+
+			return "text";
+		}
+	});
+	formatter = input<FktInputTransformer<T>>();
 	spellcheck = input(true);
+
+	public element = viewChild.required('input', {read: ElementRef});
+	protected formatterDirective = viewChild('input', {read: FktControlFormatterDirective});
+	public formattedValue = computed(() => this.formatterDirective()?.formattedValue() ?? '')
 
 	protected suffix = contentChild(FormControlSuffixDirective);
 
 	protected showPassword = signal(false);
+	protected focused = signal(false);
 
 	protected inputType = computed(() => {
 		const type = this.type();
@@ -57,17 +96,79 @@ export class FktInputComponent {
 		return showPassword ? 'text' : 'password';
 	});
 
-	protected transformerValue = computed(() => {
-		const transformer = this.transformer();
+	protected formatterFn = computed(() => {
+		const transformer = this.formatter();
+		const type = this.type();
 
-		if (transformer === 'currency') return currencyTransformer;
+		if (typeof transformer !== 'string' && typeof transformer !== "undefined") return transformer;
 
-		if (transformer === 'percent') return percentTransformer;
+		if (transformer === 'currency') return currencyFormatter;
 
-		if (transformer === 'hour') return hourTransformer;
+		if (transformer === 'percent') return percentFormatter;
+
+		if (transformer === 'hour') return hourFormatter;
+		if (type === 'number') return numberFormatter({
+			min: this.minNumber(),
+			max: this.maxNumber(),
+			maxDecimals: this.maxDecimals()
+		});
 
 		return transformer;
 	});
 
-	public element = viewChild('input', {read: ElementRef});
+	protected onFocus($event: FocusEvent) {
+		this.inputFocus.emit($event);
+		this.focused.set(true);
+	}
+
+	protected onBlur($event: FocusEvent) {
+		this.inputBlur.emit($event);
+		this.focused.set(false);
+		this.touched.set(true)
+	}
+
+	protected onKeyDown(event: KeyboardEvent) {
+		this.inputKeyDown.emit(event);
+
+		if (this.type() !== "number")
+			return;
+
+		const keysMap: Record<string, ((event: KeyboardEvent) => void)> = {
+			"ArrowUp": this.increaseNumber,
+			"ArrowDown": this.decreaseNumber
+		}
+
+		keysMap[event.key]?.(event);
+	}
+
+	protected increaseNumber = (event?: KeyboardEvent) => {
+		event?.preventDefault();
+
+		const max = this.maxNumber();
+
+		const valueAsNumber = (!isNaN(+this.value()!) && this.value() !== null) ? +this.value()! : null;
+
+		if (valueAsNumber === null) return;
+		const updatedValue = valueAsNumber + this.step();
+
+		if (max !== undefined && updatedValue > max) return;
+
+		this.value.set(updatedValue as unknown as T);
+	}
+
+	protected decreaseNumber = (event?: KeyboardEvent) => {
+		event?.preventDefault();
+
+		const min = this.minNumber();
+
+		const valueAsNumber = (!isNaN(+this.value()!) && this.value() !== null) ? +this.value()! : null;
+
+		if (valueAsNumber === null) return;
+
+		const updatedValue = valueAsNumber - this.step();
+
+		if (min !== undefined && updatedValue < min) return;
+
+		this.value.set(updatedValue as unknown as T);
+	}
 }

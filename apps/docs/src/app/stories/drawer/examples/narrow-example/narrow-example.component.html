@@ -1,0 +1,152 @@
+<div class="narrow-example">
+    <fkt-drawer
+        [opened]="opened()"
+        mode="push"
+        width="60px">
+        <div side-content data-fkt-theme="dark" class="drawer-content">
+            <div class="logo-icon">
+                <fkt-icon name="rocket-launch"></fkt-icon>
+            </div>
+
+            <nav class="icon-navigation">
+                @for (item of menuItems; track item.id) {
+                    <button
+                        class="nav-icon"
+                        [class.active]="activeIcon() === item.id"
+                        (click)="selectItem(item.id)"
+                        [title]="item.label">
+                        <fkt-icon [name]="item.icon"></fkt-icon>
+                    </button>
+                }
+            </nav>
+
+            <div class="bottom-actions">
+                <button class="nav-icon" title="Logout">
+                    <fkt-icon name="power"></fkt-icon>
+                </button>
+            </div>
+        </div>
+
+        <div side-main class="main-content">
+            <header data-fkt-theme="dark" class="header">
+                <button class="toggle-btn" (click)="toggleDrawer()">
+                    @if (opened()) {
+                        ◀
+                    } @else {
+                        ▶
+                    }
+                </button>
+                <h2>Narrow Drawer Example</h2>
+                <div class="header-info">
+                    Current: {{ activeIconLabel() }}
+                </div>
+            </header>
+
+            <div class="content">
+                <div class="hero-section">
+                    <h3>Compact Icon Navigation</h3>
+                    <p>This narrow drawer (60px) is perfect for icon-based navigation. It provides quick access to main
+                        functions while taking minimal screen space.</p>
+                </div>
+
+                <div class="features-section">
+                    <div class="feature-item">
+                        <div class="feature-title">
+                            <div class="feature-icon">
+                                <fkt-icon name="archive-box"></fkt-icon>
+                            </div>
+                            <h4>Space Efficient</h4>
+                        </div>
+                        <p>Minimal width maximizes content area while maintaining navigation accessibility.</p>
+                    </div>
+
+                    <div class="feature-item">
+                        <div class="feature-title">
+                            <div class="feature-icon">
+                                <fkt-icon name="cursor-arrow-rays"></fkt-icon>
+                            </div>
+                            <h4>Quick Access</h4>
+                        </div>
+                        <p>Icon-based navigation provides instant visual recognition and fast interaction.</p>
+                    </div>
+
+                    <div class="feature-item">
+                        <div class="feature-title">
+                            <span class="feature-icon">
+                                <fkt-icon name="device-phone-mobile"></fkt-icon>
+                            </span>
+                            <h4>Mobile First</h4>
+                        </div>
+                        <p>Perfect for mobile applications where screen real estate is precious.</p>
+                    </div>
+
+                    <div class="feature-item">
+                        <div class="feature-title">
+                            <div class="feature-icon">
+                                <fkt-icon name="paint-brush"></fkt-icon>
+                            </div>
+                            <h4>Clean Design</h4>
+                        </div>
+
+                        <p>Minimalist approach focuses attention on main content without distraction.</p>
+                    </div>
+                </div>
+
+                <div class="content-area">
+                    <div class="content-card">
+                        @switch (activeIcon()) {
+                            @case ('home') {
+                                <div class="content-header">
+                                    <fkt-icon name="home"></fkt-icon>
+                                    <h4>Home Dashboard</h4>
+                                </div>
+                                <p>Welcome to your dashboard! Here you can see an overview of your activities and quick
+                                    access to important features.</p>
+                            }
+                            @case ('profile') {
+                                <div class="content-header">
+                                    <fkt-icon name="user"></fkt-icon>
+                                    <h4>User Profile</h4>
+                                </div>
+                                <p>Manage your personal information, preferences, and account settings from this
+                                    page.</p>
+                            }
+                            @case ('messages') {
+                                <div class="content-header">
+                                    <fkt-icon name="chat-bubble-left"></fkt-icon>
+                                    <h4>Messages</h4>
+                                </div>
+                                <p>View and respond to your messages. Stay connected with your team and contacts.</p>
+                            }
+                            @case ('notifications') {
+                                <div class="content-header">
+                                    <fkt-icon name="bell"></fkt-icon>
+                                    <h4>Notifications</h4>
+                                </div>
+                                <p>Check your latest notifications and alerts. Configure your notification preferences
+                                    here.</p>
+                            }
+                            @case ('settings') {
+                                <div class="content-header">
+                                    <fkt-icon name="cog-6-tooth"></fkt-icon>
+                                    <h4>Settings</h4>
+                                </div>
+                                <p>Customize your application experience. Adjust themes, preferences, and system
+                                    configurations.</p>
+                            }
+                            @case ('help') {
+                                <div class="content-header">
+                                    <fkt-icon name="question-mark-circle"></fkt-icon>
+                                    <h4>Help & Support</h4>
+                                </div>
+                                <p>Find answers to common questions, access documentation, and contact support.</p>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </fkt-drawer>
+
+</div>

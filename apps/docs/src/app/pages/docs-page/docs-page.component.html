@@ -1,0 +1,53 @@
+<fkt-tabs-list hideTabsWhenOnlyOne [(activeTab)]="activeTab">
+    <fkt-tab [hidden]="!hasStories()" key="features" label="Features">
+        @if (!currentStoryData.isLoading() && docs()) {
+            <fkt-features
+                [title]="title()"
+                [description]="description()"
+                [importStatement]="importStatement()"
+            />
+        }
+    </fkt-tab>
+
+
+    <fkt-tab key="api-reference" label="API">
+        <div class="container">
+            @if (!currentStoryData.isLoading() && docs()) {
+                <div class="docs">
+                    <fkt-markdown
+                        [data]="docs()!"
+                    />
+                </div>
+            }
+        </div>
+    </fkt-tab>
+</fkt-tabs-list>
+
+@if (currentStoryData.isLoading() || !docs()) {
+    <fkt-skeleton-container>
+    </fkt-skeleton-container>
+
+    <fkt-skeleton-container>
+        <fkt-skeleton height="40px" width="200px" marginBottom="1rem"/>
+        <fkt-skeleton height="20px" width="80%"/>
+        <fkt-skeleton height="20px" width="40%"/>
+    </fkt-skeleton-container>
+
+    <fkt-skeleton-container>
+        <fkt-skeleton width="200px" height="30px" marginBottom="1rem"/>
+        <fkt-skeleton height="20px" width="60%" marginBottom="2rem"/>
+        <fkt-skeleton height="200px" width="100%"/>
+    </fkt-skeleton-container>
+    <fkt-skeleton-container>
+        <fkt-skeleton width="200px" height="30px" marginBottom="1rem"/>
+        <fkt-skeleton height="20px" width="60%" marginBottom="2rem"/>
+        <fkt-skeleton height="200px" width="100%"/>
+    </fkt-skeleton-container>
+    <fkt-skeleton-container>
+        <fkt-skeleton width="200px" height="30px" marginBottom="1rem"/>
+        <fkt-skeleton height="20px" width="60%" marginBottom="2rem"/>
+        <fkt-skeleton height="200px" width="100%"/>
+    </fkt-skeleton-container>
+}
+
+

@@ -1,7 +1,19 @@
+// <design-tokens>
+/*
+Gap between navigator sections (start, center, end).
+@name --fkt-navigator-gap
+@reference --fkt-space-xs
+@category Spacing
+@type size
+*/
+$navigator-gap: var(--fkt-navigator-gap, var(--fkt-space-xs));
+// </design-tokens>
+
 .navigator {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	gap: $navigator-gap;
 
 	&__start {
 		display: flex;

@@ -1,0 +1,123 @@
+<div>
+    <div class="tabs">
+        <div fktNavigableList orientation="horizontal" (select)="selectTabByIndex($event)" childSelector="button"
+             role="tablist">
+            @for (tab of visibleTabs(); track tab.key) {
+                <button
+                    class="tab"
+                    [class.active]="currentTab() === tab.key"
+                    (click)="currentTab.set(tab.key)"
+                    role="tab"
+                    [id]="`tab-${tab.key}`"
+                    [attr.aria-controls]="`panel-${tab.key}`"
+                    aria-selected="true">
+                    <fkt-icon [name]="tab.icon"/>
+                    <p>{{ tab.label }}</p>
+                </button>
+            }
+        </div>
+        <div class="actions">
+            <fkt-button
+                [ariaLabel]="buttonThemeLabel()"
+                [fktTooltip]="buttonThemeLabel()"
+                color="accent"
+                theme="basic"
+                (click)="toggleTheme()"
+                [icon]="buttonThemeIcon()"
+            />
+            <button (click)="expanded.set(!expanded())">
+                <fkt-icon name="chevron-up"/>
+                @if (expanded()) {
+                    <span>Hide panel</span>
+                } @else {
+                    <span>Expand panel</span>
+                }
+            </button>
+        </div>
+    </div>
+
+
+    @if (currentTab() === "controls" && canShowControls()) {
+        <div role="tabpanel" id="panel-controls" aria-labelledby="tab-controls">
+            @if (argsList().length) {
+                <div [tabindex]="expanded() ? 0 : -1" class="table-container">
+                    <table>
+                        <thead>
+                        <td>Name</td>
+                        <td>Description</td>
+                        <td>Control</td>
+                        </thead>
+                        <tbody>
+                            @for (arg of argsList(); track arg.name) {
+                                <tr>
+                                    <td>
+                                        {{ arg.name }}
+                                    </td>
+                                    <td>
+                                        {{ arg.description }}
+                                    </td>
+                                    <td>
+                                        @switch (arg.type) {
+                                            @case ('text') {
+                                                <fkt-input
+                                                    hideLabel
+                                                    [label]="arg.name"
+                                                    [disabled]="!expanded()"
+                                                    placeholder="Enter a text"
+                                                    [(value)]="arg.control"
+                                                />
+                                            }
+                                            @case ('number') {
+                                                <fkt-input
+                                                    hideLabel
+                                                    [label]="arg.name"
+                                                    [disabled]="!expanded()"
+                                                    placeholder="Enter a number"
+                                                    type="number"
+                                                    [(value)]="arg.control"
+                                                />
+                                            }
+                                            @case ('boolean') {
+                                                <fkt-toggle
+                                                    hideLabel
+                                                    [label]="arg.name"
+                                                    [disabled]="!expanded()"
+                                                    [(value)]="arg.control"
+                                                />
+                                            }
+                                            @case ('select') {
+                                                <fkt-select
+                                                    hideLabel
+                                                    [label]="arg.name"
+                                                    [disabled]="!expanded()"
+                                                    [options]="arg.options"
+                                                    [(value)]="arg.control"
+                                                />
+                                            }
+                                        }
+
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                </div>
+            }
+        </div>
+    }
+    @if (currentTab() === "styling" && canShowDesignTokens()) {
+        <div role="tabpanel" id="panel-styling" aria-labelledby="tab-styling">
+            <fkt-playground-design-tokens
+                [expanded]="expanded()"
+                [designTokens]="designTokens()"/>
+        </div>
+    }
+    @if (currentTab() === "code") {
+        <div role="tabpanel" id="panel-code" aria-labelledby="tab-code">
+            <fkt-source-code
+                [expanded]="expanded()"
+            />
+        </div>
+    }
+</div>

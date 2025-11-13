@@ -1,0 +1,20 @@
+.container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: var(--fkt-space-md);
+
+	&__loading {
+		display: flex;
+		align-items: center;
+		gap: var(--fkt-space-sm);
+		color: var(--fkt-color-neutral-600);
+	}
+
+	&__success {
+		color: var(--fkt-color-success);
+		display: flex;
+		align-items: center;
+		gap: var(--fkt-space-xs);
+	}
+}

@@ -1,0 +1,38 @@
+## Key Features
+
+- **Multiple Themes**: Raised, stroked, and basic visual themes
+- **Flexible Variants**: Default, icon-only, and rectangular button variants
+- **Color Options**: Comprehensive color palette with primary, red, yellow, and green colors
+- **Icon Support**: Optional icons with configurable positioning (left or right)
+- **Loading States**: Built-in loading state with customizable loading text
+- **Accessibility**: Full keyboard navigation and screen reader support
+- **Responsive Design**: Adapts to different screen sizes and touch interactions
+- **Signal-Based**: Built with Angular signals for optimal performance
+
+## Configuration Options
+
+<arg-types></arg-types>
+
+### Types
+
+```typescript
+export type FktButtonVariant = 'rounded' | 'rect';
+export type FktButtonTheme = 'raised' | 'stroked' | 'basic';
+export type FktButtonIconPosition = 'left' | 'right';
+```
+
+## Accessibility
+
+- **Keyboard Navigation**: Full keyboard support with Tab and Enter/Space keys
+- **Screen Reader Support**: Proper ARIA labels and button role announcements
+- **Focus Management**: Clear visual focus indicators and logical focus flow
+- **State Communication**: Loading and disabled states are clearly communicated
+- **Touch Friendly**: Optimized touch targets for mobile devices
+- **High Contrast**: Supports system high contrast modes
+
+## Performance
+
+- **Efficient Rendering**: Optimized change detection with Angular signals
+- **Memory Management**: Proper cleanup of event listeners
+- **CSS Optimization**: Efficient styling with computed classes
+- **Bundle Size**: Minimal impact on application bundle size

@@ -1,0 +1,24 @@
+<div class="canvas-block">
+    <div class="canvas-block__content">
+        <div #container
+             class="fkt-playground-component-container"
+             [style.width]="customDimensions()?.width ?? 'auto'"
+             [style.height]="customDimensions()?.height ?? '100%'"
+             [class.no-padding]="noPadding()"
+        >
+            <div [style]="designTokensStyle()">
+                <ng-template #template/>
+            </div>
+        </div>
+
+        <fkt-playground-panel
+            [(currentTheme)]="themeService.currentTheme"
+            [argsList]="argsList()"
+            [(expanded)]="expanded"
+            [designTokens]="designTokens()"
+        />
+    </div>
+</div>
+
+
+

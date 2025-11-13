@@ -1,0 +1,36 @@
+<button
+	#button
+	(click)="openPicker(button)"
+>
+	<div class="preview-container">
+		<div class="fkt-transparency-bg">
+			<div class="preview-circle" [style.background-color]="previewColor()">
+				@if (!formattedColor()) {
+					<div class="no-color"></div>
+				}
+			</div>
+		</div>
+		<div class="content">
+			<p class="label">
+				{{ label() }}
+			</p>
+			@if (value()) {
+				<p class="preview-value">
+					{{ value() }}
+				</p>
+			}
+		</div>
+	</div>
+
+
+	<div class="actions">
+		<fkt-button
+			(click)="$event.stopPropagation(); copy()"
+			ariaLabel="Copy"
+			[theme]="copied() ? 'raised' :'basic'"
+			[color]="copied() ? 'success' : 'primary'"
+			[icon]="copied() ? 'check' : 'clipboard-document-list'"
+		/>
+	</div>
+</button>
+

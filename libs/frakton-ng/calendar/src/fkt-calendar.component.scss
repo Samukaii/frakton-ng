@@ -1,14 +1,110 @@
+// <design-tokens>
+/*
+Calendar container width.
+@name --fkt-calendar-width
+@reference 100%
+@component Calendar
+@category Spacing
+@type size
+*/
+$calendar-width: var(--fkt-calendar-width, 100%);
+
+/*
+Calendar container height.
+@name --fkt-calendar-height
+@reference fit-content
+@component Calendar
+@category Spacing
+@type size
+*/
+$calendar-height: var(--fkt-calendar-height, fit-content);
+
+/*
+Calendar border color when with-border variant is used.
+@name --fkt-calendar-border-color
+@reference --fkt-color-neutral-300
+@component Calendar
+@category Colors
+@type color
+*/
+$calendar-border-color: var(--fkt-calendar-border-color, var(--fkt-color-neutral-300));
+
+/*
+Calendar border radius when with-border variant is used.
+@name --fkt-calendar-border-radius
+@reference --fkt-radius-lg
+@component Calendar
+@category Shape
+@type size
+*/
+$calendar-border-radius: var(--fkt-calendar-border-radius, var(--fkt-radius-lg));
+
+/*
+Calendar padding when with-border variant is used.
+@name --fkt-calendar-padding
+@reference --fkt-space-lg
+@component Calendar
+@category Spacing
+@type size
+*/
+$calendar-padding: var(--fkt-calendar-padding, var(--fkt-space-lg));
+
+/*
+Calendar box shadow when with-border variant is used.
+@name --fkt-calendar-box-shadow
+@reference --fkt-shadow-lg
+@component Calendar
+@category Effects
+@type shadow
+*/
+$calendar-box-shadow: var(--fkt-calendar-box-shadow, var(--fkt-shadow-lg));
+
+/*
+Calendar background color.
+@name --fkt-calendar-background-color
+@reference --fkt-color-modal-background
+@component Calendar
+@category Colors
+@type color
+*/
+$calendar-background-color: var(--fkt-calendar-background-color, var(--fkt-color-modal-background));
+
+/*
+Calendar text color.
+@name --fkt-calendar-text-color
+@reference --fkt-color-neutral-900
+@component Calendar
+@category Colors
+@type color
+*/
+$calendar-text-color: var(--fkt-calendar-text-color, var(--fkt-color-neutral-900));
+
+/*
+Gap between calendar sections.
+@name --fkt-calendar-gap
+@reference --fkt-space-md
+@component Calendar
+@category Spacing
+@type size
+*/
+$calendar-gap: var(--fkt-calendar-gap, var(--fkt-space-md));
+
+// </design-tokens>
+
 :host {
 	display: flex;
 	flex-direction: column;
-	width: 100%;
-	height: fit-content;
+	width: $calendar-width;
+	height: $calendar-height;
 	box-sizing: border-box;
+	background-color: $calendar-background-color;
+	color: $calendar-text-color;
+	gap: $calendar-gap;
 
 	&.with-border {
-		border: solid 1px var(--color-gray-200);
-		padding: var(--space-md);
-		border-radius: var(--radius-md);
-		box-shadow: var(--shadow-md);
+		border: solid 1px $calendar-border-color;
+		padding: $calendar-padding;
+		border-radius: $calendar-border-radius;
+		box-shadow: $calendar-box-shadow;
 	}
 }

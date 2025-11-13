@@ -1,6 +1,6 @@
 {
 	"name": "frakton-ng",
-	"version": "20.0.0",
+	"version": "21.0.0-next.12",
 	"description": "Frakton NG — Design System Angular: componentes UI modernos, acessíveis e escaláveis para acelerar o desenvolvimento de aplicações.",
 	"author": "Samuel Alejandro <samuelalejandro.dev@gmail.com>",
 	"license": "MIT",
@@ -14,14 +14,11 @@
 		"update-version:patch": "node scripts/update-version.mjs patch",
 		"publish:major": "pnpm run update-version:major && pnpm run build && cd dist && pnpm publish --access public --git-checks=false",
 		"publish:minor": "pnpm run update-version:minor && pnpm run build && cd dist && pnpm publish --access public --git-checks=false",
-		"publish:patch": "pnpm run update-version:patch && pnpm run build && cd dist && pnpm publish --access public --git-checks=false"
+		"publish:patch": "pnpm run update-version:patch && pnpm run build && cd dist && pnpm publish --access public --git-checks=false",
+		"publish:major:next": "pnpm run update-version:major && pnpm run build && cd dist && pnpm publish --access public --git-checks=false --tag next",
+		"publish:minor:next": "pnpm run update-version:minor && pnpm run build && cd dist && pnpm publish --access public --git-checks=false --tag next",
+		"publish:patch:next": "pnpm run update-version:patch && pnpm run build && cd dist && pnpm publish --access public --git-checks=false --tag next"
 	},
-	"files": [
-		"fesm2022/",
-		"index.d.ts",
-		"assets/",
-		"README.md"
-	],
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/Samukaii/frakton-ng.git"
@@ -41,8 +38,8 @@
 		"ux"
 	],
 	"peerDependencies": {
-		"@angular/common": "^20.2.0",
-		"@angular/core": "^20.2.0"
+		"@angular/common": "^21.0.0-next.3",
+		"@angular/core": "^21.0.0-next.3"
 	},
 	"dependencies": {
 		"tslib": "^2.3.0"

@@ -1,0 +1,36 @@
+<div class="container">
+			<div class="container__actions">
+				<fkt-button
+					text="Loading State"
+					color="primary"
+					[theme]="currentState() === 'loading' ? 'raised' : 'stroked'"
+					[disabled]="false"
+					(click)="setState('loading')"
+				/>
+				<fkt-button
+					text="Empty State"
+					color="accent"
+					[theme]="currentState() === 'empty' ? 'raised' : 'stroked'"
+					[disabled]="false"
+					(click)="setState('empty')"
+				/>
+				<fkt-button
+					text="Populated State"
+					color="success"
+					[theme]="currentState() === 'populated' ? 'raised' : 'stroked'"
+					[disabled]="false"
+					(click)="setState('populated')"
+				/>
+			</div>
+
+			<fkt-table
+				[data]="tableData()"
+				[columnsFn]="columnsFn"
+				[classesFn]="classesFn"
+				[actionsFn]="actionsFn"
+				[mainAction]="tableMainAction()"
+				[loading]="tableLoading()"
+				[noHeaderWhenEmpty]="noHeaderWhenEmpty()"
+				[noResults]="tableNoResults()"
+			/>
+		</div>

@@ -1,0 +1,14 @@
+h3 {
+	margin: 0;
+}
+
+.container {
+	display: flex;
+	flex-direction: column;
+	gap: var(--fkt-space-sm);
+
+	h3 {
+		font-weight: var(--fkt-font-medium);
+		margin-bottom: var(--fkt-space-xs);
+	}
+}

@@ -1,0 +1,33 @@
+<div class="container">
+	<fkt-input
+		[field]="control"
+		[label]="label()"
+		[placeholder]="placeholder()"
+		type="text"
+	/>
+
+	<div class="container__info">
+		<p class="container__text">This field cannot be edited due to disabled state</p>
+	</div>
+	<div class="container__status">
+		Status:
+		@if (control().disabled()) {
+			<fkt-badge
+				text="Disabled"
+				color="danger"
+			/>
+		} @else {
+			<fkt-badge
+				text="Enabled"
+				color="success"
+			/>
+		}
+	</div>
+	<div class="container__actions">
+		<fkt-button
+			(click)="toggleField()"
+			theme="stroked"
+			[text]="control().disabled() ? 'Enable' : 'Disable'"
+		/>
+	</div>
+</div>

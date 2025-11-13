@@ -1,22 +1,23 @@
-<div class="container">
-	@for (tab of tabs(); track tab.key()) {
-		<div
-			(click)="selectTab(tab.key())"
-			class="container__tab"
-			[class.container__tab--active]="tab.key() === activeTab()"
-		>
-			@if (tab.icon()) {
-				<fkt-icon [name]="tab.icon()!"/>
-			}
+@if (!hideTabsWhenOnlyOne() || visibleTabs().length > 1) {
+    <div fktNavigableList orientation="horizontal" (select)="keyboardSelect($event)" childSelector="button"
+         class="container">
+        @for (tab of visibleTabs(); track tab.key()) {
+            <button
+                (click)="selectTab(tab.key())"
+                class="container__tab"
+                [class.container__tab--active]="tab.key() === activeTab()"
+            >
+                @if (tab.icon()) {
+                    <fkt-icon [name]="tab.icon()!"/>
+                }
 
-			<p>{{ tab.label() }}</p>
+                <p>{{ tab.label() }}</p>
 
-		</div>
-	}
-</div>
+            </button>
+        }
+    </div>
+}
 
 <div class="content">
-	@if (activeTabComponent()) {
-		<ng-container [ngTemplateOutlet]="activeTabComponent()?.template()"/>
-	}
+    <div [style.display]="'none'" #ref></div>
 </div>

@@ -1,10 +1,192 @@
+// <design-tokens>
+/*
+Border radius for the table container.
+@name --fkt-table-border-radius
+@reference --fkt-space-sm
+@component Display
+@category Shape
+@type size
+*/
+$border-radius: var(--fkt-table-border-radius, var(--fkt-space-sm));
+
+/*
+Border color for the table container.
+@name --fkt-table-border-color
+@reference --fkt-color-neutral-300
+@component Display
+@category Colors
+@type color
+*/
+$border-color: var(--fkt-table-border-color, var(--fkt-color-neutral-300));
+
+/*
+Background color for table rows on hover.
+@name --fkt-table-row-hover-background-color
+@reference --fkt-color-neutral-200
+@component Display
+@category Colors
+@type color
+*/
+$row-hover-background-color: var(--fkt-table-row-hover-background-color, var(--fkt-color-neutral-200));
+
+/*
+Border color for table rows and header.
+@name --fkt-table-row-border-color
+@reference --fkt-color-neutral-300
+@component Display
+@category Colors
+@type color
+*/
+$row-border-color: var(--fkt-table-row-border-color, var(--fkt-color-neutral-300));
+
+/*
+Padding for table header cells.
+@name --fkt-table-header-cell-padding
+@reference --fkt-space-md
+@component Display
+@category Spacing
+@type size
+*/
+$header-cell-padding: var(--fkt-table-header-cell-padding, var(--fkt-space-md));
+
+/*
+Color for table header title text.
+@name --fkt-table-header-title-color
+@reference --fkt-color-neutral-900
+@component Display
+@category Colors
+@type color
+*/
+$header-title-color: var(--fkt-table-header-title-color, var(--fkt-color-neutral-900));
+
+/*
+Font weight for table header title.
+@name --fkt-table-header-title-font-weight
+@reference --fkt-font-semibold
+@component Display
+@category Typography
+@type font
+*/
+$header-title-font-weight: var(--fkt-table-header-title-font-weight, var(--fkt-font-semibold));
+
+/*
+Color for table header actions text.
+@name --fkt-table-header-actions-color
+@reference --fkt-color-neutral-950
+@component Display
+@category Colors
+@type color
+*/
+$header-actions-color: var(--fkt-table-header-actions-color, var(--fkt-color-neutral-950));
+
+/*
+Font weight for table header actions.
+@name --fkt-table-header-actions-font-weight
+@reference --fkt-font-bold
+@component Display
+@category Typography
+@type font
+*/
+$header-actions-font-weight: var(--fkt-table-header-actions-font-weight, var(--fkt-font-bold));
+
+/*
+Color for table header cell text.
+@name --fkt-table-header-cell-color
+@reference --fkt-color-neutral-950
+@component Display
+@category Colors
+@type color
+*/
+$header-cell-color: var(--fkt-table-header-cell-color, var(--fkt-color-neutral-950));
+
+/*
+Font size for table body text.
+@name --fkt-table-font-size
+@reference --fkt-font-size-sm
+@component Display
+@category Typography
+@type size
+*/
+$font-size: var(--fkt-table-font-size, var(--fkt-font-size-sm));
+
+/*
+Gap between no results items.
+@name --fkt-table-no-results-gap
+@reference --fkt-space-md
+@component Display
+@category Spacing
+@type size
+*/
+$no-results-gap: var(--fkt-table-no-results-gap, var(--fkt-space-md));
+
+/*
+Minimum height for no results state.
+@name --fkt-table-no-results-min-height
+@reference 400px
+@component Display
+@category Spacing
+@type size
+*/
+$no-results-min-height: var(--fkt-table-no-results-min-height, 400px);
+
+/*
+Padding for no data header section.
+@name --fkt-table-no-data-header-padding
+@reference var(--fkt-space-xs) var(--fkt-space-md)
+@component Display
+@category Spacing
+@type size
+*/
+$no-data-header-padding: var(--fkt-table-no-data-header-padding, var(--fkt-space-xs) var(--fkt-space-md));
+
+/*
+Minimum height for no data header section.
+@name --fkt-table-no-data-header-min-height
+@reference 70px
+@component Display
+@category Spacing
+@type size
+*/
+$no-data-header-min-height: var(--fkt-table-no-data-header-min-height, 70px);
+
+/*
+Padding for no data content section.
+@name --fkt-table-no-data-content-padding
+@reference 1rem
+@component Display
+@category Spacing
+@type size
+*/
+$no-data-content-padding: var(--fkt-table-no-data-content-padding, 1rem);
+
+/*
+Width for table header actions column.
+@name --fkt-table-header-actions-width
+@reference 13rem
+@component Display
+@category Spacing
+@type size
+*/
+$header-actions-width: var(--fkt-table-header-actions-width, 13rem);
+
+/*
+Line height for table text.
+@name --fkt-table-line-height
+@reference 1.25rem
+@component Display
+@category Typography
+@type size
+*/
+$line-height: var(--fkt-table-line-height, 1.25rem);
+// </design-tokens>
+
 :host {
 	overflow: auto;
 	flex: 1 1 0;
 	width: 100%;
 	display: block;
-	border-radius: var(--space-sm);
-	box-shadow: 0 0 0 1px var(--color-gray-300);
+	border-radius: $border-radius;
+	box-shadow: 0 0 0 1px $border-color;
 }
 
 * {
@@ -28,18 +210,18 @@ p {
 
 		&-header {
 			display: flex;
-			padding: var(--space-xs) var(--space-md);
+			padding: $no-data-header-padding;
 			justify-content: flex-end;
 			align-items: center;
 			border-bottom-width: 1px;
-			border-color: var(--color-gray-300);
-			min-height: 70px;
+			border-color: $border-color;
+			min-height: $no-data-header-min-height;
 			width: 100%;
 		}
 
 		&-content {
 			display: flex;
-			padding: 1rem;
+			padding: $no-data-content-padding;
 			flex-direction: column;
 			flex: 1 1 0;
 			justify-content: center;
@@ -51,17 +233,17 @@ p {
 
 	&__no-results {
 		display: flex;
-		gap: var(--space-md);
+		gap: $no-results-gap;
 		align-items: center;
-		min-height: 400px;
+		min-height: $no-results-min-height;
 	}
 }
 
 .table {
 	overflow: hidden;
 	width: 100%;
-	font-size: var(--font-size-sm);
-	line-height: 1.25rem;
+	font-size: $font-size;
+	line-height: $line-height;
 	table-layout: fixed;
 	border-collapse: collapse;
 
@@ -69,16 +251,16 @@ p {
 		text-align: left;
 
 		&-title {
-			padding: var(--space-md);
-			font-weight: var(--font-semibold);
-			color: var(--color-gray-900);
+			padding: $header-cell-padding;
+			font-weight: $header-title-font-weight;
+			color: $header-title-color;
 		}
 
 		&-actions {
-			padding: var(--space-md);
-			width: 13rem;
-			font-weight: var(--font-bold);
-			color: var(--color-gray-950);
+			padding: $header-cell-padding;
+			width: $header-actions-width;
+			font-weight: $header-actions-font-weight;
+			color: $header-actions-color;
 
 			& > div {
 				display: flex;
@@ -88,18 +270,18 @@ p {
 		}
 
 		&-cell {
-			padding: var(--space-md);
-			color: var(--color-gray-950);
+			padding: $header-cell-padding;
+			color: $header-cell-color;
 			overflow-wrap: break-word;
 
 			&--actions {
-				padding: 1rem;
-				color: var(--color-gray-950);
+				padding: $header-cell-padding;
+				color: $header-cell-color;
 				white-space: nowrap;
 
 				& > div {
 					display: flex;
-					gap: var(--space-md);
+					gap: $no-results-gap;
 					justify-content: flex-end;
 				}
 			}
@@ -111,16 +293,16 @@ p {
 	tbody {
 		tr {
 			&:hover {
-				background-color: var(--color-gray-200);
+				background-color: $row-hover-background-color;
 			}
 
 			&:not(:last-child) {
-				border-bottom: solid 1px var(--color-gray-300);
+				border-bottom: solid 1px $row-border-color;
 			}
 		}
 	}
 
 	thead {
-		border-bottom: solid 1px var(--color-gray-300);
+		border-bottom: solid 1px $row-border-color;
 	}
 }

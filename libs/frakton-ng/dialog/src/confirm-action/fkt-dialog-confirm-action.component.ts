@@ -26,7 +26,7 @@ export class FktDialogConfirmActionComponent {
 		const primaryAction: FktButtonAction = {
 			identifier: 'primary',
 			text: 'Confirmar',
-			color: 'red',
+			color: 'danger',
 			...primary,
 		};
 		const secondaryAction: FktButtonAction = {

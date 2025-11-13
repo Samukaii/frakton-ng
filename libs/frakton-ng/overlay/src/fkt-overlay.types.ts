@@ -1,5 +1,5 @@
 import { ComponentRef, ElementRef, Type } from "@angular/core";
-import { FktReactiveComponentData, FktGeometryPosition } from 'frakton-ng/internal/types';
+import { FktReactiveComponentData, FktGeometryPosition, Generic } from 'frakton-ng/internal/types';
 
 export interface FktOverlayOptions<T> {
 	anchorElementRef?: ElementRef<HTMLElement>;
@@ -7,6 +7,7 @@ export interface FktOverlayOptions<T> {
 	data: FktReactiveComponentData<T>;
 	panelOptions?: {
 		overflow?: 'hidden' | 'visible' | 'scroll' | 'auto';
+		focusTriggerOnClose?: boolean;
 		id?: string;
 		maxHeight?: string;
 		minWidth?: string;
@@ -16,13 +17,20 @@ export interface FktOverlayOptions<T> {
 		padding?: string;
 		boxShadow?: string;
 		position?: FktGeometryPosition;
+		allowDuplicates?: boolean;
 		disableAutoReposition?: boolean;
 		disableAutoClose?: boolean;
-		outsideClick?: (element: HTMLElement) => void;
+		inheritDesignTokensFrom?: HTMLElement | Record<string, string>;
+		styles?: Generic;
+		onAutoClose?: () => void;
+		onOutsideClick?: (element: HTMLElement) => void;
+		onScroll?: () => void;
+		onEscapeKeyDown?: () => void;
 	}
 }
 
 export interface FktOverlayRef<T> {
 	componentRef: ComponentRef<T>;
+	stackIndex: number;
 	close: () => void;
 }

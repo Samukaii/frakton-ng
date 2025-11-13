@@ -1,0 +1,35 @@
+<div class="validation-example">
+	<div>
+		<fkt-textarea
+			autoExpand
+			[field]="control"
+			[label]="label()"
+			[placeholder]="placeholder()"
+		/>
+		<fkt-field-error [show]="control().invalid() && control().touched()" [error]="control().errors()[0]?.message"/>
+	</div>
+
+	<div class="validation-example__container">
+		<div class="validation-example__status">
+			<span class="validation-example__status-label">Status:</span>
+			<span
+				class="validation-example__status-content"
+				[class.validation-example__status-content--valid]="control().valid()"
+				[class.validation-example__status-content--invalid]="control().invalid()">
+						{{ control().valid() ? 'Valid' : 'Invalid' }}
+					</span>
+		</div>
+
+		<div class="validation-example__info">
+			<div class="validation-example__info-label">
+				<strong>Character count:</strong>
+				<span>{{ characterCount() }}/{{ maxLength() }}</span>
+			</div>
+
+			<div class="validation-example__info-label">
+				<strong>Required minimum:</strong>
+				<span>{{ minLength() }} characters</span>
+			</div>
+		</div>
+	</div>
+</div>

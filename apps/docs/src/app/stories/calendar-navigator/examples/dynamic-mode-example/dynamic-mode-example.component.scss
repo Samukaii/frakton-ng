@@ -1,0 +1,27 @@
+.container {
+	display: flex;
+	flex-direction: column;
+	gap: var(--fkt-space-xl);
+
+	&__info {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-top: var(--fkt-space-xs);
+		padding-top: var(--fkt-space-xs);
+		border-top: 1px solid var(--fkt-color-neutral-200);
+		color: var(--fkt-color-neutral-600);
+
+		&-selected {
+			color: var(--fkt-color-neutral-600);
+			text-align: center;
+			font-weight: var(--fkt-font-semibold);
+		}
+	}
+
+	&__actions {
+		gap: var(--fkt-space-xs);
+		display: flex;
+		justify-content: flex-end;
+	}
+}

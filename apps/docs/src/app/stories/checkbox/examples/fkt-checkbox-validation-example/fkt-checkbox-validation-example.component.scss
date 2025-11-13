@@ -1,0 +1,19 @@
+.container {
+  padding: var(--fkt-space-md);
+}
+
+.form-field {
+  margin-bottom: var(--fkt-space-md);
+}
+
+.form-actions {
+  margin-top: var(--fkt-space-lg);
+  padding: var(--fkt-space-md);
+  background-color: var(--fkt-color-neutral-100);
+  border-radius: var(--fkt-radius-md);
+
+  p {
+    margin: var(--fkt-space-xs) 0;
+    font-size: var(--fkt-font-size-sm);
+  }
+}

@@ -1,0 +1,82 @@
+[
+  {
+    "description": "Vertical padding inside the textarea field (top and bottom spacing between border and content).",
+    "name": "--fkt-textarea-vertical-padding",
+    "reference": "--fkt-space-md",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": "1rem"
+  },
+  {
+    "description": "Horizontal padding inside the textarea field (left and right spacing between border and content).",
+    "name": "--fkt-textarea-horizontal-padding",
+    "reference": "--fkt-space-md",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": "1rem"
+  },
+  {
+    "description": "Border color of the textarea in its normal (default) state.",
+    "name": "--fkt-textarea-border-color",
+    "reference": "--fkt-color-neutral-400",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#94a3b8"
+  },
+  {
+    "description": "Border color of the textarea when it gets focused",
+    "name": "--fkt-textarea-border-focus-color",
+    "reference": "--fkt-color-brand-secondary",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#ffb940"
+  },
+  {
+    "description": "Color of the label in its normal (default) state.",
+    "name": "--fkt-textarea-label-color",
+    "reference": "--fkt-color-neutral-900",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#0f172a"
+  },
+  {
+    "description": "Color of the label when it gets focused",
+    "name": "--fkt-textarea-label-focus-color",
+    "reference": "--fkt-color-brand-secondary",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#ffb940"
+  },
+  {
+    "description": "Border radius for textarea",
+    "name": "--fkt-textarea-border-radius",
+    "reference": "--fkt-radius-lg",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": ".5rem"
+  },
+  {
+    "description": "Font size for textarea text and placeholder.",
+    "name": "--fkt-textarea-font-size",
+    "reference": "--fkt-font-size-md",
+    "category": "Typography",
+    "type": "size",
+    "defaultValue": "1rem"
+  },
+  {
+    "description": "Color for text written into textarea",
+    "name": "--fkt-textarea-text-color",
+    "reference": "--fkt-color-neutral-900",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#0f172a"
+  },
+  {
+    "description": "Color for placeholder text in textarea",
+    "name": "--fkt-textarea-placeholder-color",
+    "reference": "--fkt-color-neutral-500",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#64748b"
+  }
+]

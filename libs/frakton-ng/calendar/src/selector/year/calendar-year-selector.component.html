@@ -1,9 +1,18 @@
-<div class="container">
-	@for (year of years(); track $index) {
-		<div
-			(click)="selectYear(year)"
-			class="container__year">
-			{{ year | date: 'yyyy' }}
-		</div>
-	}
+<div
+  class="container"
+  role="grid"
+  (keydown)="onGridKeydown($event)"
+>
+  @for (year of years(); track year) {
+    <fkt-button
+      role="gridcell"
+      [tabIndex]="$index === focusedIndex() ? 0 : -1"
+      [text]="(years()[$index] | date: 'yyyy') ?? ''"
+      theme="basic"
+      shape="rect"
+      (click)="selectYear(year)"
+      (focus)="focusedIndex.set($index)"
+      [class.selected]="$index === selectedIndex"
+    />
+  }
 </div>

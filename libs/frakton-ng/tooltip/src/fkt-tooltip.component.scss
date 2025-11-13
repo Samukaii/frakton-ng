@@ -1,3 +1,185 @@
+// <design-tokens>
+/*
+Padding for the tooltip host element.
+@name --fkt-tooltip-padding
+@reference --fkt-space-xs
+@component Tooltip
+@category Spacing
+@type size
+*/
+$tooltip-padding: var(--fkt-tooltip-padding, var(--fkt-space-xs));
+
+/*
+Border radius for the tooltip content.
+@name --fkt-tooltip-border-radius
+@reference 6px
+@component Tooltip
+@category Shape
+@type size
+*/
+$tooltip-border-radius: var(--fkt-tooltip-border-radius, 6px);
+
+/*
+Font size for the tooltip content.
+@name --fkt-tooltip-font-size
+@reference --fkt-font-size-sm
+@component Tooltip
+@category Typography
+@type font-size
+*/
+$tooltip-font-size: var(--fkt-tooltip-font-size, var(--fkt-font-size-sm));
+
+/*
+Font weight for the tooltip content.
+@name --fkt-tooltip-font-weight
+@reference --fkt-font-semibold
+@component Tooltip
+@category Typography
+@type font-weight
+*/
+$tooltip-font-weight: var(--fkt-tooltip-font-weight, var(--fkt-font-semibold));
+
+/*
+Padding for the tooltip content.
+@name --fkt-tooltip-content-padding
+@reference --fkt-space-xs
+@component Tooltip
+@category Spacing
+@type size
+*/
+$tooltip-content-padding: var(--fkt-tooltip-content-padding, var(--fkt-space-xs));
+
+/*
+Box shadow for the tooltip content.
+@name --fkt-tooltip-box-shadow
+@reference 1px 8px 15px 5px #00000026
+@component Tooltip
+@category Effects
+@type box-shadow
+*/
+$tooltip-box-shadow: var(--fkt-tooltip-box-shadow, 1px 8px 15px 5px #00000026);
+
+/*
+Background color for danger variant tooltip.
+@name --fkt-tooltip-color-danger
+@reference --fkt-color-danger
+@component Tooltip
+@category Colors
+@type color
+*/
+$tooltip-color-danger: var(--fkt-tooltip-color-danger, var(--fkt-color-danger));
+
+/*
+Text color for danger variant tooltip.
+@name --fkt-tooltip-color-on-danger
+@reference --fkt-color-on-danger
+@component Tooltip
+@category Colors
+@type color
+*/
+$tooltip-color-on-danger: var(--fkt-tooltip-color-on-danger, var(--fkt-color-on-danger));
+
+/*
+Background color for success variant tooltip.
+@name --fkt-tooltip-color-success
+@reference --fkt-color-success
+@component Tooltip
+@category Colors
+@type color
+*/
+$tooltip-color-success: var(--fkt-tooltip-color-success, var(--fkt-color-success));
+
+/*
+Text color for success variant tooltip.
+@name --fkt-tooltip-color-on-success
+@reference --fkt-color-on-success
+@component Tooltip
+@category Colors
+@type color
+*/
+$tooltip-color-on-success: var(--fkt-tooltip-color-on-success, var(--fkt-color-on-success));
+
+/*
+Background color for primary variant tooltip.
+@name --fkt-tooltip-color-primary
+@reference --fkt-color-primary
+@component Tooltip
+@category Colors
+@type color
+*/
+$tooltip-color-primary: var(--fkt-tooltip-color-primary, var(--fkt-color-primary));
+
+/*
+Text color for primary variant tooltip.
+@name --fkt-tooltip-color-on-primary
+@reference --fkt-color-on-primary
+@component Tooltip
+@category Colors
+@type color
+*/
+$tooltip-color-on-primary: var(--fkt-tooltip-color-on-primary, var(--fkt-color-on-primary));
+
+/*
+Background color for accent variant tooltip.
+@name --fkt-tooltip-color-accent
+@reference --fkt-color-accent
+@component Tooltip
+@category Colors
+@type color
+*/
+$tooltip-color-accent: var(--fkt-tooltip-color-accent, var(--fkt-color-accent));
+
+/*
+Text color for accent variant tooltip.
+@name --fkt-tooltip-color-on-accent
+@reference --fkt-color-on-accent
+@component Tooltip
+@category Colors
+@type color
+*/
+$tooltip-color-on-accent: var(--fkt-tooltip-color-on-accent, var(--fkt-color-on-accent));
+
+/*
+Background color for warning variant tooltip.
+@name --fkt-tooltip-color-warning
+@reference --fkt-color-warning
+@component Tooltip
+@category Colors
+@type color
+*/
+$tooltip-color-warning: var(--fkt-tooltip-color-warning, var(--fkt-color-warning));
+
+/*
+Text color for warning variant tooltip.
+@name --fkt-tooltip-color-on-warning
+@reference --fkt-color-on-warning
+@component Tooltip
+@category Colors
+@type color
+*/
+$tooltip-color-on-warning: var(--fkt-tooltip-color-on-warning, var(--fkt-color-on-warning));
+
+/*
+Background color for info variant tooltip.
+@name --fkt-tooltip-color-info
+@reference --fkt-color-info
+@component Tooltip
+@category Colors
+@type color
+*/
+$tooltip-color-info: var(--fkt-tooltip-color-info, var(--fkt-color-info));
+
+/*
+Text color for info variant tooltip.
+@name --fkt-tooltip-color-on-info
+@reference --fkt-color-on-info
+@component Tooltip
+@category Colors
+@type color
+*/
+$tooltip-color-on-info: var(--fkt-tooltip-color-on-info, var(--fkt-color-on-info));
+// </design-tokens>
+
 * {
 	box-sizing: border-box;
 }
@@ -7,9 +189,10 @@
 	width: fit-content;
 	position: relative;
 	background-color: transparent;
-	padding: var(--space-xs);
+	padding: $tooltip-padding;
 
-	$radius: 6px;
+	$text-color: var(--text-color);
+	$background-color: var(--background-color);
 
 	$tooltip-arrow-size: 10;
 	$tooltip-arrow-offset: sqrt(pow($tooltip-arrow-size, 2) / 2); // Pythagorean Theorem where hypotenuse is arrow size and sides are equal
@@ -22,19 +205,19 @@
 
 		&__content {
 			position: relative;
-			font-size: var(--font-size-sm);
-			color: var(--color-neutral-100);
-			font-weight: var(--font-semibold);
-			padding: var(--space-xs);
-			box-shadow: 1px 8px 15px 5px #00000026;
-			background-color: var(--color);
-			border-radius: $radius;
+			font-size: $tooltip-font-size;
+			color: $text-color;
+			font-weight: $tooltip-font-weight;
+			padding: $tooltip-content-padding;
+			box-shadow: $tooltip-box-shadow;
+			background-color: $background-color;
+			border-radius: $tooltip-border-radius;
 		}
 
 		&__tip {
 			position: absolute;
 			border-top: solid 0 transparent;
-			border-bottom: solid 10px var(--color);
+			border-bottom: solid 10px $background-color;
 			border-right: solid 5px transparent;
 			border-left: solid 5px transparent;
 
@@ -46,13 +229,13 @@
 			}
 
 			&.message__tip--left-start {
-				top: $radius;
+				top: $tooltip-border-radius;
 				left: 0;
 				transform: translateX(-100%) translateY(0) rotate(270deg);
 			}
 
 			&.message__tip--left-end {
-				bottom: $radius;
+				bottom: $tooltip-border-radius;
 				left: 0;
 				transform: translateX(-100%) translateY(0) rotate(270deg);
 			}
@@ -65,13 +248,13 @@
 			}
 
 			&.message__tip--right-start {
-				top: $radius;
+				top: $tooltip-border-radius;
 				right: 0;
 				transform: translateX(100%) translateY(0) rotate(90deg);
 			}
 
 			&.message__tip--right-end {
-				bottom: $radius;
+				bottom: $tooltip-border-radius;
 				right: 0;
 				transform: translateX(100%) translateY(0) rotate(90deg);
 			}
@@ -85,13 +268,13 @@
 
 			&.message__tip--top-start {
 				top: 0;
-				left: $radius;
+				left: $tooltip-border-radius;
 				transform: translateX(0) translateY(-100%);
 			}
 
 			&.message__tip--top-end {
 				top: 0;
-				right: $radius;
+				right: $tooltip-border-radius;
 				transform: translateX(0) translateY(-100%);
 			}
 
@@ -116,13 +299,13 @@
 
 			&.message__tip--bottom-start {
 				bottom: 0;
-				left: $radius;
+				left: $tooltip-border-radius;
 				transform: translateX(0) translateY(100%) rotate(180deg);
 			}
 
 			&.message__tip--bottom-end {
 				bottom: 0;
-				right: $radius;
+				right: $tooltip-border-radius;
 				transform: translateX(0) translateY(100%) rotate(180deg);
 			}
 

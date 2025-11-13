@@ -1,3 +1,16 @@
+// <design-tokens>
+/*
+Month selector grid gap between items.
+@name --fkt-calendar-month-selector-gap
+@reference --fkt-space-sm
+@component Month selector
+@category Spacing
+@type size
+*/
+$month-selector-gap: var(--fkt-calendar-month-selector-gap, var(--fkt-space-sm));
+
+// </design-tokens>
+
 :host {
 	display: block;
 	width: 100%;
@@ -8,18 +21,11 @@
 	display: grid;
 	grid-template-columns: repeat(3, minmax(0, 1fr));
 	width: 100%;
-	gap: var(--space-xs);
+	gap: $month-selector-gap;
 
-	&__month {
-		text-align: center;
-		text-transform: capitalize;
-		cursor: pointer;
-		transition: var(--transition-base);
-		padding: var(--space-3xs) var(--space-xs);
-		border-radius: var(--radius-md);
+  fkt-button {
+    width: 100%;
+  }
 
-		&:hover {
-			background-color: var(--color-blue-100);
-		}
-	}
 }
+

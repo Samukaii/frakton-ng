@@ -1,0 +1,177 @@
+// <design-tokens>
+/*
+Padding for spinner container in select options overlay.
+@name --fkt-select-options-spinner-padding
+@reference --fkt-space-md
+@component Options
+@category Spacing
+@type size
+*/
+$options-spinner-padding: var(--fkt-select-options-spinner-padding, var(--fkt-space-md));
+
+/*
+Background color for the select options overlay.
+@name --fkt-select-options-background-color
+@reference --fkt-color-modal-background
+@component Options
+@category Colors
+@type color
+*/
+$options-background-color: var(--fkt-select-options-background-color, var(--fkt-color-modal-background));
+
+/*
+Text color for the select options overlay.
+@name --fkt-select-options-text-color
+@reference --fkt-color-neutral-950
+@component Options
+@category Colors
+@type color
+*/
+$options-text-color: var(--fkt-select-options-text-color, var(--fkt-color-neutral-950));
+
+/*
+Box shadow for the select options overlay.
+@name --fkt-select-options-shadow
+@reference --fkt-shadow-md
+@component Options
+@category Effects
+@type shadow
+*/
+$options-shadow: var(--fkt-select-options-shadow, var(--fkt-shadow-md));
+
+/*
+Border radius for the select options overlay.
+@name --fkt-select-options-border-radius
+@reference --fkt-radius-md
+@component Options
+@category Shape
+@type size
+*/
+$options-border-radius: var(--fkt-select-options-border-radius, var(--fkt-radius-md));
+
+/*
+Border color for the select options overlay.
+@name --fkt-select-options-border-color
+@reference --fkt-color-neutral-200
+@component Options
+@category Colors
+@type color
+*/
+$options-border-color: var(--fkt-select-options-border-color, var(--fkt-color-neutral-200));
+
+/*
+Padding for select options overlay items.
+@name --fkt-select-options-item-padding
+@reference var(--fkt-space-xs) var(--fkt-space-md)
+@component Options
+@category Spacing
+@type size
+*/
+$options-item-padding: var(--fkt-select-options-item-padding, var(--fkt-space-xs) var(--fkt-space-md));
+
+/*
+Background color for hovered overlay items.
+@name --fkt-select-options-item-hover-background
+@reference --fkt-color-primary-opacity-10
+@component Options
+@category Colors
+@type color
+*/
+$options-item-hover-background: var(--fkt-select-options-item-hover-background, var(--fkt-color-primary-opacity-10));
+
+/*
+Background color for active/selected overlay items.
+@name --fkt-select-options-item-active-background
+@reference --fkt-color-neutral-200
+@component Options
+@category Colors
+@type color
+*/
+$options-item-active-background: var(--fkt-select-options-item-active-background, var(--fkt-color-neutral-200));
+
+/*
+Color for icons in overlay items.
+@name --fkt-select-options-icon-color
+@reference --fkt-color-neutral-700
+@component Options
+@category Colors
+@type color
+*/
+$options-icon-color: var(--fkt-select-options-icon-color, var(--fkt-color-neutral-700));
+
+/*
+Size for icons in overlay items.
+@name --fkt-select-options-icon-size
+@reference --fkt-space-xl
+@component Options
+@category Spacing
+@type size
+*/
+$options-icon-size: var(--fkt-select-options-icon-size, var(--fkt-space-xl));
+// </design-tokens>
+
+:host {
+	display: block;
+	width: 100%;
+	color: $options-text-color;
+
+	* {
+		box-sizing: border-box;
+	}
+}
+
+.spinner-container {
+	display: flex;
+	width: 100%;
+	justify-content: center;
+	align-items: center;
+	padding: $options-spinner-padding;
+}
+
+.overlay {
+	background-color: $options-background-color;
+	width: 100%;
+	box-shadow: $options-shadow;
+	border-radius: $options-border-radius;
+	border: solid 1px $options-border-color;
+	z-index: 10;
+	padding: 0;
+	margin: 0;
+
+	li {
+		padding: $options-item-padding;
+		cursor: pointer;
+		transition: var(--fkt-transition-base);
+		display: flex;
+		justify-content: space-between;
+
+		&:focus {
+			outline: none;
+			background-color: $options-item-hover-background;
+			border-color: $options-item-hover-background;
+		}
+
+		&:first-child {
+			border-radius: $options-border-radius $options-border-radius 0 0;
+		}
+
+		&:last-child {
+			border-radius: 0 0 $options-border-radius $options-border-radius;
+		}
+
+		&:hover {
+			background-color: $options-item-hover-background;
+			border-color: $options-item-hover-background;
+		}
+
+		&.active {
+			background-color: $options-item-active-background;
+		}
+
+		fkt-icon {
+			color: $options-icon-color;
+			height: $options-icon-size;
+			width: $options-icon-size;
+		}
+	}
+}

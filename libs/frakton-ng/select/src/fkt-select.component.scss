@@ -1,93 +1,334 @@
 :host {
+	// <design-tokens>
+	/*
+	Vertical padding inside the select field (top and bottom spacing between border and content).
+	@name --fkt-select-vertical-padding
+	@reference --fkt-space-md
+	@component Field
+	@category Spacing
+	@type size
+ 	*/
+	$vertical-padding: var(--fkt-select-vertical-padding, var(--fkt-space-md));
+	/*
+	Horizontal padding inside the select field (left and right spacing between border and content).
+	@name --fkt-select-horizontal-padding
+	@reference --fkt-space-md
+	@component Field
+	@category Spacing
+	@type size
+ 	*/
+	$horizontal-padding: var(--fkt-select-horizontal-padding, var(--fkt-space-md));
+
+	/*
+	Border color of the select in its normal (default) state.
+	@name --fkt-select-border-color
+	@reference --fkt-color-neutral-400
+	@component Field
+	@category Colors
+	@type color
+ 	*/
+	$border-color: var(--fkt-select-border-color, var(--fkt-color-neutral-400));
+
+	/*
+	Border color of the select when it gets focused
+	@name --fkt-select-border-focus-color
+	@reference --fkt-color-focus-outline
+	@component Field
+	@category Colors
+	@type color
+ 	*/
+	$border-focus-color: var(--fkt-select-border-focus-color, var(--fkt-color-focus-outline));
+
+	/*
+	Color of the label in its normal (default) state.
+	@name --fkt-select-label-color
+	@reference --fkt-color-neutral-900
+	@component Field
+	@category Colors
+	@type color
+ 	*/
+	$label-color: var(--fkt-select-label-color, var(--fkt-color-neutral-900));
+
+	/*
+	Color of the label when it gets focused
+	@name --fkt-select-label-focus-color
+	@reference --fkt-color-focus-outline
+	@component Field
+	@category Colors
+	@type color
+ 	*/
+	$label-focus-color: var(--fkt-select-label-focus-color, var(--fkt-color-focus-outline));
+
+  /*
+  Color of the label and border when it gets invalid
+  @name --fkt-select-invalid-color
+  @reference --fkt-color-danger
+  @component Field
+  @category Colors
+  @type color
+ */
+  $invalid-color: var(--fkt-select-invalid-color, var(--fkt-color-danger));
+
+	/*
+	Border radius for select
+	@name --fkt-select-border-radius
+	@reference --fkt-radius-lg
+	@component Field
+	@category Spacing
+	@type size
+ 	*/
+	$border-radius: var(--fkt-select-border-radius, var(--fkt-radius-lg));
+
+	/*
+	Font size for select text and placeholder.
+	@name --fkt-select-font-size
+	@reference --fkt-font-size-md
+	@component Field
+	@category Typography
+	@type size
+ 	*/
+	$font-size: var(--fkt-select-font-size, var(--fkt-font-size-md));
+	/*
+	Color for text into select
+	@name --fkt-select-text-color
+	@reference --fkt-color-neutral-950
+	@component Field
+	@category Colors
+	@type color
+ 	*/
+	$text-color: var(--fkt-select-text-color, var(--fkt-color-neutral-950));
+
+	// </design-tokens>
+
 	display: block;
-	border-radius: var(--radius-full);
+	border-radius: var(--fkt-radius-full);
 	position: relative;
-	margin-top: var(--space-xs);
-	border-color: var(--color-gray-500);
-	transition: var(--transition-base);
-	background-color: var(--color-neutral-100);
+	transition: var(--fkt-transition-base);
 	scroll-behavior: smooth;
 	width: 100%;
+	cursor: pointer;
 
 	* {
 		box-sizing: border-box;
 	}
 
+	.selected-option, .placeholder {
+		font-size: $font-size;
+	}
+
 	.label-container {
 		display: flex;
-		gap: var(--space-xs);
+		gap: var(--fkt-space-xs);
 		align-items: center;
 
 		label {
 			top: 15px;
 			position: absolute;
-			padding: 0 var(--space-3xs);
-			transition: var(--transition-base);
-			left: var(--space-sm);
-			background-color: var(--color-neutral-100);
-			color: var(--color-gray-800);
-			font-weight: var(--font-normal);
-			font-size: var(--font-size-sm);
-			margin-bottom: var(--space-3xs);
+			padding: 0 var(--fkt-space-3xs);
+			transition: var(--fkt-transition-base);
+			left: var(--fkt-space-sm);
+			background-color: var(--fkt-color-neutral-100);
+			color: var(--fkt-color-neutral-800);
+			font-weight: var(--fkt-font-normal);
+			font-size: var(--fkt-font-size-sm);
+			margin-bottom: var(--fkt-space-3xs);
 
 			&.error {
-				color: var(--color-red-500);
+				color: var($invalid-color);
 			}
 
 			&.float {
 				z-index: 50;
 				scale: 90%;
-				translate: calc(var(--space-3xs) * -1) calc(var(--space-xl) * -1);
+				translate: calc(var(--fkt-space-3xs) * -1) calc(var(--fkt-space-xl) * -1);
 			}
 		}
+
 	}
 
 	.select {
+		width: 100%;
 		position: relative;
+		padding: $vertical-padding $horizontal-padding;
+		outline: none;
 
 		&__container {
 			outline: none;
-			border: solid 1px var(--color-gray-400);
-			height: 50px;
+			height: 20px;
 			width: 100%;
-			transition: var(--transition-base);
-			border-radius: var(--radius-lg);
+			transition: var(--fkt-transition-base);
+			border-radius: var(--fkt-radius-lg);
 			display: flex;
 			justify-content: space-between;
 			align-items: center;
-			padding: var(--space-xs) var(--space-md);
 			background-color: transparent;
-			cursor: pointer;
 
 			&:hover {
-				border-color: var(--color-gray-600);
+				border-color: var(--fkt-color-neutral-600);
 			}
 
 			&:focus {
-				border-color: var(--color-gray-950);
+				border-color: var(--fkt-color-focus-outline);
 			}
 
 			&.error {
-				border-color: var(--color-red-500);
+				border-color: $invalid-color;
 			}
 
 			.placeholder {
-				color: var(--color-gray-400);
+				color: var(--fkt-color-neutral-400);
 				opacity: 0;
+			}
+
+			&.placeholder.show-placeholder {
+				opacity: 1;
+			}
+		}
+
+
+		.border {
+			position: absolute;
+			left: 0;
+			top: 0;
+			user-select: none;
+			pointer-events: none;
+			height: 100%;
+			width: 100%;
+			display: flex;
+			align-items: flex-end;
+
+			.left {
+				height: 100%;
+				border-radius: $border-radius 0 0 $border-radius;
+				border-style: solid;
+				border-color: $border-color;
+				border-top-width: 1px;
+				border-bottom-width: 1px;
+				border-left-width: 1px;
+				border-right-width: 0;
+				width: $horizontal-padding;
+			}
+
+			.center {
+				height: 100%;
+				position: relative;
+				border-style: solid;
+				border-color: $border-color;
+				border-top-width: 1px;
+				border-bottom-width: 1px;
+				border-left-width: 0;
+				border-right-width: 0;
+				width: fit-content;
+				display: flex;
+				align-items: center;
+
+				label {
+					position: relative;
+					pointer-events: none;
+					font-size: var(--fkt-font-size-sm);
+					transition: var(--fkt-transition-base);
+					color: $label-color;
+					white-space: nowrap;
+
+					&.disabled {
+						opacity: 40%;
+						filter: grayscale(1);
+						cursor: not-allowed;
+					}
+
+					&.error {
+						color: $invalid-color;
+					}
+				}
+
+				&.hide-label {
+					width: 0;
+
+					label {
+						display: none;
+					}
+				}
+			}
+
+			.right {
+				height: 100%;
+				border-radius: 0 $border-radius $border-radius 0;
+				border-style: solid;
+				border-color: $border-color;
+				border-top-width: 1px;
+				border-bottom-width: 1px;
+				border-left-width: 0;
+				border-right-width: 1px;
+				width: 100%;
+			}
+
+			&.error {
+				.center, .left, .right {
+					border-color: $invalid-color;
+				}
+
+				.center label {
+					color: $invalid-color;
+				}
+			}
+
+			&.disabled {
+				.center, .left, .right {
+					opacity: 60%;
+					filter: grayscale(1);
+					cursor: not-allowed;
+				}
+			}
+
+			&.focused {
+				.center {
+					label {
+						color: $label-focus-color;
+					}
+				}
+
+				.left, .right, .center {
+					border-color: $border-focus-color;
+				}
+			}
+
+			&.float {
+				.center {
+					border-top-width: 0;
+
+					label {
+						z-index: 50;
+						font-size: var(--fkt-font-size-xs);
+						margin: 0 var(--fkt-space-3xs);
+						translate: 0 calc(calc(calc($vertical-padding + .5rem) * -1) - 1px)
+					}
+				}
+			}
+		}
+
+		&:focus-within .border {
+			.center {
+				label {
+					color: $label-focus-color;
+				}
+			}
+
+			.left, .right, .center {
+				border-color: $border-focus-color;
 			}
 		}
 	}
 
 	&.opened {
 		.label-container label {
-			color: var(--color-yellow-500);
+			color: var(--fkt-color-accent);
 			z-index: 50;
 			scale: 90%;
-			translate: calc(var(--space-3xs) * -1) calc(var(--space-xl) * -1);
+			translate: calc(var(--fkt-space-3xs) * -1) calc(var(--fkt-space-xl) * -1);
 		}
 
 		.select__container {
-			border-color: var(--color-yellow-500);
+			border-color: var(--fkt-color-accent);
 
 			.placeholder {
 				opacity: 1;
@@ -99,20 +340,20 @@
 		user-select: none;
 
 		.label-container label {
-			color: var(--color-gray-400);
+			color: var(--fkt-color-neutral-400);
 			z-index: 50;
 			scale: 90%;
-			translate: calc(var(--space-3xs) * -1) calc(var(--space-xl) * -1);
+			translate: calc(var(--fkt-space-3xs) * -1) calc(var(--fkt-space-xl) * -1);
 		}
 
 		.select__container {
-			border-color: var(--color-gray-200);
-			color: var(--color-gray-400);
+			border-color: var(--fkt-color-neutral-200);
+			color: var(--fkt-color-neutral-400);
 			cursor: not-allowed;
 		}
 	}
 
 	fkt-field-error {
-		padding-left: var(--space-sm);
+		padding-left: var(--fkt-space-sm);
 	}
 }

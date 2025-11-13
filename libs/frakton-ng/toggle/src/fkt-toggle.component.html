@@ -1,0 +1,9 @@
+@if (!hideLabel()) {
+	<label>
+		{{label()}}
+	</label>
+}
+
+<div [tabIndex]="disabled() ? -1: 0" class="container" [attr.aria-label]="label()" (keydown.enter)="$event.preventDefault(); onClick()" (keydown.space)="$event.preventDefault(); onClick()" (click)="onClick()" [class.enabled]="value()">
+	<div class="toggle"></div>
+</div>

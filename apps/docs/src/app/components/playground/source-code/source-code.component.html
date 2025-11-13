@@ -1,0 +1,50 @@
+@let example = externalExample.value();
+@let files = example?.files ?? [];
+
+<div class="files-source source-application-code" [class.expanded]="expanded()">
+    @if (files?.length) {
+        @for (file of files; track file.name) {
+            @if (currentTab() === $index) {
+                <div class="files-source__code" [class.expanded]="expanded()">
+                    @if (example) {
+                        <fkt-code-highlight
+                            [text]="file.content"
+                            [language]="file.language"
+                        />
+                    }
+                </div>
+            }
+        }
+    } @else {
+        <div class="loading">
+            <fkt-spinner/>
+        </div>
+    }
+
+    <div class="files-source__tabs">
+        <div class="tabs-container">
+            @for (file of files; track file.name) {
+                <button
+                    [attr.data-language]="file.language"
+                    [class.active]="currentTab() === $index"
+                    (click)="setTab($index)">
+                    @if (file.language === 'html') {
+                        <p>HTML</p>
+                    }
+                    @if (file.language === 'typescript') {
+                        <p>TS</p>
+                    }
+                    @if (file.language === 'css') {
+                        <p>SCSS</p>
+                    }
+                </button>
+            }
+        </div>
+
+        <button class="copy-button" (click)="copy('file.content')" [class.copied]="copied()">
+            <fkt-icon [name]="copied() ? 'check' : 'clipboard-document'"/>
+
+            {{ copied() ? "Copied" : "Copy" }}
+        </button>
+    </div>
+</div>

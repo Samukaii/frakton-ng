@@ -1,0 +1,11 @@
+.container {
+	display: flex;
+	gap: var(--fkt-space-xs);
+	align-items: center;
+	color: var(--fkt-color-neutral-100);
+
+	&__text {
+		font-weight: var(--fkt-font-semibold);
+
+	}
+}

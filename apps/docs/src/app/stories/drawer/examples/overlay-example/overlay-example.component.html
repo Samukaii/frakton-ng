@@ -1,0 +1,98 @@
+<div class="overlay-example">
+  <fkt-drawer 
+    [opened]="opened()" 
+    mode="overlay" 
+    width="300px"
+    (backdropClick)="onBackdropClick()">
+    <div side-content class="drawer-content">
+      <div class="drawer-header">
+        <h3>Quick Actions</h3>
+        <button class="close-btn" (click)="toggleDrawer()">
+          <fkt-icon name="x-mark"></fkt-icon>
+        </button>
+      </div>
+      <div class="drawer-body">
+        <div class="action-group">
+          <h4>Recent Files</h4>
+          <a href="#" class="action-item">
+            <fkt-icon name="document"></fkt-icon>
+            Document.pdf
+          </a>
+          <a href="#" class="action-item">
+            <fkt-icon name="table-cells"></fkt-icon>
+            Spreadsheet.xlsx
+          </a>
+          <a href="#" class="action-item">
+            <fkt-icon name="photo"></fkt-icon>
+            Image.png
+          </a>
+        </div>
+        
+        <div class="action-group">
+          <h4>Quick Tools</h4>
+          <a href="#" class="action-item">
+            <fkt-icon name="magnifying-glass"></fkt-icon>
+            Search
+          </a>
+          <a href="#" class="action-item">
+            <fkt-icon name="cog-6-tooth"></fkt-icon>
+            Settings
+          </a>
+          <a href="#" class="action-item">
+            <fkt-icon name="arrow-up-tray"></fkt-icon>
+            Upload
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div side-main class="main-content">
+    <header class="header">
+      <button class="toggle-btn" (click)="toggleDrawer()">
+        <fkt-icon name="queue-list"></fkt-icon>
+        Quick Menu
+      </button>
+      <h2>Overlay Mode Drawer</h2>
+    </header>
+    
+    <div class="content">
+      <p>This drawer floats over the main content with a backdrop. The content remains in place and is overlaid by the drawer.</p>
+      <p>Click outside the drawer (on the backdrop) or the close button to dismiss it.</p>
+      
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="card-header">
+            <fkt-icon name="cursor-arrow-rays"></fkt-icon>
+            <h4>Focused Access</h4>
+          </div>
+          <p>Provides quick access to tools and actions without disrupting the main workflow.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="card-header">
+            <fkt-icon name="cursor-arrow-ripple"></fkt-icon>
+            <h4>Backdrop Click</h4>
+          </div>
+          <p>Click anywhere outside the drawer to close it - intuitive and user-friendly.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="card-header">
+            <fkt-icon name="device-phone-mobile"></fkt-icon>
+            <h4>Mobile Friendly</h4>
+          </div>
+          <p>Perfect for mobile interfaces where screen space is limited.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="card-header">
+            <fkt-icon name="bolt"></fkt-icon>
+            <h4>Quick Actions</h4>
+          </div>
+          <p>Ideal for context menus, filters, and temporary tool panels.</p>
+        </div>
+      </div>
+    </div>
+    </div>
+  </fkt-drawer>
+</div>

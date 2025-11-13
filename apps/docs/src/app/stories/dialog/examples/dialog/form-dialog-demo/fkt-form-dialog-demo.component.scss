@@ -1,0 +1,30 @@
+* {
+	box-sizing: border-box;
+}
+
+h2, p {
+	margin: 0;
+}
+
+.header {
+	font-size: var(--fkt-font-size-xl);
+	font-weight: var(--fkt-font-semibold);
+	margin-bottom: var(--fkt-space-xs);
+	color: var(--fkt-color-neutral-950);
+}
+
+.description {
+	color: var(--fkt-color-neutral-600);
+	margin-bottom: var(--fkt-space-md);
+}
+
+.form {
+	display: flex;
+	flex-direction: column;
+	gap: var(--fkt-space-xs);
+	margin-bottom: var(--fkt-space-xl);
+}
+
+fkt-buttons-list {
+	width: 100%;
+}

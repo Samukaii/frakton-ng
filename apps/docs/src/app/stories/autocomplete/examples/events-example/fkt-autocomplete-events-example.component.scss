@@ -1,0 +1,126 @@
+p {
+	margin: 0;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+hr {
+	border: none;
+	border-bottom: solid 1px var(--fkt-color-neutral-300);
+	margin: 0;
+}
+
+.example-container {
+	width: 100%;
+
+	.description {
+		margin-bottom: 1rem;
+		color: var(--color-text-secondary);
+		font-size: 0.875rem;
+	}
+
+	.selected-option {
+		margin-top: var(--fkt-space-xs);
+		padding: var(--fkt-space-sm);
+		border-radius: var(--fkt-radius-md);
+		font-size: var(--fkt-font-size-sm);
+		box-shadow: var(--fkt-shadow-md);
+		border: 1px solid var(--fkt-color-neutral-200);
+		display: flex;
+		flex-direction: column;
+		gap: var(--fkt-space-xs);
+
+		.info {
+			display: flex;
+			flex-direction: column;
+			gap: var(--fkt-space-xs);
+		}
+
+		.title {
+			display: flex;
+			flex-direction: column;
+		}
+	}
+
+	.events-log {
+		margin-top: var(--fkt-space-xs);
+		padding: var(--fkt-space-sm);
+		border-radius: var(--fkt-radius-md);
+		font-size: var(--fkt-font-size-sm);
+		box-shadow: var(--fkt-shadow-md);
+		border: 1px solid var(--fkt-color-neutral-200);
+		display: flex;
+		flex-direction: column;
+		gap: var(--fkt-space-xs);
+		background-color: var(--fkt-color-modal-background);
+
+		h4 {
+			margin: 0 0 var(--fkt-space-xs);
+			font-size: var(--fkt-space-sm);
+			text-transform: uppercase;
+			font-weight: var(--fkt-font-semibold);
+		}
+
+		.last-event {
+			font-family: 'Monaco', 'Menlo', 'Consolas', monospace;
+			font-size: 0.8rem;
+			color: var(--color-text-secondary);
+			padding: 0.5rem;
+			border-radius: 3px;
+			border: 1px solid var(--fkt-color-neutral-300);
+		}
+	}
+
+	.actions-legend {
+		margin-top: 1.5rem;
+		padding: 1rem;
+		background-color: var(--fkt-color-modal-background);
+		box-shadow: var(--fkt-shadow-md);
+		border-radius: 4px;
+
+		h4 {
+			margin: 0 0 var(--fkt-space-xs);
+			font-size: var(--fkt-space-sm);
+			text-transform: uppercase;
+			font-weight: var(--fkt-font-semibold);
+		}
+
+		.legend-items {
+			display: flex;
+			flex-direction: column;
+			gap: 0.5rem;
+		}
+
+		.legend-item {
+			display: flex;
+			align-items: center;
+			gap: 0.5rem;
+			font-size: 0.875rem;
+			color: var(--color-text-secondary);
+
+			.icon-placeholder {
+				width: 20px;
+				height: 20px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				border-radius: 3px;
+				font-size: 12px;
+
+				&.edit-icon {
+					color: var(--fkt-color-primary);
+				}
+
+				&.favorite-icon {
+					color: var(--fkt-color-warning);
+				}
+
+				&.delete-icon {
+					color: var(--fkt-color-danger);
+				}
+			}
+		}
+	}
+}
