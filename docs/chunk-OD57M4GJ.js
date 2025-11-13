@@ -1,4 +1,4 @@
-import{a as e,b as o}from"./chunk-AKRH3OQK.js";import"./chunk-COTBBHUL.js";import"./chunk-OD7DVDPX.js";import"./chunk-VNZP3AVE.js";import"./chunk-XTMEOOWI.js";import"./chunk-M2CHONJK.js";import"./chunk-2CSX5NQG.js";import"./chunk-PKTYJMV7.js";import"./chunk-ZVMTSRX5.js";import"./chunk-XSDESNHK.js";import"./chunk-JHRAHIWB.js";import"./chunk-LBOAZH2J.js";import"./chunk-HJNPW7FY.js";import"./chunk-I22COHRS.js";import"./chunk-A25UGBQK.js";var t=`## Key Features\r
+import{a as e,b as o}from"./chunk-HNV34SQ5.js";import"./chunk-COTBBHUL.js";import"./chunk-OD7DVDPX.js";import"./chunk-VNZP3AVE.js";import"./chunk-XTMEOOWI.js";import"./chunk-M2CHONJK.js";import"./chunk-2CSX5NQG.js";import"./chunk-PKTYJMV7.js";import"./chunk-ZVMTSRX5.js";import"./chunk-XSDESNHK.js";import"./chunk-JHRAHIWB.js";import"./chunk-LBOAZH2J.js";import"./chunk-HJNPW7FY.js";import"./chunk-I22COHRS.js";import"./chunk-A25UGBQK.js";var t=`## Key Features\r
 \r
 ### **Advanced Color Selection**\r
 \r

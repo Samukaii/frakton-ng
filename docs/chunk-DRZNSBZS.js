@@ -1,4 +1,4 @@
-import{a as p,b as j}from"./chunk-G33H27FA.js";import{a as C}from"./chunk-LBOAZH2J.js";import{Ab as g,Bb as e,Cb as n,Db as o,Gc as y,Ib as h,Ma as l,Mb as m,Ob as _,X as v,Y as k,Zb as w,ac as t,bc as A,cc as O,eb as f,ja as s,mc as W,ub as u,vb as M,wc as b,xb as B,yb as x,zb as P}from"./chunk-I22COHRS.js";import"./chunk-A25UGBQK.js";var H=`## Key Features\r
+import{a as p,b as j}from"./chunk-632TPMC6.js";import{a as C}from"./chunk-LBOAZH2J.js";import{Ab as g,Bb as e,Cb as n,Db as o,Gc as y,Ib as h,Ma as l,Mb as m,Ob as _,X as v,Y as k,Zb as w,ac as t,bc as A,cc as O,eb as f,ja as s,mc as W,ub as u,vb as M,wc as b,xb as B,yb as x,zb as P}from"./chunk-I22COHRS.js";import"./chunk-A25UGBQK.js";var H=`## Key Features\r
 \r
 - **Dual Display Modes**: Push mode (displaces content) and overlay mode (floats over content)\r
 - **Configurable Width**: Customizable drawer width to fit content needs\r
