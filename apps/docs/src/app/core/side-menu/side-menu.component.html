@@ -1,11 +1,7 @@
-
-<fkt-drawer [opened]="true" >
-    <nav side-content>
-        <ul class="root-menu">
-            @for (item of menuTree(); track item) {
-                <fkt-side-menu-group [item]="item" [expanded]="true"/>
-            }
-        </ul>
-    </nav>
-
-</fkt-drawer>
+<nav>
+    <ul class="root-menu">
+        @for (item of menuTree(); track item) {
+            <fkt-side-menu-group (clicked)="clicked.emit($event)" [item]="item" [expanded]="true"/>
+        }
+    </ul>
+</nav>

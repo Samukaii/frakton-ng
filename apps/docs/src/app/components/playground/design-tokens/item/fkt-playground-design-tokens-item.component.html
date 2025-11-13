@@ -3,7 +3,7 @@
 	{{ designToken().name }}
 	</span>
 </td>
-<td>
+<td class="hide-sm">
 	{{ designToken().description }}
 
 </td>
@@ -18,7 +18,7 @@
 	}
 
 </td>
-<td>
+<td class="hide-md">
 	@switch (designToken().type) {
 		@case ("size") {
 			<fkt-input
@@ -87,7 +87,7 @@
 		}
 	}
 </td>
-<td class="actions">
+<td class="actions hide-md">
 	@if (hasChanges()) {
 		<div>
 			<fkt-button

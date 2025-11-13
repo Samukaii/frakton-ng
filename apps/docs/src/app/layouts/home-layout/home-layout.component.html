@@ -1,12 +1,13 @@
 <div class="pattern">
 
 </div>
-<fkt-drawer (backdropClick)="mobileMenuService.close()" mode="overlay" [opened]="mobileMenuService.isOpened()">
+
+<fkt-drawer width="100%" (backdropClick)="mobileMenuService.close()" mode="overlay" [opened]="mobileMenuService.isOpened()">
     <div side-content class="mobile-menu">
-        <fkt-side-menu/>
+        <fkt-side-menu (clicked)="mobileMenuService.close()"/>
     </div>
 
-    <div side-main>
+    <div class="main" side-main>
         <fkt-toolbar/>
         <div class="container">
 

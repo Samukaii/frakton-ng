@@ -104,6 +104,8 @@ $preview-height: var(--fkt-color-picker-preview-height, 40px);
 :host {
 	display: flex;
 	gap: $gap;
+
+    --fkt-button-icon-font-weight: var(--fkt-font-normal);
 }
 
 p {
@@ -168,6 +170,7 @@ button {
 
 			.label {
 				font-weight: var(--fkt-font-semibold);
+                white-space: nowrap;
 			}
 
 			.preview-value {

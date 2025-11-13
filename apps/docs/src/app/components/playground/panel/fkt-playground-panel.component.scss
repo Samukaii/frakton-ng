@@ -8,9 +8,13 @@
 
     & > div {
         display: flex;
+        max-width: 100%;
+        min-width: 0;
+        overflow: auto hidden;
     }
 
     .actions {
+        min-width: fit-content;
         fkt-button {
             --fkt-button-accent-color: var(--fkt-color-link);
         }

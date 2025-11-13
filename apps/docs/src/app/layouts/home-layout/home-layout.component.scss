@@ -62,11 +62,15 @@ fkt-side-menu {
     width: 300px;
     left: 1rem;
     top: 5rem;
+    padding-right: 3rem;
 }
 
 .mobile-menu {
-    background-color: var(--fkt-color-modal-background);
-    padding: 1rem;
+    background-color: var(--fkt-mobile-menu-background);
+    padding: 1rem 0 1rem 1rem;
+    max-height: 100vh;
+    overflow-y: auto;
+    backdrop-filter: blur(12px);
 }
 
 fkt-table-of-contents {
@@ -76,6 +80,17 @@ fkt-table-of-contents {
     width: 300px;
     top: 5rem;
     right: 1rem;
+    padding-left: 3rem;
+    max-height: calc(100vh - 6rem);
+    overflow-y: auto;
+}
+
+.main {
+    width: 100%;
+    justify-content: center;
+    display: flex;
+    max-height: 100vh;
+    overflow-y: scroll;
 }
 
 .container {
@@ -86,7 +101,11 @@ fkt-table-of-contents {
     height: fit-content;
     max-width: 1750px;
     justify-content: center;
-    gap: var(--fkt-space-6xl);
+    gap: var(--fkt-space-md);
+
+    fkt-side-menu {
+        max-height: calc(100vh - 6rem);
+    }
 }
 
 .content {

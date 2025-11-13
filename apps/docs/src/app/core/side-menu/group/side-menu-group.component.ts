@@ -1,4 +1,4 @@
-import { Component, computed, input, model } from '@angular/core';
+import { Component, computed, input, model, output } from '@angular/core';
 import { FktIconComponent, FktIconName } from "frakton-ng/icon";
 import { NgTemplateOutlet } from "@angular/common";
 import { RouterLink, RouterLinkActive } from '@angular/router';
@@ -33,6 +33,7 @@ const titleIconsMap: Record<string, FktIconName> = {
 export class SideMenuGroupComponent {
 	item = input.required<MenuGroup | MenuItem>();
 	expanded = model(false);
+    clicked = output<MenuItem>()
 
 	icon = computed(() => {
 		return titleIconsMap[this.item().title.toLowerCase()] ?? 'cube';

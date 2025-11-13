@@ -1,20 +1,21 @@
-import { Component, computed } from '@angular/core';
+import { Component, computed, output } from '@angular/core';
 import { STORIES_MAP } from '@/stories/stories-map';
 import { buildTree } from '@/utils/build-tree';
 import { SideMenuGroupComponent } from './group/side-menu-group.component';
-import { FktDrawerComponent } from 'frakton-ng/drawer';
+import { MenuItem } from '@/models/menu.item';
 
 @Component({
-	selector: 'fkt-side-menu',
+    selector: 'fkt-side-menu',
     imports: [
-        SideMenuGroupComponent,
-        FktDrawerComponent
+        SideMenuGroupComponent
     ],
-	templateUrl: './side-menu.component.html',
-	styleUrl: './side-menu.component.scss',
+    templateUrl: './side-menu.component.html',
+    styleUrl: './side-menu.component.scss',
 })
 export class SideMenuComponent {
-	protected readonly menuTree = computed(() => {
-		return buildTree(STORIES_MAP);
-	})
+    clicked = output<MenuItem>();
+
+    protected readonly menuTree = computed(() => {
+        return buildTree(STORIES_MAP);
+    })
 }

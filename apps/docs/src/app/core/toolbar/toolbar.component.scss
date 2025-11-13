@@ -120,6 +120,7 @@
             box-sizing: border-box;
             min-height: 0;
             aspect-ratio: 1;
+            backdrop-filter: blur(12px);
 
             &:hover {
                 background-color: var(--fkt-color-neutral-800);

@@ -3,7 +3,9 @@ pre[class*="language-"] {
     font-family: JetBrains Mono, Consolas, Monaco, monospace;
     background-color: rgb(30, 34, 43);
     width: 100%;
-    min-width: fit-content;
+    min-width: 0;
+    max-width: 100%;
+    overflow: auto;
     color: #ccc !important;
     box-sizing: border-box;
     font-weight: 500;

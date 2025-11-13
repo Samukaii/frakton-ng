@@ -22,6 +22,7 @@ import { SkeletonContainerComponent } from '@/components/skeleton-container/skel
 import { injectCurrentRoute } from '@/utils/inject-current-route';
 import { startWith, Subscription } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { StoryResolved } from '@/models/story.resolved';
 
 
 @Component({
