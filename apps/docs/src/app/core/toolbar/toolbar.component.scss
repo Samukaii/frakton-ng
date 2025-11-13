@@ -8,6 +8,15 @@
     height: 5rem;
 }
 
+::ng-deep {
+    fkt-toolbar {
+        border-bottom: solid 1px var(--fkt-color-neutral-300);
+    }
+    [data-fkt-theme="dark"] fkt-toolbar {
+        border-bottom: solid 1px var(--fkt-color-neutral-200);
+    }
+}
+
 .toolbar {
     z-index: 1;
     width: 100%;
@@ -16,10 +25,12 @@
     justify-content: space-between;
     box-sizing: border-box;
     padding: .5rem 0;
+    gap: var(--fkt-space-md);
 
     max-width: 1750px;
 
     .logo {
+        width: fit-content;
         display: flex;
         gap: var(--fkt-space-xs);
         height: 36px;
@@ -48,6 +59,9 @@
     &__actions {
         display: flex;
         gap: .5rem;
+        width: 100%;
+        justify-content: flex-end;
+        align-items: center;
 
         .search-trigger {
             display: flex;
@@ -61,8 +75,10 @@
             color: var(--fkt-color-neutral-900);
             gap: var(--fkt-space-md);
             font-size: var(--fkt-font-size-sm);
-            width: 300px;
+            max-width: 300px;
+            width: 100%;
             justify-content: space-between;
+            backdrop-filter: blur(12px);
 
             .text {
                 display: flex;
@@ -71,7 +87,7 @@
             }
 
             kbd {
-                background-color: var(--fkt-color-neutral-100);
+                background-color: var(--fkt-color-modal-background);
                 color: var(--fkt-color-neutral-900);
                 font-size: var(--fkt-font-size-md);
                 height: 24px;

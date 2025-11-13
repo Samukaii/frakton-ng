@@ -3,6 +3,10 @@ fkt-input {
     backdrop-filter: blur(16px);
     --fkt-input-border-radius: 1rem;
 
+    fkt-icon {
+        color: var(--fkt-color-neutral-900);
+        margin-right: 1rem ;
+    }
 }
 
 :host {
@@ -61,7 +65,7 @@ fkt-input {
             }
 
             &.section {
-                padding-left: 2rem;
+                padding-left: 2.5rem;
             }
 
             &:hover, &:focus-visible {

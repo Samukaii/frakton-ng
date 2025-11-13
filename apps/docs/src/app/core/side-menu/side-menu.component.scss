@@ -24,6 +24,8 @@
 	width: 300px;
 	color: var(--fkt-color-neutral-900);
 	height: 100%;
+    max-height: 100vh;
+    overflow: auto;
 	box-sizing: border-box;
     z-index: 30000;
 }

@@ -32,3 +32,36 @@ body[data-fkt-theme="dark"] {
     --fkt-color-link-opacity-20: var(--fkt-color-accent-opacity-20);
 }
 
+.show-xs, .show-md, .show-sm {
+    display: none !important;
+}
+
+@media (screen and max-width: 1200px) {
+    .hide-md {
+        display: none !important;
+    }
+
+    .show-md {
+        display: block !important;
+    }
+}
+
+@media (screen and max-width: 650px) {
+    .hide-sm {
+        display: none !important;
+    }
+
+    .show-sm {
+        display: block !important;
+    }
+}
+
+@media (screen and max-width: 460px) {
+    .hide-xs {
+        display: none !important;
+    }
+
+    .show-xs {
+        display: block !important;
+    }
+}

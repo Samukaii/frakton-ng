@@ -5,8 +5,6 @@
     width: 100%;
     align-items: center;
     overflow-y: auto;
-
-
 }
 
 .pattern {
@@ -53,6 +51,8 @@ fkt-toolbar {
     position: fixed;
     top: 0;
     z-index: 2;
+    box-sizing: border-box;
+    padding: 0 1rem;
 }
 
 fkt-side-menu {
@@ -60,7 +60,13 @@ fkt-side-menu {
     position: sticky;
     height: fit-content;
     width: 300px;
+    left: 1rem;
     top: 5rem;
+}
+
+.mobile-menu {
+    background-color: var(--fkt-color-modal-background);
+    padding: 1rem;
 }
 
 fkt-table-of-contents {
@@ -69,9 +75,11 @@ fkt-table-of-contents {
     height: fit-content;
     width: 300px;
     top: 5rem;
+    right: 1rem;
 }
 
 .container {
+    box-sizing: border-box;
     padding-top: 6rem;
     display: flex;
     width: 100%;
@@ -84,4 +92,5 @@ fkt-table-of-contents {
 .content {
     width: 100%;
     max-width: 1200px;
+    min-width: 0;
 }

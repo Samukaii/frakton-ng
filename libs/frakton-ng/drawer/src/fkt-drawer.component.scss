@@ -47,7 +47,7 @@
 		background-color: black;
 
 		&.drawer__backdrop--show {
-			pointer-events: none;
+			pointer-events: auto;
 			opacity: 50%;
 		}
 	}

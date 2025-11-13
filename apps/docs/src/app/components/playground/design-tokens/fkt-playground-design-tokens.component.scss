@@ -87,7 +87,7 @@ table {
 	display: block;
 	border-radius: 0 0 var(--fkt-radius-md) var(--fkt-radius-md);
 	background-color: var(--fkt-controls-table-background);
-	overflow: hidden auto;
+	overflow: auto;
 	height: 0;
 	transition: var(--fkt-transition-base);
 

@@ -1,9 +1,5 @@
 :host {
 	color: var(--fkt-color-neutral-700);
-
-	@media (max-width: 1200px) {
-		display: none;
-	}
 }
 
 .toc-title {
