@@ -95,7 +95,10 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
+                padding: var(--fkt-space-3xs);
+                box-sizing: border-box;
                 border-radius: var(--fkt-radius-md);
+                border: solid 1px var(--fkt-color-neutral-400);
             }
 
             .shortcuts {
