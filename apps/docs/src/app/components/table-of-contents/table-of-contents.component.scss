@@ -68,22 +68,3 @@
 		}
 	}
 }
-
-.table-of-contents {
-	&::-webkit-scrollbar {
-		width: 4px;
-	}
-
-	&::-webkit-scrollbar-track {
-		background: var(--fkt-color-surface);
-	}
-
-	&::-webkit-scrollbar-thumb {
-		background: var(--fkt-color-border);
-		border-radius: 2px;
-
-		&:hover {
-			background: var(--fkt-color-text-tertiary);
-		}
-	}
-}
