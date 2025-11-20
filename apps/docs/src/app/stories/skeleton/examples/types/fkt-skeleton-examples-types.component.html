@@ -1,0 +1,65 @@
+<div class="example">
+	<h3>Skeleton Types</h3>
+	<p>Different skeleton types for various content placeholders.</p>
+	
+	<div class="types-grid">
+		<div class="type-demo">
+			@if (showLabels()) {
+				<h4>Text</h4>
+				<p>Single and multi-line text placeholders</p>
+			}
+			<fkt-skeleton-container direction="column" gap="sm">
+				<fkt-skeleton type="text" />
+				<fkt-skeleton type="text" [lines]="3" />
+			</fkt-skeleton-container>
+		</div>
+
+		<div class="type-demo">
+			@if (showLabels()) {
+				<h4>Circle</h4>
+				<p>Perfect for avatars and profile images</p>
+			}
+			<fkt-skeleton-container direction="row" gap="md">
+				<fkt-skeleton type="circle" height="40px" />
+				<fkt-skeleton type="circle" height="60px" />
+				<fkt-skeleton type="circle" height="80px" />
+			</fkt-skeleton-container>
+		</div>
+
+		<div class="type-demo">
+			@if (showLabels()) {
+				<h4>Rectangle</h4>
+				<p>General purpose rectangular placeholders</p>
+			}
+			<fkt-skeleton-container direction="column" gap="sm">
+				<fkt-skeleton type="rect" height="40px" />
+				<fkt-skeleton type="rect" height="60px" />
+				<fkt-skeleton type="rect" height="80px" />
+			</fkt-skeleton-container>
+		</div>
+
+		<div class="type-demo">
+			@if (showLabels()) {
+				<h4>Button</h4>
+				<p>Button-shaped placeholders</p>
+			}
+			<fkt-skeleton-container direction="row" gap="md">
+				<fkt-skeleton type="button" width="80px" />
+				<fkt-skeleton type="button" width="120px" />
+				<fkt-skeleton type="button" width="100px" />
+			</fkt-skeleton-container>
+		</div>
+
+		<div class="type-demo">
+			@if (showLabels()) {
+				<h4>Image</h4>
+				<p>Image placeholders with aspect ratios</p>
+			}
+			<fkt-skeleton-container direction="row" gap="md">
+				<fkt-skeleton type="image" aspectRatio="1/1" width="100px" />
+				<fkt-skeleton type="image" aspectRatio="16/9" width="160px" />
+				<fkt-skeleton type="image" aspectRatio="4/3" width="120px" />
+			</fkt-skeleton-container>
+		</div>
+	</div>
+</div>

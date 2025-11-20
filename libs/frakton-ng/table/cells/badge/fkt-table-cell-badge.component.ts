@@ -1,5 +1,12 @@
 import { Component, input } from '@angular/core';
 import { FktBadgeColor, FktBadgeComponent, FktBadgeVariant } from 'frakton-ng/badge';
+import 'frakton-ng/table';
+
+declare module 'frakton-ng/table' {
+    export interface FktTableCellsMapping {
+        'badge': FktTableCellBadgeComponent
+    }
+}
 
 @Component({
   selector: 'fkt-table-cell-badge',

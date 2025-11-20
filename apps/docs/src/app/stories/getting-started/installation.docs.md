@@ -10,7 +10,7 @@ Welcome to **Frakton NG** - the next-generation Angular UI library that combines
 ### 1. Install the Package
 
 ```bash
-npm install frakton-ng@next
+npm install frakton-ng
 ```
 
 ### 2. Add Styles to Your Project
@@ -173,14 +173,14 @@ export class MyComponent {
 ## Next Steps
 
 ### Continue Learning
-- **[Theming & Styling](/docs/getting-started-theming-styling--docs)** - Master design tokens and theme switching
-- **[Migration Guides](/docs/getting-started-migration-guides--docs)** - Migrate from other UI libraries
+- **[Theming & Styling](/#/home/docs/getting-started-theming-styling)** - Master design tokens and theme switching
+- **[Migration Guides](/#/home/docs/getting-started-migration-guides)** - Migrate from other UI libraries
 
 ### Explore Components
-- **[Button](/docs/components-actions-button--raised)** - Multiple themes, custom colors, loading states
-- **[Input](/docs/components-forms-input--default)** - Signal-based forms with validation
-- **[Color Picker](/docs/components-forms-color-picker--default)** - Multi-format with accessibility
-- **[Overlay System](/docs/components-layout-overlay--simple-overlay)** - Type-safe overlays and dialogs
+- **[Button](/#/home/docs/button)** - Multiple themes, custom colors, loading states
+- **[Input](/#/home/docs/input)** - Signal-based forms with validation
+- **[Color Picker](/#/home/docs/color-picker)** - Multi-format with accessibility
+- **[Overlay System](/#/home/docs/overlay)** - Type-safe overlays and dialogs
 
 ### Learn Advanced Features
 - **Form Integration** - Signal-based reactive forms
@@ -189,7 +189,8 @@ export class MyComponent {
 
 ### Join the Community
 - **[GitHub Issues](https://github.com/Samukaii/frakton-ng/issues)** - Report bugs and request features
-- **[Documentation](https://samukaii.github.io/frakton-ng)** - Complete interactive documentation
+- **[NPM Package](https://www.npmjs.com/package/frakton-ng)** - Install Frakton NG into your project
+- **[Discord Community](https://discord.gg/7r6dsN4aah)** - Join our community
 
 ---
 

@@ -1,0 +1,9 @@
+@if (type() === 'text' && lines() > 1) {
+	@for (line of lineArray(); track $index; let last = $last) {
+		<div class="fkt-skeleton__line" 
+		     [class.fkt-skeleton__line--last]="last">
+		</div>
+	}
+} @else {
+	<div class="fkt-skeleton__content"></div>
+}

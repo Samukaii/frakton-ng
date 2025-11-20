@@ -1,0 +1,176 @@
+// <design-tokens>
+/*
+Base background color for skeleton.
+@name --fkt-skeleton-color
+@reference --fkt-color-neutral-300
+@category Colors
+@type color
+*/
+$skeleton-color: var(--fkt-skeleton-color, var(--fkt-color-neutral-300));
+
+/*
+Highlight color for skeleton animations.
+@name --fkt-skeleton-highlight-color
+@reference --fkt-color-neutral-200
+@category Colors
+@type color
+*/
+$skeleton-highlight-color: var(--fkt-skeleton-highlight-color, var(--fkt-color-neutral-200));
+
+/*
+Animation duration for skeleton effects.
+@name --fkt-skeleton-animation-duration
+@reference 1.5s
+@category Animation
+@type duration
+*/
+$animation-duration: var(--fkt-skeleton-animation-duration, 1.5s);
+
+/*
+Border radius for small skeleton elements.
+@name --fkt-skeleton-border-radius-sm
+@reference --fkt-radius-sm
+@category Spacing
+@type size
+*/
+$border-radius-sm: var(--fkt-skeleton-border-radius-sm, var(--fkt-radius-sm));
+
+/*
+Border radius for medium skeleton elements.
+@name --fkt-skeleton-border-radius-md
+@reference --fkt-radius-md
+@category Spacing
+@type size
+*/
+$border-radius-md: var(--fkt-skeleton-border-radius-md, var(--fkt-radius-md));
+
+/*
+Border radius for circular skeleton elements.
+@name --fkt-skeleton-border-radius-full
+@reference --fkt-radius-full
+@category Spacing
+@type size
+*/
+$border-radius-full: var(--fkt-skeleton-border-radius-full, var(--fkt-radius-full));
+
+/*
+Gap between multiple skeleton text lines.
+@name --fkt-skeleton-line-gap
+@reference --fkt-space-xs
+@category Spacing
+@type size
+*/
+$line-gap: var(--fkt-skeleton-line-gap, var(--fkt-space-xs));
+
+// </design-tokens>
+
+:host {
+	display: block;
+	overflow: hidden;
+	width: 100%;
+	height: 100%;
+	background-color: $skeleton-color;
+}
+
+.fkt-skeleton {
+	width: 100%;
+	height: 100%;
+	background-color: inherit;
+
+	&__content {
+		width: 100%;
+		height: 100%;
+	}
+
+	&__line {
+		height: 1rem;
+		background-color: inherit;
+		border-radius: inherit;
+		margin-bottom: $line-gap;
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+
+		&--last {
+			width: 75%; // Last line typically shorter
+		}
+	}
+}
+
+// Host animations
+:host(.fkt-skeleton--shimmer) {
+	background: linear-gradient(
+		90deg,
+		$skeleton-color 0%,
+		$skeleton-highlight-color 50%,
+		$skeleton-color 100%
+	);
+	background-size: 200% 100%;
+	animation: shimmer $animation-duration ease-in-out infinite;
+}
+
+:host(.fkt-skeleton--pulse) {
+	animation: pulse $animation-duration ease-in-out infinite;
+}
+
+:host(.fkt-skeleton--wave) {
+	position: relative;
+	overflow: hidden;
+	
+	&::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: -100%;
+		width: 100%;
+		height: 100%;
+		background: linear-gradient(
+			90deg,
+			transparent 0%,
+			$skeleton-highlight-color 50%,
+			transparent 100%
+		);
+		animation: wave $animation-duration ease-in-out infinite;
+	}
+}
+
+// Type-specific styles
+:host(.fkt-skeleton--text) {
+	.fkt-skeleton__line:last-child {
+		width: 75%;
+	}
+}
+
+:host(.fkt-skeleton--multiline) {
+	display: flex;
+	flex-direction: column;
+}
+
+// Animations
+@keyframes shimmer {
+	0% {
+		background-position: -200% 0;
+	}
+	100% {
+		background-position: 200% 0;
+	}
+}
+
+@keyframes pulse {
+	0%, 100% {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0.6;
+	}
+}
+
+@keyframes wave {
+	0% {
+		left: -100%;
+	}
+	100% {
+		left: 100%;
+	}
+}

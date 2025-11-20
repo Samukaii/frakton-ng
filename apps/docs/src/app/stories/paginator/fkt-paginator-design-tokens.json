@@ -1,0 +1,66 @@
+[
+  {
+    "description": "Gap between pagination elements.",
+    "name": "--fkt-pagination-gap",
+    "reference": "--fkt-space-md",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": "1rem"
+  },
+  {
+    "description": "Gap between pagination control buttons.",
+    "name": "--fkt-pagination-controls-gap",
+    "reference": "--fkt-space-xs",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": ".5rem"
+  },
+  {
+    "description": "Gap between page size selector elements.",
+    "name": "--fkt-pagination-page-size-gap",
+    "reference": "--fkt-space-sm",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": ".75rem"
+  },
+  {
+    "description": "Gap between pagination elements on mobile.",
+    "name": "--fkt-pagination-mobile-gap",
+    "reference": "--fkt-space-sm",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": ".75rem"
+  },
+  {
+    "description": "Font size for pagination info text.",
+    "name": "--fkt-pagination-info-font-size",
+    "reference": "--fkt-font-size-sm",
+    "category": "Typography",
+    "type": "size",
+    "defaultValue": "0.875rem"
+  },
+  {
+    "description": "Color for pagination info text.",
+    "name": "--fkt-pagination-info-color",
+    "reference": "--fkt-color-text-secondary",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "--fkt-color-text-secondary"
+  },
+  {
+    "description": "Minimum width for page size selector.",
+    "name": "--fkt-pagination-page-size-min-width",
+    "reference": "100px",
+    "category": "Sizing",
+    "type": "size",
+    "defaultValue": "100px"
+  },
+  {
+    "description": "Mobile breakpoint for responsive layout.",
+    "name": "--fkt-pagination-mobile-breakpoint",
+    "reference": "640px",
+    "category": "Breakpoints",
+    "type": "size",
+    "defaultValue": "640px"
+  }
+]

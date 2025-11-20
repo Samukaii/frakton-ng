@@ -15,7 +15,16 @@
 
 			<div class="table-container__no-data-content">
 				@if (loading()) {
-					<fkt-spinner [size]="80" [stroke]="8"/>
+					<fkt-skeleton-container>
+                        <fkt-skeleton width="100%"/>
+                        <fkt-skeleton width="100%"/>
+                        <fkt-skeleton width="100%"/>
+                        <fkt-skeleton width="100%"/>
+                        <fkt-skeleton width="100%"/>
+                        <fkt-skeleton width="100%"/>
+                        <fkt-skeleton width="100%"/>
+                        <fkt-skeleton width="100%"/>
+                    </fkt-skeleton-container>
 				} @else {
 					@let noResultsVar = noResults();
 

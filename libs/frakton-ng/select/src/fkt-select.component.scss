@@ -116,6 +116,12 @@
 		font-size: $font-size;
 	}
 
+    .label-placeholder {
+        pointer-events: none;
+        opacity: 0;
+        height: 0;
+    }
+
 	.label-container {
 		display: flex;
 		gap: var(--fkt-space-xs);
@@ -152,10 +158,16 @@
 		padding: $vertical-padding $horizontal-padding;
 		outline: none;
 
+        &__content {
+            display: flex;
+            flex-direction: column;
+        }
+
 		&__container {
 			outline: none;
 			height: 20px;
 			width: 100%;
+            gap: var(--fkt-space-xs);
 			transition: var(--fkt-transition-base);
 			border-radius: var(--fkt-radius-lg);
 			display: flex;
@@ -207,6 +219,7 @@
 				border-left-width: 1px;
 				border-right-width: 0;
 				width: $horizontal-padding;
+                flex-shrink: 0;
 			}
 
 			.center {

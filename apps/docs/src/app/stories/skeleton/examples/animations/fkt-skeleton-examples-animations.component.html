@@ -1,0 +1,34 @@
+<div class="example">
+	<h3>Animation Effects</h3>
+	<p>Different loading animations to match your design preferences.</p>
+	
+	<div class="animations-grid">
+		<div class="animation-demo">
+			<h4>Shimmer (Default)</h4>
+			<p>Smooth gradient sweep effect</p>
+			<fkt-skeleton [type]="type()" animation="shimmer" height="60px" />
+		</div>
+
+		<div class="animation-demo">
+			<h4>Pulse</h4>
+			<p>Gentle opacity pulsing</p>
+			<fkt-skeleton [type]="type()" animation="pulse" height="60px" />
+		</div>
+
+		<div class="animation-demo">
+			<h4>Wave</h4>
+			<p>Wave sweep across the element</p>
+			<fkt-skeleton [type]="type()" animation="wave" height="60px" />
+		</div>
+
+		<div class="animation-demo">
+			<h4>None</h4>
+			<p>Static placeholder without animation</p>
+			<fkt-skeleton [type]="type()" animation="none" height="60px" />
+		</div>
+	</div>
+
+	<div class="note">
+		<strong>Note:</strong> Use the controls to change the skeleton type and see how animations work with different shapes.
+	</div>
+</div>

@@ -1,0 +1,32 @@
+.example {
+	padding: 1.5rem;
+	border: 1px solid var(--fkt-color-neutral-300);
+	border-radius: var(--fkt-radius-md);
+
+	h3 {
+		margin: 0 0 0.5rem 0;
+		color: var(--fkt-color-neutral-900);
+	}
+
+	> p {
+		margin: 0 0 2rem 0;
+		color: var(--fkt-color-neutral-900);
+	}
+}
+
+.patterns {
+	display: grid;
+	gap: 2rem;
+	grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+}
+
+.pattern {
+	padding: 1.5rem;
+	border-radius: var(--fkt-radius-sm);
+
+	h4 {
+		margin: 0 0 1rem 0;
+		color: var(--fkt-color-neutral-900);
+		font-size: var(--fkt-font-size-md);
+	}
+}

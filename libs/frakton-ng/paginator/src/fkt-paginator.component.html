@@ -1,0 +1,73 @@
+<div class="pagination">
+	@if (mergedConfig().showInfo) {
+		<div class="pagination__info">
+			Showing {{ startItem() }} to {{ endItem() }} of {{ total() }} results
+		</div>
+	}
+
+	<div class="pagination__controls">
+		@if (mergedConfig().showFirstLast) {
+			<fkt-button
+				theme="basic"
+				icon="chevron-double-left"
+				ariaLabel="First page"
+				[disabled]="disabled() || !canGoPrevious()"
+				(click)="goToFirst()"
+			/>
+		}
+
+		@if (mergedConfig().showPrevNext) {
+			<fkt-button
+				theme="basic"
+				icon="chevron-left"
+				ariaLabel="Previous page"
+				[disabled]="disabled() || !canGoPrevious()"
+				(click)="goToPrevious()"
+			/>
+		}
+
+		@if (mergedConfig().showPageNumbers) {
+			@for (page of visiblePages(); track page) {
+				<fkt-button
+					[theme]="page === currentPage() ? 'raised' : 'basic'"
+					[text]="page.toString()"
+					[ariaLabel]="'Go to page ' + page"
+					[disabled]="disabled()"
+					(click)="goToPage(page)"
+				/>
+			}
+		}
+
+		@if (mergedConfig().showPrevNext) {
+			<fkt-button
+				theme="basic"
+				icon="chevron-right"
+				ariaLabel="Next page"
+				[disabled]="disabled() || !canGoNext()"
+				(click)="goToNext()"
+			/>
+		}
+
+		@if (mergedConfig().showFirstLast) {
+			<fkt-button
+				theme="basic"
+				icon="chevron-double-right"
+				ariaLabel="Last page"
+				[disabled]="disabled() || !canGoNext()"
+				(click)="goToLast()"
+			/>
+		}
+	</div>
+
+	@if (mergedConfig().showPageSize) {
+		<div class="pagination__page-size">
+			<fkt-select
+				[value]="pageSize()"
+				[options]="pageSizeOptions()"
+				[disabled]="disabled()"
+				(valueChange)="changePageSize($event)"
+				label="Items per page"
+			/>
+		</div>
+	}
+</div>

@@ -1,0 +1,58 @@
+[
+  {
+    "description": "Base background color for skeleton.",
+    "name": "--fkt-skeleton-color",
+    "reference": "--fkt-color-neutral-300",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#cbd5e1"
+  },
+  {
+    "description": "Highlight color for skeleton animations.",
+    "name": "--fkt-skeleton-highlight-color",
+    "reference": "--fkt-color-neutral-200",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#e2e8f0"
+  },
+  {
+    "description": "Animation duration for skeleton effects.",
+    "name": "--fkt-skeleton-animation-duration",
+    "reference": "1.5s",
+    "category": "Animation",
+    "type": "duration",
+    "defaultValue": "1.5s"
+  },
+  {
+    "description": "Border radius for small skeleton elements.",
+    "name": "--fkt-skeleton-border-radius-sm",
+    "reference": "--fkt-radius-sm",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": ".25rem"
+  },
+  {
+    "description": "Border radius for medium skeleton elements.",
+    "name": "--fkt-skeleton-border-radius-md",
+    "reference": "--fkt-radius-md",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": ".375rem"
+  },
+  {
+    "description": "Border radius for circular skeleton elements.",
+    "name": "--fkt-skeleton-border-radius-full",
+    "reference": "--fkt-radius-full",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": "9999px"
+  },
+  {
+    "description": "Gap between multiple skeleton text lines.",
+    "name": "--fkt-skeleton-line-gap",
+    "reference": "--fkt-space-xs",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": ".5rem"
+  }
+]

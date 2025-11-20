@@ -1,56 +1,59 @@
 <div
-	#element
-	(keydown)="handleKeydown(element, $event)"
-	tabindex="0"
-	(click)="openOverlay(element)"
-	class="select">
-	<div
-		class="select__container"
-		[class.opened]="opened()"
-		[class.error]="invalid()"
-		[class.show-placeholder]="!!selectedOption()?.label || focused()"
-		role="combobox"
-		aria-haspopup="listbox"
-		[attr.aria-labelledby]="labelId"
-		[attr.aria-expanded]="opened()"
-		[attr.aria-controls]="opened() ? listBoxId : null"
-		[attr.aria-activedescendant]="opened() ? activeOptionId() : null"
-		[attr.aria-disabled]="disabled()"
-		[attr.aria-label]="label()"
-		[attr.aria-invalid]="invalid()"
-		[attr.aria-errormessage]="errors()[0]?.message"
-	>
-		<div>
-			@if (selectedOption()?.label) {
-				<span class="selected-option">
+    #element
+    (keydown)="handleKeydown(element, $event)"
+    tabindex="0"
+    (click)="openOverlay(element)"
+    class="select">
+    <div
+        class="select__container"
+        [class.opened]="opened()"
+        [class.error]="invalid()"
+        [class.show-placeholder]="!!selectedOption()?.label || focused()"
+        role="combobox"
+        aria-haspopup="listbox"
+        [attr.aria-labelledby]="labelId"
+        [attr.aria-expanded]="opened()"
+        [attr.aria-controls]="opened() ? listBoxId : null"
+        [attr.aria-activedescendant]="opened() ? activeOptionId() : null"
+        [attr.aria-disabled]="disabled()"
+        [attr.aria-label]="label()"
+        [attr.aria-invalid]="invalid()"
+        [attr.aria-errormessage]="errors()[0]?.message"
+    >
+        <div class="select__content">
+            @if (selectedOption()?.label) {
+                <span class="selected-option">
 				{{ selectedOption()?.label }}
 				</span>
-			} @else if (opened()) {
-				<span class="placeholder" aria-hidden="true">{{ placeholder() }}</span>
-			}
-		</div>
-		<fkt-icon name="chevron-down"/>
-	</div>
+            } @else if (opened() && placeholder()) {
+                <span class="placeholder" aria-hidden="true">{{ placeholder() }}</span>
+            }
+            <span aria-hidden="true" class="label-placeholder">
+				{{ label() }}
+                </span>
+        </div>
+        <fkt-icon name="chevron-down"/>
+    </div>
 
-	<div class="border"
-		 [class.error]="invalid() && touched()"
-		 [class.focused]="opened()"
-		 [class.float]="!!selectedOption()?.label || opened()"
-		 [class.disabled]="disabled()"
-	>
-		<div class="left">
+    <div class="border"
+         [class.error]="invalid() && touched()"
+         [class.focused]="opened()"
+         [class.float]="!!selectedOption()?.label || opened()"
+         [class.disabled]="disabled()"
+    >
+        <div class="left">
 
-		</div>
-		<div
-			[class.hide-label]="hideLabel()"
-			class="center">
-			<label
-				aria-hidden="true"
-			>{{ label() }}</label>
-		</div>
+        </div>
+        <div
+            [class.hide-label]="hideLabel()"
+            class="center">
+            <label
+                aria-hidden="true"
+            >{{ label() }}</label>
+        </div>
 
-		<div class="right">
+        <div class="right">
 
-		</div>
-	</div>
+        </div>
+    </div>
 </div>

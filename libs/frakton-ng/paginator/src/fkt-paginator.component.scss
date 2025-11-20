@@ -1,0 +1,132 @@
+// <design-tokens>
+/*
+Gap between pagination elements.
+@name --fkt-pagination-gap
+@reference --fkt-space-md
+@category Spacing
+@type size
+*/
+$gap: var(--fkt-pagination-gap, var(--fkt-space-md));
+
+/*
+Gap between pagination control buttons.
+@name --fkt-pagination-controls-gap
+@reference --fkt-space-xs
+@category Spacing
+@type size
+*/
+$controls-gap: var(--fkt-pagination-controls-gap, var(--fkt-space-xs));
+
+/*
+Gap between page size selector elements.
+@name --fkt-pagination-page-size-gap
+@reference --fkt-space-sm
+@category Spacing
+@type size
+*/
+$page-size-gap: var(--fkt-pagination-page-size-gap, var(--fkt-space-sm));
+
+/*
+Gap between pagination elements on mobile.
+@name --fkt-pagination-mobile-gap
+@reference --fkt-space-sm
+@category Spacing
+@type size
+*/
+$mobile-gap: var(--fkt-pagination-mobile-gap, var(--fkt-space-sm));
+
+/*
+Font size for pagination info text.
+@name --fkt-pagination-info-font-size
+@reference --fkt-font-size-sm
+@category Typography
+@type size
+*/
+$info-font-size: var(--fkt-pagination-info-font-size, var(--fkt-font-size-sm));
+
+/*
+Color for pagination info text.
+@name --fkt-pagination-info-color
+@reference --fkt-color-text-secondary
+@category Colors
+@type color
+*/
+$info-color: var(--fkt-pagination-info-color, var(--fkt-color-text-secondary));
+
+/*
+Minimum width for page size selector.
+@name --fkt-pagination-page-size-min-width
+@reference 100px
+@category Sizing
+@type size
+*/
+$page-size-min-width: var(--fkt-pagination-page-size-min-width, 100px);
+
+/*
+Mobile breakpoint for responsive layout.
+@name --fkt-pagination-mobile-breakpoint
+@reference 640px
+@category Breakpoints
+@type size
+*/
+$mobile-breakpoint: var(--fkt-pagination-mobile-breakpoint, 640px);
+
+// </design-tokens>
+
+:host {
+	display: block;
+	width: 100%;
+}
+
+
+.pagination {
+	display: flex;
+	align-items: center;
+	gap: $gap;
+	flex-wrap: wrap;
+
+    fkt-button {
+        width: 40px;
+        height: 40px;
+    }
+
+	&__info {
+		font-size: $info-font-size;
+		color: $info-color;
+		white-space: nowrap;
+	}
+
+	&__controls {
+		display: flex;
+		align-items: center;
+		gap: $controls-gap;
+	}
+
+	&__page-size {
+		display: flex;
+		align-items: center;
+		gap: $page-size-gap;
+
+	}
+
+	@media (max-width: $mobile-breakpoint) {
+		flex-direction: column;
+		align-items: stretch;
+		gap: $mobile-gap;
+
+		&__info {
+			text-align: center;
+			order: 3;
+		}
+
+		&__controls {
+			order: 1;
+			justify-content: center;
+		}
+
+		&__page-size {
+			order: 2;
+			justify-content: center;
+		}
+	}
+}

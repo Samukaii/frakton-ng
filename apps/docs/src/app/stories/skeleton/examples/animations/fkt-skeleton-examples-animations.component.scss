@@ -1,0 +1,52 @@
+.example {
+	padding: 1.5rem;
+	border: 1px solid var(--fkt-color-neutral-300);
+	border-radius: var(--fkt-radius-md);
+
+	h3 {
+		margin: 0 0 0.5rem 0;
+		color: var(--fkt-color-neutral-900);
+	}
+
+	> p {
+		margin: 0 0 2rem 0;
+		color: var(--fkt-color-neutral-900);
+	}
+}
+
+.animations-grid {
+	display: grid;
+	gap: 1.5rem;
+	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+	margin-bottom: 2rem;
+}
+
+.animation-demo {
+	padding: 1rem;
+	border-radius: var(--fkt-radius-sm);
+
+	h4 {
+		margin: 0 0 0.5rem 0;
+		color: var(--fkt-color-neutral-900);
+		font-size: var(--fkt-font-size-md);
+	}
+
+	p {
+		margin: 0 0 1rem 0;
+		color: var(--fkt-color-text-secondary);
+		font-size: var(--fkt-font-size-sm);
+	}
+}
+
+.note {
+	padding: 1rem;
+	background: var(--fkt-color-neutral-200);
+	border-radius: var(--fkt-radius-sm);
+	border-left: 3px solid var(--fkt-color-info);
+	font-size: var(--fkt-font-size-sm);
+	color: var(--fkt-color-neutral-900);
+
+	strong {
+		color: var(--fkt-color-text-primary);
+	}
+}

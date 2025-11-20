@@ -1,0 +1,56 @@
+<div class="example">
+	<h3>Common Skeleton Patterns</h3>
+	<p>Typical layouts you'll use for loading states.</p>
+
+	<div class="patterns">
+		<div class="pattern">
+			<h4>User Profile Card</h4>
+			<fkt-skeleton-container direction="row" gap="md" align="start">
+				<fkt-skeleton type="circle" height="60px" />
+				<fkt-skeleton-container direction="column" gap="sm">
+					<fkt-skeleton type="text" width="150px" />
+					<fkt-skeleton type="text" [lines]="2" />
+					<fkt-skeleton type="button" width="100px" />
+				</fkt-skeleton-container>
+			</fkt-skeleton-container>
+		</div>
+
+		<div class="pattern">
+			<h4>Article Preview</h4>
+			<fkt-skeleton-container direction="column" gap="md">
+				<fkt-skeleton type="image" aspectRatio="16/9" />
+				<fkt-skeleton type="text" width="80%" />
+				<fkt-skeleton type="text" [lines]="3" />
+				<fkt-skeleton-container direction="row" gap="sm" align="center">
+					<fkt-skeleton type="circle" height="32px" />
+					<fkt-skeleton type="text" width="120px" />
+				</fkt-skeleton-container>
+			</fkt-skeleton-container>
+		</div>
+
+
+
+		<div class="pattern">
+			<h4>Product Card</h4>
+			<fkt-skeleton-container direction="column" gap="sm">
+				<fkt-skeleton type="image" aspectRatio="1/1" />
+				<fkt-skeleton type="text" width="90%" />
+				<fkt-skeleton type="text" width="60%" />
+				<fkt-skeleton-container direction="row" gap="sm" justify="space-between" align="center">
+					<fkt-skeleton type="text" width="80px" />
+					<fkt-skeleton type="button" width="80px" height="32px" />
+				</fkt-skeleton-container>
+			</fkt-skeleton-container>
+		</div>
+
+        <div class="pattern">
+            <h4>Data Table Row</h4>
+            <fkt-skeleton-container direction="row" gap="lg" align="center">
+                <fkt-skeleton type="circle" height="32px" />
+                <fkt-skeleton type="text" width="150px" />
+                <fkt-skeleton type="text" width="100px" />
+                <fkt-skeleton type="circle" height="24px" />
+            </fkt-skeleton-container>
+        </div>
+	</div>
+</div>

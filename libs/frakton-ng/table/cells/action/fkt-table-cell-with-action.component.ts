@@ -2,6 +2,14 @@ import { Component, input } from '@angular/core';
 import { CallPipe } from 'frakton-ng/internal/pipes';
 import { FktButtonsListComponent } from 'frakton-ng/buttons-list';
 import { FktButtonAction } from 'frakton-ng/button';
+import 'frakton-ng/table';
+
+
+declare module 'frakton-ng/table' {
+    export interface FktTableCellsMapping {
+        actions: FktTableCellWithActionComponent
+    }
+}
 
 
 @Component({

@@ -1,8 +1,9 @@
 import { Component, ComponentRef, inject, input, OnDestroy, OnInit, Type, ViewContainerRef } from '@angular/core';
-import { tableCellsMapping } from '../cells/table-cells-mapping';
 import { createComponentBindings } from 'frakton-ng/internal/utils';
-import { FktTableColumn } from "../fkt-table.types";
-
+import { FktTableCell, FktTableColumn } from "../fkt-table.types";
+import { TABLE_CELLS_TOKEN } from '../table-cells.provider';
+import { FktTableCellDefaultComponent } from '../core-cells/default/fkt-table-cell-default.component';
+import { FktTableCellTemplateComponent } from '../core-cells/template/fkt-table-cell-template.component';
 
 @Component({
 	selector: 'fkt-table-cell-renderer',
@@ -15,13 +16,39 @@ export class TableCellRendererComponent implements OnInit, OnDestroy {
 
 	private viewRef = inject(ViewContainerRef);
 	private componentRef: ComponentRef<any> | null = null;
+	private additionalCells = inject(TABLE_CELLS_TOKEN, { optional: true }) ?? {};
+
+	private get cellsMapping(): Record<string, Type<any>> {
+        console.log(this.additionalCells);
+		const coreCells: Record<string, Type<any>> = {
+			default: FktTableCellDefaultComponent,
+			template: FktTableCellTemplateComponent
+		};
+
+		return { ...coreCells, ...this.additionalCells };
+	}
+
+    private getCell(cell: FktTableCell | string): FktTableCell {
+        if(typeof cell === 'string')
+            return {
+                type: 'default',
+                options: {
+                    value: cell
+                }
+            }
+
+        return cell;
+    }
 
 	ngOnInit() {
 		const column = this.column();
+		const cell = this.getCell(column.cell);
 
-		const cell = column.cell;
+		const componentToRender = this.cellsMapping[cell.type] as Type<any>;
 
-		const componentToRender = tableCellsMapping[cell.type] as Type<any>;
+		if (!componentToRender) {
+			throw new Error(`Unknown table cell type: ${cell.type}. Did you forget to provide it using provideTableCells()?`);
+		}
 
 		this.componentRef = this.viewRef.createComponent(componentToRender, {
 			bindings: createComponentBindings(componentToRender, cell.options as any)

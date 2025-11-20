@@ -1,22 +1,23 @@
 import { booleanAttribute, Component, computed, input, } from '@angular/core';
 import { TableCellRendererComponent } from './cell-renderer/table-cell-renderer.component';
-import { FktSpinnerComponent } from 'frakton-ng/spinner';
 import { FktButtonsListComponent } from 'frakton-ng/buttons-list';
 import { CallPipe } from 'frakton-ng/internal/pipes';
 import { FktIdentifiable } from 'frakton-ng/core';
 import { FktButtonAction } from 'frakton-ng/button';
 import { FktNoResults, FktNoResultsComponent } from 'frakton-ng/no-results';
 import { FktTableActionFn, FktTableClassesFn, FktTableColumn, FktTableColumnFn } from './fkt-table.types';
+import { FktSkeletonComponent, FktSkeletonContainerComponent } from 'frakton-ng/skeleton';
 
 @Component({
 	selector: 'fkt-table',
-	imports: [
-		CallPipe,
-		TableCellRendererComponent,
-		FktSpinnerComponent,
-		FktButtonsListComponent,
-		FktNoResultsComponent,
-	],
+    imports: [
+        CallPipe,
+        TableCellRendererComponent,
+        FktButtonsListComponent,
+        FktNoResultsComponent,
+        FktSkeletonContainerComponent,
+        FktSkeletonComponent,
+    ],
 	templateUrl: './fkt-table.component.html',
 	styleUrl: './fkt-table.component.scss',
 })
@@ -26,11 +27,11 @@ export class FktTableComponent<T extends FktIdentifiable> {
 	classesFn = input<FktTableClassesFn<T>>(() => '');
 	actionsFn = input<FktTableActionFn<T>>();
 	mainAction = input<FktButtonAction>();
-	loading = input(false);
+	loading = input(true);
 	noHeaderWhenEmpty = input(false, {transform: booleanAttribute});
 
 	noResults = input<FktNoResults>({
-		label: 'Sem resultados',
+		label: 'No results',
 	});
 
 	headers = computed(() => {

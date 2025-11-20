@@ -65,11 +65,11 @@
 	/*
 	Font size for textarea text and placeholder.
 	@name --fkt-textarea-font-size
-	@reference --fkt-font-size-md
+	@reference --fkt-font-size-sm
 	@category Typography
 	@type size
  	*/
-	$font-size: var(--fkt-textarea-font-size, var(--fkt-font-size-md));
+	$font-size: var(--fkt-textarea-font-size, var(--fkt-font-size-sm));
 	/*
 	Color for text written into textarea
 	@name --fkt-textarea-text-color
