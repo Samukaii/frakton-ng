@@ -62,6 +62,7 @@ export const productMainAction: FktButtonAction = {
 	click: () => console.log('Add new product')
 };
 
+
 @Component({
 	selector: 'fkt-table-examples-product-table',
 	imports: [
@@ -86,18 +87,12 @@ export class FktTableExamplesProductTableComponent {
 		{
 			position: '1',
 			name: 'Product',
-			cell: {
-				type: 'default',
-				options: {value: product.name}
-			}
+			cell: product.name
 		},
 		{
 			position: '2',
 			name: 'Category',
-			cell: {
-				type: 'default',
-				options: {value: product.category}
-			}
+			cell: product.category
 		},
 		{
 			position: '3',

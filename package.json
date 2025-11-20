@@ -6,7 +6,7 @@
         "nx": "nx",
         "start": "nx serve docs",
         "build": "nx build frakton-ng",
-        "build:docs": "nx build docs --base-href=/frakton-ng/",
+        "build:docs": "nx build docs --base-href=/",
         "serve:docs": "nx serve docs",
         "index:docs": "tsx scripts/index-documentation.ts",
         "publish:major": "pnpm --filter frakton-ng publish:major",

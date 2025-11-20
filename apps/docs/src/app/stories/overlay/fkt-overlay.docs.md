@@ -290,28 +290,20 @@ While not required, signals enable powerful reactive patterns when you need real
 
 ```typescript
     // Option 1: Static data (simple and fine for most cases)
-data: {
-    title: 'Static Title',
-        message
-:
-    'This won'
-    t
-    change
-    after
-    overlay
-    opens
-    '
+const staticOptions = {
+    data: {
+        title: 'Static Title',
+        message: `This won't change after overlay opens`
+    }
 }
 
 // Option 2: Reactive data (when you need live updates)
-data: {
-    title: this.dynamicTitle, // Signal that can update
-        message
-:
-    this.liveMessage, // Updates reflect in overlay
-        counter
-:
-    this.sharedCounter // Two-way binding with models
+const reactiveOptions = {
+    data: {
+        title: this.dynamicTitle, // Signal that can update
+        message: this.liveMessage, // Updates reflect in overlay
+        counter: this.sharedCounter // Two-way binding with models
+    }
 }
 ```
 
@@ -342,21 +334,13 @@ Customize behavior when users click outside the overlay:
 Fine-tune overlay positioning behavior:
 
 ```typescript
-    {
+const options = {
     panelOptions: {
         position: 'bottom-start',
-            disableAutoReposition
-    :
-        true, // Stays in position even if off-screen
-            width
-    :
-        'fit-content', // Adapts to content size
-            maxHeight
-    :
-        '400px', // Prevents oversized overlays
-            overflow
-    :
-        'auto' // Adds scrolling when needed
+        disableAutoReposition: true, // Stays in position even if off-screen
+        width: 'fit-content', // Adapts to content size
+        maxHeight: '400px', // Prevents oversized overlays
+        overflow: 'auto' // Adds scrolling when needed
     }
 }
 ```

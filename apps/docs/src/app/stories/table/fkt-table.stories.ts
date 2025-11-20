@@ -13,12 +13,15 @@ import { Meta } from '@/models/meta';
 import { Story } from '@/models/story';
 // @ts-expect-error
 import documentation from './fkt-table.docs.md' with { loader: "text" };
+import designTokens from './fkt-table-design-tokens.json';
+import { DesignToken } from '@/models/design-token';
 
 const meta: Meta = {
 	title: "Components/Data Display/Table",
 	component: FktTableComponent,
     description: "A powerful and flexible table component for displaying tabular data with dynamic columns, row actions, loading states, and customizable empty states. Built with Angular signals for optimal performance and provides extensive customization options for real-world data display scenarios.",
 	documentation,
+    designTokens: designTokens as DesignToken[],
 	argTypes: {
 		data: {
 			control: 'object',

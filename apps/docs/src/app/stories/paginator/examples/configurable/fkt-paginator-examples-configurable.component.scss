@@ -1,0 +1,39 @@
+.example {
+	padding: 1.5rem;
+	border: 1px solid var(--fkt-color-neutral-300);
+	border-radius: var(--fkt-radius-md);
+	background: var(--fkt-color-card-background);
+
+	h3 {
+		margin: 0 0 0.5rem 0;
+		color: var(--fkt-color-neutral-900);
+	}
+
+	> p {
+		margin: 0 0 2rem 0;
+		color: var(--fkt-color-neutral-900);
+	}
+}
+
+.config-example {
+	margin-bottom: 2rem;
+	padding: 1.5rem;
+	border: 1px solid var(--fkt-color-neutral-300);
+	border-radius: var(--fkt-radius-sm);
+
+	&:last-child {
+		margin-bottom: 0;
+	}
+
+	h4 {
+		margin: 0 0 0.25rem 0;
+		color: var(--fkt-color-neutral-900);
+		font-size: var(--fkt-font-size-md);
+	}
+
+	p {
+		margin: 0 0 1rem 0;
+		color: var(--fkt-color-neutral-900);
+		font-size: var(--fkt-font-size-sm);
+	}
+}

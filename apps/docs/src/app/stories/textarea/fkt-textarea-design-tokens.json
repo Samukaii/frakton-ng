@@ -58,10 +58,10 @@
   {
     "description": "Font size for textarea text and placeholder.",
     "name": "--fkt-textarea-font-size",
-    "reference": "--fkt-font-size-md",
+    "reference": "--fkt-font-size-sm",
     "category": "Typography",
     "type": "size",
-    "defaultValue": "1rem"
+    "defaultValue": "0.875rem"
   },
   {
     "description": "Color for text written into textarea",

@@ -1,0 +1,39 @@
+<div class="example">
+	<h3>Configuration Options</h3>
+	<p>Examples of different pagination configurations for various use cases.</p>
+
+	<div class="config-example">
+		<h4>Minimal (Navigation Only)</h4>
+		<p>Perfect for mobile or compact layouts</p>
+		<fkt-paginator
+			[page]="page()"
+			[pageSize]="pageSize()"
+			[total]="total()"
+			[config]="minimalConfig"
+			(pageChange)="onPageChange($event)"
+		/>
+	</div>
+
+	<div class="config-example">
+		<h4>Info Only</h4>
+		<p>Just display current state without navigation</p>
+		<fkt-paginator
+            [page]="page()"
+            [pageSize]="pageSize()"
+            [total]="total()"
+			[config]="infoOnlyConfig"
+		/>
+	</div>
+
+	<div class="config-example">
+		<h4>Custom Page Sizes</h4>
+		<p>Different page size options and more visible pages</p>
+		<fkt-paginator
+            [page]="page()"
+            [pageSize]="pageSize()"
+            [total]="total()"
+			[config]="customConfig"
+			(pageChange)="onPageChange($event)"
+		/>
+	</div>
+</div>

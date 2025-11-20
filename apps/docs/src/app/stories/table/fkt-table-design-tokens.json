@@ -160,14 +160,5 @@
     "category": "Typography",
     "type": "size",
     "defaultValue": "1.25rem"
-  },
-  {
-    "description": "Gap between action cell elements.",
-    "name": "--fkt-table-cell-action-gap",
-    "reference": "--fkt-space-xs",
-    "component": "Display",
-    "category": "Spacing",
-    "type": "size",
-    "defaultValue": ".5rem"
   }
 ]

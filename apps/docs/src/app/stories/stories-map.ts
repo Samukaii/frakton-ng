@@ -947,6 +947,40 @@ export const STORIES_MAP: StoryIndexer[] = [	{
 	    ]
 	},
 	{
+		id: "paginator",
+		title: "Components/Navigation/Paginator",
+		componentName: "FktPaginatorComponent",
+		description: `The FktPaginator component provides server-side pagination controls with configurable display options, responsive design, and accessibility features. Perfect for tables, lists, and any paginated content.`,
+		file: () => import("./paginator/fkt-paginator.stories"),
+		externalExamples: () => import("./paginator/examples/raw-examples").then(file => file.default),
+		stories: [
+		    {
+		        id: "basic",
+		        name: "Basic",
+		        componentName: null,
+		        description: `Default paginator component with configurable state and options.`,
+		    },
+		    {
+		        id: "basic-example",
+		        name: "BasicExample",
+		        componentName: "BasicExampleComponent",
+		        description: `Default paginator with all features enabled. Try navigating through pages and changing page size.`,
+		    },
+		    {
+		        id: "configurable-example",
+		        name: "ConfigurableExample",
+		        componentName: "ConfigurableExampleComponent",
+		        description: `Examples of different paginator configurations for various use cases.`,
+		    },
+		    {
+		        id: "responsive-example",
+		        name: "ResponsiveExample",
+		        componentName: "ResponsiveExampleComponent",
+		        description: `Responsive design that adapts to different screen sizes with mobile-friendly reordering.`,
+		    }
+	    ]
+	},
+	{
 		id: "select",
 		title: "Components/Form/Select",
 		componentName: "FktSelectComponent",
@@ -1047,6 +1081,40 @@ export const STORIES_MAP: StoryIndexer[] = [	{
 		        name: "WithRouting",
 		        componentName: "WithRoutingExampleComponent",
 		        description: `Complete dashboard layout showcasing real-world usage with content integration.`,
+		    }
+	    ]
+	},
+	{
+		id: "skeleton",
+		title: "Components/Feedback/Skeleton",
+		componentName: "FktSkeletonComponent",
+		description: `The FktSkeleton component provides loading placeholders with multiple types, animations, and configurable appearance. Perfect for indicating content loading states with realistic previews.`,
+		file: () => import("./skeleton/fkt-skeleton.stories"),
+		externalExamples: () => import("./skeleton/examples/raw-examples").then(file => file.default),
+		stories: [
+		    {
+		        id: "basic",
+		        name: "Basic",
+		        componentName: null,
+		        description: `Basic skeleton component with configurable properties.`,
+		    },
+		    {
+		        id: "basic-example",
+		        name: "BasicExample",
+		        componentName: "FktSkeletonExamplesBasicComponent",
+		        description: `Common skeleton usage patterns and layouts.`,
+		    },
+		    {
+		        id: "types-example",
+		        name: "TypesExample",
+		        componentName: "FktSkeletonExamplesTypesComponent",
+		        description: `Different skeleton types: text, circle, rect, button, and image.`,
+		    },
+		    {
+		        id: "animations-example",
+		        name: "AnimationsExample",
+		        componentName: "FktSkeletonExamplesAnimationsComponent",
+		        description: `Various animation effects: shimmer, pulse, wave, and none.`,
 		    }
 	    ]
 	},

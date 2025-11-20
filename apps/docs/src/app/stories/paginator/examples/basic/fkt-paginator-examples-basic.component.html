@@ -1,0 +1,18 @@
+<div class="example">
+	<h3>Basic Pagination</h3>
+	<p>Default pagination with all features enabled. Try navigating through pages and changing page size.</p>
+
+	<fkt-paginator
+        [page]="page()"
+        [pageSize]="pageSize()"
+        [total]="total()"
+		(pageChange)="onPageChange($event)"
+	/>
+
+	@if (lastPageChange()) {
+		<div class="event-display">
+			<strong>Last Page Change Event:</strong>
+			<pre>{{ lastPageChange() | json }}</pre>
+		</div>
+	}
+</div>

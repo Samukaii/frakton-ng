@@ -104,6 +104,12 @@
 			"frakton-ng/table": [
 				"libs/frakton-ng/table"
 			],
+            "frakton-ng/table/cells/badge": [
+                "libs/frakton-ng/table/cells/badge"
+            ],
+            "frakton-ng/table/cells/action": [
+                "libs/frakton-ng/table/cells/action"
+            ],
 			"frakton-ng/tabs": [
 				"libs/frakton-ng/tabs"
 			],
@@ -115,6 +121,12 @@
 			],
 			"frakton-ng/toggle": [
 				"libs/frakton-ng/toggle"
+			],
+			"frakton-ng/paginator": [
+				"libs/frakton-ng/paginator"
+			],
+			"frakton-ng/skeleton": [
+				"libs/frakton-ng/skeleton"
 			]
 		}
 	},

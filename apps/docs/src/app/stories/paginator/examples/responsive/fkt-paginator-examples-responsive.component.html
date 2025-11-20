@@ -1,0 +1,27 @@
+<div class="example">
+	<h3>Responsive Design</h3>
+	<p>Resize your browser to see how the pagination adapts to different screen sizes. On mobile, elements reorder for better usability.</p>
+
+	<div class="responsive-container">
+		<fkt-paginator
+            [page]="page()"
+            [pageSize]="pageSize()"
+            [total]="total()"
+			(pageChange)="onPageChange($event)"
+		/>
+	</div>
+
+	<div class="layout-info">
+		<h4>Responsive Behavior:</h4>
+		<ul>
+			<li><strong>Desktop:</strong> All elements in a horizontal line</li>
+			<li><strong>Mobile (&lt; 640px):</strong> Stacked layout with reordering:
+				<ol>
+					<li>Navigation controls</li>
+					<li>Page size selector</li>
+					<li>Info text</li>
+				</ol>
+			</li>
+		</ul>
+	</div>
+</div>

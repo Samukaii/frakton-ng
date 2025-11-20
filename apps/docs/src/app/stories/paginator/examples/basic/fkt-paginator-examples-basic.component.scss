@@ -1,0 +1,40 @@
+.example {
+	padding: 1.5rem;
+	border: 1px solid var(--fkt-color-neutral-300);
+	border-radius: var(--fkt-radius-md);
+	background: var(--fkt-color-surface);
+
+	h3 {
+		margin: 0 0 0.5rem 0;
+		color: var(--fkt-color-text-primary);
+	}
+
+	p {
+		margin: 0 0 1.5rem 0;
+		color: var(--fkt-color-text-secondary);
+	}
+}
+
+.event-display {
+	margin-top: 1.5rem;
+	padding: 1rem;
+	background: var(--fkt-color-neutral-200);
+	border-radius: var(--fkt-radius-sm);
+	border-left: 3px solid var(--fkt-color-primary);
+
+	strong {
+		color: var(--fkt-color-text-primary);
+		display: block;
+		margin-bottom: 0.5rem;
+	}
+
+	pre {
+		margin: 0;
+		font-size: var(--fkt-font-size-sm);
+		color: var(--fkt-color-text-secondary);
+		background: var(--fkt-color-surface);
+		padding: 0.75rem;
+		border-radius: var(--fkt-radius-sm);
+		overflow-x: auto;
+	}
+}

@@ -1,145 +1,154 @@
 {
-	"compileOnSave": false,
-	"compilerOptions": {
-		"baseUrl": "./",
-		"esModuleInterop": true,
-		"paths": {
-			"frakton-ng/autocomplete": [
-				"libs/frakton-ng/autocomplete"
-			],
-			"frakton-ng/badge": [
-				"libs/frakton-ng/badge"
-			],
-			"frakton-ng/badge-selector": [
-				"libs/frakton-ng/badge-selector"
-			],
-			"frakton-ng/button": [
-				"libs/frakton-ng/button"
-			],
-			"frakton-ng/buttons-list": [
-				"libs/frakton-ng/buttons-list"
-			],
-			"frakton-ng/calendar": [
-				"libs/frakton-ng/calendar"
-			],
-			"frakton-ng/calendar-navigator": [
-				"libs/frakton-ng/calendar-navigator"
-			],
-			"frakton-ng/card": [
-				"libs/frakton-ng/card"
-			],
-			"frakton-ng/checkbox": [
-				"libs/frakton-ng/checkbox"
-			],
-			"frakton-ng/color-picker": [
-				"libs/frakton-ng/color-picker"
-			],
-			"frakton-ng/focus-trap": [
-				"libs/frakton-ng/focus-trap"
-			],
-			"frakton-ng/navigable-list": [
-				"libs/frakton-ng/navigable-list"
-			],
-			"frakton-ng/core": [
-				"libs/frakton-ng/core"
-			],
-			"frakton-ng/date-picker": [
-				"libs/frakton-ng/date-picker"
-			],
-			"frakton-ng/dialog": [
-				"libs/frakton-ng/dialog"
-			],
-			"frakton-ng/drawer": [
-				"libs/frakton-ng/drawer"
-			],
-			"frakton-ng/field-error": [
-				"libs/frakton-ng/field-error"
-			],
-			"frakton-ng/forms": [
-				"libs/frakton-ng/forms"
-			],
-			"frakton-ng/icon": [
-				"libs/frakton-ng/icon"
-			],
-			"frakton-ng/input": [
-				"libs/frakton-ng/input"
-			],
-			"frakton-ng/internal/di": [
-				"libs/frakton-ng/internal/di"
-			],
-			"frakton-ng/internal/pipes": [
-				"libs/frakton-ng/internal/pipes"
-			],
-			"frakton-ng/internal/services": [
-				"libs/frakton-ng/internal/services"
-			],
-			"frakton-ng/internal/types": [
-				"libs/frakton-ng/internal/types"
-			],
-			"frakton-ng/internal/utils": [
-				"libs/frakton-ng/internal/utils"
-			],
-			"frakton-ng/navigator": [
-				"libs/frakton-ng/navigator"
-			],
-			"frakton-ng/no-results": [
-				"libs/frakton-ng/no-results"
-			],
-			"frakton-ng/overlay": [
-				"libs/frakton-ng/overlay"
-			],
-			"frakton-ng/select": [
-				"libs/frakton-ng/select"
-			],
-			"frakton-ng/side-menu": [
-				"libs/frakton-ng/side-menu"
-			],
-			"frakton-ng/spinner": [
-				"libs/frakton-ng/spinner"
-			],
-			"frakton-ng/table": [
-				"libs/frakton-ng/table"
-			],
-			"frakton-ng/tabs": [
-				"libs/frakton-ng/tabs"
-			],
-			"frakton-ng/textarea": [
-				"libs/frakton-ng/textarea"
-			],
-			"frakton-ng/tooltip": [
-				"libs/frakton-ng/tooltip"
-			],
-			"frakton-ng/toggle": [
-				"libs/frakton-ng/toggle"
-			]
-		},
-		"strict": true,
-		"noImplicitOverride": true,
-		"noPropertyAccessFromIndexSignature": true,
-		"noImplicitReturns": true,
-		"noFallthroughCasesInSwitch": true,
-		"skipLibCheck": true,
-		"isolatedModules": true,
-		"experimentalDecorators": true,
-		"importHelpers": true,
-		"target": "ES2022",
-		"module": "preserve"
-	},
-	"angularCompilerOptions": {
-		"enableI18nLegacyMessageIdFormat": false,
-		"strictInjectionParameters": true,
-		"strictInputAccessModifiers": true,
-		"typeCheckHostBindings": true,
-		"strictTemplates": true
-	},
-	"include": [
-		"libs/**/*.ts"
-	],
-	"exclude": [
-		"**/*.spec.ts",
-		"**/**/examples/*.ts"
-	],
-	"files": [
-		"./globals.d.ts"
-	]
+    "compileOnSave": false,
+    "compilerOptions": {
+        "baseUrl": "./",
+        "esModuleInterop": true,
+        "paths": {
+            "frakton-ng/autocomplete": [
+                "libs/frakton-ng/autocomplete"
+            ],
+            "frakton-ng/badge": [
+                "libs/frakton-ng/badge"
+            ],
+            "frakton-ng/badge-selector": [
+                "libs/frakton-ng/badge-selector"
+            ],
+            "frakton-ng/button": [
+                "libs/frakton-ng/button"
+            ],
+            "frakton-ng/buttons-list": [
+                "libs/frakton-ng/buttons-list"
+            ],
+            "frakton-ng/calendar": [
+                "libs/frakton-ng/calendar"
+            ],
+            "frakton-ng/calendar-navigator": [
+                "libs/frakton-ng/calendar-navigator"
+            ],
+            "frakton-ng/card": [
+                "libs/frakton-ng/card"
+            ],
+            "frakton-ng/checkbox": [
+                "libs/frakton-ng/checkbox"
+            ],
+            "frakton-ng/color-picker": [
+                "libs/frakton-ng/color-picker"
+            ],
+            "frakton-ng/focus-trap": [
+                "libs/frakton-ng/focus-trap"
+            ],
+            "frakton-ng/navigable-list": [
+                "libs/frakton-ng/navigable-list"
+            ],
+            "frakton-ng/core": [
+                "libs/frakton-ng/core"
+            ],
+            "frakton-ng/date-picker": [
+                "libs/frakton-ng/date-picker"
+            ],
+            "frakton-ng/dialog": [
+                "libs/frakton-ng/dialog"
+            ],
+            "frakton-ng/drawer": [
+                "libs/frakton-ng/drawer"
+            ],
+            "frakton-ng/field-error": [
+                "libs/frakton-ng/field-error"
+            ],
+            "frakton-ng/forms": [
+                "libs/frakton-ng/forms"
+            ],
+            "frakton-ng/icon": [
+                "libs/frakton-ng/icon"
+            ],
+            "frakton-ng/input": [
+                "libs/frakton-ng/input"
+            ],
+            "frakton-ng/internal/di": [
+                "libs/frakton-ng/internal/di"
+            ],
+            "frakton-ng/internal/pipes": [
+                "libs/frakton-ng/internal/pipes"
+            ],
+            "frakton-ng/internal/services": [
+                "libs/frakton-ng/internal/services"
+            ],
+            "frakton-ng/internal/types": [
+                "libs/frakton-ng/internal/types"
+            ],
+            "frakton-ng/internal/utils": [
+                "libs/frakton-ng/internal/utils"
+            ],
+            "frakton-ng/navigator": [
+                "libs/frakton-ng/navigator"
+            ],
+            "frakton-ng/no-results": [
+                "libs/frakton-ng/no-results"
+            ],
+            "frakton-ng/overlay": [
+                "libs/frakton-ng/overlay"
+            ],
+            "frakton-ng/select": [
+                "libs/frakton-ng/select"
+            ],
+            "frakton-ng/side-menu": [
+                "libs/frakton-ng/side-menu"
+            ],
+            "frakton-ng/spinner": [
+                "libs/frakton-ng/spinner"
+            ],
+            "frakton-ng/table": [
+                "libs/frakton-ng/table/public-api"
+            ],
+            "frakton-ng/table/*": [
+                "libs/frakton-ng/table/*/public-api.ts"
+            ],
+            "frakton-ng/tabs": [
+                "libs/frakton-ng/tabs"
+            ],
+            "frakton-ng/textarea": [
+                "libs/frakton-ng/textarea"
+            ],
+            "frakton-ng/tooltip": [
+                "libs/frakton-ng/tooltip"
+            ],
+            "frakton-ng/toggle": [
+                "libs/frakton-ng/toggle"
+            ],
+            "frakton-ng/paginator": [
+                "libs/frakton-ng/paginator"
+            ],
+            "frakton-ng/skeleton": [
+                "libs/frakton-ng/skeleton"
+            ]
+        },
+        "strict": true,
+        "noImplicitOverride": true,
+        "noPropertyAccessFromIndexSignature": true,
+        "noImplicitReturns": true,
+        "noFallthroughCasesInSwitch": true,
+        "skipLibCheck": true,
+        "isolatedModules": true,
+        "experimentalDecorators": true,
+        "importHelpers": true,
+        "target": "ES2022",
+        "module": "preserve"
+    },
+    "angularCompilerOptions": {
+        "enableI18nLegacyMessageIdFormat": false,
+        "strictInjectionParameters": true,
+        "strictInputAccessModifiers": true,
+        "typeCheckHostBindings": true,
+        "strictTemplates": true
+    },
+    "include": [
+        "libs/**/*.ts"
+    ],
+    "exclude": [
+        "**/*.spec.ts",
+        "**/**/examples/*.ts"
+    ],
+    "files": [
+        "./globals.d.ts"
+    ]
 }

@@ -67,7 +67,7 @@ export class FktTableExamplesCustomCellsComponent {
 			position: '5',
 			name: 'Status',
 			cell: {
-				type: 'with-action',
+				type: 'actions',
 				options: {
 					text: {
 						value:
@@ -107,7 +107,7 @@ export class FktTableExamplesCustomCellsComponent {
 			position: '3',
 			name: 'Priority',
 			cell: {
-				type: 'with-action',
+				type: 'actions',
 				options: {
 					text: {
 						value: this.formatPriority(task.priority)
@@ -131,7 +131,7 @@ export class FktTableExamplesCustomCellsComponent {
 			position: '4',
 			name: 'Status',
 			cell: {
-				type: 'with-action',
+				type: 'actions',
 				options: {
 					text: {value: this.formatTaskStatus(task.status)},
 					actions: [

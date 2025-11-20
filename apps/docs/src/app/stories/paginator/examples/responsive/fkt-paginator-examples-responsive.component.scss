@@ -1,0 +1,56 @@
+.example {
+	padding: 1.5rem;
+	border: 1px solid var(--fkt-color-neutral-300);
+	border-radius: var(--fkt-radius-md);
+	background: var(--fkt-color-card-background);
+
+	h3 {
+		margin: 0 0 0.5rem 0;
+		color: var(--fkt-color-text-primary);
+	}
+
+	> p {
+		margin: 0 0 2rem 0;
+		color: var(--fkt-color-text-secondary);
+	}
+}
+
+.responsive-container {
+	padding: 1.5rem;
+	border: 2px dashed var(--fkt-color-neutral-300);
+	border-radius: var(--fkt-radius-sm);
+	margin-bottom: 2rem;
+	background: var(--fkt-color-modal-background);
+}
+
+.layout-info {
+	background: var(--fkt-color-surface-tertiary);
+	padding: 1.5rem;
+	border-radius: var(--fkt-radius-sm);
+
+	h4 {
+		margin: 0 0 1rem 0;
+		color: var(--fkt-color-text-primary);
+		font-size: var(--fkt-font-size-md);
+	}
+
+	ul, ol {
+		margin: 0;
+		padding-left: 1.5rem;
+		color: var(--fkt-color-text-secondary);
+		font-size: var(--fkt-font-size-sm);
+	}
+
+	li {
+		margin-bottom: 0.5rem;
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+
+	ol {
+		margin-top: 0.5rem;
+		padding-left: 2rem;
+	}
+}

@@ -14,10 +14,14 @@ import { Story } from '@/models/story';
 // @ts-expect-error
 import documentation from './fkt-select.docs.md' with { loader: "text" };
 
+import designTokens from './fkt-select-design-tokens.json';
+import { DesignToken } from '@/models/design-token';
+
 const meta: Meta = {
 	title: "Components/Form/Select",
     description: "A dropdown selection component that provides a clean and accessible interface for choosing options. Built with Angular signals and reactive forms, it offers a styled alternative to native select elements with enhanced functionality and consistent design.",
 	component: FktSelectComponent,
+    designTokens: designTokens as DesignToken[],
 	documentation,
 	argTypes: {
 		label: {

@@ -8,6 +8,9 @@ import {
 } from '@angular/router';
 import { appRoutes } from './app.routes';
 import { provideMarkdown, SANITIZE } from 'ngx-markdown';
+import { provideTableCells } from 'frakton-ng/table';
+import { FktTableCellBadgeComponent } from 'frakton-ng/table/cells/badge';
+import { FktTableCellWithActionComponent } from 'frakton-ng/table/cells/action';
 import DOMPurify from 'dompurify';
 
 function sanitizeHtml(html: string): string {
@@ -40,5 +43,9 @@ export const appConfig: ApplicationConfig = {
                 anchorScrolling: "enabled",
                 scrollPositionRestoration: "top",
             })),
+        provideTableCells({
+            badge: FktTableCellBadgeComponent,
+            actions: FktTableCellWithActionComponent
+        }),
     ],
 };
