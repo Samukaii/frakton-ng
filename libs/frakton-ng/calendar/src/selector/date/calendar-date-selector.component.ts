@@ -1,4 +1,4 @@
-import { Component, computed, effect, input, model, signal } from '@angular/core';
+import { Component, computed, DOCUMENT, effect, inject, input, model, signal } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { ToClassPipe } from 'frakton-ng/internal/pipes';
 import { FktCalendarDateConfig, FktCalendarDateConfigFn } from '../../fkt-calendar.types';
@@ -28,6 +28,8 @@ export class CalendarDateSelectorComponent {
   });
   monthClick = input<() => void>(() => {
   });
+
+  private readonly document = inject(DOCUMENT);
 
   focusedIndex = signal<number>(-1);
 
@@ -152,7 +154,7 @@ export class CalendarDateSelectorComponent {
       this.focusedIndex.set(next);
       event.preventDefault();
       setTimeout(() => {
-        const el = document.querySelector(`[data-calendar-idx="${next}"]`) as HTMLElement;
+        const el = this.document.querySelector(`[data-calendar-idx="${next}"]`) as HTMLElement;
         el?.focus();
       });
     }

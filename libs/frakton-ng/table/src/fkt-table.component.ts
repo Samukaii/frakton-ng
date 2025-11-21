@@ -1,4 +1,4 @@
-import { booleanAttribute, Component, computed, input, } from '@angular/core';
+import { booleanAttribute, Component, computed, contentChild, input, } from '@angular/core';
 import { TableCellRendererComponent } from './cell-renderer/table-cell-renderer.component';
 import { FktButtonsListComponent } from 'frakton-ng/buttons-list';
 import { CallPipe } from 'frakton-ng/internal/pipes';

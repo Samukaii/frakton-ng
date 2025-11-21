@@ -7,6 +7,7 @@ export interface StoryIndexer {
     componentName?: string,
     description?: string,
 	file: () => Promise<Record<string, any>>
+    type: 'story' | 'doc';
 	designTokens?: DesignToken[];
 	externalExamples?: () => Promise<Record<string, ExternalExample>>;
     stories?: {

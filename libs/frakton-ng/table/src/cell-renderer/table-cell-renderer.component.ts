@@ -19,7 +19,6 @@ export class TableCellRendererComponent implements OnInit, OnDestroy {
 	private additionalCells = inject(TABLE_CELLS_TOKEN, { optional: true }) ?? {};
 
 	private get cellsMapping(): Record<string, Type<any>> {
-        console.log(this.additionalCells);
 		const coreCells: Record<string, Type<any>> = {
 			default: FktTableCellDefaultComponent,
 			template: FktTableCellTemplateComponent

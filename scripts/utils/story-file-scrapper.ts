@@ -2,26 +2,82 @@ import { Expression, Node, Project, SourceFile } from "ts-morph";
 import path from 'path';
 import { getRelativePath } from './get-relative-path';
 import { pascalToKebab } from './pascal-to-kebab';
+import fs from 'fs';
+import { StoryIndexedInfo, StoryIndexedSection } from '../models/story-indexed-info';
 
-interface StoryIndexedInfo {
-    meta: {
-        id: string;
-        componentName: string;
-        title: string;
-        description: string;
-        loadType: 'lazy' | 'eagerly';
-    },
-    stories: {
-        id: string;
-        name: string;
-        componentName?: string;
-        description: string;
-    }[]
+const getMdTitles = (content: string) => {
+    const headingRegex = /^(#{1,3})\s+(.*)$/gm;
+
+    const headings: {level: number; text: string; slug: string}[] = [];
+    let match;
+
+    while ((match = headingRegex.exec(content))) {
+        const level = match[1].length;
+        const text = match[2];
+        const slug = text
+            .toLowerCase()
+            .replace(/[^\w\s-]/g, '')
+            .replace(/\s+/g, '-');
+
+        headings.push({ level, text, slug });
+    }
+
+    return headings;
+}
+
+const getMdInfo = (content: string) => {
+    let matches = content.match(/<story-meta title="(.*)" loadType="(.*)"\/>/);
+
+    if(!matches)
+        matches = content.match(/<story-meta title="(.*)"\/>/);
+
+    if(!matches) return null;
+
+    return {
+        title: matches[1],
+        loadType: (matches[2] ?? 'lazy') as 'lazy' | 'eagerly',
+    }
+}
+
+const scrapMdFile = (file: string): StoryIndexedInfo | null => {
+    const relativePath = getRelativePath(file);
+    const content = fs.readFileSync(file, 'utf8');
+    const lastModified = fs.statSync(file).mtime;
+
+    const folder = path.dirname(relativePath);
+    const baseName = path.basename(relativePath);
+
+    const {title, loadType} = getMdInfo(content) ?? {};
+
+    if (!title) return null;
+
+    const sections = getMdTitles(content);
+
+    const id = `${folder}-${baseName.replace('.docs.md', '')}`
+
+    return {
+        meta: {
+            id,
+            title,
+            type: "doc",
+            lastModified,
+            loadType: loadType ?? 'lazy',
+            relativePath
+        },
+        sections: sections.map((section): StoryIndexedSection => {
+            return {
+                name: section.text,
+                id: section.slug,
+                description: ""
+            }
+        })
+    }
 }
 
 export class StoryFileScrapper {
     private readonly project: Project;
     private readonly indexedMap = new Map<string, StoryIndexedInfo>();
+    private markdownFiles: string[] = [];
 
     constructor(files: string[]) {
         this.project = new Project();
@@ -32,9 +88,11 @@ export class StoryFileScrapper {
 
     private addFiles(files: string[]) {
         files.forEach(file => {
-            if (path.extname(file) !== '.ts') return;
+            if(path.extname(file) === '.md')
+                this.markdownFiles.push(file);
 
-            this.project.addSourceFileAtPath(file)
+            if (path.extname(file) === '.ts')
+                this.project.addSourceFileAtPath(file)
         })
     }
 
@@ -42,25 +100,27 @@ export class StoryFileScrapper {
         return this.indexedMap.get(path);
     }
 
-    public hasTitle(title: string) {
-        const all = this.getAll();
-
-        return !!all.find(({story}) => story.meta.title === title);
-    }
-
     public getAll() {
         return Array.from(this.indexedMap.entries()).map(([path, story]) => ({path, story}));
     }
 
     private scanAll() {
-        return this.project.getSourceFiles().forEach((sourceFile) => {
-            const meta = this.getMetaInfo(sourceFile);
+        this.markdownFiles.forEach(file => {
+            const result = scrapMdFile(file);
+
+            if(!result) return;
+
+            this.indexedMap.set(file, result);
+        })
+
+        this.project.getSourceFiles().forEach((sourceFile) => {
+            const meta = this.getMetaInfoFromStory(sourceFile);
 
             if (!meta) return;
 
             this.indexedMap.set(sourceFile.getFilePath(), {
                 meta,
-                stories: this.getStories(sourceFile)
+                sections: this.getStories(sourceFile)
             });
         })
     }
@@ -94,7 +154,7 @@ export class StoryFileScrapper {
         })
     }
 
-    private getMetaInfo(sourceFile: SourceFile) {
+    private getMetaInfoFromStory(sourceFile: SourceFile) {
         const defaultExport = sourceFile.getDefaultExportSymbol();
 
         const declaration = defaultExport?.getAliasedSymbol()?.getDeclarations()[0];
@@ -117,12 +177,17 @@ export class StoryFileScrapper {
 
         const loadType = (this.getStringProperty(initializer, 'loadType') ?? 'lazy') as 'lazy' | 'eagerly';
 
-        const id = path.dirname(getRelativePath(sourceFile.getFilePath()));
+        const relativePath = getRelativePath(sourceFile.getFilePath());
+        const id = path.dirname(relativePath);
+        const lastModified = fs.statSync(sourceFile.getFilePath()).mtime as Date;
 
         return {
             id,
             componentName,
             title: title,
+            type: 'story' as 'story',
+            lastModified,
+            relativePath,
             description,
             loadType
         }

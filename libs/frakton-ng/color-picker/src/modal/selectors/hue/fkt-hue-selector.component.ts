@@ -1,4 +1,4 @@
-import { Component, computed, ElementRef, inject, model, viewChild } from '@angular/core';
+import { Component, computed, DOCUMENT, ElementRef, inject, model, viewChild } from '@angular/core';
 import { FktColorPickerHSV } from 'frakton-ng/internal/types';
 import { clampNumber } from 'frakton-ng/internal/utils';
 import { FKT_COLOR_PICKER_LOCALE_TOKEN } from '../../../injection-tokens/fkt-color-picker-locale-token';
@@ -14,6 +14,7 @@ import { fktColorFormatters } from 'frakton-ng/internal/utils';
 export class FktHueSelectorComponent {
 	value = model.required<FktColorPickerHSV>();
 	protected locale = inject(FKT_COLOR_PICKER_LOCALE_TOKEN);
+    private readonly document = inject(DOCUMENT);
 
 	protected percentage = computed(() => {
 		return ((this.value().hue / 360) * 100) + '%';
@@ -54,13 +55,13 @@ export class FktHueSelectorComponent {
 	}
 
 	private finishMovement = () => {
-		document.removeEventListener('mousemove', this.onMove)
-		document.removeEventListener('mouseup', this.finishMovement)
+		this.document.removeEventListener('mousemove', this.onMove)
+		this.document.removeEventListener('mouseup', this.finishMovement)
 	}
 
 	protected startMovement() {
-		document.addEventListener('mousemove', this.onMove)
-		document.addEventListener('mouseup', this.finishMovement)
+		this.document.addEventListener('mousemove', this.onMove)
+		this.document.addEventListener('mouseup', this.finishMovement)
 	}
 
 	protected updateHue($event: Event, difference: number) {

@@ -1,5 +1,5 @@
-import { Component, computed, effect, input, signal } from '@angular/core';
-import { NgTemplateOutlet } from '@angular/common';
+import { Component, computed, DOCUMENT, effect, inject, input, PLATFORM_ID, signal } from '@angular/core';
+import { isPlatformBrowser, NgTemplateOutlet } from '@angular/common';
 
 export interface TocItem {
 	id: string;
@@ -19,6 +19,8 @@ export interface TocItem {
 })
 export class TableOfContentsComponent {
 	excludedContainerSelector = input<string>();
+    private readonly document = inject(DOCUMENT);
+    private readonly platform = inject(PLATFORM_ID);
 
 	protected readonly tocItems = signal<TocItem[]>([]);
 	protected readonly activeIds = signal<string[]>([]);
@@ -70,7 +72,7 @@ export class TableOfContentsComponent {
 	}
 
 	private getHeadings() {
-		const contentElement = document.querySelector('app-docs-page');
+		const contentElement = this.document.querySelector('app-docs-page');
 		if (!contentElement) {
 			return [];
 		}
@@ -96,7 +98,9 @@ export class TableOfContentsComponent {
 	}
 
 	private setupIntersectionObserver() {
-		const contentElement = document.querySelector('app-home-layout');
+        if(!isPlatformBrowser(this.platform)) return;
+
+		const contentElement = this.document.querySelector('app-home-layout');
 
 		const headings = this.getHeadings();
 
@@ -140,7 +144,7 @@ export class TableOfContentsComponent {
 	}
 
 	protected scrollToHeading(id: string) {
-		const element = document.getElementById(id);
+		const element = this.document.getElementById(id);
 		if (!element) return
 
 		element.scrollIntoView({

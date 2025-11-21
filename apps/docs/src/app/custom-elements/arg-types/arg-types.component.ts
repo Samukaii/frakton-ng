@@ -17,8 +17,6 @@ export class ArgTypesComponent {
     private readonly currentStory = computed(() => {
         const id = this.routeParams()['docId'];
 
-        console.log(id);
-
         const story = STORIES_MAP.find(story => story.id === id);
 
         return story ?? null;

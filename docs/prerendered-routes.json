@@ -1,3 +1,33 @@
 {
-  "routes": {}
+  "routes": {
+    "/docs/autocomplete": {},
+    "/docs/badge": {},
+    "/docs/badge-selector": {},
+    "/docs/button": {},
+    "/docs/buttons-list": {},
+    "/docs/calendar": {},
+    "/docs/calendar-navigator": {},
+    "/docs/checkbox": {},
+    "/docs/color-picker": {},
+    "/docs/date-picker": {},
+    "/docs/dialog": {},
+    "/docs/drawer": {},
+    "/docs/focus-trap": {},
+    "/docs/getting-started-installation": {},
+    "/docs/getting-started-migration-guides": {},
+    "/docs/getting-started-theming-styling": {},
+    "/docs/icon": {},
+    "/docs/input": {},
+    "/docs/navigator": {},
+    "/docs/no-results": {},
+    "/docs/overlay": {},
+    "/docs/paginator": {},
+    "/docs/select": {},
+    "/docs/side-menu": {},
+    "/docs/skeleton": {},
+    "/docs/spinner": {},
+    "/docs/table": {},
+    "/docs/textarea": {},
+    "/docs/tooltip": {}
+  }
 }

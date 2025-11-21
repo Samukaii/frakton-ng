@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+Disallow: /*#
+
+Clean-param: * /
+
+User-agent: Googlebot
+Allow: .js
+Allow: .css
+
+Sitemap: https://fraktonng.com/sitemap.xml

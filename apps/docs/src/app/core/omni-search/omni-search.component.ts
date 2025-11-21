@@ -51,7 +51,7 @@ export class OmniSearchComponent {
                 title: meta.title.split('/').at(-1)!,
                 type: 'documentation',
                 description: meta.description,
-                link: this.router.createUrlTree(['home', 'docs', meta.id])
+                link: this.router.createUrlTree(['docs', meta.id])
             },
             meta.stories?.map(story => {
                 return {
@@ -59,7 +59,7 @@ export class OmniSearchComponent {
                     type: 'section',
                     title: pascalToHumanReadable(story.name),
                     description: story.description as string | undefined,
-                    link: this.router.createUrlTree(['home', 'docs', meta.id], {
+                    link: this.router.createUrlTree(['docs', meta.id], {
                         fragment: story.id
                     })
                 }

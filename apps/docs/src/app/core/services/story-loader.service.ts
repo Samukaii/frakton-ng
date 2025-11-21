@@ -20,6 +20,7 @@ export class StoryLoaderService {
             meta: {
                 ...response['default'],
                 componentName: currentStory.componentName,
+                type: currentStory.type,
             },
             stories: []
         };

@@ -173,14 +173,14 @@ export class MyComponent {
 ## Next Steps
 
 ### Continue Learning
-- **[Theming & Styling](/#/home/docs/getting-started-theming-styling)** - Master design tokens and theme switching
-- **[Migration Guides](/#/home/docs/getting-started-migration-guides)** - Migrate from other UI libraries
+- **[Theming & Styling](/docs/getting-started-theming-styling)** - Master design tokens and theme switching
+- **[Migration Guides](/docs/getting-started-migration-guides)** - Migrate from other UI libraries
 
 ### Explore Components
-- **[Button](/#/home/docs/button)** - Multiple themes, custom colors, loading states
-- **[Input](/#/home/docs/input)** - Signal-based forms with validation
-- **[Color Picker](/#/home/docs/color-picker)** - Multi-format with accessibility
-- **[Overlay System](/#/home/docs/overlay)** - Type-safe overlays and dialogs
+- **[Button](/docs/button)** - Multiple themes, custom colors, loading states
+- **[Input](/docs/input)** - Signal-based forms with validation
+- **[Color Picker](/docs/color-picker)** - Multi-format with accessibility
+- **[Overlay System](/docs/overlay)** - Type-safe overlays and dialogs
 
 ### Learn Advanced Features
 - **Form Integration** - Signal-based reactive forms

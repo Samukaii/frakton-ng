@@ -1,4 +1,4 @@
-import { Component, computed, ElementRef, inject, model, signal, viewChild } from '@angular/core';
+import { Component, computed, DOCUMENT, ElementRef, inject, model, signal, viewChild } from '@angular/core';
 import { fktColorFormatters } from 'frakton-ng/internal/utils';
 import { FktColorPickerHSV } from 'frakton-ng/internal/types';
 import { clampNumber } from 'frakton-ng/internal/utils';
@@ -15,6 +15,7 @@ export class FktSaturationLightnessSelectorComponent {
 	value = model.required<FktColorPickerHSV>();
 
 	private locale = inject(FKT_COLOR_PICKER_LOCALE_TOKEN);
+    private readonly document = inject(DOCUMENT);
 
 	protected backgroundColor = computed(() => {
 		const color = `hsl(${this.value().hue}, 100%, 50%)`;
@@ -92,15 +93,15 @@ export class FktSaturationLightnessSelectorComponent {
 	}
 
 	private finishMovement = () => {
-		document.removeEventListener('mousemove', this.onMove)
-		document.removeEventListener('mouseup', this.finishMovement)
+		this.document.removeEventListener('mousemove', this.onMove)
+		this.document.removeEventListener('mouseup', this.finishMovement)
 		this.moving.set(false);
 	}
 
 	protected startMovement($event: MouseEvent) {
 		$event.preventDefault();
-		document.addEventListener('mousemove', this.onMove)
-		document.addEventListener('mouseup', this.finishMovement)
+		this.document.addEventListener('mousemove', this.onMove)
+		this.document.addEventListener('mouseup', this.finishMovement)
 		this.moving.set(true);
 	}
 

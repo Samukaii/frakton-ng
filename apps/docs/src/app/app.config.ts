@@ -1,17 +1,12 @@
 import { ApplicationConfig, provideBrowserGlobalErrorListeners, provideZoneChangeDetection, } from '@angular/core';
-import {
-    provideRouter,
-    withComponentInputBinding,
-    withHashLocation,
-    withInMemoryScrolling,
-    withViewTransitions
-} from '@angular/router';
+import { provideRouter, withComponentInputBinding, withInMemoryScrolling, withViewTransitions } from '@angular/router';
 import { appRoutes } from './app.routes';
 import { provideMarkdown, SANITIZE } from 'ngx-markdown';
 import { provideTableCells } from 'frakton-ng/table';
 import { FktTableCellBadgeComponent } from 'frakton-ng/table/cells/badge';
 import { FktTableCellWithActionComponent } from 'frakton-ng/table/cells/action';
 import DOMPurify from 'dompurify';
+import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
 
 function sanitizeHtml(html: string): string {
     DOMPurify.setConfig({
@@ -38,7 +33,6 @@ export const appConfig: ApplicationConfig = {
         provideRouter(appRoutes,
             withComponentInputBinding(),
             withViewTransitions(),
-            withHashLocation(),
             withInMemoryScrolling({
                 anchorScrolling: "enabled",
                 scrollPositionRestoration: "top",
@@ -46,6 +40,6 @@ export const appConfig: ApplicationConfig = {
         provideTableCells({
             badge: FktTableCellBadgeComponent,
             actions: FktTableCellWithActionComponent
-        }),
+        }), provideClientHydration(withEventReplay()),
     ],
 };

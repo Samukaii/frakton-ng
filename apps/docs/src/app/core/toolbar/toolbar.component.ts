@@ -1,4 +1,4 @@
-import { Component, computed, inject, OnInit } from '@angular/core';
+import { Component, computed, DOCUMENT, inject, OnInit } from '@angular/core';
 import { FktIconComponent } from "frakton-ng/icon";
 import { ThemeService } from '../services/theme.service';
 import { FktDialogService } from 'frakton-ng/dialog';
@@ -19,6 +19,7 @@ export class ToolbarComponent implements OnInit {
     protected readonly themeService = inject(ThemeService);
     protected readonly dialogService = inject(FktDialogService);
     protected readonly mobileMenuService = inject(MobileMenuService);
+    protected readonly document = inject(DOCUMENT);
 
     protected buttonThemeLabel = computed(() => {
         return this.themeService.currentTheme() === 'dark' ? 'Switch to light mode' : 'Switch to dark mode';
@@ -33,10 +34,10 @@ export class ToolbarComponent implements OnInit {
     }
 
     ngOnInit() {
-        document.addEventListener('keydown', (e) => {
-            if (e.key.toLowerCase() === 'k' && e.ctrlKey) {
-                e.preventDefault();
-                e.stopPropagation();
+        this.document.addEventListener('keydown', (event) => {
+            if (event.key.toLowerCase() === 'k' && event.ctrlKey) {
+                event.preventDefault();
+                event.stopPropagation();
 
                 this.openSearch();
             }

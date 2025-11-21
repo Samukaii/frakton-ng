@@ -5,7 +5,7 @@ import {
     ElementRef,
     inject,
     input,
-    inputBinding,
+    inputBinding, PLATFORM_ID,
     reflectComponentType,
     signal,
     untracked,
@@ -18,6 +18,7 @@ import { StoryInfoService } from '@/core/services/story-info.service';
 import { ArgItem } from '@/models/arg-item';
 import { MarkUsed } from 'frakton-ng/internal/utils';
 import { DesignTokenItem } from '@/models/design-token-item';
+import { isPlatformBrowser } from '@angular/common';
 
 
 @Component({
@@ -29,6 +30,8 @@ import { DesignTokenItem } from '@/models/design-token-item';
     styleUrl: './fkt-playground.component.scss',
 })
 export class FktPlaygroundComponent {
+    private readonly platform = inject(PLATFORM_ID);
+
     protected readonly customDimensions = computed(() => {
         const meta = this.storyInfoService.meta;
         const story = this.storyInfoService.activeStory;
@@ -71,6 +74,8 @@ export class FktPlaygroundComponent {
     })
 
     protected readonly designTokens = computed((): DesignTokenItem[] => {
+        if(!isPlatformBrowser(this.platform)) return [];
+
         const tokens = this.storyInfoService.meta.designTokens ?? [];
         this.themeService.currentTheme();
 

@@ -13,6 +13,99 @@ export const STORIES_MAP: StoryIndexer[] = [	{
 				documentation: gettingStartedInstallation
 			}
 		}),
+		type: 'doc',
+	    stories: [
+		    {
+		        id: "getting-started-with-frakton-ng",
+		        name: "Getting Started with Frakton NG",
+		        componentName: null,
+		        description: ``,
+		    },
+		    {
+		        id: "quick-installation",
+		        name: "Quick Installation",
+		        componentName: null,
+		        description: ``,
+		    },
+		    {
+		        id: "1-install-the-package",
+		        name: "1. Install the Package",
+		        componentName: null,
+		        description: ``,
+		    },
+		    {
+		        id: "2-add-styles-to-your-project",
+		        name: "2. Add Styles to Your Project",
+		        componentName: null,
+		        description: ``,
+		    },
+		    {
+		        id: "3-your-first-component",
+		        name: "3. Your First Component",
+		        componentName: null,
+		        description: ``,
+		    },
+		    {
+		        id: "accessibility-first",
+		        name: "Accessibility First",
+		        componentName: null,
+		        description: ``,
+		    },
+		    {
+		        id: "automatic-validation",
+		        name: "Automatic Validation",
+		        componentName: null,
+		        description: ``,
+		    },
+		    {
+		        id: "semantic-color-descriptions",
+		        name: "Semantic Color Descriptions",
+		        componentName: null,
+		        description: ``,
+		    },
+		    {
+		        id: "keyboard-navigation",
+		        name: "Keyboard Navigation",
+		        componentName: null,
+		        description: ``,
+		    },
+		    {
+		        id: "type-safe-overlays",
+		        name: "Type-Safe Overlays",
+		        componentName: null,
+		        description: ``,
+		    },
+		    {
+		        id: "next-steps",
+		        name: "Next Steps",
+		        componentName: null,
+		        description: ``,
+		    },
+		    {
+		        id: "continue-learning",
+		        name: "Continue Learning",
+		        componentName: null,
+		        description: ``,
+		    },
+		    {
+		        id: "explore-components",
+		        name: "Explore Components",
+		        componentName: null,
+		        description: ``,
+		    },
+		    {
+		        id: "learn-advanced-features",
+		        name: "Learn Advanced Features",
+		        componentName: null,
+		        description: ``,
+		    },
+		    {
+		        id: "join-the-community",
+		        name: "Join the Community",
+		        componentName: null,
+		        description: ``,
+		    }
+	    ]
 	},
 	{
 		id: "getting-started-migration-guides",
@@ -28,6 +121,147 @@ export const STORIES_MAP: StoryIndexer[] = [	{
 				}
 			}
 		},
+		type: 'doc',
+	    stories: [
+		    {
+		        id: "migration-guides",
+		        name: "Migration Guides",
+		        componentName: null,
+		        description: ``,
+		    },
+		    {
+		        id: "zero-conflict-architecture",
+		        name: "Zero-Conflict Architecture",
+		        componentName: null,
+		        description: ``,
+		    },
+		    {
+		        id: "from-angular-material",
+		        name: "From Angular Material",
+		        componentName: null,
+		        description: ``,
+		    },
+		    {
+		        id: "compatibility-approach",
+		        name: "Compatibility Approach",
+		        componentName: null,
+		        description: ``,
+		    },
+		    {
+		        id: "component-equivalents",
+		        name: "Component Equivalents",
+		        componentName: null,
+		        description: ``,
+		    },
+		    {
+		        id: "gradual-migration-strategy",
+		        name: "Gradual Migration Strategy",
+		        componentName: null,
+		        description: ``,
+		    },
+		    {
+		        id: "from-primeng",
+		        name: "From PrimeNG",
+		        componentName: null,
+		        description: ``,
+		    },
+		    {
+		        id: "direct-replacement",
+		        name: "Direct Replacement",
+		        componentName: null,
+		        description: ``,
+		    },
+		    {
+		        id: "benefits-of-migration",
+		        name: "Benefits of Migration",
+		        componentName: null,
+		        description: ``,
+		    },
+		    {
+		        id: "component-mapping",
+		        name: "Component Mapping",
+		        componentName: null,
+		        description: ``,
+		    },
+		    {
+		        id: "from-ng-bootstrap",
+		        name: "From Ng-Bootstrap",
+		        componentName: null,
+		        description: ``,
+		    },
+		    {
+		        id: "enhanced-functionality",
+		        name: "Enhanced Functionality",
+		        componentName: null,
+		        description: ``,
+		    },
+		    {
+		        id: "migration-best-practices",
+		        name: "Migration Best Practices",
+		        componentName: null,
+		        description: ``,
+		    },
+		    {
+		        id: "incremental-approach",
+		        name: "Incremental Approach",
+		        componentName: null,
+		        description: ``,
+		    },
+		    {
+		        id: "coexistence-strategies",
+		        name: "Coexistence Strategies",
+		        componentName: null,
+		        description: ``,
+		    },
+		    {
+		        id: "testing-strategy",
+		        name: "Testing Strategy",
+		        componentName: null,
+		        description: ``,
+		    },
+		    {
+		        id: "migration-checklist",
+		        name: "Migration Checklist",
+		        componentName: null,
+		        description: ``,
+		    },
+		    {
+		        id: "pre-migration",
+		        name: "Pre-Migration",
+		        componentName: null,
+		        description: ``,
+		    },
+		    {
+		        id: "during-migration",
+		        name: "During Migration",
+		        componentName: null,
+		        description: ``,
+		    },
+		    {
+		        id: "post-migration",
+		        name: "Post-Migration",
+		        componentName: null,
+		        description: ``,
+		    },
+		    {
+		        id: "troubleshooting",
+		        name: "Troubleshooting",
+		        componentName: null,
+		        description: ``,
+		    },
+		    {
+		        id: "common-issues",
+		        name: "Common Issues",
+		        componentName: null,
+		        description: ``,
+		    },
+		    {
+		        id: "getting-help",
+		        name: "Getting Help",
+		        componentName: null,
+		        description: ``,
+		    }
+	    ]
 	},
 	{
 		id: "getting-started-theming-styling",
@@ -43,6 +277,171 @@ export const STORIES_MAP: StoryIndexer[] = [	{
 				}
 			}
 		},
+		type: 'doc',
+	    stories: [
+		    {
+		        id: "theming-styling",
+		        name: "Theming & Styling",
+		        componentName: null,
+		        description: ``,
+		    },
+		    {
+		        id: "design-token-architecture",
+		        name: "Design Token Architecture",
+		        componentName: null,
+		        description: ``,
+		    },
+		    {
+		        id: "three-tier-fallback-system",
+		        name: "Three-Tier Fallback System",
+		        componentName: null,
+		        description: ``,
+		    },
+		    {
+		        id: "token-categories",
+		        name: "Token Categories",
+		        componentName: null,
+		        description: ``,
+		    },
+		    {
+		        id: "multi-theme-support",
+		        name: "Multi-Theme Support",
+		        componentName: null,
+		        description: ``,
+		    },
+		    {
+		        id: "default-setup",
+		        name: "Default Setup",
+		        componentName: null,
+		        description: ``,
+		    },
+		    {
+		        id: "theme-switching-setup",
+		        name: "Theme Switching Setup",
+		        componentName: null,
+		        description: ``,
+		    },
+		    {
+		        id: "dynamic-theme-switching",
+		        name: "Dynamic Theme Switching",
+		        componentName: null,
+		        description: ``,
+		    },
+		    {
+		        id: "theme-toggle-component",
+		        name: "Theme Toggle Component",
+		        componentName: null,
+		        description: ``,
+		    },
+		    {
+		        id: "customization-strategies",
+		        name: "Customization Strategies",
+		        componentName: null,
+		        description: ``,
+		    },
+		    {
+		        id: "global-brand-customization",
+		        name: "Global Brand Customization",
+		        componentName: null,
+		        description: ``,
+		    },
+		    {
+		        id: "component-specific-customization",
+		        name: "Component-Specific Customization",
+		        componentName: null,
+		        description: ``,
+		    },
+		    {
+		        id: "context-specific-theming",
+		        name: "Context-Specific Theming",
+		        componentName: null,
+		        description: ``,
+		    },
+		    {
+		        id: "advanced-customization",
+		        name: "Advanced Customization",
+		        componentName: null,
+		        description: ``,
+		    },
+		    {
+		        id: "custom-color-intelligence",
+		        name: "Custom Color Intelligence",
+		        componentName: null,
+		        description: ``,
+		    },
+		    {
+		        id: "complete-css-token-freedom",
+		        name: "Complete CSS Token Freedom",
+		        componentName: null,
+		        description: ``,
+		    },
+		    {
+		        id: "runtime-token-manipulation",
+		        name: "Runtime Token Manipulation",
+		        componentName: null,
+		        description: ``,
+		    },
+		    {
+		        id: "creating-custom-themes",
+		        name: "Creating Custom Themes",
+		        componentName: null,
+		        description: ``,
+		    },
+		    {
+		        id: "theme-file-structure",
+		        name: "Theme File Structure",
+		        componentName: null,
+		        description: ``,
+		    },
+		    {
+		        id: "using-custom-themes",
+		        name: "Using Custom Themes",
+		        componentName: null,
+		        description: ``,
+		    },
+		    {
+		        id: "best-practices",
+		        name: "Best Practices",
+		        componentName: null,
+		        description: ``,
+		    },
+		    {
+		        id: "performance-considerations",
+		        name: "Performance Considerations",
+		        componentName: null,
+		        description: ``,
+		    },
+		    {
+		        id: "maintainability",
+		        name: "Maintainability",
+		        componentName: null,
+		        description: ``,
+		    },
+		    {
+		        id: "design-system-integration",
+		        name: "Design System Integration",
+		        componentName: null,
+		        description: ``,
+		    },
+		    {
+		        id: "resources",
+		        name: "Resources",
+		        componentName: null,
+		        description: ``,
+		    },
+		    {
+		        id: "design-token-reference",
+		        name: "Design Token Reference",
+		        componentName: null,
+		        description: ``,
+		    },
+		    {
+		        id: "tools-utilities",
+		        name: "Tools & Utilities",
+		        componentName: null,
+		        description: ``,
+		    }
+	    ]
 	},
 	{
 		id: "autocomplete",
@@ -50,6 +449,7 @@ export const STORIES_MAP: StoryIndexer[] = [	{
 		componentName: "FktAutocompleteComponent",
 		description: `A powerful and flexible autocomplete input component with dropdown options, search functionality, and support for custom actions. Built with Angular signals and reactive patterns, it offers seamless integration with forms and dynamic data sources.`,
 		file: () => import("./autocomplete/fkt-autocomplete.stories"),
+		type: 'story',
 		externalExamples: () => import("./autocomplete/examples/raw-examples").then(file => file.default),
 		stories: [
 		    {
@@ -90,6 +490,7 @@ export const STORIES_MAP: StoryIndexer[] = [	{
 		componentName: "FktBadgeComponent",
 		description: `The FktBadge component provides a visual indicator for status, categories, counts, and other contextual information. Built with Angular signals and flexible styling options, it offers semantic color coding and variant styles for different visual prominence levels.`,
 		file: () => import("./badge/fkt-badge.stories"),
+		type: 'story',
 		externalExamples: () => import("./badge/examples/raw-examples").then(file => file.default),
 		stories: [
 		    {
@@ -160,6 +561,7 @@ export const STORIES_MAP: StoryIndexer[] = [	{
 		componentName: "FktBadgeSelectorComponent",
 		description: `The FktBadgeSelector component provides an interactive dropdown for selecting from a list of badge options. Built with Angular signals and the overlay system, it offers a clean interface for choosing status, categories, or other badge-represented values.`,
 		file: () => import("./badge-selector/fkt-badge-selector.stories"),
+		type: 'story',
 		externalExamples: () => import("./badge-selector/examples/raw-examples").then(file => file.default),
 		stories: [
 		    {
@@ -212,6 +614,7 @@ export const STORIES_MAP: StoryIndexer[] = [	{
 		componentName: "FktButtonComponent",
 		description: "The FktButton component provides a versatile and customizable button with multiple themes, variants, and styling options. Built with Angular signals and modern design patterns, it supports various visual styles, icons, loading states, and accessibility features.",
 		file: async () => buttonStory, // Imported eagerly for instant loading
+		type: 'story',
 		externalExamples: () => import("./button/examples/raw-examples").then(file => file.default),
 	    stories: [
 		    {
@@ -300,6 +703,7 @@ export const STORIES_MAP: StoryIndexer[] = [	{
 		componentName: "FktButtonsListComponent",
 		description: `The FktButtonsList component provides a flexible container for displaying multiple buttons with consistent spacing and alignment. Built with Angular signals and customizable layout options, it supports both horizontal and vertical orientations with various alignment strategies.`,
 		file: () => import("./buttons-list/fkt-buttons-list.stories"),
+		type: 'story',
 		
 		stories: [
 		    {
@@ -370,6 +774,7 @@ export const STORIES_MAP: StoryIndexer[] = [	{
 		componentName: "FktCalendarComponent",
 		description: `The FktCalendar component provides a comprehensive date selection interface with multiple view modes and extensive customization options. Built with Angular signals for optimal performance and reactivity, it supports date, month, and year selection with configurable styling and behavior.`,
 		file: () => import("./calendar/fkt-calendar.stories"),
+		type: 'story',
 		externalExamples: () => import("./calendar/examples/raw-examples").then(file => file.default),
 		stories: [
 		    {
@@ -410,6 +815,7 @@ export const STORIES_MAP: StoryIndexer[] = [	{
 		componentName: "FktCalendarNavigatorComponent",
 		description: `The FktCalendarNavigator component provides an interactive calendar header with navigation controls and modal-based date selection. It displays the current month/year and allows users to navigate between dates with modal overlays for detailed selection.`,
 		file: () => import("./calendar-navigator/fkt-calendar-navigator.stories"),
+		type: 'story',
 		externalExamples: () => import("./calendar-navigator/examples/raw-examples").then(file => file.default),
 		stories: [
 		    {
@@ -456,6 +862,7 @@ export const STORIES_MAP: StoryIndexer[] = [	{
 		componentName: "FktCheckboxComponent",
 		description: `The FktCheckbox component provides a clean and accessible checkbox input with custom styling. Built with Angular signals and reactive forms, it offers seamless integration with form validation and state management.`,
 		file: () => import("./checkbox/fkt-checkbox.stories"),
+		type: 'story',
 		externalExamples: () => import("./checkbox/examples/raw-examples").then(file => file.default),
 		stories: [
 		    {
@@ -490,6 +897,7 @@ export const STORIES_MAP: StoryIndexer[] = [	{
 		componentName: "FktColorPickerComponent",
 		description: `A sophisticated color picker component featuring semantic color descriptions, international localization, advanced visual selectors, and seamless Angular signals integration. Built for professional design tools and user-friendly color selection.`,
 		file: () => import("./color-picker/fkt-color-picker.stories"),
+		type: 'story',
 		
 		stories: [
 		    {
@@ -542,6 +950,7 @@ export const STORIES_MAP: StoryIndexer[] = [	{
 		componentName: "FktDatePickerComponent",
 		description: `The FktDatePicker component provides an intuitive and accessible date selection interface. Built with Angular signals and reactive forms, it offers a clean input field with a calendar overlay for date selection.`,
 		file: () => import("./date-picker/fkt-date-picker.stories"),
+		type: 'story',
 		
 		stories: [
 		    {
@@ -583,6 +992,7 @@ export const STORIES_MAP: StoryIndexer[] = [	{
 		description: `"The FktDialog service provides a powerful and flexible system for creating modal dialogs in your Angular applications.\n" +
 	        "Built with modern Angular signals and reactive patterns, it supports advanced TypeScript inference, custom components, various sizing options, and pre-built confirmation dialogs with seamless data binding."`,
 		file: () => import("./dialog/fkt-dialog.stories"),
+		type: 'story',
 		externalExamples: () => import("./dialog/examples/raw-examples").then(file => file.default),
 		stories: [
 		    {
@@ -635,6 +1045,7 @@ export const STORIES_MAP: StoryIndexer[] = [	{
 		componentName: "FktDrawerComponent",
 		description: `The FktDrawer component provides a slide-out navigation panel that can either push content aside or overlay on top of it. Built with Angular signals and modern design patterns, it offers flexible positioning and smooth animations.`,
 		file: () => import("./drawer/fkt-drawer.stories"),
+		type: 'story',
 		externalExamples: () => import("./drawer/examples/raw-examples").then(file => file.default),
 		stories: [
 		    {
@@ -675,6 +1086,7 @@ export const STORIES_MAP: StoryIndexer[] = [	{
 		componentName: "FktFocusTrapDirective",
 		description: `A directive that traps keyboard focus within a container, ensuring proper accessibility for modals, forms, and other interactive elements that require contained navigation.`,
 		file: () => import("./focus-trap/fkt-focus-trap.stories"),
+		type: 'story',
 		externalExamples: () => import("./focus-trap/examples/raw-examples").then(file => file.default),
 		stories: [
 		    {
@@ -703,6 +1115,7 @@ export const STORIES_MAP: StoryIndexer[] = [	{
 		componentName: "FktIconComponent",
 		description: `The FktIcon component provides a comprehensive icon system with a curated set of icons for various UI elements and interactions. Built with scalable vector graphics for crisp display at any size and seamless integration with the design system.`,
 		file: () => import("./icon/fkt-icon.stories"),
+		type: 'story',
 		
 		stories: [
 		    {
@@ -737,6 +1150,7 @@ export const STORIES_MAP: StoryIndexer[] = [	{
 		componentName: "FktInputComponent",
 		description: `A versatile form input component with multiple types, data transformers, and comprehensive validation support. Built with Angular signals for reactive form integration.`,
 		file: () => import("./input/fkt-input.stories"),
+		type: 'story',
 		externalExamples: () => import("./input/examples/raw-examples").then(file => file.default),
 		stories: [
 		    {
@@ -789,6 +1203,7 @@ export const STORIES_MAP: StoryIndexer[] = [	{
 		componentName: "FktNavigatorComponent",
 		description: `The FktNavigator component provides a reusable navigation control with previous/next buttons and a flexible content area. It's designed to be a consistent navigation pattern across different components and contexts.`,
 		file: () => import("./navigator/fkt-navigator.stories"),
+		type: 'story',
 		externalExamples: () => import("./navigator/examples/raw-examples").then(file => file.default),
 		stories: [
 		    {
@@ -859,6 +1274,7 @@ export const STORIES_MAP: StoryIndexer[] = [	{
 		componentName: "FktNoResultsComponent",
 		description: `The FktNoResults component provides a consistent and configurable way to display empty states when no data is available. It supports custom icons, descriptions, and action buttons to guide users on what to do next.`,
 		file: () => import("./no-results/fkt-no-results.stories"),
+		type: 'story',
 		externalExamples: () => import("./no-results/examples/raw-examples").then(file => file.default),
 		stories: [
 		    {
@@ -912,6 +1328,7 @@ export const STORIES_MAP: StoryIndexer[] = [	{
 		description: `"The FktOverlay service provides a powerful and flexible system for creating positioned overlays in your Angular applications.\n" +
 	        "Built with modern Angular signals and reactive patterns, it supports dynamic positioning, intelligent repositioning, and seamless data binding between parent and overlay components."`,
 		file: () => import("./overlay/fkt-overlay.stories"),
+		type: 'story',
 		externalExamples: () => import("./overlay/examples/raw-examples").then(file => file.default),
 		stories: [
 		    {
@@ -952,6 +1369,7 @@ export const STORIES_MAP: StoryIndexer[] = [	{
 		componentName: "FktPaginatorComponent",
 		description: `The FktPaginator component provides server-side pagination controls with configurable display options, responsive design, and accessibility features. Perfect for tables, lists, and any paginated content.`,
 		file: () => import("./paginator/fkt-paginator.stories"),
+		type: 'story',
 		externalExamples: () => import("./paginator/examples/raw-examples").then(file => file.default),
 		stories: [
 		    {
@@ -986,6 +1404,7 @@ export const STORIES_MAP: StoryIndexer[] = [	{
 		componentName: "FktSelectComponent",
 		description: `A dropdown selection component that provides a clean and accessible interface for choosing options. Built with Angular signals and reactive forms, it offers a styled alternative to native select elements with enhanced functionality and consistent design.`,
 		file: () => import("./select/fkt-select.stories"),
+		type: 'story',
 		externalExamples: () => import("./select/examples/raw-examples").then(file => file.default),
 		stories: [
 		    {
@@ -1044,6 +1463,7 @@ export const STORIES_MAP: StoryIndexer[] = [	{
 		componentName: "FktSideMenuComponent",
 		description: `A responsive and customizable side navigation menu component with collapsible states, grouped menu items, and integrated routing support. Built with Angular signals for optimal performance and provides tooltips for collapsed states.`,
 		file: () => import("./side-menu/fkt-side-menu.stories"),
+		type: 'story',
 		externalExamples: () => import("./side-menu/examples/raw-examples").then(file => file.default),
 		stories: [
 		    {
@@ -1090,6 +1510,7 @@ export const STORIES_MAP: StoryIndexer[] = [	{
 		componentName: "FktSkeletonComponent",
 		description: `The FktSkeleton component provides loading placeholders with multiple types, animations, and configurable appearance. Perfect for indicating content loading states with realistic previews.`,
 		file: () => import("./skeleton/fkt-skeleton.stories"),
+		type: 'story',
 		externalExamples: () => import("./skeleton/examples/raw-examples").then(file => file.default),
 		stories: [
 		    {
@@ -1124,6 +1545,7 @@ export const STORIES_MAP: StoryIndexer[] = [	{
 		componentName: "FktSpinnerComponent",
 		description: `The FktSpinner component provides a customizable loading indicator with configurable size, stroke width, and color themes. It's designed to give users visual feedback during loading states and async operations.`,
 		file: () => import("./spinner/fkt-spinner.stories"),
+		type: 'story',
 		externalExamples: () => import("./spinner/examples/raw-examples").then(file => file.default),
 		stories: [
 		    {
@@ -1158,55 +1580,20 @@ export const STORIES_MAP: StoryIndexer[] = [	{
 		componentName: "FktTableComponent",
 		description: `A powerful and flexible table component for displaying tabular data with dynamic columns, row actions, loading states, and customizable empty states. Built with Angular signals for optimal performance and provides extensive customization options for real-world data display scenarios.`,
 		file: () => import("./table/fkt-table.stories"),
+		type: 'story',
 		externalExamples: () => import("./table/examples/raw-examples").then(file => file.default),
 		stories: [
 		    {
 		        id: "basic-table",
 		        name: "BasicTable",
-		        componentName: "FktTableExamplesBasicTableComponent",
+		        componentName: "TableExamplesBasicTableComponent",
 		        description: `A simple table displaying user data with basic column configuration.`,
 		    },
 		    {
-		        id: "table-with-actions",
-		        name: "TableWithActions",
-		        componentName: "FktTableExamplesTableWithActionsComponent",
-		        description: `Complete table with row actions, main header action, and conditional styling.`,
-		    },
-		    {
-		        id: "loading-state",
-		        name: "LoadingState",
-		        componentName: "FktTableExamplesLoadingStateComponent",
-		        description: `Table displaying loading spinner with customizable loading message.`,
-		    },
-		    {
-		        id: "empty-state",
-		        name: "EmptyState",
-		        componentName: "FktTableExamplesEmptyStateComponent",
-		        description: `Table with comprehensive empty state configuration including action button.`,
-		    },
-		    {
-		        id: "interactive-states",
-		        name: "InteractiveStates",
-		        componentName: "FktTableExamplesInteractiveStatesComponent",
-		        description: `Interactive example with state controls for testing different table states.`,
-		    },
-		    {
-		        id: "custom-cell-types",
-		        name: "CustomCellTypes",
-		        componentName: "FktTableExamplesCustomCellsComponent",
-		        description: `Advanced example showing different cell types and custom formatting.`,
-		    },
-		    {
-		        id: "product-table",
-		        name: "ProductTable",
-		        componentName: "FktTableExamplesProductTableComponent",
-		        description: `Real-world example with product data and inventory management actions.`,
-		    },
-		    {
-		        id: "task-table",
-		        name: "TaskTable",
-		        componentName: "FktTableExamplesTaskTableComponent",
-		        description: `Task management table with priority and status indicators.`,
+		        id: "with-pagination",
+		        name: "WithPagination",
+		        componentName: "TableExamplesWithPaginationComponent",
+		        description: `A simple table displaying user data with basic column configuration.`,
 		    }
 	    ]
 	},
@@ -1216,6 +1603,7 @@ export const STORIES_MAP: StoryIndexer[] = [	{
 		componentName: "FktTextareaComponent",
 		description: `A multi-line text input component with reactive form integration, validation support, and optional auto-expand functionality for capturing longer text content from users.`,
 		file: () => import("./textarea/fkt-textarea.stories"),
+		type: 'story',
 		externalExamples: () => import("./textarea/examples/raw-examples").then(file => file.default),
 		stories: [
 		    {
@@ -1262,6 +1650,7 @@ export const STORIES_MAP: StoryIndexer[] = [	{
 		componentName: "FktTooltipDirective",
 		description: `A lightweight tooltip directive that provides contextual information on hover. Built with Angular signals and overlay system, it offers flexible positioning and seamless integration with any HTML element.`,
 		file: () => import("./tooltip/fkt-tooltip.stories"),
+		type: 'story',
 		externalExamples: () => import("./tooltip/examples/raw-examples").then(file => file.default),
 		stories: [
 		    {

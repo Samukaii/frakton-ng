@@ -1,4 +1,4 @@
-import { Component, computed, ElementRef, inject, model, viewChild } from '@angular/core';
+import { Component, computed, DOCUMENT, ElementRef, inject, model, viewChild } from '@angular/core';
 import { FktColorPickerHSV } from 'frakton-ng/internal/types';
 import { fktColorFormatters } from 'frakton-ng/internal/utils';
 import { clampNumber } from 'frakton-ng/internal/utils';
@@ -14,6 +14,7 @@ import { getColorDescription } from '../../../helpers/get-color-description';
 export class FktAlphaSelectorComponent {
 	value = model.required<FktColorPickerHSV>()
 	protected locale = inject(FKT_COLOR_PICKER_LOCALE_TOKEN);
+    private readonly document = inject(DOCUMENT);
 
 	protected description = computed(() => {
 		let {alpha} = {...this.value()};
@@ -60,13 +61,13 @@ export class FktAlphaSelectorComponent {
 	}
 
 	private finishMovement = () => {
-		document.removeEventListener('mousemove', this.onMove)
-		document.removeEventListener('mouseup', this.finishMovement)
+		this.document.removeEventListener('mousemove', this.onMove)
+		this.document.removeEventListener('mouseup', this.finishMovement)
 	}
 
 	protected startMovement() {
-		document.addEventListener('mousemove', this.onMove)
-		document.addEventListener('mouseup', this.finishMovement)
+		this.document.addEventListener('mousemove', this.onMove)
+		this.document.addEventListener('mouseup', this.finishMovement)
 	}
 
 	protected updateAlpha($event: Event, difference: number) {

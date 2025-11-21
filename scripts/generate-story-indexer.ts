@@ -30,8 +30,9 @@ const getStoryStrings = (scrapper: StoryFileScrapper, file: string) => {
 	componentName: "${obj.componentName}",
 	description: \`${obj.description}\`,
 	file: () => import("./${relativePath.replace('.ts', '')}"),
+	type: 'story',
 	${externalExamplesSnippet}
-	stories: [${storyFile.stories.map(story => `
+	stories: [${storyFile.sections.map(story => `
 	    {
 	        id: "${story.id}",
 	        name: "${story.name}",
@@ -54,8 +55,9 @@ const getStoryStrings = (scrapper: StoryFileScrapper, file: string) => {
 	componentName: "${obj.componentName}",
 	description: "${obj.description}",
 	file: async () => ${varName}, // Imported eagerly for instant loading
+	type: 'story',
 	${externalExamplesSnippet}
-    stories: [${storyFile.stories.map(story => `
+    stories: [${storyFile.sections.map(story => `
 	    {
 	        id: "${story.id}",
 	        name: "${story.name}",
@@ -72,50 +74,15 @@ const getStoryStrings = (scrapper: StoryFileScrapper, file: string) => {
 	}
 }
 
-const getMdInfo = (content: string) => {
-	let matches = content.match(/<story-meta title="(.*)" loadType="(.*)"\/>/);
-
-	if(!matches)
-		matches = content.match(/<story-meta title="(.*)"\/>/);
-
-	if(!matches) return null;
-
-	return {
-		title: matches[1],
-		loadType: (matches[2] ?? 'lazy') as 'lazy' | 'eagerly',
-	}
-}
-
-const scrapMdFile = (file: string) => {
-	const relativePath = getRelativePath(file);
-	const content = fs.readFileSync(file, 'utf8');
-
-	const folder = path.dirname(relativePath);
-	const baseName = path.basename(relativePath);
-
-	const {title, loadType} = getMdInfo(content) ?? {};
-
-	if (!title) return null;
-
-	const id = `${folder}-${baseName.replace('.docs.md', '')}`
-
-	return {
-		id,
-		title,
-		loadType,
-		relativePath
-	}
-}
-
 export const getMdStrings = (scrapper: StoryFileScrapper, file: string) => {
-	const result = scrapMdFile(file);
+	const result = scrapper.getOne(file);
 
 	if (!result) return null;
 
-	if (scrapper.hasTitle(result.title))
+	if (result.meta.type !== 'doc')
 		return null;
 
-	const {title, id, relativePath, loadType} = result;
+	const {title, id, relativePath, loadType} = result.meta;
 
 	let object = `\
 {
@@ -132,6 +99,15 @@ export const getMdStrings = (scrapper: StoryFileScrapper, file: string) => {
 			}
 		}
 	},
+	type: 'doc',
+    stories: [${result.sections.map(story => `
+	    {
+	        id: "${story.id}",
+	        name: "${story.name}",
+	        componentName: ${story.componentName ? `"${story.componentName}"` : "null"},
+	        description: \`${story.description}\`,
+	    }`)}
+    ]
 },`;
 
 	let importStatement: string | null = null;
@@ -149,6 +125,15 @@ export const getMdStrings = (scrapper: StoryFileScrapper, file: string) => {
 			documentation: ${kebabToCamel(id)}
 		}
 	}),
+	type: 'doc',
+    stories: [${result.sections.map(story => `
+	    {
+	        id: "${story.id}",
+	        name: "${story.name}",
+	        componentName: ${story.componentName ? `"${story.componentName}"` : "null"},
+	        description: \`${story.description}\`,
+	    }`)}
+    ]
 },`;
 	}
 
@@ -158,9 +143,7 @@ export const getMdStrings = (scrapper: StoryFileScrapper, file: string) => {
 	}
 }
 
-export const generateStoryIndexer = (files: string[]) => {
-	const scrapper = new StoryFileScrapper(files);
-
+export const generateStoryIndexer = (scrapper: StoryFileScrapper, files: string[]) => {
 	const objs: string[] = [];
 	const importStatements: string[] = [];
 

@@ -1,0 +1,2 @@
+import './polyfills.server.mjs';
+import{Lc as a,R as i,eb as n}from"./chunk-B4F7F43I.mjs";var o=class e{context=i(a).context;transform(r,t,...m){return t.apply(this.context,[r,...m])}static \u0275fac=function(t){return new(t||e)};static \u0275pipe=n({name:"call",type:e,pure:!0})};var p=class e{transform(r){return r.join(" ")}static \u0275fac=function(t){return new(t||e)};static \u0275pipe=n({name:"toClass",type:e,pure:!0})};export{o as a,p as b};

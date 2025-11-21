@@ -1,5 +1,5 @@
 <fkt-tabs-list hideTabsWhenOnlyOne [(activeTab)]="activeTab">
-    <fkt-tab [hidden]="!hasStories()" key="features" label="Features">
+    <fkt-tab [hidden]="!isStoryType()" key="features" label="Features">
         @if (!currentStoryData.isLoading() && docs()) {
             <fkt-features
                 [title]="title()"

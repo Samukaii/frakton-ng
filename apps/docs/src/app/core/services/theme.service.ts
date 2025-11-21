@@ -1,21 +1,30 @@
-import { effect, Injectable, linkedSignal, signal } from '@angular/core';
+import { DOCUMENT, effect, inject, Injectable, linkedSignal, PLATFORM_ID } from '@angular/core';
 import { MarkUsed } from 'frakton-ng/internal/utils';
+import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({
-	providedIn: 'root'
+    providedIn: 'root'
 })
 export class ThemeService {
-  currentTheme = linkedSignal<'light' | 'dark'>(() => {
-      return localStorage.getItem('current-theme') === 'dark' ? 'dark' : 'light';
-  });
+    private readonly platform = inject(PLATFORM_ID);
+    private readonly document = inject(DOCUMENT);
 
-  @MarkUsed()
-  protected readonly changeTheme = effect(() => {
-	  document.body.setAttribute('data-fkt-theme', this.currentTheme());
-      localStorage.setItem('current-theme', this.currentTheme());
-  })
+    currentTheme = linkedSignal<'light' | 'dark'>(() => {
+        if(!isPlatformBrowser(this.platform)) return 'light';
 
-  toggleTheme() {
-	  this.currentTheme.set(this.currentTheme() === 'light' ? 'dark' : 'light');
-  }
+        return localStorage.getItem('current-theme') === 'dark' ? 'dark' : 'light';
+    });
+
+    @MarkUsed()
+    protected readonly changeTheme = effect(() => {
+        this.document.body.setAttribute('data-fkt-theme', this.currentTheme());
+
+        if(!isPlatformBrowser(this.platform)) return;
+
+        localStorage.setItem('current-theme', this.currentTheme());
+    })
+
+    toggleTheme() {
+        this.currentTheme.set(this.currentTheme() === 'light' ? 'dark' : 'light');
+    }
 }

@@ -52,8 +52,6 @@ export class FktTabsListComponent {
 
         const currentComponent = this.activeTabComponent() ?? this.visibleTabs()[0];
 
-        console.log(currentComponent);
-
         if(!currentComponent) return;
 
         this.ref().clear();

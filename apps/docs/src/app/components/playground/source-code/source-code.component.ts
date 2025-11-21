@@ -28,6 +28,8 @@ export class SourceCodeComponent {
 	protected readonly externalExample = resource({
 		defaultValue: null,
 		loader: async () => {
+            if(this.storyInfoService.meta.type !== 'story') return null;
+
             const externalExamples = await this.storyInfoService.fetchExternalExamples();
 
             if(externalExamples) return externalExamples;

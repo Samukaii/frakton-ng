@@ -1,6 +1,6 @@
 import { Component, input, signal } from '@angular/core';
 import { FktCheckboxComponent } from 'frakton-ng/checkbox';
-import { Field, form } from '@angular/forms/signals';
+import { disabled, Field, form } from '@angular/forms/signals';
 
 @Component({
   selector: 'fkt-checkbox-disabled-example',
@@ -14,5 +14,7 @@ import { Field, form } from '@angular/forms/signals';
 export class FktCheckboxDisabledExampleComponent {
   disabled = input(false);
 
-  protected field = form(signal(true));
+  protected field = form(signal(true), path => {
+      disabled(path, this.disabled);
+  });
 }

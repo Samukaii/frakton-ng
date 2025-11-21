@@ -41,6 +41,24 @@
         }
     }
 
+    .logo-wrapper {
+        .logo-dark {
+            display: none;
+        }
+        .logo-light {
+            display: block;
+        }
+
+        &.is-dark {
+            .logo-dark {
+                display: block;
+            }
+            .logo-light {
+                display: none;
+            }
+        }
+    }
+
     &__version-tag {
         display: flex;
         align-items: center;
@@ -53,6 +71,7 @@
         border-radius: var(--fkt-radius-md);
         font-size: var(--fkt-font-size-sm);
         font-weight: var(--fkt-font-semibold);
+        backdrop-filter: blur(12px);
     }
 
 

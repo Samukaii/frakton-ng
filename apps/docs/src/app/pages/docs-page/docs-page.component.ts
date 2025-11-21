@@ -1,11 +1,11 @@
 import {
     Component,
-    computed, DestroyRef,
+    computed,
+    DestroyRef, DOCUMENT,
     effect,
     inject,
     input,
     linkedSignal,
-    OnInit,
     resource,
     signal,
     untracked
@@ -22,7 +22,6 @@ import { SkeletonContainerComponent } from '@/components/skeleton-container/skel
 import { injectCurrentRoute } from '@/utils/inject-current-route';
 import { startWith, Subscription } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { StoryResolved } from '@/models/story.resolved';
 
 
 @Component({
@@ -38,13 +37,14 @@ import { StoryResolved } from '@/models/story.resolved';
     templateUrl: './docs-page.component.html',
     styleUrl: './docs-page.component.scss',
 })
-export class DocsPageComponent implements OnInit {
+export class DocsPageComponent {
     docId = input<string>();
     protected readonly stories = STORIES_MAP;
 
-    activeRoute = injectCurrentRoute();
+    private readonly activeRoute = injectCurrentRoute();
 
     private readonly storyLoader = inject(StoryLoaderService);
+    private readonly document = inject(DOCUMENT);
     private readonly tableOfContentsService = inject(TableOfContentsService);
     private readonly destroyRef = inject(DestroyRef);
 
@@ -58,11 +58,8 @@ export class DocsPageComponent implements OnInit {
 
     lastSub: Subscription | null = null;
 
-    ngOnInit() {
-
-    }
-
-    a = effect(() => {
+    @MarkUsed()
+    protected scrollToAnchor = effect(() => {
         this.activeRoute();
         this.docId();
         this.activeTab();
@@ -73,7 +70,7 @@ export class DocsPageComponent implements OnInit {
             if (!fragment) return;
 
             setTimeout(() => {
-                document.getElementById(fragment)?.scrollIntoView({
+                this.document.getElementById(fragment)?.scrollIntoView({
                     behavior: 'smooth',
                     block: "center"
                 });
@@ -121,12 +118,12 @@ export class DocsPageComponent implements OnInit {
         }
     })
 
-    protected readonly hasStories = computed(() => {
+    protected readonly isStoryType = computed(() => {
         const data = this.currentStoryData.value();
 
         if (!data) return false;
 
-        return data.stories.length > 0;
+        return data.meta.type === 'story';
     })
 
     title = computed(() => {

@@ -5,6 +5,8 @@ import { generateStoryIndexer } from './generate-story-indexer';
 import { SCRIPTS_CONFIG } from './config';
 import { fetchStoryFiles } from './fetch-story-files';
 import { fetchStoryFolders } from './fetch-story-folders';
+import { StoryFileScrapper } from './utils/story-file-scrapper';
+import { generateSiteMap } from './generate-sitemap';
 
 
 const storyFolders = fetchStoryFolders();
@@ -32,5 +34,9 @@ storyFolders.forEach(folder => {
     }
 })
 
-generateStoryIndexer(fetchStoryFiles());
+const storyFiles = fetchStoryFiles();
+const scrapper = new StoryFileScrapper(storyFiles);
+
+generateStoryIndexer(scrapper, storyFiles);
+generateSiteMap(scrapper);
 
