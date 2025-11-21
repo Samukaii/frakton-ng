@@ -7,6 +7,7 @@
 **/dist/
 bash.exe.stackdump
 .claude/
+/docs
 
 # Node
 /node_modules
