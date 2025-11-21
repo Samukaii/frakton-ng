@@ -19,5 +19,7 @@
 }
 
 <div class="content">
-    <div [style.display]="'none'" #ref></div>
+    @for (tab of visibleTabs(); track tab.key()) {
+        <fkt-tabs-renderer [template]="tab.template()" [hidden]="activeTab() !== tab.key()" [showMode]="lazyLoading() ? 'lazy' : 'eager'"/>
+    }
 </div>

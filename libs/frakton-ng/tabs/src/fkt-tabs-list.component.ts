@@ -14,12 +14,14 @@ import { FktIconComponent } from 'frakton-ng/icon';
 import { MarkUsed } from 'frakton-ng/internal/utils';
 import { FktTabComponent } from './tab/fkt-tab.component';
 import { FktNavigableListDirective } from 'frakton-ng/navigable-list';
+import { FktTabsRendererComponent } from './renderer/fkt-tabs-renderer.component';
 
 @Component({
 	selector: 'fkt-tabs-list',
     imports: [
         FktIconComponent,
-        FktNavigableListDirective
+        FktNavigableListDirective,
+        FktTabsRendererComponent
     ],
 	templateUrl: './fkt-tabs-list.component.html',
 	styleUrl: './fkt-tabs-list.component.scss'
@@ -27,6 +29,9 @@ import { FktNavigableListDirective } from 'frakton-ng/navigable-list';
 export class FktTabsListComponent {
 	tabs = contentChildren(FktTabComponent);
 	activeTab = model<string>();
+    lazyLoading = input(false, {
+        transform: booleanAttribute
+    })
     hideTabsWhenOnlyOne = input(false, {
         transform: booleanAttribute
     })
@@ -45,19 +50,21 @@ export class FktTabsListComponent {
 		return this.visibleTabs().find(tab => tab.key()===activeTab) ?? null;
 	});
 
-    private ref = viewChild.required("ref", {read: ViewContainerRef});
+    // private ref = viewChild.required("ref", {read: ViewContainerRef});
 
-    renderTab = effect(() => {
-        const ref = this.ref();
-
-        const currentComponent = this.activeTabComponent() ?? this.visibleTabs()[0];
-
-        if(!currentComponent) return;
-
-        this.ref().clear();
-
-        ref.createEmbeddedView(currentComponent.template());
-    })
+    // renderTab = effect(() => {
+    //     const ref = this.ref();
+    //
+    //     const currentComponent = this.activeTabComponent() ?? this.visibleTabs()[0];
+    //
+    //     if(!currentComponent) return;
+    //
+    //     this.ref().clear();
+    //
+    //     this.visibleTabs().forEach(tab => {
+    //         const embeded = ref.createEmbeddedView(tab.template());
+    //     })
+    // })
 
 	@MarkUsed()
 	protected selectFirstTab = effect(() => {
