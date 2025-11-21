@@ -39,7 +39,7 @@ export class FktTabsListComponent {
     protected visibleTabs = computed(() => {
         this.tabs().forEach(a => a.hidden());
 
-        return this.tabs().filter(tab => !tab.hidden())
+        return this.tabs();
     })
 
 	protected activeTabComponent = computed(() => {

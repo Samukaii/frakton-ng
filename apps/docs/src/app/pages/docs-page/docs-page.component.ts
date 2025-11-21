@@ -51,9 +51,11 @@ export class DocsPageComponent {
     protected readonly isLoading = signal(false);
     protected readonly copied = signal<boolean>(false);
     protected activeTab = linkedSignal(() => {
-        this.docId();
+        const docType = this.currentStoryData.value()?.meta.type;
 
-        return 'features'
+        if(docType === 'story') return 'features'
+
+        return 'api-reference'
     });
 
     lastSub: Subscription | null = null;
