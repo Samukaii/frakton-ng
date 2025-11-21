@@ -1,0 +1,11 @@
+export default `<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Redirecting</title>
+    <meta http-equiv="refresh" content="0; url=/docs/getting-started-installation">
+  </head>
+  <body>
+    <pre>Redirecting to <a href="/docs/getting-started-installation">/docs/getting-started-installation</a></pre>
+  </body>
+</html>`;

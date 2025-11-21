@@ -3,6 +3,10 @@ import { STORIES_MAP } from '@/stories/stories-map';
 
 export const serverRoutes: ServerRoute[] = [
     {
+        path: "",
+        renderMode: RenderMode.Prerender,
+    },
+    {
         path: 'docs/:docId',
         renderMode: RenderMode.Prerender,
         async getPrerenderParams() {

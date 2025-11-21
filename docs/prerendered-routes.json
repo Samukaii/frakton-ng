@@ -1,5 +1,6 @@
 {
   "routes": {
+    "/": {},
     "/docs/autocomplete": {},
     "/docs/badge": {},
     "/docs/badge-selector": {},
