@@ -7,8 +7,8 @@ export const injectCurrentRoute = () => {
 	const route = inject(ActivatedRoute);
 
 	return computed(() => {
-		router.currentNavigation()
+        router.currentNavigation()
 
-		return findActiveChildRoute(route)
-	});
+        return findActiveChildRoute(route)
+    }, {equal: () => false});
 }
