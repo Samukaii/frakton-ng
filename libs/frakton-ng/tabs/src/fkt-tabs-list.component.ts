@@ -5,7 +5,7 @@ import {
     contentChildren,
     effect,
     input,
-    model,
+    output,
     untracked,
     viewChild,
     ViewContainerRef
@@ -14,21 +14,20 @@ import { FktIconComponent } from 'frakton-ng/icon';
 import { MarkUsed } from 'frakton-ng/internal/utils';
 import { FktTabComponent } from './tab/fkt-tab.component';
 import { FktNavigableListDirective } from 'frakton-ng/navigable-list';
-import { FktTabsRendererComponent } from './renderer/fkt-tabs-renderer.component';
 
 @Component({
 	selector: 'fkt-tabs-list',
     imports: [
         FktIconComponent,
-        FktNavigableListDirective,
-        FktTabsRendererComponent
+        FktNavigableListDirective
     ],
 	templateUrl: './fkt-tabs-list.component.html',
 	styleUrl: './fkt-tabs-list.component.scss'
 })
 export class FktTabsListComponent {
 	tabs = contentChildren(FktTabComponent);
-	activeTab = model<string>();
+	activeTab = input<string>();
+	activeTabChange = output<string>();
     lazyLoading = input(false, {
         transform: booleanAttribute
     })
@@ -39,7 +38,7 @@ export class FktTabsListComponent {
     protected visibleTabs = computed(() => {
         this.tabs().forEach(a => a.hidden());
 
-        return this.tabs();
+        return this.tabs().filter(tab => !tab.hidden());
     })
 
 	protected activeTabComponent = computed(() => {
@@ -50,21 +49,20 @@ export class FktTabsListComponent {
 		return this.visibleTabs().find(tab => tab.key()===activeTab) ?? null;
 	});
 
-    // private ref = viewChild.required("ref", {read: ViewContainerRef});
+    private ref = viewChild.required("ref", {read: ViewContainerRef});
 
-    // renderTab = effect(() => {
-    //     const ref = this.ref();
-    //
-    //     const currentComponent = this.activeTabComponent() ?? this.visibleTabs()[0];
-    //
-    //     if(!currentComponent) return;
-    //
-    //     this.ref().clear();
-    //
-    //     this.visibleTabs().forEach(tab => {
-    //         const embeded = ref.createEmbeddedView(tab.template());
-    //     })
-    // })
+    @MarkUsed()
+    renderTab = effect(() => {
+        const ref = this.ref();
+
+        const currentComponent = this.activeTabComponent() ?? this.visibleTabs()[0];
+
+        if(!currentComponent) return;
+
+        this.ref().clear();
+
+        ref.createEmbeddedView(currentComponent.template());
+    })
 
 	@MarkUsed()
 	protected selectFirstTab = effect(() => {
@@ -78,7 +76,7 @@ export class FktTabsListComponent {
 
 			const firstTab = tabs[0];
 
-			this.activeTab.set(firstTab.key());
+			this.activeTabChange.emit(firstTab.key());
 		});
 	});
 
@@ -99,7 +97,7 @@ export class FktTabsListComponent {
 	});
 
 	selectTab(key: string) {
-		this.activeTab.set(key);
+		this.activeTabChange.emit(key);
 	}
 
     keyboardSelect(index: number) {
