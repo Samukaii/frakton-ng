@@ -30,7 +30,7 @@
 
 	</li>
 } @else {
-	<a href="#" [routerLink]="`docs/${menuItem.id}`" (click)="clicked.emit(menuItem)" routerLinkActive="active" class="root-menu__title">
+	<a href="#" [routerLink]="`docs/${menuItem.id}/features`" (click)="clicked.emit(menuItem)" routerLinkActive="active" class="root-menu__title">
 		<div class="info">
 			<div class="icon">
 				<fkt-icon
@@ -59,7 +59,7 @@
 				</li>
 			} @else {
 				<li class="submenu__item">
-					<a href="#" [routerLink]="`docs/${item.id}`" (click)="clicked.emit(item)" routerLinkActive="active">
+					<a href="#" [routerLink]="`docs/${item.id}/features`" (click)="clicked.emit(item)" routerLinkActive="active">
 						{{ item.title }}
 					</a>
 				</li>
