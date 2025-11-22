@@ -6,7 +6,7 @@ import { provideTableCells } from 'frakton-ng/table';
 import { FktTableCellBadgeComponent } from 'frakton-ng/table/cells/badge';
 import { FktTableCellWithActionComponent } from 'frakton-ng/table/cells/action';
 import DOMPurify from 'dompurify';
-import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
+import { provideClientHydration, withEventReplay, withIncrementalHydration } from '@angular/platform-browser';
 
 function sanitizeHtml(html: string): string {
     DOMPurify.setConfig({
@@ -40,6 +40,7 @@ export const appConfig: ApplicationConfig = {
         provideTableCells({
             badge: FktTableCellBadgeComponent,
             actions: FktTableCellWithActionComponent
-        }), provideClientHydration(withEventReplay()),
+        }),
+        provideClientHydration(withEventReplay(), withIncrementalHydration()),
     ],
 };

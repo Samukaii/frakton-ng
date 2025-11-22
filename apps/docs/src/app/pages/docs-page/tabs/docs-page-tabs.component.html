@@ -1,0 +1,55 @@
+<fkt-tabs-list hideTabsWhenOnlyOne (activeTabChange)="activeTabChange.emit($event)" [activeTab]="activeTab()">
+    <fkt-tab [hidden]="!isStoryType()" key="features" label="Features">
+        @if (!loading()) {
+            <fkt-features
+                [title]="title()"
+                [description]="description()"
+                [importStatement]="importStatement()"
+            />
+        }
+    </fkt-tab>
+
+
+    <fkt-tab key="api-reference" label="API">
+        <div class="container">
+            <div class="docs">
+                @if (!loading()) {
+                    <fkt-markdown
+                        [data]="docs()!"
+                    />
+                }
+            </div>
+        </div>
+    </fkt-tab>
+</fkt-tabs-list>
+
+@if (loading()) {
+    <div class="loading">
+        <fkt-skeleton-container>
+        </fkt-skeleton-container>
+
+        <fkt-skeleton-container>
+            <fkt-skeleton height="40px" width="200px" marginBottom="1rem"/>
+            <fkt-skeleton height="20px" width="80%"/>
+            <fkt-skeleton height="20px" width="40%"/>
+        </fkt-skeleton-container>
+
+        <fkt-skeleton-container>
+            <fkt-skeleton width="200px" height="30px" marginBottom="1rem"/>
+            <fkt-skeleton height="20px" width="60%" marginBottom="2rem"/>
+            <fkt-skeleton height="200px" width="100%"/>
+        </fkt-skeleton-container>
+        <fkt-skeleton-container>
+            <fkt-skeleton width="200px" height="30px" marginBottom="1rem"/>
+            <fkt-skeleton height="20px" width="60%" marginBottom="2rem"/>
+            <fkt-skeleton height="200px" width="100%"/>
+        </fkt-skeleton-container>
+        <fkt-skeleton-container>
+            <fkt-skeleton width="200px" height="30px" marginBottom="1rem"/>
+            <fkt-skeleton height="20px" width="60%" marginBottom="2rem"/>
+            <fkt-skeleton height="200px" width="100%"/>
+        </fkt-skeleton-container>
+    </div>
+}
+
+

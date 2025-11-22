@@ -1,7 +1,8 @@
 import {
     Component,
     computed,
-    DestroyRef, DOCUMENT,
+    DestroyRef,
+    DOCUMENT,
     effect,
     inject,
     input,
@@ -22,6 +23,9 @@ import { SkeletonContainerComponent } from '@/components/skeleton-container/skel
 import { injectCurrentRoute } from '@/utils/inject-current-route';
 import { startWith, Subscription } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { Router } from '@angular/router';
+import { injectRouteParams } from '@/utils/inject-route-params';
+import { DocsPageTabsComponent } from '@/pages/docs-page/tabs/docs-page-tabs.component';
 
 
 @Component({
@@ -32,30 +36,33 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
         FktTabComponent,
         SkeletonComponent,
         SkeletonContainerComponent,
-        FeaturesComponent
+        FeaturesComponent,
+        DocsPageTabsComponent
     ],
     templateUrl: './docs-page.component.html',
     styleUrl: './docs-page.component.scss',
 })
 export class DocsPageComponent {
     docId = input<string>();
+    tab = input<string>();
     protected readonly stories = STORIES_MAP;
 
     private readonly activeRoute = injectCurrentRoute();
 
     private readonly storyLoader = inject(StoryLoaderService);
+    private readonly router = inject(Router);
     private readonly document = inject(DOCUMENT);
     private readonly tableOfContentsService = inject(TableOfContentsService);
     private readonly destroyRef = inject(DestroyRef);
-
-    protected readonly isLoading = signal(false);
     protected readonly copied = signal<boolean>(false);
+
     protected activeTab = linkedSignal(() => {
+        const tab = this.tab();
         const docType = this.currentStoryData.value()?.meta.type;
 
-        if(docType === 'story') return 'features'
+        if (docType === 'doc') return 'api-reference'
 
-        return 'api-reference'
+        return tab === 'api-reference' ? 'api-reference' : 'features';
     });
 
     lastSub: Subscription | null = null;
@@ -93,7 +100,7 @@ export class DocsPageComponent {
         })
     })
 
-    private readonly currentIndexer = computed(() => {
+    protected readonly currentIndexer = computed(() => {
         const docId = this.docId();
 
         const found = this.stories.find(story => {
@@ -105,51 +112,15 @@ export class DocsPageComponent {
 
     protected readonly currentStoryData = resource({
         defaultValue: null,
-        params: () => ({indexer: this.currentIndexer()}),
+        params: () => ({indexer: this.currentIndexer(), tab: this.tab()}),
         loader: async ({params}) => {
             const indexer = params.indexer;
 
             if (!indexer)
                 return null;
 
-            const data = this.storyLoader.loadData(indexer);
-
-            this.isLoading.set(false);
-
-            return data;
+            return this.storyLoader.loadData(indexer);
         }
-    })
-
-    protected readonly isStoryType = computed(() => {
-        const data = this.currentStoryData.value();
-
-        if (!data) return false;
-
-        return data.meta.type === 'story';
-    })
-
-    title = computed(() => {
-        const data = this.currentStoryData.value();
-
-        const fullTitle = data?.meta?.title;
-
-        return fullTitle?.split('/').at(-1) ?? ''
-    })
-
-    description = computed(() => {
-        const data = this.currentStoryData.value();
-
-        return data?.meta?.description ?? '';
-    })
-
-    importStatement = computed(() => {
-        const indexer = this.currentIndexer();
-        const data = this.currentStoryData.value();
-        const componentName = data?.meta?.componentName;
-
-        if(!componentName) return;
-
-        return `import {${componentName}} from "frakton-ng/${indexer?.id}";`
     })
 
     protected readonly docs = computed(() => {
@@ -157,4 +128,8 @@ export class DocsPageComponent {
 
         return storyData?.meta?.documentation;
     });
+
+    onActiveTabChange($event: string) {
+        this.router.navigate(['docs', this.docId(), $event]);
+    }
 }
