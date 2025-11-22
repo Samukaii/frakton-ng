@@ -14,29 +14,18 @@ import {
 import { STORIES_MAP } from '@/stories/stories-map';
 import { MarkUsed } from 'frakton-ng/internal/utils';
 import { StoryLoaderService } from '@/core/services/story-loader.service';
-import { MarkdownWrapperComponent } from '@/components/markdown/markdown-wrapper.component';
-import { FktTabComponent, FktTabsListComponent } from 'frakton-ng/tabs';
 import { TableOfContentsService } from '@/core/services/table-of-contents.service';
-import { FeaturesComponent } from '@/pages/docs-page/features/features.component';
-import { SkeletonComponent } from '@/components/skeleton/skeleton.component';
-import { SkeletonContainerComponent } from '@/components/skeleton-container/skeleton-container.component';
 import { injectCurrentRoute } from '@/utils/inject-current-route';
 import { startWith, Subscription } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Router } from '@angular/router';
-import { injectRouteParams } from '@/utils/inject-route-params';
 import { DocsPageTabsComponent } from '@/pages/docs-page/tabs/docs-page-tabs.component';
+import { Meta, Title } from '@angular/platform-browser';
 
 
 @Component({
     selector: 'app-docs-page',
     imports: [
-        MarkdownWrapperComponent,
-        FktTabsListComponent,
-        FktTabComponent,
-        SkeletonComponent,
-        SkeletonContainerComponent,
-        FeaturesComponent,
         DocsPageTabsComponent
     ],
     templateUrl: './docs-page.component.html',
@@ -54,6 +43,8 @@ export class DocsPageComponent {
     private readonly document = inject(DOCUMENT);
     private readonly tableOfContentsService = inject(TableOfContentsService);
     private readonly destroyRef = inject(DestroyRef);
+    private readonly titleService = inject(Title)
+    private readonly metaService = inject(Meta)
     protected readonly copied = signal<boolean>(false);
 
     protected activeTab = linkedSignal(() => {
@@ -65,7 +56,29 @@ export class DocsPageComponent {
         return tab === 'api-reference' ? 'api-reference' : 'features';
     });
 
-    lastSub: Subscription | null = null;
+    @MarkUsed()
+    updateTitle = effect(() => {
+        const storyData = this.currentStoryData.value();
+
+        const title = storyData?.meta.title.split('/').at(-1);
+        const tab = this.tab() === 'features' ? 'Features' : "API";
+
+        if (!storyData || !title || title.toLowerCase() === 'installation') {
+            this.setMetaTags({
+                title: "Frakton NG • A next-generation Angular UI Library",
+                description: "Modern tokens, signal-native architecture, enforced accessibility and infinite visual freedom."
+            })
+
+            return;
+        }
+
+        this.setMetaTags({
+            title: `${title} - ${tab} | Frakton NG`,
+            description: storyData.meta.description?.substring(0, 120) ?? "Modern tokens, signal-native architecture, enforced accessibility and infinite visual freedom."
+        })
+    })
+
+    private lastSub: Subscription | null = null;
 
     @MarkUsed()
     protected scrollToAnchor = effect(() => {
@@ -123,13 +136,41 @@ export class DocsPageComponent {
         }
     })
 
+    private setMetaTags(params: {title: string; description: string}) {
+        this.titleService.setTitle(params.title);
+        this.metaService.updateTag({
+            property: "og:title",
+            content: params.title,
+        })
+
+        this.metaService.updateTag({
+            name: "twitter:title",
+            content: params.title,
+        })
+
+        this.metaService.updateTag({
+            name: "description",
+            content: params.description,
+        })
+
+        this.metaService.updateTag({
+            property: "og:description",
+            content: params.description,
+        })
+
+        this.metaService.updateTag({
+            name: "twitter:description",
+            content: params.description,
+        })
+    }
+
     protected readonly docs = computed(() => {
         const storyData = this.currentStoryData.value();
 
         return storyData?.meta?.documentation;
     });
 
-    onActiveTabChange($event: string) {
-        this.router.navigate(['docs', this.docId(), $event]);
+    protected async onActiveTabChange($event: string) {
+        await this.router.navigate(['docs', this.docId(), $event]);
     }
 }
