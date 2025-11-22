@@ -10,21 +10,31 @@ export const appRoutes: Routes = [
             {
                 path: '',
                 pathMatch: 'full',
-                redirectTo: 'docs/getting-started-installation/',
+                redirectTo: 'docs',
             },
             {
-                path: 'docs/:docId',
+                path: 'docs',
                 children: [
                     {
                         path: '',
                         pathMatch: 'full',
-                        redirectTo: 'features'
+                        redirectTo: 'getting-started-installation'
                     },
                     {
-                        path: ':tab',
-                        component: DocsPageComponent,
+                        path: ':docId',
+                        children: [
+                            {
+                                path: '',
+                                component: DocsPageComponent,
+                            },
+                            {
+                                path: ':tab',
+                                component: DocsPageComponent,
+                            }
+                        ]
                     }
                 ]
+
             }
         ]
 	},

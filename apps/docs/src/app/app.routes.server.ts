@@ -7,6 +7,19 @@ export const serverRoutes: ServerRoute[] = [
         renderMode: RenderMode.Prerender,
     },
     {
+        path: "docs",
+        renderMode: RenderMode.Prerender,
+    },
+    {
+        path: "docs/:docId",
+        renderMode: RenderMode.Prerender,
+        async getPrerenderParams() {
+            return STORIES_MAP.map(story => ({
+                docId: story.id,
+            }));
+        },
+    },
+    {
         path: 'docs/:docId/:tab',
         renderMode: RenderMode.Prerender,
         async getPrerenderParams() {
