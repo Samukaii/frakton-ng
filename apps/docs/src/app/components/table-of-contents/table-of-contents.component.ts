@@ -13,9 +13,6 @@ export interface TocItem {
 	imports: [NgTemplateOutlet],
 	templateUrl: './table-of-contents.component.html',
 	styleUrl: './table-of-contents.component.scss',
-	host: {
-		"role": "aside"
-	}
 })
 export class TableOfContentsComponent {
 	excludedContainerSelector = input<string>();

@@ -1,22 +1,26 @@
 <div class="pattern">
 </div>
 
-<fkt-drawer width="100%" (backdropClick)="mobileMenuService.close()" mode="overlay" [opened]="mobileMenuService.isOpened()">
+<fkt-drawer width="100%" (backdropClick)="mobileMenuService.close()" mode="overlay"
+            [opened]="mobileMenuService.isOpened()">
     <div side-content class="mobile-menu">
-        <fkt-side-menu (clicked)="mobileMenuService.close()"/>
+        <aside>
+            <fkt-side-menu (clicked)="mobileMenuService.close()"/>
+        </aside>
     </div>
 
     <div class="main" side-main>
         <fkt-toolbar/>
         <div class="container">
-
-            <fkt-side-menu class="hide-md"/>
-
-            <div class="content">
+            <aside>
+                <fkt-side-menu class="hide-md"/>
+            </aside>
+            <main class="content">
                 <router-outlet/>
-
-            </div>
-            <fkt-table-of-contents class="hide-md" excludedContainerSelector="fkt-playground"/>
+            </main>
+            <aside>
+                <fkt-table-of-contents class="hide-md" excludedContainerSelector="fkt-playground"/>
+            </aside>
         </div>
     </div>
 </fkt-drawer>
