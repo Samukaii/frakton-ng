@@ -5,12 +5,15 @@ import { FktDialogService } from 'frakton-ng/dialog';
 import { OmniSearchComponent } from '@/core/omni-search/omni-search.component';
 import { FktButtonComponent } from 'frakton-ng/button';
 import { MobileMenuService } from '@/core/services/mobile-menu.service';
+import { INLINE_SVGS } from '@/inline-svgs/inline-svgs';
+import { BypassHtmlPipe } from '@/pipes/bypass-html.pipe';
 
 @Component({
     selector: 'fkt-toolbar',
     imports: [
         FktIconComponent,
-        FktButtonComponent
+        FktButtonComponent,
+        BypassHtmlPipe
     ],
     templateUrl: './toolbar.component.html',
     styleUrl: './toolbar.component.scss',
@@ -20,6 +23,8 @@ export class ToolbarComponent implements OnInit {
     protected readonly dialogService = inject(FktDialogService);
     protected readonly mobileMenuService = inject(MobileMenuService);
     protected readonly document = inject(DOCUMENT);
+
+    protected readonly INLINE_SVGS = INLINE_SVGS;
 
     protected buttonThemeLabel = computed(() => {
         return this.themeService.currentTheme() === 'dark' ? 'Switch to light mode' : 'Switch to dark mode';
