@@ -18,21 +18,22 @@
         </div>
         <div class="actions">
             <fkt-button
+                class="expand-button"
+                ariaLabel="Show code"
+                fktTooltip="Show code"
+                [color]="currentTheme() === 'dark' ? 'accent' : 'info'"
+                theme="basic"
+                icon="code-bracket"
+                (click)="expanded.set(!expanded())"
+            />
+            <fkt-button
                 [ariaLabel]="buttonThemeLabel()"
                 [fktTooltip]="buttonThemeLabel()"
-                color="accent"
+                [color]="currentTheme() === 'dark' ? 'accent' : 'info'"
                 theme="basic"
                 (click)="toggleTheme()"
                 [icon]="buttonThemeIcon()"
             />
-            <button (click)="expanded.set(!expanded())">
-                <fkt-icon name="chevron-up"/>
-                @if (expanded()) {
-                    <span>Hide panel</span>
-                } @else {
-                    <span>Expand panel</span>
-                }
-            </button>
         </div>
     </div>
 

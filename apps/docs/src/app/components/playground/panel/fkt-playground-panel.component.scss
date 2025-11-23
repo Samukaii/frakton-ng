@@ -15,8 +15,10 @@
 
     .actions {
         min-width: fit-content;
-        fkt-button {
-            --fkt-button-accent-color: var(--fkt-color-link);
+        padding: 0 var(--fkt-space-xs);
+
+        fkt-button.expand-button {
+            transition: var(--fkt-transition-base);
         }
     }
 
@@ -34,9 +36,6 @@
         transition: var(--fkt-transition-base);
         margin-right: .5rem;
 
-        fkt-icon {
-            transition: var(--fkt-transition-base);
-        }
 
         &:hover {
             cursor: pointer;
@@ -159,8 +158,9 @@ table {
 
 :host {
     &.expanded {
-        .tabs > button {
-            fkt-icon {
+        .tabs .actions {
+            fkt-button.expand-button {
+                transition: var(--fkt-transition-base);
                 transform: rotateZ(180deg);
             }
         }

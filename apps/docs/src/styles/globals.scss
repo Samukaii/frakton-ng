@@ -21,8 +21,8 @@ body {
 	--fkt-panel-shadow: rgb(179 187 199) 0px 4px 21px 1px;
     --fkt-toolbar-background: #E2E8F066;
     --fkt-mobile-menu-background: rgba(230, 235, 245, 0.9);
-    --fkt-color-link: #FFA700;
-    --fkt-color-link-opacity-20: rgba(255, 167, 0, 0.2);
+    --fkt-color-link: var(--fkt-color-info);
+    --fkt-color-link-opacity-20: var(--fkt-color-info-opacity-20);
 
     scrollbar-width: thin;
     ::-webkit-scrollbar {
