@@ -15,7 +15,7 @@
 
 Frakton NG is a **next-generation Angular UI library** that separates what matters: enforced accessibility and modern architecture, with complete visual freedom. Built with Angular 21+ signals, standalone components, and a comprehensive design token system.
 
-- **📦 Bundle Size**: < 700kb unpacked and < 150kb gzipped
+- **📦 Bundle Size**: < 1mb unpacked and < 150kb gzipped
 - **🧩 Components**: 25+ production-ready
 - **🚀 Zero Dependencies**: Only Angular required
 
@@ -23,7 +23,7 @@ Frakton NG is a **next-generation Angular UI library** that separates what matte
 
 ## 🖼️ **See It In Action**
 
-[See the docs & interactive demos →](https://samukaii.github.io/frakton-ng)
+[See the docs & interactive demos →](https://fraktonng.com)
 
 <img width="2266" height="1341" alt="image" src="https://github.com/user-attachments/assets/edc62523-f557-4c99-934f-306346d3b174" />
 
@@ -48,7 +48,7 @@ Unlike traditional UI libraries, Frakton NG is **opinionated about the right thi
 - **Theming**: Multi-theme support with runtime token inheritance
 - **Layout**: No imposed spacing, sizing, or visual constraints
 
-[See the docs & interactive demos →](https://samukaii.github.io/frakton-ng)
+[See the docs & interactive demos →](https://fraktonng.com)
 
 <br/>
 
@@ -291,7 +291,7 @@ Interactive documentation that goes beyond traditional UI libraries:
 
 | Metric            | Frakton NG        | Angular Material                    | PrimeNG                             |
 |-------------------|-------------------|-------------------------------------|-------------------------------------|
-| **Unpacked Size** | **698KB**         | ~8.5MB                              | ~11.4 MB                            |
+| **Unpacked Size** | **<1 mb**         | ~8.5MB                              | ~11.4 MB                            |
 | **Tree Shaking**  | ✅ Component-level | ⚠️ Module-level and component-level | ⚠️ Module-level and component-level |
 
 <br/>
@@ -334,7 +334,7 @@ Frakton NG is built for production applications:
 
 ## ⚡️ Quick links
 
-- [Docs & Demos](https://samukaii.github.io/frakton-ng)
+- [Docs & Demos](https://fraktonng.com)
 - [Issues](https://github.com/Samukaii/frakton-ng/issues)
 
 <br/>
