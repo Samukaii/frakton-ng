@@ -1,7 +1,5 @@
 <story-meta title="Getting Started/Migration Guides"/>
 
-# Migration Guides
-
 Frakton NG is designed to work alongside other UI libraries without conflicts. You can migrate gradually or use multiple libraries together.
 
 ---
