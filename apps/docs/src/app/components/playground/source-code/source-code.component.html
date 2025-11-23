@@ -8,6 +8,7 @@
                 <div class="files-source__code" [class.expanded]="expanded()">
                     @if (example) {
                         <fkt-code-highlight
+                            noBorderRadius
                             [text]="file.content"
                             [language]="file.language"
                         />

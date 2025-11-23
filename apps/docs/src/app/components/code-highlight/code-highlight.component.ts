@@ -1,4 +1,14 @@
-import { Component, computed, effect, ElementRef, inject, input, PLATFORM_ID, viewChild } from '@angular/core';
+import {
+    booleanAttribute,
+    Component,
+    computed,
+    effect,
+    ElementRef,
+    inject,
+    input,
+    PLATFORM_ID,
+    viewChild
+} from '@angular/core';
 import * as Prism from 'prismjs';
 import 'prismjs/components/prism-typescript';
 import { MarkUsed } from 'frakton-ng/internal/utils';
@@ -8,10 +18,14 @@ import { isPlatformBrowser } from '@angular/common';
   selector: 'fkt-code-highlight',
   imports: [],
   templateUrl: './code-highlight.component.html',
-  styleUrl: './code-highlight.component.scss'
+  styleUrl: './code-highlight.component.scss',
 })
 export class CodeHighlightComponent {
 	text = input.required<string>();
+    noBorderRadius = input(false, {
+        transform: booleanAttribute
+    });
+
 	language = input.required<'typescript' | 'html' | 'css' | 'json'>();
 
 	codeAnchor = viewChild.required('codeAnchor', {read: ElementRef})

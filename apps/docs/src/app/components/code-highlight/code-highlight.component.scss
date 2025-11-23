@@ -6,4 +6,8 @@ pre {
     overflow-y: auto;
     width: 100%;
     min-width: fit-content;
+
+    &.no-border-radius {
+        border-radius: 0;
+    }
 }
