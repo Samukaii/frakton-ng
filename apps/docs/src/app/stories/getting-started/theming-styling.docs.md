@@ -1,7 +1,5 @@
 <story-meta title="Getting Started/Theming & Styling"/>
 
-# Theming & Styling
-
 Frakton NG's design token system provides complete visual freedom while maintaining robust functionality. Every visual aspect is customizable through CSS custom properties.
 
 ---
