@@ -14,8 +14,6 @@
         <div class="container">
             <div class="docs">
                 @if (!loading()) {
-                    <h1>{{ title() }}</h1>
-                    
                     <fkt-markdown
                         [data]="docs()!"
                     />

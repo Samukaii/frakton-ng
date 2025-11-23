@@ -1,5 +1,7 @@
 <story-meta title="Getting Started/Installation" loadType="eagerly"/>
 
+# Getting Started with Frakton NG
+
 Welcome to **Frakton NG** - the next-generation Angular UI library that combines enforced accessibility, signal-native architecture, and complete visual freedom.
 
 ---
