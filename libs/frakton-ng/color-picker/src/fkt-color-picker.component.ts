@@ -92,7 +92,7 @@ export class FktColorPickerComponent implements FormValueControl<string | null> 
 				outputFormat: this.outputFormat
 			},
 			panelOptions: {
-				position: 'bottom-start',
+				preferredPositions: 'bottom-start',
 				width: "500px",
 				padding: '1rem',
 				maxHeight: 'fit-content',

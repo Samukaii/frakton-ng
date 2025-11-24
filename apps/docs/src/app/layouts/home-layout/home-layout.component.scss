@@ -55,6 +55,17 @@ fkt-toolbar {
     padding: 0 1rem;
 }
 
+.table-of-contents {
+    padding-right: var(--fkt-space-md);
+    width: 300px;
+}
+
+.desktop-menu {
+    padding-left: var(--fkt-space-md);
+    width: 300px;
+}
+
+
 fkt-side-menu {
     z-index: 1;
     position: sticky;

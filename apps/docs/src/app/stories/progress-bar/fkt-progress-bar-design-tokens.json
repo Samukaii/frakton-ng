@@ -1,0 +1,186 @@
+[
+  {
+    "description": "Progress bar height for extra small size.",
+    "name": "--fkt-progress-bar-height-xs",
+    "reference": "0.375rem",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": "0.375rem"
+  },
+  {
+    "description": "Progress bar height for small size.",
+    "name": "--fkt-progress-bar-height-sm",
+    "reference": "0.5rem",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": "0.5rem"
+  },
+  {
+    "description": "Progress bar height for medium size.",
+    "name": "--fkt-progress-bar-height-md",
+    "reference": "1rem",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": "1rem"
+  },
+  {
+    "description": "Progress bar height for large size.",
+    "name": "--fkt-progress-bar-height-lg",
+    "reference": "1.5rem",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": "1.5rem"
+  },
+  {
+    "description": "Progress bar border radius for rounded shape.",
+    "name": "--fkt-progress-bar-border-radius",
+    "reference": "--fkt-radius-full",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": "9999px"
+  },
+  {
+    "description": "Progress bar border radius for square shape.",
+    "name": "--fkt-progress-bar-square-border-radius",
+    "reference": "--fkt-radius-sm",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": ".25rem"
+  },
+  {
+    "description": "Progress bar track background color.",
+    "name": "--fkt-progress-bar-track-color",
+    "reference": "--fkt-color-neutral-200",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#e2e8f0"
+  },
+  {
+    "description": "Progress bar fill color for primary variant.",
+    "name": "--fkt-progress-bar-primary-color",
+    "reference": "--fkt-color-primary",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#1f2937"
+  },
+  {
+    "description": "Progress bar primary text color.",
+    "name": "--fkt-progress-bar-accent-text-color",
+    "reference": "--fkt-color-on-primary",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#F9fAFBFF"
+  },
+  {
+    "description": "Progress bar fill color for accent variant.",
+    "name": "--fkt-progress-bar-accent-color",
+    "reference": "--fkt-color-accent",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#F0B100FF"
+  },
+  {
+    "description": "Progress bar fill color for success variant.",
+    "name": "--fkt-progress-bar-success-color",
+    "reference": "--fkt-color-success",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#00C950FF"
+  },
+  {
+    "description": "Progress bar success text color.",
+    "name": "--fkt-progress-bar-success-text-color",
+    "reference": "--fkt-color-on-success",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#F9fAFBFF"
+  },
+  {
+    "description": "Progress bar fill color for warning variant.",
+    "name": "--fkt-progress-bar-warning-color",
+    "reference": "--fkt-color-warning",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#FF6900FF"
+  },
+  {
+    "description": "Progress bar warning text color.",
+    "name": "--fkt-progress-bar-warning-text-color",
+    "reference": "--fkt-color-on-warning",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#F9fAFBFF"
+  },
+  {
+    "description": "Progress bar fill color for danger variant.",
+    "name": "--fkt-progress-bar-danger-color",
+    "reference": "--fkt-color-danger",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#E7000BFF"
+  },
+  {
+    "description": "Progress bar danger text color.",
+    "name": "--fkt-progress-bar-danger-text-color",
+    "reference": "--fkt-color-on-danger",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#F9fAFBFF"
+  },
+  {
+    "description": "Progress bar fill color for info variant.",
+    "name": "--fkt-progress-bar-info-color",
+    "reference": "--fkt-color-info",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#155DFCFF"
+  },
+  {
+    "description": "Progress bar info text color.",
+    "name": "--fkt-progress-bar-info-text-color",
+    "reference": "--fkt-color-on-info",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#F9fAFBFF"
+  },
+  {
+    "description": "Progress bar label text color.",
+    "name": "--fkt-progress-bar-label-color",
+    "reference": "--fkt-color-neutral-700",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#334155"
+  },
+  {
+    "description": "Progress bar label spacing.",
+    "name": "--fkt-progress-bar-label-spacing",
+    "reference": "--fkt-space-xs",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": ".5rem"
+  },
+  {
+    "description": "Progress bar font size.",
+    "name": "--fkt-progress-bar-font-size",
+    "reference": "--fkt-font-size-xs",
+    "category": "Typography",
+    "type": "size",
+    "defaultValue": "0.75rem"
+  },
+  {
+    "description": "Progress bar font weight.",
+    "name": "--fkt-progress-bar-font-weight",
+    "reference": "--fkt-font-semibold",
+    "category": "Typography",
+    "type": "size",
+    "defaultValue": "600"
+  },
+  {
+    "description": "Progress bar transition duration.",
+    "name": "--fkt-progress-bar-transition",
+    "reference": "--fkt-transition-base",
+    "category": "Animation",
+    "type": "transition",
+    "defaultValue": "all var(--fkt-transition-timing-fast) var(--fkt-transition-ease)"
+  }
+]

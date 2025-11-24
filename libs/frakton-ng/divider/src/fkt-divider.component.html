@@ -1,0 +1,21 @@
+@if (orientation() === 'horizontal') {
+    <div class="divider-container" [style.--variant]="variant()">
+        @if (label()) {
+            <div class="divider-line"></div>
+            <div class="divider-label">{{ label() }}</div>
+            <div class="divider-line"></div>
+        } @else {
+            <div class="divider-line full-width"></div>
+        }
+    </div>
+} @else {
+    <div class="divider-vertical">
+        @if (label()) {
+            <div class="divider-line"></div>
+            <div class="divider-label">{{ label() }}</div>
+            <div class="divider-line"></div>
+        } @else {
+            <div class="divider-line full-height"></div>
+        }
+    </div>
+}

@@ -12,9 +12,9 @@ import { disabled, Field, form } from '@angular/forms/signals';
   styleUrl: './fkt-checkbox-disabled-example.component.scss'
 })
 export class FktCheckboxDisabledExampleComponent {
-  disabled = input(false);
+  label = input("This checkbox can be disabled");
 
   protected field = form(signal(true), path => {
-      disabled(path, this.disabled);
+      disabled(path, () => true);
   });
 }

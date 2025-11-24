@@ -12,14 +12,14 @@
     <div class="main" side-main>
         <fkt-toolbar/>
         <div class="container">
-            <aside>
-                <fkt-side-menu class="hide-md"/>
+            <aside class="desktop-menu hide-md">
+                <fkt-side-menu/>
             </aside>
             <main class="content">
                 <router-outlet/>
             </main>
-            <aside>
-                <fkt-table-of-contents class="hide-md" excludedContainerSelector="fkt-playground"/>
+            <aside class="table-of-contents hide-md">
+                <fkt-table-of-contents excludedContainerSelector="fkt-playground"/>
             </aside>
         </div>
     </div>

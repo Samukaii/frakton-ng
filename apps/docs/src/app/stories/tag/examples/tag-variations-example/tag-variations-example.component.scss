@@ -1,0 +1,25 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--fkt-space-md);
+}
+
+.container__item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--fkt-space-xs);
+}
+
+.container__item h2 {
+    font-size: var(--fkt-font-size-lg);
+    font-weight: var(--fkt-font-semibold);
+    border-bottom: solid 1px var(--fkt-color-neutral-200);
+    padding-bottom: var(--fkt-space-3xs);
+}
+
+.container__item > div {
+    display: flex;
+    align-items: center;
+    gap: var(--fkt-space-xs);
+    flex-wrap: wrap;
+}

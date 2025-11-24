@@ -10,7 +10,7 @@ export interface Meta<Component = any> {
     description: string;
     documentation: string;
     noPadding?: boolean;
-    customDimensions?: { width?: string; height?: string };
+    customDimensions?: { width?: string; height?: string; fillContainer?: boolean };
     argTypes: Record<FktComponentInputsAndModelNames<Component>, ArgType>;
     designTokens?: DesignToken[]
 }

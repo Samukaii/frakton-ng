@@ -7,11 +7,11 @@
             "frakton-ng/autocomplete": [
                 "libs/frakton-ng/autocomplete"
             ],
-            "frakton-ng/badge": [
-                "libs/frakton-ng/badge"
+            "frakton-ng/tag": [
+                "libs/frakton-ng/tag"
             ],
-            "frakton-ng/badge-selector": [
-                "libs/frakton-ng/badge-selector"
+            "frakton-ng/tag-selector": [
+                "libs/frakton-ng/tag-selector"
             ],
             "frakton-ng/button": [
                 "libs/frakton-ng/button"
@@ -118,8 +118,17 @@
             "frakton-ng/paginator": [
                 "libs/frakton-ng/paginator"
             ],
+            "frakton-ng/progress-bar": [
+                "libs/frakton-ng/progress-bar"
+            ],
             "frakton-ng/skeleton": [
                 "libs/frakton-ng/skeleton"
+            ],
+            "frakton-ng/avatar": [
+                "libs/frakton-ng/avatar"
+            ],
+            "frakton-ng/divider": [
+                "libs/frakton-ng/divider"
             ]
         },
         "strict": true,

@@ -45,7 +45,9 @@ export const PreCheckedCheckbox: Story<FktCheckboxPreCheckedExampleComponent> = 
 export const DisabledState: Story<FktCheckboxDisabledExampleComponent> = {
 	component: FktCheckboxDisabledExampleComponent,
 	description: "A checkbox in disabled state. The checkbox cannot be toggled and appears with reduced opacity.",
-	args: {}
+	args: {
+        label: "This checkbox can be disabled"
+    }
 };
 
 export const Validation: Story<FktCheckboxValidationExampleComponent> = {

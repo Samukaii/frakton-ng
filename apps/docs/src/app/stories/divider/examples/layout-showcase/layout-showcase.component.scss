@@ -1,0 +1,230 @@
+.example-container {
+    padding: 1.5rem;
+    max-width: 1000px;
+    
+    h3 {
+        margin-bottom: 2rem;
+        color: var(--fkt-color-neutral-700);
+        text-align: center;
+        border-bottom: 2px solid var(--fkt-color-primary);
+        padding-bottom: 0.5rem;
+    }
+    
+    h4 {
+        margin: 2rem 0 1rem 0;
+        color: var(--fkt-color-neutral-600);
+        font-size: var(--fkt-font-size-lg);
+    }
+}
+
+// Dashboard styles
+.dashboard {
+    background: var(--fkt-color-white);
+    border: 1px solid var(--fkt-color-neutral-200);
+    border-radius: var(--fkt-radius-lg);
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: var(--fkt-shadow-sm);
+}
+
+.metrics-grid {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    
+    .metric-card {
+        flex: 1;
+        text-align: center;
+        padding: 1rem;
+        
+        .metric-value {
+            font-size: var(--fkt-font-size-3xl);
+            font-weight: var(--fkt-font-bold);
+            color: var(--fkt-color-primary);
+            margin-bottom: 0.25rem;
+        }
+        
+        .metric-label {
+            font-size: var(--fkt-font-size-sm);
+            color: var(--fkt-color-neutral-600);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+    }
+}
+
+.activity-section {
+    .activity-item {
+        padding: 0.5rem 0;
+        
+        .activity-time {
+            font-size: var(--fkt-font-size-xs);
+            color: var(--fkt-color-neutral-500);
+            margin-bottom: 0.25rem;
+        }
+        
+        .activity-description {
+            color: var(--fkt-color-neutral-700);
+            line-height: var(--fkt-line-height-md);
+        }
+    }
+}
+
+// Card styles
+.card-showcase {
+    margin-bottom: 2rem;
+}
+
+.showcase-card {
+    background: var(--fkt-color-white);
+    border: 1px solid var(--fkt-color-neutral-200);
+    border-radius: var(--fkt-radius-lg);
+    box-shadow: var(--fkt-shadow-sm);
+    overflow: hidden;
+}
+
+.card-header {
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    h5 {
+        margin: 0;
+        color: var(--fkt-color-neutral-800);
+        font-size: var(--fkt-font-size-lg);
+    }
+    
+    .status-badge {
+        background: var(--fkt-color-success-opacity-20);
+        color: var(--fkt-color-success);
+        padding: 0.25rem 0.75rem;
+        border-radius: var(--fkt-radius-full);
+        font-size: var(--fkt-font-size-xs);
+        font-weight: var(--fkt-font-medium);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+}
+
+.card-content {
+    padding: 0 1.5rem 1.5rem;
+    
+    p {
+        color: var(--fkt-color-neutral-600);
+        line-height: var(--fkt-line-height-md);
+        margin-bottom: 1.5rem;
+    }
+    
+    .project-stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+        
+        .stat {
+            text-align: center;
+            
+            .stat-number {
+                display: block;
+                font-size: var(--fkt-font-size-xl);
+                font-weight: var(--fkt-font-semibold);
+                color: var(--fkt-color-primary);
+                margin-bottom: 0.25rem;
+            }
+            
+            .stat-text {
+                font-size: var(--fkt-font-size-xs);
+                color: var(--fkt-color-neutral-500);
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+            }
+        }
+    }
+}
+
+.card-footer {
+    padding: 1rem 1.5rem;
+    background: var(--fkt-color-neutral-50);
+    display: flex;
+    gap: 0.75rem;
+    justify-content: flex-end;
+    
+    button {
+        padding: 0.5rem 1rem;
+        border-radius: var(--fkt-radius-md);
+        font-size: var(--fkt-font-size-sm);
+        font-weight: var(--fkt-font-medium);
+        cursor: pointer;
+        transition: var(--fkt-transition-base);
+        border: 1px solid;
+        
+        &.btn-primary {
+            background: var(--fkt-color-primary);
+            border-color: var(--fkt-color-primary);
+            color: var(--fkt-color-on-primary);
+            
+            &:hover {
+                background: var(--fkt-color-primary-hover);
+            }
+        }
+        
+        &.btn-outline {
+            background: transparent;
+            border-color: var(--fkt-color-neutral-300);
+            color: var(--fkt-color-neutral-700);
+            
+            &:hover {
+                background: var(--fkt-color-neutral-50);
+            }
+        }
+    }
+}
+
+// Navigation styles
+.nav-showcase {
+    .demo-nav {
+        background: var(--fkt-color-white);
+        border: 1px solid var(--fkt-color-neutral-200);
+        border-radius: var(--fkt-radius-lg);
+        padding: 1.5rem;
+        max-width: 250px;
+        box-shadow: var(--fkt-shadow-sm);
+        
+        .nav-section {
+            h6 {
+                margin: 0 0 0.75rem 0;
+                font-size: var(--fkt-font-size-xs);
+                font-weight: var(--fkt-font-semibold);
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                color: var(--fkt-color-neutral-500);
+            }
+            
+            .nav-item {
+                display: block;
+                padding: 0.5rem 0.75rem;
+                margin-bottom: 0.25rem;
+                border-radius: var(--fkt-radius-md);
+                color: var(--fkt-color-neutral-600);
+                text-decoration: none;
+                font-size: var(--fkt-font-size-sm);
+                transition: var(--fkt-transition-base);
+                
+                &:hover {
+                    background: var(--fkt-color-neutral-50);
+                    color: var(--fkt-color-neutral-800);
+                }
+                
+                &.active {
+                    background: var(--fkt-color-primary-opacity-10);
+                    color: var(--fkt-color-primary);
+                    font-weight: var(--fkt-font-medium);
+                }
+                
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+}

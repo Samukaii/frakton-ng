@@ -260,7 +260,7 @@ export class HybridComponent {
 // Start with new features unavailable in current library
 <fkt-color-picker />         // Advanced color selection
 <fkt-calendar-navigator />   // Enhanced date navigation
-<fkt-badge-selector />       // Custom status management
+<fkt-tag-selector />       // Custom status management
 ```
 
 **3. Performance-Critical Areas**

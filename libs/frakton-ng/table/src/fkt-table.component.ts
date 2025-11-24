@@ -29,6 +29,7 @@ export class FktTableComponent<T extends FktIdentifiable> {
 	mainAction = input<FktButtonAction>();
 	loading = input(true);
 	noHeaderWhenEmpty = input(false, {transform: booleanAttribute});
+    disableRowHover = input(false, {transform: booleanAttribute});
 
 	noResults = input<FktNoResults>({
 		label: 'No results',

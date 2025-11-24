@@ -11,6 +11,10 @@ interface GenerateAutoSourceOptions {
 	story: ActiveStory<any>
 }
 
+const hasVariants = (story: ActiveStory<any>) => {
+    return !!story.variants?.items?.length;
+}
+
 const getTemplate = (options: GenerateAutoSourceOptions) => {
 	const component = options.story.component ?? options.meta.component;
 
@@ -20,15 +24,55 @@ const getTemplate = (options: GenerateAutoSourceOptions) => {
 	const selector = reflection?.selector ?? 'fkt-example'
 	const args = options.story.args;
 
-	let element = `<${selector}`;
+	let template: string[] = [];
+
+    if(hasVariants(options.story)) {
+        template.push('@for (variant of variants; track variant.label) {');
+        template.push(`\t<strong>{{ variant.label }}</strong>`);
+        template.push(`\t<${selector}`);
+
+        Object.keys(args).forEach((key) => {
+            template.push(`\t\t[${key}]="variant.value.${key}"`)
+        });
+
+        template.push(`\t/>`)
+        template.push(`}`)
+
+        return template.join('\n');
+    }
+
+    template.push(`<${selector}`)
 
 	Object.keys(args).forEach((key) => {
-		element += `\n\t[${key}]="${key}"`
+		template.push(`\t[${key}]="${key}"`)
 	});
 
-	element += '\n/>';
+	template.push('/>')
 
-	return element;
+	return template.join('\n');
+}
+
+const getStyles = (options: GenerateAutoSourceOptions) => {
+    const template: string[] = [];
+
+    if(hasVariants(options.story)) {
+        template.push(...[
+            ':host {',
+            '\tdisplay: flex;',
+            '\tgap: 1rem;',
+            '}'
+        ])
+
+        return template.join('\n');
+    }
+
+    template.push(...[
+        ':host {',
+        '\tdisplay: block;',
+        '}'
+    ])
+
+    return template.join('\n');
 }
 
 const getComponentProperties = (options: GenerateAutoSourceOptions) => {
@@ -82,22 +126,56 @@ const getComponentProperties = (options: GenerateAutoSourceOptions) => {
 		return evaluatedProperty;
 	}
 
-	let extraImports = '';
+    if(hasVariants(options.story)) {
+        const values = options.story.variants?.items?.map((item) => {
+            return {
+                label: item.title,
+                value: {
+                    ...args,
+                    ...item.args
+                }
+            };
+        }) ?? []
+
+        componentProperties += `protected variants: Variant[] = ${getValue(values, 1)};`
+
+        return componentProperties;
+    }
+
 
 	Object.entries(args).forEach(([key, value]) => {
 		if (!!componentProperties)
 			componentProperties += '\n\t';
 
 		const propertyType = options.meta.argTypes[key]?.type;
-		const importStatement = options.meta.argTypes[key]?.import;
-
-		if (importStatement)
-			extraImports += `\n${importStatement}`;
 
 		componentProperties += `protected ${key}: ${propertyType} = ${getValue(value, 1)};`
 	});
 
 	return componentProperties;
+}
+
+const getVariantInterface = (options: GenerateAutoSourceOptions) => {
+    const args = options.story.args;
+
+    let interfaceTemplate: string[] = [];
+
+    interfaceTemplate.push('interface Variant {')
+
+    interfaceTemplate.push('\tlabel: string;')
+    interfaceTemplate.push('\tvalue: {')
+
+    Object.keys(args).forEach((key) => {
+        const propertyType = options.meta.argTypes[key]?.type;
+
+        interfaceTemplate.push(`\t\t${key}: ${propertyType};`)
+    });
+
+    interfaceTemplate.push('\t}')
+
+    interfaceTemplate.push('}')
+
+    return interfaceTemplate.join('\n');
 }
 
 const getExtraImports = (options: GenerateAutoSourceOptions) => {
@@ -114,10 +192,26 @@ const getExtraImports = (options: GenerateAutoSourceOptions) => {
 	return extraImports;
 }
 
-const defaultTemplate = `
+const defaultTemplate = `\
 import {Component} from '@angular/core';
 $IMPORTS
 
+
+@Component({
+  selector: '$EXAMPLE_COMPONENT_SELECTOR',
+  templateUrl: '$TEMPLATE_URL',
+  imports: [$COMPONENT_NAME]
+})
+export class $EXAMPLE_COMPONENT_NAME {
+	$COMPONENT_PROPERTIES
+}
+`
+
+const variantsTemplate = `\
+import {Component} from '@angular/core';
+$IMPORTS
+
+$VARIANT_INTERFACE
 
 @Component({
   selector: '$EXAMPLE_COMPONENT_SELECTOR',
@@ -165,6 +259,7 @@ export const generateAutoSource = (options: GenerateAutoSourceOptions) => {
 	const placeholders = {
 		"$COMPONENT_NAME": componentName ?? '',
 		"$IMPORTS": imports,
+		"$VARIANT_INTERFACE": getVariantInterface(options),
 		"$EXAMPLE_COMPONENT_SELECTOR": exampleComponentSelector,
 		"$TEMPLATE_URL": `./fkt-${toKebabCase(storyName)}-component.html`,
 		"$EXAMPLE_COMPONENT_NAME": exampleComponentName,
@@ -173,8 +268,12 @@ export const generateAutoSource = (options: GenerateAutoSourceOptions) => {
 
 	let typescriptTemplate = createTemplate(defaultTemplate, placeholders);
 
+    if(hasVariants(options.story))
+        typescriptTemplate = createTemplate(variantsTemplate, placeholders);
+
 	return {
 		html: template,
-		ts: typescriptTemplate
+		ts: typescriptTemplate,
+        scss: getStyles(options)
 	}
 }

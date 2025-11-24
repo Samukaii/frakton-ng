@@ -16,7 +16,7 @@ export interface FktOverlayOptions<T> {
 		width?: string;
 		padding?: string;
 		boxShadow?: string;
-		position?: FktGeometryPosition;
+		preferredPositions?: FktGeometryPosition | FktGeometryPosition[];
 		allowDuplicates?: boolean;
 		disableAutoReposition?: boolean;
 		disableAutoClose?: boolean;

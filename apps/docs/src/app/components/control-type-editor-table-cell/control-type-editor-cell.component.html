@@ -1,0 +1,28 @@
+@switch (type()) {
+    @case ('text') {
+        <fkt-input
+            hideLabel
+            [label]="name()"
+            placeholder="Enter a text"
+            [value]="value()"
+            (valueChange)="change.emit($event)"
+        />
+    }
+    @case ("select") {
+        <fkt-select
+            hideLabel
+            [value]="value()"
+            (valueChange)="change.emit($event)"
+            [label]="name()"
+            [options]="(options() ?? []) | stringToSelectOptions"/>
+
+    }
+    @case ("array") {
+        <fkt-array-editor
+            [schema]="schema() ?? {}"
+            [value]="value()"
+            [label]="name()"
+            (valueChange)="change.emit($event)"
+        />
+    }
+}

@@ -292,9 +292,9 @@ p {
 
 	tbody {
 		tr {
-			&:hover {
-				background-color: $row-hover-background-color;
-			}
+            &:not(.disable-row-hover):hover {
+                background-color: $row-hover-background-color;
+            }
 
 			&:not(:last-child) {
 				border-bottom: solid 1px $row-border-color;

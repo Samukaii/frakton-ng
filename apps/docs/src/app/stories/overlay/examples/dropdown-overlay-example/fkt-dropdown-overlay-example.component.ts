@@ -82,7 +82,7 @@ export class FktDropdownOverlayExampleComponent {
 				}
 			},
 			panelOptions: {
-				position: 'bottom-start',
+				preferredPositions: 'bottom-start',
 				disableAutoReposition: true,
 				width: 'fit-content',
 				padding: '0',

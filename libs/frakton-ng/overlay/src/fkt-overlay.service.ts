@@ -51,7 +51,7 @@ export class FktOverlayService {
 		const autoClose = () => {
 			options?.panelOptions?.onAutoClose?.();
 
-			if(options?.panelOptions?.disableAutoClose !== false) close();
+			if(options?.panelOptions?.disableAutoClose !== true) close();
 		}
 
 		const stackIndex = this.getLastZIndex() + 1;
@@ -78,7 +78,7 @@ export class FktOverlayService {
 				stackIndex,
 				overlayRefs: this.overlays,
 				width: options.panelOptions?.width,
-				position: options.panelOptions?.position,
+				preferredPositions: options.panelOptions?.preferredPositions,
 				padding: options?.panelOptions?.padding,
 				maxHeight: options.panelOptions?.maxHeight ?? '300px',
 				minWidth: options.panelOptions?.minWidth ?? '200px',

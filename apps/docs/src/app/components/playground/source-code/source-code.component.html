@@ -42,7 +42,7 @@
             }
         </div>
 
-        <button class="copy-button" (click)="copy('file.content')" [class.copied]="copied()">
+        <button class="copy-button" (click)="copy()" [class.copied]="copied()">
             <fkt-icon [name]="copied() ? 'check' : 'clipboard-document'"/>
 
             {{ copied() ? "Copied" : "Copy" }}

@@ -31,7 +31,7 @@ export class FktSimpleOverlayExampleComponent {
 				}
 			},
 			panelOptions: {
-				position: position,
+				preferredPositions: position,
 				disableAutoReposition: true,
 				width: '300px',
 				padding: '0',

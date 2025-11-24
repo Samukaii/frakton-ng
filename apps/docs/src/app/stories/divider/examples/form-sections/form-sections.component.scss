@@ -1,0 +1,124 @@
+.example-container {
+    padding: 1.5rem;
+    max-width: 600px;
+    
+    h3 {
+        margin-bottom: 1.5rem;
+        color: var(--fkt-color-neutral-700);
+        text-align: center;
+    }
+}
+
+.demo-form {
+    background: var(--fkt-color-white);
+    border: 1px solid var(--fkt-color-neutral-200);
+    border-radius: var(--fkt-radius-lg);
+    padding: 2rem;
+    box-shadow: var(--fkt-shadow-sm);
+}
+
+.form-section {
+    border: none;
+    margin: 0;
+    padding: 0;
+    
+    legend {
+        display: none; // Hide default legend, using divider labels instead
+    }
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+    
+    label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: var(--fkt-font-medium);
+        color: var(--fkt-color-neutral-700);
+        font-size: var(--fkt-font-size-sm);
+    }
+    
+    input, select {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid var(--fkt-color-neutral-300);
+        border-radius: var(--fkt-radius-md);
+        font-size: var(--fkt-font-size-sm);
+        transition: var(--fkt-transition-base);
+        
+        &:focus {
+            outline: none;
+            border-color: var(--fkt-color-primary);
+            box-shadow: var(--fkt-focus-ring-shadow);
+        }
+        
+        &::placeholder {
+            color: var(--fkt-color-neutral-400);
+        }
+    }
+}
+
+.checkbox-label {
+    display: flex !important;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0 !important;
+    cursor: pointer;
+    
+    input[type="checkbox"] {
+        width: auto !important;
+        margin: 0;
+    }
+    
+    .checkmark {
+        font-size: var(--fkt-font-size-sm);
+        color: var(--fkt-color-neutral-600);
+    }
+}
+
+.form-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+    margin-top: 0;
+    
+    button {
+        padding: 0.75rem 1.5rem;
+        border-radius: var(--fkt-radius-md);
+        font-size: var(--fkt-font-size-sm);
+        font-weight: var(--fkt-font-medium);
+        cursor: pointer;
+        transition: var(--fkt-transition-base);
+        border: 1px solid transparent;
+        
+        &:focus {
+            outline: none;
+            box-shadow: var(--fkt-focus-ring-shadow);
+        }
+    }
+    
+    .btn-primary {
+        background: var(--fkt-color-primary);
+        color: var(--fkt-color-on-primary);
+        
+        &:hover {
+            background: var(--fkt-color-primary-hover);
+        }
+    }
+    
+    .btn-secondary {
+        background: var(--fkt-color-white);
+        color: var(--fkt-color-neutral-700);
+        border-color: var(--fkt-color-neutral-300);
+        
+        &:hover {
+            background: var(--fkt-color-neutral-50);
+        }
+    }
+}

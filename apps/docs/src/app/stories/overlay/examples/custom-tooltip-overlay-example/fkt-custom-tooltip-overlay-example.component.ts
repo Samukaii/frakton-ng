@@ -41,7 +41,7 @@ export class FktCustomTooltipOverlayExampleComponent {
 				type: type
 			},
 			panelOptions: {
-				position: position,
+				preferredPositions: position,
 				disableAutoReposition: true,
 				padding: '0.5rem 1rem',
 				backgroundColor: colors[type],

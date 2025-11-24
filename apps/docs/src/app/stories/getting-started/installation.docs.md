@@ -133,35 +133,36 @@ All components support full keyboard navigation out of the box:
 Frakton NG's overlay system provides automatic TypeScript inference:
 
 ```typescript
-import { FktOverlayService } from 'frakton-ng/overlay';
+import {inject} from '@angular/core';
+import {FktOverlayService} from 'frakton-ng/overlay';
 
 // Create your overlay component with signals
 @Component({...})
 export class UserEditDialog {
-  userId = input.required<string>();
-  userName = input('');
-  onSave = output<{name: string, email: string}>();
-  onCancel = output<void>();
+    userId = input.required<string>();
+    userName = input('');
+    onSave = output<{ name: string, email: string }>();
+    onCancel = output<void>();
 }
 
 // Use overlay with full type safety
 export class MyComponent {
-  constructor(private overlay: FktOverlayService) {}
+    private overlay = inject(FktOverlayService)
 
-  openEditDialog(user: User) {
-    const ref = this.overlay.open({
-      component: UserEditDialog,
-      data: {
-        userId: user.id,              // ✅ Auto-typed as string
-        userName: user.name,          // ✅ Auto-typed as string
-        onSave: (userData) => {       // ✅ userData auto-typed as {name: string, email: string}
-          this.updateUser(userData);
-          ref.close();
-        },
-        onCancel: () => ref.close()   // ✅ Auto-typed as () => void
-      }
-    });
-  }
+    openEditDialog(user: User) {
+        const ref = this.overlay.open({
+            component: UserEditDialog,
+            data: {
+                userId: user.id,              // ✅ Auto-typed as string
+                userName: user.name,          // ✅ Auto-typed as string
+                onSave: (userData) => {       // ✅ userData auto-typed as {name: string, email: string}
+                    this.updateUser(userData);
+                    ref.close();
+                },
+                onCancel: () => ref.close()   // ✅ Auto-typed as () => void
+            }
+        });
+    }
 }
 ```
 

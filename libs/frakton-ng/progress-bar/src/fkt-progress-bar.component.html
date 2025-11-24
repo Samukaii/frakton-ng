@@ -1,0 +1,23 @@
+@if (showLabel() && label()) {
+    <div class="progress-label">
+        <span class="label-text">{{ label() }}</span>
+        @if (showValue()) {
+            <span class="label-value">{{ displayValue() }}</span>
+        }
+    </div>
+}
+
+<div
+    class="progress-track"
+    role="progressbar"
+    [attr.aria-valuenow]="clampedValue()"
+    [attr.aria-valuemin]="0"
+    [attr.aria-valuemax]="normalizedMax()"
+    [attr.aria-valuetext]="ariaValueText()"
+    [attr.aria-label]="ariaLabel() || label() || 'Progress'">
+    <div class="progress-fill" [style.width.%]="indeterminate() ? null : percentage()">
+        @if (showValue() && !showLabel() && !indeterminate()) {
+            <span class="progress-text">{{ displayValue() }}</span>
+        }
+    </div>
+</div>

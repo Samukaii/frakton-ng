@@ -59,7 +59,7 @@ export class SourceCodeComponent {
                         },
                         {
                             name: `fkt-${toKebabCase(story.name)}.component.scss`,
-                            content: '/* No styles needed for this example */',
+                            content: autoSource.scss,
                             language: 'css'
                         },
                     ]
@@ -72,8 +72,15 @@ export class SourceCodeComponent {
 		this.currentTab.set(index);
 	}
 
-	protected copy(content: string) {
-		navigator.clipboard.writeText(content).then(() => {
+	protected copy() {
+        const files = this.externalExample.value()?.files ?? [];
+        const currentTabIndex = this.currentTab();
+
+        const file = files.at(currentTabIndex);
+
+        if(!file) return;
+
+		navigator.clipboard.writeText(file.content).then(() => {
 			this.copied.set(true);
 			setTimeout(() => this.copied.set(false), 1500);
 		});

@@ -3,10 +3,13 @@ import { provideRouter, withComponentInputBinding, withInMemoryScrolling, withVi
 import { appRoutes } from './app.routes';
 import { provideMarkdown, SANITIZE } from 'ngx-markdown';
 import { provideTableCells } from 'frakton-ng/table';
-import { FktTableCellBadgeComponent } from 'frakton-ng/table/cells/badge';
+import { FktTableCellTagComponent } from '../../../../libs/frakton-ng/table/cells/tag';
 import { FktTableCellWithActionComponent } from 'frakton-ng/table/cells/action';
 import DOMPurify from 'dompurify';
 import { provideClientHydration, withEventReplay, withIncrementalHydration } from '@angular/platform-browser';
+import {
+    ControlTypeEditorCellComponent
+} from '@/components/control-type-editor-table-cell/control-type-editor-cell.component';
 
 function sanitizeHtml(html: string): string {
     DOMPurify.setConfig({
@@ -38,8 +41,9 @@ export const appConfig: ApplicationConfig = {
                 scrollPositionRestoration: "top",
             })),
         provideTableCells({
-            badge: FktTableCellBadgeComponent,
-            actions: FktTableCellWithActionComponent
+            tag: FktTableCellTagComponent,
+            actions: FktTableCellWithActionComponent,
+            'control-editor': ControlTypeEditorCellComponent
         }),
         provideClientHydration(withEventReplay(), withIncrementalHydration()),
     ],

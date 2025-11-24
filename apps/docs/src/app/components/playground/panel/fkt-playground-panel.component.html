@@ -95,6 +95,15 @@
                                                     [(value)]="arg.control"
                                                 />
                                             }
+                                            @case ('array') {
+                                                @if (!!arg.schema) {
+                                                    <fkt-array-editor
+                                                        [label]="arg.name"
+                                                        [schema]="arg.schema!"
+                                                        [(value)]="arg.control"
+                                                    />
+                                                }
+                                            }
                                         }
 
                                     </td>

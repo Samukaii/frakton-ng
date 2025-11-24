@@ -1,6 +1,6 @@
 import { Component, computed, input, signal } from '@angular/core';
 import { FktMenuGroup, FktSideMenuComponent } from 'frakton-ng/side-menu';
-import { FktBadge, FktBadgeSelectorComponent } from 'frakton-ng/badge-selector';
+import { FktTag, FktTagSelectorComponent } from 'frakton-ng/tag-selector';
 
 interface UserPermissions {
 	canViewAnalytics: boolean;
@@ -14,7 +14,7 @@ interface UserPermissions {
 	selector: 'dynamic-permissions-side-menu-example',
 	templateUrl: './dynamic-permissions-side-menu-example.component.html',
 	styleUrl: './dynamic-permissions-side-menu-example.component.scss',
-	imports: [FktSideMenuComponent, FktBadgeSelectorComponent]
+	imports: [FktSideMenuComponent, FktTagSelectorComponent]
 })
 export class DynamicPermissionsSideMenuExampleComponent {
 	groups = input.required<FktMenuGroup[]>();
@@ -28,7 +28,7 @@ export class DynamicPermissionsSideMenuExampleComponent {
 		return this.roles.find((role) => role.id === current)?.name;
 	})
 
-	protected roles: FktBadge[] = [
+	protected roles: FktTag[] = [
 		{
 			id: "admin",
 			name: "Admin",

@@ -1,0 +1,476 @@
+// <design-tokens>
+/*
+Avatar background color for primary variant.
+@name --fkt-avatar-bg-primary
+@reference --fkt-color-primary
+@category Colors
+@type color
+*/
+$bg-primary: var(--fkt-avatar-bg-primary, var(--fkt-color-primary));
+
+/*
+Avatar background color for accent variant.
+@name --fkt-avatar-bg-accent
+@reference --fkt-color-accent
+@category Colors
+@type color
+*/
+$bg-accent: var(--fkt-avatar-bg-accent, var(--fkt-color-accent));
+
+/*
+Avatar background color for neutral variant.
+@name --fkt-avatar-bg-neutral
+@reference --fkt-color-neutral-200
+@category Colors
+@type color
+*/
+$bg-neutral: var(--fkt-avatar-bg-neutral, var(--fkt-color-neutral-200));
+
+/*
+Avatar background color for success variant.
+@name --fkt-avatar-bg-success
+@reference --fkt-color-success
+@category Colors
+@type color
+*/
+$bg-success: var(--fkt-avatar-bg-success, var(--fkt-color-success));
+
+/*
+Avatar background color for warning variant.
+@name --fkt-avatar-bg-warning
+@reference --fkt-color-warning
+@category Colors
+@type color
+*/
+$bg-warning: var(--fkt-avatar-bg-warning, var(--fkt-color-warning));
+
+/*
+Avatar background color for danger variant.
+@name --fkt-avatar-bg-danger
+@reference --fkt-color-danger
+@category Colors
+@type color
+*/
+$bg-danger: var(--fkt-avatar-bg-danger, var(--fkt-color-danger));
+
+/*
+Avatar background color for info variant.
+@name --fkt-avatar-bg-info
+@reference --fkt-color-info
+@category Colors
+@type color
+*/
+$bg-info: var(--fkt-avatar-bg-info, var(--fkt-color-info));
+
+/*
+Avatar text color for primary variant.
+@name --fkt-avatar-text-primary
+@reference --fkt-color-on-primary
+@category Colors
+@type color
+*/
+$text-primary: var(--fkt-avatar-text-primary, var(--fkt-color-on-primary));
+
+/*
+Avatar text color for accent variant.
+@name --fkt-avatar-text-accent
+@reference --fkt-color-on-accent
+@category Colors
+@type color
+*/
+$text-accent: var(--fkt-avatar-text-accent, var(--fkt-color-on-accent));
+
+/*
+Avatar text color for neutral variant.
+@name --fkt-avatar-text-neutral
+@reference --fkt-color-neutral-700
+@category Colors
+@type color
+*/
+$text-neutral: var(--fkt-avatar-text-neutral, var(--fkt-color-neutral-700));
+
+/*
+Avatar text color for success variant.
+@name --fkt-avatar-text-success
+@reference --fkt-color-on-success
+@category Colors
+@type color
+*/
+$text-success: var(--fkt-avatar-text-success, var(--fkt-color-on-success));
+
+/*
+Avatar text color for warning variant.
+@name --fkt-avatar-text-warning
+@reference --fkt-color-on-warning
+@category Colors
+@type color
+*/
+$text-warning: var(--fkt-avatar-text-warning, var(--fkt-color-on-warning));
+
+/*
+Avatar text color for danger variant.
+@name --fkt-avatar-text-danger
+@reference --fkt-color-on-danger
+@category Colors
+@type color
+*/
+$text-danger: var(--fkt-avatar-text-danger, var(--fkt-color-on-danger));
+
+/*
+Avatar text color for info variant.
+@name --fkt-avatar-text-info
+@reference --fkt-color-on-info
+@category Colors
+@type color
+*/
+$text-info: var(--fkt-avatar-text-info, var(--fkt-color-on-info));
+
+/*
+Avatar border radius for circle shape.
+@name --fkt-avatar-border-radius-circle
+@reference 50%
+@category Spacing
+@type size
+*/
+$border-radius-circle: var(--fkt-avatar-border-radius-circle, 50%);
+
+/*
+Avatar border radius for rounded shape.
+@name --fkt-avatar-border-radius-rounded
+@reference --fkt-radius-lg
+@category Spacing
+@type size
+*/
+$border-radius-rounded: var(--fkt-avatar-border-radius-rounded, var(--fkt-radius-lg));
+
+/*
+Avatar border radius for square shape.
+@name --fkt-avatar-border-radius-square
+@reference 0
+@category Spacing
+@type size
+*/
+$border-radius-square: var(--fkt-avatar-border-radius-square, 0);
+
+/*
+Avatar size for extra small variant.
+@name --fkt-avatar-size-xs
+@reference 1.5rem
+@category Spacing
+@type size
+*/
+$size-xs: var(--fkt-avatar-size-xs, 1.5rem);
+
+/*
+Avatar size for small variant.
+@name --fkt-avatar-size-sm
+@reference 2rem
+@category Spacing
+@type size
+*/
+$size-sm: var(--fkt-avatar-size-sm, 2rem);
+
+/*
+Avatar size for medium variant.
+@name --fkt-avatar-size-md
+@reference 2.5rem
+@category Spacing
+@type size
+*/
+$size-md: var(--fkt-avatar-size-md, 2.5rem);
+
+/*
+Avatar size for large variant.
+@name --fkt-avatar-size-lg
+@reference 3rem
+@category Spacing
+@type size
+*/
+$size-lg: var(--fkt-avatar-size-lg, 3rem);
+
+/*
+Avatar size for extra large variant.
+@name --fkt-avatar-size-xl
+@reference 4rem
+@category Spacing
+@type size
+*/
+$size-xl: var(--fkt-avatar-size-xl, 4rem);
+
+/*
+Avatar font size for extra small variant.
+@name --fkt-avatar-font-size-xs
+@reference --fkt-font-size-2xs
+@category Typography
+@type size
+*/
+$font-size-xs: var(--fkt-avatar-font-size-xs, var(--fkt-font-size-2xs));
+
+/*
+Avatar font size for small variant.
+@name --fkt-avatar-font-size-sm
+@reference --fkt-font-size-xs
+@category Typography
+@type size
+*/
+$font-size-sm: var(--fkt-avatar-font-size-sm, var(--fkt-font-size-xs));
+
+/*
+Avatar font size for medium variant.
+@name --fkt-avatar-font-size-md
+@reference --fkt-font-size-md
+@category Typography
+@type size
+*/
+$font-size-md: var(--fkt-avatar-font-size-md, var(--fkt-font-size-md));
+
+/*
+Avatar font size for large variant.
+@name --fkt-avatar-font-size-lg
+@reference --fkt-font-size-lg
+@category Typography
+@type size
+*/
+$font-size-lg: var(--fkt-avatar-font-size-lg, var(--fkt-font-size-lg));
+
+/*
+Avatar font size for extra large variant.
+@name --fkt-avatar-font-size-xl
+@reference --fkt-font-size-2xl
+@category Typography
+@type size
+*/
+$font-size-xl: var(--fkt-avatar-font-size-xl, var(--fkt-font-size-2xl));
+
+/*
+Avatar transition duration for smooth interactions.
+@name --fkt-avatar-transition
+@reference --fkt-transition-base
+@category Animation
+@type transition
+*/
+$transition: var(--fkt-avatar-transition, var(--fkt-transition-base));
+
+// </design-tokens>
+
+:host {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    user-select: none;
+    position: relative;
+    overflow: hidden;
+    transition: $transition;
+    font-weight: var(--fkt-font-semibold);
+    line-height: var(--fkt-line-height-xs);
+
+    // Size variants
+    &.size-xs {
+        width: $size-xs;
+        height: $size-xs;
+        font-size: $font-size-xs;
+
+        fkt-icon {
+            font-size: $font-size-xs;
+        }
+    }
+
+    &.size-sm {
+        width: $size-sm;
+        height: $size-sm;
+        font-size: $font-size-sm;
+
+        fkt-icon {
+            font-size: $font-size-sm;
+        }
+    }
+
+    &.size-md {
+        width: $size-md;
+        height: $size-md;
+        font-size: $font-size-md;
+
+        fkt-icon {
+            font-size: $font-size-md;
+        }
+    }
+
+    &.size-lg {
+        width: $size-lg;
+        height: $size-lg;
+        font-size: $font-size-lg;
+
+        fkt-icon {
+            font-size: $font-size-lg;
+        }
+    }
+
+    &.size-xl {
+        width: $size-xl;
+        height: $size-xl;
+        font-size: $font-size-xl;
+
+        fkt-icon {
+            font-size: $font-size-xl;
+        }
+    }
+
+    // Shape variants
+    &.shape-circle {
+        border-radius: $border-radius-circle;
+    }
+
+    &.shape-rounded {
+        border-radius: $border-radius-rounded;
+    }
+
+    &.shape-square {
+        border-radius: $border-radius-square;
+    }
+
+    // Background color variants
+    &.bg-primary {
+        background-color: $bg-primary;
+        color: $text-primary;
+    }
+
+    &.bg-accent {
+        background-color: $bg-accent;
+        color: $text-accent;
+    }
+
+    &.bg-neutral {
+        background-color: $bg-neutral;
+        color: $text-neutral;
+    }
+
+    &.bg-success {
+        background-color: $bg-success;
+        color: $text-success;
+    }
+
+    &.bg-warning {
+        background-color: $bg-warning;
+        color: $text-warning;
+    }
+
+    &.bg-danger {
+        background-color: $bg-danger;
+        color: $text-danger;
+    }
+
+    &.bg-info {
+        background-color: $bg-info;
+        color: $text-info;
+    }
+
+    &.bg-custom {
+        background-color: var(--custom-bg-color);
+
+        &.text-custom {
+            color: var(--custom-text-color);
+        }
+
+        &:not(.text-custom) {
+            color: var(--custom-text-color);
+        }
+    }
+
+    // Text color overrides
+    &.text-primary {
+        color: $text-primary;
+    }
+
+    &.text-accent {
+        color: $text-accent;
+    }
+
+    &.text-neutral {
+        color: $text-neutral;
+    }
+
+    &.text-success {
+        color: $text-success;
+    }
+
+    &.text-warning {
+        color: $text-warning;
+    }
+
+    &.text-danger {
+        color: $text-danger;
+    }
+
+    &.text-info {
+        color: $text-info;
+    }
+
+    // Variant-specific styles
+    &.variant-image {
+        .avatar-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: inherit;
+        }
+    }
+
+    &.variant-initials {
+        .avatar-initials {
+            text-transform: uppercase;
+            font-weight: var(--fkt-font-semibold);
+        }
+    }
+
+    fkt-icon.avatar-icon {
+        font-weight: normal !important;
+
+    }
+
+    &.variant-icon,
+    &.variant-placeholder {
+        .avatar-icon {
+            width: fit-content;
+            height: fit-content;
+            opacity: 0.8;
+        }
+    }
+
+    // Loading state
+    &.loading {
+        opacity: 0.7;
+
+        .avatar-loading {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            background-color: var(--fkt-color-disabled);
+            border-color: var(--fkt-color-disabled);
+            justify-content: center;
+            border-radius: inherit;
+
+            .loading-spinner {
+                width: 50%;
+                height: 50%;
+                border: 2px solid transparent;
+                border-top-color: var(--fkt-color-neutral-950);
+                border-radius: 50%;
+                animation: spin 1s linear infinite;
+            }
+        }
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

@@ -18,7 +18,7 @@ const meta: Meta = {
 	documentation,
 	argTypes: {
 		configFn: {
-			control: 'text',
+			control: 'function',
 			category: "Attributes",
 			type: 'FktCalendarDateConfigFn',
 			import: "import {FktCalendarDateConfigFn} from 'frakton-ng/calendar'",

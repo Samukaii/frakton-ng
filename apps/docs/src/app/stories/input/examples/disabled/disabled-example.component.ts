@@ -1,12 +1,12 @@
 import { Component, input, signal } from '@angular/core';
 import { FktInputComponent } from 'frakton-ng/input';
-import { FktBadgeComponent } from 'frakton-ng/badge';
+import { FktTagComponent } from 'frakton-ng/tag';
 import { FktButtonComponent } from 'frakton-ng/button';
 import { applyWhen, Field, disabled, form } from '@angular/forms/signals';
 
 @Component({
 	selector: 'input-disabled-example',
-	imports: [FktInputComponent, FktBadgeComponent, FktButtonComponent, Field],
+	imports: [FktInputComponent, FktTagComponent, FktButtonComponent, Field],
 	styleUrl: './disabled-example.component.scss',
 	templateUrl: './disabled-example.component.html'
 })

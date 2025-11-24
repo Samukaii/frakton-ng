@@ -1,0 +1,459 @@
+// <design-tokens>
+/*
+Progress bar height for extra small size.
+@name --fkt-progress-bar-height-xs
+@reference 0.375rem
+@category Spacing
+@type size
+*/
+$height-xs: var(--fkt-progress-bar-height-xs, 0.375rem);
+
+/*
+Progress bar height for small size.
+@name --fkt-progress-bar-height-sm
+@reference 0.5rem
+@category Spacing
+@type size
+*/
+$height-sm: var(--fkt-progress-bar-height-sm, 0.5rem);
+
+/*
+Progress bar height for medium size.
+@name --fkt-progress-bar-height-md
+@reference 1rem
+@category Spacing
+@type size
+*/
+$height-md: var(--fkt-progress-bar-height-md, 1rem);
+
+/*
+Progress bar height for large size.
+@name --fkt-progress-bar-height-lg
+@reference 1.5rem
+@category Spacing
+@type size
+*/
+$height-lg: var(--fkt-progress-bar-height-lg, 1.5rem);
+
+/*
+Progress bar border radius for rounded shape.
+@name --fkt-progress-bar-border-radius
+@reference --fkt-radius-full
+@category Spacing
+@type size
+*/
+$border-radius: var(--fkt-progress-bar-border-radius, var(--fkt-radius-full));
+
+/*
+Progress bar border radius for square shape.
+@name --fkt-progress-bar-square-border-radius
+@reference --fkt-radius-sm
+@category Spacing
+@type size
+*/
+$square-border-radius: var(--fkt-progress-bar-square-border-radius, var(--fkt-radius-sm));
+
+/*
+Progress bar track background color.
+@name --fkt-progress-bar-track-color
+@reference --fkt-color-neutral-200
+@category Colors
+@type color
+*/
+$track-color: var(--fkt-progress-bar-track-color, var(--fkt-color-neutral-200));
+
+/*
+Progress bar fill color for primary variant.
+@name --fkt-progress-bar-primary-color
+@reference --fkt-color-primary
+@category Colors
+@type color
+*/
+$primary-color: var(--fkt-progress-bar-primary-color, var(--fkt-color-primary));
+
+/*
+Progress bar primary text color.
+@name --fkt-progress-bar-accent-text-color
+@reference --fkt-color-on-primary
+@category Colors
+@type color
+*/
+$primary-text-color: var(--fkt-progress-bar-primary-text-color, var(--fkt-color-on-primary));
+
+/*
+Progress bar fill color for accent variant.
+@name --fkt-progress-bar-accent-color
+@reference --fkt-color-accent
+@category Colors
+@type color
+*/
+$accent-color: var(--fkt-progress-bar-accent-color, var(--fkt-color-accent));
+
+/*
+Progress bar accent text color.
+@name --fkt-progress-bar-accent-text-color
+@reference --fkt-color-on-accent
+@category Colors
+@type color
+*/
+$accent-text-color: var(--fkt-progress-bar-accent-text-color, var(--fkt-color-on-accent));
+
+/*
+Progress bar fill color for success variant.
+@name --fkt-progress-bar-success-color
+@reference --fkt-color-success
+@category Colors
+@type color
+*/
+$success-color: var(--fkt-progress-bar-success-color, var(--fkt-color-success));
+
+/*
+Progress bar success text color.
+@name --fkt-progress-bar-success-text-color
+@reference --fkt-color-on-success
+@category Colors
+@type color
+*/
+$success-text-color: var(--fkt-progress-bar-success-text-color, var(--fkt-color-on-success));
+
+/*
+Progress bar fill color for warning variant.
+@name --fkt-progress-bar-warning-color
+@reference --fkt-color-warning
+@category Colors
+@type color
+*/
+$warning-color: var(--fkt-progress-bar-warning-color, var(--fkt-color-warning));
+
+/*
+Progress bar warning text color.
+@name --fkt-progress-bar-warning-text-color
+@reference --fkt-color-on-warning
+@category Colors
+@type color
+*/
+$warning-text-color: var(--fkt-progress-bar-warning-text-color, var(--fkt-color-on-warning));
+
+/*
+Progress bar fill color for danger variant.
+@name --fkt-progress-bar-danger-color
+@reference --fkt-color-danger
+@category Colors
+@type color
+*/
+$danger-color: var(--fkt-progress-bar-danger-color, var(--fkt-color-danger));
+
+/*
+Progress bar danger text color.
+@name --fkt-progress-bar-danger-text-color
+@reference --fkt-color-on-danger
+@category Colors
+@type color
+*/
+$danger-text-color: var(--fkt-progress-bar-danger-text-color, var(--fkt-color-on-danger));
+
+/*
+Progress bar fill color for info variant.
+@name --fkt-progress-bar-info-color
+@reference --fkt-color-info
+@category Colors
+@type color
+*/
+$info-color: var(--fkt-progress-bar-info-color, var(--fkt-color-info));
+
+/*
+Progress bar info text color.
+@name --fkt-progress-bar-info-text-color
+@reference --fkt-color-on-info
+@category Colors
+@type color
+*/
+$info-text-color: var(--fkt-progress-bar-info-text-color, var(--fkt-color-on-info));
+
+/*
+Progress bar label text color.
+@name --fkt-progress-bar-label-color
+@reference --fkt-color-neutral-700
+@category Colors
+@type color
+*/
+$label-color: var(--fkt-progress-bar-label-color, var(--fkt-color-neutral-700));
+
+/*
+Progress bar label spacing.
+@name --fkt-progress-bar-label-spacing
+@reference --fkt-space-xs
+@category Spacing
+@type size
+*/
+$label-spacing: var(--fkt-progress-bar-label-spacing, var(--fkt-space-xs));
+
+/*
+Progress bar font size.
+@name --fkt-progress-bar-font-size
+@reference --fkt-font-size-xs
+@category Typography
+@type size
+*/
+$font-size: var(--fkt-progress-bar-font-size, var(--fkt-font-size-xs));
+
+/*
+Progress bar font weight.
+@name --fkt-progress-bar-font-weight
+@reference --fkt-font-semibold
+@category Typography
+@type size
+*/
+$font-weight: var(--fkt-progress-bar-font-weight, var(--fkt-font-semibold));
+
+/*
+Progress bar transition duration.
+@name --fkt-progress-bar-transition
+@reference --fkt-transition-base
+@category Animation
+@type transition
+*/
+$transition: var(--fkt-progress-bar-transition, var(--fkt-transition-base));
+
+// </design-tokens>
+
+:host {
+    display: block;
+    width: 100%;
+}
+
+.progress-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: $label-spacing;
+    font-size: $font-size;
+    font-weight: $font-weight;
+    color: $label-color;
+    line-height: var(--fkt-line-height-xs);
+
+    .label-text {
+        flex: 1;
+    }
+
+    .label-value {
+        flex-shrink: 0;
+        margin-left: var(--fkt-space-xs);
+        font-weight: var(--fkt-font-semibold);
+    }
+}
+
+.progress-track {
+    position: relative;
+    width: 100%;
+    height: fit-content;
+    background-color: $track-color;
+    overflow: hidden;
+    transition: $transition;
+
+    // Size variants
+    &:host(.size-xs) & {
+        height: $height-xs;
+    }
+
+    &:host(.size-sm) & {
+        height: $height-sm;
+    }
+
+    &:host(.size-md) & {
+        height: $height-md;
+    }
+
+    &:host(.size-lg) & {
+        height: $height-lg;
+    }
+
+    // Shape variants
+    &:host(.shape-rounded) & {
+        border-radius: $border-radius;
+
+        .progress-fill {
+            border-radius: inherit;
+        }
+    }
+
+    &:host(.shape-square) & {
+        border-radius: $square-border-radius;
+
+        .progress-fill {
+            border-radius: inherit;
+        }
+    }
+}
+
+.progress-fill {
+    height: 100%;
+    background-color: $primary-color;
+    transition: $transition;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .progress-text {
+        font-size: $font-size;
+        font-weight: $font-weight;
+        max-width: 100%;
+        overflow-x: hidden;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        white-space: nowrap;
+        padding: var(--fkt-space-3xs) 0;
+    }
+}
+
+// Size-specific height classes
+:host(.size-xs) {
+    .progress-fill {
+        min-height: $height-xs;
+    }
+}
+
+:host(.size-sm) {
+    .progress-fill {
+        min-height: $height-sm;
+    }
+}
+
+:host(.size-md) {
+    .progress-fill {
+        min-height: $height-md;
+    }
+}
+
+:host(.size-lg) {
+    .progress-fill {
+        min-height: $height-lg;
+    }
+}
+
+// Shape variants
+:host(.shape-rounded) {
+    .progress-track {
+        border-radius: $border-radius;
+    }
+}
+
+:host(.shape-square) {
+    .progress-track {
+        border-radius: $square-border-radius;
+    }
+}
+
+// Color variants
+:host(.color-primary) .progress-fill {
+    background-color: $primary-color;
+
+    .progress-text {
+        color: $primary-text-color;
+    }
+}
+
+:host(.color-accent) .progress-fill {
+    background-color: $accent-color;
+
+    .progress-text {
+        color: $accent-text-color;
+    }
+}
+
+:host(.color-success) .progress-fill {
+    background-color: $success-color;
+
+    .progress-text {
+        color: $success-text-color;
+    }
+}
+
+:host(.color-warning) .progress-fill {
+    background-color: $warning-color;
+
+    .progress-text {
+        color: $warning-text-color;
+    }
+}
+
+:host(.color-danger) .progress-fill {
+    background-color: $danger-color;
+
+    .progress-text {
+        color: $danger-text-color;
+    }
+}
+
+:host(.color-info) .progress-fill {
+    background-color: $info-color;
+
+    .progress-text {
+        color: $info-text-color;
+    }
+}
+
+:host(.color-custom) .progress-fill {
+    background-color: var(--custom-color);
+
+    .progress-text {
+        color: var(--custom-text-color);
+    }
+}
+
+// Variant styles
+:host(.variant-striped) .progress-fill {
+    background-image: linear-gradient(
+        45deg,
+        rgba(255, 255, 255, 0.15) 25%,
+        transparent 25%,
+        transparent 50%,
+        rgba(255, 255, 255, 0.15) 50%,
+        rgba(255, 255, 255, 0.15) 75%,
+        transparent 75%,
+        transparent
+    );
+    background-size: 1rem 1rem;
+}
+
+:host(.variant-animated) .progress-fill {
+    background-image: linear-gradient(
+        45deg,
+        rgba(255, 255, 255, 0.15) 25%,
+        transparent 25%,
+        transparent 50%,
+        rgba(255, 255, 255, 0.15) 50%,
+        rgba(255, 255, 255, 0.15) 75%,
+        transparent 75%,
+        transparent
+    );
+    background-size: 1rem 1rem;
+    animation: progress-bar-stripes 1s linear infinite;
+}
+
+@keyframes progress-bar-stripes {
+    0% {
+        background-position: 1rem 0;
+    }
+    100% {
+        background-position: 0 0;
+    }
+}
+
+// Indeterminate state
+:host(.indeterminate) .progress-fill {
+    width: 30% !important;
+    animation: indeterminate-progress 2s ease-in-out infinite;
+}
+
+@keyframes indeterminate-progress {
+    0% {
+        transform: translateX(-100%);
+    }
+    50% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(333.33%);
+    }
+}

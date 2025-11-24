@@ -1,0 +1,72 @@
+[
+  {
+    "description": "Scale factor for tag on hover effect.",
+    "name": "--fkt-tag-selector-hover-scale",
+    "reference": "105%",
+    "category": "Effects",
+    "type": "scale",
+    "defaultValue": "105%"
+  },
+  {
+    "description": "Gap between icon and text in tag content.",
+    "name": "--fkt-tag-selector-content-gap",
+    "reference": "--fkt-space-xs",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": ".5rem"
+  },
+  {
+    "description": "Padding for tag selector modal container.",
+    "name": "--fkt-tag-selector-modal-padding",
+    "reference": "--fkt-space-xs",
+    "component": "Modal",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": ".5rem"
+  },
+  {
+    "description": "Gap between elements in modal container.",
+    "name": "--fkt-tag-selector-modal-gap",
+    "reference": "--fkt-space-xs",
+    "component": "Modal",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": ".5rem"
+  },
+  {
+    "description": "Gap between items in modal rows.",
+    "name": "--fkt-tag-selector-modal-row-gap",
+    "reference": "--fkt-space-xs",
+    "component": "Modal",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": ".5rem"
+  },
+  {
+    "description": "Scale factor for tag hover effect in modal.",
+    "name": "--fkt-tag-selector-modal-tag-hover-scale",
+    "reference": "105%",
+    "component": "Modal",
+    "category": "Effects",
+    "type": "scale",
+    "defaultValue": "105%"
+  },
+  {
+    "description": "Gap between icon and text in modal tag content.",
+    "name": "--fkt-tag-selector-modal-tag-content-gap",
+    "reference": "--fkt-space-xs",
+    "component": "Modal",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": ".5rem"
+  },
+  {
+    "description": "Font size for icons in modal tags.",
+    "name": "--fkt-tag-selector-modal-icon-font-size",
+    "reference": "--fkt-font-size-sm",
+    "component": "Modal",
+    "category": "Typography",
+    "type": "size",
+    "defaultValue": "0.875rem"
+  }
+]

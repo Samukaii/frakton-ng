@@ -4,19 +4,19 @@
         <loc>https://fraktonng.com/</loc>
         <priority>1.0</priority>
         <changefreq>weekly</changefreq>
-        <lastmod>2025-11-21T00:57:04.368Z</lastmod>
+        <lastmod>2025-11-23T05:08:42.693Z</lastmod>
     </url>
     <url>
         <loc>https://fraktonng.com/docs/getting-started-migration-guides</loc>
         <priority>0.9</priority>
         <changefreq>weekly</changefreq>
-        <lastmod>2025-11-13T00:30:43.818Z</lastmod>
+        <lastmod>2025-11-23T05:08:42.681Z</lastmod>
     </url>
     <url>
         <loc>https://fraktonng.com/docs/getting-started-theming-styling</loc>
         <priority>0.9</priority>
         <changefreq>weekly</changefreq>
-        <lastmod>2025-11-13T00:30:43.820Z</lastmod>
+        <lastmod>2025-11-23T05:09:19.686Z</lastmod>
     </url>
     <url>
         <loc>https://fraktonng.com/docs/autocomplete</loc>
@@ -25,16 +25,10 @@
         <lastmod>2025-11-13T00:30:43.647Z</lastmod>
     </url>
     <url>
-        <loc>https://fraktonng.com/docs/badge</loc>
+        <loc>https://fraktonng.com/docs/avatar</loc>
         <priority>0.9</priority>
         <changefreq>weekly</changefreq>
-        <lastmod>2025-11-13T00:30:43.666Z</lastmod>
-    </url>
-    <url>
-        <loc>https://fraktonng.com/docs/badge-selector</loc>
-        <priority>0.9</priority>
-        <changefreq>weekly</changefreq>
-        <lastmod>2025-11-13T00:30:43.660Z</lastmod>
+        <lastmod>2025-11-24T09:12:32.160Z</lastmod>
     </url>
     <url>
         <loc>https://fraktonng.com/docs/button</loc>
@@ -64,7 +58,7 @@
         <loc>https://fraktonng.com/docs/checkbox</loc>
         <priority>0.9</priority>
         <changefreq>weekly</changefreq>
-        <lastmod>2025-11-13T00:30:43.736Z</lastmod>
+        <lastmod>2025-11-24T09:21:36.306Z</lastmod>
     </url>
     <url>
         <loc>https://fraktonng.com/docs/color-picker</loc>
@@ -83,6 +77,12 @@
         <priority>0.9</priority>
         <changefreq>weekly</changefreq>
         <lastmod>2025-11-13T00:30:43.778Z</lastmod>
+    </url>
+    <url>
+        <loc>https://fraktonng.com/docs/divider</loc>
+        <priority>0.9</priority>
+        <changefreq>weekly</changefreq>
+        <lastmod>2025-11-24T10:56:56.559Z</lastmod>
     </url>
     <url>
         <loc>https://fraktonng.com/docs/drawer</loc>
@@ -133,6 +133,12 @@
         <lastmod>2025-11-18T00:50:33.395Z</lastmod>
     </url>
     <url>
+        <loc>https://fraktonng.com/docs/progress-bar</loc>
+        <priority>0.9</priority>
+        <changefreq>weekly</changefreq>
+        <lastmod>2025-11-24T13:40:30.269Z</lastmod>
+    </url>
+    <url>
         <loc>https://fraktonng.com/docs/select</loc>
         <priority>0.9</priority>
         <changefreq>weekly</changefreq>
@@ -161,6 +167,18 @@
         <priority>0.9</priority>
         <changefreq>weekly</changefreq>
         <lastmod>2025-11-20T23:25:13.587Z</lastmod>
+    </url>
+    <url>
+        <loc>https://fraktonng.com/docs/tag</loc>
+        <priority>0.9</priority>
+        <changefreq>weekly</changefreq>
+        <lastmod>2025-11-24T04:52:11.878Z</lastmod>
+    </url>
+    <url>
+        <loc>https://fraktonng.com/docs/tag-selector</loc>
+        <priority>0.9</priority>
+        <changefreq>weekly</changefreq>
+        <lastmod>2025-11-24T05:03:30.085Z</lastmod>
     </url>
     <url>
         <loc>https://fraktonng.com/docs/textarea</loc>

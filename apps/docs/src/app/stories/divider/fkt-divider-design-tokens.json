@@ -1,0 +1,114 @@
+[
+  {
+    "description": "Divider thickness for thin variant.",
+    "name": "--fkt-divider-size-thin",
+    "reference": "1px",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": "1px"
+  },
+  {
+    "description": "Divider thickness for medium variant.",
+    "name": "--fkt-divider-size-medium",
+    "reference": "2px",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": "2px"
+  },
+  {
+    "description": "Divider thickness for thick variant.",
+    "name": "--fkt-divider-size-thick",
+    "reference": "4px",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": "4px"
+  },
+  {
+    "description": "Divider spacing for none variant.",
+    "name": "--fkt-divider-spacing-none",
+    "reference": "0",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": "0"
+  },
+  {
+    "description": "Divider spacing for extra small variant.",
+    "name": "--fkt-divider-spacing-xs",
+    "reference": "--fkt-space-xs",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": ".5rem"
+  },
+  {
+    "description": "Divider spacing for small variant.",
+    "name": "--fkt-divider-spacing-sm",
+    "reference": "--fkt-space-sm",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": ".75rem"
+  },
+  {
+    "description": "Divider spacing for medium variant.",
+    "name": "--fkt-divider-spacing-md",
+    "reference": "--fkt-space-md",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": "1rem"
+  },
+  {
+    "description": "Divider spacing for large variant.",
+    "name": "--fkt-divider-spacing-lg",
+    "reference": "--fkt-space-lg",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": "1.25rem"
+  },
+  {
+    "description": "Divider spacing for extra large variant.",
+    "name": "--fkt-divider-spacing-xl",
+    "reference": "--fkt-space-xl",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": "1.5rem"
+  },
+  {
+    "description": "Divider label font size.",
+    "name": "--fkt-divider-label-font-size",
+    "reference": "--fkt-font-size-sm",
+    "category": "Typography",
+    "type": "size",
+    "defaultValue": "0.875rem"
+  },
+  {
+    "description": "Divider label font weight.",
+    "name": "--fkt-divider-label-font-weight",
+    "reference": "--fkt-font-medium",
+    "category": "Typography",
+    "type": "size",
+    "defaultValue": "500"
+  },
+  {
+    "description": "Divider label text color.",
+    "name": "--fkt-divider-label-color",
+    "reference": "--fkt-color-neutral-600",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#475569"
+  },
+  {
+    "description": "Divider label background color.",
+    "name": "--fkt-divider-label-background",
+    "reference": "transparent",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "transparent"
+  },
+  {
+    "description": "Divider label padding.",
+    "name": "--fkt-divider-label-padding",
+    "reference": "--fkt-space-xs",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": ".5rem"
+  }
+]

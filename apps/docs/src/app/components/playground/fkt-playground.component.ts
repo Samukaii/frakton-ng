@@ -4,12 +4,12 @@ import {
     effect,
     ElementRef,
     inject,
-    input,
-    inputBinding, PLATFORM_ID,
-    reflectComponentType,
+    inputBinding,
+    PLATFORM_ID,
     signal,
     untracked,
     viewChild,
+    viewChildren,
     ViewContainerRef
 } from '@angular/core';
 import { FktPlaygroundPanelComponent } from './panel/fkt-playground-panel.component';
@@ -19,7 +19,12 @@ import { ArgItem } from '@/models/arg-item';
 import { MarkUsed } from 'frakton-ng/internal/utils';
 import { DesignTokenItem } from '@/models/design-token-item';
 import { isPlatformBrowser } from '@angular/common';
+import { FktComponentInputsAndModels } from 'frakton-ng/internal/types';
 
+interface PlaygroundVariant {
+    title?: string;
+    argsList: ArgItem<any>[];
+}
 
 @Component({
     selector: 'fkt-playground',
@@ -50,26 +55,65 @@ export class FktPlaygroundComponent {
     protected readonly storyInfoService = inject(StoryInfoService);
     protected expanded = signal(false);
 
-    private readonly viewRef = viewChild('template', {read: ViewContainerRef});
+    private readonly viewRefs = viewChildren('template', {read: ViewContainerRef});
     private readonly elementRef = viewChild('container', {read: ElementRef});
+
+    protected readonly hasVariants = computed(() => {
+        return !!this.storyInfoService.activeStory.variants;
+    })
+
+    protected readonly variantsConfig = computed(() => {
+        const variants = this.storyInfoService.activeStory.variants;
+
+        return {
+            orientation: variants?.orientation ?? 'horizontal'
+        }
+    });
+
+    protected readonly playgroundVariants = computed((): PlaygroundVariant[] => {
+        const variants = this.storyInfoService.activeStory.variants;
+        const argsList = this.argsList();
+
+        if(!variants) {
+            return [
+                {argsList}
+            ]
+        }
+
+        return variants.items.map(variant => {
+            return {
+                title: variant.title,
+                argsList: [
+                    ...argsList,
+                    ...this.getArgsList(variant.args)
+                ]
+            }
+        });
+    })
 
     @MarkUsed()
     protected readonly renderComponent = effect(() => {
         const component = this.storyInfoService.getComponent();
-        const argTypes = this.argsList();
-        const viewRef = this.viewRef()
+        const viewRefs = this.viewRefs()
+        const variants = this.playgroundVariants()
 
-        if (!component || !argTypes || !viewRef) return;
+        if (!component || !viewRefs.length) return;
 
         untracked(() => {
-            try {
-                viewRef.createComponent(component, {
-                    bindings: argTypes.map(arg => {
-                        return inputBinding(arg.name, arg.control)
-                    })
-                });
-            } catch (e) {
-            }
+            variants.forEach((variant, index) => {
+                const viewRef = viewRefs[index];
+
+                if(!viewRef) return;
+
+                try {
+                    viewRef.createComponent(component, {
+                        bindings: variant.argsList.map(arg => {
+                            return inputBinding(arg.name, arg.control)
+                        })
+                    });
+                } catch (e) {
+                }
+            })
         })
     })
 
@@ -135,10 +179,33 @@ export class FktPlaygroundComponent {
             return {
                 name: key,
                 type: argType.control,
+                schema: argType.schema,
                 options: argType.options?.map((option) => ({label: option, value: option})) ?? [],
                 description: argType.description!,
                 control: signal(value)
             }
         });
     })
+
+    private getArgsList(args: Partial<FktComponentInputsAndModels<any>>) {
+        const argTypes = this.storyInfoService.meta.argTypes;
+
+        return Object.entries(args).flatMap(([key, value]) => {
+            const argType = argTypes?.[key];
+
+            if (!argType) return [];
+
+            if (argType.category !== "Attributes")
+                return [];
+
+            return {
+                name: key,
+                type: argType.control,
+                options: argType.options?.map((option) => ({label: option, value: option})) ?? [],
+                description: argType.description!,
+                schema: argType.schema,
+                control: signal(value)
+            }
+        });
+    }
 }

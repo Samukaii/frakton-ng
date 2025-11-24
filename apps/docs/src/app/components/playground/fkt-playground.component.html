@@ -2,12 +2,21 @@
     <div class="canvas-block__content">
         <div #container
              class="fkt-playground-component-container"
-             [style.width]="customDimensions()?.width ?? 'auto'"
-             [style.height]="customDimensions()?.height ?? '100%'"
              [class.no-padding]="noPadding()"
         >
-            <div [style]="designTokensStyle()">
-                <ng-template #template/>
+            <div class="variants-container" [class.vertical]="variantsConfig().orientation === 'vertical'" [style]="designTokensStyle()">
+                @for (variant of playgroundVariants(); track variant.title) {
+                    <div class="variant"
+                         [class.fill]="customDimensions()?.fillContainer ?? false"
+                         [style.width]="customDimensions()?.width ?? 'auto'"
+                         [style.height]="customDimensions()?.height ?? '100%'"
+                    >
+                        @if (variant.title) {
+                            <strong>{{ variant.title }}</strong>
+                        }
+                        <ng-template #template/>
+                    </div>
+                }
             </div>
         </div>
 

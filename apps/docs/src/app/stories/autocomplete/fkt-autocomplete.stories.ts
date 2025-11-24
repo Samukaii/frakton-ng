@@ -56,7 +56,15 @@ const meta: Meta = {
 			description: "Array of validation errors for the field. Used to display validation messages or custom error handling."
 		},
 		options: {
-			control: "object",
+			control: "array",
+            schema: {
+                value:  {
+                    type: 'text'
+                },
+                label: {
+                    type: 'text'
+                }
+            },
 			category: "Attributes",
 			type: "FktAutocompleteOption[]",
 			import: "import {FktAutocompleteOption} from 'frakton-ng/autocomplete'",

@@ -187,15 +187,15 @@ frakton-ng/
 ```typescript
 // fkt-badge.component.ts
 @Component({
-  selector: 'fkt-badge',
+  selector: 'fkt-tag',
   imports: [ToClassPipe],
-  templateUrl: './fkt-badge.component.html',
-  styleUrl: './fkt-badge.component.scss',
+  templateUrl: './fkt-tag.component.html',
+  styleUrl: './fkt-tag.component.scss',
 })
-export class FktBadgeComponent {
+export class FktTagComponent {
   text = input<string>();
-  color = input.required<FktBadgeColor>();
-  variant = input<FktBadgeVariant>('opaque');
+  color = input.required<FktTagColor>();
+  variant = input<FktTagVariant>('opaque');
   
   protected classes = computed(() => {
     // Computed classes

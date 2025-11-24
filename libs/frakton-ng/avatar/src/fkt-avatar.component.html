@@ -1,0 +1,26 @@
+@if (variant() === 'image' && src()) {
+    <img
+        [src]="src()"
+        [alt]="alt()"
+        (error)="onImageError()"
+        class="avatar-image"
+    />
+}
+
+@if (variant() === 'initials' && initials()) {
+    <span class="avatar-initials">{{ displayInitials() }}</span>
+}
+
+@if (variant() === 'icon') {
+    <fkt-icon [name]="icon()" class="avatar-icon" />
+}
+
+@if (variant() === 'placeholder') {
+    <fkt-icon name="user" class="avatar-icon" />
+}
+
+@if (loading()) {
+    <div class="avatar-loading">
+        <div class="loading-spinner"></div>
+    </div>
+}

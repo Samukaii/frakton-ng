@@ -70,7 +70,7 @@ export class FktDatePickerComponent implements FormValueControl<Date | string | 
 			panelOptions: {
 				id: 'calendar-datepicker-modal',
 				width: 'fit-content',
-				position,
+				preferredPositions: position,
 				maxHeight: 'fit-content',
                 inheritDesignTokensFrom: ref
 			},

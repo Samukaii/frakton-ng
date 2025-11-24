@@ -16,12 +16,6 @@ export const STORIES_MAP: StoryIndexer[] = [	{
 		type: 'doc',
 	    stories: [
 		    {
-		        id: "getting-started-with-frakton-ng",
-		        name: "Getting Started with Frakton NG",
-		        componentName: null,
-		        description: ``,
-		    },
-		    {
 		        id: "quick-installation",
 		        name: "Quick Installation",
 		        componentName: null,
@@ -123,12 +117,6 @@ export const STORIES_MAP: StoryIndexer[] = [	{
 		},
 		type: 'doc',
 	    stories: [
-		    {
-		        id: "migration-guides",
-		        name: "Migration Guides",
-		        componentName: null,
-		        description: ``,
-		    },
 		    {
 		        id: "zero-conflict-architecture",
 		        name: "Zero-Conflict Architecture",
@@ -279,12 +267,6 @@ export const STORIES_MAP: StoryIndexer[] = [	{
 		},
 		type: 'doc',
 	    stories: [
-		    {
-		        id: "theming-styling",
-		        name: "Theming & Styling",
-		        componentName: null,
-		        description: ``,
-		    },
 		    {
 		        id: "design-token-architecture",
 		        name: "Design Token Architecture",
@@ -485,126 +467,61 @@ export const STORIES_MAP: StoryIndexer[] = [	{
 	    ]
 	},
 	{
-		id: "badge",
-		title: "Components/Data Display/Badge",
-		componentName: "FktBadgeComponent",
-		description: `The FktBadge component provides a visual indicator for status, categories, counts, and other contextual information. Built with Angular signals and flexible styling options, it offers semantic color coding and variant styles for different visual prominence levels.`,
-		file: () => import("./badge/fkt-badge.stories"),
+		id: "avatar",
+		title: "Components/Data Display/Avatar",
+		componentName: "FktAvatarComponent",
+		description: `A versatile avatar component for displaying user profile pictures, initials, or icons with customizable styling options.`,
+		file: () => import("./avatar/fkt-avatar.stories"),
 		type: 'story',
-		externalExamples: () => import("./badge/examples/raw-examples").then(file => file.default),
+		externalExamples: () => import("./avatar/examples/raw-examples").then(file => file.default),
 		stories: [
 		    {
-		        id: "success-badge",
-		        name: "SuccessBadge",
+		        id: "basic",
+		        name: "Basic",
 		        componentName: null,
-		        description: `A standard badge with success state and opaque styling, perfect for status indicators.`,
+		        description: `Basic avatar with default settings showing an icon.`,
 		    },
 		    {
-		        id: "error-badge",
-		        name: "ErrorBadge",
+		        id: "image",
+		        name: "Image",
 		        componentName: null,
-		        description: `Badge showing error state with red color for urgent attention.`,
+		        description: `Avatar displaying a user image.`,
 		    },
 		    {
-		        id: "warning-badge",
-		        name: "WarningBadge",
+		        id: "initials",
+		        name: "Initials",
 		        componentName: null,
-		        description: `Badge with orange color for warnings and pending states that need attention.`,
+		        description: `Avatar displaying user initials.`,
 		    },
 		    {
-		        id: "info-badge",
-		        name: "InfoBadge",
+		        id: "loading",
+		        name: "Loading",
 		        componentName: null,
-		        description: `Badge with blue color for informational content and faded variant for subtle display.`,
+		        description: `Avatar in loading state.`,
 		    },
 		    {
-		        id: "badge-variations",
-		        name: "BadgeVariations",
-		        componentName: "BadgeVariationsExampleComponent",
-		        description: `Comprehensive showcase of all available colors and variants, demonstrating the full range of badge styling options.`,
-		    },
-		    {
-		        id: "count-badge",
-		        name: "CountBadge",
+		        id: "custom-icons",
+		        name: "CustomIcons",
 		        componentName: null,
-		        description: `Numerical badges perfect for displaying counts, quantities, and numbers.`,
+		        description: `Avatar with a custom icon.`,
 		    },
 		    {
-		        id: "status-badge",
-		        name: "StatusBadge",
+		        id: "shapes",
+		        name: "Shapes",
 		        componentName: null,
-		        description: `Status indicators for workflow states, item conditions, and process stages.`,
+		        description: `Avatar with circle shape.`,
 		    },
 		    {
-		        id: "priority-badge",
-		        name: "PriorityBadge",
+		        id: "semantic-colors",
+		        name: "SemanticColors",
 		        componentName: null,
-		        description: `Priority indicators for tasks, issues, and items requiring attention levels.`,
+		        description: `Avatar with primary background color.`,
 		    },
 		    {
-		        id: "category-badge",
-		        name: "CategoryBadge",
+		        id: "custom-colors",
+		        name: "CustomColors",
 		        componentName: null,
-		        description: `Category and classification badges for organizing and labeling content.`,
-		    },
-		    {
-		        id: "long-text-badge",
-		        name: "LongTextBadge",
-		        componentName: null,
-		        description: `Badges with longer text content demonstrating text handling and wrapping.`,
-		    }
-	    ]
-	},
-	{
-		id: "badge-selector",
-		title: "Components/Form/Badge Selector",
-		componentName: "FktBadgeSelectorComponent",
-		description: `The FktBadgeSelector component provides an interactive dropdown for selecting from a list of badge options. Built with Angular signals and the overlay system, it offers a clean interface for choosing status, categories, or other badge-represented values.`,
-		file: () => import("./badge-selector/fkt-badge-selector.stories"),
-		type: 'story',
-		externalExamples: () => import("./badge-selector/examples/raw-examples").then(file => file.default),
-		stories: [
-		    {
-		        id: "preview",
-		        name: "Preview",
-		        componentName: null,
-		        description: `Interactive badge selector with predefined status options. Click to open dropdown and select an option.`,
-		    },
-		    {
-		        id: "order-status",
-		        name: "OrderStatus",
-		        componentName: "OrderStatusExampleComponent",
-		        description: `Badge selector for managing order status with multiple workflow states.`,
-		    },
-		    {
-		        id: "priority",
-		        name: "Priority",
-		        componentName: "PriorityExampleComponent",
-		        description: `Badge selector for task or issue priority levels with visual hierarchy.`,
-		    },
-		    {
-		        id: "project-status",
-		        name: "ProjectStatus",
-		        componentName: null,
-		        description: `Displays the status of a project using colored badges for each phase. Use this example for dashboards, kanbans or project summary views.`,
-		    },
-		    {
-		        id: "user-status",
-		        name: "UserStatus",
-		        componentName: null,
-		        description: `Represents the status of a user with classic availability badges (Online, Away, Busy, Offline). Useful in chat apps, team dashboards, or user presence indicators.`,
-		    },
-		    {
-		        id: "team-assignment",
-		        name: "TeamAssignment",
-		        componentName: null,
-		        description: `Showcases different team assignments using distinctive badge colors. Handy for project management tools, HR apps, or team allocation displays.`,
-		    },
-		    {
-		        id: "category",
-		        name: "Category",
-		        componentName: null,
-		        description: `Demonstrates badges for product or content categories. Use this pattern for e-commerce, content tagging, search filters, or any interface that organizes information by category.`,
+		        description: `Avatar with custom hex colors.`,
 		    }
 	    ]
 	},
@@ -1040,6 +957,65 @@ export const STORIES_MAP: StoryIndexer[] = [	{
 	    ]
 	},
 	{
+		id: "divider",
+		title: "Components/Layout/Divider",
+		componentName: "FktDividerComponent",
+		description: `A flexible divider component for visually separating content with customizable orientation, styling, and optional labels.`,
+		file: () => import("./divider/fkt-divider.stories"),
+		type: 'story',
+		externalExamples: () => import("./divider/examples/raw-examples").then(file => file.default),
+		stories: [
+		    {
+		        id: "default",
+		        name: "Default",
+		        componentName: null,
+		        description: `Basic horizontal divider with default settings.`,
+		    },
+		    {
+		        id: "horizontal-sizes",
+		        name: "HorizontalSizes",
+		        componentName: null,
+		        description: `Horizontal divider with a label in the center.`,
+		    },
+		    {
+		        id: "horizontal-variants",
+		        name: "HorizontalVariants",
+		        componentName: null,
+		        description: `Horizontal divider with a label in the center.`,
+		    },
+		    {
+		        id: "horizontal-with-label",
+		        name: "HorizontalWithLabel",
+		        componentName: null,
+		        description: `Vertical divider with a label in the middle.`,
+		    },
+		    {
+		        id: "vertical-sizes",
+		        name: "VerticalSizes",
+		        componentName: null,
+		        description: `Vertical divider for separating content horizontally.`,
+		    },
+		    {
+		        id: "vertical-variants",
+		        name: "VerticalVariants",
+		        componentName: null,
+		        description: `Vertical divider for separating content horizontally.`,
+		    },
+		    {
+		        id: "vertical-with-label",
+		        name: "VerticalWithLabel",
+		        componentName: null,
+		        description: `Vertical divider with a label in the middle.`,
+		    },
+		    {
+		        id: "spacings",
+		        name: "Spacings",
+		        componentName: null,
+		        description: `Horizontal divider with a label in the center.`,
+		    }
+	    ]
+	},
+	{
 		id: "drawer",
 		title: "Components/Navigation/Drawer",
 		componentName: "FktDrawerComponent",
@@ -1399,6 +1375,95 @@ export const STORIES_MAP: StoryIndexer[] = [	{
 	    ]
 	},
 	{
+		id: "progress-bar",
+		title: "Components/Feedback/Progress Bar",
+		componentName: "FktProgressBarComponent",
+		description: `A versatile progress bar component for displaying progress indicators, loading states, and completion status with customizable styling options.`,
+		file: () => import("./progress-bar/fkt-progress-bar.stories"),
+		type: 'story',
+		externalExamples: () => import("./progress-bar/examples/raw-examples").then(file => file.default),
+		stories: [
+		    {
+		        id: "default",
+		        name: "Default",
+		        componentName: null,
+		        description: `Basic progress bar with default settings.`,
+		    },
+		    {
+		        id: "with-label",
+		        name: "WithLabel",
+		        componentName: null,
+		        description: `Progress bar with label text displayed above.`,
+		    },
+		    {
+		        id: "value-only",
+		        name: "ValueOnly",
+		        componentName: null,
+		        description: `Progress bar with value shown inside the fill area.`,
+		    },
+		    {
+		        id: "sizes",
+		        name: "Sizes",
+		        componentName: null,
+		        description: `Progress bar with different sizes.`,
+		    },
+		    {
+		        id: "semantic-colors",
+		        name: "SemanticColors",
+		        componentName: null,
+		        description: `Progress bar with semantic colors.`,
+		    },
+		    {
+		        id: "variants",
+		        name: "Variants",
+		        componentName: null,
+		        description: `Progress bar with different variants.`,
+		    },
+		    {
+		        id: "shapes",
+		        name: "Shapes",
+		        componentName: null,
+		        description: `Progress bar with different shapes.`,
+		    },
+		    {
+		        id: "indeterminate",
+		        name: "Indeterminate",
+		        componentName: null,
+		        description: `Progress bar in indeterminate state.`,
+		    },
+		    {
+		        id: "custom-color",
+		        name: "CustomColor",
+		        componentName: null,
+		        description: `Progress bar with custom hex color.`,
+		    },
+		    {
+		        id: "complete-progress",
+		        name: "CompleteProgress",
+		        componentName: null,
+		        description: `Progress bar showing completed state.`,
+		    },
+		    {
+		        id: "example-list",
+		        name: "ExampleList",
+		        componentName: "BasicUsageComponent",
+		        description: `Grouped progress bars showing sizes, semantic colors, and animated variants.`,
+		    },
+		    {
+		        id: "example-with-labels",
+		        name: "ExampleWithLabels",
+		        componentName: "WithLabelsComponent",
+		        description: `Demonstrates label rows, inline values, and custom value formatting.`,
+		    },
+		    {
+		        id: "example-dashboard-metrics",
+		        name: "ExampleDashboardMetrics",
+		        componentName: "DashboardMetricsComponent",
+		        description: `Dashboard-style KPIs with semantic colors, custom hex values, and striped states.`,
+		    }
+	    ]
+	},
+	{
 		id: "select",
 		title: "Components/Form/Select",
 		componentName: "FktSelectComponent",
@@ -1594,6 +1659,130 @@ export const STORIES_MAP: StoryIndexer[] = [	{
 		        name: "WithPagination",
 		        componentName: "TableExamplesWithPaginationComponent",
 		        description: `A simple table displaying user data with basic column configuration.`,
+		    }
+	    ]
+	},
+	{
+		id: "tag",
+		title: "Components/Data Display/Tag",
+		componentName: "FktTagComponent",
+		description: `The FktTag component provides a visual indicator for status, categories, counts, and other contextual information. Built with Angular signals and flexible styling options, it offers semantic color coding and variant styles for different visual prominence levels.`,
+		file: () => import("./tag/fkt-tag.stories"),
+		type: 'story',
+		externalExamples: () => import("./tag/examples/raw-examples").then(file => file.default),
+		stories: [
+		    {
+		        id: "success-tag",
+		        name: "SuccessTag",
+		        componentName: null,
+		        description: `A standard badge with success state and opaque styling, perfect for status indicators.`,
+		    },
+		    {
+		        id: "error-tag",
+		        name: "ErrorTag",
+		        componentName: null,
+		        description: `Badge showing error state with red color for urgent attention.`,
+		    },
+		    {
+		        id: "warning-tag",
+		        name: "WarningTag",
+		        componentName: null,
+		        description: `Badge with orange color for warnings and pending states that need attention.`,
+		    },
+		    {
+		        id: "info-tag",
+		        name: "InfoTag",
+		        componentName: null,
+		        description: `Badge with blue color for informational content and faded variant for subtle display.`,
+		    },
+		    {
+		        id: "tag-variations",
+		        name: "TagVariations",
+		        componentName: "TagVariationsExampleComponent",
+		        description: `Comprehensive showcase of all available colors and variants, demonstrating the full range of badge styling options.`,
+		    },
+		    {
+		        id: "count-tag",
+		        name: "CountTag",
+		        componentName: null,
+		        description: `Numerical badges perfect for displaying counts, quantities, and numbers.`,
+		    },
+		    {
+		        id: "status-tag",
+		        name: "StatusTag",
+		        componentName: null,
+		        description: `Status indicators for workflow states, item conditions, and process stages.`,
+		    },
+		    {
+		        id: "priority-tag",
+		        name: "PriorityTag",
+		        componentName: null,
+		        description: `Priority indicators for tasks, issues, and items requiring attention levels.`,
+		    },
+		    {
+		        id: "category-tag",
+		        name: "CategoryTag",
+		        componentName: null,
+		        description: `Category and classification badges for organizing and labeling content.`,
+		    },
+		    {
+		        id: "long-text-tag",
+		        name: "LongTextTag",
+		        componentName: null,
+		        description: `Badges with longer text content demonstrating text handling and wrapping.`,
+		    }
+	    ]
+	},
+	{
+		id: "tag-selector",
+		title: "Components/Form/Tag Selector",
+		componentName: "FktTagSelectorComponent",
+		description: `The FktTagSelector component provides an interactive dropdown for selecting from a list of tag options. Built with Angular signals and the overlay system, it offers a clean interface for choosing status, categories, or other tag-represented values.`,
+		file: () => import("./tag-selector/fkt-tag-selector.stories"),
+		type: 'story',
+		externalExamples: () => import("./tag-selector/examples/raw-examples").then(file => file.default),
+		stories: [
+		    {
+		        id: "preview",
+		        name: "Preview",
+		        componentName: null,
+		        description: `Interactive tag selector with predefined status options. Click to open dropdown and select an option.`,
+		    },
+		    {
+		        id: "order-status",
+		        name: "OrderStatus",
+		        componentName: "OrderStatusExampleComponent",
+		        description: `Tag selector for managing order status with multiple workflow states.`,
+		    },
+		    {
+		        id: "priority",
+		        name: "Priority",
+		        componentName: "PriorityExampleComponent",
+		        description: `Tag selector for task or issue priority levels with visual hierarchy.`,
+		    },
+		    {
+		        id: "project-status",
+		        name: "ProjectStatus",
+		        componentName: null,
+		        description: `Displays the status of a project using colored tags for each phase. Use this example for dashboards, kanbans or project summary views.`,
+		    },
+		    {
+		        id: "user-status",
+		        name: "UserStatus",
+		        componentName: null,
+		        description: `Represents the status of a user with classic availability tags (Online, Away, Busy, Offline). Useful in chat apps, team dashboards, or user presence indicators.`,
+		    },
+		    {
+		        id: "team-assignment",
+		        name: "TeamAssignment",
+		        componentName: null,
+		        description: `Showcases different team assignments using distinctive tag colors. Handy for project management tools, HR apps, or team allocation displays.`,
+		    },
+		    {
+		        id: "category",
+		        name: "Category",
+		        componentName: null,
+		        description: `Demonstrates tags for product or content categories. Use this pattern for e-commerce, content tagging, search filters, or any interface that organizes information by category.`,
 		    }
 	    ]
 	},

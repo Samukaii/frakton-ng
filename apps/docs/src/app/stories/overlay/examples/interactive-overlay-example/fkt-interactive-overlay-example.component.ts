@@ -4,14 +4,14 @@ import { FktOverlayService } from 'frakton-ng/overlay';
 import {
 	FktInteractiveOverlayDialogComponent
 } from '../dialog/fkt-interactive-overlay-dialog/fkt-interactive-overlay-dialog.component';
-import { FktBadgeComponent } from 'frakton-ng/badge';
+import { FktTagComponent } from 'frakton-ng/tag';
 
 
 @Component({
 	selector: 'interactive-overlay-example',
 	templateUrl: './fkt-interactive-overlay-example.component.html',
 	styleUrl: './fkt-interactive-overlay-example.component.scss',
-	imports: [FktButtonComponent, FktBadgeComponent]
+	imports: [FktButtonComponent, FktTagComponent]
 })
 export class FktInteractiveOverlayExampleComponent {
 	private overlayService = inject(FktOverlayService);
@@ -36,7 +36,7 @@ export class FktInteractiveOverlayExampleComponent {
 				}
 			},
 			panelOptions: {
-				position: 'bottom-center',
+				preferredPositions: 'bottom-center',
 				padding: '0',
 				width: '600px',
 				disableAutoReposition: true,

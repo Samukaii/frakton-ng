@@ -67,7 +67,7 @@ export class FktOverlayAnchorComponent {
 	overlayRefs = input.required<Map<string, FktOverlayRef<any>>>();
 	anchor = input.required<ElementRef>();
 	spacing = input(16);
-	position = input<FktGeometryPosition>();
+	preferredPositions = input<FktGeometryPosition | FktGeometryPosition[]>();
 	disableAutoReposition = input<boolean>();
 	maxHeight = input('300px');
 	minWidth = input('200px');
@@ -165,11 +165,13 @@ export class FktOverlayAnchorComponent {
 
 		if (!size) return null;
 
+        const preferredPositions = this.preferredPositions();
+
 		return this.alignmentService.smartAlignTargetTo({
 			anchor: anchorRect,
 			targetSize: size,
 			disableAutoReposition: this.disableAutoReposition() ?? false,
-			preferredPositions: [this.position() ?? 'bottom-center'],
+			preferredPositions: preferredPositions ? Array.isArray(preferredPositions) ? preferredPositions : [preferredPositions] : ['bottom-center'],
 		});
 	});
 

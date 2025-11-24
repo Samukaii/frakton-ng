@@ -1,0 +1,27 @@
+:host {
+    width: 700px;
+    display: block;
+    padding: 1rem;
+
+    --fkt-input-vertical-padding: var(--fkt-space-xs);
+    --fkt-input-horizontal-padding: var(--fkt-space-sm);
+    --fkt-input-font-size: var(--fkt-font-size-sm);
+    --fkt-input-border-radius: var(--fkt-radius-md);
+
+    --fkt-select-vertical-padding: var(--fkt-space-xs);
+    --fkt-select-horizontal-padding: var(--fkt-space-sm);
+    --fkt-select-font-size: var(--fkt-font-size-sm);
+    --fkt-select-border-radius: var(--fkt-radius-md);
+
+    --fkt-table-header-actions-width: 3rem;
+    --fkt-table-header-cell-padding: var(--fkt-space-xs);
+
+    fkt-input {
+        width: 200px !important;
+    }
+}
+
+.table {
+    max-height: 500px;
+    overflow-y: auto;
+}

@@ -33,6 +33,8 @@
 	--fkt-radius-full: 9999px;
 
 	/* Font Sizes */
+	--fkt-font-size-3xs: 0.25rem;    /* 12px */
+	--fkt-font-size-2xs: 0.5rem;    /* 12px */
 	--fkt-font-size-xs: 0.75rem;    /* 12px */
 	--fkt-font-size-sm: 0.875rem;   /* 14px */
 	--fkt-font-size-md: 1rem;       /* 16px */

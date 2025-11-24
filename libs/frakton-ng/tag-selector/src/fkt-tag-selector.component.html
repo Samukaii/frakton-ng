@@ -1,0 +1,18 @@
+@let selectedOptionValue = selectedOption();
+
+@if (selectedOptionValue) {
+	<fkt-tag
+		class="tag"
+		(click)="select()"
+		[color]="selectedOptionValue.color"
+	>
+		<div tag-content class="tag__content">
+			<p>
+				{{ selectedOption()?.name }}
+			</p>
+			<fkt-icon
+				name="chevron-down"
+			/>
+		</div>
+	</fkt-tag>
+}

@@ -1,0 +1,226 @@
+[
+  {
+    "description": "Avatar background color for primary variant.",
+    "name": "--fkt-avatar-bg-primary",
+    "reference": "--fkt-color-primary",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#1f2937"
+  },
+  {
+    "description": "Avatar background color for accent variant.",
+    "name": "--fkt-avatar-bg-accent",
+    "reference": "--fkt-color-accent",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#F0B100FF"
+  },
+  {
+    "description": "Avatar background color for neutral variant.",
+    "name": "--fkt-avatar-bg-neutral",
+    "reference": "--fkt-color-neutral-200",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#e2e8f0"
+  },
+  {
+    "description": "Avatar background color for success variant.",
+    "name": "--fkt-avatar-bg-success",
+    "reference": "--fkt-color-success",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#00C950FF"
+  },
+  {
+    "description": "Avatar background color for warning variant.",
+    "name": "--fkt-avatar-bg-warning",
+    "reference": "--fkt-color-warning",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#FF6900FF"
+  },
+  {
+    "description": "Avatar background color for danger variant.",
+    "name": "--fkt-avatar-bg-danger",
+    "reference": "--fkt-color-danger",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#E7000BFF"
+  },
+  {
+    "description": "Avatar background color for info variant.",
+    "name": "--fkt-avatar-bg-info",
+    "reference": "--fkt-color-info",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#155DFCFF"
+  },
+  {
+    "description": "Avatar text color for primary variant.",
+    "name": "--fkt-avatar-text-primary",
+    "reference": "--fkt-color-on-primary",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#F9fAFBFF"
+  },
+  {
+    "description": "Avatar text color for accent variant.",
+    "name": "--fkt-avatar-text-accent",
+    "reference": "--fkt-color-on-accent",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#1F2937FF"
+  },
+  {
+    "description": "Avatar text color for neutral variant.",
+    "name": "--fkt-avatar-text-neutral",
+    "reference": "--fkt-color-neutral-700",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#334155"
+  },
+  {
+    "description": "Avatar text color for success variant.",
+    "name": "--fkt-avatar-text-success",
+    "reference": "--fkt-color-on-success",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#F9fAFBFF"
+  },
+  {
+    "description": "Avatar text color for warning variant.",
+    "name": "--fkt-avatar-text-warning",
+    "reference": "--fkt-color-on-warning",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#F9fAFBFF"
+  },
+  {
+    "description": "Avatar text color for danger variant.",
+    "name": "--fkt-avatar-text-danger",
+    "reference": "--fkt-color-on-danger",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#F9fAFBFF"
+  },
+  {
+    "description": "Avatar text color for info variant.",
+    "name": "--fkt-avatar-text-info",
+    "reference": "--fkt-color-on-info",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#F9fAFBFF"
+  },
+  {
+    "description": "Avatar border radius for circle shape.",
+    "name": "--fkt-avatar-border-radius-circle",
+    "reference": "50%",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": "50%"
+  },
+  {
+    "description": "Avatar border radius for rounded shape.",
+    "name": "--fkt-avatar-border-radius-rounded",
+    "reference": "--fkt-radius-lg",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": ".5rem"
+  },
+  {
+    "description": "Avatar border radius for square shape.",
+    "name": "--fkt-avatar-border-radius-square",
+    "reference": "0",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": "0"
+  },
+  {
+    "description": "Avatar size for extra small variant.",
+    "name": "--fkt-avatar-size-xs",
+    "reference": "1.5rem",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": "1.5rem"
+  },
+  {
+    "description": "Avatar size for small variant.",
+    "name": "--fkt-avatar-size-sm",
+    "reference": "2rem",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": "2rem"
+  },
+  {
+    "description": "Avatar size for medium variant.",
+    "name": "--fkt-avatar-size-md",
+    "reference": "2.5rem",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": "2.5rem"
+  },
+  {
+    "description": "Avatar size for large variant.",
+    "name": "--fkt-avatar-size-lg",
+    "reference": "3rem",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": "3rem"
+  },
+  {
+    "description": "Avatar size for extra large variant.",
+    "name": "--fkt-avatar-size-xl",
+    "reference": "4rem",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": "4rem"
+  },
+  {
+    "description": "Avatar font size for extra small variant.",
+    "name": "--fkt-avatar-font-size-xs",
+    "reference": "--fkt-font-size-2xs",
+    "category": "Typography",
+    "type": "size",
+    "defaultValue": "0.5rem"
+  },
+  {
+    "description": "Avatar font size for small variant.",
+    "name": "--fkt-avatar-font-size-sm",
+    "reference": "--fkt-font-size-xs",
+    "category": "Typography",
+    "type": "size",
+    "defaultValue": "0.75rem"
+  },
+  {
+    "description": "Avatar font size for medium variant.",
+    "name": "--fkt-avatar-font-size-md",
+    "reference": "--fkt-font-size-md",
+    "category": "Typography",
+    "type": "size",
+    "defaultValue": "1rem"
+  },
+  {
+    "description": "Avatar font size for large variant.",
+    "name": "--fkt-avatar-font-size-lg",
+    "reference": "--fkt-font-size-lg",
+    "category": "Typography",
+    "type": "size",
+    "defaultValue": "1.125rem"
+  },
+  {
+    "description": "Avatar font size for extra large variant.",
+    "name": "--fkt-avatar-font-size-xl",
+    "reference": "--fkt-font-size-2xl",
+    "category": "Typography",
+    "type": "size",
+    "defaultValue": "1.5rem"
+  },
+  {
+    "description": "Avatar transition duration for smooth interactions.",
+    "name": "--fkt-avatar-transition",
+    "reference": "--fkt-transition-base",
+    "category": "Animation",
+    "type": "transition",
+    "defaultValue": "all var(--fkt-transition-timing-fast) var(--fkt-transition-ease)"
+  }
+]

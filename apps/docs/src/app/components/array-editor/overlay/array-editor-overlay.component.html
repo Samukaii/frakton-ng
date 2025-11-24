@@ -1,0 +1,17 @@
+<div class="table">
+    <fkt-table
+        disableRowHover
+        [mainAction]="addNew"
+        [data]="valueWithIds()"
+        [columnsFn]="columnsFn()"
+        [actionsFn]="actionsFn"
+        [loading]="false"
+    />
+</div>
+
+<fkt-divider/>
+
+<fkt-buttons-list
+    horizontalAlignment="end"
+    [actions]="overlayActions"
+/>

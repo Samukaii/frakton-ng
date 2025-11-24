@@ -1,0 +1,49 @@
+// <design-tokens>
+/*
+Scale factor for tag on hover effect.
+@name --fkt-tag-selector-hover-scale
+@reference 105%
+@category Effects
+@type scale
+*/
+$tag-selector-hover-scale: var(--fkt-tag-selector-hover-scale, 105%);
+
+/*
+Gap between icon and text in tag content.
+@name --fkt-tag-selector-content-gap
+@reference --fkt-space-xs
+@category Spacing
+@type size
+*/
+$tag-selector-content-gap: var(--fkt-tag-selector-content-gap, var(--fkt-space-xs));
+// </design-tokens>
+
+:host {
+	width: fit-content;
+	display: flex;
+
+	* {
+		box-sizing: border-box;
+	}
+}
+
+.tag {
+	cursor: pointer;
+	transition: var(--fkt-transition-base);
+	display: block;
+
+	&:hover {
+		scale: $tag-selector-hover-scale;
+	}
+
+	&__content {
+		display: flex;
+		align-items: center;
+		gap: $tag-selector-content-gap;
+
+		p {
+			margin: 0;
+			white-space: nowrap;
+		}
+	}
+}

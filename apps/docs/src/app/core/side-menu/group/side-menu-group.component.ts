@@ -42,6 +42,6 @@ export class SideMenuGroupComponent {
 	expandedMaxHeight = computed(() => {
 		const item = this.item();
 
-		return countChildren(item) * 32;
+		return countChildren(item) * 35;
 	})
 }

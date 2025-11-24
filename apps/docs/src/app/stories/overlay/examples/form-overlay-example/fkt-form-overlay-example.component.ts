@@ -36,7 +36,7 @@ export class FktFormOverlayExampleComponent {
 				}
 			},
 			panelOptions: {
-				position: 'bottom-start',
+				preferredPositions: 'bottom-start',
 				disableAutoReposition: true,
 				padding: '0',
 				width: 'fit-content',
@@ -70,7 +70,7 @@ export class FktFormOverlayExampleComponent {
 				}
 			},
 			panelOptions: {
-				position: 'bottom-start',
+				preferredPositions: 'bottom-start',
 				disableAutoReposition: true,
 				padding: '0',
 				width: 'fit-content',
@@ -104,7 +104,7 @@ export class FktFormOverlayExampleComponent {
 				}
 			},
 			panelOptions: {
-				position: 'bottom-start',
+				preferredPositions: 'bottom-start',
 				disableAutoReposition: true,
 				padding: '0',
 				width: 'fit-content',

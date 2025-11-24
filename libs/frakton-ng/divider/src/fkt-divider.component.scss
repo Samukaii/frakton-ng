@@ -1,0 +1,251 @@
+// <design-tokens>
+/*
+Divider thickness for thin variant.
+@name --fkt-divider-size-thin
+@reference 1px
+@category Spacing
+@type size
+*/
+$size-thin: var(--fkt-divider-size-thin, 1px);
+
+/*
+Divider thickness for medium variant.
+@name --fkt-divider-size-medium
+@reference 2px
+@category Spacing
+@type size
+*/
+$size-medium: var(--fkt-divider-size-medium, 2px);
+
+/*
+Divider thickness for thick variant.
+@name --fkt-divider-size-thick
+@reference 4px
+@category Spacing
+@type size
+*/
+$size-thick: var(--fkt-divider-size-thick, 4px);
+
+/*
+Divider spacing for none variant.
+@name --fkt-divider-spacing-none
+@reference 0
+@category Spacing
+@type size
+*/
+$spacing-none: var(--fkt-divider-spacing-none, 0);
+
+/*
+Divider spacing for extra small variant.
+@name --fkt-divider-spacing-xs
+@reference --fkt-space-xs
+@category Spacing
+@type size
+*/
+$spacing-xs: var(--fkt-divider-spacing-xs, var(--fkt-space-xs));
+
+/*
+Divider spacing for small variant.
+@name --fkt-divider-spacing-sm
+@reference --fkt-space-sm
+@category Spacing
+@type size
+*/
+$spacing-sm: var(--fkt-divider-spacing-sm, var(--fkt-space-sm));
+
+/*
+Divider spacing for medium variant.
+@name --fkt-divider-spacing-md
+@reference --fkt-space-md
+@category Spacing
+@type size
+*/
+$spacing-md: var(--fkt-divider-spacing-md, var(--fkt-space-md));
+
+/*
+Divider spacing for large variant.
+@name --fkt-divider-spacing-lg
+@reference --fkt-space-lg
+@category Spacing
+@type size
+*/
+$spacing-lg: var(--fkt-divider-spacing-lg, var(--fkt-space-lg));
+
+/*
+Divider spacing for extra large variant.
+@name --fkt-divider-spacing-xl
+@reference --fkt-space-xl
+@category Spacing
+@type size
+*/
+$spacing-xl: var(--fkt-divider-spacing-xl, var(--fkt-space-xl));
+
+/*
+Divider label font size.
+@name --fkt-divider-label-font-size
+@reference --fkt-font-size-sm
+@category Typography
+@type size
+*/
+$label-font-size: var(--fkt-divider-label-font-size, var(--fkt-font-size-sm));
+
+/*
+Divider label font weight.
+@name --fkt-divider-label-font-weight
+@reference --fkt-font-medium
+@category Typography
+@type size
+*/
+$label-font-weight: var(--fkt-divider-label-font-weight, var(--fkt-font-medium));
+
+/*
+Divider label text color.
+@name --fkt-divider-label-color
+@reference --fkt-color-neutral-600
+@category Colors
+@type color
+*/
+$label-color: var(--fkt-divider-label-color, var(--fkt-color-neutral-600));
+
+/*
+Divider label background color.
+@name --fkt-divider-label-background
+@reference transparent
+@category Colors
+@type color
+*/
+$label-background: var(--fkt-divider-label-background, transparent);
+
+/*
+Divider label padding.
+@name --fkt-divider-label-padding
+@reference --fkt-space-xs
+@category Spacing
+@type size
+*/
+$label-padding: var(--fkt-divider-label-padding, var(--fkt-space-xs));
+
+// </design-tokens>
+
+:host {
+    display: block;
+
+    // Orientation variants
+    &.orientation-horizontal {
+        width: 100%;
+
+        margin: var(--spacing) 0;
+
+        .divider-container {
+            display: flex;
+            align-items: center;
+            gap: $label-padding;
+        }
+
+        .divider-line {
+            border: none;
+            border-top: var(--variant, solid) var(--border-width, 1px) var(--fkt-color-neutral-300);
+
+            &.full-width {
+                width: 100%;
+            }
+
+            &:not(.full-width) {
+                flex: 1;
+            }
+        }
+
+        .divider-label {
+            flex-shrink: 0;
+            background: $label-background;
+            padding: 0 $label-padding;
+            color: $label-color;
+            font-size: $label-font-size;
+            font-weight: $label-font-weight;
+            line-height: var(--fkt-line-height-xs);
+            white-space: nowrap;
+        }
+    }
+
+    &.orientation-vertical {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        margin: 0 var(--spacing);
+
+
+        .divider-vertical {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: $label-padding;
+        }
+
+        .divider-line {
+            border: none;
+            border-left: var(--variant, solid) var(--border-width, 1px) var(--fkt-color-neutral-300);
+
+            &.full-height {
+                height: 100%;
+            }
+
+            &:not(.full-height) {
+                flex: 1;
+            }
+        }
+
+        .divider-label {
+            flex-shrink: 0;
+            background: $label-background;
+            padding: $label-padding 0;
+            color: $label-color;
+            font-size: $label-font-size;
+            font-weight: $label-font-weight;
+            line-height: var(--fkt-line-height-xs);
+            writing-mode: vertical-lr;
+            text-orientation: mixed;
+            white-space: nowrap;
+        }
+    }
+
+    // Size variants
+    &.size-thin {
+        --border-width: var(--fkt-divider-size-thin, 1px);
+    }
+
+    &.size-medium {
+        --border-width: var(--fkt-divider-size-medium, 2px);
+    }
+
+    &.size-thick {
+        --border-width: var(--fkt-divider-size-thick, 4px);
+    }
+
+    // Spacing variants
+    &.spacing-none {
+        --spacing: 0;
+    }
+
+    &.spacing-xs {
+        --spacing: var(--fkt-divider-spacing-xs, var(--fkt-space-xs));
+    }
+
+    &.spacing-sm {
+        --spacing: var(--fkt-divider-spacing-sm, var(--fkt-space-sm));
+    }
+
+    &.spacing-md {
+        --spacing: var(--fkt-divider-spacing-md, var(--fkt-space-md));
+    }
+
+    &.spacing-lg {
+        --spacing: var(--fkt-divider-spacing-lg, var(--fkt-space-lg));
+    }
+
+    &.spacing-xl {
+        --spacing: var(--fkt-divider-spacing-xl, var(--fkt-space-xl));
+    }
+}

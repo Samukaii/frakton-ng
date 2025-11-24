@@ -1,0 +1,27 @@
+.example-container {
+    padding: 1.5rem;
+    
+    h3 {
+        margin-bottom: 1rem;
+        color: var(--fkt-color-neutral-700);
+    }
+}
+
+.avatar-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1.5rem;
+    
+    .avatar-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+        
+        span {
+            font-size: var(--fkt-font-size-sm);
+            color: var(--fkt-color-neutral-600);
+            text-align: center;
+        }
+    }
+}

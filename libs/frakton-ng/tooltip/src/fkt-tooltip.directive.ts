@@ -49,7 +49,7 @@ export class FktTooltipDirective {
 				maxHeight: 'fit-content',
 				minWidth: 'fit-content',
 				focusTriggerOnClose: false,
-				position: this.position(),
+				preferredPositions: this.position(),
 				borderRadius: '0px',
 				overflow: 'visible',
 				padding: '0',
