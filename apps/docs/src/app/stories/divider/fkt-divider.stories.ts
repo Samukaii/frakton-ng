@@ -12,8 +12,8 @@ const meta: Meta = {
     component: FktDividerComponent,
     loadType: 'lazy',
     documentation,
-    customDimensions: {
-      width: '100%'
+    panelStyle: {
+      outerWidth: '100%'
     },
     designTokens: designTokens as DesignToken[],
     argTypes: {
@@ -191,8 +191,8 @@ export const HorizontalWithLabel: Story<FktDividerComponent> = {
 
 export const VerticalSizes: Story<FktDividerComponent> = {
     description: "Vertical divider for separating content horizontally.",
-    customDimensions: {
-        height: '400px'
+    panelStyle: {
+        outerHeight: '400px'
     },
     args: {
         orientation: 'vertical',
@@ -226,8 +226,8 @@ export const VerticalSizes: Story<FktDividerComponent> = {
 
 export const VerticalVariants: Story<FktDividerComponent> = {
     description: "Vertical divider for separating content horizontally.",
-    customDimensions: {
-        height: '400px'
+    panelStyle: {
+        outerHeight: '400px'
     },
     args: {
         orientation: 'vertical',
@@ -260,8 +260,8 @@ export const VerticalVariants: Story<FktDividerComponent> = {
 
 export const VerticalWithLabel: Story<FktDividerComponent> = {
     description: "Vertical divider with a label in the middle.",
-    customDimensions: {
-        height: '400px'
+    panelStyle: {
+        outerHeight: '400px'
     },
     args: {
         orientation: 'vertical',

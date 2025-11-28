@@ -10,7 +10,7 @@ import { FktToggleComponent } from 'frakton-ng/toggle';
 import { FktButtonComponent } from 'frakton-ng/button';
 import { FktTooltipDirective } from 'frakton-ng/tooltip';
 import { SourceCodeComponent } from '@/components/playground/source-code/source-code.component';
-import { ArrayEditorComponent } from '@/components/array-editor/array-editor.component';
+import { SchemaEditorComponent } from '@/components/schema-editor/schema-editor.component';
 
 interface Tab {
 	key: string;
@@ -31,7 +31,7 @@ interface Tab {
         FktButtonComponent,
         FktTooltipDirective,
         SourceCodeComponent,
-        ArrayEditorComponent,
+        SchemaEditorComponent,
     ],
 	templateUrl: './fkt-playground-panel.component.html',
 	styleUrl: './fkt-playground-panel.component.scss',

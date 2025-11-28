@@ -14,10 +14,10 @@ const meta: Meta = {
 	component: FktDrawerComponent,
     description: "The FktDrawer component provides a slide-out navigation panel that can either push content aside or overlay on top of it. Built with Angular signals and modern design patterns, it offers flexible positioning and smooth animations.",
 	documentation,
-    customDimensions: {
-        height: "800px",
+    panelStyle: {
+        outerHeight: "800px",
+        outerPadding: '0px'
     },
-    noPadding: true,
 	argTypes: {
 		opened: {
 			control: 'boolean',

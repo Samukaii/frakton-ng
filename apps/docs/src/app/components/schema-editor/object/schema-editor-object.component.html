@@ -1,0 +1,18 @@
+<strong>Update {{label()}}</strong>
+<fkt-divider spacing="none"/>
+
+<div class="table">
+    @for (schema of schemaList(); track schema.name) {
+        <fkt-control-type-editor-cell
+            [showLabel]="true"
+            [value]="value()?.[schema.name]"
+            [schema]="schema.type.schema"
+            [options]="schema.type.options"
+            [type]="schema.type.type"
+            [name]="schema.name"
+            (update)="updateKey(schema.name, $event)"
+        />
+    }
+</div>
+
+

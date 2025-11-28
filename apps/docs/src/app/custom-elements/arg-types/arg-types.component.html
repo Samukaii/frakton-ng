@@ -22,10 +22,19 @@
     <tbody>
         @for (type of argTypes(); track type.name) {
             <tr>
-                <td>{{type.name}}</td>
-                <td><pre>{{type.argType.type}}</pre></td>
-                <td>{{type.argType.description}}</td>
-                <td><pre>{{type.argType.defaultValue}}</pre></td>
+                <td>{{ type.name }}</td>
+                <td>
+                    <pre>{{ type.argType.type }}</pre>
+                </td>
+                <td>{{ type.argType.description }}</td>
+                <td>
+                    @if (type.argType.required) {
+                        <pre>*required</pre>
+                    } @else {
+
+                        <pre>{{ type.argType.defaultValue }}</pre>
+                    }
+                </td>
             </tr>
         }
     </tbody>

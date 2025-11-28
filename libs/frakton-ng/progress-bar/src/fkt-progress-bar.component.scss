@@ -56,11 +56,11 @@ $square-border-radius: var(--fkt-progress-bar-square-border-radius, var(--fkt-ra
 /*
 Progress bar track background color.
 @name --fkt-progress-bar-track-color
-@reference --fkt-color-neutral-200
+@reference --fkt-color-contrast-opacity-10
 @category Colors
 @type color
 */
-$track-color: var(--fkt-progress-bar-track-color, var(--fkt-color-neutral-200));
+$track-color: var(--fkt-progress-bar-track-color, var(--fkt-color-contrast-opacity-10));
 
 /*
 Progress bar fill color for primary variant.

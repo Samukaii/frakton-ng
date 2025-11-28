@@ -2,22 +2,29 @@
     <div class="canvas-block__content">
         <div #container
              class="fkt-playground-component-container"
-             [class.no-padding]="noPadding()"
+             [style.padding]="panelStyle()?.outerPadding ?? '1rem'"
+             [style.width]="panelStyle()?.outerWidth ?? 'auto'"
+             [style.height]="panelStyle()?.outerHeight ?? '100%'"
         >
-            <div class="variants-container" [class.vertical]="variantsConfig().orientation === 'vertical'" [style]="designTokensStyle()">
-                @for (variant of playgroundVariants(); track variant.title) {
-                    <div class="variant"
-                         [class.fill]="customDimensions()?.fillContainer ?? false"
-                         [style.width]="customDimensions()?.width ?? 'auto'"
-                         [style.height]="customDimensions()?.height ?? '100%'"
-                    >
-                        @if (variant.title) {
-                            <strong>{{ variant.title }}</strong>
-                        }
-                        <ng-template #template/>
-                    </div>
-                }
-            </div>
+            @if (hasVariants()) {
+                <div class="variants-container" [class.vertical]="variantsConfig().orientation === 'vertical'" [style]="designTokensStyle()">
+                    @for (variant of playgroundVariants(); track variant.title) {
+                        <div class="variant"
+                             [class.fill]="panelStyle()?.fillContainer ?? false"
+                             [style.padding]="panelStyle()?.innerPadding ?? '0rem'"
+                             [style.width]="panelStyle()?.outerWidth ?? 'auto'"
+                             [style.height]="panelStyle()?.outerHeight ?? '100%'"
+                        >
+                            @if (variant.title) {
+                                <strong>{{ variant.title }}</strong>
+                            }
+                            <ng-template #template/>
+                        </div>
+                    }
+                </div>
+            } @else {
+                <ng-template #template/>
+            }
         </div>
 
         <fkt-playground-panel

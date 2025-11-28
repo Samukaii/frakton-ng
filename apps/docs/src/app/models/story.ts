@@ -1,5 +1,6 @@
 import { EnvironmentProviders, Provider, Type } from "@angular/core";
 import { FktComponentInputsAndModels } from "frakton-ng/internal/types";
+import { PlaygroundPanelStyle } from '@/models/playground-panel-style';
 
 export interface Story<T> {
     component?: Type<T>,
@@ -13,7 +14,6 @@ export interface Story<T> {
             args: Partial<FktComponentInputsAndModels<T>>;
         }[]
     };
-    noPadding?: boolean;
-    customDimensions?: { width?: string; height?: string; fillContainer?: boolean };
+    panelStyle?: PlaygroundPanelStyle;
     providers?: (Provider | EnvironmentProviders)[]
 }

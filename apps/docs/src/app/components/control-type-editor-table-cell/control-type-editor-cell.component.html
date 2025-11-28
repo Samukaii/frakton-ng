@@ -1,28 +1,52 @@
 @switch (type()) {
     @case ('text') {
         <fkt-input
-            hideLabel
+            [hideLabel]="!showLabel()"
             [label]="name()"
             placeholder="Enter a text"
             [value]="value()"
-            (valueChange)="change.emit($event)"
+            (valueChange)="update.emit($event)"
         />
     }
     @case ("select") {
         <fkt-select
-            hideLabel
+            [hideLabel]="!showLabel()"
             [value]="value()"
-            (valueChange)="change.emit($event)"
+            (valueChange)="update.emit($event)"
             [label]="name()"
             [options]="(options() ?? []) | stringToSelectOptions"/>
-
     }
     @case ("array") {
-        <fkt-array-editor
+        <fkt-schema-editor
             [schema]="schema() ?? {}"
             [value]="value()"
             [label]="name()"
-            (valueChange)="change.emit($event)"
+            (valueChange)="update.emit($event)"
+        />
+    }
+    @case ("object") {
+        <fkt-schema-editor
+            [schema]="schema() ?? {}"
+            [value]="value()"
+            [label]="name()"
+            (valueChange)="update.emit($event)"
+        />
+    }
+
+    @case ("icon") {
+        <fkt-icon-selector
+            [value]="value()"
+            (valueChange)="update.emit($event)"
+        />
+    }
+
+    @case ("boolean") {
+        <fkt-toggle
+            [label]="name()"
+            [hideLabel]="!showLabel()"
+            [value]="value()"
+            (valueChange)="update.emit($event)"
         />
     }
 }
+

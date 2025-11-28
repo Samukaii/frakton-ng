@@ -112,6 +112,13 @@
 		box-sizing: border-box;
 	}
 
+    .selected-option {
+        max-width: 100%;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+
 	.selected-option, .placeholder {
 		font-size: $font-size;
 	}
@@ -161,6 +168,10 @@
         &__content {
             display: flex;
             flex-direction: column;
+            max-width: 100%;
+            min-width: 0;
+            flex: 1
+        ;
         }
 
 		&__container {

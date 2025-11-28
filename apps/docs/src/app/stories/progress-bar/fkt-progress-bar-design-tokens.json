@@ -50,10 +50,10 @@
   {
     "description": "Progress bar track background color.",
     "name": "--fkt-progress-bar-track-color",
-    "reference": "--fkt-color-neutral-200",
+    "reference": "--fkt-color-contrast-opacity-10",
     "category": "Colors",
     "type": "color",
-    "defaultValue": "#e2e8f0"
+    "defaultValue": "rgba(2, 6, 23, 0.10)"
   },
   {
     "description": "Progress bar fill color for primary variant.",

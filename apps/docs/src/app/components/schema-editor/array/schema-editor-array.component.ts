@@ -1,40 +1,38 @@
 import { Component, computed, input, linkedSignal, model, output } from '@angular/core';
 import { FktTableActionFn, FktTableColumnFn, FktTableComponent } from 'frakton-ng/table';
-import { ControlType } from '@/models/control-type';
-import { FktButtonsListComponent } from 'frakton-ng/buttons-list';
 import { FktButtonAction } from 'frakton-ng/button';
-import { FktDividerComponent } from 'frakton-ng/divider';
-import { ArgTypeSchema } from '@/models/arg-type';
+import { ArgTypeSchema, ArgTypeSchemaParsed } from '@/models/arg-type';
+import { parseSchema } from '@/components/schema-editor/utils/parse-schema';
 
 @Component({
-    selector: 'fkt-array-editor-overlay',
+    selector: 'fkt-schema-editor-array',
     imports: [
-        FktTableComponent,
-        FktButtonsListComponent,
-        FktDividerComponent
+        FktTableComponent
     ],
-    templateUrl: './array-editor-overlay.component.html',
-    styleUrl: './array-editor-overlay.component.scss',
+    templateUrl: './schema-editor-array.component.html',
+    styleUrl: './schema-editor-array.component.scss',
 })
-export class ArrayEditorOverlayComponent {
+export class SchemaEditorArrayComponent {
     value = model.required<any[]>();
-    save = output<any[]>();
-    close = output();
     schema = input<ArgTypeSchema>();
 
+    parsedSchema = computed(() => {
+        return parseSchema(this.schema() ?? {});
+    })
+
     valueWithIds = linkedSignal(() => {
-        return this.value().map((item, index) => ({
+        return this.value().map((item) => ({
             id: crypto.randomUUID(),
             ...item
         }))
     })
 
     columnsFn = computed(() => {
-        const schema = this.schema() ?? {};
+        const schema = this.parsedSchema() ?? {};
 
         const schemaList = Object.entries(schema).map(([key, value]) => ({name: key, type: value}));
 
-        const fn: FktTableColumnFn<any> = (item) => schemaList.map(schema => {
+        const fn: FktTableColumnFn<any> = (item) => schemaList.filter(schema => schema.type.hidden !== true).map(schema => {
             return {
                 name: schema.name,
                 position: schema.name,
@@ -46,7 +44,7 @@ export class ArrayEditorOverlayComponent {
                         schema: schema.type.schema,
                         options: schema.type.options ?? [],
                         name: schema.name,
-                        change: (value) => {
+                        update: (value) => {
                             this.updateValue(item.id, schema.name, value)
                         }
                     }
@@ -57,8 +55,10 @@ export class ArrayEditorOverlayComponent {
         return fn;
     })
 
-    private getSchemaDefaultValue = (type: ControlType) => {
-        switch (type) {
+    private getSchemaDefaultValue = (type: ArgTypeSchemaParsed[string]) => {
+        if(type.defaultValue) return type.defaultValue;
+
+        switch (type.type) {
             case "number":
                 return 0;
             case "text":
@@ -72,7 +72,7 @@ export class ArrayEditorOverlayComponent {
             case "array":
                 return [];
             case "select":
-                return "";
+                return type.options?.[0];
             case "function":
                 return () => [];
         }
@@ -81,10 +81,10 @@ export class ArrayEditorOverlayComponent {
     private createBlank = () => {
         const object: any = {};
 
-        const schemaList = Object.entries(this.schema() ?? {}).map(([key, value]) => ({name: key, type: value}));
+        const schemaList = Object.entries(this.parsedSchema() ?? {}).map(([key, value]) => ({name: key, type: value}));
 
         schemaList.forEach(schema => {
-            object[schema.name] = this.getSchemaDefaultValue(schema.type.type);
+            object[schema.name] = this.getSchemaDefaultValue(schema.type);
         })
 
         return object;
@@ -114,7 +114,7 @@ export class ArrayEditorOverlayComponent {
         this.value.set(result);
     }
 
-    actionsFn: FktTableActionFn<any> = (item) => [
+    protected actionsFn: FktTableActionFn<any> = (item) => [
         {
             icon: 'trash',
             ariaLabel: "Remover",
@@ -126,26 +126,8 @@ export class ArrayEditorOverlayComponent {
             }
         }
     ]
-    overlayActions: FktButtonAction[] = [
-        {
-            text: "Cancel",
-            color: 'danger',
-            theme: 'stroked',
-            identifier: 'cancel',
-            click: () => {
-                this.close.emit();
-            }
-        },
-        {
-            text: "Apply",
-            color: 'primary',
-            identifier: 'apply',
-            click: () => {
-                this.save.emit(this.valueWithIds());
-            }
-        },
-    ]
-    addNew: FktButtonAction = {
+
+    protected addNew: FktButtonAction = {
         icon: "plus",
         identifier: 'add-new',
         color: 'accent',

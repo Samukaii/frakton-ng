@@ -4,6 +4,7 @@ import { Meta } from '@/models/meta';
 import { Story } from '@/models/story';
 // @ts-expect-error
 import documentation from './fkt-tag-selector.docs.md' with { loader: "text" };
+import { fktTagColors } from 'frakton-ng/tag';
 
 const meta: Meta = {
 	title: "Components/Form/Tag Selector",
@@ -12,7 +13,15 @@ const meta: Meta = {
 	documentation,
 	argTypes: {
 		options: {
-			control: 'object',
+			control: 'array',
+            schema: {
+                id: "text",
+                name: 'text',
+                color: {
+                    type: 'select',
+                    options: fktTagColors as any as string[]
+                }
+            },
 			category: "Attributes",
 			type: 'FktTag<T>[]',
 			import: "import {FktTag} from 'frakton-ng/tag-selector'",

@@ -11,6 +11,16 @@ import { Story } from '@/models/story';
 // @ts-expect-error
 import documentation from './fkt-autocomplete.docs.md' with { loader: "text" };
 import designTokens from './fkt-autocomplete-design-tokens.json';
+import { FktColor, fktColors, FktLabelColor, fktLabelColors } from 'frakton-ng/core';
+import { FktIconName, fontIconNames } from 'frakton-ng/icon';
+import {
+    fktButtonIconPosition,
+    FktButtonIconPosition,
+    FktButtonShape,
+    fktButtonShapes,
+    FktButtonTheme,
+    fktButtonThemes
+} from 'frakton-ng/button';
 
 const meta: Meta = {
 	title: "Components/Form/Autocomplete",
@@ -18,6 +28,10 @@ const meta: Meta = {
     designTokens: designTokens as any,
     description: "A powerful and flexible autocomplete input component with dropdown options, search functionality, and support for custom actions. Built with Angular signals and reactive patterns, it offers seamless integration with forms and dynamic data sources.",
 	documentation,
+    panelStyle: {
+        outerWidth: '100%',
+        fillContainer: true,
+    },
 	argTypes: {
 		value: {
 			control: "text",
@@ -48,7 +62,11 @@ const meta: Meta = {
 			description: "Sets the field as invalid. Can be used for error styling or custom validation handling."
 		},
 		errors: {
-			control: 'object',
+			control: 'array',
+            schema: {
+                kind: 'text',
+                message: 'text'
+            },
 			category: "Attributes",
 			type: "readonly WithOptionalField<ValidationError>[]",
 			import: "import { ValidationError, WithOptionalField } from '@angular/forms/signals'",
@@ -72,7 +90,45 @@ const meta: Meta = {
 			description: "Array of options to display in the dropdown. Each option must have a value and label property."
 		},
 		actions: {
-			control: "object",
+			control: "array",
+            schema: {
+                loading: 'boolean',
+                disabled: 'boolean',
+                loadingText: 'text',
+                text: 'text',
+                ariaLabel: 'text',
+                color: {
+                    type: 'select',
+                    options: fktColors as any,
+                },
+                labelColor: {
+                    type: 'select',
+                    options: fktLabelColors as any
+                },
+                theme: {
+                    type: 'select',
+                    options: fktButtonThemes
+                },
+                shape: {
+                    type: 'select',
+                    options: fktButtonShapes
+                },
+                icon: {
+                    type: 'select',
+                    options: fontIconNames,
+                },
+                type: {
+                    type: 'select',
+                    options: ['submit', 'reset', 'button'],
+                },
+                iconPosition: {
+                    type: 'select',
+                    options: fktButtonIconPosition
+                },
+                tooltip: 'text',
+                identifier: 'text',
+                condition: 'boolean'
+            },
 			category: "Attributes",
 			type: "FktButtonAction[]",
 			import: "import {FktButtonAction} from 'frakton-ng/button'",
@@ -88,6 +144,9 @@ const meta: Meta = {
 		},
 		noResults: {
 			control: 'object',
+            schema: {
+
+            },
 			category: "Attributes",
 			type: "FktNoResults",
 			import: "import {FktNoResults} from 'frakton-ng/no-results'",
@@ -212,7 +271,7 @@ export const Events: Story<FktAutocompleteEventsExampleComponent> = {
 			{ value: "nodejs", label: "Node.js" },
 			{ value: "python", label: "Python" },
 			{ value: "java", label: "Java" },
-		]
+		],
 	} as any
 };
 

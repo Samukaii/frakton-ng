@@ -4,7 +4,7 @@
         <loc>https://fraktonng.com/</loc>
         <priority>1.0</priority>
         <changefreq>weekly</changefreq>
-        <lastmod>2025-11-23T05:08:42.693Z</lastmod>
+        <lastmod>2025-11-24T14:52:53.983Z</lastmod>
     </url>
     <url>
         <loc>https://fraktonng.com/docs/getting-started-migration-guides</loc>
@@ -22,7 +22,7 @@
         <loc>https://fraktonng.com/docs/autocomplete</loc>
         <priority>0.9</priority>
         <changefreq>weekly</changefreq>
-        <lastmod>2025-11-13T00:30:43.647Z</lastmod>
+        <lastmod>2025-11-25T10:36:57.484Z</lastmod>
     </url>
     <url>
         <loc>https://fraktonng.com/docs/avatar</loc>
@@ -34,19 +34,25 @@
         <loc>https://fraktonng.com/docs/button</loc>
         <priority>0.9</priority>
         <changefreq>weekly</changefreq>
-        <lastmod>2025-11-13T00:30:43.678Z</lastmod>
+        <lastmod>2025-11-25T09:19:45.104Z</lastmod>
+    </url>
+    <url>
+        <loc>https://fraktonng.com/docs/button-group</loc>
+        <priority>0.9</priority>
+        <changefreq>weekly</changefreq>
+        <lastmod>2025-11-27T10:45:42.180Z</lastmod>
     </url>
     <url>
         <loc>https://fraktonng.com/docs/buttons-list</loc>
         <priority>0.9</priority>
         <changefreq>weekly</changefreq>
-        <lastmod>2025-11-13T00:30:43.681Z</lastmod>
+        <lastmod>2025-11-27T08:31:49.172Z</lastmod>
     </url>
     <url>
         <loc>https://fraktonng.com/docs/calendar</loc>
         <priority>0.9</priority>
         <changefreq>weekly</changefreq>
-        <lastmod>2025-11-13T00:30:43.717Z</lastmod>
+        <lastmod>2025-11-27T10:06:29.062Z</lastmod>
     </url>
     <url>
         <loc>https://fraktonng.com/docs/calendar-navigator</loc>
@@ -64,13 +70,13 @@
         <loc>https://fraktonng.com/docs/color-picker</loc>
         <priority>0.9</priority>
         <changefreq>weekly</changefreq>
-        <lastmod>2025-11-13T00:30:43.739Z</lastmod>
+        <lastmod>2025-11-27T10:05:16.049Z</lastmod>
     </url>
     <url>
         <loc>https://fraktonng.com/docs/date-picker</loc>
         <priority>0.9</priority>
         <changefreq>weekly</changefreq>
-        <lastmod>2025-11-13T00:30:43.742Z</lastmod>
+        <lastmod>2025-11-25T09:17:51.225Z</lastmod>
     </url>
     <url>
         <loc>https://fraktonng.com/docs/dialog</loc>
@@ -82,13 +88,13 @@
         <loc>https://fraktonng.com/docs/divider</loc>
         <priority>0.9</priority>
         <changefreq>weekly</changefreq>
-        <lastmod>2025-11-24T10:56:56.559Z</lastmod>
+        <lastmod>2025-11-25T09:09:59.866Z</lastmod>
     </url>
     <url>
         <loc>https://fraktonng.com/docs/drawer</loc>
         <priority>0.9</priority>
         <changefreq>weekly</changefreq>
-        <lastmod>2025-11-13T00:30:43.800Z</lastmod>
+        <lastmod>2025-11-25T09:09:59.856Z</lastmod>
     </url>
     <url>
         <loc>https://fraktonng.com/docs/focus-trap</loc>
@@ -100,13 +106,13 @@
         <loc>https://fraktonng.com/docs/icon</loc>
         <priority>0.9</priority>
         <changefreq>weekly</changefreq>
-        <lastmod>2025-11-13T00:30:43.823Z</lastmod>
+        <lastmod>2025-11-25T09:41:56.198Z</lastmod>
     </url>
     <url>
         <loc>https://fraktonng.com/docs/input</loc>
         <priority>0.9</priority>
         <changefreq>weekly</changefreq>
-        <lastmod>2025-11-13T00:30:43.871Z</lastmod>
+        <lastmod>2025-11-25T09:17:06.147Z</lastmod>
     </url>
     <url>
         <loc>https://fraktonng.com/docs/navigator</loc>
@@ -118,7 +124,7 @@
         <loc>https://fraktonng.com/docs/no-results</loc>
         <priority>0.9</priority>
         <changefreq>weekly</changefreq>
-        <lastmod>2025-11-13T00:30:43.918Z</lastmod>
+        <lastmod>2025-11-27T08:50:23.589Z</lastmod>
     </url>
     <url>
         <loc>https://fraktonng.com/docs/overlay</loc>
@@ -136,19 +142,19 @@
         <loc>https://fraktonng.com/docs/progress-bar</loc>
         <priority>0.9</priority>
         <changefreq>weekly</changefreq>
-        <lastmod>2025-11-24T13:40:30.269Z</lastmod>
+        <lastmod>2025-11-25T09:25:39.115Z</lastmod>
     </url>
     <url>
         <loc>https://fraktonng.com/docs/select</loc>
         <priority>0.9</priority>
         <changefreq>weekly</changefreq>
-        <lastmod>2025-11-20T20:37:42.582Z</lastmod>
+        <lastmod>2025-11-25T09:45:55.467Z</lastmod>
     </url>
     <url>
         <loc>https://fraktonng.com/docs/side-menu</loc>
         <priority>0.9</priority>
         <changefreq>weekly</changefreq>
-        <lastmod>2025-11-13T00:30:44.017Z</lastmod>
+        <lastmod>2025-11-25T10:14:43.795Z</lastmod>
     </url>
     <url>
         <loc>https://fraktonng.com/docs/skeleton</loc>
@@ -178,7 +184,7 @@
         <loc>https://fraktonng.com/docs/tag-selector</loc>
         <priority>0.9</priority>
         <changefreq>weekly</changefreq>
-        <lastmod>2025-11-24T05:03:30.085Z</lastmod>
+        <lastmod>2025-11-25T10:23:44.814Z</lastmod>
     </url>
     <url>
         <loc>https://fraktonng.com/docs/textarea</loc>

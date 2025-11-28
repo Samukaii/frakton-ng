@@ -16,6 +16,9 @@ const meta: Meta = {
 	component: FktCalendarComponent,
     description: "The FktCalendar component provides a comprehensive date selection interface with multiple view modes and extensive customization options. Built with Angular signals for optimal performance and reactivity, it supports date, month, and year selection with configurable styling and behavior.",
 	documentation,
+    panelStyle: {
+      outerWidth: '100%'
+    },
 	argTypes: {
 		configFn: {
 			control: 'function',
@@ -26,8 +29,8 @@ const meta: Meta = {
 			description: 'Function to configure individual calendar dates'
 		},
 		currentDate: {
-			control: 'text',
-			category: "Form Control",
+			control: 'date',
+			category: "Attributes",
 			type: 'Date',
 			defaultValue: 'new Date()',
 			description: 'Currently selected date'

@@ -615,6 +615,41 @@ export const STORIES_MAP: StoryIndexer[] = [	{
 	    ]
 	},
 	{
+		id: "button-group",
+		title: "Components/Form/Button group",
+		componentName: "FktButtonGroupComponent",
+		description: `PLACEHOLDER`,
+		file: () => import("./button-group/fkt-button-group.stories"),
+		type: 'story',
+		
+		stories: [
+		    {
+		        id: "basic-usage",
+		        name: "BasicUsage",
+		        componentName: null,
+		        description: `PLACEHOLDER`,
+		    },
+		    {
+		        id: "shapes",
+		        name: "Shapes",
+		        componentName: null,
+		        description: `PLACEHOLDER`,
+		    },
+		    {
+		        id: "only-labels",
+		        name: "OnlyLabels",
+		        componentName: null,
+		        description: `PLACEHOLDER`,
+		    },
+		    {
+		        id: "only-icons",
+		        name: "OnlyIcons",
+		        componentName: null,
+		        description: `PLACEHOLDER`,
+		    }
+	    ]
+	},
+	{
 		id: "buttons-list",
 		title: "Components/Actions/Buttons list",
 		componentName: "FktButtonsListComponent",
@@ -1256,19 +1291,19 @@ export const STORIES_MAP: StoryIndexer[] = [	{
 		    {
 		        id: "simple-no-results",
 		        name: "SimpleNoResults",
-		        componentName: "SimpleExampleComponent",
+		        componentName: null,
 		        description: `Basic no results display with just a label, perfect for minimal empty states.`,
 		    },
 		    {
 		        id: "with-icon-and-description",
 		        name: "WithIconAndDescription",
-		        componentName: "WithIconAndDescriptionExampleComponent",
+		        componentName: null,
 		        description: `No results display with an icon and descriptive text for better user understanding.`,
 		    },
 		    {
 		        id: "with-action-button",
 		        name: "WithActionButton",
-		        componentName: "WithActionExampleComponent",
+		        componentName: null,
 		        description: `Complete no results state with an action button to guide users on next steps.`,
 		    },
 		    {

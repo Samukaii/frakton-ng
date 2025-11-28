@@ -40,10 +40,6 @@ export class FktAutocompleteLoadingStatesExampleComponent {
 		return this.options().filter(option => option.label.toLowerCase().includes(searchTerm.toLowerCase()));
 	});
 
-	protected selectedOption = computed(() => {
-		return this.allOptions?.find(option => option.value === this.control().value());
-	});
-
 	simulateLoading() {
 		this.loading.set(true);
 		this.options.set([]);

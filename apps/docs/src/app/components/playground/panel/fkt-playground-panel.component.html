@@ -97,7 +97,16 @@
                                             }
                                             @case ('array') {
                                                 @if (!!arg.schema) {
-                                                    <fkt-array-editor
+                                                    <fkt-schema-editor
+                                                        [label]="arg.name"
+                                                        [schema]="arg.schema!"
+                                                        [(value)]="arg.control"
+                                                    />
+                                                }
+                                            }
+                                            @case ('object') {
+                                                @if (!!arg.schema) {
+                                                    <fkt-schema-editor
                                                         [label]="arg.name"
                                                         [schema]="arg.schema!"
                                                         [(value)]="arg.control"

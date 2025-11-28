@@ -5,7 +5,7 @@ import { Story } from '@/models/story';
 import designTokens from './fkt-progress-bar-design-tokens.json';
 import { DesignToken } from '@/models/design-token';
 // @ts-expect-error
-import documentation from './fkt-progress-bar.docs.md' with {loader: "text"};
+import documentation from './fkt-progress-bar.docs.md' with { loader: 'text' };
 import { fktColors } from 'frakton-ng/core';
 
 const meta: Meta = {
@@ -14,8 +14,8 @@ const meta: Meta = {
     component: FktProgressBarComponent,
     loadType: 'lazy',
     documentation,
-    customDimensions: {
-      width: '100%'
+    panelStyle: {
+        outerWidth: '100%',
     },
     designTokens: designTokens as DesignToken[],
     argTypes: {

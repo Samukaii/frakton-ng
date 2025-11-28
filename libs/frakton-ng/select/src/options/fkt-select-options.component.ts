@@ -28,18 +28,11 @@ export class FktSelectOptionsComponent {
 	});
 	select = output<FktAutocompleteOption>();
 
-	private document = inject(DOCUMENT);
-
 	@MarkUsed()
 	protected scrollToActiveOption = effect(() => {
 		const currentOption = this.options()[this.currentIndex()];
 
 		this.activeOptionId.set(`fkt-select-option-${currentOption.value}`);
-
-		// this.document.getElementById(activeOptionId)?.scrollIntoView({
-		// 	behavior: 'smooth',
-		// 	block: 'center'
-		// });
 	});
 	protected currentIndex = linkedSignal(() => {
 		const selected = this.selected();

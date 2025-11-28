@@ -1,9 +1,12 @@
 // @ts-nocheck
 import { ExternalExample } from '@/models/external-example';
+import basicUsageTemplate from "./basic-usage/basic-usage.component.html" with {loader: "text"};
 import basicUsageStyles from "./basic-usage/basic-usage.component.scss" with {loader: "text"};
 import basicUsageTypescript from "./basic-usage/basic-usage.component.ts" with {loader: "text"};
+import dashboardMetricsTemplate from "./dashboard-metrics/dashboard-metrics.component.html" with {loader: "text"};
 import dashboardMetricsStyles from "./dashboard-metrics/dashboard-metrics.component.scss" with {loader: "text"};
 import dashboardMetricsTypescript from "./dashboard-metrics/dashboard-metrics.component.ts" with {loader: "text"};
+import withLabelsTemplate from "./with-labels/with-labels.component.html" with {loader: "text"};
 import withLabelsStyles from "./with-labels/with-labels.component.scss" with {loader: "text"};
 import withLabelsTypescript from "./with-labels/with-labels.component.ts" with {loader: "text"};
 
@@ -13,6 +16,11 @@ export default {
 		name: "BasicUsage",
 		files: [
 		
+			{
+				name: "basic-usage.component.html",
+				content: basicUsageTemplate as string,
+				language: "html" as "html",
+			},		
 			{
 				name: "basic-usage.component.ts",
 				content: basicUsageTypescript as string,
@@ -30,6 +38,11 @@ export default {
 		files: [
 		
 			{
+				name: "dashboard-metrics.component.html",
+				content: dashboardMetricsTemplate as string,
+				language: "html" as "html",
+			},		
+			{
 				name: "dashboard-metrics.component.ts",
 				content: dashboardMetricsTypescript as string,
 				language: "typescript" as "typescript",
@@ -45,6 +58,11 @@ export default {
 		name: "WithLabels",
 		files: [
 		
+			{
+				name: "with-labels.component.html",
+				content: withLabelsTemplate as string,
+				language: "html" as "html",
+			},		
 			{
 				name: "with-labels.component.ts",
 				content: withLabelsTypescript as string,

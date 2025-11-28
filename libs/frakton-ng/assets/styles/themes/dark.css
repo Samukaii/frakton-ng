@@ -16,6 +16,34 @@
     --fkt-color-neutral-100: #0f172a;
     --fkt-color-neutral-50: #020617;
 
+    --fkt-color-contrast-opacity-5: rgba(248, 250, 252, 0.05);
+    --fkt-color-contrast-opacity-10: rgba(248, 250, 252, 0.10);
+    --fkt-color-contrast-opacity-20: rgba(248, 250, 252, 0.20);
+    --fkt-color-contrast-opacity-30: rgba(248, 250, 252, 0.30);
+    --fkt-color-contrast-opacity-40: rgba(248, 250, 252, 0.40);
+    --fkt-color-contrast-opacity-50: rgba(248, 250, 252, 0.50);
+    --fkt-color-contrast-opacity-60: rgba(248, 250, 252, 0.60);
+    --fkt-color-contrast-opacity-70: rgba(248, 250, 252, 0.70);
+    --fkt-color-contrast-opacity-80: rgba(248, 250, 252, 0.80);
+    --fkt-color-contrast-opacity-90: rgba(248, 250, 252, 0.90);
+    --fkt-color-contrast-opacity-95: rgba(248, 250, 252, 0.95);
+
+    --fkt-shadow-color-2xs: rgb(0 0 0 / 0.15);
+    --fkt-shadow-color-xs: rgb(0 0 0 / 0.15);
+    --fkt-shadow-color-sm: rgb(0 0 0 / 0.2);
+    --fkt-shadow-color-md: rgb(0 0 0 / 0.2);
+    --fkt-shadow-color-lg: rgb(0 0 0 / 0.5);
+    --fkt-shadow-color-xl: rgb(0 0 0 / 0.6);
+    --fkt-shadow-color-2xl: rgb(0 0 0 / 0.85);
+
+    --fkt-shadow-2xs: 0 1px var(--fkt-shadow-color-2xs);
+    --fkt-shadow-xs: 0 1px 2px 0 var(--fkt-shadow-color-xs);
+    --fkt-shadow-sm: 0 1px 3px 0 var(--fkt-shadow-color-sm), 0 1px 2px -1px var(--fkt-shadow-color-sm);
+    --fkt-shadow-md: 0 4px 6px -1px var(--fkt-shadow-color-sm), 0 2px 4px -2px var(--fkt-shadow-color-md);
+    --fkt-shadow-lg: 0 10px 15px -3px var(--fkt-shadow-color-sm), 0 4px 6px -4px var(--fkt-shadow-color-lg);
+    --fkt-shadow-xl: 0 20px 25px -5px var(--fkt-shadow-color-sm), 0 8px 10px -6px var(--fkt-shadow-color-xl);
+    --fkt-shadow-2xl: 0 25px 50px -12px var(--fkt-shadow-color-2xl);
+
     --fkt-color-modal-background: #242A35;
     --fkt-color-neutral-background: #171a20;
     --fkt-color-card-background: #181D26;

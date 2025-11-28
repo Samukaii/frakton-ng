@@ -16,32 +16,26 @@ const meta: Meta<FktSideMenuComponent> = {
     description: "A responsive and customizable side navigation menu component with collapsible states, grouped menu items, and integrated routing support. Built with Angular signals for optimal performance and provides tooltips for collapsed states.",
     component: FktSideMenuComponent,
     documentation,
-    noPadding: true,
-    customDimensions: {
-        height: "800px",
-        width: '100%',
-        fillContainer: true
+    panelStyle: {
+        outerHeight: "800px",
+        outerWidth: '100%',
+        fillContainer: true,
+        outerPadding: '0px'
     },
     argTypes: {
         groups: {
             control: 'array',
             schema: {
-                name: {
-                    type: "text"
-                },
+                name: 'text',
                 items: {
                     type: "array",
                     schema: {
-                        name: {
-                            type: 'text'
-                        },
+                        name: 'text',
                         icon: {
                             type: 'select',
                             options: fontIconNames,
                         },
-                        path: {
-                            type: 'text'
-                        },
+                        path: 'text',
                     }
                 }
             },

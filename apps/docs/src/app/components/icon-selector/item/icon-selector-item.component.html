@@ -1,0 +1,15 @@
+<div class="container" (click)="select.emit()" [class.selected]="selected()">
+    <div
+        class="container__card">
+        <fkt-icon
+            class="container__card-icon"
+            [name]="icon()"
+        />
+    </div>
+
+
+    <p class="container__icon-name">
+        {{ icon() }}
+    </p>
+
+</div>

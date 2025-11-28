@@ -11,6 +11,10 @@ const meta: Meta = {
     designTokens: designTokens as any,
     description: "A versatile form input component with multiple types, data transformers, and comprehensive validation support. Built with Angular signals for reactive form integration.",
 	documentation,
+    panelStyle: {
+        outerWidth: '100%',
+        fillContainer: true
+    },
 	argTypes: {
 		label: {
 			control: 'text',

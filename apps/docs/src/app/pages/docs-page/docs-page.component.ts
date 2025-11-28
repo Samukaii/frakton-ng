@@ -21,12 +21,13 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Router } from '@angular/router';
 import { DocsPageTabsComponent } from '@/pages/docs-page/tabs/docs-page-tabs.component';
 import { Meta, Title } from '@angular/platform-browser';
+import { ArgTypesComponent } from '@/custom-elements/arg-types/arg-types.component';
 
 
 @Component({
     selector: 'app-docs-page',
     imports: [
-        DocsPageTabsComponent
+        DocsPageTabsComponent,
     ],
     templateUrl: './docs-page.component.html',
     styleUrl: './docs-page.component.scss',

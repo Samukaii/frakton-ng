@@ -5,18 +5,18 @@ import {
     ElementRef,
     inject,
     inputBinding,
-    PLATFORM_ID,
+    PLATFORM_ID, reflectComponentType,
     signal,
     untracked,
     viewChild,
     viewChildren,
-    ViewContainerRef
+    ViewContainerRef, WritableSignal
 } from '@angular/core';
 import { FktPlaygroundPanelComponent } from './panel/fkt-playground-panel.component';
 import { ThemeService } from '@/core/services/theme.service';
 import { StoryInfoService } from '@/core/services/story-info.service';
 import { ArgItem } from '@/models/arg-item';
-import { MarkUsed } from 'frakton-ng/internal/utils';
+import { createComponentBindings, MarkUsed } from 'frakton-ng/internal/utils';
 import { DesignTokenItem } from '@/models/design-token-item';
 import { isPlatformBrowser } from '@angular/common';
 import { FktComponentInputsAndModels } from 'frakton-ng/internal/types';
@@ -37,18 +37,11 @@ interface PlaygroundVariant {
 export class FktPlaygroundComponent {
     private readonly platform = inject(PLATFORM_ID);
 
-    protected readonly customDimensions = computed(() => {
+    protected readonly panelStyle = computed(() => {
         const meta = this.storyInfoService.meta;
         const story = this.storyInfoService.activeStory;
 
-        return story.customDimensions ?? meta.customDimensions;
-    });
-
-    protected readonly noPadding = computed(() => {
-        const meta = this.storyInfoService.meta;
-        const story = this.storyInfoService.activeStory;
-
-        return story.noPadding ?? meta.noPadding;
+        return story.panelStyle ?? meta.panelStyle;
     });
 
     protected readonly themeService = inject(ThemeService);
@@ -58,10 +51,6 @@ export class FktPlaygroundComponent {
     private readonly viewRefs = viewChildren('template', {read: ViewContainerRef});
     private readonly elementRef = viewChild('container', {read: ElementRef});
 
-    protected readonly hasVariants = computed(() => {
-        return !!this.storyInfoService.activeStory.variants;
-    })
-
     protected readonly variantsConfig = computed(() => {
         const variants = this.storyInfoService.activeStory.variants;
 
@@ -70,11 +59,15 @@ export class FktPlaygroundComponent {
         }
     });
 
+    hasVariants = computed(() => {
+        return !!this.storyInfoService.activeStory.variants;
+    })
+
     protected readonly playgroundVariants = computed((): PlaygroundVariant[] => {
         const variants = this.storyInfoService.activeStory.variants;
         const argsList = this.argsList();
 
-        if(!variants) {
+        if (!variants) {
             return [
                 {argsList}
             ]
@@ -103,13 +96,15 @@ export class FktPlaygroundComponent {
             variants.forEach((variant, index) => {
                 const viewRef = viewRefs[index];
 
-                if(!viewRef) return;
+                if (!viewRef) return;
 
                 try {
+                    const bindings = Object.fromEntries(variant.argsList.map(arg => {
+                        return [arg.name, arg.control];
+                    }))
+
                     viewRef.createComponent(component, {
-                        bindings: variant.argsList.map(arg => {
-                            return inputBinding(arg.name, arg.control)
-                        })
+                        bindings: createComponentBindings(component, bindings)
                     });
                 } catch (e) {
                 }
@@ -118,7 +113,7 @@ export class FktPlaygroundComponent {
     })
 
     protected readonly designTokens = computed((): DesignTokenItem[] => {
-        if(!isPlatformBrowser(this.platform)) return [];
+        if (!isPlatformBrowser(this.platform)) return [];
 
         const tokens = this.storyInfoService.meta.designTokens ?? [];
         this.themeService.currentTheme();
@@ -179,7 +174,7 @@ export class FktPlaygroundComponent {
             return {
                 name: key,
                 type: argType.control,
-                schema: argType.schema,
+                schema: ('schema' in argType ? argType.schema : {}),
                 options: argType.options?.map((option) => ({label: option, value: option})) ?? [],
                 description: argType.description!,
                 control: signal(value)
@@ -203,7 +198,7 @@ export class FktPlaygroundComponent {
                 type: argType.control,
                 options: argType.options?.map((option) => ({label: option, value: option})) ?? [],
                 description: argType.description!,
-                schema: argType.schema,
+                schema: ('schema' in argType ? argType.schema : {}),
                 control: signal(value)
             }
         });

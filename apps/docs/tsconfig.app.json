@@ -22,6 +22,9 @@
 			"frakton-ng/button": [
 				"libs/frakton-ng/button"
 			],
+            "frakton-ng/button-group": [
+                "libs/frakton-ng/button-group"
+            ],
 			"frakton-ng/buttons-list": [
 				"libs/frakton-ng/buttons-list"
 			],

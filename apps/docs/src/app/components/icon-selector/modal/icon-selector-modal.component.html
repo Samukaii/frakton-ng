@@ -1,0 +1,13 @@
+<div class="gallery">
+    <fkt-input [(value)]="search" label="Search..." placeholder="Type here the icon you want"/>
+    <div class="gallery__item">
+        @for (icon of filteredIcons(); track icon) {
+            <fkt-icon-selector-item
+                [selected]="icon === value()"
+                (select)="value.set(icon)"
+                [icon]="icon"
+            />
+        }
+    </div>
+</div>
+

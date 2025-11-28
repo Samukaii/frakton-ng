@@ -16,36 +16,7 @@ type LabeledProgress = {
 @Component({
     selector: 'progress-bar-with-labels',
     imports: [FktProgressBarComponent],
-    template: `
-        <div class="example-card">
-            <div class="header">
-                <div>
-                    <h3>Labels and value formatting</h3>
-                    <p class="muted">Combine labels, inline values, and custom formatting for non-percentage units.</p>
-                </div>
-                <span class="badge">Guided</span>
-            </div>
-
-            <div class="labeled-list">
-                @for (item of items; track item.label) {
-                    <div class="labeled-item">
-                        <fkt-progress-bar
-                            [value]="item.value"
-                            [max]="item.max"
-                            [color]="item.color"
-                            [variant]="item.variant || 'default'"
-                            [shape]="item.shape || 'rounded'"
-                            [label]="item.label"
-                            [showLabel]="true"
-                            [showValue]="true"
-                            [formatValue]="item.formatter || formatPercentage"
-                        />
-                        <p class="helper">{{ item.helper }}</p>
-                    </div>
-                }
-            </div>
-        </div>
-    `,
+    templateUrl: './with-labels.component.html',
     styleUrl: './with-labels.component.scss'
 })
 export class WithLabelsComponent {

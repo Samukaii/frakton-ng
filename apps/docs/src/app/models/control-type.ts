@@ -1,2 +1,2 @@
-const controlTypes = ["text", "boolean", "select", "number", "color", 'object', 'array', 'function'] as const;
+const controlTypes = ["text", "boolean", "select", "number", "color", 'object', 'array', 'function', 'icon', 'date', 'hidden'] as const;
 export type ControlType = (typeof controlTypes)[number];

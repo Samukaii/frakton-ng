@@ -8,7 +8,9 @@ div {
 }
 
 button {
-    background-color: var(--fkt-color-neutral-100);
+    width: 100%;
+    justify-content: space-between;
+    background-color: transparent;
     padding: var(--fkt-space-xs) var(--fkt-space-md);
     color: var(--fkt-color-neutral-900);
     font-family: monospace;
@@ -24,6 +26,8 @@ button {
         max-width: 100%;
         white-space: nowrap;
         overflow-x: hidden;
+        display: flex;
+        align-items: center;
     }
 
     &:hover {

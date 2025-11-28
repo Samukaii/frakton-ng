@@ -51,14 +51,14 @@ const meta: Meta = {
 		},
 		disabled: {
 			control: 'boolean',
-			category: "Form Control",
+			category: "Attributes",
 			type: 'boolean',
 			defaultValue: 'false',
 			description: 'Disable the color picker interaction'
 		},
 		value: {
 			control: 'text',
-			category: "Form Control",
+			category: "Attributes",
 			type: 'string | null',
 			defaultValue: 'null',
 			description: 'Current color value'

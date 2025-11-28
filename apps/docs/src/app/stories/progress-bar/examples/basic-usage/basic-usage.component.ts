@@ -15,38 +15,7 @@ type BasicProgress = {
 @Component({
     selector: 'progress-bar-basic-usage',
     imports: [FktProgressBarComponent],
-    template: `
-        <div class="example-card">
-            <header class="example-card__header">
-                <div>
-                    <p class="eyebrow">Quick preview</p>
-                    <h3>Basic usage</h3>
-                    <p class="muted">Semantic colors, sizes, and variants in a simple list.</p>
-                </div>
-                <span class="pill">Realtime</span>
-            </header>
-
-            <div class="progress-list">
-                @for (item of items; track item.label) {
-                    <div class="progress-row">
-                        <div class="progress-row__meta">
-                            <span class="title">{{ item.label }}</span>
-                            <span class="subtitle">{{ item.meta }}</span>
-                        </div>
-
-                        <fkt-progress-bar
-                            [value]="item.value"
-                            [max]="item.max"
-                            [size]="item.size"
-                            [color]="item.color"
-                            [variant]="item.variant || 'default'"
-                            [showValue]="true"
-                        />
-                    </div>
-                }
-            </div>
-        </div>
-    `,
+    templateUrl: './basic-usage.component.html',
     styleUrl: './basic-usage.component.scss'
 })
 export class BasicUsageComponent {

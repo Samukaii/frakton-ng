@@ -2,6 +2,7 @@ import { Type } from "@angular/core";
 import { ArgType } from "./arg-type";
 import { DesignToken } from './design-token';
 import { FktComponentInputsAndModelNames } from 'frakton-ng/internal/types';
+import { PlaygroundPanelStyle } from '@/models/playground-panel-style';
 
 export interface Meta<Component = any> {
     title: string;
@@ -9,8 +10,7 @@ export interface Meta<Component = any> {
     component?: Type<Component>;
     description: string;
     documentation: string;
-    noPadding?: boolean;
-    customDimensions?: { width?: string; height?: string; fillContainer?: boolean };
+    panelStyle?: PlaygroundPanelStyle;
     argTypes: Record<FktComponentInputsAndModelNames<Component>, ArgType>;
     designTokens?: DesignToken[]
 }

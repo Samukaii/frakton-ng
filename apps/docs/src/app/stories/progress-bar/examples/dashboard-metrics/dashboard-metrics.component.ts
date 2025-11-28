@@ -17,43 +17,7 @@ type MetricCard = {
 @Component({
     selector: 'progress-bar-dashboard-metrics',
     imports: [FktProgressBarComponent],
-    template: `
-        <div class="metrics-card">
-            <header class="metrics-card__header">
-                <div>
-                    <p class="eyebrow">Operations overview</p>
-                    <h3>Dashboard metrics</h3>
-                    <p class="muted">Highlight KPIs with semantic colors, stripes for in-flight work, and custom hex colors.</p>
-                </div>
-                <span class="pill">Live</span>
-            </header>
-
-            <div class="metrics-grid">
-                @for (metric of metrics; track metric.title) {
-                    <div class="metric">
-                        <div class="metric__header">
-                            <div>
-                                <p class="eyebrow">{{ metric.context }}</p>
-                                <h4>{{ metric.title }}</h4>
-                            </div>
-                            <span class="metric__value">{{ metric.valueLabel }}</span>
-                        </div>
-                        <p class="metric__description">{{ metric.description }}</p>
-
-                        <fkt-progress-bar
-                            [value]="metric.value"
-                            [max]="metric.max"
-                            [color]="metric.color"
-                            [variant]="metric.variant || 'default'"
-                            [showValue]="true"
-                            [showLabel]="false"
-                            [formatValue]="metric.formatter || formatPercent"
-                        />
-                    </div>
-                }
-            </div>
-        </div>
-    `,
+    templateUrl: './dashboard-metrics.component.html',
     styleUrl: './dashboard-metrics.component.scss'
 })
 export class DashboardMetricsComponent {
@@ -78,7 +42,7 @@ export class DashboardMetricsComponent {
             valueLabel: '340 / 500 responses',
             value: 340,
             max: 500,
-            color: '#8B5CF6',
+            color: '#5410ef',
             variant: 'striped',
             formatter: this.formatResponses
         },

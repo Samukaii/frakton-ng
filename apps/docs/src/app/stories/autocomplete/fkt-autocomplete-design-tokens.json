@@ -114,7 +114,7 @@
     "component": "Options",
     "category": "Effects",
     "type": "shadow",
-    "defaultValue": "0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)"
+    "defaultValue": "0 4px 6px -1px var(--fkt-shadow-color-sm), 0 2px 4px -2px var(--fkt-shadow-color-md)"
   },
   {
     "description": "Padding for each option item in the list.",

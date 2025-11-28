@@ -1,0 +1,38 @@
+div {
+    width: 100%;
+}
+:host {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+
+button {
+    width: 100%;
+    justify-content: space-between;
+    background-color: transparent;
+    padding: var(--fkt-space-xs) var(--fkt-space-md);
+    color: var(--fkt-color-neutral-900);
+    font-family: monospace;
+    border-radius: var(--fkt-radius-md);
+    border: solid 1px var(--fkt-color-neutral-400);
+    display: flex;
+    gap: var(--fkt-space-xs);
+    cursor: pointer;
+    max-width: 100%;
+    box-sizing: border-box;
+
+    span {
+        max-width: 100%;
+        white-space: nowrap;
+        overflow-x: hidden;
+        display: flex;
+        gap: var(--fkt-space-xs);
+        align-items: center;
+    }
+
+    &:hover {
+        background-color: var(--fkt-color-neutral-200);
+    }
+}

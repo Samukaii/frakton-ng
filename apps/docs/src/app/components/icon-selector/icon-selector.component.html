@@ -1,0 +1,14 @@
+<div #anchor>
+    <button (click)="openOverlay(anchor)">
+            <span>
+                {{ preview() }}
+
+                @if (value()) {
+                    <fkt-icon [name]="$any(value())"/>
+                }
+            </span>
+
+        <fkt-icon name="chevron-down"/>
+    </button>
+</div>
+

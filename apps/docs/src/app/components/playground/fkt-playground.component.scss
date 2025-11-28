@@ -40,11 +40,7 @@
 
 .fkt-playground-component-container {
     color: var(--fkt-color-neutral-950);
-    padding: 1rem;
-
-    &.no-padding {
-        padding: 0;
-    }
+    box-sizing: border-box;
 
     .variants-container {
         display: flex;

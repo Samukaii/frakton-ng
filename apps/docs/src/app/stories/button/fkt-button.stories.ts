@@ -16,6 +16,9 @@ const meta: Meta = {
 	loadType: 'eagerly',
 	documentation,
 	designTokens: designTokens as DesignToken[],
+    panelStyle: {
+        outerWidth: '100%',
+    },
 	argTypes: {
 		loading: {
 			control: 'boolean',

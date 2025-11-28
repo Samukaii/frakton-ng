@@ -9,6 +9,10 @@ const meta: Meta = {
     description: "The FktDatePicker component provides an intuitive and accessible date selection interface. Built with Angular signals and reactive forms, it offers a clean input field with a calendar overlay for date selection.",
 	component: FktDatePickerComponent,
 	documentation,
+    panelStyle: {
+        outerWidth: '100%',
+        fillContainer: true
+    },
 	argTypes: {
 		label: {
 			control: "text",

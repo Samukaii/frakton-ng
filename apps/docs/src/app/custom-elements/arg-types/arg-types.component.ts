@@ -4,7 +4,7 @@ import { injectRouteParams } from '@/utils/inject-route-params';
 import { STORIES_MAP } from '@/stories/stories-map';
 
 @Component({
-  selector: 'fkt-arg-types',
+  selector: 'arg-types',
     imports: [],
   templateUrl: './arg-types.component.html',
   styleUrl: './arg-types.component.scss',

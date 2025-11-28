@@ -195,11 +195,12 @@
                 code:not([class*="language-"]) {
                     font-family: JetBrains Mono, Consolas, Monaco, monospace !important;
                     color: var(--fkt-color-neutral-900);
-                    background-color: var(--fkt-color-neutral-300);
+                    background-color: var(--fkt-color-contrast-opacity-10);
                     border: none;
                     border-radius: var(--fkt-radius-sm);
                     padding: var(--fkt-space-3xs);
                     font-weight: var(--fkt-font-semibold);
+                    font-size: var(--fkt-font-size-xs);
                     display: inline-block;
                     width: fit-content;
                 }
@@ -254,6 +255,59 @@
                 }
             }
         </style>
+
+        <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "WebSite",
+                "name": "Frakton NG",
+                "description": "Frakton NG — a next-generation Angular UI library built for performance, accessibility and absolute visual freedom.",
+                "url": "https://fraktonng.com/",
+                "potentialAction": {
+                    "@type": "SearchAction",
+                    "target": "https://fraktonng.com/search?q={query}",
+                    "query-input": "required name=query"
+                },
+                "hasPart": [
+                    {
+                        "@type": "SiteNavigationElement",
+                        "name": "Installation",
+                        "description": "Modern tokens, signal-native architecture, enforced accessibility and infinite visual freedom.",
+                        "url": "https://www.fraktonng.com/docs/getting-started-installation"
+                    },
+                    {
+                        "@type": "SiteNavigationElement",
+                        "name": "Overlay",
+                        "description": "The FktOverlay service provides a powerful and flexible system for creating positioned overlays in your Angular application",
+                        "url": "https://fraktonng.com/docs/overlay/features"
+                    },
+                    {
+                        "@type": "SiteNavigationElement",
+                        "name": "Color Picker",
+                        "description": "A sophisticated color picker component featuring semantic color descriptions, international localization, advanced visual",
+                        "url": "https://fraktonng.com/docs/color-picker/features"
+                    },
+                    {
+                        "@type": "SiteNavigationElement",
+                        "name": "Theming & Styling",
+                        "description": "Angular, UI Library, Components, Design System, Signals, Web Components, Typescript, Frakton NG",
+                        "url": "https://www.fraktonng.com/docs/getting-started-theming-styling"
+                    },
+                    {
+                        "@type": "SiteNavigationElement",
+                        "name": "Button",
+                        "description": "The FktButton component provides a versatile and customizable button with multiple themes, variants, and styling options",
+                        "url": "https://fraktonng.com/docs/button/features"
+                    },
+                    {
+                        "@type": "SiteNavigationElement",
+                        "name": "Input",
+                        "description": "A versatile form input component with multiple types, data transformers, and comprehensive validation support.",
+                        "url": "https://fraktonng.com/docs/input/features"
+                    }
+                ]
+            }
+        </script>
     </head>
     <body>
         <app-root></app-root>

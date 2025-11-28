@@ -1,4 +1,4 @@
-import { Component, computed, linkedSignal, model, signal } from '@angular/core';
+import { Component, computed, input, linkedSignal, model, signal } from '@angular/core';
 import { FktAutocompleteComponent, FktAutocompleteOption } from 'frakton-ng/autocomplete';
 import { FktButtonAction } from 'frakton-ng/button';
 import { FktIconComponent } from 'frakton-ng/icon';

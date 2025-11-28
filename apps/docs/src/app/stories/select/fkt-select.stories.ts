@@ -22,6 +22,10 @@ const meta: Meta = {
     description: "A dropdown selection component that provides a clean and accessible interface for choosing options. Built with Angular signals and reactive forms, it offers a styled alternative to native select elements with enhanced functionality and consistent design.",
 	component: FktSelectComponent,
     designTokens: designTokens as DesignToken[],
+    panelStyle: {
+        outerWidth: '100%',
+        fillContainer: true
+    },
 	documentation,
 	argTypes: {
 		label: {
@@ -39,7 +43,15 @@ const meta: Meta = {
 			description: 'Placeholder text displayed inside the select field'
 		},
 		options: {
-			control: "object",
+			control: "array",
+            schema: {
+                value: {
+                    type: "text",
+                },
+                label: {
+                    type: "text"
+                }
+            },
 			category: "Attributes",
 			type: "FktSelectOption[]",
 			import: "import {FktSelectOption} from 'frakton-ng/select'",

@@ -18,7 +18,7 @@ const meta: Meta = {
 			options: fontIconNames,
 			import: "import {FktIconName} from 'frakton-ng/icon'",
 			required: true,
-			description: 'The name of the icon to display'
+			description: 'The name of the icon to display',
 		}
 	}
 }
