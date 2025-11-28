@@ -2,7 +2,7 @@ import { booleanAttribute, Component, computed, input, linkedSignal, model, sign
 import { FktButtonGroupOption, FktButtonGroupShape, FktButtonGroupSize } from './fkt-button-group.types';
 import { ControlValueAccessor } from '@angular/forms';
 import { FormValueControl } from '@angular/forms/signals';
-import { provideCVA } from '../../internal/di/providers/provide-cva';
+import { provideCVA } from 'frakton-ng/internal/di';
 import { FktIconComponent } from 'frakton-ng/icon';
 
 @Component({
