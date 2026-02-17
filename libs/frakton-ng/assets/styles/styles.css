@@ -8,6 +8,7 @@
 
 :root {
 	/* Spacing */
+	--fkt-space-4xs: .125rem; /* 2px */
 	--fkt-space-3xs: .25rem; /* 4px */
 	--fkt-space-2xs: .375rem; /* 6px */
 	--fkt-space-xs: .5rem; /* 8px */

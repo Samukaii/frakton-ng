@@ -28,6 +28,8 @@ export class SchemaEditorComponent {
     protected readonly preview = computed(() => {
         const value = this.value();
 
+        console.log(value);
+
         if(Array.isArray(value)) {
             return capitalize(`${this.label()} (${value.length === 1 ? `1 item` : `${value.length} items`})`);
         }
@@ -48,6 +50,7 @@ export class SchemaEditorComponent {
                 data: {
                     value: this.value,
                     schema: this.schema,
+                    label: this.label
                 },
                 anchorElementRef: {nativeElement: anchor},
                 panelOptions: {

@@ -5,6 +5,15 @@ import documentation from './fkt-button-group.docs.md' with { loader: 'text' };
 import { Story } from '@/models/story';
 import { DesignToken } from '@/models/design-token';
 import designTokens from './fkt-button-group-design-tokens.json';
+import {
+    ButtonGroupReactiveFormsComponent
+} from '@/stories/button-group/examples/reactive-forms/button-group-reactive-forms.component';
+import {
+    ButtonGroupSignalFormsComponent
+} from '@/stories/button-group/examples/signal-forms/button-group-signal-forms.component';
+import {
+    ButtonGroupInputDrivenComponent
+} from '@/stories/button-group/examples/input-driven/button-group-input-driven.component';
 
 
 const meta: Meta<FktButtonGroupComponent> = {
@@ -13,6 +22,19 @@ const meta: Meta<FktButtonGroupComponent> = {
     designTokens: designTokens as DesignToken[],
     component: FktButtonGroupComponent,
     argTypes: {
+        accessibleLabel: {
+            control: 'text',
+            type: 'string',
+            required: true,
+            description: "PLACEHOLDER",
+            category: "Attributes"
+        },
+        invalid: {
+            control: 'boolean',
+            type: 'boolean',
+            description: "PLACEHOLDER",
+            category: "Attributes"
+        },
         options: {
             control: 'array',
             schema: {
@@ -81,6 +103,7 @@ const meta: Meta<FktButtonGroupComponent> = {
             options: fktButtonGroupSizes,
             import: "import {FktButtonGroupSize} from 'frakton-ng/button-group'"
         },
+
     },
     documentation
 }
@@ -88,6 +111,7 @@ const meta: Meta<FktButtonGroupComponent> = {
 export const BasicUsage: Story<FktButtonGroupComponent> = {
     description: "Single-select group with labeled icons and a predefined selection.",
     args: {
+        accessibleLabel: "Filters",
         options: [
             {
                 id: 'list',
@@ -105,14 +129,48 @@ export const BasicUsage: Story<FktButtonGroupComponent> = {
                 icon: 'square-3-stack-3d'
             }
         ],
-        disabled: true,
+        // disabled: false,
         value: 'list'
+    }
+}
+
+export const Multiple: Story<FktButtonGroupComponent> = {
+    description: "Single-select group with labeled icons and a predefined selection.",
+    args: {
+        accessibleLabel: "Filters",
+        options: [
+            {
+                id: 'list',
+                label: "List",
+                icon: 'list-bullet'
+            },
+            {
+                id: 'grid',
+                label: "Grid",
+                icon: 'squares-2x2'
+            },
+            {
+                id: 'cards',
+                label: "Cards",
+                icon: 'square-3-stack-3d'
+            }
+        ],
+        // disabled: false,
+        multiple: true as any,
+        value: ['list', 'cards']
+    },
+    argTypes: {
+        value: {
+            control: 'array',
+            schema: 'text'
+        }
     }
 }
 
 export const Shapes: Story<FktButtonGroupComponent> = {
     description: "Compare rounded, rectangular, and flat shapes while keeping the same options.",
     args: {
+        accessibleLabel: "Filters",
         options: [
             {
                 id: 'list',
@@ -130,7 +188,7 @@ export const Shapes: Story<FktButtonGroupComponent> = {
                 icon: 'square-3-stack-3d'
             }
         ],
-        disabled: true,
+        // disabled: false,
     },
     variants: {
         orientation: 'vertical',
@@ -160,6 +218,7 @@ export const Shapes: Story<FktButtonGroupComponent> = {
 export const Sizes: Story<FktButtonGroupComponent> = {
     description: "Demonstrates how the control scales across the available size tokens.",
     args: {
+        accessibleLabel: "Filters",
         options: [
             {
                 id: 'list',
@@ -177,7 +236,7 @@ export const Sizes: Story<FktButtonGroupComponent> = {
                 icon: 'square-3-stack-3d'
             }
         ],
-        disabled: true,
+        // disabled: false,
     },
     variants: {
         orientation: 'vertical',
@@ -219,6 +278,7 @@ export const Sizes: Story<FktButtonGroupComponent> = {
 export const OnlyLabels: Story<FktButtonGroupComponent> = {
     description: "Text-only buttons without icons for compact layouts.",
     args: {
+        accessibleLabel: "Filters",
         options: [
             {
                 id: 'list',
@@ -233,7 +293,7 @@ export const OnlyLabels: Story<FktButtonGroupComponent> = {
                 label: "Cards",
             }
         ],
-        disabled: true,
+        // disabled: false,
     },
     variants: {
         orientation: 'vertical',
@@ -264,6 +324,7 @@ export const OnlyLabels: Story<FktButtonGroupComponent> = {
 export const OnlyIcons: Story<FktButtonGroupComponent> = {
     description: "Icon-only presentation with labels hidden for minimal UI.",
     args: {
+        accessibleLabel: "Filters",
         options: [
             {
                 id: 'list',
@@ -284,7 +345,7 @@ export const OnlyIcons: Story<FktButtonGroupComponent> = {
                 hideLabel: true
             }
         ],
-        disabled: true,
+        // disabled: false,
     },
     variants: {
         orientation: 'vertical',
@@ -309,6 +370,24 @@ export const OnlyIcons: Story<FktButtonGroupComponent> = {
             },
         ]
     }
+}
+
+export const ReactiveForms: Story<ButtonGroupReactiveFormsComponent> = {
+    component: ButtonGroupReactiveFormsComponent,
+    description: "PLACEHOLDER",
+    args: {}
+}
+
+export const SignalForms: Story<ButtonGroupSignalFormsComponent> = {
+    component: ButtonGroupSignalFormsComponent,
+    description: "PLACEHOLDER",
+    args: {}
+}
+
+export const InputDriven: Story<ButtonGroupInputDrivenComponent> = {
+    component: ButtonGroupInputDrivenComponent,
+    description: "PLACEHOLDER",
+    args: {}
 }
 
 

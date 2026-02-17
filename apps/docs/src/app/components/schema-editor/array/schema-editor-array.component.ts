@@ -1,8 +1,10 @@
-import { Component, computed, input, linkedSignal, model, output } from '@angular/core';
+import { Component, computed, input, linkedSignal, model } from '@angular/core';
 import { FktTableActionFn, FktTableColumnFn, FktTableComponent } from 'frakton-ng/table';
 import { FktButtonAction } from 'frakton-ng/button';
 import { ArgTypeSchema, ArgTypeSchemaParsed } from '@/models/arg-type';
 import { parseSchema } from '@/components/schema-editor/utils/parse-schema';
+import { isObjectLiteral } from '@/utils/is-object-literal';
+import { ControlType } from '@/models/control-type';
 
 @Component({
     selector: 'fkt-schema-editor-array',
@@ -13,6 +15,7 @@ import { parseSchema } from '@/components/schema-editor/utils/parse-schema';
     styleUrl: './schema-editor-array.component.scss',
 })
 export class SchemaEditorArrayComponent {
+    label = input.required<string>();
     value = model.required<any[]>();
     schema = input<ArgTypeSchema>();
 
@@ -21,16 +24,50 @@ export class SchemaEditorArrayComponent {
     })
 
     valueWithIds = linkedSignal(() => {
-        return this.value().map((item) => ({
-            id: crypto.randomUUID(),
-            ...item
-        }))
+        const schema = this.schema();
+
+        return this.value().map((item, index) => {
+            if (isObjectLiteral(item) && isObjectLiteral(schema))
+                return {
+                    id: crypto.randomUUID(),
+                    ...item
+                }
+
+            return {
+                id: index.toString(),
+                literalValue: item
+            }
+        })
     })
 
     columnsFn = computed(() => {
         const schema = this.parsedSchema() ?? {};
 
-        const schemaList = Object.entries(schema).map(([key, value]) => ({name: key, type: value}));
+
+        let schemaList = Object.entries(schema).map(([key, value]) => ({name: key, type: value}));
+
+        if (typeof schema === 'string')
+            return (item => {
+                console.log(item);
+                return [
+                    {
+                        name: this.label(),
+                        position: this.label(),
+                        cell: {
+                            type: 'control-editor',
+                            options: {
+                                value: item['literalValue'],
+                                type: schema,
+                                name: 'asdasd',
+                                update: (value) => {
+                                    this.updateLiteralValue(item.id, value)
+                                }
+                            }
+                        }
+                    }
+                ]
+            }) as FktTableColumnFn<any>
+
 
         const fn: FktTableColumnFn<any> = (item) => schemaList.filter(schema => schema.type.hidden !== true).map(schema => {
             return {
@@ -56,7 +93,7 @@ export class SchemaEditorArrayComponent {
     })
 
     private getSchemaDefaultValue = (type: ArgTypeSchemaParsed[string]) => {
-        if(type.defaultValue) return type.defaultValue;
+        if (type.defaultValue) return type.defaultValue;
 
         switch (type.type) {
             case "number":
@@ -81,7 +118,12 @@ export class SchemaEditorArrayComponent {
     private createBlank = () => {
         const object: any = {};
 
-        const schemaList = Object.entries(this.parsedSchema() ?? {}).map(([key, value]) => ({name: key, type: value}));
+        const parsedSchema = this.parsedSchema();
+
+        if(typeof parsedSchema === 'string')
+            return this.getSchemaDefaultValue({type: parsedSchema})
+
+        const schemaList = Object.entries(parsedSchema ?? {}).map(([key, value]) => ({name: key, type: value}));
 
         schemaList.forEach(schema => {
             object[schema.name] = this.getSchemaDefaultValue(schema.type);
@@ -91,11 +133,14 @@ export class SchemaEditorArrayComponent {
     }
 
     private updateValue = (id: string, property: string, value: any) => {
+
         const values = [...this.valueWithIds()];
 
         const item = values.find(item => item.id === id);
 
-        item[property] = value;
+        if(!item || !(property in item)) return;
+
+        item[property as keyof typeof item] = value;
 
         const result = values.map(item => {
             if (item.id !== id) return item;
@@ -104,6 +149,20 @@ export class SchemaEditorArrayComponent {
         });
 
         this.value.set(result);
+    }
+
+    private updateLiteralValue = (id: string, value: any) => {
+        const values = [...this.valueWithIds()];
+
+        console.log(values, id, value)
+
+        const item = values.find(item => item.id === id);
+
+        if(!item || !('literalValue' in item)) return;
+
+        item['literalValue'] = value;
+
+        this.value.set(values.map(item => item.literalValue));
     }
 
     private removeValue = (id: string) => {

@@ -618,33 +618,63 @@ export const STORIES_MAP: StoryIndexer[] = [	{
 		id: "button-group",
 		title: "Components/Form/Button group",
 		componentName: "FktButtonGroupComponent",
-		description: `PLACEHOLDER`,
+		description: `Group related actions into toggleable buttons with support for icons, shapes, and multi-select workflows.`,
 		file: () => import("./button-group/fkt-button-group.stories"),
 		type: 'story',
-		
+		externalExamples: () => import("./button-group/examples/raw-examples").then(file => file.default),
 		stories: [
 		    {
 		        id: "basic-usage",
 		        name: "BasicUsage",
 		        componentName: null,
-		        description: `PLACEHOLDER`,
+		        description: `Single-select group with labeled icons and a predefined selection.`,
+		    },
+		    {
+		        id: "multiple",
+		        name: "Multiple",
+		        componentName: null,
+		        description: `Single-select group with labeled icons and a predefined selection.`,
 		    },
 		    {
 		        id: "shapes",
 		        name: "Shapes",
 		        componentName: null,
-		        description: `PLACEHOLDER`,
+		        description: `Compare rounded, rectangular, and flat shapes while keeping the same options.`,
+		    },
+		    {
+		        id: "sizes",
+		        name: "Sizes",
+		        componentName: null,
+		        description: `Demonstrates how the control scales across the available size tokens.`,
 		    },
 		    {
 		        id: "only-labels",
 		        name: "OnlyLabels",
 		        componentName: null,
-		        description: `PLACEHOLDER`,
+		        description: `Text-only buttons without icons for compact layouts.`,
 		    },
 		    {
 		        id: "only-icons",
 		        name: "OnlyIcons",
 		        componentName: null,
+		        description: `Icon-only presentation with labels hidden for minimal UI.`,
+		    },
+		    {
+		        id: "reactive-forms",
+		        name: "ReactiveForms",
+		        componentName: "ButtonGroupReactiveFormsComponent",
+		        description: `PLACEHOLDER`,
+		    },
+		    {
+		        id: "signal-forms",
+		        name: "SignalForms",
+		        componentName: "ButtonGroupSignalFormsComponent",
+		        description: `PLACEHOLDER`,
+		    },
+		    {
+		        id: "input-driven",
+		        name: "InputDriven",
+		        componentName: "ButtonGroupInputDrivenComponent",
 		        description: `PLACEHOLDER`,
 		    }
 	    ]

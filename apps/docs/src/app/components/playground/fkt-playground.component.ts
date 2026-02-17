@@ -20,6 +20,8 @@ import { createComponentBindings, MarkUsed } from 'frakton-ng/internal/utils';
 import { DesignTokenItem } from '@/models/design-token-item';
 import { isPlatformBrowser } from '@angular/common';
 import { FktComponentInputsAndModels } from 'frakton-ng/internal/types';
+import { deepMerge } from '@/utils/deep-merge';
+import { ArgType } from '@/models/arg-type';
 
 interface PlaygroundVariant {
     title?: string;
@@ -158,7 +160,7 @@ export class FktPlaygroundComponent {
     });
 
     protected readonly argsList = computed((): ArgItem<any>[] => {
-        const argTypes = this.storyInfoService.meta.argTypes;
+        const argTypes = this.getArgTypes();
         const args = this.storyInfoService.activeStory?.args ?? {};
 
         if (!args) return [];
@@ -183,7 +185,7 @@ export class FktPlaygroundComponent {
     })
 
     private getArgsList(args: Partial<FktComponentInputsAndModels<any>>) {
-        const argTypes = this.storyInfoService.meta.argTypes;
+        const argTypes = this.getArgTypes();
 
         return Object.entries(args).flatMap(([key, value]) => {
             const argType = argTypes?.[key];
@@ -202,5 +204,12 @@ export class FktPlaygroundComponent {
                 control: signal(value)
             }
         });
+    }
+
+    private getArgTypes() {
+        const metaArgTypes = this.storyInfoService.meta.argTypes;
+        const storyArgTypes = this.storyInfoService.activeStory.argTypes ?? {};
+
+        return deepMerge<Record<string, ArgType>>(metaArgTypes, storyArgTypes);
     }
 }

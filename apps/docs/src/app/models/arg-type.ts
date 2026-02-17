@@ -2,14 +2,14 @@ import { ControlType } from './control-type';
 
 export type ArgTypeSchemaParsed = Record<string, {
     type: ControlType;
-    schema?: ArgTypeSchemaParsed;
+    schema?: ControlType | ArgTypeSchemaParsed;
     defaultValue?: any;
     hidden?: boolean;
     options?: string[];
 }>
 
 
-export type ArgTypeSchema = Record<string, ControlType | {
+export type ArgTypeSchema = ControlType | Record<string, ControlType | {
     type: ControlType;
     schema?: ArgTypeSchema;
     defaultValue?: any;

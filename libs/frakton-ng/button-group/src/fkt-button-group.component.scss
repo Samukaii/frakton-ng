@@ -1,12 +1,16 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    gap: var(--fkt-space-xs);
+}
+
 button {
     display: flex;
     align-items: center;
-    padding: var(--fkt-space-xs) var(--fkt-space-md);
     cursor: pointer;
     background: transparent;
     border: solid 1px var(--fkt-color-neutral-400);
     transition: var(--fkt-transition-base);
-    gap: var(--fkt-space-xs);
     color: var(--fkt-color-neutral-900);
 
     &:hover {
@@ -18,12 +22,41 @@ button {
         color: var(--fkt-color-on-primary);
         border-color: var(--fkt-color-primary);
     }
+
+    &.disabled {
+        cursor: not-allowed;
+        background: var(--fkt-color-disabled);
+        opacity: 0.5;
+    }
+
+    &.disabled.selected {
+        background: var(--fkt-color-primary);
+    }
+
+    &.invalid:not(.disabled) {
+        border-bottom-color: var(--fkt-color-danger);
+        border-top-color: var(--fkt-color-danger);
+        border-right-color: var(--fkt-color-danger);
+
+        &:not(.selected) {
+            color: var(--fkt-color-danger);
+        }
+    }
 }
-:host {
+
+label {
+    font-size: var(--fkt-font-size-md);
+}
+
+.container {
     display: flex;
 
     button:not(:last-child) {
         border-right: none;
+    }
+
+    button.invalid:first-child:not(.disabled) {
+        border-left-color: var(--fkt-color-danger);
     }
 
     &.shape-rounded {
@@ -44,6 +77,66 @@ button {
 
         button:first-child {
             border-radius: var(--fkt-radius-md) 0 0 var(--fkt-radius-md);
+        }
+    }
+
+    &.size-xs {
+        button {
+            padding: var(--fkt-space-2xs) var(--fkt-space-xs);
+            font-size: var(--fkt-font-size-xs);
+            gap: var(--fkt-space-xs);
+
+            fkt-icon {
+                font-size: var(--fkt-font-size-sm);
+            }
+        }
+    }
+
+    &.size-sm {
+        button {
+            padding: var(--fkt-space-xs) var(--fkt-space-md);
+            font-size: var(--fkt-font-size-xs);
+            gap: var(--fkt-space-3xs);
+
+            fkt-icon {
+                font-size: var(--fkt-font-size-sm);
+            }
+        }
+    }
+
+    &.size-md {
+        button {
+            padding: var(--fkt-space-xs) var(--fkt-space-md);
+            font-size: var(--fkt-font-size-sm);
+            gap: var(--fkt-space-2xs);
+
+            fkt-icon {
+                font-size: var(--fkt-font-size-md);
+            }
+        }
+    }
+
+    &.size-lg {
+        button {
+            padding: var(--fkt-space-xs) var(--fkt-space-md);
+            font-size: var(--fkt-font-size-md);
+            gap: var(--fkt-space-xs);
+
+            fkt-icon {
+                font-size: var(--fkt-font-size-md);
+            }
+        }
+    }
+
+    &.size-xl {
+        button {
+            padding: var(--fkt-space-sm) var(--fkt-space-lg);
+            font-size: var(--fkt-font-size-md);
+            gap: var(--fkt-space-xs);
+
+            fkt-icon {
+                font-size: var(--fkt-font-size-md);
+            }
         }
     }
 }

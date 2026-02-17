@@ -1,10 +1,18 @@
-@for (option of options(); track option.id) {
-    <button [attr.aria-label]="option.label" (click)="toggle(option.id)" [class.selected]="option.id === value()">
-        @if (option.icon) {
-            <fkt-icon [name]="option.icon"/>
-        }
-        @if (!option.hideLabel) {
-            {{ option.label }}
-        }
-    </button>
-}
+<div [class]="classes()">
+    @for (option of options(); track option.id) {
+        <button [attr.aria-label]="option.label" (click)="toggle(option.id)"
+                [class.selected]="selectedOptions().includes(option.id)"
+                [class.disabled]="disabled()"
+                [class.invalid]="ngControl?.invalid ?? invalid()"
+                >
+            @if (option.icon) {
+                <fkt-icon [name]="option.icon"/>
+            }
+            @if (!option.hideLabel) {
+                {{ option.label }}
+            }
+        </button>
+    }
+</div>
+<!---->
+<!---->

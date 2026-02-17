@@ -1,0 +1,9 @@
+<fkt-button-group
+    accessibleLabel="Filter"
+    [field]="form.filter"
+    [options]="options"
+/>
+<fkt-field-error
+    [show]="form.filter().invalid() && form.filter().touched()"
+    [error]="form.filter().errors()[0]?.message"
+/>

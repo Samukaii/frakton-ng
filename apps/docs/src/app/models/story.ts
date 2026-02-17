@@ -1,17 +1,19 @@
 import { EnvironmentProviders, Provider, Type } from "@angular/core";
-import { FktComponentInputsAndModels } from "frakton-ng/internal/types";
+import { FktComponentInputsAndModelNames, FktComponentInputsAndModels } from "frakton-ng/internal/types";
 import { PlaygroundPanelStyle } from '@/models/playground-panel-style';
+import { ArgType } from '@/models/arg-type';
 
-export interface Story<T> {
-    component?: Type<T>,
+export interface Story<Component> {
+    component?: Type<Component>,
     description: string,
-    args: Partial<FktComponentInputsAndModels<T>>;
+    args: Partial<FktComponentInputsAndModels<Component>>;
+    argTypes?: Partial<Record<FktComponentInputsAndModelNames<Component>, Partial<ArgType>>>
     variants?: {
         orientation?: 'vertical' | 'horizontal';
         gap?: string;
         items: {
             title: string;
-            args: Partial<FktComponentInputsAndModels<T>>;
+            args: Partial<FktComponentInputsAndModels<Component>>;
         }[]
     };
     panelStyle?: PlaygroundPanelStyle;
