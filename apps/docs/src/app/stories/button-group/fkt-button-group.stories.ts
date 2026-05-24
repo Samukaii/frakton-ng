@@ -1,5 +1,5 @@
 import { Meta } from '@/models/meta';
-import { FktButtonGroupComponent, fktButtonGroupShapes, fktButtonGroupSizes } from 'frakton-ng/button-group';
+import { FktButtonGroupComponent, fktButtonGroupOrientations, fktButtonGroupShapes, fktButtonGroupSizes } from 'frakton-ng/button-group';
 //@ts-expect-error
 import documentation from './fkt-button-group.docs.md' with { loader: 'text' };
 import { Story } from '@/models/story';
@@ -26,13 +26,20 @@ const meta: Meta<FktButtonGroupComponent> = {
             control: 'text',
             type: 'string',
             required: true,
-            description: "PLACEHOLDER",
+            description: "Sets the `aria-label` on the group host, describing its purpose to screen readers — required whenever no visible label is adjacent to the control.",
             category: "Attributes"
         },
         invalid: {
             control: 'boolean',
             type: 'boolean',
-            description: "PLACEHOLDER",
+            description: "Marks the control as invalid when used without a reactive or signal form. Combined with `touched`, it activates the error border styling on the buttons.",
+            category: "Attributes"
+        },
+        errors: {
+            control: 'array',
+            type: 'readonly WithOptionalField<ValidationError>[]',
+            import: "import { ValidationError, WithOptionalField } from '@angular/forms/signals'",
+            description: "Validation errors from a reactive or signal form. The first error's `message` is forwarded to `aria-errormessage` for screen readers. Rendering the message visually is the consumer's responsibility via `fkt-field-error`.",
             category: "Attributes"
         },
         options: {
@@ -103,6 +110,15 @@ const meta: Meta<FktButtonGroupComponent> = {
             options: fktButtonGroupSizes,
             import: "import {FktButtonGroupSize} from 'frakton-ng/button-group'"
         },
+        orientation: {
+            control: 'select',
+            category: 'Attributes',
+            type: 'FktButtonGroupOrientation',
+            description: 'Controls whether buttons are laid out side by side (`horizontal`) or stacked (`vertical`). Arrow key navigation adapts automatically to the chosen axis.',
+            defaultValue: 'horizontal',
+            options: fktButtonGroupOrientations,
+            import: "import {FktButtonGroupOrientation} from 'frakton-ng/button-group'"
+        },
 
     },
     documentation
@@ -135,7 +151,7 @@ export const BasicUsage: Story<FktButtonGroupComponent> = {
 }
 
 export const Multiple: Story<FktButtonGroupComponent> = {
-    description: "Single-select group with labeled icons and a predefined selection.",
+    description: "Multi-select mode allowing several options to be active simultaneously; `value` is an array of selected ids.",
     args: {
         accessibleLabel: "Filters",
         options: [
@@ -275,6 +291,43 @@ export const Sizes: Story<FktButtonGroupComponent> = {
     }
 }
 
+export const Orientations: Story<FktButtonGroupComponent> = {
+    description: "Compares horizontal and vertical layouts. Arrow key navigation adapts automatically: left/right for horizontal, up/down for vertical.",
+    args: {
+        accessibleLabel: "Filters",
+        options: [
+            {
+                id: 'list',
+                label: "List",
+                icon: 'list-bullet'
+            },
+            {
+                id: 'grid',
+                label: "Grid",
+                icon: 'squares-2x2'
+            },
+            {
+                id: 'cards',
+                label: "Cards",
+                icon: 'square-3-stack-3d'
+            }
+        ],
+    },
+    variants: {
+        orientation: 'vertical',
+        items: [
+            {
+                title: "Horizontal",
+                args: { orientation: 'horizontal' }
+            },
+            {
+                title: "Vertical",
+                args: { orientation: 'vertical' }
+            },
+        ]
+    }
+}
+
 export const OnlyLabels: Story<FktButtonGroupComponent> = {
     description: "Text-only buttons without icons for compact layouts.",
     args: {
@@ -374,19 +427,19 @@ export const OnlyIcons: Story<FktButtonGroupComponent> = {
 
 export const ReactiveForms: Story<ButtonGroupReactiveFormsComponent> = {
     component: ButtonGroupReactiveFormsComponent,
-    description: "PLACEHOLDER",
+    description: "Integration with Angular Reactive Forms via `formControl`. Demonstrates `Validators.required`, error display tied to control status, and toggling the disabled state programmatically.",
     args: {}
 }
 
 export const SignalForms: Story<ButtonGroupSignalFormsComponent> = {
     component: ButtonGroupSignalFormsComponent,
-    description: "PLACEHOLDER",
+    description: "Integration with the signal-based `@angular/forms/signals` API via the `[field]` binding. Shows required validation, signal-driven disabled state, and reactive error messages.",
     args: {}
 }
 
 export const InputDriven: Story<ButtonGroupInputDrivenComponent> = {
     component: ButtonGroupInputDrivenComponent,
-    description: "PLACEHOLDER",
+    description: "Manual signal-driven binding using `[(value)]` and `[(touched)]` two-way models without a form abstraction. Validation and error display are handled directly in the template.",
     args: {}
 }
 
