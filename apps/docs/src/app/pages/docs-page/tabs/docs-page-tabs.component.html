@@ -1,4 +1,4 @@
-<fkt-tabs-list hideTabsWhenOnlyOne (activeTabChange)="activeTabChange.emit($event)" [activeTab]="activeTab()">
+<fkt-tabs-list renderMode="destructive" hideTabsWhenOnlyOne (activeTabChange)="activeTabChange.emit($event!)" [activeTab]="activeTab()">
     <fkt-tab [hidden]="!isStoryType()" key="features" label="Features">
         @if (!loading()) {
             <fkt-features
@@ -26,9 +26,6 @@
 
 @if (loading()) {
     <div class="loading">
-        <fkt-skeleton-container>
-        </fkt-skeleton-container>
-
         <fkt-skeleton-container>
             <fkt-skeleton height="40px" width="200px" marginBottom="1rem"/>
             <fkt-skeleton height="20px" width="80%"/>

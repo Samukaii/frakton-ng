@@ -9,11 +9,13 @@ import { NgTemplateOutlet } from '@angular/common';
   templateUrl: './fkt-tabs-renderer.component.html',
   styleUrl: './fkt-tabs-renderer.component.scss',
     host: {
-      '[style.display]': 'hidden() ? "none" : "block"'
+      '[style.display]': 'hidden() ? "none" : "block"',
+      'role': 'tabpanel',
+      '[attr.aria-labelledby]': '"fkt-tab-" + tabKey()'
     }
 })
 export class FktTabsRendererComponent {
     template = input.required<TemplateRef<any>>();
     hidden = input(false);
-    showMode = input<'lazy' | 'eager'>('eager');
+    tabKey = input.required<string>();
 }
