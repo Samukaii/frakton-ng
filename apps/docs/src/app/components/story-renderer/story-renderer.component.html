@@ -1,6 +1,4 @@
-<h3 [id]="storyId()">{{storyName() | pascalToHumanReadable}}</h3>
-
-<p>{{activeStory()?.description}}</p>
+<fkt-markdown [data]="activeStory()?.description ?? ''"/>
 
 <ng-template #playground>
     <fkt-playground/>
@@ -8,6 +6,5 @@
 
 @if (injector()) {
     <ng-container [ngTemplateOutlet]="playground" [ngTemplateOutletInjector]="injector()">
-
     </ng-container>
 }

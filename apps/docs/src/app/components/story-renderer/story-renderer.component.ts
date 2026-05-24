@@ -1,6 +1,5 @@
 import { Component, computed, inject, Injector, input } from '@angular/core';
 import { FktPlaygroundComponent } from '../playground/fkt-playground.component';
-import { PascalToHumanReadablePipe } from '@/pipes/pascal-to-human-readable.pipe';
 import { NgTemplateOutlet } from '@angular/common';
 import { StoryLoaderService } from '@/core/services/story-loader.service';
 import { STORY_INDEXER_TOKEN } from '@/tokens/story-indexer.token';
@@ -10,26 +9,22 @@ import { StoryResolved } from '@/models/story.resolved';
 import { ACTIVE_STORY_TOKEN } from '@/tokens/active-story.token';
 import { STORY_META_TOKEN } from '@/tokens/story-meta.token';
 import { ALL_STORIES_TOKEN } from '@/tokens/all-stories.token';
-import { pascalToKebab } from '@/utils/pascal-to-kebab';
+import { MarkdownWrapperComponent } from '@/components/markdown/markdown-wrapper.component';
 
 @Component({
-	selector: 'fkt-story-renderer',
+    selector: 'fkt-story-renderer',
     imports: [
         FktPlaygroundComponent,
-        PascalToHumanReadablePipe,
-        NgTemplateOutlet
+        NgTemplateOutlet,
+        MarkdownWrapperComponent,
     ],
-	templateUrl: './story-renderer.component.html',
-	styleUrl: './story-renderer.component.scss'
+    templateUrl: './story-renderer.component.html',
+    styleUrl: './story-renderer.component.scss',
 })
 export class StoryRendererComponent {
     storyName = input.required<string>();
-    indexer = input.required<StoryIndexer>()
-    storyResolved = input.required<StoryResolved>()
-
-    storyId = computed(() => {
-        return pascalToKebab(this.storyName());
-    })
+    indexer = input.required<StoryIndexer>();
+    storyResolved = input.required<StoryResolved>();
 
     private readonly loader = inject(StoryLoaderService);
 
@@ -45,7 +40,7 @@ export class StoryRendererComponent {
         const resolved = this.storyResolved();
         const activeStory = this.activeStory();
 
-        if(!activeStory || !indexer) return null;
+        if (!activeStory || !indexer) return null;
 
         return Injector.create({
             providers: [
@@ -67,12 +62,10 @@ export class StoryRendererComponent {
                 },
                 {
                     provide: ACTIVE_STORY_TOKEN,
-                    useValue: activeStory
+                    useValue: activeStory,
                 },
-                StoryInfoService
-            ]
-        })
-
-    })
-    protected readonly pascalToKebab = pascalToKebab;
+                StoryInfoService,
+            ],
+        });
+    });
 }
