@@ -1,9 +1,9 @@
 import { FktColor, FktLabelColor } from 'frakton-ng/core';
 import { FktIconName } from 'frakton-ng/icon';
 
-export const fktButtonShapes = ['rounded', 'rect'];
-export const fktButtonThemes = ['raised', 'stroked', 'basic'];
-export const fktButtonIconPosition = ['left', 'right'];
+export const fktButtonShapes = ['rounded', 'rect'] as const;
+export const fktButtonThemes = ['raised', 'stroked', 'basic'] as const;
+export const fktButtonIconPosition = ['left', 'right'] as const;
 
 export type FktButtonShape = typeof fktButtonShapes[number];
 export type FktButtonTheme = typeof fktButtonThemes[number];

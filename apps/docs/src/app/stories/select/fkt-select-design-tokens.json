@@ -99,6 +99,15 @@
     "defaultValue": "1rem"
   },
   {
+    "description": "Font size for select options",
+    "name": "--fkt-select-options-font-size",
+    "reference": "--fkt-font-size-md",
+    "component": "Options",
+    "category": "Font",
+    "type": "size",
+    "defaultValue": "1rem"
+  },
+  {
     "description": "Background color for the select options overlay.",
     "name": "--fkt-select-options-background-color",
     "reference": "--fkt-color-modal-background",
