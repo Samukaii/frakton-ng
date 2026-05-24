@@ -5,7 +5,7 @@
     @for (schema of schemaList(); track schema.name) {
         <fkt-control-type-editor-cell
             [showLabel]="true"
-            [value]="value()?.[schema.name]"
+            [value]="value()[schema.name]"
             [schema]="schema.type.schema"
             [options]="schema.type.options"
             [type]="schema.type.type"

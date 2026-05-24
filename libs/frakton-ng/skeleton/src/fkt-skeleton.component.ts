@@ -13,6 +13,8 @@ import { FktSkeletonAnimation, FktSkeletonType } from './fkt-skeleton.types';
 		'[style.height]': 'computedHeight()',
 		'[style.min-height]': 'computedHeight()',
 		'[style.max-height]': 'computedHeight()',
+		'[style.margin-bottom]': 'marginBottom()',
+		'[style.margin-top]': 'marginTop()',
 		'[style.border-radius]': 'computedBorderRadius()',
 		'[style.aspect-ratio]': 'aspectRatio() || null',
 		'[class]': 'computedClasses()',
@@ -21,6 +23,8 @@ import { FktSkeletonAnimation, FktSkeletonType } from './fkt-skeleton.types';
 })
 export class FktSkeletonComponent {
 	width = input<string>('100%');
+	marginBottom = input<string>('0px');
+	marginTop = input<string>('0px');
 	height = input<string>();
 	type = input<FktSkeletonType>('rect');
 	animation = input<FktSkeletonAnimation>('shimmer');

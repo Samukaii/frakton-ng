@@ -1,0 +1,71 @@
+<div class="demo">
+    <div class="demo__header">
+        <h3 class="demo__title">Lazy <fkt-tag color="info" text="default" class="demo__badge"></fkt-tag></h3>
+        <p class="demo__hint">Increment the counter, switch tabs, come back — count is preserved after first visit.</p>
+    </div>
+    <fkt-tabs-list renderMode="lazy">
+        <fkt-tab key="a" label="Tab A">
+            <ng-template fktTabLazy>
+                <fkt-tab-counter />
+            </ng-template>
+        </fkt-tab>
+        <fkt-tab key="b" label="Tab B">
+            <ng-template fktTabLazy>
+                <fkt-tab-counter />
+            </ng-template>
+        </fkt-tab>
+        <fkt-tab key="c" label="Tab C">
+            <ng-template fktTabLazy>
+                <fkt-tab-counter />
+            </ng-template>
+        </fkt-tab>
+    </fkt-tabs-list>
+</div>
+
+<div class="demo">
+    <div class="demo__header">
+        <h3 class="demo__title">Eager</h3>
+        <p class="demo__hint">All counters are rendered upfront. Count is always preserved regardless of visit order.</p>
+    </div>
+    <fkt-tabs-list renderMode="eager">
+        <fkt-tab key="a" label="Tab A">
+            <ng-template fktTabLazy>
+                <fkt-tab-counter />
+            </ng-template>
+        </fkt-tab>
+        <fkt-tab key="b" label="Tab B">
+            <ng-template fktTabLazy>
+                <fkt-tab-counter />
+            </ng-template>
+        </fkt-tab>
+        <fkt-tab key="c" label="Tab C">
+            <ng-template fktTabLazy>
+                <fkt-tab-counter />
+            </ng-template>
+        </fkt-tab>
+    </fkt-tabs-list>
+</div>
+
+<div class="demo">
+    <div class="demo__header">
+        <h3 class="demo__title">Destructive</h3>
+        <p class="demo__hint">Increment the counter, switch tabs, come back — count resets because the component is destroyed.</p>
+    </div>
+    <fkt-tabs-list renderMode="destructive">
+        <fkt-tab key="a" label="Tab A">
+            <ng-template fktTabLazy>
+                <fkt-tab-counter />
+            </ng-template>
+        </fkt-tab>
+        <fkt-tab key="b" label="Tab B">
+            <ng-template fktTabLazy>
+                <fkt-tab-counter />
+            </ng-template>
+        </fkt-tab>
+        <fkt-tab key="c" label="Tab C">
+            <ng-template fktTabLazy>
+                <fkt-tab-counter />
+            </ng-template>
+        </fkt-tab>
+    </fkt-tabs-list>
+</div>

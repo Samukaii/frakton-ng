@@ -1,160 +1,130 @@
-import { Component, computed, DOCUMENT, effect, inject, input, PLATFORM_ID, signal } from '@angular/core';
-import { isPlatformBrowser, NgTemplateOutlet } from '@angular/common';
+import {
+    Component,
+    computed,
+    DOCUMENT,
+    effect,
+    inject,
+    PLATFORM_ID,
+    signal,
+} from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { TableOfContentsService } from '@/core/services/table-of-contents.service';
+import { MarkUsed } from 'frakton-ng/internal/utils';
+import { CallPipe } from 'frakton-ng/internal/pipes';
+import { IncludesPipe } from '@/pipes/includes.pipe';
 
 export interface TocItem {
-	id: string;
-	text: string;
-	level: number;
-	children: TocItem[];
+    id: string;
+    text: string;
+    level: number;
+    children: TocItem[];
 }
 
 @Component({
-	selector: 'fkt-table-of-contents',
-	imports: [NgTemplateOutlet],
-	templateUrl: './table-of-contents.component.html',
-	styleUrl: './table-of-contents.component.scss',
+    selector: 'fkt-table-of-contents',
+    imports: [CallPipe, IncludesPipe],
+    templateUrl: './table-of-contents.component.html',
+    styleUrl: './table-of-contents.component.scss',
 })
 export class TableOfContentsComponent {
-	excludedContainerSelector = input<string>();
     private readonly document = inject(DOCUMENT);
     private readonly platform = inject(PLATFORM_ID);
+    protected readonly service = inject(TableOfContentsService);
 
-	protected readonly tocItems = signal<TocItem[]>([]);
-	protected readonly activeIds = signal<string[]>([]);
-	protected readonly isVisible = signal(false);
+    protected readonly tocItems = computed<TocItem[]>(() => {
+        return this.buildFromSections(this.service.sections());
+    });
+    protected readonly activeIds = signal<string[]>([]);
+    protected readonly hasItems = computed(() => this.tocItems().length > 0);
 
-	protected readonly hasItems = computed(() => this.tocItems().length > 0);
+    @MarkUsed()
+    protected readonly watchIntersection = effect((onCleanup) => {
+        const sections = this.service.sections();
 
-	public generate() {
-		this.generateTableOfContents();
-		this.setupIntersectionObserver();
-	}
+        this.currentObserver?.disconnect();
+        this.currentObserver = null;
 
-	private generateTableOfContents() {
-		const headings = this.getHeadings();
+        setTimeout(() => {
+            this.setupIntersectionObserver(sections);
+        }, 500);
 
-		const items: TocItem[] = [];
-		const stack: TocItem[] = [];
+        onCleanup(() => {
+            this.currentObserver?.disconnect();
+            this.currentObserver = null;
+        });
+    });
 
-		headings.forEach((heading, index) => {
-			const level = parseInt(heading.tagName.charAt(1));
-			const text = heading.textContent?.trim() || '';
-			const id = heading.id || this.generateId(text, index);
+    private currentObserver: IntersectionObserver | null = null;
 
-			if (!heading.id) {
-				heading.id = id;
-			}
+    private buildFromSections(
+        sections: { id: string; text: string; level: number }[]
+    ) {
+        const items: TocItem[] = [];
+        const stack: TocItem[] = [];
 
-			const item: TocItem = {
-				id,
-				text,
-				level,
-				children: []
-			};
+        sections.forEach((section) => {
+            const item: TocItem = { ...section, children: [] };
 
-			while (stack.length > 0 && stack[stack.length - 1].level >= level) {
-				stack.pop();
-			}
+            while (
+                stack.length > 0 &&
+                stack[stack.length - 1].level >= section.level
+            ) {
+                stack.pop();
+            }
 
-			if (stack.length === 0) {
-				items.push(item);
-			} else {
-				stack[stack.length - 1].children.push(item);
-			}
+            if (stack.length === 0) {
+                items.push(item);
+            } else {
+                stack[stack.length - 1].children.push(item);
+            }
 
-			stack.push(item);
-		});
+            stack.push(item);
+        });
 
-		this.tocItems.set(items);
-	}
+        return items;
+    }
 
-	private getHeadings() {
-		const contentElement = this.document.querySelector('app-docs-page');
-		if (!contentElement) {
-			return [];
-		}
+    private setupIntersectionObserver(sections: { id: string }[]) {
+        if (!isPlatformBrowser(this.platform)) return;
 
-		const headings = Array.from(contentElement.querySelectorAll('h2, h3, h4, h5, h6'));
+        const contentElement = this.document.querySelector('app-home-layout');
+        if (!contentElement) return;
 
-		return headings.filter(heading => {
-			const excludedContainer = this.excludedContainerSelector();
+        const headings = sections
+            .map((section) => this.document.getElementById(section.id))
+            .filter((element): element is HTMLElement => element !== null);
 
-			if (!excludedContainer) return true;
+        const visibleEntries = new Set<string>();
 
-			return !heading.closest(excludedContainer)
-		});
-	}
+        this.currentObserver = new IntersectionObserver(
+            (entries) => {
+                entries
+                    .filter((entry) => entry.isIntersecting)
+                    .forEach((entry) => visibleEntries.add(entry.target.id));
+                entries
+                    .filter((entry) => !entry.isIntersecting)
+                    .forEach((entry) => visibleEntries.delete(entry.target.id));
 
-	private generateId(text: string, index: number): string {
-		const slug = text
-			.toLowerCase()
-			.replace(/[^\w\s-]/g, '')
-			.replace(/\s+/g, '-')
-			.trim();
-		return slug || `heading-${index}`;
-	}
+                if (visibleEntries.size > 0)
+                    this.activeIds.set([Array.from(visibleEntries)[0]]);
+            },
+            {
+                root: contentElement,
+                rootMargin: '-40% 0px -40% 0px',
+                threshold: 0,
+            }
+        );
 
-	private setupIntersectionObserver() {
-        if(!isPlatformBrowser(this.platform)) return;
+        headings.forEach((heading) => this.currentObserver?.observe(heading));
+    }
 
-		const contentElement = this.document.querySelector('app-home-layout');
+    protected scrollToHeading(id: string) {
+        const element = this.document.getElementById(id);
+        if (!element) return;
+        element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
 
-		const headings = this.getHeadings();
-
-		if (!contentElement) return;
-
-		if (headings.length === 0) {
-			this.isVisible.set(false);
-			return;
-		}
-
-		this.isVisible.set(true);
-
-		let visibleEntries = new Set<string>();
-
-		const observer = new IntersectionObserver(
-			(entries) => {
-				const visibleHeadings = entries
-					.filter(entry => entry.isIntersecting)
-					.map(entry => entry.target.id);
-
-				const invisibleHeadings = entries
-					.filter(entry => !entry.isIntersecting)
-					.map(entry => entry.target.id);
-
-
-				visibleHeadings.forEach(heading => visibleEntries.add(heading));
-				invisibleHeadings.forEach(heading => visibleEntries.delete(heading));
-
-				if (visibleEntries.size > 0) {
-					this.activeIds.set([Array.from(visibleEntries)[0]]);
-				}
-			},
-			{
-				root: contentElement,
-				rootMargin: '-40% 0px -40% 0px',
-				threshold: 0
-			}
-		);
-
-		headings.forEach(heading => observer.observe(heading));
-	}
-
-	protected scrollToHeading(id: string) {
-		const element = this.document.getElementById(id);
-		if (!element) return
-
-		element.scrollIntoView({
-			behavior: 'smooth',
-			block: 'center'
-		});
-	}
-
-	protected isActive(id: string): boolean {
-		return this.activeIds().includes(id);
-	}
-
-	protected hasChildren(item: TocItem): boolean {
-		return item.children.length > 0;
-	}
+    protected hasChildren(item: TocItem): boolean {
+        return item.children.length > 0;
+    }
 }

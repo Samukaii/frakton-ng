@@ -2,6 +2,7 @@
 	[class.invalid]="invalid() && touched()"
 	[class.disabled]="disabled()">
 	<input
+		#checkboxInput
 		type="checkbox"
 		[disabled]="disabled()"
 		[checked]="checked()"
@@ -10,5 +11,5 @@
 		[attr.aria-errormessage]="errors()[0]?.message"
 		(change)="onChange($event)"
 	/>
-	<span >{{ label() }}</span>
+	<span>{{ label() }}</span>
 </label>
