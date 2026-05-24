@@ -1,16 +1,17 @@
 import { Component, inject } from '@angular/core';
-import { FktButtonGroupComponent, FktButtonGroupOption } from 'frakton-ng/button-group';
+import {
+    FktButtonGroupComponent,
+    FktButtonGroupOption,
+} from 'frakton-ng/button-group';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FktButtonComponent } from 'frakton-ng/button';
-import { FktFieldErrorComponent } from 'frakton-ng/field-error';
 
 @Component({
     selector: 'fkt-button-group-reactive-forms',
     imports: [
         FktButtonGroupComponent,
         ReactiveFormsModule,
-        FktButtonComponent,
-        FktFieldErrorComponent
+        FktButtonComponent
     ],
     templateUrl: './button-group-reactive-forms.component.html',
     styleUrl: './button-group-reactive-forms.component.scss',
