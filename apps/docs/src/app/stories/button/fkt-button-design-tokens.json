@@ -56,12 +56,20 @@
     "defaultValue": "600"
   },
   {
-    "description": "Font weight for icon-only buttons.",
+    "description": "Font size for icon-only buttons.",
     "name": "--fkt-button-icon-font-size",
     "reference": "--fkt-font-size-xl",
     "category": "Typography",
     "type": "size",
     "defaultValue": "1.25rem"
+  },
+  {
+    "description": "Font size for the button.",
+    "name": "--fkt-button-font-size",
+    "reference": "--fkt-font-size-md",
+    "category": "Typography",
+    "type": "size",
+    "defaultValue": "1rem"
   },
   {
     "description": "Border width for button.",

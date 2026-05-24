@@ -63,13 +63,22 @@ Font weight for icon-only buttons.
 $icon-font-weight: var(--fkt-button-icon-font-weight, var(--fkt-font-semibold));
 
 /*
-Font weight for icon-only buttons.
+Font size for icon-only buttons.
 @name --fkt-button-icon-font-size
 @reference --fkt-font-size-xl
 @category Typography
 @type size
 */
 $icon-font-size: var(--fkt-button-icon-font-size, var(--fkt-font-size-xl));
+
+/*
+Font size for the button.
+@name --fkt-button-font-size
+@reference --fkt-font-size-md
+@category Typography
+@type size
+*/
+$font-size: var(--fkt-button-font-size, var(--fkt-font-size-md));
 
 /*
 Border width for button.
@@ -365,7 +374,7 @@ $accent-translucent-color: var(--fkt-button-accent-translucent-color, var(--fkt-
 
 p {
 	margin: 0;
-	font-size: var(--fkt-font-size-md);
+	font-size: $font-size;
 }
 
 
