@@ -9,7 +9,7 @@ import {
     linkedSignal,
     resource,
     signal,
-    untracked
+    untracked,
 } from '@angular/core';
 import { STORIES_MAP } from '@/stories/stories-map';
 import { MarkUsed } from 'frakton-ng/internal/utils';
@@ -21,14 +21,11 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Router } from '@angular/router';
 import { DocsPageTabsComponent } from '@/pages/docs-page/tabs/docs-page-tabs.component';
 import { Meta, Title } from '@angular/platform-browser';
-import { ArgTypesComponent } from '@/custom-elements/arg-types/arg-types.component';
-
+import { pascalToHumanReadable } from '@/utils/pascal-to-human-readable';
 
 @Component({
     selector: 'app-docs-page',
-    imports: [
-        DocsPageTabsComponent,
-    ],
+    imports: [DocsPageTabsComponent],
     templateUrl: './docs-page.component.html',
     styleUrl: './docs-page.component.scss',
 })
@@ -44,15 +41,15 @@ export class DocsPageComponent {
     private readonly document = inject(DOCUMENT);
     private readonly tableOfContentsService = inject(TableOfContentsService);
     private readonly destroyRef = inject(DestroyRef);
-    private readonly titleService = inject(Title)
-    private readonly metaService = inject(Meta)
+    private readonly titleService = inject(Title);
+    private readonly metaService = inject(Meta);
     protected readonly copied = signal<boolean>(false);
 
     protected activeTab = linkedSignal(() => {
         const tab = this.tab();
         const docType = this.currentStoryData.value()?.meta.type;
 
-        if (docType === 'doc') return 'api-reference'
+        if (docType === 'doc') return 'api-reference';
 
         return tab === 'api-reference' ? 'api-reference' : 'features';
     });
@@ -62,22 +59,25 @@ export class DocsPageComponent {
         const storyData = this.currentStoryData.value();
 
         const title = storyData?.meta.title.split('/').at(-1);
-        const tab = this.tab() === 'features' ? 'Features' : "API";
+        const tab = this.tab() === 'features' ? 'Features' : 'API';
 
         if (!storyData || !title || title.toLowerCase() === 'installation') {
             this.setMetaTags({
-                title: "Frakton NG • A next-generation Angular UI Library",
-                description: "Modern tokens, signal-native architecture, enforced accessibility and infinite visual freedom."
-            })
+                title: 'Frakton NG • A next-generation Angular UI Library',
+                description:
+                    'Modern tokens, signal-native architecture, enforced accessibility and infinite visual freedom.',
+            });
 
             return;
         }
 
         this.setMetaTags({
             title: `${title} - ${tab} | Frakton NG`,
-            description: storyData.meta.description?.substring(0, 120) ?? "Modern tokens, signal-native architecture, enforced accessibility and infinite visual freedom."
-        })
-    })
+            description:
+                storyData.meta.description?.substring(0, 120) ??
+                'Modern tokens, signal-native architecture, enforced accessibility and infinite visual freedom.',
+        });
+    });
 
     private lastSub: Subscription | null = null;
 
@@ -89,80 +89,109 @@ export class DocsPageComponent {
 
         this.lastSub?.unsubscribe();
 
-        this.lastSub = this.activeRoute().fragment.pipe(startWith(this.activeRoute().snapshot.fragment), takeUntilDestroyed(this.destroyRef)).subscribe((fragment) => {
-            if (!fragment) return;
+        this.lastSub = this.activeRoute()
+            .fragment.pipe(
+                startWith(this.activeRoute().snapshot.fragment),
+                takeUntilDestroyed(this.destroyRef)
+            )
+            .subscribe((fragment) => {
+                if (!fragment) return;
 
-            setTimeout(() => {
-                this.document.getElementById(fragment)?.scrollIntoView({
-                    behavior: 'smooth',
-                    block: "center"
-                });
-            }, 100)
-        })
-    })
-
+                setTimeout(() => {
+                    this.document.getElementById(fragment)?.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'center',
+                    });
+                }, 100);
+            });
+    });
 
     @MarkUsed()
     protected readonly injectOnLoad = effect(() => {
-        this.activeTab();
+        const tab = this.activeTab();
+        const indexer = this.currentIndexer();
         this.docs();
 
         untracked(() => {
-            setTimeout(() => {
-                this.tableOfContentsService.generate();
-            })
-        })
-    })
+            this.tableOfContentsService.setStoryId(indexer?.id ?? '');
+            this.tableOfContentsService.setSections(
+                this.getDocSections(tab, indexer)
+            );
+        });
+    });
+
+    private getDocSections(
+        tab: string,
+        indexer: ReturnType<typeof this.currentIndexer>
+    ): { id: string; text: string; level: number }[] {
+        if (!indexer) return [];
+
+        if (tab === 'api-reference') return indexer.docSections ?? [];
+
+        return [
+            {
+                id: indexer.id,
+                text: indexer.title.split('/').at(-1) ?? '',
+                level: 1,
+            },
+            ...(indexer.stories ?? []).map((story) => {
+                return {
+                    id: story.id,
+                    text: pascalToHumanReadable(story.name),
+                    level: 2,
+                };
+            }),
+        ];
+    }
 
     protected readonly currentIndexer = computed(() => {
         const docId = this.docId();
 
-        const found = this.stories.find(story => {
-            return story.id === docId
+        const found = this.stories.find((story) => {
+            return story.id === docId;
         });
 
         return found ?? null;
-    })
+    });
 
     protected readonly currentStoryData = resource({
         defaultValue: null,
-        params: () => ({indexer: this.currentIndexer(), tab: this.tab()}),
-        loader: async ({params}) => {
+        params: () => ({ indexer: this.currentIndexer(), tab: this.tab() }),
+        loader: async ({ params }) => {
             const indexer = params.indexer;
 
-            if (!indexer)
-                return null;
+            if (!indexer) return null;
 
             return this.storyLoader.loadData(indexer);
-        }
-    })
+        },
+    });
 
-    private setMetaTags(params: {title: string; description: string}) {
+    private setMetaTags(params: { title: string; description: string }) {
         this.titleService.setTitle(params.title);
         this.metaService.updateTag({
-            property: "og:title",
+            property: 'og:title',
             content: params.title,
-        })
+        });
 
         this.metaService.updateTag({
-            name: "twitter:title",
+            name: 'twitter:title',
             content: params.title,
-        })
+        });
 
         this.metaService.updateTag({
-            name: "description",
+            name: 'description',
             content: params.description,
-        })
+        });
 
         this.metaService.updateTag({
-            property: "og:description",
+            property: 'og:description',
             content: params.description,
-        })
+        });
 
         this.metaService.updateTag({
-            name: "twitter:description",
+            name: 'twitter:description',
             content: params.description,
-        })
+        });
     }
 
     protected readonly docs = computed(() => {
