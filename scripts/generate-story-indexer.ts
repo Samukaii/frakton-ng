@@ -1,4 +1,4 @@
-import { StoryFileScrapper } from './utils/story-file-scrapper';
+import { StoryFileScrapper, getMdTitles } from './utils/story-file-scrapper';
 import path from 'path';
 import fs from 'fs';
 import { kebabToCamel } from './utils/kebab-to-camel';
@@ -23,21 +23,29 @@ const getStoryStrings = (scrapper: StoryFileScrapper, file: string) => {
 
 	const externalExamplesSnippet = exists ? `externalExamples: () => import("./${examplesFolder}").then(file => file.default),` : '';
 
+	const docsFile = file.replace('.stories.ts', '.docs.md');
+	const docSections = fs.existsSync(docsFile) ? getMdTitles(fs.readFileSync(docsFile, 'utf8')) : [];
+	const docSectionsSnippet = docSections.length > 0
+		? `docSections: [${docSections.map(s => `\n\t\t{ id: ${JSON.stringify(s.slug)}, text: ${JSON.stringify(s.text)}, level: ${s.level} }`).join(',')}
+\t],`
+		: '';
+
 	let object = `\
-\{
+{
 	id: "${obj.id}",
 	title: "${obj.title}",
 	componentName: "${obj.componentName}",
-	description: \`${obj.description}\`,
+	description: \`${obj.description?.replaceAll("`", '\\`')}\`,
 	file: () => import("./${relativePath.replace('.ts', '')}"),
 	type: 'story',
 	${externalExamplesSnippet}
+	${docSectionsSnippet}
 	stories: [${storyFile.sections.map(story => `
 	    {
 	        id: "${story.id}",
 	        name: "${story.name}",
 	        componentName: ${story.componentName ? `"${story.componentName}"` : "null"},
-	        description: \`${story.description}\`,
+	        description:  \`${story.description.replaceAll("`", '\\`')}\`,
 	    }`)}
     ]
 },`
@@ -49,20 +57,21 @@ const getStoryStrings = (scrapper: StoryFileScrapper, file: string) => {
 
 		importStatement = `import * as ${varName} from "./${relativePath.replace('.ts', '')}"`
 		object = `\
-\{
+{
 	id: "${obj.id}",
 	title: "${obj.title}",
 	componentName: "${obj.componentName}",
-	description: "${obj.description}",
+	description: \`${obj.description?.replaceAll("`", '\\`')}\`,
 	file: async () => ${varName}, // Imported eagerly for instant loading
 	type: 'story',
 	${externalExamplesSnippet}
+	${docSectionsSnippet}
     stories: [${storyFile.sections.map(story => `
 	    {
 	        id: "${story.id}",
 	        name: "${story.name}",
 	        componentName: ${story.componentName ? `"${story.componentName}"` : "null"},
-	        description: "${story.description}",
+	        description: \`${story.description.replaceAll("`", '\\`')}\`,
 	    }`)}
     ]
 },`
@@ -84,6 +93,11 @@ export const getMdStrings = (scrapper: StoryFileScrapper, file: string) => {
 
 	const {title, id, relativePath, loadType} = result.meta;
 
+	const docSectionsSnippet = result.sections.length > 0
+		? `docSections: [${result.sections.map(s => `\n\t\t{ id: ${JSON.stringify(s.id)}, text: ${JSON.stringify(s.name)}, level: ${s.level ?? 2} }`).join(',')}
+\t],`
+		: '';
+
 	let object = `\
 {
 	id: "${id}",
@@ -100,14 +114,8 @@ export const getMdStrings = (scrapper: StoryFileScrapper, file: string) => {
 		}
 	},
 	type: 'doc',
-    stories: [${result.sections.map(story => `
-	    {
-	        id: "${story.id}",
-	        name: "${story.name}",
-	        componentName: ${story.componentName ? `"${story.componentName}"` : "null"},
-	        description: \`${story.description}\`,
-	    }`)}
-    ]
+	${docSectionsSnippet}
+	stories: []
 },`;
 
 	let importStatement: string | null = null;
@@ -126,14 +134,8 @@ export const getMdStrings = (scrapper: StoryFileScrapper, file: string) => {
 		}
 	}),
 	type: 'doc',
-    stories: [${result.sections.map(story => `
-	    {
-	        id: "${story.id}",
-	        name: "${story.name}",
-	        componentName: ${story.componentName ? `"${story.componentName}"` : "null"},
-	        description: \`${story.description}\`,
-	    }`)}
-    ]
+	${docSectionsSnippet}
+	stories: []
 },`;
 	}
 

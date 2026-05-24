@@ -12,6 +12,7 @@ export interface StoryIndexedMeta {
 export interface StoryIndexedSection {
     id: string;
     name: string;
+    level?: number;
     componentName?: string;
     description: string;
 }

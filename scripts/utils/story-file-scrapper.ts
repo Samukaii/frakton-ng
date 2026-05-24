@@ -5,7 +5,13 @@ import { pascalToKebab } from './pascal-to-kebab';
 import fs from 'fs';
 import { StoryIndexedInfo, StoryIndexedSection } from '../models/story-indexed-info';
 
-const getMdTitles = (content: string) => {
+const stripInlineMarkdown = (text: string) => text
+    .replace(/\*\*(.*?)\*\*/g, '$1')
+    .replace(/\*(.*?)\*/g, '$1')
+    .replace(/`(.*?)`/g, '$1')
+    .replace(/~~(.*?)~~/g, '$1');
+
+export const getMdTitles = (content: string) => {
     const headingRegex = /^(#{1,3})\s+(.*)$/gm;
 
     const headings: {level: number; text: string; slug: string}[] = [];
@@ -13,8 +19,9 @@ const getMdTitles = (content: string) => {
 
     while ((match = headingRegex.exec(content))) {
         const level = match[1].length;
-        const text = match[2];
-        const slug = text
+        const rawText = match[2];
+        const text = stripInlineMarkdown(rawText);
+        const slug = rawText
             .toLowerCase()
             .replace(/[^\w\s-]/g, '')
             .replace(/\s+/g, '-');
@@ -68,6 +75,7 @@ const scrapMdFile = (file: string): StoryIndexedInfo | null => {
             return {
                 name: section.text,
                 id: section.slug,
+                level: section.level,
                 description: ""
             }
         })
@@ -142,8 +150,8 @@ export class StoryFileScrapper {
             if (!Node.isObjectLiteralExpression(initializer))
                 return [];
 
-            const description = this.getStringProperty(initializer, 'description')!;
-            const componentName = this.getStringProperty(initializer, 'component')!;
+            const description = this.getStringProperty(initializer, 'description') ?? '';
+            const componentName = this.getStringProperty(initializer, 'component') ?? '';
 
             return {
                 id: pascalToKebab(name),
@@ -185,7 +193,7 @@ export class StoryFileScrapper {
             id,
             componentName,
             title: title,
-            type: 'story' as 'story',
+            type: 'story' as const,
             lastModified,
             relativePath,
             description,
