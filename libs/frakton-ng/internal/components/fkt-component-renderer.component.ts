@@ -1,6 +1,6 @@
 import { Component, effect, inject, input, Type, ViewContainerRef } from '@angular/core';
-import { Generic } from '../types/generic';
 import { createComponentBindings, MarkUsed } from 'frakton-ng/internal/utils';
+import { Generic } from 'frakton-ng/internal/types';
 
 @Component({
     selector: 'fkt-component-renderer',
