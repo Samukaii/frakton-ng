@@ -1,11 +1,8 @@
-import { Component, computed, input, model, output } from '@angular/core';
-import { ArgTypeSchema, ArgTypeSchemaParsed } from '@/models/arg-type';
+import { Component, computed, input, model } from '@angular/core';
+import { ArgTypeSchema } from '@/models/arg-type';
 import { parseSchema } from '@/components/schema-editor/utils/parse-schema';
-import {
-    ControlTypeEditorCellComponent
-} from '@/components/control-type-editor-table-cell/control-type-editor-cell.component';
+import { ControlTypeEditorCellComponent } from '@/components/control-type-editor-table-cell/control-type-editor-cell.component';
 import { FktDividerComponent } from 'frakton-ng/divider';
-import { FktIconName } from 'frakton-ng/icon';
 
 @Component({
     selector: 'fkt-schema-editor-object',
