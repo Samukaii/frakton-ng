@@ -10,6 +10,16 @@ Padding for spinner container in select options overlay.
 $options-spinner-padding: var(--fkt-select-options-spinner-padding, var(--fkt-space-md));
 
 /*
+Font size for select options
+@name --fkt-select-options-font-size
+@reference --fkt-font-size-md
+@component Options
+@category Font
+@type size
+*/
+$font-size: var(--fkt-select-options-font-size, var(--fkt-font-size-md));
+
+/*
 Background color for the select options overlay.
 @name --fkt-select-options-background-color
 @reference --fkt-color-modal-background
@@ -144,6 +154,7 @@ $options-icon-size: var(--fkt-select-options-icon-size, var(--fkt-space-xl));
 		transition: var(--fkt-transition-base);
 		display: flex;
 		justify-content: space-between;
+        font-size: $font-size;
 
 		&:focus {
 			outline: none;
