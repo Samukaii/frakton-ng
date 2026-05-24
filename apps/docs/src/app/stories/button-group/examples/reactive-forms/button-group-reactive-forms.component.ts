@@ -1,46 +1,51 @@
 import { Component, inject } from '@angular/core';
-import {
-    FktButtonGroupComponent,
-    FktButtonGroupOption,
-} from 'frakton-ng/button-group';
+import { FktButtonGroupComponent, FktButtonGroupOption } from 'frakton-ng/button-group';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FktButtonComponent } from 'frakton-ng/button';
+import { FktFieldErrorComponent } from 'frakton-ng/field-error';
+import { map } from 'rxjs';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
     selector: 'fkt-button-group-reactive-forms',
     imports: [
         FktButtonGroupComponent,
         ReactiveFormsModule,
-        FktButtonComponent
+        FktButtonComponent,
+        FktFieldErrorComponent,
+        AsyncPipe,
     ],
     templateUrl: './button-group-reactive-forms.component.html',
     styleUrl: './button-group-reactive-forms.component.scss',
 })
 export class ButtonGroupReactiveFormsComponent {
-    form = inject(FormBuilder).group({
-        filter: ['list', Validators.required]
-    })
+    protected form = inject(FormBuilder).group({
+        filter: [null as string | null, Validators.required],
+    });
 
-    options: FktButtonGroupOption[] = [
+    protected fieldError$ = this.form.controls.filter.statusChanges.pipe(
+        map(() => this.form.controls.filter.invalid && this.form.controls.filter.touched)
+    );
+
+    protected options: FktButtonGroupOption[] = [
         {
             id: 'list',
-            label: "List",
-            icon: 'list-bullet'
+            label: 'List',
+            icon: 'list-bullet',
         },
         {
             id: 'grid',
-            label: "Grid",
-            icon: 'squares-2x2'
+            label: 'Grid',
+            icon: 'squares-2x2',
         },
         {
             id: 'cards',
-            label: "Cards",
-            icon: 'square-3-stack-3d'
-        }
+            label: 'Cards',
+            icon: 'square-3-stack-3d',
+        },
     ];
 
-
-    disable() {
+    protected toggleDisabled() {
         if (this.form.controls.filter.disabled)
             this.form.controls.filter.enable();
         else this.form.controls.filter.disable();

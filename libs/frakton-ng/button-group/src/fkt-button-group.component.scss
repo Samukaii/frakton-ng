@@ -80,6 +80,45 @@ label {
         }
     }
 
+    &.shape-flat {
+        button {
+            border-radius: 0;
+        }
+    }
+
+    &.orientation-vertical {
+        flex-direction: column;
+
+        button:not(:last-child) {
+            border-right: solid 1px var(--fkt-color-neutral-400);
+            border-bottom: none;
+        }
+
+        button.invalid:not(.disabled) {
+            border-left-color: var(--fkt-color-danger);
+        }
+
+        &.shape-rounded {
+            button:first-child {
+                border-radius: var(--fkt-radius-full) var(--fkt-radius-full) 0 0;
+            }
+
+            button:last-child {
+                border-radius: 0 0 var(--fkt-radius-full) var(--fkt-radius-full);
+            }
+        }
+
+        &.shape-rect {
+            button:first-child {
+                border-radius: var(--fkt-radius-md) var(--fkt-radius-md) 0 0;
+            }
+
+            button:last-child {
+                border-radius: 0 0 var(--fkt-radius-md) var(--fkt-radius-md);
+            }
+        }
+    }
+
     &.size-xs {
         button {
             padding: var(--fkt-space-2xs) var(--fkt-space-xs);

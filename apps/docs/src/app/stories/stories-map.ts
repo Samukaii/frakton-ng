@@ -373,7 +373,7 @@ export const STORIES_MAP: StoryIndexer[] = [	{
 		        id: "multiple",
 		        name: "Multiple",
 		        componentName: null,
-		        description:  `Single-select group with labeled icons and a predefined selection.`,
+		        description:  `Multi-select mode allowing several options to be active simultaneously; \`value\` is an array of selected ids.`,
 		    },
 		    {
 		        id: "shapes",
@@ -386,6 +386,12 @@ export const STORIES_MAP: StoryIndexer[] = [	{
 		        name: "Sizes",
 		        componentName: null,
 		        description:  `Demonstrates how the control scales across the available size tokens.`,
+		    },
+		    {
+		        id: "orientations",
+		        name: "Orientations",
+		        componentName: null,
+		        description:  `Compares horizontal and vertical layouts. Arrow key navigation adapts automatically: left/right for horizontal, up/down for vertical.`,
 		    },
 		    {
 		        id: "only-labels",
@@ -403,19 +409,19 @@ export const STORIES_MAP: StoryIndexer[] = [	{
 		        id: "reactive-forms",
 		        name: "ReactiveForms",
 		        componentName: "ButtonGroupReactiveFormsComponent",
-		        description:  `PLACEHOLDER`,
+		        description:  `Integration with Angular Reactive Forms via \`formControl\`. Demonstrates \`Validators.required\`, error display tied to control status, and toggling the disabled state programmatically.`,
 		    },
 		    {
 		        id: "signal-forms",
 		        name: "SignalForms",
 		        componentName: "ButtonGroupSignalFormsComponent",
-		        description:  `PLACEHOLDER`,
+		        description:  `Integration with the signal-based \`@angular/forms/signals\` API via the \`[field]\` binding. Shows required validation, signal-driven disabled state, and reactive error messages.`,
 		    },
 		    {
 		        id: "input-driven",
 		        name: "InputDriven",
 		        componentName: "ButtonGroupInputDrivenComponent",
-		        description:  `PLACEHOLDER`,
+		        description:  `Manual signal-driven binding using \`[(value)]\` and \`[(touched)]\` two-way models without a form abstraction. Validation and error display are handled directly in the template.`,
 		    }
 	    ]
 	},

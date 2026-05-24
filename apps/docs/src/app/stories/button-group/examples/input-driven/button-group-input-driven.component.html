@@ -1,4 +1,21 @@
-<fkt-button-group
-    accessibleLabel="Filter"
-    [options]="options"
+<div>
+    <fkt-button-group
+        accessibleLabel="Filter"
+        [disabled]="disabled()"
+        [options]="options"
+        [(value)]="value"
+        [(touched)]="touched"
+        [invalid]="!value() && touched()"
+        deselectable
+    />
+    <fkt-field-error
+        [show]="!value() && touched()"
+        error="Field is required"
+    />
+</div>
+
+
+<fkt-button
+    text="Disable"
+    (click)="toggleDisabled()"
 />
