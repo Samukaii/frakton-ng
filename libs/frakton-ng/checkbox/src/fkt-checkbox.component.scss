@@ -169,6 +169,21 @@ label {
 			}
 		}
 
+		&:indeterminate {
+			background-color: $checked-background-color;
+			border-color: $checked-border-color;
+
+			&::before {
+				top: 50%;
+				left: 3px;
+				width: 8px;
+				height: 0;
+				border-right: none;
+				border-bottom: $checkmark-width solid $checkmark-color;
+				transform: translateY(-50%) scale(1);
+			}
+		}
+
     &:focus-visible {
       box-shadow: var(--fkt-focus-ring-shadow);
     }
