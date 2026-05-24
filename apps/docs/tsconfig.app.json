@@ -88,6 +88,9 @@
 			"frakton-ng/internal/utils": [
 				"libs/frakton-ng/internal/utils"
 			],
+            "frakton-ng/internal/components": [
+                "libs/frakton-ng/internal/components"
+            ],
 			"frakton-ng/navigator": [
 				"libs/frakton-ng/navigator"
 			],
