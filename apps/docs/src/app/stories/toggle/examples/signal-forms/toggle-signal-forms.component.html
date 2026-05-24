@@ -1,0 +1,15 @@
+<div>
+    <fkt-toggle
+        label="Accept terms and conditions"
+        [field]="form.terms"
+    />
+    <fkt-field-error
+        [show]="form.terms().invalid() && form.terms().touched()"
+        [error]="form.terms().errors()[0]?.message"
+    />
+</div>
+
+<fkt-button
+    text="Disable"
+    (click)="toggleDisabled()"
+/>

@@ -1,0 +1,15 @@
+<div>
+    <fkt-toggle
+        label="Accept terms and conditions"
+        [formControl]="form.controls.terms"
+    />
+    <fkt-field-error
+        [show]="!!(fieldError$ | async)"
+        error="You must accept the terms"
+    />
+</div>
+
+<fkt-button
+    text="Disable"
+    (click)="toggleDisabled()"
+/>

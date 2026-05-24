@@ -1,9 +1,19 @@
 @if (!hideLabel()) {
-	<label>
-		{{label()}}
-	</label>
+    <label>{{ label() }}</label>
 }
 
-<div [tabIndex]="disabled() ? -1: 0" class="container" [attr.aria-label]="label()" (keydown.enter)="$event.preventDefault(); onClick()" (keydown.space)="$event.preventDefault(); onClick()" (click)="onClick()" [class.enabled]="value()">
-	<div class="toggle"></div>
+<div class="container"
+     role="switch"
+     [tabIndex]="disabled() ? -1 : 0"
+     [attr.aria-label]="label()"
+     [attr.aria-checked]="value()"
+     [attr.aria-disabled]="disabled()"
+     [attr.aria-invalid]="ngControl?.invalid ?? invalid()"
+     [attr.aria-errormessage]="errors()[0]?.message"
+     [class.enabled]="value()"
+     [class.disabled]="disabled()"
+     (click)="onClick()"
+     (keydown.enter)="$event.preventDefault(); onClick()"
+     (keydown.space)="$event.preventDefault(); onClick()">
+    <div class="toggle"></div>
 </div>
