@@ -3,10 +3,23 @@
 
 @if (indexer && resolved) {
     @for (story of stories(); track story.name) {
-        <fkt-story-renderer
-            [storyName]="story.name"
-            [indexer]="indexer"
-            [storyResolved]="resolved"
-        />
+        <h2 [id]="story.name | pascalToKebab">{{ story.name | pascalToHumanReadable }}</h2>
+
+        @defer (on viewport) {
+            <fkt-story-renderer
+                [storyName]="story.name"
+                [indexer]="indexer"
+                [storyResolved]="resolved"
+            />
+        } @placeholder {
+            <fkt-skeleton-container gap="0px">
+                <fkt-skeleton-container gap="3px" marginBottom="16px">
+                    <fkt-skeleton height="20px" width="100%"/>
+                    <fkt-skeleton height="20px" width="100%"/>
+                    <fkt-skeleton height="20px" width="100%"/>
+                </fkt-skeleton-container>
+                <fkt-skeleton height="632px" width="100%"/>
+            </fkt-skeleton-container>
+        }
     }
 }
