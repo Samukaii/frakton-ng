@@ -25,6 +25,6 @@ export const DEFAULT_PAGINATOR_CONFIG: Required<FktPaginatorConfig> = {
 	showPageNumbers: true,
 	showPageSize: true,
 	showInfo: true,
-	maxVisiblePages: 5,
+	maxVisiblePages: 3,
 	pageSizeOptions: [10, 20, 50, 100]
 };

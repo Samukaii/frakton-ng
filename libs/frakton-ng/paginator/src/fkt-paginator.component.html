@@ -1,21 +1,11 @@
 <div class="pagination">
 	@if (mergedConfig().showInfo) {
 		<div class="pagination__info">
-			Showing {{ startItem() }} to {{ endItem() }} of {{ total() }} results
+			Showing {{startItem()}}-{{ endItem() }} of {{ total() }} results
 		</div>
 	}
 
 	<div class="pagination__controls">
-		@if (mergedConfig().showFirstLast) {
-			<fkt-button
-				theme="basic"
-				icon="chevron-double-left"
-				ariaLabel="First page"
-				[disabled]="disabled() || !canGoPrevious()"
-				(click)="goToFirst()"
-			/>
-		}
-
 		@if (mergedConfig().showPrevNext) {
 			<fkt-button
 				theme="basic"
@@ -27,6 +17,20 @@
 		}
 
 		@if (mergedConfig().showPageNumbers) {
+            @if (!firstIsVisible()) {
+                <fkt-button
+                    [theme]="1 === currentPage() ? 'raised' : 'basic'"
+                    [text]="'1'"
+                    [ariaLabel]="'Go to first page'"
+                    [disabled]="disabled()"
+                    (click)="goToFirst()"
+                />
+                <div>
+                    ...
+                </div>
+            }
+
+
 			@for (page of visiblePages(); track page) {
 				<fkt-button
 					[theme]="page === currentPage() ? 'raised' : 'basic'"
@@ -36,6 +40,18 @@
 					(click)="goToPage(page)"
 				/>
 			}
+            @if (!lastIsVisible()) {
+                <div>
+                    ...
+                </div>
+                <fkt-button
+                    [theme]="totalPages() === currentPage() ? 'raised' : 'basic'"
+                    [text]="totalPages().toString()"
+                    [ariaLabel]="'Go to last page'"
+                    [disabled]="disabled()"
+                    (click)="goToLast()"
+                />
+            }
 		}
 
 		@if (mergedConfig().showPrevNext) {
@@ -45,16 +61,6 @@
 				ariaLabel="Next page"
 				[disabled]="disabled() || !canGoNext()"
 				(click)="goToNext()"
-			/>
-		}
-
-		@if (mergedConfig().showFirstLast) {
-			<fkt-button
-				theme="basic"
-				icon="chevron-double-right"
-				ariaLabel="Last page"
-				[disabled]="disabled() || !canGoNext()"
-				(click)="goToLast()"
 			/>
 		}
 	</div>

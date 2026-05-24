@@ -1,7 +1,10 @@
-import { Component, computed, input, model, output } from '@angular/core';
+import { Component, computed, input, model } from '@angular/core';
 import { FktButtonComponent } from 'frakton-ng/button';
 import { FktSelectComponent } from 'frakton-ng/select';
-import { DEFAULT_PAGINATOR_CONFIG, FktPaginatorConfig, FktPaginatorEvent, FktPaginatorState } from './fkt-paginator.types';
+import {
+    DEFAULT_PAGINATOR_CONFIG,
+    FktPaginatorConfig,
+} from './fkt-paginator.types';
 
 @Component({
 	selector: 'fkt-paginator',
@@ -49,7 +52,7 @@ export class FktPaginatorComponent {
 
 		const half = Math.floor(maxVisible / 2);
 		let start = Math.max(1, currentPage - half);
-		let end = Math.min(totalPages, start + maxVisible - 1);
+		const end = Math.min(totalPages, start + maxVisible - 1);
 
 		if (end - start + 1 < maxVisible) {
 			start = Math.max(1, end - maxVisible + 1);
@@ -57,6 +60,14 @@ export class FktPaginatorComponent {
 
 		return Array.from({ length: end - start + 1 }, (_, i) => start + i);
 	});
+
+    protected firstIsVisible = computed(() => {
+        return this.visiblePages().includes(1);
+    })
+
+    protected lastIsVisible = computed(() => {
+        return this.visiblePages().includes(this.totalPages());
+    })
 
 	protected pageSizeOptions = computed(() => {
 		const options = this.mergedConfig().pageSizeOptions;

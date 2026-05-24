@@ -81,6 +81,8 @@ $mobile-breakpoint: var(--fkt-pagination-mobile-breakpoint, 640px);
 
 .pagination {
 	display: flex;
+    justify-content: space-between;
+    padding: var(--fkt-space-md);
 	align-items: center;
 	gap: $gap;
 	flex-wrap: wrap;
@@ -129,4 +131,10 @@ $mobile-breakpoint: var(--fkt-pagination-mobile-breakpoint, 640px);
 			justify-content: center;
 		}
 	}
+}
+
+fkt-select {
+    --fkt-select-vertical-padding: var(--fkt-space-xs);
+    --fkt-select-horizontal-padding: var(--fkt-space-xs);
+    --fkt-select-font-size: var(--fkt-font-size-sm);
 }
