@@ -1,36 +1,57 @@
-@if (isVisible() && hasItems()) {
+@if (hasItems()) {
 	<nav class="toc-nav" aria-label="Table of contents">
 		<ul class="toc-list">
-			@for (item of tocItems(); track item.id) {
-				<ng-container
-					*ngTemplateOutlet="tocItemTemplate; context: { $implicit: item, level: 1 }"
-				/>
+			@for (item of tocItems(); track item.id + service.storyId()) {
+				<li class="toc-item" data-level="1">
+					<a
+						class="toc-link"
+						[class.toc-link--active]="activeIds() | includes: item.id"
+						[href]="'#' + item.id"
+						[class.last]="!(item | call: hasChildren)"
+						(click)="scrollToHeading(item.id); $event.preventDefault()"
+						[attr.aria-current]="(activeIds() | includes: item.id) ? 'location' : null"
+					>
+						{{ item.text }}
+					</a>
+
+					@if (item | call: hasChildren) {
+						<ul class="toc-sublist">
+							@for (child of item.children; track child.id + service.storyId()) {
+								<li class="toc-item" data-level="2">
+									<a
+										class="toc-link"
+										[class.toc-link--active]="activeIds() | includes: child.id"
+										[class.last]="!(child | call: hasChildren)"
+										[href]="'#' + child.id"
+										(click)="scrollToHeading(child.id); $event.preventDefault()"
+										[attr.aria-current]="(activeIds() | includes: child.id) ? 'location' : null"
+									>
+										{{ child.text }}
+									</a>
+
+									@if (child | call: hasChildren) {
+										<ul class="toc-sublist">
+											@for (grandchild of child.children; track grandchild.id + service.storyId()) {
+												<li class="toc-item" data-level="3">
+													<a
+														class="toc-link last"
+														[class.toc-link--active]="activeIds() | includes: grandchild.id"
+														[href]="'#' + grandchild.id"
+														(click)="scrollToHeading(grandchild.id); $event.preventDefault()"
+														[attr.aria-current]="(activeIds() | includes: grandchild.id) ? 'location' : null"
+													>
+														{{ grandchild.text }}
+													</a>
+												</li>
+											}
+										</ul>
+									}
+								</li>
+							}
+						</ul>
+					}
+				</li>
 			}
 		</ul>
 	</nav>
 }
-
-<ng-template #tocItemTemplate let-item let-level="level">
-	<li class="toc-item" [attr.data-level]="level">
-		<a
-			class="toc-link"
-			[class.toc-link--active]="isActive(item.id)"
-			[href]="'#' + item.id"
-			[class.last]="!hasChildren(item)"
-			(click)="scrollToHeading(item.id); $event.preventDefault()"
-			[attr.aria-current]="isActive(item.id) ? 'location' : null"
-		>
-			{{ item.text }}
-		</a>
-
-		@if (hasChildren(item)) {
-			<ul class="toc-sublist">
-				@for (child of item.children; track child.id) {
-					<ng-container
-						*ngTemplateOutlet="tocItemTemplate; context: { $implicit: child, level: level + 1 }"
-					/>
-				}
-			</ul>
-		}
-	</li>
-</ng-template>

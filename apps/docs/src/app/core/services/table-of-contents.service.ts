@@ -1,22 +1,17 @@
-import { Injectable } from '@angular/core';
-import { StoryIndexer } from '@/models/story-indexer';
-import { StoryResolved } from '@/models/story.resolved';
-import { Meta } from '@/models/meta';
-import { Story } from '@/models/story';
-import { ExternalExample } from '@/models/external-example';
-import { Subject } from 'rxjs';
+import { Injectable, signal } from '@angular/core';
 
 @Injectable({
 	providedIn: 'root'
 })
 export class TableOfContentsService {
-	private watch$ = new Subject<void>();
+	readonly sections = signal<{ id: string; text: string; level: number }[]>([]);
+    readonly storyId = signal('');
 
-    public generate() {
-        this.watch$.next();
+    setStoryId(id: string) {
+        this.storyId.set(id);
     }
 
-    watch() {
-        return this.watch$.asObservable();
-    }
+	setSections(sections: { id: string; text: string; level: number }[]) {
+		this.sections.set(sections);
+	}
 }

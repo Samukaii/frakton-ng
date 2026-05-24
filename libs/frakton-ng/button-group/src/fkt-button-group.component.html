@@ -1,9 +1,17 @@
-<div [class]="classes()">
+<div [class]="classes()" ngToolbar [orientation]="orientation()" [disabled]="disabled()">
     @for (option of options(); track option.id) {
-        <button [attr.aria-label]="option.label" (click)="toggle(option.id)"
+        <button ngToolbarWidget
+                [value]="option.id"
+                [disabled]="disabled()"
+                [attr.disabled]="disabled() ? '' : null"
+                [attr.aria-label]="option.label"
+                (click)="toggle(option.id)"
+                (keydown.enter)="$event.preventDefault(); toggle(option.id)"
+                (keydown.space)="$event.preventDefault(); toggle(option.id)"
                 [class.selected]="selectedOptions().includes(option.id)"
                 [class.disabled]="disabled()"
-                [class.invalid]="ngControl?.invalid ?? invalid()"
+                [class.invalid]="(ngControl?.invalid ?? invalid()) && touched()"
+                [attr.aria-pressed]="selectedOptions().includes(option.id)"
                 >
             @if (option.icon) {
                 <fkt-icon [name]="option.icon"/>
@@ -14,5 +22,3 @@
         </button>
     }
 </div>
-<!---->
-<!---->

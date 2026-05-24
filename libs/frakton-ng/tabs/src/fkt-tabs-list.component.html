@@ -1,11 +1,14 @@
 @if (!hideTabsWhenOnlyOne() || visibleTabs().length > 1) {
     <div fktNavigableList orientation="horizontal" (select)="keyboardSelect($event)" childSelector="button"
-         class="container">
+         role="tablist" class="container">
         @for (tab of visibleTabs(); track tab.key()) {
             <button
                 (click)="selectTab(tab.key())"
                 class="container__tab"
                 [class.container__tab--active]="tab.key() === activeTab()"
+                role="tab"
+                [id]="'fkt-tab-' + tab.key()"
+                [attr.aria-selected]="tab.key() === activeTab()"
             >
                 @if (tab.icon()) {
                     <fkt-icon [name]="tab.icon()!"/>
@@ -19,5 +22,15 @@
 }
 
 <div class="content">
-    <div #ref [style]="{display: 'none'}"></div>
+    @if (renderMode() === 'destructive') {
+        <div #ref role="tabpanel" [attr.aria-labelledby]="'fkt-tab-' + activeTab()"></div>
+    } @else {
+        @for (tab of tabsToRender(); track tab.key()) {
+            <fkt-tabs-renderer
+                [template]="tab.template()"
+                [tabKey]="tab.key()"
+                [hidden]="tab.key() !== activeTab()">
+            </fkt-tabs-renderer>
+        }
+    }
 </div>

@@ -11,15 +11,15 @@ export const buttonActionSchema: ArgTypeSchema = {
     },
     color: {
         type: 'select',
-        options: fktColors as any,
+        options: [...fktColors],
     },
     theme: {
         type: 'select',
-        options: fktButtonThemes
+        options: [...fktButtonThemes]
     },
     shape: {
         type: 'select',
-        options: fktButtonShapes
+        options: [...fktButtonShapes]
     },
     icon: 'icon',
 }

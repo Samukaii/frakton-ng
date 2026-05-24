@@ -4,13 +4,12 @@ import {
     effect,
     ElementRef,
     inject,
-    inputBinding,
-    PLATFORM_ID, reflectComponentType,
+    PLATFORM_ID,
     signal,
     untracked,
     viewChild,
     viewChildren,
-    ViewContainerRef, WritableSignal
+    ViewContainerRef
 } from '@angular/core';
 import { FktPlaygroundPanelComponent } from './panel/fkt-playground-panel.component';
 import { ThemeService } from '@/core/services/theme.service';
@@ -30,9 +29,7 @@ interface PlaygroundVariant {
 
 @Component({
     selector: 'fkt-playground',
-    imports: [
-        FktPlaygroundPanelComponent
-    ],
+    imports: [FktPlaygroundPanelComponent],
     templateUrl: './fkt-playground.component.html',
     styleUrl: './fkt-playground.component.scss',
 })
@@ -50,47 +47,46 @@ export class FktPlaygroundComponent {
     protected readonly storyInfoService = inject(StoryInfoService);
     protected expanded = signal(false);
 
-    private readonly viewRefs = viewChildren('template', {read: ViewContainerRef});
-    private readonly elementRef = viewChild('container', {read: ElementRef});
+    private readonly viewRefs = viewChildren('template', {
+        read: ViewContainerRef,
+    });
+    private readonly elementRef = viewChild('container', { read: ElementRef });
 
     protected readonly variantsConfig = computed(() => {
         const variants = this.storyInfoService.activeStory.variants;
 
         return {
-            orientation: variants?.orientation ?? 'horizontal'
-        }
+            orientation: variants?.orientation ?? 'horizontal',
+        };
     });
 
     hasVariants = computed(() => {
         return !!this.storyInfoService.activeStory.variants;
-    })
+    });
 
-    protected readonly playgroundVariants = computed((): PlaygroundVariant[] => {
-        const variants = this.storyInfoService.activeStory.variants;
-        const argsList = this.argsList();
+    protected readonly playgroundVariants = computed(
+        (): PlaygroundVariant[] => {
+            const variants = this.storyInfoService.activeStory.variants;
+            const argsList = this.argsList();
 
-        if (!variants) {
-            return [
-                {argsList}
-            ]
-        }
-
-        return variants.items.map(variant => {
-            return {
-                title: variant.title,
-                argsList: [
-                    ...argsList,
-                    ...this.getArgsList(variant.args)
-                ]
+            if (!variants) {
+                return [{ argsList }];
             }
-        });
-    })
+
+            return variants.items.map((variant) => {
+                return {
+                    title: variant.title,
+                    argsList: [...argsList, ...this.getArgsList(variant.args)],
+                };
+            });
+        }
+    );
 
     @MarkUsed()
     protected readonly renderComponent = effect(() => {
         const component = this.storyInfoService.getComponent();
-        const viewRefs = this.viewRefs()
-        const variants = this.playgroundVariants()
+        const viewRefs = this.viewRefs();
+        const variants = this.playgroundVariants();
 
         if (!component || !viewRefs.length) return;
 
@@ -101,36 +97,42 @@ export class FktPlaygroundComponent {
                 if (!viewRef) return;
 
                 try {
-                    const bindings = Object.fromEntries(variant.argsList.map(arg => {
-                        return [arg.name, arg.control];
-                    }))
+                    const bindings = Object.fromEntries(
+                        variant.argsList.map((arg) => {
+                            return [arg.name, arg.control];
+                        })
+                    );
 
                     viewRef.createComponent(component, {
-                        bindings: createComponentBindings(component, bindings)
+                        bindings: createComponentBindings(component, bindings),
                     });
                 } catch (e) {
+                    console.error(e);
                 }
-            })
-        })
-    })
+            });
+        });
+    });
 
     protected readonly designTokens = computed((): DesignTokenItem[] => {
         if (!isPlatformBrowser(this.platform)) return [];
 
         const tokens = this.storyInfoService.meta.designTokens ?? [];
+
         this.themeService.currentTheme();
 
         const elementRef = this.elementRef();
 
         if (!elementRef) return [];
 
-        return tokens.map(token => {
+        return tokens.map((token) => {
             let defaultValue = token.defaultValue;
 
             if (token.reference.startsWith('--')) {
                 const element = elementRef.nativeElement as HTMLElement;
 
-                const result = getComputedStyle(element).getPropertyValue(token.reference);
+                const result = getComputedStyle(element).getPropertyValue(
+                    token.reference
+                );
 
                 if (result) defaultValue = result;
             }
@@ -144,19 +146,32 @@ export class FktPlaygroundComponent {
                 component: token.component,
                 defaultValue: defaultValue,
                 control: signal(defaultValue),
-            }
-        })
+            };
+        });
     });
 
     protected readonly designTokensStyle = computed(() => {
         const tokens = this.designTokens();
 
+        return Object.fromEntries(
+            tokens.flatMap((token) => {
+                if (!token.control()) return [];
 
-        return Object.fromEntries(tokens.flatMap(token => {
-            if (!token.control()) return [];
+                return [[token.name, token.control()]];
+            })
+        );
+    });
 
-            return [[token.name, token.control()]]
-        }))
+    protected readonly containerStyles = computed(() => {
+        const tokens = this.designTokensStyle();
+        const panelStyle = this.panelStyle();
+
+        return {
+            ...tokens,
+            padding: panelStyle?.outerPadding ?? '1rem',
+            width: panelStyle?.outerWidth ?? 'auto',
+            height: panelStyle?.outerHeight ?? 'auto',
+        };
     });
 
     protected readonly argsList = computed((): ArgItem<any>[] => {
@@ -170,19 +185,22 @@ export class FktPlaygroundComponent {
 
             if (!argType) return [];
 
-            if (argType.category !== "Attributes")
-                return [];
+            if (argType.category !== 'Attributes') return [];
 
             return {
                 name: key,
                 type: argType.control,
-                schema: ('schema' in argType ? argType.schema : {}),
-                options: argType.options?.map((option) => ({label: option, value: option})) ?? [],
+                schema: 'schema' in argType ? argType.schema : {},
+                options:
+                    argType.options?.map((option) => ({
+                        label: option,
+                        value: option,
+                    })) ?? [],
                 description: argType.description!,
-                control: signal(value)
-            }
+                control: signal(value),
+            };
         });
-    })
+    });
 
     private getArgsList(args: Partial<FktComponentInputsAndModels<any>>) {
         const argTypes = this.getArgTypes();
@@ -192,17 +210,20 @@ export class FktPlaygroundComponent {
 
             if (!argType) return [];
 
-            if (argType.category !== "Attributes")
-                return [];
+            if (argType.category !== 'Attributes') return [];
 
             return {
                 name: key,
                 type: argType.control,
-                options: argType.options?.map((option) => ({label: option, value: option})) ?? [],
+                options:
+                    argType.options?.map((option) => ({
+                        label: option,
+                        value: option,
+                    })) ?? [],
                 description: argType.description!,
-                schema: ('schema' in argType ? argType.schema : {}),
-                control: signal(value)
-            }
+                schema: 'schema' in argType ? argType.schema : {},
+                control: signal(value),
+            };
         });
     }
 

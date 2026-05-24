@@ -5,10 +5,10 @@ import { FktButtonsListAlignment, FktButtonsListOrientation } from './fkt-button
 
 /**
  * A component that displays a list of buttons with configurable layout and alignment.
- * 
+ *
  * @example
  * ```html
- * <fkt-buttons-list 
+ * <fkt-buttons-list
  *   [actions]="buttonActions"
  *   [context]="userData"
  *   orientation="horizontal"
@@ -16,7 +16,7 @@ import { FktButtonsListAlignment, FktButtonsListOrientation } from './fkt-button
  *   horizontalAlignment="end">
  * </fkt-buttons-list>
  * ```
- * 
+ *
  * @example
  * ```typescript
  * export class MyComponent {
@@ -46,31 +46,31 @@ export class FktButtonsListComponent<T> {
 	 * Context object passed to button actions
 	 */
 	context = input<T>();
-	
+
 	/**
 	 * Layout orientation of the buttons
 	 * @default 'horizontal'
 	 */
-	orientation = input<FktButtonsListOrientation>('horizontal');
-	
+	orientation = input<FktButtonsListOrientation | undefined>('horizontal');
+
 	/**
 	 * Whether buttons should fill the available space
 	 * @default false
 	 */
 	fill = input(false, { transform: booleanAttribute });
-	
+
 	/**
 	 * Vertical alignment of buttons
 	 * @default 'start'
 	 */
-	verticalAlignment = input<FktButtonsListAlignment>('start');
-	
+	verticalAlignment = input<FktButtonsListAlignment | undefined>('start');
+
 	/**
 	 * Horizontal alignment of buttons
 	 * @default 'start'
 	 */
-	horizontalAlignment = input<FktButtonsListAlignment>('start');
-	
+	horizontalAlignment = input<FktButtonsListAlignment | undefined>('start');
+
 	/**
 	 * Array of button actions to display
 	 * @required

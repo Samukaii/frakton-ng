@@ -373,7 +373,7 @@ export const STORIES_MAP: StoryIndexer[] = [	{
 		        id: "multiple",
 		        name: "Multiple",
 		        componentName: null,
-		        description:  `Single-select group with labeled icons and a predefined selection.`,
+		        description:  `Multi-select mode allowing several options to be active simultaneously; \`value\` is an array of selected ids.`,
 		    },
 		    {
 		        id: "shapes",
@@ -386,6 +386,12 @@ export const STORIES_MAP: StoryIndexer[] = [	{
 		        name: "Sizes",
 		        componentName: null,
 		        description:  `Demonstrates how the control scales across the available size tokens.`,
+		    },
+		    {
+		        id: "orientations",
+		        name: "Orientations",
+		        componentName: null,
+		        description:  `Compares horizontal and vertical layouts. Arrow key navigation adapts automatically: left/right for horizontal, up/down for vertical.`,
 		    },
 		    {
 		        id: "only-labels",
@@ -403,19 +409,19 @@ export const STORIES_MAP: StoryIndexer[] = [	{
 		        id: "reactive-forms",
 		        name: "ReactiveForms",
 		        componentName: "ButtonGroupReactiveFormsComponent",
-		        description:  `PLACEHOLDER`,
+		        description:  `Integration with Angular Reactive Forms via \`formControl\`. Demonstrates \`Validators.required\`, error display tied to control status, and toggling the disabled state programmatically.`,
 		    },
 		    {
 		        id: "signal-forms",
 		        name: "SignalForms",
 		        componentName: "ButtonGroupSignalFormsComponent",
-		        description:  `PLACEHOLDER`,
+		        description:  `Integration with the signal-based \`@angular/forms/signals\` API via the \`[field]\` binding. Shows required validation, signal-driven disabled state, and reactive error messages.`,
 		    },
 		    {
 		        id: "input-driven",
 		        name: "InputDriven",
 		        componentName: "ButtonGroupInputDrivenComponent",
-		        description:  `PLACEHOLDER`,
+		        description:  `Manual signal-driven binding using \`[(value)]\` and \`[(touched)]\` two-way models without a form abstraction. Validation and error display are handled directly in the template.`,
 		    }
 	    ]
 	},
@@ -1791,6 +1797,42 @@ export const STORIES_MAP: StoryIndexer[] = [	{
 	    ]
 	},
 	{
+		id: "tabs",
+		title: "Components/Navigation/Tabs",
+		componentName: "FktTabsListComponent",
+		description: `A compound component for organising content into named panels, with lazy, eager, and destructive render strategies.`,
+		file: () => import("./tabs/fkt-tabs.stories"),
+		type: 'story',
+		externalExamples: () => import("./tabs/examples/raw-examples").then(file => file.default),
+		docSections: [
+			{ id: "key-features", text: "Key Features", level: 2 },
+			{ id: "configuration-options", text: "Configuration Options", level: 2 },
+			{ id: "render-modes", text: "Render Modes", level: 2 },
+			{ id: "usage", text: "Usage", level: 2 },
+			{ id: "accessibility", text: "Accessibility", level: 2 }
+		],
+		stories: [
+		    {
+		        id: "basic-usage",
+		        name: "BasicUsage",
+		        componentName: "TabsBasicComponent",
+		        description:  `Default tabs using lazy rendering. Content is created on first visit and kept in DOM when switching away.`,
+		    },
+		    {
+		        id: "with-icons",
+		        name: "WithIcons",
+		        componentName: "TabsWithIconsComponent",
+		        description:  `Tab headers with icons alongside labels. Pass an icon name via the \`icon\` input on each \`fkt-tab\`.`,
+		    },
+		    {
+		        id: "render-modes",
+		        name: "RenderModes",
+		        componentName: "TabsRenderModesComponent",
+		        description:  `Comparison of all three render modes. Each section uses \`fktTabLazy\` content with a counter component so state destruction and preservation are clearly visible when switching tabs.`,
+		    }
+	    ]
+	},
+	{
 		id: "tag",
 		title: "Components/Data Display/Tag",
 		componentName: "FktTagComponent",
@@ -1989,6 +2031,59 @@ export const STORIES_MAP: StoryIndexer[] = [	{
 		        name: "DisabledState",
 		        componentName: "DisabledExampleComponent",
 		        description:  `Shows the textarea in a disabled state. Useful for read-only or preview scenarios, or when editing is not allowed due to permissions or workflow status.`,
+		    }
+	    ]
+	},
+	{
+		id: "toggle",
+		title: "Components/Form/Toggle",
+		componentName: "FktToggleComponent",
+		description: `A binary switch control that toggles between on and off states, with full keyboard support and form integration.`,
+		file: () => import("./toggle/fkt-toggle.stories"),
+		type: 'story',
+		externalExamples: () => import("./toggle/examples/raw-examples").then(file => file.default),
+		docSections: [
+			{ id: "key-features", text: "Key Features", level: 2 },
+			{ id: "configuration-options", text: "Configuration Options", level: 2 },
+			{ id: "accessibility", text: "Accessibility", level: 2 },
+			{ id: "usage", text: "Usage", level: 2 }
+		],
+		stories: [
+		    {
+		        id: "basic-usage",
+		        name: "BasicUsage",
+		        componentName: null,
+		        description:  `Default toggle in off state with a visible label.`,
+		    },
+		    {
+		        id: "states",
+		        name: "States",
+		        componentName: null,
+		        description:  `All visual states: off, on, disabled off, and disabled on.`,
+		    },
+		    {
+		        id: "hidden-label",
+		        name: "HiddenLabel",
+		        componentName: null,
+		        description:  `Toggle with the label hidden visually but still accessible to screen readers via \`aria-label\`.`,
+		    },
+		    {
+		        id: "reactive-forms",
+		        name: "ReactiveForms",
+		        componentName: "ToggleReactiveFormsComponent",
+		        description:  `Integration with Angular Reactive Forms via \`formControl\`. Uses \`Validators.requiredTrue\` to enforce that the toggle must be enabled, with error display and disable toggling.`,
+		    },
+		    {
+		        id: "signal-forms",
+		        name: "SignalForms",
+		        componentName: "ToggleSignalFormsComponent",
+		        description:  `Integration with the signal-based \`@angular/forms/signals\` API via the \`[field]\` binding. Shows required validation and signal-driven disabled state.`,
+		    },
+		    {
+		        id: "input-driven",
+		        name: "InputDriven",
+		        componentName: "ToggleInputDrivenComponent",
+		        description:  `Manual signal-driven binding using \`[(value)]\` and \`[(touched)]\` two-way models without a form abstraction. Validation is handled directly in the template.`,
 		    }
 	    ]
 	},
