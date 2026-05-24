@@ -16,4 +16,9 @@ export interface StoryIndexer {
         componentName: string | null,
         description: string;
     }[]
+    docSections?: {
+        id: string;
+        text: string;
+        level: number;
+    }[]
 }
