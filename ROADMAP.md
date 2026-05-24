@@ -91,14 +91,14 @@ Exclusive selection within a group (single choice per group).
 - Vertical and horizontal layouts
 - Group management with labels
 
-#### **Slide Toggle (Switch)**
+#### **Slide Toggle (Switch)** (Done)
 Boolean state control with visual animation.
 - On/off states with smooth transitions
 - Disabled state support
 - Accessible keyboard interaction
 - Optional labels and descriptions
 
-#### **Tabs**
+#### **Tabs** (Done)
 Organize content into switchable views.
 - Tab activation by click or keyboard
 - Scrollable tabs for overflow
@@ -144,7 +144,7 @@ Non-blocking notification messages (built on Overlay system).
 - Stacking multiple notifications
 - Accessible announcements
 
-#### **Button Toggle**
+#### **Button Toggle** (Done)
 Group of buttons where one or multiple can be selected.
 - Single or multiple selection modes
 - Exclusive toggle behavior

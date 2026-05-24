@@ -79,7 +79,7 @@ export const Preview: Story<FktButtonsListComponent<any>> = {
                 theme: "stroked",
                 color: "success",
                 text: "Action 2",
-                shape: "default"
+                shape: "rounded"
             },
             {
                 identifier: "action-3",
