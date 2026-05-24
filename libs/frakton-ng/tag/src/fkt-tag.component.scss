@@ -202,6 +202,7 @@ $tag-success-faded-background: var(--fkt-tag-success-faded-background, var(--fkt
 	padding: $tag-padding;
 	font-weight: $tag-font-weight;
 	font-size: $tag-font-size;
+    white-space: nowrap;
 
 	&.badge--opaque {
 		&.badge--danger {

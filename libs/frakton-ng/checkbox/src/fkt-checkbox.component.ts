@@ -1,4 +1,4 @@
-import { Component, input, model } from '@angular/core';
+import { Component, effect, ElementRef, input, model, viewChild } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormCheckboxControl, ValidationError, WithOptionalField } from '@angular/forms/signals';
 
@@ -13,12 +13,21 @@ export class FktCheckboxComponent implements FormCheckboxControl {
 	touched = model(false);
 	disabled = input(false);
 	invalid = input(false);
+	indeterminate = input(false);
 	label = input('');
 	errors = input<readonly WithOptionalField<ValidationError>[]>([]);
 
+	private readonly checkboxInput = viewChild<ElementRef<HTMLInputElement>>('checkboxInput');
+
+	constructor() {
+		effect(() => {
+			const element = this.checkboxInput()?.nativeElement;
+			if (element) element.indeterminate = this.indeterminate();
+		});
+	}
+
 	protected onChange($event: Event) {
 		const target = $event.target as HTMLInputElement;
-
 		this.checked.set(target.checked);
 		this.touched.set(true);
 	}
