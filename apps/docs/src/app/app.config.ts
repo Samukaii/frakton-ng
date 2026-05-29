@@ -1,7 +1,7 @@
 import {
     ApplicationConfig,
     provideBrowserGlobalErrorListeners,
-    provideZoneChangeDetection,
+    provideZonelessChangeDetection,
 } from '@angular/core';
 import {
     provideRouter,
@@ -59,7 +59,7 @@ export const appConfig: ApplicationConfig = {
                 useValue: sanitizeHtml,
             },
         }),
-        provideZoneChangeDetection({ eventCoalescing: true }),
+        provideZonelessChangeDetection(),
         provideRouter(
             appRoutes,
             withComponentInputBinding(),
