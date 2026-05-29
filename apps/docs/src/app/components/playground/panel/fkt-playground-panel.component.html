@@ -41,15 +41,44 @@
     @if (currentTab() === "controls" && canShowControls()) {
         <div role="tabpanel" id="panel-controls" aria-labelledby="tab-controls">
             @if (argsList().length) {
+                @if (showControlOwners()) {
+                    <div class="filter-chips" aria-label="Control groups">
+                        @if (hasMultipleControlOwners()) {
+                            <button
+                                type="button"
+                                class="filter-chip"
+                                [class.active]="activeControlsOwner() === 'all'"
+                                (click)="activeControlsOwner.set('all')"
+                            >
+                                All
+                            </button>
+                        }
+
+                        @for (owner of controlOwners(); track owner.ownerKey) {
+                            <button
+                                type="button"
+                                class="filter-chip"
+                                [class.active]="activeControlsOwner() === owner.ownerKey || !hasMultipleControlOwners()"
+                                (click)="activeControlsOwner.set(owner.ownerKey)"
+                            >
+                                {{ owner.ownerLabel }}
+                            </button>
+                        }
+                    </div>
+                }
+
                 <div [tabindex]="expanded() ? 0 : -1" class="table-container">
                     <table>
                         <thead>
                         <td>Name</td>
                         <td>Description</td>
+                        @if (showControlOwners()) {
+                            <td>Source</td>
+                        }
                         <td>Control</td>
                         </thead>
                         <tbody>
-                            @for (arg of argsList(); track arg.name) {
+                            @for (arg of visibleArgsList(); track arg.name) {
                                 <tr>
                                     <td>
                                         {{ arg.name }}
@@ -57,6 +86,11 @@
                                     <td>
                                         {{ arg.description }}
                                     </td>
+                                    @if (showControlOwners()) {
+                                        <td>
+                                            <span class="owner-badge">{{ arg.ownerLabel }}</span>
+                                        </td>
+                                    }
                                     <td>
                                         @switch (arg.type) {
                                             @case ('text') {

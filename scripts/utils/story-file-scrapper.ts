@@ -75,6 +75,7 @@ const scrapMdFile = (file: string): StoryIndexedInfo | null => {
             return {
                 name: section.text,
                 id: section.slug,
+                type: 'section',
                 level: section.level,
                 description: ""
             }
@@ -143,6 +144,10 @@ export class StoryFileScrapper {
             if (name === 'default' || name === metaDeclaration?.getName())
                 return [];
 
+            const type = first.getType();
+            const symbol = type.getSymbol() || type.getAliasSymbol();
+            const storyType = symbol?.getName() === 'Story' ? 'story' : 'introduction';
+
             if (!Node.isVariableDeclaration(first)) return [];
 
             const initializer = first.getInitializer();
@@ -150,16 +155,44 @@ export class StoryFileScrapper {
             if (!Node.isObjectLiteralExpression(initializer))
                 return [];
 
-            const description = this.getStringProperty(initializer, 'description') ?? '';
+            const jsDocDescription = this.getJsDocDescription(first);
+            const description = jsDocDescription || this.getStringProperty(initializer, 'description') || '';
             const componentName = this.getStringProperty(initializer, 'component') ?? '';
+            const levelRaw = this.getStringProperty(initializer, 'level');
+            const level = levelRaw ? parseInt(levelRaw, 10) : 2;
 
             return {
                 id: pascalToKebab(name),
                 name,
                 description,
-                componentName
+                type: storyType as 'story' | 'introduction',
+                componentName,
+                level,
             }
         })
+    }
+
+    private getJsDocDescription(node: Node): string {
+        const parent = node.getParent();
+        const statement = parent?.getParent();
+
+        if (!statement || !Node.isVariableStatement(statement)) return '';
+
+        const jsDocs = statement.getJsDocs();
+        if (jsDocs.length === 0) return '';
+
+        const jsDoc = jsDocs[jsDocs.length - 1];
+        const comment = jsDoc.getComment();
+
+        if (!comment) return '';
+        if (typeof comment === 'string') return comment.trim();
+        if (Array.isArray(comment)) {
+            return comment
+                .map((c) => (typeof c === 'string' ? c : (c as any).getText?.() ?? ''))
+                .join('')
+                .trim();
+        }
+        return '';
     }
 
     private getMetaInfoFromStory(sourceFile: SourceFile) {
@@ -222,7 +255,7 @@ export class StoryFileScrapper {
 
         const valueNode = property.getInitializer();
 
-        if (Node.isStringLiteral(valueNode))
+        if (Node.isStringLiteral(valueNode) || Node.isNoSubstitutionTemplateLiteral(valueNode))
             return valueNode.getLiteralValue() ?? null;
 
         return valueNode?.getText() ?? null;

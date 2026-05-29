@@ -1,0 +1,100 @@
+// <design-tokens>
+/*
+Padding for header cell content.
+@name --fkt-table-header-cell-padding
+@reference --fkt-space-md
+@component HeaderCell
+@category Spacing
+@type size
+*/
+$header-cell-padding: var(--fkt-table-header-cell-padding, var(--_table-cell-padding));
+
+/*
+Color for column divider lines shown when gridLines is enabled. Defaults to the table border color.
+@name --fkt-table-column-border-color
+@reference --fkt-table-border-color
+@component HeaderCell
+@category Colors
+@type color
+*/
+$column-border-color: var(--fkt-table-column-border-color, var(--fkt-table-border-color, var(--fkt-color-neutral-300)));
+// </design-tokens>
+
+:host {
+    padding: 0;
+    border-right: var(--fkt-table-column-border-width, 0px) solid $column-border-color;
+    border-bottom: var(--fkt-table-column-border-width, 1px) solid $column-border-color;
+
+    &.dragging {
+        opacity: 0.3;
+    }
+
+    &.reorderable {
+        cursor: move;
+    }
+
+    &.drag-over::before {
+        content: '➜';
+        font-size: 20px;
+        position: absolute;
+        inset-block: 0;
+        color: var(--fkt-color-neutral-900);
+        left: 0;
+        top: 100%;
+        transform: translate(-9px, 4px) rotateZ(-90deg);
+        width: fit-content;
+        height: fit-content;
+        z-index: 2;
+    }
+
+    &.drag-over::after {
+        content: '';
+        position: absolute;
+        inset-block: 0;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 1px;
+        background: var(--fkt-color-neutral-900);
+        z-index: 2;
+    }
+}
+
+.header-cell-content {
+    display: flex;
+    align-items: center;
+    gap: var(--fkt-space-xs);
+    height: 100%;
+    width: 100%;
+    padding: $header-cell-padding;
+    overflow: hidden;
+    box-sizing: border-box;
+    --fkt-button-icon-font-size: var(--fkt-font-size-md);
+}
+
+.common-text {
+    display: flex;
+    flex-direction: column;
+    white-space: nowrap;
+    gap: var(--fkt-space-3xs);
+
+    p {
+        font-weight: 400;
+        color: var(--fkt-color-neutral-600);
+        margin: 0;
+    }
+}
+
+.table__resize-handle {
+    position: absolute;
+    inset-block: 0;
+    right: 0;
+    width: 4px;
+    cursor: col-resize;
+    z-index: 2;
+
+    &:hover {
+        background-color: var(--fkt-color-primary);
+        opacity: 0.5;
+    }
+}

@@ -1,0 +1,39 @@
+<div class="table-container">
+    <fkt-table-resize-indicator />
+
+    <ng-content select="[fktTableToolbar]"/>
+
+    <div class="table-scroll" #tableScroll [class.resizing]="context.features.resize?.resizingKey()">
+        <table class="table">
+            <thead fktTableHeader
+                   [defaultFilters]="defaultFilters()"
+                   (sort)="sort.emit($event)"
+                   [(filters)]="filters"
+            ></thead>
+
+            @if (context.features.frozenRows?.frozenData()?.length) {
+                <tbody fktTableFrozenBody
+                       [classesFn]="classesFn()"
+                       [disableRowHover]="disableRowHover()"
+                       [clickableRows]="clickableRows()"
+                       (rowClick)="rowClick.emit($event)"
+                ></tbody>
+            }
+
+            <tbody fktTableBody
+                   [loading]="loading()"
+                   [skeletonLines]="skeletonLines()"
+                   [noResults]="noResults()"
+                   [singleExpand]="singleExpand()"
+                   [classesFn]="classesFn()"
+                   [disableRowHover]="disableRowHover()"
+                   [clickableRows]="clickableRows()"
+                   [striped]="striped()"
+                   [(expandedRowIds)]="expandedRowIds"
+                   (rowClick)="rowClick.emit($event)"
+            ></tbody>
+        </table>
+    </div>
+
+    <ng-content select="[fktTableFooter]"/>
+</div>

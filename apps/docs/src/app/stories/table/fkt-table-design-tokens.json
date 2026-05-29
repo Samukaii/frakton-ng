@@ -9,85 +9,22 @@
     "defaultValue": ".75rem"
   },
   {
-    "description": "Border color for the table container.",
+    "description": "Background color for table container.",
+    "name": "--fkt-table-cell-background",
+    "reference": "--fkt-color-neutral-100",
+    "component": "Display",
+    "category": "Color",
+    "type": "size",
+    "defaultValue": "#f1f5f9"
+  },
+  {
+    "description": "Border color for the table container outline.",
     "name": "--fkt-table-border-color",
     "reference": "--fkt-color-neutral-300",
     "component": "Display",
     "category": "Colors",
     "type": "color",
     "defaultValue": "#cbd5e1"
-  },
-  {
-    "description": "Background color for table rows on hover.",
-    "name": "--fkt-table-row-hover-background-color",
-    "reference": "--fkt-color-neutral-200",
-    "component": "Display",
-    "category": "Colors",
-    "type": "color",
-    "defaultValue": "#e2e8f0"
-  },
-  {
-    "description": "Border color for table rows and header.",
-    "name": "--fkt-table-row-border-color",
-    "reference": "--fkt-color-neutral-300",
-    "component": "Display",
-    "category": "Colors",
-    "type": "color",
-    "defaultValue": "#cbd5e1"
-  },
-  {
-    "description": "Padding for table header cells.",
-    "name": "--fkt-table-header-cell-padding",
-    "reference": "--fkt-space-md",
-    "component": "Display",
-    "category": "Spacing",
-    "type": "size",
-    "defaultValue": "1rem"
-  },
-  {
-    "description": "Color for table header title text.",
-    "name": "--fkt-table-header-title-color",
-    "reference": "--fkt-color-neutral-900",
-    "component": "Display",
-    "category": "Colors",
-    "type": "color",
-    "defaultValue": "#0f172a"
-  },
-  {
-    "description": "Font weight for table header title.",
-    "name": "--fkt-table-header-title-font-weight",
-    "reference": "--fkt-font-semibold",
-    "component": "Display",
-    "category": "Typography",
-    "type": "font",
-    "defaultValue": "600"
-  },
-  {
-    "description": "Color for table header actions text.",
-    "name": "--fkt-table-header-actions-color",
-    "reference": "--fkt-color-neutral-950",
-    "component": "Display",
-    "category": "Colors",
-    "type": "color",
-    "defaultValue": "#020617"
-  },
-  {
-    "description": "Font weight for table header actions.",
-    "name": "--fkt-table-header-actions-font-weight",
-    "reference": "--fkt-font-bold",
-    "component": "Display",
-    "category": "Typography",
-    "type": "font",
-    "defaultValue": "700"
-  },
-  {
-    "description": "Color for table header cell text.",
-    "name": "--fkt-table-header-cell-color",
-    "reference": "--fkt-color-neutral-950",
-    "component": "Display",
-    "category": "Colors",
-    "type": "color",
-    "defaultValue": "#020617"
   },
   {
     "description": "Font size for table body text.",
@@ -99,60 +36,6 @@
     "defaultValue": "0.875rem"
   },
   {
-    "description": "Gap between no results items.",
-    "name": "--fkt-table-no-results-gap",
-    "reference": "--fkt-space-md",
-    "component": "Display",
-    "category": "Spacing",
-    "type": "size",
-    "defaultValue": "1rem"
-  },
-  {
-    "description": "Minimum height for no results state.",
-    "name": "--fkt-table-no-results-min-height",
-    "reference": "400px",
-    "component": "Display",
-    "category": "Spacing",
-    "type": "size",
-    "defaultValue": "400px"
-  },
-  {
-    "description": "Padding for no data header section.",
-    "name": "--fkt-table-no-data-header-padding",
-    "reference": "var(--fkt-space-xs) var(--fkt-space-md)",
-    "component": "Display",
-    "category": "Spacing",
-    "type": "size",
-    "defaultValue": "var(--fkt-space-xs) var(--fkt-space-md)"
-  },
-  {
-    "description": "Minimum height for no data header section.",
-    "name": "--fkt-table-no-data-header-min-height",
-    "reference": "70px",
-    "component": "Display",
-    "category": "Spacing",
-    "type": "size",
-    "defaultValue": "70px"
-  },
-  {
-    "description": "Padding for no data content section.",
-    "name": "--fkt-table-no-data-content-padding",
-    "reference": "1rem",
-    "component": "Display",
-    "category": "Spacing",
-    "type": "size",
-    "defaultValue": "1rem"
-  },
-  {
-    "description": "Width for table header actions column.",
-    "name": "--fkt-table-header-actions-width",
-    "reference": "13rem",
-    "component": "Display",
-    "category": "Spacing",
-    "type": "size",
-    "defaultValue": "13rem"
-  },
-  {
     "description": "Line height for table text.",
     "name": "--fkt-table-line-height",
     "reference": "1.25rem",
@@ -160,5 +43,122 @@
     "category": "Typography",
     "type": "size",
     "defaultValue": "1.25rem"
+  },
+  {
+    "description": "Max height for the scrollable table area. Set to control vertical scroll.",
+    "name": "--fkt-table-max-height",
+    "reference": "none",
+    "component": "Display",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": "none"
+  },
+  {
+    "description": "Border color between expanded rows.",
+    "name": "--fkt-table-row-border-color",
+    "reference": "--fkt-color-neutral-300",
+    "component": "ExpandableRow",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#cbd5e1"
+  },
+  {
+    "description": "Padding inside the expanded row content area.",
+    "name": "--fkt-table-header-cell-padding",
+    "reference": "--fkt-space-md",
+    "component": "ExpandableRow",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": "1rem"
+  },
+  {
+    "description": "Color of the column resize indicator line.",
+    "name": "--fkt-table-resize-indicator-color",
+    "reference": "--fkt-color-primary",
+    "component": "ResizeIndicator",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#1f2937"
+  },
+  {
+    "description": "Text color for selection banner.",
+    "name": "--fkt-table-header-cell-color",
+    "reference": "--fkt-color-neutral-950",
+    "component": "SelectionBanner",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#020617"
+  },
+  {
+    "description": "Color for header title text.",
+    "name": "--fkt-table-header-title-color",
+    "reference": "--fkt-color-neutral-900",
+    "component": "SelectionHeader",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#0f172a"
+  },
+  {
+    "description": "Font weight for header title.",
+    "name": "--fkt-table-header-title-font-weight",
+    "reference": "--fkt-font-semibold",
+    "component": "SelectionHeader",
+    "category": "Typography",
+    "type": "font",
+    "defaultValue": "600"
+  },
+  {
+    "description": "Color for the separator border below frozen rows.",
+    "name": "--fkt-table-frozen-separator-color",
+    "reference": "--fkt-color-neutral-300",
+    "component": "FrozenRows",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#cbd5e1"
+  },
+  {
+    "description": "Width of the separator border below frozen rows.",
+    "name": "--fkt-table-frozen-separator-width",
+    "reference": "2px",
+    "component": "FrozenRows",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": "2px"
+  },
+  {
+    "description": "Color for column divider lines shown when gridLines is enabled. Defaults to the table border color.",
+    "name": "--fkt-table-column-border-color",
+    "reference": "--fkt-table-border-color",
+    "component": "HeaderCell",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "--fkt-table-border-color"
+  },
+  {
+    "description": "Background color for row hover state.",
+    "name": "--fkt-table-row-hover-background-color",
+    "reference": "--fkt-color-neutral-200",
+    "component": "Row",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#e2e8f0"
+  },
+  {
+    "description": "Background color for alternating (odd-indexed) rows when striped is enabled.",
+    "name": "--fkt-table-stripe-color",
+    "reference": "--fkt-color-neutral-50",
+    "component": "Row",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#f8fafc"
+  },
+  {
+    "description": "Color of the active-filter badge dot.",
+    "name": "--fkt-table-filter-badge-color",
+    "reference": "--fkt-color-danger",
+    "component": "FilterRenderer",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#E7000BFF"
   }
 ]

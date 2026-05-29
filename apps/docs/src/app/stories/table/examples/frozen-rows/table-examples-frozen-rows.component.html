@@ -1,0 +1,7 @@
+<fkt-table
+    [data]="unlockedUsers()"
+    [columns]="columns()"
+    [loading]="response.isLoading()"
+    fktTableFrozenRows
+    [frozenData]="lockedUsers()"
+></fkt-table>

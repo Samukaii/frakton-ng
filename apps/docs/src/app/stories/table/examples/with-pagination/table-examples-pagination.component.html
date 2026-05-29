@@ -1,0 +1,11 @@
+<fkt-table
+    [data]="users()"
+    [columns]="columns"
+    [loading]="response.isLoading()"
+>
+    <div fktTableFooter>
+        <div class="paginator-container">
+            <fkt-paginator [(page)]="page" [(pageSize)]="pageSize" [total]="total()"/>
+        </div>
+    </div>
+</fkt-table>

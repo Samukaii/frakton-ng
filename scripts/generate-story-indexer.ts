@@ -4,6 +4,9 @@ import fs from 'fs';
 import { kebabToCamel } from './utils/kebab-to-camel';
 import { getRelativePath } from './utils/get-relative-path';
 
+const escapeDesc = (desc: string) =>
+	desc.replaceAll('`', '\\`').replace(/\r?\n/g, '\\n');
+
 const getStoryStrings = (scrapper: StoryFileScrapper, file: string) => {
 	const relativePath = getRelativePath(file);
 
@@ -35,7 +38,7 @@ const getStoryStrings = (scrapper: StoryFileScrapper, file: string) => {
 	id: "${obj.id}",
 	title: "${obj.title}",
 	componentName: "${obj.componentName}",
-	description: \`${obj.description?.replaceAll("`", '\\`')}\`,
+	description: \`${escapeDesc(obj.description ?? '')}\`,
 	file: () => import("./${relativePath.replace('.ts', '')}"),
 	type: 'story',
 	${externalExamplesSnippet}
@@ -44,8 +47,10 @@ const getStoryStrings = (scrapper: StoryFileScrapper, file: string) => {
 	    {
 	        id: "${story.id}",
 	        name: "${story.name}",
+	        type: "${story.type}",
 	        componentName: ${story.componentName ? `"${story.componentName}"` : "null"},
-	        description:  \`${story.description.replaceAll("`", '\\`')}\`,
+	        description:  \`${escapeDesc(story.description)}\`,
+	        level: ${story.level ?? 2},
 	    }`)}
     ]
 },`
@@ -61,7 +66,7 @@ const getStoryStrings = (scrapper: StoryFileScrapper, file: string) => {
 	id: "${obj.id}",
 	title: "${obj.title}",
 	componentName: "${obj.componentName}",
-	description: \`${obj.description?.replaceAll("`", '\\`')}\`,
+	description: \`${escapeDesc(obj.description ?? '')}\`,
 	file: async () => ${varName}, // Imported eagerly for instant loading
 	type: 'story',
 	${externalExamplesSnippet}
@@ -70,8 +75,10 @@ const getStoryStrings = (scrapper: StoryFileScrapper, file: string) => {
 	    {
 	        id: "${story.id}",
 	        name: "${story.name}",
+	        type: "${story.type}",
 	        componentName: ${story.componentName ? `"${story.componentName}"` : "null"},
-	        description: \`${story.description.replaceAll("`", '\\`')}\`,
+	        description: \`${escapeDesc(story.description)}\`,
+	        level: ${story.level ?? 2},
 	    }`)}
     ]
 },`

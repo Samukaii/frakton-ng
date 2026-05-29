@@ -1,0 +1,20 @@
+<fkt-table
+    fktTableResize
+    fktTableReorder
+    [data]="data()"
+    [columns]="columns"
+    [loading]="response.isLoading()"
+    [(columnWidths)]="columnWidths"
+    [(columnOrder)]="columnOrder"
+    [(filters)]="filters"
+>
+    <div fktTableToolbar>
+        <fkt-button
+            iconPosition="left"
+            shape="rect"
+            icon="arrow-uturn-left"
+            (click)="reset()"
+            text="Reset layout"
+        />
+    </div>
+</fkt-table>

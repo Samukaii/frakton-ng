@@ -1,0 +1,26 @@
+<tr>
+    @if (context.features.selection) {
+        <th fktTableSelectionHeader></th>
+    }
+    @if (context.expandableTemplate()) {
+        <th
+            class="table__header-title table__header-title--expand"
+            [class.pinned-left]="'__expand' in context.features.pinnedColumns.pinnedOffsets()"
+            [style.left]="context.features.pinnedColumns.pinnedOffsets()['__expand']"
+        ></th>
+    }
+    @for (column of context.renderedColumns(); track column.key) {
+        <th
+            fktTableHeaderCell
+            [column]="column"
+            [isLast]="$last"
+            [defaultFilters]="defaultFilters()"
+            [currentSorting]="currentSorting()"
+            (currentSortingChange)="onSort($event)"
+            [(filters)]="filters"
+        ></th>
+    }
+</tr>
+@if (context.features.selection?.showBanner()) {
+    <tr fktTableSelectionBanner></tr>
+}

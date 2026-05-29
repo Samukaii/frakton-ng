@@ -1,0 +1,28 @@
+fkt-table {
+    background-color: var(--fkt-color-neutral-100);
+    --fkt-table-max-height: 600px;
+}
+
+.user-card {
+    display: flex;
+    gap: var(--fkt-space-xl);
+    padding: var(--fkt-space-sm) var(--fkt-space-md);
+    margin-bottom: var(--fkt-space-sm);
+    background-color: color-mix(in srgb, var(--fkt-color-primary) 6%, transparent);
+    border-radius: var(--fkt-space-sm);
+    border: 1px solid color-mix(in srgb, var(--fkt-color-primary) 20%, transparent);
+
+    &__row {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+    }
+
+    &__label {
+        font-size: var(--fkt-font-size-xs);
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        font-weight: var(--fkt-font-semibold);
+        color: var(--fkt-color-neutral-600);
+    }
+}

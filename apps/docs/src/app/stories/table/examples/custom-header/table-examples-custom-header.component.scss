@@ -1,0 +1,20 @@
+fkt-table {
+	background-color: var(--fkt-color-neutral-100);
+    --fkt-table-max-height: 600px;
+}
+
+.custom-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    &__badge {
+        font-size: 0.7rem;
+        font-weight: 500;
+        padding: 0.1rem 0.4rem;
+        border-radius: 9999px;
+        background: var(--fkt-color-primary, #6366f1);
+        color: #fff;
+        white-space: nowrap;
+    }
+}

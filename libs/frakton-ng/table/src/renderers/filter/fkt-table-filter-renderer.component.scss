@@ -1,0 +1,26 @@
+// <design-tokens>
+/*
+Color of the active-filter badge dot.
+@name --fkt-table-filter-badge-color
+@reference --fkt-color-danger
+@component FilterRenderer
+@category Colors
+@type color
+*/
+$badge-color: var(--fkt-table-filter-badge-color, var(--fkt-color-danger));
+// </design-tokens>
+
+:host {
+    display: block;
+    position: relative;
+}
+
+.badge {
+    background-color: $badge-color;
+    width: 7px;
+    height: 7px;
+    position: absolute;
+    border-radius: 100%;
+    top: .1rem;
+    right: 0;
+}

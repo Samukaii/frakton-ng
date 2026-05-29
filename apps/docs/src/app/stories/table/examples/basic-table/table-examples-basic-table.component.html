@@ -1,7 +1,6 @@
 <fkt-table
     [data]="data()"
-    [columnsFn]="columnsFn"
-    [loading]="loading()"
-    [noHeaderWhenEmpty]="noHeaderWhenEmpty()"
-    [noResults]="noResults()"
+    [columns]="columns"
+    [loading]="response.isLoading()"
+    [skeletonLines]="5"
 />

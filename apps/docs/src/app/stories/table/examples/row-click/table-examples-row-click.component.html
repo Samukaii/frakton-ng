@@ -1,0 +1,23 @@
+@if (selectedUser(); as user) {
+    <div class="user-card">
+        <div class="user-card__row">
+            <span class="user-card__label">Name</span>
+            <span>{{ user.name }}</span>
+        </div>
+        <div class="user-card__row">
+            <span class="user-card__label">Email</span>
+            <span>{{ user.email }}</span>
+        </div>
+        <div class="user-card__row">
+            <span class="user-card__label">Age</span>
+            <span>{{ user.age }}</span>
+        </div>
+    </div>
+}
+
+<fkt-table
+    clickableRows
+    [data]="data()"
+    [columns]="columns"
+    (rowClick)="selectedUser.set($event)"
+/>

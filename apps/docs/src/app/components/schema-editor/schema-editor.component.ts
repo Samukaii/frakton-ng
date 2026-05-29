@@ -5,7 +5,6 @@ import { ArgTypeSchema } from '@/models/arg-type';
 import { FktIconComponent } from 'frakton-ng/icon';
 import { capitalize } from 'frakton-ng/internal/utils';
 import { SchemaEditorObjectComponent } from '@/components/schema-editor/object/schema-editor-object.component';
-import { IconSelectorModalComponent } from '@/components/icon-selector/modal/icon-selector-modal.component';
 
 @Component({
     selector: 'fkt-schema-editor',

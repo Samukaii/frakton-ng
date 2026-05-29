@@ -17,6 +17,13 @@ export type ArgTypeSchema = ControlType | Record<string, ControlType | {
     options?: string[];
 }>
 
+export interface ArgTypeOwner {
+    type: 'component' | 'directive';
+    label: string;
+    name?: string;
+    selector?: string;
+}
+
 export type ArgType = {
     type: string;
     required?: boolean;
@@ -25,9 +32,14 @@ export type ArgType = {
     import?: string;
     category: 'Attributes' | 'Methods' | 'Events';
     description?: string;
-} & ({
-    control: 'object' | 'array';
-    schema?: ArgTypeSchema
-} | {
-    control: Exclude<ControlType, 'object' | 'array'>
-});
+    owner?: ArgTypeOwner;
+    playground?: boolean;
+} & (
+    | {
+          control: 'object' | 'array';
+          schema?: ArgTypeSchema;
+      }
+    | {
+          control: Exclude<ControlType, 'object' | 'array'>;
+      }
+);

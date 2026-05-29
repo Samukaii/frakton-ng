@@ -3,23 +3,20 @@
 
 @if (indexer && resolved) {
     @for (story of stories(); track story.name) {
-        <h2 [id]="story.name | pascalToKebab">{{ story.name | pascalToHumanReadable }}</h2>
+        @if ((story.level ?? 2) === 3) {
+            <h3 [id]="story.name | pascalToKebab">{{ story.name | pascalToHumanReadable }}</h3>
+        } @else {
+            <h2 [id]="story.name | pascalToKebab">{{ story.name | pascalToHumanReadable }}</h2>
+        }
 
-        @defer (on viewport) {
+        @if (story.type === 'introduction') {
+            <fkt-markdown [data]="story.description ?? ''"/>
+        } @else {
             <fkt-story-renderer
                 [storyName]="story.name"
                 [indexer]="indexer"
                 [storyResolved]="resolved"
             />
-        } @placeholder {
-            <fkt-skeleton-container gap="0px">
-                <fkt-skeleton-container gap="3px" marginBottom="16px">
-                    <fkt-skeleton height="20px" width="100%"/>
-                    <fkt-skeleton height="20px" width="100%"/>
-                    <fkt-skeleton height="20px" width="100%"/>
-                </fkt-skeleton-container>
-                <fkt-skeleton height="632px" width="100%"/>
-            </fkt-skeleton-container>
         }
     }
 }

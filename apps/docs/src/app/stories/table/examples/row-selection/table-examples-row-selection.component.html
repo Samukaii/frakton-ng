@@ -1,0 +1,21 @@
+<div class="toolbar">
+    <span class="toolbar__label">{{ selectionLabel() }}</span>
+    @if (hasSelection()) {
+        <fkt-button text="Delete selected" color="danger" size="sm" icon="trash"></fkt-button>
+    }
+</div>
+
+<fkt-table
+    fktTableSelection
+    [data]="users()"
+    [columns]="columns"
+    [loading]="response.isLoading()"
+    [totalItems]="total()"
+    [(selection)]="selection"
+>
+    <div fktTableFooter>
+        <div class="paginator-container">
+            <fkt-paginator [(page)]="page" [(pageSize)]="pageSize" [total]="total()"/>
+        </div>
+    </div>
+</fkt-table>

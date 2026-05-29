@@ -1,10 +1,8 @@
 <div class="table">
     <fkt-table
         disableRowHover
-        [mainAction]="addNew"
         [data]="valueWithIds()"
-        [columnsFn]="columnsFn()"
-        [actionsFn]="actionsFn"
+        [columns]="columns()"
         [loading]="false"
     />
 </div>

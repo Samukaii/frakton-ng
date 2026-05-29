@@ -57,7 +57,7 @@ export class FktButtonsListComponent<T> {
 	 * Whether buttons should fill the available space
 	 * @default false
 	 */
-	fill = input(false, { transform: booleanAttribute });
+	fill = input(false as boolean | undefined, { transform: booleanAttribute });
 
 	/**
 	 * Vertical alignment of buttons

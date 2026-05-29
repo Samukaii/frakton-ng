@@ -3,7 +3,9 @@
     --fkt-button-padding-horizontal: var(--fkt-space-sm);
     --fkt-button-content-gap: var(--fkt-space-3xs);
     --fkt-button-primary-color: white;
-    --fkt-button-primary-hover-color: #b2b2b2;
+    --fkt-button-primary-hover-color: rgba(255, 255, 255, 0.24);
     --fkt-button-icon-font-weight: 500;
+    --fkt-button-border-width: 1px;
     --fkt-font-size-md: 14px;
+    --fkt-button-border-radius: 10px;
 }

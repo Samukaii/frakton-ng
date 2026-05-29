@@ -3,19 +3,18 @@ import { StoryLoaderService } from '@/core/services/story-loader.service';
 import { STORIES_MAP } from '@/stories/stories-map';
 import { StoryRendererComponent } from '@/components/story-renderer/story-renderer.component';
 import { injectRouteParams } from '@/utils/inject-route-params';
-import { FktSkeletonComponent, FktSkeletonContainerComponent } from 'frakton-ng/skeleton';
 import { PascalToHumanReadablePipe } from '@/pipes/pascal-to-human-readable.pipe';
 import { PascalToKebabPipe } from '@/pipes/pascal-to-kebab.pipe';
+import { MarkdownWrapperComponent } from '@/components/markdown/markdown-wrapper.component';
 
 
 @Component({
     selector: 'fkt-story-examples',
     imports: [
         StoryRendererComponent,
-        FktSkeletonComponent,
-        FktSkeletonContainerComponent,
         PascalToHumanReadablePipe,
         PascalToKebabPipe,
+        MarkdownWrapperComponent,
     ],
     templateUrl: './story-examples.component.html',
     styleUrl: './story-examples.component.scss',

@@ -1,0 +1,30 @@
+<div class="header-cell-content">
+    @if (templateRef()) {
+        <ng-container [ngTemplateOutlet]="templateRef()"/>
+    } @else {
+        <div class="common-text">
+            <div>
+                {{ column().header }}
+            </div>
+            <p>{{ column().description }}</p>
+        </div>
+    }
+    @if (column().allowSorting) {
+        <fkt-button
+            ariaLabel="order"
+            [icon]="sortingIcon()"
+            theme="basic"
+            (click)="updateSorting()"
+        />
+    }
+    @if (column().filter) {
+        <fkt-table-filter-renderer
+            [column]="column()"
+            [defaultFilters]="defaultFilters()"
+            [(filters)]="filters"
+        />
+    }
+</div>
+@if (canResize && !isLast()) {
+    <div class="table__resize-handle" (mousedown)="onResizeStart($event)"></div>
+}
