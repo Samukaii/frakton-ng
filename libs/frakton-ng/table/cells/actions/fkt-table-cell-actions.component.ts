@@ -6,8 +6,8 @@ import { FktButtonAction } from 'frakton-ng/button';
 @Component({
     selector: 'fkt-table-cells-action',
     imports: [FktButtonsListComponent],
-    templateUrl: './fkt-table-cell-with-action.component.html',
-    styleUrl: './fkt-table-cell-with-action.component.scss',
+    templateUrl: './fkt-table-cell-actions.component.html',
+    styleUrl: './fkt-table-cell-actions.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FktTableCellActionsComponent {

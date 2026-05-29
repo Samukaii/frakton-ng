@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, input, linkedSignal, output } from '@angular/core';
 import { FktButtonsListComponent } from 'frakton-ng/buttons-list';
 import { FktButtonAction } from 'frakton-ng/button';
-import { FktSelectComponent, FktSelectOption } from '../../../select';
+import { FktSelectComponent, FktSelectOption } from 'frakton-ng/select';
 import { FktTableCustomFilter } from 'frakton-ng/table';
 
 @Component({

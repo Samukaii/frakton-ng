@@ -8,3 +8,4 @@ export { FktTableReorderDirective } from './src/features/reorder/fkt-table-reord
 export { FktTableVirtualScrollDirective } from './src/features/virtual-scroll/fkt-table-virtual-scroll.directive';
 export { FktTableExportDirective } from './src/features/export/fkt-table-export.directive';
 export { FktTableFrozenRowsDirective } from './src/features/frozen-rows/fkt-table-frozen-rows.directive';
+export { FktTableContextDirective } from './src/core/fkt-table-context.directive'
