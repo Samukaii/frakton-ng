@@ -1,0 +1,13 @@
+<fkt-table [size]="tableSize()" [data]="data()" [columns]="columns" [loading]="response.isLoading()">
+    <div fktTableToolbar>
+        <fkt-button-group
+            accessibleLabel="Size"
+            [options]="options"
+            shape="rect"
+            size="lg"
+            [(value)]="tableSize"
+        />
+    </div>
+</fkt-table>
+
+

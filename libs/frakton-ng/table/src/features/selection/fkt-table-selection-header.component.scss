@@ -1,0 +1,50 @@
+// <design-tokens>
+/*
+Padding for the checkbox header cell.
+@name --fkt-table-header-cell-padding
+@reference --fkt-space-md
+@component SelectionHeader
+@category Spacing
+@type size
+*/
+$header-cell-padding: var(--fkt-table-header-cell-padding, var(--fkt-space-md));
+
+/*
+Color for header title text.
+@name --fkt-table-header-title-color
+@reference --fkt-color-neutral-900
+@component SelectionHeader
+@category Colors
+@type color
+*/
+$header-title-color: var(--fkt-table-header-title-color, var(--fkt-color-neutral-900));
+
+/*
+Font weight for header title.
+@name --fkt-table-header-title-font-weight
+@reference --fkt-font-semibold
+@component SelectionHeader
+@category Typography
+@type font
+*/
+$header-title-font-weight: var(--fkt-table-header-title-font-weight, var(--fkt-font-semibold));
+
+/*
+Background color for the checkbox header cell. Must be opaque for pinned columns.
+@name --fkt-table-cell-background
+@reference --fkt-color-neutral-100
+@component SelectionHeader
+@category Colors
+@type color
+*/
+$cell-background: var(--fkt-table-cell-background, var(--fkt-color-neutral-100));
+// </design-tokens>
+
+:host {
+    position: relative;
+    width: 2.5rem;
+    padding: 0 $header-cell-padding;
+    font-weight: $header-title-font-weight;
+    color: $header-title-color;
+    background-color: $cell-background;
+}

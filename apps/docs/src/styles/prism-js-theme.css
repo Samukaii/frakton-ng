@@ -2,7 +2,7 @@ pre[class*="language-"] {
     padding: 1rem;
     font-family: JetBrains Mono, Consolas, Monaco, monospace;
     background-color: rgb(30, 34, 43);
-    width: 100%;
+    width: stretch;
     min-width: 0;
     max-width: 100%;
     overflow: auto;
@@ -133,10 +133,10 @@ markdown {
 	code:not([class*="language-"]) {
 		font-family: JetBrains Mono, Consolas, Monaco, monospace !important;
 		color: var(--fkt-color-info);
-		background-color: var(--fkt-color-info-opacity-10);
-		border: none;
+		background-color: white;
+		border: solid 1px rgba(0, 0, 0, 0.2);
 		border-radius: var(--fkt-radius-sm);
-		padding: var(--fkt-space-3xs);
+		padding: var(--fkt-space-2xs);
 		font-weight: var(--fkt-font-semibold);
 		display: inline-block;
 		width: fit-content;

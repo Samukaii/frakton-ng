@@ -1,7 +1,3 @@
-@if (!hideLabel()) {
-    <label>{{ label() }}</label>
-}
-
 <div class="container"
      role="switch"
      [tabIndex]="disabled() ? -1 : 0"
@@ -17,3 +13,7 @@
      (keydown.space)="$event.preventDefault(); onClick()">
     <div class="toggle"></div>
 </div>
+
+@if (!hideLabel()) {
+    <label>{{ label() }}</label>
+}

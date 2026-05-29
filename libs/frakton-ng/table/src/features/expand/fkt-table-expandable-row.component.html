@@ -1,0 +1,18 @@
+<td [attr.colspan]="context.columnsCount()" class="table__expanded-cell">
+    @if (isExpanded()) {
+        <div
+            animate.enter="fkt-expand-enter"
+            animate.leave="fkt-expand-leave"
+            class="table__expand-wrapper"
+        >
+            <div class="table__expand-inner">
+                <div class="table__expand-content">
+                    <ng-container
+                        [ngTemplateOutlet]="context.expandableTemplate()"
+                        [ngTemplateOutletContext]="{ $implicit: item() }"
+                    />
+                </div>
+            </div>
+        </div>
+    }
+</td>

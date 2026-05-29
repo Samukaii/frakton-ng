@@ -30,6 +30,8 @@ export class StoryLoaderService {
                 ...response[story.name as keyof typeof response],
                 name: story.name,
                 componentName: story.componentName,
+                type: story.type,
+                description: story.description,
             })
         })
 

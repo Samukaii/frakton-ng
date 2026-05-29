@@ -138,7 +138,7 @@ export class DocsPageComponent {
                 return {
                     id: story.id,
                     text: pascalToHumanReadable(story.name),
-                    level: 2,
+                    level: story.level ?? 2,
                 };
             }),
         ];

@@ -9,7 +9,7 @@ import {
     untracked,
     viewChild,
     viewChildren,
-    ViewContainerRef
+    ViewContainerRef,
 } from '@angular/core';
 import { FktPlaygroundPanelComponent } from './panel/fkt-playground-panel.component';
 import { ThemeService } from '@/core/services/theme.service';
@@ -21,6 +21,7 @@ import { isPlatformBrowser } from '@angular/common';
 import { FktComponentInputsAndModels } from 'frakton-ng/internal/types';
 import { deepMerge } from '@/utils/deep-merge';
 import { ArgType } from '@/models/arg-type';
+import { FktSpinnerComponent } from 'frakton-ng/spinner';
 
 interface PlaygroundVariant {
     title?: string;
@@ -29,7 +30,10 @@ interface PlaygroundVariant {
 
 @Component({
     selector: 'fkt-playground',
-    imports: [FktPlaygroundPanelComponent],
+    imports: [
+        FktPlaygroundPanelComponent,
+        FktSpinnerComponent,
+    ],
     templateUrl: './fkt-playground.component.html',
     styleUrl: './fkt-playground.component.scss',
 })
@@ -155,7 +159,8 @@ export class FktPlaygroundComponent {
 
         return Object.fromEntries(
             tokens.flatMap((token) => {
-                if (!token.control()) return [];
+                if (!token.control() || token.control() === token.defaultValue)
+                    return [];
 
                 return [[token.name, token.control()]];
             })
@@ -186,19 +191,9 @@ export class FktPlaygroundComponent {
             if (!argType) return [];
 
             if (argType.category !== 'Attributes') return [];
+            if (argType.playground === false) return [];
 
-            return {
-                name: key,
-                type: argType.control,
-                schema: 'schema' in argType ? argType.schema : {},
-                options:
-                    argType.options?.map((option) => ({
-                        label: option,
-                        value: option,
-                    })) ?? [],
-                description: argType.description!,
-                control: signal(value),
-            };
+            return this.createArgItem(key, value, argType);
         });
     });
 
@@ -211,20 +206,35 @@ export class FktPlaygroundComponent {
             if (!argType) return [];
 
             if (argType.category !== 'Attributes') return [];
+            if (argType.playground === false) return [];
 
-            return {
-                name: key,
-                type: argType.control,
-                options:
-                    argType.options?.map((option) => ({
-                        label: option,
-                        value: option,
-                    })) ?? [],
-                description: argType.description!,
-                schema: 'schema' in argType ? argType.schema : {},
-                control: signal(value),
-            };
+            return this.createArgItem(key, value, argType);
         });
+    }
+
+    private createArgItem(
+        key: string,
+        value: unknown,
+        argType: ArgType
+    ): ArgItem<any> {
+        const owner = argType.owner;
+
+        return {
+            name: key,
+            type: argType.control,
+            schema: 'schema' in argType ? argType.schema : {},
+            options:
+                argType.options?.map((option) => ({
+                    label: option,
+                    value: option,
+                })) ?? [],
+            description: argType.description!,
+            control: signal(value),
+            ownerKey: owner
+                ? `${owner.type}:${owner.name ?? owner.selector ?? owner.label}`
+                : 'component:core',
+            ownerLabel: owner?.label ?? 'Core',
+        };
     }
 
     private getArgTypes() {

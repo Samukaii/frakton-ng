@@ -1,3 +1,10 @@
-export { FktTableComponent } from './src/fkt-table.component';
-export * from './src/fkt-table.types';
-export { provideTableCells, TABLE_CELLS_TOKEN } from './src/table-cells.provider';
+export { FktTableComponent } from './src/core/fkt-table.component';
+export { FktTableExpandDirective } from './src/features/expand/fkt-table-expand.directive';
+export * from './src/utils/fkt-table.utils';
+export * from './fkt-table.types';
+export { FktTableSelectionDirective } from './src/features/selection/fkt-table-selection.directive';
+export { FktTableResizeDirective } from './src/features/resize/fkt-table-resize.directive';
+export { FktTableReorderDirective } from './src/features/reorder/fkt-table-reorder.directive';
+export { FktTableVirtualScrollDirective } from './src/features/virtual-scroll/fkt-table-virtual-scroll.directive';
+export { FktTableExportDirective } from './src/features/export/fkt-table-export.directive';
+export { FktTableFrozenRowsDirective } from './src/features/frozen-rows/fkt-table-frozen-rows.directive';

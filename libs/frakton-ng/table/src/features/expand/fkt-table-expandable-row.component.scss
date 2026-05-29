@@ -1,0 +1,62 @@
+// <design-tokens>
+/*
+Border color between expanded rows.
+@name --fkt-table-row-border-color
+@reference --fkt-color-neutral-300
+@component ExpandableRow
+@category Colors
+@type color
+*/
+$row-border-color: var(--fkt-table-row-border-color, var(--fkt-color-neutral-300));
+
+/*
+Padding inside the expanded row content area.
+@name --fkt-table-header-cell-padding
+@reference --fkt-space-md
+@component ExpandableRow
+@category Spacing
+@type size
+*/
+$header-cell-padding: var(--fkt-table-header-cell-padding, var(--fkt-space-md));
+// </design-tokens>
+
+:host {
+    &:not(:last-child):has(.table__expand-wrapper) {
+        border-bottom: solid 1px $row-border-color;
+    }
+}
+
+.table__expanded-cell {
+    padding: 0;
+}
+
+.table__expand-wrapper {
+    display: grid;
+}
+
+.table__expand-inner {
+    overflow: hidden;
+    min-height: 0;
+}
+
+.table__expand-content {
+    padding: $header-cell-padding;
+}
+
+.fkt-expand-enter {
+    animation: fkt-expand-enter 250ms ease forwards;
+}
+
+.fkt-expand-leave {
+    animation: fkt-expand-leave 200ms ease forwards;
+}
+
+@keyframes fkt-expand-enter {
+    from { grid-template-rows: 0fr; }
+    to { grid-template-rows: 1fr; }
+}
+
+@keyframes fkt-expand-leave {
+    from { grid-template-rows: 1fr; }
+    to { grid-template-rows: 0fr; }
+}

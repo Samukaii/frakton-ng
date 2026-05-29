@@ -1,0 +1,14 @@
+<fkt-select
+    label="Modifier"
+    [options]="modifierOptions"
+    [(value)]="internalModifier"
+/>
+<fkt-input
+    [label]="label()"
+    type="number"
+    [(value)]="internalValue"
+/>
+<fkt-buttons-list
+    [horizontalAlignment]="'end'"
+    [actions]="actions"
+/>

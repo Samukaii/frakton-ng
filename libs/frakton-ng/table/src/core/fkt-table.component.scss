@@ -1,0 +1,114 @@
+// <design-tokens>
+/*
+Border radius for the table container.
+@name --fkt-table-border-radius
+@reference --fkt-space-sm
+@component Display
+@category Shape
+@type size
+*/
+$border-radius: var(--fkt-table-border-radius, var(--fkt-space-sm));
+
+/*
+Background color for table container.
+@name --fkt-table-cell-background
+@reference --fkt-color-neutral-100
+@component Display
+@category Color
+@type size
+*/
+$cell-background: var(--fkt-table-cell-background, var(--fkt-color-neutral-100));
+
+/*
+Border color for the table container outline.
+@name --fkt-table-border-color
+@reference --fkt-color-neutral-300
+@component Display
+@category Colors
+@type color
+*/
+$border-color: var(--fkt-table-border-color, var(--fkt-color-neutral-300));
+
+/*
+Font size for table body text.
+@name --fkt-table-font-size
+@reference --fkt-font-size-sm
+@component Display
+@category Typography
+@type size
+*/
+$font-size: var(--fkt-table-font-size, var(--fkt-font-size-sm));
+
+/*
+Line height for table text.
+@name --fkt-table-line-height
+@reference 1.25rem
+@component Display
+@category Typography
+@type size
+*/
+$line-height: var(--fkt-table-line-height, 1.25rem);
+
+/*
+Max height for the scrollable table area. Set to control vertical scroll.
+@name --fkt-table-max-height
+@reference none
+@component Display
+@category Spacing
+@type size
+*/
+$max-height: var(--fkt-table-max-height, none);
+// </design-tokens>
+
+:host {
+    --_table-cell-padding: var(--fkt-space-md);
+
+    &.size-sm { --_table-cell-padding: var(--fkt-space-sm); }
+    &.size-lg { --_table-cell-padding: var(--fkt-space-lg); }
+
+    &.grid-lines {
+        --fkt-table-column-border-width: 1px;
+    }
+}
+
+:host {
+    overflow: auto;
+    flex: 1 1 0;
+    width: 100%;
+    display: block;
+    border-radius: $border-radius;
+    box-shadow: 0 0 0 1px $border-color;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.table-scroll {
+    overflow: auto;
+    max-height: $max-height;
+
+    &.resizing {
+        cursor: col-resize;
+        user-select: none;
+    }
+}
+
+.table-container {
+    position: relative;
+    overflow: hidden;
+    background: $cell-background;
+
+    flex: 1 1 0;
+    width: 100%;
+    height: 100%;
+}
+
+.table {
+    font-size: $font-size;
+    line-height: $line-height;
+    border-collapse: separate;
+    border-spacing: 0;
+    table-layout: fixed;
+    min-width: 100%;
+}

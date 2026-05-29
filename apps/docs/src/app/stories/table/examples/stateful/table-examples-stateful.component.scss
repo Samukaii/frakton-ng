@@ -1,0 +1,8 @@
+[fktTableToolbar] {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    padding: var(--fkt-space-md);
+    box-sizing: border-box;
+    border-bottom: solid 1px var(--fkt-color-neutral-300);
+}

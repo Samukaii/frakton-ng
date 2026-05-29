@@ -1,0 +1,48 @@
+@if (loading()) {
+    @for (index of skeletonRange(); track index) {
+        <tr>
+            @for (column of context.renderedColumns(); track column.key) {
+                <td class="table__skeleton-cell"
+                    [class.first-row]="$first"
+                    [class.last-row]="$last">
+                    <fkt-skeleton height="20px"/>
+                </td>
+            }
+
+        </tr>
+    }
+} @else {
+    @if (virtualTopSpacerHeight() !== null) {
+        <tr fktTableSpacer [height]="virtualTopSpacerHeight()!" aria-hidden="true"></tr>
+    }
+    @for (item of context.renderedData(); track getId(item)) {
+        <tr
+            fktTableRow
+            [item]="item"
+            [rowIndex]="virtualOffset() + $index"
+            [striped]="striped()"
+            [isExpanded]="expandedRowIdSet().has(getId(item))"
+            [classesFn]="classesFn()"
+            [disableRowHover]="disableRowHover()"
+            [clickableRows]="clickableRows()"
+            (rowClick)="rowClick.emit($event)"
+            (expandToggle)="toggleExpand(item)"
+        ></tr>
+        @if (context.expandableTemplate() && renderedRowIdSet().has(getId(item))) {
+            <tr
+                fktTableExpandableRow
+                [item]="item"
+                [isExpanded]="expandedRowIdSet().has(getId(item))"
+            ></tr>
+        }
+    } @empty {
+        <tr>
+            <td [attr.colspan]="context.columnsCount()">
+                <fkt-no-results borderless [noResults]="noResults()"/>
+            </td>
+        </tr>
+    }
+    @if (virtualBottomSpacerHeight() !== null) {
+        <tr fktTableSpacer [height]="virtualBottomSpacerHeight()!" aria-hidden="true"></tr>
+    }
+}

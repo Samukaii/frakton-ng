@@ -1,0 +1,26 @@
+// <design-tokens>
+/*
+Color of the column resize indicator line.
+@name --fkt-table-resize-indicator-color
+@reference --fkt-color-primary
+@component ResizeIndicator
+@category Colors
+@type color
+*/
+$indicator-color: var(--fkt-table-resize-indicator-color, var(--fkt-color-primary));
+// </design-tokens>
+
+:host {
+    display: none;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background-color: $indicator-color;
+    pointer-events: none;
+    z-index: 9999;
+
+    &.visible {
+        display: block;
+    }
+}

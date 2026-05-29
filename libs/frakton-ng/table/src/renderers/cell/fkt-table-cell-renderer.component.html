@@ -1,0 +1,18 @@
+@let text = defaultCell();
+@let template = templateCell();
+@let custom = componentCell();
+
+@if (text) {
+    <div class="text" [fktTooltip]="text.value" detectOverflow>
+        {{ text.value }}
+    </div>
+}
+@if (template) {
+    <ng-container
+        *ngTemplateOutlet="template.templateRef; context: template.context"
+    ></ng-container>
+}
+
+@if (custom) {
+    <fkt-component-renderer [component]="custom.component" [data]="custom.data"/>
+}

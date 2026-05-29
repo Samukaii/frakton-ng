@@ -1,4 +1,4 @@
-import { Component, computed, input, linkedSignal, model } from '@angular/core';
+import { Component, computed, input, linkedSignal, model, signal } from '@angular/core';
 import { FktIconComponent, FktIconName } from "frakton-ng/icon";
 import { FktInputComponent } from "frakton-ng/input";
 import { FktSelectComponent } from "frakton-ng/select";
@@ -44,6 +44,7 @@ export class FktPlaygroundPanelComponent {
 	argsList = input.required<ArgItem<any>[]>();
 	designTokens = input.required<DesignTokenItem[]>();
 	expanded = model(true);
+    protected readonly activeControlsOwner = signal('all');
 
 	protected currentTab = linkedSignal<string>(() => {
 		const tabs = this.visibleTabs();
@@ -87,6 +88,36 @@ export class FktPlaygroundPanelComponent {
 	protected canShowDesignTokens = computed(() => {
 		return this.designTokens().length > 0;
 	});
+
+    protected readonly controlOwners = computed(() => {
+        const ownersMap = new Map<string, ArgItem<any>>();
+
+        this.argsList().forEach((arg) => {
+            if (!ownersMap.has(arg.ownerKey)) {
+                ownersMap.set(arg.ownerKey, arg);
+            }
+        });
+
+        return Array.from(ownersMap.values());
+    });
+
+    protected readonly hasMultipleControlOwners = computed(() => {
+        return this.controlOwners().length > 1;
+    });
+
+    protected readonly showControlOwners = computed(() => {
+        const owners = this.controlOwners();
+
+        return owners.length > 1 || owners[0]?.ownerKey !== 'component:core';
+    });
+
+    protected readonly visibleArgsList = computed(() => {
+        const activeOwner = this.activeControlsOwner();
+
+        if (activeOwner === 'all') return this.argsList();
+
+        return this.argsList().filter((arg) => arg.ownerKey === activeOwner);
+    });
 
 	protected buttonThemeLabel = computed(() => {
 		return this.currentTheme() === 'dark' ? 'Switch to light mode' : 'Switch to dark mode';
