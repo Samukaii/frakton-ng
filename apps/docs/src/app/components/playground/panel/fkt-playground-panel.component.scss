@@ -1,19 +1,28 @@
+:host {
+    border-radius: var(--fkt-radius-xl);
+    display: block;
+    overflow: hidden;
+    border: solid 1px var(--fkt-controls-tabs-border-top-color);
+}
+
+
 .tabs {
     display: flex;
     align-items: center;
+    gap: var(--fkt-space-xs);
     justify-content: space-between;
     background-color: var(--fkt-controls-tabs-background);
-    border-top: solid 1px var(--fkt-controls-tabs-border-top-color);
-    border-bottom: solid 1px var(--fkt-controls-tabs-border-bottom-color);
+    padding: var(--fkt-space-xs);
 
-    & > div {
+    &__list {
         display: flex;
+        gap: var(--fkt-space-xs);
         max-width: 100%;
         min-width: 0;
-        overflow: auto hidden;
     }
 
     .actions {
+        display: flex;
         min-width: fit-content;
         padding: 0 var(--fkt-space-xs);
 
@@ -49,15 +58,11 @@
     }
 
     .tab {
-        opacity: 0;
-        pointer-events: none;
-        background-color: transparent;
-        color: var(--fkt-controls-tabs-text-color);
-        padding: .75rem 1.5rem;
+        background-color: var(--fkt-color-card-background);
+        padding: .5rem .75rem;
         font-size: var(--fkt-font-size-sm);
         font-weight: var(--fkt-font-semibold);
         border: none;
-        border-bottom: solid 3px transparent;
         position: relative;
         bottom: -1px;
         display: flex;
@@ -66,6 +71,12 @@
         transition: var(--fkt-transition-base);
         cursor: pointer;
         outline: none;
+        border-radius: var(--fkt-radius-full);
+        color: var(--fkt-color-neutral-800);
+
+        &:hover {
+            background: var(--fkt-color-primary-opacity-20);
+        }
 
         fkt-icon {
             font-weight: lighter;
@@ -75,30 +86,9 @@
             margin: 0;
         }
 
-        &:hover {
-            color: var(--fkt-color-link);
-        }
-
-        &:focus {
-            border-bottom: solid 3px var(--fkt-color-link);
-            color: var(--fkt-color-link);
-        }
-
-        &:first-child {
-            border-radius: var(--fkt-radius-md) 0 0 0;
-        }
-
-        &:last-child {
-            border-radius: 0 var(--fkt-radius-md) 0 0;
-        }
-
-        &:first-child:last-child {
-            border-radius: var(--fkt-radius-md) var(--fkt-radius-md) 0 0;
-        }
-
         &.active {
-            border-bottom: solid 3px var(--fkt-color-link);
-            color: var(--fkt-color-link);
+            color: white;
+            background-color: var(--fkt-color-primary);
 
             p {
                 font-weight: var(--fkt-font-semibold);
@@ -198,26 +188,5 @@ table {
     overflow: auto hidden;
     transition: var(--fkt-transition-base);
     background-color: var(--fkt-controls-table-background);
-    height: 0;
+    height: 400px;
 }
-
-:host {
-    &.expanded {
-        .tabs .actions {
-            fkt-button.expand-button {
-                transition: var(--fkt-transition-base);
-                transform: rotateZ(180deg);
-            }
-        }
-
-        .tab {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        .table-container {
-            height: 400px;
-        }
-    }
-}
-
