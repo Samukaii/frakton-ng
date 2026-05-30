@@ -49,7 +49,6 @@ export class FktPlaygroundComponent {
 
     protected readonly themeService = inject(ThemeService);
     protected readonly storyInfoService = inject(StoryInfoService);
-    protected expanded = signal(false);
 
     private readonly viewRefs = viewChildren('template', {
         read: ViewContainerRef,

@@ -1,7 +1,8 @@
 <div>
     <div class="tabs">
         <div fktNavigableList orientation="horizontal" (select)="selectTabByIndex($event)" childSelector="button"
-             role="tablist">
+            class="tabs__list"
+            role="tablist">
             @for (tab of visibleTabs(); track tab.key) {
                 <button
                     class="tab"
@@ -15,25 +16,6 @@
                     <p class="hide-sm">{{ tab.label }}</p>
                 </button>
             }
-        </div>
-        <div class="actions">
-            <fkt-button
-                class="expand-button"
-                ariaLabel="Show code"
-                fktTooltip="Show code"
-                [color]="currentTheme() === 'dark' ? 'accent' : 'info'"
-                theme="basic"
-                icon="code-bracket"
-                (click)="expanded.set(!expanded())"
-            />
-            <fkt-button
-                [ariaLabel]="buttonThemeLabel()"
-                [fktTooltip]="buttonThemeLabel()"
-                [color]="currentTheme() === 'dark' ? 'accent' : 'info'"
-                theme="basic"
-                (click)="toggleTheme()"
-                [icon]="buttonThemeIcon()"
-            />
         </div>
     </div>
 
@@ -67,14 +49,14 @@
                     </div>
                 }
 
-                <div [tabindex]="expanded() ? 0 : -1" class="table-container">
+                <div class="table-container">
                     <table>
                         <thead>
                         <td>Name</td>
                         <td>Description</td>
-                        @if (showControlOwners()) {
-                            <td>Source</td>
-                        }
+                            @if (showControlOwners()) {
+                                <td>Source</td>
+                            }
                         <td>Control</td>
                         </thead>
                         <tbody>
@@ -97,7 +79,6 @@
                                                 <fkt-input
                                                     hideLabel
                                                     [label]="arg.name"
-                                                    [disabled]="!expanded()"
                                                     placeholder="Enter a text"
                                                     [(value)]="arg.control"
                                                 />
@@ -106,7 +87,6 @@
                                                 <fkt-input
                                                     hideLabel
                                                     [label]="arg.name"
-                                                    [disabled]="!expanded()"
                                                     placeholder="Enter a number"
                                                     type="number"
                                                     [(value)]="arg.control"
@@ -116,7 +96,6 @@
                                                 <fkt-toggle
                                                     hideLabel
                                                     [label]="arg.name"
-                                                    [disabled]="!expanded()"
                                                     [(value)]="arg.control"
                                                 />
                                             }
@@ -124,7 +103,6 @@
                                                 <fkt-select
                                                     hideLabel
                                                     [label]="arg.name"
-                                                    [disabled]="!expanded()"
                                                     [options]="arg.options"
                                                     [(value)]="arg.control"
                                                 />
@@ -161,16 +139,12 @@
     }
     @if (currentTab() === "styling" && canShowDesignTokens()) {
         <div role="tabpanel" id="panel-styling" aria-labelledby="tab-styling">
-            <fkt-playground-design-tokens
-                [expanded]="expanded()"
-                [designTokens]="designTokens()"/>
+            <fkt-playground-design-tokens [designTokens]="designTokens()"/>
         </div>
     }
     @if (currentTab() === "code") {
         <div role="tabpanel" id="panel-code" aria-labelledby="tab-code">
-            <fkt-source-code
-                [expanded]="expanded()"
-            />
+            <fkt-source-code/>
         </div>
     }
 </div>

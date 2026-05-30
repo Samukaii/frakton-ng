@@ -1,149 +1,154 @@
-import { Component, computed, inject, input, linkedSignal, reflectComponentType } from '@angular/core';
+import {
+    Component,
+    computed,
+    inject,
+    input,
+    linkedSignal,
+    reflectComponentType,
+} from '@angular/core';
 import { FktButtonComponent } from 'frakton-ng/button';
 import { FktTooltipDirective } from 'frakton-ng/tooltip';
-import { DesignTokenItem } from '../../../models/design-token-item';
+import { DesignTokenItem } from '@/models/design-token-item';
 import { FktPlaygroundDesignTokensItemComponent } from './item/fkt-playground-design-tokens-item.component';
 import { FktIconComponent, FktIconName } from 'frakton-ng/icon';
 import { STORY_META_TOKEN } from '@/tokens/story-meta.token';
 
 @Component({
-	selector: 'fkt-playground-design-tokens',
-	imports: [
-		FktButtonComponent,
-		FktTooltipDirective,
-		FktPlaygroundDesignTokensItemComponent,
-		FktIconComponent
-	],
-	templateUrl: './fkt-playground-design-tokens.component.html',
-	styleUrl: './fkt-playground-design-tokens.component.scss',
-	host: {
-		'[class.expanded]': 'expanded()'
-	}
+    selector: 'fkt-playground-design-tokens',
+    imports: [
+        FktButtonComponent,
+        FktTooltipDirective,
+        FktPlaygroundDesignTokensItemComponent,
+        FktIconComponent,
+    ],
+    templateUrl: './fkt-playground-design-tokens.component.html',
+    styleUrl: './fkt-playground-design-tokens.component.scss',
 })
 export class FktPlaygroundDesignTokensComponent {
-	expanded = input(true);
-	designTokens = input.required<DesignTokenItem[]>();
+    designTokens = input.required<DesignTokenItem[]>();
 
     meta = inject(STORY_META_TOKEN);
 
     templateSelector = computed(() => {
         const component = this.meta.component;
 
-        if(!component) return ':host';
+        if (!component) return ':host';
 
         try {
-            const reflection = reflectComponentType(component)
-            if (reflection?.selector)
-                return reflection?.selector;
-        } catch (e) {
-        }
+            const reflection = reflectComponentType(component);
+            if (reflection?.selector) return reflection?.selector;
+        } catch (e) {}
 
         return ':host';
     });
 
-	currentComponent = linkedSignal(() => {
-		const components = this.components();
+    currentComponent = linkedSignal(() => {
+        const components = this.components();
 
-		return components[0];
-	});
+        return components[0];
+    });
 
-	components = computed(() => {
-		const tokens = this.designTokens();
+    components = computed(() => {
+        const tokens = this.designTokens();
 
-		const components: string[] = [
-			'All'
-		];
+        const components: string[] = ['All'];
 
-		tokens.forEach((token) => {
-			if(!token.component) return;
-			if(components.includes(token.component)) return;
+        tokens.forEach((token) => {
+            if (!token.component) return;
+            if (components.includes(token.component)) return;
 
-			components.push(token.component);
-		});
+            components.push(token.component);
+        });
 
-		return components;
-	});
+        return components;
+    });
 
-	tokensCategories = computed(() => {
-		const tokens = this.designTokens();
-		const currentComponent = this.currentComponent();
+    tokensCategories = computed(() => {
+        const tokens = this.designTokens();
+        const currentComponent = this.currentComponent();
 
-		const tokensFiltered = tokens.filter((token) => {
-			if(currentComponent === 'All') return true;
+        const tokensFiltered = tokens.filter((token) => {
+            if (currentComponent === 'All') return true;
 
-			return token.component === currentComponent
-		});
+            return token.component === currentComponent;
+        });
 
-		const categories: { name: string; icon: FktIconName; tokens: DesignTokenItem[] }[] = [
-			{
-				name:  "Typography",
-				icon: "h2",
-				tokens: []
-			},
-			{
-				name:  "Colors",
-				icon: "eye-dropper",
-				tokens: []
-			},
-			{
-				name:  "Spacing",
-				icon: "squares-2x2",
-				tokens: []
-			},
-			{
-				name:  "Shape",
-				icon: "rectangle-group",
-				tokens: []
-			},
-			{
-				name: "Effects",
-				icon: "sparkles",
-				tokens: []
-			}
-		];
+        const categories: {
+            name: string;
+            icon: FktIconName;
+            tokens: DesignTokenItem[];
+        }[] = [
+            {
+                name: 'Typography',
+                icon: 'h2',
+                tokens: [],
+            },
+            {
+                name: 'Colors',
+                icon: 'eye-dropper',
+                tokens: [],
+            },
+            {
+                name: 'Spacing',
+                icon: 'squares-2x2',
+                tokens: [],
+            },
+            {
+                name: 'Shape',
+                icon: 'rectangle-group',
+                tokens: [],
+            },
+            {
+                name: 'Effects',
+                icon: 'sparkles',
+                tokens: [],
+            },
+        ];
 
-		tokensFiltered.forEach((token) => {
-			const foundCategory = categories.find(category => category.name === token.category);
+        tokensFiltered.forEach((token) => {
+            const foundCategory = categories.find(
+                (category) => category.name === token.category
+            );
 
-			if(!foundCategory) return;
+            if (!foundCategory) return;
 
-			foundCategory.tokens.push(token);
-		});
+            foundCategory.tokens.push(token);
+        });
 
-		return categories.filter(category => category.tokens.length > 0);
-	})
+        return categories.filter((category) => category.tokens.length > 0);
+    });
 
-	protected changedTokens = computed(() => {
-		const tokens = this.designTokens();
+    protected changedTokens = computed(() => {
+        const tokens = this.designTokens();
 
-		return tokens.filter(token => token.control() !== token.defaultValue);
-	});
+        return tokens.filter((token) => token.control() !== token.defaultValue);
+    });
 
-	protected hasChanges = computed(() => {
-		const tokens = this.changedTokens();
+    protected hasChanges = computed(() => {
+        const tokens = this.changedTokens();
 
-		return !!tokens.length;
-	});
+        return !!tokens.length;
+    });
 
-	protected resetAllTokens() {
-		const tokens = this.changedTokens();
+    protected resetAllTokens() {
+        const tokens = this.changedTokens();
 
-		tokens.forEach(token => {
-			token.control.set(token.defaultValue);
-		});
-	}
+        tokens.forEach((token) => {
+            token.control.set(token.defaultValue);
+        });
+    }
 
-	protected async copyAllTokens() {
-		const tokens = this.changedTokens();
+    protected async copyAllTokens() {
+        const tokens = this.changedTokens();
 
-		let text = `${this.templateSelector()} {`;
+        let text = `${this.templateSelector()} {`;
 
-		tokens.forEach(token => {
-			text += '\n';
-			text += `  ${token.name}: ${token.control()};`
-		});
-		text += '\n}';
+        tokens.forEach((token) => {
+            text += '\n';
+            text += `  ${token.name}: ${token.control()};`;
+        });
+        text += '\n}';
 
-		await navigator.clipboard.writeText(text);
-	}
+        await navigator.clipboard.writeText(text);
+    }
 }
