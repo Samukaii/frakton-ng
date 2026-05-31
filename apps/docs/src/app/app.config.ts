@@ -1,50 +1,74 @@
-import { ApplicationConfig, provideBrowserGlobalErrorListeners, provideZoneChangeDetection, } from '@angular/core';
-import { provideRouter, withComponentInputBinding, withInMemoryScrolling, withViewTransitions } from '@angular/router';
-import { appRoutes } from './app.routes';
-import { provideMarkdown, SANITIZE } from 'ngx-markdown';
-import { provideTableCells } from 'frakton-ng/table';
-import { FktTableCellTagComponent } from '../../../../libs/frakton-ng/table/cells/tag';
-import { FktTableCellWithActionComponent } from 'frakton-ng/table/cells/action';
-import DOMPurify from 'dompurify';
-import { provideClientHydration, withEventReplay, withIncrementalHydration } from '@angular/platform-browser';
 import {
-    ControlTypeEditorCellComponent
-} from '@/components/control-type-editor-table-cell/control-type-editor-cell.component';
+    ApplicationConfig,
+    provideBrowserGlobalErrorListeners,
+    provideZonelessChangeDetection,
+} from '@angular/core';
+import {
+    provideRouter,
+    withComponentInputBinding,
+    withInMemoryScrolling,
+    withViewTransitions,
+} from '@angular/router';
+import { appRoutes } from './app.routes';
+import { MARKED_OPTIONS, provideMarkdown, SANITIZE } from 'ngx-markdown';
+import DOMPurify from 'dompurify';
+import {
+    provideClientHydration,
+    withEventReplay,
+    withIncrementalHydration,
+} from '@angular/platform-browser';
+import { provideHttpClient, withFetch } from '@angular/common/http';
+
+function headingSlug(text: string): string {
+    return text
+        .toLowerCase()
+        .replace(/[^\w\s-]/g, '')
+        .replace(/\s+/g, '-');
+}
 
 function sanitizeHtml(html: string): string {
     DOMPurify.setConfig({
-        ALLOWED_ATTR: [
-            'data-story',
-            'data-examples',
-        ],
+        ALLOWED_ATTR: ['data-story', 'data-examples'],
         ADD_TAGS: ['pre', 'code', 'span'],
     });
     return DOMPurify.sanitize(html);
 }
 
-
 export const appConfig: ApplicationConfig = {
     providers: [
         provideBrowserGlobalErrorListeners(),
+        provideHttpClient(withFetch()),
         provideMarkdown({
+            markedOptions: {
+                provide: MARKED_OPTIONS,
+                useValue: {
+                    renderer: {
+                        heading(token: any): string {
+                            const id = headingSlug(token.text);
+                            const content =
+                                (this as any).parser?.parseInline(
+                                    token.tokens
+                                ) ?? token.text;
+                            return `<h${token.depth} id="${id}">${content}</h${token.depth}>\n`;
+                        },
+                    },
+                },
+            },
             sanitize: {
                 provide: SANITIZE,
                 useValue: sanitizeHtml,
-            }
+            },
         }),
-        provideZoneChangeDetection({eventCoalescing: true}),
-        provideRouter(appRoutes,
+        provideZonelessChangeDetection(),
+        provideRouter(
+            appRoutes,
             withComponentInputBinding(),
             withViewTransitions(),
             withInMemoryScrolling({
-                anchorScrolling: "enabled",
-                scrollPositionRestoration: "top",
-            })),
-        provideTableCells({
-            tag: FktTableCellTagComponent,
-            actions: FktTableCellWithActionComponent,
-            'control-editor': ControlTypeEditorCellComponent
-        }),
+                anchorScrolling: 'enabled',
+                scrollPositionRestoration: 'top',
+            })
+        ),
         provideClientHydration(withEventReplay(), withIncrementalHydration()),
     ],
 };

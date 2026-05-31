@@ -1,0 +1,13 @@
+<fkt-table
+    [data]="response.value()?.results ?? []"
+    [columns]="columns"
+    [loading]="response.isLoading() || loading()"
+    [skeletonLines]="5"
+>
+    <div fktTableToolbar>
+        <fkt-toggle
+            label="Loading"
+            [(value)]="loading"
+        />
+    </div>
+</fkt-table>

@@ -1,0 +1,13 @@
+<div class="filter">
+    <p class="filter__label">Categories</p>
+    <div class="filter__options">
+        @for (category of categories; track category) {
+            <fkt-checkbox
+                [label]="category"
+                [checked]="isSelected(category)"
+                (checkedChange)="toggle(category, $event)"
+            />
+        }
+    </div>
+    <fkt-buttons-list [actions]="actions" />
+</div>

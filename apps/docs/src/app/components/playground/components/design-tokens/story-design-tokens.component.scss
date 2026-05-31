@@ -1,0 +1,103 @@
+.actions {
+    display: flex;
+    gap: var(--fkt-space-xs);
+}
+
+:host {
+    display: block;
+    border-radius: 0 0 var(--fkt-radius-md) var(--fkt-radius-md);
+    background-color: var(--fkt-controls-table-background);
+    overflow: auto;
+    height: 600px;
+    transition: var(--fkt-transition-base);
+    border-top: solid 1px var(--fkt-color-neutral-300);
+}
+
+.component-container {
+    display: flex;
+    gap: var(--fkt-space-xs);
+    padding: var(--fkt-space-xs) var(--fkt-space-md);
+    justify-content: flex-start;
+    align-items: center;
+    max-width: 100%;
+    overflow: auto;
+    border-bottom: 1px solid var(--fkt-controls-table-border-color);
+
+    .component {
+        outline: none;
+        padding: .5rem .75rem;
+        font-weight: var(--fkt-font-semibold);
+        //background-color: var(--fkt-controls-table-component-bg);
+        background: transparent;
+        color: var(--fkt-controls-table-component-text-color);
+        border-radius: var(--fkt-radius-full);
+        font-size: var(--fkt-font-size-sm);
+        cursor: pointer;
+        border: none;
+
+        &.active {
+            background-color: var(--fkt-controls-table-component-active-bg);
+            color: var(--fkt-controls-table-component-active-text-color);
+            cursor: default;
+        }
+
+        &:hover:not(.active) {
+            background-color: rgb(from var(--fkt-color-primary) r g b / .2);
+        }
+    }
+}
+
+.list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--fkt-space-md);
+    padding: var(--fkt-space-md);
+}
+
+.tables {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: 0;
+
+    .table {
+        .category {
+            position: sticky;
+            top: 54px;
+            z-index: 1;
+            border-bottom: none;
+
+            td {
+                padding: 0;
+            }
+
+            td > div {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: .5rem;
+                gap: var(--fkt-space-xs);
+                background: var(--fkt-controls-table-category-bg);
+                color: var(--fkt-controls-table-category-text-color);
+                border: solid 1px var(--fkt-controls-table-border-color);
+                box-sizing: border-box;
+
+                h2 {
+                    font-size: var(--fkt-font-size-md);
+                    font-weight: var(--fkt-font-semibold);
+                    margin: 0;
+                }
+
+                fkt-icon {
+                    font-size: var(--fkt-font-size-md);
+                }
+            }
+        }
+
+        .table-container {
+            border-bottom: solid 1px var(--fkt-controls-table-border-color);
+        }
+    }
+}
+

@@ -1,0 +1,150 @@
+<div>
+    <div class="tabs">
+        <div fktNavigableList orientation="horizontal" (select)="selectTabByIndex($event)" childSelector="button"
+            class="tabs__list"
+            role="tablist">
+            @for (tab of visibleTabs(); track tab.key) {
+                <button
+                    class="tab"
+                    [class.active]="currentTab() === tab.key"
+                    (click)="currentTab.set(tab.key)"
+                    role="tab"
+                    [id]="`tab-${tab.key}`"
+                    [attr.aria-controls]="`panel-${tab.key}`"
+                    aria-selected="true">
+                    <fkt-icon [name]="tab.icon"/>
+                    <p class="hide-sm">{{ tab.label }}</p>
+                </button>
+            }
+        </div>
+    </div>
+
+
+    @if (currentTab() === "controls" && canShowControls()) {
+        <div role="tabpanel" id="panel-controls" aria-labelledby="tab-controls">
+            @if (argsList().length) {
+                @if (showControlOwners()) {
+                    <div class="filter-chips" aria-label="Control groups">
+                        @if (hasMultipleControlOwners()) {
+                            <button
+                                type="button"
+                                class="filter-chip"
+                                [class.active]="activeControlsOwner() === 'all'"
+                                (click)="activeControlsOwner.set('all')"
+                            >
+                                All
+                            </button>
+                        }
+
+                        @for (owner of controlOwners(); track owner.ownerKey) {
+                            <button
+                                type="button"
+                                class="filter-chip"
+                                [class.active]="activeControlsOwner() === owner.ownerKey || !hasMultipleControlOwners()"
+                                (click)="activeControlsOwner.set(owner.ownerKey)"
+                            >
+                                {{ owner.ownerLabel }}
+                            </button>
+                        }
+                    </div>
+                }
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                        <td>Name</td>
+                        <td>Description</td>
+                            @if (showControlOwners()) {
+                                <td>Source</td>
+                            }
+                        <td>Control</td>
+                        </thead>
+                        <tbody>
+                            @for (arg of visibleArgsList(); track arg.name) {
+                                <tr>
+                                    <td>
+                                        {{ arg.name }}
+                                    </td>
+                                    <td>
+                                        {{ arg.description }}
+                                    </td>
+                                    @if (showControlOwners()) {
+                                        <td>
+                                            <span class="owner-badge">{{ arg.ownerLabel }}</span>
+                                        </td>
+                                    }
+                                    <td>
+                                        @switch (arg.type) {
+                                            @case ('text') {
+                                                <fkt-input
+                                                    hideLabel
+                                                    [label]="arg.name"
+                                                    placeholder="Enter a text"
+                                                    [(value)]="arg.control"
+                                                />
+                                            }
+                                            @case ('number') {
+                                                <fkt-input
+                                                    hideLabel
+                                                    [label]="arg.name"
+                                                    placeholder="Enter a number"
+                                                    type="number"
+                                                    [(value)]="arg.control"
+                                                />
+                                            }
+                                            @case ('boolean') {
+                                                <fkt-toggle
+                                                    hideLabel
+                                                    [label]="arg.name"
+                                                    [(value)]="arg.control"
+                                                />
+                                            }
+                                            @case ('select') {
+                                                <fkt-select
+                                                    hideLabel
+                                                    [label]="arg.name"
+                                                    [options]="arg.options"
+                                                    [(value)]="arg.control"
+                                                />
+                                            }
+                                            @case ('array') {
+                                                @if (!!arg.schema) {
+                                                    <fkt-schema-editor
+                                                        [label]="arg.name"
+                                                        [schema]="arg.schema!"
+                                                        [(value)]="arg.control"
+                                                    />
+                                                }
+                                            }
+                                            @case ('object') {
+                                                @if (!!arg.schema) {
+                                                    <fkt-schema-editor
+                                                        [label]="arg.name"
+                                                        [schema]="arg.schema!"
+                                                        [(value)]="arg.control"
+                                                    />
+                                                }
+                                            }
+                                        }
+
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                </div>
+            }
+        </div>
+    }
+    @if (currentTab() === "styling" && canShowDesignTokens()) {
+        <div role="tabpanel" id="panel-styling" aria-labelledby="tab-styling">
+            <app-story-design-tokens [designTokens]="designTokens()"/>
+        </div>
+    }
+    @if (currentTab() === "code") {
+        <div role="tabpanel" id="panel-code" aria-labelledby="tab-code">
+            <app-story-source-code/>
+        </div>
+    }
+</div>

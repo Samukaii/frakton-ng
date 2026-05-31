@@ -22,6 +22,7 @@ import { Router } from '@angular/router';
 import { DocsPageTabsComponent } from '@/pages/docs-page/tabs/docs-page-tabs.component';
 import { Meta, Title } from '@angular/platform-browser';
 import { pascalToHumanReadable } from '@/utils/pascal-to-human-readable';
+import { getDocsScrollRoot, stabilizeScrollTo } from '@/utils/stabilize-scroll-to';
 
 @Component({
     selector: 'app-docs-page',
@@ -44,6 +45,7 @@ export class DocsPageComponent {
     private readonly titleService = inject(Title);
     private readonly metaService = inject(Meta);
     protected readonly copied = signal<boolean>(false);
+    private anchorScrollAbort: AbortController | null = null;
 
     protected activeTab = linkedSignal(() => {
         const tab = this.tab();
@@ -98,10 +100,7 @@ export class DocsPageComponent {
                 if (!fragment) return;
 
                 setTimeout(() => {
-                    this.document.getElementById(fragment)?.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'center',
-                    });
+                    this.scrollToStableAnchor(fragment);
                 }, 100);
             });
     });
@@ -138,7 +137,7 @@ export class DocsPageComponent {
                 return {
                     id: story.id,
                     text: pascalToHumanReadable(story.name),
-                    level: 2,
+                    level: story.level ?? 2,
                 };
             }),
         ];
@@ -202,5 +201,27 @@ export class DocsPageComponent {
 
     protected async onActiveTabChange($event: string) {
         await this.router.navigate(['docs', this.docId(), $event]);
+    }
+
+    private scrollToStableAnchor(id: string) {
+        const target = this.document.getElementById(id);
+        const root = target ? this.getScrollRoot(target) : null;
+
+        if (!target || !root) return;
+
+        this.anchorScrollAbort?.abort();
+
+        const controller = new AbortController();
+        this.anchorScrollAbort = controller;
+
+        stabilizeScrollTo({
+            root,
+            target,
+            signal: controller.signal,
+        });
+    }
+
+    private getScrollRoot(target: HTMLElement) {
+        return getDocsScrollRoot(this.document, target);
     }
 }

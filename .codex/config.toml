@@ -1,0 +1,12 @@
+[mcp_servers.angular-cli]
+args = [
+    "@angular/cli",
+    "mcp",
+]
+command = "npx"
+
+[windows]
+sandbox = "elevated" 
+
+[shell_environment_policy]
+include_only = ["PATH", "HOME"]

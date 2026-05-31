@@ -1,0 +1,13 @@
+$header-cell-padding: var(--fkt-table-header-cell-padding, var(--fkt-space-md));
+$header-title-font-weight: var(--fkt-table-header-font-weight, var(--fkt-font-semibold));
+$header-title-color: var(--fkt-table-header-text-color, var(--fkt-color-neutral-900));
+$cell-background: var(--fkt-table-cell-background, var(--fkt-color-neutral-100));
+
+:host {
+    position: relative;
+    width: 2.5rem;
+    padding: 0 $header-cell-padding;
+    font-weight: $header-title-font-weight;
+    color: $header-title-color;
+    background-color: $cell-background;
+}

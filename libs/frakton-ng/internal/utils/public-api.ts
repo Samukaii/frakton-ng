@@ -27,4 +27,5 @@ export * from "./deep-equal";
 export * from "./debounce";
 export * from "./filter-elements-with-tab-index";
 export * from "./deep-signal";
+export * from "./mouse-out-effect";
 

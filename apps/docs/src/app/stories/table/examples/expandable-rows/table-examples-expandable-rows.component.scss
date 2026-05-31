@@ -1,0 +1,24 @@
+fkt-table {
+    background-color: var(--fkt-color-neutral-100);
+    --fkt-table-max-height: 600px;
+}
+
+.order-detail {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--fkt-space-sm) var(--fkt-space-xl);
+    padding: var(--fkt-space-sm) 0;
+
+    &__row {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+    }
+
+    &__label {
+        font-size: var(--fkt-font-size-xs);
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        font-weight: var(--fkt-font-semibold);
+    }
+}

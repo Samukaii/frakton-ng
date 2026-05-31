@@ -1,0 +1,10 @@
+<fkt-markdown [data]="activeStory()?.description ?? ''"/>
+
+<ng-template #playground>
+    <app-story-renderer/>
+</ng-template>
+
+@if (injector()) {
+    <ng-container [ngTemplateOutlet]="playground" [ngTemplateOutletInjector]="injector()">
+    </ng-container>
+}

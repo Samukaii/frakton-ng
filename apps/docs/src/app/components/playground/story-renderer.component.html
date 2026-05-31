@@ -1,0 +1,39 @@
+<div #container
+     class="component-renderer"
+     [style]="containerStyles()"
+>
+    @defer (on viewport; prefetch on idle) {
+        @if (hasVariants()) {
+            <div class="variants-container" [class.vertical]="variantsConfig().orientation === 'vertical'">
+                @for (variant of playgroundVariants(); track variant.title) {
+                    <div class="variant"
+                         [class.fill]="panelStyle()?.fillContainer ?? false"
+                         [style.padding]="panelStyle()?.innerPadding ?? '0rem'"
+                         [style.width]="panelStyle()?.outerWidth ?? 'auto'"
+                         [style.height]="panelStyle()?.outerHeight ?? '100%'"
+                    >
+                        @if (variant.title) {
+                            <strong>{{ variant.title }}</strong>
+                        }
+                        <ng-template #template/>
+                    </div>
+                }
+            </div>
+        } @else {
+            <ng-template #template/>
+        }
+    } @placeholder () {
+        <div [style.height]="containerStyles().height" [style.display]="'flex'" [style.justify-content]="'center'"
+             [style.align-items]="'center'">
+            <fkt-spinner/>
+        </div>
+    }
+</div>
+
+<app-story-panel
+    [argsList]="argsList()"
+    [designTokens]="designTokens()"
+/>
+
+
+

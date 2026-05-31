@@ -1,5 +1,40 @@
 <!--<pre>{{argTypes() | json}}</pre>-->
 
+@if (hasMultipleOwners()) {
+    <div class="filter-chips" aria-label="API groups">
+        <button
+            type="button"
+            class="filter-chip"
+            [class.active]="activeOwner() === 'all'"
+            (click)="activeOwner.set('all')"
+        >
+            All
+        </button>
+
+        @for (owner of owners(); track owner.ownerKey) {
+            <button
+                type="button"
+                class="filter-chip"
+                [class.active]="activeOwner() === owner.ownerKey"
+                (click)="activeOwner.set(owner.ownerKey)"
+            >
+                {{ owner.ownerLabel }}
+            </button>
+        }
+    </div>
+}
+
+@if (selectedOwner(); as owner) {
+    <div class="owner-summary">
+        <span>{{ owner.type }}</span>
+        @if (owner.selector) {
+            <code>{{ owner.selector }}</code>
+        } @else if (owner.name) {
+            <code>{{ owner.name }}</code>
+        }
+    </div>
+}
+
 <table class="args-table">
     <thead>
     <tr>
@@ -12,6 +47,11 @@
         <td>
             Description
         </td>
+        @if (hasMultipleOwners()) {
+            <td>
+                Source
+            </td>
+        }
         <td>
             Default
         </td>
@@ -20,13 +60,18 @@
     </thead>
 
     <tbody>
-        @for (type of argTypes(); track type.name) {
+        @for (type of filteredArgTypes(); track type.name) {
             <tr>
                 <td>{{ type.name }}</td>
                 <td>
                     <pre>{{ type.argType.type }}</pre>
                 </td>
                 <td>{{ type.argType.description }}</td>
+                @if (hasMultipleOwners()) {
+                    <td>
+                        <span class="owner-badge">{{ type.ownerLabel }}</span>
+                    </td>
+                }
                 <td>
                     @if (type.argType.required) {
                         <pre>*required</pre>

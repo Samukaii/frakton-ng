@@ -1,12 +1,6 @@
-import { Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { FktTagColor, FktTagComponent, FktTagVariant } from 'frakton-ng/tag';
-import 'frakton-ng/table';
 
-declare module 'frakton-ng/table' {
-    export interface FktTableCellsMapping {
-        'tag': FktTableCellTagComponent
-    }
-}
 
 @Component({
     selector: 'fkt-table-cell-tag',
@@ -14,7 +8,8 @@ declare module 'frakton-ng/table' {
         FktTagComponent
     ],
     templateUrl: './fkt-table-cell-tag.component.html',
-    styleUrl: './fkt-table-cell-tag.component.scss'
+    styleUrl: './fkt-table-cell-tag.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FktTableCellTagComponent {
     text = input.required<string>();

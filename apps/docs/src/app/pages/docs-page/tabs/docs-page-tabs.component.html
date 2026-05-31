@@ -1,7 +1,7 @@
 <fkt-tabs-list renderMode="destructive" hideTabsWhenOnlyOne (activeTabChange)="activeTabChange.emit($event!)" [activeTab]="activeTab()">
     <fkt-tab [hidden]="!isStoryType()" key="features" label="Features">
         @if (!loading()) {
-            <fkt-features
+            <app-features
                 [title]="title()"
                 [description]="description()"
                 [importStatement]="importStatement()"

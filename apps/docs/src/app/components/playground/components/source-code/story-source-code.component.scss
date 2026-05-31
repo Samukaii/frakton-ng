@@ -1,0 +1,175 @@
+:host {
+    position: relative;
+    display: block;
+    border-radius: var(--fkt-radius-xl);
+    overflow: auto;
+    transition: var(--fkt-transition-base);
+
+    &:hover {
+        .show-on-hover {
+            opacity: 1;
+        }
+    }
+}
+
+.show-on-hover {
+    transition: var(--fkt-transition-base);
+    opacity: 0;
+}
+
+.code {
+    position: relative;
+    max-height: 300px;
+    height: 600px;
+    overflow: auto;
+    transition: var(--fkt-transition-base);
+
+    &.expanded {
+        max-height: 600px;
+    }
+
+    fkt-button {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        right: 0;
+        margin: var(--fkt-space-md);
+        --fkt-button-icon-font-weight: 500;
+
+        span, p {
+            color: black;
+        }
+
+        p {
+            font-weight: var(--fkt-font-semibold);
+            margin: 0;
+        }
+    }
+}
+
+.actions {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: flex-start;
+    height: fit-content;
+    width: fit-content;
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin: 1rem;
+    transition: var(--fkt-transition-slow);
+
+    .languages {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        height: fit-content;
+        width: fit-content;
+    }
+
+    button {
+        background-color: transparent;
+        font-weight: var(--fkt-font-semibold);
+        width: fit-content;
+        height: 34px;
+        color: white;
+        padding: .5rem 1rem;
+        border: solid 1px white;
+
+        font-size: .9rem !important;
+        position: relative !important;
+        cursor: pointer !important;
+        display: flex;
+        justify-content: center;
+        gap: .25rem;
+        align-items: center;
+        transition: var(--fkt-transition-base);
+        backdrop-filter: blur(8px);
+
+        &:first-child {
+            border-radius: var(--fkt-radius-lg) 0 0 var(--fkt-radius-lg);
+        }
+
+        &:last-child {
+            border-radius: 0 var(--fkt-radius-lg) var(--fkt-radius-lg) 0;
+        }
+
+        fkt-icon {
+            font-weight: 500;
+        }
+
+        p {
+            margin: 0;
+            max-width: 260px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            color: white;
+            white-space: nowrap;
+        }
+
+
+        &.active, &:hover {
+            transition: var(--fkt-transition-base);
+            --html-background-color: #F4BF75;
+            --ts-background-color: #0288d1;
+            --scss-background-color: #F24D7C;
+
+            --html-text-color: #59462A;
+            --ts-text-color: white;
+            --scss-text-color: white;
+
+            &[data-language="html"] {
+                background: var(--html-background-color);
+                border-color: var(--html-background-color);
+
+                p {
+                    color: var(--html-text-color);
+                }
+            }
+
+            &[data-language="typescript"] {
+                background: var(--ts-background-color);
+                border-color: var(--ts-background-color);
+
+                p {
+                    color: var(--ts-text-color);
+                }
+            }
+
+            &[data-language="css"] {
+                background: var(--scss-background-color);
+                border-color: var(--scss-background-color);
+
+                p {
+                    color: var(--scss-text-color);
+                }
+            }
+        }
+    }
+}
+
+app-code-highlight {
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.copy-button, .expand-button {
+    --fkt-button-padding-vertical: var(--fkt-space-2xs);
+    --fkt-button-padding-horizontal: var(--fkt-space-sm);
+    --fkt-button-content-gap: var(--fkt-space-3xs);
+    --fkt-button-primary-color: white;
+    --fkt-button-primary-hover-color: rgba(255, 255, 255, 0.24);
+    --fkt-button-icon-font-weight: 500;
+    --fkt-button-border-width: 1px;
+    --fkt-font-size-md: 14px;
+    backdrop-filter: blur(8px);
+}
+
+.loading {
+    width: 100%;
+    padding: var(--fkt-space-md);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

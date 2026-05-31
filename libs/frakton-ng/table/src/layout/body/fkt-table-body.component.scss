@@ -1,0 +1,4 @@
+.table__skeleton-cell {
+    padding: 1rem;
+    border-bottom: var(--fkt-table-column-border-width, 1px) solid var(--fkt-table-column-border-color, var(--fkt-table-row-border-color, var(--fkt-color-neutral-300)));
+}

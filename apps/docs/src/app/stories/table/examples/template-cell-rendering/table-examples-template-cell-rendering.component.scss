@@ -1,0 +1,60 @@
+fkt-table {
+    background-color: var(--fkt-color-neutral-100);
+    --fkt-table-max-height: 600px;
+}
+
+.customer-cell {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+
+    &__name {
+        font-weight: 600;
+        font-size: 0.9rem;
+    }
+
+    &__since {
+        font-size: 0.75rem;
+        color: var(--fkt-color-text-secondary, #6b7280);
+    }
+}
+
+.amount {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--fkt-color-text-primary, #111827);
+
+    &__symbol {
+        margin-right: 1px;
+    }
+
+    &--high {
+        color: var(--fkt-color-success);
+    }
+
+    &--low {
+        color: var(--fkt-color-danger);
+    }
+}
+
+.status-badge {
+    display: flex;
+    gap: var(--fkt-space-xs);
+    width: fit-content;
+    padding: 0.2rem 0.6rem;
+    border-radius: 9999px;
+    font-size: 0.8rem;
+    text-transform: capitalize;
+    border: solid 1px;
+
+    span {
+        font-weight: 600;
+
+    }
+
+    &--pending    { color: var(--fkt-color-warning); border-color: var(--fkt-color-warning);}
+    &--processing { color: var(--fkt-color-info); border-color: var(--fkt-color-info); }
+    &--shipped    { color: #8538ff; border-color: #8538ff; }
+    &--delivered  { color: #00ad45; border-color: #00C950FF; }
+    &--cancelled  { color: var(--fkt-color-danger); border-color: var(--fkt-color-danger); }
+}

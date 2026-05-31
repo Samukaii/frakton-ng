@@ -15,6 +15,8 @@ import { FktSkeletonAnimation, FktSkeletonType } from './fkt-skeleton.types';
 		'[style.max-height]': 'computedHeight()',
 		'[style.margin-bottom]': 'marginBottom()',
 		'[style.margin-top]': 'marginTop()',
+        '[style.margin-left]': 'marginLeft()',
+		'[style.margin-right]': 'marginRight()',
 		'[style.border-radius]': 'computedBorderRadius()',
 		'[style.aspect-ratio]': 'aspectRatio() || null',
 		'[class]': 'computedClasses()',
@@ -25,6 +27,8 @@ export class FktSkeletonComponent {
 	width = input<string>('100%');
 	marginBottom = input<string>('0px');
 	marginTop = input<string>('0px');
+    marginRight = input<string>('0px');
+    marginLeft = input<string>('0px');
 	height = input<string>();
 	type = input<FktSkeletonType>('rect');
 	animation = input<FktSkeletonAnimation>('shimmer');

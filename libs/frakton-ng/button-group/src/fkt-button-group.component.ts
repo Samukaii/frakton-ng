@@ -76,8 +76,14 @@ export class FktButtonGroupComponent implements ControlValueAccessor, FormValueC
         const shape = this.shape();
         const size = this.size();
         const orientation = this.orientation();
+        const invalid = this.invalid();
 
-        return ['container', `shape-${shape}`, `size-${size}`, `orientation-${orientation}`].join(' ');
+        const classes = new Set(['container', `shape-${shape}`, `size-${size}`, `orientation-${orientation}`]);
+
+        if(invalid) classes.add('invalid')
+        else classes.delete('invalid');
+
+        return Array.from(classes).join(' ');
     })
 
     protected toggle(value: string) {

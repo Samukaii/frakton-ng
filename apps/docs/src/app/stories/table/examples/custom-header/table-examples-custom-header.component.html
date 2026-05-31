@@ -1,0 +1,19 @@
+<ng-template #nameHeader>
+    <div class="custom-header">
+        <span>Name</span>
+        <span class="custom-header__badge">{{ totalUsers() }} users</span>
+    </div>
+</ng-template>
+
+<ng-template #ageHeader>
+    <div class="custom-header">
+        <span>Age</span>
+        <span class="custom-header__badge"> Average {{ averageAge() }}</span>
+    </div>
+</ng-template>
+
+<fkt-table
+    [data]="users()"
+    [columns]="columns"
+    [loading]="response.isLoading()"
+/>

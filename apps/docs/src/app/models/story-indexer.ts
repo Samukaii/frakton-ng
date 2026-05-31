@@ -13,8 +13,10 @@ export interface StoryIndexer {
     stories?: {
         id: string;
         name: string;
+        type: 'story' | 'introduction',
         componentName: string | null,
         description: string;
+        level: number;
     }[]
     docSections?: {
         id: string;

@@ -5,7 +5,8 @@ import { ArgType } from '@/models/arg-type';
 
 export interface Story<Component> {
     component?: Type<Component>,
-    description: string,
+    level?: number,
+    description?: string,
     args: Partial<FktComponentInputsAndModels<Component>>;
     argTypes?: Partial<Record<FktComponentInputsAndModelNames<Component>, Partial<ArgType>>>
     variants?: {
@@ -18,4 +19,8 @@ export interface Story<Component> {
     };
     panelStyle?: PlaygroundPanelStyle;
     providers?: (Provider | EnvironmentProviders)[]
+}
+
+export interface StoryIntroduction {
+    level?: number;
 }

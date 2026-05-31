@@ -41,7 +41,7 @@ export class FktTooltipDirective {
 		this.overlayRef = this.overlay.open({
 			component: FktTooltipComponent,
 			data: {
-				text: this.fktTooltip(),
+				text: this.fktTooltip,
 				color: this.tooltipColor,
 			},
 			panelOptions: {

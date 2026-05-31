@@ -1,0 +1,34 @@
+$header-cell-padding: var(--fkt-table-header-cell-padding, var(--fkt-space-md));
+$font-size: var(--fkt-table-font-size, var(--fkt-font-size-sm));
+$header-cell-color: var(--fkt-table-header-cell-color, var(--fkt-color-neutral-950));
+
+:host {
+    background-color: color-mix(in srgb, var(--fkt-color-info) 10%, var(--fkt-color-neutral-100));
+
+    td {
+        font-size: $font-size;
+        color: $header-cell-color;
+        text-align: center;
+    }
+}
+
+.table__selection-banner {
+    border: solid 1px color-mix(in srgb, var(--fkt-color-neutral-400) 50%, var(--fkt-color-neutral-100));
+    padding: var(--fkt-space-xs) $header-cell-padding;
+
+
+    &__action {
+        border: none;
+        background: none;
+        cursor: pointer;
+        color: var(--fkt-color-primary);
+        font-weight: var(--fkt-font-semibold);
+        font-size: $font-size;
+        padding: 0;
+        text-decoration: underline;
+
+        &:hover {
+            opacity: 0.8;
+        }
+    }
+}

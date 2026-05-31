@@ -1,0 +1,38 @@
+<fkt-table
+    singleExpand
+    [data]="orders()"
+    [columns]="columns"
+>
+    <ng-template fktTableExpand let-order>
+        <div class="order-detail">
+            <div class="order-detail__row">
+                <span class="order-detail__label">Order number</span>
+                <span class="order-detail__value">{{ order.orderNumber }}</span>
+            </div>
+            <div class="order-detail__row">
+                <span class="order-detail__label">Customer</span>
+                <span class="order-detail__value">{{ order.customer }}</span>
+            </div>
+            <div class="order-detail__row">
+                <span class="order-detail__label">Date</span>
+                <span class="order-detail__value">{{ order.date | date: 'mediumDate' }}</span>
+            </div>
+            <div class="order-detail__row">
+                <span class="order-detail__label">Items</span>
+                <span class="order-detail__value">{{ order.items }}</span>
+            </div>
+            <div class="order-detail__row">
+                <span class="order-detail__label">Status</span>
+                <fkt-tag
+                    variant="faded"
+                    [text]="statusInfo[order.status].label"
+                    [color]="statusInfo[order.status].color"
+                />
+            </div>
+            <div class="order-detail__row">
+                <span class="order-detail__label">Total</span>
+                <span class="order-detail__value order-detail__value--total">{{ order.total | currency }}</span>
+            </div>
+        </div>
+    </ng-template>
+</fkt-table>

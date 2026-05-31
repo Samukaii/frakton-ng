@@ -1,0 +1,19 @@
+.filter {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    min-width: 180px;
+
+    &__label {
+        margin: 0;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: var(--fkt-color-text-secondary, #6b7280);
+    }
+
+    &__options {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}

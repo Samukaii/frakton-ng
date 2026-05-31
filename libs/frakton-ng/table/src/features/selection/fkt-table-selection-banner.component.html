@@ -1,0 +1,16 @@
+<td [attr.colspan]="context.columnsCount()">
+    <div class="table__selection-banner">
+        @if (!allSelected()) {
+            All {{ context.allData().length }} items on this page are selected.
+            <button class="table__selection-banner__action" (click)="selection?.selectAll()">
+                Select all {{ selection?.totalItems() }} items
+            </button>
+        } @else {
+            All {{ selection?.totalItems() }} items are selected.
+            <button class="table__selection-banner__action" (click)="selection?.clearSelection()">
+                Clear selection
+            </button>
+        }
+    </div>
+
+</td>

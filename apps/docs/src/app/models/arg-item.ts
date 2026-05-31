@@ -10,4 +10,6 @@ export interface ArgItem<T> {
 	options:  FktAutocompleteOption[];
 	description: string;
 	control: WritableSignal<T>;
+    ownerKey: string;
+    ownerLabel: string;
 }

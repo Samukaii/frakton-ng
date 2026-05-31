@@ -1,0 +1,130 @@
+// <design-tokens>
+/*
+Border radius for the table container.
+@name --fkt-table-border-radius
+@reference --fkt-space-sm
+@component Table
+@category Shape
+@type size
+*/
+$border-radius: var(--fkt-table-border-radius, var(--fkt-space-sm));
+
+/*
+Background color for table container.
+@name --fkt-table-cell-background
+@reference --fkt-color-neutral-100
+@component Table
+@category Color
+@type size
+*/
+$cell-background: var(--fkt-table-cell-background, var(--fkt-color-neutral-100));
+
+/*
+Border color for the table container outline.
+@name --fkt-table-outer-border-color
+@reference --fkt-color-neutral-300
+@component Table
+@category Colors
+@type color
+*/
+$border-color: var(--fkt-table-outer-border-color, var(--fkt-color-neutral-300));
+
+/*
+Font size for table body text.
+@name --fkt-table-font-size
+@reference --fkt-font-size-sm
+@component Table
+@category Typography
+@type size
+*/
+$font-size: var(--fkt-table-font-size, var(--fkt-font-size-sm));
+
+/*
+Line height for table text.
+@name --fkt-table-line-height
+@reference 1.25rem
+@component Table
+@category Typography
+@type size
+*/
+$line-height: var(--fkt-table-line-height, 1.25rem);
+
+/*
+Max height for the scrollable table area. Set to control vertical scroll.
+@name --fkt-table-max-height
+@reference none
+@component Table
+@category Spacing
+@type size
+*/
+$max-height: var(--fkt-table-max-height, none);
+
+/*
+Color for column divider lines shown when gridLines is enabled. Defaults to the table border color.
+@name --fkt-table-column-border-color
+@reference transparent
+@component Table
+@category Colors
+@type color
+*/
+$column-border-color: var(--fkt-table-column-border-color, var(--_fkt-table-column-border-color, transparent));
+// </design-tokens>
+
+$row-border-color: var(--fkt-table-row-border-color, var(--fkt-color-neutral-300));
+
+:host {
+    --_table-cell-padding: var(--fkt-space-md);
+
+    &.size-sm { --_table-cell-padding: var(--fkt-space-sm); }
+    &.size-lg { --_table-cell-padding: var(--fkt-space-lg); }
+}
+
+:host {
+    overflow: auto;
+    flex: 1 1 0;
+    width: 100%;
+    display: block;
+    border-radius: $border-radius;
+    box-shadow: 0 0 0 1px $border-color;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.table-scroll {
+    overflow: auto;
+    max-height: $max-height;
+
+    &.resizing {
+        cursor: col-resize;
+        user-select: none;
+    }
+}
+
+.table-container {
+    position: relative;
+    overflow: hidden;
+    background: $cell-background;
+
+    flex: 1 1 0;
+    width: 100%;
+    height: 100%;
+}
+
+.table {
+    font-size: $font-size;
+    line-height: $line-height;
+    border-collapse: separate;
+    border-spacing: 0;
+    table-layout: fixed;
+    min-width: 100%;
+
+    &.show-striped-rows {
+        --_fkt-table-stripe-color: var(--fkt-color-neutral-50);
+    }
+
+    &.show-grid-lines {
+        --_fkt-table-column-border-color: #{$row-border-color};
+    }
+}

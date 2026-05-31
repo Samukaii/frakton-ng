@@ -1,0 +1,14 @@
+<fkt-table
+    [data]="data()"
+    [columns]="columns()"
+    [loading]="response.isLoading()"
+>
+    <div fktTableToolbar class="toggles">
+        @for (toggle of columnToggles(); track toggle.key) {
+            <fkt-checkbox
+                [label]="toggle.label"
+                [(checked)]="toggle.visible"
+            />
+        }
+    </div>
+</fkt-table>

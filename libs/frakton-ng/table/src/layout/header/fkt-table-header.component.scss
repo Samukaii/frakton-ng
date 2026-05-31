@@ -1,0 +1,74 @@
+// <design-tokens>
+/*
+Color for header text.
+@name --fkt-table-header-text-color
+@reference --fkt-color-neutral-900
+@component Header
+@category Colors
+@type color
+*/
+$header-title-color: var(--fkt-table-header-text-color, var(--fkt-color-neutral-900));
+
+/*
+Font weight for header title.
+@name --fkt-table-header-font-weight
+@reference --fkt-font-semibold
+@component Header
+@category Typography
+@type weight
+*/
+$header-title-font-weight: var(--fkt-table-header-font-weight, var(--fkt-font-semibold));
+// </design-tokens>
+
+$header-cell-padding: var(--fkt-table-header-cell-padding, var(--_table-cell-padding));
+$row-border-color: var(--fkt-table-row-border-color, var(--fkt-color-neutral-300));
+$cell-background: var(--fkt-table-cell-background, var(--fkt-color-neutral-100));
+
+:host {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    background-color: inherit;
+    border-bottom: solid 1px $row-border-color;
+    text-align: left;
+}
+
+.table__header-title {
+    position: relative;
+    font-weight: $header-title-font-weight;
+    color: $header-title-color;
+    background-color: $cell-background;
+
+    &--checkbox,
+    &--expand {
+        width: 2.5rem;
+        padding: 0 $header-cell-padding;
+    }
+}
+
+.pinned-left,
+.pinned-right {
+    position: sticky;
+    z-index: 1;
+}
+
+.pinned-left-edge::after,
+.pinned-right-edge::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 10px;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.pinned-left-edge::after {
+    right: -8px;
+    background: linear-gradient(to right, color-mix(in srgb, var(--fkt-color-neutral-900) 7%, transparent), transparent);
+}
+
+.pinned-right-edge::after {
+    left: -8px;
+    background: linear-gradient(to left, color-mix(in srgb, var(--fkt-color-neutral-900) 7%, transparent), transparent);
+}

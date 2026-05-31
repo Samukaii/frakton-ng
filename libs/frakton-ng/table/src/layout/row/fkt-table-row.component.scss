@@ -1,0 +1,126 @@
+// <design-tokens>
+/*
+Border color between rows.
+@name --fkt-table-row-border-color
+@reference --fkt-color-neutral-300
+@component Row
+@category Colors
+@type color
+*/
+$row-border-color: var(--fkt-table-row-border-color, var(--fkt-color-neutral-300));
+
+/*
+Background color for row hover state.
+@name --fkt-table-row-hover-background-color
+@reference --fkt-color-neutral-200
+@component Row
+@category Colors
+@type color
+*/
+$row-hover-background-color: var(--fkt-table-row-hover-background-color, var(--fkt-color-neutral-200));
+
+/*
+Background color for table cells. Must be opaque for pinned columns to cover scrolled content.
+@name --fkt-table-cell-background
+@reference --fkt-color-neutral-100
+@component Row
+@category Colors
+@type color
+*/
+$cell-background: var(--fkt-table-cell-background, var(--fkt-color-neutral-100));
+
+/*
+Background color for alternating (odd-indexed) rows when striped is enabled.
+@name --fkt-table-stripe-color
+@reference --fkt-color-neutral-50
+@component Row
+@category Colors
+@type color
+*/
+$stripe-color: var(--fkt-table-stripe-color, var(--_fkt-table-stripe-color, #{$cell-background}));
+// </design-tokens>
+
+
+$column-border-color: var(--fkt-table-column-border-color, var(--_fkt-table-column-border-color, transparent));
+$header-cell-padding: var(--fkt-table-header-cell-padding, var(--_table-cell-padding));
+$header-cell-color: var(--fkt-table-header-cell-color, var(--fkt-color-neutral-950));
+
+:host {
+    &.clickable {
+        cursor: pointer;
+    }
+
+    &.selected {
+        background-color: color-mix(in srgb, var(--fkt-color-primary) 6%, transparent);
+
+        .table__cell {
+            background-color: color-mix(in srgb, var(--fkt-color-primary) 6%, $cell-background);
+        }
+    }
+
+    &:not(.disable-row-hover):hover {
+        background-color: $row-hover-background-color;
+
+        .table__cell {
+            background-color: $row-hover-background-color;
+        }
+    }
+
+    &.last {
+        .table__cell {
+            border-bottom: none;
+        }
+    }
+
+    &.striped:not(.selected):not(:hover) {
+        background-color: $stripe-color;
+
+        .table__cell {
+            background-color: $stripe-color;
+        }
+    }
+}
+
+.table__cell {
+    padding: $header-cell-padding;
+    color: $header-cell-color;
+    overflow-wrap: break-word;
+    overflow-x: hidden;
+    background-color: var(--fkt-row-cell-background, #{$cell-background});
+    box-sizing: border-box;
+    border-right: solid 1px $column-border-color;
+    border-bottom: solid 1px $row-border-color;
+
+    &--checkbox,
+    &--expand {
+        width: 2.5rem;
+        padding: 0 $header-cell-padding;
+    }
+}
+
+.pinned-left,
+.pinned-right {
+    position: sticky;
+    z-index: 1;
+}
+
+.pinned-left-edge::after,
+.pinned-right-edge::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 10px;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.pinned-left-edge::after {
+    right: -8px;
+    background: linear-gradient(to right, color-mix(in srgb, var(--fkt-color-neutral-900) 7%, transparent), transparent);
+}
+
+.pinned-right-edge::after {
+    left: -8px;
+    background: linear-gradient(to left, color-mix(in srgb, var(--fkt-color-neutral-900) 7%, transparent), transparent);
+}

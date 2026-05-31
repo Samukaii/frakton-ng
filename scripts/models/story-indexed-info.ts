@@ -13,6 +13,7 @@ export interface StoryIndexedSection {
     id: string;
     name: string;
     level?: number;
+    type: 'story' | 'introduction' | 'section';
     componentName?: string;
     description: string;
 }

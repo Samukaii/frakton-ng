@@ -1,0 +1,69 @@
+@let example = externalExample.value();
+@let files = example?.files ?? [];
+
+@if (files?.length) {
+    @for (file of files; track file.name) {
+        @if (currentTab() === $index) {
+            <div class="code" [class.expanded]="expanded()">
+                @if (example) {
+                    <app-code-highlight
+                        noBorderRadius
+                        [text]="file.content"
+                        [language]="file.language"
+                    />
+                }
+            </div>
+        }
+    }
+} @else {
+    <div class="loading">
+        <fkt-spinner/>
+    </div>
+}
+
+<div class="actions">
+    <span class="expand-button show-on-hover" data-fkt-theme="dark">
+        <fkt-button
+            [icon]="expanded() ? 'arrows-pointing-in' : 'arrows-pointing-out'"
+            theme="stroked"
+            shape="rounded"
+            iconPosition="left"
+            [fktTooltip]="expanded() ? 'Collapse code' : 'Expand code'"
+            tooltipColor="white"
+            color="primary"
+            [ariaLabel]="expanded() ? 'Collapse code' : 'Expand code'"
+            (click)="expanded.set(!this.expanded())"
+        />
+
+    </span>
+    <div class="languages show-on-hover">
+        @for (file of files; track file.name) {
+            <button
+                [attr.data-language]="file.language"
+                [class.active]="currentTab() === $index"
+                (click)="setTab($index)">
+                @if (file.language === 'html') {
+                    <p>HTML</p>
+                }
+                @if (file.language === 'typescript') {
+                    <p>TS</p>
+                }
+                @if (file.language === 'css') {
+                    <p>SCSS</p>
+                }
+            </button>
+        }
+    </div>
+
+    <span class="copy-button" data-fkt-theme="dark">
+        <fkt-button
+            [icon]="copied() ? 'check':'clipboard-document'"
+            theme="stroked"
+            iconPosition="left"
+            [color]="copied() ? 'success' : 'primary'"
+            [text]="copied() ? 'Copied' : 'Copy'"
+            (click)="copy()"
+        />
+    </span>
+</div>
+

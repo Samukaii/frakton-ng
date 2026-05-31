@@ -1,0 +1,11 @@
+@for (item of frozenData(); track getId(item)) {
+    <tr
+        fktTableRow
+        [item]="item"
+        [rowIndex]="$index"
+        [classesFn]="classesFn()"
+        [disableRowHover]="disableRowHover()"
+        [clickableRows]="clickableRows()"
+        (rowClick)="rowClick.emit($event)"
+    ></tr>
+}

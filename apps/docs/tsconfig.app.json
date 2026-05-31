@@ -112,11 +112,23 @@
 			"frakton-ng/table": [
 				"libs/frakton-ng/table"
 			],
-            "frakton-ng/table/cells/badge": [
-                "libs/frakton-ng/table/cells/badge"
+            "frakton-ng/table/cells/tag": [
+                "libs/frakton-ng/table/cells/tag"
             ],
             "frakton-ng/table/cells/action": [
                 "libs/frakton-ng/table/cells/action"
+            ],
+            "frakton-ng/table/filters/text": [
+                "libs/frakton-ng/table/filters/text"
+            ],
+            "frakton-ng/table/filters/select": [
+                "libs/frakton-ng/table/filters/select"
+            ],
+            "frakton-ng/table/filters/number": [
+                "libs/frakton-ng/table/filters/number"
+            ],
+            "frakton-ng/table/filters/date-range": [
+                "libs/frakton-ng/table/filters/date-range"
             ],
 			"frakton-ng/tabs": [
 				"libs/frakton-ng/tabs"

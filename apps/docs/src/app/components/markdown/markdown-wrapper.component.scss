@@ -25,6 +25,11 @@ markdown ::ng-deep {
 	font-size: var(--fkt-font-size-md);
 	color: var(--fkt-color-neutral-900);
 
+    .markdown-clipboard-toolbar {
+        top: 1rem !important;
+        right: 1rem !important;
+    }
+
 	h2 {
 		font-size: 24px;
 		margin: 20px 0 8px;
@@ -54,8 +59,10 @@ markdown ::ng-deep {
 		font-size: var(--fkt-font-size-sm);
 	}
 
-	pre {
+	pre[class*="language-"] {
 		border: solid 1px #1b1d20;
-		box-shadow: var(--fkt-shadow-xl);
+        min-height: 66px;
+        display: flex;
+        align-items: center;
 	}
 }

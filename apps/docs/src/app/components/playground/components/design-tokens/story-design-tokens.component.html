@@ -1,0 +1,22 @@
+@if (components().length > 2) {
+    <div class="component-container">
+        @for (component of components(); track component) {
+            <button
+                [class.active]="currentComponent() === component"
+                (click)="currentComponent.set(component)" class="component">
+                {{ component }}
+            </button>
+        }
+    </div>
+}
+<div class="list">
+    @for (category of tokensCategories(); track category.name) {
+        @for (token of category.tokens; track token.name) {
+            <app-story-design-tokens-item
+                [class.last]="$last"
+                [designToken]="token"
+                [templateSelector]="templateSelector()"
+            />
+        }
+    }
+</div>

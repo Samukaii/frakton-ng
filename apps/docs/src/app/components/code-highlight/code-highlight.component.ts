@@ -15,7 +15,7 @@ import { MarkUsed } from 'frakton-ng/internal/utils';
 import { isPlatformBrowser } from '@angular/common';
 
 @Component({
-  selector: 'fkt-code-highlight',
+  selector: 'app-code-highlight',
   imports: [],
   templateUrl: './code-highlight.component.html',
   styleUrl: './code-highlight.component.scss',

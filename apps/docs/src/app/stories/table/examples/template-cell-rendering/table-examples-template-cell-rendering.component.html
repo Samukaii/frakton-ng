@@ -1,0 +1,28 @@
+<ng-template #customerCell let-name let-since="since">
+    <div class="customer-cell">
+        <span class="customer-cell__name">{{ name }}</span>
+        <span class="customer-cell__since">order {{ since }}</span>
+    </div>
+</ng-template>
+
+<ng-template #totalCell let-amount>
+    <span class="amount" [class.amount--high]="amount > 500" [class.amount--low]="amount < 200">
+        <span class="amount__symbol">$</span>{{ amount.toFixed(2) }}
+    </span>
+</ng-template>
+
+<ng-template #statusCell let-status>
+    <span class="status-badge status-badge--{{ status }}">
+        <fkt-icon [name]="statusInfo[status].icon"/>
+        <span>
+        {{ statusInfo[status].label }}
+
+        </span>
+    </span>
+</ng-template>
+
+<fkt-table
+    [data]="orders()"
+    [columns]="columns()"
+    [loading]="response.isLoading()"
+/>

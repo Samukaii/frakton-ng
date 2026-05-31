@@ -63,15 +63,6 @@
     "defaultValue": "#E7000BFF"
   },
   {
-    "description": "Text color for danger variant tooltip.",
-    "name": "--fkt-tooltip-color-on-danger",
-    "reference": "--fkt-color-on-danger",
-    "component": "Tooltip",
-    "category": "Colors",
-    "type": "color",
-    "defaultValue": "#F9fAFBFF"
-  },
-  {
     "description": "Background color for success variant tooltip.",
     "name": "--fkt-tooltip-color-success",
     "reference": "--fkt-color-success",
@@ -79,15 +70,6 @@
     "category": "Colors",
     "type": "color",
     "defaultValue": "#00C950FF"
-  },
-  {
-    "description": "Text color for success variant tooltip.",
-    "name": "--fkt-tooltip-color-on-success",
-    "reference": "--fkt-color-on-success",
-    "component": "Tooltip",
-    "category": "Colors",
-    "type": "color",
-    "defaultValue": "#F9fAFBFF"
   },
   {
     "description": "Background color for primary variant tooltip.",
@@ -99,15 +81,6 @@
     "defaultValue": "#1f2937"
   },
   {
-    "description": "Text color for primary variant tooltip.",
-    "name": "--fkt-tooltip-color-on-primary",
-    "reference": "--fkt-color-on-primary",
-    "component": "Tooltip",
-    "category": "Colors",
-    "type": "color",
-    "defaultValue": "#F9fAFBFF"
-  },
-  {
     "description": "Background color for accent variant tooltip.",
     "name": "--fkt-tooltip-color-accent",
     "reference": "--fkt-color-accent",
@@ -115,15 +88,6 @@
     "category": "Colors",
     "type": "color",
     "defaultValue": "#F0B100FF"
-  },
-  {
-    "description": "Text color for accent variant tooltip.",
-    "name": "--fkt-tooltip-color-on-accent",
-    "reference": "--fkt-color-on-accent",
-    "component": "Tooltip",
-    "category": "Colors",
-    "type": "color",
-    "defaultValue": "#1F2937FF"
   },
   {
     "description": "Background color for warning variant tooltip.",
@@ -135,15 +99,6 @@
     "defaultValue": "#FF6900FF"
   },
   {
-    "description": "Text color for warning variant tooltip.",
-    "name": "--fkt-tooltip-color-on-warning",
-    "reference": "--fkt-color-on-warning",
-    "component": "Tooltip",
-    "category": "Colors",
-    "type": "color",
-    "defaultValue": "#F9fAFBFF"
-  },
-  {
     "description": "Background color for info variant tooltip.",
     "name": "--fkt-tooltip-color-info",
     "reference": "--fkt-color-info",
@@ -151,14 +106,5 @@
     "category": "Colors",
     "type": "color",
     "defaultValue": "#155DFCFF"
-  },
-  {
-    "description": "Text color for info variant tooltip.",
-    "name": "--fkt-tooltip-color-on-info",
-    "reference": "--fkt-color-on-info",
-    "component": "Tooltip",
-    "category": "Colors",
-    "type": "color",
-    "defaultValue": "#F9fAFBFF"
   }
 ]

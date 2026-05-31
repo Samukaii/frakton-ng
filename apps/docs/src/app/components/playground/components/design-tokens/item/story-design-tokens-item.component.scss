@@ -1,0 +1,93 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: var(--fkt-space-md);
+    gap: var(--fkt-space-md);
+    overflow: hidden;
+    border: solid 1px var(--fkt-controls-table-border-color);
+    box-sizing: border-box;
+    border-radius: var(--fkt-radius-md);
+    box-shadow: var(--fkt-shadow-md);
+    background: var(--fkt-color-neutral-100);
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+
+    --fkt-button-padding-vertical: var(--fkt-space-2xs);
+
+    .token {
+        font-size: var(--fkt-font-size-sm);
+        font-weight: var(--fkt-font-semibold);
+        align-items: center;
+        background: none;
+        border: none;
+        color: var(--fkt-color-neutral-800);
+
+        display: flex;
+        gap: var(--fkt-space-xs);
+    }
+}
+
+.actions div {
+    display: flex;
+    --fkt-button-icon-font-weight: normal;
+}
+
+.controls {
+    width: 100%;
+}
+
+.numeric-control {
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    pointer-events: auto;
+    gap: .2rem;
+
+    fkt-icon {
+        font-size: var(--fkt-font-size-xs);
+        background-color: var(--fkt-controls-table-numeric-control-bg);
+        transition: var(--fkt-transition-base);
+        cursor: pointer;
+        color: var(--fkt-controls-table-numeric-control-color);
+        padding: 0 .2rem;
+        font-weight: var(--fkt-font-semibold);
+
+        &:hover {
+            background-color: var(--fkt-controls-table-numeric-control-hover-bg);
+        }
+    }
+}
+
+:host td.actions {
+    padding: 0;
+
+    & > div {
+        padding: .5rem 1rem .5rem 0;
+        display: flex;
+        gap: var(--fkt-space-xs);
+    }
+}
+
+a {
+    text-decoration: none;
+    color: var(--fkt-color-link);
+    border: none;
+    border-bottom: solid 1px transparent;
+    padding: var(--fkt-space-3xs);
+    transition: var(--fkt-transition-base);
+    font-weight: var(--fkt-font-semibold);
+    width: fit-content;
+    white-space: nowrap;
+    outline: none;
+
+    &:hover, &:focus-visible {
+        border-bottom: solid 1px var(--fkt-color-link);
+    }
+}
+

@@ -9,9 +9,11 @@ button {
     align-items: center;
     cursor: pointer;
     background: transparent;
-    border: solid 1px var(--fkt-color-neutral-400);
+    border: none;
     transition: var(--fkt-transition-base);
     color: var(--fkt-color-neutral-900);
+    font-weight: var(--fkt-font-semibold);
+    outline: none;
 
     &:hover {
         background: var(--fkt-color-contrast-opacity-5);
@@ -21,6 +23,8 @@ button {
         background: var(--fkt-color-primary);
         color: var(--fkt-color-on-primary);
         border-color: var(--fkt-color-primary);
+        font-weight: var(--fkt-font-semibold);
+        box-shadow: var(--fkt-shadow-xl);
     }
 
     &.disabled {
@@ -48,35 +52,30 @@ label {
     font-size: var(--fkt-font-size-md);
 }
 
+:host {
+    &.ng-invalid {
+        border-color: var(--fkt-color-danger);
+    }
+}
+
 .container {
     display: flex;
-
-    button:not(:last-child) {
-        border-right: none;
-    }
-
-    button.invalid:first-child:not(.disabled) {
-        border-left-color: var(--fkt-color-danger);
-    }
+    width: fit-content;
+    background: var(--fkt-color-neutral-200);
+    padding: .5rem;
+    gap: 1rem;
+    border-radius: 8px;
+    border: solid 1px transparent;
 
     &.shape-rounded {
-        button:last-child {
-            border-radius: 0 var(--fkt-radius-full) var(--fkt-radius-full) 0;
-        }
-
-        button:first-child {
-            border-radius: var(--fkt-radius-full) 0 0 var(--fkt-radius-full);
+        button {
+            border-radius: var(--fkt-radius-full);
         }
     }
 
     &.shape-rect {
-
-        button:last-child {
-            border-radius: 0 var(--fkt-radius-md) var(--fkt-radius-md) 0;
-        }
-
-        button:first-child {
-            border-radius: var(--fkt-radius-md) 0 0 var(--fkt-radius-md);
+        button {
+            border-radius: var(--fkt-radius-md);
         }
     }
 
@@ -88,35 +87,6 @@ label {
 
     &.orientation-vertical {
         flex-direction: column;
-
-        button:not(:last-child) {
-            border-right: solid 1px var(--fkt-color-neutral-400);
-            border-bottom: none;
-        }
-
-        button.invalid:not(.disabled) {
-            border-left-color: var(--fkt-color-danger);
-        }
-
-        &.shape-rounded {
-            button:first-child {
-                border-radius: var(--fkt-radius-full) var(--fkt-radius-full) 0 0;
-            }
-
-            button:last-child {
-                border-radius: 0 0 var(--fkt-radius-full) var(--fkt-radius-full);
-            }
-        }
-
-        &.shape-rect {
-            button:first-child {
-                border-radius: var(--fkt-radius-md) var(--fkt-radius-md) 0 0;
-            }
-
-            button:last-child {
-                border-radius: 0 0 var(--fkt-radius-md) var(--fkt-radius-md);
-            }
-        }
     }
 
     &.size-xs {

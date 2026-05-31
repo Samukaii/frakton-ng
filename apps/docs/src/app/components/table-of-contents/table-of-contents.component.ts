@@ -12,6 +12,7 @@ import { TableOfContentsService } from '@/core/services/table-of-contents.servic
 import { MarkUsed } from 'frakton-ng/internal/utils';
 import { CallPipe } from 'frakton-ng/internal/pipes';
 import { IncludesPipe } from '@/pipes/includes.pipe';
+import { getDocsScrollRoot, stabilizeScrollTo } from '@/utils/stabilize-scroll-to';
 
 export interface TocItem {
     id: string;
@@ -36,6 +37,7 @@ export class TableOfContentsComponent {
     });
     protected readonly activeIds = signal<string[]>([]);
     protected readonly hasItems = computed(() => this.tocItems().length > 0);
+    private anchorScrollAbort: AbortController | null = null;
 
     @MarkUsed()
     protected readonly watchIntersection = effect((onCleanup) => {
@@ -119,12 +121,28 @@ export class TableOfContentsComponent {
     }
 
     protected scrollToHeading(id: string) {
-        const element = this.document.getElementById(id);
-        if (!element) return;
-        element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        const target = this.document.getElementById(id);
+        const root = target ? this.getScrollRoot(target) : null;
+
+        if (!target || !root) return;
+
+        this.anchorScrollAbort?.abort();
+
+        const controller = new AbortController();
+        this.anchorScrollAbort = controller;
+
+        stabilizeScrollTo({
+            root,
+            target,
+            signal: controller.signal,
+        });
     }
 
     protected hasChildren(item: TocItem): boolean {
         return item.children.length > 0;
+    }
+
+    private getScrollRoot(target: HTMLElement) {
+        return getDocsScrollRoot(this.document, target);
     }
 }
