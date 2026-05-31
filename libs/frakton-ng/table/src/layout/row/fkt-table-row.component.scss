@@ -61,7 +61,7 @@ $header-cell-color: var(--fkt-table-header-cell-color, var(--fkt-color-neutral-9
     &.selected {
         background-color: color-mix(in srgb, var(--fkt-color-primary) 6%, transparent);
 
-        .table__header-cell {
+        .table__cell {
             background-color: color-mix(in srgb, var(--fkt-color-primary) 6%, $cell-background);
         }
     }
@@ -69,7 +69,7 @@ $header-cell-color: var(--fkt-table-header-cell-color, var(--fkt-color-neutral-9
     &:not(.disable-row-hover):hover {
         background-color: $row-hover-background-color;
 
-        .table__header-cell {
+        .table__cell {
             background-color: $row-hover-background-color;
         }
     }
@@ -77,13 +77,13 @@ $header-cell-color: var(--fkt-table-header-cell-color, var(--fkt-color-neutral-9
     &.striped:not(.selected) {
         background-color: $stripe-color;
 
-        .table__header-cell {
+        .table__cell {
             background-color: $stripe-color;
         }
     }
 }
 
-.table__header-cell {
+.table__cell {
     padding: $header-cell-padding;
     color: $header-cell-color;
     overflow-wrap: break-word;
