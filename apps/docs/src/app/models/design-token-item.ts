@@ -5,6 +5,10 @@ export interface DesignTokenItem {
 	reference: string;
 	category: string;
 	component?: string;
+	scope?: {
+		name: string;
+		selector: string;
+	};
 	description: string;
 	type: 'size' | 'color' | 'shadow' | 'weight' | 'opacity';
 	defaultValue: string;
