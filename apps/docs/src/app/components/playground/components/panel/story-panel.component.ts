@@ -48,13 +48,7 @@ export class StoryPanelComponent {
     designTokens = input.required<DesignTokenItem[]>();
     protected readonly activeControlsOwner = signal('all');
 
-    a = signal<string | null>(null)
-
     protected readonly parentRef = inject(ElementRef, {skipSelf: true})
-
-    ab = afterNextRender(() => {
-        this.a.set(this.parentRef.nativeElement.innerHTML);
-    })
 
     protected currentTab = linkedSignal<string>(() => {
         const tabs = this.visibleTabs();
