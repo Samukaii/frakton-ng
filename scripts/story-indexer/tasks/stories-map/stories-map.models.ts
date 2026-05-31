@@ -19,6 +19,16 @@ export interface StoryIndexedSection {
 }
 
 export interface StoryIndexedInfo {
-    meta: StoryIndexedMeta,
-    sections: StoryIndexedSection[]
+    meta: StoryIndexedMeta;
+    sections: StoryIndexedSection[];
+}
+
+export interface StoryIndexEntry {
+    path: string;
+    story: StoryIndexedInfo;
+}
+
+export interface StoryIndex {
+    entries: StoryIndexEntry[];
+    getOne(path: string): StoryIndexedInfo | null;
 }

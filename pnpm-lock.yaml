@@ -186,6 +186,9 @@ importers:
       karma-jasmine-html-reporter:
         specifier: ~2.1.0
         version: 2.1.0(jasmine-core@5.8.0)(karma-jasmine@5.1.0(karma@6.4.4))(karma@6.4.4)
+      listr2:
+        specifier: ^9.0.5
+        version: 9.0.5
       marked:
         specifier: 16.0.0
         version: 16.0.0

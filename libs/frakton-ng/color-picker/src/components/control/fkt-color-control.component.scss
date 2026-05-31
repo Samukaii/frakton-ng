@@ -1,123 +1,123 @@
 // <design-tokens>
 /*
 Width of the format selector in color control.
-@name --fkt-color-control-format-width
+@name --fkt-color-picker-control-format-width
 @reference 76px
 @component Color controls
 @category Spacing
 @type size
 */
-$format-width: var(--fkt-color-control-format-width, 76px);
+$format-width: var(--fkt-color-picker-control-format-width, 76px);
 
 /*
 Height of the color control elements.
-@name --fkt-color-control-element-height
+@name --fkt-color-picker-control-element-height
 @reference 46px
 @component Color controls
 @category Spacing
 @type size
 */
-$element-height: var(--fkt-color-control-element-height, 46px);
+$element-height: var(--fkt-color-picker-control-element-height, 46px);
 
 /*
 Width of the color preview circle.
-@name --fkt-color-control-preview-width
+@name --fkt-color-picker-control-preview-width
 @reference 40px
 @component Color controls
 @category Spacing
 @type size
 */
-$preview-width: var(--fkt-color-control-preview-width, 40px);
+$preview-width: var(--fkt-color-picker-control-preview-width, 40px);
 
 /*
 Border color for control elements.
-@name --fkt-color-control-border-color
+@name --fkt-color-picker-control-border-color
 @reference --fkt-color-neutral-400
 @component Color controls
 @category Colors
 @type color
 */
-$border-color: var(--fkt-color-control-border-color, var(--fkt-color-neutral-400));
+$border-color: var(--fkt-color-picker-control-border-color, var(--fkt-color-neutral-400));
 
 /*
 Hover border color for control elements.
-@name --fkt-color-control-hover-border-color
+@name --fkt-color-picker-control-hover-border-color
 @reference --fkt-color-brand-secondary
 @component Color controls
 @category Colors
 @type color
 */
-$hover-border-color: var(--fkt-color-control-hover-border-color, var(--fkt-color-brand-secondary));
+$hover-border-color: var(--fkt-color-picker-control-hover-border-color, var(--fkt-color-brand-secondary));
 
 /*
 Border radius for control elements.
-@name --fkt-color-control-border-radius
+@name --fkt-color-picker-control-border-radius
 @reference --fkt-radius-xl
 @component Color controls
 @category Shape
 @type size
 */
-$control-border-radius: var(--fkt-color-control-border-radius, var(--fkt-radius-xl));
+$control-border-radius: var(--fkt-color-picker-control-border-radius, var(--fkt-radius-xl));
 
 /*
 Focus shadow color for control elements.
-@name --fkt-color-control-focus-shadow-color
+@name --fkt-color-picker-control-focus-shadow-color
 @reference --fkt-color-brand-secondary
 @component Color controls
 @category Colors
 @type color
 */
-$focus-shadow-color: var(--fkt-color-control-focus-shadow-color, var(--fkt-color-brand-secondary));
+$focus-shadow-color: var(--fkt-color-picker-control-focus-shadow-color, var(--fkt-color-brand-secondary));
 
 /*
 Padding for control value display.
-@name --fkt-color-control-value-padding
+@name --fkt-color-picker-control-value-padding
 @reference --fkt-space-sm
 @component Color controls
 @category Spacing
 @type size
 */
-$value-padding: var(--fkt-color-control-value-padding, var(--fkt-space-sm));
+$value-padding: var(--fkt-color-picker-control-value-padding, var(--fkt-space-sm));
 
 /*
 Background color for color value display.
-@name --fkt-color-control-value-background
+@name --fkt-color-picker-control-value-background
 @reference #00000000
 @component Color controls
 @category Colors
 @type color
 */
-$value-background: var(--fkt-color-control-value-background, #00000000);
+$value-background: var(--fkt-color-picker-control-value-background, #00000000);
 
 /*
 Text color for color value display.
-@name --fkt-color-control-value-color
+@name --fkt-color-picker-control-value-color
 @reference --fkt-color-neutral-900
 @component Color controls
 @category Colors
 @type color
 */
-$value-color: var(--fkt-color-control-value-color, var(--fkt-color-neutral-900));
+$value-color: var(--fkt-color-picker-control-value-color, var(--fkt-color-neutral-900));
 
 /*
 Gap between elements in the value display.
-@name --fkt-color-control-value-gap
+@name --fkt-color-picker-control-value-gap
 @reference .5rem
 @component Color controls
 @category Spacing
 @type size
 */
-$value-gap: var(--fkt-color-control-value-gap, .5rem);
+$value-gap: var(--fkt-color-picker-control-value-gap, .5rem);
 
 /*
 Height of text description in value display.
-@name --fkt-color-control-description-height
+@name --fkt-color-picker-control-description-height
 @reference 30px
 @component Color controls
 @category Spacing
 @type size
 */
-$description-height: var(--fkt-color-control-description-height, 30px);
+$description-height: var(--fkt-color-picker-control-description-height, 30px);
 // </design-tokens>
 
 fkt-select {

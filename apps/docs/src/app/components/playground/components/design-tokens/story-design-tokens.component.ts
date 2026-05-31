@@ -20,9 +20,9 @@ import { STORY_META_TOKEN } from '@/tokens/story-meta.token';
 export class StoryDesignTokensComponent {
     designTokens = input.required<DesignTokenItem[]>();
 
-    meta = inject(STORY_META_TOKEN);
+    private meta = inject(STORY_META_TOKEN);
 
-    templateSelector = computed(() => {
+    protected readonly templateSelector = computed(() => {
         const component = this.meta.component;
 
         if (!component) return ':host';
@@ -36,36 +36,34 @@ export class StoryDesignTokensComponent {
         }
     });
 
-    currentComponent = linkedSignal(() => {
-        const components = this.components();
+    protected readonly currentScope = linkedSignal(() => {
+        const components = this.scopes();
 
         return components[0];
     });
 
-    components = computed(() => {
+    protected readonly scopes = computed(() => {
         const tokens = this.designTokens();
 
-        const components: string[] = ['All'];
+        const scopes: {name: string; tokens: DesignTokenItem[] }[] = [{name: 'All', tokens}];
 
         tokens.forEach((token) => {
             if (!token.component) return;
-            if (components.includes(token.component)) return;
 
-            components.push(token.component);
+            const scopeRegistered = scopes.find(
+                (scope) => scope.name === token.component
+            );
+
+            if(scopeRegistered)
+                scopeRegistered.tokens.push(token)
+            else scopes.push({name: token.component, tokens: [token]})
         });
 
-        return components;
+        return scopes;
     });
 
-    tokensCategories = computed(() => {
-        const tokens = this.designTokens();
-        const currentComponent = this.currentComponent();
-
-        const tokensFiltered = tokens.filter((token) => {
-            if (currentComponent === 'All') return true;
-
-            return token.component === currentComponent;
-        });
+    protected readonly tokensCategories = computed(() => {
+        const currentScope = this.currentScope();
 
         const categories: {
             name: string;
@@ -99,7 +97,7 @@ export class StoryDesignTokensComponent {
             },
         ];
 
-        tokensFiltered.forEach((token) => {
+        currentScope.tokens.forEach((token) => {
             const foundCategory = categories.find(
                 (category) => category.name === token.category
             );
@@ -111,38 +109,4 @@ export class StoryDesignTokensComponent {
 
         return categories.filter((category) => category.tokens.length > 0);
     });
-
-    protected changedTokens = computed(() => {
-        const tokens = this.designTokens();
-
-        return tokens.filter((token) => token.control() !== token.defaultValue);
-    });
-
-    protected hasChanges = computed(() => {
-        const tokens = this.changedTokens();
-
-        return !!tokens.length;
-    });
-
-    protected resetAllTokens() {
-        const tokens = this.changedTokens();
-
-        tokens.forEach((token) => {
-            token.control.set(token.defaultValue);
-        });
-    }
-
-    protected async copyAllTokens() {
-        const tokens = this.changedTokens();
-
-        let text = `${this.templateSelector()} {`;
-
-        tokens.forEach((token) => {
-            text += '\n';
-            text += `  ${token.name}: ${token.control()};`;
-        });
-        text += '\n}';
-
-        await navigator.clipboard.writeText(text);
-    }
 }
