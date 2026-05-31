@@ -1,0 +1,60 @@
+<div class="header">
+    <h1>
+        {{ token().name | humanizeDesignToken }}
+    </h1>
+
+    <fkt-tag
+        variant="opaque"
+        [color]="categoryIcon().color"
+    >
+        <div tag-content>
+            <fkt-icon [name]="categoryIcon().icon"/>
+            {{ token().category }}
+        </div>
+    </fkt-tag>
+</div>
+
+<div class="row">
+    <div class="descriptor">
+        Token:
+    </div>
+    <fkt-tag
+        variant="faded"
+        color="info"
+        [text]="token().name"
+    >
+    </fkt-tag>
+</div>
+
+<div class="row description">
+    <div class="descriptor">
+        Description:
+    </div>
+
+    <p>{{ token().description }}</p>
+</div>
+
+<div class="row">
+    <div class="descriptor">
+        Reference:
+    </div>
+    <fkt-tag
+        variant="faded"
+        color="info"
+        [text]="token().reference"
+    >
+    </fkt-tag>
+</div>
+
+<div class="row">
+    <div class="descriptor">
+        Default value:
+    </div>
+
+    <fkt-tag
+        variant="faded"
+        color="info"
+        [text]="token().defaultValue"
+    >
+    </fkt-tag>
+</div>

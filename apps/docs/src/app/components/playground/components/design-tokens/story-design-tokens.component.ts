@@ -6,25 +6,18 @@ import {
     linkedSignal,
     reflectComponentType,
 } from '@angular/core';
-import { FktButtonComponent } from 'frakton-ng/button';
-import { FktTooltipDirective } from 'frakton-ng/tooltip';
 import { DesignTokenItem } from '@/models/design-token-item';
-import { FktPlaygroundDesignTokensItemComponent } from './item/fkt-playground-design-tokens-item.component';
-import { FktIconComponent, FktIconName } from 'frakton-ng/icon';
+import { StoryDesignTokensItemComponent } from './item/story-design-tokens-item.component';
+import { FktIconName } from 'frakton-ng/icon';
 import { STORY_META_TOKEN } from '@/tokens/story-meta.token';
 
 @Component({
-    selector: 'fkt-playground-design-tokens',
-    imports: [
-        FktButtonComponent,
-        FktTooltipDirective,
-        FktPlaygroundDesignTokensItemComponent,
-        FktIconComponent,
-    ],
-    templateUrl: './fkt-playground-design-tokens.component.html',
-    styleUrl: './fkt-playground-design-tokens.component.scss',
+    selector: 'app-story-design-tokens',
+    imports: [StoryDesignTokensItemComponent],
+    templateUrl: './story-design-tokens.component.html',
+    styleUrl: './story-design-tokens.component.scss',
 })
-export class FktPlaygroundDesignTokensComponent {
+export class StoryDesignTokensComponent {
     designTokens = input.required<DesignTokenItem[]>();
 
     meta = inject(STORY_META_TOKEN);
@@ -37,9 +30,10 @@ export class FktPlaygroundDesignTokensComponent {
         try {
             const reflection = reflectComponentType(component);
             if (reflection?.selector) return reflection?.selector;
-        } catch (e) {}
-
-        return ':host';
+            return ':host';
+        } catch {
+            return ':host';
+        }
     });
 
     currentComponent = linkedSignal(() => {

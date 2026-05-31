@@ -1,0 +1,106 @@
+<div class="header">
+    <button #button (mouseover)="openInfo(button)" (focus)="openInfo(button)" (blur)="overlayRef?.close()" class="token">
+        <fkt-icon [name]="categoryIcon() ?? 'academic-cap'"/>
+        <span [fktTooltip]="designToken().name" detectOverflow>
+	        {{ designToken().name | humanizeDesignToken: templateSelector() }}
+	    </span>
+    </button>
+
+    <div class="actions">
+        <div>
+            @if (hasChanges()) {
+                <fkt-button
+                    (click)="resetToken()"
+                    ariaLabel="Reset token"
+                    fktTooltip="Reset token"
+                    shape="rect"
+                    color="primary"
+                    theme="basic"
+                    icon="arrow-uturn-left"
+                />
+            }
+
+            <fkt-button
+                (click)="copyToken()"
+                [ariaLabel]="copied() ? 'Copied': 'Copy this token'"
+                [fktTooltip]="copied() ? 'Copied': 'Copy this token'"
+                [shape]="copied() ? 'rounded': 'rounded'"
+                [color]="copied() ? 'success': 'primary'"
+                [theme]="copied() ? 'raised' : 'basic'"
+                [icon]="copied()  ? 'check' : 'clipboard-document-list'"
+            />
+        </div>
+    </div>
+</div>
+
+<div class="controls">
+    @switch (designToken().type) {
+        @case ("size") {
+            <fkt-input
+                [label]="designToken().name"
+                hideLabel
+                (inputKeyDown)="onKeyDown($event, designToken().control)"
+                placeholder="Enter the size"
+                [(value)]="designToken().control"
+            >
+                <div *fktFormControlSuffix class="numeric-control">
+                    <fkt-icon
+                        (mousedown)="increaseNumber($any($event), designToken().control)"
+                        name="chevron-up"/>
+                    <fkt-icon
+                        (mousedown)="decreaseNumber($any($event), designToken().control)"
+                        name="chevron-down"/>
+                </div>
+            </fkt-input>
+        }
+        @case ("weight") {
+            <fkt-input
+                [label]="designToken().name"
+                hideLabel
+                (inputKeyDown)="onKeyDown($event, designToken().control)"
+                placeholder="Enter the weight"
+                [(value)]="designToken().control"
+            >
+                <div *fktFormControlSuffix class="numeric-control">
+                    <fkt-icon
+                        (mousedown)="increaseNumber($any($event), designToken().control)"
+                        name="chevron-up"/>
+                    <fkt-icon
+                        (mousedown)="decreaseNumber($any($event), designToken().control)"
+                        name="chevron-down"/>
+                </div>
+            </fkt-input>
+        }
+        @case ("opacity") {
+            <fkt-input
+                [label]="designToken().name"
+                hideLabel
+                type="number"
+                [minNumber]="0"
+                [maxNumber]="1"
+                [step]="0.1"
+                [maxDecimals]="2"
+                placeholder="Enter the opacity"
+                [(value)]="designToken().control"
+            >
+            </fkt-input>
+        }
+        @case ("shadow") {
+            <fkt-input
+                [label]="designToken().name"
+                hideLabel
+                placeholder="Enter a shadow value"
+                [(value)]="designToken().control"
+            >
+            </fkt-input>
+        }
+        @case ("color") {
+            <fkt-color-picker
+                [(value)]="designToken().control"
+                [showCopyButton]="false"
+                label="Select the color"
+            />
+        }
+    }
+</div>
+
