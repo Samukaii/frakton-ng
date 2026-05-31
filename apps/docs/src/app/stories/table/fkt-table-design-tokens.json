@@ -16,8 +16,8 @@
     "description": "Background color for table container.",
     "name": "--fkt-table-cell-background",
     "reference": "--fkt-color-neutral-100",
-    "category": "Color",
-    "type": "size",
+    "category": "Colors",
+    "type": "color",
     "defaultValue": "#f1f5f9",
     "component": "Table",
     "scope": {
