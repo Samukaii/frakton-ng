@@ -3,7 +3,7 @@
     "description": "Border radius for the table container.",
     "name": "--fkt-table-border-radius",
     "reference": "--fkt-space-sm",
-    "component": "Display",
+    "component": "Table",
     "category": "Shape",
     "type": "size",
     "defaultValue": ".75rem"
@@ -12,16 +12,16 @@
     "description": "Background color for table container.",
     "name": "--fkt-table-cell-background",
     "reference": "--fkt-color-neutral-100",
-    "component": "Display",
+    "component": "Table",
     "category": "Color",
     "type": "size",
     "defaultValue": "#f1f5f9"
   },
   {
     "description": "Border color for the table container outline.",
-    "name": "--fkt-table-border-color",
+    "name": "--fkt-table-outer-border-color",
     "reference": "--fkt-color-neutral-300",
-    "component": "Display",
+    "component": "Table",
     "category": "Colors",
     "type": "color",
     "defaultValue": "#cbd5e1"
@@ -30,7 +30,7 @@
     "description": "Font size for table body text.",
     "name": "--fkt-table-font-size",
     "reference": "--fkt-font-size-sm",
-    "component": "Display",
+    "component": "Table",
     "category": "Typography",
     "type": "size",
     "defaultValue": "0.875rem"
@@ -39,7 +39,7 @@
     "description": "Line height for table text.",
     "name": "--fkt-table-line-height",
     "reference": "1.25rem",
-    "component": "Display",
+    "component": "Table",
     "category": "Typography",
     "type": "size",
     "defaultValue": "1.25rem"
@@ -48,91 +48,64 @@
     "description": "Max height for the scrollable table area. Set to control vertical scroll.",
     "name": "--fkt-table-max-height",
     "reference": "none",
-    "component": "Display",
+    "component": "Table",
     "category": "Spacing",
     "type": "size",
     "defaultValue": "none"
   },
   {
-    "description": "Border color between expanded rows.",
-    "name": "--fkt-table-row-border-color",
-    "reference": "--fkt-color-neutral-300",
-    "component": "ExpandableRow",
+    "description": "Color for column divider lines shown when gridLines is enabled. Defaults to the table border color.",
+    "name": "--fkt-table-column-border-color",
+    "reference": "transparent",
+    "component": "Table",
     "category": "Colors",
     "type": "color",
-    "defaultValue": "#cbd5e1"
-  },
-  {
-    "description": "Padding inside the expanded row content area.",
-    "name": "--fkt-table-header-cell-padding",
-    "reference": "--fkt-space-md",
-    "component": "ExpandableRow",
-    "category": "Spacing",
-    "type": "size",
-    "defaultValue": "1rem"
+    "defaultValue": "transparent"
   },
   {
     "description": "Color of the column resize indicator line.",
     "name": "--fkt-table-resize-indicator-color",
     "reference": "--fkt-color-primary",
-    "component": "ResizeIndicator",
+    "component": "Resize indicator",
     "category": "Colors",
     "type": "color",
     "defaultValue": "#1f2937"
   },
   {
-    "description": "Text color for selection banner.",
-    "name": "--fkt-table-header-cell-color",
-    "reference": "--fkt-color-neutral-950",
-    "component": "SelectionBanner",
-    "category": "Colors",
-    "type": "color",
-    "defaultValue": "#020617"
-  },
-  {
-    "description": "Color for header title text.",
-    "name": "--fkt-table-header-title-color",
+    "description": "Color for header text.",
+    "name": "--fkt-table-header-text-color",
     "reference": "--fkt-color-neutral-900",
-    "component": "SelectionHeader",
+    "component": "Header",
     "category": "Colors",
     "type": "color",
     "defaultValue": "#0f172a"
   },
   {
     "description": "Font weight for header title.",
-    "name": "--fkt-table-header-title-font-weight",
+    "name": "--fkt-table-header-font-weight",
     "reference": "--fkt-font-semibold",
-    "component": "SelectionHeader",
+    "component": "Header",
     "category": "Typography",
-    "type": "font",
+    "type": "weight",
     "defaultValue": "600"
   },
   {
-    "description": "Color for the separator border below frozen rows.",
-    "name": "--fkt-table-frozen-separator-color",
+    "description": "Padding for header cell content.",
+    "name": "--fkt-table-header-cell-padding",
+    "reference": "--fkt-space-md",
+    "component": "Header cell",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": "1rem"
+  },
+  {
+    "description": "Border color between rows.",
+    "name": "--fkt-table-row-border-color",
     "reference": "--fkt-color-neutral-300",
-    "component": "FrozenRows",
+    "component": "Row",
     "category": "Colors",
     "type": "color",
     "defaultValue": "#cbd5e1"
-  },
-  {
-    "description": "Width of the separator border below frozen rows.",
-    "name": "--fkt-table-frozen-separator-width",
-    "reference": "2px",
-    "component": "FrozenRows",
-    "category": "Spacing",
-    "type": "size",
-    "defaultValue": "2px"
-  },
-  {
-    "description": "Color for column divider lines shown when gridLines is enabled. Defaults to the table border color.",
-    "name": "--fkt-table-column-border-color",
-    "reference": "--fkt-table-border-color",
-    "component": "HeaderCell",
-    "category": "Colors",
-    "type": "color",
-    "defaultValue": "--fkt-table-border-color"
   },
   {
     "description": "Background color for row hover state.",
@@ -156,7 +129,7 @@
     "description": "Color of the active-filter badge dot.",
     "name": "--fkt-table-filter-badge-color",
     "reference": "--fkt-color-danger",
-    "component": "FilterRenderer",
+    "component": "Filters",
     "category": "Colors",
     "type": "color",
     "defaultValue": "#E7000BFF"
