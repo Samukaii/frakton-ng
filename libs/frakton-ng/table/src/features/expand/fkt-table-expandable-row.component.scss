@@ -1,24 +1,5 @@
-// <design-tokens>
-/*
-Border color between expanded rows.
-@name --fkt-table-row-border-color
-@reference --fkt-color-neutral-300
-@component ExpandableRow
-@category Colors
-@type color
-*/
 $row-border-color: var(--fkt-table-row-border-color, var(--fkt-color-neutral-300));
-
-/*
-Padding inside the expanded row content area.
-@name --fkt-table-header-cell-padding
-@reference --fkt-space-md
-@component ExpandableRow
-@category Spacing
-@type size
-*/
 $header-cell-padding: var(--fkt-table-header-cell-padding, var(--fkt-space-md));
-// </design-tokens>
 
 :host {
     &:not(:last-child):has(.table__expand-wrapper) {

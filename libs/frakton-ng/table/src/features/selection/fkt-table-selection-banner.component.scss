@@ -1,34 +1,6 @@
-// <design-tokens>
-/*
-Padding inside the selection banner.
-@name --fkt-table-header-cell-padding
-@reference --fkt-space-md
-@component SelectionBanner
-@category Spacing
-@type size
-*/
 $header-cell-padding: var(--fkt-table-header-cell-padding, var(--fkt-space-md));
-
-/*
-Font size for selection banner text.
-@name --fkt-table-font-size
-@reference --fkt-font-size-sm
-@component SelectionBanner
-@category Typography
-@type size
-*/
 $font-size: var(--fkt-table-font-size, var(--fkt-font-size-sm));
-
-/*
-Text color for selection banner.
-@name --fkt-table-header-cell-color
-@reference --fkt-color-neutral-950
-@component SelectionBanner
-@category Colors
-@type color
-*/
 $header-cell-color: var(--fkt-table-header-cell-color, var(--fkt-color-neutral-950));
-// </design-tokens>
 
 :host {
     background-color: color-mix(in srgb, var(--fkt-color-info) 10%, var(--fkt-color-neutral-100));

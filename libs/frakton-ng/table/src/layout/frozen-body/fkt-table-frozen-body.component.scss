@@ -1,28 +1,5 @@
-// <design-tokens>
-/*
-Color for the separator border below frozen rows.
-@name --fkt-table-frozen-separator-color
-@reference --fkt-color-neutral-300
-@component FrozenRows
-@category Colors
-@type color
-*/
-
-/*
-Width of the separator border below frozen rows.
-@name --fkt-table-frozen-separator-width
-@reference 2px
-@component FrozenRows
-@category Spacing
-@type size
-*/
-// </design-tokens>
-
 :host {
     position: sticky;
     z-index: 1;
-
-    &:has(tr) {
-        border-bottom: var(--fkt-table-frozen-separator-width, 2px) solid var(--fkt-table-frozen-separator-color, var(--fkt-color-neutral-300));
-    }
+    box-shadow: var(--fkt-shadow-md);
 }

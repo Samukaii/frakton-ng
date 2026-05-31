@@ -1,54 +1,28 @@
 // <design-tokens>
 /*
-Border color below the header row.
-@name --fkt-table-row-border-color
-@reference --fkt-color-neutral-300
-@component Header
-@category Colors
-@type color
-*/
-$row-border-color: var(--fkt-table-row-border-color, var(--fkt-color-neutral-300));
-
-/*
-Padding for header cells.
-@name --fkt-table-header-cell-padding
-@reference --fkt-space-md
-@component Header
-@category Spacing
-@type size
-*/
-$header-cell-padding: var(--fkt-table-header-cell-padding, var(--_table-cell-padding));
-
-/*
-Color for header title text.
-@name --fkt-table-header-title-color
+Color for header text.
+@name --fkt-table-header-text-color
 @reference --fkt-color-neutral-900
 @component Header
 @category Colors
 @type color
 */
-$header-title-color: var(--fkt-table-header-title-color, var(--fkt-color-neutral-900));
+$header-title-color: var(--fkt-table-header-text-color, var(--fkt-color-neutral-900));
 
 /*
 Font weight for header title.
-@name --fkt-table-header-title-font-weight
+@name --fkt-table-header-font-weight
 @reference --fkt-font-semibold
 @component Header
 @category Typography
-@type font
+@type weight
 */
-$header-title-font-weight: var(--fkt-table-header-title-font-weight, var(--fkt-font-semibold));
-
-/*
-Background color for header cells. Must be opaque for pinned columns to cover scrolled content.
-@name --fkt-table-cell-background
-@reference --fkt-color-neutral-100
-@component Header
-@category Colors
-@type color
-*/
-$cell-background: var(--fkt-table-cell-background, var(--fkt-color-neutral-100));
+$header-title-font-weight: var(--fkt-table-header-font-weight, var(--fkt-font-semibold));
 // </design-tokens>
+
+$header-cell-padding: var(--fkt-table-header-cell-padding, var(--_table-cell-padding));
+$row-border-color: var(--fkt-table-row-border-color, var(--fkt-color-neutral-300));
+$cell-background: var(--fkt-table-cell-background, var(--fkt-color-neutral-100));
 
 :host {
     position: sticky;

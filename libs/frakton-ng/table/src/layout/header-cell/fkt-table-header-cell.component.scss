@@ -3,22 +3,15 @@
 Padding for header cell content.
 @name --fkt-table-header-cell-padding
 @reference --fkt-space-md
-@component HeaderCell
+@component Header cell
 @category Spacing
 @type size
 */
 $header-cell-padding: var(--fkt-table-header-cell-padding, var(--_table-cell-padding));
-
-/*
-Color for column divider lines shown when gridLines is enabled. Defaults to the table border color.
-@name --fkt-table-column-border-color
-@reference --fkt-table-border-color
-@component HeaderCell
-@category Colors
-@type color
-*/
-$column-border-color: var(--fkt-table-column-border-color, var(--fkt-table-border-color, var(--fkt-color-neutral-300)));
 // </design-tokens>
+
+$column-border-color: var(--fkt-table-column-border-color, var(--_fkt-table-column-border-color, transparent));
+$row-border-color: var(--fkt-table-row-border-color, var(--fkt-color-neutral-300));
 
 :host {
     padding: 0;

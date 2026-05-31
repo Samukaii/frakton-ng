@@ -20,26 +20,6 @@ Background color for row hover state.
 $row-hover-background-color: var(--fkt-table-row-hover-background-color, var(--fkt-color-neutral-200));
 
 /*
-Padding for table cells.
-@name --fkt-table-header-cell-padding
-@reference --fkt-space-md
-@component Row
-@category Spacing
-@type size
-*/
-$header-cell-padding: var(--fkt-table-header-cell-padding, var(--_table-cell-padding));
-
-/*
-Text color for table cells.
-@name --fkt-table-header-cell-color
-@reference --fkt-color-neutral-950
-@component Row
-@category Colors
-@type color
-*/
-$header-cell-color: var(--fkt-table-header-cell-color, var(--fkt-color-neutral-950));
-
-/*
 Background color for table cells. Must be opaque for pinned columns to cover scrolled content.
 @name --fkt-table-cell-background
 @reference --fkt-color-neutral-100
@@ -59,6 +39,11 @@ Background color for alternating (odd-indexed) rows when striped is enabled.
 */
 $stripe-color: var(--fkt-table-stripe-color, var(--fkt-color-neutral-50));
 // </design-tokens>
+
+
+$column-border-color: var(--fkt-table-column-border-color, var(--_fkt-table-column-border-color, transparent));
+$header-cell-padding: var(--fkt-table-header-cell-padding, var(--_table-cell-padding));
+$header-cell-color: var(--fkt-table-header-cell-color, var(--fkt-color-neutral-950));
 
 :host {
     &:not(:last-child) {
