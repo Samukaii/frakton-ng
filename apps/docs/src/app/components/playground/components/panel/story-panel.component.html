@@ -139,12 +139,12 @@
     }
     @if (currentTab() === "styling" && canShowDesignTokens()) {
         <div role="tabpanel" id="panel-styling" aria-labelledby="tab-styling">
-            <fkt-playground-design-tokens [designTokens]="designTokens()"/>
+            <app-story-design-tokens [designTokens]="designTokens()"/>
         </div>
     }
     @if (currentTab() === "code") {
         <div role="tabpanel" id="panel-code" aria-labelledby="tab-code">
-            <fkt-source-code/>
+            <app-story-source-code/>
         </div>
     }
 </div>

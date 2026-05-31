@@ -87,8 +87,12 @@
         }
 
         &.active {
-            color: white;
+            color: var(--fkt-color-neutral-100);
             background-color: var(--fkt-color-primary);
+
+            fkt-icon {
+                color: var(--fkt-color-neutral-100);
+            }
 
             p {
                 font-weight: var(--fkt-font-semibold);

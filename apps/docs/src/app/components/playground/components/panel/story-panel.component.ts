@@ -8,13 +8,15 @@ import {
 import { FktIconComponent, FktIconName } from 'frakton-ng/icon';
 import { FktInputComponent } from 'frakton-ng/input';
 import { FktSelectComponent } from 'frakton-ng/select';
-import { DesignTokenItem } from '../../../models/design-token-item';
-import { ArgItem } from '../../../models/arg-item';
-import { FktPlaygroundDesignTokensComponent } from '../design-tokens/fkt-playground-design-tokens.component';
+import { DesignTokenItem } from '@/models/design-token-item';
+import { ArgItem } from '@/models/arg-item';
 import { FktToggleComponent } from 'frakton-ng/toggle';
-import { SourceCodeComponent } from '@/components/playground/source-code/source-code.component';
 import { SchemaEditorComponent } from '@/components/schema-editor/schema-editor.component';
 import { FktNavigableListDirective } from 'frakton-ng/navigable-list';
+import {
+    StoryDesignTokensComponent
+} from '@/components/playground/components/design-tokens/story-design-tokens.component';
+import { StorySourceCodeComponent } from '@/components/playground/components/source-code/story-source-code.component';
 
 interface Tab {
     key: string;
@@ -24,21 +26,21 @@ interface Tab {
 }
 
 @Component({
-    selector: 'fkt-playground-panel',
+    selector: 'app-story-panel',
     imports: [
         FktIconComponent,
         FktInputComponent,
         FktSelectComponent,
-        FktPlaygroundDesignTokensComponent,
+        StoryDesignTokensComponent,
         FktToggleComponent,
-        SourceCodeComponent,
+        StorySourceCodeComponent,
         SchemaEditorComponent,
         FktNavigableListDirective,
     ],
-    templateUrl: './fkt-playground-panel.component.html',
-    styleUrl: './fkt-playground-panel.component.scss',
+    templateUrl: './story-panel.component.html',
+    styleUrl: './story-panel.component.scss',
 })
-export class FktPlaygroundPanelComponent {
+export class StoryPanelComponent {
     argsList = input.required<ArgItem<any>[]>();
     designTokens = input.required<DesignTokenItem[]>();
     protected readonly activeControlsOwner = signal('all');
