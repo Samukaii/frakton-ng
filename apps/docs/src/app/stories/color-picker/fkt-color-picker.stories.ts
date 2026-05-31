@@ -2,11 +2,14 @@ import { FktColorPickerComponent, fktColorPickerFormats } from 'frakton-ng/color
 import { Meta } from '@/models/meta';
 import { Story } from '@/models/story';
 // @ts-expect-error
-import documentation from './fkt-color-picker.docs.md' with { loader: "text" };
+import documentation from './fkt-color-picker.docs.md' with { loader: 'text' };
+import designTokens from './fkt-color-picker-design-tokens.json';
+import { DesignToken } from '@/models/design-token';
 
 const meta: Meta = {
 	title: "Components/Form/Color Picker",
 	component: FktColorPickerComponent,
+    designTokens: designTokens as DesignToken[],
     description: "A sophisticated color picker component featuring semantic color descriptions, international localization, advanced visual selectors, and seamless Angular signals integration. Built for professional design tools and user-friendly color selection.",
 	documentation,
 	argTypes: {

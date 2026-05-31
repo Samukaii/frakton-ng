@@ -90,6 +90,24 @@
     "defaultValue": "40px"
   },
   {
+    "description": "Horizontal padding for field container.",
+    "name": "--fkt-color-picker-horizontal-padding",
+    "reference": "--fkt-space-xs",
+    "component": "Field",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": ".5rem"
+  },
+  {
+    "description": "Vertical padding for field container.",
+    "name": "--fkt-color-picker-vertical-padding",
+    "reference": "--fkt-space-xs",
+    "component": "Field",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": ".5rem"
+  },
+  {
     "description": "Modal background color",
     "name": "--fkt-color-picker-modal-background-color",
     "reference": "--fkt-color-modal-background",
@@ -127,7 +145,7 @@
   },
   {
     "description": "Width of the format selector in color control.",
-    "name": "--fkt-color-control-format-width",
+    "name": "--fkt-color-picker-control-format-width",
     "reference": "76px",
     "component": "Color controls",
     "category": "Spacing",
@@ -136,7 +154,7 @@
   },
   {
     "description": "Height of the color control elements.",
-    "name": "--fkt-color-control-element-height",
+    "name": "--fkt-color-picker-control-element-height",
     "reference": "46px",
     "component": "Color controls",
     "category": "Spacing",
@@ -145,7 +163,7 @@
   },
   {
     "description": "Width of the color preview circle.",
-    "name": "--fkt-color-control-preview-width",
+    "name": "--fkt-color-picker-control-preview-width",
     "reference": "40px",
     "component": "Color controls",
     "category": "Spacing",
@@ -154,7 +172,7 @@
   },
   {
     "description": "Border color for control elements.",
-    "name": "--fkt-color-control-border-color",
+    "name": "--fkt-color-picker-control-border-color",
     "reference": "--fkt-color-neutral-400",
     "component": "Color controls",
     "category": "Colors",
@@ -163,7 +181,7 @@
   },
   {
     "description": "Hover border color for control elements.",
-    "name": "--fkt-color-control-hover-border-color",
+    "name": "--fkt-color-picker-control-hover-border-color",
     "reference": "--fkt-color-brand-secondary",
     "component": "Color controls",
     "category": "Colors",
@@ -172,7 +190,7 @@
   },
   {
     "description": "Border radius for control elements.",
-    "name": "--fkt-color-control-border-radius",
+    "name": "--fkt-color-picker-control-border-radius",
     "reference": "--fkt-radius-xl",
     "component": "Color controls",
     "category": "Shape",
@@ -181,7 +199,7 @@
   },
   {
     "description": "Focus shadow color for control elements.",
-    "name": "--fkt-color-control-focus-shadow-color",
+    "name": "--fkt-color-picker-control-focus-shadow-color",
     "reference": "--fkt-color-brand-secondary",
     "component": "Color controls",
     "category": "Colors",
@@ -190,7 +208,7 @@
   },
   {
     "description": "Padding for control value display.",
-    "name": "--fkt-color-control-value-padding",
+    "name": "--fkt-color-picker-control-value-padding",
     "reference": "--fkt-space-sm",
     "component": "Color controls",
     "category": "Spacing",
@@ -199,7 +217,7 @@
   },
   {
     "description": "Background color for color value display.",
-    "name": "--fkt-color-control-value-background",
+    "name": "--fkt-color-picker-control-value-background",
     "reference": "#00000000",
     "component": "Color controls",
     "category": "Colors",
@@ -208,7 +226,7 @@
   },
   {
     "description": "Text color for color value display.",
-    "name": "--fkt-color-control-value-color",
+    "name": "--fkt-color-picker-control-value-color",
     "reference": "--fkt-color-neutral-900",
     "component": "Color controls",
     "category": "Colors",
@@ -217,7 +235,7 @@
   },
   {
     "description": "Gap between elements in the value display.",
-    "name": "--fkt-color-control-value-gap",
+    "name": "--fkt-color-picker-control-value-gap",
     "reference": ".5rem",
     "component": "Color controls",
     "category": "Spacing",
@@ -226,7 +244,7 @@
   },
   {
     "description": "Height of text description in value display.",
-    "name": "--fkt-color-control-description-height",
+    "name": "--fkt-color-picker-control-description-height",
     "reference": "30px",
     "component": "Color controls",
     "category": "Spacing",
@@ -241,5 +259,23 @@
     "category": "Spacing",
     "type": "size",
     "defaultValue": ".5rem"
+  },
+  {
+    "description": "Border color for control elements.",
+    "name": "--fkt-color-control-border-color",
+    "reference": "--fkt-color-neutral-400",
+    "component": "Color controls",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#94a3b8"
+  },
+  {
+    "description": "Border radius for control elements.",
+    "name": "--fkt-color-control-border-radius",
+    "reference": "--fkt-radius-xl",
+    "component": "Color controls",
+    "category": "Shape",
+    "type": "size",
+    "defaultValue": ".75rem"
   }
 ]
