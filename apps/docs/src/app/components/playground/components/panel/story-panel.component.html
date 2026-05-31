@@ -1,8 +1,8 @@
 <div>
     <div class="tabs">
         <div fktNavigableList orientation="horizontal" (select)="selectTabByIndex($event)" childSelector="button"
-            class="tabs__list"
-            role="tablist">
+             class="tabs__list"
+             role="tablist">
             @for (tab of visibleTabs(); track tab.key) {
                 <button
                     class="tab"
@@ -18,7 +18,6 @@
             }
         </div>
     </div>
-
 
     @if (currentTab() === "controls" && canShowControls()) {
         <div role="tabpanel" id="panel-controls" aria-labelledby="tab-controls">
@@ -139,7 +138,7 @@
     }
     @if (currentTab() === "styling" && canShowDesignTokens()) {
         <div role="tabpanel" id="panel-styling" aria-labelledby="tab-styling">
-            <app-story-design-tokens [designTokens]="designTokens()"/>
+            <app-story-design-tokens [parentContainer]="parentRef.nativeElement" [designTokens]="designTokens()"/>
         </div>
     }
     @if (currentTab() === "code") {

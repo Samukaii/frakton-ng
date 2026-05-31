@@ -1,6 +1,8 @@
 import {
+    afterNextRender,
     Component,
-    computed,
+    computed, effect,
+    ElementRef, inject,
     input,
     linkedSignal,
     signal,
@@ -42,8 +44,17 @@ interface Tab {
 })
 export class StoryPanelComponent {
     argsList = input.required<ArgItem<any>[]>();
+    container = input<HTMLElement>();
     designTokens = input.required<DesignTokenItem[]>();
     protected readonly activeControlsOwner = signal('all');
+
+    a = signal<string | null>(null)
+
+    protected readonly parentRef = inject(ElementRef, {skipSelf: true})
+
+    ab = afterNextRender(() => {
+        this.a.set(this.parentRef.nativeElement.innerHTML);
+    })
 
     protected currentTab = linkedSignal<string>(() => {
         const tabs = this.visibleTabs();
@@ -119,7 +130,7 @@ export class StoryPanelComponent {
     });
 
     protected selectTabByIndex($event: number | null) {
-        const tab = this.tabs()[$event ?? -1];
+        const tab = this.visibleTabs()[$event ?? -1];
 
         if (!tab) return;
 
