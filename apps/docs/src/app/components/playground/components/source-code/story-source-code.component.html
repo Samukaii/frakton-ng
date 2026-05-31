@@ -6,7 +6,7 @@
         @if (currentTab() === $index) {
             <div class="code" [class.expanded]="expanded()">
                 @if (example) {
-                    <fkt-code-highlight
+                    <app-code-highlight
                         noBorderRadius
                         [text]="file.content"
                         [language]="file.language"
@@ -24,16 +24,17 @@
 <div class="actions">
     <span class="expand-button show-on-hover" data-fkt-theme="dark">
         <fkt-button
-            icon="chevron-up-down"
+            [icon]="expanded() ? 'arrows-pointing-in' : 'arrows-pointing-out'"
             theme="stroked"
             shape="rounded"
             iconPosition="left"
-            [fktTooltip]="expanded() ? 'Collapse' : 'Expand'"
+            [fktTooltip]="expanded() ? 'Collapse code' : 'Expand code'"
             tooltipColor="white"
             color="primary"
-            [ariaLabel]="expanded() ? 'Collapse' : 'Expand'"
+            [ariaLabel]="expanded() ? 'Collapse code' : 'Expand code'"
             (click)="expanded.set(!this.expanded())"
         />
+
     </span>
     <div class="languages show-on-hover">
         @for (file of files; track file.name) {

@@ -24,7 +24,7 @@ const getTemplate = (options: GenerateAutoSourceOptions) => {
 	const selector = reflection?.selector ?? 'fkt-example'
 	const args = options.story.args;
 
-	let template: string[] = [];
+	const template: string[] = [];
 
     if(hasVariants(options.story)) {
         template.push('@for (variant of variants; track variant.label) {');
@@ -144,7 +144,7 @@ const getComponentProperties = (options: GenerateAutoSourceOptions) => {
 
 
 	Object.entries(args).forEach(([key, value]) => {
-		if (!!componentProperties)
+		if (componentProperties)
 			componentProperties += '\n\t';
 
 		const propertyType = options.meta.argTypes[key]?.type;
@@ -158,7 +158,7 @@ const getComponentProperties = (options: GenerateAutoSourceOptions) => {
 const getVariantInterface = (options: GenerateAutoSourceOptions) => {
     const args = options.story.args;
 
-    let interfaceTemplate: string[] = [];
+    const interfaceTemplate: string[] = [];
 
     interfaceTemplate.push('interface Variant {')
 
@@ -233,7 +233,7 @@ const createTemplate = (template: string, placeholders: Record<string, string>) 
 	return initial;
 }
 
-export const generateAutoSource = (options: GenerateAutoSourceOptions) => {
+export const generateEmulatedStoryExample = (options: GenerateAutoSourceOptions) => {
 	const moduleName = `frakton-ng/${options.id}`
 
 	const componentName = (options.story.componentName ?? options.meta.componentName)?.replace('_', '');

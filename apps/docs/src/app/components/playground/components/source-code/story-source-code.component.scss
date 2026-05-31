@@ -85,6 +85,7 @@
         gap: .25rem;
         align-items: center;
         transition: var(--fkt-transition-base);
+        backdrop-filter: blur(8px);
 
         &:first-child {
             border-radius: var(--fkt-radius-lg) 0 0 var(--fkt-radius-lg);
@@ -148,7 +149,7 @@
     }
 }
 
-fkt-code-highlight {
+app-code-highlight {
     height: 100%;
     box-sizing: border-box;
 }
@@ -162,6 +163,7 @@ fkt-code-highlight {
     --fkt-button-icon-font-weight: 500;
     --fkt-button-border-width: 1px;
     --fkt-font-size-md: 14px;
+    backdrop-filter: blur(8px);
 }
 
 .loading {

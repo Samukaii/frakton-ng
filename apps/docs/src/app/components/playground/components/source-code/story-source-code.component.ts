@@ -1,25 +1,25 @@
 import { Component, inject, resource, signal } from '@angular/core';
 import { ExternalExample } from '@/models/external-example';
-import { CodeHighlightComponent } from '../../code-highlight/code-highlight.component';
-import { generateAutoSource } from './generate-auto-source';
 import { StoryInfoService } from '@/core/services/story-info.service';
 import { toKebabCase } from '@/utils/to-kebab-case';
 import { FktSpinnerComponent } from 'frakton-ng/spinner';
 import { FktButtonComponent } from 'frakton-ng/button';
 import { FktTooltipDirective } from 'frakton-ng/tooltip';
+import { CodeHighlightComponent } from '@/components/code-highlight/code-highlight.component';
+import { generateEmulatedStoryExample } from '@/components/playground/utils/generate-emulated-story-example';
 
 @Component({
-    selector: 'fkt-source-code',
+    selector: 'app-story-source-code',
     imports: [
         CodeHighlightComponent,
         FktSpinnerComponent,
         FktButtonComponent,
         FktTooltipDirective,
     ],
-    templateUrl: './source-code.component.html',
-    styleUrl: './source-code.component.scss',
+    templateUrl: './story-source-code.component.html',
+    styleUrl: './story-source-code.component.scss',
 })
-export class SourceCodeComponent {
+export class StorySourceCodeComponent {
     private readonly storyInfoService = inject(StoryInfoService);
 
     protected readonly currentTab = signal(0);
@@ -35,19 +35,20 @@ export class SourceCodeComponent {
                 await this.storyInfoService.fetchExternalExamples();
 
             if (externalExamples) return externalExamples;
+
             else {
                 const story = this.storyInfoService.activeStory;
 
                 if (!story) return null;
 
-                const autoSource = generateAutoSource({
+                const autoSource = generateEmulatedStoryExample({
                     meta: this.storyInfoService.meta,
                     story,
                     id: this.storyInfoService.indexer.id,
                 });
 
                 return {
-                    name: 'FktTesteComponent',
+                    name: story.componentName,
                     files: [
                         {
                             name: `fkt-${toKebabCase(
