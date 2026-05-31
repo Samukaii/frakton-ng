@@ -1,9 +1,12 @@
 // <design-tokens>
 /*
+@scope Table
+ */
+
+/*
 Border radius for the table container.
 @name --fkt-table-border-radius
 @reference --fkt-space-sm
-@component Table
 @category Shape
 @type size
 */
@@ -13,7 +16,6 @@ $border-radius: var(--fkt-table-border-radius, var(--fkt-space-sm));
 Background color for table container.
 @name --fkt-table-cell-background
 @reference --fkt-color-neutral-100
-@component Table
 @category Color
 @type size
 */
@@ -23,7 +25,6 @@ $cell-background: var(--fkt-table-cell-background, var(--fkt-color-neutral-100))
 Border color for the table container outline.
 @name --fkt-table-outer-border-color
 @reference --fkt-color-neutral-300
-@component Table
 @category Colors
 @type color
 */
@@ -33,7 +34,6 @@ $border-color: var(--fkt-table-outer-border-color, var(--fkt-color-neutral-300))
 Font size for table body text.
 @name --fkt-table-font-size
 @reference --fkt-font-size-sm
-@component Table
 @category Typography
 @type size
 */
@@ -43,7 +43,6 @@ $font-size: var(--fkt-table-font-size, var(--fkt-font-size-sm));
 Line height for table text.
 @name --fkt-table-line-height
 @reference 1.25rem
-@component Table
 @category Typography
 @type size
 */
@@ -53,7 +52,6 @@ $line-height: var(--fkt-table-line-height, 1.25rem);
 Max height for the scrollable table area. Set to control vertical scroll.
 @name --fkt-table-max-height
 @reference none
-@component Table
 @category Spacing
 @type size
 */
@@ -63,7 +61,6 @@ $max-height: var(--fkt-table-max-height, none);
 Color for column divider lines shown when gridLines is enabled. Defaults to the table border color.
 @name --fkt-table-column-border-color
 @reference transparent
-@component Table
 @category Colors
 @type color
 */
