@@ -1,10 +1,10 @@
-@if (components().length > 2) {
+@if (scopes().length > 2) {
     <div class="component-container">
-        @for (component of components(); track component) {
+        @for (scope of scopes(); track scope) {
             <button
-                [class.active]="currentComponent() === component"
-                (click)="currentComponent.set(component)" class="component">
-                {{ component }}
+                [class.active]="currentScope() === scope"
+                (click)="currentScope.set(scope)" class="component">
+                {{ scope.name }}
             </button>
         }
     </div>

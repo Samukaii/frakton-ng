@@ -13,6 +13,23 @@
     border-top: solid 1px var(--fkt-color-neutral-300);
 }
 
+.tokens-count {
+    background: red;
+    color: white;
+    font-size: var(--fkt-font-size-2xs);
+    border-radius: 100%;
+    aspect-ratio: 1;
+    height: 15px;
+    width: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: var(--fkt-font-semibold);
+    position: absolute;
+    top: 0rem;
+    right: -.3rem;
+}
+
 .component-container {
     display: flex;
     gap: var(--fkt-space-xs);
@@ -24,10 +41,10 @@
     border-bottom: 1px solid var(--fkt-controls-table-border-color);
 
     .component {
+        position: relative;
         outline: none;
         padding: .5rem .75rem;
         font-weight: var(--fkt-font-semibold);
-        //background-color: var(--fkt-controls-table-component-bg);
         background: transparent;
         color: var(--fkt-controls-table-component-text-color);
         border-radius: var(--fkt-radius-full);
@@ -38,7 +55,6 @@
         &.active {
             background-color: var(--fkt-controls-table-component-active-bg);
             color: var(--fkt-controls-table-component-active-text-color);
-            cursor: default;
         }
 
         &:hover:not(.active) {
