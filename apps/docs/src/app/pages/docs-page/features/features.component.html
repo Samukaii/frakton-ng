@@ -4,10 +4,32 @@
 <h2>Import</h2>
 
 @if (importStatement()) {
-    <fkt-code-highlight
+    <app-code-highlight
         [text]="importStatement()!"
         language="typescript"
     />
 }
 
-<fkt-story-examples/>
+@let indexer = storyIndexer();
+@let resolved = storyResolved.value();
+
+@if (indexer && resolved) {
+    @for (story of stories(); track story.name) {
+        @if ((story.level ?? 2) === 3) {
+            <h3 [id]="story.name | pascalToKebab">{{ story.name | pascalToHumanReadable }}</h3>
+        } @else {
+            <h2 [id]="story.name | pascalToKebab">{{ story.name | pascalToHumanReadable }}</h2>
+        }
+
+        @if (story.type === 'introduction') {
+            <fkt-markdown [data]="story.description ?? ''"/>
+        } @else {
+            <app-feature
+                [storyName]="story.name"
+                [indexer]="indexer"
+                [storyResolved]="resolved"
+            />
+        }
+    }
+}
+
