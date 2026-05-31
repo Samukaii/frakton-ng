@@ -1,27 +1,27 @@
 import { Component, computed, inject, Injector, input } from '@angular/core';
-import { FktPlaygroundComponent } from '../playground/fkt-playground.component';
-import { NgTemplateOutlet } from '@angular/common';
-import { StoryLoaderService } from '@/core/services/story-loader.service';
-import { STORY_INDEXER_TOKEN } from '@/tokens/story-indexer.token';
-import { StoryInfoService } from '@/core/services/story-info.service';
 import { StoryIndexer } from '@/models/story-indexer';
 import { StoryResolved } from '@/models/story.resolved';
-import { ACTIVE_STORY_TOKEN } from '@/tokens/active-story.token';
+import { StoryLoaderService } from '@/core/services/story-loader.service';
+import { STORY_INDEXER_TOKEN } from '@/tokens/story-indexer.token';
 import { STORY_META_TOKEN } from '@/tokens/story-meta.token';
 import { ALL_STORIES_TOKEN } from '@/tokens/all-stories.token';
+import { ACTIVE_STORY_TOKEN } from '@/tokens/active-story.token';
+import { StoryInfoService } from '@/core/services/story-info.service';
+import { NgTemplateOutlet } from '@angular/common';
 import { MarkdownWrapperComponent } from '@/components/markdown/markdown-wrapper.component';
+import { StoryRendererComponent } from '@/components/playground/story-renderer.component';
 
 @Component({
-    selector: 'fkt-story-renderer',
+    selector: 'app-feature',
     imports: [
-        FktPlaygroundComponent,
         NgTemplateOutlet,
         MarkdownWrapperComponent,
+        StoryRendererComponent,
     ],
-    templateUrl: './story-renderer.component.html',
-    styleUrl: './story-renderer.component.scss',
+    templateUrl: './feature.component.html',
+    styleUrl: './feature.component.scss',
 })
-export class StoryRendererComponent {
+export class FeatureComponent {
     storyName = input.required<string>();
     indexer = input.required<StoryIndexer>();
     storyResolved = input.required<StoryResolved>();

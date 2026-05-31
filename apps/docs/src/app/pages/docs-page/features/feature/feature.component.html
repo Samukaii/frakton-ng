@@ -1,7 +1,7 @@
 <fkt-markdown [data]="activeStory()?.description ?? ''"/>
 
 <ng-template #playground>
-    <fkt-playground/>
+    <app-story-renderer/>
 </ng-template>
 
 @if (injector()) {
