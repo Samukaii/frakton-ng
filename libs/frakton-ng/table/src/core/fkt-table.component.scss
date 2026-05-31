@@ -16,8 +16,8 @@ $border-radius: var(--fkt-table-border-radius, var(--fkt-space-sm));
 Background color for table container.
 @name --fkt-table-cell-background
 @reference --fkt-color-neutral-100
-@category Color
-@type size
+@category Colors
+@type color
 */
 $cell-background: var(--fkt-table-cell-background, var(--fkt-color-neutral-100));
 
