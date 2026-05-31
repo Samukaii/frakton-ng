@@ -3,135 +3,195 @@
     "description": "Border radius for the table container.",
     "name": "--fkt-table-border-radius",
     "reference": "--fkt-space-sm",
-    "component": "Table",
     "category": "Shape",
     "type": "size",
-    "defaultValue": ".75rem"
+    "defaultValue": ".75rem",
+    "component": "Table",
+    "scope": {
+      "name": "Table",
+      "selector": "fkt-table"
+    }
   },
   {
     "description": "Background color for table container.",
     "name": "--fkt-table-cell-background",
     "reference": "--fkt-color-neutral-100",
-    "component": "Table",
     "category": "Color",
     "type": "size",
-    "defaultValue": "#f1f5f9"
+    "defaultValue": "#f1f5f9",
+    "component": "Table",
+    "scope": {
+      "name": "Table",
+      "selector": "fkt-table"
+    }
   },
   {
     "description": "Border color for the table container outline.",
     "name": "--fkt-table-outer-border-color",
     "reference": "--fkt-color-neutral-300",
-    "component": "Table",
     "category": "Colors",
     "type": "color",
-    "defaultValue": "#cbd5e1"
+    "defaultValue": "#cbd5e1",
+    "component": "Table",
+    "scope": {
+      "name": "Table",
+      "selector": "fkt-table"
+    }
   },
   {
     "description": "Font size for table body text.",
     "name": "--fkt-table-font-size",
     "reference": "--fkt-font-size-sm",
-    "component": "Table",
     "category": "Typography",
     "type": "size",
-    "defaultValue": "0.875rem"
+    "defaultValue": "0.875rem",
+    "component": "Table",
+    "scope": {
+      "name": "Table",
+      "selector": "fkt-table"
+    }
   },
   {
     "description": "Line height for table text.",
     "name": "--fkt-table-line-height",
     "reference": "1.25rem",
-    "component": "Table",
     "category": "Typography",
     "type": "size",
-    "defaultValue": "1.25rem"
+    "defaultValue": "1.25rem",
+    "component": "Table",
+    "scope": {
+      "name": "Table",
+      "selector": "fkt-table"
+    }
   },
   {
     "description": "Max height for the scrollable table area. Set to control vertical scroll.",
     "name": "--fkt-table-max-height",
     "reference": "none",
-    "component": "Table",
     "category": "Spacing",
     "type": "size",
-    "defaultValue": "none"
+    "defaultValue": "none",
+    "component": "Table",
+    "scope": {
+      "name": "Table",
+      "selector": "fkt-table"
+    }
   },
   {
     "description": "Color for column divider lines shown when gridLines is enabled. Defaults to the table border color.",
     "name": "--fkt-table-column-border-color",
     "reference": "transparent",
-    "component": "Table",
     "category": "Colors",
     "type": "color",
-    "defaultValue": "transparent"
+    "defaultValue": "transparent",
+    "component": "Table",
+    "scope": {
+      "name": "Table",
+      "selector": "fkt-table"
+    }
   },
   {
     "description": "Color of the column resize indicator line.",
     "name": "--fkt-table-resize-indicator-color",
     "reference": "--fkt-color-primary",
-    "component": "Resize indicator",
     "category": "Colors",
     "type": "color",
-    "defaultValue": "#1f2937"
+    "defaultValue": "#1f2937",
+    "component": "Resize indicator",
+    "scope": {
+      "name": "Resize indicator",
+      "selector": "fkt-table-resize-indicator"
+    }
   },
   {
     "description": "Color for header text.",
     "name": "--fkt-table-header-text-color",
     "reference": "--fkt-color-neutral-900",
-    "component": "Header",
     "category": "Colors",
     "type": "color",
-    "defaultValue": "#0f172a"
+    "defaultValue": "#0f172a",
+    "component": "Header",
+    "scope": {
+      "name": "Header",
+      "selector": "thead[fktTableHeader]"
+    }
   },
   {
     "description": "Font weight for header title.",
     "name": "--fkt-table-header-font-weight",
     "reference": "--fkt-font-semibold",
-    "component": "Header",
     "category": "Typography",
     "type": "weight",
-    "defaultValue": "600"
+    "defaultValue": "600",
+    "component": "Header",
+    "scope": {
+      "name": "Header",
+      "selector": "thead[fktTableHeader]"
+    }
   },
   {
     "description": "Padding for header cell content.",
     "name": "--fkt-table-header-cell-padding",
     "reference": "--fkt-space-md",
-    "component": "Header cell",
     "category": "Spacing",
     "type": "size",
-    "defaultValue": "1rem"
+    "defaultValue": "1rem",
+    "component": "Header cell",
+    "scope": {
+      "name": "Header cell",
+      "selector": "th[fktTableHeaderCell]"
+    }
   },
   {
     "description": "Border color between rows.",
     "name": "--fkt-table-row-border-color",
     "reference": "--fkt-color-neutral-300",
-    "component": "Row",
     "category": "Colors",
     "type": "color",
-    "defaultValue": "#cbd5e1"
+    "defaultValue": "#cbd5e1",
+    "component": "Row",
+    "scope": {
+      "name": "Row",
+      "selector": "tr[fktTableRow]"
+    }
   },
   {
     "description": "Background color for row hover state.",
     "name": "--fkt-table-row-hover-background-color",
     "reference": "--fkt-color-neutral-200",
-    "component": "Row",
     "category": "Colors",
     "type": "color",
-    "defaultValue": "#e2e8f0"
+    "defaultValue": "#e2e8f0",
+    "component": "Row",
+    "scope": {
+      "name": "Row",
+      "selector": "tr[fktTableRow]"
+    }
   },
   {
     "description": "Background color for alternating (odd-indexed) rows when striped is enabled.",
     "name": "--fkt-table-stripe-color",
     "reference": "--fkt-color-neutral-50",
-    "component": "Row",
     "category": "Colors",
     "type": "color",
-    "defaultValue": "#f8fafc"
+    "defaultValue": "#f8fafc",
+    "component": "Row",
+    "scope": {
+      "name": "Row",
+      "selector": "tr[fktTableRow]"
+    }
   },
   {
     "description": "Color of the active-filter badge dot.",
     "name": "--fkt-table-filter-badge-color",
     "reference": "--fkt-color-danger",
-    "component": "Filters",
     "category": "Colors",
     "type": "color",
-    "defaultValue": "#E7000BFF"
+    "defaultValue": "#E7000BFF",
+    "component": "Filters",
+    "scope": {
+      "name": "Filters",
+      "selector": "fkt-table-filter-renderer"
+    }
   }
 ]
