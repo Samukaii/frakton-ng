@@ -24,13 +24,15 @@
 
 
 	<div class="actions">
-		<fkt-button
-			(click)="$event.stopPropagation(); copy()"
-			ariaLabel="Copy"
-			[theme]="copied() ? 'raised' :'basic'"
-			[color]="copied() ? 'success' : 'primary'"
-			[icon]="copied() ? 'check' : 'clipboard-document-list'"
-		/>
+        @if(showCopyButton()) {
+            <fkt-button
+                (click)="$event.stopPropagation(); copy()"
+                ariaLabel="Copy"
+                [theme]="copied() ? 'raised' :'basic'"
+                [color]="copied() ? 'success' : 'primary'"
+                [icon]="copied() ? 'check' : 'clipboard-document-list'"
+            />
+        }
 	</div>
 </button>
 

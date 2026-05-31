@@ -24,7 +24,7 @@ export class FktColorPickerComponent implements FormValueControl<string | null> 
 	disabled = input(false);
 	invalid = input(false);
 	errors = input<readonly WithOptionalField<ValidationError>[]>([]);
-
+    showCopyButton = input(true);
 	label = input.required<string>();
 
 	hideLabel = input(false, {
