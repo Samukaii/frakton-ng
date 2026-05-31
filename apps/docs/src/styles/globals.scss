@@ -1,56 +1,69 @@
 /* You can add global styles to this file, and also import other style files */
 @font-face {
-	font-family: 'Inter';
-	src: url('/fonts/inter-variable.woff2') format('woff2');
-	font-weight: normal;
-	font-style: normal;
-	font-display: swap;
+    font-family: 'Inter';
+    src: url('/fonts/inter-variable.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
 }
 
 body, html {
-	padding: 0;
-	margin: 0;
+    padding: 0;
+    margin: 0;
 }
 
 
 body {
-	height: 100vh;
-	width: 100vw;
-	font-family: "Inter", sans-serif;
-	background-color: var(--fkt-color-neutral-background);
-	--fkt-panel-shadow: rgb(179 187 199) 0px 4px 21px 1px;
+    height: 100vh;
+    width: 100vw;
+    font-family: "Inter", sans-serif;
+    background-color: var(--fkt-color-neutral-background);
+    --fkt-panel-shadow: rgb(179 187 199) 0px 4px 21px 1px;
     --fkt-toolbar-background: #E2E8F066;
     --fkt-mobile-menu-background: rgba(230, 235, 245, 0.9);
     --fkt-color-link: var(--fkt-color-info);
     --fkt-color-link-opacity-20: var(--fkt-color-info-opacity-20);
 
-    scrollbar-width: thin;
-    ::-webkit-scrollbar {
-        width: 6px;
-        background-color: transparent;
-        border-radius: var(--fkt-radius-full);
+
+    --scrollbar-color-thumb: var(--fkt-color-neutral-400);
+    --scrollbar-color-track: transparent;
+    --scrollbar-width: thin;
+    --scrollbar-width-legacy: 10px;
+
+    /* Modern browsers with `scrollbar-*` support */
+    @supports (scrollbar-width: auto) {
+
+        * {
+            scrollbar-color: var(--scrollbar-color-thumb) var(--scrollbar-color-track);
+
+            scrollbar-width: var(--scrollbar-width);
+        }
     }
 
-    ::-webkit-scrollbar:hover {
-        background: var(--fkt-color-neutral-300);
-    }
+    /* Legacy browsers with `::-webkit-scrollbar-*` support */
+    @supports selector(::-webkit-scrollbar) {
+        * {
+            ::-webkit-scrollbar-thumb {
+                background: var(--scrollbar-color-thumb);
+            }
 
-    ::-webkit-scrollbar-thumb {
-        background-color: var(--fkt-color-neutral-400);
-        border-radius: var(--fkt-radius-full);
-    }
+            ::-webkit-scrollbar-track {
+                background: var(--scrollbar-color-track);
+            }
 
-    ::-webkit-scrollbar-thumb:hover {
-        background-color: var(--fkt-color-neutral-500);
-        width: 10px;
+            ::-webkit-scrollbar {
+                max-width: var(--scrollbar-width-legacy);
+                max-height: var(--scrollbar-width-legacy);
+            }
+        }
     }
 }
 
 
 body[data-fkt-theme="dark"] {
-	--fkt-panel-shadow: rgb(24, 27, 32) 0px 4px 21px 1px;
-	--fkt-toolbar-background: #1F232966;
-	--fkt-mobile-menu-background: rgba(31, 35, 41, 0.8);
+    --fkt-panel-shadow: rgb(24, 27, 32) 0px 4px 21px 1px;
+    --fkt-toolbar-background: #1F232966;
+    --fkt-mobile-menu-background: rgba(31, 35, 41, 0.8);
 
     --fkt-color-link: var(--fkt-color-accent);
     --fkt-color-link-opacity-20: var(--fkt-color-accent-opacity-20);
