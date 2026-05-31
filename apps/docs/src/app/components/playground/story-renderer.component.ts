@@ -11,7 +11,6 @@ import {
     viewChildren,
     ViewContainerRef,
 } from '@angular/core';
-import { FktPlaygroundPanelComponent } from './panel/fkt-playground-panel.component';
 import { ThemeService } from '@/core/services/theme.service';
 import { StoryInfoService } from '@/core/services/story-info.service';
 import { ArgItem } from '@/models/arg-item';
@@ -22,6 +21,7 @@ import { FktComponentInputsAndModels } from 'frakton-ng/internal/types';
 import { deepMerge } from '@/utils/deep-merge';
 import { ArgType } from '@/models/arg-type';
 import { FktSpinnerComponent } from 'frakton-ng/spinner';
+import { StoryPanelComponent } from '@/components/playground/components/panel/story-panel.component';
 
 interface PlaygroundVariant {
     title?: string;
@@ -29,15 +29,12 @@ interface PlaygroundVariant {
 }
 
 @Component({
-    selector: 'fkt-playground',
-    imports: [
-        FktPlaygroundPanelComponent,
-        FktSpinnerComponent,
-    ],
-    templateUrl: './fkt-playground.component.html',
-    styleUrl: './fkt-playground.component.scss',
+    selector: 'app-story-renderer',
+    imports: [StoryPanelComponent, FktSpinnerComponent],
+    templateUrl: './story-renderer.component.html',
+    styleUrl: './story-renderer.component.scss',
 })
-export class FktPlaygroundComponent {
+export class StoryRendererComponent {
     private readonly platform = inject(PLATFORM_ID);
 
     protected readonly panelStyle = computed(() => {
@@ -227,7 +224,7 @@ export class FktPlaygroundComponent {
                     label: option,
                     value: option,
                 })) ?? [],
-            description: argType.description!,
+            description: argType.description ?? '',
             control: signal(value),
             ownerKey: owner
                 ? `${owner.type}:${owner.name ?? owner.selector ?? owner.label}`
