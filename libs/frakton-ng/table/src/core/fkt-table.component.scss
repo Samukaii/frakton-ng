@@ -27,7 +27,7 @@ Border color for the table container outline.
 @category Colors
 @type color
 */
-$border-color: var(--fkt-table-border-color, var(--fkt-color-neutral-300));
+$border-color: var(--fkt-table-outer-border-color, var(--fkt-color-neutral-300));
 
 /*
 Font size for table body text.
