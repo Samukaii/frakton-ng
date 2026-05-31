@@ -4,6 +4,10 @@
     gap: var(--fkt-space-md);
     padding: 1rem;
     width: 400px;
+
+    * {
+        color: var(--fkt-color-neutral-800);
+    }
 }
 
 .header {
