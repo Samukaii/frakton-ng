@@ -99,6 +99,26 @@ Height of the color preview area.
 */
 $preview-height: var(--fkt-color-picker-preview-height, 40px);
 
+/*
+Horizontal padding for field container.
+@name --fkt-color-picker-horizontal-padding
+@reference --fkt-space-xs
+@component Field
+@category Spacing
+@type size
+*/
+$padding-horizontal: var(--fkt-color-picker-horizontal-padding, var(--fkt-space-xs));
+
+/*
+Vertical padding for field container.
+@name --fkt-color-picker-vertical-padding
+@reference --fkt-space-xs
+@component Field
+@category Spacing
+@type size
+*/
+$padding-vertical: var(--fkt-color-picker-vertical-padding, var(--fkt-space-xs));
+
 // </design-tokens>
 
 :host {
@@ -119,7 +139,7 @@ button {
 	gap: $gap;
 	align-items: center;
 	justify-content: space-between;
-	padding: $gap;
+	padding: $padding-vertical $padding-horizontal;
 	border-radius: $border-radius;
 	border: solid 1px $border-color;
 	width: 100%;

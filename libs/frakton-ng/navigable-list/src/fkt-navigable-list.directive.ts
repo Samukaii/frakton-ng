@@ -23,22 +23,22 @@ export class FktNavigableListDirective implements AfterViewInit {
 			case 'ArrowDown':
 				if(orientation !== "vertical") break;
 				event.preventDefault();
-				this.currentIndex.update(index => clampNumber((index ?? -1) + 1, 0, this.elements().length - 1));
+				this.currentIndex.update(index => clampNumber((index ?? 0) + 1, 0, this.elements().length - 1));
 				break;
 			case 'ArrowUp':
 				if(orientation !== "vertical") break;
 				event.preventDefault();
-				this.currentIndex.update(index => clampNumber((index ?? 1) - 1, 0, this.elements().length - 1));
+				this.currentIndex.update(index => clampNumber((index ?? 0) - 1, 0, this.elements().length - 1));
 				break;
 			case 'ArrowLeft':
 				if(orientation !== "horizontal") break;
 				event.preventDefault();
-				this.currentIndex.update(index => clampNumber((index ?? 1) - 1, 0, this.elements().length - 1));
+				this.currentIndex.update(index => clampNumber((index ?? 0) - 1, 0, this.elements().length - 1));
 				break;
 			case 'ArrowRight':
 				if(orientation !== "horizontal") break;
 				event.preventDefault();
-				this.currentIndex.update(index => clampNumber((index ?? -1) + 1, 0, this.elements().length - 1));
+				this.currentIndex.update(index => clampNumber((index ?? 0) + 1, 0, this.elements().length - 1));
 				break;
 			case 'Enter':
 			case ' ':

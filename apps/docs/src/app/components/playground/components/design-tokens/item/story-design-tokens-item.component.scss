@@ -30,6 +30,11 @@
 
         display: flex;
         gap: var(--fkt-space-xs);
+        outline: none;
+
+        &:focus-visible {
+            box-shadow: var(--fkt-focus-ring-shadow);
+        }
     }
 }
 

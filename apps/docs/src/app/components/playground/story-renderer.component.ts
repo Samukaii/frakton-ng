@@ -144,6 +144,7 @@ export class StoryRendererComponent {
                 category: token.category,
                 description: token.description,
                 component: token.component,
+                scope: token.scope,
                 defaultValue: defaultValue,
                 control: signal(defaultValue),
             };
