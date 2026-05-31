@@ -33,15 +33,16 @@ import { injectTableContext } from '../../core/inject-table-context';
         '[class]': 'classesFn()(item())',
         '[class.selected]': 'isSelected()',
         '[class.clickable]': 'clickableRows()',
+        '[class.last]': 'last()',
         '[class.disable-row-hover]': 'disableRowHover()',
-        '[class.striped]': 'striped() && rowIndex() % 2 !== 0',
+        '[class.striped]': 'rowIndex() % 2 === 0',
         '(click)': 'rowClick.emit(item())',
     },
 })
 export class FktTableRowComponent<Item extends TableItem> {
     readonly item = input.required<Item>();
     readonly rowIndex = input(0);
-    readonly striped = input(false, { transform: booleanAttribute });
+    readonly last = input(false);
     readonly isExpanded = input(false, { transform: booleanAttribute });
     readonly classesFn = input<FktTableClassesFn<Item>>(() => '');
     readonly disableRowHover = input(false, { transform: booleanAttribute });

@@ -28,7 +28,6 @@ export class FktTableBodyComponent<Item extends TableItem> {
     readonly loading = input(false);
     readonly skeletonLines = input(10);
     readonly noResults = input<FktNoResults>({ label: 'No results' });
-    readonly striped = input(false, { transform: booleanAttribute });
 
     readonly expandedRowIds = model<(number | string)[]>([]);
     protected readonly renderedRowIds = signal<(number | string)[]>([]);

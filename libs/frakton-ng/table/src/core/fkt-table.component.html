@@ -4,7 +4,7 @@
     <ng-content select="[fktTableToolbar]"/>
 
     <div class="table-scroll" #tableScroll [class.resizing]="context.features.resize?.resizingKey()">
-        <table class="table">
+        <table class="table" [class.show-striped-rows]="striped()" [class.show-grid-lines]="gridLines()">
             <thead fktTableHeader
                    [defaultFilters]="defaultFilters()"
                    (sort)="sort.emit($event)"
@@ -28,7 +28,6 @@
                    [classesFn]="classesFn()"
                    [disableRowHover]="disableRowHover()"
                    [clickableRows]="clickableRows()"
-                   [striped]="striped()"
                    [(expandedRowIds)]="expandedRowIds"
                    (rowClick)="rowClick.emit($event)"
             ></tbody>

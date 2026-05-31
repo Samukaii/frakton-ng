@@ -24,8 +24,6 @@ import { MarkUsed } from 'frakton-ng/internal/utils';
     selector: 'fkt-table',
     providers: [FktTablePinnedService],
     host: {
-        '[class.striped]': 'striped()',
-        '[class.grid-lines]': 'gridLines()',
         '[class.size-sm]': 'size() === "sm"',
         '[class.size-md]': 'size() === "md"',
         '[class.size-lg]': 'size() === "lg"',

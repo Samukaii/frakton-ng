@@ -37,7 +37,7 @@ Background color for alternating (odd-indexed) rows when striped is enabled.
 @category Colors
 @type color
 */
-$stripe-color: var(--fkt-table-stripe-color, var(--fkt-color-neutral-50));
+$stripe-color: var(--fkt-table-stripe-color, var(--_fkt-table-stripe-color, #{$cell-background}));
 // </design-tokens>
 
 

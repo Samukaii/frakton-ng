@@ -119,6 +119,11 @@ $row-border-color: var(--fkt-table-row-border-color, var(--fkt-color-neutral-300
     border-spacing: 0;
     table-layout: fixed;
     min-width: 100%;
+
+    &.show-striped-rows {
+        --_fkt-table-stripe-color: var(--fkt-color-neutral-50);
+    }
+
     &.show-grid-lines {
         --_fkt-table-column-border-color: #{$row-border-color};
     }
