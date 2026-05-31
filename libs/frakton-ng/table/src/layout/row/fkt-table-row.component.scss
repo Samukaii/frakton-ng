@@ -46,14 +46,6 @@ $header-cell-padding: var(--fkt-table-header-cell-padding, var(--_table-cell-pad
 $header-cell-color: var(--fkt-table-header-cell-color, var(--fkt-color-neutral-950));
 
 :host {
-    &:not(:last-child) {
-        border-bottom: solid 1px $row-border-color;
-    }
-
-    &:last-child {
-        border-bottom: solid var(--fkt-table-column-border-width, 0px) var(--fkt-table-column-border-color, #{$row-border-color});
-    }
-
     &.clickable {
         cursor: pointer;
     }
@@ -74,7 +66,13 @@ $header-cell-color: var(--fkt-table-header-cell-color, var(--fkt-color-neutral-9
         }
     }
 
-    &.striped:not(.selected) {
+    &.last {
+        .table__cell {
+            border-bottom: none;
+        }
+    }
+
+    &.striped:not(.selected):not(:hover) {
         background-color: $stripe-color;
 
         .table__cell {
@@ -90,8 +88,8 @@ $header-cell-color: var(--fkt-table-header-cell-color, var(--fkt-color-neutral-9
     overflow-x: hidden;
     background-color: var(--fkt-row-cell-background, #{$cell-background});
     box-sizing: border-box;
-    border-right: var(--fkt-table-column-border-width, 0px) solid var(--fkt-table-column-border-color, #{$row-border-color});
-    border-bottom: var(--fkt-table-column-border-width, 1px) solid var(--fkt-table-column-border-color, #{$row-border-color});
+    border-right: solid 1px $column-border-color;
+    border-bottom: solid 1px $row-border-color;
 
     &--checkbox,
     &--expand {

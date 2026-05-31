@@ -15,8 +15,8 @@ $row-border-color: var(--fkt-table-row-border-color, var(--fkt-color-neutral-300
 
 :host {
     padding: 0;
-    border-right: var(--fkt-table-column-border-width, 0px) solid $column-border-color;
-    border-bottom: var(--fkt-table-column-border-width, 1px) solid $column-border-color;
+    border-right: solid 1px $column-border-color;
+    border-bottom: solid 1px $row-border-color;
 
     &.dragging {
         opacity: 0.3;

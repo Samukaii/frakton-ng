@@ -25,6 +25,7 @@
             [classesFn]="classesFn()"
             [disableRowHover]="disableRowHover()"
             [clickableRows]="clickableRows()"
+            [last]="$last"
             (rowClick)="rowClick.emit($event)"
             (expandToggle)="toggleExpand(item)"
         ></tr>

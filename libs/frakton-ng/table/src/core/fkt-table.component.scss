@@ -77,10 +77,6 @@ $row-border-color: var(--fkt-table-row-border-color, var(--fkt-color-neutral-300
 
     &.size-sm { --_table-cell-padding: var(--fkt-space-sm); }
     &.size-lg { --_table-cell-padding: var(--fkt-space-lg); }
-
-    &.grid-lines {
-        --fkt-table-column-border-width: 1px;
-    }
 }
 
 :host {
@@ -123,4 +119,7 @@ $row-border-color: var(--fkt-table-row-border-color, var(--fkt-color-neutral-300
     border-spacing: 0;
     table-layout: fixed;
     min-width: 100%;
+    &.show-grid-lines {
+        --_fkt-table-column-border-color: #{$row-border-color};
+    }
 }
