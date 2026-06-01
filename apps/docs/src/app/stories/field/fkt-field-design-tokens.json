@@ -1,0 +1,83 @@
+[
+  {
+    "description": "Vertical padding inside the input field (top and bottom spacing between border and content).",
+    "name": "--fkt-field-vertical-padding",
+    "reference": "--fkt-space-xs",
+    "component": "Field",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": ".5rem"
+  },
+  {
+    "description": "Horizontal padding inside the input field (left and right spacing between border and content).",
+    "name": "--fkt-field-horizontal-padding",
+    "reference": "--fkt-space-sm",
+    "component": "Field",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": ".75rem"
+  },
+  {
+    "description": "Border color of the input in its normal (default) state.",
+    "name": "--fkt-field-border-color",
+    "reference": "--fkt-color-neutral-400",
+    "component": "Field",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#94a3b8"
+  },
+  {
+    "description": "Border color of the input when it gets focused",
+    "name": "--fkt-field-border-focus-color",
+    "reference": "--fkt-color-neutral-800",
+    "component": "Field",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#1e293b"
+  },
+  {
+    "description": "Color of the label in its normal (default) state.",
+    "name": "--fkt-field-label-color",
+    "reference": "--fkt-color-neutral-700",
+    "component": "Field",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#334155"
+  },
+  {
+    "description": "Color of the label when it gets focused",
+    "name": "--fkt-field-label-focus-color",
+    "reference": "--fkt-color-neutral-800",
+    "component": "Field",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#1e293b"
+  },
+  {
+    "description": "Border radius for input",
+    "name": "--fkt-field-border-radius",
+    "reference": "--fkt-radius-lg",
+    "component": "Field",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": ".5rem"
+  },
+  {
+    "description": "Font size for input text and placeholder.",
+    "name": "--fkt-field-font-size",
+    "reference": "--fkt-font-size-sm",
+    "component": "Field",
+    "category": "Typography",
+    "type": "size",
+    "defaultValue": "0.875rem"
+  },
+  {
+    "description": "Color for text written into input",
+    "name": "--fkt-field-text-color",
+    "reference": "--fkt-color-neutral-900",
+    "component": "Field",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#0f172a"
+  }
+]

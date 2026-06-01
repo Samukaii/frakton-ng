@@ -1194,6 +1194,28 @@ export const STORIES_MAP: StoryIndexer[] = [	{
 	    ]
 	},
 	{
+		id: "field",
+		title: "Components/Form/Field",
+		componentName: "FktFieldComponent",
+		description: `A versatile form input component with multiple types, data transformers, and comprehensive validation support. Built with Angular signals for reactive form integration.`,
+		file: () => import("./field/fkt-field.stories"),
+		type: 'story',
+		externalExamples: () => import("./field/examples/raw-examples").then(file => file.default),
+		docSections: [
+			{ id: "configuration-options", text: "Configuration Options", level: 2 }
+		],
+		stories: [
+		    {
+		        id: "basic",
+		        name: "Basic",
+		        type: "story",
+		        componentName: "BasicExampleComponent",
+		        description:  `A basic form field`,
+		        level: 2,
+		    }
+	    ]
+	},
+	{
 		id: "focus-trap",
 		title: "Components/Accessibility/FocusTrap",
 		componentName: "FktFocusTrapDirective",

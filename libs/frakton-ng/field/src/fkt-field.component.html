@@ -1,0 +1,25 @@
+<div
+    class="input"
+    [class.error]="invalid()"
+    [class.focused]="control()?.focused()"
+    [class.float]="control()?.hasValue() || control()?.focused()"
+    [class.disabled]="control()?.disabled()"
+>
+    <ng-content select="[fktInput]"/>
+
+    <div class="border">
+        <div class="left">
+            <ng-content select="[fktFieldPrefix]"/>
+        </div>
+        <div
+            [class.no-label]="hideLabel()"
+            class="center">
+            <label aria-hidden="true">{{ label() }}</label>
+        </div>
+
+        <div class="right">
+            <ng-content select="[fktFieldSuffix]"/>
+        </div>
+    </div>
+</div>
+

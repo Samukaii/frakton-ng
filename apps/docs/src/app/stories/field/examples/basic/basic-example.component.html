@@ -1,0 +1,18 @@
+Invalid: {{field().invalid()}}
+Required: {{field().required()}}
+
+<fkt-button
+    style="margin-bottom: 1rem"
+    (click)="disabled.set(!disabled())"
+    text="Disable"
+/>
+
+<fkt-field label="Teste" [invalid]="field().invalid()">
+    <div fktFieldPrefix style="padding-right: .5rem">
+        <fkt-icon name="check"/>
+    </div>
+    <input fktInput [field]="field" placeholder="Teste olá">
+    <fkt-icon fktFieldSuffix name="check"/>
+</fkt-field>
+
+
