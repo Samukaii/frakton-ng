@@ -37,7 +37,7 @@ export const generateRawExamplesFile = (
 			{
 				name: "${file.name}",
 				content: ${file.fileVarName} as string,
-				language: "${file.language}" as "${file.language}",
+				language: "${file.language}" as const,
 			},\
 		`)
             .join('')}

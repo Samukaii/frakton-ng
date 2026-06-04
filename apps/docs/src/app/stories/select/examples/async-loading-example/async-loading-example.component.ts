@@ -9,7 +9,7 @@ import { Field, form } from '@angular/forms/signals';
 	imports: [FktSelectComponent, Field]
 })
 export class AsyncLoadingExampleComponent {
-	label = input<string>();
+	label = input.required<string>();
 	placeholder = input<string>();
 	options = signal<FktSelectOption[]>([]);
 	loading = signal(false);

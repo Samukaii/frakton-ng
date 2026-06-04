@@ -1,0 +1,13 @@
+:host,
+form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--fkt-space-sm);
+}
+
+.actions {
+    display: flex;
+    gap: var(--fkt-space-sm);
+    justify-content: flex-end;
+    flex-wrap: wrap;
+}

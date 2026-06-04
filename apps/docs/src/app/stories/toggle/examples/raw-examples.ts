@@ -19,17 +19,17 @@ export default {
 			{
 				name: "toggle-input-driven.component.html",
 				content: toggleInputDrivenTemplate as string,
-				language: "html" as "html",
+				language: "angular-html" as const,
 			},		
 			{
 				name: "toggle-input-driven.component.ts",
 				content: toggleInputDrivenTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "toggle-input-driven.component.scss",
 				content: toggleInputDrivenStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},
@@ -40,17 +40,17 @@ export default {
 			{
 				name: "toggle-reactive-forms.component.html",
 				content: toggleReactiveFormsTemplate as string,
-				language: "html" as "html",
+				language: "angular-html" as const,
 			},		
 			{
 				name: "toggle-reactive-forms.component.ts",
 				content: toggleReactiveFormsTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "toggle-reactive-forms.component.scss",
 				content: toggleReactiveFormsStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},
@@ -61,17 +61,17 @@ export default {
 			{
 				name: "toggle-signal-forms.component.html",
 				content: toggleSignalFormsTemplate as string,
-				language: "html" as "html",
+				language: "angular-html" as const,
 			},		
 			{
 				name: "toggle-signal-forms.component.ts",
 				content: toggleSignalFormsTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "toggle-signal-forms.component.scss",
 				content: toggleSignalFormsStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},

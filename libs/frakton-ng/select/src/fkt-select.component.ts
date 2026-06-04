@@ -9,111 +9,115 @@ import { FktSelectOption } from './fkt-select.types';
 import { FormValueControl, ValidationError, WithOptionalField } from '@angular/forms/signals';
 
 @Component({
-	selector: 'fkt-select',
-	imports: [
-		FktIconComponent
-	],
-	templateUrl: './fkt-select.component.html',
-	styleUrl: './fkt-select.component.scss',
-	host: {
-		'[class.opened]': 'opened()',
-		'[class.disabled]': 'disabled()',
-	}
+    selector: 'fkt-select',
+    imports: [FktIconComponent],
+    templateUrl: './fkt-select.component.html',
+    styleUrl: './fkt-select.component.scss',
+    host: {
+        '[class.opened]': 'opened()',
+        '[class.disabled]': 'disabled()',
+    },
 })
-export class FktSelectComponent implements FormValueControl<string | number | null> {
-	value = model<string | number | null>(null);
-	touched = model(false);
-	disabled = input(false);
-	invalid = input(false);
-	errors = input<readonly WithOptionalField<ValidationError>[]>([]);
+export class FktSelectComponent
+    implements FormValueControl<string | number | null>
+{
+    value = model<string | number | null>(null);
+    touched = model(false);
+    disabled = input(false);
+    invalid = input(false);
+    errors = input<readonly WithOptionalField<ValidationError>[]>([]);
 
-	label = input<string>();
-	placeholder = input<string>();
-	loading = input(false);
-	hideLabel = input(false, {
-		transform: booleanAttribute
-	});
-	options = input.required<FktSelectOption[]>();
-	noResults = input<FktNoResults>({
-		label: 'Sem resultados',
-	});
-	selectOpened = output();
+    label = input.required<string>();
+    placeholder = input<string>();
+    loading = input(false);
+    hideLabel = input(false, {
+        transform: booleanAttribute,
+    });
+    options = input.required<FktSelectOption[]>();
+    noResults = input<FktNoResults>({
+        label: 'Sem resultados',
+    });
+    selectOpened = output();
 
-	private overlayService = inject(FktOverlayService);
-	private idGenerator = inject(ElementIdGeneratorService);
+    private overlayService = inject(FktOverlayService);
+    private idGenerator = inject(ElementIdGeneratorService);
 
-	protected labelId = this.idGenerator.next('fkt-select-label');
-	protected listBoxId = this.idGenerator.next('fkt-select-list-box');
+    protected labelId = this.idGenerator.next('fkt-select-label');
+    protected listBoxId = this.idGenerator.next('fkt-select-list-box');
 
-	private overlayRef = signal<FktOverlayRef<FktSelectOptionsComponent> | null>(null);
+    static fieldId = 0;
 
-	protected opened = computed(() => !!this.overlayRef());
+    protected readonly id = `fkt-select-id-${FktSelectComponent.fieldId++}`;
 
-	protected focused = signal(false);
+    private overlayRef =
+        signal<FktOverlayRef<FktSelectOptionsComponent> | null>(null);
 
-	protected activeOptionId = signal(null);
+    protected opened = computed(() => !!this.overlayRef());
 
-	protected handleKeydown(element: HTMLDivElement, event: KeyboardEvent) {
-		switch (event.key) {
-			case 'ArrowDown':
-			case 'ArrowUp':
-			case 'Space':
-			case ' ':
-			case 'Enter':
-				this.openOverlay(element)
-				event.preventDefault();
-				break;
-		}
-	}
+    protected focused = signal(false);
 
-	protected openOverlay(nativeElement: HTMLDivElement) {
-		if (this.disabled())
-			return;
+    protected activeOptionId = signal(null);
 
-		this.selectOpened.emit();
+    protected handleKeydown(element: HTMLDivElement, event: KeyboardEvent) {
+        switch (event.key) {
+            case 'ArrowDown':
+            case 'ArrowUp':
+            case 'Space':
+            case ' ':
+            case 'Enter':
+                this.openOverlay(element);
+                event.preventDefault();
+                break;
+        }
+    }
 
-		const overlayRef = this.overlayService.open({
-			component: FktSelectOptionsComponent,
-			data: {
-				hostElement: nativeElement,
-				options: this.options,
-				loading: this.loading,
-				selected: computed(() => this.selectedOption()?.value ?? null),
-				noResults: this.noResults(),
-				activeOptionId: this.activeOptionId,
-				select: (option) => {
-					this.selectOption(option);
-				},
-			},
-			anchorElementRef: {nativeElement},
-			panelOptions: {
-				onAutoClose: () => {
-					this.closeOverlay();
-				},
-				maxHeight: '420px',
-				inheritDesignTokensFrom: nativeElement
-			}
-		});
+    protected openOverlay(nativeElement: HTMLDivElement) {
+        if (this.disabled()) return;
 
-		this.overlayRef.set(overlayRef);
-	}
+        this.selectOpened.emit();
 
-	protected selectedOption = computed(() => {
-		const value = this.value();
-		const found = this.options().find(item => item.value === value);
+        const overlayRef = this.overlayService.open({
+            component: FktSelectOptionsComponent,
+            data: {
+                hostElement: nativeElement,
+                options: this.options,
+                loading: this.loading,
+                selected: computed(() => this.selectedOption()?.value ?? null),
+                noResults: this.noResults(),
+                activeOptionId: this.activeOptionId,
+                select: (option) => {
+                    this.selectOption(option);
+                },
+            },
+            anchorElementRef: { nativeElement },
+            panelOptions: {
+                onAutoClose: () => {
+                    this.closeOverlay();
+                },
+                maxHeight: '420px',
+                inheritDesignTokensFrom: nativeElement,
+            },
+        });
 
-		return found ?? null;
-	});
+        this.overlayRef.set(overlayRef);
+    }
 
-	protected selectOption(option: FktAutocompleteOption) {
-		this.value.set(option.value);
+    protected selectedOption = computed(() => {
+        const value = this.value();
+        const found = this.options().find((item) => item.value === value);
 
-		this.closeOverlay();
-	}
+        return found ?? null;
+    });
 
-	private closeOverlay() {
-		this.touched.set(true);
-		this.overlayRef()?.close();
-		this.overlayRef.set(null);
-	}
+    protected selectOption(option: FktAutocompleteOption) {
+        this.value.set(option.value);
+
+        this.closeOverlay();
+    }
+
+    private closeOverlay() {
+        this.touched.set(true);
+        this.overlayRef()?.close();
+        this.overlayRef.set(null);
+    }
 }

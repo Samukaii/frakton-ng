@@ -4,13 +4,13 @@ import { RawExampleFile, RawExampleGroup } from './raw-example.models';
 
 const getLanguage = (fileName: string): RawExampleFile['language'] => {
     if (fileName.endsWith('.ts')) return 'typescript';
-    if (fileName.endsWith('.html')) return 'html';
+    if (fileName.endsWith('.html')) return 'angular-html';
     return 'css';
 };
 
 const sortFiles = (files: RawExampleFile[]) => {
     const order: Record<RawExampleFile['language'], number> = {
-        html: 0,
+        'angular-html': 0,
         typescript: 1,
         css: 2,
     };

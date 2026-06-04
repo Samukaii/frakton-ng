@@ -10,7 +10,7 @@ import { FktFieldErrorComponent } from 'frakton-ng/field-error';
 	imports: [FktSelectComponent, Field, FktFieldErrorComponent]
 })
 export class ValidationExampleComponent {
-	label = input<string>();
+	label = input.required<string>();
 	placeholder = input<string>();
 	options = input.required<FktSelectOption[]>();
 

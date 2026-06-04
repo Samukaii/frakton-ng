@@ -40,17 +40,17 @@ export default {
 			{
 				name: "fkt-confirmation-dialog-example.component.html",
 				content: fktConfirmationDialogExampleTemplate as string,
-				language: "html" as "html",
+				language: "angular-html" as const,
 			},		
 			{
 				name: "fkt-confirmation-dialog-example.component.ts",
 				content: fktConfirmationDialogExampleTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "fkt-confirmation-dialog-example.component.scss",
 				content: fktConfirmationDialogExampleStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},
@@ -61,17 +61,17 @@ export default {
 			{
 				name: "fkt-custom-dialog-example.component.html",
 				content: fktCustomDialogExampleTemplate as string,
-				language: "html" as "html",
+				language: "angular-html" as const,
 			},		
 			{
 				name: "fkt-custom-dialog-example.component.ts",
 				content: fktCustomDialogExampleTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "fkt-custom-dialog-example.component.scss",
 				content: fktCustomDialogExampleStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},
@@ -82,17 +82,17 @@ export default {
 			{
 				name: "fkt-dialog-overview-example.component.html",
 				content: fktDialogOverviewExampleTemplate as string,
-				language: "html" as "html",
+				language: "angular-html" as const,
 			},		
 			{
 				name: "fkt-dialog-overview-example.component.ts",
 				content: fktDialogOverviewExampleTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "fkt-dialog-overview-example.component.scss",
 				content: fktDialogOverviewExampleStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},
@@ -103,17 +103,17 @@ export default {
 			{
 				name: "fkt-form-dialog-example.component.html",
 				content: fktFormDialogExampleTemplate as string,
-				language: "html" as "html",
+				language: "angular-html" as const,
 			},		
 			{
 				name: "fkt-form-dialog-example.component.ts",
 				content: fktFormDialogExampleTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "fkt-form-dialog-example.component.scss",
 				content: fktFormDialogExampleStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},
@@ -124,17 +124,17 @@ export default {
 			{
 				name: "fkt-fullscreen-dialog-example.component.html",
 				content: fktFullscreenDialogExampleTemplate as string,
-				language: "html" as "html",
+				language: "angular-html" as const,
 			},		
 			{
 				name: "fkt-fullscreen-dialog-example.component.ts",
 				content: fktFullscreenDialogExampleTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "fkt-fullscreen-dialog-example.component.scss",
 				content: fktFullscreenDialogExampleStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},
@@ -145,17 +145,17 @@ export default {
 			{
 				name: "fkt-simple-dialog-example.component.html",
 				content: fktSimpleDialogExampleTemplate as string,
-				language: "html" as "html",
+				language: "angular-html" as const,
 			},		
 			{
 				name: "fkt-simple-dialog-example.component.ts",
 				content: fktSimpleDialogExampleTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "fkt-simple-dialog-example.component.scss",
 				content: fktSimpleDialogExampleStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},
@@ -166,17 +166,17 @@ export default {
 			{
 				name: "fkt-small-dialog-example.component.html",
 				content: fktSmallDialogExampleTemplate as string,
-				language: "html" as "html",
+				language: "angular-html" as const,
 			},		
 			{
 				name: "fkt-small-dialog-example.component.ts",
 				content: fktSmallDialogExampleTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "fkt-small-dialog-example.component.scss",
 				content: fktSmallDialogExampleStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},
@@ -187,17 +187,17 @@ export default {
 			{
 				name: "fkt-custom-dialog-demo.component.html",
 				content: fktCustomDialogDemoTemplate as string,
-				language: "html" as "html",
+				language: "angular-html" as const,
 			},		
 			{
 				name: "fkt-custom-dialog-demo.component.ts",
 				content: fktCustomDialogDemoTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "fkt-custom-dialog-demo.component.scss",
 				content: fktCustomDialogDemoStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},
@@ -208,17 +208,17 @@ export default {
 			{
 				name: "fkt-form-dialog-demo.component.html",
 				content: fktFormDialogDemoTemplate as string,
-				language: "html" as "html",
+				language: "angular-html" as const,
 			},		
 			{
 				name: "fkt-form-dialog-demo.component.ts",
 				content: fktFormDialogDemoTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "fkt-form-dialog-demo.component.scss",
 				content: fktFormDialogDemoStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},
@@ -229,17 +229,17 @@ export default {
 			{
 				name: "fkt-simple-dialog-demo.component.html",
 				content: fktSimpleDialogDemoTemplate as string,
-				language: "html" as "html",
+				language: "angular-html" as const,
 			},		
 			{
 				name: "fkt-simple-dialog-demo.component.ts",
 				content: fktSimpleDialogDemoTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "fkt-simple-dialog-demo.component.scss",
 				content: fktSimpleDialogDemoStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},

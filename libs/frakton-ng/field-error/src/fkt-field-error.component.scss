@@ -5,12 +5,6 @@
 	overflow: hidden;
 	color: var(--fkt-color-danger);
 	transition: var(--fkt-transition-base);
-	height: var(--fkt-space-lg);
-	max-height: 0;
+	height: fit-content;
 	line-height: 1.25rem;
-	padding-left: 1rem;
-
-	&.active {
-		max-height: var(--fkt-space-lg);
-	}
 }

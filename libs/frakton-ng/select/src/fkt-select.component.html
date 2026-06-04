@@ -2,6 +2,7 @@
     #element
     (keydown)="handleKeydown(element, $event)"
     tabindex="0"
+    [id]="id"
     (click)="openOverlay(element)"
     class="select">
     <div
@@ -47,9 +48,7 @@
         <div
             [class.hide-label]="hideLabel()"
             class="center">
-            <label
-                aria-hidden="true"
-            >{{ label() }}</label>
+            <label [class.float]="!!selectedOption()?.label || opened()" [class.fkt-sr-only]="hideLabel()" [attr.for]="id">{{ label() }}</label>
         </div>
 
         <div class="right">
@@ -57,3 +56,4 @@
         </div>
     </div>
 </div>
+

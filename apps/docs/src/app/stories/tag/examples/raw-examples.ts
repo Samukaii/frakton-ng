@@ -13,17 +13,17 @@ export default {
 			{
 				name: "tag-variations-example.component.html",
 				content: tagVariationsExampleTemplate as string,
-				language: "html" as "html",
+				language: "angular-html" as const,
 			},		
 			{
 				name: "tag-variations-example.component.ts",
 				content: tagVariationsExampleTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "tag-variations-example.component.scss",
 				content: tagVariationsExampleStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},

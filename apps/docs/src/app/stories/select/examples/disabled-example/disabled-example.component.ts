@@ -10,7 +10,7 @@ import { Field, disabled, form } from '@angular/forms/signals';
 	imports: [FktSelectComponent, FktButtonComponent, Field]
 })
 export class DisabledExampleComponent {
-	label = input<string>();
+	label = input.required<string>();
 	placeholder = input<string>();
 	options = input.required<FktSelectOption[]>();
 

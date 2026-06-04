@@ -16,17 +16,17 @@ export default {
 			{
 				name: "order-status-example.component.html",
 				content: orderStatusExampleTemplate as string,
-				language: "html" as "html",
+				language: "angular-html" as const,
 			},		
 			{
 				name: "order-status-example.component.ts",
 				content: orderStatusExampleTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "order-status-example.component.scss",
 				content: orderStatusExampleStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},
@@ -37,17 +37,17 @@ export default {
 			{
 				name: "priority-example.component.html",
 				content: priorityExampleTemplate as string,
-				language: "html" as "html",
+				language: "angular-html" as const,
 			},		
 			{
 				name: "priority-example.component.ts",
 				content: priorityExampleTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "priority-example.component.scss",
 				content: priorityExampleStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},

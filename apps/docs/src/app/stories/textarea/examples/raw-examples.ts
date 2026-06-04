@@ -28,17 +28,17 @@ export default {
 			{
 				name: "auto-expand-example.component.html",
 				content: autoExpandExampleTemplate as string,
-				language: "html" as "html",
+				language: "angular-html" as const,
 			},		
 			{
 				name: "auto-expand-example.component.ts",
 				content: autoExpandExampleTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "auto-expand-example.component.scss",
 				content: autoExpandExampleStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},
@@ -49,17 +49,17 @@ export default {
 			{
 				name: "basic-example.component.html",
 				content: basicExampleTemplate as string,
-				language: "html" as "html",
+				language: "angular-html" as const,
 			},		
 			{
 				name: "basic-example.component.ts",
 				content: basicExampleTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "basic-example.component.scss",
 				content: basicExampleStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},
@@ -70,17 +70,17 @@ export default {
 			{
 				name: "character-counter-example.component.html",
 				content: characterCounterExampleTemplate as string,
-				language: "html" as "html",
+				language: "angular-html" as const,
 			},		
 			{
 				name: "character-counter-example.component.ts",
 				content: characterCounterExampleTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "character-counter-example.component.scss",
 				content: characterCounterExampleStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},
@@ -91,17 +91,17 @@ export default {
 			{
 				name: "disabled-example.component.html",
 				content: disabledExampleTemplate as string,
-				language: "html" as "html",
+				language: "angular-html" as const,
 			},		
 			{
 				name: "disabled-example.component.ts",
 				content: disabledExampleTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "disabled-example.component.scss",
 				content: disabledExampleStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},
@@ -112,17 +112,17 @@ export default {
 			{
 				name: "form-integration-example.component.html",
 				content: formIntegrationExampleTemplate as string,
-				language: "html" as "html",
+				language: "angular-html" as const,
 			},		
 			{
 				name: "form-integration-example.component.ts",
 				content: formIntegrationExampleTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "form-integration-example.component.scss",
 				content: formIntegrationExampleStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},
@@ -133,17 +133,17 @@ export default {
 			{
 				name: "validation-example.component.html",
 				content: validationExampleTemplate as string,
-				language: "html" as "html",
+				language: "angular-html" as const,
 			},		
 			{
 				name: "validation-example.component.ts",
 				content: validationExampleTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "validation-example.component.scss",
 				content: validationExampleStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},

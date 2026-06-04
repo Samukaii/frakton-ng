@@ -5,8 +5,7 @@
         "esModuleInterop": true,
         "paths": {
             "frakton-ng/autocomplete": ["libs/frakton-ng/autocomplete"],
-            "frakton-ng/tag": ["libs/frakton-ng/tag"],
-            "frakton-ng/tag-selector": ["libs/frakton-ng/tag-selector"],
+            "frakton-ng/avatar": ["libs/frakton-ng/avatar"],
             "frakton-ng/button": ["libs/frakton-ng/button"],
             "frakton-ng/button-group": ["libs/frakton-ng/button-group"],
             "frakton-ng/buttons-list": ["libs/frakton-ng/buttons-list"],
@@ -17,45 +16,63 @@
             "frakton-ng/card": ["libs/frakton-ng/card"],
             "frakton-ng/checkbox": ["libs/frakton-ng/checkbox"],
             "frakton-ng/color-picker": ["libs/frakton-ng/color-picker"],
-            "frakton-ng/focus-trap": ["libs/frakton-ng/focus-trap"],
-            "frakton-ng/navigable-list": ["libs/frakton-ng/navigable-list"],
             "frakton-ng/core": ["libs/frakton-ng/core"],
             "frakton-ng/date-picker": ["libs/frakton-ng/date-picker"],
             "frakton-ng/dialog": ["libs/frakton-ng/dialog"],
+            "frakton-ng/divider": ["libs/frakton-ng/divider"],
             "frakton-ng/drawer": ["libs/frakton-ng/drawer"],
+            "frakton-ng/field": ["libs/frakton-ng/field"],
             "frakton-ng/field-error": ["libs/frakton-ng/field-error"],
+            "frakton-ng/focus-trap": ["libs/frakton-ng/focus-trap"],
             "frakton-ng/forms": ["libs/frakton-ng/forms"],
             "frakton-ng/icon": ["libs/frakton-ng/icon"],
             "frakton-ng/input": ["libs/frakton-ng/input"],
+            "frakton-ng/internal/components": [
+                "libs/frakton-ng/internal/components"
+            ],
             "frakton-ng/internal/di": ["libs/frakton-ng/internal/di"],
+            "frakton-ng/internal/directives": [
+                "libs/frakton-ng/internal/directives"
+            ],
             "frakton-ng/internal/pipes": ["libs/frakton-ng/internal/pipes"],
             "frakton-ng/internal/services": [
                 "libs/frakton-ng/internal/services"
             ],
             "frakton-ng/internal/types": ["libs/frakton-ng/internal/types"],
             "frakton-ng/internal/utils": ["libs/frakton-ng/internal/utils"],
-            "frakton-ng/internal/components": [
-                "libs/frakton-ng/internal/components"
-            ],
+            "frakton-ng/navigable-list": ["libs/frakton-ng/navigable-list"],
             "frakton-ng/navigator": ["libs/frakton-ng/navigator"],
             "frakton-ng/no-results": ["libs/frakton-ng/no-results"],
             "frakton-ng/overlay": ["libs/frakton-ng/overlay"],
-            "frakton-ng/select": ["libs/frakton-ng/select"],
-            "frakton-ng/side-menu": ["libs/frakton-ng/side-menu"],
-            "frakton-ng/spinner": ["libs/frakton-ng/spinner"],
-            "frakton-ng/table": ["libs/frakton-ng/table/public-api"],
-            "frakton-ng/table/filters/text": [
-                "libs/frakton-ng/table/filters/text/public-api"
-            ],
-            "frakton-ng/tabs": ["libs/frakton-ng/tabs"],
-            "frakton-ng/textarea": ["libs/frakton-ng/textarea"],
-            "frakton-ng/tooltip": ["libs/frakton-ng/tooltip"],
-            "frakton-ng/toggle": ["libs/frakton-ng/toggle"],
             "frakton-ng/paginator": ["libs/frakton-ng/paginator"],
             "frakton-ng/progress-bar": ["libs/frakton-ng/progress-bar"],
+            "frakton-ng/select": ["libs/frakton-ng/select"],
+            "frakton-ng/side-menu": ["libs/frakton-ng/side-menu"],
             "frakton-ng/skeleton": ["libs/frakton-ng/skeleton"],
-            "frakton-ng/avatar": ["libs/frakton-ng/avatar"],
-            "frakton-ng/divider": ["libs/frakton-ng/divider"]
+            "frakton-ng/spinner": ["libs/frakton-ng/spinner"],
+            "frakton-ng/table": ["libs/frakton-ng/table"],
+            "frakton-ng/table/cells/action": [
+                "libs/frakton-ng/table/cells/action"
+            ],
+            "frakton-ng/table/cells/tag": ["libs/frakton-ng/table/cells/tag"],
+            "frakton-ng/table/filters/date-range": [
+                "libs/frakton-ng/table/filters/date-range"
+            ],
+            "frakton-ng/table/filters/number": [
+                "libs/frakton-ng/table/filters/number"
+            ],
+            "frakton-ng/table/filters/select": [
+                "libs/frakton-ng/table/filters/select"
+            ],
+            "frakton-ng/table/filters/text": [
+                "libs/frakton-ng/table/filters/text"
+            ],
+            "frakton-ng/tabs": ["libs/frakton-ng/tabs"],
+            "frakton-ng/tag": ["libs/frakton-ng/tag"],
+            "frakton-ng/tag-selector": ["libs/frakton-ng/tag-selector"],
+            "frakton-ng/textarea": ["libs/frakton-ng/textarea"],
+            "frakton-ng/toggle": ["libs/frakton-ng/toggle"],
+            "frakton-ng/tooltip": ["libs/frakton-ng/tooltip"]
         },
         "strict": true,
         "noImplicitOverride": true,
@@ -77,14 +94,7 @@
         "typeCheckHostBindings": true,
         "strictTemplates": true
     },
-    "include": [
-        "libs/**/*.ts"
-    ],
-    "exclude": [
-        "**/*.spec.ts",
-        "**/**/examples/*.ts"
-    ],
-    "files": [
-        "./globals.d.ts"
-    ]
+    "include": ["libs/**/*.ts"],
+    "exclude": ["**/*.spec.ts", "**/**/examples/*.ts"],
+    "files": ["./globals.d.ts"]
 }

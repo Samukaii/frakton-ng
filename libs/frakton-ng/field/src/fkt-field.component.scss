@@ -1,0 +1,414 @@
+// <design-tokens>
+
+/* @scope Field */
+
+/*
+Vertical padding inside the input field (top and bottom spacing between border and content).
+@name --fkt-field-vertical-padding
+@reference --fkt-space-inset-3xs
+@category Spacing
+@type size
+ */
+$field-vertical-padding: var(--fkt-field-vertical-padding, var(--fkt-space-inset-3xs));
+
+/*
+Vertical padding inside the input field (top and bottom spacing between border and content).
+@name --fkt-field-vertical-padding-sm
+@reference --fkt-space-inset-4xs
+@category Spacing
+@type size
+ */
+$field-vertical-padding-sm: var(--fkt-field-vertical-padding-sm, var(--fkt-space-inset-4xs));
+
+/*
+Vertical padding inside the input field (top and bottom spacing between border and content).
+@name --fkt-field-vertical-padding-lg
+@reference --fkt-space-inset-2xs
+@category Spacing
+@type size
+ */
+$field-vertical-padding-lg: var(--fkt-field-vertical-padding-lg, var(--fkt-space-inset-2xs));
+
+/*
+Horizontal padding inside the input field (left and right spacing between border and content).
+@name --fkt-field-horizontal-padding
+@reference --fkt-space-inset-2xs
+@category Spacing
+@type size
+ */
+$field-horizontal-padding: var(--fkt-field-horizontal-padding, var(--fkt-space-inset-2xs));
+
+/*
+Horizontal padding inside the input field (left and right spacing between border and content).
+@name --fkt-field-horizontal-padding-sm
+@reference --fkt-space-inset-3xs
+@category Spacing
+@type size
+ */
+$field-horizontal-padding-sm: var(--fkt-field-horizontal-padding, var(--fkt-space-inset-3xs));
+
+/*
+Horizontal padding inside the input field (left and right spacing between border and content).
+@name --fkt-field-horizontal-padding-lg
+@reference --fkt-space-inset-xs
+@category Spacing
+@type size
+ */
+$field-horizontal-padding-lg: var(--fkt-field-horizontal-padding, var(--fkt-space-inset-xs));
+
+/*
+Border color of the input in its normal (default) state.
+@name --fkt-field-border-color
+@reference --fkt-color-neutral-400
+@category Colors
+@type color
+ */
+$border-color: var(--fkt-field-border-color, var(--fkt-color-neutral-400));
+
+/*
+Border color of the input when it gets focused
+@name --fkt-field-border-focus-color
+@reference --fkt-color-neutral-800
+@category Colors
+@type color
+ */
+$border-focus-color: var(--fkt-field-border-focus-color, var(--fkt-color-neutral-800));
+
+/*
+Color of the label in its normal (default) state.
+@name --fkt-field-label-color
+@reference --fkt-color-neutral-700
+@category Colors
+@type color
+ */
+$label-color: var(--fkt-field-label-color, var(--fkt-color-neutral-700));
+
+/*
+Color of the label when it gets focused
+@name --fkt-field-label-focus-color
+@reference --fkt-color-neutral-800
+@category Colors
+@type color
+ */
+$label-focus-color: var(--fkt-field-label-focus-color, var(--fkt-color-neutral-800));
+
+/*
+Border radius for input
+@name --fkt-field-border-radius
+@reference --fkt-radius-md
+@category Spacing
+@type size
+ */
+$border-radius: var(--fkt-field-border-radius, var(--fkt-radius-md));
+
+/*
+Font size for input text and placeholder.
+@name --fkt-field-font-size
+@reference --fkt-font-size-sm
+@category Typography
+@type size
+ */
+$font-size: var(--fkt-field-font-size, var(--fkt-font-size-sm));
+
+/*
+Font size for input text and placeholder.
+@name --fkt-field-font-size-sm
+@reference --fkt-font-size-xs
+@category Typography
+@type size
+ */
+$font-size-sm: var(--fkt-field-font-size-sm, var(--fkt-font-size-xs));
+
+/*
+Font size for input text and placeholder.
+@name --fkt-field-font-size-lg
+@reference --fkt-font-size-md
+@category Typography
+@type size
+ */
+$font-size-lg: var(--fkt-field-font-size-lg, var(--fkt-font-size-md));
+
+/*
+Color for text written into input
+@name --fkt-field-text-color
+@reference --fkt-color-neutral-900
+@category Colors
+@type color
+ */
+$text-color: var(--fkt-field-text-color, var(--fkt-color-neutral-900));
+
+/*
+Space between prefix and field element
+@name --fkt-field-prefix-gap
+@scope Prefix | [fktFieldPrefix]
+@reference --fkt-space-xs
+@category Spacing
+@type size
+ */
+$prefix-gap: var(--fkt-field-prefix-gap, var(--fkt-space-xs));
+
+/*
+Text color for prefix when field is at invalid state
+@name --fkt-field-prefix-invalid-text
+@scope Prefix | [fktFieldPrefix]
+@reference --fkt-color-danger
+@category Colors
+@type color
+ */
+$prefix-invalid-color: var(--fkt-field-prefix-invalid-text, var(--fkt-color-danger));
+
+/*
+Space between suffix and field element
+@name --fkt-field-suffix-gap
+@scope Suffix | [fktFieldSuffix]
+@reference --fkt-space-xs
+@category Spacing
+@type size
+ */
+$suffix-gap: var(--fkt-field-suffix-gap, var(--fkt-space-xs));
+
+/*
+Text color for suffix when field is at invalid state
+@name --fkt-field-suffix-invalid-text
+@scope Suffix | [fktFieldSuffix]
+@reference --fkt-color-danger
+@category Colors
+@type color
+ */
+$suffix-invalid-color: var(--fkt-field-suffix-invalid-text, var(--fkt-color-danger));
+
+// </design-tokens>
+
+* {
+    box-sizing: border-box;
+}
+
+:host {
+    --_fkt-field-font-size-sm: #{$font-size-sm};
+    --_fkt-field-font-size-md: #{$font-size};
+    --_fkt-field-font-size-lg: #{$font-size-lg};
+
+    --_fkt-field-horizontal-padding-sm: #{$field-horizontal-padding-sm};
+    --_fkt-field-horizontal-padding-md: #{$field-horizontal-padding};
+    --_fkt-field-horizontal-padding-lg: #{$field-horizontal-padding-lg};
+
+    --_fkt-field-vertical-padding-sm: #{$field-vertical-padding-sm};
+    --_fkt-field-vertical-padding-md: #{$field-vertical-padding};
+    --_fkt-field-vertical-padding-lg: #{$field-vertical-padding-lg};
+
+    --_fkt-field-font-size: var(--_fkt-field-font-size-md);
+    --_fkt-field-horizontal-padding: var(--_fkt-field-horizontal-padding-md);
+    --_fkt-field-vertical-padding: var(--_fkt-field-vertical-padding-md);
+
+    .input {
+        padding: var(--_fkt-field-vertical-padding) var(--_fkt-field-horizontal-padding);
+        width: 100%;
+        position: relative;
+        border-radius: $border-radius;
+        min-height: calc(20px + calc(var(--_fkt-field-vertical-padding) * 2));
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+
+        .border {
+            position: absolute;
+            left: 0;
+            top: 0;
+            user-select: none;
+            pointer-events: none;
+            height: 100%;
+            width: 100%;
+            display: flex;
+            align-items: flex-end;
+
+            .left {
+                height: 100%;
+                border-radius: $border-radius 0 0 $border-radius;
+                border-style: solid;
+                border-color: $border-color;
+                border-top-width: 1px;
+                border-bottom-width: 1px;
+                border-left-width: 1px;
+                border-right-width: 0;
+                padding-left: var(--_fkt-field-horizontal-padding);
+            }
+
+            .center {
+                height: 100%;
+                position: relative;
+                border-style: solid;
+                border-color: $border-color;
+                border-top-width: 1px;
+                border-bottom-width: 1px;
+                border-left-width: 0;
+                border-right-width: 0;
+                width: fit-content;
+                display: flex;
+                align-items: flex-start;
+                padding: var(--_fkt-field-vertical-padding) 0;
+
+                label:not(.fkt-sr-only) {
+                    position: relative;
+                    pointer-events: none;
+                    font-size: var(--_fkt-field-font-size);
+                    transition: var(--fkt-transition-base);
+                    color: $label-color;
+                    white-space: nowrap;
+
+                    &.disabled {
+                        opacity: 40%;
+                        filter: grayscale(1);
+                        cursor: not-allowed;
+                    }
+                }
+            }
+
+            .right {
+                height: 100%;
+                border-radius: 0 $border-radius $border-radius 0;
+                border-style: solid;
+                border-color: $border-color;
+                border-top-width: 1px;
+                border-bottom-width: 1px;
+                border-left-width: 0;
+                border-right-width: 1px;
+                width: 100%;
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+            }
+        }
+
+        &.disabled {
+            background: rgb(from var(--fkt-color-neutral-300) r g b/.6);
+
+            .border {
+                .center, .left, .right {
+                    cursor: not-allowed;
+                    border-color: rgb(from var(--fkt-color-neutral-400) r g b/.6) !important;
+                    color: var(--fkt-color-danger);
+                }
+
+                cursor: not-allowed;
+            }
+
+            ::ng-deep {
+                .fkt-control-field {
+                    color: rgb(from var(--fkt-color-neutral-800) r g b/.6);
+                    cursor: not-allowed;
+                }
+
+                [fktFieldPrefix], [fktFieldSuffix] {
+                    cursor: not-allowed !important;
+                }
+            }
+        }
+
+        &.focused:not(.invalid) {
+            .border {
+                .center {
+                    label:not(.fkt-sr-only) {
+                        color: $label-focus-color;
+                    }
+                }
+
+                .left, .right, .center {
+                    border-color: $border-focus-color;
+                }
+            }
+
+        }
+
+        &.invalid:not(.disabled) {
+            .border {
+                .center, .left, .right {
+                    border-color: var(--fkt-color-danger);
+                }
+
+                .center label:not(.fkt-sr-only) {
+                    color: var(--fkt-color-danger);
+                }
+            }
+
+            ::ng-deep {
+                [fktFieldPrefix] {
+                    color: $prefix-invalid-color;
+                }
+
+                [fktFieldSuffix] {
+                    color: $suffix-invalid-color;
+                }
+            }
+        }
+
+
+        &.float {
+            .border {
+                .center {
+                    border-top-width: 0;
+                    position: relative;
+
+                    label:not(.fkt-sr-only) {
+                        z-index: 50;
+                        font-size: var(--fkt-font-size-xs);
+                        padding: 0 var(--fkt-space-4xs);
+                        position: absolute;
+                        top: 0;
+                        transform: translateY(-50%);
+                    }
+                }
+            }
+
+            ::ng-deep .fkt-control-field {
+                &::placeholder {
+                    opacity: 1;
+                }
+            }
+        }
+
+        ::ng-deep {
+            [fktFieldPrefix] {
+                padding-right: $prefix-gap;
+            }
+
+            [fktFieldSuffix] {
+                padding-left: $suffix-gap;
+            }
+
+            .fkt-control-field {
+                box-sizing: border-box;
+                outline: none;
+                font-size: var(--_fkt-field-font-size);
+                width: 100%;
+                border: none;
+                background-color: transparent;
+                color: $text-color;
+                font-family: inherit;
+
+                &::placeholder {
+                    color: var(--fkt-color-neutral-500);
+                    font-size: var(--_fkt-field-font-size);
+                }
+            }
+        }
+
+        &:not(:has(label.fkt-sr-only)):not(.float) {
+            ::ng-deep .fkt-control-field {
+                &::placeholder {
+                    opacity: 0;
+                }
+            }
+        }
+    }
+}
+
+.message {
+    display: block;
+    overflow: hidden;
+    max-height: 0;
+    transition: var(--fkt-transition-slow);
+
+    &.show {
+        max-height: 30px;
+    }
+}

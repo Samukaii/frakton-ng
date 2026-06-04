@@ -7,6 +7,23 @@
 }
 
 :root {
+    --fkt-space-inset-6xs: .125rem; /* 2px */
+    --fkt-space-inset-5xs: .25rem; /* 4px */
+    --fkt-space-inset-4xs: .375rem; /* 6px */
+    --fkt-space-inset-3xs: .5rem; /* 8px */
+    --fkt-space-inset-2xs: .625rem; /* 10px */
+    --fkt-space-inset-xs: .75rem; /* 12px */
+    --fkt-space-inset-sm: .875rem; /* 14px */
+    --fkt-space-inset-md: 1rem; /* 16px */
+    --fkt-space-inset-lg: 1.125rem; /* 18px */
+    --fkt-space-inset-xl: 1.25rem; /* 20px */
+    --fkt-space-inset-2xl: 1.5rem; /* 24px */
+    --fkt-space-inset-3xl: 2rem; /* 32px */
+    --fkt-space-inset-4xl: 2.5rem; /* 40px */
+    --fkt-space-inset-5xl: 3rem; /* 48px */
+    --fkt-space-inset-6xl: 3.5rem; /* 56px */
+    --fkt-space-inset-7xl: 4rem; /* 64px */
+
 	/* Spacing */
 	--fkt-space-4xs: .125rem; /* 2px */
 	--fkt-space-3xs: .25rem; /* 4px */
@@ -34,8 +51,8 @@
 	--fkt-radius-full: 9999px;
 
 	/* Font Sizes */
-	--fkt-font-size-3xs: 0.25rem;    /* 12px */
-	--fkt-font-size-2xs: 0.5rem;    /* 12px */
+	--fkt-font-size-3xs: 0.25rem;    /* 4px */
+	--fkt-font-size-2xs: 0.5rem;    /* 8px */
 	--fkt-font-size-xs: 0.75rem;    /* 12px */
 	--fkt-font-size-sm: 0.875rem;   /* 14px */
 	--fkt-font-size-md: 1rem;       /* 16px */

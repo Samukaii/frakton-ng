@@ -31,17 +31,17 @@ export default {
 			{
 				name: "compact-example.component.html",
 				content: compactExampleTemplate as string,
-				language: "html" as "html",
+				language: "angular-html" as const,
 			},		
 			{
 				name: "compact-example.component.ts",
 				content: compactExampleTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "compact-example.component.scss",
 				content: compactExampleStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},
@@ -52,17 +52,17 @@ export default {
 			{
 				name: "data-table-example.component.html",
 				content: dataTableExampleTemplate as string,
-				language: "html" as "html",
+				language: "angular-html" as const,
 			},		
 			{
 				name: "data-table-example.component.ts",
 				content: dataTableExampleTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "data-table-example.component.scss",
 				content: dataTableExampleStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},
@@ -73,17 +73,17 @@ export default {
 			{
 				name: "file-upload-example.component.html",
 				content: fileUploadExampleTemplate as string,
-				language: "html" as "html",
+				language: "angular-html" as const,
 			},		
 			{
 				name: "file-upload-example.component.ts",
 				content: fileUploadExampleTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "file-upload-example.component.scss",
 				content: fileUploadExampleStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},
@@ -94,17 +94,17 @@ export default {
 			{
 				name: "search-results-example.component.html",
 				content: searchResultsExampleTemplate as string,
-				language: "html" as "html",
+				language: "angular-html" as const,
 			},		
 			{
 				name: "search-results-example.component.ts",
 				content: searchResultsExampleTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "search-results-example.component.scss",
 				content: searchResultsExampleStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},
@@ -115,17 +115,17 @@ export default {
 			{
 				name: "simple-example.component.html",
 				content: simpleExampleTemplate as string,
-				language: "html" as "html",
+				language: "angular-html" as const,
 			},		
 			{
 				name: "simple-example.component.ts",
 				content: simpleExampleTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "simple-example.component.scss",
 				content: simpleExampleStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},
@@ -136,17 +136,17 @@ export default {
 			{
 				name: "with-action-example.component.html",
 				content: withActionExampleTemplate as string,
-				language: "html" as "html",
+				language: "angular-html" as const,
 			},		
 			{
 				name: "with-action-example.component.ts",
 				content: withActionExampleTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "with-action-example.component.scss",
 				content: withActionExampleStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},
@@ -157,17 +157,17 @@ export default {
 			{
 				name: "with-icon-and-description-example.component.html",
 				content: withIconAndDescriptionExampleTemplate as string,
-				language: "html" as "html",
+				language: "angular-html" as const,
 			},		
 			{
 				name: "with-icon-and-description-example.component.ts",
 				content: withIconAndDescriptionExampleTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "with-icon-and-description-example.component.scss",
 				content: withIconAndDescriptionExampleStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},

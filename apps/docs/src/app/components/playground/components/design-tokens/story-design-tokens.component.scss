@@ -1,7 +1,4 @@
-.actions {
-    display: flex;
-    gap: var(--fkt-space-xs);
-}
+
 
 :host {
     display: block;
@@ -13,32 +10,25 @@
     border-top: solid 1px var(--fkt-color-neutral-300);
 }
 
-.tokens-count {
-    background: red;
-    color: white;
-    font-size: var(--fkt-font-size-2xs);
-    border-radius: 100%;
-    aspect-ratio: 1;
-    height: 15px;
-    width: 15px;
+.header {
     display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--fkt-controls-table-border-color);
     align-items: center;
-    justify-content: center;
-    font-weight: var(--fkt-font-semibold);
-    position: absolute;
-    top: 0rem;
-    right: -.3rem;
+    padding: var(--fkt-space-xs) var(--fkt-space-md);
+
+    .actions {
+        display: flex;
+    }
 }
 
 .scopes-container {
     display: flex;
     gap: var(--fkt-space-xs);
-    padding: var(--fkt-space-xs) var(--fkt-space-md);
     justify-content: flex-start;
     align-items: center;
     max-width: 100%;
     overflow: auto;
-    border-bottom: 1px solid var(--fkt-controls-table-border-color);
 
     .scope {
         position: relative;
@@ -102,51 +92,3 @@
     max-height: 500px;
     overflow-y: auto;
 }
-
-.tables {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    padding: 0;
-
-    .table {
-        .category {
-            position: sticky;
-            top: 54px;
-            z-index: 1;
-            border-bottom: none;
-
-            td {
-                padding: 0;
-            }
-
-            td > div {
-                width: 100%;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                padding: .5rem;
-                gap: var(--fkt-space-xs);
-                background: var(--fkt-controls-table-category-bg);
-                color: var(--fkt-controls-table-category-text-color);
-                border: solid 1px var(--fkt-controls-table-border-color);
-                box-sizing: border-box;
-
-                h2 {
-                    font-size: var(--fkt-font-size-md);
-                    font-weight: var(--fkt-font-semibold);
-                    margin: 0;
-                }
-
-                fkt-icon {
-                    font-size: var(--fkt-font-size-md);
-                }
-            }
-        }
-
-        .table-container {
-            border-bottom: solid 1px var(--fkt-controls-table-border-color);
-        }
-    }
-}
-

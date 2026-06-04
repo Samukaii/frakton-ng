@@ -4,10 +4,6 @@
     gap: var(--fkt-space-md);
     padding: 1rem;
     width: 400px;
-
-    * {
-        color: var(--fkt-color-neutral-800);
-    }
 }
 
 .header {
@@ -17,6 +13,7 @@
     justify-content: space-between;
     border-bottom: solid 1px var(--fkt-color-neutral-300);
     padding-bottom: var(--fkt-space-xs);
+    color: var(--fkt-color-neutral-800);
 
     h1 {
         margin: 0;
@@ -34,6 +31,7 @@
     display: flex;
     gap: var(--fkt-space-xs);
     align-items: center;
+    color: var(--fkt-color-neutral-800);
 
     &.description {
         flex-direction: column;
@@ -51,6 +49,7 @@ p {
 
 
 .descriptor {
+    color: var(--fkt-color-neutral-800);
     font-weight: var(--fkt-font-semibold);
     font-size: var(--fkt-font-size-sm);
 }

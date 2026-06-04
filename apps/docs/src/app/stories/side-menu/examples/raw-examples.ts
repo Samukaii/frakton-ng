@@ -37,17 +37,17 @@ export default {
 			{
 				name: "admin-dashboard-layout-example.component.html",
 				content: adminDashboardLayoutExampleTemplate as string,
-				language: "html" as "html",
+				language: "angular-html" as const,
 			},		
 			{
 				name: "admin-dashboard-layout-example.component.ts",
 				content: adminDashboardLayoutExampleTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "admin-dashboard-layout-example.component.scss",
 				content: adminDashboardLayoutExampleStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},
@@ -58,17 +58,17 @@ export default {
 			{
 				name: "basic-side-menu-example.component.html",
 				content: basicSideMenuExampleTemplate as string,
-				language: "html" as "html",
+				language: "angular-html" as const,
 			},		
 			{
 				name: "basic-side-menu-example.component.ts",
 				content: basicSideMenuExampleTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "basic-side-menu-example.component.scss",
 				content: basicSideMenuExampleStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},
@@ -79,17 +79,17 @@ export default {
 			{
 				name: "collapsible-side-menu-example.component.html",
 				content: collapsibleSideMenuExampleTemplate as string,
-				language: "html" as "html",
+				language: "angular-html" as const,
 			},		
 			{
 				name: "collapsible-side-menu-example.component.ts",
 				content: collapsibleSideMenuExampleTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "collapsible-side-menu-example.component.scss",
 				content: collapsibleSideMenuExampleStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},
@@ -100,17 +100,17 @@ export default {
 			{
 				name: "dynamic-permissions-side-menu-example.component.html",
 				content: dynamicPermissionsSideMenuExampleTemplate as string,
-				language: "html" as "html",
+				language: "angular-html" as const,
 			},		
 			{
 				name: "dynamic-permissions-side-menu-example.component.ts",
 				content: dynamicPermissionsSideMenuExampleTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "dynamic-permissions-side-menu-example.component.scss",
 				content: dynamicPermissionsSideMenuExampleStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},
@@ -121,17 +121,17 @@ export default {
 			{
 				name: "multi-group-side-menu-example.component.html",
 				content: multiGroupSideMenuExampleTemplate as string,
-				language: "html" as "html",
+				language: "angular-html" as const,
 			},		
 			{
 				name: "multi-group-side-menu-example.component.ts",
 				content: multiGroupSideMenuExampleTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "multi-group-side-menu-example.component.scss",
 				content: multiGroupSideMenuExampleStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},
@@ -142,17 +142,17 @@ export default {
 			{
 				name: "with-routing-example.component.html",
 				content: withRoutingExampleTemplate as string,
-				language: "html" as "html",
+				language: "angular-html" as const,
 			},		
 			{
 				name: "with-routing-example.component.ts",
 				content: withRoutingExampleTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "with-routing-example.component.scss",
 				content: withRoutingExampleStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},
@@ -163,17 +163,17 @@ export default {
 			{
 				name: "admin-dashboard-page.component.html",
 				content: adminDashboardPageTemplate as string,
-				language: "html" as "html",
+				language: "angular-html" as const,
 			},		
 			{
 				name: "admin-dashboard-page.component.ts",
 				content: adminDashboardPageTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "admin-dashboard-page.component.scss",
 				content: adminDashboardPageStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},
@@ -184,17 +184,17 @@ export default {
 			{
 				name: "admin-settings-page.component.html",
 				content: adminSettingsPageTemplate as string,
-				language: "html" as "html",
+				language: "angular-html" as const,
 			},		
 			{
 				name: "admin-settings-page.component.ts",
 				content: adminSettingsPageTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "admin-settings-page.component.scss",
 				content: adminSettingsPageStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},
@@ -205,17 +205,17 @@ export default {
 			{
 				name: "admin-users-page.component.html",
 				content: adminUsersPageTemplate as string,
-				language: "html" as "html",
+				language: "angular-html" as const,
 			},		
 			{
 				name: "admin-users-page.component.ts",
 				content: adminUsersPageTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "admin-users-page.component.scss",
 				content: adminUsersPageStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},
