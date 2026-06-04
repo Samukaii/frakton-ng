@@ -16,17 +16,17 @@ export default {
 			{
 				name: "icon-variants-example.component.html",
 				content: iconVariantsExampleTemplate as string,
-				language: "html" as "html",
+				language: "angular-html" as const,
 			},		
 			{
 				name: "icon-variants-example.component.ts",
 				content: iconVariantsExampleTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "icon-variants-example.component.scss",
 				content: iconVariantsExampleStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},
@@ -37,17 +37,17 @@ export default {
 			{
 				name: "text-variants-example.component.html",
 				content: textVariantsExampleTemplate as string,
-				language: "html" as "html",
+				language: "angular-html" as const,
 			},		
 			{
 				name: "text-variants-example.component.ts",
 				content: textVariantsExampleTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "text-variants-example.component.scss",
 				content: textVariantsExampleStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},

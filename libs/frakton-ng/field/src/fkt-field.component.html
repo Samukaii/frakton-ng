@@ -1,25 +1,40 @@
 <div
     class="input"
-    [class.error]="invalid()"
+    [class.invalid]="control()?.invalid() && control()?.touched()"
     [class.focused]="control()?.focused()"
-    [class.float]="control()?.hasValue() || control()?.focused()"
+    [class.float]="control()?.value() || control()?.focused()"
     [class.disabled]="control()?.disabled()"
 >
+    <div #prefix>
+        <ng-content select="[fktFieldPrefix]"/>
+    </div>
+
     <ng-content select="[fktInput]"/>
+    <ng-content select="[fktFieldSuffix]"/>
 
     <div class="border">
-        <div class="left">
-            <ng-content select="[fktFieldPrefix]"/>
+        <div class="left" [style.padding-right.px]="prefixWidth()">
         </div>
         <div
-            [class.no-label]="hideLabel()"
+            [style.width.px]="labelWidth()"
+            [style.min-width.px]="labelWidth()"
             class="center">
-            <label aria-hidden="true">{{ label() }}</label>
+            <label [class.fkt-sr-only]="hideLabel()" #labelElement [attr.for]="control()?.id">
+                {{ `${label()}${requiredMarker() ? '*' : ''}` }}
+            </label>
         </div>
 
         <div class="right">
-            <ng-content select="[fktFieldSuffix]"/>
         </div>
     </div>
 </div>
 
+<span class="error" [class.show]="control()?.invalid() && control()?.touched()">
+        <ng-content select="[fktError]">
+            <fkt-field-error>
+                @if (error()) {
+                    {{error()}}
+                }
+            </fkt-field-error>
+        </ng-content>
+</span>

@@ -25,17 +25,17 @@ export default {
 			{
 				name: "narrow-example.component.html",
 				content: narrowExampleTemplate as string,
-				language: "html" as "html",
+				language: "angular-html" as const,
 			},		
 			{
 				name: "narrow-example.component.ts",
 				content: narrowExampleTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "narrow-example.component.scss",
 				content: narrowExampleStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},
@@ -46,17 +46,17 @@ export default {
 			{
 				name: "opened-example.component.html",
 				content: openedExampleTemplate as string,
-				language: "html" as "html",
+				language: "angular-html" as const,
 			},		
 			{
 				name: "opened-example.component.ts",
 				content: openedExampleTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "opened-example.component.scss",
 				content: openedExampleStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},
@@ -67,17 +67,17 @@ export default {
 			{
 				name: "overlay-example.component.html",
 				content: overlayExampleTemplate as string,
-				language: "html" as "html",
+				language: "angular-html" as const,
 			},		
 			{
 				name: "overlay-example.component.ts",
 				content: overlayExampleTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "overlay-example.component.scss",
 				content: overlayExampleStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},
@@ -88,17 +88,17 @@ export default {
 			{
 				name: "push-example.component.html",
 				content: pushExampleTemplate as string,
-				language: "html" as "html",
+				language: "angular-html" as const,
 			},		
 			{
 				name: "push-example.component.ts",
 				content: pushExampleTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "push-example.component.scss",
 				content: pushExampleStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},
@@ -109,17 +109,17 @@ export default {
 			{
 				name: "wide-example.component.html",
 				content: wideExampleTemplate as string,
-				language: "html" as "html",
+				language: "angular-html" as const,
 			},		
 			{
 				name: "wide-example.component.ts",
 				content: wideExampleTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "wide-example.component.scss",
 				content: wideExampleStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},

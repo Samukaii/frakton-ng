@@ -1,9 +1,11 @@
 // <design-tokens>
+
+/* @scope Field */
+
 /*
 Vertical padding inside the input field (top and bottom spacing between border and content).
 @name --fkt-field-vertical-padding
 @reference --fkt-space-xs
-@component Field
 @category Spacing
 @type size
  */
@@ -12,7 +14,6 @@ $input-vertical-padding: var(--fkt-field-vertical-padding, var(--fkt-space-xs));
 Horizontal padding inside the input field (left and right spacing between border and content).
 @name --fkt-field-horizontal-padding
 @reference --fkt-space-sm
-@component Field
 @category Spacing
 @type size
  */
@@ -22,7 +23,6 @@ $input-horizontal-padding: var(--fkt-field-horizontal-padding, var(--fkt-space-s
 Border color of the input in its normal (default) state.
 @name --fkt-field-border-color
 @reference --fkt-color-neutral-400
-@component Field
 @category Colors
 @type color
  */
@@ -32,7 +32,6 @@ $border-color: var(--fkt-field-border-color, var(--fkt-color-neutral-400));
 Border color of the input when it gets focused
 @name --fkt-field-border-focus-color
 @reference --fkt-color-neutral-800
-@component Field
 @category Colors
 @type color
  */
@@ -42,7 +41,6 @@ $border-focus-color: var(--fkt-field-border-focus-color, var(--fkt-color-neutral
 Color of the label in its normal (default) state.
 @name --fkt-field-label-color
 @reference --fkt-color-neutral-700
-@component Field
 @category Colors
 @type color
  */
@@ -52,7 +50,6 @@ $label-color: var(--fkt-field-label-color, var(--fkt-color-neutral-700));
 Color of the label when it gets focused
 @name --fkt-field-label-focus-color
 @reference --fkt-color-neutral-800
-@component Field
 @category Colors
 @type color
  */
@@ -62,7 +59,6 @@ $label-focus-color: var(--fkt-field-label-focus-color, var(--fkt-color-neutral-8
 Border radius for input
 @name --fkt-field-border-radius
 @reference --fkt-radius-lg
-@component Field
 @category Spacing
 @type size
  */
@@ -72,7 +68,6 @@ $border-radius: var(--fkt-field-border-radius, var(--fkt-radius-lg));
 Font size for input text and placeholder.
 @name --fkt-field-font-size
 @reference --fkt-font-size-sm
-@component Field
 @category Typography
 @type size
  */
@@ -81,11 +76,50 @@ $font-size: var(--fkt-field-font-size, var(--fkt-font-size-sm));
 Color for text written into input
 @name --fkt-field-text-color
 @reference --fkt-color-neutral-900
-@component Field
 @category Colors
 @type color
  */
 $text-color: var(--fkt-field-text-color, var(--fkt-color-neutral-900));
+
+/*
+Space between prefix and field element
+@name --fkt-field-prefix-gap
+@scope Prefix | [fktFieldPrefix]
+@reference --fkt-space-xs
+@category Spacing
+@type size
+ */
+$prefix-gap: var(--fkt-field-prefix-gap, var(--fkt-space-xs));
+
+/*
+Text color for prefix when field is at invalid state
+@name --fkt-field-prefix-invalid-text
+@scope Prefix | [fktFieldPrefix]
+@reference --fkt-color-danger
+@category Colors
+@type color
+ */
+$prefix-invalid-color: var(--fkt-field-prefix-invalid-text, var(--fkt-color-danger));
+
+/*
+Space between suffix and field element
+@name --fkt-field-suffix-gap
+@scope Suffix | [fktFieldSuffix]
+@reference --fkt-space-xs
+@category Spacing
+@type size
+ */
+$suffix-gap: var(--fkt-field-suffix-gap, var(--fkt-space-xs));
+
+/*
+Text color for suffix when field is at invalid state
+@name --fkt-field-suffix-invalid-text
+@scope Suffix | [fktFieldSuffix]
+@reference --fkt-color-danger
+@category Colors
+@type color
+ */
+$suffix-invalid-color: var(--fkt-field-suffix-invalid-text, var(--fkt-color-danger));
 
 // </design-tokens>
 
@@ -94,14 +128,6 @@ $text-color: var(--fkt-field-text-color, var(--fkt-color-neutral-900));
 }
 
 :host {
-    //display: block;
-    //border-radius: $border-radius;
-    //position: relative;
-    //border-color: $border-color;
-    //transition: var(--fkt-transition-base);
-    //scroll-behavior: smooth;
-    //width: 100%;
-
     .input {
         padding: $input-vertical-padding $input-horizontal-padding;
         width: 100%;
@@ -132,8 +158,7 @@ $text-color: var(--fkt-field-text-color, var(--fkt-color-neutral-900));
                 border-bottom-width: 1px;
                 border-left-width: 1px;
                 border-right-width: 0;
-                min-width: $input-horizontal-padding;
-                width: fit-content;
+                padding-left: $input-horizontal-padding;
             }
 
             .center {
@@ -147,9 +172,10 @@ $text-color: var(--fkt-field-text-color, var(--fkt-color-neutral-900));
                 border-right-width: 0;
                 width: fit-content;
                 display: flex;
-                align-items: center;
+                align-items: flex-start;
+                padding: $input-vertical-padding 0;
 
-                label {
+                label:not(.fkt-sr-only) {
                     position: relative;
                     pointer-events: none;
                     font-size: var(--fkt-font-size-sm);
@@ -179,16 +205,6 @@ $text-color: var(--fkt-field-text-color, var(--fkt-color-neutral-900));
                 justify-content: flex-end;
                 align-items: center;
             }
-
-            &.error {
-                .center, .left, .right {
-                    border-color: var(--fkt-color-danger);
-                }
-
-                .center label {
-                    color: var(--fkt-color-danger);
-                }
-            }
         }
 
         &.disabled {
@@ -197,22 +213,29 @@ $text-color: var(--fkt-field-text-color, var(--fkt-color-neutral-900));
             .border {
                 .center, .left, .right {
                     cursor: not-allowed;
-                    border-color: rgb(from var(--fkt-color-neutral-400) r g b/.6);
+                    border-color: rgb(from var(--fkt-color-neutral-400) r g b/.6) !important;
+                    color: var(--fkt-color-danger);
                 }
-                cursor: not-allowed;
 
+                cursor: not-allowed;
             }
 
-            ::ng-deep .field {
-                color: rgb(from var(--fkt-color-neutral-800) r g b/.6);
-                cursor: not-allowed;
+            ::ng-deep {
+                .fkt-control-field {
+                    color: rgb(from var(--fkt-color-neutral-800) r g b/.6);
+                    cursor: not-allowed;
+                }
+
+                [fktFieldPrefix], [fktFieldSuffix] {
+                    cursor: not-allowed !important;
+                }
             }
         }
 
-        &.focused:not(.error) {
+        &.focused:not(.invalid) {
             .border {
                 .center {
-                    label {
+                    label:not(.fkt-sr-only) {
                         color: $label-focus-color;
                     }
                 }
@@ -224,55 +247,96 @@ $text-color: var(--fkt-field-text-color, var(--fkt-color-neutral-900));
 
         }
 
-        &.error {
+        &.invalid:not(.disabled) {
             .border {
                 .center, .left, .right {
                     border-color: var(--fkt-color-danger);
                 }
 
-                .center label {
+                .center label:not(.fkt-sr-only) {
                     color: var(--fkt-color-danger);
                 }
             }
 
+            ::ng-deep {
+                [fktFieldPrefix] {
+                    color: $prefix-invalid-color;
+                }
+
+                [fktFieldSuffix] {
+                    color: $suffix-invalid-color;
+                }
+            }
         }
+
 
         &.float {
             .border {
                 .center {
                     border-top-width: 0;
+                    position: relative;
 
-                    label {
+                    label:not(.fkt-sr-only) {
                         z-index: 50;
                         font-size: var(--fkt-font-size-xs);
-                        margin: 0 var(--fkt-space-4xs);
-                        translate: 0 calc(calc(calc($input-vertical-padding + .5rem) * -1) - 1px)
+                        padding: 0 var(--fkt-space-4xs);
+                        position: absolute;
+                        top: 0;
+                        transform: translateY(-50%);
                     }
                 }
             }
 
-            ::ng-deep .field {
+            ::ng-deep .fkt-control-field {
                 &::placeholder {
                     opacity: 1;
                 }
             }
         }
 
+        ::ng-deep {
+            [fktFieldPrefix] {
+                padding-right: $prefix-gap;
+            }
 
-        ::ng-deep .field {
-            box-sizing: border-box;
-            outline: none;
-            font-size: $font-size;
-            width: 100%;
-            border: none;
-            background-color: transparent;
-            color: $text-color;
+            [fktFieldSuffix] {
+                padding-left: $suffix-gap;
+            }
 
-            &::placeholder {
-                opacity: 0;
-                color: var(--fkt-color-neutral-500);
+            .fkt-control-field {
+                box-sizing: border-box;
+                outline: none;
                 font-size: $font-size;
+                width: 100%;
+                border: none;
+                background-color: transparent;
+                color: $text-color;
+                font-family: inherit;
+
+                &::placeholder {
+                    color: var(--fkt-color-neutral-500);
+                    font-size: $font-size;
+                }
             }
         }
+
+        &:not(:has(label.fkt-sr-only)):not(.float) {
+            ::ng-deep .fkt-control-field {
+                &::placeholder {
+                    opacity: 0;
+                }
+            }
+        }
+    }
+}
+
+.error {
+    display: block;
+    overflow: hidden;
+    max-height: 0;
+    transition: var(--fkt-transition-slow);
+
+    &.show {
+        max-height: 30px;
     }
 }

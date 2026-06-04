@@ -1,83 +1,171 @@
 [
   {
+    "scope": {
+      "name": "Field",
+      "selector": "fkt-field"
+    },
     "description": "Vertical padding inside the input field (top and bottom spacing between border and content).",
     "name": "--fkt-field-vertical-padding",
     "reference": "--fkt-space-xs",
-    "component": "Field",
     "category": "Spacing",
     "type": "size",
-    "defaultValue": ".5rem"
+    "defaultValue": ".5rem",
+    "component": "Field"
   },
   {
+    "scope": {
+      "name": "Field",
+      "selector": "fkt-field"
+    },
     "description": "Horizontal padding inside the input field (left and right spacing between border and content).",
     "name": "--fkt-field-horizontal-padding",
     "reference": "--fkt-space-sm",
-    "component": "Field",
     "category": "Spacing",
     "type": "size",
-    "defaultValue": ".75rem"
+    "defaultValue": ".75rem",
+    "component": "Field"
   },
   {
+    "scope": {
+      "name": "Field",
+      "selector": "fkt-field"
+    },
     "description": "Border color of the input in its normal (default) state.",
     "name": "--fkt-field-border-color",
     "reference": "--fkt-color-neutral-400",
-    "component": "Field",
     "category": "Colors",
     "type": "color",
-    "defaultValue": "#94a3b8"
+    "defaultValue": "#94a3b8",
+    "component": "Field"
   },
   {
+    "scope": {
+      "name": "Field",
+      "selector": "fkt-field"
+    },
     "description": "Border color of the input when it gets focused",
     "name": "--fkt-field-border-focus-color",
     "reference": "--fkt-color-neutral-800",
-    "component": "Field",
     "category": "Colors",
     "type": "color",
-    "defaultValue": "#1e293b"
+    "defaultValue": "#1e293b",
+    "component": "Field"
   },
   {
+    "scope": {
+      "name": "Field",
+      "selector": "fkt-field"
+    },
     "description": "Color of the label in its normal (default) state.",
     "name": "--fkt-field-label-color",
     "reference": "--fkt-color-neutral-700",
-    "component": "Field",
     "category": "Colors",
     "type": "color",
-    "defaultValue": "#334155"
+    "defaultValue": "#334155",
+    "component": "Field"
   },
   {
+    "scope": {
+      "name": "Field",
+      "selector": "fkt-field"
+    },
     "description": "Color of the label when it gets focused",
     "name": "--fkt-field-label-focus-color",
     "reference": "--fkt-color-neutral-800",
-    "component": "Field",
     "category": "Colors",
     "type": "color",
-    "defaultValue": "#1e293b"
+    "defaultValue": "#1e293b",
+    "component": "Field"
   },
   {
+    "scope": {
+      "name": "Field",
+      "selector": "fkt-field"
+    },
     "description": "Border radius for input",
     "name": "--fkt-field-border-radius",
     "reference": "--fkt-radius-lg",
-    "component": "Field",
     "category": "Spacing",
     "type": "size",
-    "defaultValue": ".5rem"
+    "defaultValue": ".5rem",
+    "component": "Field"
   },
   {
+    "scope": {
+      "name": "Field",
+      "selector": "fkt-field"
+    },
     "description": "Font size for input text and placeholder.",
     "name": "--fkt-field-font-size",
     "reference": "--fkt-font-size-sm",
-    "component": "Field",
     "category": "Typography",
     "type": "size",
-    "defaultValue": "0.875rem"
+    "defaultValue": "0.875rem",
+    "component": "Field"
   },
   {
+    "scope": {
+      "name": "Field",
+      "selector": "fkt-field"
+    },
     "description": "Color for text written into input",
     "name": "--fkt-field-text-color",
     "reference": "--fkt-color-neutral-900",
-    "component": "Field",
     "category": "Colors",
     "type": "color",
-    "defaultValue": "#0f172a"
+    "defaultValue": "#0f172a",
+    "component": "Field"
+  },
+  {
+    "scope": {
+      "name": "Prefix",
+      "selector": "[fktFieldPrefix]"
+    },
+    "description": "Space between prefix and field element",
+    "name": "--fkt-field-prefix-gap",
+    "reference": "--fkt-space-xs",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": ".5rem",
+    "component": "Field"
+  },
+  {
+    "scope": {
+      "name": "Prefix",
+      "selector": "[fktFieldPrefix]"
+    },
+    "description": "Text color for prefix when field is at invalid state",
+    "name": "--fkt-field-prefix-invalid-text",
+    "reference": "--fkt-color-danger",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#E7000BFF",
+    "component": "Field"
+  },
+  {
+    "scope": {
+      "name": "Suffix",
+      "selector": "[fktFieldSuffix]"
+    },
+    "description": "Space between suffix and field element",
+    "name": "--fkt-field-suffix-gap",
+    "reference": "--fkt-space-xs",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": ".5rem",
+    "component": "Field"
+  },
+  {
+    "scope": {
+      "name": "Suffix",
+      "selector": "[fktFieldSuffix]"
+    },
+    "description": "Text color for suffix when field is at invalid state",
+    "name": "--fkt-field-suffix-invalid-text",
+    "reference": "--fkt-color-danger",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#E7000BFF",
+    "component": "Field"
   }
 ]

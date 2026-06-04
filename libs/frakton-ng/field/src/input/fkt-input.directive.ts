@@ -1,64 +1,44 @@
-import {
-    AfterViewInit,
-    DestroyRef,
-    Directive,
-    ElementRef,
-    inject,
-    Signal,
-    signal,
-} from '@angular/core';
+import { computed, Directive, signal } from '@angular/core';
+import { FktFieldControl } from 'frakton-ng/internal/directives';
+import { injectCompatFormState } from 'frakton-ng/internal/di';
 
-@Directive()
-export abstract class FktFieldControl {
-    abstract focused: Signal<boolean>;
-    abstract hasValue: Signal<boolean>;
-    abstract disabled: Signal<boolean>;
-}
 
 @Directive({
-    selector: 'input[fktInput]',
+    selector: 'input[fktInput], textarea[fktInput]',
     providers: [{ provide: FktFieldControl, useExisting: FktInputDirective }],
     host: {
-        '[class.field]': 'true',
+        '[class.fkt-control-field]': 'true',
         '(focus)': 'focused.set(true)',
         '(blur)': 'focused.set(false)',
-        '(input)': 'syncFromElement()',
+        '[id]': 'id',
     },
 })
-export class FktInputDirective implements FktFieldControl, AfterViewInit {
+export class FktInputDirective<T> implements FktFieldControl<T> {
+    private state = injectCompatFormState<T>();
+
+    private static id = 0;
+
+    id = `fkt-input-${FktInputDirective.id++}`;
+
     focused = signal(false);
-    hasValue = signal(false);
-    disabled = signal(false);
 
-    private elementRef = inject(ElementRef);
-    private destroyRef = inject(DestroyRef);
+    value = computed(() => {
+        return this.state.value();
+    });
 
-    private get element() {
-        return this.elementRef.nativeElement as HTMLInputElement;
-    }
+    invalid = computed(() => {
+        return this.state.invalid();
+    });
 
-    ngAfterViewInit() {
-        const observer = new MutationObserver(() => this.syncFromElement());
+    touched = computed(() => {
+        return this.state.touched();
+    });
 
-        observer.observe(this.element, {
-            attributes: true,
-            attributeFilter: [
-                'class',
-                'disabled',
-                'required',
-                'readonly',
-                'value',
-                'aria-invalid',
-            ],
-        });
+    disabled = computed(() => {
+        return this.state.disabled();
+    });
 
-        this.destroyRef.onDestroy(() => observer.disconnect());
-
-        this.syncFromElement();
-    }
-
-    protected syncFromElement() {
-        this.hasValue.set(!!this.element.value);
-        this.disabled.set(this.element.disabled);
-    }
+    errors = computed(() => {
+        return this.state.errors();
+    });
 }

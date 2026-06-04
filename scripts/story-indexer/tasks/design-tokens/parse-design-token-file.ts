@@ -82,6 +82,13 @@ export const parseDesignTokenFile = (
                 object['component'] = scopeName;
             }
 
+            if(object['scope']) {
+                object['scope'] = {
+                    name: object['scope'].split("|")[0].trim(),
+                    selector: object['scope'].split("|")[1]?.trim() ?? '',
+                }
+            }
+
             return [object as DesignToken];
         } catch (error) {
             console.error(

@@ -1,0 +1,9 @@
+<fkt-field [requiredMarker]="form.name().required()" label="Name">
+    <fkt-icon fktFieldPrefix name="user"/>
+    <input fktInput [field]="form.name" placeholder="Enter a name">
+</fkt-field>
+
+<fkt-field [requiredMarker]="form.email().required()" label="E-mail">
+    <fkt-icon fktFieldPrefix name="envelope"/>
+    <input fktInput [field]="form.email" placeholder="Enter an e-mail">
+</fkt-field>

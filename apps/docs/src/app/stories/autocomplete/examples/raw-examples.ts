@@ -25,17 +25,17 @@ export default {
 			{
 				name: "fkt-autocomplete-auto-creation-example.component.html",
 				content: fktAutocompleteAutoCreationExampleTemplate as string,
-				language: "html" as "html",
+				language: "angular-html" as const,
 			},		
 			{
 				name: "fkt-autocomplete-auto-creation-example.component.ts",
 				content: fktAutocompleteAutoCreationExampleTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "fkt-autocomplete-auto-creation-example.component.scss",
 				content: fktAutocompleteAutoCreationExampleStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},
@@ -46,17 +46,17 @@ export default {
 			{
 				name: "fkt-autocomplete-basic-example.component.html",
 				content: fktAutocompleteBasicExampleTemplate as string,
-				language: "html" as "html",
+				language: "angular-html" as const,
 			},		
 			{
 				name: "fkt-autocomplete-basic-example.component.ts",
 				content: fktAutocompleteBasicExampleTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "fkt-autocomplete-basic-example.component.scss",
 				content: fktAutocompleteBasicExampleStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},
@@ -67,17 +67,17 @@ export default {
 			{
 				name: "fkt-autocomplete-custom-styling-example.component.html",
 				content: fktAutocompleteCustomStylingExampleTemplate as string,
-				language: "html" as "html",
+				language: "angular-html" as const,
 			},		
 			{
 				name: "fkt-autocomplete-custom-styling-example.component.ts",
 				content: fktAutocompleteCustomStylingExampleTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "fkt-autocomplete-custom-styling-example.component.scss",
 				content: fktAutocompleteCustomStylingExampleStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},
@@ -88,17 +88,17 @@ export default {
 			{
 				name: "fkt-autocomplete-events-example.component.html",
 				content: fktAutocompleteEventsExampleTemplate as string,
-				language: "html" as "html",
+				language: "angular-html" as const,
 			},		
 			{
 				name: "fkt-autocomplete-events-example.component.ts",
 				content: fktAutocompleteEventsExampleTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "fkt-autocomplete-events-example.component.scss",
 				content: fktAutocompleteEventsExampleStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},
@@ -109,17 +109,17 @@ export default {
 			{
 				name: "fkt-autocomplete-loading-states-example.component.html",
 				content: fktAutocompleteLoadingStatesExampleTemplate as string,
-				language: "html" as "html",
+				language: "angular-html" as const,
 			},		
 			{
 				name: "fkt-autocomplete-loading-states-example.component.ts",
 				content: fktAutocompleteLoadingStatesExampleTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "fkt-autocomplete-loading-states-example.component.scss",
 				content: fktAutocompleteLoadingStatesExampleStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},

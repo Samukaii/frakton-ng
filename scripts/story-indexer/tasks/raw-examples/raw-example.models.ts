@@ -1,6 +1,6 @@
 export interface RawExampleFile {
     name: string;
-    language: 'typescript' | 'html' | 'css';
+    language: 'typescript' | 'angular-html' | 'css';
     fileVarName: string;
 }
 

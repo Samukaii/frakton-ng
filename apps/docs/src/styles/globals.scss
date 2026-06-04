@@ -20,6 +20,9 @@ body {
     background-color: var(--fkt-color-neutral-background);
     --fkt-panel-shadow: rgb(179 187 199) 0px 4px 21px 1px;
     --fkt-toolbar-background: #E2E8F066;
+    --inline-code-text-color: #d52020;
+    --inline-code-background-color: #80808008;
+    --inline-code-border-color: #00000033;
     --fkt-mobile-menu-background: rgba(230, 235, 245, 0.9);
     --fkt-color-link: var(--fkt-color-info);
     --fkt-color-link-opacity-20: var(--fkt-color-info-opacity-20);
@@ -67,6 +70,10 @@ body[data-fkt-theme="dark"] {
 
     --fkt-color-link: var(--fkt-color-accent);
     --fkt-color-link-opacity-20: var(--fkt-color-accent-opacity-20);
+
+    --inline-code-text-color: #fa6565;
+    --inline-code-background-color: #adadad14;
+    --inline-code-border-color: #ffffff2b;
 }
 
 .show-xs, .show-md, .show-sm {

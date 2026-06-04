@@ -20,7 +20,7 @@ export class FktDialogConfirmActionComponent {
 		| undefined
 	>();
 
-	protected confirmActions = computed(() => {
+	protected confirmActions = computed<FktButtonAction[]>(() => {
 		const { primary, secondary } = this.actions() || {};
 
 		const primaryAction: FktButtonAction = {

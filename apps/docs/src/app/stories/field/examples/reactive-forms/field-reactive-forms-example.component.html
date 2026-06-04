@@ -1,0 +1,25 @@
+<form [formGroup]="form">
+    <fkt-field label="Name" requiredMarker>
+        <fkt-icon fktFieldPrefix name="user"/>
+        <input fktInput formControlName="name" placeholder="Enter a name">
+    </fkt-field>
+
+    <fkt-field label="E-mail" requiredMarker>
+        <fkt-icon fktFieldPrefix name="envelope"/>
+        <input fktInput formControlName="email" placeholder="Enter an e-mail">
+    </fkt-field>
+</form>
+<div class="actions">
+    <fkt-button
+        (click)="toggleDisabled()"
+        [text]="(disabled$ | async) ? 'Enable' : 'Disable'"
+    />
+    <fkt-button
+        (click)="fillProfile()"
+        text="Fill"
+    />
+    <fkt-button
+        (click)="reset()"
+        text="Reset"
+    />
+</div>

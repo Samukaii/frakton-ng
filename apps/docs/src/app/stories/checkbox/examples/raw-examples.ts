@@ -22,17 +22,17 @@ export default {
 			{
 				name: "fkt-checkbox-basic-example.component.html",
 				content: fktCheckboxBasicExampleTemplate as string,
-				language: "html" as "html",
+				language: "angular-html" as const,
 			},		
 			{
 				name: "fkt-checkbox-basic-example.component.ts",
 				content: fktCheckboxBasicExampleTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "fkt-checkbox-basic-example.component.scss",
 				content: fktCheckboxBasicExampleStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},
@@ -43,17 +43,17 @@ export default {
 			{
 				name: "fkt-checkbox-disabled-example.component.html",
 				content: fktCheckboxDisabledExampleTemplate as string,
-				language: "html" as "html",
+				language: "angular-html" as const,
 			},		
 			{
 				name: "fkt-checkbox-disabled-example.component.ts",
 				content: fktCheckboxDisabledExampleTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "fkt-checkbox-disabled-example.component.scss",
 				content: fktCheckboxDisabledExampleStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},
@@ -64,17 +64,17 @@ export default {
 			{
 				name: "fkt-checkbox-pre-checked-example.component.html",
 				content: fktCheckboxPreCheckedExampleTemplate as string,
-				language: "html" as "html",
+				language: "angular-html" as const,
 			},		
 			{
 				name: "fkt-checkbox-pre-checked-example.component.ts",
 				content: fktCheckboxPreCheckedExampleTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "fkt-checkbox-pre-checked-example.component.scss",
 				content: fktCheckboxPreCheckedExampleStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},
@@ -85,17 +85,17 @@ export default {
 			{
 				name: "fkt-checkbox-validation-example.component.html",
 				content: fktCheckboxValidationExampleTemplate as string,
-				language: "html" as "html",
+				language: "angular-html" as const,
 			},		
 			{
 				name: "fkt-checkbox-validation-example.component.ts",
 				content: fktCheckboxValidationExampleTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "fkt-checkbox-validation-example.component.scss",
 				content: fktCheckboxValidationExampleStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},

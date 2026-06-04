@@ -4,6 +4,7 @@
         "baseUrl": "./",
         "esModuleInterop": true,
         "paths": {
+            "frakton-ng": ["libs/frakton-ng"],
             "frakton-ng/autocomplete": ["libs/frakton-ng/autocomplete"],
             "frakton-ng/avatar": ["libs/frakton-ng/avatar"],
             "frakton-ng/button": ["libs/frakton-ng/button"],
@@ -31,6 +32,9 @@
                 "libs/frakton-ng/internal/components"
             ],
             "frakton-ng/internal/di": ["libs/frakton-ng/internal/di"],
+            "frakton-ng/internal/directives": [
+                "libs/frakton-ng/internal/directives"
+            ],
             "frakton-ng/internal/pipes": ["libs/frakton-ng/internal/pipes"],
             "frakton-ng/internal/services": [
                 "libs/frakton-ng/internal/services"

@@ -19,17 +19,17 @@ export default {
 			{
 				name: "basic-usage.component.html",
 				content: basicUsageTemplate as string,
-				language: "html" as "html",
+				language: "angular-html" as const,
 			},		
 			{
 				name: "basic-usage.component.ts",
 				content: basicUsageTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "basic-usage.component.scss",
 				content: basicUsageStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},
@@ -40,17 +40,17 @@ export default {
 			{
 				name: "dashboard-metrics.component.html",
 				content: dashboardMetricsTemplate as string,
-				language: "html" as "html",
+				language: "angular-html" as const,
 			},		
 			{
 				name: "dashboard-metrics.component.ts",
 				content: dashboardMetricsTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "dashboard-metrics.component.scss",
 				content: dashboardMetricsStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},
@@ -61,17 +61,17 @@ export default {
 			{
 				name: "with-labels.component.html",
 				content: withLabelsTemplate as string,
-				language: "html" as "html",
+				language: "angular-html" as const,
 			},		
 			{
 				name: "with-labels.component.ts",
 				content: withLabelsTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "with-labels.component.scss",
 				content: withLabelsStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},

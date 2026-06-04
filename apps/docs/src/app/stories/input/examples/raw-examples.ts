@@ -43,17 +43,17 @@ export default {
 			{
 				name: "basic-example.component.html",
 				content: basicExampleTemplate as string,
-				language: "html" as "html",
+				language: "angular-html" as const,
 			},		
 			{
 				name: "basic-example.component.ts",
 				content: basicExampleTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "basic-example.component.scss",
 				content: basicExampleStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},
@@ -64,17 +64,17 @@ export default {
 			{
 				name: "currency-example.component.html",
 				content: currencyExampleTemplate as string,
-				language: "html" as "html",
+				language: "angular-html" as const,
 			},		
 			{
 				name: "currency-example.component.ts",
 				content: currencyExampleTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "currency-example.component.scss",
 				content: currencyExampleStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},
@@ -85,17 +85,17 @@ export default {
 			{
 				name: "custom-formatting-example.component.html",
 				content: customFormattingExampleTemplate as string,
-				language: "html" as "html",
+				language: "angular-html" as const,
 			},		
 			{
 				name: "custom-formatting-example.component.ts",
 				content: customFormattingExampleTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "custom-formatting-example.component.scss",
 				content: customFormattingExampleStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},
@@ -106,17 +106,17 @@ export default {
 			{
 				name: "disabled-example.component.html",
 				content: disabledExampleTemplate as string,
-				language: "html" as "html",
+				language: "angular-html" as const,
 			},		
 			{
 				name: "disabled-example.component.ts",
 				content: disabledExampleTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "disabled-example.component.scss",
 				content: disabledExampleStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},
@@ -127,17 +127,17 @@ export default {
 			{
 				name: "email-example.component.html",
 				content: emailExampleTemplate as string,
-				language: "html" as "html",
+				language: "angular-html" as const,
 			},		
 			{
 				name: "email-example.component.ts",
 				content: emailExampleTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "email-example.component.scss",
 				content: emailExampleStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},
@@ -148,17 +148,17 @@ export default {
 			{
 				name: "hour-example.component.html",
 				content: hourExampleTemplate as string,
-				language: "html" as "html",
+				language: "angular-html" as const,
 			},		
 			{
 				name: "hour-example.component.ts",
 				content: hourExampleTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "hour-example.component.scss",
 				content: hourExampleStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},
@@ -169,17 +169,17 @@ export default {
 			{
 				name: "number-example.component.html",
 				content: numberExampleTemplate as string,
-				language: "html" as "html",
+				language: "angular-html" as const,
 			},		
 			{
 				name: "number-example.component.ts",
 				content: numberExampleTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "number-example.component.scss",
 				content: numberExampleStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},
@@ -190,17 +190,17 @@ export default {
 			{
 				name: "password-example.component.html",
 				content: passwordExampleTemplate as string,
-				language: "html" as "html",
+				language: "angular-html" as const,
 			},		
 			{
 				name: "password-example.component.ts",
 				content: passwordExampleTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "password-example.component.scss",
 				content: passwordExampleStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},
@@ -211,17 +211,17 @@ export default {
 			{
 				name: "percent-example.component.html",
 				content: percentExampleTemplate as string,
-				language: "html" as "html",
+				language: "angular-html" as const,
 			},		
 			{
 				name: "percent-example.component.ts",
 				content: percentExampleTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "percent-example.component.scss",
 				content: percentExampleStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},
@@ -232,17 +232,17 @@ export default {
 			{
 				name: "signup-form-example.component.html",
 				content: signupFormExampleTemplate as string,
-				language: "html" as "html",
+				language: "angular-html" as const,
 			},		
 			{
 				name: "signup-form-example.component.ts",
 				content: signupFormExampleTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "signup-form-example.component.scss",
 				content: signupFormExampleStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},
@@ -253,17 +253,17 @@ export default {
 			{
 				name: "suffix-example.component.html",
 				content: suffixExampleTemplate as string,
-				language: "html" as "html",
+				language: "angular-html" as const,
 			},		
 			{
 				name: "suffix-example.component.ts",
 				content: suffixExampleTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "suffix-example.component.scss",
 				content: suffixExampleStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},

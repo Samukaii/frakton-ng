@@ -1,29 +1,51 @@
-@if (scopes().length > 2) {
-    <div fktNavigableList orientation="horizontal" childSelector=".scope" (select)="selectScopeByIndex($event)" class="scopes-container">
-        @for (scope of scopes(); track scope) {
-            <button
-                [class.active]="currentScope() === scope"
-                (mouseenter)="showAnatomy(scope)"
-                (focus)="showAnatomy(scope)"
-                (blur)="target.set(null)"
-                (mouseout)="target.set(null)"
-                (click)="currentScope.set(scope)" class="scope">
-                {{ scope.name }}
-            </button>
-        }
-    </div>
-}
-<div class="list">
-    @for (category of tokensCategories(); track category.name) {
-        @for (token of category.tokens; track token.name) {
-            <app-story-design-tokens-item
-                [class.last]="$last"
-                [designToken]="token"
-                [templateSelector]="templateSelector()"
+<div class="header">
+    @if (scopes().length > 2) {
+        <div fktNavigableList orientation="horizontal" childSelector=".scope" (select)="selectScopeByIndex($event)"
+             class="scopes-container">
+            @for (scope of scopes(); track scope) {
+                <button
+                    [class.active]="currentScope() === scope"
+                    (mouseenter)="showAnatomy(scope)"
+                    (focus)="showAnatomy(scope)"
+                    (blur)="target.set(null)"
+                    (mouseout)="target.set(null)"
+                    (click)="currentScope.set(scope)" class="scope">
+                    {{ scope.name }}
+                </button>
+            }
+        </div>
+    }
+
+    <div class="actions">
+        @if (hasChanges()) {
+            <fkt-button
+                ariaLabel="Reset all"
+                fktTooltip="Reset all"
+                icon="arrow-uturn-left"
+                theme="basic"
+                (click)="resetAll()"
+            />
+            <fkt-button
+                [ariaLabel]="copied() ? 'Copied' :'Copy all'"
+                [fktTooltip]="copied() ? 'Copied' :'Copy all'"
+                [color]="copied() ? 'success' : 'primary'"
+                [icon]="copied() ? 'check' :'clipboard'"
+                [theme]="copied() ? 'raised' : 'basic'"
+                (click)="copyAll()"
             />
         }
+    </div>
+</div>
+<div class="list">
+    @for (token of tokensOrderedByCategory(); track token.name) {
+        <app-story-design-tokens-item
+            [class.last]="$last"
+            [designToken]="token"
+            [templateSelector]="templateSelector()"
+        />
     }
 </div>
+
 
 @if (anatomyInfo(); as info) {
     <div class="anatomy"

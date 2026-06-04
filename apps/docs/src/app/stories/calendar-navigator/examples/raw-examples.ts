@@ -22,17 +22,17 @@ export default {
 			{
 				name: "dynamic-mode-example.component.html",
 				content: dynamicModeExampleTemplate as string,
-				language: "html" as "html",
+				language: "angular-html" as const,
 			},		
 			{
 				name: "dynamic-mode-example.component.ts",
 				content: dynamicModeExampleTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "dynamic-mode-example.component.scss",
 				content: dynamicModeExampleStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},
@@ -43,17 +43,17 @@ export default {
 			{
 				name: "form-integration-example.component.html",
 				content: formIntegrationExampleTemplate as string,
-				language: "html" as "html",
+				language: "angular-html" as const,
 			},		
 			{
 				name: "form-integration-example.component.ts",
 				content: formIntegrationExampleTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "form-integration-example.component.scss",
 				content: formIntegrationExampleStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},
@@ -64,17 +64,17 @@ export default {
 			{
 				name: "month-mode-example.component.html",
 				content: monthModeExampleTemplate as string,
-				language: "html" as "html",
+				language: "angular-html" as const,
 			},		
 			{
 				name: "month-mode-example.component.ts",
 				content: monthModeExampleTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "month-mode-example.component.scss",
 				content: monthModeExampleStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},
@@ -85,17 +85,17 @@ export default {
 			{
 				name: "year-mode-example.component.html",
 				content: yearModeExampleTemplate as string,
-				language: "html" as "html",
+				language: "angular-html" as const,
 			},		
 			{
 				name: "year-mode-example.component.ts",
 				content: yearModeExampleTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "year-mode-example.component.scss",
 				content: yearModeExampleStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},
