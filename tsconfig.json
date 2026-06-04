@@ -4,7 +4,6 @@
         "baseUrl": "./",
         "esModuleInterop": true,
         "paths": {
-            "frakton-ng": ["libs/frakton-ng"],
             "frakton-ng/autocomplete": ["libs/frakton-ng/autocomplete"],
             "frakton-ng/avatar": ["libs/frakton-ng/avatar"],
             "frakton-ng/button": ["libs/frakton-ng/button"],
@@ -17,6 +16,7 @@
             "frakton-ng/card": ["libs/frakton-ng/card"],
             "frakton-ng/checkbox": ["libs/frakton-ng/checkbox"],
             "frakton-ng/color-picker": ["libs/frakton-ng/color-picker"],
+            "frakton-ng/config": ["libs/frakton-ng/config"],
             "frakton-ng/core": ["libs/frakton-ng/core"],
             "frakton-ng/date-picker": ["libs/frakton-ng/date-picker"],
             "frakton-ng/dialog": ["libs/frakton-ng/dialog"],
