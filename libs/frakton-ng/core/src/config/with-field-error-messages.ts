@@ -1,9 +1,6 @@
 import { FktFieldControlStateErrors } from 'frakton-ng/internal/types';
 import { inject } from '@angular/core';
-import {
-    FKT_FIELD_ERROR_HANDLER,
-    FKT_TRANSLATION_CONTEXT,
-} from '../injection-tokens';
+import { FKT_FIELD_ERROR_HANDLER, FKT_TRANSLATION_CONTEXT } from './injection-tokens';
 
 export const withFieldErrorMessages = <
     TranslateFn extends (...args: any) => any

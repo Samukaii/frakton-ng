@@ -1,6 +1,5 @@
-import { RecomputeOn } from '../models/recompute-on';
-
-import { FKT_TRANSLATION_CONTEXT } from '../injection-tokens';
+import { RecomputeOn } from './recompute-on';
+import { FKT_TRANSLATION_CONTEXT } from './injection-tokens';
 
 export const withI18nIntegration = <TranslateFn extends (...args: any) => any>(
     config: () => { recomputeOn: RecomputeOn; translateFn: TranslateFn }

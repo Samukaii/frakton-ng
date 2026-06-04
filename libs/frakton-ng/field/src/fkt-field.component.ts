@@ -13,7 +13,7 @@ import {
 import { MarkUsed } from 'frakton-ng/internal/utils';
 import { FktFieldControl } from 'frakton-ng/internal/directives';
 import { FktFieldErrorComponent } from 'frakton-ng/field-error';
-import { FKT_FIELD_ERROR_HANDLER } from 'frakton-ng/config';
+import { FKT_FIELD_ERROR_HANDLER } from 'frakton-ng/core';
 
 @Component({
     selector: 'fkt-field',

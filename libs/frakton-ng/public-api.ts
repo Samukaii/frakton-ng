@@ -1,1 +1,1 @@
-export * from './config';
+export * from 'frakton-ng/core';
