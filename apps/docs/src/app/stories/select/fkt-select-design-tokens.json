@@ -2,20 +2,20 @@
   {
     "description": "Vertical padding inside the select field (top and bottom spacing between border and content).",
     "name": "--fkt-select-vertical-padding",
-    "reference": "--fkt-space-md",
+    "reference": "--fkt-space-xs",
     "component": "Field",
     "category": "Spacing",
     "type": "size",
-    "defaultValue": "1rem"
+    "defaultValue": ".5rem"
   },
   {
     "description": "Horizontal padding inside the select field (left and right spacing between border and content).",
     "name": "--fkt-select-horizontal-padding",
-    "reference": "--fkt-space-md",
+    "reference": "--fkt-space-sm",
     "component": "Field",
     "category": "Spacing",
     "type": "size",
-    "defaultValue": "1rem"
+    "defaultValue": ".75rem"
   },
   {
     "description": "Border color of the select in its normal (default) state.",
@@ -29,29 +29,29 @@
   {
     "description": "Border color of the select when it gets focused",
     "name": "--fkt-select-border-focus-color",
-    "reference": "--fkt-color-focus-outline",
+    "reference": "--fkt-color-neutral-800",
     "component": "Field",
     "category": "Colors",
     "type": "color",
-    "defaultValue": "var(--fkt-color-accent)"
+    "defaultValue": "#1e293b"
   },
   {
     "description": "Color of the label in its normal (default) state.",
     "name": "--fkt-select-label-color",
-    "reference": "--fkt-color-neutral-900",
+    "reference": "--fkt-color-neutral-700",
     "component": "Field",
     "category": "Colors",
     "type": "color",
-    "defaultValue": "#0f172a"
+    "defaultValue": "#334155"
   },
   {
     "description": "Color of the label when it gets focused",
     "name": "--fkt-select-label-focus-color",
-    "reference": "--fkt-color-focus-outline",
+    "reference": "--fkt-color-neutral-800",
     "component": "Field",
     "category": "Colors",
     "type": "color",
-    "defaultValue": "var(--fkt-color-accent)"
+    "defaultValue": "#1e293b"
   },
   {
     "description": "Color of the label and border when it gets invalid",
@@ -74,20 +74,20 @@
   {
     "description": "Font size for select text and placeholder.",
     "name": "--fkt-select-font-size",
-    "reference": "--fkt-font-size-md",
+    "reference": "--fkt-font-size-sm",
     "component": "Field",
     "category": "Typography",
     "type": "size",
-    "defaultValue": "1rem"
+    "defaultValue": "0.875rem"
   },
   {
     "description": "Color for text into select",
     "name": "--fkt-select-text-color",
-    "reference": "--fkt-color-neutral-950",
+    "reference": "--fkt-color-neutral-900",
     "component": "Field",
     "category": "Colors",
     "type": "color",
-    "defaultValue": "#020617"
+    "defaultValue": "#0f172a"
   },
   {
     "description": "Padding for spinner container in select options overlay.",

@@ -5,19 +5,56 @@
 /*
 Vertical padding inside the input field (top and bottom spacing between border and content).
 @name --fkt-field-vertical-padding
-@reference --fkt-space-xs
+@reference --fkt-space-inset-3xs
 @category Spacing
 @type size
  */
-$input-vertical-padding: var(--fkt-field-vertical-padding, var(--fkt-space-xs));
+$field-vertical-padding: var(--fkt-field-vertical-padding, var(--fkt-space-inset-3xs));
+
+/*
+Vertical padding inside the input field (top and bottom spacing between border and content).
+@name --fkt-field-vertical-padding-sm
+@reference --fkt-space-inset-4xs
+@category Spacing
+@type size
+ */
+$field-vertical-padding-sm: var(--fkt-field-vertical-padding-sm, var(--fkt-space-inset-4xs));
+
+/*
+Vertical padding inside the input field (top and bottom spacing between border and content).
+@name --fkt-field-vertical-padding-lg
+@reference --fkt-space-inset-2xs
+@category Spacing
+@type size
+ */
+$field-vertical-padding-lg: var(--fkt-field-vertical-padding-lg, var(--fkt-space-inset-2xs));
+
 /*
 Horizontal padding inside the input field (left and right spacing between border and content).
 @name --fkt-field-horizontal-padding
-@reference --fkt-space-sm
+@reference --fkt-space-inset-2xs
 @category Spacing
 @type size
  */
-$input-horizontal-padding: var(--fkt-field-horizontal-padding, var(--fkt-space-sm));
+$field-horizontal-padding: var(--fkt-field-horizontal-padding, var(--fkt-space-inset-2xs));
+
+/*
+Horizontal padding inside the input field (left and right spacing between border and content).
+@name --fkt-field-horizontal-padding-sm
+@reference --fkt-space-inset-3xs
+@category Spacing
+@type size
+ */
+$field-horizontal-padding-sm: var(--fkt-field-horizontal-padding, var(--fkt-space-inset-3xs));
+
+/*
+Horizontal padding inside the input field (left and right spacing between border and content).
+@name --fkt-field-horizontal-padding-lg
+@reference --fkt-space-inset-xs
+@category Spacing
+@type size
+ */
+$field-horizontal-padding-lg: var(--fkt-field-horizontal-padding, var(--fkt-space-inset-xs));
 
 /*
 Border color of the input in its normal (default) state.
@@ -58,11 +95,11 @@ $label-focus-color: var(--fkt-field-label-focus-color, var(--fkt-color-neutral-8
 /*
 Border radius for input
 @name --fkt-field-border-radius
-@reference --fkt-radius-lg
+@reference --fkt-radius-md
 @category Spacing
 @type size
  */
-$border-radius: var(--fkt-field-border-radius, var(--fkt-radius-lg));
+$border-radius: var(--fkt-field-border-radius, var(--fkt-radius-md));
 
 /*
 Font size for input text and placeholder.
@@ -72,6 +109,25 @@ Font size for input text and placeholder.
 @type size
  */
 $font-size: var(--fkt-field-font-size, var(--fkt-font-size-sm));
+
+/*
+Font size for input text and placeholder.
+@name --fkt-field-font-size-sm
+@reference --fkt-font-size-xs
+@category Typography
+@type size
+ */
+$font-size-sm: var(--fkt-field-font-size-sm, var(--fkt-font-size-xs));
+
+/*
+Font size for input text and placeholder.
+@name --fkt-field-font-size-lg
+@reference --fkt-font-size-md
+@category Typography
+@type size
+ */
+$font-size-lg: var(--fkt-field-font-size-lg, var(--fkt-font-size-md));
+
 /*
 Color for text written into input
 @name --fkt-field-text-color
@@ -128,12 +184,28 @@ $suffix-invalid-color: var(--fkt-field-suffix-invalid-text, var(--fkt-color-dang
 }
 
 :host {
+    --_fkt-field-font-size-sm: #{$font-size-sm};
+    --_fkt-field-font-size-md: #{$font-size};
+    --_fkt-field-font-size-lg: #{$font-size-lg};
+
+    --_fkt-field-horizontal-padding-sm: #{$field-horizontal-padding-sm};
+    --_fkt-field-horizontal-padding-md: #{$field-horizontal-padding};
+    --_fkt-field-horizontal-padding-lg: #{$field-horizontal-padding-lg};
+
+    --_fkt-field-vertical-padding-sm: #{$field-vertical-padding-sm};
+    --_fkt-field-vertical-padding-md: #{$field-vertical-padding};
+    --_fkt-field-vertical-padding-lg: #{$field-vertical-padding-lg};
+
+    --_fkt-field-font-size: var(--_fkt-field-font-size-md);
+    --_fkt-field-horizontal-padding: var(--_fkt-field-horizontal-padding-md);
+    --_fkt-field-vertical-padding: var(--_fkt-field-vertical-padding-md);
+
     .input {
-        padding: $input-vertical-padding $input-horizontal-padding;
+        padding: var(--_fkt-field-vertical-padding) var(--_fkt-field-horizontal-padding);
         width: 100%;
         position: relative;
         border-radius: $border-radius;
-        min-height: calc(20px + calc($input-vertical-padding * 2));
+        min-height: calc(20px + calc(var(--_fkt-field-vertical-padding) * 2));
         box-sizing: border-box;
         display: flex;
         align-items: center;
@@ -158,7 +230,7 @@ $suffix-invalid-color: var(--fkt-field-suffix-invalid-text, var(--fkt-color-dang
                 border-bottom-width: 1px;
                 border-left-width: 1px;
                 border-right-width: 0;
-                padding-left: $input-horizontal-padding;
+                padding-left: var(--_fkt-field-horizontal-padding);
             }
 
             .center {
@@ -173,12 +245,12 @@ $suffix-invalid-color: var(--fkt-field-suffix-invalid-text, var(--fkt-color-dang
                 width: fit-content;
                 display: flex;
                 align-items: flex-start;
-                padding: $input-vertical-padding 0;
+                padding: var(--_fkt-field-vertical-padding) 0;
 
                 label:not(.fkt-sr-only) {
                     position: relative;
                     pointer-events: none;
-                    font-size: var(--fkt-font-size-sm);
+                    font-size: var(--_fkt-field-font-size);
                     transition: var(--fkt-transition-base);
                     color: $label-color;
                     white-space: nowrap;
@@ -306,7 +378,7 @@ $suffix-invalid-color: var(--fkt-field-suffix-invalid-text, var(--fkt-color-dang
             .fkt-control-field {
                 box-sizing: border-box;
                 outline: none;
-                font-size: $font-size;
+                font-size: var(--_fkt-field-font-size);
                 width: 100%;
                 border: none;
                 background-color: transparent;
@@ -315,7 +387,7 @@ $suffix-invalid-color: var(--fkt-field-suffix-invalid-text, var(--fkt-color-dang
 
                 &::placeholder {
                     color: var(--fkt-color-neutral-500);
-                    font-size: $font-size;
+                    font-size: var(--_fkt-field-font-size);
                 }
             }
         }
@@ -330,7 +402,7 @@ $suffix-invalid-color: var(--fkt-field-suffix-invalid-text, var(--fkt-color-dang
     }
 }
 
-.error {
+.message {
     display: block;
     overflow: hidden;
     max-height: 0;

@@ -1,4 +1,16 @@
-<h1>{{ title() }}</h1>
+<div class="header">
+    <h1>{{ title() }}</h1>
+
+    <fkt-button
+        shape="rect"
+        icon="clipboard-document"
+        iconPosition="left"
+        theme="stroked"
+        [loading]="copyLoading()"
+        (click)="copyMarkdown()"
+        text="Copy markdown"
+    />
+</div>
 <p>{{ description() }}</p>
 
 <h2>Import</h2>

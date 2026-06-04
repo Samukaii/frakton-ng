@@ -1,4 +1,11 @@
-import { Component, computed, inject, input, resource } from '@angular/core';
+import {
+    Component,
+    computed,
+    inject,
+    input,
+    resource,
+    signal,
+} from '@angular/core';
 import { CodeHighlightComponent } from '@/components/code-highlight/code-highlight.component';
 import { StoryLoaderService } from '@/core/services/story-loader.service';
 import { injectRouteParams } from '@/utils/inject-route-params';
@@ -7,6 +14,7 @@ import { MarkdownWrapperComponent } from '@/components/markdown/markdown-wrapper
 import { PascalToHumanReadablePipe } from '@/pipes/pascal-to-human-readable.pipe';
 import { PascalToKebabPipe } from '@/pipes/pascal-to-kebab.pipe';
 import { FeatureComponent } from '@/pages/docs-page/features/feature/feature.component';
+import { FktButtonComponent } from 'frakton-ng/button';
 
 @Component({
     selector: 'app-features',
@@ -16,6 +24,7 @@ import { FeatureComponent } from '@/pages/docs-page/features/feature/feature.com
         PascalToHumanReadablePipe,
         PascalToKebabPipe,
         FeatureComponent,
+        FktButtonComponent,
     ],
     templateUrl: './features.component.html',
     styleUrl: './features.component.scss',
@@ -28,6 +37,7 @@ export class FeaturesComponent {
     private loader = inject(StoryLoaderService);
 
     private readonly routeParams = injectRouteParams();
+    protected readonly copyLoading = signal(false);
 
     protected readonly storyIndexer = computed(() => {
         const id = this.routeParams()['docId'];
@@ -50,4 +60,33 @@ export class FeaturesComponent {
     protected readonly stories = computed(() => {
         return this.storyResolved.value()?.stories ?? [];
     });
+
+    protected async copyMarkdown() {
+        this.copyLoading.set(true);
+        let text = `# ${this.title()}`;
+
+        text += '\n\n' + this.description();
+
+        const examples = await this.storyIndexer()?.externalExamples?.();
+
+        this.storyIndexer()?.stories?.forEach(story => {
+            text += '\n\n\n' + `${'#'.repeat(story.level)} ${story.name}`;
+
+            text += '\n\n' + story.description
+
+            const example = examples?.[story.componentName ?? ''];
+
+            if(example) {
+                example.files.forEach(file => {
+                    text += '\n\n' + `\`\`\`${file.language}`;
+                    text += '\n' + file.content;
+                    text += '\n```';
+                })
+
+            }
+        });
+
+        await navigator.clipboard.writeText(text);
+        this.copyLoading.set(false);
+    }
 }

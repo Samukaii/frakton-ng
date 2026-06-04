@@ -1,9 +1,19 @@
-<fkt-field [requiredMarker]="form.name().required()" label="Name">
+<fkt-field label="Name">
     <fkt-icon fktFieldPrefix name="user"/>
-    <input fktInput [field]="form.name" placeholder="Enter a name">
+    <input fktInputText [field]="form.name" placeholder="Enter a name">
 </fkt-field>
 
-<fkt-field [requiredMarker]="form.email().required()" label="E-mail">
+<fkt-field label="Username">
+    <fkt-icon fktFieldPrefix name="at-symbol"/>
+    <input fktInputText [field]="form.username" placeholder="Enter a username">
+</fkt-field>
+
+<fkt-field label="Bio">
+    <fkt-icon fktFieldPrefix name="identification"/>
+    <input fktInputText [field]="form.bio" placeholder="Enter a short bio">
+</fkt-field>
+
+<fkt-field label="E-mail">
     <fkt-icon fktFieldPrefix name="envelope"/>
-    <input fktInput [field]="form.email" placeholder="Enter an e-mail">
+    <input fktInputText [field]="form.email" placeholder="Enter an e-mail">
 </fkt-field>

@@ -43,12 +43,14 @@ export function injectNativeInputState<T>(): {
     const disabled = signal(element.disabled);
     const invalid = signal(readNativeInvalid(element));
     const touched = signal(false);
+    const required = signal(element.required);
 
     const state: FktFieldControlState<T> = {
         value: value.asReadonly(),
         disabled: disabled.asReadonly(),
         invalid: invalid.asReadonly(),
         touched: touched.asReadonly(),
+        required: required.asReadonly(),
         errors: signal(null)
     };
 
@@ -57,6 +59,7 @@ export function injectNativeInputState<T>(): {
             value.set(readNativeValue<T>(element));
             disabled.set(element.disabled);
             invalid.set(readNativeInvalid(element));
+            required.set(element.required);
         };
 
         const markTouched = () => {

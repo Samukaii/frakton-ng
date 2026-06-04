@@ -1,0 +1,38 @@
+<fkt-select
+    [field]="language"
+    label="Language"
+    placeholder="Select a language"
+    [options]="languageOptions"
+/>
+
+<fkt-field
+    label="Name"
+    [showError]="form.name().invalid()"
+>
+    <fkt-icon fktFieldPrefix name="user"/>
+    <input fktInputText [field]="form.name" placeholder="Enter a name">
+</fkt-field>
+
+<fkt-field
+    label="Username"
+    [showError]="form.username().invalid()"
+>
+    <fkt-icon fktFieldPrefix name="at-symbol"/>
+    <input fktInputText [field]="form.username" placeholder="Enter a username">
+</fkt-field>
+
+<fkt-field
+    label="Bio"
+    [showError]="form.bio().invalid()"
+>
+    <fkt-icon fktFieldPrefix name="identification"/>
+    <input fktInputText [field]="form.bio" placeholder="Enter a short bio">
+</fkt-field>
+
+<fkt-field
+    label="E-mail"
+    [showError]="form.email().invalid()"
+>
+    <fkt-icon fktFieldPrefix name="envelope"/>
+    <input fktInputText [field]="form.email" placeholder="Enter an e-mail">
+</fkt-field>

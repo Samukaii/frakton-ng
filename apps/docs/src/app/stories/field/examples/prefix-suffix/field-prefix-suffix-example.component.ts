@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FktFieldComponent, FktInputDirective } from 'frakton-ng/field';
+import { FktFieldComponent, FktInputTextDirective } from 'frakton-ng/field';
 import { FktIconComponent } from 'frakton-ng/icon';
 import { FktTooltipDirective } from 'frakton-ng/tooltip';
 
@@ -7,7 +7,7 @@ import { FktTooltipDirective } from 'frakton-ng/tooltip';
     selector: 'app-field-prefix-suffix-example',
     imports: [
         FktFieldComponent,
-        FktInputDirective,
+        FktInputTextDirective,
         FktIconComponent,
         FktTooltipDirective,
     ],

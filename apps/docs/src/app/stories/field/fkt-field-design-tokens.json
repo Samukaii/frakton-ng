@@ -6,7 +6,59 @@
     },
     "description": "Vertical padding inside the input field (top and bottom spacing between border and content).",
     "name": "--fkt-field-vertical-padding",
-    "reference": "--fkt-space-xs",
+    "reference": "--fkt-space-inset-3xs",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": ".5rem",
+    "component": "Field"
+  },
+  {
+    "scope": {
+      "name": "Field",
+      "selector": "fkt-field"
+    },
+    "description": "Vertical padding inside the input field (top and bottom spacing between border and content).",
+    "name": "--fkt-field-vertical-padding-sm",
+    "reference": "--fkt-space-inset-4xs",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": ".375rem",
+    "component": "Field"
+  },
+  {
+    "scope": {
+      "name": "Field",
+      "selector": "fkt-field"
+    },
+    "description": "Vertical padding inside the input field (top and bottom spacing between border and content).",
+    "name": "--fkt-field-vertical-padding-lg",
+    "reference": "--fkt-space-inset-2xs",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": ".625rem",
+    "component": "Field"
+  },
+  {
+    "scope": {
+      "name": "Field",
+      "selector": "fkt-field"
+    },
+    "description": "Horizontal padding inside the input field (left and right spacing between border and content).",
+    "name": "--fkt-field-horizontal-padding",
+    "reference": "--fkt-space-inset-2xs",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": ".625rem",
+    "component": "Field"
+  },
+  {
+    "scope": {
+      "name": "Field",
+      "selector": "fkt-field"
+    },
+    "description": "Horizontal padding inside the input field (left and right spacing between border and content).",
+    "name": "--fkt-field-horizontal-padding-sm",
+    "reference": "--fkt-space-inset-3xs",
     "category": "Spacing",
     "type": "size",
     "defaultValue": ".5rem",
@@ -18,8 +70,8 @@
       "selector": "fkt-field"
     },
     "description": "Horizontal padding inside the input field (left and right spacing between border and content).",
-    "name": "--fkt-field-horizontal-padding",
-    "reference": "--fkt-space-sm",
+    "name": "--fkt-field-horizontal-padding-lg",
+    "reference": "--fkt-space-inset-xs",
     "category": "Spacing",
     "type": "size",
     "defaultValue": ".75rem",
@@ -84,10 +136,10 @@
     },
     "description": "Border radius for input",
     "name": "--fkt-field-border-radius",
-    "reference": "--fkt-radius-lg",
+    "reference": "--fkt-radius-md",
     "category": "Spacing",
     "type": "size",
-    "defaultValue": ".5rem",
+    "defaultValue": ".375rem",
     "component": "Field"
   },
   {
@@ -101,6 +153,32 @@
     "category": "Typography",
     "type": "size",
     "defaultValue": "0.875rem",
+    "component": "Field"
+  },
+  {
+    "scope": {
+      "name": "Field",
+      "selector": "fkt-field"
+    },
+    "description": "Font size for input text and placeholder.",
+    "name": "--fkt-field-font-size-sm",
+    "reference": "--fkt-font-size-xs",
+    "category": "Typography",
+    "type": "size",
+    "defaultValue": "0.75rem",
+    "component": "Field"
+  },
+  {
+    "scope": {
+      "name": "Field",
+      "selector": "fkt-field"
+    },
+    "description": "Font size for input text and placeholder.",
+    "name": "--fkt-field-font-size-lg",
+    "reference": "--fkt-font-size-md",
+    "category": "Typography",
+    "type": "size",
+    "defaultValue": "1rem",
     "component": "Field"
   },
   {

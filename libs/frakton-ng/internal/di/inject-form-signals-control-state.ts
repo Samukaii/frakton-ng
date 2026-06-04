@@ -1,6 +1,7 @@
 import { computed, inject } from '@angular/core';
 import { Field } from '@angular/forms/signals';
 import { FktFieldControlState } from 'frakton-ng/internal/types';
+import { normalizeSignalValidationError } from 'frakton-ng/internal/utils';
 
 export function injectFormSignalsControlState<
     T
@@ -18,6 +19,7 @@ export function injectFormSignalsControlState<
         disabled: computed(() => state().disabled()),
         touched: computed(() => state().touched()),
         invalid: computed(() => state().invalid()),
+        required: computed(() => state().required()),
         errors: computed(() => {
             const errors = state().errors();
 
@@ -25,10 +27,7 @@ export function injectFormSignalsControlState<
 
             return {
                 source: 'signal',
-                errors: errors.map(error => ({
-                    ...error,
-                    name: error.field().keyInParent().toString()
-                }))
+                errors: errors.map(error => normalizeSignalValidationError(error))
             };
         }),
     };

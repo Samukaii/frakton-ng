@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { FktFieldComponent, FktInputDirective } from 'frakton-ng/field';
+import { FktFieldComponent, FktInputTextDirective } from 'frakton-ng/field';
 
 @Component({
     selector: 'app-field-basic-input-example',
-    imports: [FktFieldComponent, FktInputDirective],
+    imports: [FktFieldComponent, FktInputTextDirective],
     templateUrl: './field-basic-input-example.component.html',
     styleUrl: './field-basic-input-example.component.scss',
 })

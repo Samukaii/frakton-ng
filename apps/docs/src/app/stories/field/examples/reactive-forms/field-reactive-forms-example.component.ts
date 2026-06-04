@@ -1,8 +1,7 @@
-import { Component, computed, effect, inject, signal } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FktButtonComponent } from 'frakton-ng/button';
-import { FktFieldComponent, FktInputDirective } from 'frakton-ng/field';
-import { FktFieldErrorComponent } from 'frakton-ng/field-error';
+import { FktFieldComponent, FktInputTextDirective } from 'frakton-ng/field';
 import { FktIconComponent } from 'frakton-ng/icon';
 import { map, startWith } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
@@ -13,8 +12,7 @@ import { AsyncPipe } from '@angular/common';
         ReactiveFormsModule,
         FktButtonComponent,
         FktFieldComponent,
-        FktInputDirective,
-        FktFieldErrorComponent,
+        FktInputTextDirective,
         FktIconComponent,
         AsyncPipe,
     ],
@@ -24,20 +22,15 @@ import { AsyncPipe } from '@angular/common';
 export class FieldReactiveFormsExampleComponent {
     protected form = inject(FormBuilder).group({
         name: ['', [Validators.required]],
+        username: ['ab', [Validators.minLength(5)]],
+        bio: ['This text is too long', [Validators.maxLength(12)]],
         email: ['', [Validators.required, Validators.email]],
     });
 
     private stateChanges$ = this.form.events.pipe(startWith(null));
+
     protected disabled$ = this.stateChanges$.pipe(
         map(() => this.form.disabled)
-    );
-
-    protected nameErrors$ = this.stateChanges$.pipe(
-        map(() => this.form.controls.name.errors)
-    );
-
-    protected emailErrors$ = this.stateChanges$.pipe(
-        map(() => this.form.controls.email.errors)
     );
 
     protected toggleDisabled() {
@@ -48,6 +41,8 @@ export class FieldReactiveFormsExampleComponent {
     protected fillProfile() {
         this.form.setValue({
             name: 'Alice Johnson',
+            username: 'alice',
+            bio: 'Short bio',
             email: 'alice@example.com',
         });
     }
@@ -55,6 +50,8 @@ export class FieldReactiveFormsExampleComponent {
     protected reset() {
         this.form.reset({
             name: '',
+            username: '',
+            bio: '',
             email: '',
         });
     }

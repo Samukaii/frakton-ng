@@ -4,8 +4,8 @@ import { injectCompatFormState } from 'frakton-ng/internal/di';
 
 
 @Directive({
-    selector: 'input[fktInput], textarea[fktInput]',
-    providers: [{ provide: FktFieldControl, useExisting: FktInputDirective }],
+    selector: 'input[fktInputText]',
+    providers: [{ provide: FktFieldControl, useExisting: FktInputTextDirective }],
     host: {
         '[class.fkt-control-field]': 'true',
         '(focus)': 'focused.set(true)',
@@ -13,12 +13,12 @@ import { injectCompatFormState } from 'frakton-ng/internal/di';
         '[id]': 'id',
     },
 })
-export class FktInputDirective<T> implements FktFieldControl<T> {
+export class FktInputTextDirective<T> implements FktFieldControl<T> {
     private state = injectCompatFormState<T>();
 
     private static id = 0;
 
-    id = `fkt-input-${FktInputDirective.id++}`;
+    id = `fkt-input-text-${FktInputTextDirective.id++}`;
 
     focused = signal(false);
 
@@ -36,6 +36,10 @@ export class FktInputDirective<T> implements FktFieldControl<T> {
 
     disabled = computed(() => {
         return this.state.disabled();
+    });
+
+    required = computed(() => {
+        return this.state.required();
     });
 
     errors = computed(() => {

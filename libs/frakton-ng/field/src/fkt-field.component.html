@@ -1,6 +1,6 @@
 <div
     class="input"
-    [class.invalid]="control()?.invalid() && control()?.touched()"
+    [class.invalid]="errorVisible()"
     [class.focused]="control()?.focused()"
     [class.float]="control()?.value() || control()?.focused()"
     [class.disabled]="control()?.disabled()"
@@ -9,7 +9,7 @@
         <ng-content select="[fktFieldPrefix]"/>
     </div>
 
-    <ng-content select="[fktInput]"/>
+    <ng-content select="[fktInputText]"/>
     <ng-content select="[fktFieldSuffix]"/>
 
     <div class="border">
@@ -20,7 +20,7 @@
             [style.min-width.px]="labelWidth()"
             class="center">
             <label [class.fkt-sr-only]="hideLabel()" #labelElement [attr.for]="control()?.id">
-                {{ `${label()}${requiredMarker() ? '*' : ''}` }}
+                {{ `${label()}${requiredVisible() ? '*' : ''}` }}
             </label>
         </div>
 
@@ -29,7 +29,7 @@
     </div>
 </div>
 
-<span class="error" [class.show]="control()?.invalid() && control()?.touched()">
+<span class="message error" [class.show]="errorVisible()">
         <ng-content select="[fktError]">
             <fkt-field-error>
                 @if (error()) {
@@ -37,4 +37,12 @@
                 }
             </fkt-field-error>
         </ng-content>
+</span>
+
+<span class="message hint" [class.show]="hintVisible()">
+    <ng-content select="[fktHint]">
+        @if (hint()) {
+            <fkt-field-hint>{{ hint() }}</fkt-field-hint>
+        }
+    </ng-content>
 </span>

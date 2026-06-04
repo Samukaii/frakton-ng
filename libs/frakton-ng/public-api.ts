@@ -1,1 +1,1 @@
-export * from 'frakton-ng/core';
+export default {};

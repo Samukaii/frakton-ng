@@ -2,6 +2,7 @@ import { afterNextRender, computed, DestroyRef, inject, signal } from '@angular/
 import { AbstractControl, FormControlDirective, FormControlName, NgModel } from '@angular/forms';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FktFieldControlState } from 'frakton-ng/internal/types';
+import { normalizeReactiveValidationError } from 'frakton-ng/internal/utils';
 
 export function injectReactiveFormsControlState<T>(): {
     state: FktFieldControlState<T>;
@@ -27,7 +28,23 @@ export function injectReactiveFormsControlState<T>(): {
     const disabled = signal(false);
     const touched = signal(false);
     const invalid = signal(false);
+    const required = signal(false);
     const rawErrors = signal<Record<string, any> | null>(null);
+
+    const inferRequired = (control: AbstractControl): boolean => {
+        const validator = control.validator;
+
+        if (!validator) return false;
+
+        const probe = Object.create(control) as AbstractControl;
+
+        Object.defineProperty(probe, 'value', {
+            configurable: true,
+            get: () => null,
+        });
+
+        return validator(probe)?.['required'] === true;
+    };
 
     const getFieldName = (control: AbstractControl) => {
         const controls = control.parent?.controls;
@@ -50,11 +67,12 @@ export function injectReactiveFormsControlState<T>(): {
 
         const name = getFieldName(controlDirective.control);
 
-        const errors = entries.map(([key]) => ({
-            kind: key,
-            name,
-            field: signal(controlDirective.control),
-        }));
+        const errors = entries.map(([key, value]) =>
+            normalizeReactiveValidationError(key, value, {
+                name,
+                control: controlDirective.control,
+            })
+        );
 
         return {
             source: 'reactive',
@@ -67,6 +85,7 @@ export function injectReactiveFormsControlState<T>(): {
         disabled: disabled.asReadonly(),
         invalid: invalid.asReadonly(),
         touched: touched.asReadonly(),
+        required: required.asReadonly(),
         errors: normalizedErrors,
     };
 
@@ -80,6 +99,7 @@ export function injectReactiveFormsControlState<T>(): {
             disabled.set(control.disabled);
             touched.set(control.touched);
             invalid.set(control.invalid);
+            required.set(inferRequired(control));
             rawErrors.set(control.errors);
         };
 

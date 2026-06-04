@@ -1,5 +1,6 @@
 import {
     ApplicationConfig,
+    inject,
     provideBrowserGlobalErrorListeners,
     provideZoneChangeDetection,
 } from '@angular/core';
@@ -17,34 +18,50 @@ import {
     withIncrementalHydration,
 } from '@angular/platform-browser';
 import { provideHttpClient, withFetch } from '@angular/common/http';
-import { capitalize } from '@/utils/capitalize';
 import {
     FktMarkdownRenderer,
     provideNgxMarkdown,
     withMarkedOptions,
     withSanitizer,
 } from '@/config/provide-ngx-markdown';
-import { provideFktConfig, withFieldErrorMessages } from 'frakton-ng';
-
+import {
+    provideFktConfig,
+    withFieldErrorMessages,
+    withI18nIntegration,
+} from 'frakton-ng/core';
+import { TranslateService } from '@/core/services/translate.service';
 
 export const appConfig: ApplicationConfig = {
     providers: [
         provideBrowserGlobalErrorListeners(),
         provideHttpClient(withFetch()),
         provideFktConfig(
-            withFieldErrorMessages(({ errors }) => {
+            withI18nIntegration(() => {
+                const translateService = inject(TranslateService);
+
+                return {
+                    recomputeOn: translateService.currentLanguage$,
+                    translateFn: translateService.instant.bind(translateService),
+                };
+            }),
+            withFieldErrorMessages(({ errors, t }) => {
                 if (!errors) return null;
 
                 const first = errors.errors[0];
 
-                const fieldValidationName = first.name ?? 'Field';
-
                 if (first.message) return first.message;
 
-                if (first.kind === 'required')
-                    return `${capitalize(fieldValidationName)} is required`;
+                if (first.kind === 'required') return t('errors.required');
 
-                if (first.kind === 'email') return 'Use a valid e-mail address';
+                if (first.kind === 'email') return t('errors.email');
+
+                if (first.kind === 'minLength' || first.kind === 'minlength') {
+                    return t('errors.minLength', first.params);
+                }
+
+                if (first.kind === 'maxLength' || first.kind === 'maxlength') {
+                    return t('errors.maxLength', first.params);
+                }
 
                 return null;
             })

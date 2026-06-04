@@ -1,6 +1,6 @@
 import { InjectionToken } from '@angular/core';
-import { FktTranslationContext } from './fkt-translation-context';
-import { FktFieldErrorHandler } from './fkt-field-error-handler';
+import { FktTranslationContext } from '../models/fkt-translation-context';
+import { FktFieldErrorHandler } from '../models/fkt-field-error-handler';
 
 export const FKT_FIELD_ERROR_HANDLER = new InjectionToken<FktFieldErrorHandler>(
     'FKT_FIELD_ERROR_HANDLER'
