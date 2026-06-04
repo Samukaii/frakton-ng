@@ -43,10 +43,10 @@ export const numberFormatter = (options?: Options): FktControlFormatter<number, 
 			} else {
 				newValue = currentValue.replace(/[^\d\-,.]/g, '');
 
-				newValue = newValue.replace(/,/g, '.');
+				newValue = newValue.replaceAll(',', '.');
 
 				if(options?.maxDecimals === 0) {
-					newValue = newValue.replace(/,/g, '').replace('.', '');
+					newValue = newValue.replaceAll(',', '').replace('.', '');
 				}
 			}
 
