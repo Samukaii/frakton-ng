@@ -3,7 +3,6 @@ import { BasicExampleComponent, ConfigurableExampleComponent, ResponsiveExampleC
 import { Meta } from '@/models/meta';
 import { Story } from '@/models/story';
 // Design tokens will be auto-generated
-// @ts-expect-error
 import documentation from './fkt-paginator.docs.md' with { loader: "text" };
 import { DesignToken } from '@/models/design-token';
 import designTokens from './fkt-paginator-design-tokens.json';

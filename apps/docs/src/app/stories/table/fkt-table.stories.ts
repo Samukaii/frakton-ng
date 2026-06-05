@@ -19,20 +19,18 @@ import {
     TableExamplesPinnedColumnsComponent,
     TableExamplesRowClickComponent,
     TableExamplesRowSelectionComponent,
+    TableExamplesSizeComponent,
     TableExamplesSortingComponent,
     TableExamplesStatefulComponent,
-    TableExamplesSizeComponent,
     TableExamplesStripedComponent,
     TableExamplesTemplateCellRenderingComponent,
     TableExamplesVirtualScrollComponent
 } from './examples';
 import { Meta } from '@/models/meta';
 import { Story, StoryIntroduction } from '@/models/story';
-// @ts-expect-error
-import documentation from './fkt-table.docs.md' with { loader: 'text' };
+import documentation from './fkt-table.docs.md';
 import designTokens from './fkt-table-design-tokens.json';
 import { DesignToken } from '@/models/design-token';
-import { FktTableContextDirective } from '../../../../../../libs/frakton-ng/table/src/core/fkt-table-context.directive';
 
 const coreTable = {
 	type: 'component',

@@ -3,7 +3,6 @@ import { Meta } from '@/models/meta';
 import { Story } from '@/models/story';
 import designTokens from './fkt-avatar-design-tokens.json';
 import { DesignToken } from '@/models/design-token';
-// @ts-expect-error
 import documentation from './fkt-avatar.docs.md' with { loader: 'text' };
 import { fktColors } from 'frakton-ng/core';
 

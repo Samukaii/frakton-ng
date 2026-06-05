@@ -1,7 +1,6 @@
 import { FktFieldComponent } from 'frakton-ng/field';
 import { Meta } from '@/models/meta';
 import { Story, StoryIntroduction } from '@/models/story';
-// @ts-expect-error
 import documentation from './fkt-field.docs.md' with { loader: 'text' };
 import designTokens from './fkt-field-design-tokens.json';
 import { DesignToken } from '@/models/design-token';

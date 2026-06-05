@@ -1,6 +1,5 @@
 import { Meta } from '@/models/meta';
 import { FktToggleComponent } from 'frakton-ng/toggle';
-// @ts-expect-error
 import documentation from './fkt-toggle.docs.md' with { loader: 'text' };
 import { Story } from '@/models/story';
 import { DesignToken } from '@/models/design-token';

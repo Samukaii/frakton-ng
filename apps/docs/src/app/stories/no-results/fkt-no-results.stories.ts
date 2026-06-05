@@ -10,7 +10,6 @@ import {
 } from './examples';
 import { Meta } from '@/models/meta';
 import { Story } from '@/models/story';
-// @ts-expect-error
 import documentation from './fkt-no-results.docs.md' with { loader: 'text' };
 import { buttonActionSchema } from '@/static/schemas/button-action.schema';
 import { DesignToken } from '@/models/design-token';

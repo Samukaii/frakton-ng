@@ -4,7 +4,6 @@ import { Meta } from '@/models/meta';
 import { Story } from '@/models/story';
 import designTokens from './fkt-progress-bar-design-tokens.json';
 import { DesignToken } from '@/models/design-token';
-// @ts-expect-error
 import documentation from './fkt-progress-bar.docs.md' with { loader: 'text' };
 import { fktColors } from 'frakton-ng/core';
 

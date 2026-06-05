@@ -2,7 +2,6 @@ import { FktSkeletonComponent, FktSkeletonContainerComponent } from 'frakton-ng/
 import { FktSkeletonExamplesAnimationsComponent, FktSkeletonExamplesBasicComponent, FktSkeletonExamplesTypesComponent } from './examples';
 import { Meta } from '@/models/meta';
 import { Story } from '@/models/story';
-// @ts-expect-error
 import documentation from './fkt-skeleton.docs.md' with { loader: "text" };
 import { DesignToken } from '@/models/design-token';
 import designTokens from './fkt-skeleton-design-tokens.json';

@@ -2,7 +2,6 @@ import { FktTagSelectorComponent } from 'frakton-ng/tag-selector';
 import { OrderStatusExampleComponent, PriorityExampleComponent } from './examples';
 import { Meta } from '@/models/meta';
 import { Story } from '@/models/story';
-// @ts-expect-error
 import documentation from './fkt-tag-selector.docs.md' with { loader: "text" };
 import { fktTagColors } from 'frakton-ng/tag';
 

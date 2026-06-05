@@ -3,7 +3,6 @@ import { Meta } from '@/models/meta';
 import { Story } from '@/models/story';
 import designTokens from './fkt-divider-design-tokens.json';
 import { DesignToken } from '@/models/design-token';
-// @ts-expect-error
 import documentation from './fkt-divider.docs.md' with {loader: "text"};
 
 const meta: Meta = {

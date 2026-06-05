@@ -1,6 +1,5 @@
 import { Meta } from '@/models/meta';
 import { FktButtonGroupComponent, fktButtonGroupOrientations, fktButtonGroupShapes, fktButtonGroupSizes } from 'frakton-ng/button-group';
-//@ts-expect-error
 import documentation from './fkt-button-group.docs.md' with { loader: 'text' };
 import { Story } from '@/models/story';
 import { DesignToken } from '@/models/design-token';
