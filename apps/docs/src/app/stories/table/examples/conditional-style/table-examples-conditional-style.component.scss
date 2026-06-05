@@ -1,9 +1,21 @@
-fkt-table {
-    ::ng-deep tr {
-        &.status-cancelled { --fkt-row-cell-background: color-mix(in srgb, var(--fkt-color-danger) 8%, var(--fkt-color-neutral-100)); }
-        &.status-delivered { --fkt-row-cell-background: color-mix(in srgb, var(--fkt-color-success) 8%, var(--fkt-color-neutral-100)); }
-        &.status-shipped   { --fkt-row-cell-background: color-mix(in srgb, var(--fkt-color-accent) 8%, var(--fkt-color-neutral-100)); }
-        &.status-processing { --fkt-row-cell-background: color-mix(in srgb, var(--fkt-color-info) 8%, var(--fkt-color-neutral-100)); }
-        &.status-pending   { --fkt-row-cell-background: color-mix(in srgb, var(--fkt-color-warning) 8%, var(--fkt-color-neutral-100)); }
+fkt-table ::ng-deep {
+    .status-cancelled td {
+        background-color: color-mix(in srgb, var(--fkt-color-danger) 8%, var(--fkt-color-neutral-100));
+    }
+
+    .status-delivered td {
+        background-color: color-mix(in srgb, var(--fkt-color-success) 8%, var(--fkt-color-neutral-100));
+    }
+
+    .status-shipped td {
+        background-color: color-mix(in srgb, var(--fkt-color-accent) 8%, var(--fkt-color-neutral-100));
+    }
+
+    .status-processing td {
+        background-color: color-mix(in srgb, var(--fkt-color-info) 8%, var(--fkt-color-neutral-100));
+    }
+
+    .status-pending td {
+        background-color: color-mix(in srgb, var(--fkt-color-warning) 8%, var(--fkt-color-neutral-100));
     }
 }

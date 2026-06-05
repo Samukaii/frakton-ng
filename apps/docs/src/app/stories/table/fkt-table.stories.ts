@@ -353,10 +353,10 @@ export const GridLines: Story<TableExamplesGridLinesComponent> = {
  * Row-level styling via `[classesFn]`. The function receives each row item and returns a CSS
  * class string applied to the `<tr>` element.
  *
- * Because Angular's view encapsulation prevents parent styles from reaching child component internals,
- * the table exposes a `--fkt-row-cell-background` CSS custom property on the row host. Set this
- * variable on the class applied to `<tr>` — CSS custom properties cascade through component boundaries
- * — and the cell background will pick it up automatically.
+ * Style the returned class with regular CSS selectors when the style can target the rendered cells
+ * directly, such as `.status-cancelled td { background-color: red; }`. As an alternative, the table
+ * also exposes a `--fkt-row-cell-background` CSS custom property on the row host. Set this variable
+ * on the class applied to `<tr>` when you prefer to style through the table's design-token surface.
  *
  * Use `::ng-deep` on a wrapper element in your component template to target the `<tr>` without
  * needing `ViewEncapsulation.None`.
@@ -554,18 +554,34 @@ export const Sorting: Story<TableExamplesSortingComponent> = {
 
 /**
  * Filters are declared per-column using the `filter` factory returned by `defineFilters()`.
- * Like `defineCells`, define it once globally with an alias map of filter components. Attaching
- * a filter to a column is then one line:
+ * Like `defineCells`, define it once globally with an alias map of filter components:
  *
  * ```ts
- * { key: 'name', header: 'Name', filter: filter.text('name', { label: 'Search' }) }
+ * export const filter = defineFilters({
+ *     text: FktTableFilterTextComponent,
+ *     select: FktTableFilterSelectComponent,
+ *     number: FktTableFilterNumberComponent,
+ *     dateRange: FktTableFilterDateRangeComponent,
+ * });
+ * ```
+ *
+ * Then attach a registered filter alias to a column:
+ *
+ * ```ts
+ * {
+ *     key: 'name',
+ *     header: 'Name',
+ *     filter: filter.text('name', {
+ *         label: 'Search',
+ *     }),
+ * }
  * ```
  *
  * Filter state flows through `[(filters)]` as a plain object owned by the consumer — easy to
  * debounce, serialize, URL-sync, or pass directly to an API.
  *
- * Four built-in types: `filter.text()`, `filter.select()`, `filter.number()` (with `=`, `<`, `>`,
- * `≤`, `≥` modifiers), and `filter.dateRange()`.
+ * Frakton NG ships four built-in filter components that can be registered: text, select, number
+ * (with `=`, `<`, `>`, `<=`, `>=` modifiers), and date range.
  */
 export const Filtering: Story<TableExamplesFilteringComponent> = {
 	component: TableExamplesFilteringComponent,

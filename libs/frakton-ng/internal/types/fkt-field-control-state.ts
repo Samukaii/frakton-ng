@@ -32,5 +32,6 @@ export interface FktFieldControlState<T> {
     invalid: Signal<boolean>;
     touched: Signal<boolean>;
     required: Signal<boolean>;
+    maxLength: Signal<number | null>;
     errors: Signal<FktFieldControlStateErrors>;
 }

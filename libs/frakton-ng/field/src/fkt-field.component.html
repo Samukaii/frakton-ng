@@ -29,20 +29,41 @@
     </div>
 </div>
 
-<span class="message error" [class.show]="errorVisible()">
-        <ng-content select="[fktError]">
-            <fkt-field-error>
-                @if (error()) {
-                    {{error()}}
+<div
+    class="hint-row"
+    [class.show]="errorVisible() || hintVisible() || characterCountState()"
+>
+    <span class="hint-start">
+        @if (errorVisible()) {
+            <ng-content select="[fktError]">
+                <fkt-field-error>
+                    @if (error()) {
+                        {{ error() }}
+                    }
+                </fkt-field-error>
+            </ng-content>
+        } @else {
+            <ng-content select="[fktHintStart],[fktHint]">
+                @if (hint()) {
+                    <fkt-field-hint>{{ hint() }}</fkt-field-hint>
                 }
-            </fkt-field-error>
-        </ng-content>
-</span>
-
-<span class="message hint" [class.show]="hintVisible()">
-    <ng-content select="[fktHint]">
-        @if (hint()) {
-            <fkt-field-hint>{{ hint() }}</fkt-field-hint>
+            </ng-content>
         }
-    </ng-content>
-</span>
+    </span>
+
+    <span class="hint-end">
+        <ng-content select="[fktHintEnd]">
+            @if (characterCountState(); as count) {
+                <span
+                    class="character-count"
+                    [class.exceeded]="count.exceeded"
+                >
+                    {{ count.current }}
+                    @if (count.max !== null) {
+                        / {{ count.max }}
+                    }
+                </span>
+            }
+        </ng-content>
+    </span>
+</div>

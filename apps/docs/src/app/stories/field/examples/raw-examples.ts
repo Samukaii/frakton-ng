@@ -6,6 +6,9 @@ import fieldAutomaticErrorsExampleTypescript from "./automatic-errors/field-auto
 import fieldBasicInputExampleTemplate from "./basic-input/field-basic-input-example.component.html" with {loader: "text"};
 import fieldBasicInputExampleStyles from "./basic-input/field-basic-input-example.component.scss" with {loader: "text"};
 import fieldBasicInputExampleTypescript from "./basic-input/field-basic-input-example.component.ts" with {loader: "text"};
+import fieldCharacterCountExampleTemplate from "./character-count/field-character-count-example.component.html" with {loader: "text"};
+import fieldCharacterCountExampleStyles from "./character-count/field-character-count-example.component.scss" with {loader: "text"};
+import fieldCharacterCountExampleTypescript from "./character-count/field-character-count-example.component.ts" with {loader: "text"};
 import fieldCustomErrorExampleTemplate from "./custom-error/field-custom-error-example.component.html" with {loader: "text"};
 import fieldCustomErrorExampleStyles from "./custom-error/field-custom-error-example.component.scss" with {loader: "text"};
 import fieldCustomErrorExampleTypescript from "./custom-error/field-custom-error-example.component.ts" with {loader: "text"};
@@ -77,6 +80,27 @@ export default {
 			{
 				name: "field-basic-input-example.component.scss",
 				content: fieldBasicInputExampleStyles as string,
+				language: "css" as const,
+			},		
+		]
+	},
+	FieldCharacterCountExampleComponent: {
+		name: "FieldCharacterCountExample",
+		files: [
+		
+			{
+				name: "field-character-count-example.component.html",
+				content: fieldCharacterCountExampleTemplate as string,
+				language: "angular-html" as const,
+			},		
+			{
+				name: "field-character-count-example.component.ts",
+				content: fieldCharacterCountExampleTypescript as string,
+				language: "typescript" as const,
+			},		
+			{
+				name: "field-character-count-example.component.scss",
+				content: fieldCharacterCountExampleStyles as string,
 				language: "css" as const,
 			},		
 		]

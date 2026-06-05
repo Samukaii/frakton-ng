@@ -1,0 +1,21 @@
+<fkt-field label="Display name" hint="Use a short public name.">
+    <input
+        fktInputText
+        fktCharacterCount
+        [field]="form.name"
+        placeholder="Enter a display name"
+    >
+</fkt-field>
+
+<fkt-field label="Slug" hint="Used in public URLs.">
+    <input
+        fktInputText
+        fktCharacterCount
+        [formControl]="reactiveForm.controls.slug"
+        placeholder="workspace-slug"
+    >
+
+    <span fktHintEnd>
+        Custom meta
+    </span>
+</fkt-field>

@@ -1,11 +1,20 @@
-import { computed, Directive, signal } from '@angular/core';
-import { FktFieldControl } from 'frakton-ng/internal/directives';
+import {
+    computed,
+    Directive,
+    signal,
+} from '@angular/core';
+import {
+    FktFieldControl,
+    FktTextFieldControl,
+} from 'frakton-ng/internal/directives';
 import { injectCompatFormState } from 'frakton-ng/internal/di';
-
 
 @Directive({
     selector: 'input[fktInputText]',
-    providers: [{ provide: FktFieldControl, useExisting: FktInputTextDirective }],
+    providers: [
+        { provide: FktFieldControl, useExisting: FktInputTextDirective },
+        { provide: FktTextFieldControl, useExisting: FktInputTextDirective },
+    ],
     host: {
         '[class.fkt-control-field]': 'true',
         '(focus)': 'focused.set(true)',
@@ -13,8 +22,8 @@ import { injectCompatFormState } from 'frakton-ng/internal/di';
         '[id]': 'id',
     },
 })
-export class FktInputTextDirective<T> implements FktFieldControl<T> {
-    private state = injectCompatFormState<T>();
+export class FktInputTextDirective implements FktTextFieldControl {
+    private state = injectCompatFormState<string>();
 
     private static id = 0;
 
@@ -40,6 +49,10 @@ export class FktInputTextDirective<T> implements FktFieldControl<T> {
 
     required = computed(() => {
         return this.state.required();
+    });
+
+    maxLength = computed(() => {
+        return this.state.maxLength();
     });
 
     errors = computed(() => {
