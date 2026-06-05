@@ -1,7 +1,6 @@
 import { FktDrawerComponent, fktSidebarModes } from 'frakton-ng/drawer';
 import { Meta } from '@/models/meta';
 import { Story } from '@/models/story';
-// @ts-expect-error
 import documentation from './fkt-drawer.docs.md' with { loader: "text" };
 import { PushExampleComponent } from './examples/push-example/push-example.component';
 import { OverlayExampleComponent } from './examples/overlay-example/overlay-example.component';

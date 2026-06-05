@@ -78,7 +78,10 @@
             "frakton-ng/tooltip": ["libs/frakton-ng/tooltip"]
         }
     },
-    "include": ["src/**/*.ts"],
+    "include": [
+        "src/**/*.ts",
+        "src/globals.d.ts"
+    ],
     "exclude": [
         "jest.config.ts",
         "src/test-setup.ts",

@@ -2,7 +2,6 @@ import { fktTagColors, FktTagComponent, fktTagVariants } from 'frakton-ng/tag';
 import { TagVariationsExampleComponent } from './examples';
 import { Meta } from '@/models/meta';
 import { Story } from '@/models/story';
-// @ts-expect-error
 import documentation from './fkt-tag.docs.md' with { loader: "text" };
 
 const meta: Meta = {

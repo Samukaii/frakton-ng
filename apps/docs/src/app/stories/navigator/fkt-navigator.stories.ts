@@ -2,7 +2,6 @@ import { FktNavigatorComponent } from 'frakton-ng/navigator';
 import { BasicExampleComponent, DateNavigationExampleComponent, DisabledStateExampleComponent, ItemNavigationExampleComponent, LoadingExampleComponent, PageNavigationExampleComponent } from './examples';
 import { Meta } from '@/models/meta';
 import { Story } from '@/models/story';
-// @ts-expect-error
 import documentation from './fkt-navigator.docs.md' with { loader: "text" };
 
 const meta: Meta = {

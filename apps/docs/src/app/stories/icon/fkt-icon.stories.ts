@@ -2,7 +2,6 @@ import { FktIconComponent, fontIconNames } from 'frakton-ng/icon';
 import { IconsGalleyComponent } from './gallery/icons-galley.component';
 import { Meta } from '@/models/meta';
 import { Story } from '@/models/story';
-// @ts-expect-error
 import documentation from './fkt-icon.docs.md' with { loader: "text" };
 
 const meta: Meta = {

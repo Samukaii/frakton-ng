@@ -6,7 +6,6 @@ import {
 } from './examples';
 import { Meta } from '@/models/meta';
 import { Story } from '@/models/story';
-// @ts-expect-error
 import documentation from './fkt-side-menu.docs.md' with { loader: 'text' };
 import { provideRouter } from '@angular/router';
 import { fontIconNames } from 'frakton-ng/icon';

@@ -1,5 +1,4 @@
 import { StoryIndexer } from '@/models/story-indexer';
-//@ts-expect-error
 import gettingStartedInstallation from "./getting-started/installation.docs.md" with {loader: "text"}
 import * as buttonStory from "./button/fkt-button.stories"
 
@@ -36,9 +35,8 @@ export const STORIES_MAP: StoryIndexer[] = [	{
 		id: "getting-started-migration-guides",
 		title: "Getting Started/Migration Guides",
 		file: async () => {
-			//@ts-expect-error
-			const documentation = await import("./getting-started/migration-guides.docs.md", {with: {loader: 'text'}}).then(file => file['default']);
-	
+			const documentation = await import("./getting-started/migration-guides.docs.md").then(file => file['default']);
+
 			return {
 				default: {
 					title: "Getting Started/Migration Guides",
@@ -77,9 +75,8 @@ export const STORIES_MAP: StoryIndexer[] = [	{
 		id: "getting-started-theming-styling",
 		title: "Getting Started/Theming & Styling",
 		file: async () => {
-			//@ts-expect-error
-			const documentation = await import("./getting-started/theming-styling.docs.md", {with: {loader: 'text'}}).then(file => file['default']);
-	
+			const documentation = await import("./getting-started/theming-styling.docs.md").then(file => file['default']);
+
 			return {
 				default: {
 					title: "Getting Started/Theming & Styling",
@@ -504,7 +501,7 @@ export const STORIES_MAP: StoryIndexer[] = [	{
 		description: `The FktButtonsList component provides a flexible container for displaying multiple buttons with consistent spacing and alignment. Built with Angular signals and customizable layout options, it supports both horizontal and vertical orientations with various alignment strategies.`,
 		file: () => import("./buttons-list/fkt-buttons-list.stories"),
 		type: 'story',
-		
+
 		docSections: [
 			{ id: "key-features", text: "Key Features", level: 2 },
 			{ id: "configuration-options", text: "Configuration Options", level: 2 },
@@ -792,7 +789,7 @@ export const STORIES_MAP: StoryIndexer[] = [	{
 		description: `A sophisticated color picker component featuring semantic color descriptions, international localization, advanced visual selectors, and seamless Angular signals integration. Built for professional design tools and user-friendly color selection.`,
 		file: () => import("./color-picker/fkt-color-picker.stories"),
 		type: 'story',
-		
+
 		docSections: [
 			{ id: "key-features", text: "Key Features", level: 2 },
 			{ id: "advanced-color-selection", text: "Advanced Color Selection", level: 3 },
@@ -882,7 +879,7 @@ export const STORIES_MAP: StoryIndexer[] = [	{
 		description: `The FktDatePicker component provides an intuitive and accessible date selection interface. Built with Angular signals and reactive forms, it offers a clean input field with a calendar overlay for date selection.`,
 		file: () => import("./date-picker/fkt-date-picker.stories"),
 		type: 'story',
-		
+
 		docSections: [
 			{ id: "key-features", text: "Key Features", level: 2 },
 			{ id: "configuration-options", text: "Configuration Options", level: 2 },
@@ -1396,7 +1393,7 @@ export const STORIES_MAP: StoryIndexer[] = [	{
 		description: `The FktIcon component provides a comprehensive icon system with a curated set of icons for various UI elements and interactions. Built with scalable vector graphics for crisp display at any size and seamless integration with the design system.`,
 		file: () => import("./icon/fkt-icon.stories"),
 		type: 'story',
-		
+
 		docSections: [
 			{ id: "key-features", text: "Key Features", level: 2 },
 			{ id: "configuration-options", text: "Configuration Options", level: 2 },

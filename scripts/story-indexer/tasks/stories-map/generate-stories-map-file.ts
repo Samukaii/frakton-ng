@@ -121,8 +121,7 @@ const getMarkdownStrings = (storyIndex: StoryIndex, file: string) => {
 	id: "${id}",
 	title: "${title}",
 	file: async () => {
-		//@ts-expect-error
-		const documentation = await import("./${relativePath}", {with: {loader: 'text'}}).then(file => file['default']);
+		const documentation = await import("./${relativePath}").then(file => file['default']);
 
 		return {
 			default: {
@@ -139,7 +138,7 @@ const getMarkdownStrings = (storyIndex: StoryIndex, file: string) => {
     let importStatement: string | null = null;
 
     if (loadType === 'eagerly') {
-        importStatement = `//@ts-expect-error\nimport ${kebabToCamel(id)} from "./${relativePath}" with {loader: "text"}`;
+        importStatement = `import ${kebabToCamel(id)} from "./${relativePath}" with {loader: "text"}`;
         object = `\
 {
 	id: "${id}",

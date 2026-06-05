@@ -12,6 +12,9 @@
                 "{options.outputPath}"
             ],
             "options": {
+                "loader": {
+                    ".md": "text"
+                },
                 "outputPath": "docs",
                 "browser": "apps/docs/src/main.ts",
                 "polyfills": ["zone.js"],
