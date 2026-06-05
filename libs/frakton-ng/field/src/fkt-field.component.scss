@@ -402,13 +402,38 @@ $suffix-invalid-color: var(--fkt-field-suffix-invalid-text, var(--fkt-color-dang
     }
 }
 
-.message {
-    display: block;
+.hint-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--fkt-space-xs);
     overflow: hidden;
     max-height: 0;
     transition: var(--fkt-transition-slow);
 
     &.show {
         max-height: 30px;
+    }
+
+    .hint-start {
+        min-width: 0;
+        flex: 1;
+    }
+
+    .hint-end {
+        display: flex;
+        justify-content: flex-end;
+        flex-shrink: 0;
+        color: var(--fkt-color-neutral-600);
+        font-size: var(--fkt-font-size-xs);
+        line-height: 1.25rem;
+    }
+
+    .character-count {
+        color: inherit;
+
+        &.exceeded {
+            color: var(--fkt-color-danger);
+        }
     }
 }

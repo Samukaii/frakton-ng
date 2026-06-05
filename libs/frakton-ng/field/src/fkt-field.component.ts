@@ -16,6 +16,7 @@ import { FktFieldErrorComponent } from 'frakton-ng/field-error';
 import { FKT_FIELD_ERROR_HANDLER } from 'frakton-ng/core';
 import { injectI18nIntegration } from 'frakton-ng/internal/di';
 import { FktFieldHintComponent } from './hint/fkt-field-hint.component';
+import { FktCharacterCountDirective } from './character-count/fkt-character-count.directive';
 
 @Component({
     selector: 'fkt-field',
@@ -54,6 +55,7 @@ export class FktFieldComponent {
     });
 
     protected control = contentChild(FktFieldControl);
+    protected characterCount = contentChild(FktCharacterCountDirective);
     protected projectedHint = contentChild(FktFieldHintComponent);
     protected readonly errorHandler = inject(FKT_FIELD_ERROR_HANDLER, {
         optional: true,
@@ -77,7 +79,7 @@ export class FktFieldComponent {
 
         const control = this.control();
 
-        return !!control?.invalid() && !!control?.touched();
+        return !!control?.invalid() && control?.touched();
     });
 
     protected readonly requiredVisible = computed(() => {
@@ -89,7 +91,13 @@ export class FktFieldComponent {
     });
 
     protected readonly hintVisible = computed(() => {
-        return (!!this.hint() || !!this.projectedHint()) && !this.errorVisible();
+        return (
+            (!!this.hint() || !!this.projectedHint()) && !this.errorVisible()
+        );
+    });
+
+    protected readonly characterCountState = computed(() => {
+        return this.characterCount()?.count() ?? null;
     });
 
     protected readonly error = computed(() => {

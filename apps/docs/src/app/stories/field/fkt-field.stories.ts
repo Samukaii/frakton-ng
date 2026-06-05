@@ -8,6 +8,7 @@ import { DesignToken } from '@/models/design-token';
 import {
     FieldAutomaticErrorsExampleComponent,
     FieldBasicInputExampleComponent,
+    FieldCharacterCountExampleComponent,
     FieldCustomErrorExampleComponent,
     FieldHiddenLabelExampleComponent,
     FieldHintExampleComponent,
@@ -59,7 +60,7 @@ while the actual value stays on a native control directive such as input[fktInpu
             control: 'text',
             category: 'Attributes',
             type: 'string',
-            description: 'Helper text rendered below the field while no error is visible. Use `fkt-field-hint[fktHint]` when the hint needs custom template content.'
+            description: 'Helper text rendered below the field while no error is visible. Use `[fktHintStart]` for custom start content and `[fktHintEnd]` for custom end metadata.'
         },
         showError: {
             control: 'boolean',
@@ -115,11 +116,23 @@ export const PrefixSuffix: Story<FieldPrefixSuffixExampleComponent> = {
 };
 
 /**
- * Hints provide secondary guidance below the field. Use the `hint` input for plain text, or project
- * `fkt-field-hint[fktHint]` when the message needs template content. Visible errors replace hints.
+ * Hints provide secondary guidance below the field. Use the `hint` input for plain text, project
+ * `[fktHintStart]` when the message needs custom template content, or `[fktHintEnd]` for
+ * right-aligned supporting metadata. Visible errors replace the start hint.
  */
 export const Hint: Story<FieldHintExampleComponent> = {
     component: FieldHintExampleComponent,
+    level: 3,
+    args: {}
+};
+
+/**
+ * Character count is opt-in through `fktCharacterCount` on a textual control.
+ * The field renders the computed count in the hint end slot by default. Project
+ * `[fktHintEnd]` to replace that default with custom supporting metadata.
+ */
+export const CharacterCount: Story<FieldCharacterCountExampleComponent> = {
+    component: FieldCharacterCountExampleComponent,
     level: 3,
     args: {}
 };

@@ -12,7 +12,7 @@ export class StoryLoaderService {
 
     async loadData(currentStory: StoryIndexer): Promise<StoryResolved> {
         if (this.dataCache.has(currentStory.id))
-            return this.dataCache.get(currentStory.id)!;
+            return this.dataCache.get(currentStory.id) as StoryResolved;
 
         const response = await currentStory.file();
 
@@ -42,7 +42,7 @@ export class StoryLoaderService {
 
     async loadExternalExamples(currentStory: StoryIndexer): Promise<Record<string, ExternalExample> | null> {
         if (this.externalExamplesCache.has(currentStory.id))
-            return this.externalExamplesCache.get(currentStory.id)!;
+            return this.externalExamplesCache.get(currentStory.id) as Record<string, ExternalExample>;
 
         const response = await currentStory.externalExamples?.();
 

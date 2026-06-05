@@ -1,1 +1,1 @@
-export {FktFieldControl} from './fkt-field-control.directive';
+export { FktFieldControl, FktTextFieldControl } from './fkt-field-control.directive';

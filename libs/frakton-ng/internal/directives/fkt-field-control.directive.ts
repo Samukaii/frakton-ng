@@ -13,6 +13,11 @@ export abstract class FktFieldControl<T> implements FktFieldControlState<T> {
     abstract invalid: Signal<boolean>;
     abstract touched: Signal<boolean>;
     abstract required: Signal<boolean>;
+    abstract maxLength: Signal<number | null>;
     abstract errors: Signal<FktFieldControlStateErrors>;
 }
 
+@Directive()
+export abstract class FktTextFieldControl extends FktFieldControl<string> {
+    abstract override maxLength: Signal<number | null>;
+}

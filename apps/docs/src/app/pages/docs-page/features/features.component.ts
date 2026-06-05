@@ -15,6 +15,7 @@ import { PascalToHumanReadablePipe } from '@/pipes/pascal-to-human-readable.pipe
 import { PascalToKebabPipe } from '@/pipes/pascal-to-kebab.pipe';
 import { FeatureComponent } from '@/pages/docs-page/features/feature/feature.component';
 import { FktButtonComponent } from 'frakton-ng/button';
+import { injectStoryIndexer } from '@/utils/inject-story-indexer';
 
 @Component({
     selector: 'app-features',
@@ -36,16 +37,8 @@ export class FeaturesComponent {
 
     private loader = inject(StoryLoaderService);
 
-    private readonly routeParams = injectRouteParams();
+    protected readonly storyIndexer = injectStoryIndexer();
     protected readonly copyLoading = signal(false);
-
-    protected readonly storyIndexer = computed(() => {
-        const id = this.routeParams()['docId'];
-
-        const story = STORIES_MAP.find((story) => story.id === id);
-
-        return story ?? null;
-    });
 
     protected readonly storyResolved = resource({
         defaultValue: null,
@@ -74,11 +67,17 @@ export class FeaturesComponent {
 
             text += '\n\n' + story.description
 
-            const example = examples?.[story.componentName ?? ''];
+            const example = examples?.[story.componentName ?? `${story.name}Component`];
+
+            const mappedLanguage = {
+                'angular-html': 'html',
+                'css': 'css',
+                'typescript': 'ts'
+            }
 
             if(example) {
                 example.files.forEach(file => {
-                    text += '\n\n' + `\`\`\`${file.language}`;
+                    text += '\n\n' + `\`\`\`${mappedLanguage[file.language]}`;
                     text += '\n' + file.content;
                     text += '\n```';
                 })

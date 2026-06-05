@@ -30,6 +30,12 @@ function readNativeInvalid(
     return !element.validity.valid;
 }
 
+function readNativeMaxLength(
+    element: HTMLInputElement | HTMLTextAreaElement
+): number | null {
+    return element.maxLength >= 0 ? element.maxLength : null;
+}
+
 export function injectNativeInputState<T>(): {
     state: FktFieldControlState<T>;
     listen: () => void;
@@ -44,6 +50,7 @@ export function injectNativeInputState<T>(): {
     const invalid = signal(readNativeInvalid(element));
     const touched = signal(false);
     const required = signal(element.required);
+    const maxLength = signal(readNativeMaxLength(element));
 
     const state: FktFieldControlState<T> = {
         value: value.asReadonly(),
@@ -51,6 +58,7 @@ export function injectNativeInputState<T>(): {
         invalid: invalid.asReadonly(),
         touched: touched.asReadonly(),
         required: required.asReadonly(),
+        maxLength: maxLength.asReadonly(),
         errors: signal(null)
     };
 
@@ -60,6 +68,7 @@ export function injectNativeInputState<T>(): {
             disabled.set(element.disabled);
             invalid.set(readNativeInvalid(element));
             required.set(element.required);
+            maxLength.set(readNativeMaxLength(element));
         };
 
         const markTouched = () => {
@@ -80,6 +89,7 @@ export function injectNativeInputState<T>(): {
                 'value',
                 'disabled',
                 'required',
+                'maxlength',
                 'readonly',
                 'aria-invalid',
                 'class',

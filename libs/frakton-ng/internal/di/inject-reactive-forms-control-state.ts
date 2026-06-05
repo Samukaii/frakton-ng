@@ -29,6 +29,7 @@ export function injectReactiveFormsControlState<T>(): {
     const touched = signal(false);
     const invalid = signal(false);
     const required = signal(false);
+    const maxLength = signal<number | null>(null);
     const rawErrors = signal<Record<string, any> | null>(null);
 
     const inferRequired = (control: AbstractControl): boolean => {
@@ -44,6 +45,33 @@ export function injectReactiveFormsControlState<T>(): {
         });
 
         return validator(probe)?.['required'] === true;
+    };
+
+    const inferMaxLength = (control: AbstractControl): number | null => {
+        const validator = control.validator;
+
+        if (!validator) return null;
+
+        const probe = Object.create(control) as AbstractControl;
+
+        Object.defineProperty(probe, 'value', {
+            configurable: true,
+            get: () => 'x'.repeat(100000),
+        });
+
+        const maxLengthError = validator(probe)?.['maxlength'];
+
+        if (
+            maxLengthError &&
+            typeof maxLengthError === 'object' &&
+            'requiredLength' in maxLengthError
+        ) {
+            const requiredLength = maxLengthError['requiredLength'];
+
+            return typeof requiredLength === 'number' ? requiredLength : null;
+        }
+
+        return null;
     };
 
     const getFieldName = (control: AbstractControl) => {
@@ -86,6 +114,7 @@ export function injectReactiveFormsControlState<T>(): {
         invalid: invalid.asReadonly(),
         touched: touched.asReadonly(),
         required: required.asReadonly(),
+        maxLength: maxLength.asReadonly(),
         errors: normalizedErrors,
     };
 
@@ -100,6 +129,7 @@ export function injectReactiveFormsControlState<T>(): {
             touched.set(control.touched);
             invalid.set(control.invalid);
             required.set(inferRequired(control));
+            maxLength.set(inferMaxLength(control));
             rawErrors.set(control.errors);
         };
 

@@ -1245,7 +1245,15 @@ export const STORIES_MAP: StoryIndexer[] = [	{
 		        name: "Hint",
 		        type: "story",
 		        componentName: "FieldHintExampleComponent",
-		        description:  `Hints provide secondary guidance below the field. Use the \`hint\` input for plain text, or project\n\`fkt-field-hint[fktHint]\` when the message needs template content. Visible errors replace hints.`,
+		        description:  `Hints provide secondary guidance below the field. Use the \`hint\` input for plain text, project\n\`[fktHintStart]\` when the message needs custom template content, or \`[fktHintEnd]\` for\nright-aligned supporting metadata. Visible errors replace the start hint.`,
+		        level: 3,
+		    },
+		    {
+		        id: "character-count",
+		        name: "CharacterCount",
+		        type: "story",
+		        componentName: "FieldCharacterCountExampleComponent",
+		        description:  `Character count is opt-in through \`fktCharacterCount\` on a textual control.\nThe field renders the computed count in the hint end slot by default. Project\n\`[fktHintEnd]\` to replace that default with custom supporting metadata.`,
 		        level: 3,
 		    },
 		    {
@@ -2291,7 +2299,7 @@ export const STORIES_MAP: StoryIndexer[] = [	{
 		        name: "ConditionalStyle",
 		        type: "story",
 		        componentName: "TableExamplesConditionalStyleComponent",
-		        description:  `Row-level styling via \`[classesFn]\`. The function receives each row item and returns a CSS\nclass string applied to the \`<tr>\` element.\n\nBecause Angular's view encapsulation prevents parent styles from reaching child component internals,\nthe table exposes a \`--fkt-row-cell-background\` CSS custom property on the row host. Set this\nvariable on the class applied to \`<tr>\` — CSS custom properties cascade through component boundaries\n— and the cell background will pick it up automatically.\n\nUse \`::ng-deep\` on a wrapper element in your component template to target the \`<tr>\` without\nneeding \`ViewEncapsulation.None\`.`,
+		        description:  `Row-level styling via \`[classesFn]\`. The function receives each row item and returns a CSS\nclass string applied to the \`<tr>\` element.\n\nStyle the returned class with regular CSS selectors when the style can target the rendered cells\ndirectly, such as \`.status-cancelled td { background-color: red; }\`. As an alternative, the table\nalso exposes a \`--fkt-row-cell-background\` CSS custom property on the row host. Set this variable\non the class applied to \`<tr>\` when you prefer to style through the table's design-token surface.\n\nUse \`::ng-deep\` on a wrapper element in your component template to target the \`<tr>\` without\nneeding \`ViewEncapsulation.None\`.`,
 		        level: 3,
 		    },
 		    {
@@ -2403,7 +2411,7 @@ export const STORIES_MAP: StoryIndexer[] = [	{
 		        name: "Filtering",
 		        type: "story",
 		        componentName: "TableExamplesFilteringComponent",
-		        description:  `Filters are declared per-column using the \`filter\` factory returned by \`defineFilters()\`.\nLike \`defineCells\`, define it once globally with an alias map of filter components. Attaching\na filter to a column is then one line:\n\n\`\`\`ts\n{ key: 'name', header: 'Name', filter: filter.text('name', { label: 'Search' }) }\n\`\`\`\n\nFilter state flows through \`[(filters)]\` as a plain object owned by the consumer — easy to\ndebounce, serialize, URL-sync, or pass directly to an API.\n\nFour built-in types: \`filter.text()\`, \`filter.select()\`, \`filter.number()\` (with \`=\`, \`<\`, \`>\`,\n\`≤\`, \`≥\` modifiers), and \`filter.dateRange()\`.`,
+		        description:  `Filters are declared per-column using the \`filter\` factory returned by \`defineFilters()\`.\nLike \`defineCells\`, define it once globally with an alias map of filter components:\n\n\`\`\`ts\nexport const filter = defineFilters({\n    text: FktTableFilterTextComponent,\n    select: FktTableFilterSelectComponent,\n    number: FktTableFilterNumberComponent,\n    dateRange: FktTableFilterDateRangeComponent,\n});\n\`\`\`\n\nThen attach a registered filter alias to a column:\n\n\`\`\`ts\n{\n    key: 'name',\n    header: 'Name',\n    filter: filter.text('name', {\n        label: 'Search',\n    }),\n}\n\`\`\`\n\nFilter state flows through \`[(filters)]\` as a plain object owned by the consumer — easy to\ndebounce, serialize, URL-sync, or pass directly to an API.\n\nFrakton NG ships four built-in filter components that can be registered: text, select, number\n(with \`=\`, \`<\`, \`>\`, \`<=\`, \`>=\` modifiers), and date range.`,
 		        level: 3,
 		    },
 		    {
