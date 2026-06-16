@@ -8,8 +8,6 @@ import {
     PLATFORM_ID,
     viewChild,
 } from '@angular/core';
-import 'prismjs/components/prism-typescript';
-import '@/prism-languages/angular-html';
 import { isPlatformBrowser } from '@angular/common';
 import { FktIconComponent } from 'frakton-ng/icon';
 import { Prism } from '@/prism-languages/prism-js';

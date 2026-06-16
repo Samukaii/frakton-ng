@@ -1,3 +1,5 @@
+import Prism from 'prismjs';
+
 const prism = Prism as any;
 
 prism.languages['angular2html'] = prism.languages.extend('markup', {});

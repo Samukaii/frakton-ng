@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { FktIconComponent } from 'frakton-ng/icon';
 import { Generic } from 'frakton-ng/internal/types';
-import { injectCompatFormStateWithoutNative } from '../../../../internal/di/inject-compat-form-state';
+import { injectCompatFormStateWithoutNative } from 'frakton-ng/internal/di';
 import { FktAutocompleteContextDirective } from '../../directives/fkt-autocomplete-context.directive';
 import { FktAutocompleteSelectionDirective } from '../../directives/fkt-autocomplete-selection.directive';
 

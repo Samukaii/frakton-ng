@@ -17,7 +17,7 @@ import { FktNoResults } from 'frakton-ng/no-results';
 import { FktIconComponent } from 'frakton-ng/icon';
 import { FktAutocompleteOption } from '../fkt-autocomplete.types';
 import { NgTemplateOutlet } from '@angular/common';
-import { CallPipe } from 'frakton-ng/internal/pipes';
+import { CallPipe, TranslatePipe } from 'frakton-ng/internal/pipes';
 import { FktAutocompleteVirtualScrollDirective } from '../directives/public/fkt-autocomplete-virtual-scroll.directive';
 import { FktInfiniteLoadingComponent } from 'frakton-ng/internal/components';
 import { FktAutocompleteStoreService } from '../services/fkt-autocomplete-store.service';
@@ -26,7 +26,6 @@ import { FktAutocompleteContextDirective } from '../directives/fkt-autocomplete-
 import { Generic } from 'frakton-ng/internal/types';
 import { FktAutocompleteInfiniteLoadingDirective } from '../directives/public/fkt-autocomplete-infinite-loading.directive';
 import { FktTranslatorService } from 'frakton-ng/internal/services';
-import {TranslatePipe} from "../../../internal/pipes/translate.pipe";
 
 export interface ItemContext<T> {
     $implicit: FktAutocompleteOption<T>;

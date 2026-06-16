@@ -27,7 +27,7 @@ import { FktAutocompleteSelectionDirective } from './directives/fkt-autocomplete
 import { FktAutocompleteStoreService } from './services/fkt-autocomplete-store.service';
 import { FktAutocompleteContextDirective } from './directives/fkt-autocomplete-context.directive';
 import { ControlValueAccessor, NgControl } from '@angular/forms';
-import { injectCompatFormStateWithoutNative } from '../../internal/di/inject-compat-form-state';
+import { injectCompatFormStateWithoutNative } from 'frakton-ng/internal/di';
 import {
     FktAutocompleteWritableValue,
     normalizeWrittenAutocompleteValue,

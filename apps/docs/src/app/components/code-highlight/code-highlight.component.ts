@@ -51,7 +51,7 @@ export class CodeHighlightComponent {
         const anchor = this.codeAnchor();
         const language = this.mappedLanguage();
 
-        const grammar = Prism.languages[language];
+        const grammar = Prism.languages[language] ?? Prism.languages['javascript'];
 
         if (!isPlatformBrowser(this.platform)) {
             anchor.nativeElement.innerHTML = this.text();
