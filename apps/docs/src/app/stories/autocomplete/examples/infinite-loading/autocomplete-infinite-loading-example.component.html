@@ -1,0 +1,17 @@
+<app-code-output
+    [value]="value()"
+    title="Field value"
+/>
+
+<fkt-autocomplete
+    label="User"
+    placeholder="Search for a user"
+    [formControl]="user"
+    [options]="visibleUsers()"
+    [loading]="loading()"
+    labelKey="name"
+    valueKey="id"
+    fktAutocompleteInfiniteLoading
+    [hasEnded]="hasEnded()"
+    (loadMore)="loadMore()"
+/>

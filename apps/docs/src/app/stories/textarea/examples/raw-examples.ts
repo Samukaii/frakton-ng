@@ -1,148 +1,124 @@
 // @ts-nocheck
 import { ExternalExample } from '@/models/external-example';
-import autoExpandExampleTemplate from "./auto-expand-example/auto-expand-example.component.html" with {loader: "text"};
-import autoExpandExampleStyles from "./auto-expand-example/auto-expand-example.component.scss" with {loader: "text"};
-import autoExpandExampleTypescript from "./auto-expand-example/auto-expand-example.component.ts" with {loader: "text"};
-import basicExampleTemplate from "./basic-example/basic-example.component.html" with {loader: "text"};
-import basicExampleStyles from "./basic-example/basic-example.component.scss" with {loader: "text"};
-import basicExampleTypescript from "./basic-example/basic-example.component.ts" with {loader: "text"};
-import characterCounterExampleTemplate from "./character-counter-example/character-counter-example.component.html" with {loader: "text"};
-import characterCounterExampleStyles from "./character-counter-example/character-counter-example.component.scss" with {loader: "text"};
-import characterCounterExampleTypescript from "./character-counter-example/character-counter-example.component.ts" with {loader: "text"};
-import disabledExampleTemplate from "./disabled-example/disabled-example.component.html" with {loader: "text"};
-import disabledExampleStyles from "./disabled-example/disabled-example.component.scss" with {loader: "text"};
-import disabledExampleTypescript from "./disabled-example/disabled-example.component.ts" with {loader: "text"};
-import formIntegrationExampleTemplate from "./form-integration-example/form-integration-example.component.html" with {loader: "text"};
-import formIntegrationExampleStyles from "./form-integration-example/form-integration-example.component.scss" with {loader: "text"};
-import formIntegrationExampleTypescript from "./form-integration-example/form-integration-example.component.ts" with {loader: "text"};
-import validationExampleTemplate from "./validation-example/validation-example.component.html" with {loader: "text"};
-import validationExampleStyles from "./validation-example/validation-example.component.scss" with {loader: "text"};
-import validationExampleTypescript from "./validation-example/validation-example.component.ts" with {loader: "text"};
+import textareaAutoExpandExampleTemplate from "./auto-expand/textarea-auto-expand-example.component.html" with {loader: "text"};
+import textareaAutoExpandExampleStyles from "./auto-expand/textarea-auto-expand-example.component.scss" with {loader: "text"};
+import textareaAutoExpandExampleTypescript from "./auto-expand/textarea-auto-expand-example.component.ts" with {loader: "text"};
+import textareaBasicExampleTemplate from "./basic/textarea-basic-example.component.html" with {loader: "text"};
+import textareaBasicExampleStyles from "./basic/textarea-basic-example.component.scss" with {loader: "text"};
+import textareaBasicExampleTypescript from "./basic/textarea-basic-example.component.ts" with {loader: "text"};
+import textareaCharacterCountExampleTemplate from "./character-count/textarea-character-count-example.component.html" with {loader: "text"};
+import textareaCharacterCountExampleStyles from "./character-count/textarea-character-count-example.component.scss" with {loader: "text"};
+import textareaCharacterCountExampleTypescript from "./character-count/textarea-character-count-example.component.ts" with {loader: "text"};
+import textareaReactiveFormsExampleTemplate from "./reactive-forms/textarea-reactive-forms-example.component.html" with {loader: "text"};
+import textareaReactiveFormsExampleStyles from "./reactive-forms/textarea-reactive-forms-example.component.scss" with {loader: "text"};
+import textareaReactiveFormsExampleTypescript from "./reactive-forms/textarea-reactive-forms-example.component.ts" with {loader: "text"};
+import textareaSignalFormsExampleTemplate from "./signal-forms/textarea-signal-forms-example.component.html" with {loader: "text"};
+import textareaSignalFormsExampleStyles from "./signal-forms/textarea-signal-forms-example.component.scss" with {loader: "text"};
+import textareaSignalFormsExampleTypescript from "./signal-forms/textarea-signal-forms-example.component.ts" with {loader: "text"};
 
 
 export default {
-	AutoExpandExampleComponent: {
-		name: "AutoExpandExample",
+	TextareaAutoExpandExampleComponent: {
+		name: "TextareaAutoExpandExample",
 		files: [
 		
 			{
-				name: "auto-expand-example.component.html",
-				content: autoExpandExampleTemplate as string,
-				language: "angular-html" as const,
+				name: "textarea-auto-expand-example.component.html",
+				content: textareaAutoExpandExampleTemplate as string,
+				language: "angular2html" as const,
 			},		
 			{
-				name: "auto-expand-example.component.ts",
-				content: autoExpandExampleTypescript as string,
+				name: "textarea-auto-expand-example.component.ts",
+				content: textareaAutoExpandExampleTypescript as string,
 				language: "typescript" as const,
 			},		
 			{
-				name: "auto-expand-example.component.scss",
-				content: autoExpandExampleStyles as string,
+				name: "textarea-auto-expand-example.component.scss",
+				content: textareaAutoExpandExampleStyles as string,
 				language: "css" as const,
 			},		
 		]
 	},
-	BasicExampleComponent: {
-		name: "BasicExample",
+	TextareaBasicExampleComponent: {
+		name: "TextareaBasicExample",
 		files: [
 		
 			{
-				name: "basic-example.component.html",
-				content: basicExampleTemplate as string,
-				language: "angular-html" as const,
+				name: "textarea-basic-example.component.html",
+				content: textareaBasicExampleTemplate as string,
+				language: "angular2html" as const,
 			},		
 			{
-				name: "basic-example.component.ts",
-				content: basicExampleTypescript as string,
+				name: "textarea-basic-example.component.ts",
+				content: textareaBasicExampleTypescript as string,
 				language: "typescript" as const,
 			},		
 			{
-				name: "basic-example.component.scss",
-				content: basicExampleStyles as string,
+				name: "textarea-basic-example.component.scss",
+				content: textareaBasicExampleStyles as string,
 				language: "css" as const,
 			},		
 		]
 	},
-	CharacterCounterExampleComponent: {
-		name: "CharacterCounterExample",
+	TextareaCharacterCountExampleComponent: {
+		name: "TextareaCharacterCountExample",
 		files: [
 		
 			{
-				name: "character-counter-example.component.html",
-				content: characterCounterExampleTemplate as string,
-				language: "angular-html" as const,
+				name: "textarea-character-count-example.component.html",
+				content: textareaCharacterCountExampleTemplate as string,
+				language: "angular2html" as const,
 			},		
 			{
-				name: "character-counter-example.component.ts",
-				content: characterCounterExampleTypescript as string,
+				name: "textarea-character-count-example.component.ts",
+				content: textareaCharacterCountExampleTypescript as string,
 				language: "typescript" as const,
 			},		
 			{
-				name: "character-counter-example.component.scss",
-				content: characterCounterExampleStyles as string,
+				name: "textarea-character-count-example.component.scss",
+				content: textareaCharacterCountExampleStyles as string,
 				language: "css" as const,
 			},		
 		]
 	},
-	DisabledExampleComponent: {
-		name: "DisabledExample",
+	TextareaReactiveFormsExampleComponent: {
+		name: "TextareaReactiveFormsExample",
 		files: [
 		
 			{
-				name: "disabled-example.component.html",
-				content: disabledExampleTemplate as string,
-				language: "angular-html" as const,
+				name: "textarea-reactive-forms-example.component.html",
+				content: textareaReactiveFormsExampleTemplate as string,
+				language: "angular2html" as const,
 			},		
 			{
-				name: "disabled-example.component.ts",
-				content: disabledExampleTypescript as string,
+				name: "textarea-reactive-forms-example.component.ts",
+				content: textareaReactiveFormsExampleTypescript as string,
 				language: "typescript" as const,
 			},		
 			{
-				name: "disabled-example.component.scss",
-				content: disabledExampleStyles as string,
+				name: "textarea-reactive-forms-example.component.scss",
+				content: textareaReactiveFormsExampleStyles as string,
 				language: "css" as const,
 			},		
 		]
 	},
-	FormIntegrationExampleComponent: {
-		name: "FormIntegrationExample",
+	TextareaSignalFormsExampleComponent: {
+		name: "TextareaSignalFormsExample",
 		files: [
 		
 			{
-				name: "form-integration-example.component.html",
-				content: formIntegrationExampleTemplate as string,
-				language: "angular-html" as const,
+				name: "textarea-signal-forms-example.component.html",
+				content: textareaSignalFormsExampleTemplate as string,
+				language: "angular2html" as const,
 			},		
 			{
-				name: "form-integration-example.component.ts",
-				content: formIntegrationExampleTypescript as string,
+				name: "textarea-signal-forms-example.component.ts",
+				content: textareaSignalFormsExampleTypescript as string,
 				language: "typescript" as const,
 			},		
 			{
-				name: "form-integration-example.component.scss",
-				content: formIntegrationExampleStyles as string,
-				language: "css" as const,
-			},		
-		]
-	},
-	ValidationExampleComponent: {
-		name: "ValidationExample",
-		files: [
-		
-			{
-				name: "validation-example.component.html",
-				content: validationExampleTemplate as string,
-				language: "angular-html" as const,
-			},		
-			{
-				name: "validation-example.component.ts",
-				content: validationExampleTypescript as string,
-				language: "typescript" as const,
-			},		
-			{
-				name: "validation-example.component.scss",
-				content: validationExampleStyles as string,
+				name: "textarea-signal-forms-example.component.scss",
+				content: textareaSignalFormsExampleStyles as string,
 				language: "css" as const,
 			},		
 		]

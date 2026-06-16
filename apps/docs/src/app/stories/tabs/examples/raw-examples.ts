@@ -20,7 +20,7 @@ export default {
 			{
 				name: "tabs-basic.component.html",
 				content: tabsBasicTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "tabs-basic.component.ts",
@@ -52,7 +52,7 @@ export default {
 			{
 				name: "tabs-render-modes.component.html",
 				content: tabsRenderModesTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "tabs-render-modes.component.ts",
@@ -73,7 +73,7 @@ export default {
 			{
 				name: "tabs-with-icons.component.html",
 				content: tabsWithIconsTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "tabs-with-icons.component.ts",

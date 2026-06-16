@@ -49,7 +49,7 @@ export default {
 			{
 				name: "field-automatic-errors-example.component.html",
 				content: fieldAutomaticErrorsExampleTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "field-automatic-errors-example.component.ts",
@@ -70,7 +70,7 @@ export default {
 			{
 				name: "field-basic-input-example.component.html",
 				content: fieldBasicInputExampleTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "field-basic-input-example.component.ts",
@@ -91,7 +91,7 @@ export default {
 			{
 				name: "field-character-count-example.component.html",
 				content: fieldCharacterCountExampleTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "field-character-count-example.component.ts",
@@ -112,7 +112,7 @@ export default {
 			{
 				name: "field-custom-error-example.component.html",
 				content: fieldCustomErrorExampleTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "field-custom-error-example.component.ts",
@@ -133,7 +133,7 @@ export default {
 			{
 				name: "field-hidden-label-example.component.html",
 				content: fieldHiddenLabelExampleTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "field-hidden-label-example.component.ts",
@@ -154,7 +154,7 @@ export default {
 			{
 				name: "field-hint-example.component.html",
 				content: fieldHintExampleTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "field-hint-example.component.ts",
@@ -175,7 +175,7 @@ export default {
 			{
 				name: "field-manual-error-example.component.html",
 				content: fieldManualErrorExampleTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "field-manual-error-example.component.ts",
@@ -196,7 +196,7 @@ export default {
 			{
 				name: "field-prefix-suffix-example.component.html",
 				content: fieldPrefixSuffixExampleTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "field-prefix-suffix-example.component.ts",
@@ -217,7 +217,7 @@ export default {
 			{
 				name: "field-reactive-forms-example.component.html",
 				content: fieldReactiveFormsExampleTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "field-reactive-forms-example.component.ts",
@@ -238,7 +238,7 @@ export default {
 			{
 				name: "field-required-marker-example.component.html",
 				content: fieldRequiredMarkerExampleTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "field-required-marker-example.component.ts",
@@ -259,7 +259,7 @@ export default {
 			{
 				name: "field-sizes-example.component.html",
 				content: fieldSizesExampleTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "field-sizes-example.component.ts",
@@ -280,7 +280,7 @@ export default {
 			{
 				name: "field-translated-errors-example.component.html",
 				content: fieldTranslatedErrorsExampleTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "field-translated-errors-example.component.ts",
@@ -301,7 +301,7 @@ export default {
 			{
 				name: "field-validation-example.component.html",
 				content: fieldValidationExampleTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "field-validation-example.component.ts",

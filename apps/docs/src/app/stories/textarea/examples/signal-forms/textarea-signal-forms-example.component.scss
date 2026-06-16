@@ -1,0 +1,11 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    gap: var(--fkt-space-sm);
+}
+
+.actions {
+    display: flex;
+    gap: var(--fkt-space-xs);
+    justify-content: flex-end;
+}

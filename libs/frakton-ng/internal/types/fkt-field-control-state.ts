@@ -2,8 +2,6 @@ import { Signal } from '@angular/core';
 import { FieldTree } from '@angular/forms/signals';
 import { AbstractControl } from '@angular/forms';
 
-export type FktFieldErrorSource = 'reactive' | 'signal';
-
 export interface FktNormalizedValidationError<TField = unknown> {
     kind: string;
     message?: string;
@@ -34,4 +32,5 @@ export interface FktFieldControlState<T> {
     required: Signal<boolean>;
     maxLength: Signal<number | null>;
     errors: Signal<FktFieldControlStateErrors>;
+    setValue: (value: T) => void;
 }

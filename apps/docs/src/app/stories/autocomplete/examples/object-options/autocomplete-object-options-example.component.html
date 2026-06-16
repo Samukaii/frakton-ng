@@ -1,0 +1,15 @@
+<app-code-output
+    [value]="value()"
+    title="Field value"
+/>
+
+<fkt-autocomplete
+    label="Assignee"
+    placeholder="Search for a user to assign"
+    [formControl]="assignee"
+    [options]="users"
+    labelKey="name"
+    valueKey="id"
+    groupKey="department"
+    localSearch
+/>

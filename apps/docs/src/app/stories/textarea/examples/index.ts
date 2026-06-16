@@ -1,6 +1,5 @@
-export { BasicExampleComponent } from './basic-example/basic-example.component';
-export { ValidationExampleComponent } from './validation-example/validation-example.component';
-export { AutoExpandExampleComponent } from './auto-expand-example/auto-expand-example.component';
-export { FormIntegrationExampleComponent } from './form-integration-example/form-integration-example.component';
-export { DisabledExampleComponent } from './disabled-example/disabled-example.component';
-export { CharacterCounterExampleComponent } from './character-counter-example/character-counter-example.component';
+export { TextareaBasicExampleComponent } from './basic/textarea-basic-example.component';
+export { TextareaAutoExpandExampleComponent } from './auto-expand/textarea-auto-expand-example.component';
+export { TextareaCharacterCountExampleComponent } from './character-count/textarea-character-count-example.component';
+export { TextareaSignalFormsExampleComponent } from './signal-forms/textarea-signal-forms-example.component';
+export { TextareaReactiveFormsExampleComponent } from './reactive-forms/textarea-reactive-forms-example.component';

@@ -5,6 +5,7 @@ import {
     effect,
     ElementRef,
     inject,
+    Injector,
     input,
     linkedSignal,
     output,
@@ -36,6 +37,7 @@ import { injectWindowScroll } from 'frakton-ng/internal/di';
         [style]="styles()"
         (keydown.esc)="$event.stopPropagation(); escapeKeyDown.emit()"
         fktFocusTrap
+        [autoFocusOnOpen]="autoFocusOnOpen()"
         role="dialog"
         class="overlay-container"
     >
@@ -79,6 +81,7 @@ import { injectWindowScroll } from 'frakton-ng/internal/di';
 export class FktOverlayAnchorComponent {
     id = input.required<string>();
     stackIndex = input.required<number>();
+    autoFocusOnOpen = input.required<boolean>();
     overlayRefs = input.required<Map<string, FktOverlayRef<any>>>();
     distanceFromAnchor = input.required<string>();
     anchor = input.required<ElementRef>();
@@ -106,6 +109,7 @@ export class FktOverlayAnchorComponent {
     private focusTrap = viewChild.required(FktFocusTrapDirective);
 
     private alignmentService = inject(FktGeometryAlignmentService);
+    private injector = inject(Injector);
     private overlayInfo = inject(OVERLAY_INFO);
     protected windowScroll = injectWindowScroll();
 
@@ -131,13 +135,14 @@ export class FktOverlayAnchorComponent {
 
     private readonly inputsReady = signal(false);
 
-    a = afterNextRender(() => {
+    @MarkUsed()
+    protected readonly watchAllInputsReady = afterNextRender(() => {
         this.inputsReady.set(true);
     });
 
     @MarkUsed()
     protected autoCloseOnOutsideClick = outsideClickEffect((element) => {
-        if(!this.inputsReady()) return;
+        if (!this.inputsReady()) return;
         if (!(element instanceof HTMLElement)) return;
 
         const anchorElement = this.anchor().nativeElement as HTMLElement;
@@ -195,16 +200,26 @@ export class FktOverlayAnchorComponent {
     protected sizeSignal = elementSizeSignal(this.elementRef.nativeElement, {
         startWithNull: true,
     });
+
+    protected anchorSize = computed(() => {
+        return elementSizeSignal(this.anchor().nativeElement, {
+            startWithNull: true,
+            injector: this.injector,
+        });
+    });
+
     protected canShow = signal(false);
     protected internalWidth = computed(() => {
         const width = this.width();
 
+
         if (width) return width;
 
-        return `${this.anchor().nativeElement.getBoundingClientRect().width}px`;
+        return `${this.anchorSize()()?.width ?? 'fit-content'}px`;
     });
 
     protected alignedPosition = computed(() => {
+        this.anchorSize()();
         const anchor = this.anchor() as ElementRef<HTMLElement>;
         this.windowScroll();
 
@@ -246,5 +261,9 @@ export class FktOverlayAnchorComponent {
 
     public restoreFocus() {
         this.focusTrap().restoreFocus();
+    }
+
+    public focusFirstElement() {
+        this.focusTrap().focusFirstElement();
     }
 }

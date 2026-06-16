@@ -7,7 +7,7 @@ import { FktAlphaSelectorComponent } from './selectors/alpha/fkt-alpha-selector.
 import { FktColorPickerFormat, fktColorPickerFormats } from '../fkt-color-picker.types';
 import { FktColorHslControlComponent } from '../controls/hsl/fkt-color-hsl-control.component';
 import { FktColorRgbControlComponent } from '../controls/rgb/fkt-color-rgb-control.component';
-import { FktAutocompleteOption } from 'frakton-ng/autocomplete';
+import { FktAutocompleteOption } from 'frakton-ng/autocomplete-old';
 import { FktColorHexControlComponent } from '../controls/hex/fkt-color-hex-control.component';
 import { fktColorFormatters } from 'frakton-ng/internal/utils';
 import { parseAnyColorToHSV } from '../helpers/parse-any-color-to-hsl';

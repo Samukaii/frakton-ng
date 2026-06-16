@@ -1,11 +1,11 @@
 import { Component, inject, input, output } from '@angular/core';
 import { FktButtonComponent } from 'frakton-ng/button';
-import { FktInputComponent } from 'frakton-ng/input';
+import { FktInputOldComponent } from 'frakton-ng/input-old';
 import { FktDialogService } from 'frakton-ng/dialog';
 
 @Component({
   selector: 'fkt-user-form-dialog',
-  imports: [FktInputComponent, FktButtonComponent],
+  imports: [FktInputOldComponent, FktButtonComponent],
   template: `
     <div class="dialog-content">
       <h2>User Information</h2>

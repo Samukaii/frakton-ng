@@ -1,0 +1,15 @@
+<app-code-output
+    [value]="value()"
+    title="Field value"
+/>
+
+<fkt-autocomplete
+    label="Country"
+    [formControl]="country"
+    placeholder="Search by country code: br, de, us..."
+    [options]="countries"
+    labelKey="name"
+    valueKey="code"
+    groupKey="continent"
+    [localSearch]="searchByCode"
+/>

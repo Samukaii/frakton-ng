@@ -13,8 +13,10 @@ export abstract class FktFieldControl<T> implements FktFieldControlState<T> {
     abstract invalid: Signal<boolean>;
     abstract touched: Signal<boolean>;
     abstract required: Signal<boolean>;
+    abstract hasValue: Signal<boolean>;
     abstract maxLength: Signal<number | null>;
     abstract errors: Signal<FktFieldControlStateErrors>;
+    abstract setValue: (value: T) => void;
 }
 
 @Directive()

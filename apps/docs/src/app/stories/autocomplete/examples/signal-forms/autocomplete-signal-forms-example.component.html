@@ -1,0 +1,20 @@
+<app-code-output
+    [value]="model()"
+    title="Form value"
+/>
+
+<div class="actions">
+    <fkt-button text="Fill" (click)="fill()" />
+    <fkt-button text="Reset" (click)="reset()" />
+    <fkt-button text="Toggle disabled" (click)="toggleDisabled()" />
+</div>
+
+<fkt-autocomplete
+    label="Country"
+    [field]="form.country"
+    [options]="countries"
+    labelKey="name"
+    valueKey="code"
+    groupKey="continent"
+    localSearch
+/>

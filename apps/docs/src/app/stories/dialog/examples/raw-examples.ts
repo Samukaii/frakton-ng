@@ -40,7 +40,7 @@ export default {
 			{
 				name: "fkt-confirmation-dialog-example.component.html",
 				content: fktConfirmationDialogExampleTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "fkt-confirmation-dialog-example.component.ts",
@@ -61,7 +61,7 @@ export default {
 			{
 				name: "fkt-custom-dialog-example.component.html",
 				content: fktCustomDialogExampleTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "fkt-custom-dialog-example.component.ts",
@@ -82,7 +82,7 @@ export default {
 			{
 				name: "fkt-dialog-overview-example.component.html",
 				content: fktDialogOverviewExampleTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "fkt-dialog-overview-example.component.ts",
@@ -103,7 +103,7 @@ export default {
 			{
 				name: "fkt-form-dialog-example.component.html",
 				content: fktFormDialogExampleTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "fkt-form-dialog-example.component.ts",
@@ -124,7 +124,7 @@ export default {
 			{
 				name: "fkt-fullscreen-dialog-example.component.html",
 				content: fktFullscreenDialogExampleTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "fkt-fullscreen-dialog-example.component.ts",
@@ -145,7 +145,7 @@ export default {
 			{
 				name: "fkt-simple-dialog-example.component.html",
 				content: fktSimpleDialogExampleTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "fkt-simple-dialog-example.component.ts",
@@ -166,7 +166,7 @@ export default {
 			{
 				name: "fkt-small-dialog-example.component.html",
 				content: fktSmallDialogExampleTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "fkt-small-dialog-example.component.ts",
@@ -187,7 +187,7 @@ export default {
 			{
 				name: "fkt-custom-dialog-demo.component.html",
 				content: fktCustomDialogDemoTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "fkt-custom-dialog-demo.component.ts",
@@ -208,7 +208,7 @@ export default {
 			{
 				name: "fkt-form-dialog-demo.component.html",
 				content: fktFormDialogDemoTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "fkt-form-dialog-demo.component.ts",
@@ -229,7 +229,7 @@ export default {
 			{
 				name: "fkt-simple-dialog-demo.component.html",
 				content: fktSimpleDialogDemoTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "fkt-simple-dialog-demo.component.ts",

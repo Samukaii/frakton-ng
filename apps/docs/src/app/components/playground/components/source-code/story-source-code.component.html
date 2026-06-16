@@ -42,7 +42,7 @@
                 [attr.data-language]="file.language"
                 [class.active]="currentTab() === $index"
                 (click)="setTab($index)">
-                @if (file.language === 'angular-html') {
+                @if (file.language === 'angular2html') {
                     <p>HTML</p>
                 }
                 @if (file.language === 'typescript') {

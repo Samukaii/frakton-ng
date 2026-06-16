@@ -19,7 +19,7 @@ export default {
 			{
 				name: "basic-usage.component.html",
 				content: basicUsageTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "basic-usage.component.ts",
@@ -40,7 +40,7 @@ export default {
 			{
 				name: "dashboard-metrics.component.html",
 				content: dashboardMetricsTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "dashboard-metrics.component.ts",
@@ -61,7 +61,7 @@ export default {
 			{
 				name: "with-labels.component.html",
 				content: withLabelsTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "with-labels.component.ts",

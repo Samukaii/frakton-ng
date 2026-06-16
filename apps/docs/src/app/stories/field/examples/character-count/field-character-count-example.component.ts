@@ -3,8 +3,9 @@ import { Field, form, maxLength } from '@angular/forms/signals';
 import {
     FktCharacterCountDirective,
     FktFieldComponent,
-    FktInputTextDirective,
+    FktHintEndDirective,
 } from 'frakton-ng/field';
+import {FktInputTextDirective} from 'frakton-ng/input-text';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
@@ -15,6 +16,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
         FktInputTextDirective,
         Field,
         ReactiveFormsModule,
+        FktHintEndDirective
     ],
     templateUrl: './field-character-count-example.component.html',
     styleUrl: './field-character-count-example.component.scss',

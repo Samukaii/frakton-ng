@@ -1,5 +1,5 @@
 import { Component, computed, inject, output, signal } from '@angular/core';
-import { FktInputComponent } from 'frakton-ng/input';
+import { FktInputOldComponent } from 'frakton-ng/input-old';
 import { STORIES_MAP } from '@/stories/stories-map';
 import { pascalToHumanReadable } from '@/utils/pascal-to-human-readable';
 import { FktIconComponent } from 'frakton-ng/icon';
@@ -26,7 +26,7 @@ function getHighlightedExcerpt(text: string, search: string, maxLength = 60) {
 @Component({
     selector: 'fkt-omni-search',
     imports: [
-        FktInputComponent,
+        FktInputOldComponent,
         FktIconComponent,
         FormControlSuffixDirective,
         RouterLink,

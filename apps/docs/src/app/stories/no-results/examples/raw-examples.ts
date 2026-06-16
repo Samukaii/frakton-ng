@@ -31,7 +31,7 @@ export default {
 			{
 				name: "compact-example.component.html",
 				content: compactExampleTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "compact-example.component.ts",
@@ -52,7 +52,7 @@ export default {
 			{
 				name: "data-table-example.component.html",
 				content: dataTableExampleTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "data-table-example.component.ts",
@@ -73,7 +73,7 @@ export default {
 			{
 				name: "file-upload-example.component.html",
 				content: fileUploadExampleTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "file-upload-example.component.ts",
@@ -94,7 +94,7 @@ export default {
 			{
 				name: "search-results-example.component.html",
 				content: searchResultsExampleTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "search-results-example.component.ts",
@@ -115,7 +115,7 @@ export default {
 			{
 				name: "simple-example.component.html",
 				content: simpleExampleTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "simple-example.component.ts",
@@ -136,7 +136,7 @@ export default {
 			{
 				name: "with-action-example.component.html",
 				content: withActionExampleTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "with-action-example.component.ts",
@@ -157,7 +157,7 @@ export default {
 			{
 				name: "with-icon-and-description-example.component.html",
 				content: withIconAndDescriptionExampleTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "with-icon-and-description-example.component.ts",

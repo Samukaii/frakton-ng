@@ -3,6 +3,6 @@ export interface ExternalExample {
 	files: {
 		name: string;
 		content: string;
-		language: 'angular-html' | 'typescript' | 'css';
+		language: 'angular2html' | 'typescript' | 'css';
 	}[]
 }

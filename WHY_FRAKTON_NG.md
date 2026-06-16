@@ -428,7 +428,7 @@ export class FktButtonComponent {
 ```typescript
 // Import only what you need
 import { FktButtonComponent } from 'frakton-ng/button';        // ~2KB
-import { FktInputComponent } from 'frakton-ng/input';          // ~4KB  
+import { FktInputComponent } from 'frakton-ng/input-old';          // ~4KB  
 import { FktColorPickerComponent } from 'frakton-ng/color-picker'; // ~8KB
 
 // vs traditional libraries requiring full module imports
@@ -455,7 +455,7 @@ import { MatInputModule } from '@angular/material/input';
 
 // After: Direct component imports
 import { FktButtonComponent } from 'frakton-ng/button';
-import { FktInputComponent } from 'frakton-ng/input';
+import { FktInputComponent } from 'frakton-ng/input-old';
 ```
 
 **Benefits:**
@@ -472,7 +472,7 @@ import { InputTextModule } from 'primeng/inputtext';
 
 // After: Standalone components, zero configuration
 import { FktButtonComponent } from 'frakton-ng/button';
-import { FktInputComponent } from 'frakton-ng/input';
+import { FktInputComponent } from 'frakton-ng/input-old';
 ```
 
 **Benefits:**

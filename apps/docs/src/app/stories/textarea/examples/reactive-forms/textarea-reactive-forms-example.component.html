@@ -1,0 +1,17 @@
+<form [formGroup]="form">
+    <fkt-field label="Review comment">
+        <textarea
+            fktTextarea
+            fktCharacterCount
+            autoExpand
+            rows="3"
+            formControlName="comment"
+            placeholder="Write a review comment..."
+        ></textarea>
+    </fkt-field>
+</form>
+
+<div class="actions">
+    <fkt-button theme="stroked" text="Reset" (click)="reset()" />
+    <fkt-button text="Fill" (click)="fill()" />
+</div>

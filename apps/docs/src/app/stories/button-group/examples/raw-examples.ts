@@ -19,7 +19,7 @@ export default {
 			{
 				name: "button-group-input-driven.component.html",
 				content: buttonGroupInputDrivenTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "button-group-input-driven.component.ts",
@@ -40,7 +40,7 @@ export default {
 			{
 				name: "button-group-reactive-forms.component.html",
 				content: buttonGroupReactiveFormsTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "button-group-reactive-forms.component.ts",
@@ -61,7 +61,7 @@ export default {
 			{
 				name: "button-group-signal-forms.component.html",
 				content: buttonGroupSignalFormsTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "button-group-signal-forms.component.ts",

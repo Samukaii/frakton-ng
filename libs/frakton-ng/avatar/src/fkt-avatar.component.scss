@@ -255,6 +255,7 @@ $transition: var(--fkt-avatar-transition, var(--fkt-transition-base));
 
 :host {
     display: flex;
+    width: fit-content;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;

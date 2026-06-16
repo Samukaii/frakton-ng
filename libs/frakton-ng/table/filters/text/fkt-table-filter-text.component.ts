@@ -1,12 +1,12 @@
 import { ChangeDetectionStrategy, Component, input, linkedSignal, output } from '@angular/core';
-import { FktInputComponent } from 'frakton-ng/input';
+import { FktInputOldComponent } from 'frakton-ng/input-old';
 import { FktButtonsListComponent } from 'frakton-ng/buttons-list';
 import { FktButtonAction } from 'frakton-ng/button';
 import { FktTableCustomFilter } from 'frakton-ng/table';
 
 @Component({
     selector: 'fkt-table-filter-text',
-    imports: [FktInputComponent, FktButtonsListComponent],
+    imports: [FktInputOldComponent, FktButtonsListComponent],
     templateUrl: './fkt-table-filter-text.component.html',
     styleUrl: './fkt-table-filter-text.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,

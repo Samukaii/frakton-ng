@@ -5,6 +5,7 @@
         "esModuleInterop": true,
         "paths": {
             "frakton-ng/autocomplete": ["libs/frakton-ng/autocomplete"],
+            "frakton-ng/autocomplete-old": ["libs/frakton-ng/autocomplete-old"],
             "frakton-ng/avatar": ["libs/frakton-ng/avatar"],
             "frakton-ng/button": ["libs/frakton-ng/button"],
             "frakton-ng/button-group": ["libs/frakton-ng/button-group"],
@@ -26,7 +27,8 @@
             "frakton-ng/focus-trap": ["libs/frakton-ng/focus-trap"],
             "frakton-ng/forms": ["libs/frakton-ng/forms"],
             "frakton-ng/icon": ["libs/frakton-ng/icon"],
-            "frakton-ng/input": ["libs/frakton-ng/input"],
+            "frakton-ng/input-old": ["libs/frakton-ng/input-old"],
+            "frakton-ng/input-text": ["libs/frakton-ng/input-text"],
             "frakton-ng/internal/components": [
                 "libs/frakton-ng/internal/components"
             ],
@@ -34,12 +36,14 @@
             "frakton-ng/internal/directives": [
                 "libs/frakton-ng/internal/directives"
             ],
+            "frakton-ng/internal/locale": ["libs/frakton-ng/internal/locale"],
             "frakton-ng/internal/pipes": ["libs/frakton-ng/internal/pipes"],
             "frakton-ng/internal/services": [
                 "libs/frakton-ng/internal/services"
             ],
             "frakton-ng/internal/types": ["libs/frakton-ng/internal/types"],
             "frakton-ng/internal/utils": ["libs/frakton-ng/internal/utils"],
+            "frakton-ng/locales/en": ["libs/frakton-ng/locales/en"],
             "frakton-ng/navigable-list": ["libs/frakton-ng/navigable-list"],
             "frakton-ng/navigator": ["libs/frakton-ng/navigator"],
             "frakton-ng/no-results": ["libs/frakton-ng/no-results"],
@@ -71,6 +75,7 @@
             "frakton-ng/tag": ["libs/frakton-ng/tag"],
             "frakton-ng/tag-selector": ["libs/frakton-ng/tag-selector"],
             "frakton-ng/textarea": ["libs/frakton-ng/textarea"],
+            "frakton-ng/textarea-old": ["libs/frakton-ng/textarea-old"],
             "frakton-ng/toggle": ["libs/frakton-ng/toggle"],
             "frakton-ng/tooltip": ["libs/frakton-ng/tooltip"]
         },

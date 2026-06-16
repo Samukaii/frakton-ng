@@ -1,6 +1,7 @@
 export * from './src/models/fkt-color';
 export * from './src/models/fkt-identifiable';
 export * from './src/di/injection-tokens';
+export * from './src/locale/define-locale';
 export type { FktFieldErrorHandler } from './src/models/fkt-field-error-handler';
 export type { FktTranslationContext } from './src/models/fkt-translation-context';
 export type { RecomputeOn } from './src/models/recompute-on';

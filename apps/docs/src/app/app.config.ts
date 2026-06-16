@@ -41,7 +41,9 @@ export const appConfig: ApplicationConfig = {
 
                 return {
                     recomputeOn: translateService.currentLanguage$,
-                    translateFn: translateService.instant.bind(translateService),
+                    currentLanguage: translateService.currentLanguage$,
+                    translateFn:
+                        translateService.instant.bind(translateService),
                 };
             }),
             withFieldErrorMessages(({ errors, t }) => {

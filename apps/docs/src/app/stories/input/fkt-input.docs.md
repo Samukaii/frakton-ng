@@ -1,41 +1,62 @@
-## Key Features
+## Import
 
-- **Multiple Input Types**: Text, password, number, and email with optimized behavior
-- **Data Transformers**: Built-in formatters for currency, percentage, and time duration
-- **Password Toggle**: Show/hide functionality with accessible eye icon
-- **Form Validation**: Real-time validation with visual error states
-- **Custom Suffix**: Content projection for buttons, icons, and additional elements
-- **Signal Integration**: Native Angular signals with SignalFormControl
-
-## Configuration Options
-
-<arg-types></arg-types>
-
-### Types
-
-```typescript
-import {SignalFormControlTransformer} from "frakton-ng/forms";
-
-type FktInputType = 'text' | 'password' | 'number' | 'email';
-
-type FktInputTransformer = 'currency' | 'percent' | 'hour' | SignalFormControlTransformer;
+```ts
+import { FktFieldComponent } from 'frakton-ng/field';
+import { FktInputTextDirective } from 'frakton-ng/input-text';
 ```
 
-[//]: # (## Examples)
+## Usage Model
 
-[//]: # ()
-[//]: # (<story-examples></story-examples>)
+`fktInputText` is a directive for the native `<input>` element. It is designed to be projected
+inside `fkt-field`, keeping the native control open for browser attributes, forms, i18n, masking
+libraries, and third-party directives while the field owns the visual shell.
 
-## Use Cases
+```html
+<fkt-field label="Full name">
+    <input
+        fktInputText
+        placeholder="Enter a full name"
+    >
+</fkt-field>
+```
 
-- **User Registration Forms** - Email addresses, passwords, personal information with validation.
-- **E-commerce Applications** - Product pricing, quantities, discount percentages with currency formatting.
-- **Financial Data Entry** - Investment amounts, interest rates, account balances with precise formatting.
-- **Content Management** - Article titles, descriptions, metadata with spell-check control.
+## Native Input First
 
-## Accessibility
+The directive does not replace the native input API. Keep attributes such as `type`, `autocomplete`,
+`inputmode`, `spellcheck`, `readonly`, `disabled`, and masking directives on the input itself.
 
-- **Keyboard Navigation**: Tab order and shortcuts work as expected.
-- **Screen Reader Support**: ARIA labels and validation announcements.
-- **Focus Management**: Clear focus indicators and logical navigation flow.
-- **Other Notes**: Supports high contrast modes and respects user preferences.
+```html
+<fkt-field label="CPF">
+    <input
+        fktInputText
+        ngxMask="000.000.000-00"
+        formControlName="cpf"
+    >
+</fkt-field>
+```
+
+## Field Integration
+
+The input implements the same field-control contract as `fktTextarea`. The field can read value,
+focus, disabled, touched, invalid, required, error, and max-length state from the projected input
+without the consumer forwarding those flags manually.
+
+## Character Count
+
+Use `fktCharacterCount` from `frakton-ng/field` when the field should render a max-length counter in
+the hint end area. The max length is inferred from Signal Forms, Reactive Forms, or the native
+`maxlength` attribute when available.
+
+```html
+<fkt-field label="Display name">
+    <input
+        fktInputText
+        fktCharacterCount
+        [field]="form.displayName"
+    >
+</fkt-field>
+```
+
+## API
+
+<arg-types></arg-types>

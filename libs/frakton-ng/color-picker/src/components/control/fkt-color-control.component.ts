@@ -1,7 +1,7 @@
 import { Component, computed, contentChildren, inject, input, model, signal } from '@angular/core';
 import { FktSelectComponent } from 'frakton-ng/select';
 import { FktColorPickerFormat } from '../../fkt-color-picker.types';
-import { FktAutocompleteOption } from 'frakton-ng/autocomplete';
+import { FktAutocompleteOption } from 'frakton-ng/autocomplete-old';
 import { FktColorControlItemComponent } from '../item/fkt-color-control-item.component';
 import { FktButtonComponent } from 'frakton-ng/button';
 import { FktTooltipDirective } from 'frakton-ng/tooltip';

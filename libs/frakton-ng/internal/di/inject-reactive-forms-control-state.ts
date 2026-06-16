@@ -116,6 +116,9 @@ export function injectReactiveFormsControlState<T>(): {
         required: required.asReadonly(),
         maxLength: maxLength.asReadonly(),
         errors: normalizedErrors,
+        setValue: (value) => {
+            controlDirective.control.setValue(value);
+        },
     };
 
     const listen = () => {

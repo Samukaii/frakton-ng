@@ -8,7 +8,7 @@ import { ArraysHelper } from './arrays-helper';
 import { Generic } from '@/models/generic';
 import { randomFirstNames, randomLastNames } from '@/utils/random-first-names';
 import { snakeCaseToHumanReadable } from './snake-case-to-human-readable';
-import { FktAutocompleteOption } from 'frakton-ng/autocomplete';
+import { FktAutocompleteOption } from 'frakton-ng/autocomplete-old';
 import { randomProductNames } from '@/utils/random-product-names';
 
 export class RandomGenerator {

@@ -1,0 +1,9 @@
+<fkt-button
+    suffixNoPadding
+    [ariaLabel]="actionButton().label"
+    [icon]="actionButton().icon"
+    (click)="$event.stopPropagation(); actionButton().action?.()"
+    [disabled]="actionButton().disabled"
+    [loading]="context.loading()"
+    theme="basic"
+/>

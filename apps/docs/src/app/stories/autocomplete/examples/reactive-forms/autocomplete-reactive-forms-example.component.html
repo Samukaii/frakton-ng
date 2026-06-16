@@ -1,0 +1,22 @@
+<app-code-output
+    [value]="formValue()"
+    title="Form value"
+/>
+
+<form [formGroup]="form">
+    <fkt-autocomplete
+        label="Assignee"
+        formControlName="assignee"
+        [options]="users"
+        labelKey="name"
+        valueKey="id"
+        groupKey="department"
+        localSearch
+    />
+</form>
+
+<div class="actions">
+    <fkt-button text="Fill" (click)="fill()" />
+    <fkt-button text="Reset" (click)="reset()" />
+    <fkt-button text="Toggle disabled" (click)="toggleDisabled()" />
+</div>

@@ -90,7 +90,7 @@ export default {
 			{
 				name: "table-examples-basic-table.component.html",
 				content: tableExamplesBasicTableTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "table-examples-basic-table.component.ts",
@@ -111,7 +111,7 @@ export default {
 			{
 				name: "table-examples-cell-renderers.component.html",
 				content: tableExamplesCellRenderersTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "table-examples-cell-renderers.component.ts",
@@ -132,7 +132,7 @@ export default {
 			{
 				name: "table-examples-column-reorder.component.html",
 				content: tableExamplesColumnReorderTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "table-examples-column-reorder.component.ts",
@@ -153,7 +153,7 @@ export default {
 			{
 				name: "table-examples-column-resizing.component.html",
 				content: tableExamplesColumnResizingTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "table-examples-column-resizing.component.ts",
@@ -174,7 +174,7 @@ export default {
 			{
 				name: "table-examples-column-toggle.component.html",
 				content: tableExamplesColumnToggleTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "table-examples-column-toggle.component.ts",
@@ -195,7 +195,7 @@ export default {
 			{
 				name: "table-examples-conditional-style.component.html",
 				content: tableExamplesConditionalStyleTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "table-examples-conditional-style.component.ts",
@@ -216,7 +216,7 @@ export default {
 			{
 				name: "table-examples-custom-cell-components.component.html",
 				content: tableExamplesCustomCellComponentsTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "table-examples-custom-cell-components.component.ts",
@@ -237,7 +237,7 @@ export default {
 			{
 				name: "table-examples-custom-filter-components.component.html",
 				content: tableExamplesCustomFilterComponentsTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "table-examples-custom-filter-components.component.ts",
@@ -258,7 +258,7 @@ export default {
 			{
 				name: "table-examples-custom-header.component.html",
 				content: tableExamplesCustomHeaderTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "table-examples-custom-header.component.ts",
@@ -279,7 +279,7 @@ export default {
 			{
 				name: "table-examples-expandable-rows.component.html",
 				content: tableExamplesExpandableRowsTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "table-examples-expandable-rows.component.ts",
@@ -300,7 +300,7 @@ export default {
 			{
 				name: "table-examples-export.component.html",
 				content: tableExamplesExportTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "table-examples-export.component.ts",
@@ -321,7 +321,7 @@ export default {
 			{
 				name: "table-examples-frozen-rows.component.html",
 				content: tableExamplesFrozenRowsTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "table-examples-frozen-rows.component.ts",
@@ -342,7 +342,7 @@ export default {
 			{
 				name: "table-examples-grid-lines.component.html",
 				content: tableExamplesGridLinesTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "table-examples-grid-lines.component.ts",
@@ -363,7 +363,7 @@ export default {
 			{
 				name: "table-examples-loading.component.html",
 				content: tableExamplesLoadingTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "table-examples-loading.component.ts",
@@ -384,7 +384,7 @@ export default {
 			{
 				name: "table-examples-pinned-columns.component.html",
 				content: tableExamplesPinnedColumnsTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "table-examples-pinned-columns.component.ts",
@@ -405,7 +405,7 @@ export default {
 			{
 				name: "table-examples-row-click.component.html",
 				content: tableExamplesRowClickTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "table-examples-row-click.component.ts",
@@ -426,7 +426,7 @@ export default {
 			{
 				name: "table-examples-row-selection.component.html",
 				content: tableExamplesRowSelectionTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "table-examples-row-selection.component.ts",
@@ -447,7 +447,7 @@ export default {
 			{
 				name: "table-examples-size.component.html",
 				content: tableExamplesSizeTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "table-examples-size.component.ts",
@@ -468,7 +468,7 @@ export default {
 			{
 				name: "table-examples-sorting.component.html",
 				content: tableExamplesSortingTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "table-examples-sorting.component.ts",
@@ -489,7 +489,7 @@ export default {
 			{
 				name: "table-examples-stateful.component.html",
 				content: tableExamplesStatefulTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "table-examples-stateful.component.ts",
@@ -510,7 +510,7 @@ export default {
 			{
 				name: "table-examples-striped.component.html",
 				content: tableExamplesStripedTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "table-examples-striped.component.ts",
@@ -531,7 +531,7 @@ export default {
 			{
 				name: "table-examples-template-cell-rendering.component.html",
 				content: tableExamplesTemplateCellRenderingTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "table-examples-template-cell-rendering.component.ts",
@@ -552,7 +552,7 @@ export default {
 			{
 				name: "table-examples-virtual-scroll.component.html",
 				content: tableExamplesVirtualScrollTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "table-examples-virtual-scroll.component.ts",
@@ -573,7 +573,7 @@ export default {
 			{
 				name: "table-examples-filtering.component.html",
 				content: tableExamplesFilteringTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "table-examples-filtering.component.ts",
@@ -594,7 +594,7 @@ export default {
 			{
 				name: "table-examples-pagination.component.html",
 				content: tableExamplesPaginationTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "table-examples-pagination.component.ts",
@@ -637,7 +637,7 @@ export default {
 			{
 				name: "category-multi-filter.component.html",
 				content: categoryMultiFilterTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "category-multi-filter.component.ts",

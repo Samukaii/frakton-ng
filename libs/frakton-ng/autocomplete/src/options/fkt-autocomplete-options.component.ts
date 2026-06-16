@@ -1,42 +1,163 @@
-import { Component, input, output } from '@angular/core';
+import {
+    AfterViewInit,
+    Component,
+    computed,
+    effect,
+    ElementRef,
+    inject,
+    input,
+    output,
+    TemplateRef,
+    untracked,
+    viewChild,
+    viewChildren,
+} from '@angular/core';
 import { FktSpinnerComponent } from 'frakton-ng/spinner';
-import { FktNoResults, FktNoResultsComponent } from 'frakton-ng/no-results';
-import { FktButtonsListComponent } from 'frakton-ng/buttons-list';
+import { FktNoResults } from 'frakton-ng/no-results';
 import { FktIconComponent } from 'frakton-ng/icon';
-import { FktButtonAction } from 'frakton-ng/button';
 import { FktAutocompleteOption } from '../fkt-autocomplete.types';
-import { AUTOCOMPLETE_ADD_OPTION } from '../static/autocomplete-auto-created-option';
-import { CallPipe } from 'frakton-ng/internal/pipes';
+import { NgTemplateOutlet } from '@angular/common';
+import { CallPipe, TranslatePipe } from 'frakton-ng/internal/pipes';
+import { FktAutocompleteVirtualScrollDirective } from '../directives/public/fkt-autocomplete-virtual-scroll.directive';
+import { FktInfiniteLoadingComponent } from 'frakton-ng/internal/components';
+import { FktAutocompleteStoreService } from '../services/fkt-autocomplete-store.service';
+import { FktAutocompleteSelectionDirective } from '../directives/fkt-autocomplete-selection.directive';
+import { FktAutocompleteContextDirective } from '../directives/fkt-autocomplete-context.directive';
+import { Generic } from 'frakton-ng/internal/types';
+import { FktAutocompleteInfiniteLoadingDirective } from '../directives/public/fkt-autocomplete-infinite-loading.directive';
+import { FktTranslatorService } from 'frakton-ng/internal/services';
+
+export interface ItemContext<T> {
+    $implicit: FktAutocompleteOption<T>;
+    isSelected?: boolean;
+}
 
 @Component({
-	selector: 'fkt-autocomplete-options',
-	imports: [
-		FktIconComponent,
-		FktSpinnerComponent,
-		FktNoResultsComponent,
-		FktButtonsListComponent,
-		CallPipe,
-	],
-	templateUrl: './fkt-autocomplete-options.component.html',
-	styleUrl: './fkt-autocomplete-options.component.scss',
-	host: {
-		id: 'autocomplete-options-overlay',
-	},
+    selector: 'fkt-autocomplete-options',
+    imports: [
+        FktIconComponent,
+        FktSpinnerComponent,
+        NgTemplateOutlet,
+        CallPipe,
+        FktInfiniteLoadingComponent,
+        TranslatePipe,
+    ],
+    templateUrl: './fkt-autocomplete-options.component.html',
+    styleUrl: './fkt-autocomplete-options.component.scss',
+    host: {
+        id: 'autocomplete-options-overlay',
+    },
 })
-export class FktAutocompleteOptionsComponent {
-	options = input.required<FktAutocompleteOption[]>();
-	loading = input<boolean | undefined>(false);
-	selected = input<string | number | null>();
-	addOptionLabel = input<string>();
-	actions = input<FktButtonAction[]>([]);
-	noResults = input<FktNoResults | undefined>({
-		label: 'Sem resultados',
-	});
+export class FktAutocompleteOptionsComponent<Option extends Generic | string>
+    implements AfterViewInit
+{
+    itemTemplate = input<TemplateRef<any>>();
+    groupTemplate = input<TemplateRef<any>>();
+    headerTemplate = input<TemplateRef<any>>();
+    footerTemplate = input<TemplateRef<any>>();
 
-	select = output<FktAutocompleteOption>();
-	protected readonly AUTOCOMPLETE_ADD_OPTION = AUTOCOMPLETE_ADD_OPTION;
+    select = output<FktAutocompleteOption<Option>>();
 
-	protected formatAddOption(value: string) {
-		return this.addOptionLabel()?.replace('{{inputValue}}', value) ?? value;
-	}
+    private elementRef = viewChild<ElementRef<HTMLUListElement>>('list');
+    private items = viewChildren<ElementRef<HTMLLIElement>>('item');
+
+    protected readonly store = inject(FktAutocompleteStoreService<Option>);
+    protected readonly selectionService = inject(
+        FktAutocompleteSelectionDirective<Option>
+    );
+    protected readonly context = inject(FktAutocompleteContextDirective);
+    protected readonly translator = inject(FktTranslatorService);
+
+    protected readonly infiniteLoading = inject(
+        FktAutocompleteInfiniteLoadingDirective,
+        { optional: true }
+    );
+
+    protected readonly virtualScroll = inject(
+        FktAutocompleteVirtualScrollDirective,
+        { optional: true }
+    );
+
+    protected readonly noResults =
+        this.translator.translateComputed<FktNoResults>((t) => {
+            const query = this.store.query();
+            const minSearch = this.context.minSearch();
+
+            if (query.length < minSearch)
+                return {
+                    label:
+                        minSearch === 1
+                            ? t('autocomplete.noResults.fewCharacters.singular')
+                            : t('autocomplete.noResults.fewCharacters.plural', {
+                                  minSearch,
+                              }),
+                };
+
+            if (query.length)
+                return {
+                    label: t('autocomplete.noResults.notFoundForQuery.label', {
+                        query,
+                    }),
+                };
+
+            return {
+                label: t('autocomplete.noResults.noResultsAtAll.label'),
+            };
+        });
+
+    private readonly moveFocusToActiveElement = effect(() => {
+        const index = this.store.activeDescendant.index();
+
+        untracked(() => {
+            if (!this.store.activeDescendant.option().scroll) return;
+
+            const virtualScroll = this.virtualScroll;
+
+            if (virtualScroll) {
+                virtualScroll.scrollToOption(
+                    index,
+                    this.store.sourceGrouped(),
+                    this.elementRef()?.nativeElement
+                );
+                return;
+            }
+
+            const active = this.items().find(
+                (item) =>
+                    item.nativeElement.id === this.store.activeDescendant.id()
+            );
+
+            active?.nativeElement.scrollIntoView({
+                behavior: 'smooth',
+                block: 'center',
+            });
+        });
+    });
+
+    protected isSelected(
+        option: FktAutocompleteOption<Option>,
+        selectedOptions?: FktAutocompleteOption<Option>[]
+    ) {
+        return !!selectedOptions?.find((selectedOption) =>
+            Object.is(selectedOption.value, option.value)
+        );
+    }
+
+    protected getItemTemplateContext(
+        option: FktAutocompleteOption<Option>,
+        selectedOptions?: FktAutocompleteOption<Option>[]
+    ): ItemContext<Option> {
+        return {
+            $implicit: option,
+            isSelected: this.isSelected(option, selectedOptions),
+        };
+    }
+
+    ngAfterViewInit() {
+        this.onScroll();
+    }
+
+    protected onScroll() {
+        this.virtualScroll?.updateViewport(this.elementRef()?.nativeElement);
+    }
 }
