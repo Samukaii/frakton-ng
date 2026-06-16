@@ -1,0 +1,29 @@
+<app-code-output
+    [value]="value()"
+    title="Field value"
+/>
+
+<fkt-autocomplete
+    label="Approver"
+    placeholder="Select an approver"
+    [formControl]="approver"
+    [options]="users"
+    labelKey="name"
+    valueKey="id"
+    groupKey="department"
+    localSearch
+>
+    <fkt-icon fktFieldPrefix name="user" />
+    <fkt-icon fktFieldSuffix name="information-circle" />
+
+    <span fktHintStart>Projected error content replaces the automatic message.</span>
+    <span fktHintEnd>Required</span>
+
+    <fkt-field-error fktError>
+        Choose an approver before continuing.
+    </fkt-field-error>
+</fkt-autocomplete>
+
+<div class="actions">
+    <fkt-button text="Validate" (click)="validate()" />
+</div>

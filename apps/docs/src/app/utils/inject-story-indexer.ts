@@ -58,7 +58,7 @@ export const injectStoryIndexer = () => {
                                     storySection.name
                                 )}.component.html`,
                                 content: autoSource.html,
-                                language: 'angular-html',
+                                language: 'angular2html',
                             },
                             {
                                 name: `fkt-${toKebabCase(

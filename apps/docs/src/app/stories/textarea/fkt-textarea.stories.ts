@@ -1,101 +1,103 @@
-import { FktTextareaComponent } from 'frakton-ng/textarea';
-import {
-	AutoExpandExampleComponent,
-	BasicExampleComponent,
-	CharacterCounterExampleComponent,
-	DisabledExampleComponent,
-	FormIntegrationExampleComponent,
-	ValidationExampleComponent
-} from './examples';
+import { FktTextareaDirective } from 'frakton-ng/textarea';
 import { Meta } from '@/models/meta';
-import { Story } from '@/models/story';
-import documentation from './fkt-textarea.docs.md' with { loader: "text" };
+import { Story, StoryIntroduction } from '@/models/story';
+import documentation from './fkt-textarea.docs.md';
+import {
+    TextareaAutoExpandExampleComponent,
+    TextareaBasicExampleComponent,
+    TextareaCharacterCountExampleComponent,
+    TextareaReactiveFormsExampleComponent,
+    TextareaSignalFormsExampleComponent,
+} from './examples';
+import designTokens from '../field/fkt-field-design-tokens.json';
+import { DesignToken } from '@/models/design-token';
 
 const meta: Meta = {
-	title: "Components/Form/Textarea",
-	component: FktTextareaComponent,
-    description: "A multi-line text input component with reactive form integration, validation support, and optional auto-expand functionality for capturing longer text content from users.",
-	documentation,
-	argTypes: {
-		label: {
-			control: 'text',
-			category: "Attributes",
-			type: 'string',
-			defaultValue: "''",
-			description: 'Label text displayed above the textarea'
-		},
-		placeholder: {
-			control: 'text',
-			category: "Attributes",
-			type: 'string',
-			defaultValue: "''",
-			description: 'Placeholder text shown when the textarea is empty'
-		},
-		autoExpand: {
-			control: 'boolean',
-			category: "Attributes",
-			type: 'boolean',
-			defaultValue: 'false',
-			description: 'When enabled, the textarea automatically expands to fit content'
-		},
-		spellcheck: {
-			control: 'boolean',
-			category: "Attributes",
-			type: 'boolean',
-			defaultValue: 'true',
-			description: 'Enable or disable spell checking for the textarea'
-		},
-		focus: {
-			control: 'boolean',
-			category: 'Methods',
-			type: '() => void',
-			description: 'Programmatically focuses the textarea element'
-		}
-	}
-}
-
-export const BasicUsage: Story<BasicExampleComponent> = {
-	component: BasicExampleComponent,
-	description: "A basic textarea with label and placeholder. Use this as a starting point for most scenarios where free-form multi-line text input is needed.",
-	args: {
-		label: 'Description',
-		placeholder: 'Enter a detailed description...',
-		spellcheck: true
-	}
+    title: 'Components/Form/Textarea',
+    component: FktTextareaDirective,
+    designTokens: designTokens as DesignToken[],
+    description: `Native textarea directive for Frakton fields. Use textarea[fktTextarea] inside
+fkt-field when the user needs a multi-line text control with field state integration, auto-expand,
+and optional character count support.`,
+    documentation,
+    panelStyle: {
+        outerWidth: '100%',
+        fillContainer: true,
+    },
+    argTypes: {
+        autoExpand: {
+            control: 'boolean',
+            category: 'Attributes',
+            type: 'boolean',
+            defaultValue: 'false',
+            description:
+                'Automatically adjusts the textarea height to fit its content while the value changes.',
+        },
+    },
 };
 
-export const Validation: Story<ValidationExampleComponent> = {
-	component: ValidationExampleComponent,
-	description: "Textarea with validation logic for minimum and maximum length. Shows error messages and disables submission if the requirements are not met.",
-	args: {}
+/**
+ * Textarea composition patterns. The textarea directive owns the native multiline control state,
+ * while `fkt-field` owns label, outline, hint, error, density, prefix/suffix, and supporting text.
+ */
+export const Composition: StoryIntroduction = {};
+
+/**
+ * Basic usage with `textarea[fktTextarea]` projected into `fkt-field`. Native textarea attributes
+ * such as `rows`, `placeholder`, `spellcheck`, `readonly`, and `disabled` stay on the native element.
+ */
+export const Basic: Story<TextareaBasicExampleComponent> = {
+    component: TextareaBasicExampleComponent,
+    level: 3,
+    args: {},
 };
 
-export const AutoExpand: Story<AutoExpandExampleComponent> = {
-	component: AutoExpandExampleComponent,
-	description: "Textarea with auto-expand enabled. The textarea grows vertically as the user types more lines, improving the writing experience for long texts.",
-	args: {
-		label: 'Notes',
-		placeholder: 'Start typing...',
-		autoExpand: true
-	}
+/**
+ * Auto-expand keeps the field compact initially and grows the textarea vertically as content wraps
+ * or new lines are added. Use this for comments, notes, descriptions, and support messages.
+ */
+export const AutoExpand: Story<TextareaAutoExpandExampleComponent> = {
+    component: TextareaAutoExpandExampleComponent,
+    level: 3,
+    args: {},
 };
 
-export const FormIntegration: Story<FormIntegrationExampleComponent> = {
-	component: FormIntegrationExampleComponent,
-	description: "Demonstrates how the textarea integrates with signal forms. This is ideal for real-world forms that need validation, control and submission.",
-	args: {}
+/**
+ * Character count is provided by `fktCharacterCount`. The directive reads the max length from the
+ * same normalized field state used by input text, so Signal Forms, Reactive Forms, and native
+ * maxlength can share the same field supporting UI.
+ */
+export const CharacterCount: Story<TextareaCharacterCountExampleComponent> = {
+    component: TextareaCharacterCountExampleComponent,
+    level: 3,
+    args: {},
 };
 
-export const CharacterCounter: Story<CharacterCounterExampleComponent> = {
-	component: CharacterCounterExampleComponent,
-	description: "Textarea with a live character counter, ideal for use cases like social posts, tweets, or messages with a maximum allowed length.",
-	args: {}
+/**
+ * Form integration examples. The textarea directive participates in the same `FktFieldControl`
+ * contract as input text, so the field can react to value, focused, disabled, touched, invalid,
+ * required, errors, and max length without manual state forwarding.
+ */
+export const Forms: StoryIntroduction = {};
+
+/**
+ * Signal Forms integration through Angular's `[field]` directive. Validation state, disabled state,
+ * required marker, and max length are read from the projected control.
+ */
+export const SignalForms: Story<TextareaSignalFormsExampleComponent> = {
+    component: TextareaSignalFormsExampleComponent,
+    level: 3,
+    args: {},
 };
 
-export const DisabledState: Story<DisabledExampleComponent> = {
-	component: DisabledExampleComponent,
-	description: "Shows the textarea in a disabled state. Useful for read-only or preview scenarios, or when editing is not allowed due to permissions or workflow status.",
-	args: {}
+/**
+ * Reactive Forms integration through `formControlName`. The field reacts to programmatic updates,
+ * reset, disabled state, and validation changes from the Angular control.
+ */
+export const ReactiveForms: Story<TextareaReactiveFormsExampleComponent> = {
+    component: TextareaReactiveFormsExampleComponent,
+    level: 3,
+    args: {},
 };
 
 export default meta;

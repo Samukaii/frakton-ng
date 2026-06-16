@@ -1,12 +1,12 @@
 import { Component, computed, signal } from '@angular/core';
-import { FktInputComponent } from 'frakton-ng/input';
+import { FktInputOldComponent } from 'frakton-ng/input-old';
 import { IconsGalleryItemComponent } from './item/icons-gallery-item.component';
 import { FktIconName, fontIconNames } from 'frakton-ng/icon';
 
 @Component({
   selector: 'fkt-icons-galley',
 	imports: [
-		FktInputComponent,
+		FktInputOldComponent,
 		IconsGalleryItemComponent
 	],
   templateUrl: './icons-galley.component.html',

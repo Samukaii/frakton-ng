@@ -1,0 +1,25 @@
+<div class="actions">
+    <fkt-button text="Fill" (click)="fill()" />
+    <fkt-button text="Reset" (click)="reset()" />
+</div>
+
+<form [formGroup]="form">
+    <fkt-field label="Name">
+        <fkt-icon fktFieldPrefix name="user" />
+        <input
+            fktInputText
+            formControlName="name"
+            placeholder="Enter a name"
+        >
+    </fkt-field>
+
+    <fkt-field label="E-mail">
+        <fkt-icon fktFieldPrefix name="envelope" />
+        <input
+            fktInputText
+            type="email"
+            formControlName="email"
+            placeholder="Enter an e-mail"
+        >
+    </fkt-field>
+</form>

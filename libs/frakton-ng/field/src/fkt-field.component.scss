@@ -201,14 +201,46 @@ $suffix-invalid-color: var(--fkt-field-suffix-invalid-text, var(--fkt-color-dang
     --_fkt-field-vertical-padding: var(--_fkt-field-vertical-padding-md);
 
     .input {
-        padding: var(--_fkt-field-vertical-padding) var(--_fkt-field-horizontal-padding);
+        //padding: var(--_fkt-field-vertical-padding) var(--_fkt-field-horizontal-padding);
         width: 100%;
         position: relative;
         border-radius: $border-radius;
-        min-height: calc(20px + calc(var(--_fkt-field-vertical-padding) * 2));
         box-sizing: border-box;
         display: flex;
         align-items: center;
+
+        .suffix {
+            padding: var(--_fkt-field-vertical-padding) var(--_fkt-field-horizontal-padding);
+            box-sizing: content-box;
+            height: 100%;
+
+            &:not(:has([fktFieldSuffix])) {
+                padding-left: 0;
+            }
+
+            &:has([suffixNoPadding]) {
+                padding: 0;
+            }
+        }
+
+        .prefix {
+            padding: var(--_fkt-field-vertical-padding) var(--_fkt-field-horizontal-padding);
+            box-sizing: content-box;
+            height: 100%;
+
+            &:not(:has([fktFieldPrefix])) {
+                padding-right: 0;
+            }
+
+            &:has([prefixNoPadding]) {
+                padding: 0;
+            }
+        }
+
+        .content {
+            width: 100%;
+            padding: var(--_fkt-field-vertical-padding) 0;
+        }
 
         .border {
             position: absolute;
@@ -367,13 +399,13 @@ $suffix-invalid-color: var(--fkt-field-suffix-invalid-text, var(--fkt-color-dang
         }
 
         ::ng-deep {
-            [fktFieldPrefix] {
-                padding-right: $prefix-gap;
-            }
-
-            [fktFieldSuffix] {
-                padding-left: $suffix-gap;
-            }
+            //[fktFieldPrefix] {
+            //    padding-right: $prefix-gap;
+            //}
+            //
+            //[fktFieldSuffix] {
+            //    padding-left: $suffix-gap;
+            //}
 
             .fkt-control-field {
                 box-sizing: border-box;

@@ -1,7 +1,6 @@
 import { Component, computed, input, output } from '@angular/core';
 import { FktTabComponent, FktTabsListComponent } from 'frakton-ng/tabs';
 import { FeaturesComponent } from '@/pages/docs-page/features/features.component';
-import { MarkdownWrapperComponent } from '@/components/markdown/markdown-wrapper.component';
 import { SkeletonComponent } from '@/components/skeleton/skeleton.component';
 import { SkeletonContainerComponent } from '@/components/skeleton-container/skeleton-container.component';
 import { StoryResolved } from '@/models/story.resolved';
@@ -13,7 +12,6 @@ import { ApiReferenceComponent } from '@/pages/docs-page/api-reference/api-refer
         FktTabsListComponent,
         FktTabComponent,
         FeaturesComponent,
-        MarkdownWrapperComponent,
         SkeletonContainerComponent,
         SkeletonComponent,
         ApiReferenceComponent,

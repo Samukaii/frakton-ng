@@ -2,7 +2,7 @@ import { booleanAttribute, Component, computed, inject, input, model, output, si
 import { FktSelectOptionsComponent } from './options/fkt-select-options.component';
 import { FktOverlayRef, FktOverlayService } from 'frakton-ng/overlay';
 import { FktNoResults } from 'frakton-ng/no-results';
-import { FktAutocompleteOption } from 'frakton-ng/autocomplete';
+import { FktAutocompleteOption } from 'frakton-ng/autocomplete-old';
 import { FktIconComponent } from 'frakton-ng/icon';
 import { ElementIdGeneratorService } from 'frakton-ng/internal/services';
 import { FktSelectOption } from './fkt-select.types';

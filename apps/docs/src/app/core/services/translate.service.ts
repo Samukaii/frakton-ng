@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
 export const TRANSLATIONS: Record<string, any> = {
-    'en-US': {
+    'en': {
         errors: {
             required: 'Field is required',
             email: 'Enter a valid email address',
@@ -69,7 +69,7 @@ function translate(
 
 @Injectable({ providedIn: 'root' })
 export class TranslateService {
-    currentLanguage$ = new BehaviorSubject('en-US');
+    currentLanguage$ = new BehaviorSubject('en');
 
     setLanguage(language: string) {
         this.currentLanguage$.next(language);

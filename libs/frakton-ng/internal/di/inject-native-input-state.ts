@@ -45,7 +45,7 @@ export function injectNativeInputState<T>(): {
         | HTMLTextAreaElement;
     const destroyRef = inject(DestroyRef);
 
-    const value = signal(readNativeValue<T>(element));
+    const elementValue = signal(readNativeValue<T>(element));
     const disabled = signal(element.disabled);
     const invalid = signal(readNativeInvalid(element));
     const touched = signal(false);
@@ -53,18 +53,22 @@ export function injectNativeInputState<T>(): {
     const maxLength = signal(readNativeMaxLength(element));
 
     const state: FktFieldControlState<T> = {
-        value: value.asReadonly(),
+        value: elementValue.asReadonly(),
         disabled: disabled.asReadonly(),
         invalid: invalid.asReadonly(),
         touched: touched.asReadonly(),
         required: required.asReadonly(),
         maxLength: maxLength.asReadonly(),
-        errors: signal(null)
+        errors: signal(null),
+        setValue: (value) => {
+            element.value = String(value);
+            elementValue.set(readNativeValue<T>(element));
+        },
     };
 
     const listen = () => {
         const sync = () => {
-            value.set(readNativeValue<T>(element));
+            elementValue.set(readNativeValue<T>(element));
             disabled.set(element.disabled);
             invalid.set(readNativeInvalid(element));
             required.set(element.required);

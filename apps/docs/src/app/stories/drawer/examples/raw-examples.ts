@@ -25,7 +25,7 @@ export default {
 			{
 				name: "narrow-example.component.html",
 				content: narrowExampleTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "narrow-example.component.ts",
@@ -46,7 +46,7 @@ export default {
 			{
 				name: "opened-example.component.html",
 				content: openedExampleTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "opened-example.component.ts",
@@ -67,7 +67,7 @@ export default {
 			{
 				name: "overlay-example.component.html",
 				content: overlayExampleTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "overlay-example.component.ts",
@@ -88,7 +88,7 @@ export default {
 			{
 				name: "push-example.component.html",
 				content: pushExampleTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "push-example.component.ts",
@@ -109,7 +109,7 @@ export default {
 			{
 				name: "wide-example.component.html",
 				content: wideExampleTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "wide-example.component.ts",

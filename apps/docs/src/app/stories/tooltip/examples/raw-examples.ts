@@ -22,7 +22,7 @@ export default {
 			{
 				name: "basic-tooltip-example.component.html",
 				content: basicTooltipExampleTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "basic-tooltip-example.component.ts",
@@ -43,7 +43,7 @@ export default {
 			{
 				name: "different-elements-example.component.html",
 				content: differentElementsExampleTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "different-elements-example.component.ts",
@@ -64,7 +64,7 @@ export default {
 			{
 				name: "interactive-tooltip-example.component.html",
 				content: interactiveTooltipExampleTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "interactive-tooltip-example.component.ts",
@@ -85,7 +85,7 @@ export default {
 			{
 				name: "positioning-tooltip-example.component.html",
 				content: positioningTooltipExampleTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "positioning-tooltip-example.component.ts",

@@ -1,0 +1,19 @@
+<app-code-output
+    [value]="value()"
+    title="Field value"
+/>
+
+<fkt-autocomplete
+    label="User"
+    [formControl]="user"
+    [options]="users.value()"
+    [loading]="users.isLoading()"
+    labelKey="name"
+    valueKey="id"
+    [groupKey]="getCountryGroup"
+    (isDropdownOpenedChange)="canFetch.set($event)"
+    fktAutocompleteVirtualScroll
+    [virtualItemHeight]="40"
+    [virtualGroupHeight]="24"
+    [maxVirtualItems]="10000"
+/>

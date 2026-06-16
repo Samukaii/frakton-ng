@@ -1,7 +1,7 @@
 import { Component, signal } from "@angular/core";
 import { FktButtonComponent } from "frakton-ng/button";
 import { FktCheckboxComponent } from "frakton-ng/checkbox";
-import { FktInputComponent } from "frakton-ng/input";
+import { FktInputOldComponent } from 'frakton-ng/input-old';
 import { Field, form } from '@angular/forms/signals';
 
 @Component({
@@ -10,7 +10,7 @@ import { Field, form } from '@angular/forms/signals';
 	imports: [
 		FktButtonComponent,
 		FktCheckboxComponent,
-		FktInputComponent,
+		FktInputOldComponent,
 		Field
 	],
 	styleUrl: './admin-settings-page.component.scss'

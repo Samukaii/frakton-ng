@@ -8,8 +8,6 @@ import {
 } from '@angular/core';
 import { CodeHighlightComponent } from '@/components/code-highlight/code-highlight.component';
 import { StoryLoaderService } from '@/core/services/story-loader.service';
-import { injectRouteParams } from '@/utils/inject-route-params';
-import { STORIES_MAP } from '@/stories/stories-map';
 import { MarkdownWrapperComponent } from '@/components/markdown/markdown-wrapper.component';
 import { PascalToHumanReadablePipe } from '@/pipes/pascal-to-human-readable.pipe';
 import { PascalToKebabPipe } from '@/pipes/pascal-to-kebab.pipe';
@@ -70,10 +68,10 @@ export class FeaturesComponent {
             const example = examples?.[story.componentName ?? `${story.name}Component`];
 
             const mappedLanguage = {
-                'angular-html': 'html',
-                'css': 'css',
-                'typescript': 'ts'
-            }
+                angular2html: 'angular2html',
+                css: 'css',
+                typescript: 'ts',
+            };
 
             if(example) {
                 example.files.forEach(file => {

@@ -19,3 +19,17 @@ export const injectCompatFormState = <T>(): FktFieldControlState<T> => {
 
     return nativeInputState.state;
 };
+
+export const injectCompatFormStateWithoutNative = <T>(): FktFieldControlState<T> | null => {
+    const formSignalsState = injectFormSignalsControlState<T>();
+    const reactiveFormsState = injectReactiveFormsControlState<T>();
+
+    if (formSignalsState) return formSignalsState;
+
+    if (reactiveFormsState) {
+        reactiveFormsState.listen();
+        return reactiveFormsState.state;
+    }
+
+    return null
+};

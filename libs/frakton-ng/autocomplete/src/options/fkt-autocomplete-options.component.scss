@@ -112,12 +112,12 @@ $options-icon-size: var(--fkt-autocomplete-options-icon-size, var(--fkt-space-xl
 /*
 Minimum height for no results component.
 @name --fkt-autocomplete-options-no-results-min-height
-@reference 250px
+@reference 0px
 @component Options
 @category Spacing
 @type size
 */
-$options-no-results-min-height: var(--fkt-autocomplete-options-no-results-min-height, 250px);
+$options-no-results-min-height: var(--fkt-autocomplete-options-no-results-min-height, 0);
 
 /*
 Padding for spinner container.
@@ -131,74 +131,124 @@ $options-spinner-padding: var(--fkt-autocomplete-options-spinner-padding, var(--
 // </design-tokens>
 
 :host {
-	display: block;
-	width: 100%;
-	color: $options-text-color;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    color: $options-text-color;
+    padding: var(--fkt-space-2xs);
+    box-sizing: border-box;
 
-	* {
-		box-sizing: border-box;
-	}
+    * {
+        box-sizing: border-box;
+    }
+}
+
+.no-results {
+    font-size: var(--fkt-font-size-sm);
+    min-height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--fkt-color-neutral-800);
 }
 
 .overlay {
-	margin: 0;
-	background-color: $options-background-color;
-	width: 100%;
-	box-shadow: $options-shadow;
-	border-radius: $options-border-radius;
-	z-index: 10;
-	padding: 0;
-	border: none;
+    margin: 0;
+    background-color: $options-background-color;
+    width: 100%;
+    border-radius: $options-border-radius;
+    overflow-y: auto;
+    z-index: 10;
+    border: none;
+    padding: 0;
+    list-style: none;
+
+    .group {
+        color: var(--fkt-color-neutral-600);
+        font-size: var(--fkt-font-size-xs);
+        padding: var(--fkt-space-xs) 0;
+        font-weight: var(--fkt-font-semibold);
+    }
+
+    .item {
+        transition: var(--fkt-transition-slow);
+        font-size: var(--fkt-font-size-sm);
+        box-sizing: border-box;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        padding: var(--fkt-space-xs);
+        justify-content: space-between;
+        border-radius: var(--fkt-radius-sm);
+
+        &:hover {
+            background-color: color-mix(var(--fkt-color-neutral-200), var(--fkt-color-neutral-300));
+        }
+
+        .label-container {
+            display: flex;
+            width: 100%;
+            gap: $options-label-gap;
+            justify-content: space-between;
+
+            .label-icon-placeholder {
+                width: 24px;
+                height: 24px;
+            }
+        }
+
+        .label {
+            display: flex;
+            align-items: center;
+        }
+
+        &.selected {
+            background: var(--fkt-color-neutral-800);
+            color: contrast-color(var(--fkt-color-neutral-800));
+
+            &:hover {
+                background: var(--fkt-color-neutral-900);
+            }
+
+            fkt-icon {
+                font-size: var(--fkt-font-size-sm);
+                color: contrast-color(var(--fkt-color-neutral-800));
+                font-weight: var(--fkt-font-semibold);
+            }
+        }
+    }
 
 
-	li {
-		transition: var(--fkt-transition-base);
-		cursor: pointer;
-		display: flex;
-		align-items: center;
-		padding: $options-item-padding;
-		justify-content: space-between;
+    [role="option"] {
+        outline: none;
+        border-radius: var(--fkt-radius-sm);
+        padding-bottom: var(--fkt-space-3xs);
 
-		&:hover {
-			background-color: $options-item-hover-background;
-		}
+        &:first-child {
+            padding-top: var(--fkt-space-3xs);
+        }
 
-		.label-container {
-			display: flex;
-			gap: $options-label-gap;
+        &.virtual-focused {
+            .item {
+                background-color: color-mix(var(--fkt-color-neutral-200), var(--fkt-color-neutral-300));
 
-			fkt-icon {
-				line-height: 24px !important;
-				color: $options-success-icon-color;
-			}
+                &.selected {
+                    background-color: color-mix(in srgb, var(--fkt-color-neutral-800), var(--fkt-color-neutral-400));
+                }
+            }
+        }
+    }
 
-			.label-icon-placeholder {
-				width: 24px;
-				height: 24px;
-			}
-		}
 
-		fkt-icon {
-			color: $options-icon-color;
-			width: $options-icon-size;
-			height: $options-icon-size;
-		}
-
-		.label {
-			display: flex;
-			align-items: center;
-		}
-	}
-
-	fkt-no-results {
-		min-height: $options-no-results-min-height;
-	}
+    fkt-no-results {
+        min-height: $options-no-results-min-height;
+    }
 }
 
 .spinner-container {
-	display: flex;
-	width: 100%;
-	justify-content: center;
-	align-items: center;
-	padding: $options-spinner-padding;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    padding: $options-spinner-padding;
 }

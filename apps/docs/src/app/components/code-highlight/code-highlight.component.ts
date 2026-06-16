@@ -9,11 +9,10 @@ import {
     PLATFORM_ID,
     viewChild
 } from '@angular/core';
-import * as Prism from 'prismjs';
-import 'prismjs/components/prism-typescript';
-import './languages/angular-html';
+
 import { MarkUsed } from 'frakton-ng/internal/utils';
 import { isPlatformBrowser } from '@angular/common';
+import { Prism } from '@/prism-languages/prism-js';
 
 @Component({
     selector: 'app-code-highlight',
@@ -28,7 +27,7 @@ export class CodeHighlightComponent {
     });
 
     language = input.required<
-        'typescript' | 'html' | 'css' | 'json' | 'angular-html'
+        'typescript' | 'html' | 'css' | 'json' | 'angular2html'
     >();
 
     codeAnchor = viewChild.required('codeAnchor', { read: ElementRef });
@@ -39,9 +38,9 @@ export class CodeHighlightComponent {
         const languageMap = {
             typescript: 'ts',
             html: 'html',
-            'angular-html': 'angular-html',
+            'angular2html': 'angular2html',
             css: 'css',
-            json: 'xml',
+            json: 'json',
         };
 
         return languageMap[this.language()];

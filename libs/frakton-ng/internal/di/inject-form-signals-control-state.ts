@@ -56,6 +56,9 @@ export function injectFormSignalsControlState<
         touched: computed(() => state().touched()),
         invalid: computed(() => state().invalid()),
         required: computed(() => state().required()),
+        setValue: (value: T) => {
+          state().value.set(value as any)
+        },
         maxLength: maxLength.asReadonly(),
         errors: computed(() => {
             const errors = state().errors();

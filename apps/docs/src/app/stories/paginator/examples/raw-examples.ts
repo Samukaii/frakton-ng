@@ -19,7 +19,7 @@ export default {
 			{
 				name: "fkt-paginator-examples-basic.component.html",
 				content: fktPaginatorExamplesBasicTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "fkt-paginator-examples-basic.component.ts",
@@ -40,7 +40,7 @@ export default {
 			{
 				name: "fkt-paginator-examples-configurable.component.html",
 				content: fktPaginatorExamplesConfigurableTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "fkt-paginator-examples-configurable.component.ts",
@@ -61,7 +61,7 @@ export default {
 			{
 				name: "fkt-paginator-examples-responsive.component.html",
 				content: fktPaginatorExamplesResponsiveTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "fkt-paginator-examples-responsive.component.ts",

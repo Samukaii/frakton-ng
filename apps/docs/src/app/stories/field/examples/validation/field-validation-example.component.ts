@@ -7,12 +7,13 @@ import {
     minLength,
     required,
 } from '@angular/forms/signals';
-import { FktFieldComponent, FktInputTextDirective } from 'frakton-ng/field';
+import { FktFieldComponent, FktFieldPrefixDirective } from 'frakton-ng/field';
+import { FktInputTextDirective } from 'frakton-ng/input-text';
 import { FktIconComponent } from 'frakton-ng/icon';
 
 @Component({
     selector: 'app-field-validation-example',
-    imports: [Field, FktFieldComponent, FktInputTextDirective, FktIconComponent],
+    imports: [Field, FktFieldComponent, FktInputTextDirective, FktIconComponent, FktFieldPrefixDirective],
     templateUrl: './field-validation-example.component.html',
     styleUrl: './field-validation-example.component.scss',
 })

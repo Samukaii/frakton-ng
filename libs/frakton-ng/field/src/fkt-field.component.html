@@ -1,16 +1,26 @@
 <div
     class="input"
+    #container
     [class.invalid]="errorVisible()"
     [class.focused]="control()?.focused()"
-    [class.float]="control()?.value() || control()?.focused()"
+    [class.float]="control()?.hasValue() || control()?.focused()"
     [class.disabled]="control()?.disabled()"
 >
-    <div #prefix>
-        <ng-content select="[fktFieldPrefix]"/>
+
+    <div class="prefix" #prefix>
+        @if (fieldPrefixDirective()) {
+            <ng-content select="[fktFieldPrefix]"/>
+        }
     </div>
 
-    <ng-content select="[fktInputText]"/>
-    <ng-content select="[fktFieldSuffix]"/>
+    <div class="content">
+        <ng-content select="[fktInputText],[fktTextarea],[fktCustomField]"/>
+    </div>
+    <div class="suffix">
+        @if (fieldSuffixDirective()) {
+            <ng-content select="[fktFieldSuffix]"/>
+        }
+    </div>
 
     <div class="border">
         <div class="left" [style.padding-right.px]="prefixWidth()">
@@ -35,24 +45,30 @@
 >
     <span class="hint-start">
         @if (errorVisible()) {
-            <ng-content select="[fktError]">
+            @if (errorDirective()) {
+                <ng-content select="[fktError]"/>
+            } @else {
                 <fkt-field-error>
                     @if (error()) {
                         {{ error() }}
                     }
                 </fkt-field-error>
-            </ng-content>
+            }
         } @else {
-            <ng-content select="[fktHintStart],[fktHint]">
+            @if (hintStartDirective()) {
+                <ng-content select="[fktHintStart]"/>
+            } @else {
                 @if (hint()) {
                     <fkt-field-hint>{{ hint() }}</fkt-field-hint>
                 }
-            </ng-content>
+            }
         }
     </span>
 
     <span class="hint-end">
-        <ng-content select="[fktHintEnd]">
+        @if (hintEndDirective()) {
+            <ng-content select="[fktHintEnd]"/>
+        } @else {
             @if (characterCountState(); as count) {
                 <span
                     class="character-count"
@@ -64,6 +80,6 @@
                     }
                 </span>
             }
-        </ng-content>
+        }
     </span>
 </div>

@@ -25,7 +25,7 @@ export default {
 			{
 				name: "fkt-calendar-basic-example.component.html",
 				content: fktCalendarBasicExampleTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "fkt-calendar-basic-example.component.ts",
@@ -46,7 +46,7 @@ export default {
 			{
 				name: "fkt-calendar-borderless-example.component.html",
 				content: fktCalendarBorderlessExampleTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "fkt-calendar-borderless-example.component.ts",
@@ -67,7 +67,7 @@ export default {
 			{
 				name: "fkt-calendar-custom-styling-example.component.html",
 				content: fktCalendarCustomStylingExampleTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "fkt-calendar-custom-styling-example.component.ts",
@@ -88,7 +88,7 @@ export default {
 			{
 				name: "fkt-calendar-disabled-dates-example.component.html",
 				content: fktCalendarDisabledDatesExampleTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "fkt-calendar-disabled-dates-example.component.ts",
@@ -109,7 +109,7 @@ export default {
 			{
 				name: "fkt-calendar-events-example.component.html",
 				content: fktCalendarEventsExampleTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "fkt-calendar-events-example.component.ts",

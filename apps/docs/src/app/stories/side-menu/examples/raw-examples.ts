@@ -37,7 +37,7 @@ export default {
 			{
 				name: "admin-dashboard-layout-example.component.html",
 				content: adminDashboardLayoutExampleTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "admin-dashboard-layout-example.component.ts",
@@ -58,7 +58,7 @@ export default {
 			{
 				name: "basic-side-menu-example.component.html",
 				content: basicSideMenuExampleTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "basic-side-menu-example.component.ts",
@@ -79,7 +79,7 @@ export default {
 			{
 				name: "collapsible-side-menu-example.component.html",
 				content: collapsibleSideMenuExampleTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "collapsible-side-menu-example.component.ts",
@@ -100,7 +100,7 @@ export default {
 			{
 				name: "dynamic-permissions-side-menu-example.component.html",
 				content: dynamicPermissionsSideMenuExampleTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "dynamic-permissions-side-menu-example.component.ts",
@@ -121,7 +121,7 @@ export default {
 			{
 				name: "multi-group-side-menu-example.component.html",
 				content: multiGroupSideMenuExampleTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "multi-group-side-menu-example.component.ts",
@@ -142,7 +142,7 @@ export default {
 			{
 				name: "with-routing-example.component.html",
 				content: withRoutingExampleTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "with-routing-example.component.ts",
@@ -163,7 +163,7 @@ export default {
 			{
 				name: "admin-dashboard-page.component.html",
 				content: adminDashboardPageTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "admin-dashboard-page.component.ts",
@@ -184,7 +184,7 @@ export default {
 			{
 				name: "admin-settings-page.component.html",
 				content: adminSettingsPageTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "admin-settings-page.component.ts",
@@ -205,7 +205,7 @@ export default {
 			{
 				name: "admin-users-page.component.html",
 				content: adminUsersPageTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "admin-users-page.component.ts",

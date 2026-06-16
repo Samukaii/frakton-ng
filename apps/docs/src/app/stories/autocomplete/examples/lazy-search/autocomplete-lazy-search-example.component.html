@@ -1,0 +1,17 @@
+<app-code-output
+    title="Fetch state"
+    [value]="{fetched: hasFetched(), value: value() }"
+/>
+
+<fkt-autocomplete
+    localSearch
+    label="User"
+    placeholder="Search for a user"
+    [formControl]="user"
+    [options]="results()"
+    [loading]="loading()"
+    labelKey="name"
+    valueKey="id"
+    (isDropdownOpenedChange)="canFetch.set(true)"
+/>
+

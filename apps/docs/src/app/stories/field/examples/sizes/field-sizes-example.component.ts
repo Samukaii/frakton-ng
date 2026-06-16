@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { FktFieldComponent, FktInputTextDirective } from 'frakton-ng/field';
+import { FktFieldComponent } from 'frakton-ng/field';
+import { FktInputTextDirective } from 'frakton-ng/input-text';
 
 @Component({
     selector: 'app-field-sizes-example',

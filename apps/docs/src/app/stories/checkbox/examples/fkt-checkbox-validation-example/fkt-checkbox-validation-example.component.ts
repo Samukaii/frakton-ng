@@ -1,7 +1,7 @@
 import { Component, input, signal } from '@angular/core';
 import { FktCheckboxComponent } from 'frakton-ng/checkbox';
 import { Field, form, required } from '@angular/forms/signals';
-import { FktFieldErrorComponent } from 'frakton-ng/field-error';
+import { FktFieldErrorComponent } from 'frakton-ng/field';
 
 @Component({
 	selector: 'fkt-checkbox-validation-example',

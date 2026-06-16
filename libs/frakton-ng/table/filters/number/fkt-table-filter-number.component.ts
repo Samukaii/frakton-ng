@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, input, linkedSignal, output } from '@angular/core';
-import { FktInputComponent } from 'frakton-ng/input';
+import { FktInputOldComponent } from 'frakton-ng/input-old';
 import { FktButtonsListComponent } from 'frakton-ng/buttons-list';
 import { FktButtonAction } from 'frakton-ng/button';
 import { FktTableCustomFilter } from 'frakton-ng/table';
@@ -12,7 +12,7 @@ import { MODIFIER_OPTIONS } from './constants/modifier-options';
 
 @Component({
     selector: 'fkt-table-filter-number',
-    imports: [FktInputComponent, FktSelectComponent, FktButtonsListComponent],
+    imports: [FktInputOldComponent, FktSelectComponent, FktButtonsListComponent],
     templateUrl: './fkt-table-filter-number.component.html',
     styleUrl: './fkt-table-filter-number.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,

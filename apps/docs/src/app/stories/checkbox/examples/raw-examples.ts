@@ -22,7 +22,7 @@ export default {
 			{
 				name: "fkt-checkbox-basic-example.component.html",
 				content: fktCheckboxBasicExampleTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "fkt-checkbox-basic-example.component.ts",
@@ -43,7 +43,7 @@ export default {
 			{
 				name: "fkt-checkbox-disabled-example.component.html",
 				content: fktCheckboxDisabledExampleTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "fkt-checkbox-disabled-example.component.ts",
@@ -64,7 +64,7 @@ export default {
 			{
 				name: "fkt-checkbox-pre-checked-example.component.html",
 				content: fktCheckboxPreCheckedExampleTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "fkt-checkbox-pre-checked-example.component.ts",
@@ -85,7 +85,7 @@ export default {
 			{
 				name: "fkt-checkbox-validation-example.component.html",
 				content: fktCheckboxValidationExampleTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "fkt-checkbox-validation-example.component.ts",

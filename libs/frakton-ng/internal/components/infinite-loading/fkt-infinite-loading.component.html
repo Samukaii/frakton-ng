@@ -1,0 +1,13 @@
+<div [style.min-height.px]="minHeight()">
+    <ng-content />
+</div>
+
+<div #sentinel data-testid="sentinel">
+    @if (!hasEnded() && !disabled()) {
+        <div data-testid="loading-indicator" class="loading-indicator">
+            <fkt-spinner [size]="15" [stroke]="3" />
+            <p>{{ loadingLabel() }}</p>
+        </div>
+    }
+</div>
+

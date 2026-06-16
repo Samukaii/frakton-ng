@@ -1,4 +1,4 @@
-<fkt-tabs-list renderMode="destructive" hideTabsWhenOnlyOne (activeTabChange)="activeTabChange.emit($event!)" [activeTab]="activeTab()">
+<fkt-tabs-list renderMode="eager" hideTabsWhenOnlyOne (activeTabChange)="activeTabChange.emit($event!)" [activeTab]="activeTab()">
     <fkt-tab [hidden]="!isStoryType()" key="features" label="Features">
         @if (!loading()) {
             <app-features
@@ -17,10 +17,6 @@
                     <app-api-reference
                         [title]="title()"
                         [docs]="docs()"
-                    />
-                    <h1>{{ title() }}</h1>
-                    <fkt-markdown
-                        [data]="docs()!"
                     />
                 }
             </div>

@@ -1,1 +1,1 @@
-export {FktTextareaComponent} from './src/fkt-textarea.component';
+export {FktTextareaDirective} from './src/fkt-textarea.directive';

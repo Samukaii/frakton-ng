@@ -1,0 +1,16 @@
+<app-code-output
+    [value]="value()"
+    title="Field value"
+/>
+
+<fkt-autocomplete
+    label="Countries"
+    placeholder="Select multiple countries"
+    [formControl]="countriesControl"
+    [options]="countries"
+    labelKey="name"
+    valueKey="code"
+    groupKey="continent"
+    multiple
+    localSearch
+/>

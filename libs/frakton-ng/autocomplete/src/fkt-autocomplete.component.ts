@@ -1,184 +1,172 @@
 import {
-	booleanAttribute,
-	Component,
-	computed,
-	effect,
-	ElementRef,
-	inject,
-	input,
-	model,
-	output,
-	signal,
-	untracked,
-	viewChild,
+    AfterViewInit,
+    booleanAttribute,
+    Component,
+    computed,
+    contentChild,
+    effect,
+    inject,
+    input,
+    Optional,
+    Self,
+    viewChild,
 } from '@angular/core';
-import { FktInputComponent } from 'frakton-ng/input';
-import { FktOverlayRef, FktOverlayService } from 'frakton-ng/overlay';
-import { FktButtonAction } from 'frakton-ng/button';
-import { FktNoResults } from 'frakton-ng/no-results';
-import { FktAutoCompleteAddOptionEvent, FktAutocompleteOption } from './fkt-autocomplete.types';
-import { AUTOCOMPLETE_ADD_OPTION } from './static/autocomplete-auto-created-option';
-import { FktAutocompleteOptionsComponent } from './options/fkt-autocomplete-options.component';
-import { MarkUsed, outsideClickEffect } from 'frakton-ng/internal/utils';
-import { FormValueControl, ValidationError, WithOptionalField } from '@angular/forms/signals';
-import { FktSpinnerComponent } from 'frakton-ng/spinner';
-import { FormControlSuffixDirective } from 'frakton-ng/forms';
+import {
+    FktErrorDirective,
+    FktFieldComponent,
+    FktFieldPrefixDirective,
+    FktFieldSuffixDirective,
+    FktHintEndDirective,
+    FktHintStartDirective,
+} from 'frakton-ng/field';
+import { Generic } from 'frakton-ng/internal/types';
+import { FktAutocompleteSearchDirective } from './directives/fkt-autocomplete-search.directive';
+import { FktAutocompleteValue } from './fkt-autocomplete.types';
+import { FktAutocompleteOverlayDirective } from './directives/fkt-autocomplete-overlay.directive';
+import { FktAutocompleteSelectionDirective } from './directives/fkt-autocomplete-selection.directive';
+import { FktAutocompleteStoreService } from './services/fkt-autocomplete-store.service';
+import { FktAutocompleteContextDirective } from './directives/fkt-autocomplete-context.directive';
+import { ControlValueAccessor, NgControl } from '@angular/forms';
+import { injectCompatFormStateWithoutNative } from '../../internal/di/inject-compat-form-state';
+import {
+    FktAutocompleteWritableValue,
+    normalizeWrittenAutocompleteValue,
+} from './utils/normalize-written-autocomplete-value';
+import { FktAutocompleteChipsComponent } from './components/chips/fkt-autocomplete-chips.component';
+import { FktAutocompleteActionButtonComponent } from './components/action-button/fkt-autocomplete-action-button.component';
 
 @Component({
-	selector: 'fkt-autocomplete',
-	templateUrl: './fkt-autocomplete.component.html',
-	styleUrl: './fkt-autocomplete.component.scss',
-	imports: [
-		FktInputComponent,
-		FktSpinnerComponent,
-		FormControlSuffixDirective
-	]
+    selector: 'fkt-autocomplete',
+    imports: [
+        FktFieldComponent,
+        FktAutocompleteSearchDirective,
+        FktAutocompleteChipsComponent,
+        FktAutocompleteActionButtonComponent,
+        FktFieldPrefixDirective,
+        FktHintStartDirective,
+        FktHintEndDirective,
+        FktErrorDirective,
+        FktFieldSuffixDirective,
+    ],
+    templateUrl: './fkt-autocomplete.component.html',
+    styleUrl: './fkt-autocomplete.component.scss',
+    providers: [FktAutocompleteStoreService],
+    hostDirectives: [
+        {
+            directive: FktAutocompleteContextDirective,
+            inputs: [
+                'label',
+                'searchDebounce',
+                'minSearch',
+                'options',
+                'labelKey',
+                'valueKey',
+                'groupKey',
+                'localSearch',
+                'loading',
+                'multiple',
+                'listHeight',
+                'placeholder',
+                'freeText',
+                'isDropdownOpened',
+                'hint',
+                'showError',
+                'size',
+                'requiredMarker',
+                'hideLabel'
+            ],
+            outputs: ['isDropdownOpenedChange', 'searchChange'],
+        },
+        FktAutocompleteOverlayDirective,
+        FktAutocompleteSelectionDirective,
+    ],
+    host: {
+        '(click)': 'onClick()',
+    },
 })
-export class FktAutocompleteComponent implements FormValueControl<string | number | null> {
-	value = model<string | number | null>(null);
-	touched = model(false);
-	disabled = input(false);
-	invalid = input(false);
-	errors = input<readonly WithOptionalField<ValidationError>[]>([]);
+export class FktAutocompleteComponent<Option extends Generic | string>
+    implements ControlValueAccessor, AfterViewInit
+{
+    protected readonly formState = injectCompatFormStateWithoutNative();
 
-	options = input<FktAutocompleteOption[]>([]);
-	actions = input<FktButtonAction[]>([]);
-	allowAddOption = input(false, {transform: booleanAttribute});
-	addOptionLabel = input<string>();
-	noResults = input<FktNoResults>({
-		label: 'Sem resultados',
-	});
-	loading = input(false);
+    protected readonly searchInput = viewChild.required(
+        FktAutocompleteSearchDirective<Option>
+    );
 
-	placeholder = input('');
-	label = input('');
-	search = output<string>();
-	addOption = output<FktAutoCompleteAddOptionEvent>();
+    protected readonly field = viewChild.required(FktFieldComponent);
 
-	searchValue = signal('');
-	selectedLabel = signal("");
+    protected readonly context = inject(
+        FktAutocompleteContextDirective<Option>
+    );
 
-	private overlayService = inject(FktOverlayService);
-	private inputComponent = viewChild.required(FktInputComponent, {read: ElementRef});
-	protected addingOptionLoading = signal(false);
-	protected newOptions = signal<FktAutocompleteOption[]>([]);
+    protected readonly selectionService = inject(
+        FktAutocompleteSelectionDirective
+    );
 
-	@MarkUsed()
-	protected emitSearch = effect(() => {
-		const searchValue = this.searchValue();
+    protected readonly store = inject(FktAutocompleteStoreService);
 
-		untracked(() => {
-			if (this.selectedLabel() !== searchValue)
-				this.value.set(null);
+    protected readonly hintStartDirective = contentChild(FktHintStartDirective);
+    protected readonly hintEndDirective = contentChild(FktHintEndDirective);
+    protected readonly errorDirective = contentChild(FktErrorDirective);
+    protected readonly fieldPrefixDirective = contentChild(
+        FktFieldPrefixDirective
+    );
 
-			this.search.emit(searchValue);
-		})
-	});
+    private onChange?: (value: FktAutocompleteValue) => void;
+    protected onTouched?: () => void;
 
-	@MarkUsed()
-	protected updateSearch = effect(() => {
-		const value = this.value();
-		const options = this.options();
+    protected readonly hasValue = computed(
+        () =>
+            !!this.context.search().value() || this.selectionService.hasValue()
+    );
 
-		untracked(() => {
-			const found = options.find(option => option.value === value);
+    private readonly callOnChangeWhenValueChanges = effect(() => {
+        this.onChange?.(this.context.value());
+    });
 
-			if (found) {
-				this.searchValue.set(found.label);
-				this.selectedLabel.set(found.label);
-			}
-		})
-	});
+    constructor(@Self() @Optional() public ngControl: NgControl) {
+        if (this.ngControl) {
+            this.ngControl.valueAccessor = this;
+        }
+    }
 
-	protected allOptions = computed(() => {
-		const viewValue = this.searchValue();
-		const enableAutoCreation = this.allowAddOption();
-		const options = this.options();
-		const newOptions = this.newOptions();
+    ngAfterViewInit() {
+        this.context.search().setInstance(this.searchInput());
+        this.context.fieldContainer.set(this.field().container());
+    }
 
-		if (!enableAutoCreation || !viewValue) return options;
+    writeValue(value: FktAutocompleteWritableValue<Option>): void {
+        const normalized = normalizeWrittenAutocompleteValue(value, {
+            multiple: this.context.multiple(),
+            valueKey: this.context.valueKey(),
+        });
 
-		const alreadySelected = !!options.find(
-			option =>
-				option.label === viewValue || option.value === viewValue,
-		)
+        this.selectionService.updateValue(normalized.value);
+        if (normalized.preloadedOptions.length) {
+            this.context.preloadedOptions.set(normalized.preloadedOptions);
 
-		if (alreadySelected) return options;
+            // Intentionally emits from writeValue to canonicalize object options
+            // into primitive form values. The value signal equality prevents loops
+            // when the canonical value is unchanged.
+            this.onChange?.(this.context.value());
+        }
 
-		return [
-			{
-				label: viewValue,
-				value: AUTOCOMPLETE_ADD_OPTION,
-			} as FktAutocompleteOption,
-			...options,
-			...newOptions
-		];
-	});
+        this.selectionService.updateVisible();
+        this.store.query.set('');
+    }
 
-	@MarkUsed()
-	protected closeOverlayOnOutsideClick = outsideClickEffect(
-		() => {
-			this.closeOverlay();
-		},
-		{excludeIdsOrElements: ['autocomplete-options-overlay']},
-	);
+    registerOnChange(fn: (value: FktAutocompleteValue) => void): void {
+        this.onChange = fn;
+    }
 
-	protected openOverlay() {
-		if (!!this.overlay || this.disabled()) return;
+    registerOnTouched(fn: () => void): void {
+        this.onTouched = fn;
+    }
 
-		this.overlay = this.overlayService.open({
-			anchorElementRef: this.inputComponent(),
-			component: FktAutocompleteOptionsComponent,
-			data: {
-				options: this.allOptions,
-				loading: this.loading,
-				addOptionLabel: this.addOptionLabel,
-				actions: this.actions(),
-				selected: computed(() => this.selectedOption()?.value ?? null),
-				noResults: this.noResults(),
-				select: option => {
-					this.selectOption(option);
-				},
-			},
-			panelOptions: {
-				inheritDesignTokensFrom: this.inputComponent().nativeElement
-			}
-		});
-	}
+    protected onClick() {
+        if (this.formState?.disabled()) return;
 
-	private overlay: null | FktOverlayRef<any> =
-		null;
-
-	protected selectedOption = computed(() => {
-		const value = this.value();
-		const found = this.allOptions().find(item => item.value === value);
-
-		return found ?? null;
-	});
-
-	protected selectOption(option: FktAutocompleteOption) {
-		this.selectedLabel.set(option.label);
-
-		if (option.value === AUTOCOMPLETE_ADD_OPTION && this.allowAddOption()) {
-			this.addingOptionLoading.set(true);
-
-			this.addOption.emit({
-				inputValue: option.label,
-				done: value => {
-					this.value.set(value);
-					this.addingOptionLoading.set(false);
-				}
-			});
-
-		} else {
-			this.value.set(option.value);
-		}
-
-		this.closeOverlay();
-	}
-
-	private closeOverlay() {
-		this.overlay?.close();
-		this.overlay = null;
-	}
+        this.context.openDropdown();
+        this.context.search().focus();
+    }
 }

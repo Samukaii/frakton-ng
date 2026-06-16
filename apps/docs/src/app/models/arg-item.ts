@@ -1,4 +1,4 @@
-import { FktAutocompleteOption } from 'frakton-ng/autocomplete';
+import { FktAutocompleteOption } from 'frakton-ng/autocomplete-old';
 import { WritableSignal } from '@angular/core';
 import { ControlType } from './control-type';
 import { ArgTypeSchema } from '@/models/arg-type';

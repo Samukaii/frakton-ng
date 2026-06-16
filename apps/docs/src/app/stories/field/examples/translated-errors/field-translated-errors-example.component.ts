@@ -8,7 +8,8 @@ import {
     required,
 } from '@angular/forms/signals';
 import { TranslateService } from '@/core/services/translate.service';
-import { FktFieldComponent, FktInputTextDirective } from 'frakton-ng/field';
+import { FktFieldComponent, FktFieldPrefixDirective } from 'frakton-ng/field';
+import { FktInputTextDirective } from 'frakton-ng/input-text';
 import { FktIconComponent } from 'frakton-ng/icon';
 import { FktSelectComponent, FktSelectOption } from 'frakton-ng/select';
 
@@ -20,6 +21,7 @@ import { FktSelectComponent, FktSelectOption } from 'frakton-ng/select';
         FktInputTextDirective,
         FktIconComponent,
         FktSelectComponent,
+        FktFieldPrefixDirective
     ],
     templateUrl: './field-translated-errors-example.component.html',
     styleUrl: './field-translated-errors-example.component.scss',
@@ -47,7 +49,7 @@ export class FieldTranslatedErrorsExampleComponent {
     protected language = form(this.selectedLanguage);
 
     protected languageOptions: FktSelectOption[] = [
-        { label: 'English', value: 'en-US' },
+        { label: 'English', value: 'en' },
         { label: 'Spanish', value: 'es-ES' },
         { label: 'French', value: 'fr-FR' },
         { label: 'Portuguese', value: 'pt-BR' },

@@ -1,0 +1,16 @@
+@if (context.multiple()) {
+    @for (item of selection.selectedOptions(); track item.value) {
+        <button
+            [disabled]="formState?.disabled()"
+            type="button"
+            [attr.aria-label]="`Remove option ${item.label}`"
+            (click)="selection.removeItem(item)"
+            class="chip"
+        >
+            <span>
+                {{ item.label }}
+            </span>
+            <fkt-icon name="x-circle"/>
+        </button>
+    }
+}

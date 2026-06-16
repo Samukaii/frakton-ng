@@ -19,7 +19,7 @@ export default {
 			{
 				name: "fkt-focus-trap-basic-example.component.html",
 				content: fktFocusTrapBasicExampleTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "fkt-focus-trap-basic-example.component.ts",
@@ -40,7 +40,7 @@ export default {
 			{
 				name: "fkt-focus-trap-form-example.component.html",
 				content: fktFocusTrapFormExampleTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "fkt-focus-trap-form-example.component.ts",
@@ -61,7 +61,7 @@ export default {
 			{
 				name: "fkt-focus-trap-modal-example.component.html",
 				content: fktFocusTrapModalExampleTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "fkt-focus-trap-modal-example.component.ts",

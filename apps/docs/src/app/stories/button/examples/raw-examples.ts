@@ -16,7 +16,7 @@ export default {
 			{
 				name: "icon-variants-example.component.html",
 				content: iconVariantsExampleTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "icon-variants-example.component.ts",
@@ -37,7 +37,7 @@ export default {
 			{
 				name: "text-variants-example.component.html",
 				content: textVariantsExampleTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "text-variants-example.component.ts",

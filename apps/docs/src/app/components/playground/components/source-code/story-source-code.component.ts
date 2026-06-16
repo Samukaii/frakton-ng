@@ -55,7 +55,7 @@ export class StorySourceCodeComponent {
                                 story.name
                             )}.component.html`,
                             content: autoSource.html,
-                            language: 'angular-html',
+                            language: 'angular2html',
                         },
                         {
                             name: `fkt-${toKebabCase(story.name)}.component.ts`,

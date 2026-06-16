@@ -13,7 +13,7 @@ export default {
 			{
 				name: "tag-variations-example.component.html",
 				content: tagVariationsExampleTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "tag-variations-example.component.ts",

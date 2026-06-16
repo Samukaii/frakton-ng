@@ -1,0 +1,15 @@
+<app-code-output
+    [value]="value()"
+    title="Field value"
+/>
+
+<fkt-autocomplete
+    label="User"
+    placeholder="Search for a user"
+    [formControl]="user"
+    [options]="results()"
+    [loading]="loading()"
+    labelKey="name"
+    valueKey="id"
+    (searchChange)="searchUsers($event)"
+/>

@@ -34,7 +34,7 @@ export default {
 			{
 				name: "async-loading-example.component.html",
 				content: asyncLoadingExampleTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "async-loading-example.component.ts",
@@ -55,7 +55,7 @@ export default {
 			{
 				name: "default-example.component.html",
 				content: defaultExampleTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "default-example.component.ts",
@@ -76,7 +76,7 @@ export default {
 			{
 				name: "disabled-example.component.html",
 				content: disabledExampleTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "disabled-example.component.ts",
@@ -97,7 +97,7 @@ export default {
 			{
 				name: "empty-state-example.component.html",
 				content: emptyStateExampleTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "empty-state-example.component.ts",
@@ -118,7 +118,7 @@ export default {
 			{
 				name: "large-list-example.component.html",
 				content: largeListExampleTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "large-list-example.component.ts",
@@ -139,7 +139,7 @@ export default {
 			{
 				name: "loading-example.component.html",
 				content: loadingExampleTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "loading-example.component.ts",
@@ -160,7 +160,7 @@ export default {
 			{
 				name: "preselected-example.component.html",
 				content: preselectedExampleTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "preselected-example.component.ts",
@@ -181,7 +181,7 @@ export default {
 			{
 				name: "validation-example.component.html",
 				content: validationExampleTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "validation-example.component.ts",

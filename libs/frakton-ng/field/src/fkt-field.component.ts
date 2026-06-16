@@ -12,15 +12,23 @@ import {
 } from '@angular/core';
 import { MarkUsed } from 'frakton-ng/internal/utils';
 import { FktFieldControl } from 'frakton-ng/internal/directives';
-import { FktFieldErrorComponent } from 'frakton-ng/field-error';
+import { FktFieldErrorComponent } from './error/fkt-field-error.component';
 import { FKT_FIELD_ERROR_HANDLER } from 'frakton-ng/core';
 import { injectI18nIntegration } from 'frakton-ng/internal/di';
 import { FktFieldHintComponent } from './hint/fkt-field-hint.component';
 import { FktCharacterCountDirective } from './character-count/fkt-character-count.directive';
+import { FktHintStartDirective } from './directives/fkt-hint-start.directive';
+import { FktHintEndDirective } from './directives/fkt-hint-end.directive';
+import { FktErrorDirective } from './directives/fkt-error.directive';
+import { FktFieldPrefixDirective } from './directives/fkt-field-prefix.directive';
+import { FktFieldSuffixDirective } from './directives/fkt-field-suffix.directive';
 
 @Component({
     selector: 'fkt-field',
-    imports: [FktFieldErrorComponent, FktFieldHintComponent],
+    imports: [
+        FktFieldErrorComponent,
+        FktFieldHintComponent
+    ],
     templateUrl: './fkt-field.component.html',
     styleUrl: './fkt-field.component.scss',
     host: {
@@ -32,7 +40,6 @@ import { FktCharacterCountDirective } from './character-count/fkt-character-coun
 })
 export class FktFieldComponent {
     label = input.required<string>();
-    ariaDescribedby = input<string>();
     placeholder = input('');
     hint = input<string>();
     showError = input<boolean>();
@@ -54,9 +61,18 @@ export class FktFieldComponent {
         return `var(--_fkt-field-vertical-padding-${this.size()})`;
     });
 
+    container = viewChild.required<ElementRef<HTMLElement>>('container');
+
     protected control = contentChild(FktFieldControl);
     protected characterCount = contentChild(FktCharacterCountDirective);
     protected projectedHint = contentChild(FktFieldHintComponent);
+
+    protected readonly hintStartDirective = contentChild(FktHintStartDirective);
+    protected readonly hintEndDirective = contentChild(FktHintEndDirective);
+    protected readonly errorDirective = contentChild(FktErrorDirective);
+    protected readonly fieldPrefixDirective = contentChild(FktFieldPrefixDirective);
+    protected readonly fieldSuffixDirective = contentChild(FktFieldSuffixDirective);
+
     protected readonly errorHandler = inject(FKT_FIELD_ERROR_HANDLER, {
         optional: true,
     });
@@ -110,19 +126,18 @@ export class FktFieldComponent {
         return this.errorHandler(errors);
     });
 
-    @MarkUsed()
-    protected readonly watchElements = effect((onCleanup) => {
+    private readonly watchElements = effect((onCleanup) => {
         const prefixElement = this.prefixElement().nativeElement as HTMLElement;
         const labelElement = this.labelElement().nativeElement as HTMLElement;
 
-        this.prefixWidth.set(prefixElement.clientWidth);
+        this.prefixWidth.set(prefixElement.clientWidth - 8);
 
         const onResize: ResizeObserverCallback = (entries) => {
             entries.forEach((entry) => {
                 const target = entry.target as HTMLElement;
 
                 if (target === prefixElement)
-                    this.prefixWidth.set(target.offsetWidth);
+                    this.prefixWidth.set(target.offsetWidth - 8);
 
                 if (target === labelElement)
                     this.labelWidth.set(target.offsetWidth);

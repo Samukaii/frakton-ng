@@ -1,7 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { FktButtonGroupComponent, FktButtonGroupOption } from 'frakton-ng/button-group';
 import { disabled, Field, form, required } from '@angular/forms/signals';
-import { FktFieldErrorComponent } from 'frakton-ng/field-error';
+import { FktFieldErrorComponent } from 'frakton-ng/field';
 import { FktButtonComponent } from 'frakton-ng/button';
 
 @Component({

@@ -101,11 +101,11 @@ $icon-border-width: var(--fkt-button-icon-border-width, 1px);
 /*
 Spinner size for loading state.
 @name --fkt-button-spinner-size
-@reference 20px
+@reference 12px
 @category Spacing
 @type size
 */
-$spinner-size: var(--fkt-button-spinner-size, 20px);
+$spinner-size: var(--fkt-button-spinner-size, 12px);
 
 /*
 Spinner border width.

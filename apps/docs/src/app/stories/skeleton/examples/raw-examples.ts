@@ -19,7 +19,7 @@ export default {
 			{
 				name: "fkt-skeleton-examples-animations.component.html",
 				content: fktSkeletonExamplesAnimationsTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "fkt-skeleton-examples-animations.component.ts",
@@ -40,7 +40,7 @@ export default {
 			{
 				name: "fkt-skeleton-examples-basic.component.html",
 				content: fktSkeletonExamplesBasicTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "fkt-skeleton-examples-basic.component.ts",
@@ -61,7 +61,7 @@ export default {
 			{
 				name: "fkt-skeleton-examples-types.component.html",
 				content: fktSkeletonExamplesTypesTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "fkt-skeleton-examples-types.component.ts",

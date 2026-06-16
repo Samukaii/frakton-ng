@@ -40,7 +40,7 @@ export default {
 			{
 				name: "fkt-custom-tooltip-overlay-example.component.html",
 				content: fktCustomTooltipOverlayExampleTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "fkt-custom-tooltip-overlay-example.component.ts",
@@ -61,7 +61,7 @@ export default {
 			{
 				name: "fkt-dropdown-overlay-example.component.html",
 				content: fktDropdownOverlayExampleTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "fkt-dropdown-overlay-example.component.ts",
@@ -82,7 +82,7 @@ export default {
 			{
 				name: "fkt-form-overlay-example.component.html",
 				content: fktFormOverlayExampleTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "fkt-form-overlay-example.component.ts",
@@ -103,7 +103,7 @@ export default {
 			{
 				name: "fkt-interactive-overlay-example.component.html",
 				content: fktInteractiveOverlayExampleTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "fkt-interactive-overlay-example.component.ts",
@@ -124,7 +124,7 @@ export default {
 			{
 				name: "fkt-simple-overlay-example.component.html",
 				content: fktSimpleOverlayExampleTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "fkt-simple-overlay-example.component.ts",
@@ -145,7 +145,7 @@ export default {
 			{
 				name: "fkt-dropdown-overlay-dialog.component.html",
 				content: fktDropdownOverlayDialogTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "fkt-dropdown-overlay-dialog.component.ts",
@@ -166,7 +166,7 @@ export default {
 			{
 				name: "fkt-form-overlay-dialog.component.html",
 				content: fktFormOverlayDialogTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "fkt-form-overlay-dialog.component.ts",
@@ -187,7 +187,7 @@ export default {
 			{
 				name: "fkt-interactive-overlay-dialog.component.html",
 				content: fktInteractiveOverlayDialogTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "fkt-interactive-overlay-dialog.component.ts",
@@ -208,7 +208,7 @@ export default {
 			{
 				name: "fkt-simple-overlay-dialog.component.html",
 				content: fktSimpleOverlayDialogTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "fkt-simple-overlay-dialog.component.ts",
@@ -229,7 +229,7 @@ export default {
 			{
 				name: "fkt-tooltip-overlay-dialog.component.html",
 				content: fktTooltipOverlayDialogTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "fkt-tooltip-overlay-dialog.component.ts",

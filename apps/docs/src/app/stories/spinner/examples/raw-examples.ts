@@ -22,7 +22,7 @@ export default {
 			{
 				name: "fkt-spinner-example-color-themes.component.html",
 				content: fktSpinnerExampleColorThemesTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "fkt-spinner-example-color-themes.component.ts",
@@ -43,7 +43,7 @@ export default {
 			{
 				name: "fkt-spinner-example-custom-configuration.component.html",
 				content: fktSpinnerExampleCustomConfigurationTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "fkt-spinner-example-custom-configuration.component.ts",
@@ -64,7 +64,7 @@ export default {
 			{
 				name: "fkt-spinner-example-loading-state.component.html",
 				content: fktSpinnerExampleLoadingStateTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "fkt-spinner-example-loading-state.component.ts",
@@ -85,7 +85,7 @@ export default {
 			{
 				name: "fkt-spinner-example-size-variations.component.html",
 				content: fktSpinnerExampleSizeVariationsTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "fkt-spinner-example-size-variations.component.ts",

@@ -19,7 +19,7 @@ export default {
 			{
 				name: "toggle-input-driven.component.html",
 				content: toggleInputDrivenTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "toggle-input-driven.component.ts",
@@ -40,7 +40,7 @@ export default {
 			{
 				name: "toggle-reactive-forms.component.html",
 				content: toggleReactiveFormsTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "toggle-reactive-forms.component.ts",
@@ -61,7 +61,7 @@ export default {
 			{
 				name: "toggle-signal-forms.component.html",
 				content: toggleSignalFormsTemplate as string,
-				language: "angular-html" as const,
+				language: "angular2html" as const,
 			},		
 			{
 				name: "toggle-signal-forms.component.ts",
