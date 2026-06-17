@@ -1,6 +1,10 @@
 import { Listr } from 'listr2';
 import { createIndexerContext, IndexerContext } from './pipeline/indexer-context';
 import {
+    runAiDocsTask,
+    AiDocsTaskResult,
+} from './tasks/ai-docs/run-ai-docs.task';
+import {
     runDesignTokensTask,
     DesignTokensTaskResult,
 } from './tasks/design-tokens/run-design-tokens.task';
@@ -19,6 +23,7 @@ interface DocumentationIndexerCliContext {
     designTokens?: DesignTokensTaskResult;
     rawExamples?: RawExamplesTaskResult;
     storiesMap?: StoriesMapTaskResult;
+    aiDocs?: AiDocsTaskResult;
     sitemap?: {
         urls: number;
         written: number;
@@ -53,6 +58,20 @@ const tasks = new Listr<DocumentationIndexerCliContext>(
                 const result = runStoriesMapTask(ctx.indexerContext);
                 ctx.storiesMap = result;
                 task.title = `Generate stories map (${pluralize(result.entries, 'entry', 'entries')}, ${pluralize(result.sections, 'section')})`;
+            },
+        },
+        {
+            title: 'Generate AI docs',
+            task: (ctx, task) => {
+                const storyIndex = ctx.storiesMap?.storyIndex;
+
+                if (!storyIndex) {
+                    throw new Error('Story index was not generated.');
+                }
+
+                const result = runAiDocsTask(ctx.indexerContext, storyIndex);
+                ctx.aiDocs = result;
+                task.title = `Generate AI docs (${pluralize(result.pages, 'page')}, ${pluralize(result.written, 'file')})`;
             },
         },
         {
