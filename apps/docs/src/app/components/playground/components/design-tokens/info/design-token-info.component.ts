@@ -12,6 +12,7 @@ import { HumanizeDesignTokenPipe } from '@/pipes/humanize-design-token.pipe';
 })
 export class DesignTokenInfoComponent {
     token = input.required<DesignTokenItem>();
+    templateSelector = input.required<string>();
 
     protected categoryIcon = computed(() => {
         const token = this.token();

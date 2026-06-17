@@ -13,7 +13,7 @@ $item-padding: var(--fkt-color-control-item-padding, var(--fkt-space-xs));
 Border color for control elements.
 @name --fkt-color-control-border-color
 @reference --fkt-color-neutral-400
-@component Field
+@component Color controls
 @category Colors
 @type color
 */
@@ -23,7 +23,7 @@ $border-color: var(--fkt-color-control-border-color, var(--fkt-color-neutral-400
 Border radius for control elements.
 @name --fkt-color-control-border-radius
 @reference --fkt-radius-xl
-@component Field
+@component Color controls
 @category Shape
 @type size
 */

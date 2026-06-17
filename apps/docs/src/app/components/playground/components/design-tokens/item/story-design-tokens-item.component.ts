@@ -137,6 +137,7 @@ export class StoryDesignTokensItemComponent {
             component: DesignTokenInfoComponent,
             data: {
                 token: this.designToken,
+                templateSelector: this.templateSelector
             },
             panelOptions: {
                 autoCloseOnMouseOut: true,

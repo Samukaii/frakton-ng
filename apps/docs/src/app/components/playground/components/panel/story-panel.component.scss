@@ -78,6 +78,10 @@
             background: var(--fkt-color-primary-opacity-20);
         }
 
+        &:focus-visible {
+            box-shadow: var(--fkt-focus-ring-shadow);
+        }
+
         fkt-icon {
             font-weight: lighter;
         }

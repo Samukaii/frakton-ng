@@ -1,9 +1,10 @@
 // <design-tokens>
+/* @scope Row */
+
 /*
 Border color between rows.
 @name --fkt-table-row-border-color
 @reference --fkt-color-neutral-300
-@component Row
 @category Colors
 @type color
 */
@@ -13,7 +14,6 @@ $row-border-color: var(--fkt-table-row-border-color, var(--fkt-color-neutral-300
 Background color for row hover state.
 @name --fkt-table-row-hover-background-color
 @reference --fkt-color-neutral-200
-@component Row
 @category Colors
 @type color
 */
@@ -23,7 +23,6 @@ $row-hover-background-color: var(--fkt-table-row-hover-background-color, var(--f
 Background color for table cells. Must be opaque for pinned columns to cover scrolled content.
 @name --fkt-table-cell-background
 @reference --fkt-color-neutral-100
-@component Row
 @category Colors
 @type color
 */
@@ -33,7 +32,6 @@ $cell-background: var(--fkt-table-cell-background, var(--fkt-color-neutral-100))
 Background color for alternating (odd-indexed) rows when striped is enabled.
 @name --fkt-table-stripe-color
 @reference --fkt-color-neutral-50
-@component Row
 @category Colors
 @type color
 */

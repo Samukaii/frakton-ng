@@ -5,24 +5,28 @@ import {
     input,
     linkedSignal,
     reflectComponentType,
+    signal,
 } from '@angular/core';
 import { DesignTokenItem } from '@/models/design-token-item';
 import { StoryDesignTokensItemComponent } from './item/story-design-tokens-item.component';
 import { FktIconName } from 'frakton-ng/icon';
 import { STORY_META_TOKEN } from '@/tokens/story-meta.token';
+import { getVisibleRect } from '@/utils/get-visible-rect';
+import { FktNavigableListDirective } from 'frakton-ng/navigable-list';
 
 @Component({
     selector: 'app-story-design-tokens',
-    imports: [StoryDesignTokensItemComponent],
+    imports: [StoryDesignTokensItemComponent, FktNavigableListDirective],
     templateUrl: './story-design-tokens.component.html',
     styleUrl: './story-design-tokens.component.scss',
 })
 export class StoryDesignTokensComponent {
     designTokens = input.required<DesignTokenItem[]>();
+    parentContainer = input<HTMLElement>();
 
-    meta = inject(STORY_META_TOKEN);
+    private meta = inject(STORY_META_TOKEN);
 
-    templateSelector = computed(() => {
+    protected readonly templateSelector = computed(() => {
         const component = this.meta.component;
 
         if (!component) return ':host';
@@ -36,36 +40,65 @@ export class StoryDesignTokensComponent {
         }
     });
 
-    currentComponent = linkedSignal(() => {
-        const components = this.components();
+    protected readonly target = signal<null | {
+        name: string;
+        rect: DOMRect;
+    }>(null);
+
+    protected anatomyInfo = computed(() => {
+        const target = this.target();
+
+        if (!target) return null;
+
+        const bounds = target.rect;
+
+        return {
+            width: bounds.width,
+            height: bounds.height,
+            x: bounds.left,
+            y: bounds.top,
+        };
+    });
+
+    protected readonly currentScope = linkedSignal(() => {
+        const components = this.scopes();
 
         return components[0];
     });
 
-    components = computed(() => {
+    protected readonly scopes = computed(() => {
         const tokens = this.designTokens();
 
-        const components: string[] = ['All'];
+        const scopes: {
+            name: string;
+            selector: string | null;
+            tokens: DesignTokenItem[];
+        }[] = [{ name: 'All', selector: this.templateSelector(), tokens }];
 
         tokens.forEach((token) => {
-            if (!token.component) return;
-            if (components.includes(token.component)) return;
+            const scopeName = token.scope?.name ?? token.component;
+            const scopeSelector = token.scope?.selector ?? null;
 
-            components.push(token.component);
+            if (!scopeName) return;
+
+            const scopeRegistered = scopes.find(
+                (scope) => scope.name === scopeName
+            );
+
+            if (scopeRegistered) scopeRegistered.tokens.push(token);
+            else
+                scopes.push({
+                    name: scopeName,
+                    selector: scopeSelector,
+                    tokens: [token],
+                });
         });
 
-        return components;
+        return scopes;
     });
 
-    tokensCategories = computed(() => {
-        const tokens = this.designTokens();
-        const currentComponent = this.currentComponent();
-
-        const tokensFiltered = tokens.filter((token) => {
-            if (currentComponent === 'All') return true;
-
-            return token.component === currentComponent;
-        });
+    protected readonly tokensCategories = computed(() => {
+        const currentScope = this.currentScope();
 
         const categories: {
             name: string;
@@ -99,7 +132,7 @@ export class StoryDesignTokensComponent {
             },
         ];
 
-        tokensFiltered.forEach((token) => {
+        currentScope.tokens.forEach((token) => {
             const foundCategory = categories.find(
                 (category) => category.name === token.category
             );
@@ -112,37 +145,45 @@ export class StoryDesignTokensComponent {
         return categories.filter((category) => category.tokens.length > 0);
     });
 
-    protected changedTokens = computed(() => {
-        const tokens = this.designTokens();
+    protected showAnatomy(scope: {
+        name: string;
+        selector: string | null;
+        tokens: DesignTokenItem[];
+    }) {
+        const selector = scope.selector;
+        const container = this.parentContainer();
 
-        return tokens.filter((token) => token.control() !== token.defaultValue);
-    });
+        if (!selector || !container) return;
 
-    protected hasChanges = computed(() => {
-        const tokens = this.changedTokens();
+        const element = container.querySelector(selector) ?? null;
 
-        return !!tokens.length;
-    });
+        const elements = Array.from(
+            container.querySelectorAll<HTMLElement>(selector)
+        );
 
-    protected resetAllTokens() {
-        const tokens = this.changedTokens();
+        const visibleRects = [...elements]
+            .map((element) => getVisibleRect(element, container))
+            .filter((rect) => !!rect);
 
-        tokens.forEach((token) => {
-            token.control.set(token.defaultValue);
-        });
+        const middleIndex = Math.ceil(visibleRects.length / 2) - 1;
+
+        const middleRect = visibleRects[middleIndex];
+
+        if (element && middleRect)
+            this.target.set({
+                name: scope.name,
+                rect: middleRect,
+            });
+        else this.target.set(null);
     }
 
-    protected async copyAllTokens() {
-        const tokens = this.changedTokens();
+    protected selectScopeByIndex($event: number) {
+        const newScope = this.scopes()[$event ?? -1];
+        console.log(newScope, $event);
 
-        let text = `${this.templateSelector()} {`;
+        if(!newScope) return;
 
-        tokens.forEach((token) => {
-            text += '\n';
-            text += `  ${token.name}: ${token.control()};`;
-        });
-        text += '\n}';
-
-        await navigator.clipboard.writeText(text);
+        this.currentScope.set(newScope);
     }
 }
+

@@ -1,10 +1,14 @@
-@if (components().length > 2) {
-    <div class="component-container">
-        @for (component of components(); track component) {
+@if (scopes().length > 2) {
+    <div fktNavigableList orientation="horizontal" childSelector=".scope" (select)="selectScopeByIndex($event)" class="scopes-container">
+        @for (scope of scopes(); track scope) {
             <button
-                [class.active]="currentComponent() === component"
-                (click)="currentComponent.set(component)" class="component">
-                {{ component }}
+                [class.active]="currentScope() === scope"
+                (mouseenter)="showAnatomy(scope)"
+                (focus)="showAnatomy(scope)"
+                (blur)="target.set(null)"
+                (mouseout)="target.set(null)"
+                (click)="currentScope.set(scope)" class="scope">
+                {{ scope.name }}
             </button>
         }
     </div>
@@ -20,3 +24,15 @@
         }
     }
 </div>
+
+@if (anatomyInfo(); as info) {
+    <div class="anatomy"
+         [style.top.px]="info.y"
+         [style.left.px]="info.x">
+        <span class="label">{{ target()?.name }}</span>
+        <div class="range"
+             [style.width.px]="info.width"
+             [style.height.px]="info.height">
+        </div>
+    </div>
+}

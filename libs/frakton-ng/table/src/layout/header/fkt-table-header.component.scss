@@ -1,9 +1,10 @@
 // <design-tokens>
+/* @scope Header */
+
 /*
 Color for header text.
 @name --fkt-table-header-text-color
 @reference --fkt-color-neutral-900
-@component Header
 @category Colors
 @type color
 */
@@ -13,7 +14,6 @@ $header-title-color: var(--fkt-table-header-text-color, var(--fkt-color-neutral-
 Font weight for header title.
 @name --fkt-table-header-font-weight
 @reference --fkt-font-semibold
-@component Header
 @category Typography
 @type weight
 */

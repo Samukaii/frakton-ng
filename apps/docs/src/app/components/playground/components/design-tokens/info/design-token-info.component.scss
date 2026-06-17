@@ -4,6 +4,10 @@
     gap: var(--fkt-space-md);
     padding: 1rem;
     width: 400px;
+
+    * {
+        color: var(--fkt-color-neutral-800);
+    }
 }
 
 .header {
@@ -34,6 +38,10 @@
     &.description {
         flex-direction: column;
         align-items: flex-start;
+
+        p {
+            font-size: var(--fkt-font-size-sm);
+        }
     }
 }
 

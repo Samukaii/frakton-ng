@@ -11,9 +11,11 @@
 			</div>
 		</div>
 		<div class="content">
-			<p class="label">
-				{{ label() }}
-			</p>
+            @if (!hideLabel()) {
+                <p class="label">
+                    {{ label() }}
+                </p>
+            }
 			@if (value()) {
 				<p class="preview-value">
 					{{ value() }}
