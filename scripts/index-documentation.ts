@@ -7,6 +7,7 @@ import { fetchStoryFiles } from './fetch-story-files';
 import { fetchStoryFolders } from './fetch-story-folders';
 import { StoryFileScrapper } from './utils/story-file-scrapper';
 import { generateSiteMap } from './generate-sitemap';
+import { generateAiDocs } from './generate-ai-docs';
 
 
 const storyFolders = fetchStoryFolders();
@@ -38,5 +39,6 @@ const storyFiles = fetchStoryFiles();
 const scrapper = new StoryFileScrapper(storyFiles);
 
 generateStoryIndexer(scrapper, storyFiles);
+generateAiDocs(scrapper);
 generateSiteMap(scrapper);
 
