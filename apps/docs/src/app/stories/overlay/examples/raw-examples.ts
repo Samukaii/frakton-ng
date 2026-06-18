@@ -40,17 +40,17 @@ export default {
 			{
 				name: "fkt-custom-tooltip-overlay-example.component.html",
 				content: fktCustomTooltipOverlayExampleTemplate as string,
-				language: "html" as "html",
+				language: "angular2html" as const,
 			},		
 			{
 				name: "fkt-custom-tooltip-overlay-example.component.ts",
 				content: fktCustomTooltipOverlayExampleTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "fkt-custom-tooltip-overlay-example.component.scss",
 				content: fktCustomTooltipOverlayExampleStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},
@@ -61,17 +61,17 @@ export default {
 			{
 				name: "fkt-dropdown-overlay-example.component.html",
 				content: fktDropdownOverlayExampleTemplate as string,
-				language: "html" as "html",
+				language: "angular2html" as const,
 			},		
 			{
 				name: "fkt-dropdown-overlay-example.component.ts",
 				content: fktDropdownOverlayExampleTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "fkt-dropdown-overlay-example.component.scss",
 				content: fktDropdownOverlayExampleStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},
@@ -82,17 +82,17 @@ export default {
 			{
 				name: "fkt-form-overlay-example.component.html",
 				content: fktFormOverlayExampleTemplate as string,
-				language: "html" as "html",
+				language: "angular2html" as const,
 			},		
 			{
 				name: "fkt-form-overlay-example.component.ts",
 				content: fktFormOverlayExampleTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "fkt-form-overlay-example.component.scss",
 				content: fktFormOverlayExampleStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},
@@ -103,17 +103,17 @@ export default {
 			{
 				name: "fkt-interactive-overlay-example.component.html",
 				content: fktInteractiveOverlayExampleTemplate as string,
-				language: "html" as "html",
+				language: "angular2html" as const,
 			},		
 			{
 				name: "fkt-interactive-overlay-example.component.ts",
 				content: fktInteractiveOverlayExampleTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "fkt-interactive-overlay-example.component.scss",
 				content: fktInteractiveOverlayExampleStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},
@@ -124,17 +124,17 @@ export default {
 			{
 				name: "fkt-simple-overlay-example.component.html",
 				content: fktSimpleOverlayExampleTemplate as string,
-				language: "html" as "html",
+				language: "angular2html" as const,
 			},		
 			{
 				name: "fkt-simple-overlay-example.component.ts",
 				content: fktSimpleOverlayExampleTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "fkt-simple-overlay-example.component.scss",
 				content: fktSimpleOverlayExampleStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},
@@ -145,17 +145,17 @@ export default {
 			{
 				name: "fkt-dropdown-overlay-dialog.component.html",
 				content: fktDropdownOverlayDialogTemplate as string,
-				language: "html" as "html",
+				language: "angular2html" as const,
 			},		
 			{
 				name: "fkt-dropdown-overlay-dialog.component.ts",
 				content: fktDropdownOverlayDialogTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "fkt-dropdown-overlay-dialog.component.scss",
 				content: fktDropdownOverlayDialogStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},
@@ -166,17 +166,17 @@ export default {
 			{
 				name: "fkt-form-overlay-dialog.component.html",
 				content: fktFormOverlayDialogTemplate as string,
-				language: "html" as "html",
+				language: "angular2html" as const,
 			},		
 			{
 				name: "fkt-form-overlay-dialog.component.ts",
 				content: fktFormOverlayDialogTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "fkt-form-overlay-dialog.component.scss",
 				content: fktFormOverlayDialogStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},
@@ -187,17 +187,17 @@ export default {
 			{
 				name: "fkt-interactive-overlay-dialog.component.html",
 				content: fktInteractiveOverlayDialogTemplate as string,
-				language: "html" as "html",
+				language: "angular2html" as const,
 			},		
 			{
 				name: "fkt-interactive-overlay-dialog.component.ts",
 				content: fktInteractiveOverlayDialogTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "fkt-interactive-overlay-dialog.component.scss",
 				content: fktInteractiveOverlayDialogStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},
@@ -208,17 +208,17 @@ export default {
 			{
 				name: "fkt-simple-overlay-dialog.component.html",
 				content: fktSimpleOverlayDialogTemplate as string,
-				language: "html" as "html",
+				language: "angular2html" as const,
 			},		
 			{
 				name: "fkt-simple-overlay-dialog.component.ts",
 				content: fktSimpleOverlayDialogTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "fkt-simple-overlay-dialog.component.scss",
 				content: fktSimpleOverlayDialogStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},
@@ -229,17 +229,17 @@ export default {
 			{
 				name: "fkt-tooltip-overlay-dialog.component.html",
 				content: fktTooltipOverlayDialogTemplate as string,
-				language: "html" as "html",
+				language: "angular2html" as const,
 			},		
 			{
 				name: "fkt-tooltip-overlay-dialog.component.ts",
 				content: fktTooltipOverlayDialogTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "fkt-tooltip-overlay-dialog.component.scss",
 				content: fktTooltipOverlayDialogStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},

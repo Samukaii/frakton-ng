@@ -1,0 +1,41 @@
+<form [formGroup]="form">
+    <fkt-field label="Name">
+        <fkt-icon fktFieldPrefix name="user"/>
+        <input fktInputText formControlName="name" placeholder="Enter a name">
+    </fkt-field>
+
+    <fkt-field label="Username">
+        <fkt-icon fktFieldPrefix name="at-symbol"/>
+        <input fktInputText formControlName="username" placeholder="Enter a username">
+    </fkt-field>
+
+    <fkt-field label="Bio">
+        <fkt-icon fktFieldPrefix name="identification"/>
+        <input fktInputText formControlName="bio" placeholder="Enter a short bio">
+    </fkt-field>
+
+    <fkt-field label="E-mail">
+        <fkt-icon fktFieldPrefix name="envelope"/>
+        <input fktInputText formControlName="email" placeholder="Enter an e-mail">
+    </fkt-field>
+</form>
+<div class="actions">
+    <fkt-button
+        (click)="toggleDisabled()"
+        shape="rect"
+        theme="stroked"
+        [text]="(disabled$ | async) ? 'Enable' : 'Disable'"
+    />
+    <fkt-button
+        (click)="fillProfile()"
+        shape="rect"
+        theme="stroked"
+        text="Fill"
+    />
+    <fkt-button
+        (click)="reset()"
+        shape="rect"
+        theme="stroked"
+        text="Reset"
+    />
+</div>

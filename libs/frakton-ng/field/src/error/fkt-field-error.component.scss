@@ -1,0 +1,10 @@
+:host {
+	display: flex;
+	justify-content: flex-start;
+	font-size: var(--fkt-font-size-xs);
+	overflow: hidden;
+	color: var(--fkt-color-danger);
+	transition: var(--fkt-transition-base);
+	height: fit-content;
+	line-height: 1.25rem;
+}

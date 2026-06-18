@@ -25,17 +25,17 @@ export default {
 			{
 				name: "fkt-calendar-basic-example.component.html",
 				content: fktCalendarBasicExampleTemplate as string,
-				language: "html" as "html",
+				language: "angular2html" as const,
 			},		
 			{
 				name: "fkt-calendar-basic-example.component.ts",
 				content: fktCalendarBasicExampleTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "fkt-calendar-basic-example.component.scss",
 				content: fktCalendarBasicExampleStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},
@@ -46,17 +46,17 @@ export default {
 			{
 				name: "fkt-calendar-borderless-example.component.html",
 				content: fktCalendarBorderlessExampleTemplate as string,
-				language: "html" as "html",
+				language: "angular2html" as const,
 			},		
 			{
 				name: "fkt-calendar-borderless-example.component.ts",
 				content: fktCalendarBorderlessExampleTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "fkt-calendar-borderless-example.component.scss",
 				content: fktCalendarBorderlessExampleStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},
@@ -67,17 +67,17 @@ export default {
 			{
 				name: "fkt-calendar-custom-styling-example.component.html",
 				content: fktCalendarCustomStylingExampleTemplate as string,
-				language: "html" as "html",
+				language: "angular2html" as const,
 			},		
 			{
 				name: "fkt-calendar-custom-styling-example.component.ts",
 				content: fktCalendarCustomStylingExampleTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "fkt-calendar-custom-styling-example.component.scss",
 				content: fktCalendarCustomStylingExampleStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},
@@ -88,17 +88,17 @@ export default {
 			{
 				name: "fkt-calendar-disabled-dates-example.component.html",
 				content: fktCalendarDisabledDatesExampleTemplate as string,
-				language: "html" as "html",
+				language: "angular2html" as const,
 			},		
 			{
 				name: "fkt-calendar-disabled-dates-example.component.ts",
 				content: fktCalendarDisabledDatesExampleTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "fkt-calendar-disabled-dates-example.component.scss",
 				content: fktCalendarDisabledDatesExampleStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},
@@ -109,17 +109,17 @@ export default {
 			{
 				name: "fkt-calendar-events-example.component.html",
 				content: fktCalendarEventsExampleTemplate as string,
-				language: "html" as "html",
+				language: "angular2html" as const,
 			},		
 			{
 				name: "fkt-calendar-events-example.component.ts",
 				content: fktCalendarEventsExampleTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "fkt-calendar-events-example.component.scss",
 				content: fktCalendarEventsExampleStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},

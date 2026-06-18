@@ -1,0 +1,85 @@
+<div
+    class="input"
+    #container
+    [class.invalid]="errorVisible()"
+    [class.focused]="control()?.focused()"
+    [class.float]="control()?.hasValue() || control()?.focused()"
+    [class.disabled]="control()?.disabled()"
+>
+
+    <div class="prefix" #prefix>
+        @if (fieldPrefixDirective()) {
+            <ng-content select="[fktFieldPrefix]"/>
+        }
+    </div>
+
+    <div class="content">
+        <ng-content select="[fktInputText],[fktTextarea],[fktCustomField]"/>
+    </div>
+    <div class="suffix">
+        @if (fieldSuffixDirective()) {
+            <ng-content select="[fktFieldSuffix]"/>
+        }
+    </div>
+
+    <div class="border">
+        <div class="left" [style.padding-right.px]="prefixWidth()">
+        </div>
+        <div
+            [style.width.px]="labelWidth()"
+            [style.min-width.px]="labelWidth()"
+            class="center">
+            <label [class.fkt-sr-only]="hideLabel()" #labelElement [attr.for]="control()?.id">
+                {{ `${label()}${requiredVisible() ? '*' : ''}` }}
+            </label>
+        </div>
+
+        <div class="right">
+        </div>
+    </div>
+</div>
+
+<div
+    class="hint-row"
+    [class.show]="errorVisible() || hintVisible() || characterCountState()"
+>
+    <span class="hint-start">
+        @if (errorVisible()) {
+            @if (errorDirective()) {
+                <ng-content select="[fktError]"/>
+            } @else {
+                <fkt-field-error>
+                    @if (error()) {
+                        {{ error() }}
+                    }
+                </fkt-field-error>
+            }
+        } @else {
+            @if (hintStartDirective()) {
+                <ng-content select="[fktHintStart]"/>
+            } @else {
+                @if (hint()) {
+                    <fkt-field-hint>{{ hint() }}</fkt-field-hint>
+                }
+            }
+        }
+    </span>
+
+    <span class="hint-end">
+        @if (hintEndDirective()) {
+            <ng-content select="[fktHintEnd]"/>
+        } @else {
+            @if (characterCountState(); as count) {
+                <span
+                    class="character-count"
+                    [class.exceeded]="count.exceeded"
+                >
+                    {{ count.current }}
+                    @if (count.max !== null) {
+                        / {{ count.max }}
+                    }
+                </span>
+            }
+        }
+    </span>
+</div>

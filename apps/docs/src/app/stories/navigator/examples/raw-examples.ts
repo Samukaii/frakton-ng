@@ -28,17 +28,17 @@ export default {
 			{
 				name: "basic-example.component.html",
 				content: basicExampleTemplate as string,
-				language: "html" as "html",
+				language: "angular2html" as const,
 			},		
 			{
 				name: "basic-example.component.ts",
 				content: basicExampleTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "basic-example.component.scss",
 				content: basicExampleStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},
@@ -49,17 +49,17 @@ export default {
 			{
 				name: "date-navigation-example.component.html",
 				content: dateNavigationExampleTemplate as string,
-				language: "html" as "html",
+				language: "angular2html" as const,
 			},		
 			{
 				name: "date-navigation-example.component.ts",
 				content: dateNavigationExampleTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "date-navigation-example.component.scss",
 				content: dateNavigationExampleStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},
@@ -70,17 +70,17 @@ export default {
 			{
 				name: "disabled-state-example.component.html",
 				content: disabledStateExampleTemplate as string,
-				language: "html" as "html",
+				language: "angular2html" as const,
 			},		
 			{
 				name: "disabled-state-example.component.ts",
 				content: disabledStateExampleTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "disabled-state-example.component.scss",
 				content: disabledStateExampleStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},
@@ -91,17 +91,17 @@ export default {
 			{
 				name: "item-navigation-example.component.html",
 				content: itemNavigationExampleTemplate as string,
-				language: "html" as "html",
+				language: "angular2html" as const,
 			},		
 			{
 				name: "item-navigation-example.component.ts",
 				content: itemNavigationExampleTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "item-navigation-example.component.scss",
 				content: itemNavigationExampleStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},
@@ -112,17 +112,17 @@ export default {
 			{
 				name: "loading-example.component.html",
 				content: loadingExampleTemplate as string,
-				language: "html" as "html",
+				language: "angular2html" as const,
 			},		
 			{
 				name: "loading-example.component.ts",
 				content: loadingExampleTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "loading-example.component.scss",
 				content: loadingExampleStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},
@@ -133,17 +133,17 @@ export default {
 			{
 				name: "page-navigation-example.component.html",
 				content: pageNavigationExampleTemplate as string,
-				language: "html" as "html",
+				language: "angular2html" as const,
 			},		
 			{
 				name: "page-navigation-example.component.ts",
 				content: pageNavigationExampleTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "page-navigation-example.component.scss",
 				content: pageNavigationExampleStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},

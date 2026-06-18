@@ -1,22 +1,21 @@
-import {
-    Component,
-    computed,
-    inject,
-    input,
-    linkedSignal,
-    reflectComponentType,
-    signal,
-} from '@angular/core';
+import { Component, computed, inject, input, linkedSignal, reflectComponentType, Signal, signal, untracked } from '@angular/core';
 import { DesignTokenItem } from '@/models/design-token-item';
 import { StoryDesignTokensItemComponent } from './item/story-design-tokens-item.component';
-import { FktIconName } from 'frakton-ng/icon';
 import { STORY_META_TOKEN } from '@/tokens/story-meta.token';
 import { getVisibleRect } from '@/utils/get-visible-rect';
 import { FktNavigableListDirective } from 'frakton-ng/navigable-list';
+import { FktButtonComponent } from 'frakton-ng/button';
+import { FktTooltipDirective } from 'frakton-ng/tooltip';
+import { wait } from 'frakton-ng/internal/utils';
 
 @Component({
     selector: 'app-story-design-tokens',
-    imports: [StoryDesignTokensItemComponent, FktNavigableListDirective],
+    imports: [
+        StoryDesignTokensItemComponent,
+        FktNavigableListDirective,
+        FktButtonComponent,
+        FktTooltipDirective,
+    ],
     templateUrl: './story-design-tokens.component.html',
     styleUrl: './story-design-tokens.component.scss',
 })
@@ -25,6 +24,17 @@ export class StoryDesignTokensComponent {
     parentContainer = input<HTMLElement>();
 
     private meta = inject(STORY_META_TOKEN);
+    protected copied = signal(false);
+
+    private readonly changedTokens = computed(() =>
+        this.designTokens().filter(
+            (token) => token.control() !== token.defaultValue
+        )
+    );
+
+    protected readonly hasChanges = computed(() => {
+        return this.changedTokens().length > 0;
+    });
 
     protected readonly templateSelector = computed(() => {
         const component = this.meta.component;
@@ -72,8 +82,16 @@ export class StoryDesignTokensComponent {
         const scopes: {
             name: string;
             selector: string | null;
+            changes: Signal<number>;
             tokens: DesignTokenItem[];
-        }[] = [{ name: 'All', selector: this.templateSelector(), tokens }];
+        }[] = [
+            {
+                name: 'All',
+                selector: this.templateSelector(),
+                tokens,
+                changes: computed(() => this.changedTokens().length),
+            },
+        ];
 
         tokens.forEach((token) => {
             const scopeName = token.scope?.name ?? token.component;
@@ -90,6 +108,13 @@ export class StoryDesignTokensComponent {
                 scopes.push({
                     name: scopeName,
                     selector: scopeSelector,
+                    changes: computed(
+                        () =>
+                            tokens.filter(
+                                (token) =>
+                                    token.control() !== token.defaultValue
+                            ).length
+                    ),
                     tokens: [token],
                 });
         });
@@ -97,52 +122,23 @@ export class StoryDesignTokensComponent {
         return scopes;
     });
 
-    protected readonly tokensCategories = computed(() => {
+    protected readonly tokensOrderedByCategory = computed(() => {
         const currentScope = this.currentScope();
 
-        const categories: {
-            name: string;
-            icon: FktIconName;
-            tokens: DesignTokenItem[];
-        }[] = [
-            {
-                name: 'Typography',
-                icon: 'h2',
-                tokens: [],
-            },
-            {
-                name: 'Colors',
-                icon: 'eye-dropper',
-                tokens: [],
-            },
-            {
-                name: 'Spacing',
-                icon: 'squares-2x2',
-                tokens: [],
-            },
-            {
-                name: 'Shape',
-                icon: 'rectangle-group',
-                tokens: [],
-            },
-            {
-                name: 'Effects',
-                icon: 'sparkles',
-                tokens: [],
-            },
+        const categories = [
+            'Typography',
+            'Colors',
+            'Spacing',
+            'Shape',
+            'Effects',
         ];
 
-        currentScope.tokens.forEach((token) => {
-            const foundCategory = categories.find(
-                (category) => category.name === token.category
+        return [...currentScope.tokens].sort((previous, current) => {
+            return (
+                categories.indexOf(previous.category) -
+                categories.indexOf(current.category)
             );
-
-            if (!foundCategory) return;
-
-            foundCategory.tokens.push(token);
         });
-
-        return categories.filter((category) => category.tokens.length > 0);
     });
 
     protected showAnatomy(scope: {
@@ -179,11 +175,29 @@ export class StoryDesignTokensComponent {
 
     protected selectScopeByIndex($event: number) {
         const newScope = this.scopes()[$event ?? -1];
-        console.log(newScope, $event);
 
-        if(!newScope) return;
+        if (!newScope) return;
 
         this.currentScope.set(newScope);
     }
-}
 
+    protected resetAll() {
+        this.changedTokens().forEach((token) => {
+            token.control.set(token.defaultValue);
+        });
+    }
+
+    protected async copyAll() {
+        let text = '';
+
+        this.changedTokens().forEach((token) => {
+            text += `\n${token.name}: ${token.control()};`;
+        });
+
+        await navigator.clipboard.writeText(text);
+
+        this.copied.set(true);
+        await wait(1000);
+        this.copied.set(false);
+    }
+}

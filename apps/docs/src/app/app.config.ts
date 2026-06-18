@@ -1,7 +1,8 @@
 import {
     ApplicationConfig,
+    inject,
     provideBrowserGlobalErrorListeners,
-    provideZonelessChangeDetection,
+    provideZoneChangeDetection,
 } from '@angular/core';
 import {
     provideRouter,
@@ -10,7 +11,6 @@ import {
     withViewTransitions,
 } from '@angular/router';
 import { appRoutes } from './app.routes';
-import { MARKED_OPTIONS, provideMarkdown, SANITIZE } from 'ngx-markdown';
 import DOMPurify from 'dompurify';
 import {
     provideClientHydration,
@@ -18,48 +18,69 @@ import {
     withIncrementalHydration,
 } from '@angular/platform-browser';
 import { provideHttpClient, withFetch } from '@angular/common/http';
-
-function headingSlug(text: string): string {
-    return text
-        .toLowerCase()
-        .replace(/[^\w\s-]/g, '')
-        .replace(/\s+/g, '-');
-}
-
-function sanitizeHtml(html: string): string {
-    DOMPurify.setConfig({
-        ALLOWED_ATTR: ['data-story', 'data-examples'],
-        ADD_TAGS: ['pre', 'code', 'span'],
-    });
-    return DOMPurify.sanitize(html);
-}
+import {
+    FktMarkdownRenderer,
+    provideNgxMarkdown,
+    withMarkedOptions,
+    withSanitizer,
+} from '@/config/provide-ngx-markdown';
+import {
+    provideFktConfig,
+    withFieldErrorMessages,
+    withI18nIntegration,
+} from 'frakton-ng/core';
+import { TranslateService } from '@/core/services/translate.service';
 
 export const appConfig: ApplicationConfig = {
     providers: [
         provideBrowserGlobalErrorListeners(),
         provideHttpClient(withFetch()),
-        provideMarkdown({
-            markedOptions: {
-                provide: MARKED_OPTIONS,
-                useValue: {
-                    renderer: {
-                        heading(token: any): string {
-                            const id = headingSlug(token.text);
-                            const content =
-                                (this as any).parser?.parseInline(
-                                    token.tokens
-                                ) ?? token.text;
-                            return `<h${token.depth} id="${id}">${content}</h${token.depth}>\n`;
-                        },
-                    },
-                },
-            },
-            sanitize: {
-                provide: SANITIZE,
-                useValue: sanitizeHtml,
-            },
-        }),
-        provideZonelessChangeDetection(),
+        provideFktConfig(
+            withI18nIntegration(() => {
+                const translateService = inject(TranslateService);
+
+                return {
+                    recomputeOn: translateService.currentLanguage$,
+                    currentLanguage: translateService.currentLanguage$,
+                    translateFn:
+                        translateService.instant.bind(translateService),
+                };
+            }),
+            withFieldErrorMessages(({ errors, t }) => {
+                if (!errors) return null;
+
+                const first = errors.errors[0];
+
+                if (first.message) return first.message;
+
+                if (first.kind === 'required') return t('errors.required');
+
+                if (first.kind === 'email') return t('errors.email');
+
+                if (first.kind === 'minLength' || first.kind === 'minlength') {
+                    return t('errors.minLength', first.params);
+                }
+
+                if (first.kind === 'maxLength' || first.kind === 'maxlength') {
+                    return t('errors.maxLength', first.params);
+                }
+
+                return null;
+            })
+        ),
+        provideNgxMarkdown(
+            withMarkedOptions({
+                renderer: new FktMarkdownRenderer(),
+            }),
+            withSanitizer((html) => {
+                DOMPurify.setConfig({
+                    ALLOWED_ATTR: ['data-story', 'data-examples'],
+                    ADD_TAGS: ['pre', 'code', 'span'],
+                });
+                return DOMPurify.sanitize(html);
+            })
+        ),
+        provideZoneChangeDetection({ eventCoalescing: true }),
         provideRouter(
             appRoutes,
             withComponentInputBinding(),

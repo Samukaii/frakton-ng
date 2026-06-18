@@ -20,17 +20,17 @@ export default {
 			{
 				name: "tabs-basic.component.html",
 				content: tabsBasicTemplate as string,
-				language: "html" as "html",
+				language: "angular2html" as const,
 			},		
 			{
 				name: "tabs-basic.component.ts",
 				content: tabsBasicTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "tabs-basic.component.scss",
 				content: tabsBasicStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},
@@ -41,7 +41,7 @@ export default {
 			{
 				name: "tab-counter.component.ts",
 				content: tabCounterTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 		]
 	},
@@ -52,17 +52,17 @@ export default {
 			{
 				name: "tabs-render-modes.component.html",
 				content: tabsRenderModesTemplate as string,
-				language: "html" as "html",
+				language: "angular2html" as const,
 			},		
 			{
 				name: "tabs-render-modes.component.ts",
 				content: tabsRenderModesTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "tabs-render-modes.component.scss",
 				content: tabsRenderModesStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},
@@ -73,17 +73,17 @@ export default {
 			{
 				name: "tabs-with-icons.component.html",
 				content: tabsWithIconsTemplate as string,
-				language: "html" as "html",
+				language: "angular2html" as const,
 			},		
 			{
 				name: "tabs-with-icons.component.ts",
 				content: tabsWithIconsTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "tabs-with-icons.component.scss",
 				content: tabsWithIconsStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},

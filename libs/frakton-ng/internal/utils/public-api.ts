@@ -28,4 +28,6 @@ export * from "./debounce";
 export * from "./filter-elements-with-tab-index";
 export * from "./deep-signal";
 export * from "./mouse-out-effect";
+export * from './normalize-validation-error';
+export * from './use-active-descendant';
 

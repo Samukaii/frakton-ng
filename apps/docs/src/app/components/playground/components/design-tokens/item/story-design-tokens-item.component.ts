@@ -1,7 +1,7 @@
 import { Component, computed, inject, input, Pipe, PipeTransform, signal, WritableSignal } from '@angular/core';
 import { DesignTokenItem } from '@/models/design-token-item';
 import { FktButtonComponent } from 'frakton-ng/button';
-import { FktInputComponent } from 'frakton-ng/input';
+import { FktInputOldComponent } from 'frakton-ng/input-old';
 import { FktTooltipDirective } from 'frakton-ng/tooltip';
 import { FktColorPickerComponent } from 'frakton-ng/color-picker';
 import { FktIconComponent, FktIconName } from 'frakton-ng/icon';
@@ -18,7 +18,7 @@ import {
     selector: 'app-story-design-tokens-item',
     imports: [
         FktButtonComponent,
-        FktInputComponent,
+        FktInputOldComponent,
         FktTooltipDirective,
         FktColorPickerComponent,
         FktIconComponent,

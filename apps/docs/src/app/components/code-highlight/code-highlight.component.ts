@@ -9,53 +9,60 @@ import {
     PLATFORM_ID,
     viewChild
 } from '@angular/core';
-import * as Prism from 'prismjs';
-import 'prismjs/components/prism-typescript';
+
 import { MarkUsed } from 'frakton-ng/internal/utils';
 import { isPlatformBrowser } from '@angular/common';
+import { Prism } from '@/prism-languages/prism-js';
 
 @Component({
-  selector: 'app-code-highlight',
-  imports: [],
-  templateUrl: './code-highlight.component.html',
-  styleUrl: './code-highlight.component.scss',
+    selector: 'app-code-highlight',
+    imports: [],
+    templateUrl: './code-highlight.component.html',
+    styleUrl: './code-highlight.component.scss',
 })
 export class CodeHighlightComponent {
-	text = input.required<string>();
+    text = input.required<string>();
     noBorderRadius = input(false, {
-        transform: booleanAttribute
+        transform: booleanAttribute,
     });
 
-	language = input.required<'typescript' | 'html' | 'css' | 'json'>();
+    language = input.required<
+        'typescript' | 'html' | 'css' | 'json' | 'angular2html'
+    >();
 
-	codeAnchor = viewChild.required('codeAnchor', {read: ElementRef})
+    codeAnchor = viewChild.required('codeAnchor', { read: ElementRef });
 
     private readonly platform = inject(PLATFORM_ID);
 
-	protected readonly mappedLanguage = computed(() => {
-		const languageMap = {
-			typescript: 'ts',
-			html: 'html',
-			css: 'css',
-			json: 'xml',
-		}
+    protected readonly mappedLanguage = computed(() => {
+        const languageMap = {
+            typescript: 'ts',
+            html: 'html',
+            'angular2html': 'angular2html',
+            css: 'css',
+            json: 'json',
+        };
 
-		return languageMap[this.language()];
-	})
+        return languageMap[this.language()];
+    });
 
-	@MarkUsed()
-	protected readonly highlightCode = effect(() => {
-		const anchor = this.codeAnchor();
-		const language = this.mappedLanguage();
+    @MarkUsed()
+    protected readonly highlightCode = effect(() => {
+        const anchor = this.codeAnchor();
+        const language = this.mappedLanguage();
 
-		const grammar = Prism.languages[language];
+        const grammar = Prism.languages[language] ?? Prism.languages['javascript'];
 
-        if(!isPlatformBrowser(this.platform)) {
+        if (!isPlatformBrowser(this.platform)) {
             anchor.nativeElement.innerHTML = this.text();
 
             return;
         }
 
-		anchor.nativeElement.innerHTML = Prism.highlight(this.text(), grammar, language);
-	})
+        anchor.nativeElement.innerHTML = Prism.highlight(
+            this.text(),
+            grammar,
+            language
+        );
+    });
 }

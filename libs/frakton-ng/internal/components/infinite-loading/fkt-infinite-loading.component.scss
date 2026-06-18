@@ -1,0 +1,14 @@
+.loading-indicator {
+    display: flex;
+    margin: var(--fkt-space-2xs) 0;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    gap: var(--fkt-space-xs);
+    font-size: var(--fkt-font-size-sm);
+}
+
+p {
+    margin: 0;
+}
+

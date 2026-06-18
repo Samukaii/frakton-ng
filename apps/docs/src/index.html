@@ -1,319 +1,349 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8"/>
-        <title>Frakton NG • A next-generation Angular UI Library</title>
-        <!-- Base href MUST be root for custom domains -->
-        <base href="/"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <!-- Primary description (SEO) -->
-        <meta
-            name="description"
-            content="Modern tokens, signal-native architecture, enforced accessibility and infinite visual freedom."
-        />
-        <!-- Keywords help a bit (not as antes, but still worth adding) -->
-        <meta
-            name="keywords"
-            content="Angular, UI Library, Components, Design System, Signals, Web Components, Typescript, Frakton NG"
-        />
-        <!-- Open Graph (social preview) -->
-        <meta property="og:title" content="Frakton NG • A next-generation Angular UI Library"/>
-        <meta
-            property="og:description"
-            content="Modern tokens, signal-native architecture, enforced accessibility and infinite visual freedom."
-        />
-        <meta property="og:type" content="website"/>
-        <meta property="og:url" content="https://fraktonng.com"/>
-        <meta
-            property="og:image"
-            content="https://fraktonng.com/images/og-image.png"
-        />
-        <!-- Twitter Card (X) -->
-        <meta name="twitter:card" content="summary_large_image"/>
-        <meta name="twitter:title" content="Frakton NG • A next-generation Angular UI Library"/>
-        <meta
-            name="twitter:description"
-            content="Modern tokens, signal-native architecture, enforced accessibility and infinite visual freedom."
-        />
-        <meta
-            name="twitter:image"
-            content="https://fraktonng.com/images/og-image.png"
-        />
-        <!-- Favicon -->
-        <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
-        <link rel="icon" type="image/png" sizes="48x48" href="favicon-48.png">
-        <link rel="icon" type="image/png" sizes="96x96" href="favicon-96.png">
-        <link rel="icon" type="image/png" sizes="144x144" href="favicon-144.png">
-        <link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png">
-        <link rel="icon" type="image/png" sizes="512x512" href="favicon-512.png">
+<head>
+    <meta charset="utf-8"/>
+    <title>Frakton NG • A next-generation Angular UI Library</title>
+    <!-- Base href MUST be root for custom domains -->
+    <base href="/"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <!-- Primary description (SEO) -->
+    <meta
+        name="description"
+        content="Modern tokens, signal-native architecture, enforced accessibility and infinite visual freedom."
+    />
+    <!-- Keywords help a bit (not as antes, but still worth adding) -->
+    <meta
+        name="keywords"
+        content="Angular, UI Library, Components, Design System, Signals, Web Components, Typescript, Frakton NG"
+    />
+    <!-- Open Graph (social preview) -->
+    <meta property="og:title" content="Frakton NG • A next-generation Angular UI Library"/>
+    <meta
+        property="og:description"
+        content="Modern tokens, signal-native architecture, enforced accessibility and infinite visual freedom."
+    />
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="https://fraktonng.com"/>
+    <meta
+        property="og:image"
+        content="https://fraktonng.com/images/og-image.png"
+    />
+    <!-- Twitter Card (X) -->
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:title" content="Frakton NG • A next-generation Angular UI Library"/>
+    <meta
+        name="twitter:description"
+        content="Modern tokens, signal-native architecture, enforced accessibility and infinite visual freedom."
+    />
+    <meta
+        name="twitter:image"
+        content="https://fraktonng.com/images/og-image.png"
+    />
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="favicon-48.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="favicon-96.png">
+    <link rel="icon" type="image/png" sizes="144x144" href="favicon-144.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="favicon-512.png">
 
-        <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
 
-        <link rel="shortcut icon" href="favicon.ico">
+    <link rel="shortcut icon" href="favicon.ico">
 
-        <link rel="canonical" href="https://fraktonng.com" />
+    <link rel="canonical" href="https://fraktonng.com"/>
 
-        <!-- Theme color (Android address bar / PWA) -->
-        <meta name="theme-color" content="#121212"/>
-        <!-- Security & best practices -->
-        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <!-- Theme color (Android address bar / PWA) -->
+    <meta name="theme-color" content="#121212"/>
+    <!-- Security & best practices -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 
-        <style>
-            pre[class*="language-"],
-            pre:has(code[class*="language-"]) {
-                padding: 1rem;
-                font-family: JetBrains Mono, Consolas, Monaco, monospace;
-                background-color: rgb(30, 34, 43);
-                width: 100%;
-                min-width: 0;
-                max-width: 100%;
-                overflow: auto;
-                color: #ccc !important;
-                box-sizing: border-box;
-                font-weight: 500;
-                text-align: left;
+    <style>
+        pre[class*="language-"],
+        pre:has(code[class*="language-"]) {
+            padding: 1rem;
+            font-family: JetBrains Mono, Consolas, Monaco, monospace;
+            background-color: rgb(30, 34, 43);
+            width: 100%;
+            min-width: 0;
+            max-width: 100%;
+            overflow: auto;
+            color: #ccc !important;
+            box-sizing: border-box;
+            font-weight: 500;
+            text-align: left;
+            white-space: pre;
+            word-spacing: normal;
+            word-break: normal;
+            word-wrap: normal;
+            line-height: 1.5;
+            border-radius: 12px;
+
+            -moz-tab-size: 4;
+            -o-tab-size: 4;
+            tab-size: 4;
+
+            -webkit-hyphens: none;
+            -moz-hyphens: none;
+            -ms-hyphens: none;
+            hyphens: none;
+
+            span, .token, * {
+                font-size: .8rem;
                 white-space: pre;
-                word-spacing: normal;
-                word-break: normal;
-                word-wrap: normal;
-                line-height: 1.5;
-                border-radius: 12px;
+                font-family: JetBrains Mono, Consolas, Monaco, monospace;
+            }
 
-                -moz-tab-size: 4;
-                -o-tab-size: 4;
-                tab-size: 4;
+            .token.prolog,
+            .token.doctype,
+            .token.cdata {
+                color: #aaa !important;
+            }
 
-                -webkit-hyphens: none;
-                -moz-hyphens: none;
-                -ms-hyphens: none;
-                hyphens: none;
+            .token.comment {
+                color: #ffffff80 !important;
+            }
 
-                span, .token, * {
-                    font-size: .8rem;
-                    white-space: pre;
-                    font-family: JetBrains Mono, Consolas, Monaco, monospace;
+            .token.punctuation {
+                color: #999;
+            }
+
+            .token.namespace {
+                opacity: .7;
+            }
+
+            .token.string,
+            .token.attr-value,
+            .token.char,
+            .token.tag.punctuation.attr-equals,
+            .token.tag.punctuation.attr-value {
+                color: #FED75F !important;
+            }
+
+            .token.selector,
+            .token.atrule,
+            .token.tag,
+            .token.operator,
+            .token.keyword {
+                color: #f96262 !important;
+            }
+
+            .token.important,
+            .token.bold {
+                font-weight: bold;
+            }
+
+            .token.italic {
+                font-style: italic;
+            }
+
+            .token.entity {
+                cursor: help;
+            }
+
+            .token.generic-function,
+            .token.function {
+                color: #A9DC76 !important;
+            }
+
+            .token.property,
+            .token.constant,
+            .token.tag.attr-value,
+            .token.class-name,
+            .token.decorator,
+            .token.attr-name,
+            .maybe-class-name,
+            .token.symbol {
+                color: #78DCE8 !important;
+            }
+
+            .token.punctuation {
+                color: #928F8B !important;
+            }
+
+            .token.tag.attr-name {
+                color: #d8d8d8 !important;
+            }
+
+            .token.regex.regex-delimiter {
+                color: #FED75F !important;
+            }
+
+            .token.regex.regex-source {
+                color: #d8d8d8 !important;
+            }
+
+            .token.regex.regex-flags {
+                color: #BEA9FF !important;
+            }
+
+
+            .token.method,
+            .token.number,
+            .token.builtin {
+                color: #BEA9FF !important;
+            }
+
+            .token.operator,
+            .token.boolean {
+                color: #f96262 !important;
+            }
+
+            .property-binding {
+                .token.attr-value {
+                    color: #ccc !important;
                 }
-
-                .token.prolog,
-                .token.doctype,
-                .token.cdata {
-                    color: #aaa !important;
-                }
-
-                .token.comment {
-                    color: #ffffff80 !important;
-                }
-
-                .token.punctuation {
-                    color: #999;
-                }
-
-                .token.namespace {
-                    opacity: .7;
-                }
-
-                .token.string,
-                .token.attr-value,
-                .token.char,
-                .token.tag.punctuation.attr-equals,
-                .token.tag.punctuation.attr-value {
-                    color: #FED75F !important;
-                }
-
-                .token.selector,
-                .token.atrule,
-                .token.tag,
-                .token.operator,
-                .token.keyword {
-                    color: #f96262 !important;
-                }
-
-                .token.important,
-                .token.bold {
-                    font-weight: bold;
-                }
-
-                .token.italic {
-                    font-style: italic;
-                }
-
-                .token.entity {
-                    cursor: help;
-                }
-
-                .token.generic-function,
-                .token.function {
-                    color: #A9DC76 !important;
-                }
-
-                .token.property,
-                .token.constant,
-                .token.tag.attr-value,
-                .token.class-name,
-                .token.decorator,
-                .token.attr-name,
-                .maybe-class-name,
-                .token.symbol {
+                .property-name {
                     color: #78DCE8 !important;
                 }
+            }
 
-                .token.punctuation {
-                    color: #928F8B !important;
+            .structural-directive {
+                .token.attr-value {
+                    color: #ccc !important;
                 }
-
-                .token.tag.attr-name {
-                    color: #d8d8d8 !important;
-                }
-
-                .token.regex.regex-delimiter {
-                    color: #FED75F !important;
-                }
-
-                .token.regex.regex-source {
-                    color: #d8d8d8 !important;
-                }
-
-                .token.regex.regex-flags {
-                    color: #BEA9FF !important;
-                }
-
-
-                .token.method,
-                .token.number,
-                .token.builtin {
-                    color: #BEA9FF !important;
-                }
-
-                .token.operator,
-                .token.boolean {
-                    color: #f96262 !important;
+                .property-name {
+                    color: #9895EF !important;
                 }
             }
 
-
-            markdown {
-                code:not([class*="language-"]) {
-                    font-family: JetBrains Mono, Consolas, Monaco, monospace !important;
-                    color: var(--fkt-color-neutral-900);
-                    background-color: var(--fkt-color-contrast-opacity-10);
-                    border: none;
-                    border-radius: var(--fkt-radius-sm);
-                    padding: var(--fkt-space-3xs);
-                    font-weight: var(--fkt-font-semibold);
-                    font-size: var(--fkt-font-size-xs);
-                    display: inline-block;
-                    width: fit-content;
+            .event-binding {
+                .event-name {
+                    color: #78DCE8 !important;
                 }
+            }
+
+            .expression {
+                color: #ccc !important;
+            }
+        }
 
 
+        markdown {
+            code:not([class*="language-"]) {
+                font-family: JetBrains Mono, Consolas, Monaco, monospace !important;
+                /*color: var(--fkt-color-neutral-900);*/
+                /*background-color: var(--fkt-color-contrast-opacity-10);*/
+                /*border: none;*/
+                color: var(--inline-code-text-color);
+                background-color: var(--inline-code-background-color);
+                border: solid 1px var(--inline-code-border-color);
+                border-radius: var(--fkt-radius-sm);
+                padding: var(--fkt-space-3xs);
+                font-weight: var(--fkt-font-semibold);
+                font-size: var(--fkt-font-size-xs);
+                display: inline-block;
+                width: fit-content;
+            }
 
-                hr {
-                    border-width: 1px 0px 0px;
-                    border-style: solid none none;
-                    border-color: var(--fkt-color-neutral-300);
-                    border-image: none;
-                    height: 4px;
-                    padding: 0px;
+
+            hr {
+                border-width: 1px 0px 0px;
+                border-style: solid none none;
+                border-color: var(--fkt-color-neutral-300);
+                border-image: none;
+                height: 4px;
+                padding: 0px;
+            }
+
+            a {
+                color: var(--fkt-color-link);
+                text-decoration: none;
+                border-bottom: solid 1px transparent;
+                transition: var(--fkt-transition-base);
+                padding: .25rem 0;
+
+                &:hover {
+                    border-color: var(--fkt-color-link);
                 }
+            }
 
-                a {
-                    color: var(--fkt-color-link);
-                    text-decoration: none;
-                    border-bottom: solid 1px transparent;
-                    transition: var(--fkt-transition-base);
-                    padding: .25rem 0;
+            pre {
+                padding: 1rem;
+            }
 
-                    &:hover {
-                        border-color: var(--fkt-color-link);
-                    }
-                }
+            table {
+                width: 100%;
+                border-collapse: collapse;
 
-                pre {
-                    padding: 1rem;
-                }
-
-                table {
-                    width: 100%;
-                    border-collapse: collapse;
-
-                    thead {
-                        td {
-                            font-weight: var(--fkt-font-semibold);
-                            padding: var(--fkt-space-sm);
-                            font-size: var(--fkt-font-size-md);
-                        }
-                    }
-
+                thead {
                     td {
-                        padding: var(--fkt-space-xs);
-                        font-size: var(--fkt-font-size-sm);
-                    }
-
-                    tr {
-                        border-bottom: solid 1px var(--fkt-color-neutral-300);
+                        font-weight: var(--fkt-font-semibold);
+                        padding: var(--fkt-space-sm);
+                        font-size: var(--fkt-font-size-md);
                     }
                 }
-            }
-        </style>
 
-        <script type="application/ld+json">
-            {
-                "@context": "https://schema.org",
-                "@type": "WebSite",
-                "name": "Frakton NG",
-                "description": "Frakton NG — a next-generation Angular UI library built for performance, accessibility and absolute visual freedom.",
-                "url": "https://fraktonng.com/",
-                "potentialAction": {
-                    "@type": "SearchAction",
-                    "target": "https://fraktonng.com/search?q={query}",
-                    "query-input": "required name=query"
+                td {
+                    padding: var(--fkt-space-xs);
+                    font-size: var(--fkt-font-size-sm);
+                }
+
+                tr {
+                    border-bottom: solid 1px var(--fkt-color-neutral-300);
+                }
+            }
+        }
+    </style>
+
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "name": "Frakton NG",
+            "description": "Frakton NG — a next-generation Angular UI library built for performance, accessibility and absolute visual freedom.",
+            "url": "https://fraktonng.com/",
+            "potentialAction": {
+                "@type": "SearchAction",
+                "target": "https://fraktonng.com/search?q={query}",
+                "query-input": "required name=query"
+            },
+            "hasPart": [
+                {
+                    "@type": "SiteNavigationElement",
+                    "name": "Installation",
+                    "description": "Modern tokens, signal-native architecture, enforced accessibility and infinite visual freedom.",
+                    "url": "https://www.fraktonng.com/docs/getting-started-installation"
                 },
-                "hasPart": [
-                    {
-                        "@type": "SiteNavigationElement",
-                        "name": "Installation",
-                        "description": "Modern tokens, signal-native architecture, enforced accessibility and infinite visual freedom.",
-                        "url": "https://www.fraktonng.com/docs/getting-started-installation"
-                    },
-                    {
-                        "@type": "SiteNavigationElement",
-                        "name": "Overlay",
-                        "description": "The FktOverlay service provides a powerful and flexible system for creating positioned overlays in your Angular application",
-                        "url": "https://fraktonng.com/docs/overlay/features"
-                    },
-                    {
-                        "@type": "SiteNavigationElement",
-                        "name": "Color Picker",
-                        "description": "A sophisticated color picker component featuring semantic color descriptions, international localization, advanced visual",
-                        "url": "https://fraktonng.com/docs/color-picker/features"
-                    },
-                    {
-                        "@type": "SiteNavigationElement",
-                        "name": "Theming & Styling",
-                        "description": "Angular, UI Library, Components, Design System, Signals, Web Components, Typescript, Frakton NG",
-                        "url": "https://www.fraktonng.com/docs/getting-started-theming-styling"
-                    },
-                    {
-                        "@type": "SiteNavigationElement",
-                        "name": "Button",
-                        "description": "The FktButton component provides a versatile and customizable button with multiple themes, variants, and styling options",
-                        "url": "https://fraktonng.com/docs/button/features"
-                    },
-                    {
-                        "@type": "SiteNavigationElement",
-                        "name": "Input",
-                        "description": "A versatile form input component with multiple types, data transformers, and comprehensive validation support.",
-                        "url": "https://fraktonng.com/docs/input/features"
-                    }
-                ]
-            }
-        </script>
-    </head>
-    <body>
-        <app-root></app-root>
+                {
+                    "@type": "SiteNavigationElement",
+                    "name": "Overlay",
+                    "description": "The FktOverlay service provides a powerful and flexible system for creating positioned overlays in your Angular application",
+                    "url": "https://fraktonng.com/docs/overlay/features"
+                },
+                {
+                    "@type": "SiteNavigationElement",
+                    "name": "Color Picker",
+                    "description": "A sophisticated color picker component featuring semantic color descriptions, international localization, advanced visual",
+                    "url": "https://fraktonng.com/docs/color-picker/features"
+                },
+                {
+                    "@type": "SiteNavigationElement",
+                    "name": "Theming & Styling",
+                    "description": "Angular, UI Library, Components, Design System, Signals, Web Components, Typescript, Frakton NG",
+                    "url": "https://www.fraktonng.com/docs/getting-started-theming-styling"
+                },
+                {
+                    "@type": "SiteNavigationElement",
+                    "name": "Button",
+                    "description": "The FktButton component provides a versatile and customizable button with multiple themes, variants, and styling options",
+                    "url": "https://fraktonng.com/docs/button/features"
+                },
+                {
+                    "@type": "SiteNavigationElement",
+                    "name": "Input",
+                    "description": "A versatile form input component with multiple types, data transformers, and comprehensive validation support.",
+                    "url": "https://fraktonng.com/docs/input/features"
+                }
+            ]
+        }
+    </script>
+</head>
+<body>
+<app-root></app-root>
 
-        <script>
-            document.body.setAttribute('data-fkt-theme', localStorage.getItem('current-theme') === "light" ? 'light' : 'dark');
-        </script>
-    </body>
+<script>
+    document.body.setAttribute('data-fkt-theme', localStorage.getItem('current-theme') === "light" ? 'light' : 'dark');
+</script>
+</body>
 </html>

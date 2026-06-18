@@ -19,17 +19,17 @@ export default {
 			{
 				name: "fkt-focus-trap-basic-example.component.html",
 				content: fktFocusTrapBasicExampleTemplate as string,
-				language: "html" as "html",
+				language: "angular2html" as const,
 			},		
 			{
 				name: "fkt-focus-trap-basic-example.component.ts",
 				content: fktFocusTrapBasicExampleTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "fkt-focus-trap-basic-example.component.scss",
 				content: fktFocusTrapBasicExampleStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},
@@ -40,17 +40,17 @@ export default {
 			{
 				name: "fkt-focus-trap-form-example.component.html",
 				content: fktFocusTrapFormExampleTemplate as string,
-				language: "html" as "html",
+				language: "angular2html" as const,
 			},		
 			{
 				name: "fkt-focus-trap-form-example.component.ts",
 				content: fktFocusTrapFormExampleTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "fkt-focus-trap-form-example.component.scss",
 				content: fktFocusTrapFormExampleStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},
@@ -61,17 +61,17 @@ export default {
 			{
 				name: "fkt-focus-trap-modal-example.component.html",
 				content: fktFocusTrapModalExampleTemplate as string,
-				language: "html" as "html",
+				language: "angular2html" as const,
 			},		
 			{
 				name: "fkt-focus-trap-modal-example.component.ts",
 				content: fktFocusTrapModalExampleTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "fkt-focus-trap-modal-example.component.scss",
 				content: fktFocusTrapModalExampleStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},

@@ -1,0 +1,29 @@
+<div class="actions">
+    <fkt-button text="Fill" (click)="fill()" />
+    <fkt-button text="Reset" (click)="reset()" />
+</div>
+
+<fkt-field
+    label="Name"
+    [showError]="form.name().invalid() && form.name().touched()"
+>
+    <fkt-icon fktFieldPrefix name="user" />
+    <input
+        fktInputText
+        [field]="form.name"
+        placeholder="Enter a name"
+    >
+</fkt-field>
+
+<fkt-field
+    label="E-mail"
+    [showError]="form.email().invalid() && form.email().touched()"
+>
+    <fkt-icon fktFieldPrefix name="envelope" />
+    <input
+        fktInputText
+        type="email"
+        [field]="form.email"
+        placeholder="Enter an e-mail"
+    >
+</fkt-field>

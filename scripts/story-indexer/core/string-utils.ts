@@ -17,7 +17,7 @@ export const pascalToKebab = (value: string) => {
 };
 
 export const escapeTemplateText = (value: string) => {
-    return value.replaceAll('`', '\\`').replace(/\r?\n/g, '\\n');
+    return value.replaceAll('`', '\\`').replace(/\r?\n/g, '\\n').replaceAll(`$`, '\\$');
 };
 
 export const stripInlineMarkdown = (value: string) => {

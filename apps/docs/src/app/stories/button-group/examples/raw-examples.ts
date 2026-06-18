@@ -19,17 +19,17 @@ export default {
 			{
 				name: "button-group-input-driven.component.html",
 				content: buttonGroupInputDrivenTemplate as string,
-				language: "html" as "html",
+				language: "angular2html" as const,
 			},		
 			{
 				name: "button-group-input-driven.component.ts",
 				content: buttonGroupInputDrivenTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "button-group-input-driven.component.scss",
 				content: buttonGroupInputDrivenStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},
@@ -40,17 +40,17 @@ export default {
 			{
 				name: "button-group-reactive-forms.component.html",
 				content: buttonGroupReactiveFormsTemplate as string,
-				language: "html" as "html",
+				language: "angular2html" as const,
 			},		
 			{
 				name: "button-group-reactive-forms.component.ts",
 				content: buttonGroupReactiveFormsTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "button-group-reactive-forms.component.scss",
 				content: buttonGroupReactiveFormsStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},
@@ -61,17 +61,17 @@ export default {
 			{
 				name: "button-group-signal-forms.component.html",
 				content: buttonGroupSignalFormsTemplate as string,
-				language: "html" as "html",
+				language: "angular2html" as const,
 			},		
 			{
 				name: "button-group-signal-forms.component.ts",
 				content: buttonGroupSignalFormsTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "button-group-signal-forms.component.scss",
 				content: buttonGroupSignalFormsStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},

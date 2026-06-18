@@ -90,10 +90,10 @@
   {
     "description": "Spinner size for loading state.",
     "name": "--fkt-button-spinner-size",
-    "reference": "20px",
+    "reference": "12px",
     "category": "Spacing",
     "type": "size",
-    "defaultValue": "20px"
+    "defaultValue": "12px"
   },
   {
     "description": "Spinner border width.",

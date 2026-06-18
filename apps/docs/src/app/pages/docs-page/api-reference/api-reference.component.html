@@ -1,0 +1,16 @@
+<div class="header">
+    <h1>{{ title() }}</h1>
+
+    <fkt-button
+        shape="rect"
+        icon="clipboard-document"
+        iconPosition="left"
+        theme="stroked"
+        (click)="copyMarkdown()"
+        text="Copy markdown"
+    />
+</div>
+
+<fkt-markdown
+    [data]="docs()!"
+/>

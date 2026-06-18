@@ -16,12 +16,12 @@ export default {
 			{
 				name: "basic-usage.component.ts",
 				content: basicUsageTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "basic-usage.component.scss",
 				content: basicUsageStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},
@@ -32,12 +32,12 @@ export default {
 			{
 				name: "form-sections.component.ts",
 				content: formSectionsTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "form-sections.component.scss",
 				content: formSectionsStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},
@@ -48,12 +48,12 @@ export default {
 			{
 				name: "layout-showcase.component.ts",
 				content: layoutShowcaseTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "layout-showcase.component.scss",
 				content: layoutShowcaseStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},

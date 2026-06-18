@@ -15,3 +15,16 @@ fkt-code-highlight {
     overflow: hidden;
     margin-bottom: 2rem;
 }
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    fkt-button {
+        --fkt-button-font-size: var(--fkt-font-size-sm);
+        --fkt-button-padding-horizontal: var(--fkt-space-xs);
+        --fkt-button-padding-vertical: var(--fkt-space-2xs);
+        --fkt-button-border-width: 1px;
+    }
+}

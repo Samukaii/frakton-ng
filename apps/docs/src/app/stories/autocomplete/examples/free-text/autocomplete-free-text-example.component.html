@@ -1,0 +1,14 @@
+<app-code-output
+    [value]="value()"
+    title="Field value"
+/>
+
+<fkt-autocomplete
+    label="Tags"
+    placeholder="Choose a tag or create one."
+    [formControl]="tags"
+    [options]="suggestions"
+    multiple
+    freeText
+    localSearch
+/>

@@ -1,0 +1,21 @@
+<app-code-output
+    [value]="{ opened: isDropdownOpened(), value: value() }"
+    title="Dropdown state"
+/>
+
+<div class="actions">
+    <fkt-button text="Open" (click)="open()"/>
+    <fkt-button text="Close" (click)="close()"/>
+</div>
+
+<fkt-autocomplete
+    label="Country"
+    placeholder="Search for a country"
+    [formControl]="country"
+    [options]="countries"
+    labelKey="name"
+    valueKey="code"
+    [(isDropdownOpened)]="isDropdownOpened"
+    localSearch
+/>
+

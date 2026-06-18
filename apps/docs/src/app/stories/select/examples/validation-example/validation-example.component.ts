@@ -1,7 +1,7 @@
 import { Component, input, signal } from '@angular/core';
 import { FktSelectComponent, FktSelectOption } from 'frakton-ng/select';
 import { Field, form, required } from '@angular/forms/signals';
-import { FktFieldErrorComponent } from 'frakton-ng/field-error';
+import { FktFieldErrorComponent } from 'frakton-ng/field';
 
 @Component({
 	selector: 'select-validation-example',
@@ -10,7 +10,7 @@ import { FktFieldErrorComponent } from 'frakton-ng/field-error';
 	imports: [FktSelectComponent, Field, FktFieldErrorComponent]
 })
 export class ValidationExampleComponent {
-	label = input<string>();
+	label = input.required<string>();
 	placeholder = input<string>();
 	options = input.required<FktSelectOption[]>();
 

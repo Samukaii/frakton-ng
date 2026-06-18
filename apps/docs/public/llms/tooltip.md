@@ -377,7 +377,7 @@ Example component: `InteractiveTooltipExampleComponent`
 ```ts title="interactive-tooltip-example.component.ts"
 import { Component, input, signal } from '@angular/core';
 import { FktSelectComponent } from 'frakton-ng/select';
-import { FktInputComponent } from 'frakton-ng/input';
+import { FktInputOldComponent } from 'frakton-ng/input-old';
 import { FktCheckboxComponent } from 'frakton-ng/checkbox';
 import { FktTooltipDirective } from 'frakton-ng/tooltip';
 import { FktGeometryPosition, fktGeometryPositions } from 'frakton-ng/internal/types';
@@ -387,7 +387,7 @@ import { Field, form } from '@angular/forms/signals';
 	selector: 'interactive-tooltip-example',
 	styleUrl: './interactive-tooltip-example.component.scss',
 	templateUrl: './interactive-tooltip-example.component.html',
-    imports: [FktSelectComponent, FktInputComponent, FktCheckboxComponent, FktTooltipDirective, Field]
+    imports: [FktSelectComponent, FktInputOldComponent, FktCheckboxComponent, FktTooltipDirective, Field]
 })
 export class InteractiveTooltipExampleComponent {
 	tooltipColor = input('primary');

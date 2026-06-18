@@ -1,0 +1,14 @@
+<fkt-field label="Support message">
+    <textarea
+        fktTextarea
+        autoExpand
+        rows="3"
+        [field]="form.message"
+        placeholder="Describe the issue..."
+    ></textarea>
+</fkt-field>
+
+<div class="actions">
+    <fkt-button theme="stroked" text="Reset" (click)="reset()" />
+    <fkt-button text="Fill" (click)="fill()" />
+</div>

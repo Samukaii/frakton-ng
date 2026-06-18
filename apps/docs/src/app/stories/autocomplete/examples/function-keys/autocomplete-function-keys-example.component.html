@@ -1,0 +1,15 @@
+<app-code-output
+    [value]="value()"
+    title="Field value"
+/>
+
+<fkt-autocomplete
+    label="Country"
+    placeholder="Select your country"
+    [formControl]="country"
+    [options]="countries"
+    [labelKey]="getCountryLabel"
+    [valueKey]="getCountryValue"
+    [groupKey]="getCountryGroup"
+    localSearch
+/>

@@ -1,23 +1,23 @@
 import { Component, computed, input, output } from '@angular/core';
 import { FktTabComponent, FktTabsListComponent } from 'frakton-ng/tabs';
 import { FeaturesComponent } from '@/pages/docs-page/features/features.component';
-import { MarkdownWrapperComponent } from '@/components/markdown/markdown-wrapper.component';
 import { SkeletonComponent } from '@/components/skeleton/skeleton.component';
 import { SkeletonContainerComponent } from '@/components/skeleton-container/skeleton-container.component';
 import { StoryResolved } from '@/models/story.resolved';
+import { ApiReferenceComponent } from '@/pages/docs-page/api-reference/api-reference.component';
 
 @Component({
-  selector: 'fkt-docs-page-tabs',
+    selector: 'fkt-docs-page-tabs',
     imports: [
         FktTabsListComponent,
         FktTabComponent,
         FeaturesComponent,
-        MarkdownWrapperComponent,
         SkeletonContainerComponent,
         SkeletonComponent,
+        ApiReferenceComponent,
     ],
-  templateUrl: './docs-page-tabs.component.html',
-  styleUrl: './docs-page-tabs.component.scss',
+    templateUrl: './docs-page-tabs.component.html',
+    styleUrl: './docs-page-tabs.component.scss',
 })
 export class DocsPageTabsComponent {
     activeTab = input<string>();
@@ -27,28 +27,27 @@ export class DocsPageTabsComponent {
     loading = input(false);
     docs = input<string>();
 
-
     protected readonly isStoryType = computed(() => {
         const data = this.currentStoryData();
 
         if (!data) return false;
 
         return data.meta.type === 'story';
-    })
+    });
 
     title = computed(() => {
         const data = this.currentStoryData();
 
         const fullTitle = data?.meta?.title;
 
-        return fullTitle?.split('/').at(-1) ?? ''
-    })
+        return fullTitle?.split('/').at(-1) ?? '';
+    });
 
     description = computed(() => {
         const data = this.currentStoryData();
 
         return data?.meta?.description ?? '';
-    })
+    });
 
     importStatement = computed(() => {
         const data = this.currentStoryData();
@@ -56,10 +55,8 @@ export class DocsPageTabsComponent {
 
         if (!componentName) return;
 
-        return `import {${componentName}} from "frakton-ng/${this.storyId()}";`
-    })
+        return `import {${componentName}} from "frakton-ng/${this.storyId()}";`;
+    });
 
-    onActiveTabChange($event: string) {
-
-    }
+    onActiveTabChange($event: string) {}
 }

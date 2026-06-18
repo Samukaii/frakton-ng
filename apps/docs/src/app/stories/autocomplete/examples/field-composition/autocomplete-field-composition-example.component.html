@@ -1,0 +1,21 @@
+<app-code-output
+    [value]="value()"
+    title="Field value"
+/>
+
+<fkt-autocomplete
+    label="Reviewer"
+    placeholder="Search users"
+    [formControl]="user"
+    [options]="users"
+    labelKey="name"
+    valueKey="id"
+    groupKey="department"
+    localSearch
+>
+    <fkt-icon fktFieldPrefix name="user" />
+    <fkt-icon fktFieldSuffix name="information-circle" />
+
+    <span fktHintStart>Search by user name or department.</span>
+    <span fktHintEnd>Optional</span>
+</fkt-autocomplete>

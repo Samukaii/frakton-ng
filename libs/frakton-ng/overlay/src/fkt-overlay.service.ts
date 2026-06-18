@@ -41,6 +41,7 @@ export class FktOverlayService {
                     },
                 },
             ],
+            parent: options.panelOptions?.parentInjector
         });
 
         const close = () => {
@@ -82,8 +83,9 @@ export class FktOverlayService {
                 anchor: options.anchorElementRef,
                 id,
                 stackIndex,
+                autoFocusOnOpen: options?.panelOptions?.autoFocusOnOpen ?? true,
                 distanceFromAnchor:
-                    options.panelOptions?.distanceFromAnchor ?? '8px',
+                    options.panelOptions?.distanceFromAnchor ?? '8px 0',
                 overlayRefs: this.overlays,
                 width: options.panelOptions?.width,
                 preferredPositions: options.panelOptions?.preferredPositions,
@@ -134,6 +136,9 @@ export class FktOverlayService {
         const overlayRef: FktOverlayRef<T> = {
             componentRef,
             stackIndex,
+            focusFirstElement: () =>
+                anchor.componentRef.instance.focusFirstElement(),
+            restoreFocus: () => anchor.componentRef.instance.restoreFocus(),
             close,
         };
 

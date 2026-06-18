@@ -1,6 +1,5 @@
 import { fktButtonsListAlignments, FktButtonsListComponent, fktButtonsListOrientations } from 'frakton-ng/buttons-list';
 import designTokens from './fkt-buttons-list-design-tokens.json';
-//@ts-expect-error
 import documentation from './fkt-buttons-list.docs.md' with { loader: 'text' }
 import { Meta } from '@/models/meta';
 import { Story } from '@/models/story';

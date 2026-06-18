@@ -8,7 +8,7 @@ import {
     signal,
 } from '@angular/core';
 import { FktIconComponent, FktIconName } from 'frakton-ng/icon';
-import { FktInputComponent } from 'frakton-ng/input';
+import { FktInputOldComponent } from 'frakton-ng/input-old';
 import { FktSelectComponent } from 'frakton-ng/select';
 import { DesignTokenItem } from '@/models/design-token-item';
 import { ArgItem } from '@/models/arg-item';
@@ -31,7 +31,7 @@ interface Tab {
     selector: 'app-story-panel',
     imports: [
         FktIconComponent,
-        FktInputComponent,
+        FktInputOldComponent,
         FktSelectComponent,
         StoryDesignTokensComponent,
         FktToggleComponent,

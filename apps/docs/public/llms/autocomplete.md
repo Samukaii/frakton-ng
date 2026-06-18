@@ -13,1166 +13,1978 @@
 
 ## Description
 
-A powerful and flexible autocomplete input component with dropdown options, search functionality, and support for custom actions. Built with Angular signals and reactive patterns, it offers seamless integration with forms and dynamic data sources.
+Autocomplete for real application forms. It separates search text from form value,
+supports object options with primitive form values, accepts hydrated values from edit screens,
+and works with local search, server search, multiple selection, free text, pagination, and
+virtualized lists.
 
 ## Features
+
+### Selection
+
+- id: selection
+- type: introduction
+
+Core selection behavior. The autocomplete keeps the typed query separate from the form value:
+search text is temporary, while selected options write normalized primitive values to the form.
 
 ### Basic
 
 - id: basic
 - type: story
-- component: FktAutocompleteBasicExampleComponent
+- component: AutocompleteBasicExampleComponent
 
-Basic autocomplete implementation with predefined options. Perfect starting point showing essential functionality with search and selection capabilities.
+Basic single selection with primitive string options. When options are already primitive values,
+the component does not require `labelKey` or `valueKey`.
 
-Example component: `FktAutocompleteBasicExampleComponent`
+Example component: `AutocompleteBasicExampleComponent`
 
-```ts title="fkt-autocomplete-basic-example.component.ts"
-import { Component, computed, linkedSignal, model, signal } from '@angular/core';
-import { FktAutocompleteComponent, FktAutocompleteOption } from 'frakton-ng/autocomplete';
-import { Field, form } from '@angular/forms/signals';
+```ts title="autocomplete-basic-example.component.ts"
+import { Component } from '@angular/core';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { FktAutocompleteComponent } from 'frakton-ng/autocomplete';
+import { CodeOutputComponent } from '@/components/code-output/code-output.component';
 
 @Component({
-	selector: 'fkt-autocomplete-basic-example',
-	imports: [FktAutocompleteComponent, Field],
-	templateUrl: './fkt-autocomplete-basic-example.component.html',
-	styleUrl: './fkt-autocomplete-basic-example.component.scss'
+    selector: 'app-autocomplete-basic-example',
+    imports: [
+        FktAutocompleteComponent,
+        ReactiveFormsModule,
+        CodeOutputComponent,
+    ],
+    templateUrl: './autocomplete-basic-example.component.html',
+    styleUrl: './autocomplete-basic-example.component.scss',
 })
-export class FktAutocompleteBasicExampleComponent {
-	label = model<string>('Select a fruit');
-	placeholder = model<string>('Start typing...');
-	options = model<FktAutocompleteOption[]>([
-		{ value: "apple", label: "Apple" },
-		{ value: "banana", label: "Banana" },
-		{ value: "cherry", label: "Cherry" },
-		{ value: "grape", label: "Grape" },
-		{ value: "orange", label: "Orange" },
-		{ value: "strawberry", label: "Strawberry" },
-	]);
-
-	control = form(signal(''));
-
-	protected searchTerm = signal('');
-
-	protected filteredOptions = linkedSignal(() => {
-		const searchTerm = this.searchTerm();
-
-		return this.options().filter(option => option.label.toLowerCase().includes(searchTerm.toLowerCase()));
-	});
-
-	protected selectedOption = computed(() => {
-		return this.options()?.find(option => option.value === this.control().value());
-	});
-
-	onSearch(searchTerm: string) {
-		console.log('Search term:', searchTerm);
-	}
+export class AutocompleteBasicExampleComponent {
+    protected readonly frameworks = [
+        'Angular',
+        'React',
+        'Vue',
+        'Svelte',
+        'Solid',
+    ];
+    protected readonly framework = new FormControl<string | null>(null);
+    protected readonly value = toSignal(this.framework.valueChanges, {
+        initialValue: this.framework.value,
+    });
 }
 ```
 
-```html title="fkt-autocomplete-basic-example.component.html"
-<div class="example-container">
-	<fkt-autocomplete
-		[field]="control"
-		[label]="label()"
-		[placeholder]="placeholder()"
-		[options]="filteredOptions()"
-		(search)="searchTerm.set($event)"
-	/>
+```html title="autocomplete-basic-example.component.html"
+<app-code-output
+    [value]="value()"
+    title="Field value"
+/>
+<fkt-autocomplete
+    label="Framework"
+    placeholder="Search frameworks"
+    [formControl]="framework"
+    [options]="frameworks"
+    localSearch
+/>
+```
 
-	@if (selectedOption()) {
-		<div class="selected-option">
-			<div class="title">
-				<h3>
-					Selected option
-				</h3>
-				<hr>
-			</div>
+```css title="autocomplete-basic-example.component.scss"
+pre {
+    margin: 1rem 0 0;
+}
+```
 
-			<div class="info">
-				<p>
-					<strong>Value:</strong> {{ selectedOption()?.value }}
-				</p>
-				<p>
-					<strong>Label:</strong> {{ selectedOption()?.label }}
-				</p>
-			</div>
-		</div>
-	}
+### ObjectOptions
+
+- id: object-options
+- type: story
+- component: AutocompleteObjectOptionsExampleComponent
+
+Object options can be normalized through `labelKey` and `valueKey`. This keeps the visual label
+tied to the rich option object while the form stores only the stable identifier.
+
+Example component: `AutocompleteObjectOptionsExampleComponent`
+
+```ts title="autocomplete-object-options-example.component.ts"
+import { Component } from '@angular/core';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { FktAutocompleteComponent } from 'frakton-ng/autocomplete';
+import { USERS } from '../autocomplete-demo-data';
+import { CodeOutputComponent } from '@/components/code-output/code-output.component';
+
+@Component({
+    selector: 'app-autocomplete-object-options-example',
+    imports: [
+        FktAutocompleteComponent,
+        ReactiveFormsModule,
+        CodeOutputComponent,
+    ],
+    templateUrl: './autocomplete-object-options-example.component.html',
+    styleUrl: './autocomplete-object-options-example.component.scss',
+})
+export class AutocompleteObjectOptionsExampleComponent {
+    protected readonly users = USERS;
+    protected readonly assignee = new FormControl<string | null>(null);
+    protected readonly value = toSignal(this.assignee.valueChanges, {
+        initialValue: this.assignee.value,
+    });
+}
+```
+
+```html title="autocomplete-object-options-example.component.html"
+<app-code-output
+    [value]="value()"
+    title="Field value"
+/>
+
+<fkt-autocomplete
+    label="Assignee"
+    placeholder="Search for a user to assign"
+    [formControl]="assignee"
+    [options]="users"
+    labelKey="name"
+    valueKey="id"
+    groupKey="department"
+    localSearch
+/>
+```
+
+```css title="autocomplete-object-options-example.component.scss"
+pre {
+    margin: 1rem 0 0;
+}
+```
+
+### FunctionKeys
+
+- id: function-keys
+- type: story
+- component: AutocompleteFunctionKeysExampleComponent
+
+`labelKey`, `valueKey`, and `groupKey` can also be functions. Use function keys when the visible
+label, primitive value, or group metadata needs to be derived from the raw option object.
+
+Example component: `AutocompleteFunctionKeysExampleComponent`
+
+```ts title="autocomplete-function-keys-example.component.ts"
+import { Component } from '@angular/core';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { FktAutocompleteComponent } from 'frakton-ng/autocomplete';
+import { COUNTRIES, Country } from '../autocomplete-demo-data';
+import { CodeOutputComponent } from '@/components/code-output/code-output.component';
+
+@Component({
+    selector: 'app-autocomplete-function-keys-example',
+    imports: [
+        FktAutocompleteComponent,
+        ReactiveFormsModule,
+        CodeOutputComponent,
+    ],
+    templateUrl: './autocomplete-function-keys-example.component.html',
+    styleUrl: './autocomplete-function-keys-example.component.scss',
+})
+export class AutocompleteFunctionKeysExampleComponent {
+    protected readonly countries = COUNTRIES;
+    protected readonly country = new FormControl<string | null>(null);
+    protected readonly value = toSignal(this.country.valueChanges, {
+        initialValue: this.country.value,
+    });
+
+    protected readonly getCountryLabel = (country: Country) => country.name;
+    protected readonly getCountryValue = (country: Country) => country.code;
+    protected readonly getCountryGroup = (country: Country) => ({
+        label: country.continent,
+        value: country.continent.toLowerCase().replaceAll(' ', '-'),
+    });
+}
+```
+
+```html title="autocomplete-function-keys-example.component.html"
+<app-code-output
+    [value]="value()"
+    title="Field value"
+/>
+
+<fkt-autocomplete
+    label="Country"
+    placeholder="Select your country"
+    [formControl]="country"
+    [options]="countries"
+    [labelKey]="getCountryLabel"
+    [valueKey]="getCountryValue"
+    [groupKey]="getCountryGroup"
+    localSearch
+/>
+```
+
+```css title="autocomplete-function-keys-example.component.scss"
+pre {
+    margin: 1rem 0 0;
+}
+```
+
+### MultipleSelection
+
+- id: multiple-selection
+- type: story
+- component: AutocompleteMultipleExampleComponent
+
+Multiple selection stores an array of primitive values and keeps the dropdown open after each
+selection. Selected options are rendered as removable chips.
+
+Example component: `AutocompleteMultipleExampleComponent`
+
+```ts title="autocomplete-multiple-example.component.ts"
+import { Component } from '@angular/core';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { FktAutocompleteComponent } from 'frakton-ng/autocomplete';
+import { COUNTRIES } from '../autocomplete-demo-data';
+import { CodeOutputComponent } from '@/components/code-output/code-output.component';
+
+@Component({
+    selector: 'app-autocomplete-multiple-example',
+    imports: [
+        FktAutocompleteComponent,
+        ReactiveFormsModule,
+        CodeOutputComponent,
+    ],
+    templateUrl: './autocomplete-multiple-example.component.html',
+    styleUrl: './autocomplete-multiple-example.component.scss',
+})
+export class AutocompleteMultipleExampleComponent {
+    protected readonly countries = COUNTRIES;
+    protected readonly countriesControl = new FormControl<(string | number)[]>(
+        []
+    );
+    protected readonly value = toSignal(this.countriesControl.valueChanges, {
+        initialValue: this.countriesControl.value,
+    });
+}
+```
+
+```html title="autocomplete-multiple-example.component.html"
+<app-code-output
+    [value]="value()"
+    title="Field value"
+/>
+
+<fkt-autocomplete
+    label="Countries"
+    placeholder="Select multiple countries"
+    [formControl]="countriesControl"
+    [options]="countries"
+    labelKey="name"
+    valueKey="code"
+    groupKey="continent"
+    multiple
+    localSearch
+/>
+```
+
+```css title="autocomplete-multiple-example.component.scss"
+pre {
+    margin: 1rem 0 0;
+}
+```
+
+### FreeText
+
+- id: free-text
+- type: story
+- component: AutocompleteFreeTextExampleComponent
+
+`freeText` allows values that are not present in the option list. In multiple mode, committed
+free text becomes a chip; without `freeText`, unresolved search text is discarded on close.
+
+Example component: `AutocompleteFreeTextExampleComponent`
+
+```ts title="autocomplete-free-text-example.component.ts"
+import { Component } from '@angular/core';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { FktAutocompleteComponent } from 'frakton-ng/autocomplete';
+import { CodeOutputComponent } from '@/components/code-output/code-output.component';
+
+@Component({
+    selector: 'app-autocomplete-free-text-example',
+    imports: [
+        FktAutocompleteComponent,
+        ReactiveFormsModule,
+        CodeOutputComponent,
+    ],
+    templateUrl: './autocomplete-free-text-example.component.html',
+    styleUrl: './autocomplete-free-text-example.component.scss',
+})
+export class AutocompleteFreeTextExampleComponent {
+    protected readonly suggestions = ['Angular', 'Signals', 'Forms', 'API'];
+    protected readonly tags = new FormControl<(string | number)[]>([]);
+    protected readonly value = toSignal(this.tags.valueChanges, {
+        initialValue: this.tags.value,
+    });
+}
+```
+
+```html title="autocomplete-free-text-example.component.html"
+<app-code-output
+    [value]="value()"
+    title="Field value"
+/>
+
+<fkt-autocomplete
+    label="Tags"
+    placeholder="Choose a tag or create one."
+    [formControl]="tags"
+    [options]="suggestions"
+    multiple
+    freeText
+    localSearch
+/>
+```
+
+```css title="autocomplete-free-text-example.component.scss"
+pre {
+    margin: 1rem 0 0;
+}
+```
+
+### HydratedValues
+
+- id: hydrated-values
+- type: story
+- component: AutocompleteHydratedValueExampleComponent
+
+Hydrated values are useful on edit screens where the API returns objects before the option list is
+loaded. The component normalizes object values to primitives, keeps their labels as preload data,
+and replaces those labels when fresh options with the same value arrive.
+
+Example component: `AutocompleteHydratedValueExampleComponent`
+
+```ts title="autocomplete-hydrated-value-example.component.ts"
+import { Component } from '@angular/core';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { FktAutocompleteComponent } from 'frakton-ng/autocomplete';
+import { FktButtonComponent } from 'frakton-ng/button';
+import { User } from '../autocomplete-demo-data';
+import { CodeOutputComponent } from '@/components/code-output/code-output.component';
+
+const PRELOADED_USERS = [
+    {
+        id: 'usr-2315',
+        name: 'John Smith',
+        email: 'john.smith@company.com',
+        department: 'Engineering',
+    },
+    {
+        id: 'usr-2316',
+        name: 'Emma Johnson',
+        email: 'emma.johnson@company.com',
+        department: 'Marketing',
+    },
+    {
+        id: 'usr-2317',
+        name: 'Michael Brown',
+        email: 'michael.brown@company.com',
+        department: 'Finance',
+    },
+    {
+        id: 'usr-2318',
+        name: 'Olivia Davis',
+        email: 'olivia.davis@company.com',
+        department: 'Human Resources',
+    },
+    {
+        id: 'usr-2319',
+        name: 'William Wilson',
+        email: 'william.wilson@company.com',
+        department: 'Sales',
+    },
+    {
+        id: 'usr-2320',
+        name: 'Sophia Miller',
+        email: 'sophia.miller@company.com',
+        department: 'Customer Support',
+    },
+    {
+        id: 'usr-2321',
+        name: 'James Taylor',
+        email: 'james.taylor@company.com',
+        department: 'Operations',
+    },
+    {
+        id: 'usr-2322',
+        name: 'Charlotte Anderson',
+        email: 'charlotte.anderson@company.com',
+        department: 'Legal',
+    },
+];
+
+@Component({
+    selector: 'app-autocomplete-hydrated-value-example',
+    imports: [
+        FktAutocompleteComponent,
+        FktButtonComponent,
+        ReactiveFormsModule,
+        CodeOutputComponent,
+    ],
+    templateUrl: './autocomplete-hydrated-value-example.component.html',
+    styleUrl: './autocomplete-hydrated-value-example.component.scss',
+})
+export class AutocompleteHydratedValueExampleComponent {
+    protected readonly usersControl = new FormControl<
+        (string | number | User)[]
+    >([]);
+    protected readonly value = toSignal(this.usersControl.valueChanges, {
+        initialValue: this.usersControl.value,
+    });
+
+    protected users: User[] = [];
+
+    protected fillWithPrimitiveValues() {
+        this.usersControl.setValue(['usr-3010', 'usr-3011']);
+    }
+
+    protected fillWithHydratedUsers() {
+        this.usersControl.setValue([
+            {
+                id: 'usr-2316',
+                name: 'Emma Johnson',
+                email: 'emma.johnson@company.com',
+                department: 'Marketing',
+            },
+            {
+                id: 'usr-2317',
+                name: 'Michael Brown',
+                email: 'michael.brown@company.com',
+                department: 'Finance',
+            },
+        ]);
+    }
+
+    protected loadFreshOptions() {
+        this.users = PRELOADED_USERS.map((user) => ({
+            ...user,
+            name: `${user.name} (fresh)`,
+        }));
+    }
+}
+```
+
+```html title="autocomplete-hydrated-value-example.component.html"
+<app-code-output
+    [value]="value()"
+    title="Field value"
+/>
+
+<fkt-autocomplete
+    label="Users"
+    placeholder="Search for a user"
+    [formControl]="usersControl"
+    [options]="users"
+    labelKey="name"
+    valueKey="id"
+    multiple
+    localSearch
+/>
+
+<div class="actions">
+    <fkt-button text="Set ids" (click)="fillWithPrimitiveValues()" />
+    <fkt-button text="Set hydrated users" (click)="fillWithHydratedUsers()" />
+    <fkt-button text="Load fresh options" (click)="loadFreshOptions()" />
 </div>
 ```
 
-```css title="fkt-autocomplete-basic-example.component.scss"
-p {
-	margin: 0;
+```css title="autocomplete-hydrated-value-example.component.scss"
+.actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .75rem;
+    margin-top: 1rem;
 }
 
-* {
-	box-sizing: border-box;
-}
-
-hr {
-	border: none;
-	border-bottom: solid 1px var(--fkt-color-neutral-300);
-	margin: 0;
-}
-
-.example-container {
-	width: 100%;
-
-	h3 {
-		margin-bottom: 0.5rem;
-		color: var(--color-text-primary);
-	}
-
-	.description {
-		margin-bottom: 1rem;
-		color: var(--color-text-secondary);
-		font-size: 0.875rem;
-	}
-
-	.selected-option {
-		margin-top: var(--fkt-space-xs);
-		padding: var(--fkt-space-sm);
-		border-radius: var(--fkt-radius-md);
-		font-size: var(--fkt-font-size-sm);
-		box-shadow: var(--fkt-shadow-md);
-		border: 1px solid var(--fkt-color-neutral-200);
-		display: flex;
-		flex-direction: column;
-		gap: var(--fkt-space-xs);
-
-		.info {
-			display: flex;
-			flex-direction: column;
-			gap: var(--fkt-space-xs);
-		}
-
-		.title {
-			display: flex;
-			flex-direction: column;
-		}
-	}
+pre {
+    margin: 1rem 0 0;
 }
 ```
 
-### AutoCreation
+### Templates
 
-- id: auto-creation
+- id: templates
+- type: introduction
+
+Content customization. Header, group, item, and footer templates let the consumer shape the
+overlay while keeping keyboard navigation, active descendant, selection, and form behavior inside
+the component.
+
+### CustomContent
+
+- id: custom-content
 - type: story
-- component: FktAutocompleteAutoCreationExampleComponent
+- component: AutocompleteCustomContentExampleComponent
 
-Auto-creation mode allows users to create new options by typing values not in the predefined list. Ideal for tag systems, category management, and dynamic data entry.
+Custom item, group, header, and footer templates. Template contexts expose the normalized option
+and selection state, so custom UI remains type-safe while the form value stays primitive.
 
-Example component: `FktAutocompleteAutoCreationExampleComponent`
+Example component: `AutocompleteCustomContentExampleComponent`
 
-```ts title="fkt-autocomplete-auto-creation-example.component.ts"
-import { Component, computed, input, linkedSignal, model, signal } from '@angular/core';
+```ts title="autocomplete-custom-content-example.component.ts"
+import { Component } from '@angular/core';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { toSignal } from '@angular/core/rxjs-interop';
 import {
-	FktAutoCompleteAddOptionEvent,
-	FktAutocompleteComponent,
-	FktAutocompleteOption
+    FktAutocompleteComponent,
+    FktAutocompleteFooterDirective,
+    FktAutocompleteGroupDirective,
+    FktAutocompleteHeaderDirective,
+    FktAutocompleteItemDirective
 } from 'frakton-ng/autocomplete';
-import { Field, form } from '@angular/forms/signals';
-
-@Component({
-	selector: 'fkt-autocomplete-auto-creation-example',
-	imports: [FktAutocompleteComponent, Field],
-	templateUrl: './fkt-autocomplete-auto-creation-example.component.html',
-	styleUrl: './fkt-autocomplete-auto-creation-example.component.scss'
-})
-export class FktAutocompleteAutoCreationExampleComponent {
-	selectedValue = input<FktAutocompleteOption | null>(null);
-	label = input<string>('Country (create new if not found)');
-	placeholder = input<string>('Type a country name');
-	addOptionLabel = input<string>('Add country "{{inputValue}}"');
-	allowAddOption = input<boolean>(true);
-	options = model<FktAutocompleteOption[]>([
-		{ value: "us", label: "United States" },
-		{ value: "ca", label: "Canada" },
-		{ value: "uk", label: "United Kingdom" },
-		{ value: "de", label: "Germany" },
-		{ value: "fr", label: "France" },
-		{ value: "es", label: "Spain" },
-		{ value: "it", label: "Italy" },
-		{ value: "jp", label: "Japan" },
-		{ value: "au", label: "Australia" },
-		{ value: "br", label: "Brazil" },
-	]);
-
-	protected searchTerm = signal('');
-
-	protected filteredOptions = linkedSignal(() => {
-		const searchTerm = this.searchTerm();
-
-		return this.options().filter(option => option.label.toLowerCase().includes(searchTerm.toLowerCase()));
-	});
-
-	protected control = form(signal(''));
-
-	protected selectedOption = computed(() => {
-		return this.options()?.find(option => option.value === this.control().value());
-	});
-
-	protected onAutoCreate(event: FktAutoCompleteAddOptionEvent) {
-		setTimeout(() => {
-			const newOption = {
-				value: crypto.randomUUID(),
-				label: event.inputValue,
-			};
-
-			this.options.update(options => [
-				...options,
-				newOption
-			]);
-
-			event.done(newOption.value)
-		}, 1000)
-	}
-}
-```
-
-```html title="fkt-autocomplete-auto-creation-example.component.html"
-<div class="example-container">
-	<fkt-autocomplete
-		[field]="control"
-		[label]="label()"
-		[placeholder]="placeholder()"
-		[addOptionLabel]="addOptionLabel()"
-		[allowAddOption]="allowAddOption()"
-		(addOption)="onAutoCreate($event)"
-		[options]="filteredOptions()"
-		(search)="searchTerm.set($event)"
-	/>
-
-	@if (selectedOption()) {
-		<div class="selected-option">
-			<div class="title">
-				<h3>
-					Selected option
-				</h3>
-				<hr>
-			</div>
-
-			<div class="info">
-				<p>
-					<strong>Value:</strong> {{ selectedOption()?.value }}
-				</p>
-				<p>
-					<strong>Label:</strong> {{ selectedOption()?.label }}
-				</p>
-			</div>
-		</div>
-	}
-
-	<div class="info-box">
-		<strong>Tip:</strong> Type a country name that's not in the list to see the auto-creation feature in action.
-	</div>
-</div>
-```
-
-```css title="fkt-autocomplete-auto-creation-example.component.scss"
-p {
-	margin: 0;
-}
-
-* {
-	box-sizing: border-box;
-}
-
-hr {
-	border: none;
-	border-bottom: solid 1px var(--fkt-color-neutral-300);
-	margin: 0;
-}
-
-.example-container {
-	width: 100%;
-	display: flex;
-	flex-direction: column;
-	gap: var(--fkt-space-md);
-
-	h3 {
-		margin: 0 0 0.5rem;
-		color: var(--color-text-primary);
-	}
-
-	.description {
-		margin-bottom: 1rem;
-		color: var(--fkt-color-neutral-600);
-		font-size: var(--fkt-font-size-sm);
-	}
-
-	.selected-option {
-		margin-top: var(--fkt-space-xs);
-		padding: var(--fkt-space-sm);
-		border-radius: var(--fkt-radius-md);
-		font-size: var(--fkt-font-size-sm);
-		box-shadow: var(--fkt-shadow-md);
-		border: 1px solid var(--fkt-color-neutral-200);
-		display: flex;
-		flex-direction: column;
-		gap: var(--fkt-space-xs);
-
-		.info {
-			display: flex;
-			flex-direction: column;
-			gap: var(--fkt-space-xs);
-		}
-
-		.title {
-			display: flex;
-			flex-direction: column;
-		}
-	}
-
-	.info-box {
-		margin-top: 1rem;
-		padding: 0.75rem;
-		width: 100%;
-		background-color: var(--fkt-color-info-opacity-10, #e3f2fd);
-		border-left: 4px solid var(--fkt-color-info, #2196f3);
-		border-radius: 4px;
-		font-size: 0.875rem;
-
-		strong {
-			color: var(--fkt-color-info, #2196f3);
-		}
-	}
-}
-```
-
-### CustomStyling
-
-- id: custom-styling
-- type: story
-- component: FktAutocompleteCustomStylingExampleComponent
-
-Custom styling and disabled state demonstration. Shows how to apply visual customization and handle disabled states with interactive controls.
-
-Example component: `FktAutocompleteCustomStylingExampleComponent`
-
-```ts title="fkt-autocomplete-custom-styling-example.component.ts"
-import { Component, computed, linkedSignal, model, signal } from '@angular/core';
-import { FktAutocompleteComponent, FktAutocompleteOption } from 'frakton-ng/autocomplete';
-import { Field, disabled, form } from '@angular/forms/signals';
 import { FktButtonComponent } from 'frakton-ng/button';
+import { USERS } from '../autocomplete-demo-data';
+import { FktAvatarComponent } from 'frakton-ng/avatar';
+import { FktTagComponent } from 'frakton-ng/tag';
+import { CodeOutputComponent } from '@/components/code-output/code-output.component';
 
 @Component({
-	selector: 'fkt-autocomplete-custom-styling-example',
-	imports: [FktAutocompleteComponent, Field, FktButtonComponent],
-	templateUrl: './fkt-autocomplete-custom-styling-example.component.html',
-	styleUrl: './fkt-autocomplete-custom-styling-example.component.scss'
+    selector: 'app-autocomplete-custom-content-example',
+    imports: [
+        FktAutocompleteComponent,
+        FktAutocompleteHeaderDirective,
+        FktAutocompleteGroupDirective,
+        FktAutocompleteItemDirective,
+        FktAutocompleteFooterDirective,
+        FktButtonComponent,
+        ReactiveFormsModule,
+        FktAvatarComponent,
+        FktTagComponent,
+        CodeOutputComponent,
+    ],
+    templateUrl: './autocomplete-custom-content-example.component.html',
+    styleUrl: './autocomplete-custom-content-example.component.scss',
 })
-export class FktAutocompleteCustomStylingExampleComponent {
-	selectedValue = model<FktAutocompleteOption | null>(null);
-	label = model<string>('Styled Autocomplete');
-	placeholder = model<string>('This field can be disabled');
-	options = model<FktAutocompleteOption[]>([
-		{ value: "apple", label: "Apple" },
-		{ value: "banana", label: "Banana" },
-		{ value: "cherry", label: "Cherry" },
-		{ value: "grape", label: "Grape" },
-		{ value: "orange", label: "Orange" },
-		{ value: "strawberry", label: "Strawberry" },
-	]);
-
-	private disabled = signal(false);
-	protected searchTerm = signal('');
-
-	protected filteredOptions = linkedSignal(() => {
-		const searchTerm = this.searchTerm();
-
-		return this.options().filter(option => option.label.toLowerCase().includes(searchTerm.toLowerCase()));
-	});
-
-	protected control = form(signal(''), path => {
-		disabled(path, () => this.disabled());
-	});
-
-	protected selectedOption = computed(() => {
-		return this.options()?.find(option => option.value === this.control().value());
-	});
-
-	protected toggleDisabled() {
-		this.disabled.update(disabled => !disabled);
-	}
+export class AutocompleteCustomContentExampleComponent {
+    protected readonly users = USERS;
+    protected readonly member = new FormControl<string | null>(null);
+    protected readonly value = toSignal(this.member.valueChanges, {
+        initialValue: this.member.value,
+    });
 }
 ```
 
-```html title="fkt-autocomplete-custom-styling-example.component.html"
-<div class="example-container">
-	<div class="custom-styled-autocomplete" [class.disabled-wrapper]="control().disabled()">
-		<fkt-autocomplete
-			[field]="control"
-			[label]="label()"
-			[placeholder]="placeholder()"
-			[options]="filteredOptions()"
-			(search)="searchTerm.set($event)"
-		/>
-	</div>
-
-	<fkt-button
-		[text]="(control().disabled() ? 'Enable': 'Disable') + ' Autocomplete'"
-		(click)="toggleDisabled()"
-	/>
-
-	@if (selectedOption()) {
-		<div class="selected-option">
-			<div class="title">
-				<h3>
-					Selected option
-				</h3>
-				<hr>
-			</div>
-
-			<div class="info">
-				<p>
-					<strong>Value:</strong> {{ selectedOption()?.value }}
-				</p>
-				<p>
-					<strong>Label:</strong> {{ selectedOption()?.label }}
-				</p>
-			</div>
-		</div>
-	}
-
-	<div class="status-indicator">
-		Status: <span [class]="control().disabled() ? 'disabled-status' : 'enabled-status'">
-			{{ control().disabled() ? 'Disabled' : 'Enabled' }}
-		</span>
-	</div>
-</div>
-```
-
-```css title="fkt-autocomplete-custom-styling-example.component.scss"
-p {
-	margin: 0;
-}
-
-* {
-	box-sizing: border-box;
-}
-
-hr {
-	border: none;
-	border-bottom: solid 1px var(--fkt-color-neutral-300);
-	margin: 0;
-}
-
-
-.example-container {
-	width: 100%;
-	display: flex;
-	flex-direction: column;
-	gap: var(--fkt-space-xs);
-
-	h3 {
-		margin-bottom: 0.5rem;
-		color: var(--color-text-primary);
-	}
-
-	.description {
-		margin-bottom: 1rem;
-		color: var(--color-text-secondary);
-		font-size: 0.875rem;
-	}
-
-	.custom-styled-autocomplete {
-		position: relative;
-		transition: opacity 0.3s ease;
-
-		&.disabled-wrapper {
-			opacity: 0.6;
-
-			&::after {
-				content: '';
-				position: absolute;
-				top: 0;
-				left: 0;
-				right: 0;
-				bottom: 0;
-				background-color: transparent;
-				pointer-events: none;
-				border-radius: 4px;
-				border: 2px dashed var(--fkt-color-border-disabled, #ccc);
-			}
-		}
-	}
-
-	.selected-option {
-		margin-top: var(--fkt-space-xs);
-		padding: var(--fkt-space-sm);
-		border-radius: var(--fkt-radius-md);
-		font-size: var(--fkt-font-size-sm);
-		box-shadow: var(--fkt-shadow-md);
-		border: 1px solid var(--fkt-color-neutral-200);
-		display: flex;
-		flex-direction: column;
-		gap: var(--fkt-space-xs);
-
-		.info {
-			display: flex;
-			flex-direction: column;
-			gap: var(--fkt-space-xs);
-		}
-
-		.title {
-			display: flex;
-			flex-direction: column;
-		}
-	}
-
-	.status-indicator {
-		margin-top: 1rem;
-		font-size: 0.875rem;
-		color: var(--color-text-secondary);
-
-		.enabled-status {
-			color: var(--fkt-color-success, #4caf50);
-			font-weight: 500;
-		}
-
-		.disabled-status {
-			color: var(--color-error, #f44336);
-			font-weight: 500;
-		}
-	}
-}
-```
-
-### Events
-
-- id: events
-- type: story
-- component: FktAutocompleteEventsExampleComponent
-
-Interactive functionality with event handling and custom actions. Demonstrates search events, value changes, and action button interactions with real-time event logging.
-
-Example component: `FktAutocompleteEventsExampleComponent`
-
-```ts title="fkt-autocomplete-events-example.component.ts"
-import { Component, computed, input, linkedSignal, model, signal } from '@angular/core';
-import { FktAutocompleteComponent, FktAutocompleteOption } from 'frakton-ng/autocomplete';
-import { FktButtonAction } from 'frakton-ng/button';
-import { FktIconComponent } from 'frakton-ng/icon';
-import { Field, form } from '@angular/forms/signals';
-
-@Component({
-	selector: 'fkt-autocomplete-events-example',
-	imports: [FktAutocompleteComponent, FktIconComponent, Field],
-	templateUrl: './fkt-autocomplete-events-example.component.html',
-	styleUrl: './fkt-autocomplete-events-example.component.scss'
-})
-export class FktAutocompleteEventsExampleComponent {
-	label = model<string>('Manage tags');
-	placeholder = model<string>('Select or search for tags');
-	protected lastEvent = signal<string>('');
-
-	protected options = model<FktAutocompleteOption[]>([
-		{value: "frontend", label: "Frontend"},
-		{value: "backend", label: "Backend"},
-		{value: "react", label: "React"},
-		{value: "angular", label: "Angular"},
-		{value: "vue", label: "Vue"},
-		{value: "javascript", label: "JavaScript"},
-		{value: "typescript", label: "TypeScript"},
-		{value: "nodejs", label: "Node.js"},
-		{value: "python", label: "Python"},
-		{value: "java", label: "Java"},
-	]);
-
-	protected searchTerm = signal('');
-
-	protected filteredOptions = linkedSignal(() => {
-		const searchTerm = this.searchTerm();
-
-		return this.options().filter(option => option.label.toLowerCase().includes(searchTerm.toLowerCase()));
-	});
-
-	protected selectedOption = computed(() => {
-		return this.options()?.find(option => option.value === this.control().value());
-	});
-
-	protected control = form(signal(''));
-
-	protected actions = signal<FktButtonAction[]>([
-		{
-			icon: "pencil",
-			color: 'primary',
-			theme: 'basic',
-			identifier: 'edit',
-			ariaLabel: 'Edit option',
-			click: () => {
-				this.lastEvent.set("edit")
-			}
-		},
-		{
-			icon: "star",
-			color: 'accent',
-			theme: 'basic',
-			identifier: 'favorite',
-			ariaLabel: 'Favorite option',
-			click: () => {
-				this.lastEvent.set("favorite")
-			}
-		},
-		{
-			icon: "trash",
-			color: 'danger',
-			theme: 'basic',
-			identifier: 'delete',
-			ariaLabel: 'Delete option',
-			click: () => {
-				this.lastEvent.set("delete")
-			}
-		}
-	]);
-
-	onSearch(searchTerm: string) {
-		this.lastEvent.set(`Search: "${searchTerm}"`);
-		console.log('Search term:', searchTerm);
-	}
-}
-```
-
-```html title="fkt-autocomplete-events-example.component.html"
-<div class="example-container">
-	<fkt-autocomplete
-		[field]="control"
-		[label]="label()"
-		[placeholder]="placeholder()"
-		[actions]="actions()"
-		[options]="filteredOptions()"
-		(search)="searchTerm.set($event)"
-	/>
-
-	@if (selectedOption()) {
-		<div class="selected-option">
-			<div class="title">
-				<h3>
-					Selected option
-				</h3>
-				<hr>
-			</div>
-
-			<div class="info">
-				<p>
-					<strong>Value:</strong> {{ selectedOption()?.value }}
-				</p>
-				<p>
-					<strong>Label:</strong> {{ selectedOption()?.label }}
-				</p>
-			</div>
-		</div>
-	}
-
-	<div class="events-log">
-		<h4>Event Log</h4>
-		<div class="last-event">
-			{{ lastEvent() || 'No events yet. Try searching or clicking actions.' }}
-		</div>
-	</div>
-
-	<div class="actions-legend">
-		<h4>Available Actions</h4>
-		<div class="legend-items">
-			<div class="legend-item">
-				<span class="icon-placeholder edit-icon"><fkt-icon name="pencil-square"/></span>
-				<span>Edit - Modify the tag</span>
-			</div>
-			<div class="legend-item">
-				<span class="icon-placeholder favorite-icon"><fkt-icon name="star"/></span>
-				<span>Favorite - Mark as favorite</span>
-			</div>
-			<div class="legend-item">
-				<span class="icon-placeholder delete-icon"><fkt-icon name="trash"/></span>
-				<span>Delete - Remove the tag</span>
-			</div>
-		</div>
-	</div>
-</div>
-```
-
-```css title="fkt-autocomplete-events-example.component.scss"
-p {
-	margin: 0;
-}
-
-* {
-	box-sizing: border-box;
-}
-
-hr {
-	border: none;
-	border-bottom: solid 1px var(--fkt-color-neutral-300);
-	margin: 0;
-}
-
-.example-container {
-	width: 100%;
-
-	.description {
-		margin-bottom: 1rem;
-		color: var(--color-text-secondary);
-		font-size: 0.875rem;
-	}
-
-	.selected-option {
-		margin-top: var(--fkt-space-xs);
-		padding: var(--fkt-space-sm);
-		border-radius: var(--fkt-radius-md);
-		font-size: var(--fkt-font-size-sm);
-		box-shadow: var(--fkt-shadow-md);
-		border: 1px solid var(--fkt-color-neutral-200);
-		display: flex;
-		flex-direction: column;
-		gap: var(--fkt-space-xs);
-
-		.info {
-			display: flex;
-			flex-direction: column;
-			gap: var(--fkt-space-xs);
-		}
-
-		.title {
-			display: flex;
-			flex-direction: column;
-		}
-	}
-
-	.events-log {
-		margin-top: var(--fkt-space-xs);
-		padding: var(--fkt-space-sm);
-		border-radius: var(--fkt-radius-md);
-		font-size: var(--fkt-font-size-sm);
-		box-shadow: var(--fkt-shadow-md);
-		border: 1px solid var(--fkt-color-neutral-200);
-		display: flex;
-		flex-direction: column;
-		gap: var(--fkt-space-xs);
-		background-color: var(--fkt-color-modal-background);
-
-		h4 {
-			margin: 0 0 var(--fkt-space-xs);
-			font-size: var(--fkt-space-sm);
-			text-transform: uppercase;
-			font-weight: var(--fkt-font-semibold);
-		}
-
-		.last-event {
-			font-family: 'Monaco', 'Menlo', 'Consolas', monospace;
-			font-size: 0.8rem;
-			color: var(--color-text-secondary);
-			padding: 0.5rem;
-			border-radius: 3px;
-			border: 1px solid var(--fkt-color-neutral-300);
-		}
-	}
-
-	.actions-legend {
-		margin-top: 1.5rem;
-		padding: 1rem;
-		background-color: var(--fkt-color-modal-background);
-		box-shadow: var(--fkt-shadow-md);
-		border-radius: 4px;
-
-		h4 {
-			margin: 0 0 var(--fkt-space-xs);
-			font-size: var(--fkt-space-sm);
-			text-transform: uppercase;
-			font-weight: var(--fkt-font-semibold);
-		}
-
-		.legend-items {
-			display: flex;
-			flex-direction: column;
-			gap: 0.5rem;
-		}
-
-		.legend-item {
-			display: flex;
-			align-items: center;
-			gap: 0.5rem;
-			font-size: 0.875rem;
-			color: var(--color-text-secondary);
-
-			.icon-placeholder {
-				width: 20px;
-				height: 20px;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				border-radius: 3px;
-				font-size: 12px;
-
-				&.edit-icon {
-					color: var(--fkt-color-primary);
-				}
-
-				&.favorite-icon {
-					color: var(--fkt-color-warning);
-				}
-
-				&.delete-icon {
-					color: var(--fkt-color-danger);
-				}
-			}
-		}
-	}
-}
-```
-
-### LoadingStates
-
-- id: loading-states
-- type: story
-- component: FktAutocompleteLoadingStatesExampleComponent
-
-Loading states and no results handling with simulated API calls. Perfect for async data fetching scenarios with realistic loading indicators and empty state messaging.
-
-Example component: `FktAutocompleteLoadingStatesExampleComponent`
-
-```ts title="fkt-autocomplete-loading-states-example.component.ts"
-import { Component, computed, linkedSignal, model, signal } from '@angular/core';
-import { FktAutocompleteComponent, FktAutocompleteOption } from 'frakton-ng/autocomplete';
-import { FktNoResults } from 'frakton-ng/no-results';
-import { FktButtonComponent } from 'frakton-ng/button';
-import { Field, form } from '@angular/forms/signals';
-
-@Component({
-	selector: 'fkt-autocomplete-loading-states-example',
-	imports: [FktAutocompleteComponent, FktButtonComponent, Field],
-	templateUrl: './fkt-autocomplete-loading-states-example.component.html',
-	styleUrl: './fkt-autocomplete-loading-states-example.component.scss'
-})
-export class FktAutocompleteLoadingStatesExampleComponent {
-	label = model<string>('Search with Loading States');
-	placeholder = model<string>('Type to search');
-	loading = model<boolean>(false);
-
-	control = form(signal(''));
-	searchTerm = signal('');
-	options = signal<FktAutocompleteOption[]>([]);
-
-	allOptions: FktAutocompleteOption[] = [
-		{ value: "user1", label: "Alice Johnson" },
-		{ value: "user2", label: "Bob Smith" },
-		{ value: "user3", label: "Carol Davis" },
-		{ value: "user4", label: "David Wilson" },
-		{ value: "user5", label: "Emma Brown" },
-		{ value: "user6", label: "Frank Miller" },
-		{ value: "user7", label: "Grace Taylor" },
-		{ value: "user8", label: "Henry Anderson" },
-	];
-
-	noResults = model<FktNoResults>({
-		label: "No users found. Try a different search term."
-	});
-
-	protected filteredOptions = linkedSignal(() => {
-		const searchTerm = this.searchTerm();
-		if (!searchTerm) return this.options();
-		return this.options().filter(option => option.label.toLowerCase().includes(searchTerm.toLowerCase()));
-	});
-
-	simulateLoading() {
-		this.loading.set(true);
-		this.options.set([]);
-
-		// Simulate API call delay
-		setTimeout(() => {
-			this.options.set(this.allOptions);
-			this.loading.set(false);
-		}, 2000);
-	}
-
-	simulateNoResults() {
-		this.loading.set(true);
-		this.options.set([]);
-
-		// Simulate API call with no results
-		setTimeout(() => {
-			this.options.set([]);
-			this.loading.set(false);
-		}, 1500);
-	}
-
-	resetToNormal() {
-		this.loading.set(false);
-		this.options.set(this.allOptions);
-	}
-
-	onSearch(searchTerm: string) {
-		this.searchTerm.set(searchTerm);
-
-		if (searchTerm.length >= 2) {
-			this.loading.set(true);
-			this.options.set([]);
-
-			// Simulate search API call
-			setTimeout(() => {
-				const filtered = this.allOptions.filter(option =>
-					option.label.toLowerCase().includes(searchTerm.toLowerCase())
-				);
-				this.options.set(filtered);
-				this.loading.set(false);
-			}, 800);
-		} else {
-			this.options.set(this.allOptions);
-			this.loading.set(false);
-		}
-	}
-}
-```
-
-```html title="fkt-autocomplete-loading-states-example.component.html"
-<div class="example-container">
-	<fkt-autocomplete
-		[field]="control"
-		[label]="label()"
-		[placeholder]="placeholder()"
-		[options]="filteredOptions()"
-		[loading]="loading()"
-		[noResults]="noResults()"
-		(search)="onSearch($event)"
-	/>
-
-    <div class="controls">
-        <fkt-button
-            (click)="simulateLoading()"
-            text="Simulate Loading (2s)"
-            color="info"
-            theme="basic">
-        </fkt-button>
-        <fkt-button
-            (click)="simulateNoResults()"
-            text="Simulate No Results"
-            color="accent"
-            theme="basic">
-        </fkt-button>
-        <fkt-button
-            (click)="resetToNormal()"
-            text="Reset to Normal"
-            color="success"
-            theme="basic">
-        </fkt-button>
+```html title="autocomplete-custom-content-example.component.html"
+<app-code-output
+    [value]="value()"
+    title="Field value"
+/>
+
+<fkt-autocomplete
+    label="Team member"
+    placeholder="Search for a teammate"
+    [formControl]="member"
+    [options]="users"
+    multiple
+    labelKey="name"
+    valueKey="id"
+    groupKey="department"
+    localSearch
+>
+    <div *fktAutocompleteHeader class="overlay-header">
+        <div>
+            <strong>Available users</strong>
+            <span>Select a teammate by name, e-mail, or department.</span>
+        </div>
     </div>
+
+    <div *fktAutocompleteGroup="let group" class="group">
+        <span>{{ group.label }}</span>
+        <small>{{ group.items.length }} users</small>
+    </div>
+
+    <div
+        *fktAutocompleteItem="let item; let isSelected = isSelected"
+        class="item"
+        [attr.data-fkt-theme]="isSelected ? 'dark' : 'light'"
+        [class.selected]="isSelected"
+    >
+        <fkt-avatar
+            randomBackground
+            [initials]="item.label"
+        />
+
+        <div class="identity">
+            <strong>{{ item.label }}</strong>
+            <span>{{ item.raw?.['email'] }}</span>
+        </div>
+
+        <fkt-tag variant="faded" color="success" [text]="item.raw?.['department']"/>
+    </div>
+
+    <div *fktAutocompleteFooter class="overlay-footer">
+        <span>Missing someone?</span>
+        <fkt-button
+            text="Invite user"
+            icon="plus"
+            iconPosition="left"
+            theme="stroked"
+            shape="rect"
+        />
+    </div>
+</fkt-autocomplete>
+```
+
+```css title="autocomplete-custom-content-example.component.scss"
+.overlay-header {
+    border-bottom: 1px solid var(--fkt-color-neutral-300);
+    padding: .75rem .875rem;
+    z-index: 0;
+
+    div {
+        display: grid;
+        gap: .125rem;
+    }
+
+    strong {
+        font-size: .875rem;
+    }
+}
+
+.overlay-header span,
+.identity span,
+.overlay-footer span {
+    color: var(--fkt-color-neutral-700);
+    font-size: .75rem;
+}
+
+.group {
+    align-items: center;
+    background: var(--fkt-color-neutral-300);
+    color: var(--fkt-color-primary);
+    display: flex;
+    font-size: .75rem;
+    font-weight: 700;
+    justify-content: space-between;
+    padding: var(--fkt-space-inset-4xs) var(--fkt-space-inset-xs);
+    margin-bottom: var(--fkt-space-3xs);
+    text-transform: uppercase;
+}
+
+.group small {
+    color: var(--fkt-color-neutral-700);
+    font-size: .6875rem;
+    text-transform: none;
+}
+
+.item {
+    border-radius: var(--fkt-radius-md);
+    align-items: center;
+    display: grid;
+    gap: .75rem;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    padding: var(--fkt-space-inset-4xs) var(--fkt-space-inset-2xs);
+    cursor: pointer;
+    transition: var(--fkt-transition-base);
+
+    &.selected {
+        background: var(--fkt-color-neutral-300);
+    }
+
+    &:hover {
+        background: var(--fkt-color-neutral-200);
+    }
+}
+
+.identity {
+    display: grid;
+    gap: .125rem;
+    min-width: 0;
+
+    strong {
+        font-size: var(--fkt-font-size-sm);
+        color: var(--fkt-color-neutral-900);
+    }
+
+    strong, span {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+}
+
+.overlay-footer {
+    align-items: center;
+    border-top: 1px solid var(--fkt-color-neutral-300);
+    display: flex;
+    justify-content: space-between;
+    padding: var(--fkt-space-xs);
+    padding-bottom: 0;
+}
+
+pre {
+    margin: 1rem 0 0;
+}
+```
+
+### Search
+
+- id: search
+- type: introduction
+
+Search behavior. By default the component is server-search friendly: it emits debounced queries
+and displays the provided options. Use `localSearch` when the options in memory should be filtered
+by the component itself.
+
+### LocalSearch
+
+- id: local-search
+- type: story
+- component: AutocompleteLocalSearchExampleComponent
+
+Default local search. `localSearch` enables the built-in permissive filter, which compares label,
+name, and group using normalized text, so accents, casing, and punctuation do not make the search
+brittle.
+
+Example component: `AutocompleteLocalSearchExampleComponent`
+
+```ts title="autocomplete-local-search-example.component.ts"
+import { Component } from '@angular/core';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { FktAutocompleteComponent } from 'frakton-ng/autocomplete';
+import { COUNTRIES } from '../autocomplete-demo-data';
+import { CodeOutputComponent } from '@/components/code-output/code-output.component';
+
+@Component({
+    selector: 'app-autocomplete-local-search-example',
+    imports: [
+        FktAutocompleteComponent,
+        ReactiveFormsModule,
+        CodeOutputComponent,
+    ],
+    templateUrl: './autocomplete-local-search-example.component.html',
+    styleUrl: './autocomplete-local-search-example.component.scss',
+})
+export class AutocompleteLocalSearchExampleComponent {
+    protected readonly countries = COUNTRIES;
+    protected readonly country = new FormControl<string | null>(null);
+    protected readonly value = toSignal(this.country.valueChanges, {
+        initialValue: this.country.value,
+    });
+}
+```
+
+```html title="autocomplete-local-search-example.component.html"
+<app-code-output
+    [value]="value()"
+    title="Field value"
+/>
+
+<fkt-autocomplete
+    label="Country"
+    [formControl]="country"
+    placeholder="Hint: Search for 'de', 'germany' or 'europe'"
+    [options]="countries"
+    labelKey="name"
+    valueKey="code"
+    groupKey="continent"
+    localSearch
+/>
+```
+
+```css title="autocomplete-local-search-example.component.scss"
+pre {
+    margin: 1rem 0 0;
+}
+```
+
+### CustomLocalSearch
+
+- id: custom-local-search
+- type: story
+- component: AutocompleteCustomLocalSearchExampleComponent
+
+Custom local search. Passing a function to `localSearch` replaces the built-in filter and lets the
+consumer decide exactly which fields should be queried.
+
+Example component: `AutocompleteCustomLocalSearchExampleComponent`
+
+```ts title="autocomplete-custom-local-search-example.component.ts"
+import { Component } from '@angular/core';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { FktAutocompleteComponent } from 'frakton-ng/autocomplete';
+import { CodeOutputComponent } from '@/components/code-output/code-output.component';
+import { Country, COUNTRIES } from '../autocomplete-demo-data';
+
+@Component({
+    selector: 'app-autocomplete-custom-local-search-example',
+    imports: [
+        FktAutocompleteComponent,
+        ReactiveFormsModule,
+        CodeOutputComponent,
+    ],
+    templateUrl: './autocomplete-custom-local-search-example.component.html',
+    styleUrl: './autocomplete-custom-local-search-example.component.scss',
+})
+export class AutocompleteCustomLocalSearchExampleComponent {
+    protected readonly countries = COUNTRIES;
+    protected readonly country = new FormControl<string | null>(null);
+    protected readonly value = toSignal(this.country.valueChanges, {
+        initialValue: this.country.value,
+    });
+
+    protected readonly searchByCode = (query: string, options: Country[]) => {
+        const normalizedQuery = this.normalize(query);
+
+        if (!normalizedQuery) return options;
+
+        return options.filter((country) => {
+            return this.normalize(country.code).includes(normalizedQuery);
+        });
+    };
+
+    private normalize(value: string) {
+        return value
+            .normalize('NFD')
+            .replace(/\p{Diacritic}/gu, '')
+            .toLowerCase()
+            .trim();
+    }
+}
+```
+
+```html title="autocomplete-custom-local-search-example.component.html"
+<app-code-output
+    [value]="value()"
+    title="Field value"
+/>
+
+<fkt-autocomplete
+    label="Country"
+    [formControl]="country"
+    placeholder="Search by country code: br, de, us..."
+    [options]="countries"
+    labelKey="name"
+    valueKey="code"
+    groupKey="continent"
+    [localSearch]="searchByCode"
+/>
+```
+
+```css title="autocomplete-custom-local-search-example.component.scss"
+
+```
+
+### ServerSearch
+
+- id: server-search
+- type: story
+- component: AutocompleteServerSearchExampleComponent
+
+Server search with `searchChange`. The emitted query already respects `minSearch` and
+`searchDebounce`, so the consumer can fetch data directly without duplicating debounce logic.
+
+Example component: `AutocompleteServerSearchExampleComponent`
+
+```ts title="autocomplete-server-search-example.component.ts"
+import { Component, signal } from '@angular/core';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { FktAutocompleteComponent } from 'frakton-ng/autocomplete';
+import { USERS } from '../autocomplete-demo-data';
+import { CodeOutputComponent } from '@/components/code-output/code-output.component';
+
+@Component({
+    selector: 'app-autocomplete-server-search-example',
+    imports: [
+        FktAutocompleteComponent,
+        ReactiveFormsModule,
+        CodeOutputComponent,
+    ],
+    templateUrl: './autocomplete-server-search-example.component.html',
+    styleUrl: './autocomplete-server-search-example.component.scss',
+})
+export class AutocompleteServerSearchExampleComponent {
+    protected readonly user = new FormControl<string | null>(null);
+    protected readonly value = toSignal(this.user.valueChanges, {
+        initialValue: this.user.value,
+    });
+    protected readonly results = signal(USERS.slice(0, 4));
+    protected readonly loading = signal(false);
+
+    protected searchUsers(query: string) {
+        this.loading.set(true);
+
+        setTimeout(() => {
+            const normalizedQuery = query.toLowerCase();
+            this.results.set(
+                USERS.filter((user) =>
+                    user.name.toLowerCase().includes(normalizedQuery)
+                )
+            );
+            this.loading.set(false);
+        }, 400);
+    }
+}
+```
+
+```html title="autocomplete-server-search-example.component.html"
+<app-code-output
+    [value]="value()"
+    title="Field value"
+/>
+
+<fkt-autocomplete
+    label="User"
+    placeholder="Search for a user"
+    [formControl]="user"
+    [options]="results()"
+    [loading]="loading()"
+    labelKey="name"
+    valueKey="id"
+    (searchChange)="searchUsers($event)"
+/>
+```
+
+```css title="autocomplete-server-search-example.component.scss"
+pre {
+    margin: 1rem 0 0;
+}
+```
+
+### LazySearch
+
+- id: lazy-search
+- type: story
+- component: AutocompleteLazySearchExampleComponent
+
+Lazy search can be triggered from `isDropdownOpenedChange`. This is useful when the first request
+should happen only after the user opens the autocomplete instead of during initial page render.
+
+Example component: `AutocompleteLazySearchExampleComponent`
+
+```ts title="autocomplete-lazy-search-example.component.ts"
+import { Component, effect, signal } from '@angular/core';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { FktAutocompleteComponent } from 'frakton-ng/autocomplete';
+import { USERS } from '../autocomplete-demo-data';
+import { CodeOutputComponent } from '@/components/code-output/code-output.component';
+
+@Component({
+    selector: 'app-autocomplete-lazy-search-example',
+    imports: [
+        FktAutocompleteComponent,
+        ReactiveFormsModule,
+        CodeOutputComponent,
+    ],
+    templateUrl: './autocomplete-lazy-search-example.component.html',
+    styleUrl: './autocomplete-lazy-search-example.component.scss',
+})
+export class AutocompleteLazySearchExampleComponent {
+    protected readonly user = new FormControl<string | null>(null);
+    protected readonly value = toSignal(this.user.valueChanges, {
+        initialValue: this.user.value,
+    });
+    protected readonly results = signal<typeof USERS>([]);
+    protected readonly loading = signal(false);
+    protected readonly hasFetched = signal(false);
+    protected readonly canFetch = signal(false);
+
+    private readonly fetchWhenDropdownOpen = effect(() => {
+        if (!this.canFetch()) return;
+
+        this.fetch();
+    });
+
+    protected fetch() {
+        this.loading.set(true);
+
+        setTimeout(() => {
+            this.results.set(USERS.slice(0, 5));
+            this.hasFetched.set(true);
+            this.loading.set(false);
+        }, 400);
+    }
+}
+```
+
+```html title="autocomplete-lazy-search-example.component.html"
+<app-code-output
+    title="Fetch state"
+    [value]="{fetched: hasFetched(), value: value() }"
+/>
+
+<fkt-autocomplete
+    localSearch
+    label="User"
+    placeholder="Search for a user"
+    [formControl]="user"
+    [options]="results()"
+    [loading]="loading()"
+    labelKey="name"
+    valueKey="id"
+    (isDropdownOpenedChange)="canFetch.set(true)"
+/>
+```
+
+```css title="autocomplete-lazy-search-example.component.scss"
+pre {
+    margin: 1rem 0 0;
+}
+```
+
+### MinSearchAndDebounce
+
+- id: min-search-and-debounce
+- type: story
+- component: AutocompleteMinSearchExampleComponent
+
+`minSearch` delays searching until the query has enough characters. The same rule is used by
+local filtering and server search events, and the overlay explains the required length.
+
+Example component: `AutocompleteMinSearchExampleComponent`
+
+```ts title="autocomplete-min-search-example.component.ts"
+import { Component, signal } from '@angular/core';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { FktAutocompleteComponent } from 'frakton-ng/autocomplete';
+import { USERS } from '../autocomplete-demo-data';
+import { CodeOutputComponent } from '@/components/code-output/code-output.component';
+
+@Component({
+    selector: 'app-autocomplete-min-search-example',
+    imports: [
+        FktAutocompleteComponent,
+        ReactiveFormsModule,
+        CodeOutputComponent,
+    ],
+    templateUrl: './autocomplete-min-search-example.component.html',
+    styleUrl: './autocomplete-min-search-example.component.scss',
+})
+export class AutocompleteMinSearchExampleComponent {
+    protected readonly user = new FormControl<string | null>(null);
+    protected readonly value = toSignal(this.user.valueChanges, {
+        initialValue: this.user.value,
+    });
+    protected readonly results = signal(USERS);
+
+    protected searchUsers(query: string) {
+        this.results.set(
+            USERS.filter((user) =>
+                user.name.toLowerCase().includes(query.toLowerCase())
+            )
+        );
+    }
+}
+```
+
+```html title="autocomplete-min-search-example.component.html"
+<app-code-output
+    [value]="value()"
+    title="Field value"
+/>
+
+<fkt-autocomplete
+    label="User"
+    [formControl]="user"
+    placeholder="Hint: type 'wil'"
+    [options]="results()"
+    [minSearch]="3"
+    [searchDebounce]="500"
+    labelKey="name"
+    valueKey="id"
+    (searchChange)="searchUsers($event)"
+/>
+```
+
+```css title="autocomplete-min-search-example.component.scss"
+pre {
+    margin: 1rem 0 0;
+}
+```
+
+### ControlledDropdown
+
+- id: controlled-dropdown
+- type: story
+- component: AutocompleteControlledDropdownExampleComponent
+
+Overlay state can be controlled with `isDropdownOpened`. This is mostly useful for guided flows,
+external triggers, or advanced UI coordination.
+
+Example component: `AutocompleteControlledDropdownExampleComponent`
+
+```ts title="autocomplete-controlled-dropdown-example.component.ts"
+import { Component, signal } from '@angular/core';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { FktAutocompleteComponent } from 'frakton-ng/autocomplete';
+import { FktButtonComponent } from 'frakton-ng/button';
+import { COUNTRIES } from '../autocomplete-demo-data';
+import { CodeOutputComponent } from '@/components/code-output/code-output.component';
+
+@Component({
+    selector: 'app-autocomplete-controlled-dropdown-example',
+    imports: [
+        FktAutocompleteComponent,
+        FktButtonComponent,
+        ReactiveFormsModule,
+        CodeOutputComponent,
+    ],
+    templateUrl: './autocomplete-controlled-dropdown-example.component.html',
+    styleUrl: './autocomplete-controlled-dropdown-example.component.scss',
+})
+export class AutocompleteControlledDropdownExampleComponent {
+    protected readonly countries = COUNTRIES;
+    protected readonly country = new FormControl<string | null>(null);
+    protected readonly value = toSignal(this.country.valueChanges, {
+        initialValue: this.country.value,
+    });
+    protected readonly isDropdownOpened = signal(false);
+
+    protected open() {
+        this.isDropdownOpened.set(true);
+    }
+
+    protected close() {
+        this.isDropdownOpened.set(false);
+    }
+}
+```
+
+```html title="autocomplete-controlled-dropdown-example.component.html"
+<app-code-output
+    [value]="{ opened: isDropdownOpened(), value: value() }"
+    title="Dropdown state"
+/>
+
+<div class="actions">
+    <fkt-button text="Open" (click)="open()"/>
+    <fkt-button text="Close" (click)="close()"/>
+</div>
+
+<fkt-autocomplete
+    label="Country"
+    placeholder="Search for a country"
+    [formControl]="country"
+    [options]="countries"
+    labelKey="name"
+    valueKey="code"
+    [(isDropdownOpened)]="isDropdownOpened"
+    localSearch
+/>
+```
+
+```css title="autocomplete-controlled-dropdown-example.component.scss"
+.actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .75rem;
+    margin-bottom: 1rem;
+}
+```
+
+### DataLoading
+
+- id: data-loading
+- type: introduction
+
+Large and remote datasets. Infinite loading and virtual scroll are opt-in directives so normal
+autocomplete usage stays simple while heavy scenarios can add explicit performance behavior.
+
+### InfiniteLoading
+
+- id: infinite-loading
+- type: story
+- component: AutocompleteInfiniteLoadingExampleComponent
+
+Infinite loading uses a sentinel inside the options overlay. It emits `loadMore` when the user
+reaches the end and respects the component loading state to avoid repeated requests.
+
+Example component: `AutocompleteInfiniteLoadingExampleComponent`
+
+```ts title="autocomplete-infinite-loading-example.component.ts"
+import { Component, computed, signal } from '@angular/core';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { FktAutocompleteComponent, FktAutocompleteInfiniteLoadingDirective } from 'frakton-ng/autocomplete';
+import { createLargeUserList } from '../autocomplete-demo-data';
+import { CodeOutputComponent } from '@/components/code-output/code-output.component';
+
+@Component({
+    selector: 'app-autocomplete-infinite-loading-example',
+    imports: [
+        FktAutocompleteComponent,
+        FktAutocompleteInfiniteLoadingDirective,
+        ReactiveFormsModule,
+        CodeOutputComponent,
+    ],
+    templateUrl: './autocomplete-infinite-loading-example.component.html',
+    styleUrl: './autocomplete-infinite-loading-example.component.scss',
+})
+export class AutocompleteInfiniteLoadingExampleComponent {
+    private readonly allUsers = createLargeUserList(80);
+    private readonly pageSize = 20;
+
+    protected readonly user = new FormControl<string | null>(null);
+    protected readonly value = toSignal(this.user.valueChanges, {
+        initialValue: this.user.value,
+    });
+    protected readonly page = signal(1);
+    protected readonly loading = signal(false);
+    protected readonly visibleUsers = computed(() =>
+        this.allUsers.slice(0, this.page() * this.pageSize)
+    );
+    protected readonly hasEnded = computed(
+        () => this.visibleUsers().length >= this.allUsers.length
+    );
+
+    protected loadMore() {
+        if (this.loading() || this.hasEnded()) return;
+
+        this.loading.set(true);
+
+        setTimeout(() => {
+            this.page.update((page) => page + 1);
+            this.loading.set(false);
+        }, 1500);
+    }
+}
+```
+
+```html title="autocomplete-infinite-loading-example.component.html"
+<app-code-output
+    [value]="value()"
+    title="Field value"
+/>
+
+<fkt-autocomplete
+    label="User"
+    placeholder="Search for a user"
+    [formControl]="user"
+    [options]="visibleUsers()"
+    [loading]="loading()"
+    labelKey="name"
+    valueKey="id"
+    fktAutocompleteInfiniteLoading
+    [hasEnded]="hasEnded()"
+    (loadMore)="loadMore()"
+/>
+```
+
+```css title="autocomplete-infinite-loading-example.component.scss"
+pre {
+    margin: 1rem 0 0;
+}
+```
+
+### VirtualScroll
+
+- id: virtual-scroll
+- type: story
+- component: AutocompleteVirtualScrollExampleComponent
+
+Virtual scroll renders only the visible option rows. This example lazy-loads ten thousand users
+when the dropdown opens, then renders the grouped list with explicit virtual dimensions.
+
+Example component: `AutocompleteVirtualScrollExampleComponent`
+
+```ts title="autocomplete-virtual-scroll-example.component.ts"
+import { Component, signal } from '@angular/core';
+import { httpResource } from '@angular/common/http';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { FktAutocompleteComponent, FktAutocompleteVirtualScrollDirective } from 'frakton-ng/autocomplete';
+import { User } from '../autocomplete-demo-data';
+import { CodeOutputComponent } from '@/components/code-output/code-output.component';
+
+@Component({
+    selector: 'app-autocomplete-virtual-scroll-example',
+    imports: [
+        FktAutocompleteComponent,
+        FktAutocompleteVirtualScrollDirective,
+        ReactiveFormsModule,
+        CodeOutputComponent,
+    ],
+    templateUrl: './autocomplete-virtual-scroll-example.component.html',
+    styleUrl: './autocomplete-virtual-scroll-example.component.scss',
+})
+export class AutocompleteVirtualScrollExampleComponent {
+    protected readonly canFetch = signal(false);
+    protected readonly users = httpResource<User[]>(
+        () => (this.canFetch() ? 'api/users-10K.json' : undefined),
+        { defaultValue: [] }
+    );
+    protected readonly user = new FormControl<string | null>(null);
+    protected readonly value = toSignal(this.user.valueChanges, {
+        initialValue: this.user.value,
+    });
+
+    protected readonly getCountryGroup = (user: User) =>
+        user.country ?? 'Unknown';
+}
+```
+
+```html title="autocomplete-virtual-scroll-example.component.html"
+<app-code-output
+    [value]="value()"
+    title="Field value"
+/>
+
+<fkt-autocomplete
+    label="User"
+    [formControl]="user"
+    [options]="users.value()"
+    [loading]="users.isLoading()"
+    labelKey="name"
+    valueKey="id"
+    [groupKey]="getCountryGroup"
+    (isDropdownOpenedChange)="canFetch.set($event)"
+    fktAutocompleteVirtualScroll
+    [virtualItemHeight]="40"
+    [virtualGroupHeight]="24"
+    [maxVirtualItems]="10000"
+/>
+```
+
+```css title="autocomplete-virtual-scroll-example.component.scss"
+pre {
+    margin: 1rem 0 0;
+}
+```
+
+### Forms
+
+- id: forms
+- type: introduction
+
+Form integration. The component implements ControlValueAccessor and works with Angular Signal
+Forms and Reactive Forms while keeping its internal search input as a private implementation
+detail.
+
+### SignalForms
+
+- id: signal-forms
+- type: story
+- component: AutocompleteSignalFormsExampleComponent
+
+Signal Forms integration through Angular's `[field]` directive. The autocomplete value is still
+normalized through `valueKey`, while validation and disabled state are provided by the form field.
+
+Example component: `AutocompleteSignalFormsExampleComponent`
+
+```ts title="autocomplete-signal-forms-example.component.ts"
+import { Component, signal } from '@angular/core';
+import { disabled, Field, form, required } from '@angular/forms/signals';
+import { FktAutocompleteComponent } from 'frakton-ng/autocomplete';
+import { FktButtonComponent } from 'frakton-ng/button';
+import { COUNTRIES } from '../autocomplete-demo-data';
+import { CodeOutputComponent } from '@/components/code-output/code-output.component';
+
+@Component({
+    selector: 'app-autocomplete-signal-forms-example',
+    imports: [
+        FktAutocompleteComponent,
+        FktButtonComponent,
+        Field,
+        CodeOutputComponent,
+    ],
+    templateUrl: './autocomplete-signal-forms-example.component.html',
+    styleUrl: './autocomplete-signal-forms-example.component.scss',
+})
+export class AutocompleteSignalFormsExampleComponent {
+    protected readonly countries = COUNTRIES;
+    protected readonly model = signal({ country: '' });
+    private disabled = signal(false);
+
+    protected readonly form = form(this.model, (schema) => {
+        required(schema.country);
+        disabled(schema.country, this.disabled);
+    });
+
+    protected fill() {
+        this.model.set({ country: 'br' });
+    }
+
+    protected reset() {
+        this.model.set({ country: '' });
+    }
+
+    protected toggleDisabled() {
+        this.disabled.set(!this.disabled());
+    }
+}
+```
+
+```html title="autocomplete-signal-forms-example.component.html"
+<app-code-output
+    [value]="model()"
+    title="Form value"
+/>
+
+<div class="actions">
+    <fkt-button text="Fill" (click)="fill()" />
+    <fkt-button text="Reset" (click)="reset()" />
+    <fkt-button text="Toggle disabled" (click)="toggleDisabled()" />
+</div>
+
+<fkt-autocomplete
+    label="Country"
+    [field]="form.country"
+    [options]="countries"
+    labelKey="name"
+    valueKey="code"
+    groupKey="continent"
+    localSearch
+/>
+```
+
+```css title="autocomplete-signal-forms-example.component.scss"
+.actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .75rem;
+    margin-bottom: 1rem;
+}
+
+pre {
+    margin: 1rem 0 0;
+}
+```
+
+### ReactiveForms
+
+- id: reactive-forms
+- type: story
+- component: AutocompleteReactiveFormsExampleComponent
+
+Reactive Forms integration with validation, programmatic updates, reset, and disabled state.
+
+Example component: `AutocompleteReactiveFormsExampleComponent`
+
+```ts title="autocomplete-reactive-forms-example.component.ts"
+import { Component, inject } from '@angular/core';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { map } from 'rxjs';
+import { FktAutocompleteComponent } from 'frakton-ng/autocomplete';
+import { FktButtonComponent } from 'frakton-ng/button';
+import { USERS } from '../autocomplete-demo-data';
+import { CodeOutputComponent } from '@/components/code-output/code-output.component';
+
+@Component({
+    selector: 'app-autocomplete-reactive-forms-example',
+    imports: [
+        FktAutocompleteComponent,
+        FktButtonComponent,
+        ReactiveFormsModule,
+        CodeOutputComponent,
+    ],
+    templateUrl: './autocomplete-reactive-forms-example.component.html',
+    styleUrl: './autocomplete-reactive-forms-example.component.scss',
+})
+export class AutocompleteReactiveFormsExampleComponent {
+    protected readonly users = USERS;
+    protected readonly form = inject(FormBuilder).group({
+        assignee: ['', Validators.required],
+    });
+    protected readonly formValue = toSignal(
+        this.form.valueChanges.pipe(map(() => this.form.getRawValue())),
+        { initialValue: this.form.getRawValue() }
+    );
+
+    protected fill() {
+        this.form.patchValue({ assignee: 'usr-1002' });
+    }
+
+    protected reset() {
+        this.form.reset();
+    }
+
+    protected toggleDisabled() {
+        const control = this.form.controls.assignee;
+
+        if (control.disabled) control.enable();
+        else control.disable();
+    }
+}
+```
+
+```html title="autocomplete-reactive-forms-example.component.html"
+<app-code-output
+    [value]="formValue()"
+    title="Form value"
+/>
+
+<form [formGroup]="form">
+    <fkt-autocomplete
+        label="Assignee"
+        formControlName="assignee"
+        [options]="users"
+        labelKey="name"
+        valueKey="id"
+        groupKey="department"
+        localSearch
+    />
+</form>
+
+<div class="actions">
+    <fkt-button text="Fill" (click)="fill()" />
+    <fkt-button text="Reset" (click)="reset()" />
+    <fkt-button text="Toggle disabled" (click)="toggleDisabled()" />
 </div>
 ```
 
-```css title="fkt-autocomplete-loading-states-example.component.scss"
-p {
-	margin: 0;
+```css title="autocomplete-reactive-forms-example.component.scss"
+.actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .75rem;
+    margin-top: 1rem;
 }
 
-* {
-	box-sizing: border-box;
+pre {
+    margin: 1rem 0 0;
 }
+```
 
-hr {
-	border: none;
-	border-bottom: solid 1px var(--fkt-color-neutral-300);
-	margin: 0;
+### FieldCompositionAndValidations
+
+- id: field-composition-and-validations
+- type: introduction
+
+Field composition and validation examples. `fkt-autocomplete` composes `fkt-field` internally, so
+it inherits the same prefix, suffix, hint, required marker, and error projection contract. Import
+field slot directives from `frakton-ng/field` when you need to customize those regions.
+
+Read the full field contract in the [Field documentation](/docs/field/features).
+
+### FieldComposition
+
+- id: field-composition
+- type: story
+- component: AutocompleteFieldCompositionExampleComponent
+
+Field composition slots. Prefix, suffix, hint start, and hint end are projected into the internal
+`fkt-field`. A custom suffix replaces the autocomplete default action button.
+
+Example component: `AutocompleteFieldCompositionExampleComponent`
+
+```ts title="autocomplete-field-composition-example.component.ts"
+import { Component } from '@angular/core';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { FktAutocompleteComponent } from 'frakton-ng/autocomplete';
+import {
+    FktFieldPrefixDirective,
+    FktFieldSuffixDirective,
+    FktHintEndDirective,
+    FktHintStartDirective,
+} from 'frakton-ng/field';
+import { FktIconComponent } from 'frakton-ng/icon';
+import { CodeOutputComponent } from '@/components/code-output/code-output.component';
+import { USERS } from '../autocomplete-demo-data';
+
+@Component({
+    selector: 'app-autocomplete-field-composition-example',
+    imports: [
+        FktAutocompleteComponent,
+        FktFieldPrefixDirective,
+        FktFieldSuffixDirective,
+        FktHintEndDirective,
+        FktHintStartDirective,
+        FktIconComponent,
+        ReactiveFormsModule,
+        CodeOutputComponent,
+    ],
+    templateUrl: './autocomplete-field-composition-example.component.html',
+    styleUrl: './autocomplete-field-composition-example.component.scss',
+})
+export class AutocompleteFieldCompositionExampleComponent {
+    protected readonly users = USERS;
+    protected readonly user = new FormControl<string | null>(null);
+    protected readonly value = toSignal(this.user.valueChanges, {
+        initialValue: this.user.value,
+    });
 }
+```
 
-.example-container {
-	width: 100%;
-	padding: 1rem;
+```html title="autocomplete-field-composition-example.component.html"
+<app-code-output
+    [value]="value()"
+    title="Field value"
+/>
 
-	h3 {
-		margin-bottom: 0.5rem;
-		color: var(--color-text-primary);
-	}
+<fkt-autocomplete
+    label="Reviewer"
+    placeholder="Search users"
+    [formControl]="user"
+    [options]="users"
+    labelKey="name"
+    valueKey="id"
+    groupKey="department"
+    localSearch
+>
+    <fkt-icon fktFieldPrefix name="user" />
+    <fkt-icon fktFieldSuffix name="information-circle" />
 
-	.description {
-		margin-bottom: 1rem;
-		color: var(--color-text-secondary);
-		font-size: 0.875rem;
-	}
+    <span fktHintStart>Search by user name or department.</span>
+    <span fktHintEnd>Optional</span>
+</fkt-autocomplete>
+```
 
-	.controls {
-		display: flex;
-		gap: 0.5rem;
-		margin-top: 1rem;
-		flex-wrap: wrap;
-	}
+```css title="autocomplete-field-composition-example.component.scss"
 
-	.selected-option {
-		margin-top: var(--fkt-space-xs);
-		padding: var(--fkt-space-sm);
-		border-radius: var(--fkt-radius-md);
-		font-size: var(--fkt-font-size-sm);
-		box-shadow: var(--fkt-shadow-md);
-		border: 1px solid var(--fkt-color-neutral-200);
-		display: flex;
-		flex-direction: column;
-		gap: var(--fkt-space-xs);
+```
 
-		.info {
-			display: flex;
-			flex-direction: column;
-			gap: var(--fkt-space-xs);
-		}
+### AutomaticValidation
 
-		.title {
-			display: flex;
-			flex-direction: column;
-		}
-	}
+- id: automatic-validation
+- type: story
+- component: AutocompleteAutomaticValidationExampleComponent
 
-	.state-indicator {
-		margin-top: 1rem;
-		padding: 1rem;
-		background-color: #155DFC14;
-		border-radius: 4px;
-		border-left: 4px solid var(--fkt-color-info);
+Automatic validation. Without `[fktError]`, the internal `fkt-field` renders the configured
+automatic error message and keeps the same visibility rule used by other field-based controls.
 
-		.state-item {
-			display: flex;
-			justify-content: space-between;
-			align-items: center;
-			margin-bottom: var(--fkt-space-xs);
-			font-size: var(--fkt-font-size-sm);
+Example component: `AutocompleteAutomaticValidationExampleComponent`
 
-			&:last-child {
-				margin-bottom: 0;
-			}
+```ts title="autocomplete-automatic-validation-example.component.ts"
+import { Component } from '@angular/core';
+import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { FktAutocompleteComponent } from 'frakton-ng/autocomplete';
+import {
+    FktFieldPrefixDirective,
+    FktFieldSuffixDirective,
+    FktHintEndDirective,
+    FktHintStartDirective,
+} from 'frakton-ng/field';
+import { FktButtonComponent } from 'frakton-ng/button';
+import { FktIconComponent } from 'frakton-ng/icon';
+import { CodeOutputComponent } from '@/components/code-output/code-output.component';
+import { USERS } from '../autocomplete-demo-data';
 
-			.state-label {
-				font-weight: 500;
-			}
+@Component({
+    selector: 'app-autocomplete-automatic-validation-example',
+    imports: [
+        FktAutocompleteComponent,
+        FktButtonComponent,
+        FktFieldPrefixDirective,
+        FktFieldSuffixDirective,
+        FktHintEndDirective,
+        FktHintStartDirective,
+        FktIconComponent,
+        ReactiveFormsModule,
+        CodeOutputComponent,
+    ],
+    templateUrl: './autocomplete-automatic-validation-example.component.html',
+    styleUrl: './autocomplete-automatic-validation-example.component.scss',
+})
+export class AutocompleteAutomaticValidationExampleComponent {
+    protected readonly users = USERS;
+    protected readonly assignee = new FormControl<string | null>(null, {
+        validators: [Validators.required],
+    });
+    protected readonly value = toSignal(this.assignee.valueChanges, {
+        initialValue: this.assignee.value,
+    });
 
-			.state-value {
-				font-weight: 600;
+    protected validate() {
+        this.assignee.markAsTouched();
+        this.assignee.updateValueAndValidity();
+    }
+}
+```
 
-				&.loading-state {
-					color: var(--fkt-color-info, #2196f3);
-				}
+```html title="autocomplete-automatic-validation-example.component.html"
+<app-code-output
+    [value]="value()"
+    title="Field value"
+/>
 
-				&.ready-state {
-					color: var(--fkt-color-success, #4caf50);
-				}
-			}
-		}
-	}
+<fkt-autocomplete
+    label="Assignee"
+    placeholder="Select an assignee"
+    [formControl]="assignee"
+    [options]="users"
+    labelKey="name"
+    valueKey="id"
+    groupKey="department"
+    localSearch
+>
+    <fkt-icon fktFieldPrefix name="user" />
+    <fkt-icon fktFieldSuffix name="information-circle" />
 
-	.usage-tips {
-		margin-top: var(--fkt-space-xl);
-		padding: var(--fkt-space-md);
-		background-color: #155DFC14;
-		border-radius: var(--fkt-radius-md);
+    <span fktHintStart>The automatic error comes from the field error resolver.</span>
+    <span fktHintEnd>Required</span>
+</fkt-autocomplete>
 
-		h4 {
-			margin: 0 0 var(--fkt-space-xs);
-			font-size: var(--fkt-font-size-sm);
-			font-weight: var(--fkt-font-semibold);
-		}
+<div class="actions">
+    <fkt-button text="Validate" (click)="validate()" />
+</div>
+```
 
-		ul {
-			margin: 0;
-			padding-left: var(--fkt-space-lg);
-			color: var(--color-text-secondary);
-			font-size: var(--fkt-font-size-sm);
+```css title="autocomplete-automatic-validation-example.component.scss"
+.actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .75rem;
+    margin-top: 1rem;
+}
+```
 
-			li {
-				margin-bottom: var(--fkt-space-xs);
+### ManualValidation
 
-				&:last-child {
-					margin-bottom: 0;
-				}
-			}
-		}
-	}
+- id: manual-validation
+- type: story
+- component: AutocompleteManualValidationExampleComponent
+
+Manual validation content. Project `[fktError]` when the autocomplete needs custom error markup
+while still using the field's invalid state, spacing, and visibility behavior.
+
+Example component: `AutocompleteManualValidationExampleComponent`
+
+```ts title="autocomplete-manual-validation-example.component.ts"
+import { Component } from '@angular/core';
+import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { FktAutocompleteComponent } from 'frakton-ng/autocomplete';
+import {
+    FktErrorDirective,
+    FktFieldErrorComponent,
+    FktFieldPrefixDirective,
+    FktFieldSuffixDirective,
+    FktHintEndDirective,
+    FktHintStartDirective,
+} from 'frakton-ng/field';
+import { FktButtonComponent } from 'frakton-ng/button';
+import { FktIconComponent } from 'frakton-ng/icon';
+import { CodeOutputComponent } from '@/components/code-output/code-output.component';
+import { USERS } from '../autocomplete-demo-data';
+
+@Component({
+    selector: 'app-autocomplete-manual-validation-example',
+    imports: [
+        FktAutocompleteComponent,
+        FktButtonComponent,
+        FktErrorDirective,
+        FktFieldErrorComponent,
+        FktFieldPrefixDirective,
+        FktFieldSuffixDirective,
+        FktHintEndDirective,
+        FktHintStartDirective,
+        FktIconComponent,
+        ReactiveFormsModule,
+        CodeOutputComponent,
+    ],
+    templateUrl: './autocomplete-manual-validation-example.component.html',
+    styleUrl: './autocomplete-manual-validation-example.component.scss',
+})
+export class AutocompleteManualValidationExampleComponent {
+    protected readonly users = USERS;
+    protected readonly approver = new FormControl<string | null>(null, {
+        validators: [Validators.required],
+    });
+    protected readonly value = toSignal(this.approver.valueChanges, {
+        initialValue: this.approver.value,
+    });
+
+    protected validate() {
+        this.approver.markAsTouched();
+        this.approver.updateValueAndValidity();
+    }
+}
+```
+
+```html title="autocomplete-manual-validation-example.component.html"
+<app-code-output
+    [value]="value()"
+    title="Field value"
+/>
+
+<fkt-autocomplete
+    label="Approver"
+    placeholder="Select an approver"
+    [formControl]="approver"
+    [options]="users"
+    labelKey="name"
+    valueKey="id"
+    groupKey="department"
+    localSearch
+>
+    <fkt-icon fktFieldPrefix name="user" />
+    <fkt-icon fktFieldSuffix name="information-circle" />
+
+    <span fktHintStart>Projected error content replaces the automatic message.</span>
+    <span fktHintEnd>Required</span>
+
+    <fkt-field-error fktError>
+        Choose an approver before continuing.
+    </fkt-field-error>
+</fkt-autocomplete>
+
+<div class="actions">
+    <fkt-button text="Validate" (click)="validate()" />
+</div>
+```
+
+```css title="autocomplete-manual-validation-example.component.scss"
+.actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .75rem;
+    margin-top: 1rem;
 }
 ```
 
 ## API Reference
 
-## Key Features
-
-- **Real-time Search**: Filter options as user types with search event emission for API integration
-- **Auto-creation**: Allow users to create new options by typing custom values not in predefined list
-- **Action Buttons**: Add custom actions to each option (edit, delete, favorite, etc.) with event callbacks
-- **Loading States**: Built-in support for async data loading with loading indicators and spinners
-- **Custom No Results**: Configurable messaging when no options match search criteria
-- **Form Integration**: Seamless integration with SignalFormControl and Angular reactive forms
-- **Keyboard Navigation**: Full keyboard support for accessibility (Arrow keys, Enter, Escape)
-- **Signal-Based Architecture**: Built with modern Angular signals for optimal performance
-
-## Configuration Options
+## API Reference
 
 <arg-types></arg-types>
 
-### Types
+## Value Model
 
-```typescript
-// Core option interface for autocomplete items
-export interface FktAutocompleteOption {
-    value: string | number;  // Unique identifier for the option
-    label: string;           // Display text shown to user
-}
+`fkt-autocomplete` separates the search query from the form value.
 
-// Configuration for no results message
-export interface FktNoResults {
-    label: string;           // Message text when no options match
-}
+- The query is temporary text used to search and resolve options.
+- The form value is the selected primitive value derived from `valueKey`.
+- Multiple mode stores an array of primitive values.
+- Object values written programmatically are normalized to primitives.
 
-// Action button configuration (from frakton-ng/button)
-export interface FktButtonAction {
-    icon: string;            // Icon name for the action button
-    color: string;           // Button color theme
-    theme: string;           // Button visual theme
-    identifier: string;     // Unique identifier for action handling
-}
+## Option Resolution
+
+Primitive values are resolved against the current options first. If the option is not available yet,
+the primitive value is used as a temporary label so edit screens can render before async data arrives.
+
+Full option objects written programmatically are treated as hydrated/preloaded values:
+
+- `valueKey` is used to normalize the form value.
+- `labelKey` is used to render the visible label.
+- Preloaded values do not automatically appear in the dropdown.
+- When a real option with the same value later appears in `options`, it replaces the preloaded label.
+
+`labelKey`, `valueKey`, and `groupKey` accept property names or functions:
+
+```angular2html
+<fkt-autocomplete
+    [labelKey]="getLabel"
+    [valueKey]="getValue"
+    [groupKey]="getGroup"
+/>
 ```
 
-## Component Architecture
+## Search
 
-The FktAutocomplete component is built with a modular architecture using Angular signals:
+By default, the component is server-search friendly. It emits `searchChange` after `minSearch` and
+`searchDebounce` are satisfied, and renders the options provided by the consumer.
 
-### Core Components
+Use `localSearch` when the current `options` array should be filtered by the component:
 
-- **FktAutocompleteComponent**: Main component managing state, search, and user interactions
-- **Input Integration**: Built-in integration with Angular reactive forms and validation
+```angular2html
+<fkt-autocomplete localSearch />
+```
 
-### State Management
+Passing a function to `localSearch` replaces the built-in search:
 
-Signal-based reactive state management provides optimal performance:
+```angular2html
+<fkt-autocomplete [localSearch]="customSearch" />
+```
 
-- `selectedValue` signal controls the current selection with two-way binding
-- `options` signal manages the available option list with reactive updates
-- `loading` signal provides loading state management for async operations
-- `search` event emission enables real-time API integration for dynamic option loading
+The built-in local search checks label, name, and group using normalized text comparison.
 
-## Use Cases
+Use `isDropdownOpenedChange` when data should be fetched lazily only after the user opens the
+autocomplete:
 
-**User Selection Systems**: Perfect for selecting users, customers, or any entity from large datasets in CRM systems, task management, and user assignment scenarios.
+```angular2html
+<fkt-autocomplete
+    (isDropdownOpenedChange)="$event && fetchOptions()"
+    (searchChange)="searchOptions($event)"
+/>
+```
 
-**Tag Management**: Ideal for tag-based systems with creation capabilities including blog post tagging, product categorization, skill tagging for profiles, and content classification.
+Use `isDropdownOpened` as a two-way model when the overlay must be controlled externally:
 
-**Location Selection**: Great for location-based inputs such as country/state selection, city autocomplete with API integration, and address suggestion systems.
+```angular2html
+<fkt-autocomplete [(isDropdownOpened)]="opened" />
+```
 
-**Product & Service Search**: Excellent for product catalogs including e-commerce product search, inventory selection, service picking, and dynamic catalog browsing.
+## Commit Behavior
 
-**Dynamic Data Entry**: Perfect for scenarios requiring flexible data input with both predefined options and user-created values.
+When the overlay closes, typed text is resolved before the component discards it:
 
-## Accessibility
+- If the text matches an option by value or label, that option is applied.
+- If it does not match and `freeText` is false, the search field is cleared.
+- If it does not match and `freeText` is true, the typed value becomes the selected value.
+- In multiple mode, free text is added as a chip and the search field is cleared.
 
-**Keyboard Navigation**: Full keyboard support with arrow keys for option navigation, Enter key for selection, Escape key to close dropdown, and Tab for focus management.
+## Field Composition
 
-**Screen Reader Support**: Proper ARIA labels and announcements, role attributes for dropdown behavior, live region updates for search results, and clear option identification.
+`fkt-autocomplete` composes `fkt-field` internally. Because of that, the same field inputs can be
+passed directly to the autocomplete:
 
-**Focus Management**: Logical focus flow between input and options, visible focus indicators for all interactive elements, and proper focus restoration after selection.
+- `hint`
+- `showError`
+- `size`
+- `requiredMarker`
+- `hideLabel`
 
-**High Contrast**: Full support for system high contrast modes, clear visual boundaries for all states, and sufficient color contrast ratios.
+The autocomplete also accepts the field projection slots. Import those directives and components
+from `frakton-ng/field`:
 
-**Label Association**: Proper label-input relationships for screen readers, descriptive placeholder text, and clear error messaging integration.
+```ts
+import {
+  FktErrorDirective,
+  FktFieldErrorComponent,
+  FktFieldPrefixDirective,
+  FktFieldSuffixDirective,
+  FktHintEndDirective,
+  FktHintStartDirective,
+} from 'frakton-ng/field';
+```
 
-## Performance
+```angular2html
+<fkt-autocomplete label="User" formControlName="user" [options]="users">
+  <fkt-icon fktFieldPrefix name="user" />
+  <span fktHintStart>Search by name or department.</span>
+  <span fktHintEnd>Required</span>
 
-**Signal-Based Reactivity**: Built with Angular signals for efficient change detection, minimal re-renders, and optimized performance with large option lists.
+  <fkt-field-error fktError>
+    Select a valid user.
+  </fkt-field-error>
+</fkt-autocomplete>
+```
 
-**Lazy Loading**: Support for dynamic option loading, efficient search debouncing, and memory-optimized rendering for large datasets.
+`fktFieldSuffix` replaces the default autocomplete action button. Use it when the trailing action
+area needs custom behavior.
 
-**Async Integration**: Designed for real-time API integration with built-in loading states, error handling, and search result management.
+For the full field contract, see [Field documentation](/docs/field/features).
+
+## Templates
+
+The overlay accepts projected templates for advanced rendering:
+
+- `fktAutocompleteHeader`
+- `fktAutocompleteGroup`
+- `fktAutocompleteItem`
+- `fktAutocompleteFooter`
+
+Templates customize rendering only. Keyboard navigation, active descendant, selection, form value,
+and overlay behavior remain managed by the component.
+
+## Performance Directives
+
+`fktAutocompleteInfiniteLoading` adds a sentinel to the overlay and emits `loadMore` when the end is
+visible.
+
+`fktAutocompleteVirtualScroll` renders only visible rows and requires explicit virtual dimensions:
+
+```angular2html
+<fkt-autocomplete
+    fktAutocompleteVirtualScroll
+    [virtualItemHeight]="40"
+    [maxVirtualItems]="1000"
+/>
+```
+
+The explicit limit prevents development-time surprises with browser scroll-height limits.

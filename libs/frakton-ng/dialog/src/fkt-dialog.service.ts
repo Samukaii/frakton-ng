@@ -85,6 +85,8 @@ export class FktDialogService {
 		const overlayRef: FktOverlayRef<T> = {
 			componentRef,
 			stackIndex,
+            focusFirstElement: () => anchor.componentRef.instance.focusFirstElement(),
+            restoreFocus: () => anchor.componentRef.instance.restoreFocus(),
 			close,
 		};
 

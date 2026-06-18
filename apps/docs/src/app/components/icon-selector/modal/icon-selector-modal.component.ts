@@ -1,12 +1,12 @@
 import { Component, computed, model, signal } from '@angular/core';
-import { FktInputComponent } from 'frakton-ng/input';
+import { FktInputOldComponent } from 'frakton-ng/input-old';
 import { FktIconName, fontIconNames } from 'frakton-ng/icon';
 import { IconSelectorItemComponent } from '@/components/icon-selector/item/icon-selector-item.component';
 
 @Component({
   selector: 'fkt-icon-selector-modal',
     imports: [
-        FktInputComponent,
+        FktInputOldComponent,
         IconSelectorItemComponent
     ],
   templateUrl: './icon-selector-modal.component.html',

@@ -242,7 +242,7 @@ Interactive documentation that goes beyond traditional UI libraries:
 
 ## 📦 **Complete Component Library**
 
-### **25+ Production-Ready Components**
+### **33+ Production-Ready Components**
 
 #### **Actions**
 

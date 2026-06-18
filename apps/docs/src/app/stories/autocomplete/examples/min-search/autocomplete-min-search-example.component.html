@@ -1,0 +1,16 @@
+<app-code-output
+    [value]="value()"
+    title="Field value"
+/>
+
+<fkt-autocomplete
+    label="User"
+    [formControl]="user"
+    placeholder="Hint: type 'wil'"
+    [options]="results()"
+    [minSearch]="3"
+    [searchDebounce]="500"
+    labelKey="name"
+    valueKey="id"
+    (searchChange)="searchUsers($event)"
+/>

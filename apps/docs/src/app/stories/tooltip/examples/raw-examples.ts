@@ -22,17 +22,17 @@ export default {
 			{
 				name: "basic-tooltip-example.component.html",
 				content: basicTooltipExampleTemplate as string,
-				language: "html" as "html",
+				language: "angular2html" as const,
 			},		
 			{
 				name: "basic-tooltip-example.component.ts",
 				content: basicTooltipExampleTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "basic-tooltip-example.component.scss",
 				content: basicTooltipExampleStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},
@@ -43,17 +43,17 @@ export default {
 			{
 				name: "different-elements-example.component.html",
 				content: differentElementsExampleTemplate as string,
-				language: "html" as "html",
+				language: "angular2html" as const,
 			},		
 			{
 				name: "different-elements-example.component.ts",
 				content: differentElementsExampleTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "different-elements-example.component.scss",
 				content: differentElementsExampleStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},
@@ -64,17 +64,17 @@ export default {
 			{
 				name: "interactive-tooltip-example.component.html",
 				content: interactiveTooltipExampleTemplate as string,
-				language: "html" as "html",
+				language: "angular2html" as const,
 			},		
 			{
 				name: "interactive-tooltip-example.component.ts",
 				content: interactiveTooltipExampleTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "interactive-tooltip-example.component.scss",
 				content: interactiveTooltipExampleStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},
@@ -85,17 +85,17 @@ export default {
 			{
 				name: "positioning-tooltip-example.component.html",
 				content: positioningTooltipExampleTemplate as string,
-				language: "html" as "html",
+				language: "angular2html" as const,
 			},		
 			{
 				name: "positioning-tooltip-example.component.ts",
 				content: positioningTooltipExampleTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "positioning-tooltip-example.component.scss",
 				content: positioningTooltipExampleStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},

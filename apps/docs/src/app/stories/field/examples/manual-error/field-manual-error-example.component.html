@@ -1,0 +1,12 @@
+<fkt-field
+    label="E-mail"
+    [showError]="submitted() && form.email().invalid()"
+>
+    <fkt-icon fktFieldPrefix name="envelope"/>
+    <input fktInputText [field]="form.email" placeholder="Enter an e-mail">
+</fkt-field>
+
+<fkt-button
+    (click)="submitted.set(true)"
+    text="Submit"
+/>

@@ -1,0 +1,11 @@
+<fkt-field label="Inferred">
+    <input fktInputText [field]="form.inferred" placeholder="Inferred from validation">
+</fkt-field>
+
+<fkt-field label="Forced" [requiredMarker]="true">
+    <input fktInputText [field]="form.forced" placeholder="Forced by input">
+</fkt-field>
+
+<fkt-field label="Hidden" [requiredMarker]="false">
+    <input fktInputText [field]="form.hidden" placeholder="Required without marker">
+</fkt-field>

@@ -53,11 +53,11 @@ export const runDesignTokensTask = (context: IndexerContext) => {
                 const componentInfo = componentResolver.getInfo(componentFile);
 
                 return parsed.tokens.map((token) => ({
-                    ...token,
                     scope: {
-                        name: parsed.scopeName!,
+                        name: parsed.scopeName ?? '',
                         selector: componentInfo.metadata.selector,
                     },
+                    ...token,
                 }));
             });
 

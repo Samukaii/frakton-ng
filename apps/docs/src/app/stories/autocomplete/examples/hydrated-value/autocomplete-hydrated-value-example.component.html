@@ -1,0 +1,21 @@
+<app-code-output
+    [value]="value()"
+    title="Field value"
+/>
+
+<fkt-autocomplete
+    label="Users"
+    placeholder="Search for a user"
+    [formControl]="usersControl"
+    [options]="users"
+    labelKey="name"
+    valueKey="id"
+    multiple
+    localSearch
+/>
+
+<div class="actions">
+    <fkt-button text="Set ids" (click)="fillWithPrimitiveValues()" />
+    <fkt-button text="Set hydrated users" (click)="fillWithHydratedUsers()" />
+    <fkt-button text="Load fresh options" (click)="loadFreshOptions()" />
+</div>

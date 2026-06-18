@@ -1,16 +1,16 @@
 import { Component, input, signal } from '@angular/core';
 import { FktFocusTrapDirective } from 'frakton-ng/focus-trap';
 import { FktButtonComponent } from 'frakton-ng/button';
-import { FktInputComponent } from 'frakton-ng/input';
+import { FktInputOldComponent } from 'frakton-ng/input-old';
 import { FktSelectComponent } from 'frakton-ng/select';
 import { FktCheckboxComponent } from 'frakton-ng/checkbox';
 
 @Component({
   selector: 'fkt-focus-trap-form-example',
   imports: [
-    FktFocusTrapDirective, 
-    FktButtonComponent, 
-    FktInputComponent, 
+    FktFocusTrapDirective,
+    FktButtonComponent,
+    FktInputOldComponent,
     FktSelectComponent,
     FktCheckboxComponent
   ],
@@ -19,7 +19,7 @@ import { FktCheckboxComponent } from 'frakton-ng/checkbox';
 })
 export class FktFocusTrapFormExampleComponent {
   preventScroll = input(true);
-  
+
   countryOptions = signal([
     { label: 'United States', value: 'us' },
     { label: 'Canada', value: 'ca' },
@@ -27,11 +27,11 @@ export class FktFocusTrapFormExampleComponent {
     { label: 'Germany', value: 'de' },
     { label: 'France', value: 'fr' }
   ]);
-  
+
   submitForm() {
     console.log('Form submitted');
   }
-  
+
   resetForm() {
     console.log('Form reset');
   }

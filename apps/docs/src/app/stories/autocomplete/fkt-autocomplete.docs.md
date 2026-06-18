@@ -1,87 +1,149 @@
-## Key Features
-
-- **Real-time Search**: Filter options as user types with search event emission for API integration
-- **Auto-creation**: Allow users to create new options by typing custom values not in predefined list
-- **Action Buttons**: Add custom actions to each option (edit, delete, favorite, etc.) with event callbacks
-- **Loading States**: Built-in support for async data loading with loading indicators and spinners
-- **Custom No Results**: Configurable messaging when no options match search criteria
-- **Form Integration**: Seamless integration with SignalFormControl and Angular reactive forms
-- **Keyboard Navigation**: Full keyboard support for accessibility (Arrow keys, Enter, Escape)
-- **Signal-Based Architecture**: Built with modern Angular signals for optimal performance
-
-## Configuration Options
+## API Reference
 
 <arg-types></arg-types>
 
-### Types
+## Value Model
 
-```typescript
-// Core option interface for autocomplete items
-export interface FktAutocompleteOption {
-    value: string | number;  // Unique identifier for the option
-    label: string;           // Display text shown to user
-}
+`fkt-autocomplete` separates the search query from the form value.
 
-// Configuration for no results message
-export interface FktNoResults {
-    label: string;           // Message text when no options match
-}
+- The query is temporary text used to search and resolve options.
+- The form value is the selected primitive value derived from `valueKey`.
+- Multiple mode stores an array of primitive values.
+- Object values written programmatically are normalized to primitives.
 
-// Action button configuration (from frakton-ng/button)
-export interface FktButtonAction {
-    icon: string;            // Icon name for the action button
-    color: string;           // Button color theme
-    theme: string;           // Button visual theme
-    identifier: string;     // Unique identifier for action handling
-}
+## Option Resolution
+
+Primitive values are resolved against the current options first. If the option is not available yet,
+the primitive value is used as a temporary label so edit screens can render before async data arrives.
+
+Full option objects written programmatically are treated as hydrated/preloaded values:
+
+- `valueKey` is used to normalize the form value.
+- `labelKey` is used to render the visible label.
+- Preloaded values do not automatically appear in the dropdown.
+- When a real option with the same value later appears in `options`, it replaces the preloaded label.
+
+`labelKey`, `valueKey`, and `groupKey` accept property names or functions:
+
+```angular2html
+<fkt-autocomplete
+    [labelKey]="getLabel"
+    [valueKey]="getValue"
+    [groupKey]="getGroup"
+/>
 ```
 
-## Component Architecture
+## Search
 
-The FktAutocomplete component is built with a modular architecture using Angular signals:
+By default, the component is server-search friendly. It emits `searchChange` after `minSearch` and
+`searchDebounce` are satisfied, and renders the options provided by the consumer.
 
-### Core Components
+Use `localSearch` when the current `options` array should be filtered by the component:
 
-- **FktAutocompleteComponent**: Main component managing state, search, and user interactions
-- **Input Integration**: Built-in integration with Angular reactive forms and validation
+```angular2html
+<fkt-autocomplete localSearch />
+```
 
-### State Management
+Passing a function to `localSearch` replaces the built-in search:
 
-Signal-based reactive state management provides optimal performance:
+```angular2html
+<fkt-autocomplete [localSearch]="customSearch" />
+```
 
-- `selectedValue` signal controls the current selection with two-way binding
-- `options` signal manages the available option list with reactive updates
-- `loading` signal provides loading state management for async operations
-- `search` event emission enables real-time API integration for dynamic option loading
+The built-in local search checks label, name, and group using normalized text comparison.
 
-## Use Cases
+Use `isDropdownOpenedChange` when data should be fetched lazily only after the user opens the
+autocomplete:
 
-**User Selection Systems**: Perfect for selecting users, customers, or any entity from large datasets in CRM systems, task management, and user assignment scenarios.
+```angular2html
+<fkt-autocomplete
+    (isDropdownOpenedChange)="$event && fetchOptions()"
+    (searchChange)="searchOptions($event)"
+/>
+```
 
-**Tag Management**: Ideal for tag-based systems with creation capabilities including blog post tagging, product categorization, skill tagging for profiles, and content classification.
+Use `isDropdownOpened` as a two-way model when the overlay must be controlled externally:
 
-**Location Selection**: Great for location-based inputs such as country/state selection, city autocomplete with API integration, and address suggestion systems.
+```angular2html
+<fkt-autocomplete [(isDropdownOpened)]="opened" />
+```
 
-**Product & Service Search**: Excellent for product catalogs including e-commerce product search, inventory selection, service picking, and dynamic catalog browsing.
+## Commit Behavior
 
-**Dynamic Data Entry**: Perfect for scenarios requiring flexible data input with both predefined options and user-created values.
+When the overlay closes, typed text is resolved before the component discards it:
 
-## Accessibility
+- If the text matches an option by value or label, that option is applied.
+- If it does not match and `freeText` is false, the search field is cleared.
+- If it does not match and `freeText` is true, the typed value becomes the selected value.
+- In multiple mode, free text is added as a chip and the search field is cleared.
 
-**Keyboard Navigation**: Full keyboard support with arrow keys for option navigation, Enter key for selection, Escape key to close dropdown, and Tab for focus management.
+## Field Composition
 
-**Screen Reader Support**: Proper ARIA labels and announcements, role attributes for dropdown behavior, live region updates for search results, and clear option identification.
+`fkt-autocomplete` composes `fkt-field` internally. Because of that, the same field inputs can be
+passed directly to the autocomplete:
 
-**Focus Management**: Logical focus flow between input and options, visible focus indicators for all interactive elements, and proper focus restoration after selection.
+- `hint`
+- `showError`
+- `size`
+- `requiredMarker`
+- `hideLabel`
 
-**High Contrast**: Full support for system high contrast modes, clear visual boundaries for all states, and sufficient color contrast ratios.
+The autocomplete also accepts the field projection slots. Import those directives and components
+from `frakton-ng/field`:
 
-**Label Association**: Proper label-input relationships for screen readers, descriptive placeholder text, and clear error messaging integration.
+```ts
+import {
+  FktErrorDirective,
+  FktFieldErrorComponent,
+  FktFieldPrefixDirective,
+  FktFieldSuffixDirective,
+  FktHintEndDirective,
+  FktHintStartDirective,
+} from 'frakton-ng/field';
+```
 
-## Performance
+```angular2html
+<fkt-autocomplete label="User" formControlName="user" [options]="users">
+  <fkt-icon fktFieldPrefix name="user" />
+  <span fktHintStart>Search by name or department.</span>
+  <span fktHintEnd>Required</span>
 
-**Signal-Based Reactivity**: Built with Angular signals for efficient change detection, minimal re-renders, and optimized performance with large option lists.
+  <fkt-field-error fktError>
+    Select a valid user.
+  </fkt-field-error>
+</fkt-autocomplete>
+```
 
-**Lazy Loading**: Support for dynamic option loading, efficient search debouncing, and memory-optimized rendering for large datasets.
+`fktFieldSuffix` replaces the default autocomplete action button. Use it when the trailing action
+area needs custom behavior.
 
-**Async Integration**: Designed for real-time API integration with built-in loading states, error handling, and search result management.
+For the full field contract, see [Field documentation](/docs/field/features).
+
+## Templates
+
+The overlay accepts projected templates for advanced rendering:
+
+- `fktAutocompleteHeader`
+- `fktAutocompleteGroup`
+- `fktAutocompleteItem`
+- `fktAutocompleteFooter`
+
+Templates customize rendering only. Keyboard navigation, active descendant, selection, form value,
+and overlay behavior remain managed by the component.
+
+## Performance Directives
+
+`fktAutocompleteInfiniteLoading` adds a sentinel to the overlay and emits `loadMore` when the end is
+visible.
+
+`fktAutocompleteVirtualScroll` renders only visible rows and requires explicit virtual dimensions:
+
+```angular2html
+<fkt-autocomplete
+    fktAutocompleteVirtualScroll
+    [virtualItemHeight]="40"
+    [maxVirtualItems]="1000"
+/>
+```
+
+The explicit limit prevents development-time surprises with browser scroll-height limits.

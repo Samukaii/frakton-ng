@@ -1,4 +1,4 @@
-import { ComponentRef, ElementRef, Type } from "@angular/core";
+import { ComponentRef, ElementRef, Injector, Type } from '@angular/core';
 import { FktReactiveComponentData, FktGeometryPosition, Generic } from 'frakton-ng/internal/types';
 
 export interface FktOverlayOptions<T> {
@@ -8,10 +8,12 @@ export interface FktOverlayOptions<T> {
     panelOptions?: {
         overflow?: 'hidden' | 'visible' | 'scroll' | 'auto';
         focusTriggerOnClose?: boolean;
+        autoFocusOnOpen?: boolean;
         id?: string;
         maxHeight?: string;
         minWidth?: string;
         borderRadius?: string;
+        parentInjector?: Injector;
         backgroundColor?: string;
         width?: string;
         padding?: string;
@@ -33,7 +35,9 @@ export interface FktOverlayOptions<T> {
 }
 
 export interface FktOverlayRef<T> {
-	componentRef: ComponentRef<T>;
-	stackIndex: number;
-	close: () => void;
+    componentRef: ComponentRef<T>;
+    focusFirstElement: () => void;
+    restoreFocus: () => void;
+    stackIndex: number;
+    close: () => void;
 }

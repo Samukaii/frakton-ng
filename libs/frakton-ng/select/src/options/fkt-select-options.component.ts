@@ -2,7 +2,7 @@ import { Component, DOCUMENT, effect, inject, input, linkedSignal, model, output
 import { MarkUsed } from 'frakton-ng/internal/utils';
 import { FktSpinnerComponent } from 'frakton-ng/spinner';
 import { FktNoResults, FktNoResultsComponent } from 'frakton-ng/no-results';
-import { FktAutocompleteOption } from 'frakton-ng/autocomplete';
+import { FktAutocompleteOption } from 'frakton-ng/autocomplete-old';
 import { FktIconComponent } from 'frakton-ng/icon';
 import { FktNavigableListDirective } from 'frakton-ng/navigable-list';
 

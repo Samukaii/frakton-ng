@@ -1,7 +1,6 @@
 import { FktDatePickerComponent } from 'frakton-ng/date-picker';
 import { Meta } from '@/models/meta';
 import { Story } from '@/models/story';
-// @ts-expect-error
 import documentation from './fkt-date-picker.docs.md' with { loader: "text" };
 
 const meta: Meta = {

@@ -8,6 +8,7 @@ import { getFocusableElementsSelectors, filterElementsWithTabIndex } from 'frakt
 	}
 })
 export class FktFocusTrapDirective implements AfterViewInit {
+	autoFocusOnOpen = input(true);
 	preventScroll = input(true);
 	private element = inject(ElementRef).nativeElement as HTMLElement;
     private readonly document = inject(DOCUMENT);
@@ -46,9 +47,16 @@ export class FktFocusTrapDirective implements AfterViewInit {
 
 	ngAfterViewInit() {
 		this.restoreFocusElement = this.document.activeElement;
-		setTimeout(() => {
-			const nodes = this.element.querySelectorAll(this.getSelectors());
-			if (nodes.length) (nodes[0] as HTMLElement).focus({preventScroll: this.preventScroll()});
-		}, 100);
+
+        if(!this.autoFocusOnOpen()) return;
+
+		this.focusFirstElement();
 	}
+
+    focusFirstElement() {
+        setTimeout(() => {
+            const nodes = this.element.querySelectorAll(this.getSelectors());
+            if (nodes.length) (nodes[0] as HTMLElement).focus({preventScroll: this.preventScroll()});
+        }, 100);
+    }
 }

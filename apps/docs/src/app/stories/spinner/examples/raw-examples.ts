@@ -22,17 +22,17 @@ export default {
 			{
 				name: "fkt-spinner-example-color-themes.component.html",
 				content: fktSpinnerExampleColorThemesTemplate as string,
-				language: "html" as "html",
+				language: "angular2html" as const,
 			},		
 			{
 				name: "fkt-spinner-example-color-themes.component.ts",
 				content: fktSpinnerExampleColorThemesTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "fkt-spinner-example-color-themes.component.scss",
 				content: fktSpinnerExampleColorThemesStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},
@@ -43,17 +43,17 @@ export default {
 			{
 				name: "fkt-spinner-example-custom-configuration.component.html",
 				content: fktSpinnerExampleCustomConfigurationTemplate as string,
-				language: "html" as "html",
+				language: "angular2html" as const,
 			},		
 			{
 				name: "fkt-spinner-example-custom-configuration.component.ts",
 				content: fktSpinnerExampleCustomConfigurationTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "fkt-spinner-example-custom-configuration.component.scss",
 				content: fktSpinnerExampleCustomConfigurationStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},
@@ -64,17 +64,17 @@ export default {
 			{
 				name: "fkt-spinner-example-loading-state.component.html",
 				content: fktSpinnerExampleLoadingStateTemplate as string,
-				language: "html" as "html",
+				language: "angular2html" as const,
 			},		
 			{
 				name: "fkt-spinner-example-loading-state.component.ts",
 				content: fktSpinnerExampleLoadingStateTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "fkt-spinner-example-loading-state.component.scss",
 				content: fktSpinnerExampleLoadingStateStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},
@@ -85,17 +85,17 @@ export default {
 			{
 				name: "fkt-spinner-example-size-variations.component.html",
 				content: fktSpinnerExampleSizeVariationsTemplate as string,
-				language: "html" as "html",
+				language: "angular2html" as const,
 			},		
 			{
 				name: "fkt-spinner-example-size-variations.component.ts",
 				content: fktSpinnerExampleSizeVariationsTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "fkt-spinner-example-size-variations.component.scss",
 				content: fktSpinnerExampleSizeVariationsStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},

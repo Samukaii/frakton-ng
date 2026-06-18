@@ -1,15 +1,62 @@
-<fkt-input
-	[spellcheck]="false"
-	[label]="label()"
-	[placeholder]="placeholder()"
-	[(value)]="searchValue"
-	[errors]="errors()"
-	[invalid]="invalid()"
-	[disabled]="disabled() || addingOptionLoading()"
-	[(touched)]="touched"
-	(click)="openOverlay()"
->
-	@if (addingOptionLoading()) {
-		<fkt-spinner *fktFormControlSuffix [size]="15"/>
-	}
-</fkt-input>
+<fkt-field
+    [label]="context.label()"
+    [size]="context.size()"
+    [hideLabel]="context.hideLabel()"
+    [requiredMarker]="context.requiredMarker()"
+    [showError]="context.showError()"
+    [hint]="context.hint()"
+    [class.disabled]="formState?.disabled()" >
+    <div role="combobox" [attr.aria-expanded]="context.isDropdownOpened()" aria-haspopup="listbox"
+         [attr.aria-controls]="context.listBoxId"
+         fktCustomField>
+        <div class="container" [class.multiple]="context.multiple()">
+            <fkt-autocomplete-chips/>
+
+            <input
+                fktAutocompleteSearch
+                [errors]="formState?.errors() ?? {errors: [], source: 'reactive'}"
+                [invalid]="formState?.invalid() ?? false"
+                [required]="formState?.required() ?? false"
+                [maxLength]="formState?.maxLength() ?? null"
+                [disabled]="formState?.disabled() ?? false"
+                (isTouchedChange)="onTouched?.()"
+                [hasValue]="hasValue()"
+                autocomplete="off"
+                [placeholder]="context.placeholder() ?? ''"
+            >
+        </div>
+    </div>
+
+
+    @if (fieldPrefixDirective()) {
+        <ng-container fktFieldPrefix>
+            <ng-content select="[fktFieldPrefix]"/>
+        </ng-container>
+    }
+
+    <ng-container fktFieldSuffix>
+        <ng-content select="[fktFieldSuffix]">
+            <fkt-autocomplete-action-button [disabled]="formState?.disabled() ?? false"/>
+        </ng-content>
+    </ng-container>
+
+
+    @if (hintStartDirective()) {
+        <ng-container fktHintStart>
+            <ng-content select="[fktHintStart]"/>
+        </ng-container>
+    }
+
+    @if (hintEndDirective()) {
+        <ng-container fktHintEnd>
+            <ng-content select="[fktHintEnd]"/>
+        </ng-container>
+    }
+
+    @if (errorDirective()) {
+        <ng-container fktError>
+            <ng-content select="[fktError]"/>
+        </ng-container>
+    }
+    <ng-content/>
+</fkt-field>

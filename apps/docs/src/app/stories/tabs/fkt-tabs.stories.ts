@@ -1,6 +1,5 @@
 import { Meta } from '@/models/meta';
 import { FktTabsListComponent, fktTabsRenderModes } from 'frakton-ng/tabs';
-// @ts-expect-error
 import documentation from './fkt-tabs.docs.md' with { loader: 'text' };
 import { Story } from '@/models/story';
 import { DesignToken } from '@/models/design-token';

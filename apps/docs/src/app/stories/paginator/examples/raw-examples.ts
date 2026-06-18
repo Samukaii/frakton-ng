@@ -19,17 +19,17 @@ export default {
 			{
 				name: "fkt-paginator-examples-basic.component.html",
 				content: fktPaginatorExamplesBasicTemplate as string,
-				language: "html" as "html",
+				language: "angular2html" as const,
 			},		
 			{
 				name: "fkt-paginator-examples-basic.component.ts",
 				content: fktPaginatorExamplesBasicTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "fkt-paginator-examples-basic.component.scss",
 				content: fktPaginatorExamplesBasicStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},
@@ -40,17 +40,17 @@ export default {
 			{
 				name: "fkt-paginator-examples-configurable.component.html",
 				content: fktPaginatorExamplesConfigurableTemplate as string,
-				language: "html" as "html",
+				language: "angular2html" as const,
 			},		
 			{
 				name: "fkt-paginator-examples-configurable.component.ts",
 				content: fktPaginatorExamplesConfigurableTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "fkt-paginator-examples-configurable.component.scss",
 				content: fktPaginatorExamplesConfigurableStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},
@@ -61,17 +61,17 @@ export default {
 			{
 				name: "fkt-paginator-examples-responsive.component.html",
 				content: fktPaginatorExamplesResponsiveTemplate as string,
-				language: "html" as "html",
+				language: "angular2html" as const,
 			},		
 			{
 				name: "fkt-paginator-examples-responsive.component.ts",
 				content: fktPaginatorExamplesResponsiveTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "fkt-paginator-examples-responsive.component.scss",
 				content: fktPaginatorExamplesResponsiveStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},

@@ -1,6 +1,6 @@
 import { Component, forwardRef, input, output } from '@angular/core';
 import { ControlType } from '@/models/control-type';
-import { FktInputComponent } from 'frakton-ng/input';
+import { FktInputOldComponent } from 'frakton-ng/input-old';
 import { SchemaEditorComponent } from '@/components/schema-editor/schema-editor.component';
 import { ArgTypeSchemaParsed } from '@/models/arg-type';
 import { FktSelectComponent } from 'frakton-ng/select';
@@ -17,7 +17,7 @@ declare module 'frakton-ng/table' {
 @Component({
     selector: 'fkt-control-type-editor-cell',
     imports: [
-        FktInputComponent,
+        FktInputOldComponent,
         StringToSelectOptionsPipe,
         FktSelectComponent,
         IconSelectorComponent,

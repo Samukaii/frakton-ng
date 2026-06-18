@@ -16,12 +16,12 @@ export default {
 			{
 				name: "basic-example.component.ts",
 				content: basicExampleTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "basic-example.component.scss",
 				content: basicExampleStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},
@@ -32,12 +32,12 @@ export default {
 			{
 				name: "profile-card.component.ts",
 				content: profileCardTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "profile-card.component.scss",
 				content: profileCardStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},
@@ -48,12 +48,12 @@ export default {
 			{
 				name: "user-list.component.ts",
 				content: userListTypescript as string,
-				language: "typescript" as "typescript",
+				language: "typescript" as const,
 			},		
 			{
 				name: "user-list.component.scss",
 				content: userListStyles as string,
-				language: "css" as "css",
+				language: "css" as const,
 			},		
 		]
 	},

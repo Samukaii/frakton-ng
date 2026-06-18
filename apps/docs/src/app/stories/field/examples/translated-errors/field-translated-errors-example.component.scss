@@ -1,0 +1,15 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: var(--fkt-space-xs);
+}
+
+fkt-select {
+    width: 150px;
+    margin-bottom: 1rem;
+}
+
+fkt-field {
+    width: 100%;
+}
