@@ -53,7 +53,7 @@ import { Component, inject } from '@angular/core';
 import { FktToggleComponent } from 'frakton-ng/toggle';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FktButtonComponent } from 'frakton-ng/button';
-import { FktFieldErrorComponent } from 'frakton-ng/field-error';
+import { FktFieldErrorComponent } from 'frakton-ng/field';
 import { map } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 
@@ -126,7 +126,7 @@ Example component: `ToggleSignalFormsComponent`
 import { Component, signal } from '@angular/core';
 import { FktToggleComponent } from 'frakton-ng/toggle';
 import { disabled, Field, form, required } from '@angular/forms/signals';
-import { FktFieldErrorComponent } from 'frakton-ng/field-error';
+import { FktFieldErrorComponent } from 'frakton-ng/field';
 import { FktButtonComponent } from 'frakton-ng/button';
 
 @Component({
@@ -198,7 +198,7 @@ Example component: `ToggleInputDrivenComponent`
 import { Component, signal } from '@angular/core';
 import { FktToggleComponent } from 'frakton-ng/toggle';
 import { FktButtonComponent } from 'frakton-ng/button';
-import { FktFieldErrorComponent } from 'frakton-ng/field-error';
+import { FktFieldErrorComponent } from 'frakton-ng/field';
 
 @Component({
     selector: 'fkt-toggle-input-driven',

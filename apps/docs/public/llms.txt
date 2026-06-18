@@ -56,15 +56,15 @@ This file lists the generated Markdown documentation files intended for AI index
 - [Components/Form/Date Picker](https://fraktonng.com/llms/date-picker.md)
   - id: date-picker
   - route: /docs/date-picker
+- [Components/Form/Field](https://fraktonng.com/llms/field.md)
+  - id: field
+  - route: /docs/field
 - [Components/Form/Input](https://fraktonng.com/llms/input.md)
   - id: input
   - route: /docs/input
 - [Components/Form/Select](https://fraktonng.com/llms/select.md)
   - id: select
   - route: /docs/select
-- [Components/Form/Tag Selector](https://fraktonng.com/llms/tag-selector.md)
-  - id: tag-selector
-  - route: /docs/tag-selector
 - [Components/Form/Textarea](https://fraktonng.com/llms/textarea.md)
   - id: textarea
   - route: /docs/textarea
@@ -77,9 +77,6 @@ This file lists the generated Markdown documentation files intended for AI index
 - [Components/Navigation/Calendar](https://fraktonng.com/llms/calendar.md)
   - id: calendar
   - route: /docs/calendar
-- [Components/Navigation/Calendar Navigator](https://fraktonng.com/llms/calendar-navigator.md)
-  - id: calendar-navigator
-  - route: /docs/calendar-navigator
 - [Components/Navigation/Drawer](https://fraktonng.com/llms/drawer.md)
   - id: drawer
   - route: /docs/drawer

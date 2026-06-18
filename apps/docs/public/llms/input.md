@@ -8,104 +8,470 @@
 - type: story
 - route: /docs/input
 - title: Components/Form/Input
-- component: FktInputComponent
-- import: `import { FktInputComponent } from 'frakton-ng/input';`
+- component: FktInputTextDirective
+- import: `import { FktInputTextDirective } from 'frakton-ng/input';`
 
 ## Description
 
-A versatile form input component with multiple types, data transformers, and comprehensive validation support. Built with Angular signals for reactive form integration.
+Native input directive for Frakton fields. Use input[fktInputText] inside
+fkt-field when the user needs a single-line text control that keeps native attributes, forms,
+i18n, masks, and third-party directives on the actual input element.
 
 ## Features
+
+### Composition
+
+- id: composition
+- type: introduction
+
+Input text composition patterns. The input directive owns the native single-line control state,
+while `fkt-field` owns label, outline, hint, error, density, prefix/suffix, and supporting text.
 
 ### Basic
 
 - id: basic
 - type: story
+- component: InputBasicExampleComponent
 
-A basic text input field with label and placeholder text for general text entry.
+Basic usage with `input[fktInputText]` projected into `fkt-field`. Use this for normal text entry
+where the consumer still needs direct access to native input attributes and directives.
 
-### Password
+Example component: `InputBasicExampleComponent`
 
-- id: password
+```ts title="input-basic-example.component.ts"
+import { Component } from '@angular/core';
+import { FktFieldComponent, FktFieldHintComponent } from 'frakton-ng/field';
+import { FktIconComponent } from 'frakton-ng/icon';
+import { FktInputTextDirective } from 'frakton-ng/input-text';
+
+@Component({
+    selector: 'app-input-basic-example',
+    imports: [
+        FktFieldComponent,
+        FktFieldHintComponent,
+        FktIconComponent,
+        FktInputTextDirective,
+    ],
+    templateUrl: './input-basic-example.component.html',
+    styleUrl: './input-basic-example.component.scss',
+})
+export class InputBasicExampleComponent {}
+```
+
+```html title="input-basic-example.component.html"
+<fkt-field label="Full name" hint="Use the name shown in your profile.">
+    <fkt-icon fktFieldPrefix name="user" />
+    <input
+        fktInputText
+        placeholder="Enter a full name"
+    >
+</fkt-field>
+
+<fkt-field label="Workspace slug">
+    <input
+        fktInputText
+        placeholder="acme-team"
+    >
+
+    <fkt-field-hint fktHintStart>
+        Used in public URLs.
+    </fkt-field-hint>
+</fkt-field>
+```
+
+```css title="input-basic-example.component.scss"
+:host {
+    display: flex;
+    flex-direction: column;
+    gap: var(--fkt-space-sm);
+}
+```
+
+### NativeAttributes
+
+- id: native-attributes
 - type: story
+- component: InputNativeAttributesExampleComponent
 
-A password input field with show/hide toggle functionality. Click the eye icon to toggle password visibility.
+Native attributes stay on the real input element. Use `type`, `autocomplete`, `inputmode`,
+`spellcheck`, `readonly`, `disabled`, masking directives, and browser-specific attributes
+directly on `input[fktInputText]`.
 
-### Email
+Example component: `InputNativeAttributesExampleComponent`
 
-- id: email
+```ts title="input-native-attributes-example.component.ts"
+import { Component } from '@angular/core';
+import { FktFieldComponent } from 'frakton-ng/field';
+import { FktIconComponent } from 'frakton-ng/icon';
+import { FktInputTextDirective } from 'frakton-ng/input-text';
+
+@Component({
+    selector: 'app-input-native-attributes-example',
+    imports: [FktFieldComponent, FktIconComponent, FktInputTextDirective],
+    templateUrl: './input-native-attributes-example.component.html',
+    styleUrl: './input-native-attributes-example.component.scss',
+})
+export class InputNativeAttributesExampleComponent {}
+```
+
+```html title="input-native-attributes-example.component.html"
+<fkt-field label="Email address">
+    <fkt-icon fktFieldPrefix name="envelope" />
+    <input
+        fktInputText
+        type="email"
+        autocomplete="email"
+        inputmode="email"
+        placeholder="name@example.com"
+    >
+</fkt-field>
+
+<fkt-field label="Search" hideLabel>
+    <fkt-icon fktFieldPrefix name="magnifying-glass" />
+    <input
+        fktInputText
+        type="search"
+        autocomplete="off"
+        placeholder="Search items..."
+    >
+</fkt-field>
+```
+
+```css title="input-native-attributes-example.component.scss"
+:host {
+    display: flex;
+    flex-direction: column;
+    gap: var(--fkt-space-sm);
+}
+```
+
+### CharacterCount
+
+- id: character-count
 - type: story
+- component: InputCharacterCountExampleComponent
 
-An email input field optimized for email addresses with proper keyboard and validation support.
+Character count is provided by `fktCharacterCount`. The directive reads the max length from the
+normalized field state, so Signal Forms, Reactive Forms, and native maxlength can share the same
+field supporting UI.
 
-### Number
+Example component: `InputCharacterCountExampleComponent`
 
-- id: number
+```ts title="input-character-count-example.component.ts"
+import { Component, signal } from '@angular/core';
+import { Field, form, maxLength } from '@angular/forms/signals';
+import { FktCharacterCountDirective, FktFieldComponent } from 'frakton-ng/field';
+import { FktInputTextDirective } from 'frakton-ng/input-text';
+
+@Component({
+    selector: 'app-input-character-count-example',
+    imports: [
+        Field,
+        FktCharacterCountDirective,
+        FktFieldComponent,
+        FktInputTextDirective,
+    ],
+    templateUrl: './input-character-count-example.component.html',
+    styleUrl: './input-character-count-example.component.scss',
+})
+export class InputCharacterCountExampleComponent {
+    private readonly model = signal({
+        displayName: 'Alice Johnson',
+    });
+
+    protected readonly form = form(this.model, (schema) => {
+        maxLength(schema.displayName, 32);
+    });
+}
+```
+
+```html title="input-character-count-example.component.html"
+<fkt-field label="Display name" hint="Keep it short and recognizable.">
+    <input
+        fktInputText
+        fktCharacterCount
+        [field]="form.displayName"
+        placeholder="Enter a display name"
+    >
+</fkt-field>
+```
+
+```css title="input-character-count-example.component.scss"
+:host {
+    display: block;
+}
+```
+
+### Forms
+
+- id: forms
+- type: introduction
+
+Form integration examples. The input directive participates in the same `FktFieldControl`
+contract as textarea, so the field can react to value, focused, disabled, touched, invalid,
+required, errors, and max length without manual state forwarding.
+
+### SignalForms
+
+- id: signal-forms
 - type: story
+- component: InputSignalFormsExampleComponent
 
-A numeric input that only accepts numbers and shows numeric keypad on mobile devices.
+Signal Forms integration through Angular's `[field]` directive. Validation state, disabled state,
+required marker, and max length are read from the projected control.
 
-### Currency
+Example component: `InputSignalFormsExampleComponent`
 
-- id: currency
+```ts title="input-signal-forms-example.component.ts"
+import { Component, signal } from '@angular/core';
+import { email, Field, form, minLength, required } from '@angular/forms/signals';
+import { FktButtonComponent } from 'frakton-ng/button';
+import { FktFieldComponent } from 'frakton-ng/field';
+import { FktIconComponent } from 'frakton-ng/icon';
+import { FktInputTextDirective } from 'frakton-ng/input-text';
+
+@Component({
+    selector: 'app-input-signal-forms-example',
+    imports: [
+        Field,
+        FktButtonComponent,
+        FktFieldComponent,
+        FktIconComponent,
+        FktInputTextDirective,
+    ],
+    templateUrl: './input-signal-forms-example.component.html',
+    styleUrl: './input-signal-forms-example.component.scss',
+})
+export class InputSignalFormsExampleComponent {
+    private readonly model = signal({
+        name: '',
+        email: '',
+    });
+
+    protected readonly form = form(this.model, (schema) => {
+        required(schema.name);
+        minLength(schema.name, 3);
+        required(schema.email);
+        email(schema.email);
+    });
+
+    protected fill() {
+        this.model.set({
+            name: 'Alice Johnson',
+            email: 'alice@example.com',
+        });
+    }
+
+    protected reset() {
+        this.model.set({
+            name: '',
+            email: '',
+        });
+    }
+}
+```
+
+```html title="input-signal-forms-example.component.html"
+<div class="actions">
+    <fkt-button text="Fill" (click)="fill()" />
+    <fkt-button text="Reset" (click)="reset()" />
+</div>
+
+<fkt-field
+    label="Name"
+    [showError]="form.name().invalid() && form.name().touched()"
+>
+    <fkt-icon fktFieldPrefix name="user" />
+    <input
+        fktInputText
+        [field]="form.name"
+        placeholder="Enter a name"
+    >
+</fkt-field>
+
+<fkt-field
+    label="E-mail"
+    [showError]="form.email().invalid() && form.email().touched()"
+>
+    <fkt-icon fktFieldPrefix name="envelope" />
+    <input
+        fktInputText
+        type="email"
+        [field]="form.email"
+        placeholder="Enter an e-mail"
+    >
+</fkt-field>
+```
+
+```css title="input-signal-forms-example.component.scss"
+:host {
+    display: flex;
+    flex-direction: column;
+    gap: var(--fkt-space-sm);
+}
+
+.actions {
+    display: flex;
+    gap: var(--fkt-space-xs);
+}
+```
+
+### ReactiveForms
+
+- id: reactive-forms
 - type: story
+- component: InputReactiveFormsExampleComponent
 
-Input with currency transformer that automatically formats values as currency (e.g., $1,234.56).
+Reactive Forms integration through `formControlName`. The field reacts to programmatic updates,
+reset, disabled state, and validation changes from the Angular control.
 
-### Percent
+Example component: `InputReactiveFormsExampleComponent`
 
-- id: percent
-- type: story
+```ts title="input-reactive-forms-example.component.ts"
+import { Component, inject } from '@angular/core';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FktButtonComponent } from 'frakton-ng/button';
+import { FktFieldComponent } from 'frakton-ng/field';
+import { FktIconComponent } from 'frakton-ng/icon';
+import { FktInputTextDirective } from 'frakton-ng/input-text';
 
-Input with percentage transformer that automatically formats values as percentages (e.g., 45.5%).
+@Component({
+    selector: 'app-input-reactive-forms-example',
+    imports: [
+        FktButtonComponent,
+        FktFieldComponent,
+        FktIconComponent,
+        FktInputTextDirective,
+        ReactiveFormsModule,
+    ],
+    templateUrl: './input-reactive-forms-example.component.html',
+    styleUrl: './input-reactive-forms-example.component.scss',
+})
+export class InputReactiveFormsExampleComponent {
+    protected readonly form = inject(FormBuilder).group({
+        name: ['', [Validators.required, Validators.minLength(3)]],
+        email: ['', [Validators.required, Validators.email]],
+    });
 
-### Hour
+    protected fill() {
+        this.form.setValue({
+            name: 'Alice Johnson',
+            email: 'alice@example.com',
+        });
+    }
 
-- id: hour
-- type: story
+    protected reset() {
+        this.form.reset({
+            name: '',
+            email: '',
+        });
+    }
+}
+```
 
-Input with hour transformer that formats time values as duration (e.g., 8h 30m).
+```html title="input-reactive-forms-example.component.html"
+<div class="actions">
+    <fkt-button text="Fill" (click)="fill()" />
+    <fkt-button text="Reset" (click)="reset()" />
+</div>
+
+<form [formGroup]="form">
+    <fkt-field label="Name">
+        <fkt-icon fktFieldPrefix name="user" />
+        <input
+            fktInputText
+            formControlName="name"
+            placeholder="Enter a name"
+        >
+    </fkt-field>
+
+    <fkt-field label="E-mail">
+        <fkt-icon fktFieldPrefix name="envelope" />
+        <input
+            fktInputText
+            type="email"
+            formControlName="email"
+            placeholder="Enter an e-mail"
+        >
+    </fkt-field>
+</form>
+```
+
+```css title="input-reactive-forms-example.component.scss"
+:host,
+form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--fkt-space-sm);
+}
+
+.actions {
+    display: flex;
+    gap: var(--fkt-space-xs);
+}
+```
 
 ## API Reference
 
-## Key Features
+## Import
 
-- **Multiple Input Types**: Text, password, number, and email with optimized behavior
-- **Data Transformers**: Built-in formatters for currency, percentage, and time duration
-- **Password Toggle**: Show/hide functionality with accessible eye icon
-- **Form Validation**: Real-time validation with visual error states
-- **Custom Suffix**: Content projection for buttons, icons, and additional elements
-- **Signal Integration**: Native Angular signals with SignalFormControl
-
-## Configuration Options
-
-<arg-types></arg-types>
-
-### Types
-
-```typescript
-import {SignalFormControlTransformer} from "frakton-ng/forms";
-
-type FktInputType = 'text' | 'password' | 'number' | 'email';
-
-type FktInputTransformer = 'currency' | 'percent' | 'hour' | SignalFormControlTransformer;
+```ts
+import { FktFieldComponent } from 'frakton-ng/field';
+import { FktInputTextDirective } from 'frakton-ng/input-text';
 ```
 
-[//]: # (## Examples)
+## Usage Model
 
-[//]: # ()
-[//]: # (<story-examples></story-examples>)
+`fktInputText` is a directive for the native `<input>` element. It is designed to be projected
+inside `fkt-field`, keeping the native control open for browser attributes, forms, i18n, masking
+libraries, and third-party directives while the field owns the visual shell.
 
-## Use Cases
+```html
+<fkt-field label="Full name">
+    <input
+        fktInputText
+        placeholder="Enter a full name"
+    >
+</fkt-field>
+```
 
-- **User Registration Forms** - Email addresses, passwords, personal information with validation.
-- **E-commerce Applications** - Product pricing, quantities, discount percentages with currency formatting.
-- **Financial Data Entry** - Investment amounts, interest rates, account balances with precise formatting.
-- **Content Management** - Article titles, descriptions, metadata with spell-check control.
+## Native Input First
 
-## Accessibility
+The directive does not replace the native input API. Keep attributes such as `type`, `autocomplete`,
+`inputmode`, `spellcheck`, `readonly`, `disabled`, and masking directives on the input itself.
 
-- **Keyboard Navigation**: Tab order and shortcuts work as expected.
-- **Screen Reader Support**: ARIA labels and validation announcements.
-- **Focus Management**: Clear focus indicators and logical navigation flow.
-- **Other Notes**: Supports high contrast modes and respects user preferences.
+```html
+<fkt-field label="CPF">
+    <input
+        fktInputText
+        ngxMask="000.000.000-00"
+        formControlName="cpf"
+    >
+</fkt-field>
+```
+
+## Field Integration
+
+The input implements the same field-control contract as `fktTextarea`. The field can read value,
+focus, disabled, touched, invalid, required, error, and max-length state from the projected input
+without the consumer forwarding those flags manually.
+
+## Character Count
+
+Use `fktCharacterCount` from `frakton-ng/field` when the field should render a max-length counter in
+the hint end area. The max length is inferred from Signal Forms, Reactive Forms, or the native
+`maxlength` attribute when available.
+
+```html
+<fkt-field label="Display name">
+    <input
+        fktInputText
+        fktCharacterCount
+        [field]="form.displayName"
+    >
+</fkt-field>
+```
+
+## API
+
+<arg-types></arg-types>

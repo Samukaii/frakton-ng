@@ -81,7 +81,7 @@ import { Component, inject } from '@angular/core';
 import { FktButtonGroupComponent, FktButtonGroupOption } from 'frakton-ng/button-group';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FktButtonComponent } from 'frakton-ng/button';
-import { FktFieldErrorComponent } from 'frakton-ng/field-error';
+import { FktFieldErrorComponent } from 'frakton-ng/field';
 import { map } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 
@@ -176,7 +176,7 @@ Example component: `ButtonGroupSignalFormsComponent`
 import { Component, signal } from '@angular/core';
 import { FktButtonGroupComponent, FktButtonGroupOption } from 'frakton-ng/button-group';
 import { disabled, Field, form, required } from '@angular/forms/signals';
-import { FktFieldErrorComponent } from 'frakton-ng/field-error';
+import { FktFieldErrorComponent } from 'frakton-ng/field';
 import { FktButtonComponent } from 'frakton-ng/button';
 
 @Component({
@@ -268,7 +268,7 @@ Example component: `ButtonGroupInputDrivenComponent`
 import { Component, signal } from '@angular/core';
 import { FktButtonGroupComponent, FktButtonGroupOption } from 'frakton-ng/button-group';
 import { FktButtonComponent } from 'frakton-ng/button';
-import { FktFieldErrorComponent } from 'frakton-ng/field-error';
+import { FktFieldErrorComponent } from 'frakton-ng/field';
 
 @Component({
     selector: 'fkt-button-group-input-driven',

@@ -125,12 +125,12 @@ Example component: `FktFocusTrapModalExampleComponent`
 ```ts title="fkt-focus-trap-modal-example.component.ts"
 import { Component, inject, input, output } from '@angular/core';
 import { FktButtonComponent } from 'frakton-ng/button';
-import { FktInputComponent } from 'frakton-ng/input';
+import { FktInputOldComponent } from 'frakton-ng/input-old';
 import { FktDialogService } from 'frakton-ng/dialog';
 
 @Component({
   selector: 'fkt-user-form-dialog',
-  imports: [FktInputComponent, FktButtonComponent],
+  imports: [FktInputOldComponent, FktButtonComponent],
   template: `
     <div class="dialog-content">
       <h2>User Information</h2>
@@ -311,16 +311,16 @@ Example component: `FktFocusTrapFormExampleComponent`
 import { Component, input, signal } from '@angular/core';
 import { FktFocusTrapDirective } from 'frakton-ng/focus-trap';
 import { FktButtonComponent } from 'frakton-ng/button';
-import { FktInputComponent } from 'frakton-ng/input';
+import { FktInputOldComponent } from 'frakton-ng/input-old';
 import { FktSelectComponent } from 'frakton-ng/select';
 import { FktCheckboxComponent } from 'frakton-ng/checkbox';
 
 @Component({
   selector: 'fkt-focus-trap-form-example',
   imports: [
-    FktFocusTrapDirective, 
-    FktButtonComponent, 
-    FktInputComponent, 
+    FktFocusTrapDirective,
+    FktButtonComponent,
+    FktInputOldComponent,
     FktSelectComponent,
     FktCheckboxComponent
   ],
@@ -329,7 +329,7 @@ import { FktCheckboxComponent } from 'frakton-ng/checkbox';
 })
 export class FktFocusTrapFormExampleComponent {
   preventScroll = input(true);
-  
+
   countryOptions = signal([
     { label: 'United States', value: 'us' },
     { label: 'Canada', value: 'ca' },
@@ -337,11 +337,11 @@ export class FktFocusTrapFormExampleComponent {
     { label: 'Germany', value: 'de' },
     { label: 'France', value: 'fr' }
   ]);
-  
+
   submitForm() {
     console.log('Form submitted');
   }
-  
+
   resetForm() {
     console.log('Form reset');
   }
@@ -1874,10 +1874,10 @@ export class TableExamplesGridLinesComponent {
 Row-level styling via `[classesFn]`. The function receives each row item and returns a CSS
 class string applied to the `<tr>` element.
 
-Because Angular's view encapsulation prevents parent styles from reaching child component internals,
-the table exposes a `--fkt-row-cell-background` CSS custom property on the row host. Set this
-variable on the class applied to `<tr>` — CSS custom properties cascade through component boundaries
-— and the cell background will pick it up automatically.
+Style the returned class with regular CSS selectors when the style can target the rendered cells
+directly, such as `.status-cancelled td { background-color: red; }`. As an alternative, the table
+also exposes a `--fkt-row-cell-background` CSS custom property on the row host. Set this variable
+on the class applied to `<tr>` when you prefer to style through the table's design-token surface.
 
 Use `::ng-deep` on a wrapper element in your component template to target the `<tr>` without
 needing `ViewEncapsulation.None`.
@@ -1983,13 +1983,25 @@ export class TableExamplesConditionalStyleComponent {
 ```
 
 ```css title="table-examples-conditional-style.component.scss"
-fkt-table {
-    ::ng-deep tr {
-        &.status-cancelled { --fkt-row-cell-background: color-mix(in srgb, var(--fkt-color-danger) 8%, var(--fkt-color-neutral-100)); }
-        &.status-delivered { --fkt-row-cell-background: color-mix(in srgb, var(--fkt-color-success) 8%, var(--fkt-color-neutral-100)); }
-        &.status-shipped   { --fkt-row-cell-background: color-mix(in srgb, var(--fkt-color-accent) 8%, var(--fkt-color-neutral-100)); }
-        &.status-processing { --fkt-row-cell-background: color-mix(in srgb, var(--fkt-color-info) 8%, var(--fkt-color-neutral-100)); }
-        &.status-pending   { --fkt-row-cell-background: color-mix(in srgb, var(--fkt-color-warning) 8%, var(--fkt-color-neutral-100)); }
+fkt-table ::ng-deep {
+    .status-cancelled td {
+        background-color: color-mix(in srgb, var(--fkt-color-danger) 8%, var(--fkt-color-neutral-100));
+    }
+
+    .status-delivered td {
+        background-color: color-mix(in srgb, var(--fkt-color-success) 8%, var(--fkt-color-neutral-100));
+    }
+
+    .status-shipped td {
+        background-color: color-mix(in srgb, var(--fkt-color-accent) 8%, var(--fkt-color-neutral-100));
+    }
+
+    .status-processing td {
+        background-color: color-mix(in srgb, var(--fkt-color-info) 8%, var(--fkt-color-neutral-100));
+    }
+
+    .status-pending td {
+        background-color: color-mix(in srgb, var(--fkt-color-warning) 8%, var(--fkt-color-neutral-100));
     }
 }
 ```
@@ -3384,18 +3396,34 @@ fkt-table {
 - component: TableExamplesFilteringComponent
 
 Filters are declared per-column using the `filter` factory returned by `defineFilters()`.
-Like `defineCells`, define it once globally with an alias map of filter components. Attaching
-a filter to a column is then one line:
+Like `defineCells`, define it once globally with an alias map of filter components:
 
 ```ts
-{ key: 'name', header: 'Name', filter: filter.text('name', { label: 'Search' }) }
+export const filter = defineFilters({
+    text: FktTableFilterTextComponent,
+    select: FktTableFilterSelectComponent,
+    number: FktTableFilterNumberComponent,
+    dateRange: FktTableFilterDateRangeComponent,
+});
+```
+
+Then attach a registered filter alias to a column:
+
+```ts
+{
+    key: 'name',
+    header: 'Name',
+    filter: filter.text('name', {
+        label: 'Search',
+    }),
+}
 ```
 
 Filter state flows through `[(filters)]` as a plain object owned by the consumer — easy to
 debounce, serialize, URL-sync, or pass directly to an API.
 
-Four built-in types: `filter.text()`, `filter.select()`, `filter.number()` (with `=`, `<`, `>`,
-`≤`, `≥` modifiers), and `filter.dateRange()`.
+Frakton NG ships four built-in filter components that can be registered: text, select, number
+(with `=`, `<`, `>`, `<=`, `>=` modifiers), and date range.
 
 Example component: `TableExamplesFilteringComponent`
 
@@ -7278,1169 +7306,1981 @@ Perfect for loading states, button loading indicators, table loading overlays, s
 
 ## Description
 
-A powerful and flexible autocomplete input component with dropdown options, search functionality, and support for custom actions. Built with Angular signals and reactive patterns, it offers seamless integration with forms and dynamic data sources.
+Autocomplete for real application forms. It separates search text from form value,
+supports object options with primitive form values, accepts hydrated values from edit screens,
+and works with local search, server search, multiple selection, free text, pagination, and
+virtualized lists.
 
 ## Features
+
+### Selection
+
+- id: selection
+- type: introduction
+
+Core selection behavior. The autocomplete keeps the typed query separate from the form value:
+search text is temporary, while selected options write normalized primitive values to the form.
 
 ### Basic
 
 - id: basic
 - type: story
-- component: FktAutocompleteBasicExampleComponent
+- component: AutocompleteBasicExampleComponent
 
-Basic autocomplete implementation with predefined options. Perfect starting point showing essential functionality with search and selection capabilities.
+Basic single selection with primitive string options. When options are already primitive values,
+the component does not require `labelKey` or `valueKey`.
 
-Example component: `FktAutocompleteBasicExampleComponent`
+Example component: `AutocompleteBasicExampleComponent`
 
-```ts title="fkt-autocomplete-basic-example.component.ts"
-import { Component, computed, linkedSignal, model, signal } from '@angular/core';
-import { FktAutocompleteComponent, FktAutocompleteOption } from 'frakton-ng/autocomplete';
-import { Field, form } from '@angular/forms/signals';
+```ts title="autocomplete-basic-example.component.ts"
+import { Component } from '@angular/core';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { FktAutocompleteComponent } from 'frakton-ng/autocomplete';
+import { CodeOutputComponent } from '@/components/code-output/code-output.component';
 
 @Component({
-	selector: 'fkt-autocomplete-basic-example',
-	imports: [FktAutocompleteComponent, Field],
-	templateUrl: './fkt-autocomplete-basic-example.component.html',
-	styleUrl: './fkt-autocomplete-basic-example.component.scss'
+    selector: 'app-autocomplete-basic-example',
+    imports: [
+        FktAutocompleteComponent,
+        ReactiveFormsModule,
+        CodeOutputComponent,
+    ],
+    templateUrl: './autocomplete-basic-example.component.html',
+    styleUrl: './autocomplete-basic-example.component.scss',
 })
-export class FktAutocompleteBasicExampleComponent {
-	label = model<string>('Select a fruit');
-	placeholder = model<string>('Start typing...');
-	options = model<FktAutocompleteOption[]>([
-		{ value: "apple", label: "Apple" },
-		{ value: "banana", label: "Banana" },
-		{ value: "cherry", label: "Cherry" },
-		{ value: "grape", label: "Grape" },
-		{ value: "orange", label: "Orange" },
-		{ value: "strawberry", label: "Strawberry" },
-	]);
-
-	control = form(signal(''));
-
-	protected searchTerm = signal('');
-
-	protected filteredOptions = linkedSignal(() => {
-		const searchTerm = this.searchTerm();
-
-		return this.options().filter(option => option.label.toLowerCase().includes(searchTerm.toLowerCase()));
-	});
-
-	protected selectedOption = computed(() => {
-		return this.options()?.find(option => option.value === this.control().value());
-	});
-
-	onSearch(searchTerm: string) {
-		console.log('Search term:', searchTerm);
-	}
+export class AutocompleteBasicExampleComponent {
+    protected readonly frameworks = [
+        'Angular',
+        'React',
+        'Vue',
+        'Svelte',
+        'Solid',
+    ];
+    protected readonly framework = new FormControl<string | null>(null);
+    protected readonly value = toSignal(this.framework.valueChanges, {
+        initialValue: this.framework.value,
+    });
 }
 ```
 
-```html title="fkt-autocomplete-basic-example.component.html"
-<div class="example-container">
-	<fkt-autocomplete
-		[field]="control"
-		[label]="label()"
-		[placeholder]="placeholder()"
-		[options]="filteredOptions()"
-		(search)="searchTerm.set($event)"
-	/>
+```html title="autocomplete-basic-example.component.html"
+<app-code-output
+    [value]="value()"
+    title="Field value"
+/>
+<fkt-autocomplete
+    label="Framework"
+    placeholder="Search frameworks"
+    [formControl]="framework"
+    [options]="frameworks"
+    localSearch
+/>
+```
 
-	@if (selectedOption()) {
-		<div class="selected-option">
-			<div class="title">
-				<h3>
-					Selected option
-				</h3>
-				<hr>
-			</div>
+```css title="autocomplete-basic-example.component.scss"
+pre {
+    margin: 1rem 0 0;
+}
+```
 
-			<div class="info">
-				<p>
-					<strong>Value:</strong> {{ selectedOption()?.value }}
-				</p>
-				<p>
-					<strong>Label:</strong> {{ selectedOption()?.label }}
-				</p>
-			</div>
-		</div>
-	}
+### ObjectOptions
+
+- id: object-options
+- type: story
+- component: AutocompleteObjectOptionsExampleComponent
+
+Object options can be normalized through `labelKey` and `valueKey`. This keeps the visual label
+tied to the rich option object while the form stores only the stable identifier.
+
+Example component: `AutocompleteObjectOptionsExampleComponent`
+
+```ts title="autocomplete-object-options-example.component.ts"
+import { Component } from '@angular/core';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { FktAutocompleteComponent } from 'frakton-ng/autocomplete';
+import { USERS } from '../autocomplete-demo-data';
+import { CodeOutputComponent } from '@/components/code-output/code-output.component';
+
+@Component({
+    selector: 'app-autocomplete-object-options-example',
+    imports: [
+        FktAutocompleteComponent,
+        ReactiveFormsModule,
+        CodeOutputComponent,
+    ],
+    templateUrl: './autocomplete-object-options-example.component.html',
+    styleUrl: './autocomplete-object-options-example.component.scss',
+})
+export class AutocompleteObjectOptionsExampleComponent {
+    protected readonly users = USERS;
+    protected readonly assignee = new FormControl<string | null>(null);
+    protected readonly value = toSignal(this.assignee.valueChanges, {
+        initialValue: this.assignee.value,
+    });
+}
+```
+
+```html title="autocomplete-object-options-example.component.html"
+<app-code-output
+    [value]="value()"
+    title="Field value"
+/>
+
+<fkt-autocomplete
+    label="Assignee"
+    placeholder="Search for a user to assign"
+    [formControl]="assignee"
+    [options]="users"
+    labelKey="name"
+    valueKey="id"
+    groupKey="department"
+    localSearch
+/>
+```
+
+```css title="autocomplete-object-options-example.component.scss"
+pre {
+    margin: 1rem 0 0;
+}
+```
+
+### FunctionKeys
+
+- id: function-keys
+- type: story
+- component: AutocompleteFunctionKeysExampleComponent
+
+`labelKey`, `valueKey`, and `groupKey` can also be functions. Use function keys when the visible
+label, primitive value, or group metadata needs to be derived from the raw option object.
+
+Example component: `AutocompleteFunctionKeysExampleComponent`
+
+```ts title="autocomplete-function-keys-example.component.ts"
+import { Component } from '@angular/core';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { FktAutocompleteComponent } from 'frakton-ng/autocomplete';
+import { COUNTRIES, Country } from '../autocomplete-demo-data';
+import { CodeOutputComponent } from '@/components/code-output/code-output.component';
+
+@Component({
+    selector: 'app-autocomplete-function-keys-example',
+    imports: [
+        FktAutocompleteComponent,
+        ReactiveFormsModule,
+        CodeOutputComponent,
+    ],
+    templateUrl: './autocomplete-function-keys-example.component.html',
+    styleUrl: './autocomplete-function-keys-example.component.scss',
+})
+export class AutocompleteFunctionKeysExampleComponent {
+    protected readonly countries = COUNTRIES;
+    protected readonly country = new FormControl<string | null>(null);
+    protected readonly value = toSignal(this.country.valueChanges, {
+        initialValue: this.country.value,
+    });
+
+    protected readonly getCountryLabel = (country: Country) => country.name;
+    protected readonly getCountryValue = (country: Country) => country.code;
+    protected readonly getCountryGroup = (country: Country) => ({
+        label: country.continent,
+        value: country.continent.toLowerCase().replaceAll(' ', '-'),
+    });
+}
+```
+
+```html title="autocomplete-function-keys-example.component.html"
+<app-code-output
+    [value]="value()"
+    title="Field value"
+/>
+
+<fkt-autocomplete
+    label="Country"
+    placeholder="Select your country"
+    [formControl]="country"
+    [options]="countries"
+    [labelKey]="getCountryLabel"
+    [valueKey]="getCountryValue"
+    [groupKey]="getCountryGroup"
+    localSearch
+/>
+```
+
+```css title="autocomplete-function-keys-example.component.scss"
+pre {
+    margin: 1rem 0 0;
+}
+```
+
+### MultipleSelection
+
+- id: multiple-selection
+- type: story
+- component: AutocompleteMultipleExampleComponent
+
+Multiple selection stores an array of primitive values and keeps the dropdown open after each
+selection. Selected options are rendered as removable chips.
+
+Example component: `AutocompleteMultipleExampleComponent`
+
+```ts title="autocomplete-multiple-example.component.ts"
+import { Component } from '@angular/core';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { FktAutocompleteComponent } from 'frakton-ng/autocomplete';
+import { COUNTRIES } from '../autocomplete-demo-data';
+import { CodeOutputComponent } from '@/components/code-output/code-output.component';
+
+@Component({
+    selector: 'app-autocomplete-multiple-example',
+    imports: [
+        FktAutocompleteComponent,
+        ReactiveFormsModule,
+        CodeOutputComponent,
+    ],
+    templateUrl: './autocomplete-multiple-example.component.html',
+    styleUrl: './autocomplete-multiple-example.component.scss',
+})
+export class AutocompleteMultipleExampleComponent {
+    protected readonly countries = COUNTRIES;
+    protected readonly countriesControl = new FormControl<(string | number)[]>(
+        []
+    );
+    protected readonly value = toSignal(this.countriesControl.valueChanges, {
+        initialValue: this.countriesControl.value,
+    });
+}
+```
+
+```html title="autocomplete-multiple-example.component.html"
+<app-code-output
+    [value]="value()"
+    title="Field value"
+/>
+
+<fkt-autocomplete
+    label="Countries"
+    placeholder="Select multiple countries"
+    [formControl]="countriesControl"
+    [options]="countries"
+    labelKey="name"
+    valueKey="code"
+    groupKey="continent"
+    multiple
+    localSearch
+/>
+```
+
+```css title="autocomplete-multiple-example.component.scss"
+pre {
+    margin: 1rem 0 0;
+}
+```
+
+### FreeText
+
+- id: free-text
+- type: story
+- component: AutocompleteFreeTextExampleComponent
+
+`freeText` allows values that are not present in the option list. In multiple mode, committed
+free text becomes a chip; without `freeText`, unresolved search text is discarded on close.
+
+Example component: `AutocompleteFreeTextExampleComponent`
+
+```ts title="autocomplete-free-text-example.component.ts"
+import { Component } from '@angular/core';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { FktAutocompleteComponent } from 'frakton-ng/autocomplete';
+import { CodeOutputComponent } from '@/components/code-output/code-output.component';
+
+@Component({
+    selector: 'app-autocomplete-free-text-example',
+    imports: [
+        FktAutocompleteComponent,
+        ReactiveFormsModule,
+        CodeOutputComponent,
+    ],
+    templateUrl: './autocomplete-free-text-example.component.html',
+    styleUrl: './autocomplete-free-text-example.component.scss',
+})
+export class AutocompleteFreeTextExampleComponent {
+    protected readonly suggestions = ['Angular', 'Signals', 'Forms', 'API'];
+    protected readonly tags = new FormControl<(string | number)[]>([]);
+    protected readonly value = toSignal(this.tags.valueChanges, {
+        initialValue: this.tags.value,
+    });
+}
+```
+
+```html title="autocomplete-free-text-example.component.html"
+<app-code-output
+    [value]="value()"
+    title="Field value"
+/>
+
+<fkt-autocomplete
+    label="Tags"
+    placeholder="Choose a tag or create one."
+    [formControl]="tags"
+    [options]="suggestions"
+    multiple
+    freeText
+    localSearch
+/>
+```
+
+```css title="autocomplete-free-text-example.component.scss"
+pre {
+    margin: 1rem 0 0;
+}
+```
+
+### HydratedValues
+
+- id: hydrated-values
+- type: story
+- component: AutocompleteHydratedValueExampleComponent
+
+Hydrated values are useful on edit screens where the API returns objects before the option list is
+loaded. The component normalizes object values to primitives, keeps their labels as preload data,
+and replaces those labels when fresh options with the same value arrive.
+
+Example component: `AutocompleteHydratedValueExampleComponent`
+
+```ts title="autocomplete-hydrated-value-example.component.ts"
+import { Component } from '@angular/core';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { FktAutocompleteComponent } from 'frakton-ng/autocomplete';
+import { FktButtonComponent } from 'frakton-ng/button';
+import { User } from '../autocomplete-demo-data';
+import { CodeOutputComponent } from '@/components/code-output/code-output.component';
+
+const PRELOADED_USERS = [
+    {
+        id: 'usr-2315',
+        name: 'John Smith',
+        email: 'john.smith@company.com',
+        department: 'Engineering',
+    },
+    {
+        id: 'usr-2316',
+        name: 'Emma Johnson',
+        email: 'emma.johnson@company.com',
+        department: 'Marketing',
+    },
+    {
+        id: 'usr-2317',
+        name: 'Michael Brown',
+        email: 'michael.brown@company.com',
+        department: 'Finance',
+    },
+    {
+        id: 'usr-2318',
+        name: 'Olivia Davis',
+        email: 'olivia.davis@company.com',
+        department: 'Human Resources',
+    },
+    {
+        id: 'usr-2319',
+        name: 'William Wilson',
+        email: 'william.wilson@company.com',
+        department: 'Sales',
+    },
+    {
+        id: 'usr-2320',
+        name: 'Sophia Miller',
+        email: 'sophia.miller@company.com',
+        department: 'Customer Support',
+    },
+    {
+        id: 'usr-2321',
+        name: 'James Taylor',
+        email: 'james.taylor@company.com',
+        department: 'Operations',
+    },
+    {
+        id: 'usr-2322',
+        name: 'Charlotte Anderson',
+        email: 'charlotte.anderson@company.com',
+        department: 'Legal',
+    },
+];
+
+@Component({
+    selector: 'app-autocomplete-hydrated-value-example',
+    imports: [
+        FktAutocompleteComponent,
+        FktButtonComponent,
+        ReactiveFormsModule,
+        CodeOutputComponent,
+    ],
+    templateUrl: './autocomplete-hydrated-value-example.component.html',
+    styleUrl: './autocomplete-hydrated-value-example.component.scss',
+})
+export class AutocompleteHydratedValueExampleComponent {
+    protected readonly usersControl = new FormControl<
+        (string | number | User)[]
+    >([]);
+    protected readonly value = toSignal(this.usersControl.valueChanges, {
+        initialValue: this.usersControl.value,
+    });
+
+    protected users: User[] = [];
+
+    protected fillWithPrimitiveValues() {
+        this.usersControl.setValue(['usr-3010', 'usr-3011']);
+    }
+
+    protected fillWithHydratedUsers() {
+        this.usersControl.setValue([
+            {
+                id: 'usr-2316',
+                name: 'Emma Johnson',
+                email: 'emma.johnson@company.com',
+                department: 'Marketing',
+            },
+            {
+                id: 'usr-2317',
+                name: 'Michael Brown',
+                email: 'michael.brown@company.com',
+                department: 'Finance',
+            },
+        ]);
+    }
+
+    protected loadFreshOptions() {
+        this.users = PRELOADED_USERS.map((user) => ({
+            ...user,
+            name: `${user.name} (fresh)`,
+        }));
+    }
+}
+```
+
+```html title="autocomplete-hydrated-value-example.component.html"
+<app-code-output
+    [value]="value()"
+    title="Field value"
+/>
+
+<fkt-autocomplete
+    label="Users"
+    placeholder="Search for a user"
+    [formControl]="usersControl"
+    [options]="users"
+    labelKey="name"
+    valueKey="id"
+    multiple
+    localSearch
+/>
+
+<div class="actions">
+    <fkt-button text="Set ids" (click)="fillWithPrimitiveValues()" />
+    <fkt-button text="Set hydrated users" (click)="fillWithHydratedUsers()" />
+    <fkt-button text="Load fresh options" (click)="loadFreshOptions()" />
 </div>
 ```
 
-```css title="fkt-autocomplete-basic-example.component.scss"
-p {
-	margin: 0;
+```css title="autocomplete-hydrated-value-example.component.scss"
+.actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .75rem;
+    margin-top: 1rem;
 }
 
-* {
-	box-sizing: border-box;
-}
-
-hr {
-	border: none;
-	border-bottom: solid 1px var(--fkt-color-neutral-300);
-	margin: 0;
-}
-
-.example-container {
-	width: 100%;
-
-	h3 {
-		margin-bottom: 0.5rem;
-		color: var(--color-text-primary);
-	}
-
-	.description {
-		margin-bottom: 1rem;
-		color: var(--color-text-secondary);
-		font-size: 0.875rem;
-	}
-
-	.selected-option {
-		margin-top: var(--fkt-space-xs);
-		padding: var(--fkt-space-sm);
-		border-radius: var(--fkt-radius-md);
-		font-size: var(--fkt-font-size-sm);
-		box-shadow: var(--fkt-shadow-md);
-		border: 1px solid var(--fkt-color-neutral-200);
-		display: flex;
-		flex-direction: column;
-		gap: var(--fkt-space-xs);
-
-		.info {
-			display: flex;
-			flex-direction: column;
-			gap: var(--fkt-space-xs);
-		}
-
-		.title {
-			display: flex;
-			flex-direction: column;
-		}
-	}
+pre {
+    margin: 1rem 0 0;
 }
 ```
 
-### AutoCreation
+### Templates
 
-- id: auto-creation
+- id: templates
+- type: introduction
+
+Content customization. Header, group, item, and footer templates let the consumer shape the
+overlay while keeping keyboard navigation, active descendant, selection, and form behavior inside
+the component.
+
+### CustomContent
+
+- id: custom-content
 - type: story
-- component: FktAutocompleteAutoCreationExampleComponent
+- component: AutocompleteCustomContentExampleComponent
 
-Auto-creation mode allows users to create new options by typing values not in the predefined list. Ideal for tag systems, category management, and dynamic data entry.
+Custom item, group, header, and footer templates. Template contexts expose the normalized option
+and selection state, so custom UI remains type-safe while the form value stays primitive.
 
-Example component: `FktAutocompleteAutoCreationExampleComponent`
+Example component: `AutocompleteCustomContentExampleComponent`
 
-```ts title="fkt-autocomplete-auto-creation-example.component.ts"
-import { Component, computed, input, linkedSignal, model, signal } from '@angular/core';
+```ts title="autocomplete-custom-content-example.component.ts"
+import { Component } from '@angular/core';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { toSignal } from '@angular/core/rxjs-interop';
 import {
-	FktAutoCompleteAddOptionEvent,
-	FktAutocompleteComponent,
-	FktAutocompleteOption
+    FktAutocompleteComponent,
+    FktAutocompleteFooterDirective,
+    FktAutocompleteGroupDirective,
+    FktAutocompleteHeaderDirective,
+    FktAutocompleteItemDirective
 } from 'frakton-ng/autocomplete';
-import { Field, form } from '@angular/forms/signals';
-
-@Component({
-	selector: 'fkt-autocomplete-auto-creation-example',
-	imports: [FktAutocompleteComponent, Field],
-	templateUrl: './fkt-autocomplete-auto-creation-example.component.html',
-	styleUrl: './fkt-autocomplete-auto-creation-example.component.scss'
-})
-export class FktAutocompleteAutoCreationExampleComponent {
-	selectedValue = input<FktAutocompleteOption | null>(null);
-	label = input<string>('Country (create new if not found)');
-	placeholder = input<string>('Type a country name');
-	addOptionLabel = input<string>('Add country "{{inputValue}}"');
-	allowAddOption = input<boolean>(true);
-	options = model<FktAutocompleteOption[]>([
-		{ value: "us", label: "United States" },
-		{ value: "ca", label: "Canada" },
-		{ value: "uk", label: "United Kingdom" },
-		{ value: "de", label: "Germany" },
-		{ value: "fr", label: "France" },
-		{ value: "es", label: "Spain" },
-		{ value: "it", label: "Italy" },
-		{ value: "jp", label: "Japan" },
-		{ value: "au", label: "Australia" },
-		{ value: "br", label: "Brazil" },
-	]);
-
-	protected searchTerm = signal('');
-
-	protected filteredOptions = linkedSignal(() => {
-		const searchTerm = this.searchTerm();
-
-		return this.options().filter(option => option.label.toLowerCase().includes(searchTerm.toLowerCase()));
-	});
-
-	protected control = form(signal(''));
-
-	protected selectedOption = computed(() => {
-		return this.options()?.find(option => option.value === this.control().value());
-	});
-
-	protected onAutoCreate(event: FktAutoCompleteAddOptionEvent) {
-		setTimeout(() => {
-			const newOption = {
-				value: crypto.randomUUID(),
-				label: event.inputValue,
-			};
-
-			this.options.update(options => [
-				...options,
-				newOption
-			]);
-
-			event.done(newOption.value)
-		}, 1000)
-	}
-}
-```
-
-```html title="fkt-autocomplete-auto-creation-example.component.html"
-<div class="example-container">
-	<fkt-autocomplete
-		[field]="control"
-		[label]="label()"
-		[placeholder]="placeholder()"
-		[addOptionLabel]="addOptionLabel()"
-		[allowAddOption]="allowAddOption()"
-		(addOption)="onAutoCreate($event)"
-		[options]="filteredOptions()"
-		(search)="searchTerm.set($event)"
-	/>
-
-	@if (selectedOption()) {
-		<div class="selected-option">
-			<div class="title">
-				<h3>
-					Selected option
-				</h3>
-				<hr>
-			</div>
-
-			<div class="info">
-				<p>
-					<strong>Value:</strong> {{ selectedOption()?.value }}
-				</p>
-				<p>
-					<strong>Label:</strong> {{ selectedOption()?.label }}
-				</p>
-			</div>
-		</div>
-	}
-
-	<div class="info-box">
-		<strong>Tip:</strong> Type a country name that's not in the list to see the auto-creation feature in action.
-	</div>
-</div>
-```
-
-```css title="fkt-autocomplete-auto-creation-example.component.scss"
-p {
-	margin: 0;
-}
-
-* {
-	box-sizing: border-box;
-}
-
-hr {
-	border: none;
-	border-bottom: solid 1px var(--fkt-color-neutral-300);
-	margin: 0;
-}
-
-.example-container {
-	width: 100%;
-	display: flex;
-	flex-direction: column;
-	gap: var(--fkt-space-md);
-
-	h3 {
-		margin: 0 0 0.5rem;
-		color: var(--color-text-primary);
-	}
-
-	.description {
-		margin-bottom: 1rem;
-		color: var(--fkt-color-neutral-600);
-		font-size: var(--fkt-font-size-sm);
-	}
-
-	.selected-option {
-		margin-top: var(--fkt-space-xs);
-		padding: var(--fkt-space-sm);
-		border-radius: var(--fkt-radius-md);
-		font-size: var(--fkt-font-size-sm);
-		box-shadow: var(--fkt-shadow-md);
-		border: 1px solid var(--fkt-color-neutral-200);
-		display: flex;
-		flex-direction: column;
-		gap: var(--fkt-space-xs);
-
-		.info {
-			display: flex;
-			flex-direction: column;
-			gap: var(--fkt-space-xs);
-		}
-
-		.title {
-			display: flex;
-			flex-direction: column;
-		}
-	}
-
-	.info-box {
-		margin-top: 1rem;
-		padding: 0.75rem;
-		width: 100%;
-		background-color: var(--fkt-color-info-opacity-10, #e3f2fd);
-		border-left: 4px solid var(--fkt-color-info, #2196f3);
-		border-radius: 4px;
-		font-size: 0.875rem;
-
-		strong {
-			color: var(--fkt-color-info, #2196f3);
-		}
-	}
-}
-```
-
-### CustomStyling
-
-- id: custom-styling
-- type: story
-- component: FktAutocompleteCustomStylingExampleComponent
-
-Custom styling and disabled state demonstration. Shows how to apply visual customization and handle disabled states with interactive controls.
-
-Example component: `FktAutocompleteCustomStylingExampleComponent`
-
-```ts title="fkt-autocomplete-custom-styling-example.component.ts"
-import { Component, computed, linkedSignal, model, signal } from '@angular/core';
-import { FktAutocompleteComponent, FktAutocompleteOption } from 'frakton-ng/autocomplete';
-import { Field, disabled, form } from '@angular/forms/signals';
 import { FktButtonComponent } from 'frakton-ng/button';
+import { USERS } from '../autocomplete-demo-data';
+import { FktAvatarComponent } from 'frakton-ng/avatar';
+import { FktTagComponent } from 'frakton-ng/tag';
+import { CodeOutputComponent } from '@/components/code-output/code-output.component';
 
 @Component({
-	selector: 'fkt-autocomplete-custom-styling-example',
-	imports: [FktAutocompleteComponent, Field, FktButtonComponent],
-	templateUrl: './fkt-autocomplete-custom-styling-example.component.html',
-	styleUrl: './fkt-autocomplete-custom-styling-example.component.scss'
+    selector: 'app-autocomplete-custom-content-example',
+    imports: [
+        FktAutocompleteComponent,
+        FktAutocompleteHeaderDirective,
+        FktAutocompleteGroupDirective,
+        FktAutocompleteItemDirective,
+        FktAutocompleteFooterDirective,
+        FktButtonComponent,
+        ReactiveFormsModule,
+        FktAvatarComponent,
+        FktTagComponent,
+        CodeOutputComponent,
+    ],
+    templateUrl: './autocomplete-custom-content-example.component.html',
+    styleUrl: './autocomplete-custom-content-example.component.scss',
 })
-export class FktAutocompleteCustomStylingExampleComponent {
-	selectedValue = model<FktAutocompleteOption | null>(null);
-	label = model<string>('Styled Autocomplete');
-	placeholder = model<string>('This field can be disabled');
-	options = model<FktAutocompleteOption[]>([
-		{ value: "apple", label: "Apple" },
-		{ value: "banana", label: "Banana" },
-		{ value: "cherry", label: "Cherry" },
-		{ value: "grape", label: "Grape" },
-		{ value: "orange", label: "Orange" },
-		{ value: "strawberry", label: "Strawberry" },
-	]);
-
-	private disabled = signal(false);
-	protected searchTerm = signal('');
-
-	protected filteredOptions = linkedSignal(() => {
-		const searchTerm = this.searchTerm();
-
-		return this.options().filter(option => option.label.toLowerCase().includes(searchTerm.toLowerCase()));
-	});
-
-	protected control = form(signal(''), path => {
-		disabled(path, () => this.disabled());
-	});
-
-	protected selectedOption = computed(() => {
-		return this.options()?.find(option => option.value === this.control().value());
-	});
-
-	protected toggleDisabled() {
-		this.disabled.update(disabled => !disabled);
-	}
+export class AutocompleteCustomContentExampleComponent {
+    protected readonly users = USERS;
+    protected readonly member = new FormControl<string | null>(null);
+    protected readonly value = toSignal(this.member.valueChanges, {
+        initialValue: this.member.value,
+    });
 }
 ```
 
-```html title="fkt-autocomplete-custom-styling-example.component.html"
-<div class="example-container">
-	<div class="custom-styled-autocomplete" [class.disabled-wrapper]="control().disabled()">
-		<fkt-autocomplete
-			[field]="control"
-			[label]="label()"
-			[placeholder]="placeholder()"
-			[options]="filteredOptions()"
-			(search)="searchTerm.set($event)"
-		/>
-	</div>
-
-	<fkt-button
-		[text]="(control().disabled() ? 'Enable': 'Disable') + ' Autocomplete'"
-		(click)="toggleDisabled()"
-	/>
-
-	@if (selectedOption()) {
-		<div class="selected-option">
-			<div class="title">
-				<h3>
-					Selected option
-				</h3>
-				<hr>
-			</div>
-
-			<div class="info">
-				<p>
-					<strong>Value:</strong> {{ selectedOption()?.value }}
-				</p>
-				<p>
-					<strong>Label:</strong> {{ selectedOption()?.label }}
-				</p>
-			</div>
-		</div>
-	}
-
-	<div class="status-indicator">
-		Status: <span [class]="control().disabled() ? 'disabled-status' : 'enabled-status'">
-			{{ control().disabled() ? 'Disabled' : 'Enabled' }}
-		</span>
-	</div>
-</div>
-```
-
-```css title="fkt-autocomplete-custom-styling-example.component.scss"
-p {
-	margin: 0;
-}
-
-* {
-	box-sizing: border-box;
-}
-
-hr {
-	border: none;
-	border-bottom: solid 1px var(--fkt-color-neutral-300);
-	margin: 0;
-}
-
-
-.example-container {
-	width: 100%;
-	display: flex;
-	flex-direction: column;
-	gap: var(--fkt-space-xs);
-
-	h3 {
-		margin-bottom: 0.5rem;
-		color: var(--color-text-primary);
-	}
-
-	.description {
-		margin-bottom: 1rem;
-		color: var(--color-text-secondary);
-		font-size: 0.875rem;
-	}
-
-	.custom-styled-autocomplete {
-		position: relative;
-		transition: opacity 0.3s ease;
-
-		&.disabled-wrapper {
-			opacity: 0.6;
-
-			&::after {
-				content: '';
-				position: absolute;
-				top: 0;
-				left: 0;
-				right: 0;
-				bottom: 0;
-				background-color: transparent;
-				pointer-events: none;
-				border-radius: 4px;
-				border: 2px dashed var(--fkt-color-border-disabled, #ccc);
-			}
-		}
-	}
-
-	.selected-option {
-		margin-top: var(--fkt-space-xs);
-		padding: var(--fkt-space-sm);
-		border-radius: var(--fkt-radius-md);
-		font-size: var(--fkt-font-size-sm);
-		box-shadow: var(--fkt-shadow-md);
-		border: 1px solid var(--fkt-color-neutral-200);
-		display: flex;
-		flex-direction: column;
-		gap: var(--fkt-space-xs);
-
-		.info {
-			display: flex;
-			flex-direction: column;
-			gap: var(--fkt-space-xs);
-		}
-
-		.title {
-			display: flex;
-			flex-direction: column;
-		}
-	}
-
-	.status-indicator {
-		margin-top: 1rem;
-		font-size: 0.875rem;
-		color: var(--color-text-secondary);
-
-		.enabled-status {
-			color: var(--fkt-color-success, #4caf50);
-			font-weight: 500;
-		}
-
-		.disabled-status {
-			color: var(--color-error, #f44336);
-			font-weight: 500;
-		}
-	}
-}
-```
-
-### Events
-
-- id: events
-- type: story
-- component: FktAutocompleteEventsExampleComponent
-
-Interactive functionality with event handling and custom actions. Demonstrates search events, value changes, and action button interactions with real-time event logging.
-
-Example component: `FktAutocompleteEventsExampleComponent`
-
-```ts title="fkt-autocomplete-events-example.component.ts"
-import { Component, computed, input, linkedSignal, model, signal } from '@angular/core';
-import { FktAutocompleteComponent, FktAutocompleteOption } from 'frakton-ng/autocomplete';
-import { FktButtonAction } from 'frakton-ng/button';
-import { FktIconComponent } from 'frakton-ng/icon';
-import { Field, form } from '@angular/forms/signals';
-
-@Component({
-	selector: 'fkt-autocomplete-events-example',
-	imports: [FktAutocompleteComponent, FktIconComponent, Field],
-	templateUrl: './fkt-autocomplete-events-example.component.html',
-	styleUrl: './fkt-autocomplete-events-example.component.scss'
-})
-export class FktAutocompleteEventsExampleComponent {
-	label = model<string>('Manage tags');
-	placeholder = model<string>('Select or search for tags');
-	protected lastEvent = signal<string>('');
-
-	protected options = model<FktAutocompleteOption[]>([
-		{value: "frontend", label: "Frontend"},
-		{value: "backend", label: "Backend"},
-		{value: "react", label: "React"},
-		{value: "angular", label: "Angular"},
-		{value: "vue", label: "Vue"},
-		{value: "javascript", label: "JavaScript"},
-		{value: "typescript", label: "TypeScript"},
-		{value: "nodejs", label: "Node.js"},
-		{value: "python", label: "Python"},
-		{value: "java", label: "Java"},
-	]);
-
-	protected searchTerm = signal('');
-
-	protected filteredOptions = linkedSignal(() => {
-		const searchTerm = this.searchTerm();
-
-		return this.options().filter(option => option.label.toLowerCase().includes(searchTerm.toLowerCase()));
-	});
-
-	protected selectedOption = computed(() => {
-		return this.options()?.find(option => option.value === this.control().value());
-	});
-
-	protected control = form(signal(''));
-
-	protected actions = signal<FktButtonAction[]>([
-		{
-			icon: "pencil",
-			color: 'primary',
-			theme: 'basic',
-			identifier: 'edit',
-			ariaLabel: 'Edit option',
-			click: () => {
-				this.lastEvent.set("edit")
-			}
-		},
-		{
-			icon: "star",
-			color: 'accent',
-			theme: 'basic',
-			identifier: 'favorite',
-			ariaLabel: 'Favorite option',
-			click: () => {
-				this.lastEvent.set("favorite")
-			}
-		},
-		{
-			icon: "trash",
-			color: 'danger',
-			theme: 'basic',
-			identifier: 'delete',
-			ariaLabel: 'Delete option',
-			click: () => {
-				this.lastEvent.set("delete")
-			}
-		}
-	]);
-
-	onSearch(searchTerm: string) {
-		this.lastEvent.set(`Search: "${searchTerm}"`);
-		console.log('Search term:', searchTerm);
-	}
-}
-```
-
-```html title="fkt-autocomplete-events-example.component.html"
-<div class="example-container">
-	<fkt-autocomplete
-		[field]="control"
-		[label]="label()"
-		[placeholder]="placeholder()"
-		[actions]="actions()"
-		[options]="filteredOptions()"
-		(search)="searchTerm.set($event)"
-	/>
-
-	@if (selectedOption()) {
-		<div class="selected-option">
-			<div class="title">
-				<h3>
-					Selected option
-				</h3>
-				<hr>
-			</div>
-
-			<div class="info">
-				<p>
-					<strong>Value:</strong> {{ selectedOption()?.value }}
-				</p>
-				<p>
-					<strong>Label:</strong> {{ selectedOption()?.label }}
-				</p>
-			</div>
-		</div>
-	}
-
-	<div class="events-log">
-		<h4>Event Log</h4>
-		<div class="last-event">
-			{{ lastEvent() || 'No events yet. Try searching or clicking actions.' }}
-		</div>
-	</div>
-
-	<div class="actions-legend">
-		<h4>Available Actions</h4>
-		<div class="legend-items">
-			<div class="legend-item">
-				<span class="icon-placeholder edit-icon"><fkt-icon name="pencil-square"/></span>
-				<span>Edit - Modify the tag</span>
-			</div>
-			<div class="legend-item">
-				<span class="icon-placeholder favorite-icon"><fkt-icon name="star"/></span>
-				<span>Favorite - Mark as favorite</span>
-			</div>
-			<div class="legend-item">
-				<span class="icon-placeholder delete-icon"><fkt-icon name="trash"/></span>
-				<span>Delete - Remove the tag</span>
-			</div>
-		</div>
-	</div>
-</div>
-```
-
-```css title="fkt-autocomplete-events-example.component.scss"
-p {
-	margin: 0;
-}
-
-* {
-	box-sizing: border-box;
-}
-
-hr {
-	border: none;
-	border-bottom: solid 1px var(--fkt-color-neutral-300);
-	margin: 0;
-}
-
-.example-container {
-	width: 100%;
-
-	.description {
-		margin-bottom: 1rem;
-		color: var(--color-text-secondary);
-		font-size: 0.875rem;
-	}
-
-	.selected-option {
-		margin-top: var(--fkt-space-xs);
-		padding: var(--fkt-space-sm);
-		border-radius: var(--fkt-radius-md);
-		font-size: var(--fkt-font-size-sm);
-		box-shadow: var(--fkt-shadow-md);
-		border: 1px solid var(--fkt-color-neutral-200);
-		display: flex;
-		flex-direction: column;
-		gap: var(--fkt-space-xs);
-
-		.info {
-			display: flex;
-			flex-direction: column;
-			gap: var(--fkt-space-xs);
-		}
-
-		.title {
-			display: flex;
-			flex-direction: column;
-		}
-	}
-
-	.events-log {
-		margin-top: var(--fkt-space-xs);
-		padding: var(--fkt-space-sm);
-		border-radius: var(--fkt-radius-md);
-		font-size: var(--fkt-font-size-sm);
-		box-shadow: var(--fkt-shadow-md);
-		border: 1px solid var(--fkt-color-neutral-200);
-		display: flex;
-		flex-direction: column;
-		gap: var(--fkt-space-xs);
-		background-color: var(--fkt-color-modal-background);
-
-		h4 {
-			margin: 0 0 var(--fkt-space-xs);
-			font-size: var(--fkt-space-sm);
-			text-transform: uppercase;
-			font-weight: var(--fkt-font-semibold);
-		}
-
-		.last-event {
-			font-family: 'Monaco', 'Menlo', 'Consolas', monospace;
-			font-size: 0.8rem;
-			color: var(--color-text-secondary);
-			padding: 0.5rem;
-			border-radius: 3px;
-			border: 1px solid var(--fkt-color-neutral-300);
-		}
-	}
-
-	.actions-legend {
-		margin-top: 1.5rem;
-		padding: 1rem;
-		background-color: var(--fkt-color-modal-background);
-		box-shadow: var(--fkt-shadow-md);
-		border-radius: 4px;
-
-		h4 {
-			margin: 0 0 var(--fkt-space-xs);
-			font-size: var(--fkt-space-sm);
-			text-transform: uppercase;
-			font-weight: var(--fkt-font-semibold);
-		}
-
-		.legend-items {
-			display: flex;
-			flex-direction: column;
-			gap: 0.5rem;
-		}
-
-		.legend-item {
-			display: flex;
-			align-items: center;
-			gap: 0.5rem;
-			font-size: 0.875rem;
-			color: var(--color-text-secondary);
-
-			.icon-placeholder {
-				width: 20px;
-				height: 20px;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				border-radius: 3px;
-				font-size: 12px;
-
-				&.edit-icon {
-					color: var(--fkt-color-primary);
-				}
-
-				&.favorite-icon {
-					color: var(--fkt-color-warning);
-				}
-
-				&.delete-icon {
-					color: var(--fkt-color-danger);
-				}
-			}
-		}
-	}
-}
-```
-
-### LoadingStates
-
-- id: loading-states
-- type: story
-- component: FktAutocompleteLoadingStatesExampleComponent
-
-Loading states and no results handling with simulated API calls. Perfect for async data fetching scenarios with realistic loading indicators and empty state messaging.
-
-Example component: `FktAutocompleteLoadingStatesExampleComponent`
-
-```ts title="fkt-autocomplete-loading-states-example.component.ts"
-import { Component, computed, linkedSignal, model, signal } from '@angular/core';
-import { FktAutocompleteComponent, FktAutocompleteOption } from 'frakton-ng/autocomplete';
-import { FktNoResults } from 'frakton-ng/no-results';
-import { FktButtonComponent } from 'frakton-ng/button';
-import { Field, form } from '@angular/forms/signals';
-
-@Component({
-	selector: 'fkt-autocomplete-loading-states-example',
-	imports: [FktAutocompleteComponent, FktButtonComponent, Field],
-	templateUrl: './fkt-autocomplete-loading-states-example.component.html',
-	styleUrl: './fkt-autocomplete-loading-states-example.component.scss'
-})
-export class FktAutocompleteLoadingStatesExampleComponent {
-	label = model<string>('Search with Loading States');
-	placeholder = model<string>('Type to search');
-	loading = model<boolean>(false);
-
-	control = form(signal(''));
-	searchTerm = signal('');
-	options = signal<FktAutocompleteOption[]>([]);
-
-	allOptions: FktAutocompleteOption[] = [
-		{ value: "user1", label: "Alice Johnson" },
-		{ value: "user2", label: "Bob Smith" },
-		{ value: "user3", label: "Carol Davis" },
-		{ value: "user4", label: "David Wilson" },
-		{ value: "user5", label: "Emma Brown" },
-		{ value: "user6", label: "Frank Miller" },
-		{ value: "user7", label: "Grace Taylor" },
-		{ value: "user8", label: "Henry Anderson" },
-	];
-
-	noResults = model<FktNoResults>({
-		label: "No users found. Try a different search term."
-	});
-
-	protected filteredOptions = linkedSignal(() => {
-		const searchTerm = this.searchTerm();
-		if (!searchTerm) return this.options();
-		return this.options().filter(option => option.label.toLowerCase().includes(searchTerm.toLowerCase()));
-	});
-
-	simulateLoading() {
-		this.loading.set(true);
-		this.options.set([]);
-
-		// Simulate API call delay
-		setTimeout(() => {
-			this.options.set(this.allOptions);
-			this.loading.set(false);
-		}, 2000);
-	}
-
-	simulateNoResults() {
-		this.loading.set(true);
-		this.options.set([]);
-
-		// Simulate API call with no results
-		setTimeout(() => {
-			this.options.set([]);
-			this.loading.set(false);
-		}, 1500);
-	}
-
-	resetToNormal() {
-		this.loading.set(false);
-		this.options.set(this.allOptions);
-	}
-
-	onSearch(searchTerm: string) {
-		this.searchTerm.set(searchTerm);
-
-		if (searchTerm.length >= 2) {
-			this.loading.set(true);
-			this.options.set([]);
-
-			// Simulate search API call
-			setTimeout(() => {
-				const filtered = this.allOptions.filter(option =>
-					option.label.toLowerCase().includes(searchTerm.toLowerCase())
-				);
-				this.options.set(filtered);
-				this.loading.set(false);
-			}, 800);
-		} else {
-			this.options.set(this.allOptions);
-			this.loading.set(false);
-		}
-	}
-}
-```
-
-```html title="fkt-autocomplete-loading-states-example.component.html"
-<div class="example-container">
-	<fkt-autocomplete
-		[field]="control"
-		[label]="label()"
-		[placeholder]="placeholder()"
-		[options]="filteredOptions()"
-		[loading]="loading()"
-		[noResults]="noResults()"
-		(search)="onSearch($event)"
-	/>
-
-    <div class="controls">
-        <fkt-button
-            (click)="simulateLoading()"
-            text="Simulate Loading (2s)"
-            color="info"
-            theme="basic">
-        </fkt-button>
-        <fkt-button
-            (click)="simulateNoResults()"
-            text="Simulate No Results"
-            color="accent"
-            theme="basic">
-        </fkt-button>
-        <fkt-button
-            (click)="resetToNormal()"
-            text="Reset to Normal"
-            color="success"
-            theme="basic">
-        </fkt-button>
+```html title="autocomplete-custom-content-example.component.html"
+<app-code-output
+    [value]="value()"
+    title="Field value"
+/>
+
+<fkt-autocomplete
+    label="Team member"
+    placeholder="Search for a teammate"
+    [formControl]="member"
+    [options]="users"
+    multiple
+    labelKey="name"
+    valueKey="id"
+    groupKey="department"
+    localSearch
+>
+    <div *fktAutocompleteHeader class="overlay-header">
+        <div>
+            <strong>Available users</strong>
+            <span>Select a teammate by name, e-mail, or department.</span>
+        </div>
     </div>
+
+    <div *fktAutocompleteGroup="let group" class="group">
+        <span>{{ group.label }}</span>
+        <small>{{ group.items.length }} users</small>
+    </div>
+
+    <div
+        *fktAutocompleteItem="let item; let isSelected = isSelected"
+        class="item"
+        [attr.data-fkt-theme]="isSelected ? 'dark' : 'light'"
+        [class.selected]="isSelected"
+    >
+        <fkt-avatar
+            randomBackground
+            [initials]="item.label"
+        />
+
+        <div class="identity">
+            <strong>{{ item.label }}</strong>
+            <span>{{ item.raw?.['email'] }}</span>
+        </div>
+
+        <fkt-tag variant="faded" color="success" [text]="item.raw?.['department']"/>
+    </div>
+
+    <div *fktAutocompleteFooter class="overlay-footer">
+        <span>Missing someone?</span>
+        <fkt-button
+            text="Invite user"
+            icon="plus"
+            iconPosition="left"
+            theme="stroked"
+            shape="rect"
+        />
+    </div>
+</fkt-autocomplete>
+```
+
+```css title="autocomplete-custom-content-example.component.scss"
+.overlay-header {
+    border-bottom: 1px solid var(--fkt-color-neutral-300);
+    padding: .75rem .875rem;
+    z-index: 0;
+
+    div {
+        display: grid;
+        gap: .125rem;
+    }
+
+    strong {
+        font-size: .875rem;
+    }
+}
+
+.overlay-header span,
+.identity span,
+.overlay-footer span {
+    color: var(--fkt-color-neutral-700);
+    font-size: .75rem;
+}
+
+.group {
+    align-items: center;
+    background: var(--fkt-color-neutral-300);
+    color: var(--fkt-color-primary);
+    display: flex;
+    font-size: .75rem;
+    font-weight: 700;
+    justify-content: space-between;
+    padding: var(--fkt-space-inset-4xs) var(--fkt-space-inset-xs);
+    margin-bottom: var(--fkt-space-3xs);
+    text-transform: uppercase;
+}
+
+.group small {
+    color: var(--fkt-color-neutral-700);
+    font-size: .6875rem;
+    text-transform: none;
+}
+
+.item {
+    border-radius: var(--fkt-radius-md);
+    align-items: center;
+    display: grid;
+    gap: .75rem;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    padding: var(--fkt-space-inset-4xs) var(--fkt-space-inset-2xs);
+    cursor: pointer;
+    transition: var(--fkt-transition-base);
+
+    &.selected {
+        background: var(--fkt-color-neutral-300);
+    }
+
+    &:hover {
+        background: var(--fkt-color-neutral-200);
+    }
+}
+
+.identity {
+    display: grid;
+    gap: .125rem;
+    min-width: 0;
+
+    strong {
+        font-size: var(--fkt-font-size-sm);
+        color: var(--fkt-color-neutral-900);
+    }
+
+    strong, span {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+}
+
+.overlay-footer {
+    align-items: center;
+    border-top: 1px solid var(--fkt-color-neutral-300);
+    display: flex;
+    justify-content: space-between;
+    padding: var(--fkt-space-xs);
+    padding-bottom: 0;
+}
+
+pre {
+    margin: 1rem 0 0;
+}
+```
+
+### Search
+
+- id: search
+- type: introduction
+
+Search behavior. By default the component is server-search friendly: it emits debounced queries
+and displays the provided options. Use `localSearch` when the options in memory should be filtered
+by the component itself.
+
+### LocalSearch
+
+- id: local-search
+- type: story
+- component: AutocompleteLocalSearchExampleComponent
+
+Default local search. `localSearch` enables the built-in permissive filter, which compares label,
+name, and group using normalized text, so accents, casing, and punctuation do not make the search
+brittle.
+
+Example component: `AutocompleteLocalSearchExampleComponent`
+
+```ts title="autocomplete-local-search-example.component.ts"
+import { Component } from '@angular/core';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { FktAutocompleteComponent } from 'frakton-ng/autocomplete';
+import { COUNTRIES } from '../autocomplete-demo-data';
+import { CodeOutputComponent } from '@/components/code-output/code-output.component';
+
+@Component({
+    selector: 'app-autocomplete-local-search-example',
+    imports: [
+        FktAutocompleteComponent,
+        ReactiveFormsModule,
+        CodeOutputComponent,
+    ],
+    templateUrl: './autocomplete-local-search-example.component.html',
+    styleUrl: './autocomplete-local-search-example.component.scss',
+})
+export class AutocompleteLocalSearchExampleComponent {
+    protected readonly countries = COUNTRIES;
+    protected readonly country = new FormControl<string | null>(null);
+    protected readonly value = toSignal(this.country.valueChanges, {
+        initialValue: this.country.value,
+    });
+}
+```
+
+```html title="autocomplete-local-search-example.component.html"
+<app-code-output
+    [value]="value()"
+    title="Field value"
+/>
+
+<fkt-autocomplete
+    label="Country"
+    [formControl]="country"
+    placeholder="Hint: Search for 'de', 'germany' or 'europe'"
+    [options]="countries"
+    labelKey="name"
+    valueKey="code"
+    groupKey="continent"
+    localSearch
+/>
+```
+
+```css title="autocomplete-local-search-example.component.scss"
+pre {
+    margin: 1rem 0 0;
+}
+```
+
+### CustomLocalSearch
+
+- id: custom-local-search
+- type: story
+- component: AutocompleteCustomLocalSearchExampleComponent
+
+Custom local search. Passing a function to `localSearch` replaces the built-in filter and lets the
+consumer decide exactly which fields should be queried.
+
+Example component: `AutocompleteCustomLocalSearchExampleComponent`
+
+```ts title="autocomplete-custom-local-search-example.component.ts"
+import { Component } from '@angular/core';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { FktAutocompleteComponent } from 'frakton-ng/autocomplete';
+import { CodeOutputComponent } from '@/components/code-output/code-output.component';
+import { Country, COUNTRIES } from '../autocomplete-demo-data';
+
+@Component({
+    selector: 'app-autocomplete-custom-local-search-example',
+    imports: [
+        FktAutocompleteComponent,
+        ReactiveFormsModule,
+        CodeOutputComponent,
+    ],
+    templateUrl: './autocomplete-custom-local-search-example.component.html',
+    styleUrl: './autocomplete-custom-local-search-example.component.scss',
+})
+export class AutocompleteCustomLocalSearchExampleComponent {
+    protected readonly countries = COUNTRIES;
+    protected readonly country = new FormControl<string | null>(null);
+    protected readonly value = toSignal(this.country.valueChanges, {
+        initialValue: this.country.value,
+    });
+
+    protected readonly searchByCode = (query: string, options: Country[]) => {
+        const normalizedQuery = this.normalize(query);
+
+        if (!normalizedQuery) return options;
+
+        return options.filter((country) => {
+            return this.normalize(country.code).includes(normalizedQuery);
+        });
+    };
+
+    private normalize(value: string) {
+        return value
+            .normalize('NFD')
+            .replace(/\p{Diacritic}/gu, '')
+            .toLowerCase()
+            .trim();
+    }
+}
+```
+
+```html title="autocomplete-custom-local-search-example.component.html"
+<app-code-output
+    [value]="value()"
+    title="Field value"
+/>
+
+<fkt-autocomplete
+    label="Country"
+    [formControl]="country"
+    placeholder="Search by country code: br, de, us..."
+    [options]="countries"
+    labelKey="name"
+    valueKey="code"
+    groupKey="continent"
+    [localSearch]="searchByCode"
+/>
+```
+
+```css title="autocomplete-custom-local-search-example.component.scss"
+
+```
+
+### ServerSearch
+
+- id: server-search
+- type: story
+- component: AutocompleteServerSearchExampleComponent
+
+Server search with `searchChange`. The emitted query already respects `minSearch` and
+`searchDebounce`, so the consumer can fetch data directly without duplicating debounce logic.
+
+Example component: `AutocompleteServerSearchExampleComponent`
+
+```ts title="autocomplete-server-search-example.component.ts"
+import { Component, signal } from '@angular/core';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { FktAutocompleteComponent } from 'frakton-ng/autocomplete';
+import { USERS } from '../autocomplete-demo-data';
+import { CodeOutputComponent } from '@/components/code-output/code-output.component';
+
+@Component({
+    selector: 'app-autocomplete-server-search-example',
+    imports: [
+        FktAutocompleteComponent,
+        ReactiveFormsModule,
+        CodeOutputComponent,
+    ],
+    templateUrl: './autocomplete-server-search-example.component.html',
+    styleUrl: './autocomplete-server-search-example.component.scss',
+})
+export class AutocompleteServerSearchExampleComponent {
+    protected readonly user = new FormControl<string | null>(null);
+    protected readonly value = toSignal(this.user.valueChanges, {
+        initialValue: this.user.value,
+    });
+    protected readonly results = signal(USERS.slice(0, 4));
+    protected readonly loading = signal(false);
+
+    protected searchUsers(query: string) {
+        this.loading.set(true);
+
+        setTimeout(() => {
+            const normalizedQuery = query.toLowerCase();
+            this.results.set(
+                USERS.filter((user) =>
+                    user.name.toLowerCase().includes(normalizedQuery)
+                )
+            );
+            this.loading.set(false);
+        }, 400);
+    }
+}
+```
+
+```html title="autocomplete-server-search-example.component.html"
+<app-code-output
+    [value]="value()"
+    title="Field value"
+/>
+
+<fkt-autocomplete
+    label="User"
+    placeholder="Search for a user"
+    [formControl]="user"
+    [options]="results()"
+    [loading]="loading()"
+    labelKey="name"
+    valueKey="id"
+    (searchChange)="searchUsers($event)"
+/>
+```
+
+```css title="autocomplete-server-search-example.component.scss"
+pre {
+    margin: 1rem 0 0;
+}
+```
+
+### LazySearch
+
+- id: lazy-search
+- type: story
+- component: AutocompleteLazySearchExampleComponent
+
+Lazy search can be triggered from `isDropdownOpenedChange`. This is useful when the first request
+should happen only after the user opens the autocomplete instead of during initial page render.
+
+Example component: `AutocompleteLazySearchExampleComponent`
+
+```ts title="autocomplete-lazy-search-example.component.ts"
+import { Component, effect, signal } from '@angular/core';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { FktAutocompleteComponent } from 'frakton-ng/autocomplete';
+import { USERS } from '../autocomplete-demo-data';
+import { CodeOutputComponent } from '@/components/code-output/code-output.component';
+
+@Component({
+    selector: 'app-autocomplete-lazy-search-example',
+    imports: [
+        FktAutocompleteComponent,
+        ReactiveFormsModule,
+        CodeOutputComponent,
+    ],
+    templateUrl: './autocomplete-lazy-search-example.component.html',
+    styleUrl: './autocomplete-lazy-search-example.component.scss',
+})
+export class AutocompleteLazySearchExampleComponent {
+    protected readonly user = new FormControl<string | null>(null);
+    protected readonly value = toSignal(this.user.valueChanges, {
+        initialValue: this.user.value,
+    });
+    protected readonly results = signal<typeof USERS>([]);
+    protected readonly loading = signal(false);
+    protected readonly hasFetched = signal(false);
+    protected readonly canFetch = signal(false);
+
+    private readonly fetchWhenDropdownOpen = effect(() => {
+        if (!this.canFetch()) return;
+
+        this.fetch();
+    });
+
+    protected fetch() {
+        this.loading.set(true);
+
+        setTimeout(() => {
+            this.results.set(USERS.slice(0, 5));
+            this.hasFetched.set(true);
+            this.loading.set(false);
+        }, 400);
+    }
+}
+```
+
+```html title="autocomplete-lazy-search-example.component.html"
+<app-code-output
+    title="Fetch state"
+    [value]="{fetched: hasFetched(), value: value() }"
+/>
+
+<fkt-autocomplete
+    localSearch
+    label="User"
+    placeholder="Search for a user"
+    [formControl]="user"
+    [options]="results()"
+    [loading]="loading()"
+    labelKey="name"
+    valueKey="id"
+    (isDropdownOpenedChange)="canFetch.set(true)"
+/>
+```
+
+```css title="autocomplete-lazy-search-example.component.scss"
+pre {
+    margin: 1rem 0 0;
+}
+```
+
+### MinSearchAndDebounce
+
+- id: min-search-and-debounce
+- type: story
+- component: AutocompleteMinSearchExampleComponent
+
+`minSearch` delays searching until the query has enough characters. The same rule is used by
+local filtering and server search events, and the overlay explains the required length.
+
+Example component: `AutocompleteMinSearchExampleComponent`
+
+```ts title="autocomplete-min-search-example.component.ts"
+import { Component, signal } from '@angular/core';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { FktAutocompleteComponent } from 'frakton-ng/autocomplete';
+import { USERS } from '../autocomplete-demo-data';
+import { CodeOutputComponent } from '@/components/code-output/code-output.component';
+
+@Component({
+    selector: 'app-autocomplete-min-search-example',
+    imports: [
+        FktAutocompleteComponent,
+        ReactiveFormsModule,
+        CodeOutputComponent,
+    ],
+    templateUrl: './autocomplete-min-search-example.component.html',
+    styleUrl: './autocomplete-min-search-example.component.scss',
+})
+export class AutocompleteMinSearchExampleComponent {
+    protected readonly user = new FormControl<string | null>(null);
+    protected readonly value = toSignal(this.user.valueChanges, {
+        initialValue: this.user.value,
+    });
+    protected readonly results = signal(USERS);
+
+    protected searchUsers(query: string) {
+        this.results.set(
+            USERS.filter((user) =>
+                user.name.toLowerCase().includes(query.toLowerCase())
+            )
+        );
+    }
+}
+```
+
+```html title="autocomplete-min-search-example.component.html"
+<app-code-output
+    [value]="value()"
+    title="Field value"
+/>
+
+<fkt-autocomplete
+    label="User"
+    [formControl]="user"
+    placeholder="Hint: type 'wil'"
+    [options]="results()"
+    [minSearch]="3"
+    [searchDebounce]="500"
+    labelKey="name"
+    valueKey="id"
+    (searchChange)="searchUsers($event)"
+/>
+```
+
+```css title="autocomplete-min-search-example.component.scss"
+pre {
+    margin: 1rem 0 0;
+}
+```
+
+### ControlledDropdown
+
+- id: controlled-dropdown
+- type: story
+- component: AutocompleteControlledDropdownExampleComponent
+
+Overlay state can be controlled with `isDropdownOpened`. This is mostly useful for guided flows,
+external triggers, or advanced UI coordination.
+
+Example component: `AutocompleteControlledDropdownExampleComponent`
+
+```ts title="autocomplete-controlled-dropdown-example.component.ts"
+import { Component, signal } from '@angular/core';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { FktAutocompleteComponent } from 'frakton-ng/autocomplete';
+import { FktButtonComponent } from 'frakton-ng/button';
+import { COUNTRIES } from '../autocomplete-demo-data';
+import { CodeOutputComponent } from '@/components/code-output/code-output.component';
+
+@Component({
+    selector: 'app-autocomplete-controlled-dropdown-example',
+    imports: [
+        FktAutocompleteComponent,
+        FktButtonComponent,
+        ReactiveFormsModule,
+        CodeOutputComponent,
+    ],
+    templateUrl: './autocomplete-controlled-dropdown-example.component.html',
+    styleUrl: './autocomplete-controlled-dropdown-example.component.scss',
+})
+export class AutocompleteControlledDropdownExampleComponent {
+    protected readonly countries = COUNTRIES;
+    protected readonly country = new FormControl<string | null>(null);
+    protected readonly value = toSignal(this.country.valueChanges, {
+        initialValue: this.country.value,
+    });
+    protected readonly isDropdownOpened = signal(false);
+
+    protected open() {
+        this.isDropdownOpened.set(true);
+    }
+
+    protected close() {
+        this.isDropdownOpened.set(false);
+    }
+}
+```
+
+```html title="autocomplete-controlled-dropdown-example.component.html"
+<app-code-output
+    [value]="{ opened: isDropdownOpened(), value: value() }"
+    title="Dropdown state"
+/>
+
+<div class="actions">
+    <fkt-button text="Open" (click)="open()"/>
+    <fkt-button text="Close" (click)="close()"/>
+</div>
+
+<fkt-autocomplete
+    label="Country"
+    placeholder="Search for a country"
+    [formControl]="country"
+    [options]="countries"
+    labelKey="name"
+    valueKey="code"
+    [(isDropdownOpened)]="isDropdownOpened"
+    localSearch
+/>
+```
+
+```css title="autocomplete-controlled-dropdown-example.component.scss"
+.actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .75rem;
+    margin-bottom: 1rem;
+}
+```
+
+### DataLoading
+
+- id: data-loading
+- type: introduction
+
+Large and remote datasets. Infinite loading and virtual scroll are opt-in directives so normal
+autocomplete usage stays simple while heavy scenarios can add explicit performance behavior.
+
+### InfiniteLoading
+
+- id: infinite-loading
+- type: story
+- component: AutocompleteInfiniteLoadingExampleComponent
+
+Infinite loading uses a sentinel inside the options overlay. It emits `loadMore` when the user
+reaches the end and respects the component loading state to avoid repeated requests.
+
+Example component: `AutocompleteInfiniteLoadingExampleComponent`
+
+```ts title="autocomplete-infinite-loading-example.component.ts"
+import { Component, computed, signal } from '@angular/core';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { FktAutocompleteComponent, FktAutocompleteInfiniteLoadingDirective } from 'frakton-ng/autocomplete';
+import { createLargeUserList } from '../autocomplete-demo-data';
+import { CodeOutputComponent } from '@/components/code-output/code-output.component';
+
+@Component({
+    selector: 'app-autocomplete-infinite-loading-example',
+    imports: [
+        FktAutocompleteComponent,
+        FktAutocompleteInfiniteLoadingDirective,
+        ReactiveFormsModule,
+        CodeOutputComponent,
+    ],
+    templateUrl: './autocomplete-infinite-loading-example.component.html',
+    styleUrl: './autocomplete-infinite-loading-example.component.scss',
+})
+export class AutocompleteInfiniteLoadingExampleComponent {
+    private readonly allUsers = createLargeUserList(80);
+    private readonly pageSize = 20;
+
+    protected readonly user = new FormControl<string | null>(null);
+    protected readonly value = toSignal(this.user.valueChanges, {
+        initialValue: this.user.value,
+    });
+    protected readonly page = signal(1);
+    protected readonly loading = signal(false);
+    protected readonly visibleUsers = computed(() =>
+        this.allUsers.slice(0, this.page() * this.pageSize)
+    );
+    protected readonly hasEnded = computed(
+        () => this.visibleUsers().length >= this.allUsers.length
+    );
+
+    protected loadMore() {
+        if (this.loading() || this.hasEnded()) return;
+
+        this.loading.set(true);
+
+        setTimeout(() => {
+            this.page.update((page) => page + 1);
+            this.loading.set(false);
+        }, 1500);
+    }
+}
+```
+
+```html title="autocomplete-infinite-loading-example.component.html"
+<app-code-output
+    [value]="value()"
+    title="Field value"
+/>
+
+<fkt-autocomplete
+    label="User"
+    placeholder="Search for a user"
+    [formControl]="user"
+    [options]="visibleUsers()"
+    [loading]="loading()"
+    labelKey="name"
+    valueKey="id"
+    fktAutocompleteInfiniteLoading
+    [hasEnded]="hasEnded()"
+    (loadMore)="loadMore()"
+/>
+```
+
+```css title="autocomplete-infinite-loading-example.component.scss"
+pre {
+    margin: 1rem 0 0;
+}
+```
+
+### VirtualScroll
+
+- id: virtual-scroll
+- type: story
+- component: AutocompleteVirtualScrollExampleComponent
+
+Virtual scroll renders only the visible option rows. This example lazy-loads ten thousand users
+when the dropdown opens, then renders the grouped list with explicit virtual dimensions.
+
+Example component: `AutocompleteVirtualScrollExampleComponent`
+
+```ts title="autocomplete-virtual-scroll-example.component.ts"
+import { Component, signal } from '@angular/core';
+import { httpResource } from '@angular/common/http';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { FktAutocompleteComponent, FktAutocompleteVirtualScrollDirective } from 'frakton-ng/autocomplete';
+import { User } from '../autocomplete-demo-data';
+import { CodeOutputComponent } from '@/components/code-output/code-output.component';
+
+@Component({
+    selector: 'app-autocomplete-virtual-scroll-example',
+    imports: [
+        FktAutocompleteComponent,
+        FktAutocompleteVirtualScrollDirective,
+        ReactiveFormsModule,
+        CodeOutputComponent,
+    ],
+    templateUrl: './autocomplete-virtual-scroll-example.component.html',
+    styleUrl: './autocomplete-virtual-scroll-example.component.scss',
+})
+export class AutocompleteVirtualScrollExampleComponent {
+    protected readonly canFetch = signal(false);
+    protected readonly users = httpResource<User[]>(
+        () => (this.canFetch() ? 'api/users-10K.json' : undefined),
+        { defaultValue: [] }
+    );
+    protected readonly user = new FormControl<string | null>(null);
+    protected readonly value = toSignal(this.user.valueChanges, {
+        initialValue: this.user.value,
+    });
+
+    protected readonly getCountryGroup = (user: User) =>
+        user.country ?? 'Unknown';
+}
+```
+
+```html title="autocomplete-virtual-scroll-example.component.html"
+<app-code-output
+    [value]="value()"
+    title="Field value"
+/>
+
+<fkt-autocomplete
+    label="User"
+    [formControl]="user"
+    [options]="users.value()"
+    [loading]="users.isLoading()"
+    labelKey="name"
+    valueKey="id"
+    [groupKey]="getCountryGroup"
+    (isDropdownOpenedChange)="canFetch.set($event)"
+    fktAutocompleteVirtualScroll
+    [virtualItemHeight]="40"
+    [virtualGroupHeight]="24"
+    [maxVirtualItems]="10000"
+/>
+```
+
+```css title="autocomplete-virtual-scroll-example.component.scss"
+pre {
+    margin: 1rem 0 0;
+}
+```
+
+### Forms
+
+- id: forms
+- type: introduction
+
+Form integration. The component implements ControlValueAccessor and works with Angular Signal
+Forms and Reactive Forms while keeping its internal search input as a private implementation
+detail.
+
+### SignalForms
+
+- id: signal-forms
+- type: story
+- component: AutocompleteSignalFormsExampleComponent
+
+Signal Forms integration through Angular's `[field]` directive. The autocomplete value is still
+normalized through `valueKey`, while validation and disabled state are provided by the form field.
+
+Example component: `AutocompleteSignalFormsExampleComponent`
+
+```ts title="autocomplete-signal-forms-example.component.ts"
+import { Component, signal } from '@angular/core';
+import { disabled, Field, form, required } from '@angular/forms/signals';
+import { FktAutocompleteComponent } from 'frakton-ng/autocomplete';
+import { FktButtonComponent } from 'frakton-ng/button';
+import { COUNTRIES } from '../autocomplete-demo-data';
+import { CodeOutputComponent } from '@/components/code-output/code-output.component';
+
+@Component({
+    selector: 'app-autocomplete-signal-forms-example',
+    imports: [
+        FktAutocompleteComponent,
+        FktButtonComponent,
+        Field,
+        CodeOutputComponent,
+    ],
+    templateUrl: './autocomplete-signal-forms-example.component.html',
+    styleUrl: './autocomplete-signal-forms-example.component.scss',
+})
+export class AutocompleteSignalFormsExampleComponent {
+    protected readonly countries = COUNTRIES;
+    protected readonly model = signal({ country: '' });
+    private disabled = signal(false);
+
+    protected readonly form = form(this.model, (schema) => {
+        required(schema.country);
+        disabled(schema.country, this.disabled);
+    });
+
+    protected fill() {
+        this.model.set({ country: 'br' });
+    }
+
+    protected reset() {
+        this.model.set({ country: '' });
+    }
+
+    protected toggleDisabled() {
+        this.disabled.set(!this.disabled());
+    }
+}
+```
+
+```html title="autocomplete-signal-forms-example.component.html"
+<app-code-output
+    [value]="model()"
+    title="Form value"
+/>
+
+<div class="actions">
+    <fkt-button text="Fill" (click)="fill()" />
+    <fkt-button text="Reset" (click)="reset()" />
+    <fkt-button text="Toggle disabled" (click)="toggleDisabled()" />
+</div>
+
+<fkt-autocomplete
+    label="Country"
+    [field]="form.country"
+    [options]="countries"
+    labelKey="name"
+    valueKey="code"
+    groupKey="continent"
+    localSearch
+/>
+```
+
+```css title="autocomplete-signal-forms-example.component.scss"
+.actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .75rem;
+    margin-bottom: 1rem;
+}
+
+pre {
+    margin: 1rem 0 0;
+}
+```
+
+### ReactiveForms
+
+- id: reactive-forms
+- type: story
+- component: AutocompleteReactiveFormsExampleComponent
+
+Reactive Forms integration with validation, programmatic updates, reset, and disabled state.
+
+Example component: `AutocompleteReactiveFormsExampleComponent`
+
+```ts title="autocomplete-reactive-forms-example.component.ts"
+import { Component, inject } from '@angular/core';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { map } from 'rxjs';
+import { FktAutocompleteComponent } from 'frakton-ng/autocomplete';
+import { FktButtonComponent } from 'frakton-ng/button';
+import { USERS } from '../autocomplete-demo-data';
+import { CodeOutputComponent } from '@/components/code-output/code-output.component';
+
+@Component({
+    selector: 'app-autocomplete-reactive-forms-example',
+    imports: [
+        FktAutocompleteComponent,
+        FktButtonComponent,
+        ReactiveFormsModule,
+        CodeOutputComponent,
+    ],
+    templateUrl: './autocomplete-reactive-forms-example.component.html',
+    styleUrl: './autocomplete-reactive-forms-example.component.scss',
+})
+export class AutocompleteReactiveFormsExampleComponent {
+    protected readonly users = USERS;
+    protected readonly form = inject(FormBuilder).group({
+        assignee: ['', Validators.required],
+    });
+    protected readonly formValue = toSignal(
+        this.form.valueChanges.pipe(map(() => this.form.getRawValue())),
+        { initialValue: this.form.getRawValue() }
+    );
+
+    protected fill() {
+        this.form.patchValue({ assignee: 'usr-1002' });
+    }
+
+    protected reset() {
+        this.form.reset();
+    }
+
+    protected toggleDisabled() {
+        const control = this.form.controls.assignee;
+
+        if (control.disabled) control.enable();
+        else control.disable();
+    }
+}
+```
+
+```html title="autocomplete-reactive-forms-example.component.html"
+<app-code-output
+    [value]="formValue()"
+    title="Form value"
+/>
+
+<form [formGroup]="form">
+    <fkt-autocomplete
+        label="Assignee"
+        formControlName="assignee"
+        [options]="users"
+        labelKey="name"
+        valueKey="id"
+        groupKey="department"
+        localSearch
+    />
+</form>
+
+<div class="actions">
+    <fkt-button text="Fill" (click)="fill()" />
+    <fkt-button text="Reset" (click)="reset()" />
+    <fkt-button text="Toggle disabled" (click)="toggleDisabled()" />
 </div>
 ```
 
-```css title="fkt-autocomplete-loading-states-example.component.scss"
-p {
-	margin: 0;
+```css title="autocomplete-reactive-forms-example.component.scss"
+.actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .75rem;
+    margin-top: 1rem;
 }
 
-* {
-	box-sizing: border-box;
+pre {
+    margin: 1rem 0 0;
 }
+```
 
-hr {
-	border: none;
-	border-bottom: solid 1px var(--fkt-color-neutral-300);
-	margin: 0;
+### FieldCompositionAndValidations
+
+- id: field-composition-and-validations
+- type: introduction
+
+Field composition and validation examples. `fkt-autocomplete` composes `fkt-field` internally, so
+it inherits the same prefix, suffix, hint, required marker, and error projection contract. Import
+field slot directives from `frakton-ng/field` when you need to customize those regions.
+
+Read the full field contract in the [Field documentation](/docs/field/features).
+
+### FieldComposition
+
+- id: field-composition
+- type: story
+- component: AutocompleteFieldCompositionExampleComponent
+
+Field composition slots. Prefix, suffix, hint start, and hint end are projected into the internal
+`fkt-field`. A custom suffix replaces the autocomplete default action button.
+
+Example component: `AutocompleteFieldCompositionExampleComponent`
+
+```ts title="autocomplete-field-composition-example.component.ts"
+import { Component } from '@angular/core';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { FktAutocompleteComponent } from 'frakton-ng/autocomplete';
+import {
+    FktFieldPrefixDirective,
+    FktFieldSuffixDirective,
+    FktHintEndDirective,
+    FktHintStartDirective,
+} from 'frakton-ng/field';
+import { FktIconComponent } from 'frakton-ng/icon';
+import { CodeOutputComponent } from '@/components/code-output/code-output.component';
+import { USERS } from '../autocomplete-demo-data';
+
+@Component({
+    selector: 'app-autocomplete-field-composition-example',
+    imports: [
+        FktAutocompleteComponent,
+        FktFieldPrefixDirective,
+        FktFieldSuffixDirective,
+        FktHintEndDirective,
+        FktHintStartDirective,
+        FktIconComponent,
+        ReactiveFormsModule,
+        CodeOutputComponent,
+    ],
+    templateUrl: './autocomplete-field-composition-example.component.html',
+    styleUrl: './autocomplete-field-composition-example.component.scss',
+})
+export class AutocompleteFieldCompositionExampleComponent {
+    protected readonly users = USERS;
+    protected readonly user = new FormControl<string | null>(null);
+    protected readonly value = toSignal(this.user.valueChanges, {
+        initialValue: this.user.value,
+    });
 }
+```
 
-.example-container {
-	width: 100%;
-	padding: 1rem;
+```html title="autocomplete-field-composition-example.component.html"
+<app-code-output
+    [value]="value()"
+    title="Field value"
+/>
 
-	h3 {
-		margin-bottom: 0.5rem;
-		color: var(--color-text-primary);
-	}
+<fkt-autocomplete
+    label="Reviewer"
+    placeholder="Search users"
+    [formControl]="user"
+    [options]="users"
+    labelKey="name"
+    valueKey="id"
+    groupKey="department"
+    localSearch
+>
+    <fkt-icon fktFieldPrefix name="user" />
+    <fkt-icon fktFieldSuffix name="information-circle" />
 
-	.description {
-		margin-bottom: 1rem;
-		color: var(--color-text-secondary);
-		font-size: 0.875rem;
-	}
+    <span fktHintStart>Search by user name or department.</span>
+    <span fktHintEnd>Optional</span>
+</fkt-autocomplete>
+```
 
-	.controls {
-		display: flex;
-		gap: 0.5rem;
-		margin-top: 1rem;
-		flex-wrap: wrap;
-	}
+```css title="autocomplete-field-composition-example.component.scss"
 
-	.selected-option {
-		margin-top: var(--fkt-space-xs);
-		padding: var(--fkt-space-sm);
-		border-radius: var(--fkt-radius-md);
-		font-size: var(--fkt-font-size-sm);
-		box-shadow: var(--fkt-shadow-md);
-		border: 1px solid var(--fkt-color-neutral-200);
-		display: flex;
-		flex-direction: column;
-		gap: var(--fkt-space-xs);
+```
 
-		.info {
-			display: flex;
-			flex-direction: column;
-			gap: var(--fkt-space-xs);
-		}
+### AutomaticValidation
 
-		.title {
-			display: flex;
-			flex-direction: column;
-		}
-	}
+- id: automatic-validation
+- type: story
+- component: AutocompleteAutomaticValidationExampleComponent
 
-	.state-indicator {
-		margin-top: 1rem;
-		padding: 1rem;
-		background-color: #155DFC14;
-		border-radius: 4px;
-		border-left: 4px solid var(--fkt-color-info);
+Automatic validation. Without `[fktError]`, the internal `fkt-field` renders the configured
+automatic error message and keeps the same visibility rule used by other field-based controls.
 
-		.state-item {
-			display: flex;
-			justify-content: space-between;
-			align-items: center;
-			margin-bottom: var(--fkt-space-xs);
-			font-size: var(--fkt-font-size-sm);
+Example component: `AutocompleteAutomaticValidationExampleComponent`
 
-			&:last-child {
-				margin-bottom: 0;
-			}
+```ts title="autocomplete-automatic-validation-example.component.ts"
+import { Component } from '@angular/core';
+import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { FktAutocompleteComponent } from 'frakton-ng/autocomplete';
+import {
+    FktFieldPrefixDirective,
+    FktFieldSuffixDirective,
+    FktHintEndDirective,
+    FktHintStartDirective,
+} from 'frakton-ng/field';
+import { FktButtonComponent } from 'frakton-ng/button';
+import { FktIconComponent } from 'frakton-ng/icon';
+import { CodeOutputComponent } from '@/components/code-output/code-output.component';
+import { USERS } from '../autocomplete-demo-data';
 
-			.state-label {
-				font-weight: 500;
-			}
+@Component({
+    selector: 'app-autocomplete-automatic-validation-example',
+    imports: [
+        FktAutocompleteComponent,
+        FktButtonComponent,
+        FktFieldPrefixDirective,
+        FktFieldSuffixDirective,
+        FktHintEndDirective,
+        FktHintStartDirective,
+        FktIconComponent,
+        ReactiveFormsModule,
+        CodeOutputComponent,
+    ],
+    templateUrl: './autocomplete-automatic-validation-example.component.html',
+    styleUrl: './autocomplete-automatic-validation-example.component.scss',
+})
+export class AutocompleteAutomaticValidationExampleComponent {
+    protected readonly users = USERS;
+    protected readonly assignee = new FormControl<string | null>(null, {
+        validators: [Validators.required],
+    });
+    protected readonly value = toSignal(this.assignee.valueChanges, {
+        initialValue: this.assignee.value,
+    });
 
-			.state-value {
-				font-weight: 600;
+    protected validate() {
+        this.assignee.markAsTouched();
+        this.assignee.updateValueAndValidity();
+    }
+}
+```
 
-				&.loading-state {
-					color: var(--fkt-color-info, #2196f3);
-				}
+```html title="autocomplete-automatic-validation-example.component.html"
+<app-code-output
+    [value]="value()"
+    title="Field value"
+/>
 
-				&.ready-state {
-					color: var(--fkt-color-success, #4caf50);
-				}
-			}
-		}
-	}
+<fkt-autocomplete
+    label="Assignee"
+    placeholder="Select an assignee"
+    [formControl]="assignee"
+    [options]="users"
+    labelKey="name"
+    valueKey="id"
+    groupKey="department"
+    localSearch
+>
+    <fkt-icon fktFieldPrefix name="user" />
+    <fkt-icon fktFieldSuffix name="information-circle" />
 
-	.usage-tips {
-		margin-top: var(--fkt-space-xl);
-		padding: var(--fkt-space-md);
-		background-color: #155DFC14;
-		border-radius: var(--fkt-radius-md);
+    <span fktHintStart>The automatic error comes from the field error resolver.</span>
+    <span fktHintEnd>Required</span>
+</fkt-autocomplete>
 
-		h4 {
-			margin: 0 0 var(--fkt-space-xs);
-			font-size: var(--fkt-font-size-sm);
-			font-weight: var(--fkt-font-semibold);
-		}
+<div class="actions">
+    <fkt-button text="Validate" (click)="validate()" />
+</div>
+```
 
-		ul {
-			margin: 0;
-			padding-left: var(--fkt-space-lg);
-			color: var(--color-text-secondary);
-			font-size: var(--fkt-font-size-sm);
+```css title="autocomplete-automatic-validation-example.component.scss"
+.actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .75rem;
+    margin-top: 1rem;
+}
+```
 
-			li {
-				margin-bottom: var(--fkt-space-xs);
+### ManualValidation
 
-				&:last-child {
-					margin-bottom: 0;
-				}
-			}
-		}
-	}
+- id: manual-validation
+- type: story
+- component: AutocompleteManualValidationExampleComponent
+
+Manual validation content. Project `[fktError]` when the autocomplete needs custom error markup
+while still using the field's invalid state, spacing, and visibility behavior.
+
+Example component: `AutocompleteManualValidationExampleComponent`
+
+```ts title="autocomplete-manual-validation-example.component.ts"
+import { Component } from '@angular/core';
+import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { FktAutocompleteComponent } from 'frakton-ng/autocomplete';
+import {
+    FktErrorDirective,
+    FktFieldErrorComponent,
+    FktFieldPrefixDirective,
+    FktFieldSuffixDirective,
+    FktHintEndDirective,
+    FktHintStartDirective,
+} from 'frakton-ng/field';
+import { FktButtonComponent } from 'frakton-ng/button';
+import { FktIconComponent } from 'frakton-ng/icon';
+import { CodeOutputComponent } from '@/components/code-output/code-output.component';
+import { USERS } from '../autocomplete-demo-data';
+
+@Component({
+    selector: 'app-autocomplete-manual-validation-example',
+    imports: [
+        FktAutocompleteComponent,
+        FktButtonComponent,
+        FktErrorDirective,
+        FktFieldErrorComponent,
+        FktFieldPrefixDirective,
+        FktFieldSuffixDirective,
+        FktHintEndDirective,
+        FktHintStartDirective,
+        FktIconComponent,
+        ReactiveFormsModule,
+        CodeOutputComponent,
+    ],
+    templateUrl: './autocomplete-manual-validation-example.component.html',
+    styleUrl: './autocomplete-manual-validation-example.component.scss',
+})
+export class AutocompleteManualValidationExampleComponent {
+    protected readonly users = USERS;
+    protected readonly approver = new FormControl<string | null>(null, {
+        validators: [Validators.required],
+    });
+    protected readonly value = toSignal(this.approver.valueChanges, {
+        initialValue: this.approver.value,
+    });
+
+    protected validate() {
+        this.approver.markAsTouched();
+        this.approver.updateValueAndValidity();
+    }
+}
+```
+
+```html title="autocomplete-manual-validation-example.component.html"
+<app-code-output
+    [value]="value()"
+    title="Field value"
+/>
+
+<fkt-autocomplete
+    label="Approver"
+    placeholder="Select an approver"
+    [formControl]="approver"
+    [options]="users"
+    labelKey="name"
+    valueKey="id"
+    groupKey="department"
+    localSearch
+>
+    <fkt-icon fktFieldPrefix name="user" />
+    <fkt-icon fktFieldSuffix name="information-circle" />
+
+    <span fktHintStart>Projected error content replaces the automatic message.</span>
+    <span fktHintEnd>Required</span>
+
+    <fkt-field-error fktError>
+        Choose an approver before continuing.
+    </fkt-field-error>
+</fkt-autocomplete>
+
+<div class="actions">
+    <fkt-button text="Validate" (click)="validate()" />
+</div>
+```
+
+```css title="autocomplete-manual-validation-example.component.scss"
+.actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .75rem;
+    margin-top: 1rem;
 }
 ```
 
 ## API Reference
 
-## Key Features
-
-- **Real-time Search**: Filter options as user types with search event emission for API integration
-- **Auto-creation**: Allow users to create new options by typing custom values not in predefined list
-- **Action Buttons**: Add custom actions to each option (edit, delete, favorite, etc.) with event callbacks
-- **Loading States**: Built-in support for async data loading with loading indicators and spinners
-- **Custom No Results**: Configurable messaging when no options match search criteria
-- **Form Integration**: Seamless integration with SignalFormControl and Angular reactive forms
-- **Keyboard Navigation**: Full keyboard support for accessibility (Arrow keys, Enter, Escape)
-- **Signal-Based Architecture**: Built with modern Angular signals for optimal performance
-
-## Configuration Options
+## API Reference
 
 <arg-types></arg-types>
 
-### Types
+## Value Model
 
-```typescript
-// Core option interface for autocomplete items
-export interface FktAutocompleteOption {
-    value: string | number;  // Unique identifier for the option
-    label: string;           // Display text shown to user
-}
+`fkt-autocomplete` separates the search query from the form value.
 
-// Configuration for no results message
-export interface FktNoResults {
-    label: string;           // Message text when no options match
-}
+- The query is temporary text used to search and resolve options.
+- The form value is the selected primitive value derived from `valueKey`.
+- Multiple mode stores an array of primitive values.
+- Object values written programmatically are normalized to primitives.
 
-// Action button configuration (from frakton-ng/button)
-export interface FktButtonAction {
-    icon: string;            // Icon name for the action button
-    color: string;           // Button color theme
-    theme: string;           // Button visual theme
-    identifier: string;     // Unique identifier for action handling
-}
+## Option Resolution
+
+Primitive values are resolved against the current options first. If the option is not available yet,
+the primitive value is used as a temporary label so edit screens can render before async data arrives.
+
+Full option objects written programmatically are treated as hydrated/preloaded values:
+
+- `valueKey` is used to normalize the form value.
+- `labelKey` is used to render the visible label.
+- Preloaded values do not automatically appear in the dropdown.
+- When a real option with the same value later appears in `options`, it replaces the preloaded label.
+
+`labelKey`, `valueKey`, and `groupKey` accept property names or functions:
+
+```angular2html
+<fkt-autocomplete
+    [labelKey]="getLabel"
+    [valueKey]="getValue"
+    [groupKey]="getGroup"
+/>
 ```
 
-## Component Architecture
+## Search
 
-The FktAutocomplete component is built with a modular architecture using Angular signals:
+By default, the component is server-search friendly. It emits `searchChange` after `minSearch` and
+`searchDebounce` are satisfied, and renders the options provided by the consumer.
 
-### Core Components
+Use `localSearch` when the current `options` array should be filtered by the component:
 
-- **FktAutocompleteComponent**: Main component managing state, search, and user interactions
-- **Input Integration**: Built-in integration with Angular reactive forms and validation
+```angular2html
+<fkt-autocomplete localSearch />
+```
 
-### State Management
+Passing a function to `localSearch` replaces the built-in search:
 
-Signal-based reactive state management provides optimal performance:
+```angular2html
+<fkt-autocomplete [localSearch]="customSearch" />
+```
 
-- `selectedValue` signal controls the current selection with two-way binding
-- `options` signal manages the available option list with reactive updates
-- `loading` signal provides loading state management for async operations
-- `search` event emission enables real-time API integration for dynamic option loading
+The built-in local search checks label, name, and group using normalized text comparison.
 
-## Use Cases
+Use `isDropdownOpenedChange` when data should be fetched lazily only after the user opens the
+autocomplete:
 
-**User Selection Systems**: Perfect for selecting users, customers, or any entity from large datasets in CRM systems, task management, and user assignment scenarios.
+```angular2html
+<fkt-autocomplete
+    (isDropdownOpenedChange)="$event && fetchOptions()"
+    (searchChange)="searchOptions($event)"
+/>
+```
 
-**Tag Management**: Ideal for tag-based systems with creation capabilities including blog post tagging, product categorization, skill tagging for profiles, and content classification.
+Use `isDropdownOpened` as a two-way model when the overlay must be controlled externally:
 
-**Location Selection**: Great for location-based inputs such as country/state selection, city autocomplete with API integration, and address suggestion systems.
+```angular2html
+<fkt-autocomplete [(isDropdownOpened)]="opened" />
+```
 
-**Product & Service Search**: Excellent for product catalogs including e-commerce product search, inventory selection, service picking, and dynamic catalog browsing.
+## Commit Behavior
 
-**Dynamic Data Entry**: Perfect for scenarios requiring flexible data input with both predefined options and user-created values.
+When the overlay closes, typed text is resolved before the component discards it:
 
-## Accessibility
+- If the text matches an option by value or label, that option is applied.
+- If it does not match and `freeText` is false, the search field is cleared.
+- If it does not match and `freeText` is true, the typed value becomes the selected value.
+- In multiple mode, free text is added as a chip and the search field is cleared.
 
-**Keyboard Navigation**: Full keyboard support with arrow keys for option navigation, Enter key for selection, Escape key to close dropdown, and Tab for focus management.
+## Field Composition
 
-**Screen Reader Support**: Proper ARIA labels and announcements, role attributes for dropdown behavior, live region updates for search results, and clear option identification.
+`fkt-autocomplete` composes `fkt-field` internally. Because of that, the same field inputs can be
+passed directly to the autocomplete:
 
-**Focus Management**: Logical focus flow between input and options, visible focus indicators for all interactive elements, and proper focus restoration after selection.
+- `hint`
+- `showError`
+- `size`
+- `requiredMarker`
+- `hideLabel`
 
-**High Contrast**: Full support for system high contrast modes, clear visual boundaries for all states, and sufficient color contrast ratios.
+The autocomplete also accepts the field projection slots. Import those directives and components
+from `frakton-ng/field`:
 
-**Label Association**: Proper label-input relationships for screen readers, descriptive placeholder text, and clear error messaging integration.
+```ts
+import {
+  FktErrorDirective,
+  FktFieldErrorComponent,
+  FktFieldPrefixDirective,
+  FktFieldSuffixDirective,
+  FktHintEndDirective,
+  FktHintStartDirective,
+} from 'frakton-ng/field';
+```
 
-## Performance
+```angular2html
+<fkt-autocomplete label="User" formControlName="user" [options]="users">
+  <fkt-icon fktFieldPrefix name="user" />
+  <span fktHintStart>Search by name or department.</span>
+  <span fktHintEnd>Required</span>
 
-**Signal-Based Reactivity**: Built with Angular signals for efficient change detection, minimal re-renders, and optimized performance with large option lists.
+  <fkt-field-error fktError>
+    Select a valid user.
+  </fkt-field-error>
+</fkt-autocomplete>
+```
 
-**Lazy Loading**: Support for dynamic option loading, efficient search debouncing, and memory-optimized rendering for large datasets.
+`fktFieldSuffix` replaces the default autocomplete action button. Use it when the trailing action
+area needs custom behavior.
 
-**Async Integration**: Designed for real-time API integration with built-in loading states, error handling, and search result management.
+For the full field contract, see [Field documentation](/docs/field/features).
+
+## Templates
+
+The overlay accepts projected templates for advanced rendering:
+
+- `fktAutocompleteHeader`
+- `fktAutocompleteGroup`
+- `fktAutocompleteItem`
+- `fktAutocompleteFooter`
+
+Templates customize rendering only. Keyboard navigation, active descendant, selection, form value,
+and overlay behavior remain managed by the component.
+
+## Performance Directives
+
+`fktAutocompleteInfiniteLoading` adds a sentinel to the overlay and emits `loadMore` when the end is
+visible.
+
+`fktAutocompleteVirtualScroll` renders only visible rows and requires explicit virtual dimensions:
+
+```angular2html
+<fkt-autocomplete
+    fktAutocompleteVirtualScroll
+    [virtualItemHeight]="40"
+    [maxVirtualItems]="1000"
+/>
+```
+
+The explicit limit prevents development-time surprises with browser scroll-height limits.
 
 ---
 
@@ -8527,7 +9367,7 @@ import { Component, inject } from '@angular/core';
 import { FktButtonGroupComponent, FktButtonGroupOption } from 'frakton-ng/button-group';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FktButtonComponent } from 'frakton-ng/button';
-import { FktFieldErrorComponent } from 'frakton-ng/field-error';
+import { FktFieldErrorComponent } from 'frakton-ng/field';
 import { map } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 
@@ -8622,7 +9462,7 @@ Example component: `ButtonGroupSignalFormsComponent`
 import { Component, signal } from '@angular/core';
 import { FktButtonGroupComponent, FktButtonGroupOption } from 'frakton-ng/button-group';
 import { disabled, Field, form, required } from '@angular/forms/signals';
-import { FktFieldErrorComponent } from 'frakton-ng/field-error';
+import { FktFieldErrorComponent } from 'frakton-ng/field';
 import { FktButtonComponent } from 'frakton-ng/button';
 
 @Component({
@@ -8714,7 +9554,7 @@ Example component: `ButtonGroupInputDrivenComponent`
 import { Component, signal } from '@angular/core';
 import { FktButtonGroupComponent, FktButtonGroupOption } from 'frakton-ng/button-group';
 import { FktButtonComponent } from 'frakton-ng/button';
-import { FktFieldErrorComponent } from 'frakton-ng/field-error';
+import { FktFieldErrorComponent } from 'frakton-ng/field';
 
 @Component({
     selector: 'fkt-button-group-input-driven',
@@ -9007,7 +9847,7 @@ Example component: `FktCheckboxValidationExampleComponent`
 import { Component, input, signal } from '@angular/core';
 import { FktCheckboxComponent } from 'frakton-ng/checkbox';
 import { Field, form, required } from '@angular/forms/signals';
-import { FktFieldErrorComponent } from 'frakton-ng/field-error';
+import { FktFieldErrorComponent } from 'frakton-ng/field';
 
 @Component({
 	selector: 'fkt-checkbox-validation-example',
@@ -9621,6 +10461,1163 @@ Essential for reservation systems:
 
 ---
 
+<!-- Source: /llms/field.md -->
+
+# Components/Form/Field
+
+## Metadata
+
+- id: field
+- type: story
+- route: /docs/field
+- title: Components/Form/Field
+- component: FktFieldComponent
+- import: `import { FktFieldComponent } from 'frakton-ng/field';`
+
+## Description
+
+Composable form field container for native controls. The field owns the visual shell,
+label, floating outline, prefix/suffix slots, hint, required marker, disabled state, and error slot
+while the actual value stays on a native control directive such as input[fktInputText].
+
+## Features
+
+### Composition
+
+- id: composition
+- type: introduction
+
+Field composition patterns. A `fkt-field` wraps a native control directive such as
+`input[fktInputText]`. The field owns the visual shell while the projected control owns value,
+native attributes, and form integration.
+
+### BasicInput
+
+- id: basic-input
+- type: story
+- component: FieldBasicInputExampleComponent
+
+Basic text input. The field renders the label and outline while `input[fktInputText]` remains the
+real form control, so native attributes and browser behavior stay available to the consumer.
+
+Example component: `FieldBasicInputExampleComponent`
+
+```ts title="field-basic-input-example.component.ts"
+import { Component } from '@angular/core';
+import { FktFieldComponent } from 'frakton-ng/field';
+import { FktInputTextDirective } from 'frakton-ng/input-text';
+
+
+@Component({
+    selector: 'app-field-basic-input-example',
+    imports: [FktFieldComponent, FktInputTextDirective],
+    templateUrl: './field-basic-input-example.component.html',
+    styleUrl: './field-basic-input-example.component.scss',
+})
+export class FieldBasicInputExampleComponent {}
+```
+
+```html title="field-basic-input-example.component.html"
+<fkt-field label="Name">
+    <input fktInputText placeholder="Enter a name">
+</fkt-field>
+```
+
+```css title="field-basic-input-example.component.scss"
+:host {
+    display: flex;
+    flex-direction: column;
+    gap: var(--fkt-space-sm);
+}
+```
+
+### Sizes
+
+- id: sizes
+- type: story
+- component: FieldSizesExampleComponent
+
+Field sizes provide predefined densities for compact filters, default forms, and larger touch
+targets. The size belongs to the field shell so future controls keep the same visual rhythm.
+
+Example component: `FieldSizesExampleComponent`
+
+```ts title="field-sizes-example.component.ts"
+import { Component } from '@angular/core';
+import { FktFieldComponent } from 'frakton-ng/field';
+import { FktInputTextDirective } from 'frakton-ng/input-text';
+
+@Component({
+    selector: 'app-field-sizes-example',
+    imports: [FktFieldComponent, FktInputTextDirective],
+    templateUrl: './field-sizes-example.component.html',
+    styleUrl: './field-sizes-example.component.scss',
+})
+export class FieldSizesExampleComponent {}
+```
+
+```html title="field-sizes-example.component.html"
+<fkt-field label="Small" size="sm">
+    <input fktInputText placeholder="Small field">
+</fkt-field>
+
+<fkt-field label="Medium" size="md">
+    <input fktInputText placeholder="Medium field">
+</fkt-field>
+
+<fkt-field label="Large" size="lg">
+    <input fktInputText placeholder="Large field">
+</fkt-field>
+```
+
+```css title="field-sizes-example.component.scss"
+:host {
+    display: grid;
+    gap: var(--fkt-space-xs);
+}
+```
+
+### PrefixSuffix
+
+- id: prefix-suffix
+- type: story
+- component: FieldPrefixSuffixExampleComponent
+
+Prefix and suffix slots are projected with `[fktFieldPrefix]` and `[fktFieldSuffix]`.
+The field owns spacing around the slots, while the projected content can be any component or
+directive such as icons, buttons, or tooltips.
+
+Example component: `FieldPrefixSuffixExampleComponent`
+
+```ts title="field-prefix-suffix-example.component.ts"
+import { Component } from '@angular/core';
+import { FktFieldComponent } from 'frakton-ng/field';
+import { FktInputTextDirective } from 'frakton-ng/input-text';
+import { FktIconComponent } from 'frakton-ng/icon';
+import { FktTooltipDirective } from 'frakton-ng/tooltip';
+import {
+    FktFieldPrefixDirective,
+    FktFieldSuffixDirective
+} from 'frakton-ng/field';
+
+@Component({
+    selector: 'app-field-prefix-suffix-example',
+    imports: [
+        FktFieldComponent,
+        FktInputTextDirective,
+        FktIconComponent,
+        FktTooltipDirective,
+        FktFieldPrefixDirective,
+        FktFieldSuffixDirective
+    ],
+    templateUrl: './field-prefix-suffix-example.component.html',
+    styleUrl: './field-prefix-suffix-example.component.scss',
+})
+export class FieldPrefixSuffixExampleComponent {}
+```
+
+```html title="field-prefix-suffix-example.component.html"
+<fkt-field label="E-mail">
+    <fkt-icon fktFieldPrefix name="envelope"/>
+    <input fktInputText type="email" placeholder="Enter an e-mail">
+    <fkt-icon
+        fktFieldSuffix
+        fktTooltip="Use a valid e-mail address"
+        name="information-circle"
+    />
+</fkt-field>
+```
+
+```css title="field-prefix-suffix-example.component.scss"
+:host {
+    display: block;
+}
+```
+
+### Hint
+
+- id: hint
+- type: story
+- component: FieldHintExampleComponent
+
+Hints provide secondary guidance below the field. Use the `hint` input for plain text, project
+`[fktHintStart]` when the message needs custom template content, or `[fktHintEnd]` for
+right-aligned supporting metadata. Visible errors replace the start hint.
+
+Example component: `FieldHintExampleComponent`
+
+```ts title="field-hint-example.component.ts"
+import { Component } from '@angular/core';
+import {
+    FktFieldComponent,
+    FktFieldHintComponent,
+    FktHintStartDirective,
+} from 'frakton-ng/field';
+import { FktInputTextDirective } from 'frakton-ng/input-text';
+
+@Component({
+    selector: 'app-field-hint-example',
+    imports: [FktFieldComponent, FktFieldHintComponent, FktInputTextDirective, FktHintStartDirective],
+    templateUrl: './field-hint-example.component.html',
+    styleUrl: './field-hint-example.component.scss',
+})
+export class FieldHintExampleComponent {}
+```
+
+```html title="field-hint-example.component.html"
+<fkt-field label="Password" hint="Use at least 8 characters.">
+    <input fktInputText type="password" placeholder="Enter a password">
+</fkt-field>
+
+<fkt-field label="Workspace URL">
+    <input fktInputText placeholder="acme">
+
+    <fkt-field-hint fktHintStart>
+        Your workspace will be available at acme.frakton.app.
+    </fkt-field-hint>
+</fkt-field>
+```
+
+```css title="field-hint-example.component.scss"
+:host {
+    display: grid;
+    gap: var(--fkt-space-xs);
+}
+```
+
+### CharacterCount
+
+- id: character-count
+- type: story
+- component: FieldCharacterCountExampleComponent
+
+Character count is opt-in through `fktCharacterCount` on a textual control.
+The field renders the computed count in the hint end slot by default. Project
+`[fktHintEnd]` to replace that default with custom supporting metadata.
+
+Example component: `FieldCharacterCountExampleComponent`
+
+```ts title="field-character-count-example.component.ts"
+import { Component, inject, signal } from '@angular/core';
+import { Field, form, maxLength } from '@angular/forms/signals';
+import {
+    FktCharacterCountDirective,
+    FktFieldComponent,
+    FktHintEndDirective,
+} from 'frakton-ng/field';
+import {FktInputTextDirective} from 'frakton-ng/input-text';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+
+@Component({
+    selector: 'app-field-character-count-example',
+    imports: [
+        FktCharacterCountDirective,
+        FktFieldComponent,
+        FktInputTextDirective,
+        Field,
+        ReactiveFormsModule,
+        FktHintEndDirective
+    ],
+    templateUrl: './field-character-count-example.component.html',
+    styleUrl: './field-character-count-example.component.scss',
+})
+export class FieldCharacterCountExampleComponent {
+    form = form(signal({ name: '' }), (schema) => {
+        maxLength(schema.name, 24);
+    });
+
+    reactiveForm = inject(FormBuilder).group({
+        slug: ['', [Validators.maxLength(32)]],
+    });
+}
+```
+
+```html title="field-character-count-example.component.html"
+<fkt-field label="Display name" hint="Use a short public name.">
+    <input
+        fktInputText
+        fktCharacterCount
+        [field]="form.name"
+        placeholder="Enter a display name"
+    >
+</fkt-field>
+
+<fkt-field label="Slug" hint="Used in public URLs.">
+    <input
+        fktInputText
+        fktCharacterCount
+        [formControl]="reactiveForm.controls.slug"
+        placeholder="workspace-slug"
+    >
+
+    <span fktHintEnd>
+        Custom meta
+    </span>
+</fkt-field>
+```
+
+```css title="field-character-count-example.component.scss"
+:host {
+    display: flex;
+    flex-direction: column;
+    gap: var(--fkt-space-sm);
+}
+```
+
+### RequiredMarker
+
+- id: required-marker
+- type: story
+- component: FieldRequiredMarkerExampleComponent
+
+Required marker behavior. When `requiredMarker` is omitted, the field tries to infer the marker
+from the projected control validation state. Pass `[requiredMarker]="true"` to force it on, or
+`[requiredMarker]="false"` to hide it while keeping the validation rule active.
+
+Example component: `FieldRequiredMarkerExampleComponent`
+
+```ts title="field-required-marker-example.component.ts"
+import { Component, signal } from '@angular/core';
+import { Field, form, required } from '@angular/forms/signals';
+import { FktFieldComponent } from 'frakton-ng/field';
+import { FktInputTextDirective } from 'frakton-ng/input-text';
+
+@Component({
+    selector: 'app-field-required-marker-example',
+    imports: [Field, FktFieldComponent, FktInputTextDirective],
+    templateUrl: './field-required-marker-example.component.html',
+    styleUrl: './field-required-marker-example.component.scss',
+})
+export class FieldRequiredMarkerExampleComponent {
+    private model = signal({
+        inferred: '',
+        forced: '',
+        hidden: '',
+    });
+
+    protected form = form(this.model, (schema) => {
+        required(schema.inferred);
+        required(schema.hidden);
+    });
+}
+```
+
+```html title="field-required-marker-example.component.html"
+<fkt-field label="Inferred">
+    <input fktInputText [field]="form.inferred" placeholder="Inferred from validation">
+</fkt-field>
+
+<fkt-field label="Forced" [requiredMarker]="true">
+    <input fktInputText [field]="form.forced" placeholder="Forced by input">
+</fkt-field>
+
+<fkt-field label="Hidden" [requiredMarker]="false">
+    <input fktInputText [field]="form.hidden" placeholder="Required without marker">
+</fkt-field>
+```
+
+```css title="field-required-marker-example.component.scss"
+:host {
+    display: grid;
+    gap: var(--fkt-space-xs);
+}
+```
+
+### HiddenLabel
+
+- id: hidden-label
+- type: story
+- component: FieldHiddenLabelExampleComponent
+
+Hidden labels keep compact controls visually clean without dropping the accessible label.
+Use this for search boxes, table filters, command inputs, and other cases where the placeholder
+is visible but the control still needs a stable semantic name.
+
+Example component: `FieldHiddenLabelExampleComponent`
+
+```ts title="field-hidden-label-example.component.ts"
+import { Component } from '@angular/core';
+import { FktFieldComponent, FktFieldPrefixDirective } from 'frakton-ng/field';
+import { FktInputTextDirective } from 'frakton-ng/input-text';
+import { FktIconComponent } from 'frakton-ng/icon';
+
+@Component({
+    selector: 'app-field-hidden-label-example',
+    imports: [FktFieldComponent, FktInputTextDirective, FktIconComponent, FktFieldPrefixDirective],
+    templateUrl: './field-hidden-label-example.component.html',
+    styleUrl: './field-hidden-label-example.component.scss',
+})
+export class FieldHiddenLabelExampleComponent {}
+```
+
+```html title="field-hidden-label-example.component.html"
+<fkt-field hideLabel label="Search">
+    <fkt-icon fktFieldPrefix name="magnifying-glass"/>
+    <input fktInputText placeholder="Search items...">
+</fkt-field>
+```
+
+```css title="field-hidden-label-example.component.scss"
+:host {
+    display: block;
+}
+```
+
+### Forms
+
+- id: forms
+- type: introduction
+
+Form integration examples. The field reads state from the projected `FktFieldControl`; the consumer
+keeps validation rules in the form model instead of passing disabled, touched, invalid, or required
+flags into the field manually.
+
+### SignalForms
+
+- id: signal-forms
+- type: story
+- component: FieldValidationExampleComponent
+
+Signal Forms integration with Angular's `[field]` directive. The field reacts to value, touched,
+invalid, disabled, required, and error state exposed by the projected control.
+
+Example component: `FieldValidationExampleComponent`
+
+```ts title="field-validation-example.component.ts"
+import { Component, signal } from '@angular/core';
+import {
+    email,
+    Field,
+    form,
+    maxLength,
+    minLength,
+    required,
+} from '@angular/forms/signals';
+import { FktFieldComponent, FktFieldPrefixDirective } from 'frakton-ng/field';
+import { FktInputTextDirective } from 'frakton-ng/input-text';
+import { FktIconComponent } from 'frakton-ng/icon';
+
+@Component({
+    selector: 'app-field-validation-example',
+    imports: [Field, FktFieldComponent, FktInputTextDirective, FktIconComponent, FktFieldPrefixDirective],
+    templateUrl: './field-validation-example.component.html',
+    styleUrl: './field-validation-example.component.scss',
+})
+export class FieldValidationExampleComponent {
+    private model = signal({
+        name: '',
+        username: 'ab',
+        bio: 'This text is too long',
+        email: '',
+    });
+
+    protected form = form(this.model, (schema) => {
+        required(schema.name);
+        minLength(schema.username, 5);
+        maxLength(schema.bio, 12);
+        required(schema.email);
+        email(schema.email);
+    });
+}
+```
+
+```html title="field-validation-example.component.html"
+<fkt-field label="Name">
+    <fkt-icon fktFieldPrefix name="user"/>
+    <input fktInputText [field]="form.name" placeholder="Enter a name">
+</fkt-field>
+
+<fkt-field label="Username">
+    <fkt-icon fktFieldPrefix name="at-symbol"/>
+    <input fktInputText [field]="form.username" placeholder="Enter a username">
+</fkt-field>
+
+<fkt-field label="Bio">
+    <fkt-icon fktFieldPrefix name="identification"/>
+    <input fktInputText [field]="form.bio" placeholder="Enter a short bio">
+</fkt-field>
+
+<fkt-field label="E-mail">
+    <fkt-icon fktFieldPrefix name="envelope"/>
+    <input fktInputText [field]="form.email" placeholder="Enter an e-mail">
+</fkt-field>
+```
+
+```css title="field-validation-example.component.scss"
+:host {
+    display: flex;
+    flex-direction: column;
+    gap: var(--fkt-space-sm);
+}
+```
+
+### ReactiveForms
+
+- id: reactive-forms
+- type: story
+- component: FieldReactiveFormsExampleComponent
+
+Reactive Forms integration through `formControlName`. Programmatic updates, reset, disabled state,
+and validation changes are read from the Angular control adapter instead of relying only on DOM
+attributes.
+
+Example component: `FieldReactiveFormsExampleComponent`
+
+```ts title="field-reactive-forms-example.component.ts"
+import { Component, inject } from '@angular/core';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FktButtonComponent } from 'frakton-ng/button';
+import { FktFieldComponent, FktFieldPrefixDirective } from 'frakton-ng/field';
+import { FktInputTextDirective } from 'frakton-ng/input-text';
+import { FktIconComponent } from 'frakton-ng/icon';
+import { map, startWith } from 'rxjs';
+import { AsyncPipe } from '@angular/common';
+
+@Component({
+    selector: 'app-field-reactive-forms-example',
+    imports: [
+        ReactiveFormsModule,
+        FktButtonComponent,
+        FktFieldComponent,
+        FktInputTextDirective,
+        FktIconComponent,
+        AsyncPipe,
+        FktFieldPrefixDirective
+    ],
+    templateUrl: './field-reactive-forms-example.component.html',
+    styleUrl: './field-reactive-forms-example.component.scss',
+})
+export class FieldReactiveFormsExampleComponent {
+    protected form = inject(FormBuilder).group({
+        name: ['', [Validators.required]],
+        username: ['ab', [Validators.minLength(5)]],
+        bio: ['This text is too long', [Validators.maxLength(12)]],
+        email: ['', [Validators.required, Validators.email]],
+    });
+
+    private stateChanges$ = this.form.events.pipe(startWith(null));
+
+    protected disabled$ = this.stateChanges$.pipe(
+        map(() => this.form.disabled)
+    );
+
+    protected toggleDisabled() {
+        if (this.form.enabled) this.form.disable();
+        else this.form.enable();
+    }
+
+    protected fillProfile() {
+        this.form.setValue({
+            name: 'Alice Johnson',
+            username: 'alice',
+            bio: 'Short bio',
+            email: 'alice@example.com',
+        });
+    }
+
+    protected reset() {
+        this.form.reset({
+            name: '',
+            username: '',
+            bio: '',
+            email: '',
+        });
+    }
+}
+```
+
+```html title="field-reactive-forms-example.component.html"
+<form [formGroup]="form">
+    <fkt-field label="Name">
+        <fkt-icon fktFieldPrefix name="user"/>
+        <input fktInputText formControlName="name" placeholder="Enter a name">
+    </fkt-field>
+
+    <fkt-field label="Username">
+        <fkt-icon fktFieldPrefix name="at-symbol"/>
+        <input fktInputText formControlName="username" placeholder="Enter a username">
+    </fkt-field>
+
+    <fkt-field label="Bio">
+        <fkt-icon fktFieldPrefix name="identification"/>
+        <input fktInputText formControlName="bio" placeholder="Enter a short bio">
+    </fkt-field>
+
+    <fkt-field label="E-mail">
+        <fkt-icon fktFieldPrefix name="envelope"/>
+        <input fktInputText formControlName="email" placeholder="Enter an e-mail">
+    </fkt-field>
+</form>
+<div class="actions">
+    <fkt-button
+        (click)="toggleDisabled()"
+        shape="rect"
+        theme="stroked"
+        [text]="(disabled$ | async) ? 'Enable' : 'Disable'"
+    />
+    <fkt-button
+        (click)="fillProfile()"
+        shape="rect"
+        theme="stroked"
+        text="Fill"
+    />
+    <fkt-button
+        (click)="reset()"
+        shape="rect"
+        theme="stroked"
+        text="Reset"
+    />
+</div>
+```
+
+```css title="field-reactive-forms-example.component.scss"
+:host,
+form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--fkt-space-sm);
+}
+
+.actions {
+    display: flex;
+    gap: var(--fkt-space-sm);
+    justify-content: flex-end;
+    flex-wrap: wrap;
+}
+```
+
+### ErrorHandling
+
+- id: error-handling
+- type: introduction
+
+Error handling examples. By default, the field shows its error state when the projected control is
+invalid and touched. That default can be overridden for submit attempts, server-side validation,
+or custom form flows.
+
+### ManualErrorControl
+
+- id: manual-error-control
+- type: story
+- component: FieldManualErrorExampleComponent
+
+Manual error visibility through `showError`. When the input is defined, it replaces the default
+`invalid && touched` rule for both the red border and the message area.
+
+Example component: `FieldManualErrorExampleComponent`
+
+```ts title="field-manual-error-example.component.ts"
+import { Component, signal } from '@angular/core';
+import { email, Field, form, required } from '@angular/forms/signals';
+import { FktButtonComponent } from 'frakton-ng/button';
+import { FktFieldComponent, FktFieldPrefixDirective } from 'frakton-ng/field';
+import { FktInputTextDirective } from 'frakton-ng/input-text';
+import { FktIconComponent } from 'frakton-ng/icon';
+
+@Component({
+    selector: 'app-field-manual-error-example',
+    imports: [
+        Field,
+        FktButtonComponent,
+        FktFieldComponent,
+        FktInputTextDirective,
+        FktIconComponent,
+        FktFieldPrefixDirective
+    ],
+    templateUrl: './field-manual-error-example.component.html',
+    styleUrl: './field-manual-error-example.component.scss',
+})
+export class FieldManualErrorExampleComponent {
+    private model = signal({
+        email: '',
+    });
+
+    protected submitted = signal(false);
+
+    protected form = form(this.model, (schema) => {
+        required(schema.email, {
+            message: 'Submit the form with a valid e-mail.',
+        });
+        email(schema.email);
+    });
+}
+```
+
+```html title="field-manual-error-example.component.html"
+<fkt-field
+    label="E-mail"
+    [showError]="submitted() && form.email().invalid()"
+>
+    <fkt-icon fktFieldPrefix name="envelope"/>
+    <input fktInputText [field]="form.email" placeholder="Enter an e-mail">
+</fkt-field>
+
+<fkt-button
+    (click)="submitted.set(true)"
+    text="Submit"
+/>
+```
+
+```css title="field-manual-error-example.component.scss"
+:host {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: var(--fkt-space-xs);
+}
+
+fkt-field {
+    width: 100%;
+}
+```
+
+### CustomError
+
+- id: custom-error
+- type: story
+- component: FieldCustomErrorExampleComponent
+
+Custom projected error content. When `[fktError]` content is provided, it replaces the automatic
+error message while still using the field's visibility and spacing behavior.
+
+Example component: `FieldCustomErrorExampleComponent`
+
+```ts title="field-custom-error-example.component.ts"
+import { Component, signal } from '@angular/core';
+import { email, Field, form, required } from '@angular/forms/signals';
+import {
+    FktErrorDirective,
+    FktFieldComponent,
+    FktFieldPrefixDirective,
+} from 'frakton-ng/field';
+import { FktInputTextDirective } from 'frakton-ng/input-text';
+import { FktFieldErrorComponent } from 'frakton-ng/field';
+import { FktIconComponent } from 'frakton-ng/icon';
+
+@Component({
+    selector: 'app-field-custom-error-example',
+    imports: [
+        Field,
+        FktFieldComponent,
+        FktInputTextDirective,
+        FktFieldErrorComponent,
+        FktIconComponent,
+        FktErrorDirective,
+        FktFieldPrefixDirective
+    ],
+    templateUrl: './field-custom-error-example.component.html',
+    styleUrl: './field-custom-error-example.component.scss',
+})
+export class FieldCustomErrorExampleComponent {
+    private model = signal({
+        email: '',
+    });
+
+    protected form = form(this.model, (schema) => {
+        required(schema.email);
+        email(schema.email);
+    });
+}
+```
+
+```html title="field-custom-error-example.component.html"
+<fkt-field label="E-mail">
+    <fkt-icon fktFieldPrefix name="envelope"/>
+    <input fktInputText [field]="form.email" placeholder="Enter an e-mail">
+
+    <fkt-field-error fktError>
+        Use a company e-mail address.
+    </fkt-field-error>
+</fkt-field>
+```
+
+```css title="field-custom-error-example.component.scss"
+:host {
+    display: block;
+}
+```
+
+### AutomaticErrorMessages
+
+- id: automatic-error-messages
+- type: story
+- component: FieldAutomaticErrorsExampleComponent
+
+Automatic error messages with `provideFktConfig(withFieldErrorMessages(...))`. The resolver turns
+normalized Signal Forms or Reactive Forms errors into the text rendered by each field.
+
+```ts
+export const appConfig: ApplicationConfig = {
+    providers: [
+        provideFktConfig(
+            withFieldErrorMessages(({errors}) => {
+                if (!errors) return null;
+                const first = errors.errors[0];
+
+                if (first.message) return first.message; // If field already has a message defined, returns it
+
+                if (first.kind === 'required') return 'Field is required';
+                if (first.kind === 'email') return 'Enter a valid email address';
+
+                if (first.kind === 'minLength') {
+                    return `Use at least ${first.params['minLength']} characters`;
+                }
+
+                if (first.kind === 'maxLength') {
+                    return `Use at most ${first.params['maxLength']} characters`;
+                }
+
+                return null;
+            })
+        )
+    ]
+}
+```
+
+Example component: `FieldAutomaticErrorsExampleComponent`
+
+```ts title="field-automatic-errors-example.component.ts"
+import { Component, signal } from '@angular/core';
+import { Field, form, required } from '@angular/forms/signals';
+import { FktFieldComponent, FktFieldPrefixDirective } from 'frakton-ng/field';
+import { FktInputTextDirective } from 'frakton-ng/input-text';
+import { FktIconComponent } from 'frakton-ng/icon';
+
+@Component({
+    selector: 'app-field-automatic-errors-example',
+    imports: [
+        Field,
+        FktFieldComponent,
+        FktInputTextDirective,
+        FktIconComponent,
+        FktFieldPrefixDirective
+    ],
+    templateUrl: './field-automatic-errors-example.component.html',
+    styleUrl: './field-automatic-errors-example.component.scss',
+})
+export class FieldAutomaticErrorsExampleComponent {
+    private model = signal({
+        name: '',
+    });
+
+    protected form = form(this.model, (schema) => {
+        required(schema.name);
+    });
+}
+```
+
+```html title="field-automatic-errors-example.component.html"
+<fkt-field
+    label="Name"
+>
+    <fkt-icon fktFieldPrefix name="user"/>
+    <input fktInputText [field]="form.name" placeholder="Enter a name">
+</fkt-field>
+```
+
+```css title="field-automatic-errors-example.component.scss"
+:host {
+    display: block;
+}
+```
+
+### TranslatedErrorMessages
+
+- id: translated-error-messages
+- type: story
+- component: FieldTranslatedErrorsExampleComponent
+
+Translated error messages combine `withI18nIntegration(...)` and `withFieldErrorMessages(...)`.
+The field recomputes visible errors when the configured language source changes. `recomputeOn`
+accepts a Signal, an Observable, or an array mixing Signals and Observables.
+
+```ts
+export const appConfig: ApplicationConfig = {
+    providers: [
+        provideFktConfig(
+            withI18nIntegration(() => {
+                const translateService = inject(TranslateService);
+
+                return {
+                    recomputeOn: translateService.currentLanguage$,
+                    translateFn: translateService.instant.bind(translateService),
+                };
+            }),
+            withFieldErrorMessages(({errors, t}) => {
+                if (!errors) return null;
+
+                const first = errors.errors[0];
+                if (first.message) return first.message;
+
+                if (first.kind === 'required') return t('errors.required');
+                if (first.kind === 'email') return t('errors.email');
+
+                if (first.kind === 'minLength') {
+                    return t('errors.minLength', first.params);
+                }
+
+                if (first.kind === 'maxLength') {
+                    return t('errors.maxLength', first.params);
+                }
+
+                return null;
+            })
+        )
+    ]
+}
+```
+
+```ts
+withI18nIntegration(() => ({
+  recomputeOn: currentLanguage, // Signal
+  translateFn: translate,
+}))
+
+withI18nIntegration(() => ({
+  recomputeOn: translateService.onLangChange, // Observable
+  translateFn: translateService.instant.bind(translateService),
+}))
+
+withI18nIntegration(() => ({
+  recomputeOn: [currentLanguage, translateService.onLangChange], // Signal + Observable
+  translateFn: translateService.instant.bind(translateService),
+}))
+```
+
+Example component: `FieldTranslatedErrorsExampleComponent`
+
+```ts title="field-translated-errors-example.component.ts"
+import { Component, effect, inject, signal } from '@angular/core';
+import {
+    email,
+    Field,
+    form,
+    maxLength,
+    minLength,
+    required,
+} from '@angular/forms/signals';
+import { TranslateService } from '@/core/services/translate.service';
+import { FktFieldComponent, FktFieldPrefixDirective } from 'frakton-ng/field';
+import { FktInputTextDirective } from 'frakton-ng/input-text';
+import { FktIconComponent } from 'frakton-ng/icon';
+import { FktSelectComponent, FktSelectOption } from 'frakton-ng/select';
+
+@Component({
+    selector: 'app-field-translated-errors-example',
+    imports: [
+        Field,
+        FktFieldComponent,
+        FktInputTextDirective,
+        FktIconComponent,
+        FktSelectComponent,
+        FktFieldPrefixDirective
+    ],
+    templateUrl: './field-translated-errors-example.component.html',
+    styleUrl: './field-translated-errors-example.component.scss',
+})
+export class FieldTranslatedErrorsExampleComponent {
+    private translate = inject(TranslateService);
+
+    private model = signal({
+        name: '',
+        username: 'ab',
+        bio: 'This text is too long',
+        email: '',
+    });
+
+    private selectedLanguage = signal('en-US');
+
+    protected form = form(this.model, (schema) => {
+        required(schema.name);
+        minLength(schema.username, 5);
+        maxLength(schema.bio, 12);
+        required(schema.email);
+        email(schema.email);
+    });
+
+    protected language = form(this.selectedLanguage);
+
+    protected languageOptions: FktSelectOption[] = [
+        { label: 'English', value: 'en' },
+        { label: 'Spanish', value: 'es-ES' },
+        { label: 'French', value: 'fr-FR' },
+        { label: 'Portuguese', value: 'pt-BR' },
+        { label: 'German', value: 'de-DE' },
+        { label: 'Italian', value: 'it-IT' },
+    ];
+
+    protected updateLanguage = effect(() => {
+        this.translate.setLanguage(this.language().value() as string);
+    });
+}
+```
+
+```html title="field-translated-errors-example.component.html"
+<fkt-select
+    [field]="language"
+    label="Language"
+    placeholder="Select a language"
+    [options]="languageOptions"
+/>
+
+<fkt-field
+    label="Name"
+    [showError]="form.name().invalid()"
+>
+    <fkt-icon fktFieldPrefix name="user"/>
+    <input fktInputText [field]="form.name" placeholder="Enter a name">
+</fkt-field>
+
+<fkt-field
+    label="Username"
+    [showError]="form.username().invalid()"
+>
+    <fkt-icon fktFieldPrefix name="at-symbol"/>
+    <input fktInputText [field]="form.username" placeholder="Enter a username">
+</fkt-field>
+
+<fkt-field
+    label="Bio"
+    [showError]="form.bio().invalid()"
+>
+    <fkt-icon fktFieldPrefix name="identification"/>
+    <input fktInputText [field]="form.bio" placeholder="Enter a short bio">
+</fkt-field>
+
+<fkt-field
+    label="E-mail"
+    [showError]="form.email().invalid()"
+>
+    <fkt-icon fktFieldPrefix name="envelope"/>
+    <input fktInputText [field]="form.email" placeholder="Enter an e-mail">
+</fkt-field>
+```
+
+```css title="field-translated-errors-example.component.scss"
+:host {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: var(--fkt-space-xs);
+}
+
+fkt-select {
+    width: 150px;
+    margin-bottom: 1rem;
+}
+
+fkt-field {
+    width: 100%;
+}
+```
+
+## API Reference
+
+## Configuration Options
+
+<arg-types></arg-types>
+
+## Required Marker
+
+`requiredMarker` controls only the visual marker rendered next to the label. Validation still belongs to the projected control or form model.
+
+When `requiredMarker` is not defined, the field tries to infer the marker from the projected control:
+
+- Signal Forms: reads the field required state.
+- Reactive Forms: runs the configured validator and checks for a `required` error.
+- Native inputs: reads the native `required` property.
+
+Use `[requiredMarker]="true"` to force the marker on and `[requiredMarker]="false"` to hide it.
+
+## Field Error Messages
+
+Global error messages are configured with `provideFktConfig` and `withFieldErrorMessages`.
+
+```ts
+provideFktConfig(
+  withFieldErrorMessages(({ errors, t }) => {
+    if (!errors) return null;
+
+    const first = errors.errors[0];
+    if (first.message) return first.message;
+
+    if (first.kind === 'required') return t('errors.required');
+    if (first.kind === 'email') return t('errors.email');
+
+    if (first.kind === 'minLength' || first.kind === 'minlength') {
+      return t('errors.minLength', first.params);
+    }
+
+    if (first.kind === 'maxLength' || first.kind === 'maxlength') {
+      return t('errors.maxLength', first.params);
+    }
+
+    return null;
+  })
+)
+```
+
+## I18n Integration
+
+`withI18nIntegration` connects Frakton NG to the application's translation service. The library does not own translation files or formats; it only receives a `translateFn` and a source that triggers recomputation.
+
+`recomputeOn` accepts:
+
+- a Signal;
+- an Observable;
+- an array mixing Signals and Observables.
+
+```ts
+provideFktConfig(
+  withI18nIntegration(() => {
+    const translateService = inject(TranslateService);
+
+    return {
+      recomputeOn: translateService.currentLanguage$,
+      translateFn: translateService.instant.bind(translateService),
+    };
+  }),
+  withFieldErrorMessages(({ errors, t }) => {
+    if (!errors) return null;
+
+    const first = errors.errors[0];
+    if (first.message) return first.message;
+
+    if (first.kind === 'required') return t('errors.required');
+    if (first.kind === 'email') return t('errors.email');
+
+    if (first.kind === 'minLength' || first.kind === 'minlength') {
+      return t('errors.minLength', first.params);
+    }
+
+    if (first.kind === 'maxLength' || first.kind === 'maxlength') {
+      return t('errors.maxLength', first.params);
+    }
+
+    return null;
+  })
+)
+```
+
+```ts
+withI18nIntegration(() => ({
+  recomputeOn: currentLanguage, // Signal
+  translateFn: translate,
+}))
+
+withI18nIntegration(() => ({
+  recomputeOn: translateService.onLangChange, // Observable
+  translateFn: translateService.instant.bind(translateService),
+}))
+
+withI18nIntegration(() => ({
+  recomputeOn: [currentLanguage, translateService.onLangChange],
+  translateFn: translateService.instant.bind(translateService),
+}))
+```
+
+---
+
 <!-- Source: /llms/input.md -->
 
 # Components/Form/Input
@@ -9631,107 +11628,473 @@ Essential for reservation systems:
 - type: story
 - route: /docs/input
 - title: Components/Form/Input
-- component: FktInputComponent
-- import: `import { FktInputComponent } from 'frakton-ng/input';`
+- component: FktInputTextDirective
+- import: `import { FktInputTextDirective } from 'frakton-ng/input';`
 
 ## Description
 
-A versatile form input component with multiple types, data transformers, and comprehensive validation support. Built with Angular signals for reactive form integration.
+Native input directive for Frakton fields. Use input[fktInputText] inside
+fkt-field when the user needs a single-line text control that keeps native attributes, forms,
+i18n, masks, and third-party directives on the actual input element.
 
 ## Features
+
+### Composition
+
+- id: composition
+- type: introduction
+
+Input text composition patterns. The input directive owns the native single-line control state,
+while `fkt-field` owns label, outline, hint, error, density, prefix/suffix, and supporting text.
 
 ### Basic
 
 - id: basic
 - type: story
+- component: InputBasicExampleComponent
 
-A basic text input field with label and placeholder text for general text entry.
+Basic usage with `input[fktInputText]` projected into `fkt-field`. Use this for normal text entry
+where the consumer still needs direct access to native input attributes and directives.
 
-### Password
+Example component: `InputBasicExampleComponent`
 
-- id: password
+```ts title="input-basic-example.component.ts"
+import { Component } from '@angular/core';
+import { FktFieldComponent, FktFieldHintComponent } from 'frakton-ng/field';
+import { FktIconComponent } from 'frakton-ng/icon';
+import { FktInputTextDirective } from 'frakton-ng/input-text';
+
+@Component({
+    selector: 'app-input-basic-example',
+    imports: [
+        FktFieldComponent,
+        FktFieldHintComponent,
+        FktIconComponent,
+        FktInputTextDirective,
+    ],
+    templateUrl: './input-basic-example.component.html',
+    styleUrl: './input-basic-example.component.scss',
+})
+export class InputBasicExampleComponent {}
+```
+
+```html title="input-basic-example.component.html"
+<fkt-field label="Full name" hint="Use the name shown in your profile.">
+    <fkt-icon fktFieldPrefix name="user" />
+    <input
+        fktInputText
+        placeholder="Enter a full name"
+    >
+</fkt-field>
+
+<fkt-field label="Workspace slug">
+    <input
+        fktInputText
+        placeholder="acme-team"
+    >
+
+    <fkt-field-hint fktHintStart>
+        Used in public URLs.
+    </fkt-field-hint>
+</fkt-field>
+```
+
+```css title="input-basic-example.component.scss"
+:host {
+    display: flex;
+    flex-direction: column;
+    gap: var(--fkt-space-sm);
+}
+```
+
+### NativeAttributes
+
+- id: native-attributes
 - type: story
+- component: InputNativeAttributesExampleComponent
 
-A password input field with show/hide toggle functionality. Click the eye icon to toggle password visibility.
+Native attributes stay on the real input element. Use `type`, `autocomplete`, `inputmode`,
+`spellcheck`, `readonly`, `disabled`, masking directives, and browser-specific attributes
+directly on `input[fktInputText]`.
 
-### Email
+Example component: `InputNativeAttributesExampleComponent`
 
-- id: email
+```ts title="input-native-attributes-example.component.ts"
+import { Component } from '@angular/core';
+import { FktFieldComponent } from 'frakton-ng/field';
+import { FktIconComponent } from 'frakton-ng/icon';
+import { FktInputTextDirective } from 'frakton-ng/input-text';
+
+@Component({
+    selector: 'app-input-native-attributes-example',
+    imports: [FktFieldComponent, FktIconComponent, FktInputTextDirective],
+    templateUrl: './input-native-attributes-example.component.html',
+    styleUrl: './input-native-attributes-example.component.scss',
+})
+export class InputNativeAttributesExampleComponent {}
+```
+
+```html title="input-native-attributes-example.component.html"
+<fkt-field label="Email address">
+    <fkt-icon fktFieldPrefix name="envelope" />
+    <input
+        fktInputText
+        type="email"
+        autocomplete="email"
+        inputmode="email"
+        placeholder="name@example.com"
+    >
+</fkt-field>
+
+<fkt-field label="Search" hideLabel>
+    <fkt-icon fktFieldPrefix name="magnifying-glass" />
+    <input
+        fktInputText
+        type="search"
+        autocomplete="off"
+        placeholder="Search items..."
+    >
+</fkt-field>
+```
+
+```css title="input-native-attributes-example.component.scss"
+:host {
+    display: flex;
+    flex-direction: column;
+    gap: var(--fkt-space-sm);
+}
+```
+
+### CharacterCount
+
+- id: character-count
 - type: story
+- component: InputCharacterCountExampleComponent
 
-An email input field optimized for email addresses with proper keyboard and validation support.
+Character count is provided by `fktCharacterCount`. The directive reads the max length from the
+normalized field state, so Signal Forms, Reactive Forms, and native maxlength can share the same
+field supporting UI.
 
-### Number
+Example component: `InputCharacterCountExampleComponent`
 
-- id: number
+```ts title="input-character-count-example.component.ts"
+import { Component, signal } from '@angular/core';
+import { Field, form, maxLength } from '@angular/forms/signals';
+import { FktCharacterCountDirective, FktFieldComponent } from 'frakton-ng/field';
+import { FktInputTextDirective } from 'frakton-ng/input-text';
+
+@Component({
+    selector: 'app-input-character-count-example',
+    imports: [
+        Field,
+        FktCharacterCountDirective,
+        FktFieldComponent,
+        FktInputTextDirective,
+    ],
+    templateUrl: './input-character-count-example.component.html',
+    styleUrl: './input-character-count-example.component.scss',
+})
+export class InputCharacterCountExampleComponent {
+    private readonly model = signal({
+        displayName: 'Alice Johnson',
+    });
+
+    protected readonly form = form(this.model, (schema) => {
+        maxLength(schema.displayName, 32);
+    });
+}
+```
+
+```html title="input-character-count-example.component.html"
+<fkt-field label="Display name" hint="Keep it short and recognizable.">
+    <input
+        fktInputText
+        fktCharacterCount
+        [field]="form.displayName"
+        placeholder="Enter a display name"
+    >
+</fkt-field>
+```
+
+```css title="input-character-count-example.component.scss"
+:host {
+    display: block;
+}
+```
+
+### Forms
+
+- id: forms
+- type: introduction
+
+Form integration examples. The input directive participates in the same `FktFieldControl`
+contract as textarea, so the field can react to value, focused, disabled, touched, invalid,
+required, errors, and max length without manual state forwarding.
+
+### SignalForms
+
+- id: signal-forms
 - type: story
+- component: InputSignalFormsExampleComponent
 
-A numeric input that only accepts numbers and shows numeric keypad on mobile devices.
+Signal Forms integration through Angular's `[field]` directive. Validation state, disabled state,
+required marker, and max length are read from the projected control.
 
-### Currency
+Example component: `InputSignalFormsExampleComponent`
 
-- id: currency
+```ts title="input-signal-forms-example.component.ts"
+import { Component, signal } from '@angular/core';
+import { email, Field, form, minLength, required } from '@angular/forms/signals';
+import { FktButtonComponent } from 'frakton-ng/button';
+import { FktFieldComponent } from 'frakton-ng/field';
+import { FktIconComponent } from 'frakton-ng/icon';
+import { FktInputTextDirective } from 'frakton-ng/input-text';
+
+@Component({
+    selector: 'app-input-signal-forms-example',
+    imports: [
+        Field,
+        FktButtonComponent,
+        FktFieldComponent,
+        FktIconComponent,
+        FktInputTextDirective,
+    ],
+    templateUrl: './input-signal-forms-example.component.html',
+    styleUrl: './input-signal-forms-example.component.scss',
+})
+export class InputSignalFormsExampleComponent {
+    private readonly model = signal({
+        name: '',
+        email: '',
+    });
+
+    protected readonly form = form(this.model, (schema) => {
+        required(schema.name);
+        minLength(schema.name, 3);
+        required(schema.email);
+        email(schema.email);
+    });
+
+    protected fill() {
+        this.model.set({
+            name: 'Alice Johnson',
+            email: 'alice@example.com',
+        });
+    }
+
+    protected reset() {
+        this.model.set({
+            name: '',
+            email: '',
+        });
+    }
+}
+```
+
+```html title="input-signal-forms-example.component.html"
+<div class="actions">
+    <fkt-button text="Fill" (click)="fill()" />
+    <fkt-button text="Reset" (click)="reset()" />
+</div>
+
+<fkt-field
+    label="Name"
+    [showError]="form.name().invalid() && form.name().touched()"
+>
+    <fkt-icon fktFieldPrefix name="user" />
+    <input
+        fktInputText
+        [field]="form.name"
+        placeholder="Enter a name"
+    >
+</fkt-field>
+
+<fkt-field
+    label="E-mail"
+    [showError]="form.email().invalid() && form.email().touched()"
+>
+    <fkt-icon fktFieldPrefix name="envelope" />
+    <input
+        fktInputText
+        type="email"
+        [field]="form.email"
+        placeholder="Enter an e-mail"
+    >
+</fkt-field>
+```
+
+```css title="input-signal-forms-example.component.scss"
+:host {
+    display: flex;
+    flex-direction: column;
+    gap: var(--fkt-space-sm);
+}
+
+.actions {
+    display: flex;
+    gap: var(--fkt-space-xs);
+}
+```
+
+### ReactiveForms
+
+- id: reactive-forms
 - type: story
+- component: InputReactiveFormsExampleComponent
 
-Input with currency transformer that automatically formats values as currency (e.g., $1,234.56).
+Reactive Forms integration through `formControlName`. The field reacts to programmatic updates,
+reset, disabled state, and validation changes from the Angular control.
 
-### Percent
+Example component: `InputReactiveFormsExampleComponent`
 
-- id: percent
-- type: story
+```ts title="input-reactive-forms-example.component.ts"
+import { Component, inject } from '@angular/core';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FktButtonComponent } from 'frakton-ng/button';
+import { FktFieldComponent } from 'frakton-ng/field';
+import { FktIconComponent } from 'frakton-ng/icon';
+import { FktInputTextDirective } from 'frakton-ng/input-text';
 
-Input with percentage transformer that automatically formats values as percentages (e.g., 45.5%).
+@Component({
+    selector: 'app-input-reactive-forms-example',
+    imports: [
+        FktButtonComponent,
+        FktFieldComponent,
+        FktIconComponent,
+        FktInputTextDirective,
+        ReactiveFormsModule,
+    ],
+    templateUrl: './input-reactive-forms-example.component.html',
+    styleUrl: './input-reactive-forms-example.component.scss',
+})
+export class InputReactiveFormsExampleComponent {
+    protected readonly form = inject(FormBuilder).group({
+        name: ['', [Validators.required, Validators.minLength(3)]],
+        email: ['', [Validators.required, Validators.email]],
+    });
 
-### Hour
+    protected fill() {
+        this.form.setValue({
+            name: 'Alice Johnson',
+            email: 'alice@example.com',
+        });
+    }
 
-- id: hour
-- type: story
+    protected reset() {
+        this.form.reset({
+            name: '',
+            email: '',
+        });
+    }
+}
+```
 
-Input with hour transformer that formats time values as duration (e.g., 8h 30m).
+```html title="input-reactive-forms-example.component.html"
+<div class="actions">
+    <fkt-button text="Fill" (click)="fill()" />
+    <fkt-button text="Reset" (click)="reset()" />
+</div>
+
+<form [formGroup]="form">
+    <fkt-field label="Name">
+        <fkt-icon fktFieldPrefix name="user" />
+        <input
+            fktInputText
+            formControlName="name"
+            placeholder="Enter a name"
+        >
+    </fkt-field>
+
+    <fkt-field label="E-mail">
+        <fkt-icon fktFieldPrefix name="envelope" />
+        <input
+            fktInputText
+            type="email"
+            formControlName="email"
+            placeholder="Enter an e-mail"
+        >
+    </fkt-field>
+</form>
+```
+
+```css title="input-reactive-forms-example.component.scss"
+:host,
+form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--fkt-space-sm);
+}
+
+.actions {
+    display: flex;
+    gap: var(--fkt-space-xs);
+}
+```
 
 ## API Reference
 
-## Key Features
+## Import
 
-- **Multiple Input Types**: Text, password, number, and email with optimized behavior
-- **Data Transformers**: Built-in formatters for currency, percentage, and time duration
-- **Password Toggle**: Show/hide functionality with accessible eye icon
-- **Form Validation**: Real-time validation with visual error states
-- **Custom Suffix**: Content projection for buttons, icons, and additional elements
-- **Signal Integration**: Native Angular signals with SignalFormControl
-
-## Configuration Options
-
-<arg-types></arg-types>
-
-### Types
-
-```typescript
-import {SignalFormControlTransformer} from "frakton-ng/forms";
-
-type FktInputType = 'text' | 'password' | 'number' | 'email';
-
-type FktInputTransformer = 'currency' | 'percent' | 'hour' | SignalFormControlTransformer;
+```ts
+import { FktFieldComponent } from 'frakton-ng/field';
+import { FktInputTextDirective } from 'frakton-ng/input-text';
 ```
 
-[//]: # (## Examples)
+## Usage Model
 
-[//]: # ()
-[//]: # (<story-examples></story-examples>)
+`fktInputText` is a directive for the native `<input>` element. It is designed to be projected
+inside `fkt-field`, keeping the native control open for browser attributes, forms, i18n, masking
+libraries, and third-party directives while the field owns the visual shell.
 
-## Use Cases
+```html
+<fkt-field label="Full name">
+    <input
+        fktInputText
+        placeholder="Enter a full name"
+    >
+</fkt-field>
+```
 
-- **User Registration Forms** - Email addresses, passwords, personal information with validation.
-- **E-commerce Applications** - Product pricing, quantities, discount percentages with currency formatting.
-- **Financial Data Entry** - Investment amounts, interest rates, account balances with precise formatting.
-- **Content Management** - Article titles, descriptions, metadata with spell-check control.
+## Native Input First
 
-## Accessibility
+The directive does not replace the native input API. Keep attributes such as `type`, `autocomplete`,
+`inputmode`, `spellcheck`, `readonly`, `disabled`, and masking directives on the input itself.
 
-- **Keyboard Navigation**: Tab order and shortcuts work as expected.
-- **Screen Reader Support**: ARIA labels and validation announcements.
-- **Focus Management**: Clear focus indicators and logical navigation flow.
-- **Other Notes**: Supports high contrast modes and respects user preferences.
+```html
+<fkt-field label="CPF">
+    <input
+        fktInputText
+        ngxMask="000.000.000-00"
+        formControlName="cpf"
+    >
+</fkt-field>
+```
+
+## Field Integration
+
+The input implements the same field-control contract as `fktTextarea`. The field can read value,
+focus, disabled, touched, invalid, required, error, and max-length state from the projected input
+without the consumer forwarding those flags manually.
+
+## Character Count
+
+Use `fktCharacterCount` from `frakton-ng/field` when the field should render a max-length counter in
+the hint end area. The max length is inferred from Signal Forms, Reactive Forms, or the native
+`maxlength` attribute when available.
+
+```html
+<fkt-field label="Display name">
+    <input
+        fktInputText
+        fktCharacterCount
+        [field]="form.displayName"
+    >
+</fkt-field>
+```
+
+## API
+
+<arg-types></arg-types>
 
 ---
 
@@ -9776,7 +12139,7 @@ import { Field, form } from '@angular/forms/signals';
 	imports: [FktSelectComponent, Field]
 })
 export class DefaultExampleComponent {
-	label = input<string>();
+	label = input.required<string>();
 	placeholder = input<string>();
 	options = input.required<FktSelectOption[]>();
 	loading = input<boolean>(false);
@@ -9842,7 +12205,7 @@ import { Field, form } from '@angular/forms/signals';
 	imports: [FktSelectComponent, Field]
 })
 export class PreselectedExampleComponent {
-	label = input<string>();
+	label = input.required<string>();
 	placeholder = input<string>();
 	options = input.required<FktSelectOption[]>();
 
@@ -9906,7 +12269,7 @@ import { Field, form } from '@angular/forms/signals';
 	imports: [FktSelectComponent, Field]
 })
 export class LargeListExampleComponent {
-	label = input<string>();
+	label = input.required<string>();
 	placeholder = input<string>();
 	options = input.required<FktSelectOption[]>();
 
@@ -9973,7 +12336,7 @@ import { Field, form } from '@angular/forms/signals';
 	imports: [FktSelectComponent, Field]
 })
 export class LoadingExampleComponent {
-	label = input<string>();
+	label = input.required<string>();
 	placeholder = input<string>();
 	options = input.required<FktSelectOption[]>();
 	loading = input<boolean>(true);
@@ -10036,7 +12399,7 @@ import { Field, form } from '@angular/forms/signals';
 	imports: [FktSelectComponent, Field]
 })
 export class EmptyStateExampleComponent {
-	label = input<string>();
+	label = input.required<string>();
 	placeholder = input<string>();
 	options = input.required<FktSelectOption[]>();
 	loading = input<boolean>(false);
@@ -10090,7 +12453,7 @@ Example component: `ValidationExampleComponent`
 import { Component, input, signal } from '@angular/core';
 import { FktSelectComponent, FktSelectOption } from 'frakton-ng/select';
 import { Field, form, required } from '@angular/forms/signals';
-import { FktFieldErrorComponent } from 'frakton-ng/field-error';
+import { FktFieldErrorComponent } from 'frakton-ng/field';
 
 @Component({
 	selector: 'select-validation-example',
@@ -10099,7 +12462,7 @@ import { FktFieldErrorComponent } from 'frakton-ng/field-error';
 	imports: [FktSelectComponent, Field, FktFieldErrorComponent]
 })
 export class ValidationExampleComponent {
-	label = input<string>();
+	label = input.required<string>();
 	placeholder = input<string>();
 	options = input.required<FktSelectOption[]>();
 
@@ -10172,7 +12535,7 @@ import { Field, disabled, form } from '@angular/forms/signals';
 	imports: [FktSelectComponent, FktButtonComponent, Field]
 })
 export class DisabledExampleComponent {
-	label = input<string>();
+	label = input.required<string>();
 	placeholder = input<string>();
 	options = input.required<FktSelectOption[]>();
 
@@ -10233,7 +12596,7 @@ import { Field, form } from '@angular/forms/signals';
 	imports: [FktSelectComponent, Field]
 })
 export class AsyncLoadingExampleComponent {
-	label = input<string>();
+	label = input.required<string>();
 	placeholder = input<string>();
 	options = signal<FktSelectOption[]>([]);
 	loading = signal(false);
@@ -10358,339 +12721,6 @@ interface FktNoResults {
 
 ---
 
-<!-- Source: /llms/tag-selector.md -->
-
-# Components/Form/Tag Selector
-
-## Metadata
-
-- id: tag-selector
-- type: story
-- route: /docs/tag-selector
-- title: Components/Form/Tag Selector
-- component: FktTagSelectorComponent
-- import: `import { FktTagSelectorComponent } from 'frakton-ng/tag-selector';`
-
-## Description
-
-The FktTagSelector component provides an interactive dropdown for selecting from a list of tag options. Built with Angular signals and the overlay system, it offers a clean interface for choosing status, categories, or other tag-represented values.
-
-## Features
-
-### Preview
-
-- id: preview
-- type: story
-
-Interactive tag selector with predefined status options. Click to open dropdown and select an option.
-
-### OrderStatus
-
-- id: order-status
-- type: story
-- component: OrderStatusExampleComponent
-
-Tag selector for managing order status with multiple workflow states.
-
-Example component: `OrderStatusExampleComponent`
-
-```ts title="order-status-example.component.ts"
-import { Component, computed, input, model } from '@angular/core';
-import { FktTag, FktTagSelectorComponent } from "frakton-ng/tag-selector";
-
-@Component({
-	selector: 'order-status-example',
-	templateUrl: './order-status-example.component.html',
-	styleUrl: './order-status-example.component.scss',
-	imports: [FktTagSelectorComponent]
-})
-export class OrderStatusExampleComponent {
-	options = input<FktTag[]>([
-		{id: "pending", color: "warning", name: "Pending"},
-		{id: "processing", color: "info", name: "Processing"},
-		{id: "shipped", color: "info", name: "Shipped"},
-		{id: "delivered", color: "success", name: "Delivered"},
-		{id: "cancelled", color: "danger", name: "Cancelled"}
-	]);
-
-	value = model<string>('processing');
-
-	protected currentStatusLabel = computed(() => {
-		const statusId = this.value();
-
-		const status = this.options().find(
-			status => status.id === statusId
-		);
-
-		return status ? status.name : 'None';
-	})
-}
-```
-
-```html title="order-status-example.component.html"
-<div class="container">
-	<div class="container__item">
-		<h3>Order #1234 Status:</h3>
-		<fkt-tag-selector
-			[(value)]="value"
-			[options]="options()"
-		/>
-	</div>
-
-	<div class="container__status">
-		Current status:
-		<strong>
-			{{ currentStatusLabel() }}
-		</strong>
-	</div>
-</div>
-```
-
-```css title="order-status-example.component.scss"
-.container {
-	border: solid 1px var(--fkt-color-neutral-400);
-	display: flex;
-	flex-direction: column;
-	border-radius: var(--fkt-radius-md);
-	padding: var(--fkt-space-md);
-	gap: var(--fkt-space-md);
-
-	&__item {
-		display: flex;
-		align-items: center;
-		gap: var(--fkt-space-sm);
-
-		h3 {
-			margin: 0;
-			font-size: var(--fkt-font-size-sm);
-			font-weight: var(--fkt-font-semibold);
-		}
-	}
-
-	&__status {
-		font-size: var(--fkt-font-size-sm);
-		color: var(--fkt-color-neutral-600);
-	}
-}
-```
-
-### Priority
-
-- id: priority
-- type: story
-- component: PriorityExampleComponent
-
-Tag selector for task or issue priority levels with visual hierarchy.
-
-Example component: `PriorityExampleComponent`
-
-```ts title="priority-example.component.ts"
-import { Component, computed, input, model } from '@angular/core';
-import { FktTag, FktTagSelectorComponent } from 'frakton-ng/tag-selector';
-
-type TagType = 'low' | 'medium' | 'high' | 'critical';
-
-@Component({
-	selector: 'priority-example',
-	templateUrl: './priority-example.component.html',
-	styleUrl: './priority-example.component.scss',
-	imports: [FktTagSelectorComponent]
-})
-export class PriorityExampleComponent {
-	options = input<FktTag<TagType>[]>([
-		{id: "low", color: "success", name: "Low"},
-		{id: "medium", color: "warning", name: "Medium"},
-		{id: "high", color: "danger", name: "High"},
-		{id: "critical", color: "danger", name: "Critical"}
-	]);
-
-	value = model<TagType>('medium');
-
-	priorityDescription = computed(() => {
-		const descriptions: Record<TagType, string> = {
-			low: 'Tasks that can be completed when time permits',
-			medium: 'Tasks that should be completed within normal timeframes',
-			high: 'Tasks requiring prompt attention and completion',
-			critical: 'Urgent tasks requiring immediate action'
-		};
-
-		return descriptions[this.value()] || 'Select a priority level';
-	})
-}
-```
-
-```html title="priority-example.component.html"
-<div class="container">
-	<h3>Task Priority</h3>
-
-	<div class="container__selector">
-		<label>Priority Level:</label>
-		<fkt-tag-selector
-			[(value)]="value"
-			[options]="options()"
-		/>
-	</div>
-
-	<div class="container__description">
-		{{ priorityDescription() }}
-	</div>
-</div>
-```
-
-```css title="priority-example.component.scss"
-.container {
-	padding: var(--fkt-space-md);
-	border: solid 1px var(--fkt-color-neutral-400);
-	border-radius: var(--fkt-space-md);
-
-	h3 {
-		font-size: var(--fkt-font-size-lg);
-		font-weight: var(--fkt-font-semibold);
-		margin-bottom: var(--fkt-space-sm);
-	}
-
-	&__selector {
-		display: flex;
-		align-items: center;
-		gap: var(--fkt-space-sm);
-
-		label {
-			font-size: var(--fkt-font-size-sm);
-			font-weight: var(--fkt-font-medium);
-		}
-	}
-
-	&__description {
-		margin-top: var(--fkt-space-sm);
-		font-size: var(--fkt-font-size-sm);
-		color: var(--fkt-color-neutral-600);
-	}
-}
-```
-
-### ProjectStatus
-
-- id: project-status
-- type: story
-
-Displays the status of a project using colored tags for each phase. Use this example for dashboards, kanbans or project summary views.
-
-### UserStatus
-
-- id: user-status
-- type: story
-
-Represents the status of a user with classic availability tags (Online, Away, Busy, Offline). Useful in chat apps, team dashboards, or user presence indicators.
-
-### TeamAssignment
-
-- id: team-assignment
-- type: story
-
-Showcases different team assignments using distinctive tag colors. Handy for project management tools, HR apps, or team allocation displays.
-
-### Category
-
-- id: category
-- type: story
-
-Demonstrates tags for product or content categories. Use this pattern for e-commerce, content tagging, search filters, or any interface that organizes information by category.
-
-## API Reference
-
-## Key Features
-
-- **Interactive Selection**: Click to open dropdown with available badge options
-- **Visual Preview**: Shows currently selected badge with proper styling
-- **Overlay System**: Uses smart positioning to avoid viewport overflow
-- **Type Safety**: Generic component with strongly typed ID values
-- **Two-Way Binding**: Seamless integration with reactive forms and signals
-- **Keyboard Navigation**: Full accessibility support with keyboard interaction
-- **Signal-Based**: Built with Angular signals for optimal performance
-
-## Configuration Options
-
-<arg-types></arg-types>
-
-### Types
-
-```ts
-import {FktTagColor} from "frakton-ng/tag";
-
-export interface FktTag<Id extends string = string> {
-    id: Id;
-    name: string;
-    color: FktTagColor;
-}
-```
-
-### Two-Way Binding
-
-The component supports Angular's two-way binding syntax:
-
-```html
-
-<fkt-tag-selector
-    [options]="statusOptions"
-    [(value)]="selectedStatus"
-/>
-```
-
-## Use Cases
-
-### Status Management
-
-Perfect for managing entity status:
-
-- Order and shipping status
-- Project and task status
-- User account status
-- System health indicators
-
-### Category Selection
-
-Ideal for categorization interfaces:
-
-- Content categories
-- Product classifications
-- Department assignments
-- Priority levels
-
-### Team and Assignment
-
-Great for team management:
-
-- Team member assignments
-- Department selection
-- Role assignments
-- Responsibility areas
-
-### Configuration
-
-Essential for settings and preferences:
-
-- Theme and appearance
-- Notification preferences
-- Access levels
-- Feature toggles
-
-## Accessibility
-
-- **Keyboard Navigation**: Full keyboard support for opening and navigating options
-- **Screen Reader Support**: Proper ARIA labels and announcements
-- **Focus Management**: Logical focus flow between selector and options
-- **High Contrast**: Supports system high contrast modes
-- **State Communication**: Selection changes are clearly communicated
-
-## Performance
-
-- **Lazy Loading**: Dropdown content created only when opened
-- **Efficient Rendering**: Optimized change detection with Angular signals
-- **Memory Management**: Proper cleanup of overlay references
-- **Type Safety**: Compile-time type checking for tag IDs
-
----
-
 <!-- Source: /llms/textarea.md -->
 
 # Components/Form/Textarea
@@ -10701,201 +12731,77 @@ Essential for settings and preferences:
 - type: story
 - route: /docs/textarea
 - title: Components/Form/Textarea
-- component: FktTextareaComponent
-- import: `import { FktTextareaComponent } from 'frakton-ng/textarea';`
+- component: FktTextareaDirective
+- import: `import { FktTextareaDirective } from 'frakton-ng/textarea';`
 
 ## Description
 
-A multi-line text input component with reactive form integration, validation support, and optional auto-expand functionality for capturing longer text content from users.
+Native textarea directive for Frakton fields. Use textarea[fktTextarea] inside
+fkt-field when the user needs a multi-line text control with field state integration, auto-expand,
+and optional character count support.
 
 ## Features
 
-### BasicUsage
+### Composition
 
-- id: basic-usage
+- id: composition
+- type: introduction
+
+Textarea composition patterns. The textarea directive owns the native multiline control state,
+while `fkt-field` owns label, outline, hint, error, density, prefix/suffix, and supporting text.
+
+### Basic
+
+- id: basic
 - type: story
-- component: BasicExampleComponent
+- component: TextareaBasicExampleComponent
 
-A basic textarea with label and placeholder. Use this as a starting point for most scenarios where free-form multi-line text input is needed.
+Basic usage with `textarea[fktTextarea]` projected into `fkt-field`. Native textarea attributes
+such as `rows`, `placeholder`, `spellcheck`, `readonly`, and `disabled` stay on the native element.
 
-Example component: `BasicExampleComponent`
+Example component: `TextareaBasicExampleComponent`
 
-```ts title="basic-example.component.ts"
-import { Component, input, signal } from '@angular/core';
-import { FktTextareaComponent } from 'frakton-ng/textarea';
-import { Field, form } from '@angular/forms/signals';
+```ts title="textarea-basic-example.component.ts"
+import { Component } from '@angular/core';
+import { FktFieldComponent, FktFieldHintComponent } from 'frakton-ng/field';
+import { FktTextareaDirective } from 'frakton-ng/textarea';
 
 @Component({
-	selector: 'textarea-basic-example',
-	imports: [FktTextareaComponent, Field],
-	templateUrl: './basic-example.component.html',
-	styleUrl: './basic-example.component.scss'
+    selector: 'app-textarea-basic-example',
+    imports: [FktFieldComponent, FktFieldHintComponent, FktTextareaDirective],
+    templateUrl: './textarea-basic-example.component.html',
+    styleUrl: './textarea-basic-example.component.scss',
 })
-export class BasicExampleComponent {
-	label = input('Description');
-	placeholder = input('Enter a detailed description...');
-	spellcheck = input(true);
-
-	protected control = form(signal(''));
-}
+export class TextareaBasicExampleComponent {}
 ```
 
-```html title="basic-example.component.html"
-<div class="container">
-	<fkt-textarea
-		[field]="control"
-		[label]="label()"
-		[placeholder]="placeholder()"
-		[spellcheck]="spellcheck()"
-	/>
+```html title="textarea-basic-example.component.html"
+<fkt-field label="Description" hint="Write a short summary for internal use.">
+    <textarea
+        fktTextarea
+        rows="4"
+        placeholder="Describe the item..."
+    ></textarea>
+</fkt-field>
 
-	<div class="container__info">
-		<p>Current value: {{ control().value() || '(empty)' }}</p>
-	</div>
-</div>
+<fkt-field label="Release notes">
+    <textarea
+        fktTextarea
+        rows="5"
+        placeholder="List the most important changes..."
+    ></textarea>
+
+    <fkt-field-hint fktHintStart>
+        Markdown support depends on the consumer application.
+    </fkt-field-hint>
+</fkt-field>
 ```
 
-```css title="basic-example.component.scss"
-.container {
-	width: 100%;
-	display: flex;
-	flex-direction: column;
-	gap: var(--fkt-space-md);
-
-	&__info {
-		font-size: var(--fkt-font-size-sm);
-		color: var(--fkt-color-neutral-600);
-	}
-}
-```
-
-### Validation
-
-- id: validation
-- type: story
-- component: ValidationExampleComponent
-
-Textarea with validation logic for minimum and maximum length. Shows error messages and disables submission if the requirements are not met.
-
-Example component: `ValidationExampleComponent`
-
-```ts title="validation-example.component.ts"
-import { Component, computed, input, signal } from '@angular/core';
-import { FktTextareaComponent } from 'frakton-ng/textarea';
-import { Field, form, maxLength, minLength, required } from '@angular/forms/signals';
-import { FktFieldErrorComponent } from 'frakton-ng/field-error';
-
-@Component({
-	selector: 'textarea-validation-example',
-	imports: [FktTextareaComponent, Field, FktFieldErrorComponent],
-	templateUrl: './validation-example.component.html',
-	styleUrl: './validation-example.component.scss'
-})
-export class ValidationExampleComponent {
-	minLength = input(20);
-	maxLength = input(500);
-	label = input('Bio');
-	placeholder = input('Tell us about yourself...');
-
-	control = form(signal(''), path => {
-		required(path, {message: "The field is required"});
-		minLength(path, this.minLength(), {message: `Min length is ${this.minLength()}`});
-		maxLength(path, this.maxLength(), {message: `Max length is ${this.maxLength()}`});
-	});
-
-	characterCount = computed(() => {
-		return this.control().value()?.length || 0;
-	});
-}
-```
-
-```html title="validation-example.component.html"
-<div class="validation-example">
-	<div>
-		<fkt-textarea
-			autoExpand
-			[field]="control"
-			[label]="label()"
-			[placeholder]="placeholder()"
-		/>
-		<fkt-field-error [show]="control().invalid() && control().touched()" [error]="control().errors()[0]?.message"/>
-	</div>
-
-	<div class="validation-example__container">
-		<div class="validation-example__status">
-			<span class="validation-example__status-label">Status:</span>
-			<span
-				class="validation-example__status-content"
-				[class.validation-example__status-content--valid]="control().valid()"
-				[class.validation-example__status-content--invalid]="control().invalid()">
-						{{ control().valid() ? 'Valid' : 'Invalid' }}
-					</span>
-		</div>
-
-		<div class="validation-example__info">
-			<div class="validation-example__info-label">
-				<strong>Character count:</strong>
-				<span>{{ characterCount() }}/{{ maxLength() }}</span>
-			</div>
-
-			<div class="validation-example__info-label">
-				<strong>Required minimum:</strong>
-				<span>{{ minLength() }} characters</span>
-			</div>
-		</div>
-	</div>
-</div>
-```
-
-```css title="validation-example.component.scss"
-.validation-example {
-	width: 100%;
-	display: flex;
-	flex-direction: column;
-	gap: var(--fkt-space-md);
-
-	&__container {
-		display: flex;
-		flex-direction: column;
-		gap: var(--fkt-space-xs);
-	}
-
-	&__status {
-		font-size: var(--fkt-font-size-sm);
-
-		&-label {
-			font-weight: var(--fkt-font-semibold);
-		}
-
-		&-content {
-			&--valid {
-				color: var(--fkt-color-success);
-			}
-
-			&--invalid {
-				color: var(--fkt-color-danger);
-			}
-		}
-	}
-
-	&__info {
-		font-size: var(--fkt-font-size-sm);
-		color: var(--fkt-color-neutral-600);
-		display: flex;
-		flex-direction: column;
-		gap: var(--fkt-space-xs);
-
-		&-label {
-			display: flex;
-			gap: var(--fkt-space-xs);
-
-			strong {
-				font-weight: var(--fkt-font-semibold);
-			}
-		}
-	}
-
-
+```css title="textarea-basic-example.component.scss"
+:host {
+    display: flex;
+    flex-direction: column;
+    gap: var(--fkt-space-sm);
 }
 ```
 
@@ -10903,660 +12809,337 @@ export class ValidationExampleComponent {
 
 - id: auto-expand
 - type: story
-- component: AutoExpandExampleComponent
+- component: TextareaAutoExpandExampleComponent
 
-Textarea with auto-expand enabled. The textarea grows vertically as the user types more lines, improving the writing experience for long texts.
+Auto-expand keeps the field compact initially and grows the textarea vertically as content wraps
+or new lines are added. Use this for comments, notes, descriptions, and support messages.
 
-Example component: `AutoExpandExampleComponent`
+Example component: `TextareaAutoExpandExampleComponent`
 
-```ts title="auto-expand-example.component.ts"
-import { Component, input, signal } from '@angular/core';
-import { FktTextareaComponent } from 'frakton-ng/textarea';
-import { Field, form } from '@angular/forms/signals';
+```ts title="textarea-auto-expand-example.component.ts"
+import { Component } from '@angular/core';
+import { FktFieldComponent } from 'frakton-ng/field';
+import { FktTextareaDirective } from 'frakton-ng/textarea';
 
 @Component({
-	selector: 'textarea-auto-expand-example',
-	imports: [FktTextareaComponent, Field],
-	templateUrl: './auto-expand-example.component.html',
-	styleUrl: './auto-expand-example.component.scss'
+    selector: 'app-textarea-auto-expand-example',
+    imports: [FktFieldComponent, FktTextareaDirective],
+    templateUrl: './textarea-auto-expand-example.component.html',
+    styleUrl: './textarea-auto-expand-example.component.scss',
 })
-export class AutoExpandExampleComponent {
-	label = input('Notes');
-	placeholder = input('Start typing...');
-	autoExpand = input(true);
+export class TextareaAutoExpandExampleComponent {}
+```
 
-	lineCount() {
-		const value = this.control().value();
-		return value ? value.split('\n').length : 0;
-	}
-	protected control = form(signal('Type here and press Enter to add new lines.\nThe textarea will automatically expand to fit the content when auto-expand is enabled.'));
+```html title="textarea-auto-expand-example.component.html"
+<fkt-field label="Notes" hint="The textarea grows vertically as content wraps or new lines are added.">
+    <textarea
+        fktTextarea
+        autoExpand
+        rows="2"
+        placeholder="Start typing..."
+    >Auto-expand is useful for comment boxes, notes, and descriptions that start compact but may become longer.</textarea>
+</fkt-field>
+```
+
+```css title="textarea-auto-expand-example.component.scss"
+:host {
+    display: block;
 }
 ```
 
-```html title="auto-expand-example.component.html"
-<div class="container">
-	<div class="container__info">
-		<p class="container__info-text">Auto-expand is {{ autoExpand() ? 'enabled' : 'disabled' }}</p>
-		<p>The textarea will {{ autoExpand() ? 'automatically grow' : 'maintain fixed height' }} as you type.</p>
-	</div>
+### CharacterCount
 
-	<fkt-textarea
-		[field]="control"
-		[label]="label()"
-		[placeholder]="placeholder()"
-		[autoExpand]="autoExpand()"
-	/>
-
-	<div class="container__hint">
-		<p>Try typing multiple lines to see the auto-expand behavior.</p>
-		<p>Lines count: {{ lineCount() }}</p>
-	</div>
-</div>
-```
-
-```css title="auto-expand-example.component.scss"
-.container {
-	width: 100%;
-	display: flex;
-	flex-direction: column;
-	gap: var(--fkt-space-md);
-
-	&__info {
-		font-size: var(--fkt-font-size-sm);
-		color: var(--fkt-color-neutral-600);
-		background-color: #155DFC14;
-		padding: var(--fkt-space-sm);
-		border-radius: var(--border-radius-md);
-
-		&-text {
-			font-weight: var(--fkt-font-medium);
-		}
-	}
-
-	&__hint {
-		font-size: var(--fkt-font-size-sm);
-		color: var(--fkt-color-neutral-600);
-	}
-}
-```
-
-### FormIntegration
-
-- id: form-integration
+- id: character-count
 - type: story
-- component: FormIntegrationExampleComponent
+- component: TextareaCharacterCountExampleComponent
 
-Demonstrates how the textarea integrates with signal forms. This is ideal for real-world forms that need validation, control and submission.
+Character count is provided by `fktCharacterCount`. The directive reads the max length from the
+same normalized field state used by input text, so Signal Forms, Reactive Forms, and native
+maxlength can share the same field supporting UI.
 
-Example component: `FormIntegrationExampleComponent`
+Example component: `TextareaCharacterCountExampleComponent`
 
-```ts title="form-integration-example.component.ts"
+```ts title="textarea-character-count-example.component.ts"
 import { Component, signal } from '@angular/core';
-import { Field, email, form, maxLength, minLength, required } from '@angular/forms/signals';
-import { FktTextareaComponent } from 'frakton-ng/textarea';
-import { FktInputComponent } from 'frakton-ng/input';
-import { JsonPipe } from '@angular/common';
-import { FktButtonComponent } from 'frakton-ng/button';
-import { Generic } from 'frakton-ng/internal/types';
-import { FktFieldErrorComponent } from 'frakton-ng/field-error';
-
-@Component({
-	selector: 'textarea-form-integration-example',
-	imports: [FktTextareaComponent, FktInputComponent, JsonPipe, FktButtonComponent, Field, FktFieldErrorComponent],
-	templateUrl: './form-integration-example.component.html',
-	styleUrl: './form-integration-example.component.scss'
-})
-export class FormIntegrationExampleComponent {
-	protected data = signal({
-		name: '',
-		email: '',
-		message: '',
-		additionalInfo: ''
-	});
-
-	protected form = form(this.data, path => {
-		required(path.name, {message: "Field is required"});
-
-		required(path.email, {message: "Field is required"});
-		email(path.email, {message: "Email is invalid"});
-
-		required(path.message, {message: "Field is required"});
-		minLength(path.message, 10,  {message: "Min length is 10"});
-		maxLength(path.message, 1000,  {message: "Max length is 1000"});
-	});
-
-	submittedData = signal<Generic | null>(null);
-
-	handleSubmit() {
-		if (this.form().valid()) {
-			const formData = {
-				...this.form().value(),
-				submittedAt: new Date().toISOString()
-			};
-
-			this.submittedData.set(formData);
-
-			console.log('Form submitted:', formData);
-
-			setTimeout(() => {
-				this.resetForm();
-				this.submittedData.set(null);
-			}, 3000);
-		}
-	}
-
-	resetForm() {
-		this.form().reset();
-		this.form().value.set({
-			name: '',
-			email: '',
-			message: '',
-			additionalInfo: ''
-		});
-		this.submittedData.set(null);
-	}
-}
-```
-
-```html title="form-integration-example.component.html"
-<div class="container">
-	<h3>Contact Form</h3>
-
-	<form (submit)="handleSubmit()">
-		<div class="container__form">
-			<div>
-				<fkt-input
-					[field]="form.name"
-					[label]="'Name'"
-					[placeholder]="'Your name'"
-					[type]="'text'"
-				/>
-				<fkt-field-error [show]="form.name().invalid() && form.name().touched()"
-								 [error]="form.name().errors()[0]?.message"/>
-			</div>
-			<div>
-				<fkt-input
-					[field]="form.email"
-					[label]="'Email'"
-					[placeholder]="'your@email.com'"
-					[type]="'email'"
-				/>
-				<fkt-field-error [show]="form.email().invalid() && form.email().touched()"
-								 [error]="form.email().errors()[0]?.message"/>
-			</div>
-			<div>
-				<fkt-textarea
-					[field]="form.message"
-					autoExpand
-					noResize
-					[label]="'Message'"
-					[placeholder]="'Please describe your inquiry in detail...'"
-				/>
-				<fkt-field-error [show]="form.message().invalid() && form.message().touched()"
-								 [error]="form.message().errors()[0]?.message"/>
-			</div>
-			<div>
-				<fkt-textarea
-					[field]="form.additionalInfo"
-					autoExpand
-					noResize
-					[label]="'Additional Information (Optional)'"
-					[placeholder]="'Any other details you would like to share...'"
-				/>
-				<fkt-field-error [show]="form.additionalInfo().invalid() && form.additionalInfo().touched()"
-								 [error]="form.additionalInfo().errors()[0]?.message"/>
-			</div>
-
-
-			<div class="container__form__footer">
-				<div class="container__form__footer-message">
-						<span [class.container__form__footer-message--valid]="form().valid()">
-							{{ form().valid() ? '✓ Form is valid' : 'Please fill all required fields' }}
-						</span>
-				</div>
-
-				<div class="container__form__actions">
-					<fkt-button
-						(click)="resetForm()"
-						text="Reset"
-						theme="stroked"
-					>
-					</fkt-button>
-					<fkt-button
-						type="submit"
-						text="Submit"
-						[disabled]="!form().valid()"
-					>
-					</fkt-button>
-				</div>
-			</div>
-		</div>
-
-	</form>
-
-	@if (submittedData()) {
-		<div class="container__success-message">
-			<h4>Form Submitted Successfully!</h4>
-			<pre>{{ submittedData() | json }}</pre>
-		</div>
-	}
-</div>
-```
-
-```css title="form-integration-example.component.scss"
-h3, h4 {
-	margin: 0;
-}
-
-.container {
-	width: 100%;
-	display: flex;
-	flex-direction: column;
-	gap: var(--fkt-space-md);
-
-	h3 {
-		font-size: var(--fkt-font-size-lg);
-		font-weight: var(--fkt-font-semibold);
-	}
-
-	&__form {
-		display: flex;
-		flex-direction: column;
-		gap: var(--fkt-space-sm);
-
-		&__footer {
-			display: flex;
-			align-items: center;
-			justify-content: space-between;
-
-			&-message {
-				font-size: var(--fkt-font-size-sm);
-				color: var(--fkt-color-neutral-600);
-
-				&--valid {
-					color: var(--fkt-color-success);
-				}
-			}
-		}
-
-		&__actions {
-			display: flex;
-			gap: var(--fkt-space-xs);
-		}
-	}
-
-	&__success-message {
-		margin-top: var(--fkt-space-md);
-		padding: var(--fkt-space-md);
-		background-color: var(--fkt-color-success-opacity-10);
-		border: solid 1px var(--fkt-color-success-opacity-30);
-		border-radius: var(--fkt-radius-md);
-
-		h4 {
-			font-weight: var(--fkt-font-medium);
-			color: var(--fkt-color-success);
-		}
-
-		pre {
-			margin-top: var(--fkt-space-xs);
-			font-size: var(--fkt-font-size-sm);
-			color: var(--fkt-color-neutral-700);
-		}
-	}
-}
-```
-
-### CharacterCounter
-
-- id: character-counter
-- type: story
-- component: CharacterCounterExampleComponent
-
-Textarea with a live character counter, ideal for use cases like social posts, tweets, or messages with a maximum allowed length.
-
-Example component: `CharacterCounterExampleComponent`
-
-```ts title="character-counter-example.component.ts"
-import { Component, computed, input, signal } from '@angular/core';
-import { FktTextareaComponent } from 'frakton-ng/textarea';
 import { Field, form, maxLength } from '@angular/forms/signals';
+import { FktCharacterCountDirective, FktFieldComponent } from 'frakton-ng/field';
+import { FktTextareaDirective } from 'frakton-ng/textarea';
 
 @Component({
-	selector: 'textarea-character-counter-example',
-	imports: [FktTextareaComponent, Field],
-	templateUrl: './character-counter-example.component.html',
-	styleUrl: './character-counter-example.component.scss'
+    selector: 'app-textarea-character-count-example',
+    imports: [
+        Field,
+        FktCharacterCountDirective,
+        FktFieldComponent,
+        FktTextareaDirective,
+    ],
+    templateUrl: './textarea-character-count-example.component.html',
+    styleUrl: './textarea-character-count-example.component.scss',
 })
-export class CharacterCounterExampleComponent {
-	maxLength = input(280);
-	label = input('Tweet');
-	placeholder = input("What's happening?");
+export class TextareaCharacterCountExampleComponent {
+    private readonly model = signal({
+        bio: 'Builds internal tools with Angular.',
+    });
 
-	protected control = form(signal(''), path => {
-		maxLength(path, this.maxLength())
-	});
-
-	protected warningThreshold = computed(() => Math.floor(this.maxLength() * 0.8));
-
-	protected characterCount = computed(() => {
-		const value = this.control().value();
-		return value?.length || 0;
-	});
-
-	protected wordCount = computed(() => {
-		const value = this.control().value();
-		if (!value) return 0;
-		const text = value.trim();
-		return text ? text.split(/\s+/).length : 0;
-	});
-
-	protected lineCount = computed(() => {
-		const value = this.control().value();
-		if (!value) return 1;
-		return value.split('\n').length;
-	});
-
-	protected remainingCharacters = computed(() => {
-		const remaining = this.maxLength() - this.characterCount();
-		return remaining >= 0 ? remaining : 0;
-	});
-
-	protected progressPercentage = computed(() => {
-		const percentage = (this.characterCount() / this.maxLength()) * 100;
-		return Math.min(percentage, 100);
-	});
+    protected readonly form = form(this.model, (schema) => {
+        maxLength(schema.bio, 120);
+    });
 }
 ```
 
-```html title="character-counter-example.component.html"
-<div class="container">
-	<fkt-textarea
-		autoExpand
-		[field]="control"
-		[label]="label()"
-		[placeholder]="placeholder()"
-	/>
-
-	<div class="container__elements">
-		<!-- Character counter -->
-		<div class="container__character-counter">
-			<span class="container__character-counter__text">Character count:</span>
-			<span
-				class="container__character-counter__indicator"
-				[class.container__character-counter__indicator--valid]="characterCount() <= warningThreshold()"
-				[class.container__character-counter__indicator--warning]="characterCount() > warningThreshold() && characterCount() <= maxLength()"
-				[class.container__character-counter__indicator--invalid]="characterCount() > maxLength()"
-			>
-				{{ characterCount() }} / {{ maxLength() }}
-			</span>
-		</div>
-
-		<!-- Progress bar -->
-		<div class="container__progress-bar">
-			<div
-				[class.container__progress-bar--valid]="characterCount() <= warningThreshold()"
-				[class.container__progress-bar--warning]="characterCount() > warningThreshold() && characterCount() <= maxLength()"
-				[class.container__progress-bar--invalid]="characterCount() > maxLength()"
-				[style.width.%]="progressPercentage()"
-			></div>
-		</div>
-
-		<!-- Stats -->
-		<div class="container__stats">
-			<div>
-				<span>Words:</span> {{ wordCount() }}
-			</div>
-			<div>
-				<span>Lines:</span> {{ lineCount() }}
-			</div>
-			<div>
-				<span>Remaining:</span> {{ remainingCharacters() }}
-			</div>
-		</div>
-
-		<!-- Warning messages -->
-		@if (characterCount() > warningThreshold()) {
-			<div class="container__warning-messages">
-				@if (characterCount() <= maxLength()) {
-					<p class="container__warning-messages--warning">⚠️ You're approaching the character limit</p>
-				}
-				@if (characterCount() > maxLength()) {
-					<p class="container__warning-messages--invalid">❌ Character limit exceeded by {{ characterCount() - maxLength() }}
-						characters</p>
-				}
-			</div>
-		}
-	</div>
-</div>
+```html title="textarea-character-count-example.component.html"
+<fkt-field label="Bio" hint="This text appears on the public profile.">
+    <textarea
+        fktTextarea
+        fktCharacterCount
+        autoExpand
+        rows="3"
+        [field]="form.bio"
+        placeholder="Write a short bio..."
+    ></textarea>
+</fkt-field>
 ```
 
-```css title="character-counter-example.component.scss"
-.container {
-	width: 100%;
-	display: flex;
-	flex-direction: column;
-	gap: var(--fkt-space-md);
-
-	fkt-textarea {
-		width: 100%;
-	}
-
-	&__elements {
-		display: flex;
-		flex-direction: column;
-		gap: var(--fkt-space-xs);
-	}
-
-	&__character-counter {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-
-		&__text {
-			font-size: var(--fkt-font-size-sm);
-			color: var(--fkt-color-neutral-600);
-		}
-
-		&__indicator {
-			font-size: var(--fkt-font-size-sm);
-			font-weight: var(--fkt-font-medium);
-
-			&--valid {
-				color: var(--fkt-color-neutral-700);
-			}
-
-			&--warning {
-				color: var(--fkt-color-accent);
-			}
-
-			&--invalid {
-				color: var(--fkt-color-danger);
-			}
-		}
-	}
-
-	&__progress-bar {
-		width: 100%;
-		background-color: var(--fkt-color-neutral-200);
-		border-radius: var(--fkt-radius-full);
-		height: .5rem;
-
-		div {
-			height: 100%;
-			transition: var(--fkt-transition-base);
-		}
-
-		&--valid {
-			background-color: var(--fkt-color-success);
-		}
-
-		&--warning {
-			background-color: var(--fkt-color-accent);
-		}
-
-		&--invalid {
-			background-color: var(--fkt-color-danger);
-		}
-	}
-
-	&__stats {
-		display: grid;
-		grid-template-columns: repeat(3, minmax(0, 1fr));
-		gap: var(--fkt-space-xs);
-		font-size: var(--fkt-font-size-sm);
-		line-height: 1rem;
-		color: var(--fkt-color-neutral-600);
-
-		span {
-			font-weight: var(--fkt-font-medium);
-		}
-	}
-
-	&__warning-messages {
-		font-size: var(--fkt-font-size-sm);
-
-		&--warning {
-			color: var(--fkt-color-accent);
-		}
-
-		&--invalid {
-			color: var(--fkt-color-danger);
-		}
-	}
+```css title="textarea-character-count-example.component.scss"
+:host {
+    display: block;
 }
 ```
 
-### DisabledState
+### Forms
 
-- id: disabled-state
+- id: forms
+- type: introduction
+
+Form integration examples. The textarea directive participates in the same `FktFieldControl`
+contract as input text, so the field can react to value, focused, disabled, touched, invalid,
+required, errors, and max length without manual state forwarding.
+
+### SignalForms
+
+- id: signal-forms
 - type: story
-- component: DisabledExampleComponent
+- component: TextareaSignalFormsExampleComponent
 
-Shows the textarea in a disabled state. Useful for read-only or preview scenarios, or when editing is not allowed due to permissions or workflow status.
+Signal Forms integration through Angular's `[field]` directive. Validation state, disabled state,
+required marker, and max length are read from the projected control.
 
-Example component: `DisabledExampleComponent`
+Example component: `TextareaSignalFormsExampleComponent`
 
-```ts title="disabled-example.component.ts"
-import { Component, input, linkedSignal, signal } from '@angular/core';
-import { FktTextareaComponent } from 'frakton-ng/textarea';
+```ts title="textarea-signal-forms-example.component.ts"
+import { Component, signal } from '@angular/core';
+import { Field, form, maxLength, minLength, required } from '@angular/forms/signals';
 import { FktButtonComponent } from 'frakton-ng/button';
-import { Field, disabled, form } from '@angular/forms/signals';
+import { FktFieldComponent } from 'frakton-ng/field';
+import { FktTextareaDirective } from 'frakton-ng/textarea';
 
 @Component({
-	selector: 'textarea-disabled-example',
-	imports: [FktTextareaComponent, FktButtonComponent, Field],
-	templateUrl: './disabled-example.component.html',
-	styleUrl: './disabled-example.component.scss'
+    selector: 'app-textarea-signal-forms-example',
+    imports: [
+        Field,
+        FktButtonComponent,
+        FktFieldComponent,
+        FktTextareaDirective,
+    ],
+    templateUrl: './textarea-signal-forms-example.component.html',
+    styleUrl: './textarea-signal-forms-example.component.scss',
 })
-export class DisabledExampleComponent {
-	label = input('Terms and Conditions');
-	placeholder = input('Content will appear here...');
-	initialDisabled = input(true);
+export class TextareaSignalFormsExampleComponent {
+    private readonly model = signal({
+        message: '',
+    });
 
-	disabled = linkedSignal(this.initialDisabled);
+    protected readonly form = form(this.model, (schema) => {
+        required(schema.message);
+        minLength(schema.message, 10);
+        maxLength(schema.message, 160);
+    });
 
-	private value = signal(`
-This is a sample legal text that cannot be edited by the user.
-By using our service, you agree to these terms and conditions. This text field is disabled to prevent modifications to the legal agreement.
-The disabled state is useful for displaying read-only content while maintaining the form field structure.`.trim()
-	);
+    protected fill() {
+        this.model.set({
+            message:
+                'I need help configuring the production deployment workflow.',
+        });
+    }
 
-	protected control = form(this.value, path => {
-		disabled(path, () => this.disabled());
-	})
-
-	protected toggleDisabled() {
-		this.disabled.update(disabled => !disabled);
-	}
+    protected reset() {
+        this.model.set({ message: '' });
+        this.form().reset();
+    }
 }
 ```
 
-```html title="disabled-example.component.html"
-<div class="container">
-	<fkt-textarea
-		autoExpand
-		[field]="control"
-		[label]="label()"
-		[placeholder]="placeholder()"
-	/>
+```html title="textarea-signal-forms-example.component.html"
+<fkt-field label="Support message">
+    <textarea
+        fktTextarea
+        autoExpand
+        rows="3"
+        [field]="form.message"
+        placeholder="Describe the issue..."
+    ></textarea>
+</fkt-field>
 
-	<div class="container__status">
-		<fkt-button
-			(click)="toggleDisabled()"
-			[text]="(control().disabled() ? 'Enable' : 'Disable') + ' textarea'"
-		>
-		</fkt-button>
-
-		<span>
-			Status: <strong>{{ control().disabled() ? 'Disabled' : 'Enabled' }}</strong>
-		</span>
-	</div>
-
-	<div class="container__message">
-		<p>Disabled textareas prevent user interaction while preserving the current value.</p>
-		<p>Common use cases include read-only views, locked fields, or conditional editing.</p>
-	</div>
+<div class="actions">
+    <fkt-button theme="stroked" text="Reset" (click)="reset()" />
+    <fkt-button text="Fill" (click)="fill()" />
 </div>
 ```
 
-```css title="disabled-example.component.scss"
-.container {
-	width: 100%;
-	display: flex;
-	flex-direction: column;
-	gap: var(--fkt-space-md);
+```css title="textarea-signal-forms-example.component.scss"
+:host {
+    display: flex;
+    flex-direction: column;
+    gap: var(--fkt-space-sm);
+}
 
-	&__status {
-		display: flex;
-		align-items: center;
-		gap: var(--fkt-space-md);
+.actions {
+    display: flex;
+    gap: var(--fkt-space-xs);
+    justify-content: flex-end;
+}
+```
 
-		span {
-			font-size: var(--fkt-font-size-sm);
-			color: var(--fkt-color-neutral-600);
-		}
-	}
+### ReactiveForms
 
-	&__message {
-		font-size: var(--fkt-font-size-sm);
-		color: var(--fkt-color-neutral-600);
-	}
+- id: reactive-forms
+- type: story
+- component: TextareaReactiveFormsExampleComponent
 
+Reactive Forms integration through `formControlName`. The field reacts to programmatic updates,
+reset, disabled state, and validation changes from the Angular control.
+
+Example component: `TextareaReactiveFormsExampleComponent`
+
+```ts title="textarea-reactive-forms-example.component.ts"
+import { Component, inject } from '@angular/core';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FktButtonComponent } from 'frakton-ng/button';
+import { FktCharacterCountDirective, FktFieldComponent } from 'frakton-ng/field';
+import { FktTextareaDirective } from 'frakton-ng/textarea';
+
+@Component({
+    selector: 'app-textarea-reactive-forms-example',
+    imports: [
+        FktButtonComponent,
+        FktCharacterCountDirective,
+        FktFieldComponent,
+        FktTextareaDirective,
+        ReactiveFormsModule,
+    ],
+    templateUrl: './textarea-reactive-forms-example.component.html',
+    styleUrl: './textarea-reactive-forms-example.component.scss',
+})
+export class TextareaReactiveFormsExampleComponent {
+    protected readonly form = inject(FormBuilder).group({
+        comment: ['', [Validators.required, Validators.maxLength(180)]],
+    });
+
+    protected fill() {
+        this.form.setValue({
+            comment: 'The new table and field APIs are ready for an internal review.',
+        });
+    }
+
+    protected reset() {
+        this.form.reset({ comment: '' });
+    }
+}
+```
+
+```html title="textarea-reactive-forms-example.component.html"
+<form [formGroup]="form">
+    <fkt-field label="Review comment">
+        <textarea
+            fktTextarea
+            fktCharacterCount
+            autoExpand
+            rows="3"
+            formControlName="comment"
+            placeholder="Write a review comment..."
+        ></textarea>
+    </fkt-field>
+</form>
+
+<div class="actions">
+    <fkt-button theme="stroked" text="Reset" (click)="reset()" />
+    <fkt-button text="Fill" (click)="fill()" />
+</div>
+```
+
+```css title="textarea-reactive-forms-example.component.scss"
+:host {
+    display: flex;
+    flex-direction: column;
+    gap: var(--fkt-space-sm);
+}
+
+.actions {
+    display: flex;
+    gap: var(--fkt-space-xs);
+    justify-content: flex-end;
 }
 ```
 
 ## API Reference
 
-## Key Features
+## Import
 
-- **Multi-line Text Input**: Expandable textarea for capturing longer text content
-- **Auto-expand Mode**: Automatically adjusts height to fit content (optional)
-- **Form Integration**: Seamless integration with Angular reactive forms via SignalFormControl
-- **Validation Support**: Built-in error display with customizable validation rules
-- **Programmatic Focus**: Public method for focusing the textarea programmatically
-- **Disabled State**: Support for disabled/read-only states with visual feedback
-- **Responsive Design**: Adapts to container width and screen sizes
+```ts
+import { FktFieldComponent } from 'frakton-ng/field';
+import { FktTextareaDirective } from 'frakton-ng/textarea';
+```
 
-## Configuration Options
+## Usage Model
+
+`fktTextarea` is a directive for the native `<textarea>` element. It is designed to be projected
+inside `fkt-field`, keeping the native control open for browser attributes, forms, i18n, and
+third-party directives while the field owns the visual shell.
+
+```html
+<fkt-field label="Description">
+    <textarea
+        fktTextarea
+        rows="4"
+        placeholder="Describe the item..."
+    ></textarea>
+</fkt-field>
+```
+
+## Field Integration
+
+The textarea implements the same field-control contract as `fktInputText`. The field can read value,
+focus, disabled, touched, invalid, required, error, and max-length state from the projected textarea
+without the consumer forwarding those flags manually.
+
+## Auto Expand
+
+Use `autoExpand` when the textarea should grow vertically as content changes. This is useful for
+comments, notes, descriptions, and message boxes that should start compact.
+
+```html
+<textarea fktTextarea autoExpand rows="2"></textarea>
+```
+
+## Character Count
+
+Use `fktCharacterCount` from `frakton-ng/field` when the field should render a max-length counter in
+the hint end area. The max length is inferred from Signal Forms, Reactive Forms, or the native
+`maxlength` attribute when available.
+
+```html
+<fkt-field label="Bio">
+    <textarea
+        fktTextarea
+        fktCharacterCount
+        [field]="form.bio"
+    ></textarea>
+</fkt-field>
+```
+
+## API
 
 <arg-types></arg-types>
-
-## Use Cases
-
-- **Contact Forms**: Capture detailed messages and inquiries from users
-- **Content Management**: Create and edit articles, blog posts, and documentation
-- **Feedback Collection**: Gather user reviews, comments, and suggestions
-- **Data Entry**: Input descriptions, notes, and multi-line data in business applications
-- **Social Media**: Compose posts, tweets, and status updates with character limits
-- **Code Editors**: Input and display code snippets with proper formatting
-- **Support Tickets**: Describe issues and provide detailed problem reports
-
-## Accessibility
-
-- **Keyboard Navigation**: Full keyboard support with Tab for focus and standard text navigation
-- **Screen Reader Support**: Proper ARIA labels and error announcements
-- **Focus Management**: Clear visual focus indicators and programmatic focus control via the `focus()` method
-- **Error Communication**: Validation errors are properly associated with the textarea and announced to assistive technologies
 
 ---
 
@@ -11615,7 +13198,7 @@ import { Component, inject } from '@angular/core';
 import { FktToggleComponent } from 'frakton-ng/toggle';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FktButtonComponent } from 'frakton-ng/button';
-import { FktFieldErrorComponent } from 'frakton-ng/field-error';
+import { FktFieldErrorComponent } from 'frakton-ng/field';
 import { map } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 
@@ -11688,7 +13271,7 @@ Example component: `ToggleSignalFormsComponent`
 import { Component, signal } from '@angular/core';
 import { FktToggleComponent } from 'frakton-ng/toggle';
 import { disabled, Field, form, required } from '@angular/forms/signals';
-import { FktFieldErrorComponent } from 'frakton-ng/field-error';
+import { FktFieldErrorComponent } from 'frakton-ng/field';
 import { FktButtonComponent } from 'frakton-ng/button';
 
 @Component({
@@ -11760,7 +13343,7 @@ Example component: `ToggleInputDrivenComponent`
 import { Component, signal } from '@angular/core';
 import { FktToggleComponent } from 'frakton-ng/toggle';
 import { FktButtonComponent } from 'frakton-ng/button';
-import { FktFieldErrorComponent } from 'frakton-ng/field-error';
+import { FktFieldErrorComponent } from 'frakton-ng/field';
 
 @Component({
     selector: 'fkt-toggle-input-driven',
@@ -13067,323 +14650,6 @@ The calendar uses a signal-based state management approach:
 **Memory Management**: Proper cleanup of event listeners and subscriptions.
 
 **Optimized Calculations**: Efficient date calculations and caching for better performance.
-
----
-
-<!-- Source: /llms/calendar-navigator.md -->
-
-# Components/Navigation/Calendar Navigator
-
-## Metadata
-
-- id: calendar-navigator
-- type: story
-- route: /docs/calendar-navigator
-- title: Components/Navigation/Calendar Navigator
-- component: FktCalendarNavigatorComponent
-- import: `import { FktCalendarNavigatorComponent } from 'frakton-ng/calendar-navigator';`
-
-## Description
-
-The FktCalendarNavigator component provides an interactive calendar header with navigation controls and modal-based date selection. It displays the current month/year and allows users to navigate between dates with modal overlays for detailed selection.
-
-## Features
-
-### Month
-
-- id: month
-- type: story
-
-Calendar navigator in month mode, allowing users to navigate through months and select specific months.
-
-### Year
-
-- id: year
-- type: story
-
-Calendar navigator in year mode, allowing users to navigate through years and select specific years.
-
-### MonthModeExample
-
-- id: month-mode-example
-- type: story
-- component: MonthModeExampleComponent
-
-Comprehensive example showing month mode navigation with date selection and current date display.
-
-Example component: `MonthModeExampleComponent`
-
-```ts title="month-mode-example.component.ts"
-import { Component, input } from '@angular/core';
-import { FktCalendarNavigatorComponent, FktCalendarNavigatorMode } from 'frakton-ng/calendar-navigator';
-
-@Component({
-	selector: 'month-mode-example',
-	templateUrl: './month-mode-example.component.html',
-	styleUrl: './month-mode-example.component.scss',
-	imports: [FktCalendarNavigatorComponent]
-})
-export class MonthModeExampleComponent {
-	currentDate = input(new Date());
-	mode = input<FktCalendarNavigatorMode>('month');
-}
-```
-
-```html title="month-mode-example.component.html"
-<fkt-calendar-navigator
-			[mode]="mode()"
-			[currentDate]="currentDate()"
-		/>
-```
-
-```css title="month-mode-example.component.scss"
-
-```
-
-### YearModeExample
-
-- id: year-mode-example
-- type: story
-- component: YearModeExampleComponent
-
-Comprehensive example showing year mode navigation with year selection and current year display.
-
-Example component: `YearModeExampleComponent`
-
-```ts title="year-mode-example.component.ts"
-import { Component, input } from '@angular/core';
-import { FktCalendarNavigatorComponent, FktCalendarNavigatorMode } from 'frakton-ng/calendar-navigator';
-
-@Component({
-	selector: 'year-mode-example',
-	templateUrl: './year-mode-example.component.html',
-	styleUrl: './year-mode-example.component.scss',
-	imports: [FktCalendarNavigatorComponent]
-})
-export class YearModeExampleComponent {
-	currentDate = input(new Date());
-	mode = input<FktCalendarNavigatorMode>('month');
-}
-```
-
-```html title="year-mode-example.component.html"
-<fkt-calendar-navigator
-			[mode]="mode()"
-			[currentDate]="currentDate()"
-		/>
-```
-
-```css title="year-mode-example.component.scss"
-
-```
-
-### DynamicModeExample
-
-- id: dynamic-mode-example
-- type: story
-- component: DynamicModeExampleComponent
-
-Dynamic mode switching example showing how to toggle between month and year navigation modes.
-
-Example component: `DynamicModeExampleComponent`
-
-```ts title="dynamic-mode-example.component.ts"
-import { Component, input, linkedSignal } from '@angular/core';
-import { FktCalendarNavigatorComponent, FktCalendarNavigatorMode } from 'frakton-ng/calendar-navigator';
-import { DatePipe } from '@angular/common';
-import { FktButtonComponent } from 'frakton-ng/button';
-import { FktTagComponent } from 'frakton-ng/tag';
-
-@Component({
-	selector: 'dynamic-mode-example',
-	templateUrl: './dynamic-mode-example.component.html',
-	styleUrl: './dynamic-mode-example.component.scss',
-	imports: [FktCalendarNavigatorComponent, DatePipe, FktButtonComponent, FktTagComponent]
-})
-export class DynamicModeExampleComponent {
-	protected currentDate = input(new Date());
-	protected mode = input<FktCalendarNavigatorMode>('month');
-
-	protected internalMode = linkedSignal(this.mode);
-	protected internalDate = linkedSignal(this.currentDate);
-
-	protected toggleMode() {
-		this.internalMode.update(currentMode => currentMode === 'month' ? 'year' : 'month');
-	}
-
-	protected goToToday() {
-		this.internalDate.set(new Date());
-	}
-}
-```
-
-```html title="dynamic-mode-example.component.html"
-<div class="container">
-			<fkt-calendar-navigator
-				[mode]="internalMode()"
-				[currentDate]="internalDate()"
-			/>
-
-			<div class="container__info">
-				<div>
-					<fkt-tag
-						text="Mode: {{internalMode()}}"
-						color="info">
-
-					</fkt-tag>
-				</div>
-
-				<strong class="container__info-selected">
-					Selected: {{ internalDate() | date:'fullDate' }}
-				</strong>
-			</div>
-
-			<div class="container__actions">
-				<fkt-button
-					(click)="goToToday()"
-					text="Today"
-				>
-				</fkt-button>
-
-				<fkt-button
-					(click)="toggleMode()"
-					theme="stroked"
-					text="Switch to {{ internalMode() === 'month' ? 'Year' : 'Month' }} mode"
-				>
-				</fkt-button>
-			</div>
-		</div>
-```
-
-```css title="dynamic-mode-example.component.scss"
-.container {
-	display: flex;
-	flex-direction: column;
-	gap: var(--fkt-space-xl);
-
-	&__info {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		margin-top: var(--fkt-space-xs);
-		padding-top: var(--fkt-space-xs);
-		border-top: 1px solid var(--fkt-color-neutral-200);
-		color: var(--fkt-color-neutral-600);
-
-		&-selected {
-			color: var(--fkt-color-neutral-600);
-			text-align: center;
-			font-weight: var(--fkt-font-semibold);
-		}
-	}
-
-	&__actions {
-		gap: var(--fkt-space-xs);
-		display: flex;
-		justify-content: flex-end;
-	}
-}
-```
-
-### FormIntegrationExample
-
-- id: form-integration-example
-- type: story
-- component: FormIntegrationExampleComponent
-
-Form integration example showing how to use calendar navigator with reactive forms and form validation.
-
-Example component: `FormIntegrationExampleComponent`
-
-```ts title="form-integration-example.component.ts"
-import { Component, input, linkedSignal } from '@angular/core';
-import { DatePipe } from '@angular/common';
-import { FktCalendarNavigatorComponent, FktCalendarNavigatorMode } from 'frakton-ng/calendar-navigator';
-import { form } from '@angular/forms/signals';
-
-@Component({
-	selector: 'form-integration-example',
-	templateUrl: './form-integration-example.component.html',
-	styleUrl: './form-integration-example.component.scss',
-	imports: [FktCalendarNavigatorComponent, DatePipe]
-})
-export class FormIntegrationExampleComponent {
-	currentDate = input(new Date());
-	mode = input<FktCalendarNavigatorMode>('month');
-
-	private value = linkedSignal(() => {
-		return {
-			selectedDate: this.currentDate()
-		}
-	})
-
-	protected dateForm = form(this.value)
-}
-```
-
-```html title="form-integration-example.component.html"
-<div class="navigator">
-	<fkt-calendar-navigator
-		[mode]="mode()"
-		[currentDate]="currentDate()"
-	/>
-</div>
-<div class="info">
-	Selected: {{ dateForm.selectedDate().value() | date:'fullDate' }}
-</div>
-```
-
-```css title="form-integration-example.component.scss"
-.navigator {
-	border-bottom: solid 1px var(--fkt-color-neutral-200);
-	padding-bottom: var(--fkt-space-xs);
-	margin-bottom: var(--fkt-space-md);
-}
-
-.info {
-	color: var(--fkt-color-neutral-500);
-	text-align: center;
-	font-weight: var(--fkt-font-semibold);
-}
-```
-
-## API Reference
-
-## Key Features
-
-- **Multiple Modes**: Switch between 'month' and 'year' display modes
-- **Modal Integration**: Opens detailed calendar modals for date/month/year selection
-- **Navigation Controls**: Previous/next navigation with customizable button states
-- **Two-way Binding**: Reactive date binding with model signals
-- **Overlay System**: Advanced modal positioning and management
-- **Click Navigation**: Clickable month/year labels that open selection modals
-- **Responsive Design**: Adapts to different screen sizes and containers
-
-## Configuration Options
-
-<arg-types></arg-types>
-
-### Types
-
-```typescript
-type FktCalendarNavigatorMode = 'month' | 'year';
-```
-
-### Navigation Behavior
-
-- **Month Mode**: Previous/Next buttons navigate by month, Month/Year labels open selection modals
-- **Year Mode**: Previous/Next buttons navigate by year, Year label opens multi-year selection modal
-
-## Use Cases
-
-Perfect for date picker headers, event calendar controls, dashboard date filters, and appointment scheduling interfaces. Integrates seamlessly with form controls and data filtering systems.
-
-## Accessibility
-
-- **Keyboard Navigation**: Tab navigation through controls
-- **Screen Reader Support**: Proper ARIA labels for navigation buttons
-- **Focus Management**: Logical focus flow through interactive elements
-- **Date Announcements**: Screen readers announce selected dates
 
 ---
 
@@ -19982,7 +21248,7 @@ Example component: `InteractiveTooltipExampleComponent`
 ```ts title="interactive-tooltip-example.component.ts"
 import { Component, input, signal } from '@angular/core';
 import { FktSelectComponent } from 'frakton-ng/select';
-import { FktInputComponent } from 'frakton-ng/input';
+import { FktInputOldComponent } from 'frakton-ng/input-old';
 import { FktCheckboxComponent } from 'frakton-ng/checkbox';
 import { FktTooltipDirective } from 'frakton-ng/tooltip';
 import { FktGeometryPosition, fktGeometryPositions } from 'frakton-ng/internal/types';
@@ -19992,7 +21258,7 @@ import { Field, form } from '@angular/forms/signals';
 	selector: 'interactive-tooltip-example',
 	styleUrl: './interactive-tooltip-example.component.scss',
 	templateUrl: './interactive-tooltip-example.component.html',
-    imports: [FktSelectComponent, FktInputComponent, FktCheckboxComponent, FktTooltipDirective, Field]
+    imports: [FktSelectComponent, FktInputOldComponent, FktCheckboxComponent, FktTooltipDirective, Field]
 })
 export class InteractiveTooltipExampleComponent {
 	tooltipColor = input('primary');
@@ -21032,16 +22298,16 @@ import {DropdownModule} from 'primeng/dropdown';
 ```typescript
 // After (Frakton NG)
 import {FktButtonComponent} from 'frakton-ng/button';
-import {FktInputComponent} from 'frakton-ng/input';
+import {FktInputOldComponent} from 'frakton-ng/input-old';
 import {FktSelectComponent} from 'frakton-ng/select';
 
 @Component({
-	template: `
+    template: `
     <fkt-button text="Click me" (click)="handleClick()"></fkt-button>
     <fkt-input [(value)]="value" placeholder="Enter text"></fkt-input>
     <fkt-select [options]="cities" [(value)]="selectedCity"></fkt-select>
   `,
-	imports: [FktButtonComponent, FktInputComponent, FktSelectComponent]
+    imports: [FktButtonComponent, FktInputOldComponent, FktSelectComponent]
 })
 ```
 
