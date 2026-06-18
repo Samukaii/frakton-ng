@@ -190,16 +190,16 @@ import {DropdownModule} from 'primeng/dropdown';
 ```typescript
 // After (Frakton NG)
 import {FktButtonComponent} from 'frakton-ng/button';
-import {FktInputComponent} from 'frakton-ng/input';
+import {FktInputOldComponent} from 'frakton-ng/input-old';
 import {FktSelectComponent} from 'frakton-ng/select';
 
 @Component({
-	template: `
+    template: `
     <fkt-button text="Click me" (click)="handleClick()"></fkt-button>
     <fkt-input [(value)]="value" placeholder="Enter text"></fkt-input>
     <fkt-select [options]="cities" [(value)]="selectedCity"></fkt-select>
   `,
-	imports: [FktButtonComponent, FktInputComponent, FktSelectComponent]
+    imports: [FktButtonComponent, FktInputOldComponent, FktSelectComponent]
 })
 ```
 

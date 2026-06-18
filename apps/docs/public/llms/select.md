@@ -39,7 +39,7 @@ import { Field, form } from '@angular/forms/signals';
 	imports: [FktSelectComponent, Field]
 })
 export class DefaultExampleComponent {
-	label = input<string>();
+	label = input.required<string>();
 	placeholder = input<string>();
 	options = input.required<FktSelectOption[]>();
 	loading = input<boolean>(false);
@@ -105,7 +105,7 @@ import { Field, form } from '@angular/forms/signals';
 	imports: [FktSelectComponent, Field]
 })
 export class PreselectedExampleComponent {
-	label = input<string>();
+	label = input.required<string>();
 	placeholder = input<string>();
 	options = input.required<FktSelectOption[]>();
 
@@ -169,7 +169,7 @@ import { Field, form } from '@angular/forms/signals';
 	imports: [FktSelectComponent, Field]
 })
 export class LargeListExampleComponent {
-	label = input<string>();
+	label = input.required<string>();
 	placeholder = input<string>();
 	options = input.required<FktSelectOption[]>();
 
@@ -236,7 +236,7 @@ import { Field, form } from '@angular/forms/signals';
 	imports: [FktSelectComponent, Field]
 })
 export class LoadingExampleComponent {
-	label = input<string>();
+	label = input.required<string>();
 	placeholder = input<string>();
 	options = input.required<FktSelectOption[]>();
 	loading = input<boolean>(true);
@@ -299,7 +299,7 @@ import { Field, form } from '@angular/forms/signals';
 	imports: [FktSelectComponent, Field]
 })
 export class EmptyStateExampleComponent {
-	label = input<string>();
+	label = input.required<string>();
 	placeholder = input<string>();
 	options = input.required<FktSelectOption[]>();
 	loading = input<boolean>(false);
@@ -353,7 +353,7 @@ Example component: `ValidationExampleComponent`
 import { Component, input, signal } from '@angular/core';
 import { FktSelectComponent, FktSelectOption } from 'frakton-ng/select';
 import { Field, form, required } from '@angular/forms/signals';
-import { FktFieldErrorComponent } from 'frakton-ng/field-error';
+import { FktFieldErrorComponent } from 'frakton-ng/field';
 
 @Component({
 	selector: 'select-validation-example',
@@ -362,7 +362,7 @@ import { FktFieldErrorComponent } from 'frakton-ng/field-error';
 	imports: [FktSelectComponent, Field, FktFieldErrorComponent]
 })
 export class ValidationExampleComponent {
-	label = input<string>();
+	label = input.required<string>();
 	placeholder = input<string>();
 	options = input.required<FktSelectOption[]>();
 
@@ -435,7 +435,7 @@ import { Field, disabled, form } from '@angular/forms/signals';
 	imports: [FktSelectComponent, FktButtonComponent, Field]
 })
 export class DisabledExampleComponent {
-	label = input<string>();
+	label = input.required<string>();
 	placeholder = input<string>();
 	options = input.required<FktSelectOption[]>();
 
@@ -496,7 +496,7 @@ import { Field, form } from '@angular/forms/signals';
 	imports: [FktSelectComponent, Field]
 })
 export class AsyncLoadingExampleComponent {
-	label = input<string>();
+	label = input.required<string>();
 	placeholder = input<string>();
 	options = signal<FktSelectOption[]>([]);
 	loading = signal(false);

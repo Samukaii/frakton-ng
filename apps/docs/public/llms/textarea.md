@@ -8,201 +8,77 @@
 - type: story
 - route: /docs/textarea
 - title: Components/Form/Textarea
-- component: FktTextareaComponent
-- import: `import { FktTextareaComponent } from 'frakton-ng/textarea';`
+- component: FktTextareaDirective
+- import: `import { FktTextareaDirective } from 'frakton-ng/textarea';`
 
 ## Description
 
-A multi-line text input component with reactive form integration, validation support, and optional auto-expand functionality for capturing longer text content from users.
+Native textarea directive for Frakton fields. Use textarea[fktTextarea] inside
+fkt-field when the user needs a multi-line text control with field state integration, auto-expand,
+and optional character count support.
 
 ## Features
 
-### BasicUsage
+### Composition
 
-- id: basic-usage
+- id: composition
+- type: introduction
+
+Textarea composition patterns. The textarea directive owns the native multiline control state,
+while `fkt-field` owns label, outline, hint, error, density, prefix/suffix, and supporting text.
+
+### Basic
+
+- id: basic
 - type: story
-- component: BasicExampleComponent
+- component: TextareaBasicExampleComponent
 
-A basic textarea with label and placeholder. Use this as a starting point for most scenarios where free-form multi-line text input is needed.
+Basic usage with `textarea[fktTextarea]` projected into `fkt-field`. Native textarea attributes
+such as `rows`, `placeholder`, `spellcheck`, `readonly`, and `disabled` stay on the native element.
 
-Example component: `BasicExampleComponent`
+Example component: `TextareaBasicExampleComponent`
 
-```ts title="basic-example.component.ts"
-import { Component, input, signal } from '@angular/core';
-import { FktTextareaComponent } from 'frakton-ng/textarea';
-import { Field, form } from '@angular/forms/signals';
+```ts title="textarea-basic-example.component.ts"
+import { Component } from '@angular/core';
+import { FktFieldComponent, FktFieldHintComponent } from 'frakton-ng/field';
+import { FktTextareaDirective } from 'frakton-ng/textarea';
 
 @Component({
-	selector: 'textarea-basic-example',
-	imports: [FktTextareaComponent, Field],
-	templateUrl: './basic-example.component.html',
-	styleUrl: './basic-example.component.scss'
+    selector: 'app-textarea-basic-example',
+    imports: [FktFieldComponent, FktFieldHintComponent, FktTextareaDirective],
+    templateUrl: './textarea-basic-example.component.html',
+    styleUrl: './textarea-basic-example.component.scss',
 })
-export class BasicExampleComponent {
-	label = input('Description');
-	placeholder = input('Enter a detailed description...');
-	spellcheck = input(true);
-
-	protected control = form(signal(''));
-}
+export class TextareaBasicExampleComponent {}
 ```
 
-```html title="basic-example.component.html"
-<div class="container">
-	<fkt-textarea
-		[field]="control"
-		[label]="label()"
-		[placeholder]="placeholder()"
-		[spellcheck]="spellcheck()"
-	/>
+```html title="textarea-basic-example.component.html"
+<fkt-field label="Description" hint="Write a short summary for internal use.">
+    <textarea
+        fktTextarea
+        rows="4"
+        placeholder="Describe the item..."
+    ></textarea>
+</fkt-field>
 
-	<div class="container__info">
-		<p>Current value: {{ control().value() || '(empty)' }}</p>
-	</div>
-</div>
+<fkt-field label="Release notes">
+    <textarea
+        fktTextarea
+        rows="5"
+        placeholder="List the most important changes..."
+    ></textarea>
+
+    <fkt-field-hint fktHintStart>
+        Markdown support depends on the consumer application.
+    </fkt-field-hint>
+</fkt-field>
 ```
 
-```css title="basic-example.component.scss"
-.container {
-	width: 100%;
-	display: flex;
-	flex-direction: column;
-	gap: var(--fkt-space-md);
-
-	&__info {
-		font-size: var(--fkt-font-size-sm);
-		color: var(--fkt-color-neutral-600);
-	}
-}
-```
-
-### Validation
-
-- id: validation
-- type: story
-- component: ValidationExampleComponent
-
-Textarea with validation logic for minimum and maximum length. Shows error messages and disables submission if the requirements are not met.
-
-Example component: `ValidationExampleComponent`
-
-```ts title="validation-example.component.ts"
-import { Component, computed, input, signal } from '@angular/core';
-import { FktTextareaComponent } from 'frakton-ng/textarea';
-import { Field, form, maxLength, minLength, required } from '@angular/forms/signals';
-import { FktFieldErrorComponent } from 'frakton-ng/field-error';
-
-@Component({
-	selector: 'textarea-validation-example',
-	imports: [FktTextareaComponent, Field, FktFieldErrorComponent],
-	templateUrl: './validation-example.component.html',
-	styleUrl: './validation-example.component.scss'
-})
-export class ValidationExampleComponent {
-	minLength = input(20);
-	maxLength = input(500);
-	label = input('Bio');
-	placeholder = input('Tell us about yourself...');
-
-	control = form(signal(''), path => {
-		required(path, {message: "The field is required"});
-		minLength(path, this.minLength(), {message: `Min length is ${this.minLength()}`});
-		maxLength(path, this.maxLength(), {message: `Max length is ${this.maxLength()}`});
-	});
-
-	characterCount = computed(() => {
-		return this.control().value()?.length || 0;
-	});
-}
-```
-
-```html title="validation-example.component.html"
-<div class="validation-example">
-	<div>
-		<fkt-textarea
-			autoExpand
-			[field]="control"
-			[label]="label()"
-			[placeholder]="placeholder()"
-		/>
-		<fkt-field-error [show]="control().invalid() && control().touched()" [error]="control().errors()[0]?.message"/>
-	</div>
-
-	<div class="validation-example__container">
-		<div class="validation-example__status">
-			<span class="validation-example__status-label">Status:</span>
-			<span
-				class="validation-example__status-content"
-				[class.validation-example__status-content--valid]="control().valid()"
-				[class.validation-example__status-content--invalid]="control().invalid()">
-						{{ control().valid() ? 'Valid' : 'Invalid' }}
-					</span>
-		</div>
-
-		<div class="validation-example__info">
-			<div class="validation-example__info-label">
-				<strong>Character count:</strong>
-				<span>{{ characterCount() }}/{{ maxLength() }}</span>
-			</div>
-
-			<div class="validation-example__info-label">
-				<strong>Required minimum:</strong>
-				<span>{{ minLength() }} characters</span>
-			</div>
-		</div>
-	</div>
-</div>
-```
-
-```css title="validation-example.component.scss"
-.validation-example {
-	width: 100%;
-	display: flex;
-	flex-direction: column;
-	gap: var(--fkt-space-md);
-
-	&__container {
-		display: flex;
-		flex-direction: column;
-		gap: var(--fkt-space-xs);
-	}
-
-	&__status {
-		font-size: var(--fkt-font-size-sm);
-
-		&-label {
-			font-weight: var(--fkt-font-semibold);
-		}
-
-		&-content {
-			&--valid {
-				color: var(--fkt-color-success);
-			}
-
-			&--invalid {
-				color: var(--fkt-color-danger);
-			}
-		}
-	}
-
-	&__info {
-		font-size: var(--fkt-font-size-sm);
-		color: var(--fkt-color-neutral-600);
-		display: flex;
-		flex-direction: column;
-		gap: var(--fkt-space-xs);
-
-		&-label {
-			display: flex;
-			gap: var(--fkt-space-xs);
-
-			strong {
-				font-weight: var(--fkt-font-semibold);
-			}
-		}
-	}
-
-
+```css title="textarea-basic-example.component.scss"
+:host {
+    display: flex;
+    flex-direction: column;
+    gap: var(--fkt-space-sm);
 }
 ```
 
@@ -210,657 +86,334 @@ export class ValidationExampleComponent {
 
 - id: auto-expand
 - type: story
-- component: AutoExpandExampleComponent
+- component: TextareaAutoExpandExampleComponent
 
-Textarea with auto-expand enabled. The textarea grows vertically as the user types more lines, improving the writing experience for long texts.
+Auto-expand keeps the field compact initially and grows the textarea vertically as content wraps
+or new lines are added. Use this for comments, notes, descriptions, and support messages.
 
-Example component: `AutoExpandExampleComponent`
+Example component: `TextareaAutoExpandExampleComponent`
 
-```ts title="auto-expand-example.component.ts"
-import { Component, input, signal } from '@angular/core';
-import { FktTextareaComponent } from 'frakton-ng/textarea';
-import { Field, form } from '@angular/forms/signals';
+```ts title="textarea-auto-expand-example.component.ts"
+import { Component } from '@angular/core';
+import { FktFieldComponent } from 'frakton-ng/field';
+import { FktTextareaDirective } from 'frakton-ng/textarea';
 
 @Component({
-	selector: 'textarea-auto-expand-example',
-	imports: [FktTextareaComponent, Field],
-	templateUrl: './auto-expand-example.component.html',
-	styleUrl: './auto-expand-example.component.scss'
+    selector: 'app-textarea-auto-expand-example',
+    imports: [FktFieldComponent, FktTextareaDirective],
+    templateUrl: './textarea-auto-expand-example.component.html',
+    styleUrl: './textarea-auto-expand-example.component.scss',
 })
-export class AutoExpandExampleComponent {
-	label = input('Notes');
-	placeholder = input('Start typing...');
-	autoExpand = input(true);
+export class TextareaAutoExpandExampleComponent {}
+```
 
-	lineCount() {
-		const value = this.control().value();
-		return value ? value.split('\n').length : 0;
-	}
-	protected control = form(signal('Type here and press Enter to add new lines.\nThe textarea will automatically expand to fit the content when auto-expand is enabled.'));
+```html title="textarea-auto-expand-example.component.html"
+<fkt-field label="Notes" hint="The textarea grows vertically as content wraps or new lines are added.">
+    <textarea
+        fktTextarea
+        autoExpand
+        rows="2"
+        placeholder="Start typing..."
+    >Auto-expand is useful for comment boxes, notes, and descriptions that start compact but may become longer.</textarea>
+</fkt-field>
+```
+
+```css title="textarea-auto-expand-example.component.scss"
+:host {
+    display: block;
 }
 ```
 
-```html title="auto-expand-example.component.html"
-<div class="container">
-	<div class="container__info">
-		<p class="container__info-text">Auto-expand is {{ autoExpand() ? 'enabled' : 'disabled' }}</p>
-		<p>The textarea will {{ autoExpand() ? 'automatically grow' : 'maintain fixed height' }} as you type.</p>
-	</div>
+### CharacterCount
 
-	<fkt-textarea
-		[field]="control"
-		[label]="label()"
-		[placeholder]="placeholder()"
-		[autoExpand]="autoExpand()"
-	/>
-
-	<div class="container__hint">
-		<p>Try typing multiple lines to see the auto-expand behavior.</p>
-		<p>Lines count: {{ lineCount() }}</p>
-	</div>
-</div>
-```
-
-```css title="auto-expand-example.component.scss"
-.container {
-	width: 100%;
-	display: flex;
-	flex-direction: column;
-	gap: var(--fkt-space-md);
-
-	&__info {
-		font-size: var(--fkt-font-size-sm);
-		color: var(--fkt-color-neutral-600);
-		background-color: #155DFC14;
-		padding: var(--fkt-space-sm);
-		border-radius: var(--border-radius-md);
-
-		&-text {
-			font-weight: var(--fkt-font-medium);
-		}
-	}
-
-	&__hint {
-		font-size: var(--fkt-font-size-sm);
-		color: var(--fkt-color-neutral-600);
-	}
-}
-```
-
-### FormIntegration
-
-- id: form-integration
+- id: character-count
 - type: story
-- component: FormIntegrationExampleComponent
+- component: TextareaCharacterCountExampleComponent
 
-Demonstrates how the textarea integrates with signal forms. This is ideal for real-world forms that need validation, control and submission.
+Character count is provided by `fktCharacterCount`. The directive reads the max length from the
+same normalized field state used by input text, so Signal Forms, Reactive Forms, and native
+maxlength can share the same field supporting UI.
 
-Example component: `FormIntegrationExampleComponent`
+Example component: `TextareaCharacterCountExampleComponent`
 
-```ts title="form-integration-example.component.ts"
+```ts title="textarea-character-count-example.component.ts"
 import { Component, signal } from '@angular/core';
-import { Field, email, form, maxLength, minLength, required } from '@angular/forms/signals';
-import { FktTextareaComponent } from 'frakton-ng/textarea';
-import { FktInputComponent } from 'frakton-ng/input';
-import { JsonPipe } from '@angular/common';
-import { FktButtonComponent } from 'frakton-ng/button';
-import { Generic } from 'frakton-ng/internal/types';
-import { FktFieldErrorComponent } from 'frakton-ng/field-error';
-
-@Component({
-	selector: 'textarea-form-integration-example',
-	imports: [FktTextareaComponent, FktInputComponent, JsonPipe, FktButtonComponent, Field, FktFieldErrorComponent],
-	templateUrl: './form-integration-example.component.html',
-	styleUrl: './form-integration-example.component.scss'
-})
-export class FormIntegrationExampleComponent {
-	protected data = signal({
-		name: '',
-		email: '',
-		message: '',
-		additionalInfo: ''
-	});
-
-	protected form = form(this.data, path => {
-		required(path.name, {message: "Field is required"});
-
-		required(path.email, {message: "Field is required"});
-		email(path.email, {message: "Email is invalid"});
-
-		required(path.message, {message: "Field is required"});
-		minLength(path.message, 10,  {message: "Min length is 10"});
-		maxLength(path.message, 1000,  {message: "Max length is 1000"});
-	});
-
-	submittedData = signal<Generic | null>(null);
-
-	handleSubmit() {
-		if (this.form().valid()) {
-			const formData = {
-				...this.form().value(),
-				submittedAt: new Date().toISOString()
-			};
-
-			this.submittedData.set(formData);
-
-			console.log('Form submitted:', formData);
-
-			setTimeout(() => {
-				this.resetForm();
-				this.submittedData.set(null);
-			}, 3000);
-		}
-	}
-
-	resetForm() {
-		this.form().reset();
-		this.form().value.set({
-			name: '',
-			email: '',
-			message: '',
-			additionalInfo: ''
-		});
-		this.submittedData.set(null);
-	}
-}
-```
-
-```html title="form-integration-example.component.html"
-<div class="container">
-	<h3>Contact Form</h3>
-
-	<form (submit)="handleSubmit()">
-		<div class="container__form">
-			<div>
-				<fkt-input
-					[field]="form.name"
-					[label]="'Name'"
-					[placeholder]="'Your name'"
-					[type]="'text'"
-				/>
-				<fkt-field-error [show]="form.name().invalid() && form.name().touched()"
-								 [error]="form.name().errors()[0]?.message"/>
-			</div>
-			<div>
-				<fkt-input
-					[field]="form.email"
-					[label]="'Email'"
-					[placeholder]="'your@email.com'"
-					[type]="'email'"
-				/>
-				<fkt-field-error [show]="form.email().invalid() && form.email().touched()"
-								 [error]="form.email().errors()[0]?.message"/>
-			</div>
-			<div>
-				<fkt-textarea
-					[field]="form.message"
-					autoExpand
-					noResize
-					[label]="'Message'"
-					[placeholder]="'Please describe your inquiry in detail...'"
-				/>
-				<fkt-field-error [show]="form.message().invalid() && form.message().touched()"
-								 [error]="form.message().errors()[0]?.message"/>
-			</div>
-			<div>
-				<fkt-textarea
-					[field]="form.additionalInfo"
-					autoExpand
-					noResize
-					[label]="'Additional Information (Optional)'"
-					[placeholder]="'Any other details you would like to share...'"
-				/>
-				<fkt-field-error [show]="form.additionalInfo().invalid() && form.additionalInfo().touched()"
-								 [error]="form.additionalInfo().errors()[0]?.message"/>
-			</div>
-
-
-			<div class="container__form__footer">
-				<div class="container__form__footer-message">
-						<span [class.container__form__footer-message--valid]="form().valid()">
-							{{ form().valid() ? '✓ Form is valid' : 'Please fill all required fields' }}
-						</span>
-				</div>
-
-				<div class="container__form__actions">
-					<fkt-button
-						(click)="resetForm()"
-						text="Reset"
-						theme="stroked"
-					>
-					</fkt-button>
-					<fkt-button
-						type="submit"
-						text="Submit"
-						[disabled]="!form().valid()"
-					>
-					</fkt-button>
-				</div>
-			</div>
-		</div>
-
-	</form>
-
-	@if (submittedData()) {
-		<div class="container__success-message">
-			<h4>Form Submitted Successfully!</h4>
-			<pre>{{ submittedData() | json }}</pre>
-		</div>
-	}
-</div>
-```
-
-```css title="form-integration-example.component.scss"
-h3, h4 {
-	margin: 0;
-}
-
-.container {
-	width: 100%;
-	display: flex;
-	flex-direction: column;
-	gap: var(--fkt-space-md);
-
-	h3 {
-		font-size: var(--fkt-font-size-lg);
-		font-weight: var(--fkt-font-semibold);
-	}
-
-	&__form {
-		display: flex;
-		flex-direction: column;
-		gap: var(--fkt-space-sm);
-
-		&__footer {
-			display: flex;
-			align-items: center;
-			justify-content: space-between;
-
-			&-message {
-				font-size: var(--fkt-font-size-sm);
-				color: var(--fkt-color-neutral-600);
-
-				&--valid {
-					color: var(--fkt-color-success);
-				}
-			}
-		}
-
-		&__actions {
-			display: flex;
-			gap: var(--fkt-space-xs);
-		}
-	}
-
-	&__success-message {
-		margin-top: var(--fkt-space-md);
-		padding: var(--fkt-space-md);
-		background-color: var(--fkt-color-success-opacity-10);
-		border: solid 1px var(--fkt-color-success-opacity-30);
-		border-radius: var(--fkt-radius-md);
-
-		h4 {
-			font-weight: var(--fkt-font-medium);
-			color: var(--fkt-color-success);
-		}
-
-		pre {
-			margin-top: var(--fkt-space-xs);
-			font-size: var(--fkt-font-size-sm);
-			color: var(--fkt-color-neutral-700);
-		}
-	}
-}
-```
-
-### CharacterCounter
-
-- id: character-counter
-- type: story
-- component: CharacterCounterExampleComponent
-
-Textarea with a live character counter, ideal for use cases like social posts, tweets, or messages with a maximum allowed length.
-
-Example component: `CharacterCounterExampleComponent`
-
-```ts title="character-counter-example.component.ts"
-import { Component, computed, input, signal } from '@angular/core';
-import { FktTextareaComponent } from 'frakton-ng/textarea';
 import { Field, form, maxLength } from '@angular/forms/signals';
+import { FktCharacterCountDirective, FktFieldComponent } from 'frakton-ng/field';
+import { FktTextareaDirective } from 'frakton-ng/textarea';
 
 @Component({
-	selector: 'textarea-character-counter-example',
-	imports: [FktTextareaComponent, Field],
-	templateUrl: './character-counter-example.component.html',
-	styleUrl: './character-counter-example.component.scss'
+    selector: 'app-textarea-character-count-example',
+    imports: [
+        Field,
+        FktCharacterCountDirective,
+        FktFieldComponent,
+        FktTextareaDirective,
+    ],
+    templateUrl: './textarea-character-count-example.component.html',
+    styleUrl: './textarea-character-count-example.component.scss',
 })
-export class CharacterCounterExampleComponent {
-	maxLength = input(280);
-	label = input('Tweet');
-	placeholder = input("What's happening?");
+export class TextareaCharacterCountExampleComponent {
+    private readonly model = signal({
+        bio: 'Builds internal tools with Angular.',
+    });
 
-	protected control = form(signal(''), path => {
-		maxLength(path, this.maxLength())
-	});
-
-	protected warningThreshold = computed(() => Math.floor(this.maxLength() * 0.8));
-
-	protected characterCount = computed(() => {
-		const value = this.control().value();
-		return value?.length || 0;
-	});
-
-	protected wordCount = computed(() => {
-		const value = this.control().value();
-		if (!value) return 0;
-		const text = value.trim();
-		return text ? text.split(/\s+/).length : 0;
-	});
-
-	protected lineCount = computed(() => {
-		const value = this.control().value();
-		if (!value) return 1;
-		return value.split('\n').length;
-	});
-
-	protected remainingCharacters = computed(() => {
-		const remaining = this.maxLength() - this.characterCount();
-		return remaining >= 0 ? remaining : 0;
-	});
-
-	protected progressPercentage = computed(() => {
-		const percentage = (this.characterCount() / this.maxLength()) * 100;
-		return Math.min(percentage, 100);
-	});
+    protected readonly form = form(this.model, (schema) => {
+        maxLength(schema.bio, 120);
+    });
 }
 ```
 
-```html title="character-counter-example.component.html"
-<div class="container">
-	<fkt-textarea
-		autoExpand
-		[field]="control"
-		[label]="label()"
-		[placeholder]="placeholder()"
-	/>
-
-	<div class="container__elements">
-		<!-- Character counter -->
-		<div class="container__character-counter">
-			<span class="container__character-counter__text">Character count:</span>
-			<span
-				class="container__character-counter__indicator"
-				[class.container__character-counter__indicator--valid]="characterCount() <= warningThreshold()"
-				[class.container__character-counter__indicator--warning]="characterCount() > warningThreshold() && characterCount() <= maxLength()"
-				[class.container__character-counter__indicator--invalid]="characterCount() > maxLength()"
-			>
-				{{ characterCount() }} / {{ maxLength() }}
-			</span>
-		</div>
-
-		<!-- Progress bar -->
-		<div class="container__progress-bar">
-			<div
-				[class.container__progress-bar--valid]="characterCount() <= warningThreshold()"
-				[class.container__progress-bar--warning]="characterCount() > warningThreshold() && characterCount() <= maxLength()"
-				[class.container__progress-bar--invalid]="characterCount() > maxLength()"
-				[style.width.%]="progressPercentage()"
-			></div>
-		</div>
-
-		<!-- Stats -->
-		<div class="container__stats">
-			<div>
-				<span>Words:</span> {{ wordCount() }}
-			</div>
-			<div>
-				<span>Lines:</span> {{ lineCount() }}
-			</div>
-			<div>
-				<span>Remaining:</span> {{ remainingCharacters() }}
-			</div>
-		</div>
-
-		<!-- Warning messages -->
-		@if (characterCount() > warningThreshold()) {
-			<div class="container__warning-messages">
-				@if (characterCount() <= maxLength()) {
-					<p class="container__warning-messages--warning">⚠️ You're approaching the character limit</p>
-				}
-				@if (characterCount() > maxLength()) {
-					<p class="container__warning-messages--invalid">❌ Character limit exceeded by {{ characterCount() - maxLength() }}
-						characters</p>
-				}
-			</div>
-		}
-	</div>
-</div>
+```html title="textarea-character-count-example.component.html"
+<fkt-field label="Bio" hint="This text appears on the public profile.">
+    <textarea
+        fktTextarea
+        fktCharacterCount
+        autoExpand
+        rows="3"
+        [field]="form.bio"
+        placeholder="Write a short bio..."
+    ></textarea>
+</fkt-field>
 ```
 
-```css title="character-counter-example.component.scss"
-.container {
-	width: 100%;
-	display: flex;
-	flex-direction: column;
-	gap: var(--fkt-space-md);
-
-	fkt-textarea {
-		width: 100%;
-	}
-
-	&__elements {
-		display: flex;
-		flex-direction: column;
-		gap: var(--fkt-space-xs);
-	}
-
-	&__character-counter {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-
-		&__text {
-			font-size: var(--fkt-font-size-sm);
-			color: var(--fkt-color-neutral-600);
-		}
-
-		&__indicator {
-			font-size: var(--fkt-font-size-sm);
-			font-weight: var(--fkt-font-medium);
-
-			&--valid {
-				color: var(--fkt-color-neutral-700);
-			}
-
-			&--warning {
-				color: var(--fkt-color-accent);
-			}
-
-			&--invalid {
-				color: var(--fkt-color-danger);
-			}
-		}
-	}
-
-	&__progress-bar {
-		width: 100%;
-		background-color: var(--fkt-color-neutral-200);
-		border-radius: var(--fkt-radius-full);
-		height: .5rem;
-
-		div {
-			height: 100%;
-			transition: var(--fkt-transition-base);
-		}
-
-		&--valid {
-			background-color: var(--fkt-color-success);
-		}
-
-		&--warning {
-			background-color: var(--fkt-color-accent);
-		}
-
-		&--invalid {
-			background-color: var(--fkt-color-danger);
-		}
-	}
-
-	&__stats {
-		display: grid;
-		grid-template-columns: repeat(3, minmax(0, 1fr));
-		gap: var(--fkt-space-xs);
-		font-size: var(--fkt-font-size-sm);
-		line-height: 1rem;
-		color: var(--fkt-color-neutral-600);
-
-		span {
-			font-weight: var(--fkt-font-medium);
-		}
-	}
-
-	&__warning-messages {
-		font-size: var(--fkt-font-size-sm);
-
-		&--warning {
-			color: var(--fkt-color-accent);
-		}
-
-		&--invalid {
-			color: var(--fkt-color-danger);
-		}
-	}
+```css title="textarea-character-count-example.component.scss"
+:host {
+    display: block;
 }
 ```
 
-### DisabledState
+### Forms
 
-- id: disabled-state
+- id: forms
+- type: introduction
+
+Form integration examples. The textarea directive participates in the same `FktFieldControl`
+contract as input text, so the field can react to value, focused, disabled, touched, invalid,
+required, errors, and max length without manual state forwarding.
+
+### SignalForms
+
+- id: signal-forms
 - type: story
-- component: DisabledExampleComponent
+- component: TextareaSignalFormsExampleComponent
 
-Shows the textarea in a disabled state. Useful for read-only or preview scenarios, or when editing is not allowed due to permissions or workflow status.
+Signal Forms integration through Angular's `[field]` directive. Validation state, disabled state,
+required marker, and max length are read from the projected control.
 
-Example component: `DisabledExampleComponent`
+Example component: `TextareaSignalFormsExampleComponent`
 
-```ts title="disabled-example.component.ts"
-import { Component, input, linkedSignal, signal } from '@angular/core';
-import { FktTextareaComponent } from 'frakton-ng/textarea';
+```ts title="textarea-signal-forms-example.component.ts"
+import { Component, signal } from '@angular/core';
+import { Field, form, maxLength, minLength, required } from '@angular/forms/signals';
 import { FktButtonComponent } from 'frakton-ng/button';
-import { Field, disabled, form } from '@angular/forms/signals';
+import { FktFieldComponent } from 'frakton-ng/field';
+import { FktTextareaDirective } from 'frakton-ng/textarea';
 
 @Component({
-	selector: 'textarea-disabled-example',
-	imports: [FktTextareaComponent, FktButtonComponent, Field],
-	templateUrl: './disabled-example.component.html',
-	styleUrl: './disabled-example.component.scss'
+    selector: 'app-textarea-signal-forms-example',
+    imports: [
+        Field,
+        FktButtonComponent,
+        FktFieldComponent,
+        FktTextareaDirective,
+    ],
+    templateUrl: './textarea-signal-forms-example.component.html',
+    styleUrl: './textarea-signal-forms-example.component.scss',
 })
-export class DisabledExampleComponent {
-	label = input('Terms and Conditions');
-	placeholder = input('Content will appear here...');
-	initialDisabled = input(true);
+export class TextareaSignalFormsExampleComponent {
+    private readonly model = signal({
+        message: '',
+    });
 
-	disabled = linkedSignal(this.initialDisabled);
+    protected readonly form = form(this.model, (schema) => {
+        required(schema.message);
+        minLength(schema.message, 10);
+        maxLength(schema.message, 160);
+    });
 
-	private value = signal(`
-This is a sample legal text that cannot be edited by the user.
-By using our service, you agree to these terms and conditions. This text field is disabled to prevent modifications to the legal agreement.
-The disabled state is useful for displaying read-only content while maintaining the form field structure.`.trim()
-	);
+    protected fill() {
+        this.model.set({
+            message:
+                'I need help configuring the production deployment workflow.',
+        });
+    }
 
-	protected control = form(this.value, path => {
-		disabled(path, () => this.disabled());
-	})
-
-	protected toggleDisabled() {
-		this.disabled.update(disabled => !disabled);
-	}
+    protected reset() {
+        this.model.set({ message: '' });
+        this.form().reset();
+    }
 }
 ```
 
-```html title="disabled-example.component.html"
-<div class="container">
-	<fkt-textarea
-		autoExpand
-		[field]="control"
-		[label]="label()"
-		[placeholder]="placeholder()"
-	/>
+```html title="textarea-signal-forms-example.component.html"
+<fkt-field label="Support message">
+    <textarea
+        fktTextarea
+        autoExpand
+        rows="3"
+        [field]="form.message"
+        placeholder="Describe the issue..."
+    ></textarea>
+</fkt-field>
 
-	<div class="container__status">
-		<fkt-button
-			(click)="toggleDisabled()"
-			[text]="(control().disabled() ? 'Enable' : 'Disable') + ' textarea'"
-		>
-		</fkt-button>
-
-		<span>
-			Status: <strong>{{ control().disabled() ? 'Disabled' : 'Enabled' }}</strong>
-		</span>
-	</div>
-
-	<div class="container__message">
-		<p>Disabled textareas prevent user interaction while preserving the current value.</p>
-		<p>Common use cases include read-only views, locked fields, or conditional editing.</p>
-	</div>
+<div class="actions">
+    <fkt-button theme="stroked" text="Reset" (click)="reset()" />
+    <fkt-button text="Fill" (click)="fill()" />
 </div>
 ```
 
-```css title="disabled-example.component.scss"
-.container {
-	width: 100%;
-	display: flex;
-	flex-direction: column;
-	gap: var(--fkt-space-md);
+```css title="textarea-signal-forms-example.component.scss"
+:host {
+    display: flex;
+    flex-direction: column;
+    gap: var(--fkt-space-sm);
+}
 
-	&__status {
-		display: flex;
-		align-items: center;
-		gap: var(--fkt-space-md);
+.actions {
+    display: flex;
+    gap: var(--fkt-space-xs);
+    justify-content: flex-end;
+}
+```
 
-		span {
-			font-size: var(--fkt-font-size-sm);
-			color: var(--fkt-color-neutral-600);
-		}
-	}
+### ReactiveForms
 
-	&__message {
-		font-size: var(--fkt-font-size-sm);
-		color: var(--fkt-color-neutral-600);
-	}
+- id: reactive-forms
+- type: story
+- component: TextareaReactiveFormsExampleComponent
 
+Reactive Forms integration through `formControlName`. The field reacts to programmatic updates,
+reset, disabled state, and validation changes from the Angular control.
+
+Example component: `TextareaReactiveFormsExampleComponent`
+
+```ts title="textarea-reactive-forms-example.component.ts"
+import { Component, inject } from '@angular/core';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FktButtonComponent } from 'frakton-ng/button';
+import { FktCharacterCountDirective, FktFieldComponent } from 'frakton-ng/field';
+import { FktTextareaDirective } from 'frakton-ng/textarea';
+
+@Component({
+    selector: 'app-textarea-reactive-forms-example',
+    imports: [
+        FktButtonComponent,
+        FktCharacterCountDirective,
+        FktFieldComponent,
+        FktTextareaDirective,
+        ReactiveFormsModule,
+    ],
+    templateUrl: './textarea-reactive-forms-example.component.html',
+    styleUrl: './textarea-reactive-forms-example.component.scss',
+})
+export class TextareaReactiveFormsExampleComponent {
+    protected readonly form = inject(FormBuilder).group({
+        comment: ['', [Validators.required, Validators.maxLength(180)]],
+    });
+
+    protected fill() {
+        this.form.setValue({
+            comment: 'The new table and field APIs are ready for an internal review.',
+        });
+    }
+
+    protected reset() {
+        this.form.reset({ comment: '' });
+    }
+}
+```
+
+```html title="textarea-reactive-forms-example.component.html"
+<form [formGroup]="form">
+    <fkt-field label="Review comment">
+        <textarea
+            fktTextarea
+            fktCharacterCount
+            autoExpand
+            rows="3"
+            formControlName="comment"
+            placeholder="Write a review comment..."
+        ></textarea>
+    </fkt-field>
+</form>
+
+<div class="actions">
+    <fkt-button theme="stroked" text="Reset" (click)="reset()" />
+    <fkt-button text="Fill" (click)="fill()" />
+</div>
+```
+
+```css title="textarea-reactive-forms-example.component.scss"
+:host {
+    display: flex;
+    flex-direction: column;
+    gap: var(--fkt-space-sm);
+}
+
+.actions {
+    display: flex;
+    gap: var(--fkt-space-xs);
+    justify-content: flex-end;
 }
 ```
 
 ## API Reference
 
-## Key Features
+## Import
 
-- **Multi-line Text Input**: Expandable textarea for capturing longer text content
-- **Auto-expand Mode**: Automatically adjusts height to fit content (optional)
-- **Form Integration**: Seamless integration with Angular reactive forms via SignalFormControl
-- **Validation Support**: Built-in error display with customizable validation rules
-- **Programmatic Focus**: Public method for focusing the textarea programmatically
-- **Disabled State**: Support for disabled/read-only states with visual feedback
-- **Responsive Design**: Adapts to container width and screen sizes
+```ts
+import { FktFieldComponent } from 'frakton-ng/field';
+import { FktTextareaDirective } from 'frakton-ng/textarea';
+```
 
-## Configuration Options
+## Usage Model
+
+`fktTextarea` is a directive for the native `<textarea>` element. It is designed to be projected
+inside `fkt-field`, keeping the native control open for browser attributes, forms, i18n, and
+third-party directives while the field owns the visual shell.
+
+```html
+<fkt-field label="Description">
+    <textarea
+        fktTextarea
+        rows="4"
+        placeholder="Describe the item..."
+    ></textarea>
+</fkt-field>
+```
+
+## Field Integration
+
+The textarea implements the same field-control contract as `fktInputText`. The field can read value,
+focus, disabled, touched, invalid, required, error, and max-length state from the projected textarea
+without the consumer forwarding those flags manually.
+
+## Auto Expand
+
+Use `autoExpand` when the textarea should grow vertically as content changes. This is useful for
+comments, notes, descriptions, and message boxes that should start compact.
+
+```html
+<textarea fktTextarea autoExpand rows="2"></textarea>
+```
+
+## Character Count
+
+Use `fktCharacterCount` from `frakton-ng/field` when the field should render a max-length counter in
+the hint end area. The max length is inferred from Signal Forms, Reactive Forms, or the native
+`maxlength` attribute when available.
+
+```html
+<fkt-field label="Bio">
+    <textarea
+        fktTextarea
+        fktCharacterCount
+        [field]="form.bio"
+    ></textarea>
+</fkt-field>
+```
+
+## API
 
 <arg-types></arg-types>
-
-## Use Cases
-
-- **Contact Forms**: Capture detailed messages and inquiries from users
-- **Content Management**: Create and edit articles, blog posts, and documentation
-- **Feedback Collection**: Gather user reviews, comments, and suggestions
-- **Data Entry**: Input descriptions, notes, and multi-line data in business applications
-- **Social Media**: Compose posts, tweets, and status updates with character limits
-- **Code Editors**: Input and display code snippets with proper formatting
-- **Support Tickets**: Describe issues and provide detailed problem reports
-
-## Accessibility
-
-- **Keyboard Navigation**: Full keyboard support with Tab for focus and standard text navigation
-- **Screen Reader Support**: Proper ARIA labels and error announcements
-- **Focus Management**: Clear visual focus indicators and programmatic focus control via the `focus()` method
-- **Error Communication**: Validation errors are properly associated with the textarea and announced to assistive technologies
