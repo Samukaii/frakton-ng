@@ -1,12 +1,12 @@
 import { Component, input, signal } from '@angular/core';
 import { FktCheckboxComponent } from 'frakton-ng/checkbox';
-import { Field, form } from '@angular/forms/signals';
+import { FormField, form } from '@angular/forms/signals';
 
 @Component({
 	selector: 'fkt-checkbox-basic-example',
 	imports: [
 		FktCheckboxComponent,
-		Field
+		FormField
 	],
 	templateUrl: './fkt-checkbox-basic-example.component.html',
 	styleUrl: './fkt-checkbox-basic-example.component.scss'

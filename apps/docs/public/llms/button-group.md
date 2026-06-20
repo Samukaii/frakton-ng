@@ -168,14 +168,14 @@ export class ButtonGroupReactiveFormsComponent {
 - type: story
 - component: ButtonGroupSignalFormsComponent
 
-Integration with the signal-based `@angular/forms/signals` API via the `[field]` binding. Shows required validation, signal-driven disabled state, and reactive error messages.
+Integration with the signal-based `@angular/forms/signals` API via the `[formField]` binding. Shows required validation, signal-driven disabled state, and reactive error messages.
 
 Example component: `ButtonGroupSignalFormsComponent`
 
 ```ts title="button-group-signal-forms.component.ts"
 import { Component, signal } from '@angular/core';
 import { FktButtonGroupComponent, FktButtonGroupOption } from 'frakton-ng/button-group';
-import { disabled, Field, form, required } from '@angular/forms/signals';
+import { disabled, FormField, form, required } from '@angular/forms/signals';
 import { FktFieldErrorComponent } from 'frakton-ng/field';
 import { FktButtonComponent } from 'frakton-ng/button';
 
@@ -183,7 +183,7 @@ import { FktButtonComponent } from 'frakton-ng/button';
     selector: 'fkt-button-group-signal-forms',
     imports: [
         FktButtonGroupComponent,
-        Field,
+        FormField,
         FktFieldErrorComponent,
         FktButtonComponent,
     ],
@@ -230,7 +230,7 @@ export class ButtonGroupSignalFormsComponent {
 <div>
     <fkt-button-group
         accessibleLabel="Filter"
-        [field]="form.filter"
+        [formField]="form.filter"
         [options]="options"
         deselectable
     />

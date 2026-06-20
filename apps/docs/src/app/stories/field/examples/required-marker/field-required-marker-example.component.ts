@@ -1,11 +1,11 @@
 import { Component, signal } from '@angular/core';
-import { Field, form, required } from '@angular/forms/signals';
+import { FormField, form, required } from '@angular/forms/signals';
 import { FktFieldComponent } from 'frakton-ng/field';
 import { FktInputTextDirective } from 'frakton-ng/input-text';
 
 @Component({
     selector: 'app-field-required-marker-example',
-    imports: [Field, FktFieldComponent, FktInputTextDirective],
+    imports: [FormField, FktFieldComponent, FktInputTextDirective],
     templateUrl: './field-required-marker-example.component.html',
     styleUrl: './field-required-marker-example.component.scss',
 })

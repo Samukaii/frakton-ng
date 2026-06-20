@@ -1,7 +1,7 @@
 import { Component, signal } from '@angular/core';
 import {
     email,
-    Field,
+    FormField,
     form,
     maxLength,
     minLength,
@@ -13,7 +13,7 @@ import { FktIconComponent } from 'frakton-ng/icon';
 
 @Component({
     selector: 'app-field-validation-example',
-    imports: [Field, FktFieldComponent, FktInputTextDirective, FktIconComponent, FktFieldPrefixDirective],
+    imports: [FormField, FktFieldComponent, FktInputTextDirective, FktIconComponent, FktFieldPrefixDirective],
     templateUrl: './field-validation-example.component.html',
     styleUrl: './field-validation-example.component.scss',
 })

@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { FktIconComponent } from 'frakton-ng/icon';
 import { FktTextareaOldComponent } from 'frakton-ng/textarea-old';
 import { FktButtonComponent } from 'frakton-ng/button';
-import { Field, email, form, required, submit } from '@angular/forms/signals';
+import { FormField, email, form, required, submit } from '@angular/forms/signals';
 import { FktFieldErrorComponent } from 'frakton-ng/field';
 
 @Component({
@@ -16,7 +16,7 @@ import { FktFieldErrorComponent } from 'frakton-ng/field';
 		FktIconComponent,
 		FktButtonComponent,
 		FktTextareaOldComponent,
-		Field,
+		FormField,
 		FktFieldErrorComponent
 	],
 	templateUrl: './fkt-form-overlay-dialog.component.html',

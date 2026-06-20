@@ -1,7 +1,7 @@
 import { Component, effect, inject, signal } from '@angular/core';
 import {
     email,
-    Field,
+    FormField,
     form,
     maxLength,
     minLength,
@@ -16,7 +16,7 @@ import { FktSelectComponent, FktSelectOption } from 'frakton-ng/select';
 @Component({
     selector: 'app-field-translated-errors-example',
     imports: [
-        Field,
+        FormField,
         FktFieldComponent,
         FktInputTextDirective,
         FktIconComponent,

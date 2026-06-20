@@ -1,5 +1,5 @@
 import { Component, inject, signal } from '@angular/core';
-import { Field, form, maxLength } from '@angular/forms/signals';
+import { FormField, form, maxLength } from '@angular/forms/signals';
 import {
     FktCharacterCountDirective,
     FktFieldComponent,
@@ -14,7 +14,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
         FktCharacterCountDirective,
         FktFieldComponent,
         FktInputTextDirective,
-        Field,
+        FormField,
         ReactiveFormsModule,
         FktHintEndDirective
     ],

@@ -1,7 +1,7 @@
 <div>
     <fkt-toggle
         label="Accept terms and conditions"
-        [field]="form.terms"
+        [formField]="form.terms"
     />
     <fkt-field-error
         [show]="form.terms().invalid() && form.terms().touched()"

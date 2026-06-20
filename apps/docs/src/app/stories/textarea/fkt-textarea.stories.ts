@@ -81,7 +81,7 @@ export const CharacterCount: Story<TextareaCharacterCountExampleComponent> = {
 export const Forms: StoryIntroduction = {};
 
 /**
- * Signal Forms integration through Angular's `[field]` directive. Validation state, disabled state,
+ * Signal Forms integration through Angular's `[formField]` directive. Validation state, disabled state,
  * required marker, and max length are read from the projected control.
  */
 export const SignalForms: Story<TextareaSignalFormsExampleComponent> = {

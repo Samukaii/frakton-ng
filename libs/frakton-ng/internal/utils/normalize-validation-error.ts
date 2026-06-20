@@ -1,6 +1,10 @@
 import { signal } from '@angular/core';
 import { AbstractControl } from '@angular/forms';
-import { FieldTree, ValidationError, WithOptionalField } from '@angular/forms/signals';
+import {
+    FieldTree,
+    ValidationError,
+    WithOptionalFieldTree,
+} from '@angular/forms/signals';
 import { FktNormalizedValidationError } from 'frakton-ng/internal/types';
 
 const isRecord = (value: unknown): value is Record<string, unknown> => {
@@ -38,7 +42,7 @@ const normalizeReactiveParams = (
 };
 
 const normalizeSignalParams = (
-    error: WithOptionalField<ValidationError>
+    error: WithOptionalFieldTree<ValidationError>
 ): Record<string, unknown> => {
     const entries = Object.entries(error).filter(([key]) => {
         return key !== 'kind' && key !== 'message' && key !== 'field';
@@ -66,14 +70,14 @@ export const normalizeReactiveValidationError = (
 };
 
 export const normalizeSignalValidationError = (
-    error: WithOptionalField<ValidationError>
+    error: WithOptionalFieldTree<ValidationError>
 ): FktNormalizedValidationError<FieldTree<unknown>> => {
     return {
         kind: error.kind,
         message: error.message,
-        name: error.field?.().keyInParent().toString(),
+        name: error.fieldTree?.().keyInParent().toString(),
         params: normalizeSignalParams(error),
         raw: error,
-        field: error.field,
+        field: error.fieldTree,
     };
 };

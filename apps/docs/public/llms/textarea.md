@@ -138,14 +138,14 @@ Example component: `TextareaCharacterCountExampleComponent`
 
 ```ts title="textarea-character-count-example.component.ts"
 import { Component, signal } from '@angular/core';
-import { Field, form, maxLength } from '@angular/forms/signals';
+import { FormField, form, maxLength } from '@angular/forms/signals';
 import { FktCharacterCountDirective, FktFieldComponent } from 'frakton-ng/field';
 import { FktTextareaDirective } from 'frakton-ng/textarea';
 
 @Component({
     selector: 'app-textarea-character-count-example',
     imports: [
-        Field,
+        FormField,
         FktCharacterCountDirective,
         FktFieldComponent,
         FktTextareaDirective,
@@ -171,7 +171,7 @@ export class TextareaCharacterCountExampleComponent {
         fktCharacterCount
         autoExpand
         rows="3"
-        [field]="form.bio"
+        [formField]="form.bio"
         placeholder="Write a short bio..."
     ></textarea>
 </fkt-field>
@@ -198,14 +198,14 @@ required, errors, and max length without manual state forwarding.
 - type: story
 - component: TextareaSignalFormsExampleComponent
 
-Signal Forms integration through Angular's `[field]` directive. Validation state, disabled state,
+Signal Forms integration through Angular's `[formField]` directive. Validation state, disabled state,
 required marker, and max length are read from the projected control.
 
 Example component: `TextareaSignalFormsExampleComponent`
 
 ```ts title="textarea-signal-forms-example.component.ts"
 import { Component, signal } from '@angular/core';
-import { Field, form, maxLength, minLength, required } from '@angular/forms/signals';
+import { FormField, form, maxLength, minLength, required } from '@angular/forms/signals';
 import { FktButtonComponent } from 'frakton-ng/button';
 import { FktFieldComponent } from 'frakton-ng/field';
 import { FktTextareaDirective } from 'frakton-ng/textarea';
@@ -213,7 +213,7 @@ import { FktTextareaDirective } from 'frakton-ng/textarea';
 @Component({
     selector: 'app-textarea-signal-forms-example',
     imports: [
-        Field,
+        FormField,
         FktButtonComponent,
         FktFieldComponent,
         FktTextareaDirective,
@@ -252,7 +252,7 @@ export class TextareaSignalFormsExampleComponent {
         fktTextarea
         autoExpand
         rows="3"
-        [field]="form.message"
+        [formField]="form.message"
         placeholder="Describe the issue..."
     ></textarea>
 </fkt-field>
@@ -409,7 +409,7 @@ the hint end area. The max length is inferred from Signal Forms, Reactive Forms,
     <textarea
         fktTextarea
         fktCharacterCount
-        [field]="form.bio"
+        [formField]="form.bio"
     ></textarea>
 </fkt-field>
 ```

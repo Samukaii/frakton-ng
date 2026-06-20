@@ -166,7 +166,7 @@ export const HiddenLabel: Story<FieldHiddenLabelExampleComponent> = {
 export const Forms: StoryIntroduction = {};
 
 /**
- * Signal Forms integration with Angular's `[field]` directive. The field reacts to value, touched,
+ * Signal Forms integration with Angular's `[formField]` directive. The field reacts to value, touched,
  * invalid, disabled, required, and error state exposed by the projected control.
  */
 export const SignalForms: Story<FieldValidationExampleComponent> = {
