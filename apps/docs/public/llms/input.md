@@ -159,14 +159,14 @@ Example component: `InputCharacterCountExampleComponent`
 
 ```ts title="input-character-count-example.component.ts"
 import { Component, signal } from '@angular/core';
-import { Field, form, maxLength } from '@angular/forms/signals';
+import { FormField, form, maxLength } from '@angular/forms/signals';
 import { FktCharacterCountDirective, FktFieldComponent } from 'frakton-ng/field';
 import { FktInputTextDirective } from 'frakton-ng/input-text';
 
 @Component({
     selector: 'app-input-character-count-example',
     imports: [
-        Field,
+        FormField,
         FktCharacterCountDirective,
         FktFieldComponent,
         FktInputTextDirective,
@@ -190,7 +190,7 @@ export class InputCharacterCountExampleComponent {
     <input
         fktInputText
         fktCharacterCount
-        [field]="form.displayName"
+        [formField]="form.displayName"
         placeholder="Enter a display name"
     >
 </fkt-field>
@@ -217,14 +217,14 @@ required, errors, and max length without manual state forwarding.
 - type: story
 - component: InputSignalFormsExampleComponent
 
-Signal Forms integration through Angular's `[field]` directive. Validation state, disabled state,
+Signal Forms integration through Angular's `[formField]` directive. Validation state, disabled state,
 required marker, and max length are read from the projected control.
 
 Example component: `InputSignalFormsExampleComponent`
 
 ```ts title="input-signal-forms-example.component.ts"
 import { Component, signal } from '@angular/core';
-import { email, Field, form, minLength, required } from '@angular/forms/signals';
+import { email, FormField, form, minLength, required } from '@angular/forms/signals';
 import { FktButtonComponent } from 'frakton-ng/button';
 import { FktFieldComponent } from 'frakton-ng/field';
 import { FktIconComponent } from 'frakton-ng/icon';
@@ -233,7 +233,7 @@ import { FktInputTextDirective } from 'frakton-ng/input-text';
 @Component({
     selector: 'app-input-signal-forms-example',
     imports: [
-        Field,
+        FormField,
         FktButtonComponent,
         FktFieldComponent,
         FktIconComponent,
@@ -284,7 +284,7 @@ export class InputSignalFormsExampleComponent {
     <fkt-icon fktFieldPrefix name="user" />
     <input
         fktInputText
-        [field]="form.name"
+        [formField]="form.name"
         placeholder="Enter a name"
     >
 </fkt-field>
@@ -297,7 +297,7 @@ export class InputSignalFormsExampleComponent {
     <input
         fktInputText
         type="email"
-        [field]="form.email"
+        [formField]="form.email"
         placeholder="Enter an e-mail"
     >
 </fkt-field>
@@ -467,7 +467,7 @@ the hint end area. The max length is inferred from Signal Forms, Reactive Forms,
     <input
         fktInputText
         fktCharacterCount
-        [field]="form.displayName"
+        [formField]="form.displayName"
     >
 </fkt-field>
 ```

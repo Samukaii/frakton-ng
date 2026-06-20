@@ -1,5 +1,5 @@
 import { Component, effect, inject, input, linkedSignal, model } from '@angular/core';
-import { Field, form } from '@angular/forms/signals';
+import { FormField, form } from '@angular/forms/signals';
 import { FktInputOldComponent } from 'frakton-ng/input-old';
 import { fktColorFormatters, MarkUsed } from 'frakton-ng/internal/utils';
 import { FktColorControlItemComponent } from '../../components/item/fkt-color-control-item.component';
@@ -8,54 +8,48 @@ import { FktColorPickerHSV } from 'frakton-ng/internal/types';
 
 
 @Component({
-  selector: 'fkt-color-rgb-control',
-    imports: [
-        FktInputOldComponent,
-        FktColorControlItemComponent,
-        Field
-    ],
-  templateUrl: './fkt-color-rgb-control.component.html',
-  styleUrl: './fkt-color-rgb-control.component.scss'
+    selector: 'fkt-color-rgb-control',
+    imports: [FktInputOldComponent, FktColorControlItemComponent, FormField],
+    templateUrl: './fkt-color-rgb-control.component.html',
+    styleUrl: './fkt-color-rgb-control.component.scss',
 })
 export class FktColorRgbControlComponent {
-	value = model.required<FktColorPickerHSV>();
-	disableAlphaChannel = input(false);
+    value = model.required<FktColorPickerHSV>();
+    disableAlphaChannel = input(false);
 
-	protected locale = inject(FKT_COLOR_PICKER_LOCALE_TOKEN);
+    protected locale = inject(FKT_COLOR_PICKER_LOCALE_TOKEN);
 
-	protected asRgb = linkedSignal(() => {
-		return fktColorFormatters.rgb.fromHsv(this.value());
-	});
+    protected asRgb = linkedSignal(() => {
+        return fktColorFormatters.rgb.fromHsv(this.value());
+    });
 
-	protected form = form(this.asRgb);
+    protected form = form(this.asRgb);
 
-	@MarkUsed()
-	protected updateForm = effect(() => {
-		const {alpha} = this.asRgb();
+    @MarkUsed()
+    protected updateForm = effect(() => {
+        const { alpha } = this.asRgb();
 
         const a = this.form.alpha;
 
-		const converted = fktColorFormatters.rgb.toHsv(this.asRgb());
-		const result = {
-			...converted,
-			alpha: alpha
-		};
+        const converted = fktColorFormatters.rgb.toHsv(this.asRgb());
+        const result = {
+            ...converted,
+            alpha: alpha,
+        };
 
-		const conditions = [
-			result.hue.toFixed(2) === this.value().hue.toFixed(2),
-			result.saturation.toFixed(2) === this.value().saturation.toFixed(2),
-			result.value.toFixed(2) === this.value().value.toFixed(2),
-			result.alpha.toFixed(2) === this.value().alpha.toFixed(2)
-		]
+        const conditions = [
+            result.hue.toFixed(2) === this.value().hue.toFixed(2),
+            result.saturation.toFixed(2) === this.value().saturation.toFixed(2),
+            result.value.toFixed(2) === this.value().value.toFixed(2),
+            result.alpha.toFixed(2) === this.value().alpha.toFixed(2),
+        ];
 
-		if(conditions.every(Boolean))
-			return
+        if (conditions.every(Boolean)) return;
 
-
-		this.value.set({
-			...this.value(),
-			...converted,
-			alpha: this.asRgb().alpha
-		})
-	});
+        this.value.set({
+            ...this.value(),
+            ...converted,
+            alpha: this.asRgb().alpha,
+        });
+    });
 }

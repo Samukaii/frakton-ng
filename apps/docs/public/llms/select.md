@@ -30,13 +30,13 @@ Example component: `DefaultExampleComponent`
 ```ts title="default-example.component.ts"
 import { Component, input, signal } from '@angular/core';
 import { FktSelectComponent, FktSelectOption } from 'frakton-ng/select';
-import { Field, form } from '@angular/forms/signals';
+import { FormField, form } from '@angular/forms/signals';
 
 @Component({
 	selector: 'select-default-example',
 	templateUrl: './default-example.component.html',
 	styleUrl: './default-example.component.scss',
-	imports: [FktSelectComponent, Field]
+	imports: [FktSelectComponent, FormField]
 })
 export class DefaultExampleComponent {
 	label = input.required<string>();
@@ -51,7 +51,7 @@ export class DefaultExampleComponent {
 
 ```html title="default-example.component.html"
 <fkt-select
-	[field]="control"
+	[formField]="control"
 	[label]="label()"
 	[placeholder]="placeholder()"
 	[options]="options()"
@@ -96,32 +96,32 @@ Example component: `PreselectedExampleComponent`
 ```ts title="preselected-example.component.ts"
 import { Component, computed, input, signal } from '@angular/core';
 import { FktSelectComponent, FktSelectOption } from 'frakton-ng/select';
-import { Field, form } from '@angular/forms/signals';
+import { FormField, form } from '@angular/forms/signals';
 
 @Component({
-	selector: 'select-preselected-example',
-	templateUrl: './preselected-example.component.html',
-	styleUrl: './preselected-example.component.scss',
-	imports: [FktSelectComponent, Field]
+    selector: 'select-preselected-example',
+    templateUrl: './preselected-example.component.html',
+    styleUrl: './preselected-example.component.scss',
+    imports: [FktSelectComponent, FormField],
 })
 export class PreselectedExampleComponent {
-	label = input.required<string>();
-	placeholder = input<string>();
-	options = input.required<FktSelectOption[]>();
+    label = input.required<string>();
+    placeholder = input<string>();
+    options = input.required<FktSelectOption[]>();
 
-	protected control = form(signal('us')); // Pre-selected value
+    protected control = form(signal('us')); // Pre-selected value
 
-	selectedLabel = computed(() => {
-		const value = this.control().value();
-		const option = this.options().find(opt => opt.value === value);
-		return option ? option.label : 'None';
-	});
+    selectedLabel = computed(() => {
+        const value = this.control().value();
+        const option = this.options().find((opt) => opt.value === value);
+        return option ? option.label : 'None';
+    });
 }
 ```
 
 ```html title="preselected-example.component.html"
 <fkt-select
-	[field]="control"
+	[formField]="control"
 	[label]="label()"
 	[placeholder]="placeholder()"
 	[options]="options()"
@@ -160,26 +160,26 @@ Example component: `LargeListExampleComponent`
 ```ts title="large-list-example.component.ts"
 import { Component, input, signal } from '@angular/core';
 import { FktSelectComponent, FktSelectOption } from 'frakton-ng/select';
-import { Field, form } from '@angular/forms/signals';
+import { FormField, form } from '@angular/forms/signals';
 
 @Component({
-	selector: 'select-large-list-example',
-	templateUrl: './large-list-example.component.html',
-	styleUrl: './large-list-example.component.scss',
-	imports: [FktSelectComponent, Field]
+    selector: 'select-large-list-example',
+    templateUrl: './large-list-example.component.html',
+    styleUrl: './large-list-example.component.scss',
+    imports: [FktSelectComponent, FormField],
 })
 export class LargeListExampleComponent {
-	label = input.required<string>();
-	placeholder = input<string>();
-	options = input.required<FktSelectOption[]>();
+    label = input.required<string>();
+    placeholder = input<string>();
+    options = input.required<FktSelectOption[]>();
 
-	protected control = form(signal(''));
+    protected control = form(signal(''));
 }
 ```
 
 ```html title="large-list-example.component.html"
 <fkt-select
-	[field]="control"
+	[formField]="control"
 	[label]="label()"
 	[placeholder]="placeholder()"
 	[options]="options()"
@@ -227,13 +227,13 @@ Example component: `LoadingExampleComponent`
 ```ts title="loading-example.component.ts"
 import { Component, input, signal } from '@angular/core';
 import { FktSelectComponent, FktSelectOption } from 'frakton-ng/select';
-import { Field, form } from '@angular/forms/signals';
+import { FormField, form } from '@angular/forms/signals';
 
 @Component({
 	selector: 'select-loading-example',
 	templateUrl: './loading-example.component.html',
 	styleUrl: './loading-example.component.scss',
-	imports: [FktSelectComponent, Field]
+	imports: [FktSelectComponent, FormField]
 })
 export class LoadingExampleComponent {
 	label = input.required<string>();
@@ -247,7 +247,7 @@ export class LoadingExampleComponent {
 
 ```html title="loading-example.component.html"
 <fkt-select
-	[field]="control"
+	[formField]="control"
 	[label]="label()"
 	[placeholder]="placeholder()"
 	[options]="options()"
@@ -290,13 +290,13 @@ Example component: `EmptyStateExampleComponent`
 import { Component, input, signal } from '@angular/core';
 import { FktSelectComponent, FktSelectOption } from 'frakton-ng/select';
 import { FktNoResults } from 'frakton-ng/no-results';
-import { Field, form } from '@angular/forms/signals';
+import { FormField, form } from '@angular/forms/signals';
 
 @Component({
 	selector: 'select-empty-state-example',
 	templateUrl: './empty-state-example.component.html',
 	styleUrl: './empty-state-example.component.scss',
-	imports: [FktSelectComponent, Field]
+	imports: [FktSelectComponent, FormField]
 })
 export class EmptyStateExampleComponent {
 	label = input.required<string>();
@@ -311,7 +311,7 @@ export class EmptyStateExampleComponent {
 
 ```html title="empty-state-example.component.html"
 <fkt-select
-	[field]="control"
+	[formField]="control"
 	[label]="label()"
 	[placeholder]="placeholder()"
 	[options]="options()"
@@ -352,29 +352,29 @@ Example component: `ValidationExampleComponent`
 ```ts title="validation-example.component.ts"
 import { Component, input, signal } from '@angular/core';
 import { FktSelectComponent, FktSelectOption } from 'frakton-ng/select';
-import { Field, form, required } from '@angular/forms/signals';
+import { FormField, form, required } from '@angular/forms/signals';
 import { FktFieldErrorComponent } from 'frakton-ng/field';
 
 @Component({
-	selector: 'select-validation-example',
-	templateUrl: './validation-example.component.html',
-	styleUrl: './validation-example.component.scss',
-	imports: [FktSelectComponent, Field, FktFieldErrorComponent]
+    selector: 'select-validation-example',
+    templateUrl: './validation-example.component.html',
+    styleUrl: './validation-example.component.scss',
+    imports: [FktSelectComponent, FormField, FktFieldErrorComponent],
 })
 export class ValidationExampleComponent {
-	label = input.required<string>();
-	placeholder = input<string>();
-	options = input.required<FktSelectOption[]>();
+    label = input.required<string>();
+    placeholder = input<string>();
+    options = input.required<FktSelectOption[]>();
 
-	protected control = form(signal(''), path => {
-		required(path, {message: "Field is required"});
-	});
+    protected control = form(signal(''), (path) => {
+        required(path, { message: 'Field is required' });
+    });
 }
 ```
 
 ```html title="validation-example.component.html"
 <fkt-select
-	[field]="control"
+	[formField]="control"
 	[label]="label()"
 	[placeholder]="placeholder()"
 	[options]="options()"
@@ -426,13 +426,13 @@ Example component: `DisabledExampleComponent`
 import { Component, input, signal } from '@angular/core';
 import { FktSelectComponent, FktSelectOption } from 'frakton-ng/select';
 import { FktButtonComponent } from 'frakton-ng/button';
-import { Field, disabled, form } from '@angular/forms/signals';
+import { FormField, disabled, form } from '@angular/forms/signals';
 
 @Component({
 	selector: 'select-disabled-example',
 	styleUrl: './disabled-example.component.scss',
 	templateUrl: './disabled-example.component.html',
-	imports: [FktSelectComponent, FktButtonComponent, Field]
+	imports: [FktSelectComponent, FktButtonComponent, FormField]
 })
 export class DisabledExampleComponent {
 	label = input.required<string>();
@@ -453,7 +453,7 @@ export class DisabledExampleComponent {
 
 ```html title="disabled-example.component.html"
 <fkt-select
-	[field]="control"
+	[formField]="control"
 	[label]="label()"
 	[placeholder]="placeholder()"
 	[options]="options()"
@@ -487,13 +487,13 @@ Example component: `AsyncLoadingExampleComponent`
 ```ts title="async-loading-example.component.ts"
 import { Component, input, signal } from '@angular/core';
 import { FktSelectComponent, FktSelectOption } from 'frakton-ng/select';
-import { Field, form } from '@angular/forms/signals';
+import { FormField, form } from '@angular/forms/signals';
 
 @Component({
 	selector: 'select-async-loading-example',
 	templateUrl: './async-loading-example.component.html',
 	styleUrl: './async-loading-example.component.scss',
-	imports: [FktSelectComponent, Field]
+	imports: [FktSelectComponent, FormField]
 })
 export class AsyncLoadingExampleComponent {
 	label = input.required<string>();
@@ -535,7 +535,7 @@ export class AsyncLoadingExampleComponent {
 	</p>
 </div>
 <fkt-select
-	[field]="control"
+	[formField]="control"
 	(selectOpened)="loadOptions()"
 	[label]="label()"
 	[placeholder]="placeholder()"

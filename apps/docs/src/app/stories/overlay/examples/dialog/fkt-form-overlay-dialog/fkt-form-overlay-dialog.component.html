@@ -8,7 +8,7 @@
 
 	<form class="container__form" (ngSubmit)="handleSubmit()">
 		<fkt-input
-			[field]="form.name"
+			[formField]="form.name"
 			label="Name"
 			placeholder="Enter your name"
 		></fkt-input>
@@ -16,7 +16,7 @@
 						 [error]="form.name().errors()[0]?.message"/>
 
 		<fkt-input
-			[field]="form.email"
+			[formField]="form.email"
 			label="Email"
 			placeholder="Enter your email"
 			type="email"
@@ -25,7 +25,7 @@
 						 [error]="form.email().errors()[0]?.message"/>
 
 		<fkt-textarea
-			[field]="form.message"
+			[formField]="form.message"
 			label="Message"
 			placeholder="Enter a message"
 		></fkt-textarea>

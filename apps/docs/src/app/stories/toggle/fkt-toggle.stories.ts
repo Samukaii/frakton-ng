@@ -120,7 +120,7 @@ export const ReactiveForms: Story<ToggleReactiveFormsComponent> = {
 
 export const SignalForms: Story<ToggleSignalFormsComponent> = {
     component: ToggleSignalFormsComponent,
-    description: "Integration with the signal-based `@angular/forms/signals` API via the `[field]` binding. Shows required validation and signal-driven disabled state.",
+    description: "Integration with the signal-based `@angular/forms/signals` API via the `[formField]` binding. Shows required validation and signal-driven disabled state.",
     args: {}
 }
 

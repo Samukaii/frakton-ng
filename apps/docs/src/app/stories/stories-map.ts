@@ -299,7 +299,7 @@ export const STORIES_MAP: StoryIndexer[] = [	{
 		        name: "SignalForms",
 		        type: "story",
 		        componentName: "AutocompleteSignalFormsExampleComponent",
-		        description:  `Signal Forms integration through Angular's \`[field]\` directive. The autocomplete value is still\nnormalized through \`valueKey\`, while validation and disabled state are provided by the form field.`,
+		        description:  `Signal Forms integration through Angular's \`[formField]\` directive. The autocomplete value is still\nnormalized through \`valueKey\`, while validation and disabled state are provided by the form field.`,
 		        level: 3,
 		    },
 		    {
@@ -648,7 +648,7 @@ export const STORIES_MAP: StoryIndexer[] = [	{
 		        name: "SignalForms",
 		        type: "story",
 		        componentName: "ButtonGroupSignalFormsComponent",
-		        description:  `Integration with the signal-based \`@angular/forms/signals\` API via the \`[field]\` binding. Shows required validation, signal-driven disabled state, and reactive error messages.`,
+		        description:  `Integration with the signal-based \`@angular/forms/signals\` API via the \`[formField]\` binding. Shows required validation, signal-driven disabled state, and reactive error messages.`,
 		        level: 2,
 		    },
 		    {
@@ -1382,7 +1382,7 @@ export const STORIES_MAP: StoryIndexer[] = [	{
 		        name: "SignalForms",
 		        type: "story",
 		        componentName: "FieldValidationExampleComponent",
-		        description:  `Signal Forms integration with Angular's \`[field]\` directive. The field reacts to value, touched,\ninvalid, disabled, required, and error state exposed by the projected control.`,
+		        description:  `Signal Forms integration with Angular's \`[formField]\` directive. The field reacts to value, touched,\ninvalid, disabled, required, and error state exposed by the projected control.`,
 		        level: 3,
 		    },
 		    {
@@ -1599,7 +1599,7 @@ export const STORIES_MAP: StoryIndexer[] = [	{
 		        name: "SignalForms",
 		        type: "story",
 		        componentName: "InputSignalFormsExampleComponent",
-		        description:  `Signal Forms integration through Angular's \`[field]\` directive. Validation state, disabled state,\nrequired marker, and max length are read from the projected control.`,
+		        description:  `Signal Forms integration through Angular's \`[formField]\` directive. Validation state, disabled state,\nrequired marker, and max length are read from the projected control.`,
 		        level: 3,
 		    },
 		    {
@@ -2809,7 +2809,7 @@ export const STORIES_MAP: StoryIndexer[] = [	{
 		        name: "SignalForms",
 		        type: "story",
 		        componentName: "TextareaSignalFormsExampleComponent",
-		        description:  `Signal Forms integration through Angular's \`[field]\` directive. Validation state, disabled state,\nrequired marker, and max length are read from the projected control.`,
+		        description:  `Signal Forms integration through Angular's \`[formField]\` directive. Validation state, disabled state,\nrequired marker, and max length are read from the projected control.`,
 		        level: 3,
 		    },
 		    {
@@ -2874,7 +2874,7 @@ export const STORIES_MAP: StoryIndexer[] = [	{
 		        name: "SignalForms",
 		        type: "story",
 		        componentName: "ToggleSignalFormsComponent",
-		        description:  `Integration with the signal-based \`@angular/forms/signals\` API via the \`[field]\` binding. Shows required validation and signal-driven disabled state.`,
+		        description:  `Integration with the signal-based \`@angular/forms/signals\` API via the \`[formField]\` binding. Shows required validation and signal-driven disabled state.`,
 		        level: 2,
 		    },
 		    {

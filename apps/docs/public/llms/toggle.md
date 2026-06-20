@@ -118,14 +118,14 @@ export class ToggleReactiveFormsComponent {
 - type: story
 - component: ToggleSignalFormsComponent
 
-Integration with the signal-based `@angular/forms/signals` API via the `[field]` binding. Shows required validation and signal-driven disabled state.
+Integration with the signal-based `@angular/forms/signals` API via the `[formField]` binding. Shows required validation and signal-driven disabled state.
 
 Example component: `ToggleSignalFormsComponent`
 
 ```ts title="toggle-signal-forms.component.ts"
 import { Component, signal } from '@angular/core';
 import { FktToggleComponent } from 'frakton-ng/toggle';
-import { disabled, Field, form, required } from '@angular/forms/signals';
+import { disabled, FormField, form, required } from '@angular/forms/signals';
 import { FktFieldErrorComponent } from 'frakton-ng/field';
 import { FktButtonComponent } from 'frakton-ng/button';
 
@@ -133,7 +133,7 @@ import { FktButtonComponent } from 'frakton-ng/button';
     selector: 'fkt-toggle-signal-forms',
     imports: [
         FktToggleComponent,
-        Field,
+        FormField,
         FktFieldErrorComponent,
         FktButtonComponent,
     ],
@@ -153,7 +153,7 @@ export class ToggleSignalFormsComponent {
     });
 
     protected toggleDisabled() {
-        this.isDisabled.update(v => !v);
+        this.isDisabled.update((v) => !v);
     }
 }
 ```
@@ -162,7 +162,7 @@ export class ToggleSignalFormsComponent {
 <div>
     <fkt-toggle
         label="Accept terms and conditions"
-        [field]="form.terms"
+        [formField]="form.terms"
     />
     <fkt-field-error
         [show]="form.terms().invalid() && form.terms().touched()"
