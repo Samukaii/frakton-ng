@@ -236,7 +236,7 @@ Example component: `FieldCharacterCountExampleComponent`
 
 ```ts title="field-character-count-example.component.ts"
 import { Component, inject, signal } from '@angular/core';
-import { Field, form, maxLength } from '@angular/forms/signals';
+import { FormField, form, maxLength } from '@angular/forms/signals';
 import {
     FktCharacterCountDirective,
     FktFieldComponent,
@@ -251,7 +251,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
         FktCharacterCountDirective,
         FktFieldComponent,
         FktInputTextDirective,
-        Field,
+        FormField,
         ReactiveFormsModule,
         FktHintEndDirective
     ],
@@ -274,7 +274,7 @@ export class FieldCharacterCountExampleComponent {
     <input
         fktInputText
         fktCharacterCount
-        [field]="form.name"
+        [formField]="form.name"
         placeholder="Enter a display name"
     >
 </fkt-field>
@@ -315,13 +315,13 @@ Example component: `FieldRequiredMarkerExampleComponent`
 
 ```ts title="field-required-marker-example.component.ts"
 import { Component, signal } from '@angular/core';
-import { Field, form, required } from '@angular/forms/signals';
+import { FormField, form, required } from '@angular/forms/signals';
 import { FktFieldComponent } from 'frakton-ng/field';
 import { FktInputTextDirective } from 'frakton-ng/input-text';
 
 @Component({
     selector: 'app-field-required-marker-example',
-    imports: [Field, FktFieldComponent, FktInputTextDirective],
+    imports: [FormField, FktFieldComponent, FktInputTextDirective],
     templateUrl: './field-required-marker-example.component.html',
     styleUrl: './field-required-marker-example.component.scss',
 })
@@ -341,15 +341,15 @@ export class FieldRequiredMarkerExampleComponent {
 
 ```html title="field-required-marker-example.component.html"
 <fkt-field label="Inferred">
-    <input fktInputText [field]="form.inferred" placeholder="Inferred from validation">
+    <input fktInputText [formField]="form.inferred" placeholder="Inferred from validation">
 </fkt-field>
 
 <fkt-field label="Forced" [requiredMarker]="true">
-    <input fktInputText [field]="form.forced" placeholder="Forced by input">
+    <input fktInputText [formField]="form.forced" placeholder="Forced by input">
 </fkt-field>
 
 <fkt-field label="Hidden" [requiredMarker]="false">
-    <input fktInputText [field]="form.hidden" placeholder="Required without marker">
+    <input fktInputText [formField]="form.hidden" placeholder="Required without marker">
 </fkt-field>
 ```
 
@@ -415,7 +415,7 @@ flags into the field manually.
 - type: story
 - component: FieldValidationExampleComponent
 
-Signal Forms integration with Angular's `[field]` directive. The field reacts to value, touched,
+Signal Forms integration with Angular's `[formField]` directive. The field reacts to value, touched,
 invalid, disabled, required, and error state exposed by the projected control.
 
 Example component: `FieldValidationExampleComponent`
@@ -424,7 +424,7 @@ Example component: `FieldValidationExampleComponent`
 import { Component, signal } from '@angular/core';
 import {
     email,
-    Field,
+    FormField,
     form,
     maxLength,
     minLength,
@@ -436,7 +436,7 @@ import { FktIconComponent } from 'frakton-ng/icon';
 
 @Component({
     selector: 'app-field-validation-example',
-    imports: [Field, FktFieldComponent, FktInputTextDirective, FktIconComponent, FktFieldPrefixDirective],
+    imports: [FormField, FktFieldComponent, FktInputTextDirective, FktIconComponent, FktFieldPrefixDirective],
     templateUrl: './field-validation-example.component.html',
     styleUrl: './field-validation-example.component.scss',
 })
@@ -461,22 +461,22 @@ export class FieldValidationExampleComponent {
 ```html title="field-validation-example.component.html"
 <fkt-field label="Name">
     <fkt-icon fktFieldPrefix name="user"/>
-    <input fktInputText [field]="form.name" placeholder="Enter a name">
+    <input fktInputText [formField]="form.name" placeholder="Enter a name">
 </fkt-field>
 
 <fkt-field label="Username">
     <fkt-icon fktFieldPrefix name="at-symbol"/>
-    <input fktInputText [field]="form.username" placeholder="Enter a username">
+    <input fktInputText [formField]="form.username" placeholder="Enter a username">
 </fkt-field>
 
 <fkt-field label="Bio">
     <fkt-icon fktFieldPrefix name="identification"/>
-    <input fktInputText [field]="form.bio" placeholder="Enter a short bio">
+    <input fktInputText [formField]="form.bio" placeholder="Enter a short bio">
 </fkt-field>
 
 <fkt-field label="E-mail">
     <fkt-icon fktFieldPrefix name="envelope"/>
-    <input fktInputText [field]="form.email" placeholder="Enter an e-mail">
+    <input fktInputText [formField]="form.email" placeholder="Enter an e-mail">
 </fkt-field>
 ```
 
@@ -645,7 +645,7 @@ Example component: `FieldManualErrorExampleComponent`
 
 ```ts title="field-manual-error-example.component.ts"
 import { Component, signal } from '@angular/core';
-import { email, Field, form, required } from '@angular/forms/signals';
+import { email, FormField, form, required } from '@angular/forms/signals';
 import { FktButtonComponent } from 'frakton-ng/button';
 import { FktFieldComponent, FktFieldPrefixDirective } from 'frakton-ng/field';
 import { FktInputTextDirective } from 'frakton-ng/input-text';
@@ -654,7 +654,7 @@ import { FktIconComponent } from 'frakton-ng/icon';
 @Component({
     selector: 'app-field-manual-error-example',
     imports: [
-        Field,
+        FormField,
         FktButtonComponent,
         FktFieldComponent,
         FktInputTextDirective,
@@ -686,7 +686,7 @@ export class FieldManualErrorExampleComponent {
     [showError]="submitted() && form.email().invalid()"
 >
     <fkt-icon fktFieldPrefix name="envelope"/>
-    <input fktInputText [field]="form.email" placeholder="Enter an e-mail">
+    <input fktInputText [formField]="form.email" placeholder="Enter an e-mail">
 </fkt-field>
 
 <fkt-button
@@ -721,7 +721,7 @@ Example component: `FieldCustomErrorExampleComponent`
 
 ```ts title="field-custom-error-example.component.ts"
 import { Component, signal } from '@angular/core';
-import { email, Field, form, required } from '@angular/forms/signals';
+import { email, FormField, form, required } from '@angular/forms/signals';
 import {
     FktErrorDirective,
     FktFieldComponent,
@@ -734,7 +734,7 @@ import { FktIconComponent } from 'frakton-ng/icon';
 @Component({
     selector: 'app-field-custom-error-example',
     imports: [
-        Field,
+        FormField,
         FktFieldComponent,
         FktInputTextDirective,
         FktFieldErrorComponent,
@@ -760,7 +760,7 @@ export class FieldCustomErrorExampleComponent {
 ```html title="field-custom-error-example.component.html"
 <fkt-field label="E-mail">
     <fkt-icon fktFieldPrefix name="envelope"/>
-    <input fktInputText [field]="form.email" placeholder="Enter an e-mail">
+    <input fktInputText [formField]="form.email" placeholder="Enter an e-mail">
 
     <fkt-field-error fktError>
         Use a company e-mail address.
@@ -815,7 +815,7 @@ Example component: `FieldAutomaticErrorsExampleComponent`
 
 ```ts title="field-automatic-errors-example.component.ts"
 import { Component, signal } from '@angular/core';
-import { Field, form, required } from '@angular/forms/signals';
+import { FormField, form, required } from '@angular/forms/signals';
 import { FktFieldComponent, FktFieldPrefixDirective } from 'frakton-ng/field';
 import { FktInputTextDirective } from 'frakton-ng/input-text';
 import { FktIconComponent } from 'frakton-ng/icon';
@@ -823,7 +823,7 @@ import { FktIconComponent } from 'frakton-ng/icon';
 @Component({
     selector: 'app-field-automatic-errors-example',
     imports: [
-        Field,
+        FormField,
         FktFieldComponent,
         FktInputTextDirective,
         FktIconComponent,
@@ -848,7 +848,7 @@ export class FieldAutomaticErrorsExampleComponent {
     label="Name"
 >
     <fkt-icon fktFieldPrefix name="user"/>
-    <input fktInputText [field]="form.name" placeholder="Enter a name">
+    <input fktInputText [formField]="form.name" placeholder="Enter a name">
 </fkt-field>
 ```
 
@@ -927,7 +927,7 @@ Example component: `FieldTranslatedErrorsExampleComponent`
 import { Component, effect, inject, signal } from '@angular/core';
 import {
     email,
-    Field,
+    FormField,
     form,
     maxLength,
     minLength,
@@ -942,7 +942,7 @@ import { FktSelectComponent, FktSelectOption } from 'frakton-ng/select';
 @Component({
     selector: 'app-field-translated-errors-example',
     imports: [
-        Field,
+        FormField,
         FktFieldComponent,
         FktInputTextDirective,
         FktIconComponent,
@@ -991,7 +991,7 @@ export class FieldTranslatedErrorsExampleComponent {
 
 ```html title="field-translated-errors-example.component.html"
 <fkt-select
-    [field]="language"
+    [formField]="language"
     label="Language"
     placeholder="Select a language"
     [options]="languageOptions"
@@ -1002,7 +1002,7 @@ export class FieldTranslatedErrorsExampleComponent {
     [showError]="form.name().invalid()"
 >
     <fkt-icon fktFieldPrefix name="user"/>
-    <input fktInputText [field]="form.name" placeholder="Enter a name">
+    <input fktInputText [formField]="form.name" placeholder="Enter a name">
 </fkt-field>
 
 <fkt-field
@@ -1010,7 +1010,7 @@ export class FieldTranslatedErrorsExampleComponent {
     [showError]="form.username().invalid()"
 >
     <fkt-icon fktFieldPrefix name="at-symbol"/>
-    <input fktInputText [field]="form.username" placeholder="Enter a username">
+    <input fktInputText [formField]="form.username" placeholder="Enter a username">
 </fkt-field>
 
 <fkt-field
@@ -1018,7 +1018,7 @@ export class FieldTranslatedErrorsExampleComponent {
     [showError]="form.bio().invalid()"
 >
     <fkt-icon fktFieldPrefix name="identification"/>
-    <input fktInputText [field]="form.bio" placeholder="Enter a short bio">
+    <input fktInputText [formField]="form.bio" placeholder="Enter a short bio">
 </fkt-field>
 
 <fkt-field
@@ -1026,7 +1026,7 @@ export class FieldTranslatedErrorsExampleComponent {
     [showError]="form.email().invalid()"
 >
     <fkt-icon fktFieldPrefix name="envelope"/>
-    <input fktInputText [field]="form.email" placeholder="Enter an e-mail">
+    <input fktInputText [formField]="form.email" placeholder="Enter an e-mail">
 </fkt-field>
 ```
 

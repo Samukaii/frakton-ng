@@ -6,7 +6,7 @@ import {
     inject,
     signal,
 } from '@angular/core';
-import { Field } from '@angular/forms/signals';
+import { FormField } from '@angular/forms/signals';
 import { FktFieldControlState } from 'frakton-ng/internal/types';
 import { normalizeSignalValidationError } from 'frakton-ng/internal/utils';
 
@@ -19,7 +19,7 @@ const readMaxLength = (
 export function injectFormSignalsControlState<
     T
 >(): FktFieldControlState<T> | null {
-    const formSignalsControl = inject(Field<T>, { optional: true, self: true });
+    const formSignalsControl = inject(FormField<T>, { optional: true, self: true });
 
     if (!formSignalsControl) {
         return null;

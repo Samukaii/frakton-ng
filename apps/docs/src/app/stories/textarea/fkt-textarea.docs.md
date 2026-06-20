@@ -47,7 +47,7 @@ the hint end area. The max length is inferred from Signal Forms, Reactive Forms,
     <textarea
         fktTextarea
         fktCharacterCount
-        [field]="form.bio"
+        [formField]="form.bio"
     ></textarea>
 </fkt-field>
 ```

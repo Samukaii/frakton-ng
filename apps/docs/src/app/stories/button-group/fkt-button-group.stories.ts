@@ -432,7 +432,7 @@ export const ReactiveForms: Story<ButtonGroupReactiveFormsComponent> = {
 
 export const SignalForms: Story<ButtonGroupSignalFormsComponent> = {
     component: ButtonGroupSignalFormsComponent,
-    description: "Integration with the signal-based `@angular/forms/signals` API via the `[field]` binding. Shows required validation, signal-driven disabled state, and reactive error messages.",
+    description: "Integration with the signal-based `@angular/forms/signals` API via the `[formField]` binding. Shows required validation, signal-driven disabled state, and reactive error messages.",
     args: {}
 }
 

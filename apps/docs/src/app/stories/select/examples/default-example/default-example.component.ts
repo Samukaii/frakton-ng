@@ -1,12 +1,12 @@
 import { Component, input, signal } from '@angular/core';
 import { FktSelectComponent, FktSelectOption } from 'frakton-ng/select';
-import { Field, form } from '@angular/forms/signals';
+import { FormField, form } from '@angular/forms/signals';
 
 @Component({
 	selector: 'select-default-example',
 	templateUrl: './default-example.component.html',
 	styleUrl: './default-example.component.scss',
-	imports: [FktSelectComponent, Field]
+	imports: [FktSelectComponent, FormField]
 })
 export class DefaultExampleComponent {
 	label = input.required<string>();

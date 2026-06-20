@@ -30,13 +30,13 @@ Example component: `FktCheckboxBasicExampleComponent`
 ```ts title="fkt-checkbox-basic-example.component.ts"
 import { Component, input, signal } from '@angular/core';
 import { FktCheckboxComponent } from 'frakton-ng/checkbox';
-import { Field, form } from '@angular/forms/signals';
+import { FormField, form } from '@angular/forms/signals';
 
 @Component({
 	selector: 'fkt-checkbox-basic-example',
 	imports: [
 		FktCheckboxComponent,
-		Field
+		FormField
 	],
 	templateUrl: './fkt-checkbox-basic-example.component.html',
 	styleUrl: './fkt-checkbox-basic-example.component.scss'
@@ -51,7 +51,7 @@ export class FktCheckboxBasicExampleComponent {
 ```html title="fkt-checkbox-basic-example.component.html"
 <div class="container">
 	<fkt-checkbox
-		[field]="field"
+		[formField]="field"
 		[label]="label()"
 	/>
 </div>
@@ -76,13 +76,13 @@ Example component: `FktCheckboxPreCheckedExampleComponent`
 ```ts title="fkt-checkbox-pre-checked-example.component.ts"
 import { Component, input, signal } from '@angular/core';
 import { FktCheckboxComponent } from 'frakton-ng/checkbox';
-import { Field, form } from '@angular/forms/signals';
+import { FormField, form } from '@angular/forms/signals';
 
 @Component({
   selector: 'fkt-checkbox-pre-checked-example',
   imports: [
     FktCheckboxComponent,
-    Field
+    FormField
   ],
   templateUrl: './fkt-checkbox-pre-checked-example.component.html',
   styleUrl: './fkt-checkbox-pre-checked-example.component.scss'
@@ -96,7 +96,7 @@ export class FktCheckboxPreCheckedExampleComponent {
 ```html title="fkt-checkbox-pre-checked-example.component.html"
 <div class="container">
   <fkt-checkbox
-    [field]="field"
+    [formField]="field"
     [label]="label()"
   />
 </div>
@@ -121,13 +121,13 @@ Example component: `FktCheckboxDisabledExampleComponent`
 ```ts title="fkt-checkbox-disabled-example.component.ts"
 import { Component, input, signal } from '@angular/core';
 import { FktCheckboxComponent } from 'frakton-ng/checkbox';
-import { disabled, Field, form } from '@angular/forms/signals';
+import { disabled, FormField, form } from '@angular/forms/signals';
 
 @Component({
   selector: 'fkt-checkbox-disabled-example',
   imports: [
     FktCheckboxComponent,
-    Field
+    FormField
   ],
   templateUrl: './fkt-checkbox-disabled-example.component.html',
   styleUrl: './fkt-checkbox-disabled-example.component.scss'
@@ -144,7 +144,7 @@ export class FktCheckboxDisabledExampleComponent {
 ```html title="fkt-checkbox-disabled-example.component.html"
 <div class="container">
   <fkt-checkbox
-    [field]="field"
+    [formField]="field"
     label="This checkbox can be disabled"
   />
 </div>
@@ -169,14 +169,14 @@ Example component: `FktCheckboxValidationExampleComponent`
 ```ts title="fkt-checkbox-validation-example.component.ts"
 import { Component, input, signal } from '@angular/core';
 import { FktCheckboxComponent } from 'frakton-ng/checkbox';
-import { Field, form, required } from '@angular/forms/signals';
+import { FormField, form, required } from '@angular/forms/signals';
 import { FktFieldErrorComponent } from 'frakton-ng/field';
 
 @Component({
 	selector: 'fkt-checkbox-validation-example',
 	imports: [
 		FktCheckboxComponent,
-		Field,
+		FormField,
 		FktFieldErrorComponent
 	],
 	templateUrl: './fkt-checkbox-validation-example.component.html',
@@ -200,7 +200,7 @@ export class FktCheckboxValidationExampleComponent {
 
   <div class="form-field">
     <fkt-checkbox
-      [field]="form.termsAccepted"
+      [formField]="form.termsAccepted"
       label="I accept the terms and conditions"
     />
     @for (error of form.termsAccepted().errors(); track error.kind) {
@@ -210,7 +210,7 @@ export class FktCheckboxValidationExampleComponent {
 
   <div class="form-field">
     <fkt-checkbox
-      [field]="form.newsletterSubscription"
+      [formField]="form.newsletterSubscription"
       label="Subscribe to newsletter (optional)"
     />
   </div>

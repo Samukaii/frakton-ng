@@ -377,7 +377,7 @@ export const VirtualScroll: Story<AutocompleteVirtualScrollExampleComponent> = {
 export const Forms: StoryIntroduction = {};
 
 /**
- * Signal Forms integration through Angular's `[field]` directive. The autocomplete value is still
+ * Signal Forms integration through Angular's `[formField]` directive. The autocomplete value is still
  * normalized through `valueKey`, while validation and disabled state are provided by the form field.
  */
 export const SignalForms: Story<AutocompleteSignalFormsExampleComponent> = {

@@ -1,13 +1,13 @@
 import { Component, input, signal } from '@angular/core';
 import { FktSelectComponent, FktSelectOption } from 'frakton-ng/select';
 import { FktButtonComponent } from 'frakton-ng/button';
-import { Field, disabled, form } from '@angular/forms/signals';
+import { FormField, disabled, form } from '@angular/forms/signals';
 
 @Component({
 	selector: 'select-disabled-example',
 	styleUrl: './disabled-example.component.scss',
 	templateUrl: './disabled-example.component.html',
-	imports: [FktSelectComponent, FktButtonComponent, Field]
+	imports: [FktSelectComponent, FktButtonComponent, FormField]
 })
 export class DisabledExampleComponent {
 	label = input.required<string>();

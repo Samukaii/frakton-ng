@@ -1368,14 +1368,14 @@ detail.
 - type: story
 - component: AutocompleteSignalFormsExampleComponent
 
-Signal Forms integration through Angular's `[field]` directive. The autocomplete value is still
+Signal Forms integration through Angular's `[formField]` directive. The autocomplete value is still
 normalized through `valueKey`, while validation and disabled state are provided by the form field.
 
 Example component: `AutocompleteSignalFormsExampleComponent`
 
 ```ts title="autocomplete-signal-forms-example.component.ts"
 import { Component, signal } from '@angular/core';
-import { disabled, Field, form, required } from '@angular/forms/signals';
+import { disabled, FormField, form, required } from '@angular/forms/signals';
 import { FktAutocompleteComponent } from 'frakton-ng/autocomplete';
 import { FktButtonComponent } from 'frakton-ng/button';
 import { COUNTRIES } from '../autocomplete-demo-data';
@@ -1386,7 +1386,7 @@ import { CodeOutputComponent } from '@/components/code-output/code-output.compon
     imports: [
         FktAutocompleteComponent,
         FktButtonComponent,
-        Field,
+        FormField,
         CodeOutputComponent,
     ],
     templateUrl: './autocomplete-signal-forms-example.component.html',
@@ -1430,7 +1430,7 @@ export class AutocompleteSignalFormsExampleComponent {
 
 <fkt-autocomplete
     label="Country"
-    [field]="form.country"
+    [formField]="form.country"
     [options]="countries"
     labelKey="name"
     valueKey="code"

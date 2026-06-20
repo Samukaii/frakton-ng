@@ -8661,14 +8661,14 @@ detail.
 - type: story
 - component: AutocompleteSignalFormsExampleComponent
 
-Signal Forms integration through Angular's `[field]` directive. The autocomplete value is still
+Signal Forms integration through Angular's `[formField]` directive. The autocomplete value is still
 normalized through `valueKey`, while validation and disabled state are provided by the form field.
 
 Example component: `AutocompleteSignalFormsExampleComponent`
 
 ```ts title="autocomplete-signal-forms-example.component.ts"
 import { Component, signal } from '@angular/core';
-import { disabled, Field, form, required } from '@angular/forms/signals';
+import { disabled, FormField, form, required } from '@angular/forms/signals';
 import { FktAutocompleteComponent } from 'frakton-ng/autocomplete';
 import { FktButtonComponent } from 'frakton-ng/button';
 import { COUNTRIES } from '../autocomplete-demo-data';
@@ -8679,7 +8679,7 @@ import { CodeOutputComponent } from '@/components/code-output/code-output.compon
     imports: [
         FktAutocompleteComponent,
         FktButtonComponent,
-        Field,
+        FormField,
         CodeOutputComponent,
     ],
     templateUrl: './autocomplete-signal-forms-example.component.html',
@@ -8723,7 +8723,7 @@ export class AutocompleteSignalFormsExampleComponent {
 
 <fkt-autocomplete
     label="Country"
-    [field]="form.country"
+    [formField]="form.country"
     [options]="countries"
     labelKey="name"
     valueKey="code"
@@ -9454,14 +9454,14 @@ export class ButtonGroupReactiveFormsComponent {
 - type: story
 - component: ButtonGroupSignalFormsComponent
 
-Integration with the signal-based `@angular/forms/signals` API via the `[field]` binding. Shows required validation, signal-driven disabled state, and reactive error messages.
+Integration with the signal-based `@angular/forms/signals` API via the `[formField]` binding. Shows required validation, signal-driven disabled state, and reactive error messages.
 
 Example component: `ButtonGroupSignalFormsComponent`
 
 ```ts title="button-group-signal-forms.component.ts"
 import { Component, signal } from '@angular/core';
 import { FktButtonGroupComponent, FktButtonGroupOption } from 'frakton-ng/button-group';
-import { disabled, Field, form, required } from '@angular/forms/signals';
+import { disabled, FormField, form, required } from '@angular/forms/signals';
 import { FktFieldErrorComponent } from 'frakton-ng/field';
 import { FktButtonComponent } from 'frakton-ng/button';
 
@@ -9469,7 +9469,7 @@ import { FktButtonComponent } from 'frakton-ng/button';
     selector: 'fkt-button-group-signal-forms',
     imports: [
         FktButtonGroupComponent,
-        Field,
+        FormField,
         FktFieldErrorComponent,
         FktButtonComponent,
     ],
@@ -9516,7 +9516,7 @@ export class ButtonGroupSignalFormsComponent {
 <div>
     <fkt-button-group
         accessibleLabel="Filter"
-        [field]="form.filter"
+        [formField]="form.filter"
         [options]="options"
         deselectable
     />
@@ -9707,13 +9707,13 @@ Example component: `FktCheckboxBasicExampleComponent`
 ```ts title="fkt-checkbox-basic-example.component.ts"
 import { Component, input, signal } from '@angular/core';
 import { FktCheckboxComponent } from 'frakton-ng/checkbox';
-import { Field, form } from '@angular/forms/signals';
+import { FormField, form } from '@angular/forms/signals';
 
 @Component({
 	selector: 'fkt-checkbox-basic-example',
 	imports: [
 		FktCheckboxComponent,
-		Field
+		FormField
 	],
 	templateUrl: './fkt-checkbox-basic-example.component.html',
 	styleUrl: './fkt-checkbox-basic-example.component.scss'
@@ -9728,7 +9728,7 @@ export class FktCheckboxBasicExampleComponent {
 ```html title="fkt-checkbox-basic-example.component.html"
 <div class="container">
 	<fkt-checkbox
-		[field]="field"
+		[formField]="field"
 		[label]="label()"
 	/>
 </div>
@@ -9753,13 +9753,13 @@ Example component: `FktCheckboxPreCheckedExampleComponent`
 ```ts title="fkt-checkbox-pre-checked-example.component.ts"
 import { Component, input, signal } from '@angular/core';
 import { FktCheckboxComponent } from 'frakton-ng/checkbox';
-import { Field, form } from '@angular/forms/signals';
+import { FormField, form } from '@angular/forms/signals';
 
 @Component({
   selector: 'fkt-checkbox-pre-checked-example',
   imports: [
     FktCheckboxComponent,
-    Field
+    FormField
   ],
   templateUrl: './fkt-checkbox-pre-checked-example.component.html',
   styleUrl: './fkt-checkbox-pre-checked-example.component.scss'
@@ -9773,7 +9773,7 @@ export class FktCheckboxPreCheckedExampleComponent {
 ```html title="fkt-checkbox-pre-checked-example.component.html"
 <div class="container">
   <fkt-checkbox
-    [field]="field"
+    [formField]="field"
     [label]="label()"
   />
 </div>
@@ -9798,13 +9798,13 @@ Example component: `FktCheckboxDisabledExampleComponent`
 ```ts title="fkt-checkbox-disabled-example.component.ts"
 import { Component, input, signal } from '@angular/core';
 import { FktCheckboxComponent } from 'frakton-ng/checkbox';
-import { disabled, Field, form } from '@angular/forms/signals';
+import { disabled, FormField, form } from '@angular/forms/signals';
 
 @Component({
   selector: 'fkt-checkbox-disabled-example',
   imports: [
     FktCheckboxComponent,
-    Field
+    FormField
   ],
   templateUrl: './fkt-checkbox-disabled-example.component.html',
   styleUrl: './fkt-checkbox-disabled-example.component.scss'
@@ -9821,7 +9821,7 @@ export class FktCheckboxDisabledExampleComponent {
 ```html title="fkt-checkbox-disabled-example.component.html"
 <div class="container">
   <fkt-checkbox
-    [field]="field"
+    [formField]="field"
     label="This checkbox can be disabled"
   />
 </div>
@@ -9846,14 +9846,14 @@ Example component: `FktCheckboxValidationExampleComponent`
 ```ts title="fkt-checkbox-validation-example.component.ts"
 import { Component, input, signal } from '@angular/core';
 import { FktCheckboxComponent } from 'frakton-ng/checkbox';
-import { Field, form, required } from '@angular/forms/signals';
+import { FormField, form, required } from '@angular/forms/signals';
 import { FktFieldErrorComponent } from 'frakton-ng/field';
 
 @Component({
 	selector: 'fkt-checkbox-validation-example',
 	imports: [
 		FktCheckboxComponent,
-		Field,
+		FormField,
 		FktFieldErrorComponent
 	],
 	templateUrl: './fkt-checkbox-validation-example.component.html',
@@ -9877,7 +9877,7 @@ export class FktCheckboxValidationExampleComponent {
 
   <div class="form-field">
     <fkt-checkbox
-      [field]="form.termsAccepted"
+      [formField]="form.termsAccepted"
       label="I accept the terms and conditions"
     />
     @for (error of form.termsAccepted().errors(); track error.kind) {
@@ -9887,7 +9887,7 @@ export class FktCheckboxValidationExampleComponent {
 
   <div class="form-field">
     <fkt-checkbox
-      [field]="form.newsletterSubscription"
+      [formField]="form.newsletterSubscription"
       label="Subscribe to newsletter (optional)"
     />
   </div>
@@ -10699,7 +10699,7 @@ Example component: `FieldCharacterCountExampleComponent`
 
 ```ts title="field-character-count-example.component.ts"
 import { Component, inject, signal } from '@angular/core';
-import { Field, form, maxLength } from '@angular/forms/signals';
+import { FormField, form, maxLength } from '@angular/forms/signals';
 import {
     FktCharacterCountDirective,
     FktFieldComponent,
@@ -10714,7 +10714,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
         FktCharacterCountDirective,
         FktFieldComponent,
         FktInputTextDirective,
-        Field,
+        FormField,
         ReactiveFormsModule,
         FktHintEndDirective
     ],
@@ -10737,7 +10737,7 @@ export class FieldCharacterCountExampleComponent {
     <input
         fktInputText
         fktCharacterCount
-        [field]="form.name"
+        [formField]="form.name"
         placeholder="Enter a display name"
     >
 </fkt-field>
@@ -10778,13 +10778,13 @@ Example component: `FieldRequiredMarkerExampleComponent`
 
 ```ts title="field-required-marker-example.component.ts"
 import { Component, signal } from '@angular/core';
-import { Field, form, required } from '@angular/forms/signals';
+import { FormField, form, required } from '@angular/forms/signals';
 import { FktFieldComponent } from 'frakton-ng/field';
 import { FktInputTextDirective } from 'frakton-ng/input-text';
 
 @Component({
     selector: 'app-field-required-marker-example',
-    imports: [Field, FktFieldComponent, FktInputTextDirective],
+    imports: [FormField, FktFieldComponent, FktInputTextDirective],
     templateUrl: './field-required-marker-example.component.html',
     styleUrl: './field-required-marker-example.component.scss',
 })
@@ -10804,15 +10804,15 @@ export class FieldRequiredMarkerExampleComponent {
 
 ```html title="field-required-marker-example.component.html"
 <fkt-field label="Inferred">
-    <input fktInputText [field]="form.inferred" placeholder="Inferred from validation">
+    <input fktInputText [formField]="form.inferred" placeholder="Inferred from validation">
 </fkt-field>
 
 <fkt-field label="Forced" [requiredMarker]="true">
-    <input fktInputText [field]="form.forced" placeholder="Forced by input">
+    <input fktInputText [formField]="form.forced" placeholder="Forced by input">
 </fkt-field>
 
 <fkt-field label="Hidden" [requiredMarker]="false">
-    <input fktInputText [field]="form.hidden" placeholder="Required without marker">
+    <input fktInputText [formField]="form.hidden" placeholder="Required without marker">
 </fkt-field>
 ```
 
@@ -10878,7 +10878,7 @@ flags into the field manually.
 - type: story
 - component: FieldValidationExampleComponent
 
-Signal Forms integration with Angular's `[field]` directive. The field reacts to value, touched,
+Signal Forms integration with Angular's `[formField]` directive. The field reacts to value, touched,
 invalid, disabled, required, and error state exposed by the projected control.
 
 Example component: `FieldValidationExampleComponent`
@@ -10887,7 +10887,7 @@ Example component: `FieldValidationExampleComponent`
 import { Component, signal } from '@angular/core';
 import {
     email,
-    Field,
+    FormField,
     form,
     maxLength,
     minLength,
@@ -10899,7 +10899,7 @@ import { FktIconComponent } from 'frakton-ng/icon';
 
 @Component({
     selector: 'app-field-validation-example',
-    imports: [Field, FktFieldComponent, FktInputTextDirective, FktIconComponent, FktFieldPrefixDirective],
+    imports: [FormField, FktFieldComponent, FktInputTextDirective, FktIconComponent, FktFieldPrefixDirective],
     templateUrl: './field-validation-example.component.html',
     styleUrl: './field-validation-example.component.scss',
 })
@@ -10924,22 +10924,22 @@ export class FieldValidationExampleComponent {
 ```html title="field-validation-example.component.html"
 <fkt-field label="Name">
     <fkt-icon fktFieldPrefix name="user"/>
-    <input fktInputText [field]="form.name" placeholder="Enter a name">
+    <input fktInputText [formField]="form.name" placeholder="Enter a name">
 </fkt-field>
 
 <fkt-field label="Username">
     <fkt-icon fktFieldPrefix name="at-symbol"/>
-    <input fktInputText [field]="form.username" placeholder="Enter a username">
+    <input fktInputText [formField]="form.username" placeholder="Enter a username">
 </fkt-field>
 
 <fkt-field label="Bio">
     <fkt-icon fktFieldPrefix name="identification"/>
-    <input fktInputText [field]="form.bio" placeholder="Enter a short bio">
+    <input fktInputText [formField]="form.bio" placeholder="Enter a short bio">
 </fkt-field>
 
 <fkt-field label="E-mail">
     <fkt-icon fktFieldPrefix name="envelope"/>
-    <input fktInputText [field]="form.email" placeholder="Enter an e-mail">
+    <input fktInputText [formField]="form.email" placeholder="Enter an e-mail">
 </fkt-field>
 ```
 
@@ -11108,7 +11108,7 @@ Example component: `FieldManualErrorExampleComponent`
 
 ```ts title="field-manual-error-example.component.ts"
 import { Component, signal } from '@angular/core';
-import { email, Field, form, required } from '@angular/forms/signals';
+import { email, FormField, form, required } from '@angular/forms/signals';
 import { FktButtonComponent } from 'frakton-ng/button';
 import { FktFieldComponent, FktFieldPrefixDirective } from 'frakton-ng/field';
 import { FktInputTextDirective } from 'frakton-ng/input-text';
@@ -11117,7 +11117,7 @@ import { FktIconComponent } from 'frakton-ng/icon';
 @Component({
     selector: 'app-field-manual-error-example',
     imports: [
-        Field,
+        FormField,
         FktButtonComponent,
         FktFieldComponent,
         FktInputTextDirective,
@@ -11149,7 +11149,7 @@ export class FieldManualErrorExampleComponent {
     [showError]="submitted() && form.email().invalid()"
 >
     <fkt-icon fktFieldPrefix name="envelope"/>
-    <input fktInputText [field]="form.email" placeholder="Enter an e-mail">
+    <input fktInputText [formField]="form.email" placeholder="Enter an e-mail">
 </fkt-field>
 
 <fkt-button
@@ -11184,7 +11184,7 @@ Example component: `FieldCustomErrorExampleComponent`
 
 ```ts title="field-custom-error-example.component.ts"
 import { Component, signal } from '@angular/core';
-import { email, Field, form, required } from '@angular/forms/signals';
+import { email, FormField, form, required } from '@angular/forms/signals';
 import {
     FktErrorDirective,
     FktFieldComponent,
@@ -11197,7 +11197,7 @@ import { FktIconComponent } from 'frakton-ng/icon';
 @Component({
     selector: 'app-field-custom-error-example',
     imports: [
-        Field,
+        FormField,
         FktFieldComponent,
         FktInputTextDirective,
         FktFieldErrorComponent,
@@ -11223,7 +11223,7 @@ export class FieldCustomErrorExampleComponent {
 ```html title="field-custom-error-example.component.html"
 <fkt-field label="E-mail">
     <fkt-icon fktFieldPrefix name="envelope"/>
-    <input fktInputText [field]="form.email" placeholder="Enter an e-mail">
+    <input fktInputText [formField]="form.email" placeholder="Enter an e-mail">
 
     <fkt-field-error fktError>
         Use a company e-mail address.
@@ -11278,7 +11278,7 @@ Example component: `FieldAutomaticErrorsExampleComponent`
 
 ```ts title="field-automatic-errors-example.component.ts"
 import { Component, signal } from '@angular/core';
-import { Field, form, required } from '@angular/forms/signals';
+import { FormField, form, required } from '@angular/forms/signals';
 import { FktFieldComponent, FktFieldPrefixDirective } from 'frakton-ng/field';
 import { FktInputTextDirective } from 'frakton-ng/input-text';
 import { FktIconComponent } from 'frakton-ng/icon';
@@ -11286,7 +11286,7 @@ import { FktIconComponent } from 'frakton-ng/icon';
 @Component({
     selector: 'app-field-automatic-errors-example',
     imports: [
-        Field,
+        FormField,
         FktFieldComponent,
         FktInputTextDirective,
         FktIconComponent,
@@ -11311,7 +11311,7 @@ export class FieldAutomaticErrorsExampleComponent {
     label="Name"
 >
     <fkt-icon fktFieldPrefix name="user"/>
-    <input fktInputText [field]="form.name" placeholder="Enter a name">
+    <input fktInputText [formField]="form.name" placeholder="Enter a name">
 </fkt-field>
 ```
 
@@ -11390,7 +11390,7 @@ Example component: `FieldTranslatedErrorsExampleComponent`
 import { Component, effect, inject, signal } from '@angular/core';
 import {
     email,
-    Field,
+    FormField,
     form,
     maxLength,
     minLength,
@@ -11405,7 +11405,7 @@ import { FktSelectComponent, FktSelectOption } from 'frakton-ng/select';
 @Component({
     selector: 'app-field-translated-errors-example',
     imports: [
-        Field,
+        FormField,
         FktFieldComponent,
         FktInputTextDirective,
         FktIconComponent,
@@ -11454,7 +11454,7 @@ export class FieldTranslatedErrorsExampleComponent {
 
 ```html title="field-translated-errors-example.component.html"
 <fkt-select
-    [field]="language"
+    [formField]="language"
     label="Language"
     placeholder="Select a language"
     [options]="languageOptions"
@@ -11465,7 +11465,7 @@ export class FieldTranslatedErrorsExampleComponent {
     [showError]="form.name().invalid()"
 >
     <fkt-icon fktFieldPrefix name="user"/>
-    <input fktInputText [field]="form.name" placeholder="Enter a name">
+    <input fktInputText [formField]="form.name" placeholder="Enter a name">
 </fkt-field>
 
 <fkt-field
@@ -11473,7 +11473,7 @@ export class FieldTranslatedErrorsExampleComponent {
     [showError]="form.username().invalid()"
 >
     <fkt-icon fktFieldPrefix name="at-symbol"/>
-    <input fktInputText [field]="form.username" placeholder="Enter a username">
+    <input fktInputText [formField]="form.username" placeholder="Enter a username">
 </fkt-field>
 
 <fkt-field
@@ -11481,7 +11481,7 @@ export class FieldTranslatedErrorsExampleComponent {
     [showError]="form.bio().invalid()"
 >
     <fkt-icon fktFieldPrefix name="identification"/>
-    <input fktInputText [field]="form.bio" placeholder="Enter a short bio">
+    <input fktInputText [formField]="form.bio" placeholder="Enter a short bio">
 </fkt-field>
 
 <fkt-field
@@ -11489,7 +11489,7 @@ export class FieldTranslatedErrorsExampleComponent {
     [showError]="form.email().invalid()"
 >
     <fkt-icon fktFieldPrefix name="envelope"/>
-    <input fktInputText [field]="form.email" placeholder="Enter an e-mail">
+    <input fktInputText [formField]="form.email" placeholder="Enter an e-mail">
 </fkt-field>
 ```
 
@@ -11779,14 +11779,14 @@ Example component: `InputCharacterCountExampleComponent`
 
 ```ts title="input-character-count-example.component.ts"
 import { Component, signal } from '@angular/core';
-import { Field, form, maxLength } from '@angular/forms/signals';
+import { FormField, form, maxLength } from '@angular/forms/signals';
 import { FktCharacterCountDirective, FktFieldComponent } from 'frakton-ng/field';
 import { FktInputTextDirective } from 'frakton-ng/input-text';
 
 @Component({
     selector: 'app-input-character-count-example',
     imports: [
-        Field,
+        FormField,
         FktCharacterCountDirective,
         FktFieldComponent,
         FktInputTextDirective,
@@ -11810,7 +11810,7 @@ export class InputCharacterCountExampleComponent {
     <input
         fktInputText
         fktCharacterCount
-        [field]="form.displayName"
+        [formField]="form.displayName"
         placeholder="Enter a display name"
     >
 </fkt-field>
@@ -11837,14 +11837,14 @@ required, errors, and max length without manual state forwarding.
 - type: story
 - component: InputSignalFormsExampleComponent
 
-Signal Forms integration through Angular's `[field]` directive. Validation state, disabled state,
+Signal Forms integration through Angular's `[formField]` directive. Validation state, disabled state,
 required marker, and max length are read from the projected control.
 
 Example component: `InputSignalFormsExampleComponent`
 
 ```ts title="input-signal-forms-example.component.ts"
 import { Component, signal } from '@angular/core';
-import { email, Field, form, minLength, required } from '@angular/forms/signals';
+import { email, FormField, form, minLength, required } from '@angular/forms/signals';
 import { FktButtonComponent } from 'frakton-ng/button';
 import { FktFieldComponent } from 'frakton-ng/field';
 import { FktIconComponent } from 'frakton-ng/icon';
@@ -11853,7 +11853,7 @@ import { FktInputTextDirective } from 'frakton-ng/input-text';
 @Component({
     selector: 'app-input-signal-forms-example',
     imports: [
-        Field,
+        FormField,
         FktButtonComponent,
         FktFieldComponent,
         FktIconComponent,
@@ -11904,7 +11904,7 @@ export class InputSignalFormsExampleComponent {
     <fkt-icon fktFieldPrefix name="user" />
     <input
         fktInputText
-        [field]="form.name"
+        [formField]="form.name"
         placeholder="Enter a name"
     >
 </fkt-field>
@@ -11917,7 +11917,7 @@ export class InputSignalFormsExampleComponent {
     <input
         fktInputText
         type="email"
-        [field]="form.email"
+        [formField]="form.email"
         placeholder="Enter an e-mail"
     >
 </fkt-field>
@@ -12087,7 +12087,7 @@ the hint end area. The max length is inferred from Signal Forms, Reactive Forms,
     <input
         fktInputText
         fktCharacterCount
-        [field]="form.displayName"
+        [formField]="form.displayName"
     >
 </fkt-field>
 ```
@@ -12130,13 +12130,13 @@ Example component: `DefaultExampleComponent`
 ```ts title="default-example.component.ts"
 import { Component, input, signal } from '@angular/core';
 import { FktSelectComponent, FktSelectOption } from 'frakton-ng/select';
-import { Field, form } from '@angular/forms/signals';
+import { FormField, form } from '@angular/forms/signals';
 
 @Component({
 	selector: 'select-default-example',
 	templateUrl: './default-example.component.html',
 	styleUrl: './default-example.component.scss',
-	imports: [FktSelectComponent, Field]
+	imports: [FktSelectComponent, FormField]
 })
 export class DefaultExampleComponent {
 	label = input.required<string>();
@@ -12151,7 +12151,7 @@ export class DefaultExampleComponent {
 
 ```html title="default-example.component.html"
 <fkt-select
-	[field]="control"
+	[formField]="control"
 	[label]="label()"
 	[placeholder]="placeholder()"
 	[options]="options()"
@@ -12196,32 +12196,32 @@ Example component: `PreselectedExampleComponent`
 ```ts title="preselected-example.component.ts"
 import { Component, computed, input, signal } from '@angular/core';
 import { FktSelectComponent, FktSelectOption } from 'frakton-ng/select';
-import { Field, form } from '@angular/forms/signals';
+import { FormField, form } from '@angular/forms/signals';
 
 @Component({
-	selector: 'select-preselected-example',
-	templateUrl: './preselected-example.component.html',
-	styleUrl: './preselected-example.component.scss',
-	imports: [FktSelectComponent, Field]
+    selector: 'select-preselected-example',
+    templateUrl: './preselected-example.component.html',
+    styleUrl: './preselected-example.component.scss',
+    imports: [FktSelectComponent, FormField],
 })
 export class PreselectedExampleComponent {
-	label = input.required<string>();
-	placeholder = input<string>();
-	options = input.required<FktSelectOption[]>();
+    label = input.required<string>();
+    placeholder = input<string>();
+    options = input.required<FktSelectOption[]>();
 
-	protected control = form(signal('us')); // Pre-selected value
+    protected control = form(signal('us')); // Pre-selected value
 
-	selectedLabel = computed(() => {
-		const value = this.control().value();
-		const option = this.options().find(opt => opt.value === value);
-		return option ? option.label : 'None';
-	});
+    selectedLabel = computed(() => {
+        const value = this.control().value();
+        const option = this.options().find((opt) => opt.value === value);
+        return option ? option.label : 'None';
+    });
 }
 ```
 
 ```html title="preselected-example.component.html"
 <fkt-select
-	[field]="control"
+	[formField]="control"
 	[label]="label()"
 	[placeholder]="placeholder()"
 	[options]="options()"
@@ -12260,26 +12260,26 @@ Example component: `LargeListExampleComponent`
 ```ts title="large-list-example.component.ts"
 import { Component, input, signal } from '@angular/core';
 import { FktSelectComponent, FktSelectOption } from 'frakton-ng/select';
-import { Field, form } from '@angular/forms/signals';
+import { FormField, form } from '@angular/forms/signals';
 
 @Component({
-	selector: 'select-large-list-example',
-	templateUrl: './large-list-example.component.html',
-	styleUrl: './large-list-example.component.scss',
-	imports: [FktSelectComponent, Field]
+    selector: 'select-large-list-example',
+    templateUrl: './large-list-example.component.html',
+    styleUrl: './large-list-example.component.scss',
+    imports: [FktSelectComponent, FormField],
 })
 export class LargeListExampleComponent {
-	label = input.required<string>();
-	placeholder = input<string>();
-	options = input.required<FktSelectOption[]>();
+    label = input.required<string>();
+    placeholder = input<string>();
+    options = input.required<FktSelectOption[]>();
 
-	protected control = form(signal(''));
+    protected control = form(signal(''));
 }
 ```
 
 ```html title="large-list-example.component.html"
 <fkt-select
-	[field]="control"
+	[formField]="control"
 	[label]="label()"
 	[placeholder]="placeholder()"
 	[options]="options()"
@@ -12327,13 +12327,13 @@ Example component: `LoadingExampleComponent`
 ```ts title="loading-example.component.ts"
 import { Component, input, signal } from '@angular/core';
 import { FktSelectComponent, FktSelectOption } from 'frakton-ng/select';
-import { Field, form } from '@angular/forms/signals';
+import { FormField, form } from '@angular/forms/signals';
 
 @Component({
 	selector: 'select-loading-example',
 	templateUrl: './loading-example.component.html',
 	styleUrl: './loading-example.component.scss',
-	imports: [FktSelectComponent, Field]
+	imports: [FktSelectComponent, FormField]
 })
 export class LoadingExampleComponent {
 	label = input.required<string>();
@@ -12347,7 +12347,7 @@ export class LoadingExampleComponent {
 
 ```html title="loading-example.component.html"
 <fkt-select
-	[field]="control"
+	[formField]="control"
 	[label]="label()"
 	[placeholder]="placeholder()"
 	[options]="options()"
@@ -12390,13 +12390,13 @@ Example component: `EmptyStateExampleComponent`
 import { Component, input, signal } from '@angular/core';
 import { FktSelectComponent, FktSelectOption } from 'frakton-ng/select';
 import { FktNoResults } from 'frakton-ng/no-results';
-import { Field, form } from '@angular/forms/signals';
+import { FormField, form } from '@angular/forms/signals';
 
 @Component({
 	selector: 'select-empty-state-example',
 	templateUrl: './empty-state-example.component.html',
 	styleUrl: './empty-state-example.component.scss',
-	imports: [FktSelectComponent, Field]
+	imports: [FktSelectComponent, FormField]
 })
 export class EmptyStateExampleComponent {
 	label = input.required<string>();
@@ -12411,7 +12411,7 @@ export class EmptyStateExampleComponent {
 
 ```html title="empty-state-example.component.html"
 <fkt-select
-	[field]="control"
+	[formField]="control"
 	[label]="label()"
 	[placeholder]="placeholder()"
 	[options]="options()"
@@ -12452,29 +12452,29 @@ Example component: `ValidationExampleComponent`
 ```ts title="validation-example.component.ts"
 import { Component, input, signal } from '@angular/core';
 import { FktSelectComponent, FktSelectOption } from 'frakton-ng/select';
-import { Field, form, required } from '@angular/forms/signals';
+import { FormField, form, required } from '@angular/forms/signals';
 import { FktFieldErrorComponent } from 'frakton-ng/field';
 
 @Component({
-	selector: 'select-validation-example',
-	templateUrl: './validation-example.component.html',
-	styleUrl: './validation-example.component.scss',
-	imports: [FktSelectComponent, Field, FktFieldErrorComponent]
+    selector: 'select-validation-example',
+    templateUrl: './validation-example.component.html',
+    styleUrl: './validation-example.component.scss',
+    imports: [FktSelectComponent, FormField, FktFieldErrorComponent],
 })
 export class ValidationExampleComponent {
-	label = input.required<string>();
-	placeholder = input<string>();
-	options = input.required<FktSelectOption[]>();
+    label = input.required<string>();
+    placeholder = input<string>();
+    options = input.required<FktSelectOption[]>();
 
-	protected control = form(signal(''), path => {
-		required(path, {message: "Field is required"});
-	});
+    protected control = form(signal(''), (path) => {
+        required(path, { message: 'Field is required' });
+    });
 }
 ```
 
 ```html title="validation-example.component.html"
 <fkt-select
-	[field]="control"
+	[formField]="control"
 	[label]="label()"
 	[placeholder]="placeholder()"
 	[options]="options()"
@@ -12526,13 +12526,13 @@ Example component: `DisabledExampleComponent`
 import { Component, input, signal } from '@angular/core';
 import { FktSelectComponent, FktSelectOption } from 'frakton-ng/select';
 import { FktButtonComponent } from 'frakton-ng/button';
-import { Field, disabled, form } from '@angular/forms/signals';
+import { FormField, disabled, form } from '@angular/forms/signals';
 
 @Component({
 	selector: 'select-disabled-example',
 	styleUrl: './disabled-example.component.scss',
 	templateUrl: './disabled-example.component.html',
-	imports: [FktSelectComponent, FktButtonComponent, Field]
+	imports: [FktSelectComponent, FktButtonComponent, FormField]
 })
 export class DisabledExampleComponent {
 	label = input.required<string>();
@@ -12553,7 +12553,7 @@ export class DisabledExampleComponent {
 
 ```html title="disabled-example.component.html"
 <fkt-select
-	[field]="control"
+	[formField]="control"
 	[label]="label()"
 	[placeholder]="placeholder()"
 	[options]="options()"
@@ -12587,13 +12587,13 @@ Example component: `AsyncLoadingExampleComponent`
 ```ts title="async-loading-example.component.ts"
 import { Component, input, signal } from '@angular/core';
 import { FktSelectComponent, FktSelectOption } from 'frakton-ng/select';
-import { Field, form } from '@angular/forms/signals';
+import { FormField, form } from '@angular/forms/signals';
 
 @Component({
 	selector: 'select-async-loading-example',
 	templateUrl: './async-loading-example.component.html',
 	styleUrl: './async-loading-example.component.scss',
-	imports: [FktSelectComponent, Field]
+	imports: [FktSelectComponent, FormField]
 })
 export class AsyncLoadingExampleComponent {
 	label = input.required<string>();
@@ -12635,7 +12635,7 @@ export class AsyncLoadingExampleComponent {
 	</p>
 </div>
 <fkt-select
-	[field]="control"
+	[formField]="control"
 	(selectOpened)="loadOptions()"
 	[label]="label()"
 	[placeholder]="placeholder()"
@@ -12861,14 +12861,14 @@ Example component: `TextareaCharacterCountExampleComponent`
 
 ```ts title="textarea-character-count-example.component.ts"
 import { Component, signal } from '@angular/core';
-import { Field, form, maxLength } from '@angular/forms/signals';
+import { FormField, form, maxLength } from '@angular/forms/signals';
 import { FktCharacterCountDirective, FktFieldComponent } from 'frakton-ng/field';
 import { FktTextareaDirective } from 'frakton-ng/textarea';
 
 @Component({
     selector: 'app-textarea-character-count-example',
     imports: [
-        Field,
+        FormField,
         FktCharacterCountDirective,
         FktFieldComponent,
         FktTextareaDirective,
@@ -12894,7 +12894,7 @@ export class TextareaCharacterCountExampleComponent {
         fktCharacterCount
         autoExpand
         rows="3"
-        [field]="form.bio"
+        [formField]="form.bio"
         placeholder="Write a short bio..."
     ></textarea>
 </fkt-field>
@@ -12921,14 +12921,14 @@ required, errors, and max length without manual state forwarding.
 - type: story
 - component: TextareaSignalFormsExampleComponent
 
-Signal Forms integration through Angular's `[field]` directive. Validation state, disabled state,
+Signal Forms integration through Angular's `[formField]` directive. Validation state, disabled state,
 required marker, and max length are read from the projected control.
 
 Example component: `TextareaSignalFormsExampleComponent`
 
 ```ts title="textarea-signal-forms-example.component.ts"
 import { Component, signal } from '@angular/core';
-import { Field, form, maxLength, minLength, required } from '@angular/forms/signals';
+import { FormField, form, maxLength, minLength, required } from '@angular/forms/signals';
 import { FktButtonComponent } from 'frakton-ng/button';
 import { FktFieldComponent } from 'frakton-ng/field';
 import { FktTextareaDirective } from 'frakton-ng/textarea';
@@ -12936,7 +12936,7 @@ import { FktTextareaDirective } from 'frakton-ng/textarea';
 @Component({
     selector: 'app-textarea-signal-forms-example',
     imports: [
-        Field,
+        FormField,
         FktButtonComponent,
         FktFieldComponent,
         FktTextareaDirective,
@@ -12975,7 +12975,7 @@ export class TextareaSignalFormsExampleComponent {
         fktTextarea
         autoExpand
         rows="3"
-        [field]="form.message"
+        [formField]="form.message"
         placeholder="Describe the issue..."
     ></textarea>
 </fkt-field>
@@ -13132,7 +13132,7 @@ the hint end area. The max length is inferred from Signal Forms, Reactive Forms,
     <textarea
         fktTextarea
         fktCharacterCount
-        [field]="form.bio"
+        [formField]="form.bio"
     ></textarea>
 </fkt-field>
 ```
@@ -13263,14 +13263,14 @@ export class ToggleReactiveFormsComponent {
 - type: story
 - component: ToggleSignalFormsComponent
 
-Integration with the signal-based `@angular/forms/signals` API via the `[field]` binding. Shows required validation and signal-driven disabled state.
+Integration with the signal-based `@angular/forms/signals` API via the `[formField]` binding. Shows required validation and signal-driven disabled state.
 
 Example component: `ToggleSignalFormsComponent`
 
 ```ts title="toggle-signal-forms.component.ts"
 import { Component, signal } from '@angular/core';
 import { FktToggleComponent } from 'frakton-ng/toggle';
-import { disabled, Field, form, required } from '@angular/forms/signals';
+import { disabled, FormField, form, required } from '@angular/forms/signals';
 import { FktFieldErrorComponent } from 'frakton-ng/field';
 import { FktButtonComponent } from 'frakton-ng/button';
 
@@ -13278,7 +13278,7 @@ import { FktButtonComponent } from 'frakton-ng/button';
     selector: 'fkt-toggle-signal-forms',
     imports: [
         FktToggleComponent,
-        Field,
+        FormField,
         FktFieldErrorComponent,
         FktButtonComponent,
     ],
@@ -13298,7 +13298,7 @@ export class ToggleSignalFormsComponent {
     });
 
     protected toggleDisabled() {
-        this.isDisabled.update(v => !v);
+        this.isDisabled.update((v) => !v);
     }
 }
 ```
@@ -13307,7 +13307,7 @@ export class ToggleSignalFormsComponent {
 <div>
     <fkt-toggle
         label="Accept terms and conditions"
-        [field]="form.terms"
+        [formField]="form.terms"
     />
     <fkt-field-error
         [show]="form.terms().invalid() && form.terms().touched()"
@@ -21252,36 +21252,42 @@ import { FktInputOldComponent } from 'frakton-ng/input-old';
 import { FktCheckboxComponent } from 'frakton-ng/checkbox';
 import { FktTooltipDirective } from 'frakton-ng/tooltip';
 import { FktGeometryPosition, fktGeometryPositions } from 'frakton-ng/internal/types';
-import { Field, form } from '@angular/forms/signals';
+import { FormField, form } from '@angular/forms/signals';
 
 @Component({
-	selector: 'interactive-tooltip-example',
-	styleUrl: './interactive-tooltip-example.component.scss',
-	templateUrl: './interactive-tooltip-example.component.html',
-    imports: [FktSelectComponent, FktInputOldComponent, FktCheckboxComponent, FktTooltipDirective, Field]
+    selector: 'interactive-tooltip-example',
+    styleUrl: './interactive-tooltip-example.component.scss',
+    templateUrl: './interactive-tooltip-example.component.html',
+    imports: [
+        FktSelectComponent,
+        FktInputOldComponent,
+        FktCheckboxComponent,
+        FktTooltipDirective,
+        FormField,
+    ],
 })
 export class InteractiveTooltipExampleComponent {
-	tooltipColor = input('primary');
+    tooltipColor = input('primary');
 
-	positionOptions = fktGeometryPositions.map(position => ({
-		value: position,
-		label: this.formatPositionLabel(position)
-	}));
+    positionOptions = fktGeometryPositions.map((position) => ({
+        value: position,
+        label: this.formatPositionLabel(position),
+    }));
 
-	private value = signal({
-		enabled: true,
-		position: 'bottom-center' as FktGeometryPosition,
-		text: 'This is a configurable tooltip message'
-	});
+    private value = signal({
+        enabled: true,
+        position: 'bottom-center' as FktGeometryPosition,
+        text: 'This is a configurable tooltip message',
+    });
 
-	protected form = form(this.value);
+    protected form = form(this.value);
 
-	private formatPositionLabel(position: FktGeometryPosition): string {
-		return position
-			.split('-')
-			.map(word => word.charAt(0).toUpperCase() + word.slice(1))
-			.join(' ');
-	}
+    private formatPositionLabel(position: FktGeometryPosition): string {
+        return position
+            .split('-')
+            .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+            .join(' ');
+    }
 }
 ```
 
@@ -21306,12 +21312,12 @@ export class InteractiveTooltipExampleComponent {
 		<div class="container__form">
 			<div>
 				<fkt-select
-					[field]="form.position"
+					[formField]="form.position"
 					[label]="'Tooltip Position'"
 					[options]="positionOptions"
 				></fkt-select>
 				<fkt-input
-					[field]="form.text"
+					[formField]="form.text"
 					[label]="'Tooltip Text'"
 					[placeholder]="'Enter tooltip message...'"
 					[type]="'text'"
@@ -21319,7 +21325,7 @@ export class InteractiveTooltipExampleComponent {
 			</div>
 
 			<fkt-checkbox
-				[field]="form.enabled"
+				[formField]="form.enabled"
 				[label]="'Enable Tooltips'"
 			></fkt-checkbox>
 		</div>

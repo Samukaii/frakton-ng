@@ -18,12 +18,12 @@
 		<div class="container__form">
 			<div>
 				<fkt-select
-					[field]="form.position"
+					[formField]="form.position"
 					[label]="'Tooltip Position'"
 					[options]="positionOptions"
 				></fkt-select>
 				<fkt-input
-					[field]="form.text"
+					[formField]="form.text"
 					[label]="'Tooltip Text'"
 					[placeholder]="'Enter tooltip message...'"
 					[type]="'text'"
@@ -31,7 +31,7 @@
 			</div>
 
 			<fkt-checkbox
-				[field]="form.enabled"
+				[formField]="form.enabled"
 				[label]="'Enable Tooltips'"
 			></fkt-checkbox>
 		</div>

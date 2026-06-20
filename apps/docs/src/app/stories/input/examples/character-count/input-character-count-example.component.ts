@@ -1,12 +1,12 @@
 import { Component, signal } from '@angular/core';
-import { Field, form, maxLength } from '@angular/forms/signals';
+import { FormField, form, maxLength } from '@angular/forms/signals';
 import { FktCharacterCountDirective, FktFieldComponent } from 'frakton-ng/field';
 import { FktInputTextDirective } from 'frakton-ng/input-text';
 
 @Component({
     selector: 'app-input-character-count-example',
     imports: [
-        Field,
+        FormField,
         FktCharacterCountDirective,
         FktFieldComponent,
         FktInputTextDirective,

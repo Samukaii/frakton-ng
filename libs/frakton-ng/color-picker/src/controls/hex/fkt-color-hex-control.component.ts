@@ -1,5 +1,5 @@
 import { Component, effect, inject, input, linkedSignal, model } from '@angular/core';
-import { Field, form } from '@angular/forms/signals';
+import { FormField, form } from '@angular/forms/signals';
 import { FktInputOldComponent } from 'frakton-ng/input-old';
 import { fktColorFormatters, MarkUsed } from 'frakton-ng/internal/utils';
 import { FktControlFormatter } from 'frakton-ng/forms';
@@ -13,7 +13,7 @@ import { FKT_COLOR_PICKER_LOCALE_TOKEN } from '../../injection-tokens/fkt-color-
     imports: [
         FktInputOldComponent,
         FktColorControlItemComponent,
-        Field
+        FormField
     ],
 	templateUrl: './fkt-color-hex-control.component.html',
 	styleUrl: './fkt-color-hex-control.component.scss'

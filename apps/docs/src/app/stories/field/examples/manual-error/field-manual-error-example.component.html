@@ -3,7 +3,7 @@
     [showError]="submitted() && form.email().invalid()"
 >
     <fkt-icon fktFieldPrefix name="envelope"/>
-    <input fktInputText [field]="form.email" placeholder="Enter an e-mail">
+    <input fktInputText [formField]="form.email" placeholder="Enter an e-mail">
 </fkt-field>
 
 <fkt-button
