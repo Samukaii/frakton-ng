@@ -1,6 +1,7 @@
 import { Component, input } from '@angular/core';
 import { MarkdownComponent } from 'ngx-markdown';
 import { MarkdownWrapperCopyButtonComponent } from '@/components/markdown/copy-button/markdown-wrapper-copy-button.component';
+import '../../prism-languages/prism-js'
 
 @Component({
     selector: 'fkt-markdown',
