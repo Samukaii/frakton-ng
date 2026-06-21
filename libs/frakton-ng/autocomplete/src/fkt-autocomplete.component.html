@@ -10,7 +10,7 @@
          [attr.aria-controls]="context.listBoxId"
          fktCustomField>
         <div class="container" [class.multiple]="context.multiple()">
-            <fkt-autocomplete-chips/>
+            <fkt-autocomplete-chips [template]="chipDirective()?.template"/>
 
             <input
                 fktAutocompleteSearch

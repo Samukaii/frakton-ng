@@ -72,10 +72,10 @@ $options-border-color: var(--fkt-select-options-border-color, var(--fkt-color-ne
 /*
 Padding for select options overlay items.
 @name --fkt-select-options-item-padding
-@reference var(--fkt-space-xs) var(--fkt-space-md)
+@reference --fkt-space-xs --fkt-space-md
 @component Options
 @category Spacing
-@type size
+@type spacing
 */
 $options-item-padding: var(--fkt-select-options-item-padding, var(--fkt-space-xs) var(--fkt-space-md));
 

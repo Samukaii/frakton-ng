@@ -7,10 +7,17 @@
             (click)="selection.removeItem(item)"
             class="chip"
         >
-            <span>
-                {{ item.label }}
-            </span>
-            <fkt-icon name="x-circle"/>
+            @if (template()) {
+                <ng-container
+                    [ngTemplateOutlet]="template()!"
+                    [ngTemplateOutletContext]="getTemplateContext(item)"
+                />
+            } @else {
+                <span>
+                    {{ item.label }}
+                </span>
+                <fkt-icon name="x-circle"/>
+            }
         </button>
     }
 }

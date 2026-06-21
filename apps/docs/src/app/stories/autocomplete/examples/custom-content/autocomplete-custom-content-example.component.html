@@ -55,4 +55,16 @@
             shape="rect"
         />
     </div>
+
+    <div *fktAutocompleteChip="let item" class="custom-chip">
+        <fkt-avatar randomBackground size="xs" [initials]="item.label"/>
+        <span>{{ item.label }}</span>
+        <fkt-icon name="x-circle"/>
+    </div>
+
+    <div *fktAutocompleteEmpty="let state" class="empty-state">
+        <fkt-icon name="magnifying-glass"/>
+        <strong>No teammates found</strong>
+        <span>{{ state.label }}</span>
+    </div>
 </fkt-autocomplete>

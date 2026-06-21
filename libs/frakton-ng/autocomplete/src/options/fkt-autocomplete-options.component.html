@@ -16,7 +16,9 @@
                 <fkt-spinner/>
             </div>
         } @else {
-            <div [style.height.px]="store.virtualData().range.topSpacerHeight"></div>
+            @if (store.virtualData().range.topSpacerHeight) {
+                <div [style.height.px]="store.virtualData().range.topSpacerHeight"></div>
+            }
             @for (group of store.virtualData().groups; track group.value) {
                 @if (group.label) {
                     @if (groupTemplate()) {
@@ -67,10 +69,19 @@
                 }
             } @empty {
                 <div class="no-results">
-                    {{ noResults().label }}
+                    @if (emptyTemplate()) {
+                        <ng-container
+                            [ngTemplateOutlet]="emptyTemplate()!"
+                            [ngTemplateOutletContext]="getEmptyTemplateContext(noResults())"
+                        />
+                    } @else {
+                        {{ noResults().label }}
+                    }
                 </div>
             }
-            <div [style.height.px]="store.virtualData().range.bottomSpacerHeight"></div>
+            @if (store.virtualData().range.bottomSpacerHeight) {
+                <div [style.height.px]="store.virtualData().range.bottomSpacerHeight"></div>
+            }
         }
     </ul>
 </fkt-infinite-loading>

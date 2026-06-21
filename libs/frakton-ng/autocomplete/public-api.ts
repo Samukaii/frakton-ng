@@ -5,6 +5,8 @@ export { FktAutocompleteOverlayDirective } from './src/directives/fkt-autocomple
 export { FktAutocompleteSelectionDirective } from './src/directives/fkt-autocomplete-selection.directive';
 
 export { FktAutocompleteItemDirective } from './src/directives/public/fkt-autocomplete-item.directive';
+export { FktAutocompleteChipDirective } from './src/directives/public/fkt-autocomplete-chip.directive';
+export { FktAutocompleteEmptyDirective } from './src/directives/public/fkt-autocomplete-empty.directive';
 export { FktAutocompleteFooterDirective } from './src/directives/public/fkt-autocomplete-footer.directive';
 export { FktAutocompleteGroupDirective } from './src/directives/public/fkt-autocomplete-group.directive';
 export { FktAutocompleteHeaderDirective } from './src/directives/public/fkt-autocomplete-header.directive';

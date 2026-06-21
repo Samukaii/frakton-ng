@@ -20,9 +20,9 @@ $tag-gap: var(--fkt-tag-gap, var(--fkt-space-xs));
 /*
 Padding for badge component.
 @name --fkt-tag-padding
-@reference var(--fkt-space-3xs) var(--fkt-space-xs)
+@reference --fkt-space-3xs --fkt-space-xs
 @category Spacing
-@type size
+@type spacing
 */
 $tag-padding: var(--fkt-tag-padding, var(--fkt-space-3xs) var(--fkt-space-xs));
 
@@ -190,68 +190,77 @@ $tag-success-faded-background: var(--fkt-tag-success-faded-background, var(--fkt
 // </design-tokens>
 
 .badge {
-	display: flex;
-	justify-content: center;
-	align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-	height: fit-content;
-	width: fit-content;
-	border-radius: $tag-border-radius;
+    height: fit-content;
+    width: fit-content;
+    border-radius: $tag-border-radius;
 
-	gap: $tag-gap;
-	padding: $tag-padding;
-	font-weight: $tag-font-weight;
-	font-size: $tag-font-size;
+    gap: $tag-gap;
+    padding: $tag-padding;
+    font-weight: $tag-font-weight;
+    font-size: $tag-font-size;
     white-space: nowrap;
 
-	&.badge--opaque {
-		&.badge--danger {
-			background-color: $tag-danger-background;
-			color: $tag-danger-color;
-		}
+    .content {
+        max-width: 100%;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        display: block;
+    }
 
-		&.badge--info {
-			background-color: $tag-info-background;
-			color: $tag-info-color;
-		}
 
-		&.badge--accent {
-			background-color: $tag-accent-background;
-			color: $tag-accent-color;
-		}
+    &.badge--opaque {
+        &.badge--danger {
+            background-color: $tag-danger-background;
+            color: $tag-danger-color;
+        }
 
-		&.badge--warning {
-			background-color: $tag-warning-background;
-			color: $tag-warning-color;
-		}
+        &.badge--info {
+            background-color: $tag-info-background;
+            color: $tag-info-color;
+        }
 
-		&.badge--success {
-			background-color: $tag-success-background;
-			color: $tag-success-color;
-		}
-	}
+        &.badge--accent {
+            background-color: $tag-accent-background;
+            color: $tag-accent-color;
+        }
 
-	&.badge--faded {
-		color: $tag-faded-text-color;
+        &.badge--warning {
+            background-color: $tag-warning-background;
+            color: $tag-warning-color;
+        }
 
-		&.badge--danger {
-			background-color: $tag-danger-faded-background;
-		}
+        &.badge--success {
+            background-color: $tag-success-background;
+            color: $tag-success-color;
+        }
+    }
 
-		&.badge--info {
-			background-color: $tag-info-faded-background;
-		}
+    &.badge--faded {
+        color: $tag-faded-text-color;
 
-		&.badge--warning {
-			background-color: $tag-warning-faded-background;
-		}
+        &.badge--danger {
+            background-color: $tag-danger-faded-background;
+        }
 
-		&.badge--accent {
-			background-color: $tag-accent-faded-background;
-		}
+        &.badge--info {
+            background-color: $tag-info-faded-background;
+        }
 
-		&.badge--success {
-			background-color: $tag-success-faded-background;
-		}
-	}
+        &.badge--warning {
+            background-color: $tag-warning-faded-background;
+        }
+
+        &.badge--accent {
+            background-color: $tag-accent-faded-background;
+        }
+
+        &.badge--success {
+            background-color: $tag-success-faded-background;
+        }
+    }
 }

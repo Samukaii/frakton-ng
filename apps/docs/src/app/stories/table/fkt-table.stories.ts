@@ -562,6 +562,7 @@ export const Sorting: Story<TableExamplesSortingComponent> = {
  *     select: FktTableFilterSelectComponent,
  *     number: FktTableFilterNumberComponent,
  *     dateRange: FktTableFilterDateRangeComponent,
+ *     myCustomFilter: MyCustomFilterComponent
  * });
  * ```
  *
@@ -571,7 +572,7 @@ export const Sorting: Story<TableExamplesSortingComponent> = {
  * {
  *     key: 'name',
  *     header: 'Name',
- *     filter: filter.text('name', {
+ *     filter: filter.myCustomFilter('name', {
  *         label: 'Search',
  *     }),
  * }
