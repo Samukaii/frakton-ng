@@ -84,6 +84,35 @@
     padding-bottom: 0;
 }
 
+.custom-chip {
+    align-items: center;
+    display: flex;
+    gap: var(--fkt-space-3xs);
+}
+
+.empty-state {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: var(--fkt-space-3xs);
+    padding: var(--fkt-space-md);
+    text-align: center;
+
+    fkt-icon {
+        color: var(--fkt-color-neutral-600);
+        font-size: var(--fkt-font-size-xl);
+    }
+
+    strong {
+        font-size: var(--fkt-font-size-sm);
+    }
+
+    span {
+        color: var(--fkt-color-neutral-700);
+        font-size: var(--fkt-font-size-xs);
+    }
+}
+
 pre {
     margin: 1rem 0 0;
 }

@@ -27,8 +27,68 @@
 
 [tag-content] {
     display: flex;
-    gap: var(--fkt-space-xs);
+    gap: var(--fkt-space-2xs);
     align-items: center;
+
+    &[data-color="info"] {
+        color: contrast-color(var(--fkt-color-info));
+
+        fkt-icon {
+            color: contrast-color(var(--fkt-color-info));
+        }
+    }
+
+    &[data-color="warning"] {
+        color: contrast-color(var(--fkt-color-warning));
+
+        fkt-icon {
+            color: contrast-color(var(--fkt-color-warning));
+        }
+    }
+
+    &[data-color="accent"] {
+        color: contrast-color(var(--fkt-color-accent));
+
+        fkt-icon {
+            color: contrast-color(var(--fkt-color-accent));
+        }
+    }
+
+    &[data-color="success"] {
+        color: contrast-color(var(--fkt-color-success));
+
+        fkt-icon {
+            color: contrast-color(var(--fkt-color-success));
+        }
+    }
+
+    &[data-color="danger"] {
+        color: contrast-color(var(--fkt-color-danger));
+
+        fkt-icon {
+            color: contrast-color(var(--fkt-color-danger));
+        }
+    }
+}
+
+fkt-tag[color="info"] [tag-content] {
+    color: contrast-color(var(--fkt-color-info));
+}
+
+fkt-tag[color="warning"] [tag-content] {
+    color: contrast-color(var(--fkt-color-warning));
+}
+
+fkt-tag[color="accent"] [tag-content] {
+    color: contrast-color(var(--fkt-color-accent));
+}
+
+fkt-tag[color="success"] [tag-content] {
+    color: contrast-color(var(--fkt-color-success));
+}
+
+fkt-tag[color="danger"] [tag-content] {
+    color: contrast-color(var(--fkt-color-danger));
 }
 
 .row {

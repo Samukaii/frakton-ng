@@ -110,8 +110,8 @@ Built-in support for multiple languages with extensible locale system:
 import {FKT_COLOR_PICKER_LOCALE_TOKEN} from 'frakton-ng/color-picker';
 import {inject} from '@angular/core';
 
-// Available locales: en, pt-br, es, fr
-// Default: pt-br (Brazilian Portuguese)
+// Available locales: en, de, pt-br, es, fr
+// Default: en (English)
 
 // Custom locale injection
 providers: [

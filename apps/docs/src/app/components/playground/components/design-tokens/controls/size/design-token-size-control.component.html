@@ -1,0 +1,18 @@
+<fkt-input
+    [label]="token().name"
+    hideLabel
+    (inputKeyDown)="onKeydown($event, token().control)"
+    placeholder="Enter the size"
+    [(value)]="token().control"
+>
+    <div *fktFormControlSuffix class="numeric-control">
+        <fkt-icon
+            (mousedown)="update($any($event), token().control, 'increase')"
+            name="chevron-up"
+        />
+        <fkt-icon
+            (mousedown)="update($any($event), token().control, 'decrease')"
+            name="chevron-down"
+        />
+    </div>
+</fkt-input>

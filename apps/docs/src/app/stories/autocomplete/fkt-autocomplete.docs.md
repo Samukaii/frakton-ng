@@ -127,9 +127,17 @@ The overlay accepts projected templates for advanced rendering:
 - `fktAutocompleteGroup`
 - `fktAutocompleteItem`
 - `fktAutocompleteFooter`
+- `fktAutocompleteChip`
+- `fktAutocompleteEmpty`
 
 Templates customize rendering only. Keyboard navigation, active descendant, selection, form value,
 and overlay behavior remain managed by the component.
+
+`fktAutocompleteChip` receives the normalized selected option. It replaces the chip content while
+the autocomplete keeps the removable button, disabled state, focus handling, and accessible label.
+
+`fktAutocompleteEmpty` receives an empty-state object containing `label`, `query`, `minSearch`, and
+`reason`. The reason is `min-search`, `query-no-results`, or `no-results`.
 
 ## Performance Directives
 

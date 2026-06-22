@@ -13,9 +13,12 @@ import {
     viewChildren,
 } from '@angular/core';
 import { FktSpinnerComponent } from 'frakton-ng/spinner';
-import { FktNoResults } from 'frakton-ng/no-results';
 import { FktIconComponent } from 'frakton-ng/icon';
-import { FktAutocompleteOption } from '../fkt-autocomplete.types';
+import {
+    FktAutocompleteEmptyContext,
+    FktAutocompleteEmptyState,
+    FktAutocompleteOption,
+} from '../fkt-autocomplete.types';
 import { NgTemplateOutlet } from '@angular/common';
 import { CallPipe, TranslatePipe } from 'frakton-ng/internal/pipes';
 import { FktAutocompleteVirtualScrollDirective } from '../directives/public/fkt-autocomplete-virtual-scroll.directive';
@@ -55,6 +58,7 @@ export class FktAutocompleteOptionsComponent<Option extends Generic | string>
     groupTemplate = input<TemplateRef<any>>();
     headerTemplate = input<TemplateRef<any>>();
     footerTemplate = input<TemplateRef<any>>();
+    emptyTemplate = input<TemplateRef<FktAutocompleteEmptyContext>>();
 
     select = output<FktAutocompleteOption<Option>>();
 
@@ -79,12 +83,15 @@ export class FktAutocompleteOptionsComponent<Option extends Generic | string>
     );
 
     protected readonly noResults =
-        this.translator.translateComputed<FktNoResults>((t) => {
+        this.translator.translateComputed<FktAutocompleteEmptyState>((t) => {
             const query = this.store.query();
             const minSearch = this.context.minSearch();
 
             if (query.length < minSearch)
                 return {
+                    query,
+                    minSearch,
+                    reason: 'min-search',
                     label:
                         minSearch === 1
                             ? t('autocomplete.noResults.fewCharacters.singular')
@@ -95,15 +102,27 @@ export class FktAutocompleteOptionsComponent<Option extends Generic | string>
 
             if (query.length)
                 return {
+                    query,
+                    minSearch,
+                    reason: 'query-no-results',
                     label: t('autocomplete.noResults.notFoundForQuery.label', {
                         query,
                     }),
                 };
 
             return {
+                query,
+                minSearch,
+                reason: 'no-results',
                 label: t('autocomplete.noResults.noResultsAtAll.label'),
             };
         });
+
+    protected getEmptyTemplateContext(
+        state: FktAutocompleteEmptyState
+    ): FktAutocompleteEmptyContext {
+        return { $implicit: state };
+    }
 
     private readonly moveFocusToActiveElement = effect(() => {
         const index = this.store.activeDescendant.index();

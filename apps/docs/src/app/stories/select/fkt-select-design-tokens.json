@@ -155,11 +155,11 @@
   {
     "description": "Padding for select options overlay items.",
     "name": "--fkt-select-options-item-padding",
-    "reference": "var(--fkt-space-xs) var(--fkt-space-md)",
+    "reference": "--fkt-space-xs --fkt-space-md",
     "component": "Options",
     "category": "Spacing",
-    "type": "size",
-    "defaultValue": "var(--fkt-space-xs) var(--fkt-space-md)"
+    "type": "spacing",
+    "defaultValue": ".5rem 1rem"
   },
   {
     "description": "Background color for hovered overlay items.",

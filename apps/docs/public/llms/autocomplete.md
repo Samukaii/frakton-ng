@@ -522,8 +522,9 @@ the component.
 - type: story
 - component: AutocompleteCustomContentExampleComponent
 
-Custom item, group, header, and footer templates. Template contexts expose the normalized option
-and selection state, so custom UI remains type-safe while the form value stays primitive.
+Custom item, group, header, footer, chip, and empty-state templates. Template contexts expose
+normalized options and search state, so custom UI remains type-safe while the form value stays
+primitive. Chip templates preserve the built-in removal behavior and accessibility contract.
 
 Example component: `AutocompleteCustomContentExampleComponent`
 
@@ -536,13 +537,16 @@ import {
     FktAutocompleteFooterDirective,
     FktAutocompleteGroupDirective,
     FktAutocompleteHeaderDirective,
-    FktAutocompleteItemDirective
+    FktAutocompleteItemDirective,
+    FktAutocompleteChipDirective,
+    FktAutocompleteEmptyDirective,
 } from 'frakton-ng/autocomplete';
 import { FktButtonComponent } from 'frakton-ng/button';
 import { USERS } from '../autocomplete-demo-data';
 import { FktAvatarComponent } from 'frakton-ng/avatar';
 import { FktTagComponent } from 'frakton-ng/tag';
 import { CodeOutputComponent } from '@/components/code-output/code-output.component';
+import { FktIconComponent } from 'frakton-ng/icon';
 
 @Component({
     selector: 'app-autocomplete-custom-content-example',
@@ -552,18 +556,23 @@ import { CodeOutputComponent } from '@/components/code-output/code-output.compon
         FktAutocompleteGroupDirective,
         FktAutocompleteItemDirective,
         FktAutocompleteFooterDirective,
+        FktAutocompleteChipDirective,
+        FktAutocompleteEmptyDirective,
         FktButtonComponent,
         ReactiveFormsModule,
         FktAvatarComponent,
         FktTagComponent,
         CodeOutputComponent,
+        FktIconComponent,
     ],
     templateUrl: './autocomplete-custom-content-example.component.html',
     styleUrl: './autocomplete-custom-content-example.component.scss',
 })
 export class AutocompleteCustomContentExampleComponent {
     protected readonly users = USERS;
-    protected readonly member = new FormControl<string | null>(null);
+    protected readonly member = new FormControl<(string | number)[]>([
+        'usr-1001',
+    ]);
     protected readonly value = toSignal(this.member.valueChanges, {
         initialValue: this.member.value,
     });
@@ -627,6 +636,18 @@ export class AutocompleteCustomContentExampleComponent {
             theme="stroked"
             shape="rect"
         />
+    </div>
+
+    <div *fktAutocompleteChip="let item" class="custom-chip">
+        <fkt-avatar randomBackground size="xs" [initials]="item.label"/>
+        <span>{{ item.label }}</span>
+        <fkt-icon name="x-circle"/>
+    </div>
+
+    <div *fktAutocompleteEmpty="let state" class="empty-state">
+        <fkt-icon name="magnifying-glass"/>
+        <strong>No teammates found</strong>
+        <span>{{ state.label }}</span>
     </div>
 </fkt-autocomplete>
 ```
@@ -716,6 +737,35 @@ export class AutocompleteCustomContentExampleComponent {
     justify-content: space-between;
     padding: var(--fkt-space-xs);
     padding-bottom: 0;
+}
+
+.custom-chip {
+    align-items: center;
+    display: flex;
+    gap: var(--fkt-space-3xs);
+}
+
+.empty-state {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: var(--fkt-space-3xs);
+    padding: var(--fkt-space-md);
+    text-align: center;
+
+    fkt-icon {
+        color: var(--fkt-color-neutral-600);
+        font-size: var(--fkt-font-size-xl);
+    }
+
+    strong {
+        font-size: var(--fkt-font-size-sm);
+    }
+
+    span {
+        color: var(--fkt-color-neutral-700);
+        font-size: var(--fkt-font-size-xs);
+    }
 }
 
 pre {
@@ -1375,7 +1425,7 @@ Example component: `AutocompleteSignalFormsExampleComponent`
 
 ```ts title="autocomplete-signal-forms-example.component.ts"
 import { Component, signal } from '@angular/core';
-import { disabled, FormField, form, required } from '@angular/forms/signals';
+import { disabled, form, FormField, required } from '@angular/forms/signals';
 import { FktAutocompleteComponent } from 'frakton-ng/autocomplete';
 import { FktButtonComponent } from 'frakton-ng/button';
 import { COUNTRIES } from '../autocomplete-demo-data';
@@ -1968,9 +2018,17 @@ The overlay accepts projected templates for advanced rendering:
 - `fktAutocompleteGroup`
 - `fktAutocompleteItem`
 - `fktAutocompleteFooter`
+- `fktAutocompleteChip`
+- `fktAutocompleteEmpty`
 
 Templates customize rendering only. Keyboard navigation, active descendant, selection, form value,
 and overlay behavior remain managed by the component.
+
+`fktAutocompleteChip` receives the normalized selected option. It replaces the chip content while
+the autocomplete keeps the removable button, disabled state, focus handling, and accessible label.
+
+`fktAutocompleteEmpty` receives an empty-state object containing `label`, `query`, `minSearch`, and
+`reason`. The reason is `min-search`, `query-no-results`, or `no-results`.
 
 ## Performance Directives
 

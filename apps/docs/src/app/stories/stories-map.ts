@@ -203,7 +203,7 @@ export const STORIES_MAP: StoryIndexer[] = [	{
 		        name: "CustomContent",
 		        type: "story",
 		        componentName: "AutocompleteCustomContentExampleComponent",
-		        description:  `Custom item, group, header, and footer templates. Template contexts expose the normalized option\nand selection state, so custom UI remains type-safe while the form value stays primitive.`,
+		        description:  `Custom item, group, header, footer, chip, and empty-state templates. Template contexts expose\nnormalized options and search state, so custom UI remains type-safe while the form value stays\nprimitive. Chip templates preserve the built-in removal behavior and accessibility contract.`,
 		        level: 3,
 		    },
 		    {

@@ -9,7 +9,14 @@ export interface DesignToken {
     category: string;
     description: string;
     component?: string;
-    type: 'size' | 'color' | 'font' | 'shadow' | 'weight' | 'opacity';
+    type:
+        | 'size'
+        | 'spacing'
+        | 'color'
+        | 'font'
+        | 'shadow'
+        | 'weight'
+        | 'opacity';
     defaultValue: string;
     scope?: DesignTokenScope;
 }

@@ -262,8 +262,9 @@ export const HydratedValues: Story<AutocompleteHydratedValueExampleComponent> =
 export const Templates: StoryIntroduction = {};
 
 /**
- * Custom item, group, header, and footer templates. Template contexts expose the normalized option
- * and selection state, so custom UI remains type-safe while the form value stays primitive.
+ * Custom item, group, header, footer, chip, and empty-state templates. Template contexts expose
+ * normalized options and search state, so custom UI remains type-safe while the form value stays
+ * primitive. Chip templates preserve the built-in removal behavior and accessibility contract.
  */
 export const CustomContent: Story<AutocompleteCustomContentExampleComponent> = {
     component: AutocompleteCustomContentExampleComponent,

@@ -36,70 +36,22 @@
 <div class="controls">
     @switch (designToken().type) {
         @case ("size") {
-            <fkt-input
-                [label]="designToken().name"
-                hideLabel
-                (inputKeyDown)="onKeyDown($event, designToken().control)"
-                placeholder="Enter the size"
-                [(value)]="designToken().control"
-            >
-                <div *fktFormControlSuffix class="numeric-control">
-                    <fkt-icon
-                        (mousedown)="increaseNumber($any($event), designToken().control)"
-                        name="chevron-up"/>
-                    <fkt-icon
-                        (mousedown)="decreaseNumber($any($event), designToken().control)"
-                        name="chevron-down"/>
-                </div>
-            </fkt-input>
+            <app-design-token-size-control [token]="designToken()"/>
+        }
+        @case ("spacing") {
+            <app-design-token-spacing-control [token]="designToken()"/>
         }
         @case ("weight") {
-            <fkt-input
-                [label]="designToken().name"
-                hideLabel
-                (inputKeyDown)="onKeyDown($event, designToken().control)"
-                placeholder="Enter the weight"
-                [(value)]="designToken().control"
-            >
-                <div *fktFormControlSuffix class="numeric-control">
-                    <fkt-icon
-                        (mousedown)="increaseNumber($any($event), designToken().control)"
-                        name="chevron-up"/>
-                    <fkt-icon
-                        (mousedown)="decreaseNumber($any($event), designToken().control)"
-                        name="chevron-down"/>
-                </div>
-            </fkt-input>
+            <app-design-token-weight-control [token]="designToken()"/>
         }
         @case ("opacity") {
-            <fkt-input
-                [label]="designToken().name"
-                hideLabel
-                type="number"
-                [minNumber]="0"
-                [maxNumber]="1"
-                [step]="0.1"
-                [maxDecimals]="2"
-                placeholder="Enter the opacity"
-                [(value)]="designToken().control"
-            >
-            </fkt-input>
+            <app-design-token-opacity-control [token]="designToken()"/>
         }
         @case ("shadow") {
-            <fkt-input
-                [label]="designToken().name"
-                hideLabel
-                placeholder="Enter a shadow value"
-                [(value)]="designToken().control"
-            >
-            </fkt-input>
+            <app-design-token-shadow-control [token]="designToken()"/>
         }
         @case ("color") {
-            <fkt-color-picker
-                [(value)]="designToken().control"
-                [showCopyButton]="false"
-                label="Pick a color"
-            />
+            <app-design-token-color-control [token]="designToken()"/>
         }
     }
 </div>

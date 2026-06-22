@@ -1,5 +1,256 @@
 [
   {
+    "scope": {
+      "name": "Field",
+      "selector": "fkt-autocomplete"
+    },
+    "description": "Vertical padding inside the input field (top and bottom spacing between border and content).",
+    "name": "--fkt-field-vertical-padding",
+    "reference": "--fkt-space-inset-3xs",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": ".5rem",
+    "component": "Field"
+  },
+  {
+    "scope": {
+      "name": "Field",
+      "selector": "fkt-autocomplete"
+    },
+    "description": "Vertical padding inside the input field (top and bottom spacing between border and content).",
+    "name": "--fkt-field-vertical-padding-sm",
+    "reference": "--fkt-space-inset-4xs",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": ".375rem",
+    "component": "Field"
+  },
+  {
+    "scope": {
+      "name": "Field",
+      "selector": "fkt-autocomplete"
+    },
+    "description": "Vertical padding inside the input field (top and bottom spacing between border and content).",
+    "name": "--fkt-field-vertical-padding-lg",
+    "reference": "--fkt-space-inset-2xs",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": ".625rem",
+    "component": "Field"
+  },
+  {
+    "scope": {
+      "name": "Field",
+      "selector": "fkt-autocomplete"
+    },
+    "description": "Horizontal padding inside the input field (left and right spacing between border and content).",
+    "name": "--fkt-field-horizontal-padding",
+    "reference": "--fkt-space-inset-2xs",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": ".625rem",
+    "component": "Field"
+  },
+  {
+    "scope": {
+      "name": "Field",
+      "selector": "fkt-autocomplete"
+    },
+    "description": "Horizontal padding inside the input field (left and right spacing between border and content).",
+    "name": "--fkt-field-horizontal-padding-sm",
+    "reference": "--fkt-space-inset-3xs",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": ".5rem",
+    "component": "Field"
+  },
+  {
+    "scope": {
+      "name": "Field",
+      "selector": "fkt-autocomplete"
+    },
+    "description": "Horizontal padding inside the input field (left and right spacing between border and content).",
+    "name": "--fkt-field-horizontal-padding-lg",
+    "reference": "--fkt-space-inset-xs",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": ".75rem",
+    "component": "Field"
+  },
+  {
+    "scope": {
+      "name": "Field",
+      "selector": "fkt-autocomplete"
+    },
+    "description": "Border color of the input in its normal (default) state.",
+    "name": "--fkt-field-border-color",
+    "reference": "--fkt-color-neutral-400",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#94a3b8",
+    "component": "Field"
+  },
+  {
+    "scope": {
+      "name": "Field",
+      "selector": "fkt-autocomplete"
+    },
+    "description": "Border color of the input when it gets focused",
+    "name": "--fkt-field-border-focus-color",
+    "reference": "--fkt-color-neutral-800",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#1e293b",
+    "component": "Field"
+  },
+  {
+    "scope": {
+      "name": "Field",
+      "selector": "fkt-autocomplete"
+    },
+    "description": "Color of the label in its normal (default) state.",
+    "name": "--fkt-field-label-color",
+    "reference": "--fkt-color-neutral-700",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#334155",
+    "component": "Field"
+  },
+  {
+    "scope": {
+      "name": "Field",
+      "selector": "fkt-autocomplete"
+    },
+    "description": "Color of the label when it gets focused",
+    "name": "--fkt-field-label-focus-color",
+    "reference": "--fkt-color-neutral-800",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#1e293b",
+    "component": "Field"
+  },
+  {
+    "scope": {
+      "name": "Field",
+      "selector": "fkt-autocomplete"
+    },
+    "description": "Border radius for input",
+    "name": "--fkt-field-border-radius",
+    "reference": "--fkt-radius-md",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": ".375rem",
+    "component": "Field"
+  },
+  {
+    "scope": {
+      "name": "Field",
+      "selector": "fkt-autocomplete"
+    },
+    "description": "Font size for input text and placeholder.",
+    "name": "--fkt-field-font-size",
+    "reference": "--fkt-font-size-sm",
+    "category": "Typography",
+    "type": "size",
+    "defaultValue": "0.875rem",
+    "component": "Field"
+  },
+  {
+    "scope": {
+      "name": "Field",
+      "selector": "fkt-autocomplete"
+    },
+    "description": "Font size for input text and placeholder.",
+    "name": "--fkt-field-font-size-sm",
+    "reference": "--fkt-font-size-xs",
+    "category": "Typography",
+    "type": "size",
+    "defaultValue": "0.75rem",
+    "component": "Field"
+  },
+  {
+    "scope": {
+      "name": "Field",
+      "selector": "fkt-autocomplete"
+    },
+    "description": "Font size for input text and placeholder.",
+    "name": "--fkt-field-font-size-lg",
+    "reference": "--fkt-font-size-md",
+    "category": "Typography",
+    "type": "size",
+    "defaultValue": "1rem",
+    "component": "Field"
+  },
+  {
+    "scope": {
+      "name": "Field",
+      "selector": "fkt-autocomplete"
+    },
+    "description": "Color for text written into input",
+    "name": "--fkt-field-text-color",
+    "reference": "--fkt-color-neutral-900",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#0f172a",
+    "component": "Field"
+  },
+  {
+    "scope": {
+      "name": "Prefix",
+      "selector": "[fktFieldPrefix]"
+    },
+    "description": "Space between prefix and field element",
+    "name": "--fkt-field-prefix-gap",
+    "reference": "--fkt-space-xs",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": ".5rem",
+    "component": "Field"
+  },
+  {
+    "scope": {
+      "name": "Prefix",
+      "selector": "[fktFieldPrefix]"
+    },
+    "description": "Text color for prefix when field is at invalid state",
+    "name": "--fkt-field-prefix-invalid-text",
+    "reference": "--fkt-color-danger",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#E7000BFF",
+    "component": "Field"
+  },
+  {
+    "scope": {
+      "name": "Suffix",
+      "selector": "[fktFieldSuffix]"
+    },
+    "description": "Space between suffix and field element",
+    "name": "--fkt-field-suffix-gap",
+    "reference": "--fkt-space-xs",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": ".5rem",
+    "component": "Field"
+  },
+  {
+    "scope": {
+      "name": "Suffix",
+      "selector": "[fktFieldSuffix]"
+    },
+    "description": "Text color for suffix when field is at invalid state",
+    "name": "--fkt-field-suffix-invalid-text",
+    "reference": "--fkt-color-danger",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#E7000BFF",
+    "component": "Field"
+  },
+  {
+    "scope": {
+      "name": "Options",
+      "selector": "fkt-autocomplete-options"
+    },
     "description": "Background color for the autocomplete options overlay.",
     "name": "--fkt-autocomplete-options-background-color",
     "reference": "--fkt-color-modal-background",
@@ -9,6 +260,10 @@
     "defaultValue": "#f1f5f9"
   },
   {
+    "scope": {
+      "name": "Options",
+      "selector": "fkt-autocomplete-options"
+    },
     "description": "Text color for the autocomplete options overlay.",
     "name": "--fkt-autocomplete-options-text-color",
     "reference": "--fkt-color-neutral-950",
@@ -18,15 +273,23 @@
     "defaultValue": "#020617"
   },
   {
+    "scope": {
+      "name": "Options",
+      "selector": "fkt-autocomplete-options"
+    },
     "description": "Border color for the autocomplete options overlay.",
     "name": "--fkt-autocomplete-options-border-color",
-    "reference": "--fkt-color-neutral-200",
+    "reference": "transparent",
     "component": "Options",
     "category": "Colors",
     "type": "color",
-    "defaultValue": "#e2e8f0"
+    "defaultValue": "transparent"
   },
   {
+    "scope": {
+      "name": "Options",
+      "selector": "fkt-autocomplete-options"
+    },
     "description": "Border radius for the autocomplete options overlay.",
     "name": "--fkt-autocomplete-options-border-radius",
     "reference": "--fkt-radius-md",
@@ -36,6 +299,10 @@
     "defaultValue": ".375rem"
   },
   {
+    "scope": {
+      "name": "Options",
+      "selector": "fkt-autocomplete-options"
+    },
     "description": "Box shadow for the autocomplete options overlay.",
     "name": "--fkt-autocomplete-options-shadow",
     "reference": "--fkt-shadow-md",
@@ -45,15 +312,23 @@
     "defaultValue": "0 4px 6px -1px var(--fkt-shadow-color-sm), 0 2px 4px -2px var(--fkt-shadow-color-md)"
   },
   {
+    "scope": {
+      "name": "Options",
+      "selector": "fkt-autocomplete-options"
+    },
     "description": "Padding for each option item in the list.",
     "name": "--fkt-autocomplete-options-item-padding",
-    "reference": "var(--fkt-space-xs) var(--fkt-space-md)",
+    "reference": "--fkt-space-xs --fkt-space-md",
     "component": "Options",
     "category": "Spacing",
-    "type": "size",
-    "defaultValue": "var(--fkt-space-xs) var(--fkt-space-md)"
+    "type": "spacing",
+    "defaultValue": ".5rem 1rem"
   },
   {
+    "scope": {
+      "name": "Options",
+      "selector": "fkt-autocomplete-options"
+    },
     "description": "Background color for option items on hover.",
     "name": "--fkt-autocomplete-options-item-hover-background",
     "reference": "--fkt-color-primary-opacity-10",
@@ -63,6 +338,10 @@
     "defaultValue": "rgba(55, 65, 81, 0.1)"
   },
   {
+    "scope": {
+      "name": "Options",
+      "selector": "fkt-autocomplete-options"
+    },
     "description": "Gap between elements in option label container.",
     "name": "--fkt-autocomplete-options-label-gap",
     "reference": "--fkt-space-3xs",
@@ -72,42 +351,88 @@
     "defaultValue": ".25rem"
   },
   {
-    "description": "Color for success/check icons in options.",
-    "name": "--fkt-autocomplete-options-success-icon-color",
-    "reference": "--fkt-color-success",
+    "scope": {
+      "name": "Options",
+      "selector": "fkt-autocomplete-options"
+    },
+    "description": "Background color for selected options.",
+    "name": "--fkt-autocomplete-options-selected-background-color",
+    "reference": "--fkt-color-neutral-800",
     "component": "Options",
     "category": "Colors",
     "type": "color",
-    "defaultValue": "#00C950FF"
+    "defaultValue": "#1e293b"
   },
   {
-    "description": "Color for action icons in options.",
-    "name": "--fkt-autocomplete-options-icon-color",
-    "reference": "--fkt-color-neutral-700",
+    "scope": {
+      "name": "Options",
+      "selector": "fkt-autocomplete-options"
+    },
+    "description": "Text color for selected options.",
+    "name": "--fkt-autocomplete-options-selected-text-color",
+    "reference": "--fkt-color-neutral-50",
     "component": "Options",
     "category": "Colors",
     "type": "color",
-    "defaultValue": "#334155"
+    "defaultValue": "#f8fafc"
   },
   {
-    "description": "Size for action icons in options.",
-    "name": "--fkt-autocomplete-options-icon-size",
-    "reference": "--fkt-space-xl",
-    "component": "Options",
-    "category": "Spacing",
-    "type": "size",
-    "defaultValue": "1.5rem"
-  },
-  {
-    "description": "Minimum height for no results component.",
+    "scope": {
+      "name": "Options",
+      "selector": "fkt-autocomplete-options"
+    },
+    "description": "Minimum height for the empty state.",
     "name": "--fkt-autocomplete-options-no-results-min-height",
-    "reference": "0px",
+    "reference": "3.125rem",
     "component": "Options",
     "category": "Spacing",
     "type": "size",
-    "defaultValue": "0px"
+    "defaultValue": "3.125rem"
   },
   {
+    "scope": {
+      "name": "Options",
+      "selector": "fkt-autocomplete-options"
+    },
+    "description": "Text color for the empty state.",
+    "name": "--fkt-autocomplete-options-no-results-text-color",
+    "reference": "--fkt-color-neutral-800",
+    "component": "Options",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#1e293b"
+  },
+  {
+    "scope": {
+      "name": "Options",
+      "selector": "fkt-autocomplete-options"
+    },
+    "description": "Padding for group labels.",
+    "name": "--fkt-autocomplete-options-group-padding",
+    "reference": "--fkt-space-xs --fkt-space-xs",
+    "component": "Options",
+    "category": "Spacing",
+    "type": "spacing",
+    "defaultValue": ".5rem .5rem"
+  },
+  {
+    "scope": {
+      "name": "Options",
+      "selector": "fkt-autocomplete-options"
+    },
+    "description": "Text color for group labels.",
+    "name": "--fkt-autocomplete-options-group-text-color",
+    "reference": "--fkt-color-neutral-600",
+    "component": "Options",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#475569"
+  },
+  {
+    "scope": {
+      "name": "Options",
+      "selector": "fkt-autocomplete-options"
+    },
     "description": "Padding for spinner container.",
     "name": "--fkt-autocomplete-options-spinner-padding",
     "reference": "--fkt-space-md",
@@ -115,5 +440,135 @@
     "category": "Spacing",
     "type": "size",
     "defaultValue": "1rem"
+  },
+  {
+    "scope": {
+      "name": "Chips",
+      "selector": "fkt-autocomplete-chips"
+    },
+    "description": "Background color for selected value chips.",
+    "name": "--fkt-autocomplete-chip-background-color",
+    "reference": "--fkt-color-neutral-300",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#cbd5e1",
+    "component": "Chips"
+  },
+  {
+    "scope": {
+      "name": "Chips",
+      "selector": "fkt-autocomplete-chips"
+    },
+    "description": "Text color for selected value chips.",
+    "name": "--fkt-autocomplete-chip-text-color",
+    "reference": "--fkt-color-neutral-700",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#334155",
+    "component": "Chips"
+  },
+  {
+    "scope": {
+      "name": "Chips",
+      "selector": "fkt-autocomplete-chips"
+    },
+    "description": "Background color for chips when hovered.",
+    "name": "--fkt-autocomplete-chip-hover-background-color",
+    "reference": "--fkt-color-neutral-400",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#94a3b8",
+    "component": "Chips"
+  },
+  {
+    "scope": {
+      "name": "Chips",
+      "selector": "fkt-autocomplete-chips"
+    },
+    "description": "Background color for disabled chips.",
+    "name": "--fkt-autocomplete-chip-disabled-background-color",
+    "reference": "--fkt-color-neutral-300",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#cbd5e1",
+    "component": "Chips"
+  },
+  {
+    "scope": {
+      "name": "Chips",
+      "selector": "fkt-autocomplete-chips"
+    },
+    "description": "Border color for disabled chips.",
+    "name": "--fkt-autocomplete-chip-disabled-border-color",
+    "reference": "--fkt-color-neutral-400",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#94a3b8",
+    "component": "Chips"
+  },
+  {
+    "scope": {
+      "name": "Chips",
+      "selector": "fkt-autocomplete-chips"
+    },
+    "description": "Text color for disabled chips.",
+    "name": "--fkt-autocomplete-chip-disabled-text-color",
+    "reference": "--fkt-color-neutral-500",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#64748b",
+    "component": "Chips"
+  },
+  {
+    "scope": {
+      "name": "Chips",
+      "selector": "fkt-autocomplete-chips"
+    },
+    "description": "Font size for selected value chips.",
+    "name": "--fkt-autocomplete-chip-font-size",
+    "reference": "--fkt-font-size-xs",
+    "category": "Typography",
+    "type": "size",
+    "defaultValue": "0.75rem",
+    "component": "Chips"
+  },
+  {
+    "scope": {
+      "name": "Chips",
+      "selector": "fkt-autocomplete-chips"
+    },
+    "description": "Padding inside selected value chips.",
+    "name": "--fkt-autocomplete-chip-padding",
+    "reference": "--fkt-space-4xs --fkt-space-xs",
+    "category": "Spacing",
+    "type": "spacing",
+    "defaultValue": ".125rem .5rem",
+    "component": "Chips"
+  },
+  {
+    "scope": {
+      "name": "Chips",
+      "selector": "fkt-autocomplete-chips"
+    },
+    "description": "Gap between the chip label and remove icon.",
+    "name": "--fkt-autocomplete-chip-gap",
+    "reference": "--fkt-space-3xs",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": ".25rem",
+    "component": "Chips"
+  },
+  {
+    "scope": {
+      "name": "Chips",
+      "selector": "fkt-autocomplete-chips"
+    },
+    "description": "Border radius for selected value chips.",
+    "name": "--fkt-autocomplete-chip-border-radius",
+    "reference": "--fkt-radius-full",
+    "category": "Shape",
+    "type": "size",
+    "defaultValue": "9999px",
+    "component": "Chips"
   }
 ]

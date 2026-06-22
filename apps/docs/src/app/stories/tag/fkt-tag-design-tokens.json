@@ -18,10 +18,10 @@
   {
     "description": "Padding for badge component.",
     "name": "--fkt-tag-padding",
-    "reference": "var(--fkt-space-3xs) var(--fkt-space-xs)",
+    "reference": "--fkt-space-3xs --fkt-space-xs",
     "category": "Spacing",
-    "type": "size",
-    "defaultValue": "var(--fkt-space-3xs) var(--fkt-space-xs)"
+    "type": "spacing",
+    "defaultValue": ".25rem .5rem"
   },
   {
     "description": "Font weight for badge text.",
