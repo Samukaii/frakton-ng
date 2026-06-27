@@ -8,6 +8,6 @@ export interface DesignToken {
 		name: string;
 		selector: string;
 	};
-	type: 'size' | 'color';
+	type: 'size' | 'spacing' | 'color' | 'shadow' | 'weight' | 'opacity';
 	defaultValue: string;
 }

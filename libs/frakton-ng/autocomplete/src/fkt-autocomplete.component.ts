@@ -1,12 +1,10 @@
 import {
     AfterViewInit,
-    booleanAttribute,
     Component,
     computed,
     contentChild,
     effect,
     inject,
-    input,
     Optional,
     Self,
     viewChild,
@@ -34,6 +32,7 @@ import {
 } from './utils/normalize-written-autocomplete-value';
 import { FktAutocompleteChipsComponent } from './components/chips/fkt-autocomplete-chips.component';
 import { FktAutocompleteActionButtonComponent } from './components/action-button/fkt-autocomplete-action-button.component';
+import { FktAutocompleteChipDirective } from './directives/public/fkt-autocomplete-chip.directive';
 
 @Component({
     selector: 'fkt-autocomplete',
@@ -68,14 +67,13 @@ import { FktAutocompleteActionButtonComponent } from './components/action-button
                 'listHeight',
                 'placeholder',
                 'freeText',
-                'isDropdownOpened',
                 'hint',
                 'showError',
                 'size',
                 'requiredMarker',
                 'hideLabel'
             ],
-            outputs: ['isDropdownOpenedChange', 'searchChange'],
+            outputs: ['dropdownOpenChange', 'searchChange'],
         },
         FktAutocompleteOverlayDirective,
         FktAutocompleteSelectionDirective,
@@ -110,6 +108,9 @@ export class FktAutocompleteComponent<Option extends Generic | string>
     protected readonly errorDirective = contentChild(FktErrorDirective);
     protected readonly fieldPrefixDirective = contentChild(
         FktFieldPrefixDirective
+    );
+    protected readonly chipDirective = contentChild(
+        FktAutocompleteChipDirective
     );
 
     private onChange?: (value: FktAutocompleteValue) => void;

@@ -1,23 +1,6 @@
 // <design-tokens>
-/*
-Padding for spinner container in select options overlay.
-@name --fkt-select-options-spinner-padding
-@reference --fkt-space-md
-@component Options
-@category Spacing
-@type size
-*/
-$options-spinner-padding: var(--fkt-select-options-spinner-padding, var(--fkt-space-md));
 
-/*
-Font size for select options
-@name --fkt-select-options-font-size
-@reference --fkt-font-size-md
-@component Options
-@category Font
-@type size
-*/
-$font-size: var(--fkt-select-options-font-size, var(--fkt-font-size-md));
+/* @scope Options */
 
 /*
 Background color for the select options overlay.
@@ -40,14 +23,14 @@ Text color for the select options overlay.
 $options-text-color: var(--fkt-select-options-text-color, var(--fkt-color-neutral-950));
 
 /*
-Box shadow for the select options overlay.
-@name --fkt-select-options-shadow
-@reference --fkt-shadow-md
+Border color for select option items.
+@name --fkt-select-options-border-color
+@reference transparent
 @component Options
-@category Effects
-@type shadow
+@category Colors
+@type color
 */
-$options-shadow: var(--fkt-select-options-shadow, var(--fkt-shadow-md));
+$options-border-color: var(--fkt-select-options-border-color, transparent);
 
 /*
 Border radius for the select options overlay.
@@ -60,27 +43,27 @@ Border radius for the select options overlay.
 $options-border-radius: var(--fkt-select-options-border-radius, var(--fkt-radius-md));
 
 /*
-Border color for the select options overlay.
-@name --fkt-select-options-border-color
-@reference --fkt-color-neutral-200
+Box shadow for the select options overlay.
+@name --fkt-select-options-shadow
+@reference --fkt-shadow-md
 @component Options
-@category Colors
-@type color
+@category Effects
+@type shadow
 */
-$options-border-color: var(--fkt-select-options-border-color, var(--fkt-color-neutral-200));
+$options-shadow: var(--fkt-select-options-shadow, var(--fkt-shadow-md));
 
 /*
-Padding for select options overlay items.
+Padding for each option item.
 @name --fkt-select-options-item-padding
-@reference var(--fkt-space-xs) var(--fkt-space-md)
+@reference --fkt-space-xs --fkt-space-md
 @component Options
 @category Spacing
-@type size
+@type spacing
 */
 $options-item-padding: var(--fkt-select-options-item-padding, var(--fkt-space-xs) var(--fkt-space-md));
 
 /*
-Background color for hovered overlay items.
+Background color for option items on hover.
 @name --fkt-select-options-item-hover-background
 @reference --fkt-color-primary-opacity-10
 @component Options
@@ -90,99 +73,195 @@ Background color for hovered overlay items.
 $options-item-hover-background: var(--fkt-select-options-item-hover-background, var(--fkt-color-primary-opacity-10));
 
 /*
-Background color for active/selected overlay items.
-@name --fkt-select-options-item-active-background
-@reference --fkt-color-neutral-200
-@component Options
-@category Colors
-@type color
-*/
-$options-item-active-background: var(--fkt-select-options-item-active-background, var(--fkt-color-neutral-200));
-
-/*
-Color for icons in overlay items.
-@name --fkt-select-options-icon-color
-@reference --fkt-color-neutral-700
-@component Options
-@category Colors
-@type color
-*/
-$options-icon-color: var(--fkt-select-options-icon-color, var(--fkt-color-neutral-700));
-
-/*
-Size for icons in overlay items.
-@name --fkt-select-options-icon-size
-@reference --fkt-space-xl
+Gap between elements in the option label container.
+@name --fkt-select-options-label-gap
+@reference --fkt-space-3xs
 @component Options
 @category Spacing
 @type size
 */
-$options-icon-size: var(--fkt-select-options-icon-size, var(--fkt-space-xl));
+$options-label-gap: var(--fkt-select-options-label-gap, var(--fkt-space-3xs));
+
+/*
+Background color for selected options.
+@name --fkt-select-options-selected-background-color
+@reference --fkt-color-neutral-800
+@component Options
+@category Colors
+@type color
+*/
+$options-selected-background-color: var(--fkt-select-options-selected-background-color, var(--fkt-color-neutral-800));
+
+/*
+Text color for selected options.
+@name --fkt-select-options-selected-text-color
+@reference --fkt-color-neutral-50
+@component Options
+@category Colors
+@type color
+*/
+$options-selected-text-color: var(--fkt-select-options-selected-text-color, var(--fkt-color-neutral-50));
+
+/*
+Minimum height for the empty state.
+@name --fkt-select-options-no-results-min-height
+@reference 3.125rem
+@component Options
+@category Spacing
+@type size
+*/
+$options-no-results-min-height: var(--fkt-select-options-no-results-min-height, 3.125rem);
+
+/*
+Text color for the empty state.
+@name --fkt-select-options-no-results-text-color
+@reference --fkt-color-neutral-800
+@component Options
+@category Colors
+@type color
+*/
+$options-no-results-text-color: var(--fkt-select-options-no-results-text-color, var(--fkt-color-neutral-800));
+
+/*
+Padding for group labels.
+@name --fkt-select-options-group-padding
+@reference --fkt-space-xs --fkt-space-xs
+@component Options
+@category Spacing
+@type spacing
+*/
+$options-group-padding: var(--fkt-select-options-group-padding, var(--fkt-space-xs) var(--fkt-space-xs));
+
+/*
+Text color for group labels.
+@name --fkt-select-options-group-text-color
+@reference --fkt-color-neutral-600
+@component Options
+@category Colors
+@type color
+*/
+$options-group-text-color: var(--fkt-select-options-group-text-color, var(--fkt-color-neutral-600));
+
+/*
+Padding for the spinner container.
+@name --fkt-select-options-spinner-padding
+@reference --fkt-space-md
+@component Options
+@category Spacing
+@type size
+*/
+$options-spinner-padding: var(--fkt-select-options-spinner-padding, var(--fkt-space-md));
+
 // </design-tokens>
 
 :host {
-	display: block;
-	width: 100%;
-	color: $options-text-color;
+    background-color: $options-background-color;
+    box-sizing: border-box;
+    color: $options-text-color;
+    display: flex;
+    flex-direction: column;
+    padding: var(--fkt-space-2xs);
+    width: 100%;
 
-	* {
-		box-sizing: border-box;
-	}
+    * {
+        box-sizing: border-box;
+    }
 }
 
-.spinner-container {
-	display: flex;
-	width: 100%;
-	justify-content: center;
-	align-items: center;
-	padding: $options-spinner-padding;
+.no-results {
+    align-items: center;
+    color: $options-no-results-text-color;
+    display: flex;
+    font-size: var(--fkt-font-size-sm);
+    justify-content: center;
+    min-height: $options-no-results-min-height;
 }
 
 .overlay {
-	background-color: $options-background-color;
-	width: 100%;
-	box-shadow: $options-shadow;
-	border-radius: $options-border-radius;
-	border: solid 1px $options-border-color;
-	z-index: 10;
-	padding: 0;
-	margin: 0;
+    border-radius: $options-border-radius;
+    list-style: none;
+    margin: 0;
+    overflow-y: auto;
+    padding: 0;
+    width: 100%;
+    z-index: 10;
 
-	li {
-		padding: $options-item-padding;
-		cursor: pointer;
-		transition: var(--fkt-transition-base);
-		display: flex;
-		justify-content: space-between;
-        font-size: $font-size;
+    .group {
+        color: $options-group-text-color;
+        font-size: var(--fkt-font-size-xs);
+        font-weight: var(--fkt-font-semibold);
+        padding: $options-group-padding;
+    }
 
-		&:focus {
-			outline: none;
-			background-color: $options-item-hover-background;
-			border-color: $options-item-hover-background;
-		}
+    .item {
+        align-items: center;
+        border: 1px solid $options-border-color;
+        border-radius: var(--fkt-radius-sm);
+        box-sizing: border-box;
+        cursor: pointer;
+        display: flex;
+        font-size: var(--fkt-font-size-sm);
+        justify-content: space-between;
+        padding: $options-item-padding;
+        transition: var(--fkt-transition-slow);
 
-		&:first-child {
-			border-radius: $options-border-radius $options-border-radius 0 0;
-		}
+        &:hover {
+            background-color: $options-item-hover-background;
+        }
 
-		&:last-child {
-			border-radius: 0 0 $options-border-radius $options-border-radius;
-		}
+        .label-container {
+            display: flex;
+            gap: $options-label-gap;
+            justify-content: space-between;
+            width: 100%;
+        }
 
-		&:hover {
-			background-color: $options-item-hover-background;
-			border-color: $options-item-hover-background;
-		}
+        .label {
+            align-items: center;
+            display: flex;
+        }
 
-		&.active {
-			background-color: $options-item-active-background;
-		}
+        &.selected {
+            background: $options-selected-background-color;
+            color: $options-selected-text-color;
 
-		fkt-icon {
-			color: $options-icon-color;
-			height: $options-icon-size;
-			width: $options-icon-size;
-		}
-	}
+            &:hover {
+                background: color-mix(in srgb, $options-selected-background-color, black 12%);
+            }
+
+            fkt-icon {
+                color: $options-selected-text-color;
+                font-size: var(--fkt-font-size-sm);
+                font-weight: var(--fkt-font-semibold);
+            }
+        }
+    }
+
+    [role="option"] {
+        border-radius: var(--fkt-radius-sm);
+        outline: none;
+        padding-bottom: var(--fkt-space-3xs);
+
+        &:last-child {
+            padding-bottom: 0;
+        }
+
+        &.virtual-focused {
+            .item {
+                background-color: $options-item-hover-background;
+
+                &.selected {
+                    background-color: color-mix(in srgb, $options-selected-background-color, white 24%);
+                }
+            }
+        }
+    }
+}
+
+.spinner-container {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    padding: $options-spinner-padding;
+    width: 100%;
 }

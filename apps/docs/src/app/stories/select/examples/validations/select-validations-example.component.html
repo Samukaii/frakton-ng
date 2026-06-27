@@ -1,0 +1,37 @@
+<div class="actions">
+    <fkt-button
+        theme="stroked"
+        iconPosition="left"
+        icon="check-circle"
+        shape="rect"
+        text="Validate"
+        (click)="validate()"
+    />
+</div>
+
+<div class="fields">
+    <fkt-select
+        label="Automatic validation"
+        placeholder="Select an assignee"
+        [formControl]="automatic"
+        [options]="users"
+        labelKey="name"
+        valueKey="id"
+    >
+        <fkt-icon fktFieldPrefix name="user"/>
+    </fkt-select>
+
+    <fkt-select
+        label="Custom validation"
+        placeholder="Select an assignee"
+        [formControl]="custom"
+        [options]="users"
+        labelKey="name"
+        valueKey="id"
+    >
+        <fkt-icon fktFieldPrefix name="user"/>
+        <fkt-field-error fktError>
+            Select the user responsible for this task.
+        </fkt-field-error>
+    </fkt-select>
+</div>

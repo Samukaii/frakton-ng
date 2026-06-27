@@ -1,5 +1,7 @@
 <div [class]="classes()">
-	<ng-content select="[tag-content]">
-		{{ text() }}
-	</ng-content>
+    <ng-content select="[tag-content]">
+        <div class="content">
+            {{ text() }}
+        </div>
+    </ng-content>
 </div>

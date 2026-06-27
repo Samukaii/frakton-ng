@@ -1,0 +1,21 @@
+<div class="actions">
+    <fkt-button
+        theme="stroked"
+        iconPosition="left"
+        icon="pencil"
+        shape="rect"
+        text="Write hydrated user"
+        (click)="fill()"
+    />
+</div>
+
+<fkt-select
+    label="Assignee"
+    placeholder="Select an assignee"
+    [formControl]="assignee"
+    [options]="users"
+    labelKey="name"
+    valueKey="id"
+/>
+
+<app-code-output [value]="value()" title="Normalized field value"/>

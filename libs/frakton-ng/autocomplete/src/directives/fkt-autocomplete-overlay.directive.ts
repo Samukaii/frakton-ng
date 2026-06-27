@@ -19,7 +19,7 @@ import { FktAutocompleteFooterDirective } from './public/fkt-autocomplete-footer
 import { FktAutocompleteSelectionDirective } from './fkt-autocomplete-selection.directive';
 import { FktAutocompleteStoreService } from '../services/fkt-autocomplete-store.service';
 import { FktAutocompleteContextDirective } from './fkt-autocomplete-context.directive';
-import { FktNoResults } from 'frakton-ng/no-results';
+import { FktAutocompleteEmptyDirective } from './public/fkt-autocomplete-empty.directive';
 
 @Directive({ selector: 'fkt-autocomplete[fktAutocompleteOverlay]' })
 export class FktAutocompleteOverlayDirective<Option extends Generic | string> {
@@ -43,12 +43,15 @@ export class FktAutocompleteOverlayDirective<Option extends Generic | string> {
     private readonly footerTemplate = contentChild(
         FktAutocompleteFooterDirective
     );
+    private readonly emptyTemplate = contentChild(
+        FktAutocompleteEmptyDirective
+    );
 
     private readonly syncDropdownState = effect(() => {
-        const isDropdownOpened = this.context.isDropdownOpened();
+        const opened = this.context.dropdownOpened();
 
         untracked(() => {
-            if (isDropdownOpened) this.open();
+            if (opened) this.open();
             else this.close();
         });
     });
@@ -70,6 +73,7 @@ export class FktAutocompleteOverlayDirective<Option extends Generic | string> {
                 itemTemplate: this.itemTemplate()?.template,
                 headerTemplate: this.headerTemplate()?.template,
                 footerTemplate: this.footerTemplate()?.template,
+                emptyTemplate: this.emptyTemplate()?.template,
                 select: (option) => {
                     this.selectionService.selectItem(option);
                     this.restoreFocus();
@@ -96,7 +100,12 @@ export class FktAutocompleteOverlayDirective<Option extends Generic | string> {
                 inheritDesignTokensFrom: this.elementRef.nativeElement,
                 distanceFromAnchor: '4px 0',
                 maxHeight: 'fit-content',
-                borderRadius: 'var(--fkt-radius-sm)',
+                borderRadius:
+                    'var(--fkt-autocomplete-options-border-radius, var(--fkt-radius-md))',
+                backgroundColor:
+                    'var(--fkt-autocomplete-options-background-color, var(--fkt-color-modal-background))',
+                boxShadow:
+                    'var(--fkt-autocomplete-options-shadow, var(--fkt-shadow-md))',
                 parentInjector: this.injector,
             },
         });

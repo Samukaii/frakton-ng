@@ -1,196 +1,262 @@
 // @ts-nocheck
 import { ExternalExample } from '@/models/external-example';
-import asyncLoadingExampleTemplate from "./async-loading-example/async-loading-example.component.html" with {loader: "text"};
-import asyncLoadingExampleStyles from "./async-loading-example/async-loading-example.component.scss" with {loader: "text"};
-import asyncLoadingExampleTypescript from "./async-loading-example/async-loading-example.component.ts" with {loader: "text"};
-import defaultExampleTemplate from "./default-example/default-example.component.html" with {loader: "text"};
-import defaultExampleStyles from "./default-example/default-example.component.scss" with {loader: "text"};
-import defaultExampleTypescript from "./default-example/default-example.component.ts" with {loader: "text"};
-import disabledExampleTemplate from "./disabled-example/disabled-example.component.html" with {loader: "text"};
-import disabledExampleStyles from "./disabled-example/disabled-example.component.scss" with {loader: "text"};
-import disabledExampleTypescript from "./disabled-example/disabled-example.component.ts" with {loader: "text"};
-import emptyStateExampleTemplate from "./empty-state-example/empty-state-example.component.html" with {loader: "text"};
-import emptyStateExampleStyles from "./empty-state-example/empty-state-example.component.scss" with {loader: "text"};
-import emptyStateExampleTypescript from "./empty-state-example/empty-state-example.component.ts" with {loader: "text"};
-import largeListExampleTemplate from "./large-list-example/large-list-example.component.html" with {loader: "text"};
-import largeListExampleStyles from "./large-list-example/large-list-example.component.scss" with {loader: "text"};
-import largeListExampleTypescript from "./large-list-example/large-list-example.component.ts" with {loader: "text"};
-import loadingExampleTemplate from "./loading-example/loading-example.component.html" with {loader: "text"};
-import loadingExampleStyles from "./loading-example/loading-example.component.scss" with {loader: "text"};
-import loadingExampleTypescript from "./loading-example/loading-example.component.ts" with {loader: "text"};
-import preselectedExampleTemplate from "./preselected-example/preselected-example.component.html" with {loader: "text"};
-import preselectedExampleStyles from "./preselected-example/preselected-example.component.scss" with {loader: "text"};
-import preselectedExampleTypescript from "./preselected-example/preselected-example.component.ts" with {loader: "text"};
-import validationExampleTemplate from "./validation-example/validation-example.component.html" with {loader: "text"};
-import validationExampleStyles from "./validation-example/validation-example.component.scss" with {loader: "text"};
-import validationExampleTypescript from "./validation-example/validation-example.component.ts" with {loader: "text"};
+import selectBasicExampleTemplate from "./basic/select-basic-example.component.html" with {loader: "text"};
+import selectBasicExampleStyles from "./basic/select-basic-example.component.scss" with {loader: "text"};
+import selectBasicExampleTypescript from "./basic/select-basic-example.component.ts" with {loader: "text"};
+import selectCustomContentExampleTemplate from "./custom-content/select-custom-content-example.component.html" with {loader: "text"};
+import selectCustomContentExampleStyles from "./custom-content/select-custom-content-example.component.scss" with {loader: "text"};
+import selectCustomContentExampleTypescript from "./custom-content/select-custom-content-example.component.ts" with {loader: "text"};
+import selectFieldCompositionExampleTemplate from "./field-composition/select-field-composition-example.component.html" with {loader: "text"};
+import selectFieldCompositionExampleTypescript from "./field-composition/select-field-composition-example.component.ts" with {loader: "text"};
+import selectFunctionKeysExampleTemplate from "./function-keys/select-function-keys-example.component.html" with {loader: "text"};
+import selectFunctionKeysExampleStyles from "./function-keys/select-function-keys-example.component.scss" with {loader: "text"};
+import selectFunctionKeysExampleTypescript from "./function-keys/select-function-keys-example.component.ts" with {loader: "text"};
+import selectHydratedValueExampleTemplate from "./hydrated-value/select-hydrated-value-example.component.html" with {loader: "text"};
+import selectHydratedValueExampleStyles from "./hydrated-value/select-hydrated-value-example.component.scss" with {loader: "text"};
+import selectHydratedValueExampleTypescript from "./hydrated-value/select-hydrated-value-example.component.ts" with {loader: "text"};
+import selectLazyFetchingExampleTemplate from "./lazy-fetching/select-lazy-fetching-example.component.html" with {loader: "text"};
+import selectLazyFetchingExampleStyles from "./lazy-fetching/select-lazy-fetching-example.component.scss" with {loader: "text"};
+import selectLazyFetchingExampleTypescript from "./lazy-fetching/select-lazy-fetching-example.component.ts" with {loader: "text"};
+import selectMultipleExampleTemplate from "./multiple/select-multiple-example.component.html" with {loader: "text"};
+import selectMultipleExampleStyles from "./multiple/select-multiple-example.component.scss" with {loader: "text"};
+import selectMultipleExampleTypescript from "./multiple/select-multiple-example.component.ts" with {loader: "text"};
+import selectObjectOptionsExampleTemplate from "./object-options/select-object-options-example.component.html" with {loader: "text"};
+import selectObjectOptionsExampleStyles from "./object-options/select-object-options-example.component.scss" with {loader: "text"};
+import selectObjectOptionsExampleTypescript from "./object-options/select-object-options-example.component.ts" with {loader: "text"};
+import selectReactiveFormsExampleTemplate from "./reactive-forms/select-reactive-forms-example.component.html" with {loader: "text"};
+import selectReactiveFormsExampleStyles from "./reactive-forms/select-reactive-forms-example.component.scss" with {loader: "text"};
+import selectReactiveFormsExampleTypescript from "./reactive-forms/select-reactive-forms-example.component.ts" with {loader: "text"};
+import selectSignalFormsExampleTemplate from "./signal-forms/select-signal-forms-example.component.html" with {loader: "text"};
+import selectSignalFormsExampleStyles from "./signal-forms/select-signal-forms-example.component.scss" with {loader: "text"};
+import selectSignalFormsExampleTypescript from "./signal-forms/select-signal-forms-example.component.ts" with {loader: "text"};
+import selectValidationsExampleTemplate from "./validations/select-validations-example.component.html" with {loader: "text"};
+import selectValidationsExampleStyles from "./validations/select-validations-example.component.scss" with {loader: "text"};
+import selectValidationsExampleTypescript from "./validations/select-validations-example.component.ts" with {loader: "text"};
 
 
 export default {
-	AsyncLoadingExampleComponent: {
-		name: "AsyncLoadingExample",
+	SelectBasicExampleComponent: {
+		name: "SelectBasicExample",
 		files: [
 		
 			{
-				name: "async-loading-example.component.html",
-				content: asyncLoadingExampleTemplate as string,
+				name: "select-basic-example.component.html",
+				content: selectBasicExampleTemplate as string,
 				language: "angular2html" as const,
-			},		
+			},
 			{
-				name: "async-loading-example.component.ts",
-				content: asyncLoadingExampleTypescript as string,
+				name: "select-basic-example.component.ts",
+				content: selectBasicExampleTypescript as string,
 				language: "typescript" as const,
-			},		
+			},
 			{
-				name: "async-loading-example.component.scss",
-				content: asyncLoadingExampleStyles as string,
+				name: "select-basic-example.component.scss",
+				content: selectBasicExampleStyles as string,
 				language: "css" as const,
 			},		
 		]
 	},
-	DefaultExampleComponent: {
-		name: "DefaultExample",
+	SelectCustomContentExampleComponent: {
+		name: "SelectCustomContentExample",
+		files: [
+
+			{
+				name: "select-custom-content-example.component.html",
+				content: selectCustomContentExampleTemplate as string,
+				language: "angular2html" as const,
+			},
+			{
+				name: "select-custom-content-example.component.ts",
+				content: selectCustomContentExampleTypescript as string,
+				language: "typescript" as const,
+			},
+			{
+				name: "select-custom-content-example.component.scss",
+				content: selectCustomContentExampleStyles as string,
+				language: "css" as const,
+			},
+		]
+	},
+	SelectFieldCompositionExampleComponent: {
+		name: "SelectFieldCompositionExample",
+		files: [
+
+			{
+				name: "select-field-composition-example.component.html",
+				content: selectFieldCompositionExampleTemplate as string,
+				language: "angular2html" as const,
+			},
+			{
+				name: "select-field-composition-example.component.ts",
+				content: selectFieldCompositionExampleTypescript as string,
+				language: "typescript" as const,
+			},
+		]
+	},
+	SelectFunctionKeysExampleComponent: {
+		name: "SelectFunctionKeysExample",
 		files: [
 		
 			{
-				name: "default-example.component.html",
-				content: defaultExampleTemplate as string,
+				name: "select-function-keys-example.component.html",
+				content: selectFunctionKeysExampleTemplate as string,
 				language: "angular2html" as const,
-			},		
+			},
 			{
-				name: "default-example.component.ts",
-				content: defaultExampleTypescript as string,
+				name: "select-function-keys-example.component.ts",
+				content: selectFunctionKeysExampleTypescript as string,
 				language: "typescript" as const,
 			},		
 			{
-				name: "default-example.component.scss",
-				content: defaultExampleStyles as string,
+				name: "select-function-keys-example.component.scss",
+				content: selectFunctionKeysExampleStyles as string,
+				language: "css" as const,
+			},
+		]
+	},
+	SelectHydratedValueExampleComponent: {
+		name: "SelectHydratedValueExample",
+		files: [
+
+			{
+				name: "select-hydrated-value-example.component.html",
+				content: selectHydratedValueExampleTemplate as string,
+				language: "angular2html" as const,
+			},
+			{
+				name: "select-hydrated-value-example.component.ts",
+				content: selectHydratedValueExampleTypescript as string,
+				language: "typescript" as const,
+			},		
+			{
+				name: "select-hydrated-value-example.component.scss",
+				content: selectHydratedValueExampleStyles as string,
 				language: "css" as const,
 			},		
 		]
 	},
-	DisabledExampleComponent: {
-		name: "DisabledExample",
+	SelectLazyFetchingExampleComponent: {
+		name: "SelectLazyFetchingExample",
 		files: [
 		
 			{
-				name: "disabled-example.component.html",
-				content: disabledExampleTemplate as string,
+				name: "select-lazy-fetching-example.component.html",
+				content: selectLazyFetchingExampleTemplate as string,
 				language: "angular2html" as const,
 			},		
 			{
-				name: "disabled-example.component.ts",
-				content: disabledExampleTypescript as string,
+				name: "select-lazy-fetching-example.component.ts",
+				content: selectLazyFetchingExampleTypescript as string,
 				language: "typescript" as const,
 			},		
 			{
-				name: "disabled-example.component.scss",
-				content: disabledExampleStyles as string,
+				name: "select-lazy-fetching-example.component.scss",
+				content: selectLazyFetchingExampleStyles as string,
 				language: "css" as const,
 			},		
 		]
 	},
-	EmptyStateExampleComponent: {
-		name: "EmptyStateExample",
+	SelectMultipleExampleComponent: {
+		name: "SelectMultipleExample",
 		files: [
 		
 			{
-				name: "empty-state-example.component.html",
-				content: emptyStateExampleTemplate as string,
+				name: "select-multiple-example.component.html",
+				content: selectMultipleExampleTemplate as string,
 				language: "angular2html" as const,
 			},		
 			{
-				name: "empty-state-example.component.ts",
-				content: emptyStateExampleTypescript as string,
+				name: "select-multiple-example.component.ts",
+				content: selectMultipleExampleTypescript as string,
 				language: "typescript" as const,
 			},		
 			{
-				name: "empty-state-example.component.scss",
-				content: emptyStateExampleStyles as string,
+				name: "select-multiple-example.component.scss",
+				content: selectMultipleExampleStyles as string,
 				language: "css" as const,
 			},		
 		]
 	},
-	LargeListExampleComponent: {
-		name: "LargeListExample",
+	SelectObjectOptionsExampleComponent: {
+		name: "SelectObjectOptionsExample",
 		files: [
 		
 			{
-				name: "large-list-example.component.html",
-				content: largeListExampleTemplate as string,
+				name: "select-object-options-example.component.html",
+				content: selectObjectOptionsExampleTemplate as string,
 				language: "angular2html" as const,
 			},		
 			{
-				name: "large-list-example.component.ts",
-				content: largeListExampleTypescript as string,
+				name: "select-object-options-example.component.ts",
+				content: selectObjectOptionsExampleTypescript as string,
 				language: "typescript" as const,
 			},		
 			{
-				name: "large-list-example.component.scss",
-				content: largeListExampleStyles as string,
+				name: "select-object-options-example.component.scss",
+				content: selectObjectOptionsExampleStyles as string,
 				language: "css" as const,
 			},		
 		]
 	},
-	LoadingExampleComponent: {
-		name: "LoadingExample",
+	SelectReactiveFormsExampleComponent: {
+		name: "SelectReactiveFormsExample",
 		files: [
 		
 			{
-				name: "loading-example.component.html",
-				content: loadingExampleTemplate as string,
+				name: "select-reactive-forms-example.component.html",
+				content: selectReactiveFormsExampleTemplate as string,
 				language: "angular2html" as const,
 			},		
 			{
-				name: "loading-example.component.ts",
-				content: loadingExampleTypescript as string,
+				name: "select-reactive-forms-example.component.ts",
+				content: selectReactiveFormsExampleTypescript as string,
 				language: "typescript" as const,
 			},		
 			{
-				name: "loading-example.component.scss",
-				content: loadingExampleStyles as string,
+				name: "select-reactive-forms-example.component.scss",
+				content: selectReactiveFormsExampleStyles as string,
 				language: "css" as const,
 			},		
 		]
 	},
-	PreselectedExampleComponent: {
-		name: "PreselectedExample",
+	SelectSignalFormsExampleComponent: {
+		name: "SelectSignalFormsExample",
 		files: [
 		
 			{
-				name: "preselected-example.component.html",
-				content: preselectedExampleTemplate as string,
+				name: "select-signal-forms-example.component.html",
+				content: selectSignalFormsExampleTemplate as string,
 				language: "angular2html" as const,
 			},		
 			{
-				name: "preselected-example.component.ts",
-				content: preselectedExampleTypescript as string,
+				name: "select-signal-forms-example.component.ts",
+				content: selectSignalFormsExampleTypescript as string,
 				language: "typescript" as const,
 			},		
 			{
-				name: "preselected-example.component.scss",
-				content: preselectedExampleStyles as string,
+				name: "select-signal-forms-example.component.scss",
+				content: selectSignalFormsExampleStyles as string,
 				language: "css" as const,
 			},		
 		]
 	},
-	ValidationExampleComponent: {
-		name: "ValidationExample",
+	SelectValidationsExampleComponent: {
+		name: "SelectValidationsExample",
 		files: [
 		
 			{
-				name: "validation-example.component.html",
-				content: validationExampleTemplate as string,
+				name: "select-validations-example.component.html",
+				content: selectValidationsExampleTemplate as string,
 				language: "angular2html" as const,
 			},		
 			{
-				name: "validation-example.component.ts",
-				content: validationExampleTypescript as string,
+				name: "select-validations-example.component.ts",
+				content: selectValidationsExampleTypescript as string,
 				language: "typescript" as const,
 			},		
 			{
-				name: "validation-example.component.scss",
-				content: validationExampleStyles as string,
+				name: "select-validations-example.component.scss",
+				content: selectValidationsExampleStyles as string,
 				language: "css" as const,
 			},		
 		]

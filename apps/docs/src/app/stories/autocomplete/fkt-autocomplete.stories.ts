@@ -6,7 +6,6 @@ import designTokens from './fkt-autocomplete-design-tokens.json';
 import {
     AutocompleteAutomaticValidationExampleComponent,
     AutocompleteBasicExampleComponent,
-    AutocompleteControlledDropdownExampleComponent,
     AutocompleteCustomLocalSearchExampleComponent,
     AutocompleteCustomContentExampleComponent,
     AutocompleteFieldCompositionExampleComponent,
@@ -168,13 +167,12 @@ virtualized lists.`,
             description:
                 'Allows typed values that do not exist in the current options. When false, unresolved text is discarded on close.',
         },
-        isDropdownOpened: {
-            control: 'boolean',
-            category: 'Attributes',
-            type: 'ModelSignal<boolean>',
-            defaultValue: 'false',
+        dropdownOpenChange: {
+            control: 'text',
+            category: 'Events',
+            type: 'OutputEmitterRef<boolean>',
             description:
-                'Controls the overlay open state when the consumer needs explicit coordination.',
+                'Emitted after the dropdown transitions between open and closed states.',
         },
         searchChange: {
             control: 'text',
@@ -262,8 +260,9 @@ export const HydratedValues: Story<AutocompleteHydratedValueExampleComponent> =
 export const Templates: StoryIntroduction = {};
 
 /**
- * Custom item, group, header, and footer templates. Template contexts expose the normalized option
- * and selection state, so custom UI remains type-safe while the form value stays primitive.
+ * Custom item, group, header, footer, chip, and empty-state templates. Template contexts expose
+ * normalized options and search state, so custom UI remains type-safe while the form value stays
+ * primitive. Chip templates preserve the built-in removal behavior and accessibility contract.
  */
 export const CustomContent: Story<AutocompleteCustomContentExampleComponent> = {
     component: AutocompleteCustomContentExampleComponent,
@@ -311,10 +310,10 @@ export const ServerSearch: Story<AutocompleteServerSearchExampleComponent> = {
 };
 
 /**
- * Lazy search can be triggered from `isDropdownOpenedChange`. This is useful when the first request
+ * Lazy fetching can be triggered from `dropdownOpenChange`. This is useful when the first request
  * should happen only after the user opens the autocomplete instead of during initial page render.
  */
-export const LazySearch: Story<AutocompleteLazySearchExampleComponent> = {
+export const LazyFetching: Story<AutocompleteLazySearchExampleComponent> = {
     component: AutocompleteLazySearchExampleComponent,
     level: 3,
     args: {},
@@ -327,17 +326,6 @@ export const LazySearch: Story<AutocompleteLazySearchExampleComponent> = {
 export const MinSearchAndDebounce: Story<AutocompleteMinSearchExampleComponent> =
     {
         component: AutocompleteMinSearchExampleComponent,
-        level: 3,
-        args: {},
-    };
-
-/**
- * Overlay state can be controlled with `isDropdownOpened`. This is mostly useful for guided flows,
- * external triggers, or advanced UI coordination.
- */
-export const ControlledDropdown: Story<AutocompleteControlledDropdownExampleComponent> =
-    {
-        component: AutocompleteControlledDropdownExampleComponent,
         level: 3,
         args: {},
     };

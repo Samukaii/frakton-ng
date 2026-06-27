@@ -1,0 +1,21 @@
+.numeric-control {
+    display: flex;
+    flex-direction: column;
+    gap: .2rem;
+    pointer-events: auto;
+    width: fit-content;
+
+    fkt-icon {
+        background-color: var(--fkt-controls-table-numeric-control-bg);
+        color: var(--fkt-controls-table-numeric-control-color);
+        cursor: pointer;
+        font-size: var(--fkt-font-size-xs);
+        font-weight: var(--fkt-font-semibold);
+        padding: 0 .2rem;
+        transition: var(--fkt-transition-base);
+
+        &:hover {
+            background-color: var(--fkt-controls-table-numeric-control-hover-bg);
+        }
+    }
+}

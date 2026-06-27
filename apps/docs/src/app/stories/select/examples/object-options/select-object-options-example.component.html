@@ -1,0 +1,10 @@
+<fkt-select
+    label="Assignee"
+    placeholder="Select an assignee"
+    [formControl]="assignee"
+    [options]="users"
+    labelKey="name"
+    valueKey="id"
+/>
+
+<app-code-output [value]="value()" title="Field value"/>

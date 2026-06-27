@@ -9,7 +9,6 @@ export { AutocompleteLocalSearchExampleComponent } from './local-search/autocomp
 export { AutocompleteCustomLocalSearchExampleComponent } from './custom-local-search/autocomplete-custom-local-search-example.component';
 export { AutocompleteServerSearchExampleComponent } from './server-search/autocomplete-server-search-example.component';
 export { AutocompleteMinSearchExampleComponent } from './min-search/autocomplete-min-search-example.component';
-export { AutocompleteControlledDropdownExampleComponent } from './controlled-dropdown/autocomplete-controlled-dropdown-example.component';
 export { AutocompleteLazySearchExampleComponent } from './lazy-search/autocomplete-lazy-search-example.component';
 export { AutocompleteInfiniteLoadingExampleComponent } from './infinite-loading/autocomplete-infinite-loading-example.component';
 export { AutocompleteVirtualScrollExampleComponent } from './virtual-scroll/autocomplete-virtual-scroll-example.component';

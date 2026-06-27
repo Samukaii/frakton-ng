@@ -1,7 +1,13 @@
-<app-code-output
-    [value]="value()"
-    title="Field value"
-/>
+<div class="actions">
+    <fkt-button
+        theme="stroked"
+        iconPosition="left"
+        icon="check-circle"
+        shape="rect"
+        text="Validate"
+        (click)="validate()"
+    />
+</div>
 
 <fkt-autocomplete
     label="Approver"
@@ -24,6 +30,4 @@
     </fkt-field-error>
 </fkt-autocomplete>
 
-<div class="actions">
-    <fkt-button text="Validate" (click)="validate()" />
-</div>
+<app-code-output [value]="value()" title="Field value"/>

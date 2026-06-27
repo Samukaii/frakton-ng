@@ -1,3 +1,99 @@
+// <design-tokens>
+
+/* @scope Chips */
+
+/*
+Background color for selected value chips.
+@name --fkt-autocomplete-chip-background-color
+@reference --fkt-color-neutral-300
+@category Colors
+@type color
+*/
+$chip-background-color: var(--fkt-autocomplete-chip-background-color, var(--fkt-color-neutral-300));
+
+/*
+Text color for selected value chips.
+@name --fkt-autocomplete-chip-text-color
+@reference --fkt-color-neutral-700
+@category Colors
+@type color
+*/
+$chip-text-color: var(--fkt-autocomplete-chip-text-color, var(--fkt-color-neutral-700));
+
+/*
+Background color for chips when hovered.
+@name --fkt-autocomplete-chip-hover-background-color
+@reference --fkt-color-neutral-400
+@category Colors
+@type color
+*/
+$chip-hover-background-color: var(--fkt-autocomplete-chip-hover-background-color, var(--fkt-color-neutral-400));
+
+/*
+Background color for disabled chips.
+@name --fkt-autocomplete-chip-disabled-background-color
+@reference --fkt-color-neutral-300
+@category Colors
+@type color
+*/
+$chip-disabled-background-color: var(--fkt-autocomplete-chip-disabled-background-color, var(--fkt-color-neutral-300));
+
+/*
+Border color for disabled chips.
+@name --fkt-autocomplete-chip-disabled-border-color
+@reference --fkt-color-neutral-400
+@category Colors
+@type color
+*/
+$chip-disabled-border-color: var(--fkt-autocomplete-chip-disabled-border-color, var(--fkt-color-neutral-400));
+
+/*
+Text color for disabled chips.
+@name --fkt-autocomplete-chip-disabled-text-color
+@reference --fkt-color-neutral-500
+@category Colors
+@type color
+*/
+$chip-disabled-text-color: var(--fkt-autocomplete-chip-disabled-text-color, var(--fkt-color-neutral-500));
+
+/*
+Font size for selected value chips.
+@name --fkt-autocomplete-chip-font-size
+@reference --fkt-font-size-xs
+@category Typography
+@type size
+*/
+$chip-font-size: var(--fkt-autocomplete-chip-font-size, var(--fkt-font-size-xs));
+
+/*
+Padding inside selected value chips.
+@name --fkt-autocomplete-chip-padding
+@reference --fkt-space-4xs --fkt-space-xs
+@category Spacing
+@type spacing
+*/
+$chip-padding: var(--fkt-autocomplete-chip-padding, var(--fkt-space-4xs) var(--fkt-space-xs));
+
+/*
+Gap between the chip label and remove icon.
+@name --fkt-autocomplete-chip-gap
+@reference --fkt-space-3xs
+@category Spacing
+@type size
+*/
+$chip-gap: var(--fkt-autocomplete-chip-gap, var(--fkt-space-3xs));
+
+/*
+Border radius for selected value chips.
+@name --fkt-autocomplete-chip-border-radius
+@reference --fkt-radius-full
+@category Shape
+@type size
+*/
+$chip-border-radius: var(--fkt-autocomplete-chip-border-radius, var(--fkt-radius-full));
+
+// </design-tokens>
+
 :host {
     display: contents;
 }
@@ -5,25 +101,24 @@
 .chip {
     display: flex;
     align-items: center;
-    gap: var(--fkt-space-3xs);
-    font-size: var(--fkt-font-size-xs);
-    padding: var(--fkt-space-4xs) var(--fkt-space-xs);
-    padding-right: var(--fkt-space-4xs);
-    border-radius: var(--fkt-radius-full);
-    background: var(--fkt-color-neutral-300);
-    color: var(--fkt-color-neutral-700);
+    gap: $chip-gap;
+    font-size: $chip-font-size;
+    padding: $chip-padding;
+    border-radius: $chip-border-radius;
+    background: $chip-background-color;
+    color: $chip-text-color;
     outline: none;
     cursor: pointer;
     border: solid 1px transparent;
 
     &[disabled] {
         cursor: not-allowed;
-        background: var(--fkt-color-neutral-300);
-        border: solid 1px var(--fkt-color-neutral-400);
-        color: var(--fkt-color-neutral-500);
+        background: $chip-disabled-background-color;
+        border-color: $chip-disabled-border-color;
+        color: $chip-disabled-text-color;
 
         &:hover {
-            background: var(--fkt-color-neutral-300);
+            background: $chip-disabled-background-color;
         }
     }
 
@@ -36,6 +131,6 @@
     }
 
     &:hover {
-        background: color-mix(in srgb, var(--fkt-color-neutral-300), var(--fkt-color-neutral-400));
+        background: color-mix(in srgb, $chip-background-color, $chip-hover-background-color);
     }
 }

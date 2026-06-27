@@ -1,3 +1,184 @@
+// <design-tokens>
+
+/* @scope Field */
+
+/*
+Vertical padding inside the input field (top and bottom spacing between border and content).
+@name --fkt-field-vertical-padding
+@reference --fkt-space-inset-3xs
+@category Spacing
+@type size
+ */
+$field-vertical-padding: var(--fkt-field-vertical-padding, var(--fkt-space-inset-3xs));
+
+/*
+Vertical padding inside the input field (top and bottom spacing between border and content).
+@name --fkt-field-vertical-padding-sm
+@reference --fkt-space-inset-4xs
+@category Spacing
+@type size
+ */
+$field-vertical-padding-sm: var(--fkt-field-vertical-padding-sm, var(--fkt-space-inset-4xs));
+
+/*
+Vertical padding inside the input field (top and bottom spacing between border and content).
+@name --fkt-field-vertical-padding-lg
+@reference --fkt-space-inset-2xs
+@category Spacing
+@type size
+ */
+$field-vertical-padding-lg: var(--fkt-field-vertical-padding-lg, var(--fkt-space-inset-2xs));
+
+/*
+Horizontal padding inside the input field (left and right spacing between border and content).
+@name --fkt-field-horizontal-padding
+@reference --fkt-space-inset-2xs
+@category Spacing
+@type size
+ */
+$field-horizontal-padding: var(--fkt-field-horizontal-padding, var(--fkt-space-inset-2xs));
+
+/*
+Horizontal padding inside the input field (left and right spacing between border and content).
+@name --fkt-field-horizontal-padding-sm
+@reference --fkt-space-inset-3xs
+@category Spacing
+@type size
+ */
+$field-horizontal-padding-sm: var(--fkt-field-horizontal-padding-sm, var(--fkt-space-inset-3xs));
+
+/*
+Horizontal padding inside the input field (left and right spacing between border and content).
+@name --fkt-field-horizontal-padding-lg
+@reference --fkt-space-inset-xs
+@category Spacing
+@type size
+ */
+$field-horizontal-padding-lg: var(--fkt-field-horizontal-padding-lg, var(--fkt-space-inset-xs));
+
+/*
+Border color of the input in its normal (default) state.
+@name --fkt-field-border-color
+@reference --fkt-color-neutral-400
+@category Colors
+@type color
+ */
+$border-color: var(--fkt-field-border-color, var(--fkt-color-neutral-400));
+
+/*
+Border color of the input when it gets focused
+@name --fkt-field-border-focus-color
+@reference --fkt-color-neutral-800
+@category Colors
+@type color
+ */
+$border-focus-color: var(--fkt-field-border-focus-color, var(--fkt-color-neutral-800));
+
+/*
+Color of the label in its normal (default) state.
+@name --fkt-field-label-color
+@reference --fkt-color-neutral-700
+@category Colors
+@type color
+ */
+$label-color: var(--fkt-field-label-color, var(--fkt-color-neutral-700));
+
+/*
+Color of the label when it gets focused
+@name --fkt-field-label-focus-color
+@reference --fkt-color-neutral-800
+@category Colors
+@type color
+ */
+$label-focus-color: var(--fkt-field-label-focus-color, var(--fkt-color-neutral-800));
+
+/*
+Border radius for input
+@name --fkt-field-border-radius
+@reference --fkt-radius-md
+@category Spacing
+@type size
+ */
+$border-radius: var(--fkt-field-border-radius, var(--fkt-radius-md));
+
+/*
+Font size for input text and placeholder.
+@name --fkt-field-font-size
+@reference --fkt-font-size-sm
+@category Typography
+@type size
+ */
+$font-size: var(--fkt-field-font-size, var(--fkt-font-size-sm));
+
+/*
+Font size for input text and placeholder.
+@name --fkt-field-font-size-sm
+@reference --fkt-font-size-xs
+@category Typography
+@type size
+ */
+$font-size-sm: var(--fkt-field-font-size-sm, var(--fkt-font-size-xs));
+
+/*
+Font size for input text and placeholder.
+@name --fkt-field-font-size-lg
+@reference --fkt-font-size-md
+@category Typography
+@type size
+ */
+$font-size-lg: var(--fkt-field-font-size-lg, var(--fkt-font-size-md));
+
+/*
+Color for text written into input
+@name --fkt-field-text-color
+@reference --fkt-color-neutral-900
+@category Colors
+@type color
+ */
+$text-color: var(--fkt-field-text-color, var(--fkt-color-neutral-900));
+
+/*
+Space between prefix and field element
+@name --fkt-field-prefix-gap
+@scope Prefix | [fktFieldPrefix]
+@reference --fkt-space-xs
+@category Spacing
+@type size
+ */
+$prefix-gap: var(--fkt-field-prefix-gap, var(--fkt-space-xs));
+
+/*
+Text color for prefix when field is at invalid state
+@name --fkt-field-prefix-invalid-text
+@scope Prefix | [fktFieldPrefix]
+@reference --fkt-color-danger
+@category Colors
+@type color
+ */
+$prefix-invalid-color: var(--fkt-field-prefix-invalid-text, var(--fkt-color-danger));
+
+/*
+Space between suffix and field element
+@name --fkt-field-suffix-gap
+@scope Suffix | [fktFieldSuffix]
+@reference --fkt-space-xs
+@category Spacing
+@type size
+ */
+$suffix-gap: var(--fkt-field-suffix-gap, var(--fkt-space-xs));
+
+/*
+Text color for suffix when field is at invalid state
+@name --fkt-field-suffix-invalid-text
+@scope Suffix | [fktFieldSuffix]
+@reference --fkt-color-danger
+@category Colors
+@type color
+ */
+$suffix-invalid-color: var(--fkt-field-suffix-invalid-text, var(--fkt-color-danger));
+
+// </design-tokens>
+
 :host ::ng-deep {
     .container {
         width: 100%;

@@ -7,7 +7,7 @@
         variant="opaque"
         [color]="categoryIcon().color"
     >
-        <div tag-content>
+        <div tag-content [attr.data-color]="categoryIcon().color">
             <fkt-icon [name]="categoryIcon().icon"/>
             {{ token().category }}
         </div>

@@ -1,123 +1,176 @@
-import { booleanAttribute, Component, computed, inject, input, model, output, signal } from '@angular/core';
-import { FktSelectOptionsComponent } from './options/fkt-select-options.component';
-import { FktOverlayRef, FktOverlayService } from 'frakton-ng/overlay';
-import { FktNoResults } from 'frakton-ng/no-results';
-import { FktAutocompleteOption } from 'frakton-ng/autocomplete-old';
+import {
+    AfterViewInit,
+    Component,
+    computed,
+    contentChild,
+    effect,
+    inject,
+    Optional,
+    Self,
+    viewChild,
+} from '@angular/core';
+import { NgTemplateOutlet } from '@angular/common';
+import { ControlValueAccessor, NgControl } from '@angular/forms';
+import {
+    FktErrorDirective,
+    FktFieldComponent,
+    FktFieldPrefixDirective,
+    FktFieldSuffixDirective,
+    FktHintEndDirective,
+    FktHintStartDirective,
+} from 'frakton-ng/field';
+import { FktButtonComponent } from 'frakton-ng/button';
 import { FktIconComponent } from 'frakton-ng/icon';
-import { ElementIdGeneratorService } from 'frakton-ng/internal/services';
-import { FktSelectOption } from './fkt-select.types';
-import { FormValueControl, ValidationError, WithOptionalField } from '@angular/forms/signals';
+import { Generic } from 'frakton-ng/internal/types';
+import { injectCompatFormStateWithoutNative } from 'frakton-ng/internal/di';
+import { FktSelectContextDirective } from './directives/fkt-select-context.directive';
+import { FktSelectSelectionDirective } from './directives/fkt-select-selection.directive';
+import { FktSelectOverlayDirective } from './directives/fkt-select-overlay.directive';
+import { FktSelectControlDirective } from './directives/fkt-select-control.directive';
+import { FktSelectKeyboardDirective } from './directives/fkt-select-keyboard.directive';
+import { FktSelectStoreService } from './services/fkt-select-store.service';
+import {
+    FktNormalizedSelectOption,
+    FktSelectWritableValue,
+} from './fkt-select.types';
+import { normalizeWrittenSelectValue } from './utils/normalize-written-select-value';
+import { FktSelectChipDirective } from './directives/public/fkt-select-chip.directive';
 
 @Component({
     selector: 'fkt-select',
-    imports: [FktIconComponent],
+    imports: [
+        NgTemplateOutlet,
+        FktFieldComponent,
+        FktFieldPrefixDirective,
+        FktFieldSuffixDirective,
+        FktHintStartDirective,
+        FktHintEndDirective,
+        FktErrorDirective,
+        FktButtonComponent,
+        FktIconComponent,
+        FktSelectControlDirective,
+        FktSelectKeyboardDirective,
+    ],
     templateUrl: './fkt-select.component.html',
     styleUrl: './fkt-select.component.scss',
-    host: {
-        '[class.opened]': 'opened()',
-        '[class.disabled]': 'disabled()',
-    },
+    providers: [FktSelectStoreService],
+    hostDirectives: [
+        {
+            directive: FktSelectContextDirective,
+            inputs: [
+                'label',
+                'placeholder',
+                'hideClearButton',
+                'options',
+                'value',
+                'labelKey',
+                'valueKey',
+                'groupKey',
+                'loading',
+                'disabled',
+                'multiple',
+                'listHeight',
+                'hint',
+                'showError',
+                'size',
+                'requiredMarker',
+                'hideLabel',
+            ],
+            outputs: ['valueChange', 'dropdownOpenChange'],
+        },
+        FktSelectSelectionDirective,
+        FktSelectOverlayDirective,
+    ],
 })
-export class FktSelectComponent
-    implements FormValueControl<string | number | null>
+export class FktSelectComponent<Option extends Generic | string | number>
+    implements ControlValueAccessor, AfterViewInit
 {
-    value = model<string | number | null>(null);
-    touched = model(false);
-    disabled = input(false);
-    invalid = input(false);
-    errors = input<readonly WithOptionalField<ValidationError>[]>([]);
+    protected readonly formState = injectCompatFormStateWithoutNative();
+    protected readonly context = inject<FktSelectContextDirective<Option>>(
+        FktSelectContextDirective
+    );
+    protected readonly selection = inject<FktSelectSelectionDirective<Option>>(
+        FktSelectSelectionDirective
+    );
+    protected readonly store = inject<FktSelectStoreService<Option>>(
+        FktSelectStoreService
+    );
 
-    label = input.required<string>();
-    placeholder = input<string>();
-    loading = input(false);
-    hideLabel = input(false, {
-        transform: booleanAttribute,
+    private readonly field = viewChild.required(FktFieldComponent);
+    protected readonly control = viewChild.required(FktSelectControlDirective);
+
+    protected readonly hintStartDirective = contentChild(FktHintStartDirective);
+    protected readonly hintEndDirective = contentChild(FktHintEndDirective);
+    protected readonly errorDirective = contentChild(FktErrorDirective);
+    protected readonly prefixDirective = contentChild(FktFieldPrefixDirective);
+    protected readonly suffixDirective = contentChild(FktFieldSuffixDirective);
+    protected readonly chipDirective = contentChild(FktSelectChipDirective);
+
+    private onChange?: (value: unknown) => void;
+    protected onTouched?: () => void;
+
+    protected readonly disabled = computed(
+        () =>
+            this.context.loading() ||
+            this.context.disabled() ||
+            (this.formState?.disabled() ?? false)
+    );
+
+    private readonly emitValue = effect(() => {
+        this.onChange?.(this.context.value());
     });
-    options = input.required<FktSelectOption[]>();
-    noResults = input<FktNoResults>({
-        label: 'Sem resultados',
-    });
-    selectOpened = output();
 
-    private overlayService = inject(FktOverlayService);
-    private idGenerator = inject(ElementIdGeneratorService);
+    constructor(@Self() @Optional() ngControl: NgControl) {
+        if (ngControl) ngControl.valueAccessor = this;
+    }
 
-    protected labelId = this.idGenerator.next('fkt-select-label');
-    protected listBoxId = this.idGenerator.next('fkt-select-list-box');
+    ngAfterViewInit() {
+        this.context.fieldContainer.set(this.field().container());
+    }
 
-    static fieldId = 0;
+    writeValue(value: FktSelectWritableValue<Option>): void {
+        const normalized = normalizeWrittenSelectValue(value, {
+            multiple: this.context.multiple(),
+            valueKey: this.context.valueKey(),
+        });
 
-    protected readonly id = `fkt-select-id-${FktSelectComponent.fieldId++}`;
+        this.selection.updateValue(normalized.value);
 
-    private overlayRef =
-        signal<FktOverlayRef<FktSelectOptionsComponent> | null>(null);
+        this.context.preloadedOptions.set(normalized.preloadedOptions);
 
-    protected opened = computed(() => !!this.overlayRef());
-
-    protected focused = signal(false);
-
-    protected activeOptionId = signal(null);
-
-    protected handleKeydown(element: HTMLDivElement, event: KeyboardEvent) {
-        switch (event.key) {
-            case 'ArrowDown':
-            case 'ArrowUp':
-            case 'Space':
-            case ' ':
-            case 'Enter':
-                this.openOverlay(element);
-                event.preventDefault();
-                break;
+        if (normalized.preloadedOptions.length) {
+            this.onChange?.(this.context.value());
         }
     }
 
-    protected openOverlay(nativeElement: HTMLDivElement) {
-        if (this.disabled()) return;
-
-        this.selectOpened.emit();
-
-        const overlayRef = this.overlayService.open({
-            component: FktSelectOptionsComponent,
-            data: {
-                hostElement: nativeElement,
-                options: this.options,
-                loading: this.loading,
-                selected: computed(() => this.selectedOption()?.value ?? null),
-                noResults: this.noResults(),
-                activeOptionId: this.activeOptionId,
-                select: (option) => {
-                    this.selectOption(option);
-                },
-            },
-            anchorElementRef: { nativeElement },
-            panelOptions: {
-                onAutoClose: () => {
-                    this.closeOverlay();
-                },
-                maxHeight: '420px',
-                inheritDesignTokensFrom: nativeElement,
-            },
-        });
-
-        this.overlayRef.set(overlayRef);
+    registerOnChange(fn: (value: unknown) => void): void {
+        this.onChange = fn;
     }
 
-    protected selectedOption = computed(() => {
-        const value = this.value();
-        const found = this.options().find((item) => item.value === value);
-
-        return found ?? null;
-    });
-
-    protected selectOption(option: FktAutocompleteOption) {
-        this.value.set(option.value);
-
-        this.closeOverlay();
+    registerOnTouched(fn: () => void): void {
+        this.onTouched = fn;
     }
 
-    private closeOverlay() {
-        this.touched.set(true);
-        this.overlayRef()?.close();
-        this.overlayRef.set(null);
+    protected toggleDropdown() {
+        if (this.disabled() || this.context.loading()) return;
+
+        this.context.dropdownOpened()
+            ? this.context.closeDropdown()
+            : this.context.openDropdown();
     }
+
+    protected clear(event: MouseEvent) {
+        event.stopPropagation();
+        this.selection.clear();
+        this.context.closeDropdown();
+    }
+
+    protected remove(
+        event: MouseEvent,
+        option: FktNormalizedSelectOption<Option>
+    ) {
+        event.stopPropagation();
+        this.selection.remove(option);
+    }
+
 }

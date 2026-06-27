@@ -1,5 +1,6 @@
 import fs from 'fs';
 import { DesignToken, ParsedDesignTokenFile } from './design-token.models';
+import { resolveDesignTokenReference } from './resolve-design-token-reference';
 
 export const parseDesignTokenFile = (
     styleFilePath: string,
@@ -74,8 +75,10 @@ export const parseDesignTokenFile = (
             }
 
             if (object['reference']) {
-                object['defaultValue'] =
-                    globalTokens[object['reference']] ?? object['reference'];
+                object['defaultValue'] = resolveDesignTokenReference(
+                    object['reference'],
+                    globalTokens
+                );
             }
 
             if (scopeName && !object['component']) {

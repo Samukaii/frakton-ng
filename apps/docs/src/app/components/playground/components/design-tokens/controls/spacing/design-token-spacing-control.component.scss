@@ -1,0 +1,41 @@
+:host {
+    display: grid;
+    gap: var(--fkt-space-xs);
+
+    --fkt-button-icon-font-size: var(--fkt-font-size-xs);
+    --fkt-button-padding-horizontal: var(--fkt-space-3xs);
+    --fkt-button-padding-vertical: var(--fkt-space-3xs);
+}
+
+.preview {
+    align-items: center;
+    border: 1px solid var(--fkt-color-neutral-400);
+    border-radius: var(--fkt-radius-md);
+    display: flex;
+    gap: var(--fkt-space-3xs);
+    padding: var(--fkt-space-2xs) var(--fkt-space-xs);
+
+    span {
+        color: var(--fkt-color-neutral-800);
+        font-family: monospace;
+        font-size: var(--fkt-font-size-sm);
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+}
+
+.sides {
+    display: flex;
+    flex-direction: column;
+    gap: var(--fkt-space-sm);
+    transition: var(--fkt-transition-base);
+    max-height: 0;
+    overflow: hidden;
+    box-sizing: border-box;
+
+    &.expanded {
+        padding: var(--fkt-space-xs);
+        max-height: 200px;
+    }
+}

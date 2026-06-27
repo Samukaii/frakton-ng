@@ -64,9 +64,10 @@
     --anatomy-color: var(--fkt-color-danger);
 
     .range {
+        box-sizing: border-box;
         border: solid 1px var(--anatomy-color);
         background: rgb(from var(--anatomy-color) r g b / 0.1);
-        border-radius: 0 var(--fkt-radius-md) var(--fkt-radius-md) var(--fkt-radius-md);
+        border-radius: 0;
     }
 
     .label {

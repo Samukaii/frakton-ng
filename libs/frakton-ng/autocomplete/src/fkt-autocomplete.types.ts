@@ -57,6 +57,26 @@ export interface FktAutocompleteItemContext<Option = Generic> {
     isSelected: boolean;
 }
 
+export interface FktAutocompleteChipContext<Option = Generic> {
+    $implicit: FktAutocompleteOption<Option>;
+}
+
+export type FktAutocompleteEmptyReason =
+    | 'min-search'
+    | 'query-no-results'
+    | 'no-results';
+
+export interface FktAutocompleteEmptyState {
+    label: string;
+    query: string;
+    minSearch: number;
+    reason: FktAutocompleteEmptyReason;
+}
+
+export interface FktAutocompleteEmptyContext {
+    $implicit: FktAutocompleteEmptyState;
+}
+
 export interface FktAutocompleteGroupContext<Option = Generic> {
     $implicit: FktGroupedAutocompleteOption<Option>;
 }

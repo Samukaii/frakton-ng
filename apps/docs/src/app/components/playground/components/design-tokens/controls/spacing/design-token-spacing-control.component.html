@@ -1,0 +1,37 @@
+<div class="preview">
+    <fkt-button
+        [ariaLabel]="expanded() ? 'Collapse spacing editor' : 'Expand spacing editor'"
+        [fktTooltip]="expanded() ? 'Collapse' : 'Edit each side'"
+        [icon]="expanded() ? 'chevron-up' : 'chevron-down'"
+        theme="basic"
+        (click)="expanded.set(!expanded())"
+    />
+    <span [title]="token().control()">{{ token().control() }}</span>
+</div>
+
+<div class="sides" [class.expanded]="expanded()">
+    <fkt-input
+        label="Top"
+        [value]="sides().top"
+        (inputKeyDown)="onKeydown($event, 'top', sides().top)"
+        (valueChange)="updateSide('top', $event)"
+    />
+    <fkt-input
+        label="Right"
+        [value]="sides().right"
+        (inputKeyDown)="onKeydown($event, 'right', sides().right)"
+        (valueChange)="updateSide('right', $event)"
+    />
+    <fkt-input
+        label="Bottom"
+        [value]="sides().bottom"
+        (inputKeyDown)="onKeydown($event, 'bottom', sides().bottom)"
+        (valueChange)="updateSide('bottom', $event)"
+    />
+    <fkt-input
+        label="Left"
+        [value]="sides().left"
+        (inputKeyDown)="onKeydown($event, 'left', sides().left)"
+        (valueChange)="updateSide('left', $event)"
+    />
+</div>

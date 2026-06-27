@@ -45,7 +45,7 @@ Horizontal padding inside the input field (left and right spacing between border
 @category Spacing
 @type size
  */
-$field-horizontal-padding-sm: var(--fkt-field-horizontal-padding, var(--fkt-space-inset-3xs));
+$field-horizontal-padding-sm: var(--fkt-field-horizontal-padding-sm, var(--fkt-space-inset-3xs));
 
 /*
 Horizontal padding inside the input field (left and right spacing between border and content).
@@ -54,7 +54,7 @@ Horizontal padding inside the input field (left and right spacing between border
 @category Spacing
 @type size
  */
-$field-horizontal-padding-lg: var(--fkt-field-horizontal-padding, var(--fkt-space-inset-xs));
+$field-horizontal-padding-lg: var(--fkt-field-horizontal-padding-lg, var(--fkt-space-inset-xs));
 
 /*
 Border color of the input in its normal (default) state.
@@ -201,7 +201,6 @@ $suffix-invalid-color: var(--fkt-field-suffix-invalid-text, var(--fkt-color-dang
     --_fkt-field-vertical-padding: var(--_fkt-field-vertical-padding-md);
 
     .input {
-        //padding: var(--_fkt-field-vertical-padding) var(--_fkt-field-horizontal-padding);
         width: 100%;
         position: relative;
         border-radius: $border-radius;
