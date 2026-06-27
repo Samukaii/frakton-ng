@@ -1,5 +1,20 @@
-import { booleanAttribute, Component, computed, inject, input, model, signal, Signal } from '@angular/core';
-import { FormValueControl, ValidationError, WithOptionalField } from '@angular/forms/signals';
+import {
+    booleanAttribute,
+    Component,
+    computed,
+    inject,
+    input,
+    model,
+    output,
+    signal,
+    Signal,
+} from '@angular/core';
+import {
+    FormValueControl,
+    ValidationError,
+    WithOptionalField,
+    WithOptionalFieldTree,
+} from '@angular/forms/signals';
 import { FktOverlayService } from 'frakton-ng/overlay';
 import { FktColorPickerModalComponent } from './modal/fkt-color-picker-modal.component';
 import { FktColorPickerFormat } from './fkt-color-picker.types';
@@ -20,10 +35,11 @@ import { FKT_COLOR_PICKER_LOCALE_TOKEN } from './injection-tokens/fkt-color-pick
 })
 export class FktColorPickerComponent implements FormValueControl<string | null> {
 	value = model<string | null>(null);
+
 	touched = model(false);
 	disabled = input(false);
 	invalid = input(false);
-	errors = input<readonly WithOptionalField<ValidationError>[]>([]);
+	errors = input<readonly WithOptionalFieldTree<ValidationError>[]>([]);
     showCopyButton = input(true);
 	label = input.required<string>();
 
@@ -83,7 +99,7 @@ export class FktColorPickerComponent implements FormValueControl<string | null> 
 			anchorElementRef: {nativeElement},
 			component: FktColorPickerModalComponent,
 			data: {
-				value: this.value(),
+				value: this.value,
 				colorChange: (value) => {
 					this.value.set(value);
 				},

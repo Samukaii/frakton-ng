@@ -59,7 +59,7 @@ export class FktAutocompleteActionButtonComponent<
             };
         }
 
-        if (this.context.isDropdownOpened()) {
+        if (this.context.dropdownOpened()) {
             return {
                 icon: 'chevron-up',
                 label: 'Collapse options',

@@ -1,0 +1,11 @@
+<fkt-select
+    label="Reviewers"
+    placeholder="Select reviewers"
+    [formControl]="reviewers"
+    [options]="users"
+    labelKey="name"
+    valueKey="id"
+    multiple
+/>
+
+<app-code-output [value]="value()" title="Field value"/>

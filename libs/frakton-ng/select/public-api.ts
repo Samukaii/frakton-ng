@@ -1,2 +1,11 @@
-export {FktSelectComponent} from './src/fkt-select.component';
+export { FktSelectComponent } from './src/fkt-select.component';
+export { FktSelectContextDirective } from './src/directives/fkt-select-context.directive';
+export { FktSelectSelectionDirective } from './src/directives/fkt-select-selection.directive';
+export { FktSelectOverlayDirective } from './src/directives/fkt-select-overlay.directive';
+export { FktSelectItemDirective } from './src/directives/public/fkt-select-item.directive';
+export { FktSelectGroupDirective } from './src/directives/public/fkt-select-group.directive';
+export { FktSelectHeaderDirective } from './src/directives/public/fkt-select-header.directive';
+export { FktSelectFooterDirective } from './src/directives/public/fkt-select-footer.directive';
+export { FktSelectChipDirective } from './src/directives/public/fkt-select-chip.directive';
+export { FktSelectEmptyDirective } from './src/directives/public/fkt-select-empty.directive';
 export * from './src/fkt-select.types';

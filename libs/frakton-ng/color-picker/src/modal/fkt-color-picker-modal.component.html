@@ -11,7 +11,7 @@
 	<fkt-alpha-selector [value]="formattedColor()" (valueChange)="onValueChange($event)"/>
 }
 
-<fkt-color-control [formatOptions]="formatOptions" [(currentFormat)]="currentFormat" [value]="formattedColor()"
+<fkt-color-control [formatOptions]="formatOptions" [(currentFormat)]="currentFormat" [value]="formattedColor()" (valueChange)="onValueChange($event)"
 				   [disableAlphaChanel]="disableAlphaChanel()">
 	@switch (currentFormat()) {
 		@case ("hsl") {

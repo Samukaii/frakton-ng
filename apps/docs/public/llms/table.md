@@ -1837,6 +1837,7 @@ export const filter = defineFilters({
     select: FktTableFilterSelectComponent,
     number: FktTableFilterNumberComponent,
     dateRange: FktTableFilterDateRangeComponent,
+    myCustomFilter: MyCustomFilterComponent
 });
 ```
 
@@ -1846,7 +1847,7 @@ Then attach a registered filter alias to a column:
 {
     key: 'name',
     header: 'Name',
-    filter: filter.text('name', {
+    filter: filter.myCustomFilter('name', {
         label: 'Search',
     }),
 }

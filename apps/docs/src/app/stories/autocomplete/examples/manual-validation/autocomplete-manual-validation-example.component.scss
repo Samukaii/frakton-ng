@@ -1,6 +1,18 @@
 .actions {
+    margin-bottom: 1rem;
     display: flex;
-    flex-wrap: wrap;
-    gap: .75rem;
+    gap: var(--fkt-space-2xs);
+    justify-content: flex-end;
+
+    --fkt-button-padding-horizontal: var(--fkt-space-xs);
+    --fkt-button-padding-vertical: var(--fkt-space-2xs);
+    --fkt-button-font-size: var(--fkt-font-size-sm);
+    --fkt-button-border-width: 1px;
+    --fkt-button-icon-font-size: var(--fkt-font-size-sm);
+    --fkt-button-rect-border-radius: var(--fkt-radius-sm);
+}
+
+app-code-output {
+    display: block;
     margin-top: 1rem;
 }

@@ -1,12 +1,28 @@
-<app-code-output
-    [value]="model()"
-    title="Form value"
-/>
-
 <div class="actions">
-    <fkt-button text="Fill" (click)="fill()" />
-    <fkt-button text="Reset" (click)="reset()" />
-    <fkt-button text="Toggle disabled" (click)="toggleDisabled()" />
+    <fkt-button
+        theme="stroked"
+        iconPosition="left"
+        icon="pencil"
+        shape="rect"
+        text="Fill"
+        (click)="fill()"
+    />
+    <fkt-button
+        theme="stroked"
+        iconPosition="left"
+        icon="arrow-uturn-left"
+        shape="rect"
+        text="Reset"
+        (click)="reset()"
+    />
+    <fkt-button
+        theme="stroked"
+        iconPosition="left"
+        icon="lock-closed"
+        shape="rect"
+        text="Toggle disabled"
+        (click)="toggleDisabled()"
+    />
 </div>
 
 <fkt-autocomplete
@@ -18,3 +34,5 @@
     groupKey="continent"
     localSearch
 />
+
+<app-code-output [value]="model()" title="Form value"/>

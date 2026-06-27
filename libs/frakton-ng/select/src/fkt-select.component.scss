@@ -1,383 +1,267 @@
+// <design-tokens>
+
+/* @scope Field */
+
+/*
+Vertical padding inside the field.
+@name --fkt-field-vertical-padding
+@reference --fkt-space-inset-3xs
+@category Spacing
+@type size
+*/
+$field-vertical-padding: var(--fkt-field-vertical-padding, var(--fkt-space-inset-3xs));
+
+/*
+Vertical padding inside a small field.
+@name --fkt-field-vertical-padding-sm
+@reference --fkt-space-inset-4xs
+@category Spacing
+@type size
+*/
+$field-vertical-padding-sm: var(--fkt-field-vertical-padding-sm, var(--fkt-space-inset-4xs));
+
+/*
+Vertical padding inside a large field.
+@name --fkt-field-vertical-padding-lg
+@reference --fkt-space-inset-2xs
+@category Spacing
+@type size
+*/
+$field-vertical-padding-lg: var(--fkt-field-vertical-padding-lg, var(--fkt-space-inset-2xs));
+
+/*
+Horizontal padding inside the field.
+@name --fkt-field-horizontal-padding
+@reference --fkt-space-inset-2xs
+@category Spacing
+@type size
+*/
+$field-horizontal-padding: var(--fkt-field-horizontal-padding, var(--fkt-space-inset-2xs));
+
+/*
+Horizontal padding inside a small field.
+@name --fkt-field-horizontal-padding-sm
+@reference --fkt-space-inset-3xs
+@category Spacing
+@type size
+*/
+$field-horizontal-padding-sm: var(--fkt-field-horizontal-padding-sm, var(--fkt-space-inset-3xs));
+
+/*
+Horizontal padding inside a large field.
+@name --fkt-field-horizontal-padding-lg
+@reference --fkt-space-inset-xs
+@category Spacing
+@type size
+*/
+$field-horizontal-padding-lg: var(--fkt-field-horizontal-padding-lg, var(--fkt-space-inset-xs));
+
+/*
+Field border color.
+@name --fkt-field-border-color
+@reference --fkt-color-neutral-400
+@category Colors
+@type color
+*/
+$field-border-color: var(--fkt-field-border-color, var(--fkt-color-neutral-400));
+
+/*
+Field border color while focused.
+@name --fkt-field-border-focus-color
+@reference --fkt-color-neutral-800
+@category Colors
+@type color
+*/
+$field-border-focus-color: var(--fkt-field-border-focus-color, var(--fkt-color-neutral-800));
+
+/*
+Field label color.
+@name --fkt-field-label-color
+@reference --fkt-color-neutral-700
+@category Colors
+@type color
+*/
+$field-label-color: var(--fkt-field-label-color, var(--fkt-color-neutral-700));
+
+/*
+Field label color while focused.
+@name --fkt-field-label-focus-color
+@reference --fkt-color-neutral-800
+@category Colors
+@type color
+*/
+$field-label-focus-color: var(--fkt-field-label-focus-color, var(--fkt-color-neutral-800));
+
+/*
+Field border radius.
+@name --fkt-field-border-radius
+@reference --fkt-radius-md
+@category Shape
+@type size
+*/
+$field-border-radius: var(--fkt-field-border-radius, var(--fkt-radius-md));
+
+/*
+Field text size.
+@name --fkt-field-font-size
+@reference --fkt-font-size-sm
+@category Typography
+@type size
+*/
+$field-font-size: var(--fkt-field-font-size, var(--fkt-font-size-sm));
+
+/*
+Small field text size.
+@name --fkt-field-font-size-sm
+@reference --fkt-font-size-xs
+@category Typography
+@type size
+*/
+$field-font-size-sm: var(--fkt-field-font-size-sm, var(--fkt-font-size-xs));
+
+/*
+Large field text size.
+@name --fkt-field-font-size-lg
+@reference --fkt-font-size-md
+@category Typography
+@type size
+*/
+$field-font-size-lg: var(--fkt-field-font-size-lg, var(--fkt-font-size-md));
+
+/*
+Field text color.
+@name --fkt-field-text-color
+@reference --fkt-color-neutral-900
+@category Colors
+@type color
+*/
+$field-text-color: var(--fkt-field-text-color, var(--fkt-color-neutral-900));
+
+/*
+Space between the prefix and field content.
+@name --fkt-field-prefix-gap
+@scope Prefix | [fktFieldPrefix]
+@reference --fkt-space-xs
+@category Spacing
+@type size
+*/
+$field-prefix-gap: var(--fkt-field-prefix-gap, var(--fkt-space-xs));
+
+/*
+Space between the suffix and field content.
+@name --fkt-field-suffix-gap
+@scope Suffix | [fktFieldSuffix]
+@reference --fkt-space-xs
+@category Spacing
+@type size
+*/
+$field-suffix-gap: var(--fkt-field-suffix-gap, var(--fkt-space-xs));
+
+/*
+Background color for selected value chips.
+@name --fkt-select-chip-background-color
+@reference --fkt-color-neutral-300
+@category Colors
+@type color
+*/
+$chip-background: var(--fkt-select-chip-background-color, var(--fkt-color-neutral-300));
+
+/*
+Text color for selected value chips.
+@name --fkt-select-chip-text-color
+@reference --fkt-color-neutral-700
+@category Colors
+@type color
+*/
+$chip-text: var(--fkt-select-chip-text-color, var(--fkt-color-neutral-700));
+
+/*
+Padding inside selected value chips.
+@name --fkt-select-chip-padding
+@reference --fkt-space-4xs --fkt-space-xs
+@category Spacing
+@type spacing
+*/
+$chip-padding: var(--fkt-select-chip-padding, var(--fkt-space-4xs) var(--fkt-space-xs));
+
+/*
+Gap between selected value chips.
+@name --fkt-select-chip-gap
+@reference --fkt-space-3xs
+@category Spacing
+@type size
+*/
+$chip-gap: var(--fkt-select-chip-gap, var(--fkt-space-3xs));
+
+// </design-tokens>
+
 :host {
-	// <design-tokens>
-	/*
-	Vertical padding inside the select field (top and bottom spacing between border and content).
-	@name --fkt-select-vertical-padding
-	@reference --fkt-space-xs
-	@component Field
-	@category Spacing
-	@type size
- 	*/
-	$vertical-padding: var(--fkt-select-vertical-padding, var(--fkt-space-xs));
-	/*
-	Horizontal padding inside the select field (left and right spacing between border and content).
-	@name --fkt-select-horizontal-padding
-	@reference --fkt-space-sm
-	@component Field
-	@category Spacing
-	@type size
- 	*/
-	$horizontal-padding: var(--fkt-select-horizontal-padding, var(--fkt-space-sm));
+    display: block;
+    width: 100%;
+}
 
-	/*
-	Border color of the select in its normal (default) state.
-	@name --fkt-select-border-color
-	@reference --fkt-color-neutral-400
-	@component Field
-	@category Colors
-	@type color
- 	*/
-	$border-color: var(--fkt-select-border-color, var(--fkt-color-neutral-400));
+fkt-field {
+    cursor: pointer;
+    width: 100%;
+}
 
-	/*
-	Border color of the select when it gets focused
-	@name --fkt-select-border-focus-color
-	@reference --fkt-color-neutral-800
-	@component Field
-	@category Colors
-	@type color
- 	*/
-	$border-focus-color: var(--fkt-select-border-focus-color, var(--fkt-color-neutral-800));
+[fktCustomField] {
+    width: 100%;
+}
 
-	/*
-	Color of the label in its normal (default) state.
-	@name --fkt-select-label-color
-	@reference --fkt-color-neutral-700
-	@component Field
-	@category Colors
-	@type color
- 	*/
-	$label-color: var(--fkt-select-label-color, var(--fkt-color-neutral-700));
+.control {
+    align-items: center;
+    display: flex;
+    min-height: 1.25rem;
+    outline: none;
+    width: 100%;
+}
 
-	/*
-	Color of the label when it gets focused
-	@name --fkt-select-label-focus-color
-	@reference --fkt-color-neutral-800
-	@component Field
-	@category Colors
-	@type color
- 	*/
-	$label-focus-color: var(--fkt-select-label-focus-color, var(--fkt-color-neutral-800));
+.value {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: $chip-gap;
+    min-width: 0;
+    width: 100%;
+}
 
-  /*
-  Color of the label and border when it gets invalid
-  @name --fkt-select-invalid-color
-  @reference --fkt-color-danger
-  @component Field
-  @category Colors
-  @type color
- */
-  $invalid-color: var(--fkt-select-invalid-color, var(--fkt-color-danger));
+.action-button {
+    margin-right: 0.25rem;
+    --fkt-button-padding-vertical: 0.25rem;
+    --fkt-button-icon-font-size: 1rem;
+}
 
-	/*
-	Border radius for select
-	@name --fkt-select-border-radius
-	@reference --fkt-radius-lg
-	@component Field
-	@category Spacing
-	@type size
- 	*/
-	$border-radius: var(--fkt-select-border-radius, var(--fkt-radius-lg));
+.selected-value,
+.placeholder {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
 
-	/*
-	Font size for select text and placeholder.
-	@name --fkt-select-font-size
-	@reference --fkt-font-size-sm
-	@component Field
-	@category Typography
-	@type size
- 	*/
-	$font-size: var(--fkt-select-font-size, var(--fkt-font-size-sm));
-	/*
-	Color for text into select
-	@name --fkt-select-text-color
-	@reference --fkt-color-neutral-900
-	@component Field
-	@category Colors
-	@type color
- 	*/
-	$text-color: var(--fkt-select-text-color, var(--fkt-color-neutral-900));
+.placeholder {
+    color: var(--fkt-color-neutral-500);
+}
 
-	// </design-tokens>
+.chip {
+    align-items: center;
+    background: $chip-background;
+    border: 1px solid transparent;
+    border-radius: var(--fkt-radius-full);
+    color: $chip-text;
+    cursor: pointer;
+    display: flex;
+    font-size: var(--fkt-font-size-xs);
+    gap: var(--fkt-space-3xs);
+    outline: none;
+    padding: $chip-padding;
 
-	display: block;
-	border-radius: var(--fkt-radius-full);
-	position: relative;
-	transition: var(--fkt-transition-base);
-	scroll-behavior: smooth;
-	width: 100%;
-	cursor: pointer;
-
-	* {
-		box-sizing: border-box;
-	}
-
-    .selected-option {
-        max-width: 100%;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        overflow: hidden;
+    &:focus-visible {
+        box-shadow: var(--fkt-focus-ring-shadow);
     }
 
-	.selected-option, .placeholder {
-		font-size: $font-size;
-	}
-
-    .label-placeholder {
-        pointer-events: none;
-        opacity: 0;
-        height: 0;
+    &:disabled {
+        cursor: not-allowed;
+        opacity: .6;
     }
-
-	.label-container {
-		display: flex;
-		gap: var(--fkt-space-xs);
-		align-items: center;
-
-		label {
-			top: 15px;
-			position: absolute;
-			padding: 0 var(--fkt-space-3xs);
-			transition: var(--fkt-transition-base);
-			left: var(--fkt-space-sm);
-			background-color: var(--fkt-color-neutral-100);
-			color: var(--fkt-color-neutral-800);
-			font-weight: var(--fkt-font-normal);
-			font-size: var(--fkt-font-size-sm);
-			margin-bottom: var(--fkt-space-3xs);
-
-			&.error {
-				color: var($invalid-color);
-			}
-
-			&.float {
-				z-index: 50;
-				scale: 90%;
-				translate: calc(var(--fkt-space-3xs) * -1) calc(var(--fkt-space-xl) * -1);
-			}
-		}
-
-	}
-
-	.select {
-		width: 100%;
-		position: relative;
-		padding: $vertical-padding $horizontal-padding;
-		outline: none;
-
-        &__content {
-            display: flex;
-            flex-direction: column;
-            max-width: 100%;
-            min-width: 0;
-            flex: 1
-        ;
-        }
-
-		&__container {
-			outline: none;
-			height: 20px;
-			width: 100%;
-            gap: var(--fkt-space-xs);
-			transition: var(--fkt-transition-base);
-			border-radius: var(--fkt-radius-lg);
-			display: flex;
-			justify-content: space-between;
-			align-items: center;
-			background-color: transparent;
-
-			&:hover {
-				border-color: var(--fkt-color-neutral-600);
-			}
-
-			&:focus {
-				border-color: var(--fkt-color-focus-outline);
-			}
-
-			&.error {
-				border-color: $invalid-color;
-			}
-
-			.placeholder {
-				color: var(--fkt-color-neutral-400);
-				opacity: 0;
-			}
-
-			&.placeholder.show-placeholder {
-				opacity: 1;
-			}
-		}
-
-
-		.border {
-			position: absolute;
-			left: 0;
-			top: 0;
-			user-select: none;
-			pointer-events: none;
-			height: 100%;
-			width: 100%;
-			display: flex;
-			align-items: flex-end;
-
-			.left {
-				height: 100%;
-				border-radius: $border-radius 0 0 $border-radius;
-				border-style: solid;
-				border-color: $border-color;
-				border-top-width: 1px;
-				border-bottom-width: 1px;
-				border-left-width: 1px;
-				border-right-width: 0;
-				width: $horizontal-padding;
-                flex-shrink: 0;
-			}
-
-			.center {
-				height: 100%;
-				position: relative;
-				border-style: solid;
-				border-color: $border-color;
-				border-top-width: 1px;
-				border-bottom-width: 1px;
-				border-left-width: 0;
-				border-right-width: 0;
-				width: fit-content;
-				display: flex;
-				align-items: center;
-
-				label {
-					position: relative;
-					pointer-events: none;
-					font-size: var(--fkt-font-size-sm);
-					transition: var(--fkt-transition-base);
-					color: $label-color;
-					white-space: nowrap;
-
-					&.disabled {
-						opacity: 40%;
-						filter: grayscale(1);
-						cursor: not-allowed;
-					}
-
-					&.error {
-						color: $invalid-color;
-					}
-				}
-
-				&.hide-label {
-					width: 0;
-
-					label {
-						display: none;
-					}
-				}
-			}
-
-			.right {
-				height: 100%;
-				border-radius: 0 $border-radius $border-radius 0;
-				border-style: solid;
-				border-color: $border-color;
-				border-top-width: 1px;
-				border-bottom-width: 1px;
-				border-left-width: 0;
-				border-right-width: 1px;
-				width: 100%;
-			}
-
-			&.error {
-				.center, .left, .right {
-					border-color: $invalid-color;
-				}
-
-				.center label {
-					color: $invalid-color;
-				}
-			}
-
-			&.disabled {
-				.center, .left, .right {
-					opacity: 60%;
-					filter: grayscale(1);
-					cursor: not-allowed;
-				}
-			}
-
-			&.focused {
-				.center {
-					label {
-						color: $label-focus-color;
-					}
-				}
-
-				.left, .right, .center {
-					border-color: $border-focus-color;
-				}
-			}
-
-			&.float {
-				.center {
-					border-top-width: 0;
-
-					label {
-						z-index: 50;
-						font-size: var(--fkt-font-size-xs);
-						margin: 0 var(--fkt-space-3xs);
-						translate: 0 calc(calc(calc($vertical-padding + .5rem) * -1) - 1px)
-					}
-				}
-			}
-		}
-
-		&:focus-within .border {
-			.center {
-				label {
-					color: $label-focus-color;
-				}
-			}
-
-			.left, .right, .center {
-				border-color: $border-focus-color;
-			}
-		}
-	}
-
-	&.opened {
-		.label-container label {
-			color: var(--fkt-color-accent);
-			z-index: 50;
-			scale: 90%;
-			translate: calc(var(--fkt-space-3xs) * -1) calc(var(--fkt-space-xl) * -1);
-		}
-
-		.select__container {
-			border-color: var(--fkt-color-accent);
-
-			.placeholder {
-				opacity: 1;
-			}
-		}
-	}
-
-	&.disabled {
-		user-select: none;
-
-		.label-container label {
-			color: var(--fkt-color-neutral-400);
-			z-index: 50;
-			scale: 90%;
-			translate: calc(var(--fkt-space-3xs) * -1) calc(var(--fkt-space-xl) * -1);
-		}
-
-		.select__container {
-			border-color: var(--fkt-color-neutral-200);
-			color: var(--fkt-color-neutral-400);
-			cursor: not-allowed;
-		}
-	}
-
-	fkt-field-error {
-		padding-left: var(--fkt-space-sm);
-	}
 }

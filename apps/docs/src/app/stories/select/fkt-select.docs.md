@@ -1,50 +1,87 @@
-## Key Features
-
-- **Custom Styling**: Beautiful dropdown design that works consistently across all browsers
-- **Form Integration**: Seamless integration with SignalFormControl and reactive forms
-- **Keyboard Navigation**: Full keyboard support for accessibility and efficiency
-- **Loading States**: Built-in support for dynamic option loading with loading indicators
-- **Custom No Results**: Configurable messaging when no options are available
-- **Async Loading**: Support for loading options dynamically from APIs
-
-## Configuration Options
+## API Reference
 
 <arg-types></arg-types>
 
-### Types
+## Value Model
 
-```typescript
-import {FktIconName} from "frakton-ng/icon";
-import {FktButtonAction} from "frakton-ng/button";
+`fkt-select` stores primitive values even when its options are rich objects.
 
-interface FktSelectOption {
-    value: string | number;
-    label: string;
-}
+- Primitive options are used directly as labels and values.
+- `labelKey` derives the visible label from an object option.
+- `valueKey` derives the stable `string` or `number` stored by the form.
+- Multiple mode stores an array of primitive values.
+- Object values written programmatically are normalized through `valueKey`.
 
-interface FktNoResults {
-    label: string;
-    icon?: {
-        name: FktIconName;
-        size?: string
-    };
-    description?: string;
-    action?: FktButtonAction;
-}
+`labelKey`, `valueKey`, and `groupKey` accept property names or functions:
+
+```angular2html
+<fkt-select
+    [labelKey]="getLabel"
+    [valueKey]="getValue"
+    [groupKey]="getGroup"
+/>
 ```
 
-## Use Cases
+## Hydrated Values
 
-[Real-world application scenarios where the FktSelect component provides value]
+Edit screens often receive the selected object before the current option list. A full option object
+written through a form is treated as preload data:
 
-- **Form Selection**: Country/region selection, status and priority selection, user and role assignment
-- **Configuration Settings**: Theme and appearance options, language and locale selection, feature toggles
-- **Data Filtering**: Sort order selection, filter criteria selection, date range presets
-- **Business Applications**: Department and team selection, project status and priority, customer and vendor selection
+- Its label is rendered immediately.
+- Its value is normalized through `valueKey`.
+- It is not automatically added to the dropdown.
+- A real option with the same value replaces the preload data when it arrives.
 
-## Accessibility
+## Field Composition
 
-- **Keyboard Navigation**: Arrow keys navigate options, Enter selects, Escape closes dropdown, Tab moves focus
-- **Screen Reader Support**: ARIA labels for combobox role, aria-expanded state, aria-activedescendant for highlighted option
-- **Focus Management**: Logical tab order, visible focus indicators, focus trap when dropdown is open
-- **Other Notes**: Supports high contrast mode, respects prefers-reduced-motion for animations
+Select composes `fkt-field` and accepts its field inputs:
+
+- `hint`
+- `showError`
+- `size`
+- `requiredMarker`
+- `hideLabel`
+
+It also exposes the field projection slots:
+
+- `fktFieldPrefix`
+- `fktFieldSuffix`
+- `fktHintStart`
+- `fktHintEnd`
+- `fktError`
+
+`fktFieldSuffix` replaces the default clear and dropdown action button.
+
+For the complete field contract, see [Field documentation](/docs/field/features).
+
+## Templates
+
+The following structural directives customize rendering:
+
+- `fktSelectHeader`
+- `fktSelectGroup`
+- `fktSelectItem`
+- `fktSelectFooter`
+- `fktSelectChip`
+- `fktSelectEmpty`
+
+Templates change presentation only. The Select continues to own keyboard navigation, active
+descendant, selection state, accessibility, and form integration.
+
+## Lazy Fetching
+
+Use `dropdownOpenChange` when the finite option list should only be fetched after the user opens
+the dropdown:
+
+```angular2html
+<fkt-select
+    [options]="options()"
+    (dropdownOpenChange)="$event && fetchOptions()"
+/>
+```
+
+The output reports both opening and closing transitions. It observes the dropdown lifecycle; opening,
+closing, focus, keyboard behavior, and selection remain managed by the Select.
+
+Select is designed for finite option sets. Use Autocomplete when the user needs search, server
+queries, infinite loading, or virtualized results.
