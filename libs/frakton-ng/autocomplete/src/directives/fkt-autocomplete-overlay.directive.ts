@@ -48,10 +48,10 @@ export class FktAutocompleteOverlayDirective<Option extends Generic | string> {
     );
 
     private readonly syncDropdownState = effect(() => {
-        const isDropdownOpened = this.context.isDropdownOpened();
+        const opened = this.context.dropdownOpened();
 
         untracked(() => {
-            if (isDropdownOpened) this.open();
+            if (opened) this.open();
             else this.close();
         });
     });

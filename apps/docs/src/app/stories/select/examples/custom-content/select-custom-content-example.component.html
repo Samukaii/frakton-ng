@@ -1,0 +1,81 @@
+<fkt-select
+    label="Products"
+    placeholder="Select products"
+    [formControl]="selectedProducts"
+    [options]="products"
+    labelKey="name"
+    valueKey="sku"
+    groupKey="category"
+    multiple
+>
+    <div *fktSelectHeader class="overlay-header">
+        <div>
+            <strong>Product catalog</strong>
+            <span>Select products to include in the order.</span>
+        </div>
+        <fkt-icon name="shopping-bag"/>
+    </div>
+
+    <div *fktSelectGroup="let group" class="group">
+        <span>{{ group.label }}</span>
+        <small>{{ group.items.length }} products</small>
+    </div>
+
+    <div
+        *fktSelectItem="let item; let isSelected = isSelected"
+        class="item"
+        [class.selected]="isSelected"
+    >
+        <img
+            class="product-image"
+            [src]="item.raw | call: image"
+            [alt]="item.label"
+            width="40"
+            height="40"
+        >
+
+        <div class="product-info">
+            <strong>{{ item.label }}</strong>
+            <span>{{ item.raw | call: category }} · {{ item.value }}</span>
+        </div>
+
+        <div class="product-meta">
+            <strong>{{ item.raw | call: price }}</strong>
+            <fkt-tag
+                variant="faded"
+                [color]="item.raw | call: stockColor"
+                [text]="item.raw | call: stock"
+            />
+        </div>
+    </div>
+
+    <div *fktSelectFooter class="overlay-footer">
+        <span>Can't find a product?</span>
+        <fkt-button
+            text="Manage catalog"
+            icon="plus"
+            iconPosition="left"
+            theme="stroked"
+            shape="rect"
+        />
+    </div>
+
+    <div *fktSelectChip="let item" class="custom-chip">
+        <img
+            [src]="item.raw | call: image"
+            alt=""
+            width="20"
+            height="20"
+        >
+        <span>{{ item.label }}</span>
+        <fkt-icon name="x-circle"/>
+    </div>
+
+    <div *fktSelectEmpty="let state" class="empty-state">
+        <fkt-icon name="shopping-bag"/>
+        <strong>No products available</strong>
+        <span>{{ state.label }}</span>
+    </div>
+</fkt-select>
+
+<app-code-output [value]="value()" title="Field value"/>

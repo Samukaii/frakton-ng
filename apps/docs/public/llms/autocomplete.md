@@ -72,10 +72,6 @@ export class AutocompleteBasicExampleComponent {
 ```
 
 ```html title="autocomplete-basic-example.component.html"
-<app-code-output
-    [value]="value()"
-    title="Field value"
-/>
 <fkt-autocomplete
     label="Framework"
     placeholder="Search frameworks"
@@ -83,11 +79,14 @@ export class AutocompleteBasicExampleComponent {
     [options]="frameworks"
     localSearch
 />
+
+<app-code-output [value]="value()" title="Field value"/>
 ```
 
 ```css title="autocomplete-basic-example.component.scss"
-pre {
-    margin: 1rem 0 0;
+app-code-output {
+    display: block;
+    margin-top: 1rem;
 }
 ```
 
@@ -130,11 +129,6 @@ export class AutocompleteObjectOptionsExampleComponent {
 ```
 
 ```html title="autocomplete-object-options-example.component.html"
-<app-code-output
-    [value]="value()"
-    title="Field value"
-/>
-
 <fkt-autocomplete
     label="Assignee"
     placeholder="Search for a user to assign"
@@ -145,11 +139,14 @@ export class AutocompleteObjectOptionsExampleComponent {
     groupKey="department"
     localSearch
 />
+
+<app-code-output [value]="value()" title="Field value"/>
 ```
 
 ```css title="autocomplete-object-options-example.component.scss"
-pre {
-    margin: 1rem 0 0;
+app-code-output {
+    display: block;
+    margin-top: 1rem;
 }
 ```
 
@@ -199,11 +196,6 @@ export class AutocompleteFunctionKeysExampleComponent {
 ```
 
 ```html title="autocomplete-function-keys-example.component.html"
-<app-code-output
-    [value]="value()"
-    title="Field value"
-/>
-
 <fkt-autocomplete
     label="Country"
     placeholder="Select your country"
@@ -214,11 +206,14 @@ export class AutocompleteFunctionKeysExampleComponent {
     [groupKey]="getCountryGroup"
     localSearch
 />
+
+<app-code-output [value]="value()" title="Field value"/>
 ```
 
 ```css title="autocomplete-function-keys-example.component.scss"
-pre {
-    margin: 1rem 0 0;
+app-code-output {
+    display: block;
+    margin-top: 1rem;
 }
 ```
 
@@ -263,11 +258,6 @@ export class AutocompleteMultipleExampleComponent {
 ```
 
 ```html title="autocomplete-multiple-example.component.html"
-<app-code-output
-    [value]="value()"
-    title="Field value"
-/>
-
 <fkt-autocomplete
     label="Countries"
     placeholder="Select multiple countries"
@@ -279,11 +269,14 @@ export class AutocompleteMultipleExampleComponent {
     multiple
     localSearch
 />
+
+<app-code-output [value]="value()" title="Field value"/>
 ```
 
 ```css title="autocomplete-multiple-example.component.scss"
-pre {
-    margin: 1rem 0 0;
+app-code-output {
+    display: block;
+    margin-top: 1rem;
 }
 ```
 
@@ -325,11 +318,6 @@ export class AutocompleteFreeTextExampleComponent {
 ```
 
 ```html title="autocomplete-free-text-example.component.html"
-<app-code-output
-    [value]="value()"
-    title="Field value"
-/>
-
 <fkt-autocomplete
     label="Tags"
     placeholder="Choose a tag or create one."
@@ -339,11 +327,14 @@ export class AutocompleteFreeTextExampleComponent {
     freeText
     localSearch
 />
+
+<app-code-output [value]="value()" title="Field value"/>
 ```
 
 ```css title="autocomplete-free-text-example.component.scss"
-pre {
-    margin: 1rem 0 0;
+app-code-output {
+    display: block;
+    margin-top: 1rem;
 }
 ```
 
@@ -471,10 +462,32 @@ export class AutocompleteHydratedValueExampleComponent {
 ```
 
 ```html title="autocomplete-hydrated-value-example.component.html"
-<app-code-output
-    [value]="value()"
-    title="Field value"
-/>
+<div class="actions">
+    <fkt-button
+        theme="stroked"
+        iconPosition="left"
+        icon="list-bullet"
+        shape="rect"
+        text="Set ids"
+        (click)="fillWithPrimitiveValues()"
+    />
+    <fkt-button
+        theme="stroked"
+        iconPosition="left"
+        icon="user-plus"
+        shape="rect"
+        text="Set hydrated users"
+        (click)="fillWithHydratedUsers()"
+    />
+    <fkt-button
+        theme="stroked"
+        iconPosition="left"
+        icon="arrow-path-rounded-square"
+        shape="rect"
+        text="Load fresh options"
+        (click)="loadFreshOptions()"
+    />
+</div>
 
 <fkt-autocomplete
     label="Users"
@@ -487,23 +500,28 @@ export class AutocompleteHydratedValueExampleComponent {
     localSearch
 />
 
-<div class="actions">
-    <fkt-button text="Set ids" (click)="fillWithPrimitiveValues()" />
-    <fkt-button text="Set hydrated users" (click)="fillWithHydratedUsers()" />
-    <fkt-button text="Load fresh options" (click)="loadFreshOptions()" />
-</div>
+<app-code-output [value]="value()" title="Field value"/>
 ```
 
 ```css title="autocomplete-hydrated-value-example.component.scss"
 .actions {
+    margin-bottom: 1rem;
     display: flex;
     flex-wrap: wrap;
-    gap: .75rem;
-    margin-top: 1rem;
+    gap: var(--fkt-space-2xs);
+    justify-content: flex-end;
+
+    --fkt-button-padding-horizontal: var(--fkt-space-xs);
+    --fkt-button-padding-vertical: var(--fkt-space-2xs);
+    --fkt-button-font-size: var(--fkt-font-size-sm);
+    --fkt-button-border-width: 1px;
+    --fkt-button-icon-font-size: var(--fkt-font-size-sm);
+    --fkt-button-rect-border-radius: var(--fkt-radius-sm);
 }
 
-pre {
-    margin: 1rem 0 0;
+app-code-output {
+    display: block;
+    margin-top: 1rem;
 }
 ```
 
@@ -580,11 +598,6 @@ export class AutocompleteCustomContentExampleComponent {
 ```
 
 ```html title="autocomplete-custom-content-example.component.html"
-<app-code-output
-    [value]="value()"
-    title="Field value"
-/>
-
 <fkt-autocomplete
     label="Team member"
     placeholder="Search for a teammate"
@@ -650,6 +663,8 @@ export class AutocompleteCustomContentExampleComponent {
         <span>{{ state.label }}</span>
     </div>
 </fkt-autocomplete>
+
+<app-code-output [value]="value()" title="Field value"/>
 ```
 
 ```css title="autocomplete-custom-content-example.component.scss"
@@ -737,6 +752,13 @@ export class AutocompleteCustomContentExampleComponent {
     justify-content: space-between;
     padding: var(--fkt-space-xs);
     padding-bottom: 0;
+
+    --fkt-button-padding-horizontal: var(--fkt-space-xs);
+    --fkt-button-padding-vertical: var(--fkt-space-2xs);
+    --fkt-button-font-size: var(--fkt-font-size-sm);
+    --fkt-button-border-width: 1px;
+    --fkt-button-icon-font-size: var(--fkt-font-size-sm);
+    --fkt-button-rect-border-radius: var(--fkt-radius-sm);
 }
 
 .custom-chip {
@@ -768,8 +790,9 @@ export class AutocompleteCustomContentExampleComponent {
     }
 }
 
-pre {
-    margin: 1rem 0 0;
+app-code-output {
+    display: block;
+    margin-top: 1rem;
 }
 ```
 
@@ -822,11 +845,6 @@ export class AutocompleteLocalSearchExampleComponent {
 ```
 
 ```html title="autocomplete-local-search-example.component.html"
-<app-code-output
-    [value]="value()"
-    title="Field value"
-/>
-
 <fkt-autocomplete
     label="Country"
     [formControl]="country"
@@ -837,11 +855,14 @@ export class AutocompleteLocalSearchExampleComponent {
     groupKey="continent"
     localSearch
 />
+
+<app-code-output [value]="value()" title="Field value"/>
 ```
 
 ```css title="autocomplete-local-search-example.component.scss"
-pre {
-    margin: 1rem 0 0;
+app-code-output {
+    display: block;
+    margin-top: 1rem;
 }
 ```
 
@@ -902,11 +923,6 @@ export class AutocompleteCustomLocalSearchExampleComponent {
 ```
 
 ```html title="autocomplete-custom-local-search-example.component.html"
-<app-code-output
-    [value]="value()"
-    title="Field value"
-/>
-
 <fkt-autocomplete
     label="Country"
     [formControl]="country"
@@ -917,10 +933,15 @@ export class AutocompleteCustomLocalSearchExampleComponent {
     groupKey="continent"
     [localSearch]="searchByCode"
 />
+
+<app-code-output [value]="value()" title="Field value"/>
 ```
 
 ```css title="autocomplete-custom-local-search-example.component.scss"
-
+app-code-output {
+    display: block;
+    margin-top: 1rem;
+}
 ```
 
 ### ServerSearch
@@ -977,11 +998,6 @@ export class AutocompleteServerSearchExampleComponent {
 ```
 
 ```html title="autocomplete-server-search-example.component.html"
-<app-code-output
-    [value]="value()"
-    title="Field value"
-/>
-
 <fkt-autocomplete
     label="User"
     placeholder="Search for a user"
@@ -992,21 +1008,24 @@ export class AutocompleteServerSearchExampleComponent {
     valueKey="id"
     (searchChange)="searchUsers($event)"
 />
+
+<app-code-output [value]="value()" title="Field value"/>
 ```
 
 ```css title="autocomplete-server-search-example.component.scss"
-pre {
-    margin: 1rem 0 0;
+app-code-output {
+    display: block;
+    margin-top: 1rem;
 }
 ```
 
-### LazySearch
+### LazyFetching
 
-- id: lazy-search
+- id: lazy-fetching
 - type: story
 - component: AutocompleteLazySearchExampleComponent
 
-Lazy search can be triggered from `isDropdownOpenedChange`. This is useful when the first request
+Lazy fetching can be triggered from `dropdownOpenChange`. This is useful when the first request
 should happen only after the user opens the autocomplete instead of during initial page render.
 
 Example component: `AutocompleteLazySearchExampleComponent`
@@ -1058,11 +1077,6 @@ export class AutocompleteLazySearchExampleComponent {
 ```
 
 ```html title="autocomplete-lazy-search-example.component.html"
-<app-code-output
-    title="Fetch state"
-    [value]="{fetched: hasFetched(), value: value() }"
-/>
-
 <fkt-autocomplete
     localSearch
     label="User"
@@ -1072,13 +1086,19 @@ export class AutocompleteLazySearchExampleComponent {
     [loading]="loading()"
     labelKey="name"
     valueKey="id"
-    (isDropdownOpenedChange)="canFetch.set(true)"
+    (dropdownOpenChange)="$event && canFetch.set(true)"
+/>
+
+<app-code-output
+    title="Fetch state"
+    [value]="{fetched: hasFetched(), value: value() }"
 />
 ```
 
 ```css title="autocomplete-lazy-search-example.component.scss"
-pre {
-    margin: 1rem 0 0;
+app-code-output {
+    display: block;
+    margin-top: 1rem;
 }
 ```
 
@@ -1129,11 +1149,6 @@ export class AutocompleteMinSearchExampleComponent {
 ```
 
 ```html title="autocomplete-min-search-example.component.html"
-<app-code-output
-    [value]="value()"
-    title="Field value"
-/>
-
 <fkt-autocomplete
     label="User"
     [formControl]="user"
@@ -1145,92 +1160,14 @@ export class AutocompleteMinSearchExampleComponent {
     valueKey="id"
     (searchChange)="searchUsers($event)"
 />
+
+<app-code-output [value]="value()" title="Field value"/>
 ```
 
 ```css title="autocomplete-min-search-example.component.scss"
-pre {
-    margin: 1rem 0 0;
-}
-```
-
-### ControlledDropdown
-
-- id: controlled-dropdown
-- type: story
-- component: AutocompleteControlledDropdownExampleComponent
-
-Overlay state can be controlled with `isDropdownOpened`. This is mostly useful for guided flows,
-external triggers, or advanced UI coordination.
-
-Example component: `AutocompleteControlledDropdownExampleComponent`
-
-```ts title="autocomplete-controlled-dropdown-example.component.ts"
-import { Component, signal } from '@angular/core';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { toSignal } from '@angular/core/rxjs-interop';
-import { FktAutocompleteComponent } from 'frakton-ng/autocomplete';
-import { FktButtonComponent } from 'frakton-ng/button';
-import { COUNTRIES } from '../autocomplete-demo-data';
-import { CodeOutputComponent } from '@/components/code-output/code-output.component';
-
-@Component({
-    selector: 'app-autocomplete-controlled-dropdown-example',
-    imports: [
-        FktAutocompleteComponent,
-        FktButtonComponent,
-        ReactiveFormsModule,
-        CodeOutputComponent,
-    ],
-    templateUrl: './autocomplete-controlled-dropdown-example.component.html',
-    styleUrl: './autocomplete-controlled-dropdown-example.component.scss',
-})
-export class AutocompleteControlledDropdownExampleComponent {
-    protected readonly countries = COUNTRIES;
-    protected readonly country = new FormControl<string | null>(null);
-    protected readonly value = toSignal(this.country.valueChanges, {
-        initialValue: this.country.value,
-    });
-    protected readonly isDropdownOpened = signal(false);
-
-    protected open() {
-        this.isDropdownOpened.set(true);
-    }
-
-    protected close() {
-        this.isDropdownOpened.set(false);
-    }
-}
-```
-
-```html title="autocomplete-controlled-dropdown-example.component.html"
-<app-code-output
-    [value]="{ opened: isDropdownOpened(), value: value() }"
-    title="Dropdown state"
-/>
-
-<div class="actions">
-    <fkt-button text="Open" (click)="open()"/>
-    <fkt-button text="Close" (click)="close()"/>
-</div>
-
-<fkt-autocomplete
-    label="Country"
-    placeholder="Search for a country"
-    [formControl]="country"
-    [options]="countries"
-    labelKey="name"
-    valueKey="code"
-    [(isDropdownOpened)]="isDropdownOpened"
-    localSearch
-/>
-```
-
-```css title="autocomplete-controlled-dropdown-example.component.scss"
-.actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: .75rem;
-    margin-bottom: 1rem;
+app-code-output {
+    display: block;
+    margin-top: 1rem;
 }
 ```
 
@@ -1303,11 +1240,6 @@ export class AutocompleteInfiniteLoadingExampleComponent {
 ```
 
 ```html title="autocomplete-infinite-loading-example.component.html"
-<app-code-output
-    [value]="value()"
-    title="Field value"
-/>
-
 <fkt-autocomplete
     label="User"
     placeholder="Search for a user"
@@ -1320,11 +1252,14 @@ export class AutocompleteInfiniteLoadingExampleComponent {
     [hasEnded]="hasEnded()"
     (loadMore)="loadMore()"
 />
+
+<app-code-output [value]="value()" title="Field value"/>
 ```
 
 ```css title="autocomplete-infinite-loading-example.component.scss"
-pre {
-    margin: 1rem 0 0;
+app-code-output {
+    display: block;
+    margin-top: 1rem;
 }
 ```
 
@@ -1376,11 +1311,6 @@ export class AutocompleteVirtualScrollExampleComponent {
 ```
 
 ```html title="autocomplete-virtual-scroll-example.component.html"
-<app-code-output
-    [value]="value()"
-    title="Field value"
-/>
-
 <fkt-autocomplete
     label="User"
     [formControl]="user"
@@ -1389,17 +1319,20 @@ export class AutocompleteVirtualScrollExampleComponent {
     labelKey="name"
     valueKey="id"
     [groupKey]="getCountryGroup"
-    (isDropdownOpenedChange)="canFetch.set($event)"
+    (dropdownOpenChange)="canFetch.set($event)"
     fktAutocompleteVirtualScroll
     [virtualItemHeight]="40"
     [virtualGroupHeight]="24"
     [maxVirtualItems]="10000"
 />
+
+<app-code-output [value]="value()" title="Field value"/>
 ```
 
 ```css title="autocomplete-virtual-scroll-example.component.scss"
-pre {
-    margin: 1rem 0 0;
+app-code-output {
+    display: block;
+    margin-top: 1rem;
 }
 ```
 
@@ -1467,15 +1400,31 @@ export class AutocompleteSignalFormsExampleComponent {
 ```
 
 ```html title="autocomplete-signal-forms-example.component.html"
-<app-code-output
-    [value]="model()"
-    title="Form value"
-/>
-
 <div class="actions">
-    <fkt-button text="Fill" (click)="fill()" />
-    <fkt-button text="Reset" (click)="reset()" />
-    <fkt-button text="Toggle disabled" (click)="toggleDisabled()" />
+    <fkt-button
+        theme="stroked"
+        iconPosition="left"
+        icon="pencil"
+        shape="rect"
+        text="Fill"
+        (click)="fill()"
+    />
+    <fkt-button
+        theme="stroked"
+        iconPosition="left"
+        icon="arrow-uturn-left"
+        shape="rect"
+        text="Reset"
+        (click)="reset()"
+    />
+    <fkt-button
+        theme="stroked"
+        iconPosition="left"
+        icon="lock-closed"
+        shape="rect"
+        text="Toggle disabled"
+        (click)="toggleDisabled()"
+    />
 </div>
 
 <fkt-autocomplete
@@ -1487,18 +1436,29 @@ export class AutocompleteSignalFormsExampleComponent {
     groupKey="continent"
     localSearch
 />
+
+<app-code-output [value]="model()" title="Form value"/>
 ```
 
 ```css title="autocomplete-signal-forms-example.component.scss"
 .actions {
     display: flex;
     flex-wrap: wrap;
-    gap: .75rem;
+    gap: var(--fkt-space-2xs);
+    justify-content: flex-end;
     margin-bottom: 1rem;
+
+    --fkt-button-padding-horizontal: var(--fkt-space-xs);
+    --fkt-button-padding-vertical: var(--fkt-space-2xs);
+    --fkt-button-font-size: var(--fkt-font-size-sm);
+    --fkt-button-border-width: 1px;
+    --fkt-button-icon-font-size: var(--fkt-font-size-sm);
+    --fkt-button-rect-border-radius: var(--fkt-radius-sm);
 }
 
-pre {
-    margin: 1rem 0 0;
+app-code-output {
+    display: block;
+    margin-top: 1rem;
 }
 ```
 
@@ -1561,10 +1521,32 @@ export class AutocompleteReactiveFormsExampleComponent {
 ```
 
 ```html title="autocomplete-reactive-forms-example.component.html"
-<app-code-output
-    [value]="formValue()"
-    title="Form value"
-/>
+<div class="actions">
+    <fkt-button
+        theme="stroked"
+        iconPosition="left"
+        icon="pencil"
+        shape="rect"
+        text="Fill"
+        (click)="fill()"
+    />
+    <fkt-button
+        theme="stroked"
+        iconPosition="left"
+        icon="arrow-uturn-left"
+        shape="rect"
+        text="Reset"
+        (click)="reset()"
+    />
+    <fkt-button
+        theme="stroked"
+        iconPosition="left"
+        icon="lock-closed"
+        shape="rect"
+        text="Toggle disabled"
+        (click)="toggleDisabled()"
+    />
+</div>
 
 <form [formGroup]="form">
     <fkt-autocomplete
@@ -1578,23 +1560,28 @@ export class AutocompleteReactiveFormsExampleComponent {
     />
 </form>
 
-<div class="actions">
-    <fkt-button text="Fill" (click)="fill()" />
-    <fkt-button text="Reset" (click)="reset()" />
-    <fkt-button text="Toggle disabled" (click)="toggleDisabled()" />
-</div>
+<app-code-output [value]="formValue()" title="Form value"/>
 ```
 
 ```css title="autocomplete-reactive-forms-example.component.scss"
 .actions {
+    margin-bottom: 1rem;
     display: flex;
     flex-wrap: wrap;
-    gap: .75rem;
-    margin-top: 1rem;
+    gap: var(--fkt-space-2xs);
+    justify-content: flex-end;
+
+    --fkt-button-padding-horizontal: var(--fkt-space-xs);
+    --fkt-button-padding-vertical: var(--fkt-space-2xs);
+    --fkt-button-font-size: var(--fkt-font-size-sm);
+    --fkt-button-border-width: 1px;
+    --fkt-button-icon-font-size: var(--fkt-font-size-sm);
+    --fkt-button-rect-border-radius: var(--fkt-radius-sm);
 }
 
-pre {
-    margin: 1rem 0 0;
+app-code-output {
+    display: block;
+    margin-top: 1rem;
 }
 ```
 
@@ -1660,11 +1647,6 @@ export class AutocompleteFieldCompositionExampleComponent {
 ```
 
 ```html title="autocomplete-field-composition-example.component.html"
-<app-code-output
-    [value]="value()"
-    title="Field value"
-/>
-
 <fkt-autocomplete
     label="Reviewer"
     placeholder="Search users"
@@ -1681,10 +1663,15 @@ export class AutocompleteFieldCompositionExampleComponent {
     <span fktHintStart>Search by user name or department.</span>
     <span fktHintEnd>Optional</span>
 </fkt-autocomplete>
+
+<app-code-output [value]="value()" title="Field value"/>
 ```
 
 ```css title="autocomplete-field-composition-example.component.scss"
-
+app-code-output {
+    display: block;
+    margin-top: 1rem;
+}
 ```
 
 ### AutomaticValidation
@@ -1747,10 +1734,16 @@ export class AutocompleteAutomaticValidationExampleComponent {
 ```
 
 ```html title="autocomplete-automatic-validation-example.component.html"
-<app-code-output
-    [value]="value()"
-    title="Field value"
-/>
+<div class="actions">
+    <fkt-button
+        theme="stroked"
+        iconPosition="left"
+        icon="check-circle"
+        shape="rect"
+        text="Validate"
+        (click)="validate()"
+    />
+</div>
 
 <fkt-autocomplete
     label="Assignee"
@@ -1769,16 +1762,26 @@ export class AutocompleteAutomaticValidationExampleComponent {
     <span fktHintEnd>Required</span>
 </fkt-autocomplete>
 
-<div class="actions">
-    <fkt-button text="Validate" (click)="validate()" />
-</div>
+<app-code-output [value]="value()" title="Field value"/>
 ```
 
 ```css title="autocomplete-automatic-validation-example.component.scss"
 .actions {
+    margin-bottom: 1rem;
     display: flex;
-    flex-wrap: wrap;
-    gap: .75rem;
+    gap: var(--fkt-space-2xs);
+    justify-content: flex-end;
+
+    --fkt-button-padding-horizontal: var(--fkt-space-xs);
+    --fkt-button-padding-vertical: var(--fkt-space-2xs);
+    --fkt-button-font-size: var(--fkt-font-size-sm);
+    --fkt-button-border-width: 1px;
+    --fkt-button-icon-font-size: var(--fkt-font-size-sm);
+    --fkt-button-rect-border-radius: var(--fkt-radius-sm);
+}
+
+app-code-output {
+    display: block;
     margin-top: 1rem;
 }
 ```
@@ -1847,10 +1850,16 @@ export class AutocompleteManualValidationExampleComponent {
 ```
 
 ```html title="autocomplete-manual-validation-example.component.html"
-<app-code-output
-    [value]="value()"
-    title="Field value"
-/>
+<div class="actions">
+    <fkt-button
+        theme="stroked"
+        iconPosition="left"
+        icon="check-circle"
+        shape="rect"
+        text="Validate"
+        (click)="validate()"
+    />
+</div>
 
 <fkt-autocomplete
     label="Approver"
@@ -1873,16 +1882,26 @@ export class AutocompleteManualValidationExampleComponent {
     </fkt-field-error>
 </fkt-autocomplete>
 
-<div class="actions">
-    <fkt-button text="Validate" (click)="validate()" />
-</div>
+<app-code-output [value]="value()" title="Field value"/>
 ```
 
 ```css title="autocomplete-manual-validation-example.component.scss"
 .actions {
+    margin-bottom: 1rem;
     display: flex;
-    flex-wrap: wrap;
-    gap: .75rem;
+    gap: var(--fkt-space-2xs);
+    justify-content: flex-end;
+
+    --fkt-button-padding-horizontal: var(--fkt-space-xs);
+    --fkt-button-padding-vertical: var(--fkt-space-2xs);
+    --fkt-button-font-size: var(--fkt-font-size-sm);
+    --fkt-button-border-width: 1px;
+    --fkt-button-icon-font-size: var(--fkt-font-size-sm);
+    --fkt-button-rect-border-radius: var(--fkt-radius-sm);
+}
+
+app-code-output {
+    display: block;
     margin-top: 1rem;
 }
 ```
@@ -1943,21 +1962,18 @@ Passing a function to `localSearch` replaces the built-in search:
 
 The built-in local search checks label, name, and group using normalized text comparison.
 
-Use `isDropdownOpenedChange` when data should be fetched lazily only after the user opens the
+Use `dropdownOpenChange` when data should be fetched lazily only after the user opens the
 autocomplete:
 
 ```angular2html
 <fkt-autocomplete
-    (isDropdownOpenedChange)="$event && fetchOptions()"
+    (dropdownOpenChange)="$event && fetchOptions()"
     (searchChange)="searchOptions($event)"
 />
 ```
 
-Use `isDropdownOpened` as a two-way model when the overlay must be controlled externally:
-
-```angular2html
-<fkt-autocomplete [(isDropdownOpened)]="opened" />
-```
+The output reports both opening and closing transitions. It observes the dropdown lifecycle; opening,
+closing, focus, keyboard behavior, and typed-value commit remain managed by the Autocomplete.
 
 ## Commit Behavior
 

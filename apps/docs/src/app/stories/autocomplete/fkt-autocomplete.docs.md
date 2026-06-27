@@ -52,21 +52,18 @@ Passing a function to `localSearch` replaces the built-in search:
 
 The built-in local search checks label, name, and group using normalized text comparison.
 
-Use `isDropdownOpenedChange` when data should be fetched lazily only after the user opens the
+Use `dropdownOpenChange` when data should be fetched lazily only after the user opens the
 autocomplete:
 
 ```angular2html
 <fkt-autocomplete
-    (isDropdownOpenedChange)="$event && fetchOptions()"
+    (dropdownOpenChange)="$event && fetchOptions()"
     (searchChange)="searchOptions($event)"
 />
 ```
 
-Use `isDropdownOpened` as a two-way model when the overlay must be controlled externally:
-
-```angular2html
-<fkt-autocomplete [(isDropdownOpened)]="opened" />
-```
+The output reports both opening and closing transitions. It observes the dropdown lifecycle; opening,
+closing, focus, keyboard behavior, and typed-value commit remain managed by the Autocomplete.
 
 ## Commit Behavior
 

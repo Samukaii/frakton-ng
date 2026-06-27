@@ -1,113 +1,282 @@
 [
   {
-    "description": "Vertical padding inside the select field (top and bottom spacing between border and content).",
-    "name": "--fkt-select-vertical-padding",
-    "reference": "--fkt-space-xs",
-    "component": "Field",
+    "scope": {
+      "name": "Field",
+      "selector": "fkt-select"
+    },
+    "description": "Vertical padding inside the field.",
+    "name": "--fkt-field-vertical-padding",
+    "reference": "--fkt-space-inset-3xs",
     "category": "Spacing",
     "type": "size",
-    "defaultValue": ".5rem"
+    "defaultValue": ".5rem",
+    "component": "Field"
   },
   {
-    "description": "Horizontal padding inside the select field (left and right spacing between border and content).",
-    "name": "--fkt-select-horizontal-padding",
-    "reference": "--fkt-space-sm",
-    "component": "Field",
+    "scope": {
+      "name": "Field",
+      "selector": "fkt-select"
+    },
+    "description": "Vertical padding inside a small field.",
+    "name": "--fkt-field-vertical-padding-sm",
+    "reference": "--fkt-space-inset-4xs",
     "category": "Spacing",
     "type": "size",
-    "defaultValue": ".75rem"
+    "defaultValue": ".375rem",
+    "component": "Field"
   },
   {
-    "description": "Border color of the select in its normal (default) state.",
-    "name": "--fkt-select-border-color",
+    "scope": {
+      "name": "Field",
+      "selector": "fkt-select"
+    },
+    "description": "Vertical padding inside a large field.",
+    "name": "--fkt-field-vertical-padding-lg",
+    "reference": "--fkt-space-inset-2xs",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": ".625rem",
+    "component": "Field"
+  },
+  {
+    "scope": {
+      "name": "Field",
+      "selector": "fkt-select"
+    },
+    "description": "Horizontal padding inside the field.",
+    "name": "--fkt-field-horizontal-padding",
+    "reference": "--fkt-space-inset-2xs",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": ".625rem",
+    "component": "Field"
+  },
+  {
+    "scope": {
+      "name": "Field",
+      "selector": "fkt-select"
+    },
+    "description": "Horizontal padding inside a small field.",
+    "name": "--fkt-field-horizontal-padding-sm",
+    "reference": "--fkt-space-inset-3xs",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": ".5rem",
+    "component": "Field"
+  },
+  {
+    "scope": {
+      "name": "Field",
+      "selector": "fkt-select"
+    },
+    "description": "Horizontal padding inside a large field.",
+    "name": "--fkt-field-horizontal-padding-lg",
+    "reference": "--fkt-space-inset-xs",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": ".75rem",
+    "component": "Field"
+  },
+  {
+    "scope": {
+      "name": "Field",
+      "selector": "fkt-select"
+    },
+    "description": "Field border color.",
+    "name": "--fkt-field-border-color",
     "reference": "--fkt-color-neutral-400",
-    "component": "Field",
     "category": "Colors",
     "type": "color",
-    "defaultValue": "#94a3b8"
+    "defaultValue": "#94a3b8",
+    "component": "Field"
   },
   {
-    "description": "Border color of the select when it gets focused",
-    "name": "--fkt-select-border-focus-color",
+    "scope": {
+      "name": "Field",
+      "selector": "fkt-select"
+    },
+    "description": "Field border color while focused.",
+    "name": "--fkt-field-border-focus-color",
     "reference": "--fkt-color-neutral-800",
-    "component": "Field",
     "category": "Colors",
     "type": "color",
-    "defaultValue": "#1e293b"
+    "defaultValue": "#1e293b",
+    "component": "Field"
   },
   {
-    "description": "Color of the label in its normal (default) state.",
-    "name": "--fkt-select-label-color",
+    "scope": {
+      "name": "Field",
+      "selector": "fkt-select"
+    },
+    "description": "Field label color.",
+    "name": "--fkt-field-label-color",
     "reference": "--fkt-color-neutral-700",
-    "component": "Field",
     "category": "Colors",
     "type": "color",
-    "defaultValue": "#334155"
+    "defaultValue": "#334155",
+    "component": "Field"
   },
   {
-    "description": "Color of the label when it gets focused",
-    "name": "--fkt-select-label-focus-color",
+    "scope": {
+      "name": "Field",
+      "selector": "fkt-select"
+    },
+    "description": "Field label color while focused.",
+    "name": "--fkt-field-label-focus-color",
     "reference": "--fkt-color-neutral-800",
-    "component": "Field",
     "category": "Colors",
     "type": "color",
-    "defaultValue": "#1e293b"
+    "defaultValue": "#1e293b",
+    "component": "Field"
   },
   {
-    "description": "Color of the label and border when it gets invalid",
-    "name": "--fkt-select-invalid-color",
-    "reference": "--fkt-color-danger",
-    "component": "Field",
-    "category": "Colors",
-    "type": "color",
-    "defaultValue": "#E7000BFF"
-  },
-  {
-    "description": "Border radius for select",
-    "name": "--fkt-select-border-radius",
-    "reference": "--fkt-radius-lg",
-    "component": "Field",
-    "category": "Spacing",
+    "scope": {
+      "name": "Field",
+      "selector": "fkt-select"
+    },
+    "description": "Field border radius.",
+    "name": "--fkt-field-border-radius",
+    "reference": "--fkt-radius-md",
+    "category": "Shape",
     "type": "size",
-    "defaultValue": ".5rem"
+    "defaultValue": ".375rem",
+    "component": "Field"
   },
   {
-    "description": "Font size for select text and placeholder.",
-    "name": "--fkt-select-font-size",
+    "scope": {
+      "name": "Field",
+      "selector": "fkt-select"
+    },
+    "description": "Field text size.",
+    "name": "--fkt-field-font-size",
     "reference": "--fkt-font-size-sm",
-    "component": "Field",
     "category": "Typography",
     "type": "size",
-    "defaultValue": "0.875rem"
+    "defaultValue": "0.875rem",
+    "component": "Field"
   },
   {
-    "description": "Color for text into select",
-    "name": "--fkt-select-text-color",
+    "scope": {
+      "name": "Field",
+      "selector": "fkt-select"
+    },
+    "description": "Small field text size.",
+    "name": "--fkt-field-font-size-sm",
+    "reference": "--fkt-font-size-xs",
+    "category": "Typography",
+    "type": "size",
+    "defaultValue": "0.75rem",
+    "component": "Field"
+  },
+  {
+    "scope": {
+      "name": "Field",
+      "selector": "fkt-select"
+    },
+    "description": "Large field text size.",
+    "name": "--fkt-field-font-size-lg",
+    "reference": "--fkt-font-size-md",
+    "category": "Typography",
+    "type": "size",
+    "defaultValue": "1rem",
+    "component": "Field"
+  },
+  {
+    "scope": {
+      "name": "Field",
+      "selector": "fkt-select"
+    },
+    "description": "Field text color.",
+    "name": "--fkt-field-text-color",
     "reference": "--fkt-color-neutral-900",
-    "component": "Field",
     "category": "Colors",
     "type": "color",
-    "defaultValue": "#0f172a"
+    "defaultValue": "#0f172a",
+    "component": "Field"
   },
   {
-    "description": "Padding for spinner container in select options overlay.",
-    "name": "--fkt-select-options-spinner-padding",
-    "reference": "--fkt-space-md",
-    "component": "Options",
+    "scope": {
+      "name": "Prefix",
+      "selector": "[fktFieldPrefix]"
+    },
+    "description": "Space between the prefix and field content.",
+    "name": "--fkt-field-prefix-gap",
+    "reference": "--fkt-space-xs",
     "category": "Spacing",
     "type": "size",
-    "defaultValue": "1rem"
+    "defaultValue": ".5rem",
+    "component": "Field"
   },
   {
-    "description": "Font size for select options",
-    "name": "--fkt-select-options-font-size",
-    "reference": "--fkt-font-size-md",
-    "component": "Options",
-    "category": "Font",
+    "scope": {
+      "name": "Suffix",
+      "selector": "[fktFieldSuffix]"
+    },
+    "description": "Space between the suffix and field content.",
+    "name": "--fkt-field-suffix-gap",
+    "reference": "--fkt-space-xs",
+    "category": "Spacing",
     "type": "size",
-    "defaultValue": "1rem"
+    "defaultValue": ".5rem",
+    "component": "Field"
   },
   {
+    "scope": {
+      "name": "Field",
+      "selector": "fkt-select"
+    },
+    "description": "Background color for selected value chips.",
+    "name": "--fkt-select-chip-background-color",
+    "reference": "--fkt-color-neutral-300",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#cbd5e1",
+    "component": "Field"
+  },
+  {
+    "scope": {
+      "name": "Field",
+      "selector": "fkt-select"
+    },
+    "description": "Text color for selected value chips.",
+    "name": "--fkt-select-chip-text-color",
+    "reference": "--fkt-color-neutral-700",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#334155",
+    "component": "Field"
+  },
+  {
+    "scope": {
+      "name": "Field",
+      "selector": "fkt-select"
+    },
+    "description": "Padding inside selected value chips.",
+    "name": "--fkt-select-chip-padding",
+    "reference": "--fkt-space-4xs --fkt-space-xs",
+    "category": "Spacing",
+    "type": "spacing",
+    "defaultValue": ".125rem .5rem",
+    "component": "Field"
+  },
+  {
+    "scope": {
+      "name": "Field",
+      "selector": "fkt-select"
+    },
+    "description": "Gap between selected value chips.",
+    "name": "--fkt-select-chip-gap",
+    "reference": "--fkt-space-3xs",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": ".25rem",
+    "component": "Field"
+  },
+  {
+    "scope": {
+      "name": "Options",
+      "selector": "fkt-select-options"
+    },
     "description": "Background color for the select options overlay.",
     "name": "--fkt-select-options-background-color",
     "reference": "--fkt-color-modal-background",
@@ -117,6 +286,10 @@
     "defaultValue": "#f1f5f9"
   },
   {
+    "scope": {
+      "name": "Options",
+      "selector": "fkt-select-options"
+    },
     "description": "Text color for the select options overlay.",
     "name": "--fkt-select-options-text-color",
     "reference": "--fkt-color-neutral-950",
@@ -126,15 +299,23 @@
     "defaultValue": "#020617"
   },
   {
-    "description": "Box shadow for the select options overlay.",
-    "name": "--fkt-select-options-shadow",
-    "reference": "--fkt-shadow-md",
+    "scope": {
+      "name": "Options",
+      "selector": "fkt-select-options"
+    },
+    "description": "Border color for select option items.",
+    "name": "--fkt-select-options-border-color",
+    "reference": "transparent",
     "component": "Options",
-    "category": "Effects",
-    "type": "shadow",
-    "defaultValue": "0 4px 6px -1px var(--fkt-shadow-color-sm), 0 2px 4px -2px var(--fkt-shadow-color-md)"
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "transparent"
   },
   {
+    "scope": {
+      "name": "Options",
+      "selector": "fkt-select-options"
+    },
     "description": "Border radius for the select options overlay.",
     "name": "--fkt-select-options-border-radius",
     "reference": "--fkt-radius-md",
@@ -144,16 +325,24 @@
     "defaultValue": ".375rem"
   },
   {
-    "description": "Border color for the select options overlay.",
-    "name": "--fkt-select-options-border-color",
-    "reference": "--fkt-color-neutral-200",
+    "scope": {
+      "name": "Options",
+      "selector": "fkt-select-options"
+    },
+    "description": "Box shadow for the select options overlay.",
+    "name": "--fkt-select-options-shadow",
+    "reference": "--fkt-shadow-md",
     "component": "Options",
-    "category": "Colors",
-    "type": "color",
-    "defaultValue": "#e2e8f0"
+    "category": "Effects",
+    "type": "shadow",
+    "defaultValue": "0 4px 6px -1px var(--fkt-shadow-color-sm), 0 2px 4px -2px var(--fkt-shadow-color-md)"
   },
   {
-    "description": "Padding for select options overlay items.",
+    "scope": {
+      "name": "Options",
+      "selector": "fkt-select-options"
+    },
+    "description": "Padding for each option item.",
     "name": "--fkt-select-options-item-padding",
     "reference": "--fkt-space-xs --fkt-space-md",
     "component": "Options",
@@ -162,7 +351,11 @@
     "defaultValue": ".5rem 1rem"
   },
   {
-    "description": "Background color for hovered overlay items.",
+    "scope": {
+      "name": "Options",
+      "selector": "fkt-select-options"
+    },
+    "description": "Background color for option items on hover.",
     "name": "--fkt-select-options-item-hover-background",
     "reference": "--fkt-color-primary-opacity-10",
     "component": "Options",
@@ -171,30 +364,107 @@
     "defaultValue": "rgba(55, 65, 81, 0.1)"
   },
   {
-    "description": "Background color for active/selected overlay items.",
-    "name": "--fkt-select-options-item-active-background",
-    "reference": "--fkt-color-neutral-200",
-    "component": "Options",
-    "category": "Colors",
-    "type": "color",
-    "defaultValue": "#e2e8f0"
-  },
-  {
-    "description": "Color for icons in overlay items.",
-    "name": "--fkt-select-options-icon-color",
-    "reference": "--fkt-color-neutral-700",
-    "component": "Options",
-    "category": "Colors",
-    "type": "color",
-    "defaultValue": "#334155"
-  },
-  {
-    "description": "Size for icons in overlay items.",
-    "name": "--fkt-select-options-icon-size",
-    "reference": "--fkt-space-xl",
+    "scope": {
+      "name": "Options",
+      "selector": "fkt-select-options"
+    },
+    "description": "Gap between elements in the option label container.",
+    "name": "--fkt-select-options-label-gap",
+    "reference": "--fkt-space-3xs",
     "component": "Options",
     "category": "Spacing",
     "type": "size",
-    "defaultValue": "1.5rem"
+    "defaultValue": ".25rem"
+  },
+  {
+    "scope": {
+      "name": "Options",
+      "selector": "fkt-select-options"
+    },
+    "description": "Background color for selected options.",
+    "name": "--fkt-select-options-selected-background-color",
+    "reference": "--fkt-color-neutral-800",
+    "component": "Options",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#1e293b"
+  },
+  {
+    "scope": {
+      "name": "Options",
+      "selector": "fkt-select-options"
+    },
+    "description": "Text color for selected options.",
+    "name": "--fkt-select-options-selected-text-color",
+    "reference": "--fkt-color-neutral-50",
+    "component": "Options",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#f8fafc"
+  },
+  {
+    "scope": {
+      "name": "Options",
+      "selector": "fkt-select-options"
+    },
+    "description": "Minimum height for the empty state.",
+    "name": "--fkt-select-options-no-results-min-height",
+    "reference": "3.125rem",
+    "component": "Options",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": "3.125rem"
+  },
+  {
+    "scope": {
+      "name": "Options",
+      "selector": "fkt-select-options"
+    },
+    "description": "Text color for the empty state.",
+    "name": "--fkt-select-options-no-results-text-color",
+    "reference": "--fkt-color-neutral-800",
+    "component": "Options",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#1e293b"
+  },
+  {
+    "scope": {
+      "name": "Options",
+      "selector": "fkt-select-options"
+    },
+    "description": "Padding for group labels.",
+    "name": "--fkt-select-options-group-padding",
+    "reference": "--fkt-space-xs --fkt-space-xs",
+    "component": "Options",
+    "category": "Spacing",
+    "type": "spacing",
+    "defaultValue": ".5rem .5rem"
+  },
+  {
+    "scope": {
+      "name": "Options",
+      "selector": "fkt-select-options"
+    },
+    "description": "Text color for group labels.",
+    "name": "--fkt-select-options-group-text-color",
+    "reference": "--fkt-color-neutral-600",
+    "component": "Options",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#475569"
+  },
+  {
+    "scope": {
+      "name": "Options",
+      "selector": "fkt-select-options"
+    },
+    "description": "Padding for the spinner container.",
+    "name": "--fkt-select-options-spinner-padding",
+    "reference": "--fkt-space-md",
+    "component": "Options",
+    "category": "Spacing",
+    "type": "size",
+    "defaultValue": "1rem"
   }
 ]

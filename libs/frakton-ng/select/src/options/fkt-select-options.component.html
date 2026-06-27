@@ -1,29 +1,78 @@
-<ul fktNavigableList childSelector="li" (select)="onKeyBoardSelect($event)" [(currentIndex)]="currentIndex" class="overlay" role="listbox"
+@if (headerTemplate()) {
+    <ng-container [ngTemplateOutlet]="headerTemplate()"/>
+}
+
+<ul
+    [id]="context.listBoxId"
+    [style.max-height.px]="context.listHeight()"
+    class="overlay"
+    role="listbox"
+    [attr.aria-multiselectable]="context.multiple()"
 >
-	@if (loading()) {
-		<div class="spinner-container">
-			<fkt-spinner/>
-		</div>
-	} @else {
-		@for (option of options(); track option.value) {
-			<li
-				#option
-				role="option"
-				[id]="'fkt-select-option-' + option.value"
-				(click)="select.emit(option)"
-				[attr.aria-label]="option.label"
-			>
-				{{ option.label }}
-				@if (option.value === selected()) {
-					<fkt-icon
-						name="check"
-					/>
-				}
-			</li>
-		} @empty {
-			<fkt-no-results
-				[noResults]="noResults()!"
-			/>
-		}
-	}
+    @if (context.loading()) {
+        <li class="spinner-container" role="presentation">
+            <fkt-spinner/>
+        </li>
+    } @else {
+        @for (group of store.groups(); track group.value) {
+            @if (group.label) {
+                <li class="group" role="presentation">
+                    @if (groupTemplate()) {
+                        <ng-container
+                            [ngTemplateOutlet]="groupTemplate()"
+                            [ngTemplateOutletContext]="{$implicit: group}"
+                        />
+                    } @else {
+                        {{ group.label }}
+                    }
+                </li>
+            }
+
+            @for (option of group.items; track option.value) {
+                <li
+                    #optionElement
+                    [id]="`${store.activeDescendant.baseId}-${option.index}`"
+                    role="option"
+                    [class.virtual-focused]="store.activeDescendant.index() === option.index"
+                    [attr.aria-selected]="option | call: isSelected: selection.selectedOptions()"
+                    (mouseenter)="store.activeDescendant.setIndex(option.index, {scroll: false})"
+                    (click)="select.emit(option)"
+                >
+                    @if (itemTemplate()) {
+                        <ng-container
+                            [ngTemplateOutlet]="itemTemplate()"
+                            [ngTemplateOutletContext]="option | call: itemContext: selection.selectedOptions()"
+                        />
+                    } @else {
+                        <div
+                            class="item"
+                            [class.selected]="option | call: isSelected: selection.selectedOptions()"
+                        >
+                            <div class="label-container">
+                                <div class="label">{{ option.label }}</div>
+                                @if (option | call: isSelected: selection.selectedOptions()) {
+                                    <fkt-icon name="check"/>
+                                }
+                            </div>
+                        </div>
+                    }
+                </li>
+            }
+        } @empty {
+            <li class="no-results" role="presentation">
+                @if (emptyTemplate()) {
+                    <ng-container
+                        [ngTemplateOutlet]="emptyTemplate()"
+                        [ngTemplateOutletContext]="{$implicit: {label: 'No options available'}}"
+                    />
+                } @else {
+                    No options available
+                }
+            </li>
+        }
+    }
 </ul>
+
+@if (footerTemplate()) {
+    <ng-container [ngTemplateOutlet]="footerTemplate()"/>
+}

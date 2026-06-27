@@ -2,9 +2,9 @@ import {
     booleanAttribute,
     computed,
     Directive,
+    effect,
     ElementRef,
     input,
-    model,
     output,
     signal,
 } from '@angular/core';
@@ -23,7 +23,18 @@ import { mergeByValueKey } from '../utils/merge-by-value-key';
 export class FktAutocompleteContextDirective<Option extends Generic | string> {
     value = signal<FktAutocompleteValue>(null);
 
-    isDropdownOpened = model(false);
+    dropdownOpened = signal(false);
+    dropdownOpenChange = output<boolean>();
+    private previousDropdownOpened = this.dropdownOpened();
+
+    private readonly emitDropdownOpenChange = effect(() => {
+        const opened = this.dropdownOpened();
+
+        if (opened === this.previousDropdownOpened) return;
+
+        this.previousDropdownOpened = opened;
+        this.dropdownOpenChange.emit(opened);
+    });
     label = input.required<string>();
     placeholder = input<string>();
     options = input.required<Distribute<Option>>();
@@ -105,10 +116,10 @@ export class FktAutocompleteContextDirective<Option extends Generic | string> {
     });
 
     openDropdown() {
-        this.isDropdownOpened.set(true);
+        this.dropdownOpened.set(true);
     }
 
     closeDropdown() {
-        this.isDropdownOpened.set(false);
+        this.dropdownOpened.set(false);
     }
 }

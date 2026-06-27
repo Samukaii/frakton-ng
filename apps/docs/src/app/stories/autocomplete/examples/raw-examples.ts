@@ -6,9 +6,6 @@ import autocompleteAutomaticValidationExampleTypescript from "./automatic-valida
 import autocompleteBasicExampleTemplate from "./basic/autocomplete-basic-example.component.html" with {loader: "text"};
 import autocompleteBasicExampleStyles from "./basic/autocomplete-basic-example.component.scss" with {loader: "text"};
 import autocompleteBasicExampleTypescript from "./basic/autocomplete-basic-example.component.ts" with {loader: "text"};
-import autocompleteControlledDropdownExampleTemplate from "./controlled-dropdown/autocomplete-controlled-dropdown-example.component.html" with {loader: "text"};
-import autocompleteControlledDropdownExampleStyles from "./controlled-dropdown/autocomplete-controlled-dropdown-example.component.scss" with {loader: "text"};
-import autocompleteControlledDropdownExampleTypescript from "./controlled-dropdown/autocomplete-controlled-dropdown-example.component.ts" with {loader: "text"};
 import autocompleteCustomContentExampleTemplate from "./custom-content/autocomplete-custom-content-example.component.html" with {loader: "text"};
 import autocompleteCustomContentExampleStyles from "./custom-content/autocomplete-custom-content-example.component.scss" with {loader: "text"};
 import autocompleteCustomContentExampleTypescript from "./custom-content/autocomplete-custom-content-example.component.ts" with {loader: "text"};
@@ -101,27 +98,6 @@ export default {
 			{
 				name: "autocomplete-basic-example.component.scss",
 				content: autocompleteBasicExampleStyles as string,
-				language: "css" as const,
-			},		
-		]
-	},
-	AutocompleteControlledDropdownExampleComponent: {
-		name: "AutocompleteControlledDropdownExample",
-		files: [
-		
-			{
-				name: "autocomplete-controlled-dropdown-example.component.html",
-				content: autocompleteControlledDropdownExampleTemplate as string,
-				language: "angular2html" as const,
-			},		
-			{
-				name: "autocomplete-controlled-dropdown-example.component.ts",
-				content: autocompleteControlledDropdownExampleTypescript as string,
-				language: "typescript" as const,
-			},		
-			{
-				name: "autocomplete-controlled-dropdown-example.component.scss",
-				content: autocompleteControlledDropdownExampleStyles as string,
 				language: "css" as const,
 			},		
 		]

@@ -1,6 +1,6 @@
 import { Component, computed, input, model } from '@angular/core';
 import { FktButtonComponent } from 'frakton-ng/button';
-import { FktSelectComponent } from 'frakton-ng/select';
+import { FktSelectComponent, FktSelectValue } from 'frakton-ng/select';
 import {
     DEFAULT_PAGINATOR_CONFIG,
     FktPaginatorConfig,
@@ -104,7 +104,7 @@ export class FktPaginatorComponent {
 		this.goToPage(this.currentPage() + 1);
 	}
 
-	changePageSize(newPageSize: string | number | null): void {
+	changePageSize(newPageSize: FktSelectValue): void {
         if(typeof newPageSize !== 'number') return;
 
 		if (newPageSize === this.pageSize() || this.disabled()) {

@@ -1,7 +1,29 @@
-<app-code-output
-    [value]="formValue()"
-    title="Form value"
-/>
+<div class="actions">
+    <fkt-button
+        theme="stroked"
+        iconPosition="left"
+        icon="pencil"
+        shape="rect"
+        text="Fill"
+        (click)="fill()"
+    />
+    <fkt-button
+        theme="stroked"
+        iconPosition="left"
+        icon="arrow-uturn-left"
+        shape="rect"
+        text="Reset"
+        (click)="reset()"
+    />
+    <fkt-button
+        theme="stroked"
+        iconPosition="left"
+        icon="lock-closed"
+        shape="rect"
+        text="Toggle disabled"
+        (click)="toggleDisabled()"
+    />
+</div>
 
 <form [formGroup]="form">
     <fkt-autocomplete
@@ -15,8 +37,4 @@
     />
 </form>
 
-<div class="actions">
-    <fkt-button text="Fill" (click)="fill()" />
-    <fkt-button text="Reset" (click)="reset()" />
-    <fkt-button text="Toggle disabled" (click)="toggleDisabled()" />
-</div>
+<app-code-output [value]="formValue()" title="Form value"/>

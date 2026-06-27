@@ -1,0 +1,14 @@
+<fkt-select
+    label="Reviewer"
+    placeholder="Select a reviewer"
+    [formControl]="assignee"
+    [options]="users"
+    labelKey="name"
+    valueKey="id"
+>
+    <fkt-icon fktFieldPrefix name="user"/>
+    <fkt-icon fktFieldSuffix name="information-circle"/>
+
+    <span fktHintStart>Choose the person responsible for the review.</span>
+    <span fktHintEnd>Optional</span>
+</fkt-select>

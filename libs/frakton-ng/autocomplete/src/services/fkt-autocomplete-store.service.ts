@@ -43,7 +43,7 @@ export class FktAutocompleteStoreService<Option extends Generic | string> {
         items: computed(() =>
             this.sourceGrouped().flatMap((group) => group.items)
         ),
-        enabled: this.context.isDropdownOpened,
+        enabled: this.context.dropdownOpened,
     });
 
     readonly filteredOptions = computed(() => {

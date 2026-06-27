@@ -6,7 +6,7 @@
     [showError]="context.showError()"
     [hint]="context.hint()"
     [class.disabled]="formState?.disabled()" >
-    <div role="combobox" [attr.aria-expanded]="context.isDropdownOpened()" aria-haspopup="listbox"
+    <div role="combobox" [attr.aria-expanded]="context.dropdownOpened()" aria-haspopup="listbox"
          [attr.aria-controls]="context.listBoxId"
          fktCustomField>
         <div class="container" [class.multiple]="context.multiple()">

@@ -17,7 +17,7 @@ export class FktAutocompleteKeyboardDirective {
     private readonly context = inject(FktAutocompleteContextDirective);
 
     protected onKeydown(event: KeyboardEvent) {
-        if (this.context.isDropdownOpened())
+        if (this.context.dropdownOpened())
             this.handleOpenedOverlayKeyboard(event);
         else this.handleClosedOverlayKeyboard(event);
 

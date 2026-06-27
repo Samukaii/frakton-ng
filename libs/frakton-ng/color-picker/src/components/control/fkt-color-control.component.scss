@@ -126,13 +126,14 @@ fkt-select {
 	display: flex;
 	align-items: center;
 
-	--fkt-select-vertical-padding: 0rem;
-	--fkt-select-horizontal-padding: var(--fkt-space-xs);
-	--fkt-select-border-radius: 0rem;
-	--fkt-select-border-color: transparent;
-	--fkt-select-border-focus-color: transparent;
-	--fkt-select-font-size: var(--fkt-font-size-sm);
+	--fkt-field-vertical-padding: 0rem;
+	--fkt-field-horizontal-padding: var(--fkt-space-xs);
+	--fkt-field-border-radius: 0rem;
+	--fkt-field-border-color: transparent;
+	--fkt-field-border-focus-color: transparent;
+	--fkt-field-font-size: var(--fkt-font-size-sm);
 }
+
 
 .controls {
 	display: flex;
@@ -229,4 +230,8 @@ fkt-select {
 		flex-direction: column;
 		gap: $value-gap;
 	}
+
+    .actions {
+        flex-direction: row;
+    }
 }
