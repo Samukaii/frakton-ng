@@ -29,7 +29,7 @@ import {
     withFieldErrorMessages,
     withI18nIntegration,
 } from 'frakton-ng/core';
-import { TranslateService } from '@/core/services/translate.service';
+import { MyTranslateService } from '@/core/services/my-translate.service';
 
 export const appConfig: ApplicationConfig = {
     providers: [
@@ -37,7 +37,7 @@ export const appConfig: ApplicationConfig = {
         provideHttpClient(withFetch()),
         provideFktConfig(
             withI18nIntegration(() => {
-                const translateService = inject(TranslateService);
+                const translateService = inject(MyTranslateService);
 
                 return {
                     recomputeOn: translateService.currentLanguage$,

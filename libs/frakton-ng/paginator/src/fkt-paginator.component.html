@@ -69,9 +69,12 @@
 		<div class="pagination__page-size">
 			<fkt-select
 				[value]="pageSize()"
+                (valueChange)="changePageSize($event)"
+                labelKey="label"
+                hideClearButton
+                valueKey="value"
 				[options]="pageSizeOptions()"
 				[disabled]="disabled()"
-				(valueChange)="changePageSize($event)"
 				label="Items per page"
 			/>
 		</div>
