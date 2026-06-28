@@ -7,7 +7,7 @@ import {
     minLength,
     required,
 } from '@angular/forms/signals';
-import { TranslateService } from '@/core/services/translate.service';
+import { MyTranslateService } from '@/core/services/my-translate.service';
 import { FktFieldComponent, FktFieldPrefixDirective } from 'frakton-ng/field';
 import { FktInputTextDirective } from 'frakton-ng/input-text';
 import { FktIconComponent } from 'frakton-ng/icon';
@@ -27,7 +27,7 @@ import { FktSelectComponent, FktSelectOption } from 'frakton-ng/select';
     styleUrl: './field-translated-errors-example.component.scss',
 })
 export class FieldTranslatedErrorsExampleComponent {
-    private translate = inject(TranslateService);
+    private translate = inject(MyTranslateService);
 
     private model = signal({
         name: '',
@@ -36,7 +36,7 @@ export class FieldTranslatedErrorsExampleComponent {
         email: '',
     });
 
-    private selectedLanguage = signal('en-US');
+    private selectedLanguage = signal('en');
 
     protected form = form(this.model, (schema) => {
         required(schema.name);
