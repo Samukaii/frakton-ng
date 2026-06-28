@@ -68,7 +68,7 @@ function translate(
 }
 
 @Injectable({ providedIn: 'root' })
-export class TranslateService {
+export class MyTranslateService {
     currentLanguage$ = new BehaviorSubject('en');
 
     setLanguage(language: string) {
