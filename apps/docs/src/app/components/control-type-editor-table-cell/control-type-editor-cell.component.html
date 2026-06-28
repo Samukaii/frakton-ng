@@ -12,6 +12,8 @@
         <fkt-select
             [hideLabel]="!showLabel()"
             [value]="value()"
+            labelKey="label"
+            valueKey="value"
             (valueChange)="update.emit($event)"
             [label]="name()"
             [options]="(options() ?? []) | stringToSelectOptions"/>
