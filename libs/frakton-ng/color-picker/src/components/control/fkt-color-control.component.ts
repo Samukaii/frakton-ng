@@ -1,7 +1,6 @@
 import {
     Component,
     computed,
-    contentChildren,
     inject,
     input,
     model,
@@ -10,15 +9,10 @@ import {
 import { FktSelectComponent } from 'frakton-ng/select';
 import { FktColorPickerFormat } from '../../fkt-color-picker.types';
 import { FktAutocompleteOption } from 'frakton-ng/autocomplete-old';
-import { FktColorControlItemComponent } from '../item/fkt-color-control-item.component';
 import { FktButtonComponent } from 'frakton-ng/button';
 import { FktTooltipDirective } from 'frakton-ng/tooltip';
 import { getColorDescription } from '../../helpers/get-color-description';
-import {
-    capitalize,
-    debouncedComputed,
-    fktColorFormatters,
-} from 'frakton-ng/internal/utils';
+import { capitalize, fktColorFormatters } from 'frakton-ng/internal/utils';
 import { FKT_COLOR_PICKER_LOCALE_TOKEN } from '../../injection-tokens/fkt-color-picker-locale-token';
 import { FktColorPickerHSV } from 'frakton-ng/internal/types';
 import { parseAnyColorToHSV } from '../../helpers/parse-any-color-to-hsl';
@@ -26,12 +20,7 @@ import { injectEyeDropper } from 'frakton-ng/internal/di';
 
 @Component({
     selector: 'fkt-color-control',
-    imports: [
-        FktSelectComponent,
-        FktButtonComponent,
-        FktTooltipDirective,
-        FktColorControlItemComponent,
-    ],
+    imports: [FktSelectComponent, FktButtonComponent, FktTooltipDirective],
     templateUrl: './fkt-color-control.component.html',
     styleUrl: './fkt-color-control.component.scss',
 })
@@ -43,7 +32,6 @@ export class FktColorControlComponent {
 
     protected locale = inject(FKT_COLOR_PICKER_LOCALE_TOKEN);
 
-    protected controls = contentChildren(FktColorControlItemComponent);
     protected copied = signal(false);
 
     protected readonly eyeDropper = injectEyeDropper();
@@ -81,7 +69,7 @@ export class FktColorControlComponent {
     });
 
     async pickByEyeDropper() {
-        if(!this.eyeDropper) return;
+        if (!this.eyeDropper) return;
 
         try {
             const { sRGBHex } = await this.eyeDropper.open();
@@ -91,14 +79,4 @@ export class FktColorControlComponent {
             /* empty */
         }
     }
-
-    ariaColorDescription = debouncedComputed(
-        () => {
-            const rawValue = this.preview();
-            const colorDescription = this.colorDescription();
-
-            return `${this.locale.preview.color}: ${colorDescription}. ${this.locale.preview.code}: ${rawValue.ariaValue}`;
-        },
-        { initialValue: '', time: 500 }
-    );
 }
