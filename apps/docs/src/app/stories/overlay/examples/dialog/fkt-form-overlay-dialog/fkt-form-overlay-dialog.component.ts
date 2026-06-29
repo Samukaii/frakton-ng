@@ -1,17 +1,18 @@
 import { Component, input, linkedSignal, output } from '@angular/core';
 import { FormData } from '../../form-overlay-example/fkt-form-overlay-example.component';
-import { FktInputOldComponent } from 'frakton-ng/input-old';
 import { FormsModule } from '@angular/forms';
 import { FktIconComponent } from 'frakton-ng/icon';
 import { FktTextareaOldComponent } from 'frakton-ng/textarea-old';
 import { FktButtonComponent } from 'frakton-ng/button';
 import { FormField, email, form, required, submit } from '@angular/forms/signals';
-import { FktFieldErrorComponent } from 'frakton-ng/field';
+import { FktFieldComponent, FktFieldErrorComponent } from 'frakton-ng/field';
+import { FktInputTextDirective } from 'frakton-ng/input-text';
 
 @Component({
 	selector: 'fkt-form-overlay-dialog',
 	imports: [
-		FktInputOldComponent,
+		FktFieldComponent,
+		FktInputTextDirective,
 		FormsModule,
 		FktIconComponent,
 		FktButtonComponent,

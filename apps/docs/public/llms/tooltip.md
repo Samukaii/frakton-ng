@@ -377,11 +377,12 @@ Example component: `InteractiveTooltipExampleComponent`
 ```ts title="interactive-tooltip-example.component.ts"
 import { Component, input, signal } from '@angular/core';
 import { FktSelectComponent } from 'frakton-ng/select';
-import { FktInputOldComponent } from 'frakton-ng/input-old';
 import { FktCheckboxComponent } from 'frakton-ng/checkbox';
 import { FktTooltipDirective } from 'frakton-ng/tooltip';
 import { FktGeometryPosition, fktGeometryPositions } from 'frakton-ng/internal/types';
-import { FormField, form } from '@angular/forms/signals';
+import { form, FormField } from '@angular/forms/signals';
+import { FktFieldComponent } from 'frakton-ng/field';
+import { FktInputTextDirective } from 'frakton-ng/input-text';
 
 @Component({
     selector: 'interactive-tooltip-example',
@@ -389,10 +390,11 @@ import { FormField, form } from '@angular/forms/signals';
     templateUrl: './interactive-tooltip-example.component.html',
     imports: [
         FktSelectComponent,
-        FktInputOldComponent,
         FktCheckboxComponent,
         FktTooltipDirective,
         FormField,
+        FktFieldComponent,
+        FktInputTextDirective,
     ],
 })
 export class InteractiveTooltipExampleComponent {
@@ -422,43 +424,42 @@ export class InteractiveTooltipExampleComponent {
 
 ```html title="interactive-tooltip-example.component.html"
 <div class="container">
-	<div
-		class="container__interactive-button">
-		<div
-			[fktTooltip]="form.text().value()"
-			[position]="form.position().value()"
-			[tooltipEnabled]="form.enabled().value()"
-			[tooltipColor]="tooltipColor()"
-			disableAutoReposition
-		>
-			<p>
-				Interactive tooltip element
-			</p>
-		</div>
-	</div>
+    <div
+        class="container__interactive-button">
+        <div
+            [fktTooltip]="form.text().value()"
+            [position]="form.position().value()"
+            [tooltipEnabled]="form.enabled().value()"
+            [tooltipColor]="tooltipColor()"
+            disableAutoReposition
+        >
+            <p>
+                Interactive tooltip element
+            </p>
+        </div>
+    </div>
 
-	<form>
-		<div class="container__form">
-			<div>
-				<fkt-select
-					[formField]="form.position"
-					[label]="'Tooltip Position'"
-					[options]="positionOptions"
-				></fkt-select>
-				<fkt-input
-					[formField]="form.text"
-					[label]="'Tooltip Text'"
-					[placeholder]="'Enter tooltip message...'"
-					[type]="'text'"
-				></fkt-input>
-			</div>
+    <form>
+        <div class="container__form">
+            <div>
+                <fkt-select
+                    [formField]="form.position"
+                    [label]="'Tooltip Position'"
+                    labelKey="label"
+                    valueKey="value"
+                    [options]="positionOptions"
+                ></fkt-select>
+                <fkt-field label="Tooltip text">
+                    <input [formField]="form.text" fktInputText placeholder="Enter tooltip message...">
+                </fkt-field>
+            </div>
 
-			<fkt-checkbox
-				[formField]="form.enabled"
-				[label]="'Enable Tooltips'"
-			></fkt-checkbox>
-		</div>
-	</form>
+            <fkt-checkbox
+                [formField]="form.enabled"
+                [label]="'Enable Tooltips'"
+            ></fkt-checkbox>
+        </div>
+    </form>
 </div>
 ```
 
@@ -490,6 +491,10 @@ ul {
 		& > div {
 			display: flex;
 			gap: var(--fkt-space-xs);
+
+            & > * {
+                width: 100%;
+            }
 		}
 	}
 

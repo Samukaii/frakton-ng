@@ -1878,7 +1878,6 @@ import {
 } from 'frakton-ng/table';
 import { FktNoResults } from 'frakton-ng/no-results';
 import { FktTagComponent } from 'frakton-ng/tag';
-import { FktSpinnerComponent } from 'frakton-ng/spinner';
 import { FktButtonsListComponent } from 'frakton-ng/buttons-list';
 import { FktTableFilterTextComponent } from 'frakton-ng/table/filters/text';
 import { FktTableFilterSelectComponent } from 'frakton-ng/table/filters/select';
@@ -1959,6 +1958,8 @@ export class TableExamplesFilteringComponent {
             header: 'Category',
             filter: filter.select('category', {
                 label: 'Category',
+                labelKey: 'label',
+                valueKey: 'value',
                 options: [
                     { value: 'Electronics', label: 'Electronics' },
                     { value: 'Clothing', label: 'Clothing' },
@@ -1979,6 +1980,7 @@ export class TableExamplesFilteringComponent {
             header: 'Price',
             filter: filter.number('price', {
                 label: 'Price ($)',
+                placeholder: 'Choose the price'
             }),
             cell: (product) => `$${product.price.toFixed(2)}`,
         },
@@ -1987,6 +1989,7 @@ export class TableExamplesFilteringComponent {
             header: 'Stock',
             filter: filter.number('stock', {
                 label: 'Units',
+                placeholder: 'Choose units'
             }),
             cell: (product) =>
                 cell.tag({
@@ -2000,6 +2003,8 @@ export class TableExamplesFilteringComponent {
             header: 'Status',
             filter: filter.select('status', {
                 label: 'Status',
+                labelKey: 'label',
+                valueKey: 'value',
                 options: [
                     { value: 'available', label: 'Available' },
                     { value: 'low_stock', label: 'Low stock' },
@@ -3280,6 +3285,8 @@ export class TableExamplesStatefulComponent {
                 }),
             filter: filter.select('status', {
                 label: 'Status',
+                labelKey: 'label',
+                valueKey: 'value',
                 options: Object.entries(STATUS_INFO).map(([value, info]) => ({
                     label: info.label,
                     value,

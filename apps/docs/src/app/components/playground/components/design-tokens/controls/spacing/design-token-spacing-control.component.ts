@@ -1,9 +1,10 @@
 import { Component, input, linkedSignal, signal } from '@angular/core';
 import { DesignTokenItem } from '@/models/design-token-item';
 import { FktButtonComponent } from 'frakton-ng/button';
-import { FktInputOldComponent } from 'frakton-ng/input-old';
 import { FktTooltipDirective } from 'frakton-ng/tooltip';
 import { getUpdatedNumericTokenValue } from '../numeric-token-control';
+import { FktFieldComponent } from 'frakton-ng/field';
+import { FktInputTextDirective } from 'frakton-ng/input-text';
 
 type SpacingSide = 'top' | 'right' | 'bottom' | 'left';
 
@@ -48,7 +49,8 @@ const parseSpacing = (value: string): SpacingSides => {
     selector: 'app-design-token-spacing-control',
     imports: [
         FktButtonComponent,
-        FktInputOldComponent,
+        FktFieldComponent,
+        FktInputTextDirective,
         FktTooltipDirective,
     ],
     templateUrl: './design-token-spacing-control.component.html',

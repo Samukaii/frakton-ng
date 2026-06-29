@@ -1,9 +1,12 @@
 <div (click)="$event.stopPropagation()" class="overview">
-    <fkt-input hideLabel [(value)]="search" label="Search" placeholder="Search documentation">
-        <fkt-icon name="magnifying-glass" *fktFormControlSuffix>
-
-        </fkt-icon>
-    </fkt-input>
+    <fkt-field label="Search...">
+        <fkt-icon fktFieldPrefix name="magnifying-glass"/>
+        <input
+            fktInputText
+            [formField]="search"
+            placeholder="Search documentation"
+        >
+    </fkt-field>
 
     <ul fktNavigableList childSelector="a" (select)="keyboardSelect($event)" class="list">
         @for (item of filtered(); track item.id) {

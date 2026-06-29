@@ -8,7 +8,6 @@ import {
 } from '@angular/core';
 import { FktSelectComponent } from 'frakton-ng/select';
 import { FktColorPickerFormat } from '../../fkt-color-picker.types';
-import { FktAutocompleteOption } from 'frakton-ng/autocomplete-old';
 import { FktButtonComponent } from 'frakton-ng/button';
 import { FktTooltipDirective } from 'frakton-ng/tooltip';
 import { getColorDescription } from '../../helpers/get-color-description';
@@ -28,7 +27,7 @@ export class FktColorControlComponent {
     currentFormat = model.required<FktColorPickerFormat>();
     value = model.required<FktColorPickerHSV>();
     disableAlphaChanel = input.required<boolean>();
-    formatOptions = input.required<FktAutocompleteOption[]>();
+    formatOptions = input.required<{ value: string; label: string }[]>();
 
     protected locale = inject(FKT_COLOR_PICKER_LOCALE_TOKEN);
 

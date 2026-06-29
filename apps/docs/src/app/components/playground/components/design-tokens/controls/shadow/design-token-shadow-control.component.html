@@ -1,6 +1,11 @@
-<fkt-input
+<fkt-field
     [label]="token().name"
     hideLabel
-    placeholder="Enter a shadow value"
-    [(value)]="token().control"
-/>
+>
+    <input
+        fktInputText
+        placeholder="Enter a shadow value"
+        [value]="token().control()"
+        (input)="token().control.set($any($event.target).value)"
+    />
+</fkt-field>

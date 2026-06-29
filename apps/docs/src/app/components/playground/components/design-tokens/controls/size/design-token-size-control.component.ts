@@ -1,8 +1,8 @@
 import { Component, input } from '@angular/core';
 import { DesignTokenItem } from '@/models/design-token-item';
-import { FktInputOldComponent } from 'frakton-ng/input-old';
-import { FormControlSuffixDirective } from 'frakton-ng/forms';
 import { FktIconComponent } from 'frakton-ng/icon';
+import { FktFieldComponent, FktFieldSuffixDirective } from 'frakton-ng/field';
+import { FktInputTextDirective } from 'frakton-ng/input-text';
 import {
     handleNumericTokenKeydown,
     updateNumericToken,
@@ -11,8 +11,9 @@ import {
 @Component({
     selector: 'app-design-token-size-control',
     imports: [
-        FktInputOldComponent,
-        FormControlSuffixDirective,
+        FktFieldComponent,
+        FktFieldSuffixDirective,
+        FktInputTextDirective,
         FktIconComponent,
     ],
     templateUrl: './design-token-size-control.component.html',

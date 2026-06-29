@@ -1,9 +1,9 @@
 import { Component, computed, input, output, signal } from '@angular/core';
-import { FktInputOldComponent } from 'frakton-ng/input-old';
 import { FktButtonsListComponent } from 'frakton-ng/buttons-list';
 import { FktButtonAction } from 'frakton-ng/button';
 import { FormField, email, form, required, submit } from '@angular/forms/signals';
-import { FktFieldErrorComponent } from 'frakton-ng/field';
+import { FktFieldComponent } from 'frakton-ng/field';
+import { FktInputTextDirective } from 'frakton-ng/input-text';
 
 export interface FormData {
 	name: string;
@@ -14,7 +14,12 @@ export interface FormData {
 	selector: 'demo-form-dialog',
 	templateUrl: './fkt-form-dialog-demo.component.html',
 	styleUrl: './fkt-form-dialog-demo.component.scss',
-	imports: [FktInputOldComponent, FktButtonsListComponent, FormField, FktFieldErrorComponent]
+	imports: [
+		FktButtonsListComponent,
+		FktFieldComponent,
+		FktInputTextDirective,
+		FormField,
+	]
 })
 export class FktFormDialogDemoComponent {
 	title = input('Form Dialog');

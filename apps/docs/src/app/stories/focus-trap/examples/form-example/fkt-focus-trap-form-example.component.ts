@@ -1,16 +1,18 @@
 import { Component, input, signal } from '@angular/core';
 import { FktFocusTrapDirective } from 'frakton-ng/focus-trap';
 import { FktButtonComponent } from 'frakton-ng/button';
-import { FktInputOldComponent } from 'frakton-ng/input-old';
 import { FktSelectComponent } from 'frakton-ng/select';
 import { FktCheckboxComponent } from 'frakton-ng/checkbox';
+import { FktFieldComponent } from 'frakton-ng/field';
+import { FktInputTextDirective } from 'frakton-ng/input-text';
 
 @Component({
   selector: 'fkt-focus-trap-form-example',
   imports: [
     FktFocusTrapDirective,
     FktButtonComponent,
-    FktInputOldComponent,
+    FktFieldComponent,
+    FktInputTextDirective,
     FktSelectComponent,
     FktCheckboxComponent
   ],

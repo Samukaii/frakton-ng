@@ -15,7 +15,6 @@ import {
 } from '../fkt-color-picker.types';
 import { FktColorHslControlComponent } from '../controls/hsl/fkt-color-hsl-control.component';
 import { FktColorRgbControlComponent } from '../controls/rgb/fkt-color-rgb-control.component';
-import { FktAutocompleteOption } from 'frakton-ng/autocomplete-old';
 import { FktColorHexControlComponent } from '../controls/hex/fkt-color-hex-control.component';
 import { fktColorFormatters, transformedSignal } from 'frakton-ng/internal/utils';
 import { parseAnyColorToHSV } from '../helpers/parse-any-color-to-hsl';
@@ -73,7 +72,7 @@ export class FktColorPickerModalComponent {
     currentFormat = linkedSignal(this.defaultFormat);
 
     protected formatOptions = fktColorPickerFormats.map(
-        (format): FktAutocompleteOption => ({
+        (format): { value: string; label: string } => ({
             value: format,
             label: format.toUpperCase(),
         })

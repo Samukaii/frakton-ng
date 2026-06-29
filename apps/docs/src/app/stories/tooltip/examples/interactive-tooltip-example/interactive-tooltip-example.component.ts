@@ -1,10 +1,11 @@
 import { Component, input, signal } from '@angular/core';
 import { FktSelectComponent } from 'frakton-ng/select';
-import { FktInputOldComponent } from 'frakton-ng/input-old';
 import { FktCheckboxComponent } from 'frakton-ng/checkbox';
 import { FktTooltipDirective } from 'frakton-ng/tooltip';
 import { FktGeometryPosition, fktGeometryPositions } from 'frakton-ng/internal/types';
-import { FormField, form } from '@angular/forms/signals';
+import { form, FormField } from '@angular/forms/signals';
+import { FktFieldComponent } from 'frakton-ng/field';
+import { FktInputTextDirective } from 'frakton-ng/input-text';
 
 @Component({
     selector: 'interactive-tooltip-example',
@@ -12,10 +13,11 @@ import { FormField, form } from '@angular/forms/signals';
     templateUrl: './interactive-tooltip-example.component.html',
     imports: [
         FktSelectComponent,
-        FktInputOldComponent,
         FktCheckboxComponent,
         FktTooltipDirective,
         FormField,
+        FktFieldComponent,
+        FktInputTextDirective,
     ],
 })
 export class InteractiveTooltipExampleComponent {

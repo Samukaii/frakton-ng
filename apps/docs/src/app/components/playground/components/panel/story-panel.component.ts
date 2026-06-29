@@ -8,7 +8,6 @@ import {
     signal,
 } from '@angular/core';
 import { FktIconComponent, FktIconName } from 'frakton-ng/icon';
-import { FktInputOldComponent } from 'frakton-ng/input-old';
 import { FktSelectComponent } from 'frakton-ng/select';
 import { DesignTokenItem } from '@/models/design-token-item';
 import { ArgItem } from '@/models/arg-item';
@@ -19,6 +18,8 @@ import {
     StoryDesignTokensComponent
 } from '@/components/playground/components/design-tokens/story-design-tokens.component';
 import { StorySourceCodeComponent } from '@/components/playground/components/source-code/story-source-code.component';
+import { FktFieldComponent } from 'frakton-ng/field';
+import { FktInputTextDirective } from 'frakton-ng/input-text';
 
 interface Tab {
     key: string;
@@ -31,7 +32,8 @@ interface Tab {
     selector: 'app-story-panel',
     imports: [
         FktIconComponent,
-        FktInputOldComponent,
+        FktFieldComponent,
+        FktInputTextDirective,
         FktSelectComponent,
         StoryDesignTokensComponent,
         FktToggleComponent,

@@ -8,18 +8,6 @@ const transformIso = (value: string | Date) => {
 	const month = (date.getMonth() + 1).toString().padStart(2, '0');
 	const year = date.getFullYear().toString();
 
-	return {
-		viewValue: `${day}/${month}/${year}`,
-		modelValue: date.toISOString(),
-	};
-};
-
-const transformIsoV2 = (value: string | Date) => {
-	const date = new Date(value);
-	const day = date.getDate().toString().padStart(2, '0');
-	const month = (date.getMonth() + 1).toString().padStart(2, '0');
-	const year = date.getFullYear().toString();
-
 	return `${day}/${month}/${year}`;
 };
 
@@ -61,7 +49,7 @@ const clampYear = (value: string) => {
 
 
 const formatDate = (value: string) => {
-	let clean = cleanDate(value);
+	const clean = cleanDate(value);
 
 	const chars = clean.split('');
 
@@ -119,7 +107,7 @@ export const dateFormatter: FktControlFormatter<Date | null, string> = {
 		const isIso = isIsoDateString(value);
 
 		if (isIso) {
-			const sanitized = transformIsoV2(value);
+			const sanitized = transformIso(value);
 
 			return {sanitizedValue: sanitized};
 		}

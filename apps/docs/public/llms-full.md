@@ -125,20 +125,27 @@ Example component: `FktFocusTrapModalExampleComponent`
 ```ts title="fkt-focus-trap-modal-example.component.ts"
 import { Component, inject, input, output } from '@angular/core';
 import { FktButtonComponent } from 'frakton-ng/button';
-import { FktInputOldComponent } from 'frakton-ng/input-old';
 import { FktDialogService } from 'frakton-ng/dialog';
+import { FktFieldComponent } from 'frakton-ng/field';
+import { FktInputTextDirective } from 'frakton-ng/input-text';
 
 @Component({
   selector: 'fkt-user-form-dialog',
-  imports: [FktInputOldComponent, FktButtonComponent],
+  imports: [FktFieldComponent, FktInputTextDirective, FktButtonComponent],
   template: `
     <div class="dialog-content">
       <h2>User Information</h2>
       <p>Focus is automatically trapped within this dialog. Try tabbing through the elements.</p>
 
-      <fkt-input label="First Name" placeholder="Enter your first name" />
-      <fkt-input label="Last Name" placeholder="Enter your last name" />
-      <fkt-input label="Email" type="email" placeholder="Enter your email" />
+      <fkt-field label="First Name">
+        <input fktInputText placeholder="Enter your first name" />
+      </fkt-field>
+      <fkt-field label="Last Name">
+        <input fktInputText placeholder="Enter your last name" />
+      </fkt-field>
+      <fkt-field label="Email">
+        <input fktInputText type="email" placeholder="Enter your email" />
+      </fkt-field>
 
       <div class="dialog-actions">
         <fkt-button text="Cancel" theme="basic" (click)="cancel.emit()" />
@@ -311,16 +318,18 @@ Example component: `FktFocusTrapFormExampleComponent`
 import { Component, input, signal } from '@angular/core';
 import { FktFocusTrapDirective } from 'frakton-ng/focus-trap';
 import { FktButtonComponent } from 'frakton-ng/button';
-import { FktInputOldComponent } from 'frakton-ng/input-old';
 import { FktSelectComponent } from 'frakton-ng/select';
 import { FktCheckboxComponent } from 'frakton-ng/checkbox';
+import { FktFieldComponent } from 'frakton-ng/field';
+import { FktInputTextDirective } from 'frakton-ng/input-text';
 
 @Component({
   selector: 'fkt-focus-trap-form-example',
   imports: [
     FktFocusTrapDirective,
     FktButtonComponent,
-    FktInputOldComponent,
+    FktFieldComponent,
+    FktInputTextDirective,
     FktSelectComponent,
     FktCheckboxComponent
   ],
@@ -357,16 +366,26 @@ export class FktFocusTrapFormExampleComponent {
     <p>All form controls are included in the focus trap cycle.</p>
 
     <div class="form-row">
-      <fkt-input label="First Name" placeholder="Enter your first name" />
-      <fkt-input label="Last Name" placeholder="Enter your last name" />
+      <fkt-field label="First Name">
+        <input fktInputText placeholder="Enter your first name" />
+      </fkt-field>
+      <fkt-field label="Last Name">
+        <input fktInputText placeholder="Enter your last name" />
+      </fkt-field>
     </div>
 
-    <fkt-input label="Email Address" type="email" placeholder="Enter your email" />
+    <fkt-field label="Email Address">
+      <input fktInputText type="email" placeholder="Enter your email" />
+    </fkt-field>
 
-    <fkt-input label="Password" type="password" placeholder="Enter your password" />
+    <fkt-field label="Password">
+      <input fktInputText type="password" placeholder="Enter your password" />
+    </fkt-field>
 
     <fkt-select
       label="Country"
+      labelKey="label"
+      valueKey="value"
       placeholder="Select your country"
       [options]="countryOptions()"
     />
@@ -3445,7 +3464,6 @@ import {
 } from 'frakton-ng/table';
 import { FktNoResults } from 'frakton-ng/no-results';
 import { FktTagComponent } from 'frakton-ng/tag';
-import { FktSpinnerComponent } from 'frakton-ng/spinner';
 import { FktButtonsListComponent } from 'frakton-ng/buttons-list';
 import { FktTableFilterTextComponent } from 'frakton-ng/table/filters/text';
 import { FktTableFilterSelectComponent } from 'frakton-ng/table/filters/select';
@@ -3526,6 +3544,8 @@ export class TableExamplesFilteringComponent {
             header: 'Category',
             filter: filter.select('category', {
                 label: 'Category',
+                labelKey: 'label',
+                valueKey: 'value',
                 options: [
                     { value: 'Electronics', label: 'Electronics' },
                     { value: 'Clothing', label: 'Clothing' },
@@ -3546,6 +3566,7 @@ export class TableExamplesFilteringComponent {
             header: 'Price',
             filter: filter.number('price', {
                 label: 'Price ($)',
+                placeholder: 'Choose the price'
             }),
             cell: (product) => `$${product.price.toFixed(2)}`,
         },
@@ -3554,6 +3575,7 @@ export class TableExamplesFilteringComponent {
             header: 'Stock',
             filter: filter.number('stock', {
                 label: 'Units',
+                placeholder: 'Choose units'
             }),
             cell: (product) =>
                 cell.tag({
@@ -3567,6 +3589,8 @@ export class TableExamplesFilteringComponent {
             header: 'Status',
             filter: filter.select('status', {
                 label: 'Status',
+                labelKey: 'label',
+                valueKey: 'value',
                 options: [
                     { value: 'available', label: 'Available' },
                     { value: 'low_stock', label: 'Low stock' },
@@ -4847,6 +4871,8 @@ export class TableExamplesStatefulComponent {
                 }),
             filter: filter.select('status', {
                 label: 'Status',
+                labelKey: 'label',
+                valueKey: 'value',
                 options: Object.entries(STATUS_INFO).map(([value, info]) => ({
                     label: info.label,
                     value,
@@ -11465,17 +11491,17 @@ Example component: `FieldTranslatedErrorsExampleComponent`
 import { Component, effect, inject, signal } from '@angular/core';
 import {
     email,
-    FormField,
     form,
+    FormField,
     maxLength,
     minLength,
     required,
 } from '@angular/forms/signals';
-import { TranslateService } from '@/core/services/translate.service';
+import { MyTranslateService } from '@/core/services/my-translate.service';
 import { FktFieldComponent, FktFieldPrefixDirective } from 'frakton-ng/field';
 import { FktInputTextDirective } from 'frakton-ng/input-text';
 import { FktIconComponent } from 'frakton-ng/icon';
-import { FktSelectComponent, FktSelectOption } from 'frakton-ng/select';
+import { FktSelectComponent } from 'frakton-ng/select';
 
 @Component({
     selector: 'app-field-translated-errors-example',
@@ -11485,13 +11511,13 @@ import { FktSelectComponent, FktSelectOption } from 'frakton-ng/select';
         FktInputTextDirective,
         FktIconComponent,
         FktSelectComponent,
-        FktFieldPrefixDirective
+        FktFieldPrefixDirective,
     ],
     templateUrl: './field-translated-errors-example.component.html',
     styleUrl: './field-translated-errors-example.component.scss',
 })
 export class FieldTranslatedErrorsExampleComponent {
-    private translate = inject(TranslateService);
+    private translate = inject(MyTranslateService);
 
     private model = signal({
         name: '',
@@ -11500,7 +11526,7 @@ export class FieldTranslatedErrorsExampleComponent {
         email: '',
     });
 
-    private selectedLanguage = signal('en-US');
+    private selectedLanguage = signal('en');
 
     protected form = form(this.model, (schema) => {
         required(schema.name);
@@ -11512,7 +11538,7 @@ export class FieldTranslatedErrorsExampleComponent {
 
     protected language = form(this.selectedLanguage);
 
-    protected languageOptions: FktSelectOption[] = [
+    protected languageOptions: { label: string; value: string }[] = [
         { label: 'English', value: 'en' },
         { label: 'Spanish', value: 'es-ES' },
         { label: 'French', value: 'fr-FR' },
@@ -11531,6 +11557,8 @@ export class FieldTranslatedErrorsExampleComponent {
 <fkt-select
     [formField]="language"
     label="Language"
+    labelKey="label"
+    valueKey="value"
     placeholder="Select a language"
     [options]="languageOptions"
 />
@@ -21979,11 +22007,12 @@ Example component: `InteractiveTooltipExampleComponent`
 ```ts title="interactive-tooltip-example.component.ts"
 import { Component, input, signal } from '@angular/core';
 import { FktSelectComponent } from 'frakton-ng/select';
-import { FktInputOldComponent } from 'frakton-ng/input-old';
 import { FktCheckboxComponent } from 'frakton-ng/checkbox';
 import { FktTooltipDirective } from 'frakton-ng/tooltip';
 import { FktGeometryPosition, fktGeometryPositions } from 'frakton-ng/internal/types';
-import { FormField, form } from '@angular/forms/signals';
+import { form, FormField } from '@angular/forms/signals';
+import { FktFieldComponent } from 'frakton-ng/field';
+import { FktInputTextDirective } from 'frakton-ng/input-text';
 
 @Component({
     selector: 'interactive-tooltip-example',
@@ -21991,10 +22020,11 @@ import { FormField, form } from '@angular/forms/signals';
     templateUrl: './interactive-tooltip-example.component.html',
     imports: [
         FktSelectComponent,
-        FktInputOldComponent,
         FktCheckboxComponent,
         FktTooltipDirective,
         FormField,
+        FktFieldComponent,
+        FktInputTextDirective,
     ],
 })
 export class InteractiveTooltipExampleComponent {
@@ -22024,43 +22054,42 @@ export class InteractiveTooltipExampleComponent {
 
 ```html title="interactive-tooltip-example.component.html"
 <div class="container">
-	<div
-		class="container__interactive-button">
-		<div
-			[fktTooltip]="form.text().value()"
-			[position]="form.position().value()"
-			[tooltipEnabled]="form.enabled().value()"
-			[tooltipColor]="tooltipColor()"
-			disableAutoReposition
-		>
-			<p>
-				Interactive tooltip element
-			</p>
-		</div>
-	</div>
+    <div
+        class="container__interactive-button">
+        <div
+            [fktTooltip]="form.text().value()"
+            [position]="form.position().value()"
+            [tooltipEnabled]="form.enabled().value()"
+            [tooltipColor]="tooltipColor()"
+            disableAutoReposition
+        >
+            <p>
+                Interactive tooltip element
+            </p>
+        </div>
+    </div>
 
-	<form>
-		<div class="container__form">
-			<div>
-				<fkt-select
-					[formField]="form.position"
-					[label]="'Tooltip Position'"
-					[options]="positionOptions"
-				></fkt-select>
-				<fkt-input
-					[formField]="form.text"
-					[label]="'Tooltip Text'"
-					[placeholder]="'Enter tooltip message...'"
-					[type]="'text'"
-				></fkt-input>
-			</div>
+    <form>
+        <div class="container__form">
+            <div>
+                <fkt-select
+                    [formField]="form.position"
+                    [label]="'Tooltip Position'"
+                    labelKey="label"
+                    valueKey="value"
+                    [options]="positionOptions"
+                ></fkt-select>
+                <fkt-field label="Tooltip text">
+                    <input [formField]="form.text" fktInputText placeholder="Enter tooltip message...">
+                </fkt-field>
+            </div>
 
-			<fkt-checkbox
-				[formField]="form.enabled"
-				[label]="'Enable Tooltips'"
-			></fkt-checkbox>
-		</div>
-	</form>
+            <fkt-checkbox
+                [formField]="form.enabled"
+                [label]="'Enable Tooltips'"
+            ></fkt-checkbox>
+        </div>
+    </form>
 </div>
 ```
 
@@ -22092,6 +22121,10 @@ ul {
 		& > div {
 			display: flex;
 			gap: var(--fkt-space-xs);
+
+            & > * {
+                width: 100%;
+            }
 		}
 	}
 
@@ -22942,7 +22975,7 @@ Frakton NG works alongside Angular Material seamlessly:
 | Angular Material  | Frakton NG         | Migration Notes                                      |
 |-------------------|--------------------|------------------------------------------------------|
 | `mat-button`      | `fkt-button`       | Support for custom hex colors, better loading states |
-| `mat-input`       | `fkt-input`        | Signal-based forms, automatic validation display     |
+| `mat-input`       | `fkt-field` + `fktInputText` | Signal-based forms, automatic validation display |
 | `mat-select`      | `fkt-select`       | Enhanced keyboard navigation, custom styling         |
 | `mat-datepicker`  | `fkt-date-picker`  | More flexible date formats, better accessibility     |
 | `mat-dialog`      | `fkt-overlay`      | Type-safe data passing, automatic theme inheritance  |
@@ -23035,16 +23068,26 @@ import {DropdownModule} from 'primeng/dropdown';
 ```typescript
 // After (Frakton NG)
 import {FktButtonComponent} from 'frakton-ng/button';
-import {FktInputOldComponent} from 'frakton-ng/input-old';
+import {FktFieldComponent} from 'frakton-ng/field';
+import {FktInputTextDirective} from 'frakton-ng/input-text';
 import {FktSelectComponent} from 'frakton-ng/select';
+import {FormsModule} from '@angular/forms';
 
 @Component({
     template: `
     <fkt-button text="Click me" (click)="handleClick()"></fkt-button>
-    <fkt-input [(value)]="value" placeholder="Enter text"></fkt-input>
+    <fkt-field label="Text">
+        <input fktInputText [(ngModel)]="value" placeholder="Enter text">
+    </fkt-field>
     <fkt-select [options]="cities" [(value)]="selectedCity"></fkt-select>
   `,
-    imports: [FktButtonComponent, FktInputOldComponent, FktSelectComponent]
+    imports: [
+        FormsModule,
+        FktButtonComponent,
+        FktFieldComponent,
+        FktInputTextDirective,
+        FktSelectComponent
+    ]
 })
 ```
 
@@ -23061,7 +23104,7 @@ import {FktSelectComponent} from 'frakton-ng/select';
 | PrimeNG         | Frakton NG         | Key Improvements                                    |
 |-----------------|--------------------|-----------------------------------------------------|
 | `p-button`      | `fkt-button`       | Custom colors, loading states, better accessibility |
-| `p-inputText`   | `fkt-input`        | Signal forms, automatic validation display          |
+| `p-inputText`   | `fkt-field` + `fktInputText` | Signal forms, automatic validation display |
 | `p-dropdown`    | `fkt-select`       | Better keyboard navigation, custom styling          |
 | `p-calendar`    | `fkt-date-picker`  | Enhanced accessibility, flexible formats            |
 | `p-dialog`      | `fkt-overlay`      | Type-safe data, theme inheritance                   |
@@ -23189,11 +23232,9 @@ export class ModernComponent {
 
 	// Use with Frakton components
 	template = `
-    <fkt-input
-      [control]="email"
-      label="Email Address"
-      type="email">
-    </fkt-input>
+    <fkt-field label="Email Address">
+        <input fktInputText [formControl]="email" type="email">
+    </fkt-field>
   `;
 }
 ```

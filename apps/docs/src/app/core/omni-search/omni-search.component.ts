@@ -1,11 +1,12 @@
 import { Component, computed, inject, output, signal } from '@angular/core';
-import { FktInputOldComponent } from 'frakton-ng/input-old';
 import { STORIES_MAP } from '@/stories/stories-map';
 import { pascalToHumanReadable } from '@/utils/pascal-to-human-readable';
 import { FktIconComponent } from 'frakton-ng/icon';
-import { FormControlSuffixDirective } from 'frakton-ng/forms';
 import { Router, RouterLink } from '@angular/router';
 import { FktNavigableListDirective } from 'frakton-ng/navigable-list';
+import { FktFieldComponent, FktFieldPrefixDirective } from 'frakton-ng/field';
+import { FktInputTextDirective } from 'frakton-ng/input-text';
+import { debounce, form, FormField } from '@angular/forms/signals';
 
 function getHighlightedExcerpt(text: string, search: string, maxLength = 60) {
     if (!search) return text;
@@ -26,9 +27,11 @@ function getHighlightedExcerpt(text: string, search: string, maxLength = 60) {
 @Component({
     selector: 'fkt-omni-search',
     imports: [
-        FktInputOldComponent,
+        FktFieldComponent,
+        FktFieldPrefixDirective,
+        FktInputTextDirective,
         FktIconComponent,
-        FormControlSuffixDirective,
+        FormField,
         RouterLink,
         FktNavigableListDirective
     ],
@@ -67,10 +70,12 @@ export class OmniSearchComponent {
         ].flat()
     });
 
-    search = signal("");
+    search = form(signal(''), (field) => {
+        debounce(field, 300);
+    });
 
     filtered = computed(() => {
-        const search = this.search();
+        const search = this.search().value();
         const limit = 120;
 
         if (!search) return this.items.map(item => ({

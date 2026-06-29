@@ -1,13 +1,15 @@
 <fkt-select
     label="Modifier"
+    placeholder="Select a modifier"
+    valueKey="value"
+    labelKey="label"
     [options]="modifierOptions"
     [(value)]="internalModifier"
 />
-<fkt-input
-    [label]="label()"
-    type="number"
-    [(value)]="internalValue"
-/>
+
+<fkt-field [label]="label()">
+    <input type="number" fktInputText [placeholder]="placeholder()" [formField]="field">
+</fkt-field>
 <fkt-buttons-list
     [horizontalAlignment]="'end'"
     [actions]="actions"

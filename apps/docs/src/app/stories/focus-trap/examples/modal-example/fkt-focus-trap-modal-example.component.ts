@@ -1,19 +1,26 @@
 import { Component, inject, input, output } from '@angular/core';
 import { FktButtonComponent } from 'frakton-ng/button';
-import { FktInputOldComponent } from 'frakton-ng/input-old';
 import { FktDialogService } from 'frakton-ng/dialog';
+import { FktFieldComponent } from 'frakton-ng/field';
+import { FktInputTextDirective } from 'frakton-ng/input-text';
 
 @Component({
   selector: 'fkt-user-form-dialog',
-  imports: [FktInputOldComponent, FktButtonComponent],
+  imports: [FktFieldComponent, FktInputTextDirective, FktButtonComponent],
   template: `
     <div class="dialog-content">
       <h2>User Information</h2>
       <p>Focus is automatically trapped within this dialog. Try tabbing through the elements.</p>
 
-      <fkt-input label="First Name" placeholder="Enter your first name" />
-      <fkt-input label="Last Name" placeholder="Enter your last name" />
-      <fkt-input label="Email" type="email" placeholder="Enter your email" />
+      <fkt-field label="First Name">
+        <input fktInputText placeholder="Enter your first name" />
+      </fkt-field>
+      <fkt-field label="Last Name">
+        <input fktInputText placeholder="Enter your last name" />
+      </fkt-field>
+      <fkt-field label="Email">
+        <input fktInputText type="email" placeholder="Enter your email" />
+      </fkt-field>
 
       <div class="dialog-actions">
         <fkt-button text="Cancel" theme="basic" (click)="cancel.emit()" />
