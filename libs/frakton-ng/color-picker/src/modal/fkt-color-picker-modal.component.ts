@@ -1,17 +1,24 @@
-import { booleanAttribute, Component, computed, input, linkedSignal, output } from '@angular/core';
-import { FktHueSelectorComponent } from './selectors/hue/fkt-hue-selector.component';
 import {
-    FktSaturationLightnessSelectorComponent
-} from './selectors/saturation-lightness/fkt-saturation-lightness-selector.component';
+    booleanAttribute,
+    Component,
+    computed,
+    input,
+    linkedSignal,
+    model,
+} from '@angular/core';
+import { FktHueSelectorComponent } from './selectors/hue/fkt-hue-selector.component';
+import { FktSaturationLightnessSelectorComponent } from './selectors/saturation-lightness/fkt-saturation-lightness-selector.component';
 import { FktAlphaSelectorComponent } from './selectors/alpha/fkt-alpha-selector.component';
-import { FktColorPickerFormat, fktColorPickerFormats } from '../fkt-color-picker.types';
+import {
+    FktColorPickerFormat,
+    fktColorPickerFormats,
+} from '../fkt-color-picker.types';
 import { FktColorHslControlComponent } from '../controls/hsl/fkt-color-hsl-control.component';
 import { FktColorRgbControlComponent } from '../controls/rgb/fkt-color-rgb-control.component';
 import { FktAutocompleteOption } from 'frakton-ng/autocomplete-old';
 import { FktColorHexControlComponent } from '../controls/hex/fkt-color-hex-control.component';
-import { fktColorFormatters } from 'frakton-ng/internal/utils';
+import { fktColorFormatters, transformedSignal } from 'frakton-ng/internal/utils';
 import { parseAnyColorToHSV } from '../helpers/parse-any-color-to-hsl';
-import { FktColorPickerHSV } from 'frakton-ng/internal/types';
 import { FktColorControlComponent } from '../components/control/fkt-color-control.component';
 
 
@@ -30,9 +37,8 @@ import { FktColorControlComponent } from '../components/control/fkt-color-contro
     styleUrl: './fkt-color-picker-modal.component.scss',
 })
 export class FktColorPickerModalComponent {
-    value = input<string | null>(null);
+    value = model.required<string | null>();
 
-    colorChange = output<string>();
     defaultFormat = input<FktColorPickerFormat>('rgb');
     outputFormat = input<FktColorPickerFormat>('hsl');
     disableAlphaChanel = input(false, {
@@ -46,14 +52,22 @@ export class FktColorPickerModalComponent {
         alpha: 100,
     };
 
-    protected formattedColor = linkedSignal<FktColorPickerHSV>(() => {
-        const value = this.value();
+    transformedValue = transformedSignal(this.value, {
+        from: (source) => {
+            if (!source) return this.defaultColor;
 
-        if (!value) return this.defaultColor;
+            const parsed = parseAnyColorToHSV(source);
 
-        const parsed = parseAnyColorToHSV(value);
+            return parsed ?? this.defaultColor;
+        },
+        to: (transformed) => {
+            const outputFormat = this.outputFormat();
 
-        return parsed ?? this.defaultColor;
+            const formatter = fktColorFormatters[outputFormat];
+
+            return formatter.format(transformed, this.disableAlphaChanel())
+                .value;
+        },
     });
 
     currentFormat = linkedSignal(this.defaultFormat);
@@ -66,7 +80,7 @@ export class FktColorPickerModalComponent {
     );
 
     protected preview = computed(() => {
-        const value = this.formattedColor();
+        const value = this.transformedValue();
         const disableAlphaChanel = this.disableAlphaChanel();
         const currentFormat = this.currentFormat();
 
@@ -79,16 +93,4 @@ export class FktColorPickerModalComponent {
                 return fktColorFormatters.hex.format(value, disableAlphaChanel);
         }
     });
-
-    protected onValueChange($event: FktColorPickerHSV) {
-        const outputFormat = this.outputFormat();
-
-        const formatter = fktColorFormatters[outputFormat];
-
-        this.formattedColor.set($event);
-
-        this.colorChange.emit(
-            formatter.format($event, this.disableAlphaChanel()).value
-        );
-    }
 }
