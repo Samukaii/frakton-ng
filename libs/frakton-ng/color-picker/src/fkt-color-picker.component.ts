@@ -100,10 +100,7 @@ export class FktColorPickerComponent implements FormValueControl<string | null> 
 			component: FktColorPickerModalComponent,
 			data: {
 				value: this.value,
-				colorChange: (value) => {
-					this.value.set(value);
-				},
-				disableAlphaChanel: this.disableAlphaChannel as unknown as Signal<never>,
+				disableAlphaChanel: this.disableAlphaChannel,
 				defaultFormat: this.defaultFormat,
 				outputFormat: this.outputFormat
 			},
