@@ -14,7 +14,6 @@ import {
 } from 'frakton-ng/table';
 import { FktNoResults } from 'frakton-ng/no-results';
 import { FktTagComponent } from 'frakton-ng/tag';
-import { FktSpinnerComponent } from 'frakton-ng/spinner';
 import { FktButtonsListComponent } from 'frakton-ng/buttons-list';
 import { FktTableFilterTextComponent } from 'frakton-ng/table/filters/text';
 import { FktTableFilterSelectComponent } from 'frakton-ng/table/filters/select';
@@ -95,6 +94,8 @@ export class TableExamplesFilteringComponent {
             header: 'Category',
             filter: filter.select('category', {
                 label: 'Category',
+                labelKey: 'label',
+                valueKey: 'value',
                 options: [
                     { value: 'Electronics', label: 'Electronics' },
                     { value: 'Clothing', label: 'Clothing' },
@@ -136,6 +137,8 @@ export class TableExamplesFilteringComponent {
             header: 'Status',
             filter: filter.select('status', {
                 label: 'Status',
+                labelKey: 'label',
+                valueKey: 'value',
                 options: [
                     { value: 'available', label: 'Available' },
                     { value: 'low_stock', label: 'Low stock' },

@@ -140,6 +140,8 @@ export class TableExamplesStatefulComponent {
                 }),
             filter: filter.select('status', {
                 label: 'Status',
+                labelKey: 'label',
+                valueKey: 'value',
                 options: Object.entries(STATUS_INFO).map(([value, info]) => ({
                     label: info.label,
                     value,
