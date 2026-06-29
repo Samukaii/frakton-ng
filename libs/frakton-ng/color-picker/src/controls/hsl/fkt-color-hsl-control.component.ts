@@ -1,29 +1,50 @@
-import { Component, inject, input, linkedSignal, model } from '@angular/core';
-import { FormField, form } from '@angular/forms/signals';
-import { FktInputOldComponent } from 'frakton-ng/input-old';
-import { FktColorControlItemComponent } from '../../components/item/fkt-color-control-item.component';
+import { Component, inject, input, model } from '@angular/core';
+import { form, FormField, max, min } from '@angular/forms/signals';
 import { FKT_COLOR_PICKER_LOCALE_TOKEN } from '../../injection-tokens/fkt-color-picker-locale-token';
 import { FktColorPickerHSV } from 'frakton-ng/internal/types';
-import { fktColorFormatters } from 'frakton-ng/internal/utils';
+import {
+    fktColorFormatters,
+    transformedSignal,
+} from 'frakton-ng/internal/utils';
+import { FktFieldComponent } from 'frakton-ng/field';
+import { FktInputTextDirective } from 'frakton-ng/input-text';
 
 @Component({
-  selector: 'fkt-color-hsl-control',
-	imports: [
-		FktInputOldComponent,
-		FktColorControlItemComponent,
-        FormField
-	],
-  templateUrl: './fkt-color-hsl-control.component.html',
-  styleUrl: './fkt-color-hsl-control.component.scss'
+    selector: 'fkt-color-hsl-control',
+    imports: [FormField, FktFieldComponent, FktInputTextDirective],
+    templateUrl: './fkt-color-hsl-control.component.html',
+    styleUrl: './fkt-color-hsl-control.component.scss',
 })
 export class FktColorHslControlComponent {
-	value = model.required<FktColorPickerHSV>();
-	disableAlphaChannel = input(false);
+    value = model.required<FktColorPickerHSV>();
+    disableAlphaChannel = input(false);
 
-	protected asHSL = linkedSignal(() => {
-		return fktColorFormatters.hsl.fromHsv(this.value())
-	})
+    private readonly transformed = transformedSignal(this.value, {
+        from: (value) => {
+            const converted = fktColorFormatters.hsl.fromHsv(value);
 
-	protected locale = inject(FKT_COLOR_PICKER_LOCALE_TOKEN);
-	protected form = form(this.asHSL);
+            return {
+                alpha: Math.round(converted.alpha),
+                saturation: Math.round(converted.saturation),
+                lightness: Math.round(converted.lightness),
+                hue: Math.round(converted.hue),
+            };
+        },
+        to: fktColorFormatters.hsl.toHsv,
+    });
+
+    protected locale = inject(FKT_COLOR_PICKER_LOCALE_TOKEN);
+    protected form = form(this.transformed, (schema) => {
+        min(schema.hue, 0);
+        max(schema.hue, 360);
+
+        min(schema.lightness, 0);
+        max(schema.lightness, 100);
+
+        min(schema.saturation, 0);
+        max(schema.saturation, 100);
+
+        min(schema.alpha, 0);
+        max(schema.alpha, 100);
+    });
 }
