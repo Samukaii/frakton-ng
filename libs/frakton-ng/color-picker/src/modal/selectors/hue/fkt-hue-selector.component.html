@@ -1,4 +1,4 @@
-<div #bar (mousedown)="startMovement()" class="gradient">
+<div #bar (mousedown)="startMovement($event)" class="gradient">
 	<svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
 		<defs>
 			<linearGradient id="hue" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -16,7 +16,7 @@
 </div>
 
 <div
-	(mousedown)="startMovement()"
+	(mousedown)="startMovement($event)"
 	(keydown.arrowRight)="updateHue($event, 1)"
 	(keydown.arrowLeft)="updateHue($event, -1)"
 	[style.left]="percentage()"

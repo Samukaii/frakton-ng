@@ -75,21 +75,31 @@
                                     <td>
                                         @switch (arg.type) {
                                             @case ('text') {
-                                                <fkt-input
+                                                <fkt-field
                                                     hideLabel
                                                     [label]="arg.name"
-                                                    placeholder="Enter a text"
-                                                    [(value)]="arg.control"
-                                                />
+                                                >
+                                                    <input
+                                                        fktInputText
+                                                        placeholder="Enter a text"
+                                                        [value]="arg.control()"
+                                                        (input)="arg.control.set($any($event.target).value)"
+                                                    />
+                                                </fkt-field>
                                             }
                                             @case ('number') {
-                                                <fkt-input
+                                                <fkt-field
                                                     hideLabel
                                                     [label]="arg.name"
-                                                    placeholder="Enter a number"
-                                                    type="number"
-                                                    [(value)]="arg.control"
-                                                />
+                                                >
+                                                    <input
+                                                        fktInputText
+                                                        placeholder="Enter a number"
+                                                        type="number"
+                                                        [value]="arg.control()"
+                                                        (input)="arg.control.set($any($event.target).valueAsNumber)"
+                                                    />
+                                                </fkt-field>
                                             }
                                             @case ('boolean') {
                                                 <fkt-toggle
@@ -104,6 +114,8 @@
                                                     labelKey="label"
                                                     valueKey="value"
                                                     [label]="arg.name"
+                                                    labelKey="label"
+                                                    valueKey="value"
                                                     [options]="arg.options"
                                                     [(value)]="arg.control"
                                                 />

@@ -1,4 +1,4 @@
-import { Component, computed, DOCUMENT, ElementRef, inject, model, viewChild } from '@angular/core';
+import { Component, computed, DOCUMENT, ElementRef, inject, model, output, viewChild } from '@angular/core';
 import { FktColorPickerHSV } from 'frakton-ng/internal/types';
 import { fktColorFormatters } from 'frakton-ng/internal/utils';
 import { clampNumber } from 'frakton-ng/internal/utils';
@@ -6,76 +6,85 @@ import { FKT_COLOR_PICKER_LOCALE_TOKEN } from '../../../injection-tokens/fkt-col
 import { getColorDescription } from '../../../helpers/get-color-description';
 
 @Component({
-	selector: 'fkt-alpha-selector',
-	imports: [],
-	templateUrl: './fkt-alpha-selector.component.html',
-	styleUrl: './fkt-alpha-selector.component.scss'
+    selector: 'fkt-alpha-selector',
+    imports: [],
+    templateUrl: './fkt-alpha-selector.component.html',
+    styleUrl: './fkt-alpha-selector.component.scss',
 })
 export class FktAlphaSelectorComponent {
-	value = model.required<FktColorPickerHSV>()
-	protected locale = inject(FKT_COLOR_PICKER_LOCALE_TOKEN);
+    value = model.required<FktColorPickerHSV>();
+    protected locale = inject(FKT_COLOR_PICKER_LOCALE_TOKEN);
     private readonly document = inject(DOCUMENT);
 
-	protected description = computed(() => {
-		let {alpha} = {...this.value()};
+    protected description = computed(() => {
+        let { alpha } = { ...this.value() };
 
-		alpha = Math.round(alpha);
+        alpha = Math.round(alpha);
 
-		const colorDescription = getColorDescription(fktColorFormatters.hsl.fromHsv(this.value()), this.locale);
+        const colorDescription = getColorDescription(
+            fktColorFormatters.hsl.fromHsv(this.value()),
+            this.locale
+        );
 
-		return `${alpha}%, ${colorDescription}`;
-	});
+        return `${alpha}%, ${colorDescription}`;
+    });
 
-	protected background = computed(() => {
-		const {hue, saturation, lightness} = fktColorFormatters.hsl.fromHsv(this.value());
+    protected background = computed(() => {
+        const { hue, saturation, lightness } = fktColorFormatters.hsl.fromHsv(
+            this.value()
+        );
 
-		return `linear-gradient(90deg, hsla(${hue}, ${saturation}%, ${lightness}%, 0%), hsla(${hue}, ${saturation}%, ${lightness}%, 100%))`
-	});
+        return `linear-gradient(90deg, hsla(${hue}, ${saturation}%, ${lightness}%, 0%), hsla(${hue}, ${saturation}%, ${lightness}%, 100%))`;
+    });
 
-	protected percentage = computed(() => {
-		return this.value().alpha + '%';
-	});
+    protected percentage = computed(() => {
+        return this.value().alpha + '%';
+    });
 
-	protected pickerColor = computed(() => {
-		const {hue, saturation, lightness, alpha} = fktColorFormatters.hsl.fromHsv(this.value());
+    protected pickerColor = computed(() => {
+        const { hue, saturation, lightness, alpha } =
+            fktColorFormatters.hsl.fromHsv(this.value());
 
-		return `hsla(${hue}, ${saturation}%, ${lightness}%, ${alpha}%)`;
-	})
+        return `hsla(${hue}, ${saturation}%, ${lightness}%, ${alpha}%)`;
+    });
 
-	protected bar = viewChild.required('bar', {read: ElementRef});
+    protected bar = viewChild.required('bar', { read: ElementRef });
 
-	private onMove = (event: MouseEvent) => {
-		const bar = this.bar().nativeElement as HTMLDivElement;
-		const x = event.clientX;
+    private onMove = (event: MouseEvent) => {
+        const bar = this.bar().nativeElement as HTMLDivElement;
+        const x = event.clientX;
 
-		const barRect = bar.getBoundingClientRect();
+        const barRect = bar.getBoundingClientRect();
 
-		const min = 0;
-		const max = barRect.width;
-		const factor = 100;
+        const min = 0;
+        const max = barRect.width;
+        const factor = 100;
 
-		let alpha = ((Math.min(Math.max(x - barRect.x, min), max)) / max) * factor;
-		alpha = +alpha.toFixed(2);
+        let alpha =
+            (Math.min(Math.max(x - barRect.x, min), max) / max) * factor;
+        alpha = +alpha.toFixed(2);
 
-		this.value.update(value => ({...value, alpha}));
-	}
+        this.value.update((value) => ({ ...value, alpha }));
+    };
 
-	private finishMovement = () => {
-		this.document.removeEventListener('mousemove', this.onMove)
-		this.document.removeEventListener('mouseup', this.finishMovement)
-	}
+    private finishMovement = () => {
+        this.document.removeEventListener('mousemove', this.onMove);
+        this.document.removeEventListener('mouseup', this.finishMovement);
+    };
 
-	protected startMovement() {
-		this.document.addEventListener('mousemove', this.onMove)
-		this.document.addEventListener('mouseup', this.finishMovement)
-	}
+    protected startMovement(event: MouseEvent) {
+        event.preventDefault();
+        this.onMove(event);
+        this.document.addEventListener('mousemove', this.onMove);
+        this.document.addEventListener('mouseup', this.finishMovement);
+    }
 
-	protected updateAlpha($event: Event, difference: number) {
-		$event.preventDefault();
+    protected updateAlpha($event: Event, difference: number) {
+        $event.preventDefault();
 
-		this.value.update(value => ({
-			...value,
-			alpha: clampNumber(value.alpha + difference, 0, 100),
-		}))
-	}
+        this.value.update((value) => ({
+            ...value,
+            alpha: clampNumber(value.alpha + difference, 0, 100),
+        }));
+    }
 }

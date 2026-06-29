@@ -1,11 +1,16 @@
-<fkt-input
+<fkt-field
     [label]="token().name"
     hideLabel
-    (inputKeyDown)="onKeydown($event, token().control)"
-    placeholder="Enter the weight"
-    [(value)]="token().control"
 >
-    <div *fktFormControlSuffix class="numeric-control">
+    <input
+        fktInputText
+        placeholder="Enter the weight"
+        [value]="token().control()"
+        (input)="token().control.set($any($event.target).value)"
+        (keydown)="onKeydown($event, token().control)"
+    />
+
+    <div fktFieldSuffix class="numeric-control">
         <fkt-icon
             (mousedown)="update($any($event), token().control, 'increase')"
             name="chevron-up"
@@ -15,4 +20,4 @@
             name="chevron-down"
         />
     </div>
-</fkt-input>
+</fkt-field>

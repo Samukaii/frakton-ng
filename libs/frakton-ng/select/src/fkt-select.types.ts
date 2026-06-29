@@ -1,10 +1,5 @@
 import { Generic, StringOrNumberKeys } from 'frakton-ng/internal/types';
 
-export interface FktSelectOption {
-    value: string | number;
-    label: string;
-}
-
 export interface FktNormalizedSelectOption<Option = Generic> {
     value: string | number;
     index: number;

@@ -57,7 +57,7 @@ Border radius for control elements.
 @category Shape
 @type size
 */
-$control-border-radius: var(--fkt-color-picker-control-border-radius, var(--fkt-radius-xl));
+$control-border-radius: var(--fkt-color-picker-control-border-radius, var(--fkt-radius-lg));
 
 /*
 Focus shadow color for control elements.
@@ -108,128 +108,86 @@ Gap between elements in the value display.
 @type size
 */
 $value-gap: var(--fkt-color-picker-control-value-gap, .5rem);
-
-/*
-Height of text description in value display.
-@name --fkt-color-picker-control-description-height
-@reference 30px
-@component Color controls
-@category Spacing
-@type size
-*/
-$description-height: var(--fkt-color-picker-control-description-height, 30px);
 // </design-tokens>
 
 fkt-select {
-	width: $format-width !important;
-	height: $element-height;
-	display: flex;
-	align-items: center;
+    width: $format-width !important;
+    display: flex;
+    align-items: center;
+    margin-right: var(--fkt-space-xs);
+}
 
-	--fkt-field-vertical-padding: 0rem;
-	--fkt-field-horizontal-padding: var(--fkt-space-xs);
-	--fkt-field-border-radius: 0rem;
-	--fkt-field-border-color: transparent;
-	--fkt-field-border-focus-color: transparent;
-	--fkt-field-font-size: var(--fkt-font-size-sm);
+.color {
+    width: 0;
+    min-width: $preview-width;
+    aspect-ratio: 1;
+    border-right: none;
+    border-radius: $control-border-radius 0 0 0;
+
+    & > div {
+        border-radius: 100%;
+        width: 100%;
+        aspect-ratio: 1;
+        overflow: hidden;
+        border: solid 1px $border-color;
+    }
+
+    span {
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.preview {
+    display: flex;
+    align-items: center;
+    gap: var(--fkt-space-xs);
+
+    .info {
+        display: flex;
+        gap: var(--fkt-space-2xs);
+        flex-direction: column;
+        justify-content: center;
+        min-height: 51px;
+    }
 }
 
 
 .controls {
-	display: flex;
-	border-radius: var(--fkt-radius-md);
-	border: none;
-	padding: 0;
-	margin: 0;
-
-	& > fkt-color-control-item {
-		&.preview {
-			width: 0;
-			min-width: $preview-width;
-			aspect-ratio: 1;
-			border-right: none;
-			border-radius: $control-border-radius 0 0 0;
-
-			& > div {
-				border-radius: 100%;
-				width: 100%;
-				aspect-ratio: 1;
-				overflow: hidden;
-				border: solid 1px $border-color;
-			}
-
-			span {
-				display: block;
-				width: 100%;
-				height: 100%;
-			}
-		}
-
-		&.format {
-			width: $format-width;
-			padding: 0 !important;
-		}
-	}
-
-	::ng-deep {
-		fkt-color-control-item:not(.preview):hover {
-			border-color: $hover-border-color;
-
-			& + fkt-color-control-item {
-				border-left-color: $hover-border-color;
-			}
-
-			& + * fkt-color-control-item.first {
-				border-left-color: $hover-border-color;
-			}
-		}
-
-		fkt-color-control-item:not(.preview):focus-within {
-			box-shadow: 0 0 0 2px $focus-shadow-color;
-			border-color: transparent;
-
-			& + fkt-color-control-item {
-				border-left-color: transparent;
-			}
-
-			& + * fkt-color-control-item.first {
-				border-left-color: transparent;
-			}
-		}
-	}
+    display: flex;
+    border-radius: var(--fkt-radius-md);
+    border: none;
+    padding: 0;
+    margin: 0;
 }
 
 .value {
-	display: flex;
-	margin: 0;
-	padding: $value-padding;
-	width: 100%;
-	font-family: monospace;
-	border: solid 1px $border-color;
-	border-top: none;
-	justify-content: space-between;
-	border-radius: 0 0 $control-border-radius $control-border-radius;
-	align-items: center;
-	box-sizing: border-box;
+    display: flex;
+    padding: var(--fkt-space-2xs);
+    width: 100%;
+    font-family: monospace;
+    border: solid 1px $border-color;
+    justify-content: space-between;
+    margin: var(--fkt-space-xs) 0 0;
+    border-radius: $control-border-radius $control-border-radius;
+    align-items: center;
+    box-sizing: border-box;
 
-	p {
-		font-family: monospace;
-		margin: 0;
+    p {
+        font-family: monospace;
+        margin: 0;
+    }
 
-		&.text-description {
-			height: $description-height;
-		}
-	}
+    b {
+        font-family: monospace;
+    }
 
-	b {
-		font-family: monospace;
-	}
-
-	& > div {
-		display: flex;
-		flex-direction: column;
-		gap: $value-gap;
-	}
+    & > div {
+        display: flex;
+        flex-direction: column;
+        gap: $value-gap;
+    }
 
     .actions {
         flex-direction: row;

@@ -119,20 +119,27 @@ Example component: `FktFocusTrapModalExampleComponent`
 ```ts title="fkt-focus-trap-modal-example.component.ts"
 import { Component, inject, input, output } from '@angular/core';
 import { FktButtonComponent } from 'frakton-ng/button';
-import { FktInputOldComponent } from 'frakton-ng/input-old';
 import { FktDialogService } from 'frakton-ng/dialog';
+import { FktFieldComponent } from 'frakton-ng/field';
+import { FktInputTextDirective } from 'frakton-ng/input-text';
 
 @Component({
   selector: 'fkt-user-form-dialog',
-  imports: [FktInputOldComponent, FktButtonComponent],
+  imports: [FktFieldComponent, FktInputTextDirective, FktButtonComponent],
   template: `
     <div class="dialog-content">
       <h2>User Information</h2>
       <p>Focus is automatically trapped within this dialog. Try tabbing through the elements.</p>
 
-      <fkt-input label="First Name" placeholder="Enter your first name" />
-      <fkt-input label="Last Name" placeholder="Enter your last name" />
-      <fkt-input label="Email" type="email" placeholder="Enter your email" />
+      <fkt-field label="First Name">
+        <input fktInputText placeholder="Enter your first name" />
+      </fkt-field>
+      <fkt-field label="Last Name">
+        <input fktInputText placeholder="Enter your last name" />
+      </fkt-field>
+      <fkt-field label="Email">
+        <input fktInputText type="email" placeholder="Enter your email" />
+      </fkt-field>
 
       <div class="dialog-actions">
         <fkt-button text="Cancel" theme="basic" (click)="cancel.emit()" />
@@ -305,16 +312,18 @@ Example component: `FktFocusTrapFormExampleComponent`
 import { Component, input, signal } from '@angular/core';
 import { FktFocusTrapDirective } from 'frakton-ng/focus-trap';
 import { FktButtonComponent } from 'frakton-ng/button';
-import { FktInputOldComponent } from 'frakton-ng/input-old';
 import { FktSelectComponent } from 'frakton-ng/select';
 import { FktCheckboxComponent } from 'frakton-ng/checkbox';
+import { FktFieldComponent } from 'frakton-ng/field';
+import { FktInputTextDirective } from 'frakton-ng/input-text';
 
 @Component({
   selector: 'fkt-focus-trap-form-example',
   imports: [
     FktFocusTrapDirective,
     FktButtonComponent,
-    FktInputOldComponent,
+    FktFieldComponent,
+    FktInputTextDirective,
     FktSelectComponent,
     FktCheckboxComponent
   ],
@@ -351,16 +360,26 @@ export class FktFocusTrapFormExampleComponent {
     <p>All form controls are included in the focus trap cycle.</p>
 
     <div class="form-row">
-      <fkt-input label="First Name" placeholder="Enter your first name" />
-      <fkt-input label="Last Name" placeholder="Enter your last name" />
+      <fkt-field label="First Name">
+        <input fktInputText placeholder="Enter your first name" />
+      </fkt-field>
+      <fkt-field label="Last Name">
+        <input fktInputText placeholder="Enter your last name" />
+      </fkt-field>
     </div>
 
-    <fkt-input label="Email Address" type="email" placeholder="Enter your email" />
+    <fkt-field label="Email Address">
+      <input fktInputText type="email" placeholder="Enter your email" />
+    </fkt-field>
 
-    <fkt-input label="Password" type="password" placeholder="Enter your password" />
+    <fkt-field label="Password">
+      <input fktInputText type="password" placeholder="Enter your password" />
+    </fkt-field>
 
     <fkt-select
       label="Country"
+      labelKey="label"
+      valueKey="value"
       placeholder="Select your country"
       [options]="countryOptions()"
     />

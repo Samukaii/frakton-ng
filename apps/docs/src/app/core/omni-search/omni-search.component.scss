@@ -1,11 +1,11 @@
-fkt-input {
-    background-color: var(--fkt-color-modal-background);
+fkt-field {
+    --fkt-field-background-color: var(--fkt-color-modal-background);
+    --fkt-field-border-radius: 1rem;
+
     backdrop-filter: blur(16px);
-    --fkt-input-border-radius: 1rem;
 
     fkt-icon {
         color: var(--fkt-color-neutral-900);
-        margin-right: 1rem ;
     }
 }
 

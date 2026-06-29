@@ -15,6 +15,9 @@
                 "loader": {
                     ".md": "text"
                 },
+                "allowedCommonJsDependencies": [
+                    "prismjs"
+                ],
                 "outputPath": "docs",
                 "browser": "apps/docs/src/main.ts",
                 "polyfills": ["zone.js"],

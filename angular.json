@@ -29,24 +29,6 @@
 					"options": {
 						"tsConfig": "libs/frakton-ng/tsconfig.spec.json"
 					}
-				},
-				"storybook": {
-					"builder": "@storybook/angular:start-storybook",
-					"options": {
-						"configDir": "libs/frakton-ng/.storybook",
-						"browserTarget": "frakton-ng:build:development",
-						"compodoc": false,
-						"port": 6006
-					}
-				},
-				"build-storybook": {
-					"builder": "@storybook/angular:build-storybook",
-					"options": {
-						"configDir": "libs/frakton-ng/.storybook",
-						"browserTarget": "frakton-ng:build:production",
-						"compodoc": false,
-						"outputDir": "storybook-docs"
-					}
 				}
 			}
 		}

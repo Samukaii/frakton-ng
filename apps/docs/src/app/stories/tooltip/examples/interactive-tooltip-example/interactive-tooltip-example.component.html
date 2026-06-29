@@ -1,39 +1,38 @@
 <div class="container">
-	<div
-		class="container__interactive-button">
-		<div
-			[fktTooltip]="form.text().value()"
-			[position]="form.position().value()"
-			[tooltipEnabled]="form.enabled().value()"
-			[tooltipColor]="tooltipColor()"
-			disableAutoReposition
-		>
-			<p>
-				Interactive tooltip element
-			</p>
-		</div>
-	</div>
+    <div
+        class="container__interactive-button">
+        <div
+            [fktTooltip]="form.text().value()"
+            [position]="form.position().value()"
+            [tooltipEnabled]="form.enabled().value()"
+            [tooltipColor]="tooltipColor()"
+            disableAutoReposition
+        >
+            <p>
+                Interactive tooltip element
+            </p>
+        </div>
+    </div>
 
-	<form>
-		<div class="container__form">
-			<div>
-				<fkt-select
-					[formField]="form.position"
-					[label]="'Tooltip Position'"
-					[options]="positionOptions"
-				></fkt-select>
-				<fkt-input
-					[formField]="form.text"
-					[label]="'Tooltip Text'"
-					[placeholder]="'Enter tooltip message...'"
-					[type]="'text'"
-				></fkt-input>
-			</div>
+    <form>
+        <div class="container__form">
+            <div>
+                <fkt-select
+                    [formField]="form.position"
+                    [label]="'Tooltip Position'"
+                    labelKey="label"
+                    valueKey="value"
+                    [options]="positionOptions"
+                ></fkt-select>
+                <fkt-field label="Tooltip text">
+                    <input [formField]="form.text" fktInputText placeholder="Enter tooltip message...">
+                </fkt-field>
+            </div>
 
-			<fkt-checkbox
-				[formField]="form.enabled"
-				[label]="'Enable Tooltips'"
-			></fkt-checkbox>
-		</div>
-	</form>
+            <fkt-checkbox
+                [formField]="form.enabled"
+                [label]="'Enable Tooltips'"
+            ></fkt-checkbox>
+        </div>
+    </form>
 </div>

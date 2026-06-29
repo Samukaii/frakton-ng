@@ -86,7 +86,7 @@ Frakton NG works alongside Angular Material seamlessly:
 | Angular Material  | Frakton NG         | Migration Notes                                      |
 |-------------------|--------------------|------------------------------------------------------|
 | `mat-button`      | `fkt-button`       | Support for custom hex colors, better loading states |
-| `mat-input`       | `fkt-input`        | Signal-based forms, automatic validation display     |
+| `mat-input`       | `fkt-field` + `fktInputText` | Signal-based forms, automatic validation display |
 | `mat-select`      | `fkt-select`       | Enhanced keyboard navigation, custom styling         |
 | `mat-datepicker`  | `fkt-date-picker`  | More flexible date formats, better accessibility     |
 | `mat-dialog`      | `fkt-overlay`      | Type-safe data passing, automatic theme inheritance  |
@@ -179,16 +179,26 @@ import {DropdownModule} from 'primeng/dropdown';
 ```typescript
 // After (Frakton NG)
 import {FktButtonComponent} from 'frakton-ng/button';
-import {FktInputOldComponent} from 'frakton-ng/input-old';
+import {FktFieldComponent} from 'frakton-ng/field';
+import {FktInputTextDirective} from 'frakton-ng/input-text';
 import {FktSelectComponent} from 'frakton-ng/select';
+import {FormsModule} from '@angular/forms';
 
 @Component({
     template: `
     <fkt-button text="Click me" (click)="handleClick()"></fkt-button>
-    <fkt-input [(value)]="value" placeholder="Enter text"></fkt-input>
+    <fkt-field label="Text">
+        <input fktInputText [(ngModel)]="value" placeholder="Enter text">
+    </fkt-field>
     <fkt-select [options]="cities" [(value)]="selectedCity"></fkt-select>
   `,
-    imports: [FktButtonComponent, FktInputOldComponent, FktSelectComponent]
+    imports: [
+        FormsModule,
+        FktButtonComponent,
+        FktFieldComponent,
+        FktInputTextDirective,
+        FktSelectComponent
+    ]
 })
 ```
 
@@ -205,7 +215,7 @@ import {FktSelectComponent} from 'frakton-ng/select';
 | PrimeNG         | Frakton NG         | Key Improvements                                    |
 |-----------------|--------------------|-----------------------------------------------------|
 | `p-button`      | `fkt-button`       | Custom colors, loading states, better accessibility |
-| `p-inputText`   | `fkt-input`        | Signal forms, automatic validation display          |
+| `p-inputText`   | `fkt-field` + `fktInputText` | Signal forms, automatic validation display |
 | `p-dropdown`    | `fkt-select`       | Better keyboard navigation, custom styling          |
 | `p-calendar`    | `fkt-date-picker`  | Enhanced accessibility, flexible formats            |
 | `p-dialog`      | `fkt-overlay`      | Type-safe data, theme inheritance                   |
@@ -333,11 +343,9 @@ export class ModernComponent {
 
 	// Use with Frakton components
 	template = `
-    <fkt-input
-      [control]="email"
-      label="Email Address"
-      type="email">
-    </fkt-input>
+    <fkt-field label="Email Address">
+        <input fktInputText [formControl]="email" type="email">
+    </fkt-field>
   `;
 }
 ```

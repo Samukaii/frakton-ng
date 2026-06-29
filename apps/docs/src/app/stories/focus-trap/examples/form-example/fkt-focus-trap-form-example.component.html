@@ -6,13 +6,21 @@
     <p>All form controls are included in the focus trap cycle.</p>
 
     <div class="form-row">
-      <fkt-input label="First Name" placeholder="Enter your first name" />
-      <fkt-input label="Last Name" placeholder="Enter your last name" />
+      <fkt-field label="First Name">
+        <input fktInputText placeholder="Enter your first name" />
+      </fkt-field>
+      <fkt-field label="Last Name">
+        <input fktInputText placeholder="Enter your last name" />
+      </fkt-field>
     </div>
 
-    <fkt-input label="Email Address" type="email" placeholder="Enter your email" />
+    <fkt-field label="Email Address">
+      <input fktInputText type="email" placeholder="Enter your email" />
+    </fkt-field>
 
-    <fkt-input label="Password" type="password" placeholder="Enter your password" />
+    <fkt-field label="Password">
+      <input fktInputText type="password" placeholder="Enter your password" />
+    </fkt-field>
 
     <fkt-select
       label="Country"

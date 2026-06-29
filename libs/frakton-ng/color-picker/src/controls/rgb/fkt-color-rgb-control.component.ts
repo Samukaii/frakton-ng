@@ -1,15 +1,17 @@
-import { Component, effect, inject, input, linkedSignal, model } from '@angular/core';
-import { FormField, form } from '@angular/forms/signals';
-import { FktInputOldComponent } from 'frakton-ng/input-old';
-import { fktColorFormatters, MarkUsed } from 'frakton-ng/internal/utils';
-import { FktColorControlItemComponent } from '../../components/item/fkt-color-control-item.component';
+import { Component, inject, input, model } from '@angular/core';
+import { form, FormField, max, min } from '@angular/forms/signals';
+import {
+    fktColorFormatters,
+    transformedSignal,
+} from 'frakton-ng/internal/utils';
 import { FKT_COLOR_PICKER_LOCALE_TOKEN } from '../../injection-tokens/fkt-color-picker-locale-token';
 import { FktColorPickerHSV } from 'frakton-ng/internal/types';
-
+import { FktFieldComponent } from 'frakton-ng/field';
+import { FktInputTextDirective } from 'frakton-ng/input-text';
 
 @Component({
     selector: 'fkt-color-rgb-control',
-    imports: [FktInputOldComponent, FktColorControlItemComponent, FormField],
+    imports: [FormField, FktFieldComponent, FktInputTextDirective],
     templateUrl: './fkt-color-rgb-control.component.html',
     styleUrl: './fkt-color-rgb-control.component.scss',
 })
@@ -19,37 +21,31 @@ export class FktColorRgbControlComponent {
 
     protected locale = inject(FKT_COLOR_PICKER_LOCALE_TOKEN);
 
-    protected asRgb = linkedSignal(() => {
-        return fktColorFormatters.rgb.fromHsv(this.value());
+    private readonly transformed = transformedSignal(this.value, {
+        from: (value) => {
+            const converted = fktColorFormatters.rgb.fromHsv(value);
+
+            return {
+                red: Math.round(converted.red),
+                green: Math.round(converted.green),
+                blue: Math.round(converted.blue),
+                alpha: Math.round(converted.alpha),
+            };
+        },
+        to: fktColorFormatters.rgb.toHsv,
     });
 
-    protected form = form(this.asRgb);
+    protected form = form(this.transformed, (schema) => {
+        min(schema.red, 0);
+        max(schema.red, 255);
 
-    @MarkUsed()
-    protected updateForm = effect(() => {
-        const { alpha } = this.asRgb();
+        min(schema.green, 0);
+        max(schema.green, 255);
 
-        const a = this.form.alpha;
+        min(schema.blue, 0);
+        max(schema.blue, 255);
 
-        const converted = fktColorFormatters.rgb.toHsv(this.asRgb());
-        const result = {
-            ...converted,
-            alpha: alpha,
-        };
-
-        const conditions = [
-            result.hue.toFixed(2) === this.value().hue.toFixed(2),
-            result.saturation.toFixed(2) === this.value().saturation.toFixed(2),
-            result.value.toFixed(2) === this.value().value.toFixed(2),
-            result.alpha.toFixed(2) === this.value().alpha.toFixed(2),
-        ];
-
-        if (conditions.every(Boolean)) return;
-
-        this.value.set({
-            ...this.value(),
-            ...converted,
-            alpha: this.asRgb().alpha,
-        });
+        min(schema.alpha, 0);
+        max(schema.alpha, 100);
     });
 }

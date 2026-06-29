@@ -116,6 +116,7 @@ export class TableExamplesFilteringComponent {
             header: 'Price',
             filter: filter.number('price', {
                 label: 'Price ($)',
+                placeholder: 'Choose the price'
             }),
             cell: (product) => `$${product.price.toFixed(2)}`,
         },
@@ -124,6 +125,7 @@ export class TableExamplesFilteringComponent {
             header: 'Stock',
             filter: filter.number('stock', {
                 label: 'Units',
+                placeholder: 'Choose units'
             }),
             cell: (product) =>
                 cell.tag({
