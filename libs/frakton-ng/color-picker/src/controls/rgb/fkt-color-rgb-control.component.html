@@ -1,47 +1,16 @@
-<fkt-color-control-item isFirst>
-    <fkt-input
-        hideLabel
-        [label]="locale.controls.rgb.red"
-        hideNumericControl
-        [formField]="form.red"
-        [minNumber]="0"
-        [maxNumber]="255"
-        type="number"
-    />
-</fkt-color-control-item>
-<fkt-color-control-item>
-    <fkt-input
-        hideLabel
-        hideNumericControl
-        [label]="locale.controls.rgb.green"
-        [formField]="form.green"
-        [minNumber]="0"
-        [maxNumber]="255"
-        type="number"
-    />
-</fkt-color-control-item>
+<fkt-field [label]="locale.controls.rgb.red" hideLabel>
+    <input fktInputText [formField]="form.red" type="number">
+</fkt-field>
+<fkt-field [label]="locale.controls.rgb.green" hideLabel>
+    <input fktInputText [formField]="form.green" type="number">
+</fkt-field>
 
-<fkt-color-control-item [isLast]="disableAlphaChannel()">
-    <fkt-input
-        hideLabel
-        hideNumericControl
-        [label]="locale.controls.rgb.blue"
-        [formField]="form.blue"
-        [minNumber]="0"
-        [maxNumber]="255"
-        type="number"
-    />
-</fkt-color-control-item>
+<fkt-field [label]="locale.controls.rgb.blue" hideLabel>
+    <input fktInputText [formField]="form.blue" type="number">
+</fkt-field>
+
 @if (!disableAlphaChannel()) {
-    <fkt-color-control-item isLast>
-        <fkt-input
-            hideLabel
-            hideNumericControl
-            [label]="locale.controls.opacity"
-            [formField]="form.alpha"
-            [minNumber]="0"
-            [maxNumber]="100"
-            type="number"
-        />
-    </fkt-color-control-item>
+    <fkt-field [label]="locale.controls.opacity" hideLabel>
+        <input fktInputText [formField]="form.alpha" type="number">
+    </fkt-field>
 }
