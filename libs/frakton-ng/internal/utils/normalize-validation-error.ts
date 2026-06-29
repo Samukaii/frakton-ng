@@ -69,13 +69,23 @@ export const normalizeReactiveValidationError = (
     };
 };
 
+const keyInParent = (fieldTree?: FieldTree<unknown>) => {
+    try {
+        return fieldTree?.().keyInParent()
+    }
+    catch {
+        return undefined;
+    }
+}
+
 export const normalizeSignalValidationError = (
     error: WithOptionalFieldTree<ValidationError>
 ): FktNormalizedValidationError<FieldTree<unknown>> => {
+
     return {
         kind: error.kind,
         message: error.message,
-        name: error.fieldTree?.().keyInParent().toString(),
+        name: keyInParent(error.fieldTree)?.toString(),
         params: normalizeSignalParams(error),
         raw: error,
         field: error.fieldTree,
