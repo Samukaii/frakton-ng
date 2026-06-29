@@ -1,98 +1,101 @@
-import { Component, effect, inject, input, linkedSignal, model } from '@angular/core';
-import { FormField, form } from '@angular/forms/signals';
-import { FktInputOldComponent } from 'frakton-ng/input-old';
-import { fktColorFormatters, MarkUsed } from 'frakton-ng/internal/utils';
-import { FktControlFormatter } from 'frakton-ng/forms';
-import { FktColorControlItemComponent } from '../../components/item/fkt-color-control-item.component';
+import { Component, inject, input, model } from '@angular/core';
+import { form, FormField, max, min, validate } from '@angular/forms/signals';
+import {
+    fktColorFormatters,
+    transformedSignal,
+} from 'frakton-ng/internal/utils';
 import { FktColorPickerHSV } from 'frakton-ng/internal/types';
 import { FKT_COLOR_PICKER_LOCALE_TOKEN } from '../../injection-tokens/fkt-color-picker-locale-token';
-
+import { FktFieldComponent } from 'frakton-ng/field';
+import { FormsModule } from '@angular/forms';
+import { FktInputTextDirective } from 'frakton-ng/input-text';
+import { HexColorMaskDirective } from '../../directives/hex-color-mask.directive';
 
 @Component({
-	selector: 'fkt-color-hex-control',
+    selector: 'fkt-color-hex-control',
     imports: [
-        FktInputOldComponent,
-        FktColorControlItemComponent,
-        FormField
+        FormField,
+        FktFieldComponent,
+        FormsModule,
+        FktInputTextDirective,
+        HexColorMaskDirective,
     ],
-	templateUrl: './fkt-color-hex-control.component.html',
-	styleUrl: './fkt-color-hex-control.component.scss'
+    templateUrl: './fkt-color-hex-control.component.html',
+    styleUrl: './fkt-color-hex-control.component.scss',
 })
 export class FktColorHexControlComponent {
-	value = model.required<FktColorPickerHSV>();
-	disableAlphaChannel = input(false);
+    value = model.required<FktColorPickerHSV>();
+    disableAlphaChannel = input(false);
 
-	protected locale = inject(FKT_COLOR_PICKER_LOCALE_TOKEN);
+    protected locale = inject(FKT_COLOR_PICKER_LOCALE_TOKEN);
 
-	protected asHex = linkedSignal<FktColorPickerHSV, { hex: string; fromModel: boolean; }>({
-		source: this.value,
-		computation: (value, previous) => {
-			const result = fktColorFormatters.hex.format(value, false).value;
+    protected transformed = transformedSignal(this.value, {
+        from: (value) => {
+            const { format } = fktColorFormatters.hex;
 
-			if (!previous?.value.hex)
-				return {hex: result, fromModel: true};
+            return {
+                hexCode: format(value).value,
+                alpha: Math.round(value.alpha).toString(),
+            };
+        },
+        to: (value, source) => {
+            const { extract, toHsv } = fktColorFormatters.hex;
 
-			if (!fktColorFormatters.hex.expand(previous.value.hex))
-				return previous.value;
+            const extracted = extract(value.hexCode);
 
-			if (fktColorFormatters.hex.expand(previous.value.hex) === fktColorFormatters.hex.expand(result))
-				return previous.value;
+            if (!extracted) return source;
 
-			return {hex: result, fromModel: true};
-		}
-	});
+            return toHsv(extracted, +value.alpha);
+        },
+    });
 
-	protected form = form(this.asHex);
-	protected hslForm = form(this.value);
+    hexCode = transformedSignal(this.transformed, {
+        from: (source) => source.hexCode,
+        to: (hexCode, source) => {
+            const { extract, hasAlpha, fromAlphaHex, expand } =
+                fktColorFormatters.hex;
 
-	@MarkUsed()
-	protected updateForm = effect(() => {
-		const {hex, fromModel} = this.asHex();
+            const value = extract(hexCode);
 
-		if (!hex || fromModel) return;
-		const expanded = fktColorFormatters.hex.extract(hex);
+            if (!value) return source;
 
-		if (!expanded) return;
+            const newAlpha = hasAlpha(hexCode)
+                ? fromAlphaHex(value.alpha)
+                : source.alpha;
 
-		const converted = fktColorFormatters.hex.toHsv(expanded);
+            return {
+                hexCode: expand(hexCode) ?? source.hexCode,
+                alpha: newAlpha.toString(),
+            };
+        },
+    });
 
-		const conditions = [
-			converted.hue.toFixed(2) === this.value().hue.toFixed(2),
-			converted.saturation.toFixed(2) === this.value().saturation.toFixed(2),
-			converted.value.toFixed(2) === this.value().value.toFixed(2),
-			converted.alpha.toFixed(2) === this.value().alpha.toFixed(2)
-		]
+    alpha = transformedSignal(this.transformed, {
+        from: (source) => Math.round(+source.alpha).toString(),
+        to: (alpha, source) => {
+            const { extract, toHsv, format } = fktColorFormatters.hex;
 
-		if (conditions.every(Boolean))
-			return;
+            const extracted = extract(source.hexCode);
 
-		this.value.set({
-			...this.value(),
-			...converted,
-		})
-	});
+            if (!extracted) return source;
 
-	protected formatter: FktControlFormatter<string, string> = {
-		viewToModelValue: value => value,
-		sanitizeViewValue: ({currentValue}) => {
-			let sanitizedValue = currentValue.replace(/[^0-9a-fA-F]/g, '');
+            const value = toHsv(extracted, +alpha);
 
-			sanitizedValue = sanitizedValue.toUpperCase();
+            const { value: hexCode } = format(value);
 
-			if (this.disableAlphaChannel())
-				sanitizedValue = sanitizedValue.slice(0, 6);
-			else sanitizedValue = sanitizedValue.slice(0, 8);
+            return { alpha, hexCode };
+        },
+    });
 
-			sanitizedValue = `#${sanitizedValue}`;
+    protected hexCodeField = form(this.hexCode, (field) => {
+        validate(field, ({ value }) => {
+            const { isValidHex } = fktColorFormatters.hex;
 
-			return {sanitizedValue};
-		}
-	}
-
-	protected updateHex($event: string | null) {
-		this.asHex.set({
-			hex: $event ?? '',
-			fromModel: false,
-		});
-	}
+            return isValidHex(value()) ? null : { kind: 'invalid-hex' };
+        });
+    });
+    protected alphaField = form(this.alpha, (field) => {
+        min(field, 0);
+        max(field, 100);
+    });
 }

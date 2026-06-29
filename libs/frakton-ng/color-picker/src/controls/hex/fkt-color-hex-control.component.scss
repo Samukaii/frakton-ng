@@ -1,16 +1,9 @@
-fkt-input {
-	width: 100% !important;
-	height: 30px;
-	display: flex;
-	align-items: center;
-
-	--fkt-input-vertical-padding: 0rem;
-	--fkt-input-horizontal-padding: 0rem;
-	--fkt-input-border-radius: 0rem;
-	--fkt-input-border-color: transparent;
-	--fkt-input-border-focus-color: transparent;
-}
-
 :host {
-	display: flex;
+    width: 100%;
+    display: flex;
+    gap: .5rem;
+
+    & > * {
+        width: 100%;
+    }
 }
