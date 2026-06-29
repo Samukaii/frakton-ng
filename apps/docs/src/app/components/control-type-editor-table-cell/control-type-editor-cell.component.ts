@@ -1,12 +1,12 @@
 import { Component, forwardRef, input, output } from '@angular/core';
 import { ControlType } from '@/models/control-type';
-import { FktInputOldComponent } from 'frakton-ng/input-old';
 import { SchemaEditorComponent } from '@/components/schema-editor/schema-editor.component';
 import { ArgTypeSchemaParsed } from '@/models/arg-type';
 import { FktSelectComponent } from 'frakton-ng/select';
-import { StringToSelectOptionsPipe } from '@/pipes/string-to-select-options.pipe';
 import { IconSelectorComponent } from '@/components/icon-selector/icon-selector.component';
 import { FktToggleComponent } from 'frakton-ng/toggle';
+import { FktFieldComponent } from 'frakton-ng/field';
+import { FktInputTextDirective } from 'frakton-ng/input-text';
 
 declare module 'frakton-ng/table' {
     export interface FktTableCellsMapping {
@@ -17,8 +17,8 @@ declare module 'frakton-ng/table' {
 @Component({
     selector: 'fkt-control-type-editor-cell',
     imports: [
-        FktInputOldComponent,
-        StringToSelectOptionsPipe,
+        FktFieldComponent,
+        FktInputTextDirective,
         FktSelectComponent,
         IconSelectorComponent,
         FktToggleComponent,
@@ -29,10 +29,10 @@ declare module 'frakton-ng/table' {
 })
 export class ControlTypeEditorCellComponent {
     name = input.required<string>();
-    showLabel = input<boolean | undefined>(false)
+    showLabel = input<boolean | undefined>(false);
     value = input<any>();
     options = input<string[]>();
     schema = input<ArgTypeSchemaParsed>();
     update = output<any>();
-    type = input.required<ControlType>()
+    type = input.required<ControlType>();
 }

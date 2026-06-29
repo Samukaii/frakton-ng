@@ -927,17 +927,17 @@ Example component: `FieldTranslatedErrorsExampleComponent`
 import { Component, effect, inject, signal } from '@angular/core';
 import {
     email,
-    FormField,
     form,
+    FormField,
     maxLength,
     minLength,
     required,
 } from '@angular/forms/signals';
-import { TranslateService } from '@/core/services/translate.service';
+import { MyTranslateService } from '@/core/services/my-translate.service';
 import { FktFieldComponent, FktFieldPrefixDirective } from 'frakton-ng/field';
 import { FktInputTextDirective } from 'frakton-ng/input-text';
 import { FktIconComponent } from 'frakton-ng/icon';
-import { FktSelectComponent, FktSelectOption } from 'frakton-ng/select';
+import { FktSelectComponent } from 'frakton-ng/select';
 
 @Component({
     selector: 'app-field-translated-errors-example',
@@ -947,13 +947,13 @@ import { FktSelectComponent, FktSelectOption } from 'frakton-ng/select';
         FktInputTextDirective,
         FktIconComponent,
         FktSelectComponent,
-        FktFieldPrefixDirective
+        FktFieldPrefixDirective,
     ],
     templateUrl: './field-translated-errors-example.component.html',
     styleUrl: './field-translated-errors-example.component.scss',
 })
 export class FieldTranslatedErrorsExampleComponent {
-    private translate = inject(TranslateService);
+    private translate = inject(MyTranslateService);
 
     private model = signal({
         name: '',
@@ -962,7 +962,7 @@ export class FieldTranslatedErrorsExampleComponent {
         email: '',
     });
 
-    private selectedLanguage = signal('en-US');
+    private selectedLanguage = signal('en');
 
     protected form = form(this.model, (schema) => {
         required(schema.name);
@@ -974,7 +974,7 @@ export class FieldTranslatedErrorsExampleComponent {
 
     protected language = form(this.selectedLanguage);
 
-    protected languageOptions: FktSelectOption[] = [
+    protected languageOptions: { label: string; value: string }[] = [
         { label: 'English', value: 'en' },
         { label: 'Spanish', value: 'es-ES' },
         { label: 'French', value: 'fr-FR' },
@@ -993,6 +993,8 @@ export class FieldTranslatedErrorsExampleComponent {
 <fkt-select
     [formField]="language"
     label="Language"
+    labelKey="label"
+    valueKey="value"
     placeholder="Select a language"
     [options]="languageOptions"
 />

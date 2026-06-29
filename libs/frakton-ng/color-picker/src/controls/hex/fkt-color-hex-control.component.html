@@ -1,22 +1,8 @@
-<fkt-color-control-item isFirst [isLast]="disableAlphaChannel()">
-	<fkt-input
-		hideLabel
-		[formatter]="formatter"
-		[label]="locale.controls.hex.code"
-		[value]="form.hex().value()"
-		(valueChange)="updateHex($event)"
-	/>
-</fkt-color-control-item>
+<fkt-field [label]="locale.controls.hex.code" hideLabel>
+    <input fktHexColorMask fktInputText [formField]="hexCodeField">
+</fkt-field>
 @if (!disableAlphaChannel()) {
-	<fkt-color-control-item isLast>
-		<fkt-input
-			hideLabel
-			hideNumericControl
-			[label]="locale.controls.opacity"
-			[formField]="hslForm.alpha"
-			[minNumber]="0"
-			[maxNumber]="100"
-			type="number"
-		/>
-	</fkt-color-control-item>
+    <fkt-field [label]="locale.controls.hex.code" hideLabel>
+        <input fktInputText type="number" [formField]="alphaField">
+    </fkt-field>
 }

@@ -1,12 +1,19 @@
 import { ChangeDetectionStrategy, Component, input, linkedSignal, output } from '@angular/core';
-import { FktInputOldComponent } from 'frakton-ng/input-old';
 import { FktButtonsListComponent } from 'frakton-ng/buttons-list';
 import { FktButtonAction } from 'frakton-ng/button';
 import { FktTableCustomFilter } from 'frakton-ng/table';
+import { FktFieldComponent } from 'frakton-ng/field';
+import { form, FormField } from '@angular/forms/signals';
+import { FktInputTextDirective } from 'frakton-ng/input-text';
 
 @Component({
     selector: 'fkt-table-filter-text',
-    imports: [FktInputOldComponent, FktButtonsListComponent],
+    imports: [
+        FktButtonsListComponent,
+        FktFieldComponent,
+        FktInputTextDirective,
+        FormField,
+    ],
     templateUrl: './fkt-table-filter-text.component.html',
     styleUrl: './fkt-table-filter-text.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -21,9 +28,11 @@ export class FktTableFilterTextComponent
     close = output();
     apply = output<string>();
 
-    internalValue = linkedSignal(this.value);
+    protected readonly internalValue = linkedSignal(this.value);
 
-    actions: FktButtonAction[] = [
+    protected readonly field = form(this.internalValue);
+
+    protected readonly actions: FktButtonAction[] = [
         {
             identifier: 'reset',
             text: 'Reset',

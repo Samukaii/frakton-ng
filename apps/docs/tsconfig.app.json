@@ -10,7 +10,6 @@
             "@/*": ["apps/docs/src/app/*"],
             "frakton-ng": ["libs/frakton-ng"],
             "frakton-ng/autocomplete": ["libs/frakton-ng/autocomplete"],
-            "frakton-ng/autocomplete-old": ["libs/frakton-ng/autocomplete-old"],
             "frakton-ng/avatar": ["libs/frakton-ng/avatar"],
             "frakton-ng/button": ["libs/frakton-ng/button"],
             "frakton-ng/button-group": ["libs/frakton-ng/button-group"],
@@ -32,7 +31,6 @@
             "frakton-ng/focus-trap": ["libs/frakton-ng/focus-trap"],
             "frakton-ng/forms": ["libs/frakton-ng/forms"],
             "frakton-ng/icon": ["libs/frakton-ng/icon"],
-            "frakton-ng/input-old": ["libs/frakton-ng/input-old"],
             "frakton-ng/input-text": ["libs/frakton-ng/input-text"],
             "frakton-ng/internal/components": [
                 "libs/frakton-ng/internal/components"

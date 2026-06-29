@@ -1,4 +1,4 @@
-import { Component, computed, DOCUMENT, ElementRef, inject, model, viewChild } from '@angular/core';
+import { Component, computed, DOCUMENT, ElementRef, inject, model, output, viewChild } from '@angular/core';
 import { FktColorPickerHSV } from 'frakton-ng/internal/types';
 import { clampNumber } from 'frakton-ng/internal/utils';
 import { FKT_COLOR_PICKER_LOCALE_TOKEN } from '../../../injection-tokens/fkt-color-picker-locale-token';
@@ -59,7 +59,9 @@ export class FktHueSelectorComponent {
 		this.document.removeEventListener('mouseup', this.finishMovement)
 	}
 
-	protected startMovement() {
+	protected startMovement(event: MouseEvent) {
+        event.preventDefault();
+        this.onMove(event);
 		this.document.addEventListener('mousemove', this.onMove)
 		this.document.addEventListener('mouseup', this.finishMovement)
 	}

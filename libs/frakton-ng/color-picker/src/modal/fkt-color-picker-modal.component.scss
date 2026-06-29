@@ -46,14 +46,6 @@ $selector-height: var(--fkt-color-picker-modal-selector-height, 24px);
 	gap: $modal-gap;
 	background-color: $modal-background-color;
 	color: $modal-text-color;
-
-	--fkt-select-vertical-padding: .5rem;
-	--fkt-select-horizontal-padding: .3rem;
-	--fkt-select-border-radius: .25rem;
-	--fkt-select-border-color: var(--fkt-color-neutral-500);
-	--fkt-select-text-color: $modal-text-color;
-
-	--fkt-input-text-color: $modal-text-color;
 }
 
 fkt-alpha-selector, fkt-hue-selector {

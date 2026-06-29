@@ -1,22 +1,24 @@
 @switch (type()) {
     @case ('text') {
-        <fkt-input
+        <fkt-field
             [hideLabel]="!showLabel()"
             [label]="name()"
-            placeholder="Enter a text"
-            [value]="value()"
-            (valueChange)="update.emit($event)"
-        />
+        >
+            <input
+                fktInputText
+                placeholder="Enter a text"
+                [value]="value()"
+                (input)="update.emit($any($event.target).value)"
+            />
+        </fkt-field>
     }
     @case ("select") {
         <fkt-select
             [hideLabel]="!showLabel()"
             [value]="value()"
-            labelKey="label"
-            valueKey="value"
             (valueChange)="update.emit($event)"
             [label]="name()"
-            [options]="(options() ?? []) | stringToSelectOptions"/>
+            [options]="options() ?? []"/>
     }
     @case ("array") {
         <fkt-schema-editor

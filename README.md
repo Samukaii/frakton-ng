@@ -3,345 +3,303 @@
 **Architecturally opinionated. Visually unlimited.**
 
 [![npm version](https://img.shields.io/npm/v/frakton-ng?style=flat-square)](https://www.npmjs.com/package/frakton-ng)
-![bundlephobia](https://badgen.net/bundlephobia/minzip/frakton-ng)
-![bundlephobia](https://badgen.net/bundlephobia/min/frakton-ng)
 ![bundlephobia](https://badgen.net/bundlephobia/tree-shaking/frakton-ng)
 
-> A new kind of Angular UI library: enforced accessibility, signal-native architecture, and absolute visual freedom through a modern token system.
+> A signal-native Angular UI library built around accessible behavior, explicit
+> state ownership, type-safe composition, and deep visual customization.
 
-<img width="1421" height="953" alt="image" src="https://github.com/user-attachments/assets/a8761cc5-bef7-4129-b433-0a68f872fed8" />
-<br/>
-<br/>
+Frakton NG provides the architecture and interaction contracts required by
+complex application components while keeping business state, data fetching,
+and visual identity under application control.
 
-Frakton NG is a **next-generation Angular UI library** that separates what matters: enforced accessibility and modern architecture, with complete visual freedom. Built with Angular 21+ signals, standalone components, and a comprehensive design token system.
+Built for Angular 21 with standalone components, signals, Signal Forms,
+Reactive Forms, and modern browser APIs.
 
-- **📦 Bundle Size**: < 1mb unpacked and < 150kb gzipped
-- **🧩 Components**: 25+ production-ready
-- **🚀 Zero Dependencies**: Only Angular required
+> **Beta:** Frakton NG is actively evolving while its component model and
+> design system are consolidated.
 
-<br/>
+<img width="1421" height="953" alt="Frakton NG component examples" src="https://github.com/user-attachments/assets/a8761cc5-bef7-4129-b433-0a68f872fed8" />
 
-## 🖼️ **See It In Action**
+## Why Frakton NG?
 
-[See the docs & interactive demos →](https://fraktonng.com)
+- **Signal-native:** Components are built with signal inputs, models, computed
+  state, and modern Angular APIs.
+- **Accessible behavior:** Runtime validation, keyboard interaction, focus
+  management, semantic labels, and human-readable color descriptions.
+- **Explicit state ownership:** Components emit user intent while application
+  state remains controlled by the consumer.
+- **Type-safe composition:** Dynamic components infer signal inputs, outputs,
+  and models without requiring duplicated contracts.
+- **Visually unlimited:** Global and component-level design tokens let products
+  define their own visual language.
+- **Zero dependencies:** No runtime dependencies outside the Angular ecosystem.
+- **Package size:** Approximately 1.1 MiB unpacked.
 
-<img width="2266" height="1341" alt="image" src="https://github.com/user-attachments/assets/edc62523-f557-4c99-934f-306346d3b174" />
+## See it in action
 
-<br/>
-<br/>
+[Explore the documentation and interactive demos →](https://fraktonng.com)
 
-## 🎯 **The Philosophy**
+<img width="2266" height="1341" alt="Frakton NG interactive documentation" src="https://github.com/user-attachments/assets/edc62523-f557-4c99-934f-306346d3b174" />
 
-Unlike traditional UI libraries, Frakton NG is **opinionated about the right things**:
-
-### **Non-Negotiable (Enforced)**
-
-- ✅ **Accessibility-first**: Runtime ARIA validation, semantic color descriptions, WCAG compliance
-- ✅ **Signal-native**: Built entirely with Angular signals for optimal reactivity
-- ✅ **Modern patterns**: Standalone components, typed forms, new control flow syntax
-- ✅ **Type safety**: Comprehensive TypeScript coverage with intelligent inference
-
-### **Completely Flexible (Your Choice)**
-
-- **Visual design**: All components use design tokens so you can customize every aspect of your product.
-- **Color system**: Semantic colors OR custom hex values with automatic contrast
-- **Theming**: Multi-theme support with runtime token inheritance
-- **Layout**: No imposed spacing, sizing, or visual constraints
-
-[See the docs & interactive demos →](https://fraktonng.com)
-
-<br/>
-
-## 🔥 **Why Choose Frakton NG Over Alternatives?**
-
-### **Angular Material**
-
-| Frakton NG                                                      | Angular Material                                              |
-|-----------------------------------------------------------------|---------------------------------------------------------------|
-| ✅ **Complete visual freedom** - Comprehensive design tokens     | ❌ **Google's visual opinions** - Limited customization        |
-| ✅ **No CSS resets** - Plays nice with existing styles           | ❌ **Global CSS resets** - Can conflict with other libraries   |
-| ✅ **Signal-native** - Built for Angular's future                | ⚠️ **Legacy architecture** - Only partial support for signals |
-| ✅ **TypeScript inference** - Overlay data automatically typed   | ❌ **Manual typing** - No automatic type inference             |
-| ✅ **Modern patterns** - Standalone components, new control flow | ⚠️ **Mixed patterns** - Still uses NgModules                  |
-
-### **PrimeNG**
-
-| Frakton NG                                                            | PrimeNG                                            |
-|-----------------------------------------------------------------------|----------------------------------------------------|
-| ✅ **Accessibility-first** - Runtime validation, semantic descriptions | ⚠️ **Basic accessibility** - Limited enforcement   |
-| ✅ **Lightweight** - Import only what you need                         | ❌ **Heavyweight bundle** - Large bundle sizes      |
-| ✅ **Token-based theming** - Granular control                          | ⚠️ **Theme switching** - Predefined theme sets     |
-| ✅ **Advanced overlays** - Type-safe, theme-inheriting                 | ❌ **Basic overlays** - Limited positioning options |
-
-### **Ng-Bootstrap**
-
-| Frakton NG                                                   | Ng-Bootstrap                                              |
-|--------------------------------------------------------------|-----------------------------------------------------------|
-| ✅ **Complete UI system** - Forms, overlays, design tokens    | ❌ **Bootstrap wrapper** - Limited to Bootstrap components |
-| ✅ **Enterprise features** - Advanced positioning, validation | ❌ **Basic functionality** - Simple Bootstrap ports        |
-| ✅ **No external dependencies** - Self-contained              | ❌ **External dependency** - Requires Bootstrap CSS        |
-| ✅ **Modern Angular** - Signals, standalone, latest patterns  | ⚠️ **Legacy Angular** - Decorator-based architecture      |
-
-<br/>
-
-## 🚀 **Installation & Setup**
-
-### **Quick Start**
+## Installation
 
 ```bash
 npm install frakton-ng
 ```
 
-### **Styles Configuration**
-
-Add to your `angular.json`:
+Add the global styles and one theme to your application:
 
 ```json
 {
   "styles": [
-    "node_modules/frakton-ng/assets/styles.css",
-    "node_modules/frakton-ng/assets/themes/light.css"
+    "node_modules/frakton-ng/assets/styles/styles.css",
+    "node_modules/frakton-ng/assets/styles/themes/light.css"
   ]
 }
 ```
 
-**Available themes:**
+Available themes:
 
-- `light.css` - Clean, modern light theme
-- `dark.css` - Elegant dark theme
-- Custom themes - Build your own with design tokens
+- `light.css`
+- `dark.css`
+- Custom themes built with Frakton NG design tokens
 
-### **Zero Configuration Usage**
+## Your first component
 
 ```typescript
+import {Component, signal} from '@angular/core';
 import {FktButtonComponent} from 'frakton-ng/button';
 
 @Component({
-  template: `
-    <fkt-button 
-      text="Save Changes" 
-      color="#FF6B35"           <!-- Custom hex color -->
-      theme="raised"
-      icon="check"
-      [loading]="isSaving()"
-      (click)="save()">
-    </fkt-button>
-  `,
+  selector: 'app-save-button',
   imports: [FktButtonComponent],
-  standalone: true
+  template: `
+    <fkt-button
+      text="Save changes"
+      icon="check"
+      color="success"
+      [loading]="saving()"
+      (click)="save()"
+    />
+  `
 })
-export class AppComponent {
-  isSaving = signal(false);
+export class SaveButtonComponent {
+  protected readonly saving = signal(false);
+
+  save() {
+    // Save changes
+  }
 }
 ```
 
-<br/>
-
-## **What Makes Frakton NG Unique**
-
-### **Overlay Type Safety (First in Angular Ecosystem)**
-
-Automatic TypeScript inference for overlay component data - no other Angular UI library offers this:
+Components are distributed through secondary entrypoints, so applications
+import only the features they use:
 
 ```typescript
-// Your overlay component uses signals
-@Component({...})
-export class UserEditDialog {
+import {FktButtonComponent} from 'frakton-ng/button';
+import {FktTableComponent} from 'frakton-ng/table';
+import {FktOverlayService} from 'frakton-ng/overlay';
+```
+
+## Architecture in practice
+
+Frakton NG is opinionated about component behavior and state boundaries while
+remaining flexible about product design.
+
+### Native-first form composition
+
+`FktFieldComponent` owns the visual shell, label, floating outline,
+prefix/suffix slots, hints, required marker, disabled state, and error
+presentation. The actual value remains on a native control.
+
+```typescript
+import {Component} from '@angular/core';
+import {FktFieldComponent} from 'frakton-ng/field';
+import {FktInputTextDirective} from 'frakton-ng/input-text';
+
+@Component({
+  selector: 'app-name-field',
+  imports: [FktFieldComponent, FktInputTextDirective],
+  template: `
+    <fkt-field label="Name">
+      <input fktInputText placeholder="Enter a name">
+    </fkt-field>
+  `
+})
+export class NameFieldComponent {}
+```
+
+This preserves native attributes and browser behavior while providing the same
+composition contract for Angular Signal Forms, Reactive Forms, projected
+content, automatic validation messages, and application-owned
+internationalization.
+
+[Explore Field →](https://fraktonng.com/docs/field)
+
+### Autocomplete for real application data
+
+The autocomplete separates temporary search text from the form value. Rich
+option objects can provide labels and metadata while forms store stable
+primitive identifiers.
+
+It supports:
+
+- Primitive and object options
+- Property or function-based value, label, and group resolution
+- Hydrated values for edit screens before options are loaded
+- Local and server-side search
+- Minimum query length and built-in debouncing
+- Multiple selection and free text
+- Lazy fetching and infinite loading
+- Virtualized option lists
+- Type-safe item, group, header, footer, chip, and empty-state templates
+- Signal Forms and Reactive Forms
+
+Rendering can be replaced without giving up keyboard navigation, active
+descendant management, selection behavior, or normalized form values.
+
+[Explore Autocomplete →](https://fraktonng.com/docs/autocomplete)
+
+### Server-friendly tables with consumer-owned state
+
+The table provides type-safe column definitions and dynamic rendering without
+owning application data.
+
+Cell factories support plain text, registered component aliases, direct
+component references, and inline templates:
+
+```typescript
+import {defineCells} from 'frakton-ng/table';
+import {FktTagComponent} from 'frakton-ng/tag';
+
+const cell = defineCells({
+  tag: FktTagComponent
+});
+```
+
+The table includes opt-in capabilities for:
+
+- Sorting and custom filters
+- Cross-page selection with a server-friendly select-all sentinel
+- Expandable, pinned, and frozen rows
+- Resizable and reorderable columns
+- Persistent column, filter, and layout state
+- CSV export
+- Virtual scrolling
+- Custom cell, header, and filter components
+
+Sorting, filtering, pagination, persistence, and data fetching remain owned by
+application signals. The table emits intent and renders the resulting data.
+
+[Explore Table →](https://fraktonng.com/docs/table)
+
+### Color as accessible information
+
+The Color Picker supports HEX, RGB, HSL, transparency, precise keyboard
+controls, localized semantic descriptions, and real-time format conversion.
+
+```html
+<fkt-color-picker
+  label="Brand color"
+  [(value)]="brandColor"
+/>
+```
+
+Descriptions such as “vibrant blue”, “pale yellow-orange”, or “dark red” make
+color selection easier to understand, communicate, and navigate with assistive
+technologies.
+
+[Explore Color Picker →](https://fraktonng.com/docs/color-picker)
+
+### Type-safe dynamic composition
+
+The Overlay service infers its data contract directly from component signal
+inputs, outputs, and models.
+
+```typescript
+@Component({
+  selector: 'app-user-editor',
+  template: `...`
+})
+export class UserEditorComponent {
   userId = input.required<string>();
-  onSave = output<{ name: string, email: string }>();
+  save = output<User>();
 }
 
-// Overlay service automatically infers ALL types
 const ref = overlay.open({
-  component: UserEditDialog,
+  component: UserEditorComponent,
   data: {
-    userId: user.id,              // ✅ Auto-typed as string
-    onSave: (userData) => {       // ✅ userData auto-typed as {name: string, email: string}
-      this.updateUser(userData);  // TypeScript knows the exact shape
+    userId: user.id,
+    save: updatedUser => {
+      updateUser(updatedUser);
+      ref.close();
     }
   }
 });
 ```
 
-### **Zero-Conflict Architecture**
+Overlay components remain regular Angular components and can be reused in
+dialogs, positioned panels, or standalone layouts. The service provides
+viewport-aware positioning, focus management, lifecycle control, and 16 anchor
+positions.
 
-No CSS resets means perfect compatibility with existing projects:
+[Explore Overlay →](https://fraktonng.com/docs/overlay)
 
-```html
-<!-- Mix and match with ANY other UI library -->
-<mat-toolbar>Angular Material</mat-toolbar>
-<p-button>PrimeNG</p-button>
-<fkt-button>Frakton NG</fkt-button>
-<!-- All work together perfectly - no style conflicts -->
-```
+## Visually unlimited
 
-### **Runtime Accessibility Enforcement**
+Frakton NG separates component behavior from product identity. Global semantic
+tokens establish shared foundations, while component tokens provide focused
+control over colors, spacing, typography, sizing, states, and layout.
 
-Most libraries document accessibility - Frakton NG **enforces** it:
-
-```html
-<!--Throws actual errors for accessibility violations-->
-<fkt-button icon="save"/>
-<!--❌ Error: "When no text is provided, ariaLabel is required"-->
-
-<fkt-color-picker value="#FF5733"/>
-<!--✅ Automatically announces "Bright red-orange" to screen readers-->
-```
-
-### **Signal-Native Performance**
-
-Built entirely on Angular signals for optimal reactivity:
-
-```typescript
-// Traditional approach (heavy change detection)
-export class TraditionalComponent {
-  @Input() loading = false;
-
-  get classes() {
-    return `btn-${this.loading ? 'loading' : ''}`;
-  }
-}
-
-// Frakton approach (signal-optimized)  
-export class FraktonComponent {
-  loading = input(false);
-  classes = computed(() => `btn-${this.loading() ? 'loading' : ''}`);
-  // Only recomputes when inputs actually change
+```css
+:root {
+  --fkt-color-primary: #1d4ed8;
+  --fkt-color-on-primary: #ffffff;
+  --fkt-button-border-radius: 9999px;
 }
 ```
 
-<br/>
+There is no global CSS reset, so Frakton NG can coexist with existing styles
+and other component libraries during gradual adoption.
 
-### **Complete Visual Freedom**
+## Accessibility-oriented APIs
 
-- **Design token architecture**: Three-tier fallback system (component → global → default)
-- **Custom color intelligence**: Accepts hex colors with automatic contrast calculation
-- **Theme inheritance**: Overlays automatically inherit design tokens from anchor elements
-- **Zero visual opinions**: Every visual aspect is controlled via tokens
+Accessibility requirements are part of component contracts rather than only
+documentation recommendations.
 
+```html
+<!-- Throws because an icon-only button requires an accessible label -->
+<fkt-button icon="check" />
 
-### **Advanced Overlay System**
+<!-- Valid -->
+<fkt-button icon="check" ariaLabel="Save changes" />
+```
 
-- **Intelligent positioning**: 16 anchor positions with smart viewport-aware repositioning
-- **Z-index management**: Automatic stacking without conflicts
-- **Focus management**: Proper focus trapping and restoration
-- **Theme inheritance**: Child overlays automatically match parent themes
-- **Memory efficient**: Proper cleanup prevents memory leaks
+Depending on the component, Frakton NG provides keyboard interaction, focus
+management, semantic labels, accessible hidden labels, validation state, and
+human-readable color descriptions.
 
-### **Exceptional Documentation Experience**
+## Documentation
 
-Interactive documentation that goes beyond traditional UI libraries:
+The documentation is built with Angular and includes:
 
-- **Live Control Playground**: Real-time component property editing with instant visual feedback
-- **Design Token Playground**: Interactive token editing to see styling changes immediately
-- **Code Examples**: Auto-generated code snippets for every component configuration
-- **Angular-Native Documentation**: Custom documentation system DX-inspired by Storybook but fully Angular
+- Interactive component examples
+- Live property controls
+- Design-token playgrounds
+- Copy-ready source examples
+- API references
+- Signal Forms and Reactive Forms examples
+- Machine-readable documentation for search engines and AI systems
 
-<br/>
-<br/>
+[Explore the documentation →](https://fraktonng.com)
 
-## 📦 **Complete Component Library**
+## Contributing
 
-### **33+ Production-Ready Components**
+Found a bug or want to propose a change?
 
-#### **Actions**
+Read [CONTRIBUTING.md](CONTRIBUTING.md) or
+[open an issue](https://github.com/Samukaii/frakton-ng/issues).
 
-- **Button** - Multi-theme with icon support and loading states
-- **Buttons List** - Grouped action buttons with consistent styling
-
-#### **Data Display**
-
-- **Badge** - Status indicators and labels
-- **Icon** - Complete HeroIcons integration (600+ icons)
-- **Table** - Advanced data tables with sorting and actions
-
-#### **Feedback**
-
-- **No Results** - Empty state messaging
-- **Spinner** - Loading indicators with size variants
-
-#### **Form Controls**
-
-- **Autocomplete** - Smart search with auto-creation
-- **Badge Selector** - Visual selection interface
-- **Checkbox** - Enhanced checkboxes with validation
-- **Color Picker** - Advanced color selection with semantic intelligence
-- **Date Picker** - Calendar-based date selection
-- **Input** - Enhanced text inputs with formatting
-- **Select** - Dropdown selection with search
-- **Textarea** - Multi-line text input with auto-resize
-
-#### **Navigation**
-
-- **Calendar** - Standalone calendar with custom behaviors
-- **Calendar Navigator** - Date navigation interface
-- **Navigator** - Generic navigation primitive
-- **Side Menu** - Collapsible navigation menus
-
-#### **Overlay**
-
-- **Dialog** - Modal dialogs with type-safe data passing
-- **Drawer** - Slide-out panels
-- **Overlay** - Powerful positioning system primitive
-- **Tooltip** - Contextual help and information
-
-<br/>
-
-### **Bundle Efficiency**
-
-| Metric            | Frakton NG        | Angular Material                    | PrimeNG                             |
-|-------------------|-------------------|-------------------------------------|-------------------------------------|
-| **Unpacked Size** | **<1 mb**         | ~8.5MB                              | ~11.4 MB                            |
-| **Tree Shaking**  | ✅ Component-level | ⚠️ Module-level and component-level | ⚠️ Module-level and component-level |
-
-<br/>
-
-## 📊 **Performance & Architecture**
-
-Frakton NG is built for production applications:
-
-- **Zero Dependencies**: Only Angular core required - no external libraries
-- **Tree-shakeable**: Import only the components you use
-- **Signal-optimized**: Minimal change detection overhead
-- **CSS-in-JS free**: No runtime style generation
-- **Overlay-efficient**: Reuses DOM nodes, proper cleanup
-- **Memory conscious**: Automatic subscription management
-- **Bundle Efficient**: 5x smaller than Material, 9x smaller than PrimeNG
-
-<br/>
-
-## 🎯 **Perfect For**
-
-### **Enterprise Applications**
-
-- Custom design systems requiring full visual control
-- Accessibility-critical applications (government, healthcare, finance)
-- Multi-tenant SaaS with theme customization needs
-
-### **Modern Angular Projects**
-
-- Applications adopting Angular's latest patterns (signals, standalone)
-- Teams wanting type-safe, reactive UI components
-- Projects requiring advanced overlay functionality (dashboards, complex forms)
-
-### **Design Systems**
-
-- Organizations building custom component libraries
-- Teams needing token-based theming architecture
-- Projects requiring comprehensive documentation integration
-
-<br/>
-
-## ⚡️ Quick links
-
-- [Docs & Demos](https://fraktonng.com)
-- [Issues](https://github.com/Samukaii/frakton-ng/issues)
-
-<br/>
-
-## 🛠️ Contributing
-
-Found a bug or want to suggest something?
-Check `CONTRIBUTING.md` or open an issue.
+## License
 
 MIT © Samuel Alejandro

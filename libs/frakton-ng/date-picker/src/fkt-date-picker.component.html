@@ -1,22 +1,13 @@
-<fkt-input
-	#input
-	[label]="label() ?? ''"
-	[placeholder]="placeholder() ?? ''"
-	[formatter]="formatter"
-	[value]="inputValue()"
-	(valueChange)="onValueChange($event)"
-	[disabled]="disabled()"
-	[errors]="errors()"
-	[invalid]="invalid()"
-	[(touched)]="touched"
->
-	<div #ref *fktFormControlSuffix>
-		<fkt-button
-			theme="basic"
-			(click)="$event.stopImmediatePropagation(); openModal(ref, 'bottom-end')"
-			icon="calendar"
-			color="primary"
-			ariaLabel="Open calendar"
-		/>
-	</div>
-</fkt-input>
+<fkt-field [label]="label()">
+    <input fktInputText [(ngModel)]="transformed" fktDateMask [placeholder]="placeholder()"/>
+
+    <div suffixNoPadding fktFieldSuffix class="suffix" #ref>
+        <fkt-button
+            theme="basic"
+            (click)="$event.stopImmediatePropagation(); openModal(ref, 'bottom-end')"
+            icon="calendar"
+            color="primary"
+            ariaLabel="Open calendar"
+        />
+    </div>
+</fkt-field>

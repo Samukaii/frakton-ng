@@ -3,39 +3,38 @@
         {{ locale.controls.ariaLegend }}
     </legend>
 
-
-    <fkt-color-control-item class="preview">
-        <div class="fkt-transparency-bg">
-					<span [style.background-color]="preview().value">
-					</span>
-        </div>
-    </fkt-color-control-item>
-
-    <fkt-color-control-item class="format">
-        <fkt-select
-            [label]="locale.controls.formatType"
-            hideLabel
-            hideClearButton
-            valueKey="value"
-            labelKey="label"
-            [(value)]="currentFormat"
-            [options]="formatOptions()"
-        />
-    </fkt-color-control-item>
+    <fkt-select
+        [label]="locale.controls.formatType"
+        hideLabel
+        hideClearButton
+        valueKey="value"
+        labelKey="label"
+        [(value)]="currentFormat"
+        [options]="formatOptions()"
+    />
 
     <ng-content></ng-content>
 </fieldset>
 
 <div class="value">
     <div aria-hidden="true">
-        <p>
-            <b>{{ locale.preview.color }}</b>
-            {{ preview().value }}
-        </p>
-        <p class="text-description">
-            <b>{{ locale.preview.textualDescription }}</b>
-            {{ colorDescription() }}
-        </p>
+        <div class="preview">
+            <div class="color">
+                <div class="fkt-transparency-bg">
+					<span [style.background-color]="preview().value">
+					</span>
+                </div>
+            </div>
+
+            <div class="info">
+                <p>
+                    {{ preview().value }}
+                </p>
+                <p class="text-description">
+                    {{ colorDescription() }}
+                </p>
+            </div>
+        </div>
     </div>
 
     <div class="actions">
@@ -52,7 +51,7 @@
             (click)="copyValue()"
             [theme]="copied() ? 'raised': 'stroked'"
             [ariaLabel]="locale.actions.copyColorCode"
-            [color]="copied() ? 'green' : 'primary'"
+            [color]="copied() ? 'success' : 'primary'"
             [icon]="copied() ? 'check' : 'clipboard-document-list'"
             [fktTooltip]="locale.actions.copyColorCode"
         />

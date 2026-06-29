@@ -1,9 +1,9 @@
-<div #bar (mousedown)="startMovement()" class="bar fkt-transparency-bg">
+<div #bar (mousedown)="startMovement($event)" class="bar fkt-transparency-bg">
 	<div class="gradient" [style.background]="background()"></div>
 </div>
 
 <div
-	(mousedown)="startMovement()"
+	(mousedown)="startMovement($event)"
 	(keydown.arrowRight)="updateAlpha($event, 1)"
 	(keydown.arrowLeft)="updateAlpha($event, -1)"
 	[style.left]="percentage()"

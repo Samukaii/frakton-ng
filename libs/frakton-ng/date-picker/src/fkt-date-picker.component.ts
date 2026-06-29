@@ -1,99 +1,141 @@
-import { Component, computed, inject, input, model } from '@angular/core';
-import { FktInputOldComponent } from 'frakton-ng/input-old';
-import { dateFormatter, FormControlSuffixDirective } from 'frakton-ng/forms';
+import { booleanAttribute, Component, computed, inject, input, model } from '@angular/core';
+import { dateFormatter } from 'frakton-ng/forms';
 import { FktOverlayRef, FktOverlayService } from 'frakton-ng/overlay';
 import { FktDatePickerModalComponent } from './modal/fkt-date-picker-modal.component';
-import { isValidDateString, MarkUsed, outsideClickEffect } from 'frakton-ng/internal/utils';
+import { isValidDateString, MarkUsed, outsideClickEffect, transformedSignal } from 'frakton-ng/internal/utils';
 import { FktGeometryPosition } from 'frakton-ng/internal/types';
 import { FktButtonComponent } from 'frakton-ng/button';
-import { FormValueControl, ValidationError, WithOptionalField } from '@angular/forms/signals';
+import { FormValueControl, ValidationError, WithOptionalFieldTree } from '@angular/forms/signals';
+import { FktFieldComponent, FktFieldSuffixDirective } from 'frakton-ng/field';
+import { FktInputTextDirective } from 'frakton-ng/input-text';
+import { injectCompatFormStateWithoutNative } from 'frakton-ng/internal/di';
+import { FktDateMaskDirective } from './directives/fkt-date-mask.directive';
+import { FormsModule } from '@angular/forms';
 
 @Component({
-	selector: 'fkt-date-picker',
-	imports: [FktInputOldComponent, FktButtonComponent, FormControlSuffixDirective],
-	templateUrl: './fkt-date-picker.component.html',
-	styleUrl: './fkt-date-picker.component.scss',
+    selector: 'fkt-date-picker',
+    imports: [
+        FktButtonComponent,
+        FktFieldComponent,
+        FktInputTextDirective,
+        FktFieldSuffixDirective,
+        FktDateMaskDirective,
+        FormsModule,
+    ],
+    templateUrl: './fkt-date-picker.component.html',
+    styleUrl: './fkt-date-picker.component.scss',
 })
-export class FktDatePickerComponent implements FormValueControl<Date | string | null> {
-	value = model<Date | string | null>(null);
-	touched = model(false);
-	disabled = input(false);
-	invalid = input(false);
-	errors = input<readonly WithOptionalField<ValidationError>[]>([]);
+export class FktDatePickerComponent
+    implements FormValueControl<Date | string | null>
+{
+    value = model<Date | string | null>(null);
+    touched = model(false);
+    disabled = input(false);
+    invalid = input(false);
+    errors = input<readonly WithOptionalFieldTree<ValidationError>[]>([]);
 
-	label = input<string>();
-	placeholder = input<string>();
-	valueFormat = input<'iso-string' | 'date-instance'>("iso-string");
+    label = input.required<string>();
+    hideLabel = input(false, {
+        transform: booleanAttribute,
+    });
+    placeholder = input<string>();
+    valueFormat = input<'iso-string' | 'date-instance'>('iso-string');
 
-	protected inputValue = computed(() => {
-		const value = this.value();
+    state = injectCompatFormStateWithoutNative();
 
-		if(!value) return null;
+    transformed = transformedSignal(this.value, {
+        from: (source) => {
+            if (!source) return '';
 
-		const isValidDate = isValidDateString(value instanceof Date ? value.toISOString() : (value ?? ""));
+            const isValidDate = isValidDateString(
+                source instanceof Date ? source.toISOString() : source ?? ''
+            );
 
-		return isValidDate ? new Date(value) : null;
-	})
+            if (!isValidDate) return '';
 
-	private overlay = inject(FktOverlayService);
-	private overlayRef: FktOverlayRef<FktDatePickerModalComponent> | null =
-		null;
+            const date = new Date(source);
 
-	protected formatter = dateFormatter;
+            const day = date.getDate().toString().padStart(2, '0');
+            const month = (date.getMonth() + 1).toString().padStart(2, '0');
+            const year = date.getFullYear().toString().padStart(2, '0');
 
-	@MarkUsed()
-	protected autoclose = outsideClickEffect(
-		() => {
-			this.closeModal();
-		},
-		{
-			excludeIdsOrElements: ['calendar-datepicker-modal'],
-		},
-	);
+            return `${day}/${month}/${year}`;
+        },
+        to: (formatted, source) => {
+            if (formatted.length < 10) return source;
 
-	protected openModal(ref: HTMLElement, position: FktGeometryPosition) {
-		if (this.overlayRef) {
-			this.closeModal();
-			return;
-		}
+            const [day, month, year] = formatted.split('/');
 
-		this.overlayRef = this.overlay.open({
-			component: FktDatePickerModalComponent,
-			data: {
-				currentDate: this.getCurrentDate(this.value()),
-				select: date => {
-					this.onValueChange(date);
-					this.closeModal();
-				},
-			},
-			anchorElementRef: {nativeElement: ref},
-			panelOptions: {
-				id: 'calendar-datepicker-modal',
-				width: 'fit-content',
-				preferredPositions: position,
-				maxHeight: 'fit-content',
-                inheritDesignTokensFrom: ref
-			},
-		});
-	}
+            const date = new Date(+year, +month - 1, +day);
+            const format = this.valueFormat();
 
-	private getCurrentDate(value: unknown) {
-		if (value instanceof Date) return value;
+            return format === 'date-instance' ? date : date.toISOString();
+        },
+    });
 
-		if (typeof value === 'string' && isValidDateString(value))
-			return new Date(value);
+    private overlay = inject(FktOverlayService);
+    private overlayRef: FktOverlayRef<FktDatePickerModalComponent> | null =
+        null;
 
-		return new Date();
-	}
+    protected formatter = dateFormatter;
 
-	private closeModal() {
-		this.overlayRef?.close();
-		this.overlayRef = null;
-	}
+    @MarkUsed()
+    protected autoclose = outsideClickEffect(
+        () => {
+            this.closeModal();
+        },
+        {
+            excludeIdsOrElements: ['calendar-datepicker-modal'],
+        }
+    );
 
-	protected onValueChange($event: Date | null) {
-		if($event === null) return this.value.set(null);
+    protected openModal(ref: HTMLElement, position: FktGeometryPosition) {
+        if (this.overlayRef) {
+            this.closeModal();
+            return;
+        }
 
-		this.value.set(this.valueFormat() === "iso-string" ? new Date($event).toISOString() : new Date($event))
-	}
+        this.overlayRef = this.overlay.open({
+            component: FktDatePickerModalComponent,
+            data: {
+                currentDate: this.getCurrentDate(this.value()),
+                select: (date) => {
+                    this.transformed.set(this.formatDate(date))
+                    this.closeModal();
+                },
+            },
+            anchorElementRef: { nativeElement: ref },
+            panelOptions: {
+                id: 'calendar-datepicker-modal',
+                width: 'fit-content',
+                preferredPositions: position,
+                maxHeight: 'fit-content',
+                inheritDesignTokensFrom: ref,
+            },
+        });
+    }
+
+    private getCurrentDate(value: unknown) {
+        if (value instanceof Date) return value;
+
+        if (typeof value === 'string' && isValidDateString(value))
+            return new Date(value);
+
+        return new Date();
+    }
+
+    private formatDate(value: Date) {
+        const date = new Date(value);
+
+        const day = date.getDate().toString().padStart(2, '0');
+        const month = (date.getMonth() + 1).toString().padStart(2, '0');
+        const year = date.getFullYear().toString().padStart(2, '0');
+
+        return `${day}/${month}/${year}`;
+    }
+
+    private closeModal() {
+        this.overlayRef?.close();
+        this.overlayRef = null;
+    }
 }

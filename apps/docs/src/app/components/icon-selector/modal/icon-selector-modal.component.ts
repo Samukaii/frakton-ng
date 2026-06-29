@@ -1,13 +1,19 @@
 import { Component, computed, model, signal } from '@angular/core';
-import { FktInputOldComponent } from 'frakton-ng/input-old';
-import { FktIconName, fontIconNames } from 'frakton-ng/icon';
+import { FktIconComponent, FktIconName, fontIconNames } from 'frakton-ng/icon';
 import { IconSelectorItemComponent } from '@/components/icon-selector/item/icon-selector-item.component';
+import { FktFieldComponent, FktFieldPrefixDirective } from 'frakton-ng/field';
+import { FktInputTextDirective } from 'frakton-ng/input-text';
+import { debounce, form, FormField } from '@angular/forms/signals';
 
 @Component({
-  selector: 'fkt-icon-selector-modal',
+    selector: 'fkt-icon-selector-modal',
     imports: [
-        FktInputOldComponent,
-        IconSelectorItemComponent
+        FktFieldComponent,
+        FktFieldPrefixDirective,
+        FktIconComponent,
+        FktInputTextDirective,
+        FormField,
+        IconSelectorItemComponent,
     ],
   templateUrl: './icon-selector-modal.component.html',
   styleUrl: './icon-selector-modal.component.scss',
@@ -16,10 +22,12 @@ export class IconSelectorModalComponent {
     value = model<string>();
     allIcons  = fontIconNames as FktIconName[];
 
-    search = signal('');
+    search = form(signal(''), (field) => {
+        debounce(field, 300);
+    });
 
     filteredIcons = computed(() => {
-        const search = this.search();
+        const search = this.search().value();
 
         return this.allIcons.filter(icon => icon.toLowerCase().includes(search.toLowerCase()));
     });

@@ -1,8 +1,7 @@
-<fkt-input
-    [label]="label()"
-    [placeholder]="placeholder() ?? ''"
-    [(value)]="internalValue"
-/>
+<fkt-field [label]="label()" >
+    <input fktInputText [formField]="field" [placeholder]="placeholder()">
+</fkt-field>
+
 <fkt-buttons-list
     [horizontalAlignment]="'end'"
     [actions]="actions"

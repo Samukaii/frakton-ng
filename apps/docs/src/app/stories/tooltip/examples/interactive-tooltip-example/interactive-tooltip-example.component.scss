@@ -25,6 +25,10 @@ ul {
 		& > div {
 			display: flex;
 			gap: var(--fkt-space-xs);
+
+            & > * {
+                width: 100%;
+            }
 		}
 	}
 

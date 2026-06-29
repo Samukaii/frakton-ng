@@ -5,11 +5,11 @@ import {
     DEFAULT_PAGINATOR_CONFIG,
     FktPaginatorConfig,
 } from './fkt-paginator.types';
-import { FktFieldSuffixDirective } from 'frakton-ng/field';
+
 
 @Component({
     selector: 'fkt-paginator',
-    imports: [FktButtonComponent, FktSelectComponent, FktFieldSuffixDirective],
+    imports: [FktButtonComponent, FktSelectComponent],
     templateUrl: './fkt-paginator.component.html',
     styleUrl: './fkt-paginator.component.scss',
 })

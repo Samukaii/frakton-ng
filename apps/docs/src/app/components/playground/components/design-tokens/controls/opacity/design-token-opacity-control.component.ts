@@ -1,10 +1,11 @@
 import { Component, input } from '@angular/core';
 import { DesignTokenItem } from '@/models/design-token-item';
-import { FktInputOldComponent } from 'frakton-ng/input-old';
+import { FktFieldComponent } from 'frakton-ng/field';
+import { FktInputTextDirective } from 'frakton-ng/input-text';
 
 @Component({
     selector: 'app-design-token-opacity-control',
-    imports: [FktInputOldComponent],
+    imports: [FktFieldComponent, FktInputTextDirective],
     templateUrl: './design-token-opacity-control.component.html',
 })
 export class DesignTokenOpacityControlComponent {
