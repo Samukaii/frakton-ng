@@ -1,0 +1,16 @@
+:host {
+    display: flex;
+    align-items: flex-end;
+    gap: var(--fkt-space-lg);
+}
+
+div {
+    display: grid;
+    justify-items: center;
+    gap: var(--fkt-space-xs);
+}
+
+span {
+    color: var(--fkt-color-neutral-700);
+    font-size: var(--fkt-font-size-sm);
+}

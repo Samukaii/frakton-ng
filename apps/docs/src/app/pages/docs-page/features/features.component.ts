@@ -61,6 +61,7 @@ export class FeaturesComponent {
         const examples = await this.storyIndexer()?.externalExamples?.();
 
         this.storyIndexer()?.stories?.forEach(story => {
+
             text += '\n\n\n' + `${'#'.repeat(story.level)} ${story.name}`;
 
             text += '\n\n' + story.description

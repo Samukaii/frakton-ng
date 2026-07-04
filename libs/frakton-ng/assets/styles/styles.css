@@ -1,11 +1,3 @@
-@font-face {
-	font-family: 'Frakton Icons';
-	src: url('../fonts/frakton-icons.woff2') format('woff2');
-	font-weight: normal;
-	font-style: normal;
-	font-display: block;
-}
-
 :root {
     --fkt-space-inset-6xs: .125rem; /* 2px */
     --fkt-space-inset-5xs: .25rem; /* 4px */

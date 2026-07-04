@@ -1,11 +1,74 @@
+// <design-tokens>
+
+/* @scope Icon */
+
+/*
+Size of a small icon.
+@name --fkt-icon-size-sm
+@reference --fkt-font-size-md
+@category Sizing
+@type size
+ */
+$size-sm: var(--fkt-icon-size-sm, var(--fkt-font-size-md));
+
+/*
+Size of a medium icon.
+@name --fkt-icon-size-md
+@reference --fkt-font-size-xl
+@category Sizing
+@type size
+ */
+$size-md: var(--fkt-icon-size-md, var(--fkt-font-size-xl));
+
+/*
+Size of a large icon.
+@name --fkt-icon-size-lg
+@reference --fkt-font-size-2xl
+@category Sizing
+@type size
+ */
+$size-lg: var(--fkt-icon-size-lg, var(--fkt-font-size-2xl));
+
+/*
+Color of the icon.
+@name --fkt-icon-color
+@reference currentColor
+@category Colors
+@type color
+ */
+$color: var(--fkt-icon-color, currentColor);
+
+/*
+Width of icon strokes.
+@name --fkt-icon-stroke-width
+@reference 1.5
+@category Sizing
+@type size
+ */
+$stroke-width: var(--fkt-icon-stroke-width, 1.5);
+
+// </design-tokens>
+
 :host {
-	line-height: 1 !important;
-	font-family: "Frakton Icons", sans-serif;
-	font-size: 1.25rem;
-	width: fit-content;
-	height: fit-content;
-	min-height: 0;
+	--_fkt-icon-size-sm: #{$size-sm};
+	--_fkt-icon-size-md: #{$size-md};
+	--_fkt-icon-size-lg: #{$size-lg};
+	--_fkt-icon-size: var(--_fkt-icon-size-md);
+	--_fkt-icon-stroke-width: #{$stroke-width};
+
+	color: $color;
+	font-size: var(--_fkt-icon-size);
+	width: 1em;
+	height: 1em;
 	display: block;
+}
+
+:host(.size-sm) {
+	--_fkt-icon-size: var(--_fkt-icon-size-sm);
+}
+
+:host(.size-lg) {
+	--_fkt-icon-size: var(--_fkt-icon-size-lg);
 }
 
 :host.transition {

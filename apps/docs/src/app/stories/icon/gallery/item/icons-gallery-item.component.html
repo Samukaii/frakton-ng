@@ -1,35 +1,25 @@
-<div  (mouseover)="showActions.set(true)" (mouseout)="showActions.set(false)" class="container">
-	<div
-		class="container__card">
-		<fkt-icon
-			class="container__card-icon"
-			[name]="icon()"
-		/>
+<div class="container">
+    <div
+        [id]="descendantId()"
+        [class.virtual-focused]="descendantActive()"
+        [attr.aria-selected]="descendantActive()"
+        [class.copied]="copied()"
+        (click)="copyIcon.emit()"
+        class="container__card">
+        <div class="copy-text">
+            <fkt-icon name="check"/>
+            <span>Copied</span>
+        </div>
 
-		@if (copied()) {
-			<p class="container__card-copied">
-				Copied!
-			</p>
-		}
-
-		<div
-			[class.container__card-actions-container--visible]="showActions() && !copied()"
-			class="container__card-actions-container">
-			<div class="container__card-actions-list">
-				<div (click)="copyTemplate()" class="container__card-action">
-					Copy template
-				</div>
-
-				<div (click)="copyIconName()" class="container__card-action">
-					Copy name
-				</div>
-			</div>
-		</div>
-	</div>
+        <fkt-icon
+            class="container__card-icon"
+            [name]="icon()"
+        />
+    </div>
 
 
-	<p class="container__icon-name">
-		{{ icon() }}
-	</p>
+    <p class="container__icon-name">
+        {{ icon() }}
+    </p>
 
 </div>

@@ -7,6 +7,7 @@ export interface Story<Component> {
     component?: Type<Component>,
     level?: number,
     description?: string,
+    onlyPreview?: boolean;
     args: Partial<FktComponentInputsAndModels<Component>>;
     argTypes?: Partial<Record<FktComponentInputsAndModelNames<Component>, Partial<ArgType>>>
     variants?: {

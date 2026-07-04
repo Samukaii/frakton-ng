@@ -21,6 +21,7 @@ export class DesignTokenInfoComponent {
             {
                 Typography: { icon: 'h2', color: 'info' },
                 Colors: { icon: 'paint-brush', color: 'warning' },
+                Sizing: { icon: 'viewfinder-circle', color: 'success' },
                 Spacing: { icon: 'squares-2x2', color: 'accent' },
                 Shape: { icon: 'rectangle-group', color: 'success' },
                 Effects: { icon: 'sparkles', color: 'danger' },

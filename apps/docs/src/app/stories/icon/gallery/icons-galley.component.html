@@ -1,14 +1,26 @@
 <div class="gallery">
     <fkt-field label="Search...">
         <fkt-icon fktFieldPrefix name="magnifying-glass"/>
-        <input fktInputText [formField]="search" placeholder="Search for the icon you want">
+        <input
+            fktInputText
+            (blur)="grid.reset()"
+            role="combobox"
+            aria-expanded="true"
+            aria-autocomplete="list"
+            [attr.aria-controls]="galleryId"
+            [attr.aria-activedescendant]=""
+            (keydown)="grid.handleKeyDown($event)" [formField]="search" placeholder="Search for the icon you want">
     </fkt-field>
-	<div class="gallery__item">
-		@for (icon of filteredIcons(); track icon) {
-			<fkt-icons-gallery-item
-				[icon]="icon"
-			/>
-		}
-	</div>
+    <div #gallery [id]="galleryId" role="listbox" class="gallery__item">
+        @for (icon of filteredIcons(); track icon) {
+            <fkt-icons-gallery-item
+                [descendantId]="`${galleryId}-item-${$index}`"
+                [descendantActive]="$index === grid.activeIndex()"
+                (copyIcon)="copyIconName(icon)"
+                [copied]="copiedIcons().includes(icon)"
+                [icon]="icon"
+            />
+        }
+    </div>
 </div>
 

@@ -116,3 +116,39 @@ body[data-fkt-theme="dark"] {
         display: block !important;
     }
 }
+
+.code-block-container {
+    &:has(.code-block-files-tab) {
+        pre {
+            margin-top: 0;
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+        }
+    }
+}
+
+.code-block-files-tab {
+    background: #1e222b;
+    color: #cccccc;
+    font-family: JetBrains Mono, Consolas, Monaco, monospace;
+    border-top-left-radius: var(--fkt-radius-2xl);
+    border-top-right-radius: var(--fkt-radius-2xl);
+    font-size: var(--fkt-font-size-xs);
+
+    .code-block-file {
+        //background: #333741;
+        //border: solid 1px #ffffff26;
+        width: fit-content;
+        padding: .5rem 1rem;
+        border-radius: var(--fkt-radius-md);
+        border-top-left-radius: var(--fkt-radius-2xl);
+        display: flex;
+        gap: .5rem;
+        align-items: center;
+
+        svg {
+            width: 15px;
+            height: 15px;
+        }
+    }
+}
