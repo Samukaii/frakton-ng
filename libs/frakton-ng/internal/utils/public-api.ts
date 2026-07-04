@@ -30,5 +30,8 @@ export * from "./deep-signal";
 export * from "./mouse-out-effect";
 export * from './normalize-validation-error';
 export * from './use-active-descendant';
+export * from './use-active-descendant-grid';
+export * from './watch-grid-columns';
 export * from './transformed-signal';
+export * from './safe-promise';
 

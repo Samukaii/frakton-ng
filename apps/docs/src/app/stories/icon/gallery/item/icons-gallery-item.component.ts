@@ -1,42 +1,35 @@
-import { Component, input, signal } from '@angular/core';
-import { wait } from 'frakton-ng/internal/utils';
+import {
+    Component,
+    effect,
+    ElementRef,
+    inject,
+    input,
+    output,
+} from '@angular/core';
 import { FktIconComponent, FktIconName } from 'frakton-ng/icon';
 
 @Component({
-  selector: 'fkt-icons-gallery-item',
-	imports: [
-		FktIconComponent
-	],
-  templateUrl: './icons-gallery-item.component.html',
-  styleUrl: './icons-gallery-item.component.scss'
+    selector: 'fkt-icons-gallery-item',
+    imports: [FktIconComponent],
+    templateUrl: './icons-gallery-item.component.html',
+    styleUrl: './icons-gallery-item.component.scss',
 })
 export class IconsGalleryItemComponent {
-	icon = input.required<FktIconName>();
+    icon = input.required<FktIconName>();
+    descendantActive = input.required<boolean>();
+    descendantId = input.required<string>();
 
-	copied = signal(false);
-	showActions = signal(false);
+    copied = input(false);
+    copyIcon = output();
 
-	protected async copyTemplate() {
-		const icon = this.icon();
-		this.copied.set(true);
+    private readonly elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
 
-		await navigator.clipboard.writeText('<fkt-icon\n' +
-			`\t\t\tname="${icon}"\n` +
-			'\t\t/>');
+    private readonly scrollToActive = effect(() => {
+        if (!this.descendantActive()) return;
 
-		await wait(1000);
-
-		this.copied.set(false);
-	}
-
-	protected async copyIconName() {
-		const icon = this.icon();
-		this.copied.set(true);
-
-		await navigator.clipboard.writeText(icon);
-
-		await wait(1000);
-
-		this.copied.set(false);
-	}
+        this.elementRef.nativeElement.scrollIntoView({
+            behavior: 'instant',
+            block: 'nearest',
+        });
+    });
 }

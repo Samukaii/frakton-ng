@@ -9,6 +9,7 @@
     "build:docs": "nx build docs --base-href=/",
     "serve:docs": "nx serve docs",
     "index:docs": "tsx scripts/story-indexer/index-documentation.ts",
+    "generate:icons": "tsx scripts/icon-generator/generate-icons.ts",
     "publish:major": "pnpm --filter frakton-ng publish:major",
     "publish:minor": "pnpm --filter frakton-ng publish:minor",
     "publish:patch": "pnpm --filter frakton-ng publish:patch",
