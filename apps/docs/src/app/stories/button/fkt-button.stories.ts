@@ -134,7 +134,7 @@ export const WithIcon: Story<FktButtonComponent> = {
 		text: 'With icon',
 		theme: 'raised',
 		color: 'primary',
-		icon: "arrow",
+		icon: 'arrow-path',
 		disabled: false,
 	}
 };

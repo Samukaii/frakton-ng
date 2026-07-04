@@ -43,54 +43,54 @@ export default {
 				name: "select-basic-example.component.html",
 				content: selectBasicExampleTemplate as string,
 				language: "angular2html" as const,
-			},
+			},		
 			{
 				name: "select-basic-example.component.ts",
 				content: selectBasicExampleTypescript as string,
 				language: "typescript" as const,
-			},
+			},		
 			{
 				name: "select-basic-example.component.scss",
 				content: selectBasicExampleStyles as string,
 				language: "css" as const,
-			},
+			},		
 		]
 	},
 	SelectCustomContentExampleComponent: {
 		name: "SelectCustomContentExample",
 		files: [
-
+		
 			{
 				name: "select-custom-content-example.component.html",
 				content: selectCustomContentExampleTemplate as string,
 				language: "angular2html" as const,
-			},
+			},		
 			{
 				name: "select-custom-content-example.component.ts",
 				content: selectCustomContentExampleTypescript as string,
 				language: "typescript" as const,
-			},
+			},		
 			{
 				name: "select-custom-content-example.component.scss",
 				content: selectCustomContentExampleStyles as string,
 				language: "css" as const,
-			},
+			},		
 		]
 	},
 	SelectFieldCompositionExampleComponent: {
 		name: "SelectFieldCompositionExample",
 		files: [
-
+		
 			{
 				name: "select-field-composition-example.component.html",
 				content: selectFieldCompositionExampleTemplate as string,
 				language: "angular2html" as const,
-			},
+			},		
 			{
 				name: "select-field-composition-example.component.ts",
 				content: selectFieldCompositionExampleTypescript as string,
 				language: "typescript" as const,
-			},
+			},		
 		]
 	},
 	SelectFunctionKeysExampleComponent: {
@@ -101,28 +101,28 @@ export default {
 				name: "select-function-keys-example.component.html",
 				content: selectFunctionKeysExampleTemplate as string,
 				language: "angular2html" as const,
-			},
+			},		
 			{
 				name: "select-function-keys-example.component.ts",
 				content: selectFunctionKeysExampleTypescript as string,
 				language: "typescript" as const,
-			},
+			},		
 			{
 				name: "select-function-keys-example.component.scss",
 				content: selectFunctionKeysExampleStyles as string,
 				language: "css" as const,
-			},
+			},		
 		]
 	},
 	SelectHydratedValueExampleComponent: {
 		name: "SelectHydratedValueExample",
 		files: [
-
+		
 			{
 				name: "select-hydrated-value-example.component.html",
 				content: selectHydratedValueExampleTemplate as string,
 				language: "angular2html" as const,
-			},
+			},		
 			{
 				name: "select-hydrated-value-example.component.ts",
 				content: selectHydratedValueExampleTypescript as string,

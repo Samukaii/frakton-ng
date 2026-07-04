@@ -19,7 +19,7 @@ import {
 } from '@angular/platform-browser';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import {
-    FktMarkdownRenderer,
+    fktMarkdownRendererFactory,
     provideNgxMarkdown,
     withMarkedOptions,
     withSanitizer,
@@ -30,11 +30,14 @@ import {
     withI18nIntegration,
 } from 'frakton-ng/core';
 import { MyTranslateService } from '@/core/services/my-translate.service';
+import { customIcons } from '@/config/custom-icons';
+import { provideFktIcons } from 'frakton-ng/icon';
 
 export const appConfig: ApplicationConfig = {
     providers: [
         provideBrowserGlobalErrorListeners(),
         provideHttpClient(withFetch()),
+        provideFktIcons(customIcons),
         provideFktConfig(
             withI18nIntegration(() => {
                 const translateService = inject(MyTranslateService);
@@ -69,9 +72,9 @@ export const appConfig: ApplicationConfig = {
             })
         ),
         provideNgxMarkdown(
-            withMarkedOptions({
-                renderer: new FktMarkdownRenderer(),
-            }),
+            withMarkedOptions(() => ({
+                renderer: fktMarkdownRendererFactory(),
+            })),
             withSanitizer((html) => {
                 DOMPurify.setConfig({
                     ALLOWED_ATTR: ['data-story', 'data-examples'],

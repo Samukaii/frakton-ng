@@ -1508,30 +1508,62 @@ The component uses design tokens for consistent styling. Key tokens include:
 
 ## Description
 
-The FktIcon component provides a comprehensive icon system with a curated set of icons for various UI elements and interactions. Built with scalable vector graphics for crisp display at any size and seamless integration with the design system.
+SVG icon component with typed built-in and application-defined names. Outline icons are
+available synchronously, while Solid, Mini, and Micro catalogs are loaded on demand. Size, color,
+and stroke width integrate with the design token system and remain customizable through CSS.
 
 ## Features
 
-### BasicIcon
+### Usage
 
-- id: basic-icon
+- id: usage
+- type: introduction
+
+Core icon usage. Icons are decorative by default and inherit the surrounding text color, so the
+accessible name must belong to the button, link, field, or other interface element that contains
+them.
+
+### Basic
+
+- id: basic
 - type: story
+- component: IconBasicExampleComponent
 
-A basic icon with default size and color, inheriting from parent text color.
+A horizontal sample from the default Outline catalog. Icons inherit `currentColor` and use the
+medium semantic size when no `variant` or `size` is provided.
 
-### LargeIcon
+Example component: `IconBasicExampleComponent`
 
-- id: large-icon
-- type: story
+```ts title="icon-basic-example.component.ts"
+import { Component } from '@angular/core';
+import { FktIconComponent } from 'frakton-ng/icon';
 
-An icon with custom large size demonstrating size flexibility.
+@Component({
+    selector: 'app-icon-basic-example',
+    imports: [FktIconComponent],
+    templateUrl: './icon-basic-example.component.html',
+    styleUrl: './icon-basic-example.component.scss',
+})
+export class IconBasicExampleComponent {}
+```
 
-### ColoredIcon
+```html title="icon-basic-example.component.html"
+<fkt-icon name="home" />
+<fkt-icon name="magnifying-glass" />
+<fkt-icon name="bell" />
+<fkt-icon name="heart" />
+<fkt-icon name="cog-6-tooth" />
+<fkt-icon name="user" />
+```
 
-- id: colored-icon
-- type: story
-
-An icon with custom color showing color customization capabilities.
+```css title="icon-basic-example.component.scss"
+:host {
+    display: flex;
+    align-items: center;
+    gap: var(--fkt-space-md);
+    color: var(--fkt-color-neutral-800);
+}
+```
 
 ### Gallery
 
@@ -1539,48 +1571,375 @@ An icon with custom color showing color customization capabilities.
 - type: story
 - component: IconsGalleyComponent
 
-Complete gallery of all available icons with search functionality to explore the icon library.
+Search the built-in catalog by icon name. Select an item to copy its typed name for use with the
+`name` input.
+
+### Sizes
+
+- id: sizes
+- type: story
+- component: IconSizesExampleComponent
+
+Semantic sizes keep icons aligned with the density of the surrounding component. Medium is the
+default; use small for compact controls and large when the interface needs stronger emphasis.
+
+Example component: `IconSizesExampleComponent`
+
+```ts title="icon-sizes-example.component.ts"
+import { Component } from '@angular/core';
+import { FktIconComponent } from 'frakton-ng/icon';
+
+@Component({
+    selector: 'app-icon-sizes-example',
+    imports: [FktIconComponent],
+    templateUrl: './icon-sizes-example.component.html',
+    styleUrl: './icon-sizes-example.component.scss',
+})
+export class IconSizesExampleComponent {}
+```
+
+```html title="icon-sizes-example.component.html"
+<div>
+    <fkt-icon name="sparkles" size="sm" />
+    <span>Small</span>
+</div>
+
+<div>
+    <fkt-icon name="sparkles" size="md" />
+    <span>Medium</span>
+</div>
+
+<div>
+    <fkt-icon name="sparkles" size="lg" />
+    <span>Large</span>
+</div>
+```
+
+```css title="icon-sizes-example.component.scss"
+:host {
+    display: flex;
+    align-items: flex-end;
+    gap: var(--fkt-space-lg);
+}
+
+div {
+    display: grid;
+    justify-items: center;
+    gap: var(--fkt-space-xs);
+}
+
+span {
+    color: var(--fkt-color-neutral-700);
+    font-size: var(--fkt-font-size-sm);
+}
+```
+
+### Variants
+
+- id: variants
+- type: introduction
+
+Artwork variants. Outline is the default 24-unit stroked catalog. Solid, Mini, and Micro are
+filled catalogs designed by Heroicons for different visual densities. They do not set the
+rendered component size; combine `variant` and `size` according to the surrounding interface.
+
+### VariantComparison
+
+- id: variant-comparison
+- type: story
+- component: IconVariantsExampleComponent
+
+The same icon across all four artwork catalogs. Filled variants are lazy-loaded the first time
+they are requested and then cached by the icon registry.
+
+Example component: `IconVariantsExampleComponent`
+
+```ts title="icon-variants-example.component.ts"
+import { Component } from '@angular/core';
+import { FktIconComponent } from 'frakton-ng/icon';
+
+@Component({
+    selector: 'app-icon-variants-example',
+    imports: [FktIconComponent],
+    templateUrl: './icon-variants-example.component.html',
+    styleUrl: './icon-variants-example.component.scss',
+})
+export class IconVariantsExampleComponent {}
+```
+
+```html title="icon-variants-example.component.html"
+<div>
+    <fkt-icon name="information-circle" variant="outline" />
+    <span>Outline</span>
+</div>
+
+<div>
+    <fkt-icon name="information-circle" variant="solid" />
+    <span>Solid</span>
+</div>
+
+<div>
+    <fkt-icon name="information-circle" variant="mini" />
+    <span>Mini</span>
+</div>
+
+<div>
+    <fkt-icon name="information-circle" variant="micro" />
+    <span>Micro</span>
+</div>
+```
+
+```css title="icon-variants-example.component.scss"
+:host {
+    display: flex;
+    align-items: flex-end;
+    gap: var(--fkt-space-lg);
+}
+
+div {
+    display: grid;
+    justify-items: center;
+    gap: var(--fkt-space-xs);
+}
+
+span {
+    color: var(--fkt-color-neutral-700);
+    font-size: var(--fkt-font-size-sm);
+}
+```
+
+### Customization
+
+- id: customization
+- type: introduction
+
+Styling and theming. Design tokens establish application or component defaults, while regular
+`color` and `font-size` declarations are useful for one-off adjustments. Stroke width affects
+stroked artwork such as the Outline catalog.
+
+### Styling
+
+- id: styling
+- type: story
+- component: IconCustomizationExampleComponent
+
+Token-based and direct CSS customization. The SVG uses `currentColor` and `1em`, preserving the
+normal CSS inheritance model instead of introducing separate color and pixel-size inputs.
+
+Example component: `IconCustomizationExampleComponent`
+
+```ts title="icon-customization-example.component.ts"
+import { Component } from '@angular/core';
+import { FktIconComponent } from 'frakton-ng/icon';
+
+@Component({
+    selector: 'app-icon-customization-example',
+    imports: [FktIconComponent],
+    templateUrl: './icon-customization-example.component.html',
+    styleUrl: './icon-customization-example.component.scss',
+})
+export class IconCustomizationExampleComponent {}
+```
+
+```html title="icon-customization-example.component.html"
+<div>
+    <span class="token-icon">
+        <fkt-icon name="sparkles" />
+    </span>
+    <span>Design tokens</span>
+</div>
+
+<div>
+    <fkt-icon class="direct-icon" name="heart" />
+    <span>Direct CSS</span>
+</div>
+```
+
+```css title="icon-customization-example.component.scss"
+:host {
+    display: flex;
+    align-items: flex-end;
+    gap: var(--fkt-space-xl);
+}
+
+div {
+    display: grid;
+    justify-items: center;
+    gap: var(--fkt-space-xs);
+}
+
+.token-icon {
+    --fkt-icon-size-md: 2rem;
+    --fkt-icon-color: var(--fkt-color-warning);
+    --fkt-icon-stroke-width: 2;
+}
+
+.direct-icon {
+    color: var(--fkt-color-danger);
+    font-size: 2rem;
+}
+
+span {
+    color: var(--fkt-color-neutral-700);
+    font-size: var(--fkt-font-size-sm);
+}
+```
+
+### CustomIcon
+
+- id: custom-icon
+- type: story
+- component: IconCustomExampleComponent
+
+An application-provided icon rendered through its variantless fallback. The catalog used by this
+documentation is registered in the application configuration, not by the example component.
+
+Define the SVG content in an application-owned catalog and use module augmentation to add its
+keys to `FktIconName`:
+
+```ts title="app/custom-icons.ts"
+import { FktCustomIconCatalog } from 'frakton-ng/icon';
+
+export const customIcons = {
+    'company-logo': {
+        viewBox: '0 0 32 32',
+        content: '<path fill="currentColor" d="..." />',
+    },
+} as const satisfies FktCustomIconCatalog;
+
+type CustomIcons = typeof customIcons;
+
+declare module 'frakton-ng/icon' {
+    interface FktCustomIcons extends CustomIcons {}
+}
+```
+
+Register the catalog once in the application providers:
+
+```ts title="app/app.config.ts"
+import { provideFktIcons } from 'frakton-ng/icon';
+import { customIcons } from './custom-icons';
+
+export const appConfig = {
+    providers: [provideFktIcons(customIcons)],
+};
+```
+
+A plain definition is used for every requested variant. When artwork differs by variant, provide
+a `variants` map and an optional `fallback`. SVG content is trusted and rendered without
+sanitization, so catalogs must contain only static, application-owned markup.
+
+Example component: `IconCustomExampleComponent`
+
+```ts title="icon-custom-example.component.ts"
+import { Component } from '@angular/core';
+import { FktIconComponent } from 'frakton-ng/icon';
+
+@Component({
+    selector: 'app-icon-custom-example',
+    imports: [FktIconComponent],
+    templateUrl: './icon-custom-example.component.html',
+    styleUrl: './icon-custom-example.component.scss',
+})
+export class IconCustomExampleComponent {}
+```
+
+```html title="icon-custom-example.component.html"
+<fkt-icon name="custom-square" variant="micro" size="lg" />
+
+<span>Application icon</span>
+```
+
+```css title="icon-custom-example.component.scss"
+:host {
+    display: flex;
+    align-items: center;
+    gap: var(--fkt-space-xs);
+    color: var(--fkt-color-primary);
+}
+```
 
 ## API Reference
-
-## Key Features
-
-- **Comprehensive Icon Library**: Curated set of icons covering common UI needs
-- **Scalable Vector Graphics**: Crisp display at any size with SVG-based rendering
-- **Color Customization**: Flexible color options including CSS custom properties
-- **Size Flexibility**: Support for any CSS size value (em, rem, px, etc.)
-- **Accessibility**: Proper ARIA attributes and screen reader support
-- **Performance**: Optimized SVG sprites for minimal bundle impact
-- **Consistent Design**: Icons designed to work harmoniously together
 
 ## Configuration Options
 
 <arg-types></arg-types>
 
-### Icon Library
+## Custom Icon Registration
 
-The component includes a comprehensive icon library with icons for navigation, actions, status indicators, and common UI elements. Use the Gallery example below to explore all available icons.
+Define trusted SVG content in a catalog, derive its names through module
+augmentation, and register it in the application providers:
 
-## Use Cases
+```ts
+// custom-icons.ts
+import { FktCustomIconCatalog } from 'frakton-ng/icon';
 
-- **Navigation Elements** - Menu items, breadcrumbs, tabs, pagination controls
-- **Action Buttons** - Save, delete, edit, share, download actions
-- **Status Indicators** - Success, error, warning, info states
-- **Data Visualization** - Charts, graphs, metrics, dashboard elements
+export const customIcons = {
+  'company-logo': {
+    viewBox: '0 0 32 32',
+    content: '<path fill="currentColor" d="..." />',
+  },
+} as const satisfies FktCustomIconCatalog;
 
-## Accessibility
+type CustomIcons = typeof customIcons;
 
-- **Screen Reader Support**: Proper ARIA labels and semantic markup
-- **High Contrast**: Icons maintain visibility in high contrast modes
-- **Focus Indicators**: Clear focus states when used in interactive contexts
-- **Color Independence**: Icons work with color and without for accessibility
+declare module 'frakton-ng/icon' {
+  interface FktCustomIcons extends CustomIcons {}
+}
+```
+
+```ts
+// app.config.ts
+import { provideFktIcons } from 'frakton-ng/icon';
+import { customIcons } from './custom-icons';
+
+export const appConfig = {
+  providers: [provideFktIcons(customIcons)],
+};
+```
+
+`provideFktIcons` is a multi-provider. Calling it more than once combines the
+catalogs, which allows features to provide independent application-owned icon
+sets.
+
+### Variants and Fallback
+
+A definition without variants is used for every requested variant. For
+variant-specific artwork, use `variants` and optionally `fallback`:
+
+```ts
+export const customIcons = {
+  'company-status': {
+    variants: {
+      outline: outlineStatus,
+      solid: solidStatus,
+    },
+    fallback: fallbackStatus,
+  },
+} as const satisfies FktCustomIconCatalog;
+```
+
+When a requested variant is absent and no fallback exists, the custom icon
+renders no SVG content.
+
+### Trust Boundary
+
+Custom SVG content is trusted and rendered without sanitization. Only register
+static application-owned markup. Never include values from users, APIs, a CMS,
+or any other untrusted source.
 
 ## Performance
 
-- **SVG Sprites**: Efficient icon delivery with sprite-based loading
-- **Tree Shaking**: Only used icons are included in the final bundle
-- **Minimal DOM**: Lightweight rendering with single SVG elements
-- **Caching**: Icons are cached for optimal performance
+- The Outline catalog is included synchronously.
+- Solid, Mini, and Micro catalogs are loaded when first requested.
+- Loaded catalogs and resolved SVG markup are cached by the registry.
+- Angular `PendingTasks` tracks catalog loading during server-side rendering.
+
+## Accessibility
+
+`fkt-icon` is decorative and always renders with `aria-hidden="true"`. Put the
+accessible name on the containing button, link, field, or other semantic
+element. Do not rely on the icon name as a screen-reader label.
 
 ---
 

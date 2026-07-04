@@ -1,1 +1,67 @@
-[]
+[
+  {
+    "scope": {
+      "name": "Icon",
+      "selector": "fkt-icon"
+    },
+    "description": "Size of a small icon.",
+    "name": "--fkt-icon-size-sm",
+    "reference": "--fkt-font-size-md",
+    "category": "Sizing",
+    "type": "size",
+    "defaultValue": "1rem",
+    "component": "Icon"
+  },
+  {
+    "scope": {
+      "name": "Icon",
+      "selector": "fkt-icon"
+    },
+    "description": "Size of a medium icon.",
+    "name": "--fkt-icon-size-md",
+    "reference": "--fkt-font-size-xl",
+    "category": "Sizing",
+    "type": "size",
+    "defaultValue": "1.25rem",
+    "component": "Icon"
+  },
+  {
+    "scope": {
+      "name": "Icon",
+      "selector": "fkt-icon"
+    },
+    "description": "Size of a large icon.",
+    "name": "--fkt-icon-size-lg",
+    "reference": "--fkt-font-size-2xl",
+    "category": "Sizing",
+    "type": "size",
+    "defaultValue": "1.5rem",
+    "component": "Icon"
+  },
+  {
+    "scope": {
+      "name": "Icon",
+      "selector": "fkt-icon"
+    },
+    "description": "Color of the icon.",
+    "name": "--fkt-icon-color",
+    "reference": "currentColor",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "currentColor",
+    "component": "Icon"
+  },
+  {
+    "scope": {
+      "name": "Icon",
+      "selector": "fkt-icon"
+    },
+    "description": "Width of icon strokes.",
+    "name": "--fkt-icon-stroke-width",
+    "reference": "1.5",
+    "category": "Sizing",
+    "type": "size",
+    "defaultValue": "1.5",
+    "component": "Icon"
+  }
+]
