@@ -53,7 +53,7 @@ export default {
 				name: "select-basic-example.component.scss",
 				content: selectBasicExampleStyles as string,
 				language: "css" as const,
-			},		
+			},
 		]
 	},
 	SelectCustomContentExampleComponent: {
@@ -106,7 +106,7 @@ export default {
 				name: "select-function-keys-example.component.ts",
 				content: selectFunctionKeysExampleTypescript as string,
 				language: "typescript" as const,
-			},		
+			},
 			{
 				name: "select-function-keys-example.component.scss",
 				content: selectFunctionKeysExampleStyles as string,
