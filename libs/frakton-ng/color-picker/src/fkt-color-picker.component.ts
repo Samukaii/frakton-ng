@@ -21,14 +21,14 @@ import { FktColorPickerFormat } from './fkt-color-picker.types';
 import { capitalize, fktColorFormatters } from 'frakton-ng/internal/utils';
 import { parseAnyColorToHSV } from './helpers/parse-any-color-to-hsl';
 import { FktColorPickerHSV } from 'frakton-ng/internal/types';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { getColorDescription } from './helpers/get-color-description';
 import { FKT_COLOR_PICKER_LOCALE_TOKEN } from './injection-tokens/fkt-color-picker-locale-token';
 
 @Component({
 	selector: 'fkt-color-picker',
 	imports: [
-		FktButtonComponent
+		FktButtonLegacyComponent
 	],
 	templateUrl: './fkt-color-picker.component.html',
 	styleUrl: './fkt-color-picker.component.scss'

@@ -189,7 +189,7 @@ import {DropdownModule} from 'primeng/dropdown';
 
 ```typescript
 // After (Frakton NG)
-import {FktButtonComponent} from 'frakton-ng/button';
+import {FktButtonLegacyComponent} from 'frakton-ng/button-legacy';
 import {FktFieldComponent} from 'frakton-ng/field';
 import {FktInputTextDirective} from 'frakton-ng/input-text';
 import {FktSelectComponent} from 'frakton-ng/select';
@@ -205,7 +205,7 @@ import {FormsModule} from '@angular/forms';
   `,
     imports: [
         FormsModule,
-        FktButtonComponent,
+        FktButtonLegacyComponent,
         FktFieldComponent,
         FktInputTextDirective,
         FktSelectComponent
@@ -269,11 +269,11 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 ```typescript
 // After (Frakton NG)
-import {FktButtonComponent} from 'frakton-ng/button';
+import {FktButtonLegacyComponent} from 'frakton-ng/button-legacy';
 import {FktOverlayService} from 'frakton-ng/overlay';
 
 @Component({
-	template: `
+    template: `
     <!-- Built-in loading state -->
     <fkt-button
       text="Save"
@@ -288,22 +288,22 @@ import {FktOverlayService} from 'frakton-ng/overlay';
       (click)="openMenu($event)">
     </fkt-button>
   `,
-	imports: [FktButtonComponent]
+    imports: [FktButtonLegacyComponent]
 })
 export class ExampleComponent {
-	constructor(private overlay: FktOverlayService) {
-	}
+    constructor(private overlay: FktOverlayService) {
+    }
 
-	openMenu(event: Event) {
-		this.overlay.open({
-			anchorElementRef: {nativeElement: event.target as HTMLElement},
-			component: ActionsMenuComponent,
-			data: {
-				onEdit: () => this.edit(),
-				onDelete: () => this.delete()
-			}
-		});
-	}
+    openMenu(event: Event) {
+        this.overlay.open({
+            anchorElementRef: {nativeElement: event.target as HTMLElement},
+            component: ActionsMenuComponent,
+            data: {
+                onEdit: () => this.edit(),
+                onDelete: () => this.delete()
+            }
+        });
+    }
 }
 ```
 
@@ -470,7 +470,7 @@ describe('Migration Component', () => {
 ```typescript
 // Problem: Mixed import patterns
 // Solution: Use consistent import structure
-import {FktButtonComponent} from 'frakton-ng/button';
+import {FktButtonLegacyComponent} from 'frakton-ng/button-legacy';
 import {MatButtonModule} from '@angular/material/button';
 ```
 

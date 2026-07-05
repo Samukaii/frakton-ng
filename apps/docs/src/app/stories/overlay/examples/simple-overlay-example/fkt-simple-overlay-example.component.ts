@@ -1,5 +1,5 @@
 import { Component, inject, signal } from '@angular/core';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { FktOverlayService } from 'frakton-ng/overlay';
 import { FktGeometryPosition } from 'frakton-ng/internal/types';
 import {
@@ -11,7 +11,7 @@ import {
 	selector: 'simple-overlay-example',
 	templateUrl: './fkt-simple-overlay-example.component.html',
 	styleUrl: './fkt-simple-overlay-example.component.scss',
-	imports: [FktButtonComponent]
+	imports: [FktButtonLegacyComponent]
 })
 export class FktSimpleOverlayExampleComponent {
 	private overlayService = inject(FktOverlayService);

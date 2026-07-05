@@ -267,7 +267,7 @@ Example component: `SelectHydratedValueExampleComponent`
 import { Component } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { FktSelectComponent } from 'frakton-ng/select';
 import { CodeOutputComponent } from '@/components/code-output/code-output.component';
 import { SELECT_USERS, SelectUser } from '../select-demo-data';
@@ -276,7 +276,7 @@ import { SELECT_USERS, SelectUser } from '../select-demo-data';
     selector: 'app-select-hydrated-value-example',
     imports: [
         FktSelectComponent,
-        FktButtonComponent,
+        FktButtonLegacyComponent,
         ReactiveFormsModule,
         CodeOutputComponent,
     ],
@@ -370,7 +370,7 @@ import {
     FktSelectHeaderDirective,
     FktSelectItemDirective,
 } from 'frakton-ng/select';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { FktIconComponent } from 'frakton-ng/icon';
 import { CallPipe } from 'frakton-ng/internal/pipes';
 import { FktTagColor, FktTagComponent } from 'frakton-ng/tag';
@@ -438,7 +438,7 @@ const PRODUCTS: Product[] = [
         FktSelectFooterDirective,
         FktSelectChipDirective,
         FktSelectEmptyDirective,
-        FktButtonComponent,
+        FktButtonLegacyComponent,
         FktIconComponent,
         CallPipe,
         FktTagComponent,
@@ -804,7 +804,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs';
 import { FktSelectComponent } from 'frakton-ng/select';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { CodeOutputComponent } from '@/components/code-output/code-output.component';
 import { SELECT_USERS } from '../select-demo-data';
 
@@ -812,7 +812,7 @@ import { SELECT_USERS } from '../select-demo-data';
     selector: 'app-select-reactive-forms-example',
     imports: [
         FktSelectComponent,
-        FktButtonComponent,
+        FktButtonLegacyComponent,
         ReactiveFormsModule,
         CodeOutputComponent,
     ],
@@ -905,7 +905,7 @@ Example component: `SelectSignalFormsExampleComponent`
 import { Component, signal } from '@angular/core';
 import { disabled, form, FormField, required } from '@angular/forms/signals';
 import { FktSelectComponent } from 'frakton-ng/select';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { CodeOutputComponent } from '@/components/code-output/code-output.component';
 import { SELECT_USERS } from '../select-demo-data';
 
@@ -913,7 +913,7 @@ import { SELECT_USERS } from '../select-demo-data';
     selector: 'app-select-signal-forms-example',
     imports: [
         FktSelectComponent,
-        FktButtonComponent,
+        FktButtonLegacyComponent,
         FormField,
         CodeOutputComponent,
     ],
@@ -1095,7 +1095,7 @@ import {
     FktFieldPrefixDirective,
 } from 'frakton-ng/field';
 import { FktIconComponent } from 'frakton-ng/icon';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { SELECT_USERS } from '../select-demo-data';
 
 @Component({
@@ -1106,7 +1106,7 @@ import { SELECT_USERS } from '../select-demo-data';
         FktFieldErrorComponent,
         FktFieldPrefixDirective,
         FktIconComponent,
-        FktButtonComponent,
+        FktButtonLegacyComponent,
         ReactiveFormsModule,
     ],
     templateUrl: './select-validations-example.component.html',

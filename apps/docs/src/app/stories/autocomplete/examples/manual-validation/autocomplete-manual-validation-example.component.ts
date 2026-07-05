@@ -10,7 +10,7 @@ import {
     FktHintEndDirective,
     FktHintStartDirective,
 } from 'frakton-ng/field';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { FktIconComponent } from 'frakton-ng/icon';
 import { CodeOutputComponent } from '@/components/code-output/code-output.component';
 import { USERS } from '../autocomplete-demo-data';
@@ -19,7 +19,7 @@ import { USERS } from '../autocomplete-demo-data';
     selector: 'app-autocomplete-manual-validation-example',
     imports: [
         FktAutocompleteComponent,
-        FktButtonComponent,
+        FktButtonLegacyComponent,
         FktErrorDirective,
         FktFieldErrorComponent,
         FktFieldPrefixDirective,

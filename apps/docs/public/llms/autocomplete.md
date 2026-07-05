@@ -355,7 +355,7 @@ import { Component } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { FktAutocompleteComponent } from 'frakton-ng/autocomplete';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { User } from '../autocomplete-demo-data';
 import { CodeOutputComponent } from '@/components/code-output/code-output.component';
 
@@ -414,7 +414,7 @@ const PRELOADED_USERS = [
     selector: 'app-autocomplete-hydrated-value-example',
     imports: [
         FktAutocompleteComponent,
-        FktButtonComponent,
+        FktButtonLegacyComponent,
         ReactiveFormsModule,
         CodeOutputComponent,
     ],
@@ -559,7 +559,7 @@ import {
     FktAutocompleteChipDirective,
     FktAutocompleteEmptyDirective,
 } from 'frakton-ng/autocomplete';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { USERS } from '../autocomplete-demo-data';
 import { FktAvatarComponent } from 'frakton-ng/avatar';
 import { FktTagComponent } from 'frakton-ng/tag';
@@ -576,7 +576,7 @@ import { FktIconComponent } from 'frakton-ng/icon';
         FktAutocompleteFooterDirective,
         FktAutocompleteChipDirective,
         FktAutocompleteEmptyDirective,
-        FktButtonComponent,
+        FktButtonLegacyComponent,
         ReactiveFormsModule,
         FktAvatarComponent,
         FktTagComponent,
@@ -1360,7 +1360,7 @@ Example component: `AutocompleteSignalFormsExampleComponent`
 import { Component, signal } from '@angular/core';
 import { disabled, form, FormField, required } from '@angular/forms/signals';
 import { FktAutocompleteComponent } from 'frakton-ng/autocomplete';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { COUNTRIES } from '../autocomplete-demo-data';
 import { CodeOutputComponent } from '@/components/code-output/code-output.component';
 
@@ -1368,7 +1368,7 @@ import { CodeOutputComponent } from '@/components/code-output/code-output.compon
     selector: 'app-autocomplete-signal-forms-example',
     imports: [
         FktAutocompleteComponent,
-        FktButtonComponent,
+        FktButtonLegacyComponent,
         FormField,
         CodeOutputComponent,
     ],
@@ -1478,7 +1478,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs';
 import { FktAutocompleteComponent } from 'frakton-ng/autocomplete';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { USERS } from '../autocomplete-demo-data';
 import { CodeOutputComponent } from '@/components/code-output/code-output.component';
 
@@ -1486,7 +1486,7 @@ import { CodeOutputComponent } from '@/components/code-output/code-output.compon
     selector: 'app-autocomplete-reactive-forms-example',
     imports: [
         FktAutocompleteComponent,
-        FktButtonComponent,
+        FktButtonLegacyComponent,
         ReactiveFormsModule,
         CodeOutputComponent,
     ],
@@ -1696,7 +1696,7 @@ import {
     FktHintEndDirective,
     FktHintStartDirective,
 } from 'frakton-ng/field';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { FktIconComponent } from 'frakton-ng/icon';
 import { CodeOutputComponent } from '@/components/code-output/code-output.component';
 import { USERS } from '../autocomplete-demo-data';
@@ -1705,7 +1705,7 @@ import { USERS } from '../autocomplete-demo-data';
     selector: 'app-autocomplete-automatic-validation-example',
     imports: [
         FktAutocompleteComponent,
-        FktButtonComponent,
+        FktButtonLegacyComponent,
         FktFieldPrefixDirective,
         FktFieldSuffixDirective,
         FktHintEndDirective,
@@ -1810,7 +1810,7 @@ import {
     FktHintEndDirective,
     FktHintStartDirective,
 } from 'frakton-ng/field';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { FktIconComponent } from 'frakton-ng/icon';
 import { CodeOutputComponent } from '@/components/code-output/code-output.component';
 import { USERS } from '../autocomplete-demo-data';
@@ -1819,7 +1819,7 @@ import { USERS } from '../autocomplete-demo-data';
     selector: 'app-autocomplete-manual-validation-example',
     imports: [
         FktAutocompleteComponent,
-        FktButtonComponent,
+        FktButtonLegacyComponent,
         FktErrorDirective,
         FktFieldErrorComponent,
         FktFieldPrefixDirective,

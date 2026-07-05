@@ -1,13 +1,13 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { FktCharacterCountDirective, FktFieldComponent } from 'frakton-ng/field';
 import { FktTextareaDirective } from 'frakton-ng/textarea';
 
 @Component({
     selector: 'app-textarea-reactive-forms-example',
     imports: [
-        FktButtonComponent,
+        FktButtonLegacyComponent,
         FktCharacterCountDirective,
         FktFieldComponent,
         FktTextareaDirective,

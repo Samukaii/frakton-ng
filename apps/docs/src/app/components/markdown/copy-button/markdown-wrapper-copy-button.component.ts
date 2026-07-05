@@ -1,10 +1,10 @@
 import { Component, signal } from '@angular/core';
-import {FktButtonComponent} from "frakton-ng/button";
+import {FktButtonLegacyComponent} from 'frakton-ng/button-legacy';
 
 @Component({
   selector: 'fkt-markdown-wrapper-copy-button',
     imports: [
-        FktButtonComponent
+        FktButtonLegacyComponent
     ],
   templateUrl: './markdown-wrapper-copy-button.component.html',
   styleUrl: './markdown-wrapper-copy-button.component.scss',

@@ -252,13 +252,13 @@ Example component: `LoadingExampleComponent`
 ```ts title="loading-example.component.ts"
 import { Component, signal } from '@angular/core';
 import { FktNavigatorComponent } from 'frakton-ng/navigator';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { FktSpinnerComponent } from 'frakton-ng/spinner';
 
 @Component({
 	selector: 'loading-example',
 	templateUrl: './loading-example.component.html',
-	imports: [FktNavigatorComponent, FktButtonComponent, FktSpinnerComponent]
+	imports: [FktNavigatorComponent, FktButtonLegacyComponent, FktSpinnerComponent]
 })
 export class LoadingExampleComponent {
 	protected isLoading = signal(false);

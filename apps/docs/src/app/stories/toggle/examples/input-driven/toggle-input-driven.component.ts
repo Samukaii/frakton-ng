@@ -1,13 +1,13 @@
 import { Component, signal } from '@angular/core';
 import { FktToggleComponent } from 'frakton-ng/toggle';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { FktFieldErrorComponent } from 'frakton-ng/field';
 
 @Component({
     selector: 'fkt-toggle-input-driven',
     imports: [
         FktToggleComponent,
-        FktButtonComponent,
+        FktButtonLegacyComponent,
         FktFieldErrorComponent,
     ],
     templateUrl: './toggle-input-driven.component.html',

@@ -1,10 +1,10 @@
 import { Component, input, model, output, signal, viewChildren } from '@angular/core';
 import { DatePipe } from '@angular/common';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 
 @Component({
   selector: 'fkt-calendar-month-selector',
-  imports: [DatePipe, FktButtonComponent],
+  imports: [DatePipe, FktButtonLegacyComponent],
   templateUrl: './calendar-month-selector.component.html',
   styleUrl: './calendar-month-selector.component.scss',
 })
@@ -25,7 +25,7 @@ export class CalendarMonthSelectorComponent {
 
   focusedIndex = signal(0);
 
-  protected monthButtons = viewChildren(FktButtonComponent);
+  protected monthButtons = viewChildren(FktButtonLegacyComponent);
 
   protected get selectedIndex() {
     return this.currentDate().getMonth();

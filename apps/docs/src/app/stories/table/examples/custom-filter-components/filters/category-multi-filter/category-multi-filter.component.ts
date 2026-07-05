@@ -1,7 +1,7 @@
 import { Component, input, linkedSignal, output } from '@angular/core';
 import { FktCheckboxComponent } from 'frakton-ng/checkbox';
 import { FktButtonsListComponent } from 'frakton-ng/buttons-list';
-import { FktButtonAction } from 'frakton-ng/button';
+import { FktButtonAction } from 'frakton-ng/button-legacy';
 import { FktTableCustomFilter } from 'frakton-ng/table';
 
 const ALL_CATEGORIES = ['Electronics', 'Clothing', 'Books', 'Sports', 'Food'];

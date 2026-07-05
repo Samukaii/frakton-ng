@@ -10,7 +10,7 @@ import {
     FktAutocompleteChipDirective,
     FktAutocompleteEmptyDirective,
 } from 'frakton-ng/autocomplete';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { USERS } from '../autocomplete-demo-data';
 import { FktAvatarComponent } from 'frakton-ng/avatar';
 import { FktTagComponent } from 'frakton-ng/tag';
@@ -27,7 +27,7 @@ import { FktIconComponent } from 'frakton-ng/icon';
         FktAutocompleteFooterDirective,
         FktAutocompleteChipDirective,
         FktAutocompleteEmptyDirective,
-        FktButtonComponent,
+        FktButtonLegacyComponent,
         ReactiveFormsModule,
         FktAvatarComponent,
         FktTagComponent,

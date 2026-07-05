@@ -1,12 +1,12 @@
 import { Component, inject, input, output } from '@angular/core';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { FktDialogService } from 'frakton-ng/dialog';
 import { FktFieldComponent } from 'frakton-ng/field';
 import { FktInputTextDirective } from 'frakton-ng/input-text';
 
 @Component({
   selector: 'fkt-user-form-dialog',
-  imports: [FktFieldComponent, FktInputTextDirective, FktButtonComponent],
+  imports: [FktFieldComponent, FktInputTextDirective, FktButtonLegacyComponent],
   template: `
     <div class="dialog-content">
       <h2>User Information</h2>
@@ -60,7 +60,7 @@ export class FktUserFormDialogComponent {
 
 @Component({
   selector: 'fkt-focus-trap-modal-example',
-  imports: [FktButtonComponent],
+  imports: [FktButtonLegacyComponent],
   templateUrl: './fkt-focus-trap-modal-example.component.html',
   styleUrl: './fkt-focus-trap-modal-example.component.scss'
 })

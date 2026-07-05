@@ -1,7 +1,7 @@
 import { Component, input, output, computed, signal } from '@angular/core';
 import { FktIconComponent, FktIconName } from 'frakton-ng/icon';
 import { FktButtonsListComponent } from 'frakton-ng/buttons-list';
-import { FktButtonAction } from 'frakton-ng/button';
+import { FktButtonAction } from 'frakton-ng/button-legacy';
 
 @Component({
 	selector: 'demo-custom-dialog',

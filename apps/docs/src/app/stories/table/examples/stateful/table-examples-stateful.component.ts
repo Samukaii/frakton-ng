@@ -19,7 +19,7 @@ import {
 import { FktTagColor, FktTagComponent } from 'frakton-ng/tag';
 import { FktTableFilterTextComponent } from 'frakton-ng/table/filters/text';
 import { FktTableFilterSelectComponent } from 'frakton-ng/table/filters/select';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { Order } from '@/stories/table/models/order';
 import { OrderStatus } from '@/stories/table/models/order-status';
 import { OrdersService } from '@/stories/table/services/orders.service';
@@ -56,7 +56,7 @@ const loadStorage = () => {
         FktTableComponent,
         FktTableResizeDirective,
         FktTableReorderDirective,
-        FktButtonComponent,
+        FktButtonLegacyComponent,
     ],
     templateUrl: './table-examples-stateful.component.html',
     styleUrl: './table-examples-stateful.component.scss',

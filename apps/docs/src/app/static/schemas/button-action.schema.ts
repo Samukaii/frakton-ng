@@ -1,5 +1,5 @@
 import { fktColors } from 'frakton-ng/core';
-import { fktButtonShapes, fktButtonThemes } from 'frakton-ng/button';
+import { fktButtonShapes, fktButtonThemes } from 'frakton-ng/button-legacy';
 import { ArgTypeSchema } from '@/models/arg-type';
 
 export const buttonActionSchema: ArgTypeSchema = {

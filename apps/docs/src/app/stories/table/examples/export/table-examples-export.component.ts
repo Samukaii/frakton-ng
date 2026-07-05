@@ -5,7 +5,7 @@ import {
     FktTableExportDirective,
 } from 'frakton-ng/table';
 import { FktTagColor } from 'frakton-ng/tag';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { Order } from '@/stories/table/models/order';
 import { OrderStatus } from '@/stories/table/models/order-status';
 import { OrdersService } from '@/stories/table/services/orders.service';
@@ -30,7 +30,7 @@ const STATUS_COLORS: Record<OrderStatus, FktTagColor> = {
 
 @Component({
     selector: 'app-table-examples-export',
-    imports: [FktTableComponent, FktTableExportDirective, FktButtonComponent],
+    imports: [FktTableComponent, FktTableExportDirective, FktButtonLegacyComponent],
     templateUrl: './table-examples-export.component.html',
     styleUrl: './table-examples-export.component.scss',
 })

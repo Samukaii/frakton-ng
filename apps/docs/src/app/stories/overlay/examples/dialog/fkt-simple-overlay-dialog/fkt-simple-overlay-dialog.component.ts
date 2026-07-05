@@ -1,10 +1,10 @@
 import { Component, input, output } from '@angular/core';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 
 @Component({
 	selector: 'fkt-simple-overlay-dialog',
 	imports: [
-		FktButtonComponent
+		FktButtonLegacyComponent
 	],
 	templateUrl: './fkt-simple-overlay-dialog.component.html',
 	styleUrl: './fkt-simple-overlay-dialog.component.scss'

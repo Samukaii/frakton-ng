@@ -29,7 +29,7 @@ Example component: `BasicTooltipExampleComponent`
 
 ```ts title="basic-tooltip-example.component.ts"
 import { Component, input } from '@angular/core';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { FktTooltipDirective } from 'frakton-ng/tooltip';
 import { FktColor } from 'frakton-ng/core';
 
@@ -37,7 +37,7 @@ import { FktColor } from 'frakton-ng/core';
 	selector: 'basic-tooltip-example',
 	styleUrl: './basic-tooltip-example.component.scss',
 	templateUrl: './basic-tooltip-example.component.html',
-	imports: [FktButtonComponent, FktTooltipDirective]
+	imports: [FktButtonLegacyComponent, FktTooltipDirective]
 })
 export class BasicTooltipExampleComponent {
 	tooltipColor = input<FktColor>('primary')
@@ -106,14 +106,14 @@ Example component: `PositioningTooltipExampleComponent`
 
 ```ts title="positioning-tooltip-example.component.ts"
 import { Component, input } from '@angular/core';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { FktTooltipDirective } from 'frakton-ng/tooltip';
 
 @Component({
 	selector: 'positioning-tooltip-example',
 	styleUrl: './positioning-tooltip-example.component.scss',
 	templateUrl: './positioning-tooltip-example.component.html',
-    imports: [FktButtonComponent, FktTooltipDirective]
+    imports: [FktButtonLegacyComponent, FktTooltipDirective]
 })
 export class PositioningTooltipExampleComponent {
 	tooltipColor = input('primary');
@@ -533,7 +533,7 @@ Example component: `DifferentElementsExampleComponent`
 
 ```ts title="different-elements-example.component.ts"
 import { Component, input } from '@angular/core';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { FktIconComponent } from 'frakton-ng/icon';
 import { FktTagComponent } from 'frakton-ng/tag';
 import { FktTooltipDirective } from 'frakton-ng/tooltip';
@@ -542,7 +542,7 @@ import { FktTooltipDirective } from 'frakton-ng/tooltip';
 	selector: 'different-elements-example',
 	styleUrl: "./different-elements-example.component.scss",
 	templateUrl: './different-elements-example.component.html',
-	imports: [FktButtonComponent, FktIconComponent, FktTagComponent, FktTooltipDirective]
+	imports: [FktButtonLegacyComponent, FktIconComponent, FktTagComponent, FktTooltipDirective]
 })
 export class DifferentElementsExampleComponent {
 	tooltipColor = input('primary');

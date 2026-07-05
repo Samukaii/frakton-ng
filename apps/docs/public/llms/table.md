@@ -1422,13 +1422,13 @@ import { Component, computed, inject, resource, signal } from '@angular/core';
 import { FktTableColumn, FktTableComponent, FktTableSelection, FktTableSelectionDirective } from 'frakton-ng/table';
 import { FktPaginatorComponent } from 'frakton-ng/paginator';
 import { User, UsersService } from '@/stories/table/services/users.service';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { formatDate } from '@angular/common';
 
 
 @Component({
     selector: 'app-table-examples-row-selection',
-    imports: [FktTableComponent, FktTableSelectionDirective, FktPaginatorComponent, FktButtonComponent],
+    imports: [FktTableComponent, FktTableSelectionDirective, FktPaginatorComponent, FktButtonLegacyComponent],
     templateUrl: './table-examples-row-selection.component.html',
     styleUrl: './table-examples-row-selection.component.scss',
 })
@@ -1884,7 +1884,7 @@ import { FktTableFilterSelectComponent } from 'frakton-ng/table/filters/select';
 import { FktTableFilterNumberComponent } from 'frakton-ng/table/filters/number';
 import { FktTableFilterDateRangeComponent } from 'frakton-ng/table/filters/date-range';
 import { JsonPipe } from '@angular/common';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { ProductsService } from '@/stories/table/services/products.service';
 import { Product } from '@/stories/table/models/product';
 import { ProductFilters } from '@/stories/table/models/product-filters';
@@ -1909,7 +1909,7 @@ export const filter = defineFilters({
 
 @Component({
     selector: 'app-table-examples-with-filtering',
-    imports: [FktTableComponent, JsonPipe, FktButtonComponent],
+    imports: [FktTableComponent, JsonPipe, FktButtonLegacyComponent],
     templateUrl: './table-examples-filtering.component.html',
     styleUrl: './table-examples-filtering.component.scss',
 })
@@ -2141,7 +2141,7 @@ import {
 import { stockColor } from '@/stories/table/utils/stock-color';
 import { CategoryMultiFilterComponent } from './filters/category-multi-filter/category-multi-filter.component';
 import { JsonPipe } from '@angular/common';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 
 const cell = defineCells({
     tag: FktTagComponent,
@@ -2152,7 +2152,7 @@ const filter = defineFilters({});
 
 @Component({
     selector: 'app-table-examples-custom-filter-components',
-    imports: [FktTableComponent, JsonPipe, FktButtonComponent],
+    imports: [FktTableComponent, JsonPipe, FktButtonLegacyComponent],
     templateUrl: './table-examples-custom-filter-components.component.html',
     styleUrl: './table-examples-custom-filter-components.component.scss',
 })
@@ -2893,7 +2893,7 @@ import {
     FktTableExportDirective,
 } from 'frakton-ng/table';
 import { FktTagColor } from 'frakton-ng/tag';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { Order } from '@/stories/table/models/order';
 import { OrderStatus } from '@/stories/table/models/order-status';
 import { OrdersService } from '@/stories/table/services/orders.service';
@@ -2918,7 +2918,7 @@ const STATUS_COLORS: Record<OrderStatus, FktTagColor> = {
 
 @Component({
     selector: 'app-table-examples-export',
-    imports: [FktTableComponent, FktTableExportDirective, FktButtonComponent],
+    imports: [FktTableComponent, FktTableExportDirective, FktButtonLegacyComponent],
     templateUrl: './table-examples-export.component.html',
     styleUrl: './table-examples-export.component.scss',
 })
@@ -3164,7 +3164,7 @@ import {
 import { FktTagColor, FktTagComponent } from 'frakton-ng/tag';
 import { FktTableFilterTextComponent } from 'frakton-ng/table/filters/text';
 import { FktTableFilterSelectComponent } from 'frakton-ng/table/filters/select';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { Order } from '@/stories/table/models/order';
 import { OrderStatus } from '@/stories/table/models/order-status';
 import { OrdersService } from '@/stories/table/services/orders.service';
@@ -3201,7 +3201,7 @@ const loadStorage = () => {
         FktTableComponent,
         FktTableResizeDirective,
         FktTableReorderDirective,
-        FktButtonComponent,
+        FktButtonLegacyComponent,
     ],
     templateUrl: './table-examples-stateful.component.html',
     styleUrl: './table-examples-stateful.component.scss',

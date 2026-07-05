@@ -132,7 +132,7 @@ export class ThemeService {
       (click)="themeService.toggleTheme()">
     </fkt-button>
   `,
-  imports: [FktButtonComponent],
+  imports: [FktButtonLegacyComponent],
   standalone: true
 })
 export class ThemeToggleComponent {

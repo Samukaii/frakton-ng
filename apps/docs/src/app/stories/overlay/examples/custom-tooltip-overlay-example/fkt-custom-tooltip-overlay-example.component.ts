@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { FktOverlayRef, FktOverlayService } from 'frakton-ng/overlay';
 import { FktGeometryPosition } from 'frakton-ng/internal/types';
 import {
@@ -11,7 +11,7 @@ import {
 	selector: 'custom-tooltip-overlay-example',
 	templateUrl: './fkt-custom-tooltip-overlay-example.component.html',
 	styleUrl: './fkt-custom-tooltip-overlay-example.component.scss',
-	imports: [FktButtonComponent]
+	imports: [FktButtonLegacyComponent]
 })
 export class FktCustomTooltipOverlayExampleComponent {
 	private overlayService = inject(FktOverlayService);

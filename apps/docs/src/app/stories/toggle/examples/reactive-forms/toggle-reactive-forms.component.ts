@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { FktToggleComponent } from 'frakton-ng/toggle';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { FktFieldErrorComponent } from 'frakton-ng/field';
 import { map } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
@@ -11,7 +11,7 @@ import { AsyncPipe } from '@angular/common';
     imports: [
         FktToggleComponent,
         ReactiveFormsModule,
-        FktButtonComponent,
+        FktButtonLegacyComponent,
         FktFieldErrorComponent,
         AsyncPipe,
     ],

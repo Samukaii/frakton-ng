@@ -1,7 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { disabled, form, FormField, required } from '@angular/forms/signals';
 import { FktSelectComponent } from 'frakton-ng/select';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { CodeOutputComponent } from '@/components/code-output/code-output.component';
 import { SELECT_USERS } from '../select-demo-data';
 
@@ -9,7 +9,7 @@ import { SELECT_USERS } from '../select-demo-data';
     selector: 'app-select-signal-forms-example',
     imports: [
         FktSelectComponent,
-        FktButtonComponent,
+        FktButtonLegacyComponent,
         FormField,
         CodeOutputComponent,
     ],

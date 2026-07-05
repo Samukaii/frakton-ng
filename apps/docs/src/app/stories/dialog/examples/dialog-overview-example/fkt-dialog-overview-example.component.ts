@@ -1,5 +1,5 @@
 import { Component, inject, signal } from '@angular/core';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { FktDialogService } from 'frakton-ng/dialog';
 import { FktSimpleDialogDemoComponent } from '../dialog/simple-dialog-demo/fkt-simple-dialog-demo.component';
 import { FktFormDialogDemoComponent, FormData } from '../dialog/form-dialog-demo/fkt-form-dialog-demo.component';
@@ -10,7 +10,7 @@ import { FktIconName } from 'frakton-ng/icon';
 	selector: 'dialog-demo-host',
 	templateUrl: './fkt-dialog-overview-example.component.html',
 	styleUrl: './fkt-dialog-overview-example.component.scss',
-	imports: [FktButtonComponent]
+	imports: [FktButtonLegacyComponent]
 })
 export class FktDialogOverviewExampleComponent {
 	private dialogService = inject(FktDialogService);

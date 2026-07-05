@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 
 @Component({
 	selector: 'fkt-icon-variants-example',
-	imports: [FktButtonComponent],
+	imports: [FktButtonLegacyComponent],
 	templateUrl: './icon-variants-example.component.html',
 	styleUrl: './icon-variants-example.component.scss'
 })

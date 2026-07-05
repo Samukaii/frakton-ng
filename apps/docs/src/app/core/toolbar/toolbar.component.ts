@@ -3,7 +3,7 @@ import { FktIconComponent } from "frakton-ng/icon";
 import { ThemeService } from '../services/theme.service';
 import { FktDialogService } from 'frakton-ng/dialog';
 import { OmniSearchComponent } from '@/core/omni-search/omni-search.component';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { MobileMenuService } from '@/core/services/mobile-menu.service';
 import { INLINE_SVGS } from '@/inline-svgs/inline-svgs';
 import { BypassHtmlPipe } from '@/pipes/bypass-html.pipe';
@@ -12,7 +12,7 @@ import { BypassHtmlPipe } from '@/pipes/bypass-html.pipe';
     selector: 'fkt-toolbar',
     imports: [
         FktIconComponent,
-        FktButtonComponent,
+        FktButtonLegacyComponent,
         BypassHtmlPipe
     ],
     templateUrl: './toolbar.component.html',

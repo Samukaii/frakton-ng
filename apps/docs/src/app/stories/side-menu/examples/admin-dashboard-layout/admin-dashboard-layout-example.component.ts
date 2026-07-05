@@ -1,13 +1,13 @@
 import { Component, computed, input, linkedSignal, signal } from '@angular/core';
 import { FktMenuGroup, FktSideMenuComponent } from 'frakton-ng/side-menu';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { FktIconComponent } from 'frakton-ng/icon';
 
 @Component({
 	selector: 'admin-dashboard-layout-example',
 	templateUrl: './admin-dashboard-layout-example.component.html',
 	styleUrl: './admin-dashboard-layout-example.component.scss',
-	imports: [FktSideMenuComponent, FktButtonComponent, FktIconComponent]
+	imports: [FktSideMenuComponent, FktButtonLegacyComponent, FktIconComponent]
 })
 export class AdminDashboardLayoutExampleComponent {
 	groups = input.required<FktMenuGroup[]>();

@@ -3,7 +3,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs';
 import { FktSelectComponent } from 'frakton-ng/select';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { CodeOutputComponent } from '@/components/code-output/code-output.component';
 import { SELECT_USERS } from '../select-demo-data';
 
@@ -11,7 +11,7 @@ import { SELECT_USERS } from '../select-demo-data';
     selector: 'app-select-reactive-forms-example',
     imports: [
         FktSelectComponent,
-        FktButtonComponent,
+        FktButtonLegacyComponent,
         ReactiveFormsModule,
         CodeOutputComponent,
     ],

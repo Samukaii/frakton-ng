@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, input, model, output } from '@angular/core';
 import { NgTemplateOutlet } from '@angular/common';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import {
     FktTableColumn,
     FktTableFilterValue,
@@ -13,7 +13,7 @@ import { injectTableContext } from '../../core/inject-table-context';
 @Component({
     selector: 'th[fktTableHeaderCell]',
     styleUrl: './fkt-table-header-cell.component.scss',
-    imports: [NgTemplateOutlet, FktButtonComponent, FktTableFilterRendererComponent],
+    imports: [NgTemplateOutlet, FktButtonLegacyComponent, FktTableFilterRendererComponent],
     templateUrl: './fkt-table-header-cell.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
     host: {

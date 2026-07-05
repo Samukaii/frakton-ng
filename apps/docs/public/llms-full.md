@@ -36,11 +36,11 @@ Example component: `FktFocusTrapBasicExampleComponent`
 ```ts title="fkt-focus-trap-basic-example.component.ts"
 import { Component, input } from '@angular/core';
 import { FktFocusTrapDirective } from 'frakton-ng/focus-trap';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 
 @Component({
   selector: 'fkt-focus-trap-basic-example',
-  imports: [FktFocusTrapDirective, FktButtonComponent],
+  imports: [FktFocusTrapDirective, FktButtonLegacyComponent],
   templateUrl: './fkt-focus-trap-basic-example.component.html',
   styleUrl: './fkt-focus-trap-basic-example.component.scss'
 })
@@ -124,14 +124,14 @@ Example component: `FktFocusTrapModalExampleComponent`
 
 ```ts title="fkt-focus-trap-modal-example.component.ts"
 import { Component, inject, input, output } from '@angular/core';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { FktDialogService } from 'frakton-ng/dialog';
 import { FktFieldComponent } from 'frakton-ng/field';
 import { FktInputTextDirective } from 'frakton-ng/input-text';
 
 @Component({
   selector: 'fkt-user-form-dialog',
-  imports: [FktFieldComponent, FktInputTextDirective, FktButtonComponent],
+  imports: [FktFieldComponent, FktInputTextDirective, FktButtonLegacyComponent],
   template: `
     <div class="dialog-content">
       <h2>User Information</h2>
@@ -185,7 +185,7 @@ export class FktUserFormDialogComponent {
 
 @Component({
   selector: 'fkt-focus-trap-modal-example',
-  imports: [FktButtonComponent],
+  imports: [FktButtonLegacyComponent],
   templateUrl: './fkt-focus-trap-modal-example.component.html',
   styleUrl: './fkt-focus-trap-modal-example.component.scss'
 })
@@ -317,7 +317,7 @@ Example component: `FktFocusTrapFormExampleComponent`
 ```ts title="fkt-focus-trap-form-example.component.ts"
 import { Component, input, signal } from '@angular/core';
 import { FktFocusTrapDirective } from 'frakton-ng/focus-trap';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { FktSelectComponent } from 'frakton-ng/select';
 import { FktCheckboxComponent } from 'frakton-ng/checkbox';
 import { FktFieldComponent } from 'frakton-ng/field';
@@ -327,7 +327,7 @@ import { FktInputTextDirective } from 'frakton-ng/input-text';
   selector: 'fkt-focus-trap-form-example',
   imports: [
     FktFocusTrapDirective,
-    FktButtonComponent,
+    FktButtonLegacyComponent,
     FktFieldComponent,
     FktInputTextDirective,
     FktSelectComponent,
@@ -610,8 +610,8 @@ The directive automatically detects these focusable elements:
 - type: story
 - route: /docs/button
 - title: Components/Actions/Button
-- component: FktButtonComponent
-- import: `import { FktButtonComponent } from 'frakton-ng/button';`
+- component: FktButtonLegacyComponent
+- import: `import { FktButtonLegacyComponent } from 'frakton-ng/button';`
 
 ## Description
 
@@ -694,11 +694,11 @@ Example component: `TextVariantsExampleComponent`
 
 ```ts title="text-variants-example.component.ts"
 import { Component } from '@angular/core';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 
 @Component({
 	selector: 'fkt-text-variants-example',
-	imports: [FktButtonComponent],
+	imports: [FktButtonLegacyComponent],
 	templateUrl: './text-variants-example.component.html',
 	styleUrl: './text-variants-example.component.scss'
 })
@@ -837,11 +837,11 @@ Example component: `IconVariantsExampleComponent`
 
 ```ts title="icon-variants-example.component.ts"
 import { Component } from '@angular/core';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 
 @Component({
 	selector: 'fkt-icon-variants-example',
-	imports: [FktButtonComponent],
+	imports: [FktButtonLegacyComponent],
 	templateUrl: './icon-variants-example.component.html',
 	styleUrl: './icon-variants-example.component.scss'
 })
@@ -1135,7 +1135,7 @@ Illustrates disabled actions, preventing user interaction. Use for workflows whe
 
 ```typescript
 import {FktIconName} from "frakton-ng/icon";
-import {FktButtonTheme, FktButtonVariant} from "frakton-ng/button";
+import {FktButtonTheme, FktButtonVariant} from 'frakton-ng/button-legacy';
 import {FktColor} from "frakton-ng/core";
 
 interface FktButtonAction<Context = any> {
@@ -3367,13 +3367,13 @@ import { Component, computed, inject, resource, signal } from '@angular/core';
 import { FktTableColumn, FktTableComponent, FktTableSelection, FktTableSelectionDirective } from 'frakton-ng/table';
 import { FktPaginatorComponent } from 'frakton-ng/paginator';
 import { User, UsersService } from '@/stories/table/services/users.service';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { formatDate } from '@angular/common';
 
 
 @Component({
     selector: 'app-table-examples-row-selection',
-    imports: [FktTableComponent, FktTableSelectionDirective, FktPaginatorComponent, FktButtonComponent],
+    imports: [FktTableComponent, FktTableSelectionDirective, FktPaginatorComponent, FktButtonLegacyComponent],
     templateUrl: './table-examples-row-selection.component.html',
     styleUrl: './table-examples-row-selection.component.scss',
 })
@@ -3829,7 +3829,7 @@ import { FktTableFilterSelectComponent } from 'frakton-ng/table/filters/select';
 import { FktTableFilterNumberComponent } from 'frakton-ng/table/filters/number';
 import { FktTableFilterDateRangeComponent } from 'frakton-ng/table/filters/date-range';
 import { JsonPipe } from '@angular/common';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { ProductsService } from '@/stories/table/services/products.service';
 import { Product } from '@/stories/table/models/product';
 import { ProductFilters } from '@/stories/table/models/product-filters';
@@ -3854,7 +3854,7 @@ export const filter = defineFilters({
 
 @Component({
     selector: 'app-table-examples-with-filtering',
-    imports: [FktTableComponent, JsonPipe, FktButtonComponent],
+    imports: [FktTableComponent, JsonPipe, FktButtonLegacyComponent],
     templateUrl: './table-examples-filtering.component.html',
     styleUrl: './table-examples-filtering.component.scss',
 })
@@ -4086,7 +4086,7 @@ import {
 import { stockColor } from '@/stories/table/utils/stock-color';
 import { CategoryMultiFilterComponent } from './filters/category-multi-filter/category-multi-filter.component';
 import { JsonPipe } from '@angular/common';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 
 const cell = defineCells({
     tag: FktTagComponent,
@@ -4097,7 +4097,7 @@ const filter = defineFilters({});
 
 @Component({
     selector: 'app-table-examples-custom-filter-components',
-    imports: [FktTableComponent, JsonPipe, FktButtonComponent],
+    imports: [FktTableComponent, JsonPipe, FktButtonLegacyComponent],
     templateUrl: './table-examples-custom-filter-components.component.html',
     styleUrl: './table-examples-custom-filter-components.component.scss',
 })
@@ -4838,7 +4838,7 @@ import {
     FktTableExportDirective,
 } from 'frakton-ng/table';
 import { FktTagColor } from 'frakton-ng/tag';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { Order } from '@/stories/table/models/order';
 import { OrderStatus } from '@/stories/table/models/order-status';
 import { OrdersService } from '@/stories/table/services/orders.service';
@@ -4863,7 +4863,7 @@ const STATUS_COLORS: Record<OrderStatus, FktTagColor> = {
 
 @Component({
     selector: 'app-table-examples-export',
-    imports: [FktTableComponent, FktTableExportDirective, FktButtonComponent],
+    imports: [FktTableComponent, FktTableExportDirective, FktButtonLegacyComponent],
     templateUrl: './table-examples-export.component.html',
     styleUrl: './table-examples-export.component.scss',
 })
@@ -5109,7 +5109,7 @@ import {
 import { FktTagColor, FktTagComponent } from 'frakton-ng/tag';
 import { FktTableFilterTextComponent } from 'frakton-ng/table/filters/text';
 import { FktTableFilterSelectComponent } from 'frakton-ng/table/filters/select';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { Order } from '@/stories/table/models/order';
 import { OrderStatus } from '@/stories/table/models/order-status';
 import { OrdersService } from '@/stories/table/services/orders.service';
@@ -5146,7 +5146,7 @@ const loadStorage = () => {
         FktTableComponent,
         FktTableResizeDirective,
         FktTableReorderDirective,
-        FktButtonComponent,
+        FktButtonLegacyComponent,
     ],
     templateUrl: './table-examples-stateful.component.html',
     styleUrl: './table-examples-stateful.component.scss',
@@ -5938,7 +5938,7 @@ export class CompactExampleComponent {
 ## Types
 ```typescript
 import {FktIconName} from "frakton-ng/icon";
-import {FktButtonAction} from "frakton-ng/button";
+import {FktButtonAction} from 'frakton-ng/button-legacy';
 
 interface FktNoResults {
     label: string;                    // Main heading text (required)
@@ -7483,7 +7483,7 @@ Example component: `FktSpinnerExampleLoadingStateComponent`
 ```ts title="fkt-spinner-example-loading-state.component.ts"
 import { Component, input, signal } from '@angular/core';
 import { FktSpinnerComponent } from 'frakton-ng/spinner';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { FktIconComponent } from 'frakton-ng/icon';
 import { FktColor } from 'frakton-ng/core';
 
@@ -7491,7 +7491,7 @@ import { FktColor } from 'frakton-ng/core';
 	selector: 'fkt-spinner-example-loading-state',
 	imports: [
 		FktSpinnerComponent,
-		FktButtonComponent,
+		FktButtonLegacyComponent,
 		FktIconComponent
 	],
 	templateUrl: './fkt-spinner-example-loading-state.component.html',
@@ -8034,7 +8034,7 @@ import { Component } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { FktAutocompleteComponent } from 'frakton-ng/autocomplete';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { User } from '../autocomplete-demo-data';
 import { CodeOutputComponent } from '@/components/code-output/code-output.component';
 
@@ -8093,7 +8093,7 @@ const PRELOADED_USERS = [
     selector: 'app-autocomplete-hydrated-value-example',
     imports: [
         FktAutocompleteComponent,
-        FktButtonComponent,
+        FktButtonLegacyComponent,
         ReactiveFormsModule,
         CodeOutputComponent,
     ],
@@ -8238,7 +8238,7 @@ import {
     FktAutocompleteChipDirective,
     FktAutocompleteEmptyDirective,
 } from 'frakton-ng/autocomplete';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { USERS } from '../autocomplete-demo-data';
 import { FktAvatarComponent } from 'frakton-ng/avatar';
 import { FktTagComponent } from 'frakton-ng/tag';
@@ -8255,7 +8255,7 @@ import { FktIconComponent } from 'frakton-ng/icon';
         FktAutocompleteFooterDirective,
         FktAutocompleteChipDirective,
         FktAutocompleteEmptyDirective,
-        FktButtonComponent,
+        FktButtonLegacyComponent,
         ReactiveFormsModule,
         FktAvatarComponent,
         FktTagComponent,
@@ -9039,7 +9039,7 @@ Example component: `AutocompleteSignalFormsExampleComponent`
 import { Component, signal } from '@angular/core';
 import { disabled, form, FormField, required } from '@angular/forms/signals';
 import { FktAutocompleteComponent } from 'frakton-ng/autocomplete';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { COUNTRIES } from '../autocomplete-demo-data';
 import { CodeOutputComponent } from '@/components/code-output/code-output.component';
 
@@ -9047,7 +9047,7 @@ import { CodeOutputComponent } from '@/components/code-output/code-output.compon
     selector: 'app-autocomplete-signal-forms-example',
     imports: [
         FktAutocompleteComponent,
-        FktButtonComponent,
+        FktButtonLegacyComponent,
         FormField,
         CodeOutputComponent,
     ],
@@ -9157,7 +9157,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs';
 import { FktAutocompleteComponent } from 'frakton-ng/autocomplete';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { USERS } from '../autocomplete-demo-data';
 import { CodeOutputComponent } from '@/components/code-output/code-output.component';
 
@@ -9165,7 +9165,7 @@ import { CodeOutputComponent } from '@/components/code-output/code-output.compon
     selector: 'app-autocomplete-reactive-forms-example',
     imports: [
         FktAutocompleteComponent,
-        FktButtonComponent,
+        FktButtonLegacyComponent,
         ReactiveFormsModule,
         CodeOutputComponent,
     ],
@@ -9375,7 +9375,7 @@ import {
     FktHintEndDirective,
     FktHintStartDirective,
 } from 'frakton-ng/field';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { FktIconComponent } from 'frakton-ng/icon';
 import { CodeOutputComponent } from '@/components/code-output/code-output.component';
 import { USERS } from '../autocomplete-demo-data';
@@ -9384,7 +9384,7 @@ import { USERS } from '../autocomplete-demo-data';
     selector: 'app-autocomplete-automatic-validation-example',
     imports: [
         FktAutocompleteComponent,
-        FktButtonComponent,
+        FktButtonLegacyComponent,
         FktFieldPrefixDirective,
         FktFieldSuffixDirective,
         FktHintEndDirective,
@@ -9489,7 +9489,7 @@ import {
     FktHintEndDirective,
     FktHintStartDirective,
 } from 'frakton-ng/field';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { FktIconComponent } from 'frakton-ng/icon';
 import { CodeOutputComponent } from '@/components/code-output/code-output.component';
 import { USERS } from '../autocomplete-demo-data';
@@ -9498,7 +9498,7 @@ import { USERS } from '../autocomplete-demo-data';
     selector: 'app-autocomplete-manual-validation-example',
     imports: [
         FktAutocompleteComponent,
-        FktButtonComponent,
+        FktButtonLegacyComponent,
         FktErrorDirective,
         FktFieldErrorComponent,
         FktFieldPrefixDirective,
@@ -9826,7 +9826,7 @@ Example component: `ButtonGroupReactiveFormsComponent`
 import { Component, inject } from '@angular/core';
 import { FktButtonGroupComponent, FktButtonGroupOption } from 'frakton-ng/button-group';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { FktFieldErrorComponent } from 'frakton-ng/field';
 import { map } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
@@ -9836,7 +9836,7 @@ import { AsyncPipe } from '@angular/common';
     imports: [
         FktButtonGroupComponent,
         ReactiveFormsModule,
-        FktButtonComponent,
+        FktButtonLegacyComponent,
         FktFieldErrorComponent,
         AsyncPipe,
     ],
@@ -9923,7 +9923,7 @@ import { Component, signal } from '@angular/core';
 import { FktButtonGroupComponent, FktButtonGroupOption } from 'frakton-ng/button-group';
 import { disabled, FormField, form, required } from '@angular/forms/signals';
 import { FktFieldErrorComponent } from 'frakton-ng/field';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 
 @Component({
     selector: 'fkt-button-group-signal-forms',
@@ -9931,7 +9931,7 @@ import { FktButtonComponent } from 'frakton-ng/button';
         FktButtonGroupComponent,
         FormField,
         FktFieldErrorComponent,
-        FktButtonComponent,
+        FktButtonLegacyComponent,
     ],
     templateUrl: './button-group-signal-forms.component.html',
     styleUrl: './button-group-signal-forms.component.scss',
@@ -10013,14 +10013,14 @@ Example component: `ButtonGroupInputDrivenComponent`
 ```ts title="button-group-input-driven.component.ts"
 import { Component, signal } from '@angular/core';
 import { FktButtonGroupComponent, FktButtonGroupOption } from 'frakton-ng/button-group';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { FktFieldErrorComponent } from 'frakton-ng/field';
 
 @Component({
     selector: 'fkt-button-group-input-driven',
     imports: [
         FktButtonGroupComponent,
-        FktButtonComponent,
+        FktButtonLegacyComponent,
         FktFieldErrorComponent,
     ],
     templateUrl: './button-group-input-driven.component.html',
@@ -11426,7 +11426,7 @@ Example component: `FieldReactiveFormsExampleComponent`
 ```ts title="field-reactive-forms-example.component.ts"
 import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { FktFieldComponent, FktFieldPrefixDirective } from 'frakton-ng/field';
 import { FktInputTextDirective } from 'frakton-ng/input-text';
 import { FktIconComponent } from 'frakton-ng/icon';
@@ -11437,7 +11437,7 @@ import { AsyncPipe } from '@angular/common';
     selector: 'app-field-reactive-forms-example',
     imports: [
         ReactiveFormsModule,
-        FktButtonComponent,
+        FktButtonLegacyComponent,
         FktFieldComponent,
         FktInputTextDirective,
         FktIconComponent,
@@ -11569,7 +11569,7 @@ Example component: `FieldManualErrorExampleComponent`
 ```ts title="field-manual-error-example.component.ts"
 import { Component, signal } from '@angular/core';
 import { email, FormField, form, required } from '@angular/forms/signals';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { FktFieldComponent, FktFieldPrefixDirective } from 'frakton-ng/field';
 import { FktInputTextDirective } from 'frakton-ng/input-text';
 import { FktIconComponent } from 'frakton-ng/icon';
@@ -11578,7 +11578,7 @@ import { FktIconComponent } from 'frakton-ng/icon';
     selector: 'app-field-manual-error-example',
     imports: [
         FormField,
-        FktButtonComponent,
+        FktButtonLegacyComponent,
         FktFieldComponent,
         FktInputTextDirective,
         FktIconComponent,
@@ -12307,7 +12307,7 @@ Example component: `InputSignalFormsExampleComponent`
 ```ts title="input-signal-forms-example.component.ts"
 import { Component, signal } from '@angular/core';
 import { email, FormField, form, minLength, required } from '@angular/forms/signals';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { FktFieldComponent } from 'frakton-ng/field';
 import { FktIconComponent } from 'frakton-ng/icon';
 import { FktInputTextDirective } from 'frakton-ng/input-text';
@@ -12316,7 +12316,7 @@ import { FktInputTextDirective } from 'frakton-ng/input-text';
     selector: 'app-input-signal-forms-example',
     imports: [
         FormField,
-        FktButtonComponent,
+        FktButtonLegacyComponent,
         FktFieldComponent,
         FktIconComponent,
         FktInputTextDirective,
@@ -12412,7 +12412,7 @@ Example component: `InputReactiveFormsExampleComponent`
 ```ts title="input-reactive-forms-example.component.ts"
 import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { FktFieldComponent } from 'frakton-ng/field';
 import { FktIconComponent } from 'frakton-ng/icon';
 import { FktInputTextDirective } from 'frakton-ng/input-text';
@@ -12420,7 +12420,7 @@ import { FktInputTextDirective } from 'frakton-ng/input-text';
 @Component({
     selector: 'app-input-reactive-forms-example',
     imports: [
-        FktButtonComponent,
+        FktButtonLegacyComponent,
         FktFieldComponent,
         FktIconComponent,
         FktInputTextDirective,
@@ -12829,7 +12829,7 @@ Example component: `SelectHydratedValueExampleComponent`
 import { Component } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { FktSelectComponent } from 'frakton-ng/select';
 import { CodeOutputComponent } from '@/components/code-output/code-output.component';
 import { SELECT_USERS, SelectUser } from '../select-demo-data';
@@ -12838,7 +12838,7 @@ import { SELECT_USERS, SelectUser } from '../select-demo-data';
     selector: 'app-select-hydrated-value-example',
     imports: [
         FktSelectComponent,
-        FktButtonComponent,
+        FktButtonLegacyComponent,
         ReactiveFormsModule,
         CodeOutputComponent,
     ],
@@ -12932,7 +12932,7 @@ import {
     FktSelectHeaderDirective,
     FktSelectItemDirective,
 } from 'frakton-ng/select';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { FktIconComponent } from 'frakton-ng/icon';
 import { CallPipe } from 'frakton-ng/internal/pipes';
 import { FktTagColor, FktTagComponent } from 'frakton-ng/tag';
@@ -13000,7 +13000,7 @@ const PRODUCTS: Product[] = [
         FktSelectFooterDirective,
         FktSelectChipDirective,
         FktSelectEmptyDirective,
-        FktButtonComponent,
+        FktButtonLegacyComponent,
         FktIconComponent,
         CallPipe,
         FktTagComponent,
@@ -13366,7 +13366,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs';
 import { FktSelectComponent } from 'frakton-ng/select';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { CodeOutputComponent } from '@/components/code-output/code-output.component';
 import { SELECT_USERS } from '../select-demo-data';
 
@@ -13374,7 +13374,7 @@ import { SELECT_USERS } from '../select-demo-data';
     selector: 'app-select-reactive-forms-example',
     imports: [
         FktSelectComponent,
-        FktButtonComponent,
+        FktButtonLegacyComponent,
         ReactiveFormsModule,
         CodeOutputComponent,
     ],
@@ -13467,7 +13467,7 @@ Example component: `SelectSignalFormsExampleComponent`
 import { Component, signal } from '@angular/core';
 import { disabled, form, FormField, required } from '@angular/forms/signals';
 import { FktSelectComponent } from 'frakton-ng/select';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { CodeOutputComponent } from '@/components/code-output/code-output.component';
 import { SELECT_USERS } from '../select-demo-data';
 
@@ -13475,7 +13475,7 @@ import { SELECT_USERS } from '../select-demo-data';
     selector: 'app-select-signal-forms-example',
     imports: [
         FktSelectComponent,
-        FktButtonComponent,
+        FktButtonLegacyComponent,
         FormField,
         CodeOutputComponent,
     ],
@@ -13657,7 +13657,7 @@ import {
     FktFieldPrefixDirective,
 } from 'frakton-ng/field';
 import { FktIconComponent } from 'frakton-ng/icon';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { SELECT_USERS } from '../select-demo-data';
 
 @Component({
@@ -13668,7 +13668,7 @@ import { SELECT_USERS } from '../select-demo-data';
         FktFieldErrorComponent,
         FktFieldPrefixDirective,
         FktIconComponent,
-        FktButtonComponent,
+        FktButtonLegacyComponent,
         ReactiveFormsModule,
     ],
     templateUrl: './select-validations-example.component.html',
@@ -14047,7 +14047,7 @@ Example component: `TextareaSignalFormsExampleComponent`
 ```ts title="textarea-signal-forms-example.component.ts"
 import { Component, signal } from '@angular/core';
 import { FormField, form, maxLength, minLength, required } from '@angular/forms/signals';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { FktFieldComponent } from 'frakton-ng/field';
 import { FktTextareaDirective } from 'frakton-ng/textarea';
 
@@ -14055,7 +14055,7 @@ import { FktTextareaDirective } from 'frakton-ng/textarea';
     selector: 'app-textarea-signal-forms-example',
     imports: [
         FormField,
-        FktButtonComponent,
+        FktButtonLegacyComponent,
         FktFieldComponent,
         FktTextareaDirective,
     ],
@@ -14132,14 +14132,14 @@ Example component: `TextareaReactiveFormsExampleComponent`
 ```ts title="textarea-reactive-forms-example.component.ts"
 import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { FktCharacterCountDirective, FktFieldComponent } from 'frakton-ng/field';
 import { FktTextareaDirective } from 'frakton-ng/textarea';
 
 @Component({
     selector: 'app-textarea-reactive-forms-example',
     imports: [
-        FktButtonComponent,
+        FktButtonLegacyComponent,
         FktCharacterCountDirective,
         FktFieldComponent,
         FktTextareaDirective,
@@ -14315,7 +14315,7 @@ Example component: `ToggleReactiveFormsComponent`
 import { Component, inject } from '@angular/core';
 import { FktToggleComponent } from 'frakton-ng/toggle';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { FktFieldErrorComponent } from 'frakton-ng/field';
 import { map } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
@@ -14325,7 +14325,7 @@ import { AsyncPipe } from '@angular/common';
     imports: [
         FktToggleComponent,
         ReactiveFormsModule,
-        FktButtonComponent,
+        FktButtonLegacyComponent,
         FktFieldErrorComponent,
         AsyncPipe,
     ],
@@ -14390,7 +14390,7 @@ import { Component, signal } from '@angular/core';
 import { FktToggleComponent } from 'frakton-ng/toggle';
 import { disabled, FormField, form, required } from '@angular/forms/signals';
 import { FktFieldErrorComponent } from 'frakton-ng/field';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 
 @Component({
     selector: 'fkt-toggle-signal-forms',
@@ -14398,7 +14398,7 @@ import { FktButtonComponent } from 'frakton-ng/button';
         FktToggleComponent,
         FormField,
         FktFieldErrorComponent,
-        FktButtonComponent,
+        FktButtonLegacyComponent,
     ],
     templateUrl: './toggle-signal-forms.component.html',
     styleUrl: './toggle-signal-forms.component.scss',
@@ -14460,14 +14460,14 @@ Example component: `ToggleInputDrivenComponent`
 ```ts title="toggle-input-driven.component.ts"
 import { Component, signal } from '@angular/core';
 import { FktToggleComponent } from 'frakton-ng/toggle';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { FktFieldErrorComponent } from 'frakton-ng/field';
 
 @Component({
     selector: 'fkt-toggle-input-driven',
     imports: [
         FktToggleComponent,
-        FktButtonComponent,
+        FktButtonLegacyComponent,
         FktFieldErrorComponent,
     ],
     templateUrl: './toggle-input-driven.component.html',
@@ -15300,11 +15300,11 @@ Example component: `FktCalendarEventsExampleComponent`
 ```ts title="fkt-calendar-events-example.component.ts"
 import { Component, computed, input, model, signal } from '@angular/core';
 import { FktCalendarComponent, FktCalendarDateConfigFn } from 'frakton-ng/calendar';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 
 @Component({
 	selector: 'fkt-calendar-events-example',
-	imports: [FktCalendarComponent, FktButtonComponent],
+	imports: [FktCalendarComponent, FktButtonLegacyComponent],
 	templateUrl: './fkt-calendar-events-example.component.html',
 	styleUrl: './fkt-calendar-events-example.component.scss'
 })
@@ -17987,13 +17987,13 @@ Example component: `LoadingExampleComponent`
 ```ts title="loading-example.component.ts"
 import { Component, signal } from '@angular/core';
 import { FktNavigatorComponent } from 'frakton-ng/navigator';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { FktSpinnerComponent } from 'frakton-ng/spinner';
 
 @Component({
 	selector: 'loading-example',
 	templateUrl: './loading-example.component.html',
-	imports: [FktNavigatorComponent, FktButtonComponent, FktSpinnerComponent]
+	imports: [FktNavigatorComponent, FktButtonLegacyComponent, FktSpinnerComponent]
 })
 export class LoadingExampleComponent {
 	protected isLoading = signal(false);
@@ -18758,14 +18758,14 @@ Example component: `AdminDashboardLayoutExampleComponent`
 ```ts title="admin-dashboard-layout-example.component.ts"
 import { Component, computed, input, linkedSignal, signal } from '@angular/core';
 import { FktMenuGroup, FktSideMenuComponent } from 'frakton-ng/side-menu';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { FktIconComponent } from 'frakton-ng/icon';
 
 @Component({
 	selector: 'admin-dashboard-layout-example',
 	templateUrl: './admin-dashboard-layout-example.component.html',
 	styleUrl: './admin-dashboard-layout-example.component.scss',
-	imports: [FktSideMenuComponent, FktButtonComponent, FktIconComponent]
+	imports: [FktSideMenuComponent, FktButtonLegacyComponent, FktIconComponent]
 })
 export class AdminDashboardLayoutExampleComponent {
 	groups = input.required<FktMenuGroup[]>();
@@ -19668,7 +19668,7 @@ Example component: `FktSimpleDialogExampleComponent`
 
 ```ts title="fkt-simple-dialog-example.component.ts"
 import { Component, inject, signal } from '@angular/core';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { FktDialogService } from 'frakton-ng/dialog';
 import { FktSimpleDialogDemoComponent } from '../dialog/simple-dialog-demo/fkt-simple-dialog-demo.component';
 
@@ -19676,7 +19676,7 @@ import { FktSimpleDialogDemoComponent } from '../dialog/simple-dialog-demo/fkt-s
 	selector: 'simple-dialog-example',
 	templateUrl: './fkt-simple-dialog-example.component.html',
 	styleUrl: './fkt-simple-dialog-example.component.scss',
-	imports: [FktButtonComponent]
+	imports: [FktButtonLegacyComponent]
 })
 export class FktSimpleDialogExampleComponent {
 	private dialogService = inject(FktDialogService);
@@ -19743,14 +19743,14 @@ Example component: `FktConfirmationDialogExampleComponent`
 
 ```ts title="fkt-confirmation-dialog-example.component.ts"
 import { Component, ElementRef, inject } from '@angular/core';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { FktDialogService } from 'frakton-ng/dialog';
 
 @Component({
 	selector: 'confirmation-dialog-example',
 	templateUrl: './fkt-confirmation-dialog-example.component.html',
 	styleUrl: './fkt-confirmation-dialog-example.component.scss',
-	imports: [FktButtonComponent]
+	imports: [FktButtonLegacyComponent]
 })
 export class FktConfirmationDialogExampleComponent {
 	private dialogService = inject(FktDialogService);
@@ -19807,7 +19807,7 @@ Example component: `FktFormDialogExampleComponent`
 
 ```ts title="fkt-form-dialog-example.component.ts"
 import { Component, inject } from '@angular/core';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { FktDialogService } from 'frakton-ng/dialog';
 import { FktFormDialogDemoComponent, FormData } from '../dialog/form-dialog-demo/fkt-form-dialog-demo.component';
 
@@ -19815,7 +19815,7 @@ import { FktFormDialogDemoComponent, FormData } from '../dialog/form-dialog-demo
 	selector: 'form-dialog-example',
 	templateUrl: './fkt-form-dialog-example.component.html',
 	styleUrl: 'fkt-form-dialog-example.component.scss',
-	imports: [FktButtonComponent]
+	imports: [FktButtonLegacyComponent]
 })
 export class FktFormDialogExampleComponent {
 	private dialogService = inject(FktDialogService);
@@ -19926,14 +19926,14 @@ Example component: `FktCustomDialogExampleComponent`
 
 ```ts title="fkt-custom-dialog-example.component.ts"
 import { Component, inject, signal } from '@angular/core';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { FktDialogService } from 'frakton-ng/dialog';
 import { FktCustomDialogDemoComponent } from '../dialog/custom-dialog-demo/fkt-custom-dialog-demo.component';
 
 @Component({
 	selector: 'custom-dialog-example',
 	templateUrl: './fkt-custom-dialog-example.component.html',
-	imports: [FktButtonComponent],
+	imports: [FktButtonLegacyComponent],
 	styleUrl: './fkt-custom-dialog-example.component.scss'
 })
 export class FktCustomDialogExampleComponent {
@@ -19996,7 +19996,7 @@ Example component: `FktSmallDialogExampleComponent`
 
 ```ts title="fkt-small-dialog-example.component.ts"
 import { Component, inject } from '@angular/core';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { FktDialogService } from 'frakton-ng/dialog';
 import { FktSimpleDialogDemoComponent } from '../dialog/simple-dialog-demo/fkt-simple-dialog-demo.component';
 
@@ -20004,7 +20004,7 @@ import { FktSimpleDialogDemoComponent } from '../dialog/simple-dialog-demo/fkt-s
 	selector: 'small-dialog-example',
 	templateUrl: './fkt-small-dialog-example.component.html',
 	styleUrl: './fkt-small-dialog-example.component.scss',
-	imports: [FktButtonComponent]
+	imports: [FktButtonLegacyComponent]
 })
 export class FktSmallDialogExampleComponent {
 	private dialogService = inject(FktDialogService);
@@ -20049,7 +20049,7 @@ Example component: `FktFullscreenDialogExampleComponent`
 
 ```ts title="fkt-fullscreen-dialog-example.component.ts"
 import { Component, inject } from '@angular/core';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { FktDialogService } from 'frakton-ng/dialog';
 import { FktCustomDialogDemoComponent } from '../dialog/custom-dialog-demo/fkt-custom-dialog-demo.component';
 import { FktIconName } from 'frakton-ng/icon';
@@ -20058,7 +20058,7 @@ import { FktIconName } from 'frakton-ng/icon';
 	selector: 'fullscreen-dialog-example',
 	templateUrl: './fkt-fullscreen-dialog-example.component.html',
 	styleUrl: './fkt-fullscreen-dialog-example.component.scss',
-	imports: [FktButtonComponent]
+	imports: [FktButtonLegacyComponent]
 })
 export class FktFullscreenDialogExampleComponent {
 	private dialogService = inject(FktDialogService);
@@ -20116,7 +20116,7 @@ Example component: `FktDialogOverviewExampleComponent`
 
 ```ts title="fkt-dialog-overview-example.component.ts"
 import { Component, inject, signal } from '@angular/core';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { FktDialogService } from 'frakton-ng/dialog';
 import { FktSimpleDialogDemoComponent } from '../dialog/simple-dialog-demo/fkt-simple-dialog-demo.component';
 import { FktFormDialogDemoComponent, FormData } from '../dialog/form-dialog-demo/fkt-form-dialog-demo.component';
@@ -20127,7 +20127,7 @@ import { FktIconName } from 'frakton-ng/icon';
 	selector: 'dialog-demo-host',
 	templateUrl: './fkt-dialog-overview-example.component.html',
 	styleUrl: './fkt-dialog-overview-example.component.scss',
-	imports: [FktButtonComponent]
+	imports: [FktButtonLegacyComponent]
 })
 export class FktDialogOverviewExampleComponent {
 	private dialogService = inject(FktDialogService);
@@ -20360,7 +20360,7 @@ export class FktDialogOverviewExampleComponent {
 
 ```typescript
 import {ComponentRef, Type} from "@angular/core";
-import {FktButtonAction} from "frakton-ng/button";
+import {FktButtonAction} from 'frakton-ng/button-legacy';
 
 export interface FktDialogOptions<T> {
     component: Type<T>;                    // Angular component to display
@@ -20845,7 +20845,7 @@ Example component: `FktSimpleOverlayExampleComponent`
 
 ```ts title="fkt-simple-overlay-example.component.ts"
 import { Component, inject, signal } from '@angular/core';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { FktOverlayService } from 'frakton-ng/overlay';
 import { FktGeometryPosition } from 'frakton-ng/internal/types';
 import {
@@ -20857,7 +20857,7 @@ import {
 	selector: 'simple-overlay-example',
 	templateUrl: './fkt-simple-overlay-example.component.html',
 	styleUrl: './fkt-simple-overlay-example.component.scss',
-	imports: [FktButtonComponent]
+	imports: [FktButtonLegacyComponent]
 })
 export class FktSimpleOverlayExampleComponent {
 	private overlayService = inject(FktOverlayService);
@@ -20949,7 +20949,7 @@ Example component: `FktDropdownOverlayExampleComponent`
 
 ```ts title="fkt-dropdown-overlay-example.component.ts"
 import { Component, inject } from '@angular/core';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { FktOverlayService } from 'frakton-ng/overlay';
 import { FktIconName } from 'frakton-ng/icon';
 import {
@@ -20967,7 +20967,7 @@ export interface DropdownOption {
 	selector: 'dropdown-overlay-example',
 	templateUrl: './fkt-dropdown-overlay-example.component.html',
 	styleUrl: './fkt-dropdown-overlay-example.component.scss',
-	imports: [FktButtonComponent]
+	imports: [FktButtonLegacyComponent]
 })
 export class FktDropdownOverlayExampleComponent {
 	private overlayService = inject(FktOverlayService);
@@ -21109,7 +21109,7 @@ Example component: `FktFormOverlayExampleComponent`
 
 ```ts title="fkt-form-overlay-example.component.ts"
 import { Component, inject } from '@angular/core';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { FktOverlayService } from 'frakton-ng/overlay';
 import { FktFormOverlayDialogComponent } from '../dialog/fkt-form-overlay-dialog/fkt-form-overlay-dialog.component';
 
@@ -21123,7 +21123,7 @@ export interface FormData {
 	selector: 'form-overlay-example',
 	templateUrl: './fkt-form-overlay-example.component.html',
 	styleUrl: './fkt-form-overlay-example.component.scss',
-	imports: [FktButtonComponent]
+	imports: [FktButtonLegacyComponent]
 })
 export class FktFormOverlayExampleComponent {
 	private overlayService = inject(FktOverlayService);
@@ -21278,7 +21278,7 @@ Example component: `FktCustomTooltipOverlayExampleComponent`
 
 ```ts title="fkt-custom-tooltip-overlay-example.component.ts"
 import { Component, inject } from '@angular/core';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { FktOverlayRef, FktOverlayService } from 'frakton-ng/overlay';
 import { FktGeometryPosition } from 'frakton-ng/internal/types';
 import {
@@ -21290,7 +21290,7 @@ import {
 	selector: 'custom-tooltip-overlay-example',
 	templateUrl: './fkt-custom-tooltip-overlay-example.component.html',
 	styleUrl: './fkt-custom-tooltip-overlay-example.component.scss',
-	imports: [FktButtonComponent]
+	imports: [FktButtonLegacyComponent]
 })
 export class FktCustomTooltipOverlayExampleComponent {
 	private overlayService = inject(FktOverlayService);
@@ -21399,7 +21399,7 @@ Example component: `FktInteractiveOverlayExampleComponent`
 
 ```ts title="fkt-interactive-overlay-example.component.ts"
 import { Component, ElementRef, inject, signal } from '@angular/core';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { FktOverlayService } from 'frakton-ng/overlay';
 import {
 	FktInteractiveOverlayDialogComponent
@@ -21411,7 +21411,7 @@ import { FktTagComponent } from 'frakton-ng/tag';
 	selector: 'interactive-overlay-example',
 	templateUrl: './fkt-interactive-overlay-example.component.html',
 	styleUrl: './fkt-interactive-overlay-example.component.scss',
-	imports: [FktButtonComponent, FktTagComponent]
+	imports: [FktButtonLegacyComponent, FktTagComponent]
 })
 export class FktInteractiveOverlayExampleComponent {
 	private overlayService = inject(FktOverlayService);
@@ -22018,7 +22018,7 @@ Example component: `BasicTooltipExampleComponent`
 
 ```ts title="basic-tooltip-example.component.ts"
 import { Component, input } from '@angular/core';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { FktTooltipDirective } from 'frakton-ng/tooltip';
 import { FktColor } from 'frakton-ng/core';
 
@@ -22026,7 +22026,7 @@ import { FktColor } from 'frakton-ng/core';
 	selector: 'basic-tooltip-example',
 	styleUrl: './basic-tooltip-example.component.scss',
 	templateUrl: './basic-tooltip-example.component.html',
-	imports: [FktButtonComponent, FktTooltipDirective]
+	imports: [FktButtonLegacyComponent, FktTooltipDirective]
 })
 export class BasicTooltipExampleComponent {
 	tooltipColor = input<FktColor>('primary')
@@ -22095,14 +22095,14 @@ Example component: `PositioningTooltipExampleComponent`
 
 ```ts title="positioning-tooltip-example.component.ts"
 import { Component, input } from '@angular/core';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { FktTooltipDirective } from 'frakton-ng/tooltip';
 
 @Component({
 	selector: 'positioning-tooltip-example',
 	styleUrl: './positioning-tooltip-example.component.scss',
 	templateUrl: './positioning-tooltip-example.component.html',
-    imports: [FktButtonComponent, FktTooltipDirective]
+    imports: [FktButtonLegacyComponent, FktTooltipDirective]
 })
 export class PositioningTooltipExampleComponent {
 	tooltipColor = input('primary');
@@ -22522,7 +22522,7 @@ Example component: `DifferentElementsExampleComponent`
 
 ```ts title="different-elements-example.component.ts"
 import { Component, input } from '@angular/core';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { FktIconComponent } from 'frakton-ng/icon';
 import { FktTagComponent } from 'frakton-ng/tag';
 import { FktTooltipDirective } from 'frakton-ng/tooltip';
@@ -22531,7 +22531,7 @@ import { FktTooltipDirective } from 'frakton-ng/tooltip';
 	selector: 'different-elements-example',
 	styleUrl: "./different-elements-example.component.scss",
 	templateUrl: './different-elements-example.component.html',
-	imports: [FktButtonComponent, FktIconComponent, FktTagComponent, FktTooltipDirective]
+	imports: [FktButtonLegacyComponent, FktIconComponent, FktTagComponent, FktTooltipDirective]
 })
 export class DifferentElementsExampleComponent {
 	tooltipColor = input('primary');
@@ -23081,12 +23081,12 @@ Add Frakton NG styles to your `angular.json`:
 Import and use components as standalone modules:
 
 ```typescript
-import { Component, signal } from '@angular/core';
-import { FktButtonComponent } from 'frakton-ng/button';
+import {Component, signal} from '@angular/core';
+import {FktButtonLegacyComponent} from 'frakton-ng/button-legacy';
 
 @Component({
-  selector: 'app-home',
-  template: `
+    selector: 'app-home',
+    template: `
     <div>
       <h1>Welcome to My App</h1>
 
@@ -23110,22 +23110,22 @@ import { FktButtonComponent } from 'frakton-ng/button';
       </fkt-button>
     </div>
   `,
-  imports: [FktButtonComponent],
-  standalone: true
+    imports: [FktButtonLegacyComponent],
+    standalone: true
 })
 export class HomeComponent {
-  isSaving = signal(false);
+    isSaving = signal(false);
 
-  handleClick() {
-    console.log('Button clicked!');
-  }
+    handleClick() {
+        console.log('Button clicked!');
+    }
 
-  async save() {
-    this.isSaving.set(true);
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    this.isSaving.set(false);
-  }
+    async save() {
+        this.isSaving.set(true);
+        // Simulate API call
+        await new Promise(resolve => setTimeout(resolve, 2000));
+        this.isSaving.set(false);
+    }
 }
 ```
 
@@ -23426,7 +23426,7 @@ import {DropdownModule} from 'primeng/dropdown';
 
 ```typescript
 // After (Frakton NG)
-import {FktButtonComponent} from 'frakton-ng/button';
+import {FktButtonLegacyComponent} from 'frakton-ng/button-legacy';
 import {FktFieldComponent} from 'frakton-ng/field';
 import {FktInputTextDirective} from 'frakton-ng/input-text';
 import {FktSelectComponent} from 'frakton-ng/select';
@@ -23442,7 +23442,7 @@ import {FormsModule} from '@angular/forms';
   `,
     imports: [
         FormsModule,
-        FktButtonComponent,
+        FktButtonLegacyComponent,
         FktFieldComponent,
         FktInputTextDirective,
         FktSelectComponent
@@ -23506,11 +23506,11 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 ```typescript
 // After (Frakton NG)
-import {FktButtonComponent} from 'frakton-ng/button';
+import {FktButtonLegacyComponent} from 'frakton-ng/button-legacy';
 import {FktOverlayService} from 'frakton-ng/overlay';
 
 @Component({
-	template: `
+    template: `
     <!-- Built-in loading state -->
     <fkt-button
       text="Save"
@@ -23525,22 +23525,22 @@ import {FktOverlayService} from 'frakton-ng/overlay';
       (click)="openMenu($event)">
     </fkt-button>
   `,
-	imports: [FktButtonComponent]
+    imports: [FktButtonLegacyComponent]
 })
 export class ExampleComponent {
-	constructor(private overlay: FktOverlayService) {
-	}
+    constructor(private overlay: FktOverlayService) {
+    }
 
-	openMenu(event: Event) {
-		this.overlay.open({
-			anchorElementRef: {nativeElement: event.target as HTMLElement},
-			component: ActionsMenuComponent,
-			data: {
-				onEdit: () => this.edit(),
-				onDelete: () => this.delete()
-			}
-		});
-	}
+    openMenu(event: Event) {
+        this.overlay.open({
+            anchorElementRef: {nativeElement: event.target as HTMLElement},
+            component: ActionsMenuComponent,
+            data: {
+                onEdit: () => this.edit(),
+                onDelete: () => this.delete()
+            }
+        });
+    }
 }
 ```
 
@@ -23707,7 +23707,7 @@ describe('Migration Component', () => {
 ```typescript
 // Problem: Mixed import patterns
 // Solution: Use consistent import structure
-import {FktButtonComponent} from 'frakton-ng/button';
+import {FktButtonLegacyComponent} from 'frakton-ng/button-legacy';
 import {MatButtonModule} from '@angular/material/button';
 ```
 
@@ -23865,7 +23865,7 @@ export class ThemeService {
       (click)="themeService.toggleTheme()">
     </fkt-button>
   `,
-  imports: [FktButtonComponent],
+  imports: [FktButtonLegacyComponent],
   standalone: true
 })
 export class ThemeToggleComponent {

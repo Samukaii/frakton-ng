@@ -14,7 +14,7 @@ import {
 } from '../../../fkt-table.types';
 import { FktTableCellRendererComponent } from '../../renderers/cell/fkt-table-cell-renderer.component';
 import { FktCheckboxComponent } from 'frakton-ng/checkbox';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { CallPipe } from 'frakton-ng/internal/pipes';
 import { injectTableContext } from '../../core/inject-table-context';
 
@@ -25,7 +25,7 @@ import { injectTableContext } from '../../core/inject-table-context';
     imports: [
         FktTableCellRendererComponent,
         FktCheckboxComponent,
-        FktButtonComponent,
+        FktButtonLegacyComponent,
         CallPipe,
     ],
     templateUrl: './fkt-table-row.component.html',

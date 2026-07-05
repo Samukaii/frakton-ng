@@ -1,7 +1,7 @@
 import { Component, computed, input } from '@angular/core';
 import { FktButtonsListComponent } from 'frakton-ng/buttons-list';
 import { FktIconComponent } from 'frakton-ng/icon';
-import { FktButtonAction } from 'frakton-ng/button';
+import { FktButtonAction } from 'frakton-ng/button-legacy';
 
 @Component({
 	selector: 'fkt-dialog-confirm-action',

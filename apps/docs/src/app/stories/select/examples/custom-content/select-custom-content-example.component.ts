@@ -10,7 +10,7 @@ import {
     FktSelectHeaderDirective,
     FktSelectItemDirective,
 } from 'frakton-ng/select';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { FktIconComponent } from 'frakton-ng/icon';
 import { CallPipe } from 'frakton-ng/internal/pipes';
 import { FktTagColor, FktTagComponent } from 'frakton-ng/tag';
@@ -78,7 +78,7 @@ const PRODUCTS: Product[] = [
         FktSelectFooterDirective,
         FktSelectChipDirective,
         FktSelectEmptyDirective,
-        FktButtonComponent,
+        FktButtonLegacyComponent,
         FktIconComponent,
         CallPipe,
         FktTagComponent,

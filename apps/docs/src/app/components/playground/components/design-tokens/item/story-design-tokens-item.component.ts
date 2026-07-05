@@ -1,6 +1,6 @@
 import { Component, computed, inject, input, signal } from '@angular/core';
 import { DesignTokenItem } from '@/models/design-token-item';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { FktTooltipDirective } from 'frakton-ng/tooltip';
 import { FktIconComponent, FktIconName } from 'frakton-ng/icon';
 import { wait } from 'frakton-ng/internal/utils';
@@ -32,7 +32,7 @@ import {
 @Component({
     selector: 'app-story-design-tokens-item',
     imports: [
-        FktButtonComponent,
+        FktButtonLegacyComponent,
         FktTooltipDirective,
         FktIconComponent,
         HumanizeDesignTokenPipe,

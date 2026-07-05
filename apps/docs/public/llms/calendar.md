@@ -395,11 +395,11 @@ Example component: `FktCalendarEventsExampleComponent`
 ```ts title="fkt-calendar-events-example.component.ts"
 import { Component, computed, input, model, signal } from '@angular/core';
 import { FktCalendarComponent, FktCalendarDateConfigFn } from 'frakton-ng/calendar';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 
 @Component({
 	selector: 'fkt-calendar-events-example',
-	imports: [FktCalendarComponent, FktButtonComponent],
+	imports: [FktCalendarComponent, FktButtonLegacyComponent],
 	templateUrl: './fkt-calendar-events-example.component.html',
 	styleUrl: './fkt-calendar-events-example.component.scss'
 })

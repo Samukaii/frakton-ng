@@ -1,5 +1,5 @@
 import { Component, computed, inject, input } from '@angular/core';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { FktIconName } from 'frakton-ng/icon';
 import { Generic } from 'frakton-ng/internal/types';
 import { FktAutocompleteContextDirective } from '../../directives/fkt-autocomplete-context.directive';
@@ -7,7 +7,7 @@ import { FktAutocompleteSelectionDirective } from '../../directives/fkt-autocomp
 
 @Component({
     selector: 'fkt-autocomplete-action-button',
-    imports: [FktButtonComponent],
+    imports: [FktButtonLegacyComponent],
     templateUrl: './fkt-autocomplete-action-button.component.html',
     styleUrl: './fkt-autocomplete-action-button.component.scss',
 })

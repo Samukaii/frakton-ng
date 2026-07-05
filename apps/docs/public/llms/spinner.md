@@ -187,7 +187,7 @@ Example component: `FktSpinnerExampleLoadingStateComponent`
 ```ts title="fkt-spinner-example-loading-state.component.ts"
 import { Component, input, signal } from '@angular/core';
 import { FktSpinnerComponent } from 'frakton-ng/spinner';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { FktIconComponent } from 'frakton-ng/icon';
 import { FktColor } from 'frakton-ng/core';
 
@@ -195,7 +195,7 @@ import { FktColor } from 'frakton-ng/core';
 	selector: 'fkt-spinner-example-loading-state',
 	imports: [
 		FktSpinnerComponent,
-		FktButtonComponent,
+		FktButtonLegacyComponent,
 		FktIconComponent
 	],
 	templateUrl: './fkt-spinner-example-loading-state.component.html',

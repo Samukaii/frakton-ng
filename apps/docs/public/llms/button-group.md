@@ -80,7 +80,7 @@ Example component: `ButtonGroupReactiveFormsComponent`
 import { Component, inject } from '@angular/core';
 import { FktButtonGroupComponent, FktButtonGroupOption } from 'frakton-ng/button-group';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { FktFieldErrorComponent } from 'frakton-ng/field';
 import { map } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
@@ -90,7 +90,7 @@ import { AsyncPipe } from '@angular/common';
     imports: [
         FktButtonGroupComponent,
         ReactiveFormsModule,
-        FktButtonComponent,
+        FktButtonLegacyComponent,
         FktFieldErrorComponent,
         AsyncPipe,
     ],
@@ -177,7 +177,7 @@ import { Component, signal } from '@angular/core';
 import { FktButtonGroupComponent, FktButtonGroupOption } from 'frakton-ng/button-group';
 import { disabled, FormField, form, required } from '@angular/forms/signals';
 import { FktFieldErrorComponent } from 'frakton-ng/field';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 
 @Component({
     selector: 'fkt-button-group-signal-forms',
@@ -185,7 +185,7 @@ import { FktButtonComponent } from 'frakton-ng/button';
         FktButtonGroupComponent,
         FormField,
         FktFieldErrorComponent,
-        FktButtonComponent,
+        FktButtonLegacyComponent,
     ],
     templateUrl: './button-group-signal-forms.component.html',
     styleUrl: './button-group-signal-forms.component.scss',
@@ -267,14 +267,14 @@ Example component: `ButtonGroupInputDrivenComponent`
 ```ts title="button-group-input-driven.component.ts"
 import { Component, signal } from '@angular/core';
 import { FktButtonGroupComponent, FktButtonGroupOption } from 'frakton-ng/button-group';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { FktFieldErrorComponent } from 'frakton-ng/field';
 
 @Component({
     selector: 'fkt-button-group-input-driven',
     imports: [
         FktButtonGroupComponent,
-        FktButtonComponent,
+        FktButtonLegacyComponent,
         FktFieldErrorComponent,
     ],
     templateUrl: './button-group-input-driven.component.html',

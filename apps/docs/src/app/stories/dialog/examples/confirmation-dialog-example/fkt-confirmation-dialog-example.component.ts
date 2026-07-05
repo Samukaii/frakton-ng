@@ -1,12 +1,12 @@
 import { Component, ElementRef, inject } from '@angular/core';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { FktDialogService } from 'frakton-ng/dialog';
 
 @Component({
 	selector: 'confirmation-dialog-example',
 	templateUrl: './fkt-confirmation-dialog-example.component.html',
 	styleUrl: './fkt-confirmation-dialog-example.component.scss',
-	imports: [FktButtonComponent]
+	imports: [FktButtonLegacyComponent]
 })
 export class FktConfirmationDialogExampleComponent {
 	private dialogService = inject(FktDialogService);

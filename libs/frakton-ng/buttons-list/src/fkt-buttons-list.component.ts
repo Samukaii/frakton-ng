@@ -1,5 +1,5 @@
 import { booleanAttribute, Component, input } from '@angular/core';
-import { FktButtonAction, FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonAction, FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { FktTooltipDirective } from 'frakton-ng/tooltip';
 import { FktButtonsListAlignment, FktButtonsListOrientation } from './fkt-buttons-list.types';
 
@@ -30,7 +30,7 @@ import { FktButtonsListAlignment, FktButtonsListOrientation } from './fkt-button
  */
 @Component({
 	selector: 'fkt-buttons-list',
-	imports: [FktButtonComponent, FktTooltipDirective],
+	imports: [FktButtonLegacyComponent, FktTooltipDirective],
 	templateUrl: './fkt-buttons-list.component.html',
 	styleUrl: './fkt-buttons-list.component.scss',
 	host: {

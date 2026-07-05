@@ -9,12 +9,12 @@ import {
 } from '@angular/core';
 import { FktOverlayService } from 'frakton-ng/overlay';
 import { FktTableColumn, FktTableFilterValue } from '../../../fkt-table.types';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { deepEqual, deepSignal } from 'frakton-ng/internal/utils';
 
 @Component({
     selector: 'fkt-table-filter-renderer',
-    imports: [FktButtonComponent],
+    imports: [FktButtonLegacyComponent],
     templateUrl: './fkt-table-filter-renderer.component.html',
     styleUrl: './fkt-table-filter-renderer.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,

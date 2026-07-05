@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { FktSelectComponent } from 'frakton-ng/select';
 import { FktColorPickerFormat } from '../../fkt-color-picker.types';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { FktTooltipDirective } from 'frakton-ng/tooltip';
 import { getColorDescription } from '../../helpers/get-color-description';
 import { capitalize, fktColorFormatters } from 'frakton-ng/internal/utils';
@@ -19,7 +19,7 @@ import { injectEyeDropper } from 'frakton-ng/internal/di';
 
 @Component({
     selector: 'fkt-color-control',
-    imports: [FktSelectComponent, FktButtonComponent, FktTooltipDirective],
+    imports: [FktSelectComponent, FktButtonLegacyComponent, FktTooltipDirective],
     templateUrl: './fkt-color-control.component.html',
     styleUrl: './fkt-color-control.component.scss',
 })

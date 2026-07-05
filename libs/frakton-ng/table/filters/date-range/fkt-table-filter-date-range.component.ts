@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, input, linkedSignal, output } from '@angular/core';
 import { FktDatePickerComponent } from 'frakton-ng/date-picker';
 import { FktButtonsListComponent } from 'frakton-ng/buttons-list';
-import { FktButtonAction } from 'frakton-ng/button';
+import { FktButtonAction } from 'frakton-ng/button-legacy';
 import { FktTableCustomFilter } from 'frakton-ng/table';
 import { FktDateRangeValue } from './fkt-table-filter-date-range.types';
 

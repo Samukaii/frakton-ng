@@ -1,5 +1,5 @@
 import { Component, ElementRef, inject, signal } from '@angular/core';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { FktOverlayService } from 'frakton-ng/overlay';
 import {
 	FktInteractiveOverlayDialogComponent
@@ -11,7 +11,7 @@ import { FktTagComponent } from 'frakton-ng/tag';
 	selector: 'interactive-overlay-example',
 	templateUrl: './fkt-interactive-overlay-example.component.html',
 	styleUrl: './fkt-interactive-overlay-example.component.scss',
-	imports: [FktButtonComponent, FktTagComponent]
+	imports: [FktButtonLegacyComponent, FktTagComponent]
 })
 export class FktInteractiveOverlayExampleComponent {
 	private overlayService = inject(FktOverlayService);

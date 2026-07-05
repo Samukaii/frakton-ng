@@ -1,5 +1,5 @@
 import { Component, computed, model, signal } from '@angular/core';
-import { FktIconComponent, FktIconName, fontIconNames } from 'frakton-ng/icon';
+import { FktIconComponent, FktIconName, fktIconNames } from 'frakton-ng/icon';
 import { IconSelectorItemComponent } from '@/components/icon-selector/item/icon-selector-item.component';
 import { FktFieldComponent, FktFieldPrefixDirective } from 'frakton-ng/field';
 import { FktInputTextDirective } from 'frakton-ng/input-text';
@@ -20,7 +20,7 @@ import { debounce, form, FormField } from '@angular/forms/signals';
 })
 export class IconSelectorModalComponent {
     value = model<string>();
-    allIcons  = fontIconNames as FktIconName[];
+    allIcons  = fktIconNames as FktIconName[];
 
     search = form(signal(''), (field) => {
         debounce(field, 300);

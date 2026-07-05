@@ -1,6 +1,6 @@
 import { Component, input, output, computed } from '@angular/core';
 import { FktButtonsListComponent } from 'frakton-ng/buttons-list';
-import { FktButtonAction } from 'frakton-ng/button';
+import { FktButtonAction } from 'frakton-ng/button-legacy';
 
 @Component({
 	selector: 'demo-simple-dialog',

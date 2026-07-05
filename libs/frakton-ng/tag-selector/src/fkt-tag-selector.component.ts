@@ -21,7 +21,7 @@ import { FormValueControl } from '@angular/forms/signals';
  * @example
  * ```typescript
  * export class MyComponent {
- *   badgeOptions: FktBadge<string>[] = [
+ *   badgeOptions: FktTag<string>[] = [
  *     { id: 'urgent', text: 'Urgent', color: 'red' },
  *     { id: 'normal', text: 'Normal', color: 'blue' }
  *   ];

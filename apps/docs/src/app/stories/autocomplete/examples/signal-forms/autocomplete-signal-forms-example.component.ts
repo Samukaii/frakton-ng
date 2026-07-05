@@ -1,7 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { disabled, form, FormField, required } from '@angular/forms/signals';
 import { FktAutocompleteComponent } from 'frakton-ng/autocomplete';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { COUNTRIES } from '../autocomplete-demo-data';
 import { CodeOutputComponent } from '@/components/code-output/code-output.component';
 
@@ -9,7 +9,7 @@ import { CodeOutputComponent } from '@/components/code-output/code-output.compon
     selector: 'app-autocomplete-signal-forms-example',
     imports: [
         FktAutocompleteComponent,
-        FktButtonComponent,
+        FktButtonLegacyComponent,
         FormField,
         CodeOutputComponent,
     ],

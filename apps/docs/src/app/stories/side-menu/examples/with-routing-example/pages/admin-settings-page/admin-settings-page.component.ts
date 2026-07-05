@@ -1,5 +1,5 @@
 import { Component, signal } from "@angular/core";
-import { FktButtonComponent } from "frakton-ng/button";
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { FktCheckboxComponent } from "frakton-ng/checkbox";
 import { FormField, form } from '@angular/forms/signals';
 import { FktFieldComponent } from 'frakton-ng/field';
@@ -9,7 +9,7 @@ import { FktInputTextDirective } from 'frakton-ng/input-text';
     selector: 'admin-settings-page',
     templateUrl: './admin-settings-page.component.html',
     imports: [
-        FktButtonComponent,
+        FktButtonLegacyComponent,
         FktCheckboxComponent,
         FktFieldComponent,
         FktInputTextDirective,
