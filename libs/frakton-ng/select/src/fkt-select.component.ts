@@ -19,7 +19,7 @@ import {
     FktHintEndDirective,
     FktHintStartDirective,
 } from 'frakton-ng/field';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { FktIconComponent } from 'frakton-ng/icon';
 import { Generic } from 'frakton-ng/internal/types';
 import { injectCompatFormStateWithoutNative } from 'frakton-ng/internal/di';
@@ -46,7 +46,7 @@ import { FktSelectChipDirective } from './directives/public/fkt-select-chip.dire
         FktHintStartDirective,
         FktHintEndDirective,
         FktErrorDirective,
-        FktButtonComponent,
+        FktButtonLegacyComponent,
         FktIconComponent,
         FktSelectControlDirective,
         FktSelectKeyboardDirective,

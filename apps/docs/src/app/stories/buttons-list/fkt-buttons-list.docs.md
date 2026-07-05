@@ -17,7 +17,7 @@
 
 ```typescript
 import {FktIconName} from "frakton-ng/icon";
-import {FktButtonTheme, FktButtonVariant} from "frakton-ng/button";
+import {FktButtonTheme, FktButtonVariant} from 'frakton-ng/button-legacy';
 import {FktColor} from "frakton-ng/core";
 
 interface FktButtonAction<Context = any> {

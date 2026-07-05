@@ -6,7 +6,7 @@ import {
     output,
 } from '@angular/core';
 import { FktButtonsListComponent } from 'frakton-ng/buttons-list';
-import { FktButtonAction } from 'frakton-ng/button';
+import { FktButtonAction } from 'frakton-ng/button-legacy';
 import {
     FktSelectComponent,
     FktSelectLabelKey,

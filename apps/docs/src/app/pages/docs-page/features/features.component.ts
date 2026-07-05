@@ -12,7 +12,7 @@ import { MarkdownWrapperComponent } from '@/components/markdown/markdown-wrapper
 import { PascalToHumanReadablePipe } from '@/pipes/pascal-to-human-readable.pipe';
 import { PascalToKebabPipe } from '@/pipes/pascal-to-kebab.pipe';
 import { FeatureComponent } from '@/pages/docs-page/features/feature/feature.component';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { injectStoryIndexer } from '@/utils/inject-story-indexer';
 
 @Component({
@@ -23,7 +23,7 @@ import { injectStoryIndexer } from '@/utils/inject-story-indexer';
         PascalToHumanReadablePipe,
         PascalToKebabPipe,
         FeatureComponent,
-        FktButtonComponent,
+        FktButtonLegacyComponent,
     ],
     templateUrl: './features.component.html',
     styleUrl: './features.component.scss',

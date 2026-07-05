@@ -1,10 +1,10 @@
 import { Component, input, output } from '@angular/core';
 import { DropdownOption } from '../../dropdown-overlay-example/fkt-dropdown-overlay-example.component';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 
 @Component({
 	selector: 'fkt-dropdown-overlay-dialog',
-	imports: [FktButtonComponent],
+	imports: [FktButtonLegacyComponent],
 	templateUrl: './fkt-dropdown-overlay-dialog.component.html',
 	styleUrl: './fkt-dropdown-overlay-dialog.component.scss'
 })

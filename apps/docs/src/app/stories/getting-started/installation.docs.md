@@ -43,12 +43,12 @@ Add Frakton NG styles to your `angular.json`:
 Import and use components as standalone modules:
 
 ```typescript
-import { Component, signal } from '@angular/core';
-import { FktButtonComponent } from 'frakton-ng/button';
+import {Component, signal} from '@angular/core';
+import {FktButtonLegacyComponent} from 'frakton-ng/button-legacy';
 
 @Component({
-  selector: 'app-home',
-  template: `
+    selector: 'app-home',
+    template: `
     <div>
       <h1>Welcome to My App</h1>
 
@@ -72,22 +72,22 @@ import { FktButtonComponent } from 'frakton-ng/button';
       </fkt-button>
     </div>
   `,
-  imports: [FktButtonComponent],
-  standalone: true
+    imports: [FktButtonLegacyComponent],
+    standalone: true
 })
 export class HomeComponent {
-  isSaving = signal(false);
+    isSaving = signal(false);
 
-  handleClick() {
-    console.log('Button clicked!');
-  }
+    handleClick() {
+        console.log('Button clicked!');
+    }
 
-  async save() {
-    this.isSaving.set(true);
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    this.isSaving.set(false);
-  }
+    async save() {
+        this.isSaving.set(true);
+        // Simulate API call
+        await new Promise(resolve => setTimeout(resolve, 2000));
+        this.isSaving.set(false);
+    }
 }
 ```
 

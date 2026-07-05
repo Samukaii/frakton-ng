@@ -1,13 +1,13 @@
 import { Component, signal } from '@angular/core';
 import { FktButtonGroupComponent, FktButtonGroupOption } from 'frakton-ng/button-group';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { FktFieldErrorComponent } from 'frakton-ng/field';
 
 @Component({
     selector: 'fkt-button-group-input-driven',
     imports: [
         FktButtonGroupComponent,
-        FktButtonComponent,
+        FktButtonLegacyComponent,
         FktFieldErrorComponent,
     ],
     templateUrl: './button-group-input-driven.component.html',

@@ -1,9 +1,9 @@
 import { Component, signal } from '@angular/core';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 
 @Component({
     selector: 'fkt-tab-counter',
-    imports: [FktButtonComponent],
+    imports: [FktButtonLegacyComponent],
     template: `
         <div class="counter">
             <p class="counter__value">Count: {{ count() }}</p>

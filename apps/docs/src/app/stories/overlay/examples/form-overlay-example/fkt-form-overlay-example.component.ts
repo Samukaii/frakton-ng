@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { FktOverlayService } from 'frakton-ng/overlay';
 import { FktFormOverlayDialogComponent } from '../dialog/fkt-form-overlay-dialog/fkt-form-overlay-dialog.component';
 
@@ -13,7 +13,7 @@ export interface FormData {
 	selector: 'form-overlay-example',
 	templateUrl: './fkt-form-overlay-example.component.html',
 	styleUrl: './fkt-form-overlay-example.component.scss',
-	imports: [FktButtonComponent]
+	imports: [FktButtonLegacyComponent]
 })
 export class FktFormOverlayExampleComponent {
 	private overlayService = inject(FktOverlayService);

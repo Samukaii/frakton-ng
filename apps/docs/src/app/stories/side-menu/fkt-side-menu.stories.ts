@@ -8,7 +8,7 @@ import { Meta } from '@/models/meta';
 import { Story } from '@/models/story';
 import documentation from './fkt-side-menu.docs.md' with { loader: 'text' };
 import { provideRouter } from '@angular/router';
-import { fontIconNames } from 'frakton-ng/icon';
+import { fktIconNames } from 'frakton-ng/icon';
 
 const meta: Meta<FktSideMenuComponent> = {
     title: "Components/Navigation/Side Menu",
@@ -32,7 +32,7 @@ const meta: Meta<FktSideMenuComponent> = {
                         name: 'text',
                         icon: {
                             type: 'select',
-                            options: fontIconNames,
+                            options: fktIconNames,
                         },
                         path: 'text',
                     }

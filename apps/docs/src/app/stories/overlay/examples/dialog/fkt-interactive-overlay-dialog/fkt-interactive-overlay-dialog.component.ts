@@ -1,14 +1,14 @@
 import { Component, input, model, output } from '@angular/core';
 import { FktTagComponent } from 'frakton-ng/tag';
 import { FktIconComponent } from 'frakton-ng/icon';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 
 @Component({
 	selector: 'fkt-interactive-overlay-dialog',
 	imports: [
 		FktTagComponent,
 		FktIconComponent,
-		FktButtonComponent
+		FktButtonLegacyComponent
 	],
 	templateUrl: './fkt-interactive-overlay-dialog.component.html',
 	styleUrl: './fkt-interactive-overlay-dialog.component.scss'

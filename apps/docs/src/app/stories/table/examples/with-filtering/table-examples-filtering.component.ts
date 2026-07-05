@@ -20,7 +20,7 @@ import { FktTableFilterSelectComponent } from 'frakton-ng/table/filters/select';
 import { FktTableFilterNumberComponent } from 'frakton-ng/table/filters/number';
 import { FktTableFilterDateRangeComponent } from 'frakton-ng/table/filters/date-range';
 import { JsonPipe } from '@angular/common';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { ProductsService } from '@/stories/table/services/products.service';
 import { Product } from '@/stories/table/models/product';
 import { ProductFilters } from '@/stories/table/models/product-filters';
@@ -45,7 +45,7 @@ export const filter = defineFilters({
 
 @Component({
     selector: 'app-table-examples-with-filtering',
-    imports: [FktTableComponent, JsonPipe, FktButtonComponent],
+    imports: [FktTableComponent, JsonPipe, FktButtonLegacyComponent],
     templateUrl: './table-examples-filtering.component.html',
     styleUrl: './table-examples-filtering.component.scss',
 })

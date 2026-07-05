@@ -7,7 +7,7 @@ import {
     FktFieldPrefixDirective,
 } from 'frakton-ng/field';
 import { FktIconComponent } from 'frakton-ng/icon';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { SELECT_USERS } from '../select-demo-data';
 
 @Component({
@@ -18,7 +18,7 @@ import { SELECT_USERS } from '../select-demo-data';
         FktFieldErrorComponent,
         FktFieldPrefixDirective,
         FktIconComponent,
-        FktButtonComponent,
+        FktButtonLegacyComponent,
         ReactiveFormsModule,
     ],
     templateUrl: './select-validations-example.component.html',

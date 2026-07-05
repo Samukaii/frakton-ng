@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { FktSelectComponent } from 'frakton-ng/select';
 import { CodeOutputComponent } from '@/components/code-output/code-output.component';
 import { SELECT_USERS, SelectUser } from '../select-demo-data';
@@ -10,7 +10,7 @@ import { SELECT_USERS, SelectUser } from '../select-demo-data';
     selector: 'app-select-hydrated-value-example',
     imports: [
         FktSelectComponent,
-        FktButtonComponent,
+        FktButtonLegacyComponent,
         ReactiveFormsModule,
         CodeOutputComponent,
     ],

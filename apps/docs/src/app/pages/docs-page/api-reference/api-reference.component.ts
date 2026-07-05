@@ -1,10 +1,10 @@
 import { Component, input } from '@angular/core';
 import { MarkdownWrapperComponent } from '@/components/markdown/markdown-wrapper.component';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 
 @Component({
     selector: 'app-api-reference',
-    imports: [MarkdownWrapperComponent, FktButtonComponent],
+    imports: [MarkdownWrapperComponent, FktButtonLegacyComponent],
     templateUrl: './api-reference.component.html',
     styleUrl: './api-reference.component.scss',
 })

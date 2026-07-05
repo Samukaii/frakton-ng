@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { FktOverlayService } from 'frakton-ng/overlay';
 import { FktIconName } from 'frakton-ng/icon';
 import {
@@ -17,7 +17,7 @@ export interface DropdownOption {
 	selector: 'dropdown-overlay-example',
 	templateUrl: './fkt-dropdown-overlay-example.component.html',
 	styleUrl: './fkt-dropdown-overlay-example.component.scss',
-	imports: [FktButtonComponent]
+	imports: [FktButtonLegacyComponent]
 })
 export class FktDropdownOverlayExampleComponent {
 	private overlayService = inject(FktOverlayService);

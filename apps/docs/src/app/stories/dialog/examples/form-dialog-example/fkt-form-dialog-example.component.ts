@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { FktDialogService } from 'frakton-ng/dialog';
 import { FktFormDialogDemoComponent, FormData } from '../dialog/form-dialog-demo/fkt-form-dialog-demo.component';
 
@@ -7,7 +7,7 @@ import { FktFormDialogDemoComponent, FormData } from '../dialog/form-dialog-demo
 	selector: 'form-dialog-example',
 	templateUrl: './fkt-form-dialog-example.component.html',
 	styleUrl: 'fkt-form-dialog-example.component.scss',
-	imports: [FktButtonComponent]
+	imports: [FktButtonLegacyComponent]
 })
 export class FktFormDialogExampleComponent {
 	private dialogService = inject(FktDialogService);

@@ -1,12 +1,12 @@
 import { Component, inject, signal } from '@angular/core';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { FktDialogService } from 'frakton-ng/dialog';
 import { FktCustomDialogDemoComponent } from '../dialog/custom-dialog-demo/fkt-custom-dialog-demo.component';
 
 @Component({
 	selector: 'custom-dialog-example',
 	templateUrl: './fkt-custom-dialog-example.component.html',
-	imports: [FktButtonComponent],
+	imports: [FktButtonLegacyComponent],
 	styleUrl: './fkt-custom-dialog-example.component.scss'
 })
 export class FktCustomDialogExampleComponent {

@@ -3,7 +3,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs';
 import { FktAutocompleteComponent } from 'frakton-ng/autocomplete';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { USERS } from '../autocomplete-demo-data';
 import { CodeOutputComponent } from '@/components/code-output/code-output.component';
 
@@ -11,7 +11,7 @@ import { CodeOutputComponent } from '@/components/code-output/code-output.compon
     selector: 'app-autocomplete-reactive-forms-example',
     imports: [
         FktAutocompleteComponent,
-        FktButtonComponent,
+        FktButtonLegacyComponent,
         ReactiveFormsModule,
         CodeOutputComponent,
     ],

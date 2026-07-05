@@ -1,10 +1,10 @@
 import { Component, input } from '@angular/core';
 import { FktFocusTrapDirective } from 'frakton-ng/focus-trap';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 
 @Component({
   selector: 'fkt-focus-trap-basic-example',
-  imports: [FktFocusTrapDirective, FktButtonComponent],
+  imports: [FktFocusTrapDirective, FktButtonLegacyComponent],
   templateUrl: './fkt-focus-trap-basic-example.component.html',
   styleUrl: './fkt-focus-trap-basic-example.component.scss'
 })

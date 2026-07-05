@@ -4,19 +4,22 @@ import { FktIconComponent, FktIconName } from 'frakton-ng/icon';
 import { FktColor, fktColors, FktLabelColor } from 'frakton-ng/core';
 import { fktColorFormatters, getContrastTextColor, lightenColor, MarkUsed } from 'frakton-ng/internal/utils';
 
+/**
+ * @deprecated use import {FktButtonComponent} from frakton-ng/button instead
+ */
 @Component({
     selector: 'fkt-button',
-    templateUrl: './fkt-button.component.html',
-    styleUrl: './fkt-button.component.scss',
+    templateUrl: './fkt-button-legacy.component.html',
+    styleUrl: './fkt-button-legacy.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [FktIconComponent],
     host: {
-        '[style.--custom-color]': "customColor()",
-        '[style.--custom-hover-color]': "customHoverColor()",
-        '[style.--custom-label-color]': "customLabelColor()",
-    }
+        '[style.--custom-color]': 'customColor()',
+        '[style.--custom-hover-color]': 'customHoverColor()',
+        '[style.--custom-label-color]': 'customLabelColor()',
+    },
 })
-export class FktButtonComponent {
+export class FktButtonLegacyComponent {
     loading = input(false);
     disabled = input(false);
     text = input('');
@@ -28,16 +31,21 @@ export class FktButtonComponent {
     theme = input<FktButtonTheme>('raised');
     shape = input<FktButtonShape>('rounded');
     icon = input<FktIconName>();
-    type = input<"submit" | "reset" | "button">("button");
+    type = input<'submit' | 'reset' | 'button'>('button');
     iconPosition = input<FktButtonIconPosition>('right');
 
     @MarkUsed()
     protected checkAccessibility = effect(() => {
         if (!this.text() && !this.ariaLabel())
-            throw new Error('Accessibility error: When no text is provided, ariaLabel is required')
+            throw new Error(
+                'Accessibility error: When no text is provided, ariaLabel is required'
+            );
     });
 
-    private button = viewChild.required<unknown, ElementRef<HTMLButtonElement>>('button', {read: ElementRef});
+    private button = viewChild.required<unknown, ElementRef<HTMLButtonElement>>(
+        'button',
+        { read: ElementRef }
+    );
 
     focus() {
         this.button().nativeElement.focus();
@@ -49,8 +57,7 @@ export class FktButtonComponent {
         const ariaLabel = this.ariaLabel();
         const text = this.text();
 
-        if (loading)
-            return loadingText || ariaLabel || text;
+        if (loading) return loadingText || ariaLabel || text;
 
         return ariaLabel || text;
     });
@@ -65,7 +72,9 @@ export class FktButtonComponent {
         const colorHex = fktColorFormatters.hex.parse(this.color());
 
         if (!colorHex)
-            throw new Error(`Invalid color format for color "${color}". It must be in hex format`);
+            throw new Error(
+                `Invalid color format for color "${color}". It must be in hex format`
+            );
 
         return true;
     });
@@ -83,7 +92,7 @@ export class FktButtonComponent {
         const color = this.customColor();
 
         return lightenColor(color, 0.1);
-    })
+    });
 
     protected customLabelColor = computed(() => {
         const color = this.color();
@@ -92,7 +101,7 @@ export class FktButtonComponent {
 
         if (!isCustomColor) return 'none';
 
-        if (labelColor !== "auto") return labelColor;
+        if (labelColor !== 'auto') return labelColor;
 
         return getContrastTextColor(color);
     });
@@ -108,12 +117,11 @@ export class FktButtonComponent {
         classes += ` color-${color}`;
         classes += ` shape-${this.shape()}`;
 
-        if (this.loading())
-            classes += ' loading';
+        if (this.loading()) classes += ' loading';
 
         if (!this.text() || (this.loading() && !this.loadingText()))
             classes += ` icon-only`;
 
         return classes;
-    })
+    });
 }

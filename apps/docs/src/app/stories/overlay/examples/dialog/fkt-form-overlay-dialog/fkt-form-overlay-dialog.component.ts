@@ -3,7 +3,7 @@ import { FormData } from '../../form-overlay-example/fkt-form-overlay-example.co
 import { FormsModule } from '@angular/forms';
 import { FktIconComponent } from 'frakton-ng/icon';
 import { FktTextareaOldComponent } from 'frakton-ng/textarea-old';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { FormField, email, form, required, submit } from '@angular/forms/signals';
 import { FktFieldComponent, FktFieldErrorComponent } from 'frakton-ng/field';
 import { FktInputTextDirective } from 'frakton-ng/input-text';
@@ -15,7 +15,7 @@ import { FktInputTextDirective } from 'frakton-ng/input-text';
 		FktInputTextDirective,
 		FormsModule,
 		FktIconComponent,
-		FktButtonComponent,
+		FktButtonLegacyComponent,
 		FktTextareaOldComponent,
 		FormField,
 		FktFieldErrorComponent

@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { FktDialogService } from 'frakton-ng/dialog';
 import { FktCustomDialogDemoComponent } from '../dialog/custom-dialog-demo/fkt-custom-dialog-demo.component';
 import { FktIconName } from 'frakton-ng/icon';
@@ -8,7 +8,7 @@ import { FktIconName } from 'frakton-ng/icon';
 	selector: 'fullscreen-dialog-example',
 	templateUrl: './fkt-fullscreen-dialog-example.component.html',
 	styleUrl: './fkt-fullscreen-dialog-example.component.scss',
-	imports: [FktButtonComponent]
+	imports: [FktButtonLegacyComponent]
 })
 export class FktFullscreenDialogExampleComponent {
 	private dialogService = inject(FktDialogService);

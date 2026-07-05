@@ -4,7 +4,7 @@ import { StoryDesignTokensItemComponent } from './item/story-design-tokens-item.
 import { STORY_META_TOKEN } from '@/tokens/story-meta.token';
 import { getVisibleRect } from '@/utils/get-visible-rect';
 import { FktNavigableListDirective } from 'frakton-ng/navigable-list';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { FktTooltipDirective } from 'frakton-ng/tooltip';
 import { wait } from 'frakton-ng/internal/utils';
 
@@ -13,7 +13,7 @@ import { wait } from 'frakton-ng/internal/utils';
     imports: [
         StoryDesignTokensItemComponent,
         FktNavigableListDirective,
-        FktButtonComponent,
+        FktButtonLegacyComponent,
         FktTooltipDirective,
     ],
     templateUrl: './story-design-tokens.component.html',

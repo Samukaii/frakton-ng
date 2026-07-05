@@ -4,7 +4,7 @@ import { FktOverlayRef, FktOverlayService } from 'frakton-ng/overlay';
 import { FktDatePickerModalComponent } from './modal/fkt-date-picker-modal.component';
 import { isValidDateString, MarkUsed, outsideClickEffect, transformedSignal } from 'frakton-ng/internal/utils';
 import { FktGeometryPosition } from 'frakton-ng/internal/types';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { FormValueControl, ValidationError, WithOptionalFieldTree } from '@angular/forms/signals';
 import { FktFieldComponent, FktFieldSuffixDirective } from 'frakton-ng/field';
 import { FktInputTextDirective } from 'frakton-ng/input-text';
@@ -15,7 +15,7 @@ import { FormsModule } from '@angular/forms';
 @Component({
     selector: 'fkt-date-picker',
     imports: [
-        FktButtonComponent,
+        FktButtonLegacyComponent,
         FktFieldComponent,
         FktInputTextDirective,
         FktFieldSuffixDirective,

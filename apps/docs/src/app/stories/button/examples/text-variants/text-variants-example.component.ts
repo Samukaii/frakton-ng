@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 
 @Component({
 	selector: 'fkt-text-variants-example',
-	imports: [FktButtonComponent],
+	imports: [FktButtonLegacyComponent],
 	templateUrl: './text-variants-example.component.html',
 	styleUrl: './text-variants-example.component.scss'
 })

@@ -436,7 +436,7 @@ export const STORIES_MAP: StoryIndexer[] = [	{
 	{
 		id: "button",
 		title: "Components/Actions/Button",
-		componentName: "FktButtonComponent",
+		componentName: "FktButtonLegacyComponent",
 		description: `The FktButton component provides a versatile and customizable button with multiple themes, variants, and styling options. Built with Angular signals and modern design patterns, it supports various visual styles, icons, loading states, and accessibility features.`,
 		file: async () => buttonStory, // Imported eagerly for instant loading
 		type: 'story',

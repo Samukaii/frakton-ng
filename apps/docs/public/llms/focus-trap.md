@@ -30,11 +30,11 @@ Example component: `FktFocusTrapBasicExampleComponent`
 ```ts title="fkt-focus-trap-basic-example.component.ts"
 import { Component, input } from '@angular/core';
 import { FktFocusTrapDirective } from 'frakton-ng/focus-trap';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 
 @Component({
   selector: 'fkt-focus-trap-basic-example',
-  imports: [FktFocusTrapDirective, FktButtonComponent],
+  imports: [FktFocusTrapDirective, FktButtonLegacyComponent],
   templateUrl: './fkt-focus-trap-basic-example.component.html',
   styleUrl: './fkt-focus-trap-basic-example.component.scss'
 })
@@ -118,14 +118,14 @@ Example component: `FktFocusTrapModalExampleComponent`
 
 ```ts title="fkt-focus-trap-modal-example.component.ts"
 import { Component, inject, input, output } from '@angular/core';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { FktDialogService } from 'frakton-ng/dialog';
 import { FktFieldComponent } from 'frakton-ng/field';
 import { FktInputTextDirective } from 'frakton-ng/input-text';
 
 @Component({
   selector: 'fkt-user-form-dialog',
-  imports: [FktFieldComponent, FktInputTextDirective, FktButtonComponent],
+  imports: [FktFieldComponent, FktInputTextDirective, FktButtonLegacyComponent],
   template: `
     <div class="dialog-content">
       <h2>User Information</h2>
@@ -179,7 +179,7 @@ export class FktUserFormDialogComponent {
 
 @Component({
   selector: 'fkt-focus-trap-modal-example',
-  imports: [FktButtonComponent],
+  imports: [FktButtonLegacyComponent],
   templateUrl: './fkt-focus-trap-modal-example.component.html',
   styleUrl: './fkt-focus-trap-modal-example.component.scss'
 })
@@ -311,7 +311,7 @@ Example component: `FktFocusTrapFormExampleComponent`
 ```ts title="fkt-focus-trap-form-example.component.ts"
 import { Component, input, signal } from '@angular/core';
 import { FktFocusTrapDirective } from 'frakton-ng/focus-trap';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { FktSelectComponent } from 'frakton-ng/select';
 import { FktCheckboxComponent } from 'frakton-ng/checkbox';
 import { FktFieldComponent } from 'frakton-ng/field';
@@ -321,7 +321,7 @@ import { FktInputTextDirective } from 'frakton-ng/input-text';
   selector: 'fkt-focus-trap-form-example',
   imports: [
     FktFocusTrapDirective,
-    FktButtonComponent,
+    FktButtonLegacyComponent,
     FktFieldComponent,
     FktInputTextDirective,
     FktSelectComponent,

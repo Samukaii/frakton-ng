@@ -1,11 +1,8 @@
 import { fktButtonsListAlignments, FktButtonsListComponent, fktButtonsListOrientations } from 'frakton-ng/buttons-list';
 import designTokens from './fkt-buttons-list-design-tokens.json';
-import documentation from './fkt-buttons-list.docs.md' with { loader: 'text' }
+import documentation from './fkt-buttons-list.docs.md' with { loader: 'text' };
 import { Meta } from '@/models/meta';
 import { Story } from '@/models/story';
-import { fktColors } from 'frakton-ng/core';
-import { fktButtonShapes, fktButtonThemes } from 'frakton-ng/button';
-import { fontIconNames } from 'frakton-ng/icon';
 import { buttonActionSchema } from '@/static/schemas/button-action.schema';
 
 const meta: Meta = {
@@ -56,7 +53,7 @@ const meta: Meta = {
             schema: buttonActionSchema,
             required: true,
             category: "Attributes",
-            import: "import {FktButtonAction} from 'frakton-ng/button'",
+            import: "import {FktButtonAction} from 'frakton-ng/button-legacy'",
             type: 'FktButtonAction<T>[]',
             defaultValue: "undefined",
         }

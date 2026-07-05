@@ -3,7 +3,7 @@ import { ExternalExample } from '@/models/external-example';
 import { StoryInfoService } from '@/core/services/story-info.service';
 import { toKebabCase } from '@/utils/to-kebab-case';
 import { FktSpinnerComponent } from 'frakton-ng/spinner';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { FktTooltipDirective } from 'frakton-ng/tooltip';
 import { CodeHighlightComponent } from '@/components/code-highlight/code-highlight.component';
 import { generateEmulatedStoryExample } from '@/components/playground/utils/generate-emulated-story-example';
@@ -13,7 +13,7 @@ import { generateEmulatedStoryExample } from '@/components/playground/utils/gene
     imports: [
         CodeHighlightComponent,
         FktSpinnerComponent,
-        FktButtonComponent,
+        FktButtonLegacyComponent,
         FktTooltipDirective,
     ],
     templateUrl: './story-source-code.component.html',

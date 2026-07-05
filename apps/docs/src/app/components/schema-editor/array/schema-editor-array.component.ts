@@ -4,7 +4,7 @@ import {
     FktTableColumn,
     FktTableComponent,
 } from 'frakton-ng/table';
-import { FktButtonAction } from 'frakton-ng/button';
+import { FktButtonAction } from 'frakton-ng/button-legacy';
 import { ArgTypeSchema, ArgTypeSchemaParsed } from '@/models/arg-type';
 import { parseSchema } from '@/components/schema-editor/utils/parse-schema';
 import { isObjectLiteral } from '@/utils/is-object-literal';

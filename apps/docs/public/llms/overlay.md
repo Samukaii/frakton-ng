@@ -30,7 +30,7 @@ Example component: `FktSimpleOverlayExampleComponent`
 
 ```ts title="fkt-simple-overlay-example.component.ts"
 import { Component, inject, signal } from '@angular/core';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { FktOverlayService } from 'frakton-ng/overlay';
 import { FktGeometryPosition } from 'frakton-ng/internal/types';
 import {
@@ -42,7 +42,7 @@ import {
 	selector: 'simple-overlay-example',
 	templateUrl: './fkt-simple-overlay-example.component.html',
 	styleUrl: './fkt-simple-overlay-example.component.scss',
-	imports: [FktButtonComponent]
+	imports: [FktButtonLegacyComponent]
 })
 export class FktSimpleOverlayExampleComponent {
 	private overlayService = inject(FktOverlayService);
@@ -134,7 +134,7 @@ Example component: `FktDropdownOverlayExampleComponent`
 
 ```ts title="fkt-dropdown-overlay-example.component.ts"
 import { Component, inject } from '@angular/core';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { FktOverlayService } from 'frakton-ng/overlay';
 import { FktIconName } from 'frakton-ng/icon';
 import {
@@ -152,7 +152,7 @@ export interface DropdownOption {
 	selector: 'dropdown-overlay-example',
 	templateUrl: './fkt-dropdown-overlay-example.component.html',
 	styleUrl: './fkt-dropdown-overlay-example.component.scss',
-	imports: [FktButtonComponent]
+	imports: [FktButtonLegacyComponent]
 })
 export class FktDropdownOverlayExampleComponent {
 	private overlayService = inject(FktOverlayService);
@@ -294,7 +294,7 @@ Example component: `FktFormOverlayExampleComponent`
 
 ```ts title="fkt-form-overlay-example.component.ts"
 import { Component, inject } from '@angular/core';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { FktOverlayService } from 'frakton-ng/overlay';
 import { FktFormOverlayDialogComponent } from '../dialog/fkt-form-overlay-dialog/fkt-form-overlay-dialog.component';
 
@@ -308,7 +308,7 @@ export interface FormData {
 	selector: 'form-overlay-example',
 	templateUrl: './fkt-form-overlay-example.component.html',
 	styleUrl: './fkt-form-overlay-example.component.scss',
-	imports: [FktButtonComponent]
+	imports: [FktButtonLegacyComponent]
 })
 export class FktFormOverlayExampleComponent {
 	private overlayService = inject(FktOverlayService);
@@ -463,7 +463,7 @@ Example component: `FktCustomTooltipOverlayExampleComponent`
 
 ```ts title="fkt-custom-tooltip-overlay-example.component.ts"
 import { Component, inject } from '@angular/core';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { FktOverlayRef, FktOverlayService } from 'frakton-ng/overlay';
 import { FktGeometryPosition } from 'frakton-ng/internal/types';
 import {
@@ -475,7 +475,7 @@ import {
 	selector: 'custom-tooltip-overlay-example',
 	templateUrl: './fkt-custom-tooltip-overlay-example.component.html',
 	styleUrl: './fkt-custom-tooltip-overlay-example.component.scss',
-	imports: [FktButtonComponent]
+	imports: [FktButtonLegacyComponent]
 })
 export class FktCustomTooltipOverlayExampleComponent {
 	private overlayService = inject(FktOverlayService);
@@ -584,7 +584,7 @@ Example component: `FktInteractiveOverlayExampleComponent`
 
 ```ts title="fkt-interactive-overlay-example.component.ts"
 import { Component, ElementRef, inject, signal } from '@angular/core';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { FktOverlayService } from 'frakton-ng/overlay';
 import {
 	FktInteractiveOverlayDialogComponent
@@ -596,7 +596,7 @@ import { FktTagComponent } from 'frakton-ng/tag';
 	selector: 'interactive-overlay-example',
 	templateUrl: './fkt-interactive-overlay-example.component.html',
 	styleUrl: './fkt-interactive-overlay-example.component.scss',
-	imports: [FktButtonComponent, FktTagComponent]
+	imports: [FktButtonLegacyComponent, FktTagComponent]
 })
 export class FktInteractiveOverlayExampleComponent {
 	private overlayService = inject(FktOverlayService);

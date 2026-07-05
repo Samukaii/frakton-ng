@@ -1,6 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { FormField, form, maxLength, minLength, required } from '@angular/forms/signals';
-import { FktButtonComponent } from 'frakton-ng/button';
+import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { FktFieldComponent } from 'frakton-ng/field';
 import { FktTextareaDirective } from 'frakton-ng/textarea';
 
@@ -8,7 +8,7 @@ import { FktTextareaDirective } from 'frakton-ng/textarea';
     selector: 'app-textarea-signal-forms-example',
     imports: [
         FormField,
-        FktButtonComponent,
+        FktButtonLegacyComponent,
         FktFieldComponent,
         FktTextareaDirective,
     ],

@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, input, linkedSignal, output } from '@angular/core';
 import { FktButtonsListComponent } from 'frakton-ng/buttons-list';
-import { FktButtonAction } from 'frakton-ng/button';
+import { FktButtonAction } from 'frakton-ng/button-legacy';
 import { FktTableCustomFilter } from 'frakton-ng/table';
 import { FktFieldComponent } from 'frakton-ng/field';
 import { form, FormField } from '@angular/forms/signals';
