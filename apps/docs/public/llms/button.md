@@ -8,77 +8,358 @@
 - type: story
 - route: /docs/button
 - title: Components/Actions/Button
-- component: FktButtonLegacyComponent
-- import: `import { FktButtonLegacyComponent } from 'frakton-ng/button';`
+- component: FktButtonComponent
+- import: `import { FktButtonComponent } from 'frakton-ng/button';`
 
 ## Description
 
-The FktButton component provides a versatile and customizable button with multiple themes, variants, and styling options. Built with Angular signals and modern design patterns, it supports various visual styles, icons, loading states, and accessibility features.
+Native button component with an opinionated visual structure. The required label owns
+the accessible name, while optional prefix, suffix, and loading indicator slots support limited
+composition without replacing the button's primary semantics.
 
 ## Features
 
-### Raised
+### Usage
 
-- id: raised
-- type: story
+- id: usage
+- type: introduction
 
-A standard button with elevated appearance, perfect for primary actions.
-
-### Stroked
-
-- id: stroked
-- type: story
-
-An outlined button style ideal for secondary actions and cancel operations.
-
-### Disabled
-
-- id: disabled
-- type: story
-
-Button in disabled state showing non-interactive appearance and behavior.
-
-### WithIcon
-
-- id: with-icon
-- type: story
-
-Button with icon support, demonstrating icon positioning and combination with text.
+Native button usage. Apply `fktButton` directly to a `<button>` and provide its required label.
+Events, focus, native attributes, directives, element references, and form behavior stay on the
+actual interactive element.
 
 ### Basic
 
 - id: basic
 - type: story
+- component: ButtonBasicExampleComponent
 
-Minimal button style with basic theme, perfect for subtle actions and text-only interactions.
+The three themes use the same native markup and semantic label. `type="button"` is applied by
+default; consumers can use native attributes such as `name`, `value`, `form`, `autofocus`, and
+`aria-describedby` without forwarding through a wrapper component.
 
-### IconOnly
+Example component: `ButtonBasicExampleComponent`
 
-- id: icon-only
+```ts title="button-basic-example.component.ts"
+import { Component } from '@angular/core';
+import { FktButtonComponent } from 'frakton-ng/button';
+
+@Component({
+    selector: 'app-button-basic-example',
+    imports: [FktButtonComponent],
+    templateUrl: './button-basic-example.component.html',
+    styleUrl: './button-basic-example.component.scss',
+})
+export class ButtonBasicExampleComponent {}
+```
+
+```html title="button-basic-example.component.html"
+<button fktButton label="Save changes"> </button>
+<button fktButton label="Cancel" appearance="stroked"> </button>
+<button fktButton label="Learn more" appearance="basic"> </button>
+```
+
+```css title="button-basic-example.component.scss"
+:host {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--fkt-space-sm);
+}
+```
+
+### Sizes
+
+- id: sizes
 - type: story
+- component: ButtonSizesExampleComponent
 
-Compact circular button with just an icon, ideal for toolbars and action menus.
+Semantic sizes provide compact, default, and large control densities. Hidden-label buttons use
+fixed square dimensions from the same size scale so toolbar and table actions remain aligned.
 
-### RectIcon
+Example component: `ButtonSizesExampleComponent`
 
-- id: rect-icon
+```ts title="button-sizes-example.component.ts"
+import { Component } from '@angular/core';
+import {
+    FktButtonComponent,
+    FktButtonPrefixDirective,
+} from 'frakton-ng/button';
+import { FktIconComponent } from 'frakton-ng/icon';
+
+@Component({
+    selector: 'app-button-sizes-example',
+    imports: [
+        FktButtonComponent,
+        FktButtonPrefixDirective,
+        FktIconComponent,
+    ],
+    templateUrl: './button-sizes-example.component.html',
+    styleUrl: './button-sizes-example.component.scss',
+})
+export class ButtonSizesExampleComponent {}
+```
+
+```html title="button-sizes-example.component.html"
+<div>
+    <button fktButton label="Small" size="sm"> </button>
+    <button fktButton label="Add item" size="sm" hideLabel>
+        <fkt-icon fktButtonPrefix name="plus" size="sm" />
+    </button>
+</div>
+
+<div>
+    <button fktButton label="Medium" size="md"> </button>
+    <button fktButton label="Add item" size="md" hideLabel>
+        <fkt-icon fktButtonPrefix name="plus" size="md" />
+    </button>
+</div>
+
+<div>
+    <button fktButton label="Large" size="lg"> </button>
+    <button fktButton label="Add item" size="lg" hideLabel>
+        <fkt-icon fktButtonPrefix name="plus" size="lg" />
+    </button>
+</div>
+```
+
+```css title="button-sizes-example.component.scss"
+:host {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: var(--fkt-space-lg);
+}
+
+div {
+    display: flex;
+    align-items: center;
+    gap: var(--fkt-space-xs);
+}
+```
+
+### Composition
+
+- id: composition
+- type: introduction
+
+Limited composition keeps the required label under component ownership while exposing explicit
+prefix, suffix, and loading-indicator slots. Projected content is decorative and hidden from the
+accessibility tree.
+
+### PrefixSuffix
+
+- id: prefix-suffix
 - type: story
+- component: ButtonCompositionExampleComponent
 
-Rectangular icon button with standard padding, perfect for data table actions.
+Prefix and suffix content is projected with `[fktButtonPrefix]` and `[fktButtonSuffix]`.
+Use `label + hideLabel` for icon-only actions instead of supplying a separate ARIA label.
+
+Example component: `ButtonCompositionExampleComponent`
+
+```ts title="button-composition-example.component.ts"
+import { Component } from '@angular/core';
+import {
+    FktButtonComponent,
+    FktButtonPrefixDirective,
+    FktButtonSuffixDirective,
+} from 'frakton-ng/button';
+import { FktIconComponent } from 'frakton-ng/icon';
+
+@Component({
+    selector: 'app-button-composition-example',
+    imports: [
+        FktButtonComponent,
+        FktButtonPrefixDirective,
+        FktButtonSuffixDirective,
+        FktIconComponent,
+    ],
+    templateUrl: './button-composition-example.component.html',
+    styleUrl: './button-composition-example.component.scss',
+})
+export class ButtonCompositionExampleComponent {}
+```
+
+```html title="button-composition-example.component.html"
+<button fktButton label="Notifications" appearance="stroked">
+    <fkt-icon fktButtonPrefix name="bell" />
+    <span fktButtonSuffix class="counter">3</span>
+</button>
+
+<button
+    fktButton
+    label="Delete"
+    hideLabel
+    shape="rounded"
+    appearance="basic"
+    color="danger"
+>
+    <fkt-icon fktButtonPrefix name="trash" />
+</button>
+```
+
+```css title="button-composition-example.component.scss"
+:host {
+  display: flex;
+  align-items: center;
+  gap: var(--fkt-space-md);
+}
+
+.counter {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 1.5em;
+  width: auto;
+  aspect-ratio: 1;
+
+  padding: 0 var(--fkt-space-4xs);
+
+  color: var(--fkt-color-on-primary);
+  background: var(--fkt-color-primary);
+  border-radius: var(--fkt-radius-full);
+  font-size: var(--fkt-font-size-xs);
+
+  line-height: 1;
+  box-sizing: border-box;
+}
+```
 
 ### Loading
 
 - id: loading
 - type: story
+- component: ButtonLoadingExampleComponent
 
-Button showing loading state with custom loading text, perfect for async operations.
+Loading inserts an indicator before the prefix without replacing the normal content. It binds
+`aria-busy="true"` and makes the effective disabled state `disabled || loading`. Project
+`[fktButtonLoadingIndicator]` to replace the built-in spinner.
 
-### WithLeftIcon
+Example component: `ButtonLoadingExampleComponent`
 
-- id: with-left-icon
-- type: story
+```ts title="button-loading-example.component.ts"
+import { Component } from '@angular/core';
+import {
+    FktButtonComponent,
+    FktButtonLoadingIndicatorDirective,
+    FktButtonPrefixDirective
+} from 'frakton-ng/button';
+import { FktIconComponent } from 'frakton-ng/icon';
 
-Button with icon positioned to the left of the text for enhanced visual hierarchy.
+
+@Component({
+    selector: 'app-button-loading-example',
+    imports: [
+        FktButtonComponent,
+        FktButtonLoadingIndicatorDirective,
+        FktButtonPrefixDirective,
+        FktIconComponent
+    ],
+    templateUrl: './button-loading-example.component.html',
+    styleUrl: './button-loading-example.component.scss',
+})
+export class ButtonLoadingExampleComponent { }
+```
+
+```html title="button-loading-example.component.html"
+<div>
+    <button fktButton label="Start loading" loading>
+        <fkt-icon fktButtonPrefix name="check" />
+    </button>
+
+    <button fktButton label="End loading" loading loadingPosition="end">
+        <fkt-icon fktButtonPrefix name="check" />
+    </button>
+</div>
+
+<div>
+    <button
+        fktButton
+        label="Start custom loading"
+        loading
+        loadingPosition="start"
+    >
+        <span class="dots" fktButtonLoadingIndicator>
+            <span></span>
+            <span></span>
+            <span></span>
+        </span>
+        <fkt-icon fktButtonPrefix name="arrow-path" />
+    </button>
+
+    <button fktButton label="End custom loading" loading loadingPosition="end">
+        <span class="dots" fktButtonLoadingIndicator>
+            <span></span>
+            <span></span>
+            <span></span>
+        </span>
+        <fkt-icon fktButtonPrefix name="arrow-path" />
+    </button>
+</div>
+```
+
+```css title="button-loading-example.component.scss"
+:host {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--fkt-space-sm);
+  flex-direction: column;
+
+  & > div {
+    display: flex;
+    gap: var(--fkt-space-sm);
+  }
+}
+
+.dots {
+  letter-spacing: 0.08em;
+}
+
+.dots {
+  display: flex;
+  justify-content: center;
+  gap: 2px;
+  align-items: flex-end;
+  height: 100%;
+
+  span {
+    width: 4px;
+    height: 4px;
+    background-color: currentColor;
+    transform: translateY(-1px);
+    border-radius: 50%;
+    animation: float 0.4s infinite alternate;
+
+    &:nth-child(1) {
+      animation-delay: 0.1s;
+    }
+
+    &:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    &:nth-child(3) {
+      animation-delay: 0.3s;
+    }
+  }
+}
+
+@keyframes float {
+  to {
+    transform: translateY(-8px);
+  }
+}
+```
+
+### Appearance
+
+- id: appearance
+- type: introduction
+
+Appearance combines visual treatment, shape, color, and size without changing button semantics. Semantic
+colors follow the design system, while custom CSS colors compute a contrasting content color.
 
 ### TextVariants
 
@@ -86,140 +367,125 @@ Button with icon positioned to the left of the text for enhanced visual hierarch
 - type: story
 - component: TextVariantsExampleComponent
 
-Comprehensive showcase of all button text variants across different themes, colors, and shapes.
+Themes and semantic colors across rounded and rectangular shapes.
 
 Example component: `TextVariantsExampleComponent`
 
 ```ts title="text-variants-example.component.ts"
 import { Component } from '@angular/core';
-import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
+import {
+    FktButtonColor,
+    FktButtonAppearance,
+    fktButtonAppearances,
+    fktButtonColors,
+    FktButtonComponent,
+    FktButtonShape,
+    fktButtonShapes,
+} from 'frakton-ng/button';
+import { capitalize } from '@/utils/capitalize';
+
+interface ButtonVariant {
+    title: string;
+    value: FktButtonShape;
+    appearances: {
+        title: string;
+        value: FktButtonAppearance;
+        colors: {
+            title: string;
+            value: FktButtonColor;
+        }[];
+    }[];
+}
 
 @Component({
-	selector: 'fkt-text-variants-example',
-	imports: [FktButtonLegacyComponent],
-	templateUrl: './text-variants-example.component.html',
-	styleUrl: './text-variants-example.component.scss'
+    selector: 'fkt-text-variants-example',
+    imports: [FktButtonComponent],
+    templateUrl: './text-variants-example.component.html',
+    styleUrl: './text-variants-example.component.scss',
 })
 export class TextVariantsExampleComponent {
+    private buttonShapes = fktButtonShapes.filter(
+        (shape) => shape !== 'default'
+    );
+
+    private buttonAppearances = fktButtonAppearances.filter(
+        (appearance) => appearance !== 'default'
+    );
+
+    private buttonColors = fktButtonColors.filter(
+        (shape) => shape !== 'default'
+    );
+
+    protected shapes: ButtonVariant[] = this.buttonShapes.map((value) => ({
+        title: capitalize(value),
+        value,
+        appearances: this.buttonAppearances.map((value) => ({
+            title: capitalize(value),
+            value,
+            colors: this.buttonColors.map((value) => ({
+                title: capitalize(value),
+                value,
+            })),
+        })),
+    }));
 }
 ```
 
 ```html title="text-variants-example.component.html"
-<div class="container">
-  <div class="demo-variants">
-	<div class="demo-variants__column">
-	  <h2 class="demo-variants__title">Rounded</h2>
-	  <div class="demo-variants__row">
-		<strong class="demo-variants__label">Raised</strong>
-		<fkt-button class="demo-variants__button" shape="rounded" text="Primary" theme="raised" color="primary"/>
-		<fkt-button class="demo-variants__button" shape="rounded" text="Accent" theme="raised" color="accent"/>
-		<fkt-button class="demo-variants__button" shape="rounded" text="Success" theme="raised" color="success"/>
-		<fkt-button class="demo-variants__button" shape="rounded" text="Danger" theme="raised" color="danger"/>
-		<fkt-button class="demo-variants__button" shape="rounded" text="Warning" theme="raised" color="warning"/>
-		<fkt-button class="demo-variants__button" shape="rounded" text="Info" theme="raised" color="info"/>
-	  </div>
-	  <div class="demo-variants__row">
-		<strong class="demo-variants__label">Stroked</strong>
-		<fkt-button class="demo-variants__button" shape="rounded" text="Primary" theme="stroked" color="primary"/>
-		<fkt-button class="demo-variants__button" shape="rounded" text="Accent" theme="stroked" color="accent"/>
-		<fkt-button class="demo-variants__button" shape="rounded" text="Success" theme="stroked" color="success"/>
-		<fkt-button class="demo-variants__button" shape="rounded" text="Danger" theme="stroked" color="danger"/>
-		<fkt-button class="demo-variants__button" shape="rounded" text="Warning" theme="stroked" color="warning"/>
-		<fkt-button class="demo-variants__button" shape="rounded" text="Info" theme="stroked" color="info"/>
-	  </div>
-	  <div class="demo-variants__row">
-		<strong class="demo-variants__label">Basic</strong>
-		<fkt-button class="demo-variants__button" shape="rounded" text="Primary" theme="basic" color="primary"/>
-		<fkt-button class="demo-variants__button" shape="rounded" text="Accent" theme="basic" color="accent"/>
-		<fkt-button class="demo-variants__button" shape="rounded" text="Success" theme="basic" color="success"/>
-		<fkt-button class="demo-variants__button" shape="rounded" text="Danger" theme="basic" color="danger"/>
-		<fkt-button class="demo-variants__button" shape="rounded" text="Warning" theme="basic" color="warning"/>
-		<fkt-button class="demo-variants__button" shape="rounded" text="Info" theme="basic" color="info"/>
-	  </div>
-	</div>
-	<div class="demo-variants__column">
-	  <h2 class="demo-variants__title">Rect</h2>
-	  <div class="demo-variants__row">
-		<strong class="demo-variants__label">Raised</strong>
-		<fkt-button class="demo-variants__button" shape="rect" text="Primary" theme="raised" color="primary"/>
-		<fkt-button class="demo-variants__button" shape="rect" text="Accent" theme="raised" color="accent"/>
-		<fkt-button class="demo-variants__button" shape="rect" text="Success" theme="raised" color="success"/>
-		<fkt-button class="demo-variants__button" shape="rect" text="Danger" theme="raised" color="danger"/>
-		<fkt-button class="demo-variants__button" shape="rect" text="Warning" theme="raised" color="warning"/>
-		<fkt-button class="demo-variants__button" shape="rect" text="Info" theme="raised" color="info"/>
-	  </div>
-	  <div class="demo-variants__row">
-		<strong class="demo-variants__label">Stroked</strong>
-		<fkt-button class="demo-variants__button" shape="rect" text="Primary" theme="stroked" color="primary"/>
-		<fkt-button class="demo-variants__button" shape="rect" text="Accent" theme="stroked" color="accent"/>
-		<fkt-button class="demo-variants__button" shape="rect" text="Success" theme="stroked" color="success"/>
-		<fkt-button class="demo-variants__button" shape="rect" text="Danger" theme="stroked" color="danger"/>
-		<fkt-button class="demo-variants__button" shape="rect" text="Warning" theme="stroked" color="warning"/>
-		<fkt-button class="demo-variants__button" shape="rect" text="Info" theme="stroked" color="info"/>
-	  </div>
-	  <div class="demo-variants__row">
-		<strong class="demo-variants__label">Basic</strong>
-		<fkt-button class="demo-variants__button" shape="rect" text="Primary" theme="basic" color="primary"/>
-		<fkt-button class="demo-variants__button" shape="rect" text="Accent" theme="basic" color="accent"/>
-		<fkt-button class="demo-variants__button" shape="rect" text="Success" theme="basic" color="success"/>
-		<fkt-button class="demo-variants__button" shape="rect" text="Danger" theme="basic" color="danger"/>
-		<fkt-button class="demo-variants__button" shape="rect" text="Warning" theme="basic" color="warning"/>
-		<fkt-button class="demo-variants__button" shape="rect" text="Info" theme="basic" color="info"/>
-	  </div>
-	</div>
-  </div>
-</div>
+@for (shape of shapes; track shape.value) {
+    <table>
+        <thead>
+            <tr>
+                <th colspan="7">
+                    {{ shape.title }}
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (appearance of shape.appearances; track appearance.value) {
+                <tr>
+                    <td class="appearance">
+                        {{ appearance.title }}
+                    </td>
+
+                    @for (color of appearance.colors; track color.value) {
+                        <td>
+                            <button [color]="color.value" [appearance]="appearance.value" [label]="color.title" [shape]="shape.value" fktButton>
+                            </button>
+                        </td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+}
 ```
 
 ```css title="text-variants-example.component.scss"
-.container {
-	display: flex;
-	justify-content: center;
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--fkt-space-md);
+  width: 100%;
 }
 
-.demo-variants {
-	display: flex;
-	flex-direction: column;
-	gap: var(--fkt-space-2xl);
-	padding: var(--fkt-space-md) 0;
-	justify-content: center;
-	max-width: 1100px;
-}
+table {
+  border-collapse: collapse;
+  width: 100%;
+  max-width: 900px;
 
-.demo-variants__column {
-	display: flex;
-	flex-direction: column;
-	gap: var(--fkt-space-xl);
-	min-width: 300px;
-}
+  td, th {
+    padding: var(--fkt-space-xs);
+    text-align: center;
+    border: solid 1px var(--fkt-color-neutral-300);
 
-.demo-variants__title {
-	font-size: var(--fkt-font-size-xl);
-	font-weight: var(--fkt-font-semibold);
-	text-align: center;
-	border-bottom: 2px solid #e5e7eb;
-	margin-bottom: var(--fkt-space-sm);
-	padding-bottom: var(--fkt-space-3xs);
-	letter-spacing: 0.02em;
-}
-
-.demo-variants__row {
-	display: flex;
-	align-items: center;
-	gap: var(--fkt-space-sm);
-	margin-bottom: 0;
-	justify-content: center;
-}
-
-.demo-variants__label {
-	font-weight: var(--fkt-font-semibold);
-	min-width: 60px;
-	display: inline-block;
-}
-
-.demo-variants__button {
-	font-size: var(--fkt-font-size-md);
-	white-space: nowrap;
+    &.appearance {
+      font-weight: var(--fkt-font-semibold);
+      text-align: right;
+      font-size: var(--fkt-font-size-sm);
+    }
+  }
 }
 ```
 
@@ -229,194 +495,317 @@ export class TextVariantsExampleComponent {
 - type: story
 - component: IconVariantsExampleComponent
 
-Comprehensive showcase of all button icon variants across different themes, colors, and shapes.
+Hidden-label icon buttons use the same appearance, shape, and color contracts as labeled buttons.
+Their required label is exposed through `aria-label`.
 
 Example component: `IconVariantsExampleComponent`
 
 ```ts title="icon-variants-example.component.ts"
 import { Component } from '@angular/core';
-import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
+import {
+    FktButtonColor,
+    FktButtonAppearance,
+    fktButtonAppearances,
+    fktButtonColors,
+    FktButtonComponent,
+    FktButtonPrefixDirective,
+    FktButtonShape,
+    fktButtonShapes,
+} from 'frakton-ng/button';
+import { FktIconComponent } from 'frakton-ng/icon';
+import { capitalize } from '@/utils/capitalize';
+
+interface ButtonVariant {
+    title: string;
+    value: FktButtonShape;
+    appearances: {
+        title: string;
+        value: FktButtonAppearance;
+        colors: {
+            title: string;
+            value: FktButtonColor;
+        }[];
+    }[];
+}
 
 @Component({
-	selector: 'fkt-icon-variants-example',
-	imports: [FktButtonLegacyComponent],
-	templateUrl: './icon-variants-example.component.html',
-	styleUrl: './icon-variants-example.component.scss'
+    selector: 'fkt-icon-variants-example',
+    imports: [FktButtonComponent, FktButtonPrefixDirective, FktIconComponent],
+    templateUrl: './icon-variants-example.component.html',
+    styleUrl: './icon-variants-example.component.scss',
 })
 export class IconVariantsExampleComponent {
+    private buttonShapes = fktButtonShapes.filter(
+        (shape) => shape !== 'default'
+    );
+
+    private buttonAppearances = fktButtonAppearances.filter(
+        (appearance) => appearance !== 'default'
+    );
+
+    private buttonColors = fktButtonColors.filter(
+        (shape) => shape !== 'default'
+    );
+
+    protected shapes: ButtonVariant[] = this.buttonShapes.map((value) => ({
+        title: capitalize(value),
+        value,
+        appearances: this.buttonAppearances.map((value) => ({
+            title: capitalize(value),
+            value,
+            colors: this.buttonColors.map((value) => ({
+                title: capitalize(value),
+                value,
+            })),
+        })),
+    }));
 }
 ```
 
 ```html title="icon-variants-example.component.html"
-<div class="container">
-  <div class="demo-variants">
-	<div class="demo-variants__column">
-	  <h2 class="demo-variants__title">Rounded</h2>
-	  <div class="demo-variants__row">
-		<strong class="demo-variants__label">Raised</strong>
-		<fkt-button class="demo-variants__button" ariaLabel="Primary" shape="rounded" icon="plus" theme="raised" color="primary"/>
-		<fkt-button class="demo-variants__button" ariaLabel="Accent" shape="rounded" icon="plus" theme="raised" color="accent"/>
-		<fkt-button class="demo-variants__button" ariaLabel="Success" shape="rounded" icon="plus" theme="raised" color="success"/>
-		<fkt-button class="demo-variants__button" ariaLabel="Danger" shape="rounded" icon="plus" theme="raised" color="danger"/>
-		<fkt-button class="demo-variants__button" ariaLabel="Warning" shape="rounded" icon="plus" theme="raised" color="warning"/>
-		<fkt-button class="demo-variants__button" ariaLabel="Info" shape="rounded" icon="plus" theme="raised" color="info"/>
-	  </div>
-	  <div class="demo-variants__row">
-		<strong class="demo-variants__label">Stroked</strong>
-		<fkt-button class="demo-variants__button" ariaLabel="Primary" shape="rounded" icon="plus" theme="stroked" color="primary"/>
-		<fkt-button class="demo-variants__button" ariaLabel="Accent" shape="rounded" icon="plus" theme="stroked" color="accent"/>
-		<fkt-button class="demo-variants__button" ariaLabel="Success" shape="rounded" icon="plus" theme="stroked" color="success"/>
-		<fkt-button class="demo-variants__button" ariaLabel="Danger" shape="rounded" icon="plus" theme="stroked" color="danger"/>
-		<fkt-button class="demo-variants__button" ariaLabel="Warning" shape="rounded" icon="plus" theme="stroked" color="warning"/>
-		<fkt-button class="demo-variants__button" ariaLabel="Info" shape="rounded" icon="plus" theme="stroked" color="info"/>
-	  </div>
-	  <div class="demo-variants__row">
-		<strong class="demo-variants__label">Basic</strong>
-		<fkt-button class="demo-variants__button" ariaLabel="Primary" shape="rounded" icon="plus" theme="basic" color="primary"/>
-		<fkt-button class="demo-variants__button" ariaLabel="Accent" shape="rounded" icon="plus" theme="basic" color="accent"/>
-		<fkt-button class="demo-variants__button" ariaLabel="Success" shape="rounded" icon="plus" theme="basic" color="success"/>
-		<fkt-button class="demo-variants__button" ariaLabel="Danger" shape="rounded" icon="plus" theme="basic" color="danger"/>
-		<fkt-button class="demo-variants__button" ariaLabel="Warning" shape="rounded" icon="plus" theme="basic" color="warning"/>
-		<fkt-button class="demo-variants__button" ariaLabel="Info" shape="rounded" icon="plus" theme="basic" color="info"/>
-	  </div>
-	</div>
-	<div class="demo-variants__column">
-	  <h2 class="demo-variants__title">Rect</h2>
-	  <div class="demo-variants__row">
-		<strong class="demo-variants__label">Raised</strong>
-		<fkt-button class="demo-variants__button" ariaLabel="Primary" shape="rect" icon="plus" theme="raised" color="primary"/>
-		<fkt-button class="demo-variants__button" ariaLabel="Accent" shape="rect" icon="plus" theme="raised" color="accent"/>
-		<fkt-button class="demo-variants__button" ariaLabel="Success" shape="rect" icon="plus" theme="raised" color="success"/>
-		<fkt-button class="demo-variants__button" ariaLabel="Danger" shape="rect" icon="plus" theme="raised" color="danger"/>
-		<fkt-button class="demo-variants__button" ariaLabel="Warning" shape="rect" icon="plus" theme="raised" color="warning"/>
-		<fkt-button class="demo-variants__button" ariaLabel="Info" shape="rect" icon="plus" theme="raised" color="info"/>
-	  </div>
-	  <div class="demo-variants__row">
-		<strong class="demo-variants__label">Stroked</strong>
-		<fkt-button class="demo-variants__button" ariaLabel="Primary" shape="rect" icon="plus" theme="stroked" color="primary"/>
-		<fkt-button class="demo-variants__button" ariaLabel="Accent" shape="rect" icon="plus" theme="stroked" color="accent"/>
-		<fkt-button class="demo-variants__button" ariaLabel="Success" shape="rect" icon="plus" theme="stroked" color="success"/>
-		<fkt-button class="demo-variants__button" ariaLabel="Danger" shape="rect" icon="plus" theme="stroked" color="danger"/>
-		<fkt-button class="demo-variants__button" ariaLabel="Warning" shape="rect" icon="plus" theme="stroked" color="warning"/>
-		<fkt-button class="demo-variants__button" ariaLabel="Info" shape="rect" icon="plus" theme="stroked" color="info"/>
-	  </div>
-	  <div class="demo-variants__row">
-		<strong class="demo-variants__label">Basic</strong>
-		<fkt-button class="demo-variants__button" ariaLabel="Primary" shape="rect" icon="plus" theme="basic" color="primary"/>
-		<fkt-button class="demo-variants__button" ariaLabel="Accent" shape="rect" icon="plus" theme="basic" color="accent"/>
-		<fkt-button class="demo-variants__button" ariaLabel="Success" shape="rect" icon="plus" theme="basic" color="success"/>
-		<fkt-button class="demo-variants__button" ariaLabel="Danger" shape="rect" icon="plus" theme="basic" color="danger"/>
-		<fkt-button class="demo-variants__button" ariaLabel="Warning" shape="rect" icon="plus" theme="basic" color="warning"/>
-		<fkt-button class="demo-variants__button" ariaLabel="Info" shape="rect" icon="plus" theme="basic" color="info"/>
-	  </div>
-	</div>
-  </div>
-</div>
+@for (shape of shapes; track shape.value) {
+<table>
+    <thead>
+        <tr>
+            <th colspan="7">
+                {{ shape.title }}
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (appearance of shape.appearances; track appearance.value) {
+        <tr>
+            <td class="appearance">
+                {{ appearance.title }}
+            </td>
+
+            @for (color of appearance.colors; track color.value) {
+            <td>
+                <button
+                    [appearance]="appearance.value"
+                    [color]="color.value"
+                    [label]="'Add ' + color.title"
+                    [shape]="shape.value"
+                    fktButton
+                    hideLabel
+                >
+                    <fkt-icon fktButtonPrefix name="hand-thumb-up" />
+                </button>
+            </td>
+            }
+        </tr>
+        }
+    </tbody>
+</table>
+}
 ```
 
 ```css title="icon-variants-example.component.scss"
-.container {
-	display: flex;
-	justify-content: center;
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--fkt-space-md);
+  width: 100%;
 }
 
-.demo-variants {
-	display: flex;
-	flex-direction: column;
-	gap: var(--fkt-space-2xl);
-	padding: var(--fkt-space-md) 0;
-	justify-content: center;
-	max-width: 750px;
-}
+table {
+  border-collapse: collapse;
+  width: 100%;
+  max-width: 700px;
 
-.demo-variants__column {
-	display: flex;
-	flex-direction: column;
-	gap: var(--fkt-space-xl);
-	min-width: 300px;
-}
+  td, th {
+    padding: var(--fkt-space-xs);
+    text-align: center;
+    border: solid 1px var(--fkt-color-neutral-300);
 
-.demo-variants__title {
-	font-size: var(--fkt-font-size-xl);
-	font-weight: var(--fkt-font-semibold);
-	text-align: center;
-	border-bottom: 2px solid #e5e7eb;
-	margin-bottom: var(--fkt-space-sm);
-	padding-bottom: var(--fkt-space-3xs);
-	letter-spacing: 0.02em;
-}
-
-.demo-variants__row {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	gap: var(--fkt-space-sm);
-	margin-bottom: 0;
-}
-
-.demo-variants__label {
-	font-weight: var(--fkt-font-semibold);
-	min-width: 60px;
-	display: inline-block;
-}
-
-.demo-variants__button {
-	font-size: var(--fkt-font-size-md);
-	white-space: nowrap;
+    &.appearance {
+      font-weight: var(--fkt-font-semibold);
+      text-align: right;
+      font-size: var(--fkt-font-size-sm);
+    }
+  }
 }
 ```
 
-### StrokedSecondary
+### CustomColors
 
-- id: stroked-secondary
+- id: custom-colors
 - type: story
+- component: ButtonCustomColorsExampleComponent
 
-Buttons demonstrating different theme options with the same color for consistency.
+Any CSS color value is supported for application-specific actions. With
+`labelColor="auto"`, the component derives black or white from the resolved color; pass
+`labelColor` when the application needs an explicit override.
 
-### LongText
+Example component: `ButtonCustomColorsExampleComponent`
 
-- id: long-text
-- type: story
+```ts title="button-custom-colors-example.component.ts"
+import { Component } from '@angular/core';
+import { FktButtonComponent } from 'frakton-ng/button';
 
-Button with longer text content showing how the component handles text wrapping.
+@Component({
+    selector: 'app-button-custom-colors-example',
+    imports: [FktButtonComponent],
+    templateUrl: './button-custom-colors-example.component.html',
+    styleUrl: './button-custom-colors-example.component.scss',
+})
+export class ButtonCustomColorsExampleComponent {}
+```
+
+```html title="button-custom-colors-example.component.html"
+<button fktButton label="Named CSS color" color="red">
+
+</button>
+
+<button
+    fktButton
+    label="CSS custom property"
+    color="var(--example-brand-color)"
+>
+
+</button>
+
+<button
+    fktButton
+    label="Explicit text color"
+    color="hsl(43 96% 56%)"
+    labelColor="#422006"
+>
+
+</button>
+```
+
+```css title="button-custom-colors-example.component.scss"
+:host {
+    --example-brand-color: oklch(55% 0.24 292);
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--fkt-space-sm);
+}
+```
 
 ## API Reference
-
-## Key Features
-
-- **Multiple Themes**: Raised, stroked, and basic visual themes
-- **Flexible Variants**: Default, icon-only, and rectangular button variants
-- **Color Options**: Comprehensive color palette with primary, red, yellow, and green colors
-- **Icon Support**: Optional icons with configurable positioning (left or right)
-- **Loading States**: Built-in loading state with customizable loading text
-- **Accessibility**: Full keyboard navigation and screen reader support
-- **Responsive Design**: Adapts to different screen sizes and touch interactions
-- **Signal-Based**: Built with Angular signals for optimal performance
 
 ## Configuration Options
 
 <arg-types></arg-types>
 
-### Types
+## Native Host
 
-```typescript
-export type FktButtonVariant = 'rounded' | 'rect';
-export type FktButtonTheme = 'raised' | 'stroked' | 'basic';
-export type FktButtonIconPosition = 'left' | 'right';
+`FktButtonComponent` uses `button[fktButton]`. Native button attributes, events,
+focus, form association, tooltips, analytics directives, and element references
+belong directly to the interactive element.
+
+```html
+<button
+  fktButton
+  label="Save"
+  name="intent"
+  value="save"
+  type="submit"
+/>
 ```
 
-## Accessibility
+The default type is `button`.
 
-- **Keyboard Navigation**: Full keyboard support with Tab and Enter/Space keys
-- **Screen Reader Support**: Proper ARIA labels and button role announcements
-- **Focus Management**: Clear visual focus indicators and logical focus flow
-- **State Communication**: Loading and disabled states are clearly communicated
-- **Touch Friendly**: Optimized touch targets for mobile devices
-- **High Contrast**: Supports system high contrast modes
+## Styling Hooks
 
-## Performance
+The component exposes stable styling hooks instead of variant-specific design
+tokens. The host exposes each active visual axis through a dedicated
+`data-fkt-*` attribute.
 
-- **Efficient Rendering**: Optimized change detection with Angular signals
-- **Memory Management**: Proper cleanup of event listeners
-- **CSS Optimization**: Efficient styling with computed classes
-- **Bundle Size**: Minimal impact on application bundle size
+```html
+<button
+  fktButton
+  label="Delete"
+  color="danger"
+  appearance="stroked"
+  shape="square"
+  size="sm"
+  data-fkt-color="danger"
+  data-fkt-appearance="stroked"
+  data-fkt-shape="square"
+  data-fkt-size="sm"
+/>
+```
+
+These attributes are generated by the component. Use attribute selectors to
+customize a variation with the same public design tokens:
+
+```css
+button[fktButton][data-fkt-color='danger'] {
+  --fkt-button-color: var(--app-danger);
+  --fkt-button-text-color: white;
+}
+
+button[fktButton][data-fkt-size='sm'] {
+  --fkt-button-padding: 0.25rem 0.75rem;
+  --fkt-button-font-size: 0.75rem;
+}
+```
+
+Arbitrary CSS colors are exposed as `data-fkt-color="custom"` and the raw color
+is applied through an internal bridge variable. Semantic colors continue to
+default to the global `--fkt-color-*` tokens.
+
+## Projection Slots
+
+The component accepts only these projection markers:
+
+- `fktButtonPrefix`
+- `fktButtonSuffix`
+- `fktButtonLoadingIndicator`
+
+Unmarked content is not rendered. The visual order is loading indicator,
+prefix, label, and suffix.
+
+```html
+<button fktButton label="Notifications">
+  <fkt-icon fktButtonPrefix name="bell"/>
+  <span fktButtonSuffix>3</span>
+</button>
+```
+
+## Label and Accessibility
+
+`label` is required and is the only semantic label source. By default it is
+rendered visibly. With `hideLabel`, the visual label is removed and the same
+value is bound to the native `aria-label`.
+
+```html
+<button fktButton label="Delete" hideLabel>
+  <fkt-icon fktButtonPrefix name="trash"/>
+</button>
+```
+
+Prefix, suffix, and loading-indicator content is decorative and hidden from the
+accessibility tree.
+
+## Loading
+
+Loading preserves the normal prefix, label, and suffix while inserting an
+indicator before them. It also binds `aria-busy="true"` and disables the native
+button. A projected `fktButtonLoadingIndicator` replaces the default spinner.
+
+## Configuration-driven Actions
+
+`FktButtonAction` describes actions rendered from configuration, including
+`FktButtonsList`, dialog actions, table actions, and empty states.
+
+```ts
+import { FktButtonAction } from 'frakton-ng/button';
+
+const saveAction: FktButtonAction<FormModel> = {
+  identifier: 'save',
+  label: 'Save',
+  icon: 'check',
+  iconPosition: 'left',
+  color: 'primary',
+  click: (form) => save(form),
+};
+```
+
+`icon` and `iconPosition` are conveniences for configuration renderers. Direct
+button composition uses the prefix and suffix projection slots instead.

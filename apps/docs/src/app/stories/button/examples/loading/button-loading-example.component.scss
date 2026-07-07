@@ -1,0 +1,50 @@
+:host {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--fkt-space-sm);
+  flex-direction: column;
+
+  & > div {
+    display: flex;
+    gap: var(--fkt-space-sm);
+  }
+}
+
+.dots {
+  letter-spacing: 0.08em;
+}
+
+.dots {
+  display: flex;
+  justify-content: center;
+  gap: 2px;
+  align-items: flex-end;
+  height: 100%;
+
+  span {
+    width: 4px;
+    height: 4px;
+    background-color: currentColor;
+    transform: translateY(-1px);
+    border-radius: 50%;
+    animation: float 0.4s infinite alternate;
+
+    &:nth-child(1) {
+      animation-delay: 0.1s;
+    }
+
+    &:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    &:nth-child(3) {
+      animation-delay: 0.3s;
+    }
+  }
+}
+
+@keyframes float {
+  to {
+    transform: translateY(-8px);
+  }
+}

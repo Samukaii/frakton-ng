@@ -6,6 +6,7 @@
         "paths": {
             "frakton-ng/autocomplete": ["libs/frakton-ng/autocomplete"],
             "frakton-ng/avatar": ["libs/frakton-ng/avatar"],
+            "frakton-ng/button": ["libs/frakton-ng/button"],
             "frakton-ng/button-legacy": ["libs/frakton-ng/button-legacy"],
             "frakton-ng/button-group": ["libs/frakton-ng/button-group"],
             "frakton-ng/buttons-list": ["libs/frakton-ng/buttons-list"],

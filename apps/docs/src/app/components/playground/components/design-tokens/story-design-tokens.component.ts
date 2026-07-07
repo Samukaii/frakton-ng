@@ -1,20 +1,35 @@
-import { Component, computed, inject, input, linkedSignal, reflectComponentType, Signal, signal, untracked } from '@angular/core';
+import {
+    Component,
+    computed,
+    inject,
+    input,
+    linkedSignal,
+    reflectComponentType,
+    Signal,
+    signal,
+} from '@angular/core';
 import { DesignTokenItem } from '@/models/design-token-item';
 import { StoryDesignTokensItemComponent } from './item/story-design-tokens-item.component';
 import { STORY_META_TOKEN } from '@/tokens/story-meta.token';
 import { getVisibleRect } from '@/utils/get-visible-rect';
 import { FktNavigableListDirective } from 'frakton-ng/navigable-list';
-import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { FktTooltipDirective } from 'frakton-ng/tooltip';
 import { wait } from 'frakton-ng/internal/utils';
+import {
+    FktButtonComponent,
+    FktButtonPrefixDirective,
+} from 'frakton-ng/button';
+import { FktIconComponent } from 'frakton-ng/icon';
 
 @Component({
     selector: 'app-story-design-tokens',
     imports: [
         StoryDesignTokensItemComponent,
         FktNavigableListDirective,
-        FktButtonLegacyComponent,
         FktTooltipDirective,
+        FktButtonComponent,
+        FktIconComponent,
+        FktButtonPrefixDirective,
     ],
     templateUrl: './story-design-tokens.component.html',
     styleUrl: './story-design-tokens.component.scss',

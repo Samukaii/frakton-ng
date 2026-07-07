@@ -1,0 +1,25 @@
+:host {
+  display: flex;
+  align-items: center;
+  gap: var(--fkt-space-md);
+}
+
+.counter {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 1.5em;
+  width: auto;
+  aspect-ratio: 1;
+
+  padding: 0 var(--fkt-space-4xs);
+
+  color: var(--fkt-color-on-primary);
+  background: var(--fkt-color-primary);
+  border-radius: var(--fkt-radius-full);
+  font-size: var(--fkt-font-size-xs);
+
+  line-height: 1;
+  box-sizing: border-box;
+}

@@ -31,7 +31,7 @@ prism.languages.insertBefore('angular2html', 'tag', {
     },
     'control-flow': {
         pattern:
-            /@(if|else|else\s+if|for|empty|switch|case|default|let)[\w\W]*\) +\{/,
+            /@(if|else\s+if|for|switch|case|let)\b[\s\S]*?\{\s*/,
         inside: {
             condition: {
                 pattern: /\([\s\S]*\)(?=\s*;?\s*\{)/,

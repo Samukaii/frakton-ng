@@ -1,0 +1,34 @@
+<div>
+    <button fktButton label="Start loading" loading>
+        <fkt-icon fktButtonPrefix name="check" />
+    </button>
+
+    <button fktButton label="End loading" loading loadingPosition="end">
+        <fkt-icon fktButtonPrefix name="check" />
+    </button>
+</div>
+
+<div>
+    <button
+        fktButton
+        label="Start custom loading"
+        loading
+        loadingPosition="start"
+    >
+        <span class="dots" fktButtonLoadingIndicator>
+            <span></span>
+            <span></span>
+            <span></span>
+        </span>
+        <fkt-icon fktButtonPrefix name="arrow-path" />
+    </button>
+
+    <button fktButton label="End custom loading" loading loadingPosition="end">
+        <span class="dots" fktButtonLoadingIndicator>
+            <span></span>
+            <span></span>
+            <span></span>
+        </span>
+        <fkt-icon fktButtonPrefix name="arrow-path" />
+    </button>
+</div>

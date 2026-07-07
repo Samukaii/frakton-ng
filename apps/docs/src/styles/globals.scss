@@ -1,154 +1,157 @@
 /* You can add global styles to this file, and also import other style files */
 
 body, html {
-    padding: 0;
-    margin: 0;
+  padding: 0;
+  margin: 0;
 }
 
 
 body {
-    height: 100vh;
-    width: 100vw;
+  height: 100vh;
+  width: 100vw;
+
+  * {
     font-family: "Inter", sans-serif;
     font-optical-sizing: auto;
-    font-weight: 400;
     font-style: normal;
+    font-weight: 400;
+  }
 
-    background-color: var(--fkt-color-neutral-background);
-    --fkt-panel-shadow: rgb(179 187 199) 0px 4px 21px 1px;
-    --fkt-toolbar-background: #E2E8F066;
-    --inline-code-text-color: #d52020;
-    --inline-code-background-color: #80808008;
-    --inline-code-border-color: #00000033;
-    --fkt-mobile-menu-background: rgba(230, 235, 245, 0.9);
-    --fkt-color-link: var(--fkt-color-info);
-    --fkt-color-link-opacity-20: var(--fkt-color-info-opacity-20);
+  background-color: var(--fkt-color-neutral-background);
+  --fkt-panel-shadow: rgb(179 187 199) 0px 4px 21px 1px;
+  --fkt-toolbar-background: #E2E8F066;
+  --inline-code-text-color: #d52020;
+  --inline-code-background-color: #80808008;
+  --inline-code-border-color: #00000033;
+  --fkt-mobile-menu-background: rgba(230, 235, 245, 0.9);
+  --fkt-color-link: var(--fkt-color-info);
+  --fkt-color-link-opacity-20: var(--fkt-color-info-opacity-20);
 
 
-    --scrollbar-color-thumb: var(--fkt-color-neutral-400);
-    --scrollbar-color-track: transparent;
-    --scrollbar-width: thin;
-    --scrollbar-width-legacy: 10px;
+  --scrollbar-color-thumb: var(--fkt-color-neutral-400);
+  --scrollbar-color-track: transparent;
+  --scrollbar-width: thin;
+  --scrollbar-width-legacy: 10px;
 
-    /* Modern browsers with `scrollbar-*` support */
-    @supports (scrollbar-width: auto) {
+  /* Modern browsers with `scrollbar-*` support */
+  @supports (scrollbar-width: auto) {
 
-        * {
-            scrollbar-color: var(--scrollbar-color-thumb) var(--scrollbar-color-track);
+    * {
+      scrollbar-color: var(--scrollbar-color-thumb) var(--scrollbar-color-track);
 
-            scrollbar-width: var(--scrollbar-width);
-        }
+      scrollbar-width: var(--scrollbar-width);
     }
+  }
 
-    /* Legacy browsers with `::-webkit-scrollbar-*` support */
-    @supports selector(::-webkit-scrollbar) {
-        * {
-            ::-webkit-scrollbar-thumb {
-                background: var(--scrollbar-color-thumb);
-            }
+  /* Legacy browsers with `::-webkit-scrollbar-*` support */
+  @supports selector(::-webkit-scrollbar) {
+    * {
+      ::-webkit-scrollbar-thumb {
+        background: var(--scrollbar-color-thumb);
+      }
 
-            ::-webkit-scrollbar-track {
-                background: var(--scrollbar-color-track);
-            }
+      ::-webkit-scrollbar-track {
+        background: var(--scrollbar-color-track);
+      }
 
-            ::-webkit-scrollbar {
-                max-width: var(--scrollbar-width-legacy);
-                max-height: var(--scrollbar-width-legacy);
-            }
-        }
+      ::-webkit-scrollbar {
+        max-width: var(--scrollbar-width-legacy);
+        max-height: var(--scrollbar-width-legacy);
+      }
     }
+  }
 }
 
 
 body[data-fkt-theme="dark"] {
-    --fkt-panel-shadow: rgb(24, 27, 32) 0px 4px 21px 1px;
-    --fkt-toolbar-background: #1F232966;
-    --fkt-mobile-menu-background: rgba(31, 35, 41, 0.8);
+  --fkt-panel-shadow: rgb(24, 27, 32) 0px 4px 21px 1px;
+  --fkt-toolbar-background: #1F232966;
+  --fkt-mobile-menu-background: rgba(31, 35, 41, 0.8);
 
-    --fkt-color-link: var(--fkt-color-accent);
-    --fkt-color-link-opacity-20: var(--fkt-color-accent-opacity-20);
+  --fkt-color-link: var(--fkt-color-accent);
+  --fkt-color-link-opacity-20: var(--fkt-color-accent-opacity-20);
 
-    --inline-code-text-color: #fa6565;
-    --inline-code-background-color: #adadad14;
-    --inline-code-border-color: #ffffff2b;
+  --inline-code-text-color: #fa6565;
+  --inline-code-background-color: #adadad14;
+  --inline-code-border-color: #ffffff2b;
 }
 
 .show-xs, .show-md, .show-sm {
-    display: none !important;
+  display: none !important;
 }
 
 @media (screen and max-width: 1200px) {
-    .hide-md {
-        display: none !important;
-    }
+  .hide-md {
+    display: none !important;
+  }
 
-    .show-md {
-        display: block !important;
-    }
+  .show-md {
+    display: block !important;
+  }
 }
 
 @media (screen and max-width: 650px) {
-    .hide-sm {
-        display: none !important;
-    }
+  .hide-sm {
+    display: none !important;
+  }
 
-    .show-sm {
-        display: block !important;
-    }
+  .show-sm {
+    display: block !important;
+  }
 }
 
 @media (screen and max-width: 460px) {
-    .hide-xs {
-        display: none !important;
-    }
+  .hide-xs {
+    display: none !important;
+  }
 
-    .show-xs {
-        display: block !important;
-    }
+  .show-xs {
+    display: block !important;
+  }
 }
 
 @media (screen and max-width: 400px) {
-    .hide-2xs {
-        display: none !important;
-    }
+  .hide-2xs {
+    display: none !important;
+  }
 
-    .show-2xs {
-        display: block !important;
-    }
+  .show-2xs {
+    display: block !important;
+  }
 }
 
 .code-block-container {
-    &:has(.code-block-files-tab) {
-        pre {
-            margin-top: 0;
-            border-top-left-radius: 0;
-            border-top-right-radius: 0;
-        }
+  &:has(.code-block-files-tab) {
+    pre {
+      margin-top: 0;
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
     }
+  }
 }
 
 .code-block-files-tab {
-    background: #1e222b;
-    color: #cccccc;
-    font-family: JetBrains Mono, Consolas, Monaco, monospace;
+  background: #1e222b;
+  color: #cccccc;
+  font-family: JetBrains Mono, Consolas, Monaco, monospace;
+  border-top-left-radius: var(--fkt-radius-2xl);
+  border-top-right-radius: var(--fkt-radius-2xl);
+  font-size: var(--fkt-font-size-xs);
+
+  .code-block-file {
+    //background: #333741;
+    //border: solid 1px #ffffff26;
+    width: fit-content;
+    padding: .5rem 1rem;
+    border-radius: var(--fkt-radius-md);
     border-top-left-radius: var(--fkt-radius-2xl);
-    border-top-right-radius: var(--fkt-radius-2xl);
-    font-size: var(--fkt-font-size-xs);
+    display: flex;
+    gap: .5rem;
+    align-items: center;
 
-    .code-block-file {
-        //background: #333741;
-        //border: solid 1px #ffffff26;
-        width: fit-content;
-        padding: .5rem 1rem;
-        border-radius: var(--fkt-radius-md);
-        border-top-left-radius: var(--fkt-radius-2xl);
-        display: flex;
-        gap: .5rem;
-        align-items: center;
-
-        svg {
-            width: 15px;
-            height: 15px;
-        }
+    svg {
+      width: 15px;
+      height: 15px;
     }
+  }
 }
