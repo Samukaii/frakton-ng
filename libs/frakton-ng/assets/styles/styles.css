@@ -93,6 +93,11 @@
 	--fkt-transition-delay-none: 0ms;
 	--fkt-transition-delay-short: 50ms;
 	--fkt-transition-delay-long: 200ms;
+
+    --fkt-auto-contrast-channel: round(
+            up,
+            min(1, max(0, 0.36 - y))
+    );
 }
 
 .fkt-vertical-separator {
