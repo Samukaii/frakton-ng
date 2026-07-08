@@ -85,8 +85,8 @@ export const WithActionButton: Story<FktNoResultsComponent> = {
             description: 'You don\'t have any tasks assigned yet.',
             icon: {name: 'clipboard-document-list'},
             action: {
-                text: 'Create Task',
-                theme: 'raised',
+                label: 'Create Task',
+                appearance: 'raised',
                 identifier: 'create-task',
                 click: () => {}
             }

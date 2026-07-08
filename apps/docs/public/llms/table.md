@@ -638,11 +638,10 @@ export class TableExamplesFrozenRowsComponent {
                         actions: [
                             {
                                 identifier: 'lock',
-                                theme: 'basic',
+                                appearance: 'basic',
                                 color: 'primary',
-                                ariaLabel: isLocked
-                                    ? 'Unlock user'
-                                    : 'Lock user',
+                                iconOnly: true,
+                                label: isLocked ? 'Unlock user' : 'Lock user',
                                 icon: isLocked ? 'lock-open' : 'lock-closed',
                                 click: () => {
                                     if (isLocked) this.unlockUser(user);
@@ -807,16 +806,18 @@ export class TableExamplesCellRenderersComponent {
                         {
                             identifier: 'edit',
                             icon: 'pencil',
-                            theme: 'basic',
-                            ariaLabel: 'Edit product',
+                            appearance: 'basic',
+                            label: 'Edit product',
+                            iconOnly: true,
                             click: () => console.log('edit', product.name),
                         },
                         {
                             identifier: 'delete',
                             icon: 'trash',
-                            theme: 'basic',
+                            appearance: 'basic',
                             color: 'danger',
-                            ariaLabel: 'Delete product',
+                            label: 'Delete product',
+                            iconOnly: true,
                             click: () => console.log('delete', product.name),
                         },
                     ],
@@ -937,8 +938,9 @@ export class TableExamplesCustomCellComponentsComponent {
                         {
                             identifier: 'view',
                             icon: 'eye',
-                            theme: 'basic',
-                            ariaLabel: 'View product',
+                            appearance: 'basic',
+                            label: 'View product',
+                            iconOnly: true,
                             click: () => console.log('view', product.name),
                         },
                     ],
@@ -1862,38 +1864,22 @@ Frakton NG ships four built-in filter components that can be registered: text, s
 Example component: `TableExamplesFilteringComponent`
 
 ```ts title="table-examples-filtering.component.ts"
-import {
-    Component,
-    computed,
-    inject,
-    input,
-    resource,
-    signal,
-} from '@angular/core';
-import {
-    defineCells,
-    defineFilters,
-    FktTableColumn,
-    FktTableComponent,
-} from 'frakton-ng/table';
-import { FktNoResults } from 'frakton-ng/no-results';
-import { FktTagComponent } from 'frakton-ng/tag';
-import { FktButtonsListComponent } from 'frakton-ng/buttons-list';
-import { FktTableFilterTextComponent } from 'frakton-ng/table/filters/text';
-import { FktTableFilterSelectComponent } from 'frakton-ng/table/filters/select';
-import { FktTableFilterNumberComponent } from 'frakton-ng/table/filters/number';
-import { FktTableFilterDateRangeComponent } from 'frakton-ng/table/filters/date-range';
-import { JsonPipe } from '@angular/common';
-import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
-import { ProductsService } from '@/stories/table/services/products.service';
-import { Product } from '@/stories/table/models/product';
-import { ProductFilters } from '@/stories/table/models/product-filters';
-import {
-    CATEGORY_COLORS,
-    STATUS_COLORS,
-    STATUS_LABELS,
-} from '@/stories/table/constants/product-constants';
-import { stockColor } from '@/stories/table/utils/stock-color';
+import {Component, computed, inject, input, resource, signal,} from '@angular/core';
+import {defineCells, defineFilters, FktTableColumn, FktTableComponent,} from 'frakton-ng/table';
+import {FktNoResults} from 'frakton-ng/no-results';
+import {FktTagComponent} from 'frakton-ng/tag';
+import {FktButtonsListComponent} from 'frakton-ng/buttons-list';
+import {FktTableFilterTextComponent} from 'frakton-ng/table/filters/text';
+import {FktTableFilterSelectComponent} from 'frakton-ng/table/filters/select';
+import {FktTableFilterNumberComponent} from 'frakton-ng/table/filters/number';
+import {FktTableFilterDateRangeComponent} from 'frakton-ng/table/filters/date-range';
+import {FktButtonComponent} from 'frakton-ng/button';
+import {ProductsService} from '@/stories/table/services/products.service';
+import {Product} from '@/stories/table/models/product';
+import {ProductFilters} from '@/stories/table/models/product-filters';
+import {CATEGORY_COLORS, STATUS_COLORS, STATUS_LABELS,} from '@/stories/table/constants/product-constants';
+import {stockColor} from '@/stories/table/utils/stock-color';
+import {CodeOutputComponent} from "@/components/code-output/code-output.component";
 
 export const cell = defineCells({
     tag: FktTagComponent,
@@ -1909,7 +1895,7 @@ export const filter = defineFilters({
 
 @Component({
     selector: 'app-table-examples-with-filtering',
-    imports: [FktTableComponent, JsonPipe, FktButtonLegacyComponent],
+    imports: [FktTableComponent, FktButtonComponent, CodeOutputComponent],
     templateUrl: './table-examples-filtering.component.html',
     styleUrl: './table-examples-filtering.component.scss',
 })
@@ -1980,7 +1966,7 @@ export class TableExamplesFilteringComponent {
             header: 'Price',
             filter: filter.number('price', {
                 label: 'Price ($)',
-                placeholder: 'Choose the price'
+                placeholder: 'Choose the price',
             }),
             cell: (product) => `$${product.price.toFixed(2)}`,
         },
@@ -1989,7 +1975,7 @@ export class TableExamplesFilteringComponent {
             header: 'Stock',
             filter: filter.number('stock', {
                 label: 'Units',
-                placeholder: 'Choose units'
+                placeholder: 'Choose units',
             }),
             cell: (product) =>
                 cell.tag({
@@ -2036,8 +2022,9 @@ export class TableExamplesFilteringComponent {
                             identifier: 'delete',
                             color: 'danger',
                             icon: 'trash',
-                            theme: 'basic',
-                            ariaLabel: 'Delete product',
+                            appearance: 'basic',
+                            label: 'Delete product',
+                            iconOnly: true,
                             click: () =>
                                 console.log(`deleting ${product.name}`),
                         },
@@ -2054,52 +2041,53 @@ export class TableExamplesFilteringComponent {
 
 ```html title="table-examples-filtering.component.html"
 <div class="preview">
-    <pre>{{ filters() | json }}</pre>
-    <fkt-button
-        text="Reset all filters"
+    <button
         (click)="resetFilters()"
-    />
+        fktButton
+        label="Reset all filters">
+    </button>
 </div>
 
 <fkt-table
-    [data]="products()"
-    [columns]="columns"
-    [loading]="loading()"
-    [noResults]="noResults()"
-    [defaultFilters]="defaultFilters"
-    [(filters)]="filters"
+        [(filters)]="filters"
+        [columns]="columns"
+        [data]="products()"
+        [defaultFilters]="defaultFilters"
+        [loading]="loading()"
+        [noResults]="noResults()"
 >
 </fkt-table>
+
+<app-code-output [value]="filters()" title="Filters value"/>
 ```
 
 ```css title="table-examples-filtering.component.scss"
 fkt-table {
-	background-color: var(--fkt-color-neutral-100);
-    --fkt-table-max-height: 600px;
+  background-color: var(--fkt-color-neutral-100);
+  --fkt-table-max-height: 600px;
 }
 
 .paginator-container {
-    width: 100%;
-    border-top: solid 1px var(--fkt-color-neutral-300);
+  width: 100%;
+  border-top: solid 1px var(--fkt-color-neutral-300);
 }
 
 pre {
-    background-color: var(--fkt-color-neutral-100);
-    padding: var(--fkt-space-xs);
-    border-radius: var(--fkt-radius-md);
-    border: solid 1px var(--fkt-color-neutral-300);
-    margin: 0 0 var(--fkt-space-md);
+  background-color: var(--fkt-color-neutral-100);
+  padding: var(--fkt-space-xs);
+  border-radius: var(--fkt-radius-md);
+  border: solid 1px var(--fkt-color-neutral-300);
+  margin: 0 0 var(--fkt-space-md);
 }
 
 .preview {
-    position: relative;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: var(--fkt-space-md);
+}
 
-    fkt-button {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        right: var(--fkt-space-md);
-    }
+app-code-output {
+  margin-top: var(--fkt-space-md);
 }
 ```
 
@@ -2141,7 +2129,8 @@ import {
 import { stockColor } from '@/stories/table/utils/stock-color';
 import { CategoryMultiFilterComponent } from './filters/category-multi-filter/category-multi-filter.component';
 import { JsonPipe } from '@angular/common';
-import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
+import { FktButtonComponent } from 'frakton-ng/button';
+import {CodeOutputComponent} from "@/components/code-output/code-output.component";
 
 const cell = defineCells({
     tag: FktTagComponent,
@@ -2152,7 +2141,12 @@ const filter = defineFilters({});
 
 @Component({
     selector: 'app-table-examples-custom-filter-components',
-    imports: [FktTableComponent, JsonPipe, FktButtonLegacyComponent],
+    imports: [
+        FktTableComponent,
+        JsonPipe,
+        FktButtonComponent,
+        CodeOutputComponent,
+    ],
     templateUrl: './table-examples-custom-filter-components.component.html',
     styleUrl: './table-examples-custom-filter-components.component.scss',
 })
@@ -2235,8 +2229,9 @@ export class TableExamplesCustomFilterComponentsComponent {
                             identifier: 'delete',
                             color: 'danger',
                             icon: 'trash',
-                            theme: 'basic',
-                            ariaLabel: 'Delete product',
+                            appearance: 'basic',
+                            label: 'Delete product',
+                            iconOnly: true,
                             click: () => console.log('delete', product.name),
                         },
                     ],
@@ -2247,43 +2242,38 @@ export class TableExamplesCustomFilterComponentsComponent {
 ```
 
 ```html title="table-examples-custom-filter-components.component.html"
-<div class="preview">
-    <pre>{{ filters() | json }}</pre>
-    <fkt-button
-        text="Reset all filters"
-        (click)="resetFilters()"
-    />
+<div class="actions">
+    <button (click)="resetFilters()"
+            fktButton
+            label="Reset all filters">
+    </button>
 </div>
 
 <fkt-table
-    [data]="products()"
-    [columns]="columns"
-    [defaultFilters]="defaultFilters"
-    [(filters)]="filters"
-    [loading]="response.isLoading()"
+        [(filters)]="filters"
+        [columns]="columns"
+        [data]="products()"
+        [defaultFilters]="defaultFilters"
+        [loading]="response.isLoading()"
 />
+
+<app-code-output [value]="filters()"/>
 ```
 
 ```css title="table-examples-custom-filter-components.component.scss"
-.preview {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding: 0.75rem;
-    background: var(--fkt-color-surface-secondary, #f9fafb);
-    border-radius: 0.5rem;
-    margin-bottom: 1rem;
-
-    pre {
-        flex: 1;
-        margin: 0;
-        font-size: 0.8rem;
-        white-space: pre-wrap;
-    }
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: var(--fkt-space-md);
 }
+
 fkt-table {
-    background-color: var(--fkt-color-neutral-100);
-    --fkt-table-max-height: 600px;
+  background-color: var(--fkt-color-neutral-100);
+  --fkt-table-max-height: 600px;
+}
+
+app-code-output {
+  margin-top: var(--fkt-space-md);
 }
 ```
 
@@ -2886,19 +2876,15 @@ custom header template.
 Example component: `TableExamplesExportComponent`
 
 ```ts title="table-examples-export.component.ts"
-import { Component, computed, inject, resource } from '@angular/core';
-import {
-    FktTableColumn,
-    FktTableComponent,
-    FktTableExportDirective,
-} from 'frakton-ng/table';
-import { FktTagColor } from 'frakton-ng/tag';
-import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
-import { Order } from '@/stories/table/models/order';
-import { OrderStatus } from '@/stories/table/models/order-status';
-import { OrdersService } from '@/stories/table/services/orders.service';
-import { formatDate } from '@angular/common';
-import { cell } from '@/utils/cell-renderer';
+import {Component, computed, inject, resource} from '@angular/core';
+import {FktTableColumn, FktTableComponent, FktTableExportDirective,} from 'frakton-ng/table';
+import {FktTagColor} from 'frakton-ng/tag';
+import {Order} from '@/stories/table/models/order';
+import {OrderStatus} from '@/stories/table/models/order-status';
+import {OrdersService} from '@/stories/table/services/orders.service';
+import {formatDate} from '@angular/common';
+import {cell} from '@/utils/cell-renderer';
+import {FktButtonComponent} from "frakton-ng/button";
 
 const STATUS_LABELS: Record<OrderStatus, string> = {
     pending: 'Pending',
@@ -2918,7 +2904,7 @@ const STATUS_COLORS: Record<OrderStatus, FktTagColor> = {
 
 @Component({
     selector: 'app-table-examples-export',
-    imports: [FktTableComponent, FktTableExportDirective, FktButtonLegacyComponent],
+    imports: [FktTableComponent, FktTableExportDirective, FktButtonComponent],
     templateUrl: './table-examples-export.component.html',
     styleUrl: './table-examples-export.component.scss',
 })
@@ -2978,21 +2964,19 @@ export class TableExamplesExportComponent {
 
 ```html title="table-examples-export.component.html"
 <fkt-table
-    fktTableExport
     #exporter="fktTableExport"
-    [data]="data()"
     [columns]="columns"
+    [data]="data()"
     [loading]="response.isLoading()"
+    fktTableExport
 >
     <div fktTableToolbar>
-        <fkt-button
-            theme="raised"
-            iconPosition="left"
-            shape="rect"
-            icon="arrow-up-on-square"
-            (click)="exporter.exportCsv()"
-            text="Export CSV"
-        />
+        <button
+                (click)="exporter.exportCsv()"
+                fktButton
+                icon="arrow-up-on-square"
+                label="Export CSV">
+        </button>
     </div>
 </fkt-table>
 ```
@@ -3164,11 +3148,11 @@ import {
 import { FktTagColor, FktTagComponent } from 'frakton-ng/tag';
 import { FktTableFilterTextComponent } from 'frakton-ng/table/filters/text';
 import { FktTableFilterSelectComponent } from 'frakton-ng/table/filters/select';
-import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { Order } from '@/stories/table/models/order';
 import { OrderStatus } from '@/stories/table/models/order-status';
 import { OrdersService } from '@/stories/table/services/orders.service';
 import { formatCurrency, formatDate, isPlatformServer } from '@angular/common';
+import { FktButtonComponent } from 'frakton-ng/button';
 
 const STORAGE_KEY = 'docs-table-stateful';
 
@@ -3201,7 +3185,7 @@ const loadStorage = () => {
         FktTableComponent,
         FktTableResizeDirective,
         FktTableReorderDirective,
-        FktButtonLegacyComponent,
+        FktButtonComponent,
     ],
     templateUrl: './table-examples-stateful.component.html',
     styleUrl: './table-examples-stateful.component.scss',
@@ -3247,7 +3231,10 @@ export class TableExamplesStatefulComponent {
             header: 'Order',
             width: '130px',
             cell: (order) => order.orderNumber,
-            filter: filter.text('orderNumber', { label: 'Search order' }),
+            filter: filter.text('orderNumber', {
+                label: 'Order',
+                placeholder: 'Search order',
+            }),
         },
         {
             key: 'customer',
@@ -3285,6 +3272,7 @@ export class TableExamplesStatefulComponent {
                 }),
             filter: filter.select('status', {
                 label: 'Status',
+                placeholder: 'Select the status',
                 labelKey: 'label',
                 valueKey: 'value',
                 options: Object.entries(STATUS_INFO).map(([value, info]) => ({
@@ -3306,23 +3294,22 @@ export class TableExamplesStatefulComponent {
 
 ```html title="table-examples-stateful.component.html"
 <fkt-table
-    fktTableResize
-    fktTableReorder
-    [data]="data()"
-    [columns]="columns"
-    [loading]="response.isLoading()"
-    [(columnWidths)]="columnWidths"
-    [(columnOrder)]="columnOrder"
-    [(filters)]="filters"
+        [(columnOrder)]="columnOrder"
+        [(columnWidths)]="columnWidths"
+        [(filters)]="filters"
+        [columns]="columns"
+        [data]="data()"
+        [loading]="response.isLoading()"
+        fktTableReorder
+        fktTableResize
 >
     <div fktTableToolbar>
-        <fkt-button
-            iconPosition="left"
-            shape="rect"
-            icon="arrow-uturn-left"
-            (click)="reset()"
-            text="Reset layout"
-        />
+        <button
+                (click)="reset()"
+                fktButton
+                icon="arrow-uturn-left"
+                label="Reset layout">
+        </button>
     </div>
 </fkt-table>
 ```

@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { FktButtonsListComponent } from 'frakton-ng/buttons-list';
-import { FktButtonAction } from 'frakton-ng/button-legacy';
+import { FktButtonAction } from 'frakton-ng/button';
 
 
 @Component({

@@ -1,5 +1,5 @@
 import { FktIdentifiable } from 'frakton-ng/core';
-import { FktButtonAction } from 'frakton-ng/button-legacy';
+import { FktButtonAction } from 'frakton-ng/button';
 import {
     InputSignal,
     OutputEmitterRef,

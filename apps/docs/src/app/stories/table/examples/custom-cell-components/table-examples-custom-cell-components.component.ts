@@ -75,8 +75,9 @@ export class TableExamplesCustomCellComponentsComponent {
                         {
                             identifier: 'view',
                             icon: 'eye',
-                            theme: 'basic',
-                            ariaLabel: 'View product',
+                            appearance: 'basic',
+                            label: 'View product',
+                            iconOnly: true,
                             click: () => console.log('view', product.name),
                         },
                     ],

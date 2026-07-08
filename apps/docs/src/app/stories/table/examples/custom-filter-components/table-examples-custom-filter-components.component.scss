@@ -1,20 +1,14 @@
-.preview {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding: 0.75rem;
-    background: var(--fkt-color-surface-secondary, #f9fafb);
-    border-radius: 0.5rem;
-    margin-bottom: 1rem;
-
-    pre {
-        flex: 1;
-        margin: 0;
-        font-size: 0.8rem;
-        white-space: pre-wrap;
-    }
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: var(--fkt-space-md);
 }
+
 fkt-table {
-    background-color: var(--fkt-color-neutral-100);
-    --fkt-table-max-height: 600px;
+  background-color: var(--fkt-color-neutral-100);
+  --fkt-table-max-height: 600px;
+}
+
+app-code-output {
+  margin-top: var(--fkt-space-md);
 }

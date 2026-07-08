@@ -1,7 +1,7 @@
 import { Component, computed, input } from '@angular/core';
 import { FktButtonsListComponent } from 'frakton-ng/buttons-list';
 import { FktIconComponent } from 'frakton-ng/icon';
-import { FktButtonAction } from 'frakton-ng/button-legacy';
+import { FktButtonAction } from 'frakton-ng/button';
 
 @Component({
 	selector: 'fkt-dialog-confirm-action',
@@ -25,14 +25,14 @@ export class FktDialogConfirmActionComponent {
 
 		const primaryAction: FktButtonAction = {
 			identifier: 'primary',
-			text: 'Confirmar',
+			label: 'Confirmar',
 			color: 'danger',
 			...primary,
 		};
 		const secondaryAction: FktButtonAction = {
 			identifier: 'secondary',
-			text: 'Voltar',
-			theme: 'stroked',
+			label: 'Voltar',
+			appearance: 'stroked',
 			...secondary,
 		};
 

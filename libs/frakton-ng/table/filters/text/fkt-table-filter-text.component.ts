@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, input, linkedSignal, output } from '@angular/core';
 import { FktButtonsListComponent } from 'frakton-ng/buttons-list';
-import { FktButtonAction } from 'frakton-ng/button-legacy';
+import { FktButtonAction } from 'frakton-ng/button';
 import { FktTableCustomFilter } from 'frakton-ng/table';
 import { FktFieldComponent } from 'frakton-ng/field';
 import { form, FormField } from '@angular/forms/signals';
@@ -35,17 +35,15 @@ export class FktTableFilterTextComponent
     protected readonly actions: FktButtonAction[] = [
         {
             identifier: 'reset',
-            text: 'Reset',
-            shape: 'rect',
-            theme: 'stroked',
+            label: 'Reset',
+            appearance: 'stroked',
             click: () => {
                 this.apply.emit(this.defaultValue() ?? '');
             },
         },
         {
             identifier: 'apply',
-            shape: 'rect',
-            text: 'Apply',
+            label: 'Apply',
             click: () => {
                 this.apply.emit(this.internalValue());
             },

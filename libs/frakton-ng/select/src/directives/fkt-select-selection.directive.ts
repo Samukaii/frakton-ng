@@ -23,7 +23,7 @@ export class FktSelectSelectionDirective<
 
         return Array.isArray(value)
             ? value
-            : value === null
+            : (value === null || value === undefined)
               ? []
               : [value];
     });

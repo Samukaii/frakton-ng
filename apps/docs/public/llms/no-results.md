@@ -66,8 +66,8 @@ export class SearchResultsExampleComponent {
 		description: `No results found for "${this.searchQuery}". Try different keywords.`,
 		icon: {name: 'magnifying-glass', size: '80px'},
 		action: {
-			text: 'Clear Search',
-			theme: 'stroked',
+			label: 'Clear Search',
+			appearance: 'stroked',
 			identifier: 'clear-search',
 			click: () => this.clearSearch()
 		}
@@ -115,8 +115,8 @@ export class DataTableExampleComponent {
 		description: 'There are no records to display at this time.',
 		icon: {name: 'table-cells', size: '100px'},
 		action: {
-			text: 'Add Record',
-			theme: 'raised',
+			label: 'Add Record',
+			appearance: 'raised',
 			identifier: 'add-record',
 			click: () => this.openAddRecordModal()
 		}
@@ -163,8 +163,8 @@ export class FileUploadExampleComponent {
 		description: 'This folder is empty. Upload some files to get started.',
 		icon: {name: 'folder-open', size: '120px'},
 		action: {
-			text: 'Upload Files',
-			theme: 'raised',
+			label: 'Upload Files',
+			appearance: 'raised',
 			icon: 'arrow-up-tray',
 			identifier: 'upload-files',
 			click: () => this.openFileUpload()

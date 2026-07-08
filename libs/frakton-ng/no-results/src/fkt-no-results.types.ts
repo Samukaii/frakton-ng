@@ -1,4 +1,4 @@
-import { FktButtonAction } from 'frakton-ng/button-legacy';
+import { FktButtonAction } from 'frakton-ng/button';
 import { FktIconName } from 'frakton-ng/icon';
 
 export interface FktNoResults {

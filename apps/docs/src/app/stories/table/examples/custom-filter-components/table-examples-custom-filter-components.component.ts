@@ -20,7 +20,8 @@ import {
 import { stockColor } from '@/stories/table/utils/stock-color';
 import { CategoryMultiFilterComponent } from './filters/category-multi-filter/category-multi-filter.component';
 import { JsonPipe } from '@angular/common';
-import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
+import { FktButtonComponent } from 'frakton-ng/button';
+import {CodeOutputComponent} from "@/components/code-output/code-output.component";
 
 const cell = defineCells({
     tag: FktTagComponent,
@@ -31,7 +32,12 @@ const filter = defineFilters({});
 
 @Component({
     selector: 'app-table-examples-custom-filter-components',
-    imports: [FktTableComponent, JsonPipe, FktButtonLegacyComponent],
+    imports: [
+        FktTableComponent,
+        JsonPipe,
+        FktButtonComponent,
+        CodeOutputComponent,
+    ],
     templateUrl: './table-examples-custom-filter-components.component.html',
     styleUrl: './table-examples-custom-filter-components.component.scss',
 })
@@ -114,8 +120,9 @@ export class TableExamplesCustomFilterComponentsComponent {
                             identifier: 'delete',
                             color: 'danger',
                             icon: 'trash',
-                            theme: 'basic',
-                            ariaLabel: 'Delete product',
+                            appearance: 'basic',
+                            label: 'Delete product',
+                            iconOnly: true,
                             click: () => console.log('delete', product.name),
                         },
                     ],

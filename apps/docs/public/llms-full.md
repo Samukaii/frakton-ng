@@ -2967,11 +2967,10 @@ export class TableExamplesFrozenRowsComponent {
                         actions: [
                             {
                                 identifier: 'lock',
-                                theme: 'basic',
+                                appearance: 'basic',
                                 color: 'primary',
-                                ariaLabel: isLocked
-                                    ? 'Unlock user'
-                                    : 'Lock user',
+                                iconOnly: true,
+                                label: isLocked ? 'Unlock user' : 'Lock user',
                                 icon: isLocked ? 'lock-open' : 'lock-closed',
                                 click: () => {
                                     if (isLocked) this.unlockUser(user);
@@ -3136,16 +3135,18 @@ export class TableExamplesCellRenderersComponent {
                         {
                             identifier: 'edit',
                             icon: 'pencil',
-                            theme: 'basic',
-                            ariaLabel: 'Edit product',
+                            appearance: 'basic',
+                            label: 'Edit product',
+                            iconOnly: true,
                             click: () => console.log('edit', product.name),
                         },
                         {
                             identifier: 'delete',
                             icon: 'trash',
-                            theme: 'basic',
+                            appearance: 'basic',
                             color: 'danger',
-                            ariaLabel: 'Delete product',
+                            label: 'Delete product',
+                            iconOnly: true,
                             click: () => console.log('delete', product.name),
                         },
                     ],
@@ -3266,8 +3267,9 @@ export class TableExamplesCustomCellComponentsComponent {
                         {
                             identifier: 'view',
                             icon: 'eye',
-                            theme: 'basic',
-                            ariaLabel: 'View product',
+                            appearance: 'basic',
+                            label: 'View product',
+                            iconOnly: true,
                             click: () => console.log('view', product.name),
                         },
                     ],
@@ -4191,38 +4193,22 @@ Frakton NG ships four built-in filter components that can be registered: text, s
 Example component: `TableExamplesFilteringComponent`
 
 ```ts title="table-examples-filtering.component.ts"
-import {
-    Component,
-    computed,
-    inject,
-    input,
-    resource,
-    signal,
-} from '@angular/core';
-import {
-    defineCells,
-    defineFilters,
-    FktTableColumn,
-    FktTableComponent,
-} from 'frakton-ng/table';
-import { FktNoResults } from 'frakton-ng/no-results';
-import { FktTagComponent } from 'frakton-ng/tag';
-import { FktButtonsListComponent } from 'frakton-ng/buttons-list';
-import { FktTableFilterTextComponent } from 'frakton-ng/table/filters/text';
-import { FktTableFilterSelectComponent } from 'frakton-ng/table/filters/select';
-import { FktTableFilterNumberComponent } from 'frakton-ng/table/filters/number';
-import { FktTableFilterDateRangeComponent } from 'frakton-ng/table/filters/date-range';
-import { JsonPipe } from '@angular/common';
-import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
-import { ProductsService } from '@/stories/table/services/products.service';
-import { Product } from '@/stories/table/models/product';
-import { ProductFilters } from '@/stories/table/models/product-filters';
-import {
-    CATEGORY_COLORS,
-    STATUS_COLORS,
-    STATUS_LABELS,
-} from '@/stories/table/constants/product-constants';
-import { stockColor } from '@/stories/table/utils/stock-color';
+import {Component, computed, inject, input, resource, signal,} from '@angular/core';
+import {defineCells, defineFilters, FktTableColumn, FktTableComponent,} from 'frakton-ng/table';
+import {FktNoResults} from 'frakton-ng/no-results';
+import {FktTagComponent} from 'frakton-ng/tag';
+import {FktButtonsListComponent} from 'frakton-ng/buttons-list';
+import {FktTableFilterTextComponent} from 'frakton-ng/table/filters/text';
+import {FktTableFilterSelectComponent} from 'frakton-ng/table/filters/select';
+import {FktTableFilterNumberComponent} from 'frakton-ng/table/filters/number';
+import {FktTableFilterDateRangeComponent} from 'frakton-ng/table/filters/date-range';
+import {FktButtonComponent} from 'frakton-ng/button';
+import {ProductsService} from '@/stories/table/services/products.service';
+import {Product} from '@/stories/table/models/product';
+import {ProductFilters} from '@/stories/table/models/product-filters';
+import {CATEGORY_COLORS, STATUS_COLORS, STATUS_LABELS,} from '@/stories/table/constants/product-constants';
+import {stockColor} from '@/stories/table/utils/stock-color';
+import {CodeOutputComponent} from "@/components/code-output/code-output.component";
 
 export const cell = defineCells({
     tag: FktTagComponent,
@@ -4238,7 +4224,7 @@ export const filter = defineFilters({
 
 @Component({
     selector: 'app-table-examples-with-filtering',
-    imports: [FktTableComponent, JsonPipe, FktButtonLegacyComponent],
+    imports: [FktTableComponent, FktButtonComponent, CodeOutputComponent],
     templateUrl: './table-examples-filtering.component.html',
     styleUrl: './table-examples-filtering.component.scss',
 })
@@ -4309,7 +4295,7 @@ export class TableExamplesFilteringComponent {
             header: 'Price',
             filter: filter.number('price', {
                 label: 'Price ($)',
-                placeholder: 'Choose the price'
+                placeholder: 'Choose the price',
             }),
             cell: (product) => `$${product.price.toFixed(2)}`,
         },
@@ -4318,7 +4304,7 @@ export class TableExamplesFilteringComponent {
             header: 'Stock',
             filter: filter.number('stock', {
                 label: 'Units',
-                placeholder: 'Choose units'
+                placeholder: 'Choose units',
             }),
             cell: (product) =>
                 cell.tag({
@@ -4365,8 +4351,9 @@ export class TableExamplesFilteringComponent {
                             identifier: 'delete',
                             color: 'danger',
                             icon: 'trash',
-                            theme: 'basic',
-                            ariaLabel: 'Delete product',
+                            appearance: 'basic',
+                            label: 'Delete product',
+                            iconOnly: true,
                             click: () =>
                                 console.log(`deleting ${product.name}`),
                         },
@@ -4383,52 +4370,53 @@ export class TableExamplesFilteringComponent {
 
 ```html title="table-examples-filtering.component.html"
 <div class="preview">
-    <pre>{{ filters() | json }}</pre>
-    <fkt-button
-        text="Reset all filters"
+    <button
         (click)="resetFilters()"
-    />
+        fktButton
+        label="Reset all filters">
+    </button>
 </div>
 
 <fkt-table
-    [data]="products()"
-    [columns]="columns"
-    [loading]="loading()"
-    [noResults]="noResults()"
-    [defaultFilters]="defaultFilters"
-    [(filters)]="filters"
+        [(filters)]="filters"
+        [columns]="columns"
+        [data]="products()"
+        [defaultFilters]="defaultFilters"
+        [loading]="loading()"
+        [noResults]="noResults()"
 >
 </fkt-table>
+
+<app-code-output [value]="filters()" title="Filters value"/>
 ```
 
 ```css title="table-examples-filtering.component.scss"
 fkt-table {
-	background-color: var(--fkt-color-neutral-100);
-    --fkt-table-max-height: 600px;
+  background-color: var(--fkt-color-neutral-100);
+  --fkt-table-max-height: 600px;
 }
 
 .paginator-container {
-    width: 100%;
-    border-top: solid 1px var(--fkt-color-neutral-300);
+  width: 100%;
+  border-top: solid 1px var(--fkt-color-neutral-300);
 }
 
 pre {
-    background-color: var(--fkt-color-neutral-100);
-    padding: var(--fkt-space-xs);
-    border-radius: var(--fkt-radius-md);
-    border: solid 1px var(--fkt-color-neutral-300);
-    margin: 0 0 var(--fkt-space-md);
+  background-color: var(--fkt-color-neutral-100);
+  padding: var(--fkt-space-xs);
+  border-radius: var(--fkt-radius-md);
+  border: solid 1px var(--fkt-color-neutral-300);
+  margin: 0 0 var(--fkt-space-md);
 }
 
 .preview {
-    position: relative;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: var(--fkt-space-md);
+}
 
-    fkt-button {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        right: var(--fkt-space-md);
-    }
+app-code-output {
+  margin-top: var(--fkt-space-md);
 }
 ```
 
@@ -4470,7 +4458,8 @@ import {
 import { stockColor } from '@/stories/table/utils/stock-color';
 import { CategoryMultiFilterComponent } from './filters/category-multi-filter/category-multi-filter.component';
 import { JsonPipe } from '@angular/common';
-import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
+import { FktButtonComponent } from 'frakton-ng/button';
+import {CodeOutputComponent} from "@/components/code-output/code-output.component";
 
 const cell = defineCells({
     tag: FktTagComponent,
@@ -4481,7 +4470,12 @@ const filter = defineFilters({});
 
 @Component({
     selector: 'app-table-examples-custom-filter-components',
-    imports: [FktTableComponent, JsonPipe, FktButtonLegacyComponent],
+    imports: [
+        FktTableComponent,
+        JsonPipe,
+        FktButtonComponent,
+        CodeOutputComponent,
+    ],
     templateUrl: './table-examples-custom-filter-components.component.html',
     styleUrl: './table-examples-custom-filter-components.component.scss',
 })
@@ -4564,8 +4558,9 @@ export class TableExamplesCustomFilterComponentsComponent {
                             identifier: 'delete',
                             color: 'danger',
                             icon: 'trash',
-                            theme: 'basic',
-                            ariaLabel: 'Delete product',
+                            appearance: 'basic',
+                            label: 'Delete product',
+                            iconOnly: true,
                             click: () => console.log('delete', product.name),
                         },
                     ],
@@ -4576,43 +4571,38 @@ export class TableExamplesCustomFilterComponentsComponent {
 ```
 
 ```html title="table-examples-custom-filter-components.component.html"
-<div class="preview">
-    <pre>{{ filters() | json }}</pre>
-    <fkt-button
-        text="Reset all filters"
-        (click)="resetFilters()"
-    />
+<div class="actions">
+    <button (click)="resetFilters()"
+            fktButton
+            label="Reset all filters">
+    </button>
 </div>
 
 <fkt-table
-    [data]="products()"
-    [columns]="columns"
-    [defaultFilters]="defaultFilters"
-    [(filters)]="filters"
-    [loading]="response.isLoading()"
+        [(filters)]="filters"
+        [columns]="columns"
+        [data]="products()"
+        [defaultFilters]="defaultFilters"
+        [loading]="response.isLoading()"
 />
+
+<app-code-output [value]="filters()"/>
 ```
 
 ```css title="table-examples-custom-filter-components.component.scss"
-.preview {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding: 0.75rem;
-    background: var(--fkt-color-surface-secondary, #f9fafb);
-    border-radius: 0.5rem;
-    margin-bottom: 1rem;
-
-    pre {
-        flex: 1;
-        margin: 0;
-        font-size: 0.8rem;
-        white-space: pre-wrap;
-    }
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: var(--fkt-space-md);
 }
+
 fkt-table {
-    background-color: var(--fkt-color-neutral-100);
-    --fkt-table-max-height: 600px;
+  background-color: var(--fkt-color-neutral-100);
+  --fkt-table-max-height: 600px;
+}
+
+app-code-output {
+  margin-top: var(--fkt-space-md);
 }
 ```
 
@@ -5215,19 +5205,15 @@ custom header template.
 Example component: `TableExamplesExportComponent`
 
 ```ts title="table-examples-export.component.ts"
-import { Component, computed, inject, resource } from '@angular/core';
-import {
-    FktTableColumn,
-    FktTableComponent,
-    FktTableExportDirective,
-} from 'frakton-ng/table';
-import { FktTagColor } from 'frakton-ng/tag';
-import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
-import { Order } from '@/stories/table/models/order';
-import { OrderStatus } from '@/stories/table/models/order-status';
-import { OrdersService } from '@/stories/table/services/orders.service';
-import { formatDate } from '@angular/common';
-import { cell } from '@/utils/cell-renderer';
+import {Component, computed, inject, resource} from '@angular/core';
+import {FktTableColumn, FktTableComponent, FktTableExportDirective,} from 'frakton-ng/table';
+import {FktTagColor} from 'frakton-ng/tag';
+import {Order} from '@/stories/table/models/order';
+import {OrderStatus} from '@/stories/table/models/order-status';
+import {OrdersService} from '@/stories/table/services/orders.service';
+import {formatDate} from '@angular/common';
+import {cell} from '@/utils/cell-renderer';
+import {FktButtonComponent} from "frakton-ng/button";
 
 const STATUS_LABELS: Record<OrderStatus, string> = {
     pending: 'Pending',
@@ -5247,7 +5233,7 @@ const STATUS_COLORS: Record<OrderStatus, FktTagColor> = {
 
 @Component({
     selector: 'app-table-examples-export',
-    imports: [FktTableComponent, FktTableExportDirective, FktButtonLegacyComponent],
+    imports: [FktTableComponent, FktTableExportDirective, FktButtonComponent],
     templateUrl: './table-examples-export.component.html',
     styleUrl: './table-examples-export.component.scss',
 })
@@ -5307,21 +5293,19 @@ export class TableExamplesExportComponent {
 
 ```html title="table-examples-export.component.html"
 <fkt-table
-    fktTableExport
     #exporter="fktTableExport"
-    [data]="data()"
     [columns]="columns"
+    [data]="data()"
     [loading]="response.isLoading()"
+    fktTableExport
 >
     <div fktTableToolbar>
-        <fkt-button
-            theme="raised"
-            iconPosition="left"
-            shape="rect"
-            icon="arrow-up-on-square"
-            (click)="exporter.exportCsv()"
-            text="Export CSV"
-        />
+        <button
+                (click)="exporter.exportCsv()"
+                fktButton
+                icon="arrow-up-on-square"
+                label="Export CSV">
+        </button>
     </div>
 </fkt-table>
 ```
@@ -5493,11 +5477,11 @@ import {
 import { FktTagColor, FktTagComponent } from 'frakton-ng/tag';
 import { FktTableFilterTextComponent } from 'frakton-ng/table/filters/text';
 import { FktTableFilterSelectComponent } from 'frakton-ng/table/filters/select';
-import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { Order } from '@/stories/table/models/order';
 import { OrderStatus } from '@/stories/table/models/order-status';
 import { OrdersService } from '@/stories/table/services/orders.service';
 import { formatCurrency, formatDate, isPlatformServer } from '@angular/common';
+import { FktButtonComponent } from 'frakton-ng/button';
 
 const STORAGE_KEY = 'docs-table-stateful';
 
@@ -5530,7 +5514,7 @@ const loadStorage = () => {
         FktTableComponent,
         FktTableResizeDirective,
         FktTableReorderDirective,
-        FktButtonLegacyComponent,
+        FktButtonComponent,
     ],
     templateUrl: './table-examples-stateful.component.html',
     styleUrl: './table-examples-stateful.component.scss',
@@ -5576,7 +5560,10 @@ export class TableExamplesStatefulComponent {
             header: 'Order',
             width: '130px',
             cell: (order) => order.orderNumber,
-            filter: filter.text('orderNumber', { label: 'Search order' }),
+            filter: filter.text('orderNumber', {
+                label: 'Order',
+                placeholder: 'Search order',
+            }),
         },
         {
             key: 'customer',
@@ -5614,6 +5601,7 @@ export class TableExamplesStatefulComponent {
                 }),
             filter: filter.select('status', {
                 label: 'Status',
+                placeholder: 'Select the status',
                 labelKey: 'label',
                 valueKey: 'value',
                 options: Object.entries(STATUS_INFO).map(([value, info]) => ({
@@ -5635,23 +5623,22 @@ export class TableExamplesStatefulComponent {
 
 ```html title="table-examples-stateful.component.html"
 <fkt-table
-    fktTableResize
-    fktTableReorder
-    [data]="data()"
-    [columns]="columns"
-    [loading]="response.isLoading()"
-    [(columnWidths)]="columnWidths"
-    [(columnOrder)]="columnOrder"
-    [(filters)]="filters"
+        [(columnOrder)]="columnOrder"
+        [(columnWidths)]="columnWidths"
+        [(filters)]="filters"
+        [columns]="columns"
+        [data]="data()"
+        [loading]="response.isLoading()"
+        fktTableReorder
+        fktTableResize
 >
     <div fktTableToolbar>
-        <fkt-button
-            iconPosition="left"
-            shape="rect"
-            icon="arrow-uturn-left"
-            (click)="reset()"
-            text="Reset layout"
-        />
+        <button
+                (click)="reset()"
+                fktButton
+                icon="arrow-uturn-left"
+                label="Reset layout">
+        </button>
     </div>
 </fkt-table>
 ```
@@ -6137,8 +6124,8 @@ export class SearchResultsExampleComponent {
 		description: `No results found for "${this.searchQuery}". Try different keywords.`,
 		icon: {name: 'magnifying-glass', size: '80px'},
 		action: {
-			text: 'Clear Search',
-			theme: 'stroked',
+			label: 'Clear Search',
+			appearance: 'stroked',
 			identifier: 'clear-search',
 			click: () => this.clearSearch()
 		}
@@ -6186,8 +6173,8 @@ export class DataTableExampleComponent {
 		description: 'There are no records to display at this time.',
 		icon: {name: 'table-cells', size: '100px'},
 		action: {
-			text: 'Add Record',
-			theme: 'raised',
+			label: 'Add Record',
+			appearance: 'raised',
 			identifier: 'add-record',
 			click: () => this.openAddRecordModal()
 		}
@@ -6234,8 +6221,8 @@ export class FileUploadExampleComponent {
 		description: 'This folder is empty. Upload some files to get started.',
 		icon: {name: 'folder-open', size: '120px'},
 		action: {
-			text: 'Upload Files',
-			theme: 'raised',
+			label: 'Upload Files',
+			appearance: 'raised',
 			icon: 'arrow-up-tray',
 			identifier: 'upload-files',
 			click: () => this.openFileUpload()
@@ -20052,58 +20039,62 @@ Example component: `FktSimpleDialogExampleComponent`
 
 ```ts title="fkt-simple-dialog-example.component.ts"
 import { Component, inject, signal } from '@angular/core';
-import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { FktDialogService } from 'frakton-ng/dialog';
 import { FktSimpleDialogDemoComponent } from '../dialog/simple-dialog-demo/fkt-simple-dialog-demo.component';
+import {FktButtonComponent} from "frakton-ng/button";
 
 @Component({
-	selector: 'simple-dialog-example',
-	templateUrl: './fkt-simple-dialog-example.component.html',
-	styleUrl: './fkt-simple-dialog-example.component.scss',
-	imports: [FktButtonLegacyComponent]
+    selector: 'simple-dialog-example',
+    templateUrl: './fkt-simple-dialog-example.component.html',
+    styleUrl: './fkt-simple-dialog-example.component.scss',
+    imports: [FktButtonComponent],
 })
 export class FktSimpleDialogExampleComponent {
-	private dialogService = inject(FktDialogService);
-	messageSignal = signal('This message comes from a reactive signal!');
+    private dialogService = inject(FktDialogService);
+    messageSignal = signal('This message comes from a reactive signal!');
 
-	openDialog() {
-		const dialogInstance = this.dialogService.open({
-			component: FktSimpleDialogDemoComponent,
-			data: {
-				title: 'Dynamic Simple Dialog',
-				message: this.messageSignal,  // Reactive signal
-				closeDialog: () => {
-					console.log('Dialog closed');
-					dialogInstance.close();
-				}
-			},
-			panelOptions: {
-				width: '400px',
-				padding: '2rem'
-			}
-		});
-	}
+    openDialog() {
+        const dialogInstance = this.dialogService.open({
+            component: FktSimpleDialogDemoComponent,
+            data: {
+                title: 'Dynamic Simple Dialog',
+                message: this.messageSignal, // Reactive signal
+                closeDialog: () => {
+                    console.log('Dialog closed');
+                    dialogInstance.close();
+                },
+            },
+            panelOptions: {
+                width: '400px',
+                padding: '2rem',
+            },
+        });
+    }
 
-	updateMessage() {
-		this.messageSignal.set('Message updated! See how it changes in open dialogs.');
-	}
+    updateMessage() {
+        this.messageSignal.set(
+            'Message updated! See how it changes in open dialogs.'
+        );
+    }
 }
 ```
 
 ```html title="fkt-simple-dialog-example.component.html"
 <div class="container">
-			<fkt-button
-				text="Open Simple Dialog"
-				theme="raised"
-				(click)="openDialog()"
-			/>
-			<fkt-button
-				text="Update Message"
-				theme="stroked"
-				color="success"
-				(click)="updateMessage()"
-			/>
-		</div>
+    <button
+            (click)="openDialog()"
+            appearance="raised"
+            fktButton
+            label="Open Simple Dialog">
+    </button>
+    <button
+            (click)="updateMessage()"
+            appearance="stroked"
+            color="success"
+            fktButton
+            label="Update Message">
+    </button>
+</div>
 ```
 
 ```css title="fkt-simple-dialog-example.component.scss"
@@ -20127,48 +20118,50 @@ Example component: `FktConfirmationDialogExampleComponent`
 
 ```ts title="fkt-confirmation-dialog-example.component.ts"
 import { Component, ElementRef, inject } from '@angular/core';
-import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { FktDialogService } from 'frakton-ng/dialog';
+import {FktButtonComponent} from "frakton-ng/button";
 
 @Component({
-	selector: 'confirmation-dialog-example',
-	templateUrl: './fkt-confirmation-dialog-example.component.html',
-	styleUrl: './fkt-confirmation-dialog-example.component.scss',
-	imports: [FktButtonLegacyComponent]
+    selector: 'confirmation-dialog-example',
+    templateUrl: './fkt-confirmation-dialog-example.component.html',
+    styleUrl: './fkt-confirmation-dialog-example.component.scss',
+    imports: [FktButtonComponent],
 })
 export class FktConfirmationDialogExampleComponent {
-	private dialogService = inject(FktDialogService);
-	private elementRef = inject(ElementRef)
+    private dialogService = inject(FktDialogService);
+    private elementRef = inject(ElementRef);
 
-	openDialog() {
-		this.dialogService.confirm({
-			title: 'Delete Item',
-			description: 'This action cannot be undone. Are you sure you want to delete this item?',
-			actions: {
-				primary: {
-					text: 'Delete',
-					color: 'danger',
-					click: () => {
-						console.log('Item deleted!');
-					}
-				},
-				secondary: {
-					text: 'Cancel'
-				}
-			},
-			inheritDesignTokensFrom: this.elementRef.nativeElement,
-			onBackdropClick: () => {
-				console.log('Backdrop clicked - dialog cancelled');
-			}
-		});
-	}
+    openDialog() {
+        this.dialogService.confirm({
+            title: 'Delete Item',
+            description:
+                'This action cannot be undone. Are you sure you want to delete this item?',
+            actions: {
+                primary: {
+                    label: 'Delete',
+                    color: 'danger',
+                    click: () => {
+                        console.log('Item deleted!');
+                    },
+                },
+                secondary: {
+                    label: 'Cancel',
+                },
+            },
+            inheritDesignTokensFrom: this.elementRef.nativeElement,
+            onBackdropClick: () => {
+                console.log('Backdrop clicked - dialog cancelled');
+            },
+        });
+    }
 }
 ```
 
 ```html title="fkt-confirmation-dialog-example.component.html"
 <div class="container">
-			<fkt-button text="Delete Item" color="danger" theme="raised" (click)="openDialog()" />
-		</div>
+    <button (click)="openDialog()" appearance="raised" color="danger" fktButton label="Delete Item">
+    </button>
+</div>
 ```
 
 ```css title="fkt-confirmation-dialog-example.component.scss"
@@ -20191,102 +20184,115 @@ Example component: `FktFormDialogExampleComponent`
 
 ```ts title="fkt-form-dialog-example.component.ts"
 import { Component, inject } from '@angular/core';
-import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { FktDialogService } from 'frakton-ng/dialog';
-import { FktFormDialogDemoComponent, FormData } from '../dialog/form-dialog-demo/fkt-form-dialog-demo.component';
+import {
+    FktFormDialogDemoComponent,
+    FormData,
+} from '../dialog/form-dialog-demo/fkt-form-dialog-demo.component';
+import { FktButtonComponent } from 'frakton-ng/button';
 
 @Component({
-	selector: 'form-dialog-example',
-	templateUrl: './fkt-form-dialog-example.component.html',
-	styleUrl: 'fkt-form-dialog-example.component.scss',
-	imports: [FktButtonLegacyComponent]
+    selector: 'form-dialog-example',
+    templateUrl: './fkt-form-dialog-example.component.html',
+    styleUrl: 'fkt-form-dialog-example.component.scss',
+    imports: [FktButtonComponent],
 })
 export class FktFormDialogExampleComponent {
-	private dialogService = inject(FktDialogService);
+    private dialogService = inject(FktDialogService);
 
-	protected openContactForm() {
-		const dialogInstance = this.dialogService.open({
-			component: FktFormDialogDemoComponent,
-			data: {
-				title: 'Contact Us',
-				description: 'We would love to hear from you. Send us a message and we will respond as soon as possible.',
-				initialName: '',
-				initialEmail: '',
-				submit: (formData: FormData) => {
-					console.log('Contact form submitted:', formData);
-					alert(`Thank you ${formData.name}! We received your message.`);
-					dialogInstance.close();
-				},
-				cancel: () => {
-					console.log('Contact form cancelled');
-					dialogInstance.close();
-				}
-			},
-			panelOptions: { width: '500px', padding: '2rem' }
-		});
-	}
+    protected openContactForm() {
+        const dialogInstance = this.dialogService.open({
+            component: FktFormDialogDemoComponent,
+            data: {
+                title: 'Contact Us',
+                description:
+                    'We would love to hear from you. Send us a message and we will respond as soon as possible.',
+                initialName: '',
+                initialEmail: '',
+                submitForm: (formData: FormData) => {
+                    console.log('Contact form submitted:', formData);
+                    alert(
+                        `Thank you ${formData.name}! We received your message.`
+                    );
+                    dialogInstance.close();
+                },
+                cancelAction: () => {
+                    console.log('Contact form cancelled');
+                    dialogInstance.close();
+                },
+            },
+            panelOptions: { width: '500px', padding: '2rem' },
+        });
+    }
 
-	protected openRegistrationForm() {
-		const dialogInstance = this.dialogService.open({
-			component: FktFormDialogDemoComponent,
-			data: {
-				title: 'User Registration',
-				description: 'Create your account by providing the required information.',
-				initialName: '',
-				initialEmail: '',
-				submit: (formData: FormData) => {
-					console.log('Registration form submitted:', formData);
-					alert(`Welcome ${formData.name}! Your account has been created.`);
-					dialogInstance.close();
-				},
-				cancel: () => dialogInstance.close()
-			},
-			panelOptions: { width: '500px', padding: '2rem' }
-		});
-	}
+    protected openRegistrationForm() {
+        const dialogInstance = this.dialogService.open({
+            component: FktFormDialogDemoComponent,
+            data: {
+                title: 'User Registration',
+                description:
+                    'Create your account by providing the required information.',
+                initialName: '',
+                initialEmail: '',
+                submitForm: (formData: FormData) => {
+                    console.log('Registration form submitted:', formData);
+                    alert(
+                        `Welcome ${formData.name}! Your account has been created.`
+                    );
+                    dialogInstance.close();
+                },
+                cancelAction: () => dialogInstance.close(),
+            },
+            panelOptions: { width: '500px', padding: '2rem' },
+        });
+    }
 
-	protected openFeedbackForm() {
-		const dialogInstance = this.dialogService.open({
-			component: FktFormDialogDemoComponent,
-			data: {
-				title: 'Share Your Feedback',
-				description: 'Help us improve by sharing your thoughts and suggestions.',
-				initialName: 'John Doe',
-				initialEmail: 'john@example.com',
-				submit: (formData: FormData) => {
-					console.log('Feedback form submitted:', formData);
-					alert(`Thanks for your feedback, ${formData.name}!`);
-					dialogInstance.close();
-				},
-				cancel: () => dialogInstance.close()
-			},
-			panelOptions: { width: '500px', padding: '2rem' }
-		});
-	}
+    protected openFeedbackForm() {
+        const dialogInstance = this.dialogService.open({
+            component: FktFormDialogDemoComponent,
+            data: {
+                title: 'Share Your Feedback',
+                description:
+                    'Help us improve by sharing your thoughts and suggestions.',
+                initialName: 'John Doe',
+                initialEmail: 'john@example.com',
+                submitForm: (formData: FormData) => {
+                    console.log('Feedback form submitted:', formData);
+                    alert(`Thanks for your feedback, ${formData.name}!`);
+                    dialogInstance.close();
+                },
+                cancelAction: () => dialogInstance.close(),
+            },
+            panelOptions: { width: '500px', padding: '2rem' },
+        });
+    }
 }
 ```
 
 ```html title="fkt-form-dialog-example.component.html"
 <div class="container">
-			<fkt-button
-				text="Contact Form"
-				theme="stroked"
-				color="primary"
-				(click)="openContactForm()"
-			/>
-			<fkt-button
-				text="User Registration"
-				theme="stroked"
-				color="success"
-				(click)="openRegistrationForm()"
-			/>
-			<fkt-button
-				text="Feedback Form"
-				theme="stroked"
-				color="accent"
-				(click)="openFeedbackForm()"
-			/>
-		</div>
+    <button
+            (click)="openContactForm()"
+            appearance="stroked"
+            color="primary"
+            fktButton
+            label="Contact Form"
+    > </button>
+    <button
+            (click)="openRegistrationForm()"
+            appearance="stroked"
+            color="success"
+            fktButton
+            label="User Registration"
+    > </button>
+    <button
+            (click)="openFeedbackForm()"
+            appearance="stroked"
+            color="accent"
+            fktButton
+            label="Feedback Form"
+    > </button>
+</div>
 ```
 
 ```css title="fkt-form-dialog-example.component.scss"
@@ -20309,55 +20315,60 @@ Custom styled dialog with unique appearance and behavior.
 Example component: `FktCustomDialogExampleComponent`
 
 ```ts title="fkt-custom-dialog-example.component.ts"
-import { Component, inject, signal } from '@angular/core';
-import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
-import { FktDialogService } from 'frakton-ng/dialog';
-import { FktCustomDialogDemoComponent } from '../dialog/custom-dialog-demo/fkt-custom-dialog-demo.component';
+import {Component, inject, signal} from '@angular/core';
+import {FktDialogService} from 'frakton-ng/dialog';
+import {FktCustomDialogDemoComponent} from '../dialog/custom-dialog-demo/fkt-custom-dialog-demo.component';
+import {FktButtonComponent} from "frakton-ng/button";
 
 @Component({
-	selector: 'custom-dialog-example',
-	templateUrl: './fkt-custom-dialog-example.component.html',
-	imports: [FktButtonLegacyComponent],
-	styleUrl: './fkt-custom-dialog-example.component.scss'
+    selector: 'custom-dialog-example',
+    templateUrl: './fkt-custom-dialog-example.component.html',
+    imports: [FktButtonComponent],
+    styleUrl: './fkt-custom-dialog-example.component.scss',
 })
 export class FktCustomDialogExampleComponent {
-	private dialogService = inject(FktDialogService);
-	counterSignal = signal(0);
+    private dialogService = inject(FktDialogService);
+    protected counterSignal = signal(0);
 
-	protected openDialog() {
-		const customDetails = [
-			'This dialog demonstrates signal passing',
-			'Custom details can be provided dynamically',
-			`Counter value: ${this.counterSignal()}`
-		];
+    protected openDialog() {
+        const customDetails = [
+            'This dialog demonstrates signal passing',
+            'Custom details can be provided dynamically',
+            `Counter value: ${this.counterSignal()}`,
+        ];
 
-		const dialogInstance = this.dialogService.open({
-			component: FktCustomDialogDemoComponent,
-			data: {
-				title: 'Advanced Custom Dialog',
-				message: 'This dialog shows advanced features with signals and dynamic content.',
-				iconName: 'cog-6-tooth',
-				detailsTitle: 'Technical Details:',
-				details: customDetails,
-				detailsToggled: (isVisible: boolean) => {
-					console.log('Details toggled:', isVisible);
-				},
-				dialogConfirmed: () => {
-					this.counterSignal.update(count => count + 1);
-					console.log('Dialog confirmed! Counter:', this.counterSignal());
-					dialogInstance.close();
-				}
-			},
-			panelOptions: { width: '600px', padding: '2rem' }
-		});
-	}
+        const dialogInstance = this.dialogService.open({
+            component: FktCustomDialogDemoComponent,
+            data: {
+                title: 'Advanced Custom Dialog',
+                message:
+                    'This dialog shows advanced features with signals and dynamic content.',
+                iconName: 'cog-6-tooth',
+                detailsTitle: 'Technical Details:',
+                details: customDetails,
+                detailsToggled: (isVisible: boolean) => {
+                    console.log('Details toggled:', isVisible);
+                },
+                dialogConfirmed: () => {
+                    this.counterSignal.update((count) => count + 1);
+                    console.log(
+                        'Dialog confirmed! Counter:',
+                        this.counterSignal()
+                    );
+                    dialogInstance.close();
+                },
+            },
+            panelOptions: { width: '600px', padding: '2rem' },
+        });
+    }
 }
 ```
 
 ```html title="fkt-custom-dialog-example.component.html"
 <div class="container">
-			<fkt-button text="Open Custom Dialog" theme="raised" (click)="openDialog()" />
-		</div>
+    <button (click)="openDialog()" fktButton label="Open Custom Dialog">
+    </button>
+</div>
 ```
 
 ```css title="fkt-custom-dialog-example.component.scss"
@@ -20379,38 +20390,39 @@ Compact dialog size perfect for quick confirmations and alerts.
 Example component: `FktSmallDialogExampleComponent`
 
 ```ts title="fkt-small-dialog-example.component.ts"
-import { Component, inject } from '@angular/core';
-import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
-import { FktDialogService } from 'frakton-ng/dialog';
-import { FktSimpleDialogDemoComponent } from '../dialog/simple-dialog-demo/fkt-simple-dialog-demo.component';
+import {Component, inject} from '@angular/core';
+import {FktDialogService} from 'frakton-ng/dialog';
+import {FktSimpleDialogDemoComponent} from '../dialog/simple-dialog-demo/fkt-simple-dialog-demo.component';
+import {FktButtonComponent} from "frakton-ng/button";
 
 @Component({
-	selector: 'small-dialog-example',
-	templateUrl: './fkt-small-dialog-example.component.html',
-	styleUrl: './fkt-small-dialog-example.component.scss',
-	imports: [FktButtonLegacyComponent]
+    selector: 'small-dialog-example',
+    templateUrl: './fkt-small-dialog-example.component.html',
+    styleUrl: './fkt-small-dialog-example.component.scss',
+    imports: [FktButtonComponent],
 })
 export class FktSmallDialogExampleComponent {
-	private dialogService = inject(FktDialogService);
+    private dialogService = inject(FktDialogService);
 
-	openDialog() {
-		const dialogInstance = this.dialogService.open({
-			component: FktSimpleDialogDemoComponent,
-			data: {
-				title: 'Compact Dialog',
-				message: 'Small dialogs are perfect for quick confirmations.',
-				closeDialog: () => dialogInstance.close()
-			},
-			panelOptions: { width: '300px', padding: '2rem' }
-		});
-	}
+    openDialog() {
+        const dialogInstance = this.dialogService.open({
+            component: FktSimpleDialogDemoComponent,
+            data: {
+                title: 'Compact Dialog',
+                message: 'Small dialogs are perfect for quick confirmations.',
+                closeDialog: () => dialogInstance.close(),
+            },
+            panelOptions: { width: '300px', padding: '2rem' },
+        });
+    }
 }
 ```
 
 ```html title="fkt-small-dialog-example.component.html"
 <div class="container">
-			<fkt-button text="Open Small Dialog" theme="raised" (click)="openDialog()" />
-		</div>
+    <button (click)="openDialog()" fktButton label="Open Small Dialog">
+    </button>
+</div>
 ```
 
 ```css title="fkt-small-dialog-example.component.scss"
@@ -20432,51 +20444,53 @@ Full viewport dialog for complex content and detailed forms.
 Example component: `FktFullscreenDialogExampleComponent`
 
 ```ts title="fkt-fullscreen-dialog-example.component.ts"
-import { Component, inject } from '@angular/core';
-import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
-import { FktDialogService } from 'frakton-ng/dialog';
-import { FktCustomDialogDemoComponent } from '../dialog/custom-dialog-demo/fkt-custom-dialog-demo.component';
-import { FktIconName } from 'frakton-ng/icon';
+import {Component, inject} from '@angular/core';
+import {FktDialogService} from 'frakton-ng/dialog';
+import {FktCustomDialogDemoComponent} from '../dialog/custom-dialog-demo/fkt-custom-dialog-demo.component';
+import {FktIconName} from 'frakton-ng/icon';
+import {FktButtonComponent} from "frakton-ng/button";
 
 @Component({
-	selector: 'fullscreen-dialog-example',
-	templateUrl: './fkt-fullscreen-dialog-example.component.html',
-	styleUrl: './fkt-fullscreen-dialog-example.component.scss',
-	imports: [FktButtonLegacyComponent]
+    selector: 'fullscreen-dialog-example',
+    templateUrl: './fkt-fullscreen-dialog-example.component.html',
+    styleUrl: './fkt-fullscreen-dialog-example.component.scss',
+    imports: [FktButtonComponent],
 })
 export class FktFullscreenDialogExampleComponent {
-	private dialogService = inject(FktDialogService);
+    private dialogService = inject(FktDialogService);
 
-	protected openDialog() {
-		const dialogInstance = this.dialogService.open({
-			component: FktCustomDialogDemoComponent,
-			data: {
-				title: 'Full Screen Experience',
-				message: 'This dialog demonstrates full screen capabilities with responsive design.',
-				iconName: 'arrow-long-up' as FktIconName,
-				details: [
-					'Full viewport coverage',
-					'Responsive layout',
-					'Mobile-friendly design'
-				],
-				dialogConfirmed: () => dialogInstance.close()
-			},
-			panelOptions: {
-				width: '100%',
-				maxWidth: '100vw',
-				maxHeight: '100vh',
-				height: '100%',
-				padding: '2rem',
-				borderRadius: 'none'
-			}
-		});
-	}
+    protected openDialog() {
+        const dialogInstance = this.dialogService.open({
+            component: FktCustomDialogDemoComponent,
+            data: {
+                title: 'Full Screen Experience',
+                message:
+                    'This dialog demonstrates full screen capabilities with responsive design.',
+                iconName: 'arrow-long-up' as FktIconName,
+                details: [
+                    'Full viewport coverage',
+                    'Responsive layout',
+                    'Mobile-friendly design',
+                ],
+                dialogConfirmed: () => dialogInstance.close(),
+            },
+            panelOptions: {
+                width: '100%',
+                maxWidth: '100vw',
+                maxHeight: '100vh',
+                height: '100%',
+                padding: '2rem',
+                borderRadius: 'none',
+            },
+        });
+    }
 }
 ```
 
 ```html title="fkt-fullscreen-dialog-example.component.html"
 <div class="container">
-	<fkt-button text="Open Full Screen" theme="raised" (click)="openDialog()"/>
+	<button (click)="openDialog()" fktButton label="Open Full Screen">
+    </button>
 </div>
 ```
 
@@ -20500,7 +20514,7 @@ Example component: `FktDialogOverviewExampleComponent`
 
 ```ts title="fkt-dialog-overview-example.component.ts"
 import { Component, inject, signal } from '@angular/core';
-import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
+import { FktButtonComponent } from 'frakton-ng/button';
 import { FktDialogService } from 'frakton-ng/dialog';
 import { FktSimpleDialogDemoComponent } from '../dialog/simple-dialog-demo/fkt-simple-dialog-demo.component';
 import { FktFormDialogDemoComponent, FormData } from '../dialog/form-dialog-demo/fkt-form-dialog-demo.component';
@@ -20508,195 +20522,209 @@ import { FktCustomDialogDemoComponent } from '../dialog/custom-dialog-demo/fkt-c
 import { FktIconName } from 'frakton-ng/icon';
 
 @Component({
-	selector: 'dialog-demo-host',
-	templateUrl: './fkt-dialog-overview-example.component.html',
-	styleUrl: './fkt-dialog-overview-example.component.scss',
-	imports: [FktButtonLegacyComponent]
+    selector: 'dialog-demo-host',
+    templateUrl: './fkt-dialog-overview-example.component.html',
+    styleUrl: './fkt-dialog-overview-example.component.scss',
+    imports: [FktButtonComponent],
 })
 export class FktDialogOverviewExampleComponent {
-	private dialogService = inject(FktDialogService);
+    private dialogService = inject(FktDialogService);
 
-	messageSignal = signal('This message comes from a signal!');
-	counterSignal = signal(0);
+    messageSignal = signal('This message comes from a signal!');
+    counterSignal = signal(0);
 
-	openSimpleDialog() {
-		const dialogInstance = this.dialogService.open({
-			component: FktSimpleDialogDemoComponent,
-			data: {
-				title: 'Dynamic Simple Dialog',
-				message: this.messageSignal,
-				closeDialog: () => dialogInstance.close()
-			},
-			panelOptions: {
-				width: '400px',
-				padding: '2rem'
-			}
-		});
-	}
+    openSimpleDialog() {
+        const dialogInstance = this.dialogService.open({
+            component: FktSimpleDialogDemoComponent,
+            data: {
+                title: 'Dynamic Simple Dialog',
+                message: this.messageSignal,
+                closeDialog: () => dialogInstance.close(),
+            },
+            panelOptions: {
+                width: '400px',
+                padding: '2rem',
+            },
+        });
+    }
 
-	openFormDialog() {
-		const dialogInstance = this.dialogService.open({
-			component: FktFormDialogDemoComponent,
-			data: {
-				title: 'User Information Form',
-				description: 'Please fill out your information:',
-				initialName: 'John Doe',
-				initialEmail: 'john@example.com',
-				submit: (formData: FormData) => {
-					console.log('Form submitted:', formData);
-					alert(`Thank you ${formData.name}! We received your information.`);
-					dialogInstance.close();
-				},
-				cancel: () => {
-					console.log('Form cancelled');
-					dialogInstance.close();
-				}
-			},
-			panelOptions: {
-				width: '500px',
-				padding: '2rem'
-			}
-		});
-	}
+    openFormDialog() {
+        const dialogInstance = this.dialogService.open({
+            component: FktFormDialogDemoComponent,
+            data: {
+                title: 'User Information Form',
+                description: 'Please fill out your information:',
+                initialName: 'John Doe',
+                initialEmail: 'john@example.com',
+                submitForm: (formData: FormData) => {
+                    console.log('Form submitted:', formData);
+                    alert(
+                        `Thank you ${formData.name}! We received your information.`
+                    );
+                    dialogInstance.close();
+                },
+                cancelAction: () => {
+                    console.log('Form cancelled');
+                    dialogInstance.close();
+                },
+            },
+            panelOptions: {
+                width: '500px',
+                padding: '2rem',
+            },
+        });
+    }
 
-	openCustomDialog() {
-		const customDetails = [
-			'This dialog demonstrates signal passing',
-			'Custom details can be provided dynamically',
-			`Counter value: ${this.counterSignal()}`
-		];
+    openCustomDialog() {
+        const customDetails = [
+            'This dialog demonstrates signal passing',
+            'Custom details can be provided dynamically',
+            `Counter value: ${this.counterSignal()}`,
+        ];
 
-		const dialogInstance = this.dialogService.open({
-			component: FktCustomDialogDemoComponent,
-			data: {
-				title: 'Advanced Custom Dialog',
-				message: 'This dialog shows advanced features with signals and dynamic content.',
-				iconName: 'cog-6-tooth',
-				detailsTitle: 'Technical Details:',
-				details: customDetails,
-				detailsToggled: (isVisible: boolean) => {
-					console.log('Details toggled:', isVisible);
-				},
-				dialogConfirmed: () => {
-					this.counterSignal.update(count => count + 1);
-					console.log('Dialog confirmed! Counter:', this.counterSignal());
-					dialogInstance.close();
-				}
-			},
-			panelOptions: {
-				width: '600px',
-				padding: '2rem'
-			}
-		});
-	}
+        const dialogInstance = this.dialogService.open({
+            component: FktCustomDialogDemoComponent,
+            data: {
+                title: 'Advanced Custom Dialog',
+                message:
+                    'This dialog shows advanced features with signals and dynamic content.',
+                iconName: 'cog-6-tooth',
+                detailsTitle: 'Technical Details:',
+                details: customDetails,
+                detailsToggled: (isVisible: boolean) => {
+                    console.log('Details toggled:', isVisible);
+                },
+                dialogConfirmed: () => {
+                    this.counterSignal.update((count) => count + 1);
+                    console.log(
+                        'Dialog confirmed! Counter:',
+                        this.counterSignal()
+                    );
+                    dialogInstance.close();
+                },
+            },
+            panelOptions: {
+                width: '600px',
+                padding: '2rem',
+            },
+        });
+    }
 
-	openConfirmDialog() {
-		this.dialogService.confirm({
-			title: 'Delete Item',
-			description: 'This action cannot be undone. Are you sure you want to delete this item?',
-			actions: {
-				primary: {
-					text: 'Delete',
-					color: 'danger',
-					click: () => {
-						console.log('Item deleted!');
-					}
-				},
-				secondary: {
-					text: 'Cancel'
-				}
-			},
-			onBackdropClick: () => {
-				console.log('Backdrop clicked - dialog cancelled');
-			}
-		});
-	}
+    openConfirmDialog() {
+        this.dialogService.confirm({
+            title: 'Delete Item',
+            description:
+                'This action cannot be undone. Are you sure you want to delete this item?',
+            actions: {
+                primary: {
+                    label: 'Delete',
+                    color: 'danger',
+                    click: () => {
+                        console.log('Item deleted!');
+                    },
+                },
+                secondary: {
+                    label: 'Cancel',
+                },
+            },
+            onBackdropClick: () => {
+                console.log('Backdrop clicked - dialog cancelled');
+            },
+        });
+    }
 
-	openFullScreenDialog() {
-		const dialogInstance = this.dialogService.open({
-			component: FktCustomDialogDemoComponent,
-			data: {
-				title: 'Full Screen Experience',
-				message: 'This dialog demonstrates full screen capabilities with responsive design.',
-				iconName: 'arrow-long-up' as FktIconName,
-				details: [
-					'Full viewport coverage',
-					'Responsive layout',
-					'Mobile-friendly design'
-				],
-				dialogConfirmed: () => dialogInstance.close()
-			},
-			panelOptions: {
-				width: '100vw',
-				height: '100vh',
-				maxWidth: '100vw',
-				maxHeight: '100vh',
-				padding: '2rem',
-				borderRadius: 'none',
-			}
-		});
-	}
+    openFullScreenDialog() {
+        const dialogInstance = this.dialogService.open({
+            component: FktCustomDialogDemoComponent,
+            data: {
+                title: 'Full Screen Experience',
+                message:
+                    'This dialog demonstrates full screen capabilities with responsive design.',
+                iconName: 'arrow-long-up' as FktIconName,
+                details: [
+                    'Full viewport coverage',
+                    'Responsive layout',
+                    'Mobile-friendly design',
+                ],
+                dialogConfirmed: () => dialogInstance.close(),
+            },
+            panelOptions: {
+                width: '100vw',
+                height: '100vh',
+                maxWidth: '100vw',
+                maxHeight: '100vh',
+                padding: '2rem',
+                borderRadius: 'none',
+            },
+        });
+    }
 
-	openSmallDialog() {
-		const dialogInstance = this.dialogService.open({
-			component: FktSimpleDialogDemoComponent,
-			data: {
-				title: 'Compact Dialog',
-				message: 'Small dialogs are perfect for quick confirmations.',
-				closeDialog: () => dialogInstance.close()
-			},
-			panelOptions: {
-				width: '300px',
-				padding: '2rem'
-			}
-		});
-	}
+    openSmallDialog() {
+        const dialogInstance = this.dialogService.open({
+            component: FktSimpleDialogDemoComponent,
+            data: {
+                title: 'Compact Dialog',
+                message: 'Small dialogs are perfect for quick confirmations.',
+                closeDialog: () => dialogInstance.close(),
+            },
+            panelOptions: {
+                width: '300px',
+                padding: '2rem',
+            },
+        });
+    }
 }
 ```
 
 ```html title="fkt-dialog-overview-example.component.html"
 <div class="container">
-			<div class="container__actions">
-				<fkt-button
-					text="Simple Dialog"
-					theme="stroked"
-					(click)="openSimpleDialog()"
-				></fkt-button>
+    <div class="container__actions">
+        <button
+            (click)="openSimpleDialog()"
+            appearance="stroked"
+            fktButton
+            label="Simple Dialog">
+        </button>
 
-				<fkt-button
-					text="Form Dialog"
-					theme="stroked"
-					(click)="openFormDialog()"
-				></fkt-button>
+        <button
+            (click)="openFormDialog()"
+            appearance="stroked"
+            fktButton
+            label="Form Dialog">
+        </button>
 
-				<fkt-button
-					text="Custom Dialog"
-					theme="stroked"
-					color="success"
-					(click)="openCustomDialog()"
-				></fkt-button>
+        <button
+            (click)="openCustomDialog()"
+            appearance="stroked"
+            color="success"
+            fktButton
+            label="Custom Dialog">
+        </button>
 
-				<fkt-button
-					text="Confirm Action"
-					color="danger"
-					theme="stroked"
-					(click)="openConfirmDialog()"
-				></fkt-button>
+        <button
+            (click)="openConfirmDialog()"
+            appearance="stroked"
+            color="danger"
+            fktButton
+            label="Confirm Action">
+        </button>
 
-				<fkt-button
-					text="Full Screen Dialog"
-					theme="stroked"
-					color="accent"
-					(click)="openFullScreenDialog()"
-				></fkt-button>
+        <button
+            (click)="openFullScreenDialog()"
+            appearance="stroked"
+            color="accent"
+            fktButton
+            label="Full Screen Dialog">
+        </button>
 
-				<fkt-button
-					text="Small Dialog"
-					theme="stroked"
-					(click)="openSmallDialog()"
-				></fkt-button>
-			</div>
-		</div>
+        <button
+            (click)="openSmallDialog()"
+            appearance="stroked"
+            fktButton
+            label="Small Dialog">
+        </button>
+    </div>
+</div>
 ```
 
 ```css title="fkt-dialog-overview-example.component.scss"

@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, input, linkedSignal, output } from '@angular/core';
 import { FktDatePickerComponent } from 'frakton-ng/date-picker';
 import { FktButtonsListComponent } from 'frakton-ng/buttons-list';
-import { FktButtonAction } from 'frakton-ng/button-legacy';
+import { FktButtonAction } from 'frakton-ng/button';
 import { FktTableCustomFilter } from 'frakton-ng/table';
 import { FktDateRangeValue } from './fkt-table-filter-date-range.types';
 
@@ -20,15 +20,14 @@ export class FktTableFilterDateRangeComponent
     apply = output<FktDateRangeValue>();
     close = output();
 
-    protected internalFrom = linkedSignal(() => this.value().from);
-    protected internalTo = linkedSignal(() => this.value().to);
+    protected internalFrom = linkedSignal(() => this.value().from ?? null);
+    protected internalTo = linkedSignal(() => this.value().to ?? null);
 
     protected actions: FktButtonAction[] = [
         {
             identifier: 'reset',
-            text: 'Reset',
-            shape: 'rect',
-            theme: 'stroked',
+            label: 'Reset',
+            appearance: 'stroked',
             click: () =>
                 this.apply.emit(
                     this.defaultValue() ?? { from: null, to: null }
@@ -36,8 +35,7 @@ export class FktTableFilterDateRangeComponent
         },
         {
             identifier: 'apply',
-            shape: 'rect',
-            text: 'Apply',
+            label: 'Apply',
             click: () =>
                 this.apply.emit({
                     from: this.internalFrom(),

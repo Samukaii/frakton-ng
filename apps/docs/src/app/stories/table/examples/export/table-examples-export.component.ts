@@ -1,16 +1,12 @@
-import { Component, computed, inject, resource } from '@angular/core';
-import {
-    FktTableColumn,
-    FktTableComponent,
-    FktTableExportDirective,
-} from 'frakton-ng/table';
-import { FktTagColor } from 'frakton-ng/tag';
-import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
-import { Order } from '@/stories/table/models/order';
-import { OrderStatus } from '@/stories/table/models/order-status';
-import { OrdersService } from '@/stories/table/services/orders.service';
-import { formatDate } from '@angular/common';
-import { cell } from '@/utils/cell-renderer';
+import {Component, computed, inject, resource} from '@angular/core';
+import {FktTableColumn, FktTableComponent, FktTableExportDirective,} from 'frakton-ng/table';
+import {FktTagColor} from 'frakton-ng/tag';
+import {Order} from '@/stories/table/models/order';
+import {OrderStatus} from '@/stories/table/models/order-status';
+import {OrdersService} from '@/stories/table/services/orders.service';
+import {formatDate} from '@angular/common';
+import {cell} from '@/utils/cell-renderer';
+import {FktButtonComponent} from "frakton-ng/button";
 
 const STATUS_LABELS: Record<OrderStatus, string> = {
     pending: 'Pending',
@@ -30,7 +26,7 @@ const STATUS_COLORS: Record<OrderStatus, FktTagColor> = {
 
 @Component({
     selector: 'app-table-examples-export',
-    imports: [FktTableComponent, FktTableExportDirective, FktButtonLegacyComponent],
+    imports: [FktTableComponent, FktTableExportDirective, FktButtonComponent],
     templateUrl: './table-examples-export.component.html',
     styleUrl: './table-examples-export.component.scss',
 })

@@ -1,7 +1,7 @@
 import { Component, input, linkedSignal, output } from '@angular/core';
 import { FktCheckboxComponent } from 'frakton-ng/checkbox';
 import { FktButtonsListComponent } from 'frakton-ng/buttons-list';
-import { FktButtonAction } from 'frakton-ng/button-legacy';
+import { FktButtonAction } from 'frakton-ng/button';
 import { FktTableCustomFilter } from 'frakton-ng/table';
 
 const ALL_CATEGORIES = ['Electronics', 'Clothing', 'Books', 'Sports', 'Food'];
@@ -36,15 +36,13 @@ export class CategoryMultiFilterComponent
     protected actions: FktButtonAction[] = [
         {
             identifier: 'reset',
-            text: 'Reset',
-            shape: 'rect',
-            theme: 'stroked',
+            label: 'Reset',
+            appearance: 'stroked',
             click: () => this.apply.emit(this.defaultValue() ?? []),
         },
         {
             identifier: 'apply',
-            shape: 'rect',
-            text: 'Apply',
+            label: 'Apply',
             click: () => this.apply.emit(this.selected()),
         },
     ];

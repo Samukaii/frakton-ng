@@ -15,8 +15,8 @@ export class SearchResultsExampleComponent {
 		description: `No results found for "${this.searchQuery}". Try different keywords.`,
 		icon: {name: 'magnifying-glass', size: '80px'},
 		action: {
-			text: 'Clear Search',
-			theme: 'stroked',
+			label: 'Clear Search',
+			appearance: 'stroked',
 			identifier: 'clear-search',
 			click: () => this.clearSearch()
 		}

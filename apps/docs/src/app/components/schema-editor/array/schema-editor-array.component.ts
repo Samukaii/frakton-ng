@@ -4,7 +4,7 @@ import {
     FktTableColumn,
     FktTableComponent,
 } from 'frakton-ng/table';
-import { FktButtonAction } from 'frakton-ng/button-legacy';
+import { FktButtonAction } from 'frakton-ng/button';
 import { ArgTypeSchema, ArgTypeSchemaParsed } from '@/models/arg-type';
 import { parseSchema } from '@/components/schema-editor/utils/parse-schema';
 import { isObjectLiteral } from '@/utils/is-object-literal';
@@ -175,8 +175,9 @@ export class SchemaEditorArrayComponent {
     protected actionsFn: FktTableActionFn<any> = (item) => [
         {
             icon: 'trash',
-            ariaLabel: 'Remover',
-            theme: 'basic',
+            label: 'Remover',
+            iconOnly: true,
+            appearance: 'basic',
             color: 'danger',
             identifier: 'remove',
             click: () => {
@@ -189,7 +190,8 @@ export class SchemaEditorArrayComponent {
         icon: 'plus',
         identifier: 'add-new',
         color: 'accent',
-        ariaLabel: 'Add new item',
+        label: 'Add new item',
+        iconOnly: true,
         click: () => {
             this.value.update((items) => {
                 return [this.createBlank(), ...items];

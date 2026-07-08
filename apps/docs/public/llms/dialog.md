@@ -30,58 +30,62 @@ Example component: `FktSimpleDialogExampleComponent`
 
 ```ts title="fkt-simple-dialog-example.component.ts"
 import { Component, inject, signal } from '@angular/core';
-import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { FktDialogService } from 'frakton-ng/dialog';
 import { FktSimpleDialogDemoComponent } from '../dialog/simple-dialog-demo/fkt-simple-dialog-demo.component';
+import {FktButtonComponent} from "frakton-ng/button";
 
 @Component({
-	selector: 'simple-dialog-example',
-	templateUrl: './fkt-simple-dialog-example.component.html',
-	styleUrl: './fkt-simple-dialog-example.component.scss',
-	imports: [FktButtonLegacyComponent]
+    selector: 'simple-dialog-example',
+    templateUrl: './fkt-simple-dialog-example.component.html',
+    styleUrl: './fkt-simple-dialog-example.component.scss',
+    imports: [FktButtonComponent],
 })
 export class FktSimpleDialogExampleComponent {
-	private dialogService = inject(FktDialogService);
-	messageSignal = signal('This message comes from a reactive signal!');
+    private dialogService = inject(FktDialogService);
+    messageSignal = signal('This message comes from a reactive signal!');
 
-	openDialog() {
-		const dialogInstance = this.dialogService.open({
-			component: FktSimpleDialogDemoComponent,
-			data: {
-				title: 'Dynamic Simple Dialog',
-				message: this.messageSignal,  // Reactive signal
-				closeDialog: () => {
-					console.log('Dialog closed');
-					dialogInstance.close();
-				}
-			},
-			panelOptions: {
-				width: '400px',
-				padding: '2rem'
-			}
-		});
-	}
+    openDialog() {
+        const dialogInstance = this.dialogService.open({
+            component: FktSimpleDialogDemoComponent,
+            data: {
+                title: 'Dynamic Simple Dialog',
+                message: this.messageSignal, // Reactive signal
+                closeDialog: () => {
+                    console.log('Dialog closed');
+                    dialogInstance.close();
+                },
+            },
+            panelOptions: {
+                width: '400px',
+                padding: '2rem',
+            },
+        });
+    }
 
-	updateMessage() {
-		this.messageSignal.set('Message updated! See how it changes in open dialogs.');
-	}
+    updateMessage() {
+        this.messageSignal.set(
+            'Message updated! See how it changes in open dialogs.'
+        );
+    }
 }
 ```
 
 ```html title="fkt-simple-dialog-example.component.html"
 <div class="container">
-			<fkt-button
-				text="Open Simple Dialog"
-				theme="raised"
-				(click)="openDialog()"
-			/>
-			<fkt-button
-				text="Update Message"
-				theme="stroked"
-				color="success"
-				(click)="updateMessage()"
-			/>
-		</div>
+    <button
+            (click)="openDialog()"
+            appearance="raised"
+            fktButton
+            label="Open Simple Dialog">
+    </button>
+    <button
+            (click)="updateMessage()"
+            appearance="stroked"
+            color="success"
+            fktButton
+            label="Update Message">
+    </button>
+</div>
 ```
 
 ```css title="fkt-simple-dialog-example.component.scss"
@@ -105,48 +109,50 @@ Example component: `FktConfirmationDialogExampleComponent`
 
 ```ts title="fkt-confirmation-dialog-example.component.ts"
 import { Component, ElementRef, inject } from '@angular/core';
-import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { FktDialogService } from 'frakton-ng/dialog';
+import {FktButtonComponent} from "frakton-ng/button";
 
 @Component({
-	selector: 'confirmation-dialog-example',
-	templateUrl: './fkt-confirmation-dialog-example.component.html',
-	styleUrl: './fkt-confirmation-dialog-example.component.scss',
-	imports: [FktButtonLegacyComponent]
+    selector: 'confirmation-dialog-example',
+    templateUrl: './fkt-confirmation-dialog-example.component.html',
+    styleUrl: './fkt-confirmation-dialog-example.component.scss',
+    imports: [FktButtonComponent],
 })
 export class FktConfirmationDialogExampleComponent {
-	private dialogService = inject(FktDialogService);
-	private elementRef = inject(ElementRef)
+    private dialogService = inject(FktDialogService);
+    private elementRef = inject(ElementRef);
 
-	openDialog() {
-		this.dialogService.confirm({
-			title: 'Delete Item',
-			description: 'This action cannot be undone. Are you sure you want to delete this item?',
-			actions: {
-				primary: {
-					text: 'Delete',
-					color: 'danger',
-					click: () => {
-						console.log('Item deleted!');
-					}
-				},
-				secondary: {
-					text: 'Cancel'
-				}
-			},
-			inheritDesignTokensFrom: this.elementRef.nativeElement,
-			onBackdropClick: () => {
-				console.log('Backdrop clicked - dialog cancelled');
-			}
-		});
-	}
+    openDialog() {
+        this.dialogService.confirm({
+            title: 'Delete Item',
+            description:
+                'This action cannot be undone. Are you sure you want to delete this item?',
+            actions: {
+                primary: {
+                    label: 'Delete',
+                    color: 'danger',
+                    click: () => {
+                        console.log('Item deleted!');
+                    },
+                },
+                secondary: {
+                    label: 'Cancel',
+                },
+            },
+            inheritDesignTokensFrom: this.elementRef.nativeElement,
+            onBackdropClick: () => {
+                console.log('Backdrop clicked - dialog cancelled');
+            },
+        });
+    }
 }
 ```
 
 ```html title="fkt-confirmation-dialog-example.component.html"
 <div class="container">
-			<fkt-button text="Delete Item" color="danger" theme="raised" (click)="openDialog()" />
-		</div>
+    <button (click)="openDialog()" appearance="raised" color="danger" fktButton label="Delete Item">
+    </button>
+</div>
 ```
 
 ```css title="fkt-confirmation-dialog-example.component.scss"
@@ -169,102 +175,115 @@ Example component: `FktFormDialogExampleComponent`
 
 ```ts title="fkt-form-dialog-example.component.ts"
 import { Component, inject } from '@angular/core';
-import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { FktDialogService } from 'frakton-ng/dialog';
-import { FktFormDialogDemoComponent, FormData } from '../dialog/form-dialog-demo/fkt-form-dialog-demo.component';
+import {
+    FktFormDialogDemoComponent,
+    FormData,
+} from '../dialog/form-dialog-demo/fkt-form-dialog-demo.component';
+import { FktButtonComponent } from 'frakton-ng/button';
 
 @Component({
-	selector: 'form-dialog-example',
-	templateUrl: './fkt-form-dialog-example.component.html',
-	styleUrl: 'fkt-form-dialog-example.component.scss',
-	imports: [FktButtonLegacyComponent]
+    selector: 'form-dialog-example',
+    templateUrl: './fkt-form-dialog-example.component.html',
+    styleUrl: 'fkt-form-dialog-example.component.scss',
+    imports: [FktButtonComponent],
 })
 export class FktFormDialogExampleComponent {
-	private dialogService = inject(FktDialogService);
+    private dialogService = inject(FktDialogService);
 
-	protected openContactForm() {
-		const dialogInstance = this.dialogService.open({
-			component: FktFormDialogDemoComponent,
-			data: {
-				title: 'Contact Us',
-				description: 'We would love to hear from you. Send us a message and we will respond as soon as possible.',
-				initialName: '',
-				initialEmail: '',
-				submit: (formData: FormData) => {
-					console.log('Contact form submitted:', formData);
-					alert(`Thank you ${formData.name}! We received your message.`);
-					dialogInstance.close();
-				},
-				cancel: () => {
-					console.log('Contact form cancelled');
-					dialogInstance.close();
-				}
-			},
-			panelOptions: { width: '500px', padding: '2rem' }
-		});
-	}
+    protected openContactForm() {
+        const dialogInstance = this.dialogService.open({
+            component: FktFormDialogDemoComponent,
+            data: {
+                title: 'Contact Us',
+                description:
+                    'We would love to hear from you. Send us a message and we will respond as soon as possible.',
+                initialName: '',
+                initialEmail: '',
+                submitForm: (formData: FormData) => {
+                    console.log('Contact form submitted:', formData);
+                    alert(
+                        `Thank you ${formData.name}! We received your message.`
+                    );
+                    dialogInstance.close();
+                },
+                cancelAction: () => {
+                    console.log('Contact form cancelled');
+                    dialogInstance.close();
+                },
+            },
+            panelOptions: { width: '500px', padding: '2rem' },
+        });
+    }
 
-	protected openRegistrationForm() {
-		const dialogInstance = this.dialogService.open({
-			component: FktFormDialogDemoComponent,
-			data: {
-				title: 'User Registration',
-				description: 'Create your account by providing the required information.',
-				initialName: '',
-				initialEmail: '',
-				submit: (formData: FormData) => {
-					console.log('Registration form submitted:', formData);
-					alert(`Welcome ${formData.name}! Your account has been created.`);
-					dialogInstance.close();
-				},
-				cancel: () => dialogInstance.close()
-			},
-			panelOptions: { width: '500px', padding: '2rem' }
-		});
-	}
+    protected openRegistrationForm() {
+        const dialogInstance = this.dialogService.open({
+            component: FktFormDialogDemoComponent,
+            data: {
+                title: 'User Registration',
+                description:
+                    'Create your account by providing the required information.',
+                initialName: '',
+                initialEmail: '',
+                submitForm: (formData: FormData) => {
+                    console.log('Registration form submitted:', formData);
+                    alert(
+                        `Welcome ${formData.name}! Your account has been created.`
+                    );
+                    dialogInstance.close();
+                },
+                cancelAction: () => dialogInstance.close(),
+            },
+            panelOptions: { width: '500px', padding: '2rem' },
+        });
+    }
 
-	protected openFeedbackForm() {
-		const dialogInstance = this.dialogService.open({
-			component: FktFormDialogDemoComponent,
-			data: {
-				title: 'Share Your Feedback',
-				description: 'Help us improve by sharing your thoughts and suggestions.',
-				initialName: 'John Doe',
-				initialEmail: 'john@example.com',
-				submit: (formData: FormData) => {
-					console.log('Feedback form submitted:', formData);
-					alert(`Thanks for your feedback, ${formData.name}!`);
-					dialogInstance.close();
-				},
-				cancel: () => dialogInstance.close()
-			},
-			panelOptions: { width: '500px', padding: '2rem' }
-		});
-	}
+    protected openFeedbackForm() {
+        const dialogInstance = this.dialogService.open({
+            component: FktFormDialogDemoComponent,
+            data: {
+                title: 'Share Your Feedback',
+                description:
+                    'Help us improve by sharing your thoughts and suggestions.',
+                initialName: 'John Doe',
+                initialEmail: 'john@example.com',
+                submitForm: (formData: FormData) => {
+                    console.log('Feedback form submitted:', formData);
+                    alert(`Thanks for your feedback, ${formData.name}!`);
+                    dialogInstance.close();
+                },
+                cancelAction: () => dialogInstance.close(),
+            },
+            panelOptions: { width: '500px', padding: '2rem' },
+        });
+    }
 }
 ```
 
 ```html title="fkt-form-dialog-example.component.html"
 <div class="container">
-			<fkt-button
-				text="Contact Form"
-				theme="stroked"
-				color="primary"
-				(click)="openContactForm()"
-			/>
-			<fkt-button
-				text="User Registration"
-				theme="stroked"
-				color="success"
-				(click)="openRegistrationForm()"
-			/>
-			<fkt-button
-				text="Feedback Form"
-				theme="stroked"
-				color="accent"
-				(click)="openFeedbackForm()"
-			/>
-		</div>
+    <button
+            (click)="openContactForm()"
+            appearance="stroked"
+            color="primary"
+            fktButton
+            label="Contact Form"
+    > </button>
+    <button
+            (click)="openRegistrationForm()"
+            appearance="stroked"
+            color="success"
+            fktButton
+            label="User Registration"
+    > </button>
+    <button
+            (click)="openFeedbackForm()"
+            appearance="stroked"
+            color="accent"
+            fktButton
+            label="Feedback Form"
+    > </button>
+</div>
 ```
 
 ```css title="fkt-form-dialog-example.component.scss"
@@ -287,55 +306,60 @@ Custom styled dialog with unique appearance and behavior.
 Example component: `FktCustomDialogExampleComponent`
 
 ```ts title="fkt-custom-dialog-example.component.ts"
-import { Component, inject, signal } from '@angular/core';
-import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
-import { FktDialogService } from 'frakton-ng/dialog';
-import { FktCustomDialogDemoComponent } from '../dialog/custom-dialog-demo/fkt-custom-dialog-demo.component';
+import {Component, inject, signal} from '@angular/core';
+import {FktDialogService} from 'frakton-ng/dialog';
+import {FktCustomDialogDemoComponent} from '../dialog/custom-dialog-demo/fkt-custom-dialog-demo.component';
+import {FktButtonComponent} from "frakton-ng/button";
 
 @Component({
-	selector: 'custom-dialog-example',
-	templateUrl: './fkt-custom-dialog-example.component.html',
-	imports: [FktButtonLegacyComponent],
-	styleUrl: './fkt-custom-dialog-example.component.scss'
+    selector: 'custom-dialog-example',
+    templateUrl: './fkt-custom-dialog-example.component.html',
+    imports: [FktButtonComponent],
+    styleUrl: './fkt-custom-dialog-example.component.scss',
 })
 export class FktCustomDialogExampleComponent {
-	private dialogService = inject(FktDialogService);
-	counterSignal = signal(0);
+    private dialogService = inject(FktDialogService);
+    protected counterSignal = signal(0);
 
-	protected openDialog() {
-		const customDetails = [
-			'This dialog demonstrates signal passing',
-			'Custom details can be provided dynamically',
-			`Counter value: ${this.counterSignal()}`
-		];
+    protected openDialog() {
+        const customDetails = [
+            'This dialog demonstrates signal passing',
+            'Custom details can be provided dynamically',
+            `Counter value: ${this.counterSignal()}`,
+        ];
 
-		const dialogInstance = this.dialogService.open({
-			component: FktCustomDialogDemoComponent,
-			data: {
-				title: 'Advanced Custom Dialog',
-				message: 'This dialog shows advanced features with signals and dynamic content.',
-				iconName: 'cog-6-tooth',
-				detailsTitle: 'Technical Details:',
-				details: customDetails,
-				detailsToggled: (isVisible: boolean) => {
-					console.log('Details toggled:', isVisible);
-				},
-				dialogConfirmed: () => {
-					this.counterSignal.update(count => count + 1);
-					console.log('Dialog confirmed! Counter:', this.counterSignal());
-					dialogInstance.close();
-				}
-			},
-			panelOptions: { width: '600px', padding: '2rem' }
-		});
-	}
+        const dialogInstance = this.dialogService.open({
+            component: FktCustomDialogDemoComponent,
+            data: {
+                title: 'Advanced Custom Dialog',
+                message:
+                    'This dialog shows advanced features with signals and dynamic content.',
+                iconName: 'cog-6-tooth',
+                detailsTitle: 'Technical Details:',
+                details: customDetails,
+                detailsToggled: (isVisible: boolean) => {
+                    console.log('Details toggled:', isVisible);
+                },
+                dialogConfirmed: () => {
+                    this.counterSignal.update((count) => count + 1);
+                    console.log(
+                        'Dialog confirmed! Counter:',
+                        this.counterSignal()
+                    );
+                    dialogInstance.close();
+                },
+            },
+            panelOptions: { width: '600px', padding: '2rem' },
+        });
+    }
 }
 ```
 
 ```html title="fkt-custom-dialog-example.component.html"
 <div class="container">
-			<fkt-button text="Open Custom Dialog" theme="raised" (click)="openDialog()" />
-		</div>
+    <button (click)="openDialog()" fktButton label="Open Custom Dialog">
+    </button>
+</div>
 ```
 
 ```css title="fkt-custom-dialog-example.component.scss"
@@ -357,38 +381,39 @@ Compact dialog size perfect for quick confirmations and alerts.
 Example component: `FktSmallDialogExampleComponent`
 
 ```ts title="fkt-small-dialog-example.component.ts"
-import { Component, inject } from '@angular/core';
-import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
-import { FktDialogService } from 'frakton-ng/dialog';
-import { FktSimpleDialogDemoComponent } from '../dialog/simple-dialog-demo/fkt-simple-dialog-demo.component';
+import {Component, inject} from '@angular/core';
+import {FktDialogService} from 'frakton-ng/dialog';
+import {FktSimpleDialogDemoComponent} from '../dialog/simple-dialog-demo/fkt-simple-dialog-demo.component';
+import {FktButtonComponent} from "frakton-ng/button";
 
 @Component({
-	selector: 'small-dialog-example',
-	templateUrl: './fkt-small-dialog-example.component.html',
-	styleUrl: './fkt-small-dialog-example.component.scss',
-	imports: [FktButtonLegacyComponent]
+    selector: 'small-dialog-example',
+    templateUrl: './fkt-small-dialog-example.component.html',
+    styleUrl: './fkt-small-dialog-example.component.scss',
+    imports: [FktButtonComponent],
 })
 export class FktSmallDialogExampleComponent {
-	private dialogService = inject(FktDialogService);
+    private dialogService = inject(FktDialogService);
 
-	openDialog() {
-		const dialogInstance = this.dialogService.open({
-			component: FktSimpleDialogDemoComponent,
-			data: {
-				title: 'Compact Dialog',
-				message: 'Small dialogs are perfect for quick confirmations.',
-				closeDialog: () => dialogInstance.close()
-			},
-			panelOptions: { width: '300px', padding: '2rem' }
-		});
-	}
+    openDialog() {
+        const dialogInstance = this.dialogService.open({
+            component: FktSimpleDialogDemoComponent,
+            data: {
+                title: 'Compact Dialog',
+                message: 'Small dialogs are perfect for quick confirmations.',
+                closeDialog: () => dialogInstance.close(),
+            },
+            panelOptions: { width: '300px', padding: '2rem' },
+        });
+    }
 }
 ```
 
 ```html title="fkt-small-dialog-example.component.html"
 <div class="container">
-			<fkt-button text="Open Small Dialog" theme="raised" (click)="openDialog()" />
-		</div>
+    <button (click)="openDialog()" fktButton label="Open Small Dialog">
+    </button>
+</div>
 ```
 
 ```css title="fkt-small-dialog-example.component.scss"
@@ -410,51 +435,53 @@ Full viewport dialog for complex content and detailed forms.
 Example component: `FktFullscreenDialogExampleComponent`
 
 ```ts title="fkt-fullscreen-dialog-example.component.ts"
-import { Component, inject } from '@angular/core';
-import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
-import { FktDialogService } from 'frakton-ng/dialog';
-import { FktCustomDialogDemoComponent } from '../dialog/custom-dialog-demo/fkt-custom-dialog-demo.component';
-import { FktIconName } from 'frakton-ng/icon';
+import {Component, inject} from '@angular/core';
+import {FktDialogService} from 'frakton-ng/dialog';
+import {FktCustomDialogDemoComponent} from '../dialog/custom-dialog-demo/fkt-custom-dialog-demo.component';
+import {FktIconName} from 'frakton-ng/icon';
+import {FktButtonComponent} from "frakton-ng/button";
 
 @Component({
-	selector: 'fullscreen-dialog-example',
-	templateUrl: './fkt-fullscreen-dialog-example.component.html',
-	styleUrl: './fkt-fullscreen-dialog-example.component.scss',
-	imports: [FktButtonLegacyComponent]
+    selector: 'fullscreen-dialog-example',
+    templateUrl: './fkt-fullscreen-dialog-example.component.html',
+    styleUrl: './fkt-fullscreen-dialog-example.component.scss',
+    imports: [FktButtonComponent],
 })
 export class FktFullscreenDialogExampleComponent {
-	private dialogService = inject(FktDialogService);
+    private dialogService = inject(FktDialogService);
 
-	protected openDialog() {
-		const dialogInstance = this.dialogService.open({
-			component: FktCustomDialogDemoComponent,
-			data: {
-				title: 'Full Screen Experience',
-				message: 'This dialog demonstrates full screen capabilities with responsive design.',
-				iconName: 'arrow-long-up' as FktIconName,
-				details: [
-					'Full viewport coverage',
-					'Responsive layout',
-					'Mobile-friendly design'
-				],
-				dialogConfirmed: () => dialogInstance.close()
-			},
-			panelOptions: {
-				width: '100%',
-				maxWidth: '100vw',
-				maxHeight: '100vh',
-				height: '100%',
-				padding: '2rem',
-				borderRadius: 'none'
-			}
-		});
-	}
+    protected openDialog() {
+        const dialogInstance = this.dialogService.open({
+            component: FktCustomDialogDemoComponent,
+            data: {
+                title: 'Full Screen Experience',
+                message:
+                    'This dialog demonstrates full screen capabilities with responsive design.',
+                iconName: 'arrow-long-up' as FktIconName,
+                details: [
+                    'Full viewport coverage',
+                    'Responsive layout',
+                    'Mobile-friendly design',
+                ],
+                dialogConfirmed: () => dialogInstance.close(),
+            },
+            panelOptions: {
+                width: '100%',
+                maxWidth: '100vw',
+                maxHeight: '100vh',
+                height: '100%',
+                padding: '2rem',
+                borderRadius: 'none',
+            },
+        });
+    }
 }
 ```
 
 ```html title="fkt-fullscreen-dialog-example.component.html"
 <div class="container">
-	<fkt-button text="Open Full Screen" theme="raised" (click)="openDialog()"/>
+	<button (click)="openDialog()" fktButton label="Open Full Screen">
+    </button>
 </div>
 ```
 
@@ -478,7 +505,7 @@ Example component: `FktDialogOverviewExampleComponent`
 
 ```ts title="fkt-dialog-overview-example.component.ts"
 import { Component, inject, signal } from '@angular/core';
-import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
+import { FktButtonComponent } from 'frakton-ng/button';
 import { FktDialogService } from 'frakton-ng/dialog';
 import { FktSimpleDialogDemoComponent } from '../dialog/simple-dialog-demo/fkt-simple-dialog-demo.component';
 import { FktFormDialogDemoComponent, FormData } from '../dialog/form-dialog-demo/fkt-form-dialog-demo.component';
@@ -486,195 +513,209 @@ import { FktCustomDialogDemoComponent } from '../dialog/custom-dialog-demo/fkt-c
 import { FktIconName } from 'frakton-ng/icon';
 
 @Component({
-	selector: 'dialog-demo-host',
-	templateUrl: './fkt-dialog-overview-example.component.html',
-	styleUrl: './fkt-dialog-overview-example.component.scss',
-	imports: [FktButtonLegacyComponent]
+    selector: 'dialog-demo-host',
+    templateUrl: './fkt-dialog-overview-example.component.html',
+    styleUrl: './fkt-dialog-overview-example.component.scss',
+    imports: [FktButtonComponent],
 })
 export class FktDialogOverviewExampleComponent {
-	private dialogService = inject(FktDialogService);
+    private dialogService = inject(FktDialogService);
 
-	messageSignal = signal('This message comes from a signal!');
-	counterSignal = signal(0);
+    messageSignal = signal('This message comes from a signal!');
+    counterSignal = signal(0);
 
-	openSimpleDialog() {
-		const dialogInstance = this.dialogService.open({
-			component: FktSimpleDialogDemoComponent,
-			data: {
-				title: 'Dynamic Simple Dialog',
-				message: this.messageSignal,
-				closeDialog: () => dialogInstance.close()
-			},
-			panelOptions: {
-				width: '400px',
-				padding: '2rem'
-			}
-		});
-	}
+    openSimpleDialog() {
+        const dialogInstance = this.dialogService.open({
+            component: FktSimpleDialogDemoComponent,
+            data: {
+                title: 'Dynamic Simple Dialog',
+                message: this.messageSignal,
+                closeDialog: () => dialogInstance.close(),
+            },
+            panelOptions: {
+                width: '400px',
+                padding: '2rem',
+            },
+        });
+    }
 
-	openFormDialog() {
-		const dialogInstance = this.dialogService.open({
-			component: FktFormDialogDemoComponent,
-			data: {
-				title: 'User Information Form',
-				description: 'Please fill out your information:',
-				initialName: 'John Doe',
-				initialEmail: 'john@example.com',
-				submit: (formData: FormData) => {
-					console.log('Form submitted:', formData);
-					alert(`Thank you ${formData.name}! We received your information.`);
-					dialogInstance.close();
-				},
-				cancel: () => {
-					console.log('Form cancelled');
-					dialogInstance.close();
-				}
-			},
-			panelOptions: {
-				width: '500px',
-				padding: '2rem'
-			}
-		});
-	}
+    openFormDialog() {
+        const dialogInstance = this.dialogService.open({
+            component: FktFormDialogDemoComponent,
+            data: {
+                title: 'User Information Form',
+                description: 'Please fill out your information:',
+                initialName: 'John Doe',
+                initialEmail: 'john@example.com',
+                submitForm: (formData: FormData) => {
+                    console.log('Form submitted:', formData);
+                    alert(
+                        `Thank you ${formData.name}! We received your information.`
+                    );
+                    dialogInstance.close();
+                },
+                cancelAction: () => {
+                    console.log('Form cancelled');
+                    dialogInstance.close();
+                },
+            },
+            panelOptions: {
+                width: '500px',
+                padding: '2rem',
+            },
+        });
+    }
 
-	openCustomDialog() {
-		const customDetails = [
-			'This dialog demonstrates signal passing',
-			'Custom details can be provided dynamically',
-			`Counter value: ${this.counterSignal()}`
-		];
+    openCustomDialog() {
+        const customDetails = [
+            'This dialog demonstrates signal passing',
+            'Custom details can be provided dynamically',
+            `Counter value: ${this.counterSignal()}`,
+        ];
 
-		const dialogInstance = this.dialogService.open({
-			component: FktCustomDialogDemoComponent,
-			data: {
-				title: 'Advanced Custom Dialog',
-				message: 'This dialog shows advanced features with signals and dynamic content.',
-				iconName: 'cog-6-tooth',
-				detailsTitle: 'Technical Details:',
-				details: customDetails,
-				detailsToggled: (isVisible: boolean) => {
-					console.log('Details toggled:', isVisible);
-				},
-				dialogConfirmed: () => {
-					this.counterSignal.update(count => count + 1);
-					console.log('Dialog confirmed! Counter:', this.counterSignal());
-					dialogInstance.close();
-				}
-			},
-			panelOptions: {
-				width: '600px',
-				padding: '2rem'
-			}
-		});
-	}
+        const dialogInstance = this.dialogService.open({
+            component: FktCustomDialogDemoComponent,
+            data: {
+                title: 'Advanced Custom Dialog',
+                message:
+                    'This dialog shows advanced features with signals and dynamic content.',
+                iconName: 'cog-6-tooth',
+                detailsTitle: 'Technical Details:',
+                details: customDetails,
+                detailsToggled: (isVisible: boolean) => {
+                    console.log('Details toggled:', isVisible);
+                },
+                dialogConfirmed: () => {
+                    this.counterSignal.update((count) => count + 1);
+                    console.log(
+                        'Dialog confirmed! Counter:',
+                        this.counterSignal()
+                    );
+                    dialogInstance.close();
+                },
+            },
+            panelOptions: {
+                width: '600px',
+                padding: '2rem',
+            },
+        });
+    }
 
-	openConfirmDialog() {
-		this.dialogService.confirm({
-			title: 'Delete Item',
-			description: 'This action cannot be undone. Are you sure you want to delete this item?',
-			actions: {
-				primary: {
-					text: 'Delete',
-					color: 'danger',
-					click: () => {
-						console.log('Item deleted!');
-					}
-				},
-				secondary: {
-					text: 'Cancel'
-				}
-			},
-			onBackdropClick: () => {
-				console.log('Backdrop clicked - dialog cancelled');
-			}
-		});
-	}
+    openConfirmDialog() {
+        this.dialogService.confirm({
+            title: 'Delete Item',
+            description:
+                'This action cannot be undone. Are you sure you want to delete this item?',
+            actions: {
+                primary: {
+                    label: 'Delete',
+                    color: 'danger',
+                    click: () => {
+                        console.log('Item deleted!');
+                    },
+                },
+                secondary: {
+                    label: 'Cancel',
+                },
+            },
+            onBackdropClick: () => {
+                console.log('Backdrop clicked - dialog cancelled');
+            },
+        });
+    }
 
-	openFullScreenDialog() {
-		const dialogInstance = this.dialogService.open({
-			component: FktCustomDialogDemoComponent,
-			data: {
-				title: 'Full Screen Experience',
-				message: 'This dialog demonstrates full screen capabilities with responsive design.',
-				iconName: 'arrow-long-up' as FktIconName,
-				details: [
-					'Full viewport coverage',
-					'Responsive layout',
-					'Mobile-friendly design'
-				],
-				dialogConfirmed: () => dialogInstance.close()
-			},
-			panelOptions: {
-				width: '100vw',
-				height: '100vh',
-				maxWidth: '100vw',
-				maxHeight: '100vh',
-				padding: '2rem',
-				borderRadius: 'none',
-			}
-		});
-	}
+    openFullScreenDialog() {
+        const dialogInstance = this.dialogService.open({
+            component: FktCustomDialogDemoComponent,
+            data: {
+                title: 'Full Screen Experience',
+                message:
+                    'This dialog demonstrates full screen capabilities with responsive design.',
+                iconName: 'arrow-long-up' as FktIconName,
+                details: [
+                    'Full viewport coverage',
+                    'Responsive layout',
+                    'Mobile-friendly design',
+                ],
+                dialogConfirmed: () => dialogInstance.close(),
+            },
+            panelOptions: {
+                width: '100vw',
+                height: '100vh',
+                maxWidth: '100vw',
+                maxHeight: '100vh',
+                padding: '2rem',
+                borderRadius: 'none',
+            },
+        });
+    }
 
-	openSmallDialog() {
-		const dialogInstance = this.dialogService.open({
-			component: FktSimpleDialogDemoComponent,
-			data: {
-				title: 'Compact Dialog',
-				message: 'Small dialogs are perfect for quick confirmations.',
-				closeDialog: () => dialogInstance.close()
-			},
-			panelOptions: {
-				width: '300px',
-				padding: '2rem'
-			}
-		});
-	}
+    openSmallDialog() {
+        const dialogInstance = this.dialogService.open({
+            component: FktSimpleDialogDemoComponent,
+            data: {
+                title: 'Compact Dialog',
+                message: 'Small dialogs are perfect for quick confirmations.',
+                closeDialog: () => dialogInstance.close(),
+            },
+            panelOptions: {
+                width: '300px',
+                padding: '2rem',
+            },
+        });
+    }
 }
 ```
 
 ```html title="fkt-dialog-overview-example.component.html"
 <div class="container">
-			<div class="container__actions">
-				<fkt-button
-					text="Simple Dialog"
-					theme="stroked"
-					(click)="openSimpleDialog()"
-				></fkt-button>
+    <div class="container__actions">
+        <button
+            (click)="openSimpleDialog()"
+            appearance="stroked"
+            fktButton
+            label="Simple Dialog">
+        </button>
 
-				<fkt-button
-					text="Form Dialog"
-					theme="stroked"
-					(click)="openFormDialog()"
-				></fkt-button>
+        <button
+            (click)="openFormDialog()"
+            appearance="stroked"
+            fktButton
+            label="Form Dialog">
+        </button>
 
-				<fkt-button
-					text="Custom Dialog"
-					theme="stroked"
-					color="success"
-					(click)="openCustomDialog()"
-				></fkt-button>
+        <button
+            (click)="openCustomDialog()"
+            appearance="stroked"
+            color="success"
+            fktButton
+            label="Custom Dialog">
+        </button>
 
-				<fkt-button
-					text="Confirm Action"
-					color="danger"
-					theme="stroked"
-					(click)="openConfirmDialog()"
-				></fkt-button>
+        <button
+            (click)="openConfirmDialog()"
+            appearance="stroked"
+            color="danger"
+            fktButton
+            label="Confirm Action">
+        </button>
 
-				<fkt-button
-					text="Full Screen Dialog"
-					theme="stroked"
-					color="accent"
-					(click)="openFullScreenDialog()"
-				></fkt-button>
+        <button
+            (click)="openFullScreenDialog()"
+            appearance="stroked"
+            color="accent"
+            fktButton
+            label="Full Screen Dialog">
+        </button>
 
-				<fkt-button
-					text="Small Dialog"
-					theme="stroked"
-					(click)="openSmallDialog()"
-				></fkt-button>
-			</div>
-		</div>
+        <button
+            (click)="openSmallDialog()"
+            appearance="stroked"
+            fktButton
+            label="Small Dialog">
+        </button>
+    </div>
+</div>
 ```
 
 ```css title="fkt-dialog-overview-example.component.scss"

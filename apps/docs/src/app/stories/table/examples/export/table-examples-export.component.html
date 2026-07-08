@@ -1,18 +1,16 @@
 <fkt-table
-    fktTableExport
     #exporter="fktTableExport"
-    [data]="data()"
     [columns]="columns"
+    [data]="data()"
     [loading]="response.isLoading()"
+    fktTableExport
 >
     <div fktTableToolbar>
-        <fkt-button
-            theme="raised"
-            iconPosition="left"
-            shape="rect"
-            icon="arrow-up-on-square"
-            (click)="exporter.exportCsv()"
-            text="Export CSV"
-        />
+        <button
+                (click)="exporter.exportCsv()"
+                fktButton
+                icon="arrow-up-on-square"
+                label="Export CSV">
+        </button>
     </div>
 </fkt-table>

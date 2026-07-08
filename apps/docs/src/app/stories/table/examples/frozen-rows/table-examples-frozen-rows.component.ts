@@ -68,11 +68,10 @@ export class TableExamplesFrozenRowsComponent {
                         actions: [
                             {
                                 identifier: 'lock',
-                                theme: 'basic',
+                                appearance: 'basic',
                                 color: 'primary',
-                                ariaLabel: isLocked
-                                    ? 'Unlock user'
-                                    : 'Lock user',
+                                iconOnly: true,
+                                label: isLocked ? 'Unlock user' : 'Lock user',
                                 icon: isLocked ? 'lock-open' : 'lock-closed',
                                 click: () => {
                                     if (isLocked) this.unlockUser(user);

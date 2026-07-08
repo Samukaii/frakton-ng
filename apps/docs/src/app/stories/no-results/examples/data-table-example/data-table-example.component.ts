@@ -12,8 +12,8 @@ export class DataTableExampleComponent {
 		description: 'There are no records to display at this time.',
 		icon: {name: 'table-cells', size: '100px'},
 		action: {
-			text: 'Add Record',
-			theme: 'raised',
+			label: 'Add Record',
+			appearance: 'raised',
 			identifier: 'add-record',
 			click: () => this.openAddRecordModal()
 		}

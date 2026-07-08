@@ -1,9 +1,9 @@
-import { fktButtonsListAlignments, FktButtonsListComponent, fktButtonsListOrientations } from 'frakton-ng/buttons-list';
+import {fktButtonsListAlignments, FktButtonsListComponent, fktButtonsListOrientations} from 'frakton-ng/buttons-list';
 import designTokens from './fkt-buttons-list-design-tokens.json';
-import documentation from './fkt-buttons-list.docs.md' with { loader: 'text' };
-import { Meta } from '@/models/meta';
-import { Story } from '@/models/story';
-import { buttonActionSchema } from '@/static/schemas/button-action.schema';
+import documentation from './fkt-buttons-list.docs.md' with {loader: 'text'};
+import {Meta} from '@/models/meta';
+import {Story} from '@/models/story';
+import {buttonActionSchema} from '@/static/schemas/button-action.schema';
 
 const meta: Meta = {
     title: 'Components/Actions/Buttons list',
@@ -53,7 +53,7 @@ const meta: Meta = {
             schema: buttonActionSchema,
             required: true,
             category: "Attributes",
-            import: "import {FktButtonAction} from 'frakton-ng/button-legacy'",
+            import: "import {FktButtonAction} from 'frakton-ng/button'",
             type: 'FktButtonAction<T>[]',
             defaultValue: "undefined",
         }
@@ -66,43 +66,44 @@ export const Preview: Story<FktButtonsListComponent<any>> = {
         actions: [
             {
                 identifier: "action-1",
-                theme: "raised",
+                appearance: 'raised',
                 color: "primary",
-                text: "Action 1"
+                label: "Action 1"
             },
             {
                 identifier: "action-2",
-                theme: "stroked",
+                appearance: 'stroked',
                 color: "success",
-                text: "Action 2",
+                label: "Action 2",
                 shape: "rounded"
             },
             {
                 identifier: "action-3",
-                theme: "basic",
+                appearance: 'basic',
                 color: "danger",
-                text: "Action 3"
+                label: "Action 3"
             },
             {
                 identifier: "action-4",
-                theme: "raised",
+                appearance: 'raised',
                 color: "accent",
-                text: "Action 4"
+                label: "Action 4"
             },
             {
                 identifier: "action-5",
-                theme: "raised",
+                appearance: 'raised',
                 icon: "plus",
                 color: "primary",
-                ariaLabel: "Action 5"
+                label: "Action 5",
+                iconOnly: true
             },
             {
                 identifier: "action-6",
-                theme: "basic",
+                appearance: 'basic',
                 icon: "trash",
-                shape: "rect",
                 color: "danger",
-                ariaLabel: "Action 6"
+                label: "Action 6",
+                iconOnly: true
             }
         ]
     }
@@ -114,21 +115,21 @@ export const FormActions: Story<FktButtonsListComponent<any>> = {
         actions: [
             {
                 identifier: "cancel",
-                theme: "basic",
+                appearance: 'basic',
                 color: "danger",
-                text: "Cancel"
+                label: "Cancel"
             },
             {
                 identifier: "save-draft",
-                theme: "stroked",
+                appearance: 'stroked',
                 color: "success",
-                text: "Save Draft"
+                label: "Save Draft"
             },
             {
                 identifier: "submit",
-                theme: "raised",
+                appearance: 'raised',
                 color: "success",
-                text: "Submit"
+                label: "Submit"
             }
         ],
         horizontalAlignment: "end"
@@ -141,27 +142,24 @@ export const VerticalList: Story<FktButtonsListComponent<any>> = {
         actions: [
             {
                 identifier: "dashboard",
-                theme: "basic",
+                appearance: 'basic',
                 color: "primary",
-                text: "Dashboard",
+                label: "Dashboard",
                 icon: "home",
-                iconPosition: "left"
             },
             {
                 identifier: "users",
-                theme: "basic",
+                appearance: 'basic',
                 color: "primary",
-                text: "Users",
+                label: "Users",
                 icon: "users",
-                iconPosition: "left"
             },
             {
                 identifier: "settings",
-                theme: "basic",
+                appearance: 'basic',
                 color: "primary",
-                text: "Settings",
+                label: "Settings",
                 icon: "cog",
-                iconPosition: "left"
             }
         ],
         orientation: "vertical",
@@ -175,27 +173,30 @@ export const IconOnlyActions: Story<FktButtonsListComponent<any>> = {
         actions: [
             {
                 identifier: "edit",
-                theme: "basic",
+                appearance: 'basic',
                 color: "primary",
                 icon: "pencil",
                 tooltip: "Edit",
-                ariaLabel: "Edit",
+                label: "Edit",
+                iconOnly: true
             },
             {
                 identifier: "duplicate",
-                theme: "basic",
+                appearance: 'basic',
                 color: "success",
                 icon: "trash",
                 tooltip: "Duplicate",
-                ariaLabel: "Duplicate",
+                label: "Duplicate",
+                iconOnly: true
             },
             {
                 identifier: "delete",
-                theme: "basic",
+                appearance: 'basic',
                 color: "danger",
                 icon: "trash",
                 tooltip: "Delete",
-                ariaLabel: "Delete",
+                label: "Delete",
+                iconOnly: true
             }
         ]
     }
@@ -207,29 +208,29 @@ export const DataTableActions: Story<FktButtonsListComponent<any>> = {
         actions: [
             {
                 identifier: "view",
-                theme: "basic",
+                appearance: 'basic',
                 color: "primary",
                 icon: "eye",
-                shape: "rect",
-                ariaLabel: "View Details",
+                label: "View Details",
+                iconOnly: true,
                 tooltip: "View Details",
             },
             {
                 identifier: "edit",
-                theme: "basic",
+                appearance: 'basic',
                 color: "success",
                 icon: "pencil",
-                shape: "rect",
-                ariaLabel: "Edit Item",
+                label: "Edit Item",
+                iconOnly: true,
                 tooltip: "Edit Item",
             },
             {
                 identifier: "delete",
-                theme: "basic",
+                appearance: 'basic',
                 color: "danger",
                 icon: "trash",
-                shape: "rect",
-                ariaLabel: "Delete Item",
+                label: "Delete Item",
+                iconOnly: true,
                 tooltip: "Delete Item"
             }
         ]
@@ -242,23 +243,22 @@ export const BulkActions: Story<FktButtonsListComponent<any>> = {
         actions: [
             {
                 identifier: "select-all",
-                theme: "stroked",
+                appearance: 'stroked',
                 color: "primary",
-                text: "Select All"
+                label: "Select All"
             },
             {
                 identifier: "export",
-                theme: "stroked",
+                appearance: 'stroked',
                 color: "success",
-                text: "Export",
-                icon: "trash",
-                iconPosition: "right"
+                label: "Export",
+                suffixIcon: "trash",
             },
             {
                 identifier: "delete-selected",
-                theme: "raised",
+                appearance: 'raised',
                 color: "danger",
-                text: "Delete Selected"
+                label: "Delete Selected"
             }
         ],
         horizontalAlignment: "space-between"
@@ -271,33 +271,33 @@ export const ToolbarActions: Story<FktButtonsListComponent<any>> = {
         actions: [
             {
                 identifier: "new",
-                theme: "raised",
+                appearance: 'raised',
                 color: "primary",
-                text: "New",
+                label: "New",
                 icon: "plus",
-                iconPosition: "left"
             },
             {
                 identifier: "import",
-                theme: "stroked",
+                appearance: 'stroked',
                 color: "primary",
-                text: "Import",
+                label: "Import",
                 icon: "trash"
             },
             {
                 identifier: "export",
-                theme: "stroked",
+                appearance: 'stroked',
                 color: "success",
-                text: "Export",
+                label: "Export",
                 icon: "trash"
             },
             {
                 identifier: "refresh",
-                theme: "basic",
+                appearance: 'basic',
                 color: "primary",
                 icon: "trash",
                 tooltip: "Refresh Data",
-                ariaLabel: "Refresh Data",
+                label: "Refresh Data",
+                iconOnly: true
             }
         ]
     }
@@ -309,19 +309,21 @@ export const FloatingActions: Story<FktButtonsListComponent<any>> = {
         actions: [
             {
                 identifier: "chat",
-                theme: "raised",
+                appearance: 'raised',
                 color: "success",
                 icon: "trash",
                 tooltip: "Open Chat",
-                ariaLabel: "Open Chat",
+                label: "Open Chat",
+                iconOnly: true
             },
             {
                 identifier: "add",
-                theme: "raised",
+                appearance: 'raised',
                 color: "primary",
                 icon: "plus",
                 tooltip: "Add New Item",
-                ariaLabel: "Add New Item",
+                label: "Add New Item",
+                iconOnly: true
             }
         ],
         orientation: "vertical"
@@ -334,17 +336,16 @@ export const LoadingStates: Story<FktButtonsListComponent<any>> = {
         actions: [
             {
                 identifier: "save",
-                theme: "raised",
+                appearance: 'raised',
                 color: "primary",
-                text: "Save",
-                loading: true,
-                loadingText: "Saving..."
+                label: "Save",
+                loading: true
             },
             {
                 identifier: "cancel",
-                theme: "stroked",
+                appearance: 'stroked',
                 color: "primary",
-                text: "Cancel"
+                label: "Cancel"
             }
         ]
     }
@@ -356,16 +357,16 @@ export const DisabledStates: Story<FktButtonsListComponent<any>> = {
         actions: [
             {
                 identifier: "submit",
-                theme: "raised",
+                appearance: 'raised',
                 color: "primary",
-                text: "Submit",
+                label: "Submit",
                 disabled: true
             },
             {
                 identifier: "reset",
-                theme: "stroked",
+                appearance: 'stroked',
                 color: "primary",
-                text: "Reset"
+                label: "Reset"
             }
         ]
     }
