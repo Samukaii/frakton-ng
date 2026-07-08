@@ -1,13 +1,13 @@
-import { Component, computed, inject, input } from '@angular/core';
-import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
-import { FktIconName } from 'frakton-ng/icon';
-import { Generic } from 'frakton-ng/internal/types';
-import { FktAutocompleteContextDirective } from '../../directives/fkt-autocomplete-context.directive';
-import { FktAutocompleteSelectionDirective } from '../../directives/fkt-autocomplete-selection.directive';
+import {Component, computed, inject, input} from '@angular/core';
+import {FktIconName} from 'frakton-ng/icon';
+import {Generic} from 'frakton-ng/internal/types';
+import {FktAutocompleteContextDirective} from '../../directives/fkt-autocomplete-context.directive';
+import {FktAutocompleteSelectionDirective} from '../../directives/fkt-autocomplete-selection.directive';
+import {FktButtonComponent} from "frakton-ng/button";
 
 @Component({
     selector: 'fkt-autocomplete-action-button',
-    imports: [FktButtonLegacyComponent],
+    imports: [FktButtonComponent],
     templateUrl: './fkt-autocomplete-action-button.component.html',
     styleUrl: './fkt-autocomplete-action-button.component.scss',
 })
@@ -30,12 +30,14 @@ export class FktAutocompleteActionButtonComponent<
         icon?: FktIconName;
         label: string;
         action?: () => void;
+        anchor?: string;
         disabled: boolean;
     }>(() => {
         if (this.context.loading()) {
             return {
                 icon: 'chevron-down',
                 label: 'Loading options',
+                anchor: 'loading-action',
                 disabled: true,
             };
         }
@@ -51,6 +53,7 @@ export class FktAutocompleteActionButtonComponent<
             return {
                 icon: 'x-mark',
                 label: 'Clear selection',
+                anchor: 'clear-action',
                 action: () => {
                     this.selection.clearSelection();
                     this.context.closeDropdown();
@@ -63,6 +66,7 @@ export class FktAutocompleteActionButtonComponent<
             return {
                 icon: 'chevron-up',
                 label: 'Collapse options',
+                anchor: 'collapse-action',
                 action: () => this.context.closeDropdown(),
                 disabled: false,
             };
@@ -71,6 +75,7 @@ export class FktAutocompleteActionButtonComponent<
         return {
             icon: 'chevron-down',
             label: 'Expand options',
+            anchor: 'expand-action',
             action: () => this.context.openDropdown(),
             disabled: false,
         };
