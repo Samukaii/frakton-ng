@@ -17,7 +17,8 @@
 
   color: var(--fkt-color-on-primary);
   background: var(--fkt-color-primary);
-  border-radius: var(--fkt-radius-full);
+  border-radius: var(--fkt-radius-xl);
+  corner-shape: squircle;
   font-size: var(--fkt-font-size-xs);
   font-weight: var(--fkt-font-semibold);
 
