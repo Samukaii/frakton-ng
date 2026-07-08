@@ -4,7 +4,7 @@
       "name": "Button",
       "selector": "button[fktButton]"
     },
-    "description": "Gap between loading indicator, prefix, label, and suffix.",
+    "description": "Gap between loading indicator, icon, label, and custom content.",
     "name": "--fkt-button-content-gap",
     "reference": "--fkt-space-xs",
     "category": "Spacing",

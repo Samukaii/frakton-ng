@@ -24,8 +24,8 @@ import {
 const meta: Meta = {
     title: 'Components/Actions/Button',
     description: `Native button component with an opinionated visual structure. The required label owns
-the accessible name, while optional prefix, suffix, and loading indicator slots support limited
-composition without replacing the button's primary semantics.`,
+the accessible name, while optional built-in icons, custom content, and loading indicator slots
+support limited composition without replacing the button's primary semantics.`,
     component: FktButtonComponent,
     documentation,
     designTokens: designTokens as DesignToken[],
@@ -41,13 +41,29 @@ composition without replacing the button's primary semantics.`,
             description:
                 'Required semantic and visual label. This remains the single source of truth for the accessible name.',
         },
-        hideLabel: {
+        icon: {
+            control: 'text',
+            category: 'Attributes',
+            type: 'FktIconName',
+            import: "import { FktIconName } from 'frakton-ng/icon'",
+            description:
+                'Built-in icon rendered before the label. In icon-only mode this becomes the visible button content.',
+        },
+        suffixIcon: {
+            control: 'text',
+            category: 'Attributes',
+            type: 'FktIconName',
+            import: "import { FktIconName } from 'frakton-ng/icon'",
+            description:
+                'Built-in icon rendered after the label.',
+        },
+        iconOnly: {
             control: 'boolean',
             category: 'Attributes',
             type: 'boolean',
             defaultValue: 'false',
             description:
-                'Hides the visual label and exposes it through the native aria-label. Use for icon-only buttons.',
+                'Renders only the built-in icon and exposes the required label through the native aria-label.',
         },
         loading: {
             control: 'boolean',
@@ -55,7 +71,16 @@ composition without replacing the button's primary semantics.`,
             type: 'boolean',
             defaultValue: 'false',
             description:
-                'Adds the loading indicator, binds aria-busy, and disables the native button while preserving normal content.',
+                'Adds the loading indicator, binds aria-busy, and disables the native button.',
+        },
+        loadingPosition: {
+            control: 'select',
+            category: 'Attributes',
+            type: "'start' | 'end'",
+            options: ['start', 'end'],
+            defaultValue: "'start'",
+            description:
+                'Controls which side shows the loading indicator. The indicator replaces icon at start or suffixIcon at end when present.',
         },
         disabled: {
             control: 'boolean',
@@ -68,10 +93,10 @@ composition without replacing the button's primary semantics.`,
         color: {
             control: 'text',
             category: 'Attributes',
-            type: 'FktColor',
-            import: "import { FktColor } from 'frakton-ng/core'",
-            defaultValue: "'primary'",
-            description: `Semantic color (${fktColors.join(', ')}) or any CSS color value.`,
+            type: 'FktButtonColor',
+            import: "import { FktButtonColor } from 'frakton-ng/button'",
+            defaultValue: "'default'",
+            description: `Default, semantic color (${fktColors.join(', ')}), or any CSS color value.`,
         },
         labelColor: {
             control: 'text',
@@ -88,8 +113,9 @@ composition without replacing the button's primary semantics.`,
             type: 'FktButtonAppearance',
             options: fktButtonAppearances,
             import: "import { FktButtonAppearance } from 'frakton-ng/button'",
-            defaultValue: "'raised'",
-            description: 'Raised, stroked, or basic visual treatment.',
+            defaultValue: "'default'",
+            description:
+                'Default, raised, stroked, or basic visual treatment. Default is resolved by the styling layer.',
         },
         shape: {
             control: 'select',
@@ -97,8 +123,9 @@ composition without replacing the button's primary semantics.`,
             type: 'FktButtonShape',
             options: fktButtonShapes,
             import: "import { FktButtonShape } from 'frakton-ng/button'",
-            defaultValue: "'rounded'",
-            description: 'Rounded pill or rectangular border radius.',
+            defaultValue: "'default'",
+            description:
+                'Default, pill, squircle, rounded, or sharp border radius. Default is resolved by the styling layer.',
         },
         size: {
             control: 'select',
@@ -106,9 +133,9 @@ composition without replacing the button's primary semantics.`,
             type: 'FktButtonSize',
             options: fktButtonSizes,
             import: "import { FktButtonSize } from 'frakton-ng/button'",
-            defaultValue: "'md'",
+            defaultValue: "'default'",
             description:
-                'Semantic control size. Hidden-label buttons use the corresponding square dimensions.',
+                'Default, small, medium, or large control size. Icon-only buttons use the corresponding square dimensions.',
         },
         type: {
             control: 'select',
@@ -131,7 +158,7 @@ composition without replacing the button's primary semantics.`,
 export const Usage: StoryIntroduction = {};
 
 /**
- * The three themes use the same native markup and semantic label. `type="button"` is applied by
+ * The appearances use the same native markup and semantic label. `type="button"` is applied by
  * default; consumers can use native attributes such as `name`, `value`, `form`, `autofocus`, and
  * `aria-describedby` without forwarding through a wrapper component.
  */
@@ -142,7 +169,7 @@ export const Basic: Story<ButtonBasicExampleComponent> = {
 };
 
 /**
- * Semantic sizes provide compact, default, and large control densities. Hidden-label buttons use
+ * Semantic sizes provide compact, default, and large control densities. Icon-only buttons use
  * fixed square dimensions from the same size scale so toolbar and table actions remain aligned.
  */
 export const Sizes: Story<ButtonSizesExampleComponent> = {
@@ -152,24 +179,26 @@ export const Sizes: Story<ButtonSizesExampleComponent> = {
 };
 
 /**
- * Limited composition keeps the required label under component ownership while exposing explicit
- * prefix, suffix, and loading-indicator slots. Projected content is decorative and hidden from the
- * accessibility tree.
+ * Limited composition keeps the required label under component ownership while exposing built-in
+ * icon inputs, custom visual content, and a loading-indicator slot. Visual content is decorative;
+ * the required label remains the accessible name.
  */
 export const Composition: StoryIntroduction = {};
 
 /**
- * Prefix and suffix content is projected with `[fktButtonPrefix]` and `[fktButtonSuffix]`.
- * Use `label + hideLabel` for icon-only actions instead of supplying a separate ARIA label.
+ * Use `icon`, `suffixIcon`, and `iconOnly` for common icon buttons. Use `[fktButtonContent]` when
+ * the visual content is application-specific and should replace the visible label. Add `fill`
+ * to let the projected content own the full button surface.
  */
-export const PrefixSuffix: Story<ButtonCompositionExampleComponent> = {
+export const IconsAndContent: Story<ButtonCompositionExampleComponent> = {
     component: ButtonCompositionExampleComponent,
     level: 3,
     args: {},
 };
 
 /**
- * Loading inserts an indicator before the prefix without replacing the normal content. It binds
+ * Loading inserts an indicator at the configured side. At `loadingPosition="start"` it replaces
+ * `icon` when present; at `loadingPosition="end"` it replaces `suffixIcon` when present. It binds
  * `aria-busy="true"` and makes the effective disabled state `disabled || loading`. Project
  * `[fktButtonLoadingIndicator]` to replace the built-in spinner.
  */
@@ -186,7 +215,7 @@ export const Loading: Story<ButtonLoadingExampleComponent> = {
 export const Appearance: StoryIntroduction = {};
 
 /**
- * Themes and semantic colors across rounded and rectangular shapes.
+ * Appearances and semantic colors across the supported shapes.
  */
 export const TextVariants: Story<TextVariantsExampleComponent> = {
     component: TextVariantsExampleComponent,
@@ -195,8 +224,8 @@ export const TextVariants: Story<TextVariantsExampleComponent> = {
 };
 
 /**
- * Hidden-label icon buttons use the same appearance, shape, and color contracts as labeled buttons.
- * Their required label is exposed through `aria-label`.
+ * Icon-only buttons use the same appearance, shape, and color contracts as labeled buttons. Their
+ * required label is exposed through `aria-label`.
  */
 export const IconVariants: Story<IconVariantsExampleComponent> = {
     component: IconVariantsExampleComponent,

@@ -17,9 +17,7 @@ import { FktTooltipDirective } from 'frakton-ng/tooltip';
 import { wait } from 'frakton-ng/internal/utils';
 import {
     FktButtonComponent,
-    FktButtonPrefixDirective,
 } from 'frakton-ng/button';
-import { FktIconComponent } from 'frakton-ng/icon';
 
 @Component({
     selector: 'app-story-design-tokens',
@@ -28,8 +26,6 @@ import { FktIconComponent } from 'frakton-ng/icon';
         FktNavigableListDirective,
         FktTooltipDirective,
         FktButtonComponent,
-        FktIconComponent,
-        FktButtonPrefixDirective,
     ],
     templateUrl: './story-design-tokens.component.html',
     styleUrl: './story-design-tokens.component.scss',

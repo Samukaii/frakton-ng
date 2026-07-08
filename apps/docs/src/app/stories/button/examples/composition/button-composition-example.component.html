@@ -1,15 +1,15 @@
-<button fktButton label="Notifications" appearance="stroked">
-    <fkt-icon fktButtonPrefix name="bell" />
-    <span fktButtonSuffix class="counter">3</span>
-</button>
-
 <button
     fktButton
-    label="Delete"
-    hideLabel
-    shape="rounded"
+    label="Notifications"
     appearance="basic"
-    color="danger"
->
-    <fkt-icon fktButtonPrefix name="trash" />
+    icon="bell"
+    suffixIcon="chevron-down"
+></button>
+
+<button fktButton label="Delete" icon="trash" iconOnly color="danger"></button>
+
+<button fktButton label="Open Samuel profile" appearance="stroked">
+    <span fktButtonContent fill class="profile-chip">
+        SA
+    </span>
 </button>
