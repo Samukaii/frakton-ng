@@ -140,6 +140,7 @@ describe('FktButtonComponent', () => {
             fixture.nativeElement.querySelector('button');
 
         expect(button.textContent).toContain('Save');
+        expect(button.querySelector('.surface')).not.toBeNull();
         expect(button.type).toBe('button');
         expect(button.name).toBe('intent');
         expect(button.value).toBe('save');
@@ -188,6 +189,7 @@ describe('FktButtonComponent', () => {
         expect(button.hasAttribute('data-fkt-disabled')).toBeFalse();
         expect(button.getAttribute('aria-busy')).toBe('true');
         expect(button.textContent).toContain('Save');
+        expect(button.querySelector('.surface')).not.toBeNull();
         expect(button.querySelector('fkt-icon')).toBeNull();
         expect(button.querySelector('.spinner')).not.toBeNull();
     });
@@ -329,8 +331,10 @@ describe('FktButtonComponent', () => {
             fixture.nativeElement.querySelector(
                 '[data-testid="navy"]'
             );
-        const redText = readRenderedColor(red);
-        const navyText = readRenderedColor(navy);
+        const redSurface: HTMLElement = red.querySelector('.surface')!;
+        const navySurface: HTMLElement = navy.querySelector('.surface')!;
+        const redText = readRenderedColor(redSurface);
+        const navyText = readRenderedColor(navySurface);
 
         expect([...redText.slice(0, 3)].every((value) => value > 240))
             .toBeTrue();
