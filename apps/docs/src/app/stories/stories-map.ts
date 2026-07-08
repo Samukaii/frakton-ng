@@ -436,7 +436,7 @@ export const STORIES_MAP: StoryIndexer[] = [	{
 		id: "button",
 		title: "Components/Actions/Button",
 		componentName: "FktButtonComponent",
-		description: `Native button component with an opinionated visual structure. The required label owns\nthe accessible name, while optional prefix, suffix, and loading indicator slots support limited\ncomposition without replacing the button's primary semantics.`,
+		description: `Native button component with an opinionated visual structure. The required label owns\nthe accessible name, while optional built-in icons, custom content, and loading indicator slots\nsupport limited composition without replacing the button's primary semantics.`,
 		file: () => import("./button/fkt-button.stories"),
 		type: 'story',
 		externalExamples: () => import("./button/examples/raw-examples").then(file => file.default),
@@ -444,7 +444,7 @@ export const STORIES_MAP: StoryIndexer[] = [	{
 			{ id: "configuration-options", text: "Configuration Options", level: 2 },
 			{ id: "native-host", text: "Native Host", level: 2 },
 			{ id: "styling-hooks", text: "Styling Hooks", level: 2 },
-			{ id: "projection-slots", text: "Projection Slots", level: 2 },
+			{ id: "icons-and-custom-content", text: "Icons and Custom Content", level: 2 },
 			{ id: "label-and-accessibility", text: "Label and Accessibility", level: 2 },
 			{ id: "loading", text: "Loading", level: 2 },
 			{ id: "configuration-driven-actions", text: "Configuration-driven Actions", level: 2 }
@@ -463,7 +463,7 @@ export const STORIES_MAP: StoryIndexer[] = [	{
 		        name: "Basic",
 		        type: "story",
 		        componentName: "ButtonBasicExampleComponent",
-		        description:  `The three themes use the same native markup and semantic label. \`type="button"\` is applied by\ndefault; consumers can use native attributes such as \`name\`, \`value\`, \`form\`, \`autofocus\`, and\n\`aria-describedby\` without forwarding through a wrapper component.`,
+		        description:  `The appearances use the same native markup and semantic label. \`type="button"\` is applied by\ndefault; consumers can use native attributes such as \`name\`, \`value\`, \`form\`, \`autofocus\`, and\n\`aria-describedby\` without forwarding through a wrapper component.`,
 		        level: 3,
 		    },
 		    {
@@ -471,7 +471,7 @@ export const STORIES_MAP: StoryIndexer[] = [	{
 		        name: "Sizes",
 		        type: "story",
 		        componentName: "ButtonSizesExampleComponent",
-		        description:  `Semantic sizes provide compact, default, and large control densities. Hidden-label buttons use\nfixed square dimensions from the same size scale so toolbar and table actions remain aligned.`,
+		        description:  `Semantic sizes provide compact, default, and large control densities. Icon-only buttons use\nfixed square dimensions from the same size scale so toolbar and table actions remain aligned.`,
 		        level: 3,
 		    },
 		    {
@@ -479,15 +479,15 @@ export const STORIES_MAP: StoryIndexer[] = [	{
 		        name: "Composition",
 		        type: "introduction",
 		        componentName: null,
-		        description:  `Limited composition keeps the required label under component ownership while exposing explicit\nprefix, suffix, and loading-indicator slots. Projected content is decorative and hidden from the\naccessibility tree.`,
+		        description:  `Limited composition keeps the required label under component ownership while exposing built-in\nicon inputs, custom visual content, and a loading-indicator slot. Visual content is decorative;\nthe required label remains the accessible name.`,
 		        level: 2,
 		    },
 		    {
-		        id: "prefix-suffix",
-		        name: "PrefixSuffix",
+		        id: "icons-and-content",
+		        name: "IconsAndContent",
 		        type: "story",
 		        componentName: "ButtonCompositionExampleComponent",
-		        description:  `Prefix and suffix content is projected with \`[fktButtonPrefix]\` and \`[fktButtonSuffix]\`.\nUse \`label + hideLabel\` for icon-only actions instead of supplying a separate ARIA label.`,
+		        description:  `Use \`icon\`, \`suffixIcon\`, and \`iconOnly\` for common icon buttons. Use \`[fktButtonContent]\` when\nthe visual content is application-specific and should replace the visible label. Add \`fill\`\nto let the projected content own the full button surface.`,
 		        level: 3,
 		    },
 		    {
@@ -495,7 +495,7 @@ export const STORIES_MAP: StoryIndexer[] = [	{
 		        name: "Loading",
 		        type: "story",
 		        componentName: "ButtonLoadingExampleComponent",
-		        description:  `Loading inserts an indicator before the prefix without replacing the normal content. It binds\n\`aria-busy="true"\` and makes the effective disabled state \`disabled || loading\`. Project\n\`[fktButtonLoadingIndicator]\` to replace the built-in spinner.`,
+		        description:  `Loading inserts an indicator at the configured side. At \`loadingPosition="start"\` it replaces\n\`icon\` when present; at \`loadingPosition="end"\` it replaces \`suffixIcon\` when present. It binds\n\`aria-busy="true"\` and makes the effective disabled state \`disabled || loading\`. Project\n\`[fktButtonLoadingIndicator]\` to replace the built-in spinner.`,
 		        level: 3,
 		    },
 		    {
@@ -511,7 +511,7 @@ export const STORIES_MAP: StoryIndexer[] = [	{
 		        name: "TextVariants",
 		        type: "story",
 		        componentName: "TextVariantsExampleComponent",
-		        description:  `Themes and semantic colors across rounded and rectangular shapes.`,
+		        description:  `Appearances and semantic colors across the supported shapes.`,
 		        level: 3,
 		    },
 		    {
@@ -519,7 +519,7 @@ export const STORIES_MAP: StoryIndexer[] = [	{
 		        name: "IconVariants",
 		        type: "story",
 		        componentName: "IconVariantsExampleComponent",
-		        description:  `Hidden-label icon buttons use the same appearance, shape, and color contracts as labeled buttons.\nTheir required label is exposed through \`aria-label\`.`,
+		        description:  `Icon-only buttons use the same appearance, shape, and color contracts as labeled buttons. Their\nrequired label is exposed through \`aria-label\`.`,
 		        level: 3,
 		    },
 		    {

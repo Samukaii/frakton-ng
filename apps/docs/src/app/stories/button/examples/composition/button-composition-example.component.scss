@@ -4,21 +4,22 @@
   gap: var(--fkt-space-md);
 }
 
-.counter {
+.profile-chip {
   display: inline-flex;
   align-items: center;
   justify-content: center;
 
-  height: 1.5em;
-  width: auto;
+  align-self: stretch;
+  min-height: 2rem;
   aspect-ratio: 1;
 
-  padding: 0 var(--fkt-space-4xs);
+  padding: 0 var(--fkt-space-xs);
 
   color: var(--fkt-color-on-primary);
   background: var(--fkt-color-primary);
   border-radius: var(--fkt-radius-full);
   font-size: var(--fkt-font-size-xs);
+  font-weight: var(--fkt-font-semibold);
 
   line-height: 1;
   box-sizing: border-box;

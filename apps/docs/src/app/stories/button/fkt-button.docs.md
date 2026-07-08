@@ -20,6 +20,10 @@ belong directly to the interactive element.
 
 The default type is `button`.
 
+Most visual inputs accept `default` as their API default. `default` keeps the
+markup stable while allowing the styling layer to resolve the application's
+preferred appearance, shape, size, and color.
+
 ## Styling Hooks
 
 The component exposes stable styling hooks instead of variant-specific design
@@ -32,11 +36,11 @@ tokens. The host exposes each active visual axis through a dedicated
   label="Delete"
   color="danger"
   appearance="stroked"
-  shape="square"
+  shape="sharp"
   size="sm"
   data-fkt-color="danger"
   data-fkt-appearance="stroked"
-  data-fkt-shape="square"
+  data-fkt-shape="sharp"
   data-fkt-size="sm"
 />
 ```
@@ -60,44 +64,62 @@ Arbitrary CSS colors are exposed as `data-fkt-color="custom"` and the raw color
 is applied through an internal bridge variable. Semantic colors continue to
 default to the global `--fkt-color-*` tokens.
 
-## Projection Slots
+## Icons and Custom Content
 
-The component accepts only these projection markers:
-
-- `fktButtonPrefix`
-- `fktButtonSuffix`
-- `fktButtonLoadingIndicator`
-
-Unmarked content is not rendered. The visual order is loading indicator,
-prefix, label, and suffix.
+The component covers common icon usage with built-in icon inputs:
 
 ```html
-<button fktButton label="Notifications">
-  <fkt-icon fktButtonPrefix name="bell"/>
-  <span fktButtonSuffix>3</span>
+<button fktButton label="Save" icon="check"/>
+
+<button fktButton label="Open details" suffixIcon="arrow-top-right-on-square"/>
+
+<button fktButton label="Delete" icon="trash" iconOnly/>
+```
+
+`iconOnly` renders only the built-in icon visually and exposes the required
+`label` through the native `aria-label`.
+
+For application-specific visual content, project a single main content block
+with `fktButtonContent`. The projected content replaces the visible label, while
+`label` remains the accessible name.
+
+```html
+<button fktButton label="Open Samuel profile">
+  <app-user-chip fktButtonContent/>
+</button>
+```
+
+Use `fill` when the custom content should own the entire visual surface of the
+button. This removes the button padding and lets the projected content define
+its own spacing.
+
+```html
+<button fktButton label="Open Samuel profile">
+  <app-user-card fktButtonContent fill/>
 </button>
 ```
 
 ## Label and Accessibility
 
 `label` is required and is the only semantic label source. By default it is
-rendered visibly. With `hideLabel`, the visual label is removed and the same
-value is bound to the native `aria-label`.
-
-```html
-<button fktButton label="Delete" hideLabel>
-  <fkt-icon fktButtonPrefix name="trash"/>
-</button>
-```
-
-Prefix, suffix, and loading-indicator content is decorative and hidden from the
-accessibility tree.
+rendered visibly. When `iconOnly` or `fktButtonContent` is used, the visual
+label is not rendered and the same value is bound to the native `aria-label`.
+Built-in icons, custom content, and loading-indicator content are decorative and
+hidden from the accessibility tree.
 
 ## Loading
 
-Loading preserves the normal prefix, label, and suffix while inserting an
-indicator before them. It also binds `aria-busy="true"` and disables the native
-button. A projected `fktButtonLoadingIndicator` replaces the default spinner.
+Loading preserves the normal content while inserting an indicator on the
+configured side. With `loadingPosition="start"` the indicator
+replaces `icon` when present; otherwise it is inserted before the main content.
+With `loadingPosition="end"` it replaces `suffixIcon` when present; otherwise it
+is inserted after the main content. It also binds `aria-busy="true"` and
+disables the native button. A projected `fktButtonLoadingIndicator` replaces the
+default spinner.
+
+```html
+<button fktButton label="Save" icon="check" loading/>
+```
 
 ## Configuration-driven Actions
 
@@ -117,5 +139,6 @@ const saveAction: FktButtonAction<FormModel> = {
 };
 ```
 
-`icon` and `iconPosition` are conveniences for configuration renderers. Direct
-button composition uses the prefix and suffix projection slots instead.
+`icon` and `iconPosition` are conveniences for configuration renderers.
+Direct button usage uses `icon`, `suffixIcon`, `iconOnly`, and
+`fktButtonContent` instead.

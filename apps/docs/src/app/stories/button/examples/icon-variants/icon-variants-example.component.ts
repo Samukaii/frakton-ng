@@ -5,11 +5,9 @@ import {
     fktButtonAppearances,
     fktButtonColors,
     FktButtonComponent,
-    FktButtonPrefixDirective,
     FktButtonShape,
     fktButtonShapes,
 } from 'frakton-ng/button';
-import { FktIconComponent } from 'frakton-ng/icon';
 import { capitalize } from '@/utils/capitalize';
 
 interface ButtonVariant {
@@ -27,7 +25,7 @@ interface ButtonVariant {
 
 @Component({
     selector: 'fkt-icon-variants-example',
-    imports: [FktButtonComponent, FktButtonPrefixDirective, FktIconComponent],
+    imports: [FktButtonComponent],
     templateUrl: './icon-variants-example.component.html',
     styleUrl: './icon-variants-example.component.scss',
 })

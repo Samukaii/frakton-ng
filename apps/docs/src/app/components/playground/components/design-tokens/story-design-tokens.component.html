@@ -18,20 +18,17 @@
 
     <div class="actions">
         @if (hasChanges()) {
-            <button (click)="resetAll()" appearance="basic" fktButton fktTooltip="Reset all" hideLabel
-                    label="Reset all">
-                <fkt-icon fktButtonPrefix name="arrow-uturn-left"/>
-            </button>
+            <button (click)="resetAll()" appearance="basic" fktButton fktTooltip="Reset all" icon="arrow-uturn-left"
+                    iconOnly label="Reset all"></button>
             <button
                     (click)="copyAll()"
                     [appearance]="copied() ? 'raised' : 'basic'"
                     [fktTooltip]="copied() ? 'Copied' :'Copy all'"
+                    [icon]="copied() ? 'check' :'clipboard'"
                     [label]="copied() ? 'Copied' : 'Copy all'"
                     fktButton
                     fktTooltip="Reset all"
-                    hideLabel>
-                <fkt-icon [name]="copied() ? 'check' :'clipboard'" fktButtonPrefix/>
-            </button>
+                    iconOnly></button>
         }
     </div>
 </div>

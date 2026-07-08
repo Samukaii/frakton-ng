@@ -616,8 +616,8 @@ The directive automatically detects these focusable elements:
 ## Description
 
 Native button component with an opinionated visual structure. The required label owns
-the accessible name, while optional prefix, suffix, and loading indicator slots support limited
-composition without replacing the button's primary semantics.
+the accessible name, while optional built-in icons, custom content, and loading indicator slots
+support limited composition without replacing the button's primary semantics.
 
 ## Features
 
@@ -636,7 +636,7 @@ actual interactive element.
 - type: story
 - component: ButtonBasicExampleComponent
 
-The three themes use the same native markup and semantic label. `type="button"` is applied by
+The appearances use the same native markup and semantic label. `type="button"` is applied by
 default; consumers can use native attributes such as `name`, `value`, `form`, `autofocus`, and
 `aria-describedby` without forwarding through a wrapper component.
 
@@ -676,26 +676,18 @@ export class ButtonBasicExampleComponent {}
 - type: story
 - component: ButtonSizesExampleComponent
 
-Semantic sizes provide compact, default, and large control densities. Hidden-label buttons use
+Semantic sizes provide compact, default, and large control densities. Icon-only buttons use
 fixed square dimensions from the same size scale so toolbar and table actions remain aligned.
 
 Example component: `ButtonSizesExampleComponent`
 
 ```ts title="button-sizes-example.component.ts"
 import { Component } from '@angular/core';
-import {
-    FktButtonComponent,
-    FktButtonPrefixDirective,
-} from 'frakton-ng/button';
-import { FktIconComponent } from 'frakton-ng/icon';
+import { FktButtonComponent } from 'frakton-ng/button';
 
 @Component({
     selector: 'app-button-sizes-example',
-    imports: [
-        FktButtonComponent,
-        FktButtonPrefixDirective,
-        FktIconComponent,
-    ],
+    imports: [FktButtonComponent],
     templateUrl: './button-sizes-example.component.html',
     styleUrl: './button-sizes-example.component.scss',
 })
@@ -705,23 +697,17 @@ export class ButtonSizesExampleComponent {}
 ```html title="button-sizes-example.component.html"
 <div>
     <button fktButton label="Small" size="sm"> </button>
-    <button fktButton label="Add item" size="sm" hideLabel>
-        <fkt-icon fktButtonPrefix name="plus" size="sm" />
-    </button>
+    <button fktButton label="Add item" size="sm" icon="plus" iconOnly></button>
 </div>
 
 <div>
     <button fktButton label="Medium" size="md"> </button>
-    <button fktButton label="Add item" size="md" hideLabel>
-        <fkt-icon fktButtonPrefix name="plus" size="md" />
-    </button>
+    <button fktButton label="Add item" size="md" icon="plus" iconOnly></button>
 </div>
 
 <div>
     <button fktButton label="Large" size="lg"> </button>
-    <button fktButton label="Add item" size="lg" hideLabel>
-        <fkt-icon fktButtonPrefix name="plus" size="lg" />
-    </button>
+    <button fktButton label="Add item" size="lg" icon="plus" iconOnly></button>
 </div>
 ```
 
@@ -745,37 +731,34 @@ div {
 - id: composition
 - type: introduction
 
-Limited composition keeps the required label under component ownership while exposing explicit
-prefix, suffix, and loading-indicator slots. Projected content is decorative and hidden from the
-accessibility tree.
+Limited composition keeps the required label under component ownership while exposing built-in
+icon inputs, custom visual content, and a loading-indicator slot. Visual content is decorative;
+the required label remains the accessible name.
 
-### PrefixSuffix
+### IconsAndContent
 
-- id: prefix-suffix
+- id: icons-and-content
 - type: story
 - component: ButtonCompositionExampleComponent
 
-Prefix and suffix content is projected with `[fktButtonPrefix]` and `[fktButtonSuffix]`.
-Use `label + hideLabel` for icon-only actions instead of supplying a separate ARIA label.
+Use `icon`, `suffixIcon`, and `iconOnly` for common icon buttons. Use `[fktButtonContent]` when
+the visual content is application-specific and should replace the visible label. Add `fill`
+to let the projected content own the full button surface.
 
 Example component: `ButtonCompositionExampleComponent`
 
 ```ts title="button-composition-example.component.ts"
 import { Component } from '@angular/core';
 import {
+    FktButtonContentDirective,
     FktButtonComponent,
-    FktButtonPrefixDirective,
-    FktButtonSuffixDirective,
 } from 'frakton-ng/button';
-import { FktIconComponent } from 'frakton-ng/icon';
 
 @Component({
     selector: 'app-button-composition-example',
     imports: [
         FktButtonComponent,
-        FktButtonPrefixDirective,
-        FktButtonSuffixDirective,
-        FktIconComponent,
+        FktButtonContentDirective,
     ],
     templateUrl: './button-composition-example.component.html',
     styleUrl: './button-composition-example.component.scss',
@@ -784,20 +767,20 @@ export class ButtonCompositionExampleComponent {}
 ```
 
 ```html title="button-composition-example.component.html"
-<button fktButton label="Notifications" appearance="stroked">
-    <fkt-icon fktButtonPrefix name="bell" />
-    <span fktButtonSuffix class="counter">3</span>
-</button>
-
 <button
     fktButton
-    label="Delete"
-    hideLabel
-    shape="rounded"
+    label="Notifications"
     appearance="basic"
-    color="danger"
->
-    <fkt-icon fktButtonPrefix name="trash" />
+    icon="bell"
+    suffixIcon="chevron-down"
+></button>
+
+<button fktButton label="Delete" icon="trash" iconOnly color="danger"></button>
+
+<button fktButton label="Open Samuel profile" appearance="stroked">
+    <span fktButtonContent fill class="profile-chip">
+        SA
+    </span>
 </button>
 ```
 
@@ -808,21 +791,22 @@ export class ButtonCompositionExampleComponent {}
   gap: var(--fkt-space-md);
 }
 
-.counter {
+.profile-chip {
   display: inline-flex;
   align-items: center;
   justify-content: center;
 
-  height: 1.5em;
-  width: auto;
+  align-self: stretch;
+  min-height: 2rem;
   aspect-ratio: 1;
 
-  padding: 0 var(--fkt-space-4xs);
+  padding: 0 var(--fkt-space-xs);
 
   color: var(--fkt-color-on-primary);
   background: var(--fkt-color-primary);
   border-radius: var(--fkt-radius-full);
   font-size: var(--fkt-font-size-xs);
+  font-weight: var(--fkt-font-semibold);
 
   line-height: 1;
   box-sizing: border-box;
@@ -835,7 +819,8 @@ export class ButtonCompositionExampleComponent {}
 - type: story
 - component: ButtonLoadingExampleComponent
 
-Loading inserts an indicator before the prefix without replacing the normal content. It binds
+Loading inserts an indicator at the configured side. At `loadingPosition="start"` it replaces
+`icon` when present; at `loadingPosition="end"` it replaces `suffixIcon` when present. It binds
 `aria-busy="true"` and makes the effective disabled state `disabled || loading`. Project
 `[fktButtonLoadingIndicator]` to replace the built-in spinner.
 
@@ -846,9 +831,7 @@ import { Component } from '@angular/core';
 import {
     FktButtonComponent,
     FktButtonLoadingIndicatorDirective,
-    FktButtonPrefixDirective
 } from 'frakton-ng/button';
-import { FktIconComponent } from 'frakton-ng/icon';
 
 
 @Component({
@@ -856,24 +839,18 @@ import { FktIconComponent } from 'frakton-ng/icon';
     imports: [
         FktButtonComponent,
         FktButtonLoadingIndicatorDirective,
-        FktButtonPrefixDirective,
-        FktIconComponent
     ],
     templateUrl: './button-loading-example.component.html',
     styleUrl: './button-loading-example.component.scss',
 })
-export class ButtonLoadingExampleComponent { }
+export class ButtonLoadingExampleComponent {}
 ```
 
 ```html title="button-loading-example.component.html"
 <div>
-    <button fktButton label="Start loading" loading>
-        <fkt-icon fktButtonPrefix name="check" />
-    </button>
+    <button fktButton label="Start loading" icon="check" loading></button>
 
-    <button fktButton label="End loading" loading loadingPosition="end">
-        <fkt-icon fktButtonPrefix name="check" />
-    </button>
+    <button fktButton label="End loading" suffixIcon="check" loading loadingPosition="end"></button>
 </div>
 
 <div>
@@ -888,7 +865,6 @@ export class ButtonLoadingExampleComponent { }
             <span></span>
             <span></span>
         </span>
-        <fkt-icon fktButtonPrefix name="arrow-path" />
     </button>
 
     <button fktButton label="End custom loading" loading loadingPosition="end">
@@ -897,7 +873,6 @@ export class ButtonLoadingExampleComponent { }
             <span></span>
             <span></span>
         </span>
-        <fkt-icon fktButtonPrefix name="arrow-path" />
     </button>
 </div>
 ```
@@ -969,7 +944,7 @@ colors follow the design system, while custom CSS colors compute a contrasting c
 - type: story
 - component: TextVariantsExampleComponent
 
-Themes and semantic colors across rounded and rectangular shapes.
+Appearances and semantic colors across the supported shapes.
 
 Example component: `TextVariantsExampleComponent`
 
@@ -1097,8 +1072,8 @@ table {
 - type: story
 - component: IconVariantsExampleComponent
 
-Hidden-label icon buttons use the same appearance, shape, and color contracts as labeled buttons.
-Their required label is exposed through `aria-label`.
+Icon-only buttons use the same appearance, shape, and color contracts as labeled buttons. Their
+required label is exposed through `aria-label`.
 
 Example component: `IconVariantsExampleComponent`
 
@@ -1110,11 +1085,9 @@ import {
     fktButtonAppearances,
     fktButtonColors,
     FktButtonComponent,
-    FktButtonPrefixDirective,
     FktButtonShape,
     fktButtonShapes,
 } from 'frakton-ng/button';
-import { FktIconComponent } from 'frakton-ng/icon';
 import { capitalize } from '@/utils/capitalize';
 
 interface ButtonVariant {
@@ -1132,7 +1105,7 @@ interface ButtonVariant {
 
 @Component({
     selector: 'fkt-icon-variants-example',
-    imports: [FktButtonComponent, FktButtonPrefixDirective, FktIconComponent],
+    imports: [FktButtonComponent],
     templateUrl: './icon-variants-example.component.html',
     styleUrl: './icon-variants-example.component.scss',
 })
@@ -1189,10 +1162,9 @@ export class IconVariantsExampleComponent {
                     [label]="'Add ' + color.title"
                     [shape]="shape.value"
                     fktButton
-                    hideLabel
-                >
-                    <fkt-icon fktButtonPrefix name="hand-thumb-up" />
-                </button>
+                    icon="hand-thumb-up"
+                    iconOnly
+                ></button>
             </td>
             }
         </tr>
@@ -1312,6 +1284,10 @@ belong directly to the interactive element.
 
 The default type is `button`.
 
+Most visual inputs accept `default` as their API default. `default` keeps the
+markup stable while allowing the styling layer to resolve the application's
+preferred appearance, shape, size, and color.
+
 ## Styling Hooks
 
 The component exposes stable styling hooks instead of variant-specific design
@@ -1324,11 +1300,11 @@ tokens. The host exposes each active visual axis through a dedicated
   label="Delete"
   color="danger"
   appearance="stroked"
-  shape="square"
+  shape="sharp"
   size="sm"
   data-fkt-color="danger"
   data-fkt-appearance="stroked"
-  data-fkt-shape="square"
+  data-fkt-shape="sharp"
   data-fkt-size="sm"
 />
 ```
@@ -1352,44 +1328,62 @@ Arbitrary CSS colors are exposed as `data-fkt-color="custom"` and the raw color
 is applied through an internal bridge variable. Semantic colors continue to
 default to the global `--fkt-color-*` tokens.
 
-## Projection Slots
+## Icons and Custom Content
 
-The component accepts only these projection markers:
-
-- `fktButtonPrefix`
-- `fktButtonSuffix`
-- `fktButtonLoadingIndicator`
-
-Unmarked content is not rendered. The visual order is loading indicator,
-prefix, label, and suffix.
+The component covers common icon usage with built-in icon inputs:
 
 ```html
-<button fktButton label="Notifications">
-  <fkt-icon fktButtonPrefix name="bell"/>
-  <span fktButtonSuffix>3</span>
+<button fktButton label="Save" icon="check"/>
+
+<button fktButton label="Open details" suffixIcon="arrow-top-right-on-square"/>
+
+<button fktButton label="Delete" icon="trash" iconOnly/>
+```
+
+`iconOnly` renders only the built-in icon visually and exposes the required
+`label` through the native `aria-label`.
+
+For application-specific visual content, project a single main content block
+with `fktButtonContent`. The projected content replaces the visible label, while
+`label` remains the accessible name.
+
+```html
+<button fktButton label="Open Samuel profile">
+  <app-user-chip fktButtonContent/>
+</button>
+```
+
+Use `fill` when the custom content should own the entire visual surface of the
+button. This removes the button padding and lets the projected content define
+its own spacing.
+
+```html
+<button fktButton label="Open Samuel profile">
+  <app-user-card fktButtonContent fill/>
 </button>
 ```
 
 ## Label and Accessibility
 
 `label` is required and is the only semantic label source. By default it is
-rendered visibly. With `hideLabel`, the visual label is removed and the same
-value is bound to the native `aria-label`.
-
-```html
-<button fktButton label="Delete" hideLabel>
-  <fkt-icon fktButtonPrefix name="trash"/>
-</button>
-```
-
-Prefix, suffix, and loading-indicator content is decorative and hidden from the
-accessibility tree.
+rendered visibly. When `iconOnly` or `fktButtonContent` is used, the visual
+label is not rendered and the same value is bound to the native `aria-label`.
+Built-in icons, custom content, and loading-indicator content are decorative and
+hidden from the accessibility tree.
 
 ## Loading
 
-Loading preserves the normal prefix, label, and suffix while inserting an
-indicator before them. It also binds `aria-busy="true"` and disables the native
-button. A projected `fktButtonLoadingIndicator` replaces the default spinner.
+Loading preserves the normal content while inserting an indicator on the
+configured side. With `loadingPosition="start"` the indicator
+replaces `icon` when present; otherwise it is inserted before the main content.
+With `loadingPosition="end"` it replaces `suffixIcon` when present; otherwise it
+is inserted after the main content. It also binds `aria-busy="true"` and
+disables the native button. A projected `fktButtonLoadingIndicator` replaces the
+default spinner.
+
+```html
+<button fktButton label="Save" icon="check" loading/>
+```
 
 ## Configuration-driven Actions
 
@@ -1409,8 +1403,9 @@ const saveAction: FktButtonAction<FormModel> = {
 };
 ```
 
-`icon` and `iconPosition` are conveniences for configuration renderers. Direct
-button composition uses the prefix and suffix projection slots instead.
+`icon` and `iconPosition` are conveniences for configuration renderers.
+Direct button usage uses `icon`, `suffixIcon`, `iconOnly`, and
+`fktButtonContent` instead.
 
 ---
 
