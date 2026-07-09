@@ -32,13 +32,13 @@ import {
         '[attr.data-fkt-color]': 'dataColor()',
         '[attr.data-fkt-size]': 'size()',
         '[attr.data-fkt-loading]': 'loading() ? "" : null',
-        '[attr.data-fkt-icon-only]': 'iconOnly() ? "" : null',
+        '[attr.data-fkt-icon-only]': 'iconOnly() || square() ? "" : null',
         '[attr.data-fkt-content-fill]': 'contentFill() ? "" : null',
         '[attr.data-fkt-disabled]': 'disabled() ? "" : null',
         '[attr.type]': 'type()',
         '[disabled]': 'effectiveDisabled()',
         '[attr.aria-busy]': 'loading() ? "true" : null',
-        '[attr.aria-label]': 'usesAccessibleLabelOnly() ? label() : null',
+        '[attr.aria-label]': 'ariaLabel() ?? usesAccessibleLabelOnly() ? label() : null',
         '[class.loading]': 'loading()',
         '[style.--_fkt-button-custom-color]': 'customColor()',
         '[style.--_fkt-button-explicit-text-color]': 'explicitLabelColor()',
@@ -47,12 +47,14 @@ import {
 })
 export class FktButtonComponent {
     readonly label = input.required<string>();
+    readonly ariaLabel = input<string>();
     readonly loading = input(false, { transform: booleanAttribute });
     readonly loadingPosition = input<'start' | 'end'>('start');
     readonly disabled = input(false, { transform: booleanAttribute });
     readonly icon = input<FktIconName>();
     readonly suffixIcon = input<FktIconName>();
     readonly iconOnly = input(false, { transform: booleanAttribute });
+    readonly square = input(false, { transform: booleanAttribute });
     readonly color = input<FktButtonColor>('default');
     readonly labelColor = input<FktLabelColor>('auto');
     readonly appearance = input<FktButtonAppearance>('default');

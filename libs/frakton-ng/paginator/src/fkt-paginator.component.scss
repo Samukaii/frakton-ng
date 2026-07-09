@@ -87,9 +87,9 @@ $mobile-breakpoint: var(--fkt-pagination-mobile-breakpoint, 640px);
 	gap: $gap;
 	flex-wrap: wrap;
 
-    fkt-button {
-        width: 40px;
-        height: 40px;
+    button {
+        width: 36px;
+        height: 36px;
     }
 
 	&__info {
