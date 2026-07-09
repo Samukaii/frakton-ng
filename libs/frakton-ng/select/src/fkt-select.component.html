@@ -67,6 +67,7 @@
             <button
                     (click)="(selection.hasValue() && !context.hideClearButton()) ? clear($event) : toggleDropdown(); $event.stopPropagation()"
                     [label]="(selection.hasValue() && !context.hideClearButton()) ? 'Clear selection' : context.dropdownOpened() ? 'Collapse options' : 'Expand options'"
+                    [attr.data-fkt-component-anchor]="(selection.hasValue() && !context.hideClearButton()) ? 'clear-action' : context.dropdownOpened() ? 'collapse-action' : 'expand-action'"
                     iconOnly
                     size="sm"
                     [disabled]="disabled()"
