@@ -1,23 +1,27 @@
 <div class="navigator">
-	<div class="navigator__start">
-		<fkt-button
-			(click)="previous.emit()"
-			[disabled]="!canGoToPrevious()"
-			ariaLabel="Previous"
-			theme="basic"
-			icon="chevron-double-left"
-		/>
-	</div>
-	<div class="navigator__center">
-		<ng-content/>
-	</div>
-	<div class="navigator__end">
-		<fkt-button
-			(click)="next.emit()"
-			[disabled]="!canGoToNext()"
-			ariaLabel="Next"
-			theme="basic"
-			icon="chevron-double-right"
-		/>
-	</div>
+    <div class="navigator__start">
+		<button
+                (click)="previous.emit()"
+                [disabled]="!canGoToPrevious()"
+                appearance="basic"
+                fktButton
+                icon="chevron-double-left"
+                iconOnly
+                label="Previous">
+        </button>
+    </div>
+    <div class="navigator__center">
+        <ng-content/>
+    </div>
+    <div class="navigator__end">
+		<button
+                (click)="next.emit()"
+                [disabled]="!canGoToNext()"
+                appearance="basic"
+                fktButton
+                icon="chevron-double-right"
+                iconOnly
+                label="Next">
+        </button>
+    </div>
 </div>
