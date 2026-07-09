@@ -196,72 +196,70 @@ $chip-gap: var(--fkt-select-chip-gap, var(--fkt-space-3xs));
 // </design-tokens>
 
 :host {
-    display: block;
-    width: 100%;
+  display: block;
+  width: 100%;
 }
 
 fkt-field {
-    cursor: pointer;
-    width: 100%;
+  cursor: pointer;
+  width: 100%;
 }
 
 [fktCustomField] {
-    width: 100%;
+  width: 100%;
 }
 
 .control {
-    align-items: center;
-    display: flex;
-    min-height: 1.25rem;
-    outline: none;
-    width: 100%;
+  align-items: center;
+  display: flex;
+  min-height: 1.25rem;
+  outline: none;
+  width: 100%;
 }
 
 .value {
-    align-items: center;
-    display: flex;
-    flex-wrap: wrap;
-    gap: $chip-gap;
-    min-width: 0;
-    width: 100%;
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: $chip-gap;
+  min-width: 0;
+  width: 100%;
 }
 
 .action-button {
-    margin-right: 0.25rem;
-    --fkt-button-padding-vertical: 0.25rem;
-    --fkt-button-icon-font-size: 1rem;
+  margin-right: 0.25rem;
 }
 
 .selected-value,
 .placeholder {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .placeholder {
-    color: var(--fkt-color-neutral-500);
+  color: var(--fkt-color-neutral-500);
 }
 
 .chip {
-    align-items: center;
-    background: $chip-background;
-    border: 1px solid transparent;
-    border-radius: var(--fkt-radius-full);
-    color: $chip-text;
-    cursor: pointer;
-    display: flex;
-    font-size: var(--fkt-font-size-xs);
-    gap: var(--fkt-space-3xs);
-    outline: none;
-    padding: $chip-padding;
+  align-items: center;
+  background: $chip-background;
+  border: 1px solid transparent;
+  border-radius: var(--fkt-radius-full);
+  color: $chip-text;
+  cursor: pointer;
+  display: flex;
+  font-size: var(--fkt-font-size-xs);
+  gap: var(--fkt-space-3xs);
+  outline: none;
+  padding: $chip-padding;
 
-    &:focus-visible {
-        box-shadow: var(--fkt-focus-ring-shadow);
-    }
+  &:focus-visible {
+    box-shadow: var(--fkt-focus-ring-shadow);
+  }
 
-    &:disabled {
-        cursor: not-allowed;
-        opacity: .6;
-    }
+  &:disabled {
+    cursor: not-allowed;
+    opacity: .6;
+  }
 }

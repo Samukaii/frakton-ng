@@ -1,12 +1,12 @@
 <fkt-select
-    label="Products"
-    placeholder="Select products"
-    [formControl]="selectedProducts"
-    [options]="products"
-    labelKey="name"
-    valueKey="sku"
-    groupKey="category"
-    multiple
+        [formControl]="selectedProducts"
+        [options]="products"
+        groupKey="category"
+        label="Products"
+        labelKey="name"
+        multiple
+        placeholder="Select products"
+        valueKey="sku"
 >
     <div *fktSelectHeader class="overlay-header">
         <div>
@@ -22,16 +22,16 @@
     </div>
 
     <div
-        *fktSelectItem="let item; let isSelected = isSelected"
-        class="item"
-        [class.selected]="isSelected"
+            *fktSelectItem="let item; let isSelected = isSelected"
+            [class.selected]="isSelected"
+            class="item"
     >
         <img
-            class="product-image"
-            [src]="item.raw | call: image"
-            [alt]="item.label"
-            width="40"
-            height="40"
+                [alt]="item.label"
+                [src]="item.raw | call: image"
+                class="product-image"
+                height="40"
+                width="40"
         >
 
         <div class="product-info">
@@ -42,30 +42,28 @@
         <div class="product-meta">
             <strong>{{ item.raw | call: price }}</strong>
             <fkt-tag
-                variant="faded"
-                [color]="item.raw | call: stockColor"
-                [text]="item.raw | call: stock"
+                    [color]="item.raw | call: stockColor"
+                    [text]="item.raw | call: stock"
+                    variant="faded"
             />
         </div>
     </div>
 
     <div *fktSelectFooter class="overlay-footer">
         <span>Can't find a product?</span>
-        <fkt-button
-            text="Manage catalog"
-            icon="plus"
-            iconPosition="left"
-            theme="stroked"
-            shape="rect"
-        />
+        <button
+                fktButton
+                icon="plus"
+                label="Manage catalog">
+        </button>
     </div>
 
     <div *fktSelectChip="let item" class="custom-chip">
         <img
-            [src]="item.raw | call: image"
-            alt=""
-            width="20"
-            height="20"
+                [src]="item.raw | call: image"
+                alt=""
+                height="20"
+                width="20"
         >
         <span>{{ item.label }}</span>
         <fkt-icon name="x-circle"/>
