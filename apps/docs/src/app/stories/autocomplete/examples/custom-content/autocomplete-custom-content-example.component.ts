@@ -1,21 +1,20 @@
-import { Component } from '@angular/core';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { toSignal } from '@angular/core/rxjs-interop';
+import {Component} from '@angular/core';
+import {FormControl, ReactiveFormsModule} from '@angular/forms';
+import {toSignal} from '@angular/core/rxjs-interop';
 import {
+    FktAutocompleteChipDirective,
     FktAutocompleteComponent,
+    FktAutocompleteEmptyDirective,
     FktAutocompleteFooterDirective,
     FktAutocompleteGroupDirective,
     FktAutocompleteHeaderDirective,
     FktAutocompleteItemDirective,
-    FktAutocompleteChipDirective,
-    FktAutocompleteEmptyDirective,
 } from 'frakton-ng/autocomplete';
-import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
-import { USERS } from '../autocomplete-demo-data';
-import { FktAvatarComponent } from 'frakton-ng/avatar';
-import { FktTagComponent } from 'frakton-ng/tag';
-import { CodeOutputComponent } from '@/components/code-output/code-output.component';
-import { FktIconComponent } from 'frakton-ng/icon';
+import {USERS} from '../autocomplete-demo-data';
+import {FktAvatarComponent} from 'frakton-ng/avatar';
+import {FktTagComponent} from 'frakton-ng/tag';
+import {CodeOutputComponent} from '@/components/code-output/code-output.component';
+import {FktIconComponent} from 'frakton-ng/icon';
 
 @Component({
     selector: 'app-autocomplete-custom-content-example',
@@ -27,7 +26,6 @@ import { FktIconComponent } from 'frakton-ng/icon';
         FktAutocompleteFooterDirective,
         FktAutocompleteChipDirective,
         FktAutocompleteEmptyDirective,
-        FktButtonLegacyComponent,
         ReactiveFormsModule,
         FktAvatarComponent,
         FktTagComponent,

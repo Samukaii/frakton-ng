@@ -1,10 +1,10 @@
-import { Component } from '@angular/core';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { toSignal } from '@angular/core/rxjs-interop';
-import { FktAutocompleteComponent } from 'frakton-ng/autocomplete';
-import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
-import { User } from '../autocomplete-demo-data';
-import { CodeOutputComponent } from '@/components/code-output/code-output.component';
+import {Component} from '@angular/core';
+import {FormControl, ReactiveFormsModule} from '@angular/forms';
+import {toSignal} from '@angular/core/rxjs-interop';
+import {FktAutocompleteComponent} from 'frakton-ng/autocomplete';
+import {User} from '../autocomplete-demo-data';
+import {CodeOutputComponent} from '@/components/code-output/code-output.component';
+import {FktButtonComponent} from "frakton-ng/button";
 
 const PRELOADED_USERS = [
     {
@@ -61,9 +61,9 @@ const PRELOADED_USERS = [
     selector: 'app-autocomplete-hydrated-value-example',
     imports: [
         FktAutocompleteComponent,
-        FktButtonLegacyComponent,
         ReactiveFormsModule,
         CodeOutputComponent,
+        FktButtonComponent,
     ],
     templateUrl: './autocomplete-hydrated-value-example.component.html',
     styleUrl: './autocomplete-hydrated-value-example.component.scss',
