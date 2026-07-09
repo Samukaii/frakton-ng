@@ -122,86 +122,88 @@ $padding-vertical: var(--fkt-color-picker-vertical-padding, var(--fkt-space-xs))
 // </design-tokens>
 
 :host {
-	display: flex;
-	gap: $gap;
+  display: flex;
+  gap: $gap;
 
-    --fkt-button-icon-font-weight: var(--fkt-font-normal);
+  --fkt-button-icon-font-weight: var(--fkt-font-normal);
 }
 
 p {
-	margin: 0;
-	color: $label-color;
+  margin: 0;
+  color: $label-color;
 }
 
-button {
-	display: flex;
-	background: transparent;
-	gap: $gap;
-	align-items: center;
-	justify-content: space-between;
-	padding: $padding-vertical $padding-horizontal;
-	border-radius: $border-radius;
-	border: solid 1px $border-color;
-	width: 100%;
-	cursor: pointer;
-	transition: var(--fkt-transition-base);
-	color: $label-color;
+.field {
+  display: flex;
+  background: transparent;
+  gap: $gap;
+  align-items: center;
+  justify-content: space-between;
+  padding: $padding-vertical $padding-horizontal;
+  border-radius: $border-radius;
+  border: solid 1px $border-color;
+  width: 100%;
+  cursor: pointer;
+  transition: var(--fkt-transition-base);
+  color: $label-color;
 
-	&:hover {
-		background-color: $button-hover-bg;
-	}
+  &:hover {
+    background-color: $button-hover-bg;
+  }
 
   &:focus-visible {
     outline: none;
     box-shadow: 0 0 0 2px $button-focus-color;
   }
 
-	.preview-container {
-		display: flex;
-		gap: var(--fkt-space-xs);
-		align-items: center;
+  .preview-container {
+    display: flex;
+    gap: var(--fkt-space-xs);
+    align-items: center;
 
-		.fkt-transparency-bg {
-			border-radius: $preview-border-radius;
-			border: solid 1px $border-color;
-			overflow: hidden;
-		}
+    .fkt-transparency-bg {
+      border-radius: $preview-border-radius;
+      border: solid 1px $border-color;
+      overflow: hidden;
+    }
 
-		.preview-circle {
-			width: $preview-width;
-			height: $preview-height;
-			display: flex;
-			align-items: center;
-			justify-content: center;
+    .preview-circle {
+      width: $preview-width;
+      height: $preview-height;
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
-			.no-color {
-				width: 1px;
-				height: 100%;
-				transform: rotateZ(-45deg);
-				background-color: red;
-			}
-		}
+      .no-color {
+        width: 1px;
+        height: 100%;
+        transform: rotateZ(-45deg);
+        background-color: red;
+      }
+    }
 
-		.content {
-			display: flex;
-			flex-direction: column;
-			gap: var(--fkt-space-3xs);
-			align-items: flex-start;
+    .content {
+      display: flex;
+      flex-direction: column;
+      gap: var(--fkt-space-3xs);
+      align-items: flex-start;
 
-			.label {
-				font-weight: var(--fkt-font-semibold);
-                white-space: nowrap;
-			}
+      .label {
+        font-weight: var(--fkt-font-semibold);
+        font-size: var(--fkt-font-size-sm);
+        white-space: nowrap;
+      }
 
-			.preview-value {
-				color: $preview-value;
-			}
-		}
-	}
+      .preview-value {
+        font-size: var(--fkt-font-size-sm);
+        color: $preview-value;
+      }
+    }
+  }
 
-	.actions {
-		display: flex;
-		gap: var(--fkt-space-xs);
-		justify-content: flex-end;
-	}
+  .actions {
+    display: flex;
+    gap: var(--fkt-space-xs);
+    justify-content: flex-end;
+  }
 }
