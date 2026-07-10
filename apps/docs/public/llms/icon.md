@@ -306,7 +306,11 @@ keys to `FktIconName`:
 import { FktCustomIconCatalog } from 'frakton-ng/icon';
 
 export const customIcons = {
-    'company-logo': {
+    'github': {
+        viewBox: '0 0 32 32',
+        content: '<path fill="currentColor" d="..." />',
+    },
+    'discord': {
         viewBox: '0 0 32 32',
         content: '<path fill="currentColor" d="..." />',
     },
@@ -350,17 +354,38 @@ export class IconCustomExampleComponent {}
 ```
 
 ```html title="icon-custom-example.component.html"
-<fkt-icon name="custom-square" variant="micro" size="lg" />
+<div>
+    <fkt-icon name="github" size="lg" variant="micro"/>
+    <span>Github icon</span>
+</div>
 
-<span>Application icon</span>
+<div>
+    <fkt-icon name="discord" size="lg" variant="micro"/>
+    <span>Discord icon</span>
+</div>
 ```
 
 ```css title="icon-custom-example.component.scss"
 :host {
-    display: flex;
-    align-items: center;
-    gap: var(--fkt-space-xs);
-    color: var(--fkt-color-primary);
+  display: flex;
+  flex-direction: column;
+  gap: var(--fkt-space-xs);
+  color: var(--fkt-color-primary);
+}
+
+div {
+  display: flex;
+  align-items: center;
+  gap: var(--fkt-space-xs);
+
+  span {
+    font-size: var(--fkt-font-size-sm);
+    font-weight: var(--fkt-font-semibold);
+  }
+}
+
+fkt-icon[name="discord"] {
+  color: #565DF6FF;
 }
 ```
 
