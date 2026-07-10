@@ -56,6 +56,19 @@
       "name": "Button",
       "selector": "button[fktButton],a[fktButton]"
     },
+    "description": "Text decoration applied to the button host.",
+    "name": "--fkt-button-text-decoration",
+    "reference": "none",
+    "category": "Typography",
+    "type": "text-decoration",
+    "defaultValue": "none",
+    "component": "Button"
+  },
+  {
+    "scope": {
+      "name": "Button",
+      "selector": "button[fktButton],a[fktButton]"
+    },
     "description": "Border radius for the selected button shape.",
     "name": "--fkt-button-border-radius",
     "reference": "--fkt-radius-md",

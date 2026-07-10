@@ -4,9 +4,10 @@
 
 ## Native Host
 
-`FktButtonComponent` uses `button[fktButton]`. Native button attributes, events,
-focus, form association, tooltips, analytics directives, and element references
-belong directly to the interactive element.
+`FktButtonComponent` uses native interactive hosts: `button[fktButton]` for
+actions and `a[fktButton]` for navigation. Native attributes, events, focus,
+tooltips, analytics directives, and element references belong directly to the
+interactive element.
 
 ```html
 <button
@@ -18,7 +19,37 @@ belong directly to the interactive element.
 />
 ```
 
-The default type is `button`.
+The default button `type` is `button` to avoid accidental form submission.
+`type` is applied only to `<button>` hosts.
+
+Use an anchor host when the interaction navigates:
+
+```html
+<a
+  fktButton
+  href="https://github.com/Samukaii/frakton-ng"
+  label="Open repository"
+  icon="arrow-top-right-on-square"
+  rel="noopener noreferrer"
+  target="_blank"
+/>
+```
+
+Angular router links use the same host:
+
+```html
+<a
+  fktButton
+  routerLink="/getting-started/installation"
+  label="Read installation guide"
+  suffixIcon="chevron-right"
+/>
+```
+
+Anchors do not support the native `disabled` attribute. When an anchor button is
+`disabled` or `loading`, the component binds `aria-disabled="true"`, removes it
+from the tab order with `tabindex="-1"`, and blocks activation. Native buttons
+receive the actual `disabled` attribute instead.
 
 Most visual inputs accept `default` as their API default. `default` keeps the
 markup stable while allowing the styling layer to resolve the application's
@@ -54,7 +85,7 @@ button[fktButton][data-fkt-color='danger'] {
   --fkt-button-text-color: white;
 }
 
-button[fktButton][data-fkt-size='sm'] {
+[fktButton][data-fkt-size='sm'] {
   --fkt-button-padding: 0.25rem 0.75rem;
   --fkt-button-font-size: 0.75rem;
 }
@@ -63,6 +94,16 @@ button[fktButton][data-fkt-size='sm'] {
 Arbitrary CSS colors are exposed as `data-fkt-color="custom"` and the raw color
 is applied through an internal bridge variable. Semantic colors continue to
 default to the global `--fkt-color-*` tokens.
+
+Anchor hosts remove browser underline by default through
+`--fkt-button-text-decoration`. Set the token when a link-styled button should
+keep or restore text decoration:
+
+```css
+a[fktButton] {
+  --fkt-button-text-decoration: underline;
+}
+```
 
 ## Icons and Custom Content
 
@@ -114,8 +155,9 @@ configured side. With `loadingPosition="start"` the indicator
 replaces `icon` when present; otherwise it is inserted before the main content.
 With `loadingPosition="end"` it replaces `suffixIcon` when present; otherwise it
 is inserted after the main content. It also binds `aria-busy="true"` and
-disables the native button. A projected `fktButtonLoadingIndicator` replaces the
-default spinner.
+prevents activation. Native buttons receive `disabled`; anchors receive
+`aria-disabled="true"` and `tabindex="-1"`. A projected
+`fktButtonLoadingIndicator` replaces the default spinner.
 
 ```html
 <button fktButton label="Save" icon="check" loading/>

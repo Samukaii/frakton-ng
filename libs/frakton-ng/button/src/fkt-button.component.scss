@@ -39,6 +39,15 @@ Font weight for the button label.
 $font-weight: var(--fkt-button-font-weight, var(--fkt-font-semibold));
 
 /*
+Text decoration applied to the button host.
+@name --fkt-button-text-decoration
+@reference none
+@category Typography
+@type text-decoration
+ */
+$text-decoration: var(--fkt-button-text-decoration, none);
+
+/*
 Border radius for the selected button shape.
 @name --fkt-button-border-radius
 @reference --fkt-radius-md
@@ -272,6 +281,7 @@ $button-active-box-shadow: var(
   font: inherit;
   line-height: 1;
   text-align: center;
+  text-decoration: $text-decoration;
   white-space: nowrap;
   cursor: pointer;
 
@@ -337,13 +347,13 @@ $button-active-box-shadow: var(
   pointer-events: none;
 }
 
-:host(:hover:not(:disabled):not(:active)) .surface {
+:host(:hover:not(:disabled):not(:active):not([data-fkt-disabled])) .surface {
   --_fkt-button-state-background-color: #{$button-hover-background-color};
   --_fkt-button-state-border-color: #{$button-hover-border-color};
   --_fkt-button-state-box-shadow: #{$button-hover-box-shadow};
 }
 
-:host(:active:not(:disabled)) .surface {
+:host(:active:not(:disabled):not([data-fkt-disabled])) .surface {
   --_fkt-button-state-background-color: #{$button-active-background-color};
   --_fkt-button-state-border-color: #{$button-active-border-color};
   --_fkt-button-state-box-shadow: #{$button-active-box-shadow};

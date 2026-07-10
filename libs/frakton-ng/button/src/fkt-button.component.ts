@@ -1,10 +1,13 @@
 import { NgTemplateOutlet } from '@angular/common';
 import {
+    afterRenderEffect,
     booleanAttribute,
     ChangeDetectionStrategy,
     Component,
     computed,
     contentChild,
+    ElementRef,
+    inject,
     input,
 } from '@angular/core';
 import { FktLabelColor } from 'frakton-ng/core';
@@ -35,10 +38,12 @@ import {
         '[attr.data-fkt-icon-only]': 'iconOnly() || square() ? "" : null',
         '[attr.data-fkt-content-fill]': 'contentFill() ? "" : null',
         '[attr.data-fkt-disabled]': 'disabled() ? "" : null',
-        '[attr.type]': 'type()',
-        // '[disabled]': 'effectiveDisabled()',
+        '[attr.type]': 'isButtonHost() ? type() : null',
+        '[attr.disabled]': 'isButtonHost() && effectiveDisabled() ? "" : null',
+        '[attr.aria-disabled]': '!isButtonHost() && effectiveDisabled() ? "true" : null',
+        '[attr.tabindex]': '!isButtonHost() && effectiveDisabled() ? "-1" : null',
         '[attr.aria-busy]': 'loading() ? "true" : null',
-        '[attr.aria-label]': 'ariaLabel() ?? usesAccessibleLabelOnly() ? label() : null',
+        '[attr.aria-label]': 'ariaLabel() ?? (usesAccessibleLabelOnly() ? label() : null)',
         '[class.loading]': 'loading()',
         '[style.--_fkt-button-custom-color]': 'customColor()',
         '[style.--_fkt-button-explicit-text-color]': 'explicitLabelColor()',
@@ -62,10 +67,39 @@ export class FktButtonComponent {
     readonly size = input<FktButtonSize>('default');
     readonly type = input<FktButtonType>('button');
 
+    private readonly elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
+
     protected readonly content = contentChild(FktButtonContentDirective);
     protected readonly customLoadingIndicator = contentChild(
         FktButtonLoadingIndicatorDirective
     );
+
+    protected readonly disabledAnchorActivationGuard = afterRenderEffect((onCleanup) => {
+        const element = this.elementRef.nativeElement;
+
+        if (typeof element.addEventListener !== 'function') return;
+
+        const preventDisabledAnchorClick = (event: Event) => {
+            if (this.isButtonHost() || !this.effectiveDisabled()) return;
+
+            event.preventDefault();
+            event.stopImmediatePropagation();
+        };
+
+        element.addEventListener('click', preventDisabledAnchorClick, {
+            capture: true,
+        });
+
+        onCleanup(() => {
+            element.removeEventListener('click', preventDisabledAnchorClick, {
+                capture: true,
+            });
+        });
+    });
+
+    protected isButtonHost(): boolean {
+        return this.elementRef.nativeElement.tagName.toLowerCase() === 'button';
+    }
 
     protected readonly effectiveDisabled = computed(
         () => this.disabled() || this.loading()

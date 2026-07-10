@@ -455,7 +455,7 @@ export const STORIES_MAP: StoryIndexer[] = [	{
 		        name: "Usage",
 		        type: "introduction",
 		        componentName: null,
-		        description:  `Native button usage. Apply \`fktButton\` directly to a \`<button>\` and provide its required label.\nEvents, focus, native attributes, directives, element references, and form behavior stay on the\nactual interactive element.`,
+		        description:  `Native host usage. Apply \`fktButton\` directly to a \`<button>\` or \`<a>\` and provide its required\nlabel. Events, focus, native attributes, directives, element references, and form or navigation\nbehavior stay on the actual interactive element.`,
 		        level: 2,
 		    },
 		    {
@@ -464,6 +464,14 @@ export const STORIES_MAP: StoryIndexer[] = [	{
 		        type: "story",
 		        componentName: "ButtonBasicExampleComponent",
 		        description:  `The appearances use the same native markup and semantic label. \`type="button"\` is applied by\ndefault; consumers can use native attributes such as \`name\`, \`value\`, \`form\`, \`autofocus\`, and\n\`aria-describedby\` without forwarding through a wrapper component.`,
+		        level: 3,
+		    },
+		    {
+		        id: "anchor-hosts",
+		        name: "AnchorHosts",
+		        type: "story",
+		        componentName: "ButtonAnchorsExampleComponent",
+		        description:  `Anchor hosts keep native link behavior while sharing the same button appearance and accessibility\ncontract. \`type\` and native \`disabled\` are never applied to anchors; disabled or loading anchors\nreceive \`aria-disabled\`, leave the tab order, and block activation.`,
 		        level: 3,
 		    },
 		    {

@@ -24,9 +24,9 @@ support limited composition without replacing the button's primary semantics.
 - id: usage
 - type: introduction
 
-Native button usage. Apply `fktButton` directly to a `<button>` and provide its required label.
-Events, focus, native attributes, directives, element references, and form behavior stay on the
-actual interactive element.
+Native host usage. Apply `fktButton` directly to a `<button>` or `<a>` and provide its required
+label. Events, focus, native attributes, directives, element references, and form or navigation
+behavior stay on the actual interactive element.
 
 ### Basic
 
@@ -60,6 +60,71 @@ export class ButtonBasicExampleComponent {}
 ```
 
 ```css title="button-basic-example.component.scss"
+:host {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--fkt-space-sm);
+}
+```
+
+### AnchorHosts
+
+- id: anchor-hosts
+- type: story
+- component: ButtonAnchorsExampleComponent
+
+Anchor hosts keep native link behavior while sharing the same button appearance and accessibility
+contract. `type` and native `disabled` are never applied to anchors; disabled or loading anchors
+receive `aria-disabled`, leave the tab order, and block activation.
+
+Example component: `ButtonAnchorsExampleComponent`
+
+```ts title="button-anchors-example.component.ts"
+import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { FktButtonComponent } from 'frakton-ng/button';
+
+@Component({
+    selector: 'app-button-anchors-example',
+    imports: [FktButtonComponent, RouterLink],
+    templateUrl: './button-anchors-example.component.html',
+    styleUrl: './button-anchors-example.component.scss',
+})
+export class ButtonAnchorsExampleComponent {}
+```
+
+```html title="button-anchors-example.component.html"
+<a
+    appearance="stroked"
+    fktButton
+    href="https://github.com/Samukaii/frakton-ng"
+    icon="arrow-top-right-on-square"
+    label="Open repository"
+    rel="noopener noreferrer"
+    target="_blank"
+>
+</a>
+
+<a
+    appearance="basic"
+    fktButton
+    label="Read installation guide"
+    routerLink="/getting-started/installation"
+    suffixIcon="chevron-right"
+>
+</a>
+
+<a
+    disabled
+    fktButton
+    href="/account/billing"
+    label="Billing unavailable"
+>
+</a>
+```
+
+```css title="button-anchors-example.component.scss"
 :host {
     display: flex;
     flex-wrap: wrap;
@@ -668,9 +733,10 @@ export class ButtonCustomColorsExampleComponent {}
 
 ## Native Host
 
-`FktButtonComponent` uses `button[fktButton]`. Native button attributes, events,
-focus, form association, tooltips, analytics directives, and element references
-belong directly to the interactive element.
+`FktButtonComponent` uses native interactive hosts: `button[fktButton]` for
+actions and `a[fktButton]` for navigation. Native attributes, events, focus,
+tooltips, analytics directives, and element references belong directly to the
+interactive element.
 
 ```html
 <button
@@ -682,7 +748,37 @@ belong directly to the interactive element.
 />
 ```
 
-The default type is `button`.
+The default button `type` is `button` to avoid accidental form submission.
+`type` is applied only to `<button>` hosts.
+
+Use an anchor host when the interaction navigates:
+
+```html
+<a
+  fktButton
+  href="https://github.com/Samukaii/frakton-ng"
+  label="Open repository"
+  icon="arrow-top-right-on-square"
+  rel="noopener noreferrer"
+  target="_blank"
+/>
+```
+
+Angular router links use the same host:
+
+```html
+<a
+  fktButton
+  routerLink="/getting-started/installation"
+  label="Read installation guide"
+  suffixIcon="chevron-right"
+/>
+```
+
+Anchors do not support the native `disabled` attribute. When an anchor button is
+`disabled` or `loading`, the component binds `aria-disabled="true"`, removes it
+from the tab order with `tabindex="-1"`, and blocks activation. Native buttons
+receive the actual `disabled` attribute instead.
 
 Most visual inputs accept `default` as their API default. `default` keeps the
 markup stable while allowing the styling layer to resolve the application's
@@ -718,7 +814,7 @@ button[fktButton][data-fkt-color='danger'] {
   --fkt-button-text-color: white;
 }
 
-button[fktButton][data-fkt-size='sm'] {
+[fktButton][data-fkt-size='sm'] {
   --fkt-button-padding: 0.25rem 0.75rem;
   --fkt-button-font-size: 0.75rem;
 }
@@ -727,6 +823,16 @@ button[fktButton][data-fkt-size='sm'] {
 Arbitrary CSS colors are exposed as `data-fkt-color="custom"` and the raw color
 is applied through an internal bridge variable. Semantic colors continue to
 default to the global `--fkt-color-*` tokens.
+
+Anchor hosts remove browser underline by default through
+`--fkt-button-text-decoration`. Set the token when a link-styled button should
+keep or restore text decoration:
+
+```css
+a[fktButton] {
+  --fkt-button-text-decoration: underline;
+}
+```
 
 ## Icons and Custom Content
 
@@ -778,8 +884,9 @@ configured side. With `loadingPosition="start"` the indicator
 replaces `icon` when present; otherwise it is inserted before the main content.
 With `loadingPosition="end"` it replaces `suffixIcon` when present; otherwise it
 is inserted after the main content. It also binds `aria-busy="true"` and
-disables the native button. A projected `fktButtonLoadingIndicator` replaces the
-default spinner.
+prevents activation. Native buttons receive `disabled`; anchors receive
+`aria-disabled="true"` and `tabindex="-1"`. A projected
+`fktButtonLoadingIndicator` replaces the default spinner.
 
 ```html
 <button fktButton label="Save" icon="check" loading/>
