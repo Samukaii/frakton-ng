@@ -166,17 +166,18 @@ export class ButtonCompositionExampleComponent {}
 
 ```html title="button-composition-example.component.html"
 <button
-    fktButton
-    label="Notifications"
-    appearance="basic"
-    icon="bell"
-    suffixIcon="chevron-down"
-></button>
+        appearance="basic"
+        fktButton
+        icon="bell"
+        label="Notifications"
+        suffixIcon="chevron-down">
+</button>
 
-<button fktButton label="Delete" icon="trash" iconOnly color="danger"></button>
+<button color="danger" fktButton icon="trash" iconOnly label="Delete">
+</button>
 
-<button fktButton label="Open Samuel profile" appearance="stroked">
-    <span fktButtonContent fill class="profile-chip">
+<button appearance="stroked" fktButton label="Open user profile">
+    <span class="profile-chip" fill fktButtonContent>
         SA
     </span>
 </button>
@@ -202,7 +203,8 @@ export class ButtonCompositionExampleComponent {}
 
   color: var(--fkt-color-on-primary);
   background: var(--fkt-color-primary);
-  border-radius: var(--fkt-radius-full);
+  border-radius: var(--fkt-radius-xl);
+  corner-shape: squircle;
   font-size: var(--fkt-font-size-xs);
   font-weight: var(--fkt-font-semibold);
 

@@ -202,6 +202,15 @@ Box shadow for the normal state.
 $button-box-shadow: var(--fkt-button-box-shadow, var(--_fkt-button-appearance-box-shadow));
 
 /*
+Transition animation for button
+@name --fkt-button-transition
+@reference --fkt-transition-base
+@category Effects
+@type transition
+ */
+$button-transition: var(--fkt-button-transition, var(--fkt-transition-base));
+
+/*
 Box shadow for the hover state.
 @name --fkt-button-hover-box-shadow
 @reference --fkt-button-box-shadow
@@ -324,7 +333,7 @@ $button-active-box-shadow: var(
   color: var(--_fkt-button-state-text-color);
   font-size: var(--_fkt-button-font-size);
   font-weight: $font-weight;
-  transition: var(--fkt-transition-base);
+  transition: var(--fkt-button-transition);
   pointer-events: none;
 }
 

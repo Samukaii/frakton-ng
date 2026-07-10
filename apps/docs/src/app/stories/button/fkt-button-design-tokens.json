@@ -2,7 +2,7 @@
   {
     "scope": {
       "name": "Button",
-      "selector": "button[fktButton]"
+      "selector": "button[fktButton],a[fktButton]"
     },
     "description": "Gap between loading indicator, icon, label, and custom content.",
     "name": "--fkt-button-content-gap",
@@ -15,7 +15,7 @@
   {
     "scope": {
       "name": "Button",
-      "selector": "button[fktButton]"
+      "selector": "button[fktButton],a[fktButton]"
     },
     "description": "Padding for the selected button size. Accepts the CSS padding shorthand.",
     "name": "--fkt-button-padding",
@@ -28,7 +28,7 @@
   {
     "scope": {
       "name": "Button",
-      "selector": "button[fktButton]"
+      "selector": "button[fktButton],a[fktButton]"
     },
     "description": "Font size for the selected button size.",
     "name": "--fkt-button-font-size",
@@ -41,7 +41,7 @@
   {
     "scope": {
       "name": "Button",
-      "selector": "button[fktButton]"
+      "selector": "button[fktButton],a[fktButton]"
     },
     "description": "Font weight for the button label.",
     "name": "--fkt-button-font-weight",
@@ -54,7 +54,7 @@
   {
     "scope": {
       "name": "Button",
-      "selector": "button[fktButton]"
+      "selector": "button[fktButton],a[fktButton]"
     },
     "description": "Border radius for the selected button shape.",
     "name": "--fkt-button-border-radius",
@@ -67,7 +67,7 @@
   {
     "scope": {
       "name": "Button",
-      "selector": "button[fktButton]"
+      "selector": "button[fktButton],a[fktButton]"
     },
     "description": "Width of the button border.",
     "name": "--fkt-button-border-width",
@@ -80,7 +80,7 @@
   {
     "scope": {
       "name": "Button",
-      "selector": "button[fktButton]"
+      "selector": "button[fktButton],a[fktButton]"
     },
     "description": "Size of the built-in loading spinner.",
     "name": "--fkt-button-spinner-size",
@@ -93,7 +93,7 @@
   {
     "scope": {
       "name": "Button",
-      "selector": "button[fktButton]"
+      "selector": "button[fktButton],a[fktButton]"
     },
     "description": "Stroke width of the built-in loading spinner.",
     "name": "--fkt-button-spinner-border-width",
@@ -106,7 +106,7 @@
   {
     "scope": {
       "name": "Button",
-      "selector": "button[fktButton]"
+      "selector": "button[fktButton],a[fktButton]"
     },
     "description": "Focus ring color.",
     "name": "--fkt-button-focus-outline-color",
@@ -119,7 +119,7 @@
   {
     "scope": {
       "name": "Button",
-      "selector": "button[fktButton]"
+      "selector": "button[fktButton],a[fktButton]"
     },
     "description": "Disabled button background and border color.",
     "name": "--fkt-button-disabled-color",
@@ -132,7 +132,7 @@
   {
     "scope": {
       "name": "Button",
-      "selector": "button[fktButton]"
+      "selector": "button[fktButton],a[fktButton]"
     },
     "description": "Disabled button content color.",
     "name": "--fkt-button-on-disabled-color",
@@ -145,7 +145,7 @@
   {
     "scope": {
       "name": "Button",
-      "selector": "button[fktButton]"
+      "selector": "button[fktButton],a[fktButton]"
     },
     "description": "Base color used by the selected button appearance to derive its visual states.",
     "name": "--fkt-button-color",
@@ -158,7 +158,7 @@
   {
     "scope": {
       "name": "Button",
-      "selector": "button[fktButton]"
+      "selector": "button[fktButton],a[fktButton]"
     },
     "description": "Text and content color for the normal state. Defaults to an automatically derived contrast color.",
     "name": "--fkt-button-text-color",
@@ -171,7 +171,7 @@
   {
     "scope": {
       "name": "Button",
-      "selector": "button[fktButton]"
+      "selector": "button[fktButton],a[fktButton]"
     },
     "description": "Background color for the normal state.",
     "name": "--fkt-button-background-color",
@@ -184,7 +184,7 @@
   {
     "scope": {
       "name": "Button",
-      "selector": "button[fktButton]"
+      "selector": "button[fktButton],a[fktButton]"
     },
     "description": "Background color for the hover state.",
     "name": "--fkt-button-hover-background-color",
@@ -197,7 +197,7 @@
   {
     "scope": {
       "name": "Button",
-      "selector": "button[fktButton]"
+      "selector": "button[fktButton],a[fktButton]"
     },
     "description": "Background color for the active state.",
     "name": "--fkt-button-active-background-color",
@@ -210,7 +210,7 @@
   {
     "scope": {
       "name": "Button",
-      "selector": "button[fktButton]"
+      "selector": "button[fktButton],a[fktButton]"
     },
     "description": "Border color for the normal state.",
     "name": "--fkt-button-border-color",
@@ -223,7 +223,7 @@
   {
     "scope": {
       "name": "Button",
-      "selector": "button[fktButton]"
+      "selector": "button[fktButton],a[fktButton]"
     },
     "description": "Border color for the hover state.",
     "name": "--fkt-button-hover-border-color",
@@ -249,7 +249,7 @@
   {
     "scope": {
       "name": "Button",
-      "selector": "button[fktButton]"
+      "selector": "button[fktButton],a[fktButton]"
     },
     "description": "Box shadow for the normal state.",
     "name": "--fkt-button-box-shadow",
@@ -262,7 +262,20 @@
   {
     "scope": {
       "name": "Button",
-      "selector": "button[fktButton]"
+      "selector": "button[fktButton],a[fktButton]"
+    },
+    "description": "Transition animation for button",
+    "name": "--fkt-button-transition",
+    "reference": "--fkt-transition-base",
+    "category": "Effects",
+    "type": "transition",
+    "defaultValue": "all var(--fkt-transition-timing-fast) var(--fkt-transition-ease)",
+    "component": "Button"
+  },
+  {
+    "scope": {
+      "name": "Button",
+      "selector": "button[fktButton],a[fktButton]"
     },
     "description": "Box shadow for the hover state.",
     "name": "--fkt-button-hover-box-shadow",
@@ -275,7 +288,7 @@
   {
     "scope": {
       "name": "Button",
-      "selector": "button[fktButton]"
+      "selector": "button[fktButton],a[fktButton]"
     },
     "description": "Box shadow for the active state.",
     "name": "--fkt-button-active-box-shadow",

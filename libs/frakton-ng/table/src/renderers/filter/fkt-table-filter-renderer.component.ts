@@ -1,20 +1,12 @@
-import {
-    ChangeDetectionStrategy,
-    Component,
-    computed,
-    ElementRef,
-    inject,
-    input,
-    model,
-} from '@angular/core';
-import { FktOverlayService } from 'frakton-ng/overlay';
-import { FktTableColumn, FktTableFilterValue } from '../../../fkt-table.types';
-import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
-import { deepEqual, deepSignal } from 'frakton-ng/internal/utils';
+import {ChangeDetectionStrategy, Component, computed, ElementRef, inject, input, model,} from '@angular/core';
+import {FktOverlayService} from 'frakton-ng/overlay';
+import {FktTableColumn, FktTableFilterValue} from '../../../fkt-table.types';
+import {deepEqual, deepSignal} from 'frakton-ng/internal/utils';
+import {FktButtonComponent} from "frakton-ng/button";
 
 @Component({
     selector: 'fkt-table-filter-renderer',
-    imports: [FktButtonLegacyComponent],
+    imports: [FktButtonComponent],
     templateUrl: './fkt-table-filter-renderer.component.html',
     styleUrl: './fkt-table-filter-renderer.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,

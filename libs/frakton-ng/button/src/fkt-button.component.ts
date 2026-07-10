@@ -21,7 +21,7 @@ import {
 } from './fkt-button.types';
 
 @Component({
-    selector: 'button[fktButton]',
+    selector: 'button[fktButton],a[fktButton]',
     templateUrl: './fkt-button.component.html',
     styleUrl: './fkt-button.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -36,7 +36,7 @@ import {
         '[attr.data-fkt-content-fill]': 'contentFill() ? "" : null',
         '[attr.data-fkt-disabled]': 'disabled() ? "" : null',
         '[attr.type]': 'type()',
-        '[disabled]': 'effectiveDisabled()',
+        // '[disabled]': 'effectiveDisabled()',
         '[attr.aria-busy]': 'loading() ? "true" : null',
         '[attr.aria-label]': 'ariaLabel() ?? usesAccessibleLabelOnly() ? label() : null',
         '[class.loading]': 'loading()',

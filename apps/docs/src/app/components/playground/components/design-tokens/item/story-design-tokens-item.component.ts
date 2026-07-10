@@ -27,6 +27,9 @@ import {
 import {
     DesignTokenSpacingControlComponent
 } from '../controls/spacing/design-token-spacing-control.component';
+import {
+    DesignTokenTransitionControlComponent
+} from "@/components/playground/components/design-tokens/controls/transition/design-token-transition-control.component";
 
 
 @Component({
@@ -42,6 +45,7 @@ import {
         DesignTokenShadowControlComponent,
         DesignTokenColorControlComponent,
         DesignTokenSpacingControlComponent,
+        DesignTokenTransitionControlComponent,
     ],
     templateUrl: './story-design-tokens-item.component.html',
     styleUrl: './story-design-tokens-item.component.scss',
@@ -98,7 +102,7 @@ export class StoryDesignTokensItemComponent {
             component: DesignTokenInfoComponent,
             data: {
                 token: this.designToken,
-                templateSelector: this.templateSelector
+                templateSelector: this.templateSelector,
             },
             panelOptions: {
                 autoCloseOnMouseOut: true,

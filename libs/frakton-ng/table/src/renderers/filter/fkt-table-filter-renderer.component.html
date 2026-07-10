@@ -1,9 +1,12 @@
-<fkt-button
-    ariaLabel="filter"
-    icon="funnel"
-    theme="basic"
-    (click)="openFilter()"
-/>
+<button
+        (click)="openFilter()"
+        appearance="basic"
+        fktButton
+        iconOnly
+        icon="funnel"
+        size="sm"
+        label="filter">
+</button>
 
 @if (hasChanges()) {
     <span class="badge"></span>

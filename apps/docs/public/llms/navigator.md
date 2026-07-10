@@ -250,70 +250,75 @@ Navigation with loading states during async operations like data fetching.
 Example component: `LoadingExampleComponent`
 
 ```ts title="loading-example.component.ts"
-import { Component, signal } from '@angular/core';
-import { FktNavigatorComponent } from 'frakton-ng/navigator';
-import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
-import { FktSpinnerComponent } from 'frakton-ng/spinner';
+import {Component, signal} from '@angular/core';
+import {FktNavigatorComponent} from 'frakton-ng/navigator';
+import {FktButtonComponent} from 'frakton-ng/button';
+import {FktSpinnerComponent} from 'frakton-ng/spinner';
 
 @Component({
-	selector: 'loading-example',
-	templateUrl: './loading-example.component.html',
-	imports: [FktNavigatorComponent, FktButtonLegacyComponent, FktSpinnerComponent]
+    selector: 'app-loading-example',
+    templateUrl: './loading-example.component.html',
+    styleUrl: './loading-example.component.scss',
+    imports: [FktNavigatorComponent, FktButtonComponent, FktSpinnerComponent],
 })
 export class LoadingExampleComponent {
-	protected isLoading = signal(false);
+    protected isLoading = signal(false);
 
-	protected toggleLoading() {
-		this.isLoading.update(loading => !loading);
-	}
+    protected toggleLoading() {
+        this.isLoading.update((loading) => !loading);
+    }
 
-	protected handlePrevious() {
-		if (!this.isLoading()) {
-			console.log('Previous navigation');
-		}
-	}
+    protected handlePrevious() {
+        if (!this.isLoading()) {
+            console.log('Previous navigation');
+        }
+    }
 
-	protected handleNext() {
-		if (!this.isLoading()) {
-			console.log('Next navigation');
-		}
-	}
+    protected handleNext() {
+        if (!this.isLoading()) {
+            console.log('Next navigation');
+        }
+    }
 }
 ```
 
 ```html title="loading-example.component.html"
 <div class="container">
-	<fkt-button
-		(click)="toggleLoading()"
-		[text]="isLoading() ? 'Stop Loading' : 'Start Loading'"
-	/>
-	<fkt-navigator
-		[canGoToPrevious]="!isLoading()"
-		[canGoToNext]="!isLoading()"
-		(previous)="handlePrevious()"
-		(next)="handleNext()"
-	>
-		@if (isLoading()) {
-			<fkt-spinner/>
-			<div class="container__content">
-				Loading...
-			</div>
-		}
-	</fkt-navigator>
+	<button
+            (click)="toggleLoading()"
+            [label]="isLoading() ? 'Stop Loading' : 'Start Loading'"
+            fktButton>
+    </button>
+    <fkt-navigator
+            (next)="handleNext()"
+            (previous)="handlePrevious()"
+            [canGoToNext]="!isLoading()"
+            [canGoToPrevious]="!isLoading()"
+    >
+        <div>
+            <div class="loading-content">
+                <fkt-spinner [size]="25"/>
+                <div>
+                    Loading...
+                </div>
+            </div>
+        </div>
+    </fkt-navigator>
 
 </div>
 ```
 
 ```css title="loading-example.component.scss"
 .container {
-	display: flex;
-	flex-direction: column;
-	gap: var(--fkt-space-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--fkt-space-md);
+}
 
-	&__content {
-		text-align: center;
-		color: var(--fkt-color-neutral-500);
-	}
+.loading-content {
+  display: flex;
+  align-items: center;
+  gap: var(--fkt-space-xs);
 }
 ```
 

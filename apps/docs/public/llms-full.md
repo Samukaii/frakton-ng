@@ -768,17 +768,18 @@ export class ButtonCompositionExampleComponent {}
 
 ```html title="button-composition-example.component.html"
 <button
-    fktButton
-    label="Notifications"
-    appearance="basic"
-    icon="bell"
-    suffixIcon="chevron-down"
-></button>
+        appearance="basic"
+        fktButton
+        icon="bell"
+        label="Notifications"
+        suffixIcon="chevron-down">
+</button>
 
-<button fktButton label="Delete" icon="trash" iconOnly color="danger"></button>
+<button color="danger" fktButton icon="trash" iconOnly label="Delete">
+</button>
 
-<button fktButton label="Open Samuel profile" appearance="stroked">
-    <span fktButtonContent fill class="profile-chip">
+<button appearance="stroked" fktButton label="Open user profile">
+    <span class="profile-chip" fill fktButtonContent>
         SA
     </span>
 </button>
@@ -804,7 +805,8 @@ export class ButtonCompositionExampleComponent {}
 
   color: var(--fkt-color-on-primary);
   background: var(--fkt-color-primary);
-  border-radius: var(--fkt-radius-full);
+  border-radius: var(--fkt-radius-xl);
+  corner-shape: squircle;
   font-size: var(--fkt-font-size-xs);
   font-weight: var(--fkt-font-semibold);
 
@@ -2185,7 +2187,11 @@ keys to `FktIconName`:
 import { FktCustomIconCatalog } from 'frakton-ng/icon';
 
 export const customIcons = {
-    'company-logo': {
+    'github': {
+        viewBox: '0 0 32 32',
+        content: '<path fill="currentColor" d="..." />',
+    },
+    'discord': {
         viewBox: '0 0 32 32',
         content: '<path fill="currentColor" d="..." />',
     },
@@ -2229,17 +2235,38 @@ export class IconCustomExampleComponent {}
 ```
 
 ```html title="icon-custom-example.component.html"
-<fkt-icon name="custom-square" variant="micro" size="lg" />
+<div>
+    <fkt-icon name="github" size="lg" variant="micro"/>
+    <span>Github icon</span>
+</div>
 
-<span>Application icon</span>
+<div>
+    <fkt-icon name="discord" size="lg" variant="micro"/>
+    <span>Discord icon</span>
+</div>
 ```
 
 ```css title="icon-custom-example.component.scss"
 :host {
-    display: flex;
-    align-items: center;
-    gap: var(--fkt-space-xs);
-    color: var(--fkt-color-primary);
+  display: flex;
+  flex-direction: column;
+  gap: var(--fkt-space-xs);
+  color: var(--fkt-color-primary);
+}
+
+div {
+  display: flex;
+  align-items: center;
+  gap: var(--fkt-space-xs);
+
+  span {
+    font-size: var(--fkt-font-size-sm);
+    font-weight: var(--fkt-font-semibold);
+  }
+}
+
+fkt-icon[name="discord"] {
+  color: #565DF6FF;
 }
 ```
 
@@ -3749,17 +3776,22 @@ without holding every ID in memory. Pass `[totalItems]` to show the exact count 
 Example component: `TableExamplesRowSelectionComponent`
 
 ```ts title="table-examples-row-selection.component.ts"
-import { Component, computed, inject, resource, signal } from '@angular/core';
-import { FktTableColumn, FktTableComponent, FktTableSelection, FktTableSelectionDirective } from 'frakton-ng/table';
-import { FktPaginatorComponent } from 'frakton-ng/paginator';
-import { User, UsersService } from '@/stories/table/services/users.service';
-import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
-import { formatDate } from '@angular/common';
+import {Component, computed, inject, resource, signal} from '@angular/core';
+import {FktTableColumn, FktTableComponent, FktTableSelection, FktTableSelectionDirective} from 'frakton-ng/table';
+import {FktPaginatorComponent} from 'frakton-ng/paginator';
+import {User, UsersService} from '@/stories/table/services/users.service';
+import {formatDate} from '@angular/common';
+import {FktButtonComponent} from "frakton-ng/button";
 
 
 @Component({
     selector: 'app-table-examples-row-selection',
-    imports: [FktTableComponent, FktTableSelectionDirective, FktPaginatorComponent, FktButtonLegacyComponent],
+    imports: [
+        FktTableComponent,
+        FktTableSelectionDirective,
+        FktPaginatorComponent,
+        FktButtonComponent,
+    ],
     templateUrl: './table-examples-row-selection.component.html',
     styleUrl: './table-examples-row-selection.component.scss',
 })
@@ -3830,7 +3862,8 @@ export class TableExamplesRowSelectionComponent {
 <div class="toolbar">
     <span class="toolbar__label">{{ selectionLabel() }}</span>
     @if (hasSelection()) {
-        <fkt-button text="Delete selected" color="danger" size="sm" icon="trash"></fkt-button>
+        <button fktButton label="Delete selected" color="danger" icon="trash">
+        </button>
     }
 </div>
 
@@ -4436,29 +4469,16 @@ the standard single-select.
 Example component: `TableExamplesCustomFilterComponentsComponent`
 
 ```ts title="table-examples-custom-filter-components.component.ts"
-import { Component, computed, inject, resource, signal } from '@angular/core';
-import {
-    defineCells,
-    defineFilters,
-    FktTableColumn,
-    FktTableComponent,
-} from 'frakton-ng/table';
-import { FktTagComponent } from 'frakton-ng/tag';
-import { FktButtonsListComponent } from 'frakton-ng/buttons-list';
-import {
-    ProductCategoryFilters,
-    ProductsService,
-} from '@/stories/table/services/products.service';
-import { Product } from '@/stories/table/models/product';
-import {
-    CATEGORY_COLORS,
-    STATUS_COLORS,
-    STATUS_LABELS,
-} from '@/stories/table/constants/product-constants';
-import { stockColor } from '@/stories/table/utils/stock-color';
-import { CategoryMultiFilterComponent } from './filters/category-multi-filter/category-multi-filter.component';
-import { JsonPipe } from '@angular/common';
-import { FktButtonComponent } from 'frakton-ng/button';
+import {Component, computed, inject, resource, signal} from '@angular/core';
+import {defineCells, defineFilters, FktTableColumn, FktTableComponent,} from 'frakton-ng/table';
+import {FktTagComponent} from 'frakton-ng/tag';
+import {FktButtonsListComponent} from 'frakton-ng/buttons-list';
+import {ProductCategoryFilters, ProductsService,} from '@/stories/table/services/products.service';
+import {Product} from '@/stories/table/models/product';
+import {CATEGORY_COLORS, STATUS_COLORS, STATUS_LABELS,} from '@/stories/table/constants/product-constants';
+import {stockColor} from '@/stories/table/utils/stock-color';
+import {CategoryMultiFilterComponent} from './filters/category-multi-filter/category-multi-filter.component';
+import {FktButtonComponent} from 'frakton-ng/button';
 import {CodeOutputComponent} from "@/components/code-output/code-output.component";
 
 const cell = defineCells({
@@ -4470,12 +4490,7 @@ const filter = defineFilters({});
 
 @Component({
     selector: 'app-table-examples-custom-filter-components',
-    imports: [
-        FktTableComponent,
-        JsonPipe,
-        FktButtonComponent,
-        CodeOutputComponent,
-    ],
+    imports: [FktTableComponent, FktButtonComponent, CodeOutputComponent],
     templateUrl: './table-examples-custom-filter-components.component.html',
     styleUrl: './table-examples-custom-filter-components.component.scss',
 })
@@ -8401,13 +8416,13 @@ and replaces those labels when fresh options with the same value arrive.
 Example component: `AutocompleteHydratedValueExampleComponent`
 
 ```ts title="autocomplete-hydrated-value-example.component.ts"
-import { Component } from '@angular/core';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { toSignal } from '@angular/core/rxjs-interop';
-import { FktAutocompleteComponent } from 'frakton-ng/autocomplete';
-import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
-import { User } from '../autocomplete-demo-data';
-import { CodeOutputComponent } from '@/components/code-output/code-output.component';
+import {Component} from '@angular/core';
+import {FormControl, ReactiveFormsModule} from '@angular/forms';
+import {toSignal} from '@angular/core/rxjs-interop';
+import {FktAutocompleteComponent} from 'frakton-ng/autocomplete';
+import {User} from '../autocomplete-demo-data';
+import {CodeOutputComponent} from '@/components/code-output/code-output.component';
+import {FktButtonComponent} from "frakton-ng/button";
 
 const PRELOADED_USERS = [
     {
@@ -8464,9 +8479,9 @@ const PRELOADED_USERS = [
     selector: 'app-autocomplete-hydrated-value-example',
     imports: [
         FktAutocompleteComponent,
-        FktButtonLegacyComponent,
         ReactiveFormsModule,
         CodeOutputComponent,
+        FktButtonComponent,
     ],
     templateUrl: './autocomplete-hydrated-value-example.component.html',
     styleUrl: './autocomplete-hydrated-value-example.component.scss',
@@ -8513,41 +8528,41 @@ export class AutocompleteHydratedValueExampleComponent {
 
 ```html title="autocomplete-hydrated-value-example.component.html"
 <div class="actions">
-    <fkt-button
-        theme="stroked"
-        iconPosition="left"
-        icon="list-bullet"
-        shape="rect"
-        text="Set ids"
-        (click)="fillWithPrimitiveValues()"
-    />
-    <fkt-button
-        theme="stroked"
-        iconPosition="left"
-        icon="user-plus"
-        shape="rect"
-        text="Set hydrated users"
-        (click)="fillWithHydratedUsers()"
-    />
-    <fkt-button
-        theme="stroked"
-        iconPosition="left"
-        icon="arrow-path-rounded-square"
-        shape="rect"
-        text="Load fresh options"
-        (click)="loadFreshOptions()"
-    />
+    <button
+            (click)="fillWithPrimitiveValues()"
+            appearance="stroked"
+            fktButton
+            shape="rounded"
+            icon="list-bullet"
+            label="Set ids">
+    </button>
+    <button
+            (click)="fillWithHydratedUsers()"
+            appearance="stroked"
+            fktButton
+            shape="rounded"
+            icon="user-plus"
+            label="Set hydrated users">
+    </button>
+    <button
+            (click)="loadFreshOptions()"
+            appearance="stroked"
+            fktButton
+            shape="rounded"
+            icon="arrow-path-rounded-square"
+            label="Load fresh options">
+    </button>
 </div>
 
 <fkt-autocomplete
-    label="Users"
-    placeholder="Search for a user"
-    [formControl]="usersControl"
-    [options]="users"
-    labelKey="name"
-    valueKey="id"
-    multiple
-    localSearch
+        [formControl]="usersControl"
+        [options]="users"
+        label="Users"
+        labelKey="name"
+        localSearch
+        multiple
+        placeholder="Search for a user"
+        valueKey="id"
 />
 
 <app-code-output [value]="value()" title="Field value"/>
@@ -8560,13 +8575,6 @@ export class AutocompleteHydratedValueExampleComponent {
     flex-wrap: wrap;
     gap: var(--fkt-space-2xs);
     justify-content: flex-end;
-
-    --fkt-button-padding-horizontal: var(--fkt-space-xs);
-    --fkt-button-padding-vertical: var(--fkt-space-2xs);
-    --fkt-button-font-size: var(--fkt-font-size-sm);
-    --fkt-button-border-width: 1px;
-    --fkt-button-icon-font-size: var(--fkt-font-size-sm);
-    --fkt-button-rect-border-radius: var(--fkt-radius-sm);
 }
 
 app-code-output {
@@ -8597,24 +8605,23 @@ primitive. Chip templates preserve the built-in removal behavior and accessibili
 Example component: `AutocompleteCustomContentExampleComponent`
 
 ```ts title="autocomplete-custom-content-example.component.ts"
-import { Component } from '@angular/core';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { toSignal } from '@angular/core/rxjs-interop';
+import {Component} from '@angular/core';
+import {FormControl, ReactiveFormsModule} from '@angular/forms';
+import {toSignal} from '@angular/core/rxjs-interop';
 import {
+    FktAutocompleteChipDirective,
     FktAutocompleteComponent,
+    FktAutocompleteEmptyDirective,
     FktAutocompleteFooterDirective,
     FktAutocompleteGroupDirective,
     FktAutocompleteHeaderDirective,
     FktAutocompleteItemDirective,
-    FktAutocompleteChipDirective,
-    FktAutocompleteEmptyDirective,
 } from 'frakton-ng/autocomplete';
-import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
-import { USERS } from '../autocomplete-demo-data';
-import { FktAvatarComponent } from 'frakton-ng/avatar';
-import { FktTagComponent } from 'frakton-ng/tag';
-import { CodeOutputComponent } from '@/components/code-output/code-output.component';
-import { FktIconComponent } from 'frakton-ng/icon';
+import {USERS} from '../autocomplete-demo-data';
+import {FktAvatarComponent} from 'frakton-ng/avatar';
+import {FktTagComponent} from 'frakton-ng/tag';
+import {CodeOutputComponent} from '@/components/code-output/code-output.component';
+import {FktIconComponent} from 'frakton-ng/icon';
 
 @Component({
     selector: 'app-autocomplete-custom-content-example',
@@ -8626,7 +8633,6 @@ import { FktIconComponent } from 'frakton-ng/icon';
         FktAutocompleteFooterDirective,
         FktAutocompleteChipDirective,
         FktAutocompleteEmptyDirective,
-        FktButtonLegacyComponent,
         ReactiveFormsModule,
         FktAvatarComponent,
         FktTagComponent,
@@ -8649,15 +8655,15 @@ export class AutocompleteCustomContentExampleComponent {
 
 ```html title="autocomplete-custom-content-example.component.html"
 <fkt-autocomplete
-    label="Team member"
-    placeholder="Search for a teammate"
-    [formControl]="member"
-    [options]="users"
-    multiple
-    labelKey="name"
-    valueKey="id"
-    groupKey="department"
-    localSearch
+        [formControl]="member"
+        [options]="users"
+        groupKey="department"
+        label="Team member"
+        labelKey="name"
+        localSearch
+        multiple
+        placeholder="Search for a teammate"
+        valueKey="id"
 >
     <div *fktAutocompleteHeader class="overlay-header">
         <div>
@@ -8672,14 +8678,14 @@ export class AutocompleteCustomContentExampleComponent {
     </div>
 
     <div
-        *fktAutocompleteItem="let item; let isSelected = isSelected"
-        class="item"
-        [attr.data-fkt-theme]="isSelected ? 'dark' : 'light'"
-        [class.selected]="isSelected"
+            *fktAutocompleteItem="let item; let isSelected = isSelected"
+            [attr.data-fkt-theme]="isSelected ? 'dark' : 'light'"
+            [class.selected]="isSelected"
+            class="item"
     >
         <fkt-avatar
-            randomBackground
-            [initials]="item.label"
+                [initials]="item.label"
+                randomBackground
         />
 
         <div class="identity">
@@ -8687,22 +8693,21 @@ export class AutocompleteCustomContentExampleComponent {
             <span>{{ item.raw?.['email'] }}</span>
         </div>
 
-        <fkt-tag variant="faded" color="success" [text]="item.raw?.['department']"/>
+        <fkt-tag [text]="item.raw?.['department']" color="success" variant="faded"/>
     </div>
 
     <div *fktAutocompleteFooter class="overlay-footer">
         <span>Missing someone?</span>
-        <fkt-button
-            text="Invite user"
-            icon="plus"
-            iconPosition="left"
-            theme="stroked"
-            shape="rect"
-        />
+        <button
+                appearance="stroked"
+                fktButton
+                icon="plus"
+                label="Invite user">
+        </button>
     </div>
 
     <div *fktAutocompleteChip="let item" class="custom-chip">
-        <fkt-avatar randomBackground size="xs" [initials]="item.label"/>
+        <fkt-avatar [initials]="item.label" randomBackground size="xs"/>
         <span>{{ item.label }}</span>
         <fkt-icon name="x-circle"/>
     </div>
@@ -9407,20 +9412,20 @@ normalized through `valueKey`, while validation and disabled state are provided 
 Example component: `AutocompleteSignalFormsExampleComponent`
 
 ```ts title="autocomplete-signal-forms-example.component.ts"
-import { Component, signal } from '@angular/core';
-import { disabled, form, FormField, required } from '@angular/forms/signals';
-import { FktAutocompleteComponent } from 'frakton-ng/autocomplete';
-import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
-import { COUNTRIES } from '../autocomplete-demo-data';
-import { CodeOutputComponent } from '@/components/code-output/code-output.component';
+import {Component, signal} from '@angular/core';
+import {disabled, form, FormField, required} from '@angular/forms/signals';
+import {FktAutocompleteComponent} from 'frakton-ng/autocomplete';
+import {COUNTRIES} from '../autocomplete-demo-data';
+import {CodeOutputComponent} from '@/components/code-output/code-output.component';
+import {FktButtonComponent} from "frakton-ng/button";
 
 @Component({
     selector: 'app-autocomplete-signal-forms-example',
     imports: [
         FktAutocompleteComponent,
-        FktButtonLegacyComponent,
         FormField,
         CodeOutputComponent,
+        FktButtonComponent,
     ],
     templateUrl: './autocomplete-signal-forms-example.component.html',
     styleUrl: './autocomplete-signal-forms-example.component.scss',
@@ -9451,40 +9456,40 @@ export class AutocompleteSignalFormsExampleComponent {
 
 ```html title="autocomplete-signal-forms-example.component.html"
 <div class="actions">
-    <fkt-button
-        theme="stroked"
-        iconPosition="left"
-        icon="pencil"
-        shape="rect"
-        text="Fill"
-        (click)="fill()"
-    />
-    <fkt-button
-        theme="stroked"
-        iconPosition="left"
-        icon="arrow-uturn-left"
-        shape="rect"
-        text="Reset"
-        (click)="reset()"
-    />
-    <fkt-button
-        theme="stroked"
-        iconPosition="left"
-        icon="lock-closed"
-        shape="rect"
-        text="Toggle disabled"
-        (click)="toggleDisabled()"
-    />
+    <button
+            (click)="fill()"
+            appearance="stroked"
+            fktButton
+            icon="pencil"
+            label="Fill"
+            shape="rounded">
+    </button>
+    <button
+            (click)="reset()"
+            appearance="stroked"
+            fktButton
+            icon="arrow-uturn-left"
+            label="Reset"
+            shape="rounded">
+    </button>
+    <button
+            (click)="toggleDisabled()"
+            appearance="stroked"
+            fktButton
+            icon="lock-closed"
+            label="Toggle disabled"
+            shape="rounded">
+    </button>
 </div>
 
 <fkt-autocomplete
-    label="Country"
-    [formField]="form.country"
-    [options]="countries"
-    labelKey="name"
-    valueKey="code"
-    groupKey="continent"
-    localSearch
+        [formField]="form.country"
+        [options]="countries"
+        groupKey="continent"
+        label="Country"
+        labelKey="name"
+        localSearch
+        valueKey="code"
 />
 
 <app-code-output [value]="model()" title="Form value"/>
@@ -9497,13 +9502,6 @@ export class AutocompleteSignalFormsExampleComponent {
     gap: var(--fkt-space-2xs);
     justify-content: flex-end;
     margin-bottom: 1rem;
-
-    --fkt-button-padding-horizontal: var(--fkt-space-xs);
-    --fkt-button-padding-vertical: var(--fkt-space-2xs);
-    --fkt-button-font-size: var(--fkt-font-size-sm);
-    --fkt-button-border-width: 1px;
-    --fkt-button-icon-font-size: var(--fkt-font-size-sm);
-    --fkt-button-rect-border-radius: var(--fkt-radius-sm);
 }
 
 app-code-output {
@@ -9523,22 +9521,22 @@ Reactive Forms integration with validation, programmatic updates, reset, and dis
 Example component: `AutocompleteReactiveFormsExampleComponent`
 
 ```ts title="autocomplete-reactive-forms-example.component.ts"
-import { Component, inject } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { toSignal } from '@angular/core/rxjs-interop';
-import { map } from 'rxjs';
-import { FktAutocompleteComponent } from 'frakton-ng/autocomplete';
-import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
-import { USERS } from '../autocomplete-demo-data';
-import { CodeOutputComponent } from '@/components/code-output/code-output.component';
+import {Component, inject} from '@angular/core';
+import {FormBuilder, ReactiveFormsModule, Validators} from '@angular/forms';
+import {toSignal} from '@angular/core/rxjs-interop';
+import {map} from 'rxjs';
+import {FktAutocompleteComponent} from 'frakton-ng/autocomplete';
+import {USERS} from '../autocomplete-demo-data';
+import {CodeOutputComponent} from '@/components/code-output/code-output.component';
+import {FktButtonComponent} from "frakton-ng/button";
 
 @Component({
     selector: 'app-autocomplete-reactive-forms-example',
     imports: [
         FktAutocompleteComponent,
-        FktButtonLegacyComponent,
         ReactiveFormsModule,
         CodeOutputComponent,
+        FktButtonComponent,
     ],
     templateUrl: './autocomplete-reactive-forms-example.component.html',
     styleUrl: './autocomplete-reactive-forms-example.component.scss',
@@ -9572,30 +9570,30 @@ export class AutocompleteReactiveFormsExampleComponent {
 
 ```html title="autocomplete-reactive-forms-example.component.html"
 <div class="actions">
-    <fkt-button
-        theme="stroked"
-        iconPosition="left"
-        icon="pencil"
-        shape="rect"
-        text="Fill"
-        (click)="fill()"
-    />
-    <fkt-button
-        theme="stroked"
-        iconPosition="left"
-        icon="arrow-uturn-left"
-        shape="rect"
-        text="Reset"
-        (click)="reset()"
-    />
-    <fkt-button
-        theme="stroked"
-        iconPosition="left"
-        icon="lock-closed"
-        shape="rect"
-        text="Toggle disabled"
-        (click)="toggleDisabled()"
-    />
+    <button
+            (click)="fill()"
+            appearance="stroked"
+            fktButton
+            icon="pencil"
+            label="Fill"
+            shape="rounded">
+    </button>
+    <button
+            (click)="reset()"
+            appearance="stroked"
+            fktButton
+            icon="arrow-uturn-left"
+            label="Reset"
+            shape="rounded">
+    </button>
+    <button
+            (click)="toggleDisabled()"
+            appearance="stroked"
+            fktButton
+            icon="lock-closed"
+            label="Toggle disabled"
+            shape="rounded">
+    </button>
 </div>
 
 <form [formGroup]="form">
@@ -9620,13 +9618,6 @@ export class AutocompleteReactiveFormsExampleComponent {
     flex-wrap: wrap;
     gap: var(--fkt-space-2xs);
     justify-content: flex-end;
-
-    --fkt-button-padding-horizontal: var(--fkt-space-xs);
-    --fkt-button-padding-vertical: var(--fkt-space-2xs);
-    --fkt-button-font-size: var(--fkt-font-size-sm);
-    --fkt-button-border-width: 1px;
-    --fkt-button-icon-font-size: var(--fkt-font-size-sm);
-    --fkt-button-rect-border-radius: var(--fkt-radius-sm);
 }
 
 app-code-output {
@@ -9736,26 +9727,25 @@ automatic error message and keeps the same visibility rule used by other field-b
 Example component: `AutocompleteAutomaticValidationExampleComponent`
 
 ```ts title="autocomplete-automatic-validation-example.component.ts"
-import { Component } from '@angular/core';
-import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
-import { toSignal } from '@angular/core/rxjs-interop';
-import { FktAutocompleteComponent } from 'frakton-ng/autocomplete';
+import {Component} from '@angular/core';
+import {FormControl, ReactiveFormsModule, Validators} from '@angular/forms';
+import {toSignal} from '@angular/core/rxjs-interop';
+import {FktAutocompleteComponent} from 'frakton-ng/autocomplete';
 import {
     FktFieldPrefixDirective,
     FktFieldSuffixDirective,
     FktHintEndDirective,
     FktHintStartDirective,
 } from 'frakton-ng/field';
-import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
-import { FktIconComponent } from 'frakton-ng/icon';
-import { CodeOutputComponent } from '@/components/code-output/code-output.component';
-import { USERS } from '../autocomplete-demo-data';
+import {FktIconComponent} from 'frakton-ng/icon';
+import {CodeOutputComponent} from '@/components/code-output/code-output.component';
+import {USERS} from '../autocomplete-demo-data';
+import {FktButtonComponent} from "frakton-ng/button";
 
 @Component({
     selector: 'app-autocomplete-automatic-validation-example',
     imports: [
         FktAutocompleteComponent,
-        FktButtonLegacyComponent,
         FktFieldPrefixDirective,
         FktFieldSuffixDirective,
         FktHintEndDirective,
@@ -9763,6 +9753,7 @@ import { USERS } from '../autocomplete-demo-data';
         FktIconComponent,
         ReactiveFormsModule,
         CodeOutputComponent,
+        FktButtonComponent,
     ],
     templateUrl: './autocomplete-automatic-validation-example.component.html',
     styleUrl: './autocomplete-automatic-validation-example.component.scss',
@@ -9785,28 +9776,28 @@ export class AutocompleteAutomaticValidationExampleComponent {
 
 ```html title="autocomplete-automatic-validation-example.component.html"
 <div class="actions">
-    <fkt-button
-        theme="stroked"
-        iconPosition="left"
-        icon="check-circle"
-        shape="rect"
-        text="Validate"
-        (click)="validate()"
-    />
+    <button
+            (click)="validate()"
+            appearance="stroked"
+            fktButton
+            icon="check-circle"
+            label="Validate"
+            shape="rounded">
+    </button>
 </div>
 
 <fkt-autocomplete
-    label="Assignee"
-    placeholder="Select an assignee"
-    [formControl]="assignee"
-    [options]="users"
-    labelKey="name"
-    valueKey="id"
-    groupKey="department"
-    localSearch
+        [formControl]="assignee"
+        [options]="users"
+        groupKey="department"
+        label="Assignee"
+        labelKey="name"
+        localSearch
+        placeholder="Select an assignee"
+        valueKey="id"
 >
-    <fkt-icon fktFieldPrefix name="user" />
-    <fkt-icon fktFieldSuffix name="information-circle" />
+    <fkt-icon fktFieldPrefix name="user"/>
+    <fkt-icon fktFieldSuffix name="information-circle"/>
 
     <span fktHintStart>The automatic error comes from the field error resolver.</span>
     <span fktHintEnd>Required</span>
@@ -9821,13 +9812,6 @@ export class AutocompleteAutomaticValidationExampleComponent {
     display: flex;
     gap: var(--fkt-space-2xs);
     justify-content: flex-end;
-
-    --fkt-button-padding-horizontal: var(--fkt-space-xs);
-    --fkt-button-padding-vertical: var(--fkt-space-2xs);
-    --fkt-button-font-size: var(--fkt-font-size-sm);
-    --fkt-button-border-width: 1px;
-    --fkt-button-icon-font-size: var(--fkt-font-size-sm);
-    --fkt-button-rect-border-radius: var(--fkt-radius-sm);
 }
 
 app-code-output {
@@ -9848,10 +9832,10 @@ while still using the field's invalid state, spacing, and visibility behavior.
 Example component: `AutocompleteManualValidationExampleComponent`
 
 ```ts title="autocomplete-manual-validation-example.component.ts"
-import { Component } from '@angular/core';
-import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
-import { toSignal } from '@angular/core/rxjs-interop';
-import { FktAutocompleteComponent } from 'frakton-ng/autocomplete';
+import {Component} from '@angular/core';
+import {FormControl, ReactiveFormsModule, Validators} from '@angular/forms';
+import {toSignal} from '@angular/core/rxjs-interop';
+import {FktAutocompleteComponent} from 'frakton-ng/autocomplete';
 import {
     FktErrorDirective,
     FktFieldErrorComponent,
@@ -9860,16 +9844,15 @@ import {
     FktHintEndDirective,
     FktHintStartDirective,
 } from 'frakton-ng/field';
-import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
-import { FktIconComponent } from 'frakton-ng/icon';
-import { CodeOutputComponent } from '@/components/code-output/code-output.component';
-import { USERS } from '../autocomplete-demo-data';
+import {FktIconComponent} from 'frakton-ng/icon';
+import {CodeOutputComponent} from '@/components/code-output/code-output.component';
+import {USERS} from '../autocomplete-demo-data';
+import {FktButtonComponent} from "frakton-ng/button";
 
 @Component({
     selector: 'app-autocomplete-manual-validation-example',
     imports: [
         FktAutocompleteComponent,
-        FktButtonLegacyComponent,
         FktErrorDirective,
         FktFieldErrorComponent,
         FktFieldPrefixDirective,
@@ -9879,6 +9862,7 @@ import { USERS } from '../autocomplete-demo-data';
         FktIconComponent,
         ReactiveFormsModule,
         CodeOutputComponent,
+        FktButtonComponent,
     ],
     templateUrl: './autocomplete-manual-validation-example.component.html',
     styleUrl: './autocomplete-manual-validation-example.component.scss',
@@ -9901,28 +9885,28 @@ export class AutocompleteManualValidationExampleComponent {
 
 ```html title="autocomplete-manual-validation-example.component.html"
 <div class="actions">
-    <fkt-button
-        theme="stroked"
-        iconPosition="left"
-        icon="check-circle"
-        shape="rect"
-        text="Validate"
-        (click)="validate()"
-    />
+    <button
+            (click)="validate()"
+            appearance="stroked"
+            fktButton
+            icon="check-circle"
+            label="Validate"
+            shape="rounded">
+    </button>
 </div>
 
 <fkt-autocomplete
-    label="Approver"
-    placeholder="Select an approver"
-    [formControl]="approver"
-    [options]="users"
-    labelKey="name"
-    valueKey="id"
-    groupKey="department"
-    localSearch
+        [formControl]="approver"
+        [options]="users"
+        groupKey="department"
+        label="Approver"
+        labelKey="name"
+        localSearch
+        placeholder="Select an approver"
+        valueKey="id"
 >
-    <fkt-icon fktFieldPrefix name="user" />
-    <fkt-icon fktFieldSuffix name="information-circle" />
+    <fkt-icon fktFieldPrefix name="user"/>
+    <fkt-icon fktFieldSuffix name="information-circle"/>
 
     <span fktHintStart>Projected error content replaces the automatic message.</span>
     <span fktHintEnd>Required</span>
@@ -9937,22 +9921,15 @@ export class AutocompleteManualValidationExampleComponent {
 
 ```css title="autocomplete-manual-validation-example.component.scss"
 .actions {
-    margin-bottom: 1rem;
-    display: flex;
-    gap: var(--fkt-space-2xs);
-    justify-content: flex-end;
-
-    --fkt-button-padding-horizontal: var(--fkt-space-xs);
-    --fkt-button-padding-vertical: var(--fkt-space-2xs);
-    --fkt-button-font-size: var(--fkt-font-size-sm);
-    --fkt-button-border-width: 1px;
-    --fkt-button-icon-font-size: var(--fkt-font-size-sm);
-    --fkt-button-rect-border-radius: var(--fkt-radius-sm);
+  margin-bottom: 1rem;
+  display: flex;
+  gap: var(--fkt-space-2xs);
+  justify-content: flex-end;
 }
 
 app-code-output {
-    display: block;
-    margin-top: 1rem;
+  display: block;
+  margin-top: 1rem;
 }
 ```
 
@@ -13197,21 +13174,21 @@ temporary preload data, renders their label, and normalizes the form value throu
 Example component: `SelectHydratedValueExampleComponent`
 
 ```ts title="select-hydrated-value-example.component.ts"
-import { Component } from '@angular/core';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { toSignal } from '@angular/core/rxjs-interop';
-import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
-import { FktSelectComponent } from 'frakton-ng/select';
-import { CodeOutputComponent } from '@/components/code-output/code-output.component';
-import { SELECT_USERS, SelectUser } from '../select-demo-data';
+import {Component} from '@angular/core';
+import {FormControl, ReactiveFormsModule} from '@angular/forms';
+import {toSignal} from '@angular/core/rxjs-interop';
+import {FktSelectComponent} from 'frakton-ng/select';
+import {CodeOutputComponent} from '@/components/code-output/code-output.component';
+import {SELECT_USERS, SelectUser} from '../select-demo-data';
+import {FktButtonComponent} from "frakton-ng/button";
 
 @Component({
     selector: 'app-select-hydrated-value-example',
     imports: [
         FktSelectComponent,
-        FktButtonLegacyComponent,
         ReactiveFormsModule,
         CodeOutputComponent,
+        FktButtonComponent,
     ],
     templateUrl: './select-hydrated-value-example.component.html',
     styleUrl: './select-hydrated-value-example.component.scss',
@@ -13236,23 +13213,23 @@ export class SelectHydratedValueExampleComponent {
 
 ```html title="select-hydrated-value-example.component.html"
 <div class="actions">
-    <fkt-button
-        theme="stroked"
-        iconPosition="left"
-        icon="pencil"
-        shape="rect"
-        text="Write hydrated user"
-        (click)="fill()"
-    />
+    <button
+            (click)="fill()"
+            appearance="stroked"
+            fktButton
+            icon="pencil"
+            shape="rounded"
+            label="Write hydrated user">
+    </button>
 </div>
 
 <fkt-select
-    label="Assignee"
-    placeholder="Select an assignee"
-    [formControl]="assignee"
-    [options]="users"
-    labelKey="name"
-    valueKey="id"
+        [formControl]="assignee"
+        [options]="users"
+        label="Assignee"
+        labelKey="name"
+        placeholder="Select an assignee"
+        valueKey="id"
 />
 
 <app-code-output [value]="value()" title="Normalized field value"/>
@@ -13264,13 +13241,6 @@ export class SelectHydratedValueExampleComponent {
     display: flex;
     gap: var(--fkt-space-2xs);
     justify-content: flex-end;
-
-    --fkt-button-padding-horizontal: var(--fkt-space-xs);
-    --fkt-button-padding-vertical: var(--fkt-space-2xs);
-    --fkt-button-font-size: var(--fkt-font-size-sm);
-    --fkt-button-border-width: 1px;
-    --fkt-button-icon-font-size: var(--fkt-font-size-sm);
-    --fkt-button-rect-border-radius: var(--fkt-radius-sm);
 }
 
 app-code-output {
@@ -13291,9 +13261,9 @@ selection, keyboard navigation, active descendant, or form state into consumer c
 Example component: `SelectCustomContentExampleComponent`
 
 ```ts title="select-custom-content-example.component.ts"
-import { Component } from '@angular/core';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { toSignal } from '@angular/core/rxjs-interop';
+import {Component} from '@angular/core';
+import {FormControl, ReactiveFormsModule} from '@angular/forms';
+import {toSignal} from '@angular/core/rxjs-interop';
 import {
     FktSelectChipDirective,
     FktSelectComponent,
@@ -13303,11 +13273,11 @@ import {
     FktSelectHeaderDirective,
     FktSelectItemDirective,
 } from 'frakton-ng/select';
-import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
-import { FktIconComponent } from 'frakton-ng/icon';
-import { CallPipe } from 'frakton-ng/internal/pipes';
-import { FktTagColor, FktTagComponent } from 'frakton-ng/tag';
-import { CodeOutputComponent } from '@/components/code-output/code-output.component';
+import {FktIconComponent} from 'frakton-ng/icon';
+import {CallPipe} from 'frakton-ng/internal/pipes';
+import {FktTagColor, FktTagComponent} from 'frakton-ng/tag';
+import {CodeOutputComponent} from '@/components/code-output/code-output.component';
+import {FktButtonComponent} from "frakton-ng/button";
 
 interface Product {
     sku: string;
@@ -13371,7 +13341,7 @@ const PRODUCTS: Product[] = [
         FktSelectFooterDirective,
         FktSelectChipDirective,
         FktSelectEmptyDirective,
-        FktButtonLegacyComponent,
+        FktButtonComponent,
         FktIconComponent,
         CallPipe,
         FktTagComponent,
@@ -13401,10 +13371,12 @@ export class SelectCustomContentExampleComponent {
     protected price(raw: unknown) {
         const price = (raw as Product | null)?.price;
 
-        return price?.toLocaleString('en-US', {
-            style: 'currency',
-            currency: 'USD',
-        }) ?? '';
+        return (
+            price?.toLocaleString('en-US', {
+                style: 'currency',
+                currency: 'USD',
+            }) ?? ''
+        );
     }
 
     protected stock(raw: unknown) {
@@ -13421,14 +13393,14 @@ export class SelectCustomContentExampleComponent {
 
 ```html title="select-custom-content-example.component.html"
 <fkt-select
-    label="Products"
-    placeholder="Select products"
-    [formControl]="selectedProducts"
-    [options]="products"
-    labelKey="name"
-    valueKey="sku"
-    groupKey="category"
-    multiple
+        [formControl]="selectedProducts"
+        [options]="products"
+        groupKey="category"
+        label="Products"
+        labelKey="name"
+        multiple
+        placeholder="Select products"
+        valueKey="sku"
 >
     <div *fktSelectHeader class="overlay-header">
         <div>
@@ -13444,16 +13416,16 @@ export class SelectCustomContentExampleComponent {
     </div>
 
     <div
-        *fktSelectItem="let item; let isSelected = isSelected"
-        class="item"
-        [class.selected]="isSelected"
+            *fktSelectItem="let item; let isSelected = isSelected"
+            [class.selected]="isSelected"
+            class="item"
     >
         <img
-            class="product-image"
-            [src]="item.raw | call: image"
-            [alt]="item.label"
-            width="40"
-            height="40"
+                [alt]="item.label"
+                [src]="item.raw | call: image"
+                class="product-image"
+                height="40"
+                width="40"
         >
 
         <div class="product-info">
@@ -13464,30 +13436,28 @@ export class SelectCustomContentExampleComponent {
         <div class="product-meta">
             <strong>{{ item.raw | call: price }}</strong>
             <fkt-tag
-                variant="faded"
-                [color]="item.raw | call: stockColor"
-                [text]="item.raw | call: stock"
+                    [color]="item.raw | call: stockColor"
+                    [text]="item.raw | call: stock"
+                    variant="faded"
             />
         </div>
     </div>
 
     <div *fktSelectFooter class="overlay-footer">
         <span>Can't find a product?</span>
-        <fkt-button
-            text="Manage catalog"
-            icon="plus"
-            iconPosition="left"
-            theme="stroked"
-            shape="rect"
-        />
+        <button
+                fktButton
+                icon="plus"
+                label="Manage catalog">
+        </button>
     </div>
 
     <div *fktSelectChip="let item" class="custom-chip">
         <img
-            [src]="item.raw | call: image"
-            alt=""
-            width="20"
-            height="20"
+                [src]="item.raw | call: image"
+                alt=""
+                height="20"
+                width="20"
         >
         <span>{{ item.label }}</span>
         <fkt-icon name="x-circle"/>
@@ -13732,22 +13702,22 @@ field.
 Example component: `SelectReactiveFormsExampleComponent`
 
 ```ts title="select-reactive-forms-example.component.ts"
-import { Component, effect, inject, signal } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { toSignal } from '@angular/core/rxjs-interop';
-import { map } from 'rxjs';
-import { FktSelectComponent } from 'frakton-ng/select';
-import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
-import { CodeOutputComponent } from '@/components/code-output/code-output.component';
-import { SELECT_USERS } from '../select-demo-data';
+import {Component, effect, inject, signal} from '@angular/core';
+import {FormBuilder, ReactiveFormsModule, Validators} from '@angular/forms';
+import {toSignal} from '@angular/core/rxjs-interop';
+import {map} from 'rxjs';
+import {FktSelectComponent} from 'frakton-ng/select';
+import {CodeOutputComponent} from '@/components/code-output/code-output.component';
+import {SELECT_USERS} from '../select-demo-data';
+import {FktButtonComponent} from "frakton-ng/button";
 
 @Component({
     selector: 'app-select-reactive-forms-example',
     imports: [
         FktSelectComponent,
-        FktButtonLegacyComponent,
         ReactiveFormsModule,
         CodeOutputComponent,
+        FktButtonComponent,
     ],
     styleUrl: 'select-reactive-forms-example.component.scss',
     templateUrl: './select-reactive-forms-example.component.html',
@@ -13782,20 +13752,26 @@ export class SelectReactiveFormsExampleComponent {
 
 ```html title="select-reactive-forms-example.component.html"
 <div class="actions">
-    <fkt-button theme="stroked" iconPosition="left" icon="pencil" shape="rect" text="Fill" (click)="fill()"/>
-    <fkt-button theme="stroked" iconPosition="left" icon="arrow-uturn-left" shape="rect" text="Reset" (click)="reset()"/>
-    <fkt-button theme="stroked" iconPosition="left" [icon]="disabled() ? 'lock-open' : 'lock-closed'" shape="rect" [text]="disabled() ? 'Enable' : 'Disable'" (click)="disabled.set(!disabled())"/>
+    <button (click)="fill()" appearance="stroked" fktButton icon="pencil" label="Fill" shape="rounded">
+    </button>
+    <button (click)="reset()" appearance="stroked" fktButton icon="arrow-uturn-left" label="Reset"
+            shape="rounded">
+    </button>
+    <button (click)="disabled.set(!disabled())" [icon]="disabled() ? 'lock-open' : 'lock-closed'" [label]="disabled() ? 'Enable' : 'Disable'"
+            appearance="stroked"
+            fktButton shape="rounded">
+    </button>
 </div>
 
 
 <form [formGroup]="form">
     <fkt-select
-        label="Assignee"
-        placeholder="Select an assignee"
-        formControlName="assignee"
-        [options]="users"
-        labelKey="name"
-        valueKey="id"
+            [options]="users"
+            formControlName="assignee"
+            label="Assignee"
+            labelKey="name"
+            placeholder="Select an assignee"
+            valueKey="id"
     />
 </form>
 
@@ -13808,13 +13784,6 @@ export class SelectReactiveFormsExampleComponent {
     display: flex;
     gap: var(--fkt-space-2xs);
     justify-content: flex-end;
-
-    --fkt-button-padding-horizontal: var(--fkt-space-xs);
-    --fkt-button-padding-vertical: var(--fkt-space-2xs);
-    --fkt-button-font-size: var(--fkt-font-size-sm);
-    --fkt-button-border-width: 1px;
-    --fkt-button-icon-font-size: var(--fkt-font-size-sm);
-    --fkt-button-rect-border-radius: var(--fkt-radius-sm);
 }
 
 app-code-output {
@@ -13835,18 +13804,18 @@ reactive.
 Example component: `SelectSignalFormsExampleComponent`
 
 ```ts title="select-signal-forms-example.component.ts"
-import { Component, signal } from '@angular/core';
-import { disabled, form, FormField, required } from '@angular/forms/signals';
-import { FktSelectComponent } from 'frakton-ng/select';
-import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
-import { CodeOutputComponent } from '@/components/code-output/code-output.component';
-import { SELECT_USERS } from '../select-demo-data';
+import {Component, signal} from '@angular/core';
+import {disabled, form, FormField, required} from '@angular/forms/signals';
+import {FktSelectComponent} from 'frakton-ng/select';
+import {CodeOutputComponent} from '@/components/code-output/code-output.component';
+import {SELECT_USERS} from '../select-demo-data';
+import {FktButtonComponent} from "frakton-ng/button";
 
 @Component({
     selector: 'app-select-signal-forms-example',
     imports: [
         FktSelectComponent,
-        FktButtonLegacyComponent,
+        FktButtonComponent,
         FormField,
         CodeOutputComponent,
     ],
@@ -13879,39 +13848,39 @@ export class SelectSignalFormsExampleComponent {
 
 ```html title="select-signal-forms-example.component.html"
 <div class="actions">
-    <fkt-button
-        theme="stroked"
-        iconPosition="left"
-        icon="pencil"
-        shape="rect"
-        text="Fill"
-        (click)="fill()"
-    />
-    <fkt-button
-        theme="stroked"
-        iconPosition="left"
-        icon="arrow-uturn-left"
-        shape="rect"
-        text="Reset"
-        (click)="reset()"
-    />
-    <fkt-button
-        theme="stroked"
-        iconPosition="left"
-        icon="lock-closed"
-        shape="rect"
-        text="Toggle disabled"
-        (click)="toggleDisabled()"
-    />
+    <button
+            (click)="fill()"
+            appearance="stroked"
+            fktButton
+            icon="pencil"
+            label="Fill"
+            shape="rounded">
+    </button>
+    <button
+            (click)="reset()"
+            appearance="stroked"
+            fktButton
+            icon="arrow-uturn-left"
+            label="Reset"
+            shape="rounded">
+    </button>
+    <button
+            (click)="toggleDisabled()"
+            appearance="stroked"
+            fktButton
+            icon="lock-closed"
+            label="Toggle disabled"
+            shape="rounded">
+    </button>
 </div>
 
 <fkt-select
-    label="Assignee"
-    placeholder="Select an assignee"
-    [formField]="form.assignee"
-    [options]="users"
-    labelKey="name"
-    valueKey="id"
+        [formField]="form.assignee"
+        [options]="users"
+        label="Assignee"
+        labelKey="name"
+        placeholder="Select an assignee"
+        valueKey="id"
 />
 
 <app-code-output [value]="model()" title="Form value"/>
@@ -13923,13 +13892,6 @@ export class SelectSignalFormsExampleComponent {
     display: flex;
     gap: var(--fkt-space-2xs);
     justify-content: flex-end;
-
-    --fkt-button-padding-horizontal: var(--fkt-space-xs);
-    --fkt-button-padding-vertical: var(--fkt-space-2xs);
-    --fkt-button-font-size: var(--fkt-font-size-sm);
-    --fkt-button-border-width: 1px;
-    --fkt-button-icon-font-size: var(--fkt-font-size-sm);
-    --fkt-button-rect-border-radius: var(--fkt-radius-sm);
 }
 
 app-code-output {
@@ -14019,17 +13981,13 @@ message for cases that need control-specific content.
 Example component: `SelectValidationsExampleComponent`
 
 ```ts title="select-validations-example.component.ts"
-import { Component } from '@angular/core';
-import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
-import { FktSelectComponent } from 'frakton-ng/select';
-import {
-    FktErrorDirective,
-    FktFieldErrorComponent,
-    FktFieldPrefixDirective,
-} from 'frakton-ng/field';
-import { FktIconComponent } from 'frakton-ng/icon';
-import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
-import { SELECT_USERS } from '../select-demo-data';
+import {Component} from '@angular/core';
+import {FormControl, ReactiveFormsModule, Validators} from '@angular/forms';
+import {FktSelectComponent} from 'frakton-ng/select';
+import {FktErrorDirective, FktFieldErrorComponent, FktFieldPrefixDirective,} from 'frakton-ng/field';
+import {FktIconComponent} from 'frakton-ng/icon';
+import {SELECT_USERS} from '../select-demo-data';
+import {FktButtonComponent} from "frakton-ng/button";
 
 @Component({
     selector: 'app-select-validations-example',
@@ -14039,7 +13997,7 @@ import { SELECT_USERS } from '../select-demo-data';
         FktFieldErrorComponent,
         FktFieldPrefixDirective,
         FktIconComponent,
-        FktButtonLegacyComponent,
+        FktButtonComponent,
         ReactiveFormsModule,
     ],
     templateUrl: './select-validations-example.component.html',
@@ -14059,35 +14017,35 @@ export class SelectValidationsExampleComponent {
 
 ```html title="select-validations-example.component.html"
 <div class="actions">
-    <fkt-button
-        theme="stroked"
-        iconPosition="left"
-        icon="check-circle"
-        shape="rect"
-        text="Validate"
-        (click)="validate()"
-    />
+    <button
+            (click)="validate()"
+            appearance="stroked"
+            fktButton
+            icon="check-circle"
+            label="Validate"
+            shape="rounded">
+    </button>
 </div>
 
 <div class="fields">
     <fkt-select
-        label="Automatic validation"
-        placeholder="Select an assignee"
-        [formControl]="automatic"
-        [options]="users"
-        labelKey="name"
-        valueKey="id"
+            [formControl]="automatic"
+            [options]="users"
+            label="Automatic validation"
+            labelKey="name"
+            placeholder="Select an assignee"
+            valueKey="id"
     >
         <fkt-icon fktFieldPrefix name="user"/>
     </fkt-select>
 
     <fkt-select
-        label="Custom validation"
-        placeholder="Select an assignee"
-        [formControl]="custom"
-        [options]="users"
-        labelKey="name"
-        valueKey="id"
+            [formControl]="custom"
+            [options]="users"
+            label="Custom validation"
+            labelKey="name"
+            placeholder="Select an assignee"
+            valueKey="id"
     >
         <fkt-icon fktFieldPrefix name="user"/>
         <fkt-field-error fktError>
@@ -14103,13 +14061,6 @@ export class SelectValidationsExampleComponent {
     display: flex;
     gap: var(--fkt-space-2xs);
     justify-content: flex-end;
-
-    --fkt-button-padding-horizontal: var(--fkt-space-xs);
-    --fkt-button-padding-vertical: var(--fkt-space-2xs);
-    --fkt-button-font-size: var(--fkt-font-size-sm);
-    --fkt-button-border-width: 1px;
-    --fkt-button-icon-font-size: var(--fkt-font-size-sm);
-    --fkt-button-rect-border-radius: var(--fkt-radius-sm);
 }
 
 .fields {
@@ -15670,12 +15621,15 @@ Example component: `FktCalendarEventsExampleComponent`
 
 ```ts title="fkt-calendar-events-example.component.ts"
 import { Component, computed, input, model, signal } from '@angular/core';
-import { FktCalendarComponent, FktCalendarDateConfigFn } from 'frakton-ng/calendar';
-import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
+import {
+    FktCalendarComponent,
+    FktCalendarDateConfigFn,
+} from 'frakton-ng/calendar';
+import { FktButtonComponent } from 'frakton-ng/button';
 
 @Component({
 	selector: 'fkt-calendar-events-example',
-	imports: [FktCalendarComponent, FktButtonLegacyComponent],
+	imports: [FktCalendarComponent, FktButtonComponent],
 	templateUrl: './fkt-calendar-events-example.component.html',
 	styleUrl: './fkt-calendar-events-example.component.scss'
 })
@@ -15724,7 +15678,8 @@ export class FktCalendarEventsExampleComponent {
 		<div class="click-history">
 			<div class="click-history-header">
 				<h4>Click History</h4>
-				<fkt-button text="Clear" (click)="clearHistory()" [disabled]="clickHistory().length === 0"></fkt-button>
+				<button fktButton label="Clear" (click)="clearHistory()" [disabled]="clickHistory().length === 0">
+                </button>
 			</div>
 			<div class="history-items">
 				@if (clickHistory().length === 0) {
@@ -15793,24 +15748,6 @@ export class FktCalendarEventsExampleComponent {
 			font-weight: 600;
 			color: var(--fkt-color-neutral-600);
 			flex: 1;
-		}
-
-		button {
-			padding: 4px 8px;
-			font-size: 12px;
-			border: 1px solid var(--fkt-color-neutral-400);
-			background: var(--fkt-color-neutral-100);
-			border-radius: 4px;
-			cursor: pointer;
-
-			&:hover:not(:disabled) {
-				background: #f5f5f5;
-			}
-
-			&:disabled {
-				opacity: 0.5;
-				cursor: not-allowed;
-			}
 		}
 	}
 
@@ -18356,70 +18293,75 @@ Navigation with loading states during async operations like data fetching.
 Example component: `LoadingExampleComponent`
 
 ```ts title="loading-example.component.ts"
-import { Component, signal } from '@angular/core';
-import { FktNavigatorComponent } from 'frakton-ng/navigator';
-import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
-import { FktSpinnerComponent } from 'frakton-ng/spinner';
+import {Component, signal} from '@angular/core';
+import {FktNavigatorComponent} from 'frakton-ng/navigator';
+import {FktButtonComponent} from 'frakton-ng/button';
+import {FktSpinnerComponent} from 'frakton-ng/spinner';
 
 @Component({
-	selector: 'loading-example',
-	templateUrl: './loading-example.component.html',
-	imports: [FktNavigatorComponent, FktButtonLegacyComponent, FktSpinnerComponent]
+    selector: 'app-loading-example',
+    templateUrl: './loading-example.component.html',
+    styleUrl: './loading-example.component.scss',
+    imports: [FktNavigatorComponent, FktButtonComponent, FktSpinnerComponent],
 })
 export class LoadingExampleComponent {
-	protected isLoading = signal(false);
+    protected isLoading = signal(false);
 
-	protected toggleLoading() {
-		this.isLoading.update(loading => !loading);
-	}
+    protected toggleLoading() {
+        this.isLoading.update((loading) => !loading);
+    }
 
-	protected handlePrevious() {
-		if (!this.isLoading()) {
-			console.log('Previous navigation');
-		}
-	}
+    protected handlePrevious() {
+        if (!this.isLoading()) {
+            console.log('Previous navigation');
+        }
+    }
 
-	protected handleNext() {
-		if (!this.isLoading()) {
-			console.log('Next navigation');
-		}
-	}
+    protected handleNext() {
+        if (!this.isLoading()) {
+            console.log('Next navigation');
+        }
+    }
 }
 ```
 
 ```html title="loading-example.component.html"
 <div class="container">
-	<fkt-button
-		(click)="toggleLoading()"
-		[text]="isLoading() ? 'Stop Loading' : 'Start Loading'"
-	/>
-	<fkt-navigator
-		[canGoToPrevious]="!isLoading()"
-		[canGoToNext]="!isLoading()"
-		(previous)="handlePrevious()"
-		(next)="handleNext()"
-	>
-		@if (isLoading()) {
-			<fkt-spinner/>
-			<div class="container__content">
-				Loading...
-			</div>
-		}
-	</fkt-navigator>
+	<button
+            (click)="toggleLoading()"
+            [label]="isLoading() ? 'Stop Loading' : 'Start Loading'"
+            fktButton>
+    </button>
+    <fkt-navigator
+            (next)="handleNext()"
+            (previous)="handlePrevious()"
+            [canGoToNext]="!isLoading()"
+            [canGoToPrevious]="!isLoading()"
+    >
+        <div>
+            <div class="loading-content">
+                <fkt-spinner [size]="25"/>
+                <div>
+                    Loading...
+                </div>
+            </div>
+        </div>
+    </fkt-navigator>
 
 </div>
 ```
 
 ```css title="loading-example.component.scss"
 .container {
-	display: flex;
-	flex-direction: column;
-	gap: var(--fkt-space-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--fkt-space-md);
+}
 
-	&__content {
-		text-align: center;
-		color: var(--fkt-color-neutral-500);
-	}
+.loading-content {
+  display: flex;
+  align-items: center;
+  gap: var(--fkt-space-xs);
 }
 ```
 

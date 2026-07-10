@@ -394,12 +394,15 @@ Example component: `FktCalendarEventsExampleComponent`
 
 ```ts title="fkt-calendar-events-example.component.ts"
 import { Component, computed, input, model, signal } from '@angular/core';
-import { FktCalendarComponent, FktCalendarDateConfigFn } from 'frakton-ng/calendar';
-import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
+import {
+    FktCalendarComponent,
+    FktCalendarDateConfigFn,
+} from 'frakton-ng/calendar';
+import { FktButtonComponent } from 'frakton-ng/button';
 
 @Component({
 	selector: 'fkt-calendar-events-example',
-	imports: [FktCalendarComponent, FktButtonLegacyComponent],
+	imports: [FktCalendarComponent, FktButtonComponent],
 	templateUrl: './fkt-calendar-events-example.component.html',
 	styleUrl: './fkt-calendar-events-example.component.scss'
 })
@@ -448,7 +451,8 @@ export class FktCalendarEventsExampleComponent {
 		<div class="click-history">
 			<div class="click-history-header">
 				<h4>Click History</h4>
-				<fkt-button text="Clear" (click)="clearHistory()" [disabled]="clickHistory().length === 0"></fkt-button>
+				<button fktButton label="Clear" (click)="clearHistory()" [disabled]="clickHistory().length === 0">
+                </button>
 			</div>
 			<div class="history-items">
 				@if (clickHistory().length === 0) {
@@ -517,24 +521,6 @@ export class FktCalendarEventsExampleComponent {
 			font-weight: 600;
 			color: var(--fkt-color-neutral-600);
 			flex: 1;
-		}
-
-		button {
-			padding: 4px 8px;
-			font-size: 12px;
-			border: 1px solid var(--fkt-color-neutral-400);
-			background: var(--fkt-color-neutral-100);
-			border-radius: 4px;
-			cursor: pointer;
-
-			&:hover:not(:disabled) {
-				background: #f5f5f5;
-			}
-
-			&:disabled {
-				opacity: 0.5;
-				cursor: not-allowed;
-			}
 		}
 	}
 

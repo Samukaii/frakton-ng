@@ -264,21 +264,21 @@ temporary preload data, renders their label, and normalizes the form value throu
 Example component: `SelectHydratedValueExampleComponent`
 
 ```ts title="select-hydrated-value-example.component.ts"
-import { Component } from '@angular/core';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { toSignal } from '@angular/core/rxjs-interop';
-import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
-import { FktSelectComponent } from 'frakton-ng/select';
-import { CodeOutputComponent } from '@/components/code-output/code-output.component';
-import { SELECT_USERS, SelectUser } from '../select-demo-data';
+import {Component} from '@angular/core';
+import {FormControl, ReactiveFormsModule} from '@angular/forms';
+import {toSignal} from '@angular/core/rxjs-interop';
+import {FktSelectComponent} from 'frakton-ng/select';
+import {CodeOutputComponent} from '@/components/code-output/code-output.component';
+import {SELECT_USERS, SelectUser} from '../select-demo-data';
+import {FktButtonComponent} from "frakton-ng/button";
 
 @Component({
     selector: 'app-select-hydrated-value-example',
     imports: [
         FktSelectComponent,
-        FktButtonLegacyComponent,
         ReactiveFormsModule,
         CodeOutputComponent,
+        FktButtonComponent,
     ],
     templateUrl: './select-hydrated-value-example.component.html',
     styleUrl: './select-hydrated-value-example.component.scss',
@@ -303,23 +303,23 @@ export class SelectHydratedValueExampleComponent {
 
 ```html title="select-hydrated-value-example.component.html"
 <div class="actions">
-    <fkt-button
-        theme="stroked"
-        iconPosition="left"
-        icon="pencil"
-        shape="rect"
-        text="Write hydrated user"
-        (click)="fill()"
-    />
+    <button
+            (click)="fill()"
+            appearance="stroked"
+            fktButton
+            icon="pencil"
+            shape="rounded"
+            label="Write hydrated user">
+    </button>
 </div>
 
 <fkt-select
-    label="Assignee"
-    placeholder="Select an assignee"
-    [formControl]="assignee"
-    [options]="users"
-    labelKey="name"
-    valueKey="id"
+        [formControl]="assignee"
+        [options]="users"
+        label="Assignee"
+        labelKey="name"
+        placeholder="Select an assignee"
+        valueKey="id"
 />
 
 <app-code-output [value]="value()" title="Normalized field value"/>
@@ -331,13 +331,6 @@ export class SelectHydratedValueExampleComponent {
     display: flex;
     gap: var(--fkt-space-2xs);
     justify-content: flex-end;
-
-    --fkt-button-padding-horizontal: var(--fkt-space-xs);
-    --fkt-button-padding-vertical: var(--fkt-space-2xs);
-    --fkt-button-font-size: var(--fkt-font-size-sm);
-    --fkt-button-border-width: 1px;
-    --fkt-button-icon-font-size: var(--fkt-font-size-sm);
-    --fkt-button-rect-border-radius: var(--fkt-radius-sm);
 }
 
 app-code-output {
@@ -358,9 +351,9 @@ selection, keyboard navigation, active descendant, or form state into consumer c
 Example component: `SelectCustomContentExampleComponent`
 
 ```ts title="select-custom-content-example.component.ts"
-import { Component } from '@angular/core';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { toSignal } from '@angular/core/rxjs-interop';
+import {Component} from '@angular/core';
+import {FormControl, ReactiveFormsModule} from '@angular/forms';
+import {toSignal} from '@angular/core/rxjs-interop';
 import {
     FktSelectChipDirective,
     FktSelectComponent,
@@ -370,11 +363,11 @@ import {
     FktSelectHeaderDirective,
     FktSelectItemDirective,
 } from 'frakton-ng/select';
-import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
-import { FktIconComponent } from 'frakton-ng/icon';
-import { CallPipe } from 'frakton-ng/internal/pipes';
-import { FktTagColor, FktTagComponent } from 'frakton-ng/tag';
-import { CodeOutputComponent } from '@/components/code-output/code-output.component';
+import {FktIconComponent} from 'frakton-ng/icon';
+import {CallPipe} from 'frakton-ng/internal/pipes';
+import {FktTagColor, FktTagComponent} from 'frakton-ng/tag';
+import {CodeOutputComponent} from '@/components/code-output/code-output.component';
+import {FktButtonComponent} from "frakton-ng/button";
 
 interface Product {
     sku: string;
@@ -438,7 +431,7 @@ const PRODUCTS: Product[] = [
         FktSelectFooterDirective,
         FktSelectChipDirective,
         FktSelectEmptyDirective,
-        FktButtonLegacyComponent,
+        FktButtonComponent,
         FktIconComponent,
         CallPipe,
         FktTagComponent,
@@ -468,10 +461,12 @@ export class SelectCustomContentExampleComponent {
     protected price(raw: unknown) {
         const price = (raw as Product | null)?.price;
 
-        return price?.toLocaleString('en-US', {
-            style: 'currency',
-            currency: 'USD',
-        }) ?? '';
+        return (
+            price?.toLocaleString('en-US', {
+                style: 'currency',
+                currency: 'USD',
+            }) ?? ''
+        );
     }
 
     protected stock(raw: unknown) {
@@ -488,14 +483,14 @@ export class SelectCustomContentExampleComponent {
 
 ```html title="select-custom-content-example.component.html"
 <fkt-select
-    label="Products"
-    placeholder="Select products"
-    [formControl]="selectedProducts"
-    [options]="products"
-    labelKey="name"
-    valueKey="sku"
-    groupKey="category"
-    multiple
+        [formControl]="selectedProducts"
+        [options]="products"
+        groupKey="category"
+        label="Products"
+        labelKey="name"
+        multiple
+        placeholder="Select products"
+        valueKey="sku"
 >
     <div *fktSelectHeader class="overlay-header">
         <div>
@@ -511,16 +506,16 @@ export class SelectCustomContentExampleComponent {
     </div>
 
     <div
-        *fktSelectItem="let item; let isSelected = isSelected"
-        class="item"
-        [class.selected]="isSelected"
+            *fktSelectItem="let item; let isSelected = isSelected"
+            [class.selected]="isSelected"
+            class="item"
     >
         <img
-            class="product-image"
-            [src]="item.raw | call: image"
-            [alt]="item.label"
-            width="40"
-            height="40"
+                [alt]="item.label"
+                [src]="item.raw | call: image"
+                class="product-image"
+                height="40"
+                width="40"
         >
 
         <div class="product-info">
@@ -531,30 +526,28 @@ export class SelectCustomContentExampleComponent {
         <div class="product-meta">
             <strong>{{ item.raw | call: price }}</strong>
             <fkt-tag
-                variant="faded"
-                [color]="item.raw | call: stockColor"
-                [text]="item.raw | call: stock"
+                    [color]="item.raw | call: stockColor"
+                    [text]="item.raw | call: stock"
+                    variant="faded"
             />
         </div>
     </div>
 
     <div *fktSelectFooter class="overlay-footer">
         <span>Can't find a product?</span>
-        <fkt-button
-            text="Manage catalog"
-            icon="plus"
-            iconPosition="left"
-            theme="stroked"
-            shape="rect"
-        />
+        <button
+                fktButton
+                icon="plus"
+                label="Manage catalog">
+        </button>
     </div>
 
     <div *fktSelectChip="let item" class="custom-chip">
         <img
-            [src]="item.raw | call: image"
-            alt=""
-            width="20"
-            height="20"
+                [src]="item.raw | call: image"
+                alt=""
+                height="20"
+                width="20"
         >
         <span>{{ item.label }}</span>
         <fkt-icon name="x-circle"/>
@@ -799,22 +792,22 @@ field.
 Example component: `SelectReactiveFormsExampleComponent`
 
 ```ts title="select-reactive-forms-example.component.ts"
-import { Component, effect, inject, signal } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { toSignal } from '@angular/core/rxjs-interop';
-import { map } from 'rxjs';
-import { FktSelectComponent } from 'frakton-ng/select';
-import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
-import { CodeOutputComponent } from '@/components/code-output/code-output.component';
-import { SELECT_USERS } from '../select-demo-data';
+import {Component, effect, inject, signal} from '@angular/core';
+import {FormBuilder, ReactiveFormsModule, Validators} from '@angular/forms';
+import {toSignal} from '@angular/core/rxjs-interop';
+import {map} from 'rxjs';
+import {FktSelectComponent} from 'frakton-ng/select';
+import {CodeOutputComponent} from '@/components/code-output/code-output.component';
+import {SELECT_USERS} from '../select-demo-data';
+import {FktButtonComponent} from "frakton-ng/button";
 
 @Component({
     selector: 'app-select-reactive-forms-example',
     imports: [
         FktSelectComponent,
-        FktButtonLegacyComponent,
         ReactiveFormsModule,
         CodeOutputComponent,
+        FktButtonComponent,
     ],
     styleUrl: 'select-reactive-forms-example.component.scss',
     templateUrl: './select-reactive-forms-example.component.html',
@@ -849,20 +842,26 @@ export class SelectReactiveFormsExampleComponent {
 
 ```html title="select-reactive-forms-example.component.html"
 <div class="actions">
-    <fkt-button theme="stroked" iconPosition="left" icon="pencil" shape="rect" text="Fill" (click)="fill()"/>
-    <fkt-button theme="stroked" iconPosition="left" icon="arrow-uturn-left" shape="rect" text="Reset" (click)="reset()"/>
-    <fkt-button theme="stroked" iconPosition="left" [icon]="disabled() ? 'lock-open' : 'lock-closed'" shape="rect" [text]="disabled() ? 'Enable' : 'Disable'" (click)="disabled.set(!disabled())"/>
+    <button (click)="fill()" appearance="stroked" fktButton icon="pencil" label="Fill" shape="rounded">
+    </button>
+    <button (click)="reset()" appearance="stroked" fktButton icon="arrow-uturn-left" label="Reset"
+            shape="rounded">
+    </button>
+    <button (click)="disabled.set(!disabled())" [icon]="disabled() ? 'lock-open' : 'lock-closed'" [label]="disabled() ? 'Enable' : 'Disable'"
+            appearance="stroked"
+            fktButton shape="rounded">
+    </button>
 </div>
 
 
 <form [formGroup]="form">
     <fkt-select
-        label="Assignee"
-        placeholder="Select an assignee"
-        formControlName="assignee"
-        [options]="users"
-        labelKey="name"
-        valueKey="id"
+            [options]="users"
+            formControlName="assignee"
+            label="Assignee"
+            labelKey="name"
+            placeholder="Select an assignee"
+            valueKey="id"
     />
 </form>
 
@@ -875,13 +874,6 @@ export class SelectReactiveFormsExampleComponent {
     display: flex;
     gap: var(--fkt-space-2xs);
     justify-content: flex-end;
-
-    --fkt-button-padding-horizontal: var(--fkt-space-xs);
-    --fkt-button-padding-vertical: var(--fkt-space-2xs);
-    --fkt-button-font-size: var(--fkt-font-size-sm);
-    --fkt-button-border-width: 1px;
-    --fkt-button-icon-font-size: var(--fkt-font-size-sm);
-    --fkt-button-rect-border-radius: var(--fkt-radius-sm);
 }
 
 app-code-output {
@@ -902,18 +894,18 @@ reactive.
 Example component: `SelectSignalFormsExampleComponent`
 
 ```ts title="select-signal-forms-example.component.ts"
-import { Component, signal } from '@angular/core';
-import { disabled, form, FormField, required } from '@angular/forms/signals';
-import { FktSelectComponent } from 'frakton-ng/select';
-import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
-import { CodeOutputComponent } from '@/components/code-output/code-output.component';
-import { SELECT_USERS } from '../select-demo-data';
+import {Component, signal} from '@angular/core';
+import {disabled, form, FormField, required} from '@angular/forms/signals';
+import {FktSelectComponent} from 'frakton-ng/select';
+import {CodeOutputComponent} from '@/components/code-output/code-output.component';
+import {SELECT_USERS} from '../select-demo-data';
+import {FktButtonComponent} from "frakton-ng/button";
 
 @Component({
     selector: 'app-select-signal-forms-example',
     imports: [
         FktSelectComponent,
-        FktButtonLegacyComponent,
+        FktButtonComponent,
         FormField,
         CodeOutputComponent,
     ],
@@ -946,39 +938,39 @@ export class SelectSignalFormsExampleComponent {
 
 ```html title="select-signal-forms-example.component.html"
 <div class="actions">
-    <fkt-button
-        theme="stroked"
-        iconPosition="left"
-        icon="pencil"
-        shape="rect"
-        text="Fill"
-        (click)="fill()"
-    />
-    <fkt-button
-        theme="stroked"
-        iconPosition="left"
-        icon="arrow-uturn-left"
-        shape="rect"
-        text="Reset"
-        (click)="reset()"
-    />
-    <fkt-button
-        theme="stroked"
-        iconPosition="left"
-        icon="lock-closed"
-        shape="rect"
-        text="Toggle disabled"
-        (click)="toggleDisabled()"
-    />
+    <button
+            (click)="fill()"
+            appearance="stroked"
+            fktButton
+            icon="pencil"
+            label="Fill"
+            shape="rounded">
+    </button>
+    <button
+            (click)="reset()"
+            appearance="stroked"
+            fktButton
+            icon="arrow-uturn-left"
+            label="Reset"
+            shape="rounded">
+    </button>
+    <button
+            (click)="toggleDisabled()"
+            appearance="stroked"
+            fktButton
+            icon="lock-closed"
+            label="Toggle disabled"
+            shape="rounded">
+    </button>
 </div>
 
 <fkt-select
-    label="Assignee"
-    placeholder="Select an assignee"
-    [formField]="form.assignee"
-    [options]="users"
-    labelKey="name"
-    valueKey="id"
+        [formField]="form.assignee"
+        [options]="users"
+        label="Assignee"
+        labelKey="name"
+        placeholder="Select an assignee"
+        valueKey="id"
 />
 
 <app-code-output [value]="model()" title="Form value"/>
@@ -990,13 +982,6 @@ export class SelectSignalFormsExampleComponent {
     display: flex;
     gap: var(--fkt-space-2xs);
     justify-content: flex-end;
-
-    --fkt-button-padding-horizontal: var(--fkt-space-xs);
-    --fkt-button-padding-vertical: var(--fkt-space-2xs);
-    --fkt-button-font-size: var(--fkt-font-size-sm);
-    --fkt-button-border-width: 1px;
-    --fkt-button-icon-font-size: var(--fkt-font-size-sm);
-    --fkt-button-rect-border-radius: var(--fkt-radius-sm);
 }
 
 app-code-output {
@@ -1086,17 +1071,13 @@ message for cases that need control-specific content.
 Example component: `SelectValidationsExampleComponent`
 
 ```ts title="select-validations-example.component.ts"
-import { Component } from '@angular/core';
-import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
-import { FktSelectComponent } from 'frakton-ng/select';
-import {
-    FktErrorDirective,
-    FktFieldErrorComponent,
-    FktFieldPrefixDirective,
-} from 'frakton-ng/field';
-import { FktIconComponent } from 'frakton-ng/icon';
-import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
-import { SELECT_USERS } from '../select-demo-data';
+import {Component} from '@angular/core';
+import {FormControl, ReactiveFormsModule, Validators} from '@angular/forms';
+import {FktSelectComponent} from 'frakton-ng/select';
+import {FktErrorDirective, FktFieldErrorComponent, FktFieldPrefixDirective,} from 'frakton-ng/field';
+import {FktIconComponent} from 'frakton-ng/icon';
+import {SELECT_USERS} from '../select-demo-data';
+import {FktButtonComponent} from "frakton-ng/button";
 
 @Component({
     selector: 'app-select-validations-example',
@@ -1106,7 +1087,7 @@ import { SELECT_USERS } from '../select-demo-data';
         FktFieldErrorComponent,
         FktFieldPrefixDirective,
         FktIconComponent,
-        FktButtonLegacyComponent,
+        FktButtonComponent,
         ReactiveFormsModule,
     ],
     templateUrl: './select-validations-example.component.html',
@@ -1126,35 +1107,35 @@ export class SelectValidationsExampleComponent {
 
 ```html title="select-validations-example.component.html"
 <div class="actions">
-    <fkt-button
-        theme="stroked"
-        iconPosition="left"
-        icon="check-circle"
-        shape="rect"
-        text="Validate"
-        (click)="validate()"
-    />
+    <button
+            (click)="validate()"
+            appearance="stroked"
+            fktButton
+            icon="check-circle"
+            label="Validate"
+            shape="rounded">
+    </button>
 </div>
 
 <div class="fields">
     <fkt-select
-        label="Automatic validation"
-        placeholder="Select an assignee"
-        [formControl]="automatic"
-        [options]="users"
-        labelKey="name"
-        valueKey="id"
+            [formControl]="automatic"
+            [options]="users"
+            label="Automatic validation"
+            labelKey="name"
+            placeholder="Select an assignee"
+            valueKey="id"
     >
         <fkt-icon fktFieldPrefix name="user"/>
     </fkt-select>
 
     <fkt-select
-        label="Custom validation"
-        placeholder="Select an assignee"
-        [formControl]="custom"
-        [options]="users"
-        labelKey="name"
-        valueKey="id"
+            [formControl]="custom"
+            [options]="users"
+            label="Custom validation"
+            labelKey="name"
+            placeholder="Select an assignee"
+            valueKey="id"
     >
         <fkt-icon fktFieldPrefix name="user"/>
         <fkt-field-error fktError>
@@ -1170,13 +1151,6 @@ export class SelectValidationsExampleComponent {
     display: flex;
     gap: var(--fkt-space-2xs);
     justify-content: flex-end;
-
-    --fkt-button-padding-horizontal: var(--fkt-space-xs);
-    --fkt-button-padding-vertical: var(--fkt-space-2xs);
-    --fkt-button-font-size: var(--fkt-font-size-sm);
-    --fkt-button-border-width: 1px;
-    --fkt-button-icon-font-size: var(--fkt-font-size-sm);
-    --fkt-button-rect-border-radius: var(--fkt-radius-sm);
 }
 
 .fields {

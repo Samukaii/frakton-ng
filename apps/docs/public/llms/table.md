@@ -1420,17 +1420,22 @@ without holding every ID in memory. Pass `[totalItems]` to show the exact count 
 Example component: `TableExamplesRowSelectionComponent`
 
 ```ts title="table-examples-row-selection.component.ts"
-import { Component, computed, inject, resource, signal } from '@angular/core';
-import { FktTableColumn, FktTableComponent, FktTableSelection, FktTableSelectionDirective } from 'frakton-ng/table';
-import { FktPaginatorComponent } from 'frakton-ng/paginator';
-import { User, UsersService } from '@/stories/table/services/users.service';
-import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
-import { formatDate } from '@angular/common';
+import {Component, computed, inject, resource, signal} from '@angular/core';
+import {FktTableColumn, FktTableComponent, FktTableSelection, FktTableSelectionDirective} from 'frakton-ng/table';
+import {FktPaginatorComponent} from 'frakton-ng/paginator';
+import {User, UsersService} from '@/stories/table/services/users.service';
+import {formatDate} from '@angular/common';
+import {FktButtonComponent} from "frakton-ng/button";
 
 
 @Component({
     selector: 'app-table-examples-row-selection',
-    imports: [FktTableComponent, FktTableSelectionDirective, FktPaginatorComponent, FktButtonLegacyComponent],
+    imports: [
+        FktTableComponent,
+        FktTableSelectionDirective,
+        FktPaginatorComponent,
+        FktButtonComponent,
+    ],
     templateUrl: './table-examples-row-selection.component.html',
     styleUrl: './table-examples-row-selection.component.scss',
 })
@@ -1501,7 +1506,8 @@ export class TableExamplesRowSelectionComponent {
 <div class="toolbar">
     <span class="toolbar__label">{{ selectionLabel() }}</span>
     @if (hasSelection()) {
-        <fkt-button text="Delete selected" color="danger" size="sm" icon="trash"></fkt-button>
+        <button fktButton label="Delete selected" color="danger" icon="trash">
+        </button>
     }
 </div>
 
@@ -2107,29 +2113,16 @@ the standard single-select.
 Example component: `TableExamplesCustomFilterComponentsComponent`
 
 ```ts title="table-examples-custom-filter-components.component.ts"
-import { Component, computed, inject, resource, signal } from '@angular/core';
-import {
-    defineCells,
-    defineFilters,
-    FktTableColumn,
-    FktTableComponent,
-} from 'frakton-ng/table';
-import { FktTagComponent } from 'frakton-ng/tag';
-import { FktButtonsListComponent } from 'frakton-ng/buttons-list';
-import {
-    ProductCategoryFilters,
-    ProductsService,
-} from '@/stories/table/services/products.service';
-import { Product } from '@/stories/table/models/product';
-import {
-    CATEGORY_COLORS,
-    STATUS_COLORS,
-    STATUS_LABELS,
-} from '@/stories/table/constants/product-constants';
-import { stockColor } from '@/stories/table/utils/stock-color';
-import { CategoryMultiFilterComponent } from './filters/category-multi-filter/category-multi-filter.component';
-import { JsonPipe } from '@angular/common';
-import { FktButtonComponent } from 'frakton-ng/button';
+import {Component, computed, inject, resource, signal} from '@angular/core';
+import {defineCells, defineFilters, FktTableColumn, FktTableComponent,} from 'frakton-ng/table';
+import {FktTagComponent} from 'frakton-ng/tag';
+import {FktButtonsListComponent} from 'frakton-ng/buttons-list';
+import {ProductCategoryFilters, ProductsService,} from '@/stories/table/services/products.service';
+import {Product} from '@/stories/table/models/product';
+import {CATEGORY_COLORS, STATUS_COLORS, STATUS_LABELS,} from '@/stories/table/constants/product-constants';
+import {stockColor} from '@/stories/table/utils/stock-color';
+import {CategoryMultiFilterComponent} from './filters/category-multi-filter/category-multi-filter.component';
+import {FktButtonComponent} from 'frakton-ng/button';
 import {CodeOutputComponent} from "@/components/code-output/code-output.component";
 
 const cell = defineCells({
@@ -2141,12 +2134,7 @@ const filter = defineFilters({});
 
 @Component({
     selector: 'app-table-examples-custom-filter-components',
-    imports: [
-        FktTableComponent,
-        JsonPipe,
-        FktButtonComponent,
-        CodeOutputComponent,
-    ],
+    imports: [FktTableComponent, FktButtonComponent, CodeOutputComponent],
     templateUrl: './table-examples-custom-filter-components.component.html',
     styleUrl: './table-examples-custom-filter-components.component.scss',
 })

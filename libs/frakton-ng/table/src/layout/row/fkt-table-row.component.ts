@@ -1,22 +1,10 @@
-import {
-    booleanAttribute,
-    ChangeDetectionStrategy,
-    Component,
-    computed,
-    input,
-    output,
-} from '@angular/core';
-import {
-    FktTableClassesFn,
-    FktTableColumn,
-    FktTableSelection,
-    TableItem,
-} from '../../../fkt-table.types';
-import { FktTableCellRendererComponent } from '../../renderers/cell/fkt-table-cell-renderer.component';
-import { FktCheckboxComponent } from 'frakton-ng/checkbox';
-import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
-import { CallPipe } from 'frakton-ng/internal/pipes';
-import { injectTableContext } from '../../core/inject-table-context';
+import {booleanAttribute, ChangeDetectionStrategy, Component, computed, input, output,} from '@angular/core';
+import {FktTableClassesFn, FktTableColumn, FktTableSelection, TableItem,} from '../../../fkt-table.types';
+import {FktTableCellRendererComponent} from '../../renderers/cell/fkt-table-cell-renderer.component';
+import {FktCheckboxComponent} from 'frakton-ng/checkbox';
+import {CallPipe} from 'frakton-ng/internal/pipes';
+import {injectTableContext} from '../../core/inject-table-context';
+import {FktButtonComponent} from "frakton-ng/button";
 
 @Component({
     selector: 'tr[fktTableRow]',
@@ -25,7 +13,7 @@ import { injectTableContext } from '../../core/inject-table-context';
     imports: [
         FktTableCellRendererComponent,
         FktCheckboxComponent,
-        FktButtonLegacyComponent,
+        FktButtonComponent,
         CallPipe,
     ],
     templateUrl: './fkt-table-row.component.html',
