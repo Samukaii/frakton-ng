@@ -1,10 +1,10 @@
-import { Component, inject } from '@angular/core';
-import { FktButtonGroupComponent, FktButtonGroupOption } from 'frakton-ng/button-group';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { FktButtonComponent } from 'frakton-ng/button';
-import { FktFieldErrorComponent } from 'frakton-ng/field';
-import { map } from 'rxjs';
-import { AsyncPipe } from '@angular/common';
+import {Component, inject} from '@angular/core';
+import {FktButtonGroupComponent, FktButtonGroupOption} from 'frakton-ng/button-group';
+import {FormBuilder, ReactiveFormsModule, Validators} from '@angular/forms';
+import {FktFieldErrorComponent} from 'frakton-ng/field';
+import {map} from 'rxjs';
+import {AsyncPipe} from '@angular/common';
+import {FktButtonComponent} from "frakton-ng/button";
 
 @Component({
     selector: 'fkt-button-group-reactive-forms',
@@ -24,7 +24,11 @@ export class ButtonGroupReactiveFormsComponent {
     });
 
     protected fieldError$ = this.form.controls.filter.statusChanges.pipe(
-        map(() => this.form.controls.filter.invalid && this.form.controls.filter.touched)
+        map(
+            () =>
+                this.form.controls.filter.invalid &&
+                this.form.controls.filter.touched
+        )
     );
 
     protected options: FktButtonGroupOption[] = [

@@ -1,9 +1,9 @@
-import { Component, signal } from '@angular/core';
-import { email, FormField, form, required } from '@angular/forms/signals';
-import { FktButtonComponent } from 'frakton-ng/button';
-import { FktFieldComponent, FktFieldPrefixDirective } from 'frakton-ng/field';
-import { FktInputTextDirective } from 'frakton-ng/input-text';
-import { FktIconComponent } from 'frakton-ng/icon';
+import {Component, signal} from '@angular/core';
+import {email, form, FormField, required} from '@angular/forms/signals';
+import {FktFieldComponent, FktFieldPrefixDirective} from 'frakton-ng/field';
+import {FktInputTextDirective} from 'frakton-ng/input-text';
+import {FktIconComponent} from 'frakton-ng/icon';
+import {FktButtonComponent} from "frakton-ng/button";
 
 @Component({
     selector: 'app-field-manual-error-example',
@@ -13,7 +13,7 @@ import { FktIconComponent } from 'frakton-ng/icon';
         FktFieldComponent,
         FktInputTextDirective,
         FktIconComponent,
-        FktFieldPrefixDirective
+        FktFieldPrefixDirective,
     ],
     templateUrl: './field-manual-error-example.component.html',
     styleUrl: './field-manual-error-example.component.scss',

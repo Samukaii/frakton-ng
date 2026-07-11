@@ -2,23 +2,26 @@
     <fkt-field label="Search...">
         <fkt-icon fktFieldPrefix name="magnifying-glass"/>
         <input
-            fktInputText
-            (blur)="grid.reset()"
-            role="combobox"
-            aria-expanded="true"
-            aria-autocomplete="list"
-            [attr.aria-controls]="galleryId"
-            [attr.aria-activedescendant]=""
-            (keydown)="grid.handleKeyDown($event)" [formField]="search" placeholder="Search for the icon you want">
+                (blur)="grid.reset()"
+                (keydown)="grid.handleKeyDown($event)"
+                [attr.aria-activedescendant]=""
+                [attr.aria-controls]="galleryId"
+                [formField]="search"
+                aria-autocomplete="list"
+                aria-expanded="true"
+                fktInputText placeholder="Search for the icon you want" role="combobox">
     </fkt-field>
-    <div #gallery [id]="galleryId" role="listbox" class="gallery__item">
+    <fkt-button-group accessibleLabel="Variants" [(value)]="variant" [options]="options"/>
+
+    <div #gallery [id]="galleryId" class="gallery__item" role="listbox">
         @for (icon of filteredIcons(); track icon) {
             <fkt-icons-gallery-item
-                [descendantId]="`${galleryId}-item-${$index}`"
-                [descendantActive]="$index === grid.activeIndex()"
-                (copyIcon)="copyIconName(icon)"
-                [copied]="copiedIcons().includes(icon)"
-                [icon]="icon"
+                    (copyIcon)="copyIconName(icon)"
+                    [copied]="copiedIcons().includes(icon)"
+                    [descendantActive]="$index === grid.activeIndex()"
+                    [descendantId]="`${galleryId}-item-${$index}`"
+                    [variant]="variant()"
+                    [icon]="icon"
             />
         }
     </div>

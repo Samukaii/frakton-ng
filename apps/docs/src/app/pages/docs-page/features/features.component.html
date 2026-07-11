@@ -1,15 +1,15 @@
 <div class="header">
     <h1>{{ title() }}</h1>
 
-    <fkt-button
-        shape="rect"
-        icon="clipboard-document"
-        iconPosition="left"
-        theme="stroked"
-        [loading]="copyLoading()"
-        (click)="copyMarkdown()"
-        text="Copy markdown"
-    />
+    <button
+            (click)="clipboard.copy()"
+            [appearance]="clipboard.copied() ? 'raised' : 'stroked'"
+            [color]="clipboard.copied() ? 'success' : 'primary'"
+            [icon]="clipboard.copied() ? 'check' : 'clipboard-document'"
+            [label]="clipboard.copied() ? 'Copied': 'Copy markdown'"
+            fktButton
+            shape="rounded">
+    </button>
 </div>
 <p>{{ description() }}</p>
 
@@ -17,8 +17,8 @@
 
 @if (importStatement()) {
     <app-code-highlight
-        [text]="importStatement()!"
-        language="typescript"
+            [text]="importStatement()!"
+            language="typescript"
     />
 }
 
@@ -37,9 +37,9 @@
             <fkt-markdown [data]="story.description ?? ''"/>
         } @else {
             <app-feature
-                [storyName]="story.name"
-                [indexer]="indexer"
-                [storyResolved]="resolved"
+                    [indexer]="indexer"
+                    [storyName]="story.name"
+                    [storyResolved]="resolved"
             />
         }
     }

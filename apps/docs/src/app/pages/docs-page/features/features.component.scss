@@ -1,30 +1,23 @@
 :host {
-    width: 100%;
+  width: 100%;
 
-    fkt-story-examples {
-        width: 100%;
-        display: block;
-    }
+  fkt-story-examples {
+    width: 100%;
+    display: block;
+  }
 }
 
 
 fkt-code-highlight {
-    height: fit-content;
-    display: block;
-    border-radius: var(--fkt-radius-md);
-    overflow: hidden;
-    margin-bottom: 2rem;
+  height: fit-content;
+  display: block;
+  border-radius: var(--fkt-radius-md);
+  overflow: hidden;
+  margin-bottom: 2rem;
 }
 
 .header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    fkt-button {
-        --fkt-button-font-size: var(--fkt-font-size-sm);
-        --fkt-button-padding-horizontal: var(--fkt-space-xs);
-        --fkt-button-padding-vertical: var(--fkt-space-2xs);
-        --fkt-button-border-width: 1px;
-    }
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }

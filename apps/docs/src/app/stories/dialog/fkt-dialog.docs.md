@@ -15,7 +15,7 @@
 
 ```typescript
 import {ComponentRef, Type} from "@angular/core";
-import {FktButtonAction} from "frakton-ng/button";
+import {FktButtonAction} from 'frakton-ng/button-legacy';
 
 export interface FktDialogOptions<T> {
     component: Type<T>;                    // Angular component to display

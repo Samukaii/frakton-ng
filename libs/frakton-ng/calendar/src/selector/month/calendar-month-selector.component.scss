@@ -12,20 +12,19 @@ $month-selector-gap: var(--fkt-calendar-month-selector-gap, var(--fkt-space-sm))
 // </design-tokens>
 
 :host {
-	display: block;
-	width: 100%;
-	height: 100%;
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 .container {
-	display: grid;
-	grid-template-columns: repeat(3, minmax(0, 1fr));
-	width: 100%;
-	gap: $month-selector-gap;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  width: 100%;
+  gap: $month-selector-gap;
 
-  fkt-button {
+  button {
     width: 100%;
   }
-
 }
 

@@ -1,40 +1,41 @@
-import { Component, inject } from '@angular/core';
-import { FktButtonComponent } from 'frakton-ng/button';
-import { FktDialogService } from 'frakton-ng/dialog';
-import { FktCustomDialogDemoComponent } from '../dialog/custom-dialog-demo/fkt-custom-dialog-demo.component';
-import { FktIconName } from 'frakton-ng/icon';
+import {Component, inject} from '@angular/core';
+import {FktDialogService} from 'frakton-ng/dialog';
+import {FktCustomDialogDemoComponent} from '../dialog/custom-dialog-demo/fkt-custom-dialog-demo.component';
+import {FktIconName} from 'frakton-ng/icon';
+import {FktButtonComponent} from "frakton-ng/button";
 
 @Component({
-	selector: 'fullscreen-dialog-example',
-	templateUrl: './fkt-fullscreen-dialog-example.component.html',
-	styleUrl: './fkt-fullscreen-dialog-example.component.scss',
-	imports: [FktButtonComponent]
+    selector: 'fullscreen-dialog-example',
+    templateUrl: './fkt-fullscreen-dialog-example.component.html',
+    styleUrl: './fkt-fullscreen-dialog-example.component.scss',
+    imports: [FktButtonComponent],
 })
 export class FktFullscreenDialogExampleComponent {
-	private dialogService = inject(FktDialogService);
+    private dialogService = inject(FktDialogService);
 
-	protected openDialog() {
-		const dialogInstance = this.dialogService.open({
-			component: FktCustomDialogDemoComponent,
-			data: {
-				title: 'Full Screen Experience',
-				message: 'This dialog demonstrates full screen capabilities with responsive design.',
-				iconName: 'arrow-long-up' as FktIconName,
-				details: [
-					'Full viewport coverage',
-					'Responsive layout',
-					'Mobile-friendly design'
-				],
-				dialogConfirmed: () => dialogInstance.close()
-			},
-			panelOptions: {
-				width: '100%',
-				maxWidth: '100vw',
-				maxHeight: '100vh',
-				height: '100%',
-				padding: '2rem',
-				borderRadius: 'none'
-			}
-		});
-	}
+    protected openDialog() {
+        const dialogInstance = this.dialogService.open({
+            component: FktCustomDialogDemoComponent,
+            data: {
+                title: 'Full Screen Experience',
+                message:
+                    'This dialog demonstrates full screen capabilities with responsive design.',
+                iconName: 'arrow-long-up' as FktIconName,
+                details: [
+                    'Full viewport coverage',
+                    'Responsive layout',
+                    'Mobile-friendly design',
+                ],
+                dialogConfirmed: () => dialogInstance.close(),
+            },
+            panelOptions: {
+                width: '100%',
+                maxWidth: '100vw',
+                maxHeight: '100vh',
+                height: '100%',
+                padding: '2rem',
+                borderRadius: 'none',
+            },
+        });
+    }
 }

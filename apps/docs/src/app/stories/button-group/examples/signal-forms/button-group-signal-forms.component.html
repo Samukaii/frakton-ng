@@ -1,17 +1,18 @@
 <div>
     <fkt-button-group
-        accessibleLabel="Filter"
-        [formField]="form.filter"
-        [options]="options"
-        deselectable
+            [formField]="form.filter"
+            [options]="options"
+            accessibleLabel="Filter"
+            deselectable
     />
     <fkt-field-error
-        [show]="form.filter().invalid() && form.filter().touched()"
-        [error]="form.filter().errors()[0]?.message"
+            [error]="form.filter().errors()[0]?.message"
+            [show]="form.filter().invalid() && form.filter().touched()"
     />
 </div>
 
-<fkt-button
-    text="Disable"
-    (click)="toggleDisabled()"
-/>
+<button
+        (click)="toggleDisabled()"
+        fktButton
+        label="Disable">
+</button>

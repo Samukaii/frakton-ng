@@ -1,42 +1,48 @@
 <div class="container">
-			<div class="container__actions">
-				<fkt-button
-					text="Simple Dialog"
-					theme="stroked"
-					(click)="openSimpleDialog()"
-				></fkt-button>
+    <div class="container__actions">
+        <button
+            (click)="openSimpleDialog()"
+            appearance="stroked"
+            fktButton
+            label="Simple Dialog">
+        </button>
 
-				<fkt-button
-					text="Form Dialog"
-					theme="stroked"
-					(click)="openFormDialog()"
-				></fkt-button>
+        <button
+            (click)="openFormDialog()"
+            appearance="stroked"
+            fktButton
+            label="Form Dialog">
+        </button>
 
-				<fkt-button
-					text="Custom Dialog"
-					theme="stroked"
-					color="success"
-					(click)="openCustomDialog()"
-				></fkt-button>
+        <button
+            (click)="openCustomDialog()"
+            appearance="stroked"
+            color="success"
+            fktButton
+            label="Custom Dialog">
+        </button>
 
-				<fkt-button
-					text="Confirm Action"
-					color="danger"
-					theme="stroked"
-					(click)="openConfirmDialog()"
-				></fkt-button>
+        <button
+            (click)="openConfirmDialog()"
+            appearance="stroked"
+            color="danger"
+            fktButton
+            label="Confirm Action">
+        </button>
 
-				<fkt-button
-					text="Full Screen Dialog"
-					theme="stroked"
-					color="accent"
-					(click)="openFullScreenDialog()"
-				></fkt-button>
+        <button
+            (click)="openFullScreenDialog()"
+            appearance="stroked"
+            color="accent"
+            fktButton
+            label="Full Screen Dialog">
+        </button>
 
-				<fkt-button
-					text="Small Dialog"
-					theme="stroked"
-					(click)="openSmallDialog()"
-				></fkt-button>
-			</div>
-		</div>
+        <button
+            (click)="openSmallDialog()"
+            appearance="stroked"
+            fktButton
+            label="Small Dialog">
+        </button>
+    </div>
+</div>

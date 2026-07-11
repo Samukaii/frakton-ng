@@ -1,6 +1,7 @@
 import { Component, input } from '@angular/core';
 import { MarkdownWrapperComponent } from '@/components/markdown/markdown-wrapper.component';
 import { FktButtonComponent } from 'frakton-ng/button';
+import { createClipboardCopy } from '@/utils/create-clipboard-copy';
 
 @Component({
     selector: 'app-api-reference',
@@ -12,7 +13,7 @@ export class ApiReferenceComponent {
     title = input.required<string>();
     docs = input<string>();
 
-    protected async copyMarkdown() {
-        await navigator.clipboard.writeText(this.docs() ?? '');
-    }
+    protected readonly clipboard = createClipboardCopy(
+        async () => this.docs() ?? ''
+    );
 }

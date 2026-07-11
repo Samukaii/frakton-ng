@@ -1,28 +1,29 @@
 <fkt-field
-    [label]="context.label()"
-    [size]="context.size()"
-    [hideLabel]="context.hideLabel()"
-    [requiredMarker]="context.requiredMarker()"
-    [showError]="context.showError()"
-    [hint]="context.hint()"
-    [class.disabled]="formState?.disabled()" >
-    <div role="combobox" [attr.aria-expanded]="context.dropdownOpened()" aria-haspopup="listbox"
-         [attr.aria-controls]="context.listBoxId"
-         fktCustomField>
-        <div class="container" [class.multiple]="context.multiple()">
+        [class.disabled]="formState?.disabled()"
+        [hideLabel]="context.hideLabel()"
+        [hint]="context.hint()"
+        [label]="context.label()"
+        [requiredMarker]="context.requiredMarker()"
+        [showError]="context.showError()"
+        [size]="context.size()"
+        data-fkt-component-anchor="field">
+    <div [attr.aria-controls]="context.listBoxId" [attr.aria-expanded]="context.dropdownOpened()" aria-haspopup="listbox"
+         fktCustomField
+         role="combobox">
+        <div [class.multiple]="context.multiple()" class="container">
             <fkt-autocomplete-chips [template]="chipDirective()?.template"/>
 
             <input
-                fktAutocompleteSearch
-                [errors]="formState?.errors() ?? {errors: [], source: 'reactive'}"
-                [invalid]="formState?.invalid() ?? false"
-                [required]="formState?.required() ?? false"
-                [maxLength]="formState?.maxLength() ?? null"
-                [disabled]="formState?.disabled() ?? false"
-                (isTouchedChange)="onTouched?.()"
-                [hasValue]="hasValue()"
-                autocomplete="off"
-                [placeholder]="context.placeholder() ?? ''"
+                    (isTouchedChange)="onTouched?.()"
+                    [disabled]="formState?.disabled() ?? false"
+                    [errors]="formState?.errors() ?? {errors: [], source: 'reactive'}"
+                    [hasValue]="hasValue()"
+                    [invalid]="formState?.invalid() ?? false"
+                    [maxLength]="formState?.maxLength() ?? null"
+                    [placeholder]="context.placeholder() ?? ''"
+                    [required]="formState?.required() ?? false"
+                    autocomplete="off"
+                    fktAutocompleteSearch
             >
         </div>
     </div>

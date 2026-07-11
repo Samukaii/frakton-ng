@@ -1,45 +1,50 @@
 <div class="example-container">
-  <p class="instructions">This form demonstrates focus trap with various form controls. Tab navigation is contained within the form.</p>
+    <p class="instructions">This form demonstrates focus trap with various form controls. Tab navigation is contained
+        within the form.</p>
 
-  <form class="form-container" fktFocusTrap [preventScroll]="preventScroll()">
-    <h3>Registration Form</h3>
-    <p>All form controls are included in the focus trap cycle.</p>
+    <form [preventScroll]="preventScroll()" class="form-container" fktFocusTrap>
+        <h3>Registration Form</h3>
+        <p>All form controls are included in the focus trap cycle.</p>
 
-    <div class="form-row">
-      <fkt-field label="First Name">
-        <input fktInputText placeholder="Enter your first name" />
-      </fkt-field>
-      <fkt-field label="Last Name">
-        <input fktInputText placeholder="Enter your last name" />
-      </fkt-field>
-    </div>
+        <div class="form-row">
+            <fkt-field label="First Name">
+                <input fktInputText placeholder="Enter your first name"/>
+            </fkt-field>
+            <fkt-field label="Last Name">
+                <input fktInputText placeholder="Enter your last name"/>
+            </fkt-field>
+        </div>
 
-    <fkt-field label="Email Address">
-      <input fktInputText type="email" placeholder="Enter your email" />
-    </fkt-field>
+        <fkt-field label="Email Address">
+            <input fktInputText placeholder="Enter your email" type="email"/>
+        </fkt-field>
 
-    <fkt-field label="Password">
-      <input fktInputText type="password" placeholder="Enter your password" />
-    </fkt-field>
+        <fkt-field label="Password">
+            <input fktInputText placeholder="Enter your password" type="password"/>
+        </fkt-field>
 
-    <fkt-select
-      label="Country"
-      labelKey="label"
-      valueKey="value"
-      placeholder="Select your country"
-      [options]="countryOptions()"
-    />
+        <fkt-select
+                [options]="countryOptions()"
+                label="Country"
+                labelKey="label"
+                placeholder="Select your country"
+                valueKey="value"
+        />
 
-    <fkt-checkbox label="I agree to the terms and conditions" />
+        <fkt-checkbox label="I agree to the terms and conditions"/>
 
-    <fkt-checkbox label="Subscribe to newsletter" />
+        <fkt-checkbox label="Subscribe to newsletter"/>
 
-    <div class="form-actions">
-      <fkt-button text="Reset" theme="basic" (click)="resetForm()" />
-      <fkt-button text="Submit" color="primary" (click)="submitForm()" />
-    </div>
-  </form>
+        <div class="form-actions">
+      <button (click)="resetForm()" appearance="basic" fktButton label="Reset">
+      </button>
+            <button (click)="submitForm()" color="primary" fktButton label="Submit">
+      </button>
+        </div>
+    </form>
 
-  <p class="outside-info">Elements outside the form are not accessible via keyboard navigation when focus is trapped.</p>
-  <fkt-button text="External Button" theme="basic" />
+    <p class="outside-info">Elements outside the form are not accessible via keyboard navigation when focus is
+        trapped.</p>
+    <button appearance="basic" fktButton label="External Button">
+  </button>
 </div>

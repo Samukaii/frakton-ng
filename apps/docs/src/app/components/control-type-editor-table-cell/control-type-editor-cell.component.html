@@ -16,27 +16,12 @@
         <fkt-select
             [hideLabel]="!showLabel()"
             [value]="value()"
+            placeholder="Select a value"
+            hideClearButton
             (valueChange)="update.emit($event)"
             [label]="name()"
             [options]="options() ?? []"/>
     }
-    @case ("array") {
-        <fkt-schema-editor
-            [schema]="schema() ?? {}"
-            [value]="value()"
-            [label]="name()"
-            (valueChange)="update.emit($event)"
-        />
-    }
-    @case ("object") {
-        <fkt-schema-editor
-            [schema]="schema() ?? {}"
-            [value]="value()"
-            [label]="name()"
-            (valueChange)="update.emit($event)"
-        />
-    }
-
     @case ("icon") {
         <fkt-icon-selector
             [value]="value()"

@@ -139,7 +139,11 @@ export const Styling: Story<IconCustomizationExampleComponent> = {
  * import { FktCustomIconCatalog } from 'frakton-ng/icon';
  *
  * export const customIcons = {
- *     'company-logo': {
+ *     'github': {
+ *         viewBox: '0 0 32 32',
+ *         content: '<path fill="currentColor" d="..." />',
+ *     },
+ *     'discord': {
  *         viewBox: '0 0 32 32',
  *         content: '<path fill="currentColor" d="..." />',
  *     },

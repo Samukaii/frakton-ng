@@ -1,26 +1,14 @@
-import { Component, computed, inject, resource, signal } from '@angular/core';
-import {
-    defineCells,
-    defineFilters,
-    FktTableColumn,
-    FktTableComponent,
-} from 'frakton-ng/table';
-import { FktTagComponent } from 'frakton-ng/tag';
-import { FktButtonsListComponent } from 'frakton-ng/buttons-list';
-import {
-    ProductCategoryFilters,
-    ProductsService,
-} from '@/stories/table/services/products.service';
-import { Product } from '@/stories/table/models/product';
-import {
-    CATEGORY_COLORS,
-    STATUS_COLORS,
-    STATUS_LABELS,
-} from '@/stories/table/constants/product-constants';
-import { stockColor } from '@/stories/table/utils/stock-color';
-import { CategoryMultiFilterComponent } from './filters/category-multi-filter/category-multi-filter.component';
-import { JsonPipe } from '@angular/common';
-import { FktButtonComponent } from 'frakton-ng/button';
+import {Component, computed, inject, resource, signal} from '@angular/core';
+import {defineCells, defineFilters, FktTableColumn, FktTableComponent,} from 'frakton-ng/table';
+import {FktTagComponent} from 'frakton-ng/tag';
+import {FktButtonsListComponent} from 'frakton-ng/buttons-list';
+import {ProductCategoryFilters, ProductsService,} from '@/stories/table/services/products.service';
+import {Product} from '@/stories/table/models/product';
+import {CATEGORY_COLORS, STATUS_COLORS, STATUS_LABELS,} from '@/stories/table/constants/product-constants';
+import {stockColor} from '@/stories/table/utils/stock-color';
+import {CategoryMultiFilterComponent} from './filters/category-multi-filter/category-multi-filter.component';
+import {FktButtonComponent} from 'frakton-ng/button';
+import {CodeOutputComponent} from "@/components/code-output/code-output.component";
 
 const cell = defineCells({
     tag: FktTagComponent,
@@ -31,7 +19,7 @@ const filter = defineFilters({});
 
 @Component({
     selector: 'app-table-examples-custom-filter-components',
-    imports: [FktTableComponent, JsonPipe, FktButtonComponent],
+    imports: [FktTableComponent, FktButtonComponent, CodeOutputComponent],
     templateUrl: './table-examples-custom-filter-components.component.html',
     styleUrl: './table-examples-custom-filter-components.component.scss',
 })
@@ -114,8 +102,9 @@ export class TableExamplesCustomFilterComponentsComponent {
                             identifier: 'delete',
                             color: 'danger',
                             icon: 'trash',
-                            theme: 'basic',
-                            ariaLabel: 'Delete product',
+                            appearance: 'basic',
+                            label: 'Delete product',
+                            iconOnly: true,
                             click: () => console.log('delete', product.name),
                         },
                     ],

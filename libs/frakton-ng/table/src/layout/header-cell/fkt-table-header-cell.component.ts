@@ -1,19 +1,18 @@
-import { ChangeDetectionStrategy, Component, computed, input, model, output } from '@angular/core';
-import { NgTemplateOutlet } from '@angular/common';
-import { FktButtonComponent } from 'frakton-ng/button';
-import {
-    FktTableColumn,
-    FktTableFilterValue,
-    FktTableSortEvent,
-    TableItem,
-} from '../../../fkt-table.types';
-import { FktTableFilterRendererComponent } from '../../renderers/filter/fkt-table-filter-renderer.component';
-import { injectTableContext } from '../../core/inject-table-context';
+import {ChangeDetectionStrategy, Component, computed, input, model, output} from '@angular/core';
+import {NgTemplateOutlet} from '@angular/common';
+import {FktTableColumn, FktTableFilterValue, FktTableSortEvent, TableItem,} from '../../../fkt-table.types';
+import {FktTableFilterRendererComponent} from '../../renderers/filter/fkt-table-filter-renderer.component';
+import {injectTableContext} from '../../core/inject-table-context';
+import {FktButtonComponent} from "frakton-ng/button";
 
 @Component({
     selector: 'th[fktTableHeaderCell]',
     styleUrl: './fkt-table-header-cell.component.scss',
-    imports: [NgTemplateOutlet, FktButtonComponent, FktTableFilterRendererComponent],
+    imports: [
+        NgTemplateOutlet,
+        FktButtonComponent,
+        FktTableFilterRendererComponent,
+    ],
     templateUrl: './fkt-table-header-cell.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
     host: {
@@ -64,16 +63,23 @@ export class FktTableHeaderCellComponent<Item extends TableItem> {
         return sorting.direction === 'asc' ? 'arrow-up' : 'arrow-down';
     });
 
-    readonly pinnedOffset = computed(() =>
-        this.context.features.pinnedColumns.pinnedOffsets()[this.column().key]
+    readonly pinnedOffset = computed(
+        () =>
+            this.context.features.pinnedColumns.pinnedOffsets()[
+                this.column().key
+            ]
     );
 
-    readonly isPinnedLeftEdge = computed(() =>
-        this.context.features.pinnedColumns.pinnedEdgeKeys().left === this.column().key
+    readonly isPinnedLeftEdge = computed(
+        () =>
+            this.context.features.pinnedColumns.pinnedEdgeKeys().left ===
+            this.column().key
     );
 
-    readonly isPinnedRightEdge = computed(() =>
-        this.context.features.pinnedColumns.pinnedEdgeKeys().right === this.column().key
+    readonly isPinnedRightEdge = computed(
+        () =>
+            this.context.features.pinnedColumns.pinnedEdgeKeys().right ===
+            this.column().key
     );
 
     protected readonly columnWidth = computed(() => {

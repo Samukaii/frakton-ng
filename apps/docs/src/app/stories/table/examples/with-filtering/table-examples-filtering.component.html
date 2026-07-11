@@ -1,18 +1,19 @@
 <div class="preview">
-    <pre>{{ filters() | json }}</pre>
-    <fkt-button
-        text="Reset all filters"
+    <button
         (click)="resetFilters()"
-    />
+        fktButton
+        label="Reset all filters">
+    </button>
 </div>
 
 <fkt-table
-    [data]="products()"
-    [columns]="columns"
-    [loading]="loading()"
-    [noResults]="noResults()"
-    [defaultFilters]="defaultFilters"
-    [(filters)]="filters"
+        [(filters)]="filters"
+        [columns]="columns"
+        [data]="products()"
+        [defaultFilters]="defaultFilters"
+        [loading]="loading()"
+        [noResults]="noResults()"
 >
 </fkt-table>
 
+<app-code-output [value]="filters()" title="Filters value"/>

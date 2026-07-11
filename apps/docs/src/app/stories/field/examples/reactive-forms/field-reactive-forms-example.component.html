@@ -20,22 +20,25 @@
     </fkt-field>
 </form>
 <div class="actions">
-    <fkt-button
-        (click)="toggleDisabled()"
-        shape="rect"
-        theme="stroked"
-        [text]="(disabled$ | async) ? 'Enable' : 'Disable'"
-    />
-    <fkt-button
-        (click)="fillProfile()"
-        shape="rect"
-        theme="stroked"
-        text="Fill"
-    />
-    <fkt-button
-        (click)="reset()"
-        shape="rect"
-        theme="stroked"
-        text="Reset"
-    />
+    <button
+            (click)="toggleDisabled()"
+            [label]="(disabled$ | async) ? 'Enable' : 'Disable'"
+            appearance="stroked"
+            fktButton
+            shape="rounded">
+    </button>
+    <button
+            (click)="fillProfile()"
+            appearance="stroked"
+            fktButton
+            label="Fill"
+            shape="rounded">
+    </button>
+    <button
+            (click)="reset()"
+            appearance="stroked"
+            fktButton
+            label="Reset"
+            shape="rounded">
+    </button>
 </div>

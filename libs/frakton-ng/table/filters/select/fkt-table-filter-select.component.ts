@@ -35,22 +35,20 @@ export class FktTableFilterSelectComponent<T extends Generic | string | number>
     cancel = output();
     apply = output<string | number | null>();
 
-    internalValue = linkedSignal(this.value);
+    internalValue = linkedSignal(() => this.value() ?? null);
 
     actions: FktButtonAction[] = [
         {
             identifier: 'reset',
-            text: 'Reset',
-            shape: 'rect',
-            theme: 'stroked',
+            label: 'Reset',
+            appearance: 'stroked',
             click: () => {
                 this.apply.emit(this.defaultValue() ?? null);
             },
         },
         {
             identifier: 'apply',
-            shape: 'rect',
-            text: 'Apply',
+            label: 'Apply',
             click: () => {
                 this.apply.emit(this.internalValue());
             },

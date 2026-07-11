@@ -1,20 +1,16 @@
-import { Component, computed, DOCUMENT, inject, OnInit } from '@angular/core';
-import { FktIconComponent } from "frakton-ng/icon";
-import { ThemeService } from '../services/theme.service';
-import { FktDialogService } from 'frakton-ng/dialog';
-import { OmniSearchComponent } from '@/core/omni-search/omni-search.component';
-import { FktButtonComponent } from 'frakton-ng/button';
-import { MobileMenuService } from '@/core/services/mobile-menu.service';
-import { INLINE_SVGS } from '@/inline-svgs/inline-svgs';
-import { BypassHtmlPipe } from '@/pipes/bypass-html.pipe';
+import {Component, computed, DOCUMENT, inject, OnInit} from '@angular/core';
+import {FktIconComponent} from "frakton-ng/icon";
+import {ThemeService} from '../services/theme.service';
+import {FktDialogService} from 'frakton-ng/dialog';
+import {OmniSearchComponent} from '@/core/omni-search/omni-search.component';
+import {MobileMenuService} from '@/core/services/mobile-menu.service';
+import {INLINE_SVGS} from '@/inline-svgs/inline-svgs';
+import {BypassHtmlPipe} from '@/pipes/bypass-html.pipe';
+import {FktButtonComponent} from "frakton-ng/button";
 
 @Component({
     selector: 'fkt-toolbar',
-    imports: [
-        FktIconComponent,
-        FktButtonComponent,
-        BypassHtmlPipe
-    ],
+    imports: [FktIconComponent, FktButtonComponent, BypassHtmlPipe],
     templateUrl: './toolbar.component.html',
     styleUrl: './toolbar.component.scss',
 })
@@ -27,12 +23,14 @@ export class ToolbarComponent implements OnInit {
     protected readonly INLINE_SVGS = INLINE_SVGS;
 
     protected buttonThemeLabel = computed(() => {
-        return this.themeService.currentTheme() === 'dark' ? 'Switch to light mode' : 'Switch to dark mode';
+        return this.themeService.currentTheme() === 'dark'
+            ? 'Switch to light mode'
+            : 'Switch to dark mode';
     });
 
     protected buttonThemeIcon = computed(() => {
         return this.themeService.currentTheme() === 'dark' ? 'sun' : 'moon';
-    })
+    });
 
     protected toggleTheme() {
         this.themeService.toggleTheme();
@@ -46,7 +44,7 @@ export class ToolbarComponent implements OnInit {
 
                 this.openSearch();
             }
-        })
+        });
     }
 
     openSearch() {
@@ -55,18 +53,17 @@ export class ToolbarComponent implements OnInit {
             data: {
                 close: () => {
                     ref.close();
-                }
+                },
             },
             panelOptions: {
-                height: "90vh",
-                backgroundColor: "transparent",
-                width: "800px"
-
+                height: '90vh',
+                backgroundColor: 'transparent',
+                width: '800px',
             },
             backdropStyles: {
-                'backdropFilter': "blur(12px)",
-                'backgroundColor': "#0006"
-            }
-        })
+                backdropFilter: 'blur(12px)',
+                backgroundColor: '#0006',
+            },
+        });
     }
 }

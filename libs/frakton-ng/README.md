@@ -113,7 +113,7 @@ Add to your `angular.json`:
 ### **Zero Configuration Usage**
 
 ```typescript
-import {FktButtonComponent} from 'frakton-ng/button';
+import {FktButtonComponent} from 'frakton-ng/button-legacy';
 
 @Component({
   template: `

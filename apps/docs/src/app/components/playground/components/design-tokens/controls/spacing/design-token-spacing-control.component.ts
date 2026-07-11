@@ -1,10 +1,10 @@
-import { Component, input, linkedSignal, signal } from '@angular/core';
-import { DesignTokenItem } from '@/models/design-token-item';
-import { FktButtonComponent } from 'frakton-ng/button';
-import { FktTooltipDirective } from 'frakton-ng/tooltip';
-import { getUpdatedNumericTokenValue } from '../numeric-token-control';
-import { FktFieldComponent } from 'frakton-ng/field';
-import { FktInputTextDirective } from 'frakton-ng/input-text';
+import {Component, input, linkedSignal, signal} from '@angular/core';
+import {DesignTokenItem} from '@/models/design-token-item';
+import {FktTooltipDirective} from 'frakton-ng/tooltip';
+import {getUpdatedNumericTokenValue} from '../numeric-token-control';
+import {FktFieldComponent} from 'frakton-ng/field';
+import {FktInputTextDirective} from 'frakton-ng/input-text';
+import {FktButtonComponent} from "frakton-ng/button";
 
 type SpacingSide = 'top' | 'right' | 'bottom' | 'left';
 
@@ -48,10 +48,10 @@ const parseSpacing = (value: string): SpacingSides => {
 @Component({
     selector: 'app-design-token-spacing-control',
     imports: [
-        FktButtonComponent,
         FktFieldComponent,
         FktInputTextDirective,
         FktTooltipDirective,
+        FktButtonComponent,
     ],
     templateUrl: './design-token-spacing-control.component.html',
     styleUrl: './design-token-spacing-control.component.scss',
@@ -81,14 +81,13 @@ export class DesignTokenSpacingControlComponent {
         side: SpacingSide,
         value: string
     ) {
-        const operationByKey: Partial<
-            Record<string, 'increase' | 'decrease'>
-        > = {
-            ArrowUp: 'increase',
-            ArrowDown: 'decrease',
-            '+': 'increase',
-            '-': 'decrease',
-        };
+        const operationByKey: Partial<Record<string, 'increase' | 'decrease'>> =
+            {
+                ArrowUp: 'increase',
+                ArrowDown: 'decrease',
+                '+': 'increase',
+                '-': 'decrease',
+            };
 
         const operation = operationByKey[event.key];
 

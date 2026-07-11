@@ -69,13 +69,18 @@ export class FktColorControlComponent {
 
     async pickByEyeDropper() {
         if (!this.eyeDropper) return;
+        const abort = new AbortController();
 
         try {
-            const { sRGBHex } = await this.eyeDropper.open();
+            const { sRGBHex } = await this.eyeDropper.open({
+                signal: abort.signal,
+            });
             const asHSV = parseAnyColorToHSV(sRGBHex);
             if (asHSV) this.value.set(asHSV);
+
+            abort.abort();
         } catch {
-            /* empty */
+            abort.abort();
         }
     }
 }

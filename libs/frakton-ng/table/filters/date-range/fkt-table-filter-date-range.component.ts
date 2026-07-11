@@ -20,15 +20,14 @@ export class FktTableFilterDateRangeComponent
     apply = output<FktDateRangeValue>();
     close = output();
 
-    protected internalFrom = linkedSignal(() => this.value().from);
-    protected internalTo = linkedSignal(() => this.value().to);
+    protected internalFrom = linkedSignal(() => this.value().from ?? null);
+    protected internalTo = linkedSignal(() => this.value().to ?? null);
 
     protected actions: FktButtonAction[] = [
         {
             identifier: 'reset',
-            text: 'Reset',
-            shape: 'rect',
-            theme: 'stroked',
+            label: 'Reset',
+            appearance: 'stroked',
             click: () =>
                 this.apply.emit(
                     this.defaultValue() ?? { from: null, to: null }
@@ -36,8 +35,7 @@ export class FktTableFilterDateRangeComponent
         },
         {
             identifier: 'apply',
-            shape: 'rect',
-            text: 'Apply',
+            label: 'Apply',
             click: () =>
                 this.apply.emit({
                     from: this.internalFrom(),

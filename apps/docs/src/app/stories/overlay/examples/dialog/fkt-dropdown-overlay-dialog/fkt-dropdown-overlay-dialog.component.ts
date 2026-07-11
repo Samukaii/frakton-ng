@@ -1,21 +1,21 @@
 import { Component, input, output } from '@angular/core';
-import { DropdownOption } from '../../dropdown-overlay-example/fkt-dropdown-overlay-example.component';
+import { DropdownOption } from '@/stories/overlay/examples';
 import { FktButtonComponent } from 'frakton-ng/button';
 
 @Component({
-	selector: 'fkt-dropdown-overlay-dialog',
-	imports: [FktButtonComponent],
-	templateUrl: './fkt-dropdown-overlay-dialog.component.html',
-	styleUrl: './fkt-dropdown-overlay-dialog.component.scss'
+    selector: 'fkt-dropdown-overlay-dialog',
+    imports: [FktButtonComponent],
+    templateUrl: './fkt-dropdown-overlay-dialog.component.html',
+    styleUrl: './fkt-dropdown-overlay-dialog.component.scss',
 })
 export class FktDropdownOverlayDialogComponent {
-	options = input<DropdownOption[]>([]);
+    options = input<DropdownOption[]>([]);
 
-	onOptionSelect = output<string>();
+    onOptionSelect = output<string>();
 
-	handleOptionClick(option: DropdownOption) {
-		if (!option.disabled) {
-			this.onOptionSelect.emit(option.action);
-		}
-	}
+    handleOptionClick(option: DropdownOption) {
+        if (!option.disabled) {
+            this.onOptionSelect.emit(option.action);
+        }
+    }
 }

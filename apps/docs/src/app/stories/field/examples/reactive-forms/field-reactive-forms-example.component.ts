@@ -1,11 +1,11 @@
-import { Component, inject } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { FktButtonComponent } from 'frakton-ng/button';
-import { FktFieldComponent, FktFieldPrefixDirective } from 'frakton-ng/field';
-import { FktInputTextDirective } from 'frakton-ng/input-text';
-import { FktIconComponent } from 'frakton-ng/icon';
-import { map, startWith } from 'rxjs';
-import { AsyncPipe } from '@angular/common';
+import {Component, inject} from '@angular/core';
+import {FormBuilder, ReactiveFormsModule, Validators} from '@angular/forms';
+import {FktFieldComponent, FktFieldPrefixDirective} from 'frakton-ng/field';
+import {FktInputTextDirective} from 'frakton-ng/input-text';
+import {FktIconComponent} from 'frakton-ng/icon';
+import {map, startWith} from 'rxjs';
+import {AsyncPipe} from '@angular/common';
+import {FktButtonComponent} from "frakton-ng/button";
 
 @Component({
     selector: 'app-field-reactive-forms-example',
@@ -16,7 +16,7 @@ import { AsyncPipe } from '@angular/common';
         FktInputTextDirective,
         FktIconComponent,
         AsyncPipe,
-        FktFieldPrefixDirective
+        FktFieldPrefixDirective,
     ],
     templateUrl: './field-reactive-forms-example.component.html',
     styleUrl: './field-reactive-forms-example.component.scss',

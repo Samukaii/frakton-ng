@@ -1,20 +1,23 @@
 <div class="container">
-			<fkt-button
-				text="Contact Form"
-				theme="stroked"
-				color="primary"
-				(click)="openContactForm()"
-			/>
-			<fkt-button
-				text="User Registration"
-				theme="stroked"
-				color="success"
-				(click)="openRegistrationForm()"
-			/>
-			<fkt-button
-				text="Feedback Form"
-				theme="stroked"
-				color="accent"
-				(click)="openFeedbackForm()"
-			/>
-		</div>
+    <button
+            (click)="openContactForm()"
+            appearance="stroked"
+            color="primary"
+            fktButton
+            label="Contact Form"
+    > </button>
+    <button
+            (click)="openRegistrationForm()"
+            appearance="stroked"
+            color="success"
+            fktButton
+            label="User Registration"
+    > </button>
+    <button
+            (click)="openFeedbackForm()"
+            appearance="stroked"
+            color="accent"
+            fktButton
+            label="Feedback Form"
+    > </button>
+</div>

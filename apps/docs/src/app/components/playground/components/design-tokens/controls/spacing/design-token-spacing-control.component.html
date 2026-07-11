@@ -1,45 +1,48 @@
 <div class="preview">
-    <fkt-button
-        [ariaLabel]="expanded() ? 'Collapse spacing editor' : 'Expand spacing editor'"
-        [fktTooltip]="expanded() ? 'Collapse' : 'Edit each side'"
-        [icon]="expanded() ? 'chevron-up' : 'chevron-down'"
-        theme="basic"
-        (click)="expanded.set(!expanded())"
-    />
+    <button
+            (click)="expanded.set(!expanded())"
+            [fktTooltip]="expanded() ? 'Collapse' : 'Edit each side'"
+            [icon]="expanded() ? 'chevron-up' : 'chevron-down'"
+            [label]="expanded() ? 'Collapse spacing editor' : 'Expand spacing editor'"
+            appearance="basic"
+            size="sm"
+            fktButton
+            iconOnly>
+    </button>
     <span [title]="token().control()">{{ token().control() }}</span>
 </div>
 
-<div class="sides" [class.expanded]="expanded()">
+<div [class.expanded]="expanded()" class="sides">
     <fkt-field label="Top">
         <input
-            fktInputText
-            [value]="sides().top"
-            (keydown)="onKeydown($event, 'top', sides().top)"
-            (input)="updateSide('top', $any($event.target).value)"
+                (input)="updateSide('top', $any($event.target).value)"
+                (keydown)="onKeydown($event, 'top', sides().top)"
+                [value]="sides().top"
+                fktInputText
         />
     </fkt-field>
     <fkt-field label="Right">
         <input
-            fktInputText
-            [value]="sides().right"
-            (keydown)="onKeydown($event, 'right', sides().right)"
-            (input)="updateSide('right', $any($event.target).value)"
+                (input)="updateSide('right', $any($event.target).value)"
+                (keydown)="onKeydown($event, 'right', sides().right)"
+                [value]="sides().right"
+                fktInputText
         />
     </fkt-field>
     <fkt-field label="Bottom">
         <input
-            fktInputText
-            [value]="sides().bottom"
-            (keydown)="onKeydown($event, 'bottom', sides().bottom)"
-            (input)="updateSide('bottom', $any($event.target).value)"
+                (input)="updateSide('bottom', $any($event.target).value)"
+                (keydown)="onKeydown($event, 'bottom', sides().bottom)"
+                [value]="sides().bottom"
+                fktInputText
         />
     </fkt-field>
     <fkt-field label="Left">
         <input
-            fktInputText
-            [value]="sides().left"
-            (keydown)="onKeydown($event, 'left', sides().left)"
-            (input)="updateSide('left', $any($event.target).value)"
+                (input)="updateSide('left', $any($event.target).value)"
+                (keydown)="onKeydown($event, 'left', sides().left)"
+                [value]="sides().left"
+                fktInputText
         />
     </fkt-field>
 </div>

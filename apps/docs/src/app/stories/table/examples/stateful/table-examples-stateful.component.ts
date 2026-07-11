@@ -19,11 +19,11 @@ import {
 import { FktTagColor, FktTagComponent } from 'frakton-ng/tag';
 import { FktTableFilterTextComponent } from 'frakton-ng/table/filters/text';
 import { FktTableFilterSelectComponent } from 'frakton-ng/table/filters/select';
-import { FktButtonComponent } from 'frakton-ng/button';
 import { Order } from '@/stories/table/models/order';
 import { OrderStatus } from '@/stories/table/models/order-status';
 import { OrdersService } from '@/stories/table/services/orders.service';
 import { formatCurrency, formatDate, isPlatformServer } from '@angular/common';
+import { FktButtonComponent } from 'frakton-ng/button';
 
 const STORAGE_KEY = 'docs-table-stateful';
 
@@ -102,7 +102,10 @@ export class TableExamplesStatefulComponent {
             header: 'Order',
             width: '130px',
             cell: (order) => order.orderNumber,
-            filter: filter.text('orderNumber', { label: 'Search order' }),
+            filter: filter.text('orderNumber', {
+                label: 'Order',
+                placeholder: 'Search order',
+            }),
         },
         {
             key: 'customer',
@@ -140,6 +143,7 @@ export class TableExamplesStatefulComponent {
                 }),
             filter: filter.select('status', {
                 label: 'Status',
+                placeholder: 'Select the status',
                 labelKey: 'label',
                 valueKey: 'value',
                 options: Object.entries(STATUS_INFO).map(([value, info]) => ({

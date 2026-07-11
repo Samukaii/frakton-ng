@@ -1,20 +1,29 @@
-import { Component, computed, inject, input, linkedSignal, reflectComponentType, Signal, signal, untracked } from '@angular/core';
+import {
+    Component,
+    computed,
+    inject,
+    input,
+    linkedSignal,
+    reflectComponentType,
+    Signal,
+    signal,
+} from '@angular/core';
 import { DesignTokenItem } from '@/models/design-token-item';
 import { StoryDesignTokensItemComponent } from './item/story-design-tokens-item.component';
 import { STORY_META_TOKEN } from '@/tokens/story-meta.token';
 import { getVisibleRect } from '@/utils/get-visible-rect';
 import { FktNavigableListDirective } from 'frakton-ng/navigable-list';
-import { FktButtonComponent } from 'frakton-ng/button';
 import { FktTooltipDirective } from 'frakton-ng/tooltip';
-import { wait } from 'frakton-ng/internal/utils';
+import { FktButtonComponent } from 'frakton-ng/button';
+import { createClipboardCopy } from '@/utils/create-clipboard-copy';
 
 @Component({
     selector: 'app-story-design-tokens',
     imports: [
         StoryDesignTokensItemComponent,
         FktNavigableListDirective,
-        FktButtonComponent,
         FktTooltipDirective,
+        FktButtonComponent,
     ],
     templateUrl: './story-design-tokens.component.html',
     styleUrl: './story-design-tokens.component.scss',
@@ -23,8 +32,17 @@ export class StoryDesignTokensComponent {
     designTokens = input.required<DesignTokenItem[]>();
     parentContainer = input<HTMLElement>();
 
-    private meta = inject(STORY_META_TOKEN);
-    protected copied = signal(false);
+    private readonly meta = inject(STORY_META_TOKEN);
+
+    protected readonly clipboard = createClipboardCopy(async () => {
+        let text = '';
+
+        this.changedTokens().forEach((token) => {
+            text += `\n${token.name}: ${token.control()};`;
+        });
+
+        return text;
+    });
 
     private readonly changedTokens = computed(() =>
         this.designTokens().filter(
@@ -185,19 +203,5 @@ export class StoryDesignTokensComponent {
         this.changedTokens().forEach((token) => {
             token.control.set(token.defaultValue);
         });
-    }
-
-    protected async copyAll() {
-        let text = '';
-
-        this.changedTokens().forEach((token) => {
-            text += `\n${token.name}: ${token.control()};`;
-        });
-
-        await navigator.clipboard.writeText(text);
-
-        this.copied.set(true);
-        await wait(1000);
-        this.copied.set(false);
     }
 }

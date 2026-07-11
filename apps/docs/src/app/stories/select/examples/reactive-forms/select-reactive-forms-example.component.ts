@@ -1,19 +1,19 @@
-import { Component, effect, inject, signal } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { toSignal } from '@angular/core/rxjs-interop';
-import { map } from 'rxjs';
-import { FktSelectComponent } from 'frakton-ng/select';
-import { FktButtonComponent } from 'frakton-ng/button';
-import { CodeOutputComponent } from '@/components/code-output/code-output.component';
-import { SELECT_USERS } from '../select-demo-data';
+import {Component, effect, inject, signal} from '@angular/core';
+import {FormBuilder, ReactiveFormsModule, Validators} from '@angular/forms';
+import {toSignal} from '@angular/core/rxjs-interop';
+import {map} from 'rxjs';
+import {FktSelectComponent} from 'frakton-ng/select';
+import {CodeOutputComponent} from '@/components/code-output/code-output.component';
+import {SELECT_USERS} from '../select-demo-data';
+import {FktButtonComponent} from "frakton-ng/button";
 
 @Component({
     selector: 'app-select-reactive-forms-example',
     imports: [
         FktSelectComponent,
-        FktButtonComponent,
         ReactiveFormsModule,
         CodeOutputComponent,
+        FktButtonComponent,
     ],
     styleUrl: 'select-reactive-forms-example.component.scss',
     templateUrl: './select-reactive-forms-example.component.html',

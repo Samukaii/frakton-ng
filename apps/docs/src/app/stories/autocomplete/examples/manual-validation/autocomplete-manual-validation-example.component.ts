@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
-import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
-import { toSignal } from '@angular/core/rxjs-interop';
-import { FktAutocompleteComponent } from 'frakton-ng/autocomplete';
+import {Component} from '@angular/core';
+import {FormControl, ReactiveFormsModule, Validators} from '@angular/forms';
+import {toSignal} from '@angular/core/rxjs-interop';
+import {FktAutocompleteComponent} from 'frakton-ng/autocomplete';
 import {
     FktErrorDirective,
     FktFieldErrorComponent,
@@ -10,16 +10,15 @@ import {
     FktHintEndDirective,
     FktHintStartDirective,
 } from 'frakton-ng/field';
-import { FktButtonComponent } from 'frakton-ng/button';
-import { FktIconComponent } from 'frakton-ng/icon';
-import { CodeOutputComponent } from '@/components/code-output/code-output.component';
-import { USERS } from '../autocomplete-demo-data';
+import {FktIconComponent} from 'frakton-ng/icon';
+import {CodeOutputComponent} from '@/components/code-output/code-output.component';
+import {USERS} from '../autocomplete-demo-data';
+import {FktButtonComponent} from "frakton-ng/button";
 
 @Component({
     selector: 'app-autocomplete-manual-validation-example',
     imports: [
         FktAutocompleteComponent,
-        FktButtonComponent,
         FktErrorDirective,
         FktFieldErrorComponent,
         FktFieldPrefixDirective,
@@ -29,6 +28,7 @@ import { USERS } from '../autocomplete-demo-data';
         FktIconComponent,
         ReactiveFormsModule,
         CodeOutputComponent,
+        FktButtonComponent,
     ],
     templateUrl: './autocomplete-manual-validation-example.component.html',
     styleUrl: './autocomplete-manual-validation-example.component.scss',

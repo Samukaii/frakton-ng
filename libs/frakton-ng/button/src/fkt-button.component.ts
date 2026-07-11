@@ -1,119 +1,167 @@
-import { ChangeDetectionStrategy, Component, computed, effect, ElementRef, input, viewChild, } from '@angular/core';
-import { FktButtonIconPosition, FktButtonShape, FktButtonTheme } from './fkt-button.types';
+import { NgTemplateOutlet } from '@angular/common';
+import {
+    afterRenderEffect,
+    booleanAttribute,
+    ChangeDetectionStrategy,
+    Component,
+    computed,
+    contentChild,
+    ElementRef,
+    inject,
+    input,
+} from '@angular/core';
+import { FktLabelColor } from 'frakton-ng/core';
 import { FktIconComponent, FktIconName } from 'frakton-ng/icon';
-import { FktColor, fktColors, FktLabelColor } from 'frakton-ng/core';
-import { fktColorFormatters, getContrastTextColor, lightenColor, MarkUsed } from 'frakton-ng/internal/utils';
+import { FktButtonContentDirective } from './directives/fkt-button-content.directive';
+import { FktButtonLoadingIndicatorDirective } from './directives/fkt-button-loading-indicator.directive';
+import {
+    FktButtonColor,
+    fktButtonColors,
+    FktButtonAppearance,
+    FktButtonShape,
+    FktButtonSize,
+    FktButtonType,
+} from './fkt-button.types';
 
 @Component({
-    selector: 'fkt-button',
+    selector: 'button[fktButton],a[fktButton]',
     templateUrl: './fkt-button.component.html',
     styleUrl: './fkt-button.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [FktIconComponent],
     host: {
-        '[style.--custom-color]': "customColor()",
-        '[style.--custom-hover-color]': "customHoverColor()",
-        '[style.--custom-label-color]': "customLabelColor()",
-    }
+        class: 'fkt-button',
+        '[attr.data-fkt-appearance]': 'appearance()',
+        '[attr.data-fkt-shape]': 'shape()',
+        '[attr.data-fkt-color]': 'dataColor()',
+        '[attr.data-fkt-size]': 'size()',
+        '[attr.data-fkt-loading]': 'loading() ? "" : null',
+        '[attr.data-fkt-icon-only]': 'iconOnly() || square() ? "" : null',
+        '[attr.data-fkt-content-fill]': 'contentFill() ? "" : null',
+        '[attr.data-fkt-disabled]': 'disabled() ? "" : null',
+        '[attr.type]': 'isButtonHost() ? type() : null',
+        '[attr.disabled]': 'isButtonHost() && effectiveDisabled() ? "" : null',
+        '[attr.aria-disabled]': '!isButtonHost() && effectiveDisabled() ? "true" : null',
+        '[attr.tabindex]': '!isButtonHost() && effectiveDisabled() ? "-1" : null',
+        '[attr.aria-busy]': 'loading() ? "true" : null',
+        '[attr.aria-label]': 'ariaLabel() ?? (usesAccessibleLabelOnly() ? label() : null)',
+        '[class.loading]': 'loading()',
+        '[style.--_fkt-button-custom-color]': 'customColor()',
+        '[style.--_fkt-button-explicit-text-color]': 'explicitLabelColor()',
+    },
+    imports: [NgTemplateOutlet, FktIconComponent],
 })
 export class FktButtonComponent {
-    loading = input(false);
-    disabled = input(false);
-    text = input('');
-    ariaLabel = input('');
-    tabIndex = input<number>(0);
-    loadingText = input('');
-    color = input<FktColor>('primary');
-    labelColor = input<FktLabelColor>('auto');
-    theme = input<FktButtonTheme>('raised');
-    shape = input<FktButtonShape>('rounded');
-    icon = input<FktIconName>();
-    type = input<"submit" | "reset" | "button">("button");
-    iconPosition = input<FktButtonIconPosition>('right');
+    readonly label = input.required<string>();
+    readonly ariaLabel = input<string>();
+    readonly loading = input(false, { transform: booleanAttribute });
+    readonly loadingPosition = input<'start' | 'end'>('start');
+    readonly disabled = input(false, { transform: booleanAttribute });
+    readonly icon = input<FktIconName>();
+    readonly suffixIcon = input<FktIconName>();
+    readonly iconOnly = input(false, { transform: booleanAttribute });
+    readonly square = input(false, { transform: booleanAttribute });
+    readonly color = input<FktButtonColor>('default');
+    readonly labelColor = input<FktLabelColor>('auto');
+    readonly appearance = input<FktButtonAppearance>('default');
+    readonly shape = input<FktButtonShape>('default');
+    readonly size = input<FktButtonSize>('default');
+    readonly type = input<FktButtonType>('button');
 
-    @MarkUsed()
-    protected checkAccessibility = effect(() => {
-        if (!this.text() && !this.ariaLabel())
-            throw new Error('Accessibility error: When no text is provided, ariaLabel is required')
+    private readonly elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
+
+    protected readonly content = contentChild(FktButtonContentDirective);
+    protected readonly customLoadingIndicator = contentChild(
+        FktButtonLoadingIndicatorDirective
+    );
+
+    protected readonly disabledAnchorActivationGuard = afterRenderEffect((onCleanup) => {
+        const element = this.elementRef.nativeElement;
+
+        if (typeof element.addEventListener !== 'function') return;
+
+        const preventDisabledAnchorClick = (event: Event) => {
+            if (this.isButtonHost() || !this.effectiveDisabled()) return;
+
+            event.preventDefault();
+            event.stopImmediatePropagation();
+        };
+
+        element.addEventListener('click', preventDisabledAnchorClick, {
+            capture: true,
+        });
+
+        onCleanup(() => {
+            element.removeEventListener('click', preventDisabledAnchorClick, {
+                capture: true,
+            });
+        });
     });
 
-    private button = viewChild.required<unknown, ElementRef<HTMLButtonElement>>('button', {read: ElementRef});
-
-    focus() {
-        this.button().nativeElement.focus();
+    protected isButtonHost(): boolean {
+        return this.elementRef.nativeElement.tagName.toLowerCase() === 'button';
     }
 
-    protected buttonAriaLabel = computed(() => {
-        const loading = this.loading();
-        const loadingText = this.loadingText();
-        const ariaLabel = this.ariaLabel();
-        const text = this.text();
+    protected readonly effectiveDisabled = computed(
+        () => this.disabled() || this.loading()
+    );
 
-        if (loading)
-            return loadingText || ariaLabel || text;
+    protected readonly hasContent = computed(() => !!this.content());
 
-        return ariaLabel || text;
+    protected readonly contentFill = computed(
+        () => this.content()?.fill() ?? false
+    );
+
+    protected readonly usesAccessibleLabelOnly = computed(
+        () => this.iconOnly() || this.hasContent()
+    );
+
+    protected readonly showStartLoading = computed(() => {
+        if (!this.loading()) return false;
+
+        if (this.iconOnly()) return true;
+
+        return this.loadingPosition() === 'start';
     });
 
-    protected isCustomColor = computed(() => {
-        const color = this.color();
+    protected readonly showEndLoading = computed(
+        () => this.loading() && !this.iconOnly() && this.loadingPosition() === 'end'
+    );
 
-        const isSemanticColor = fktColors.includes(color as any);
+    protected readonly showStartIcon = computed(() => {
+        if (this.hasContent() || this.iconOnly()) return false;
 
-        if (isSemanticColor) return false;
+        if (this.loading() && this.loadingPosition() === 'start') return false;
 
-        const colorHex = fktColorFormatters.hex.parse(this.color());
-
-        if (!colorHex)
-            throw new Error(`Invalid color format for color "${color}". It must be in hex format`);
-
-        return true;
+        return !!this.icon();
     });
 
-    protected customColor = computed(() => {
-        const color = this.color();
-        const isCustomColor = this.isCustomColor();
+    protected readonly showSuffixIcon = computed(() => {
+        if (this.hasContent() || this.iconOnly()) return false;
 
-        if (!isCustomColor) return 'none';
+        if (this.loading() && this.loadingPosition() === 'end') return false;
 
-        return fktColorFormatters.hex.expand(color)!;
+        return !!this.suffixIcon();
     });
 
-    protected customHoverColor = computed(() => {
-        const color = this.customColor();
+    protected readonly isCustomColor = computed(() => {
+        return !fktButtonColors.includes(
+            this.color() as (typeof fktButtonColors)[number]
+        );
+    });
 
-        return lightenColor(color, 0.1);
-    })
+    protected readonly dataColor = computed(() =>
+        this.isCustomColor() ? 'custom' : this.color()
+    );
 
-    protected customLabelColor = computed(() => {
-        const color = this.color();
+    protected readonly customColor = computed(() => {
+        if (!this.isCustomColor()) return null;
+
+        return this.color();
+    });
+
+    protected readonly explicitLabelColor = computed(() => {
         const labelColor = this.labelColor();
-        const isCustomColor = this.isCustomColor();
 
-        if (!isCustomColor) return 'none';
-
-        if (labelColor !== "auto") return labelColor;
-
-        return getContrastTextColor(color);
+        return labelColor === 'auto' ? null : labelColor;
     });
-
-    protected classes = computed(() => {
-        const isCustom = this.isCustomColor();
-
-        let classes = '';
-
-        const color = isCustom ? 'custom' : this.color();
-
-        classes += `theme-${this.theme()}`;
-        classes += ` color-${color}`;
-        classes += ` shape-${this.shape()}`;
-
-        if (this.loading())
-            classes += ' loading';
-
-        if (!this.text() || (this.loading() && !this.loadingText()))
-            classes += ` icon-only`;
-
-        return classes;
-    })
 }

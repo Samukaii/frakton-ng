@@ -90,13 +90,6 @@ $text-color: var(--fkt-input-text-color, var(--fkt-color-neutral-900));
 
 // </design-tokens>
 
-:host {
-    --fkt-button-padding-vertical: var(--fkt-space-2xs);
-    --fkt-button-padding-horizontal: var(--fkt-space-sm);
-    --fkt-button-font-size: var(--fkt-font-size-sm);
-    --fkt-button-icon-font-size: var(--fkt-font-size-md);
-}
-
 .suffix {
     padding-right: var(--fkt-space-2xs);
 }

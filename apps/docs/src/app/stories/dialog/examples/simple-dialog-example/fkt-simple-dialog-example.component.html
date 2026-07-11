@@ -1,13 +1,15 @@
 <div class="container">
-			<fkt-button
-				text="Open Simple Dialog"
-				theme="raised"
-				(click)="openDialog()"
-			/>
-			<fkt-button
-				text="Update Message"
-				theme="stroked"
-				color="success"
-				(click)="updateMessage()"
-			/>
-		</div>
+    <button
+            (click)="openDialog()"
+            appearance="raised"
+            fktButton
+            label="Open Simple Dialog">
+    </button>
+    <button
+            (click)="updateMessage()"
+            appearance="stroked"
+            color="success"
+            fktButton
+            label="Update Message">
+    </button>
+</div>

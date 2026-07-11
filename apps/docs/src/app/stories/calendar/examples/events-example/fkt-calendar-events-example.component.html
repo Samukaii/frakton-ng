@@ -8,7 +8,8 @@
 		<div class="click-history">
 			<div class="click-history-header">
 				<h4>Click History</h4>
-				<fkt-button text="Clear" (click)="clearHistory()" [disabled]="clickHistory().length === 0"></fkt-button>
+				<button fktButton label="Clear" (click)="clearHistory()" [disabled]="clickHistory().length === 0">
+                </button>
 			</div>
 			<div class="history-items">
 				@if (clickHistory().length === 0) {

@@ -1,18 +1,18 @@
-import { Component } from '@angular/core';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { toSignal } from '@angular/core/rxjs-interop';
-import { FktButtonComponent } from 'frakton-ng/button';
-import { FktSelectComponent } from 'frakton-ng/select';
-import { CodeOutputComponent } from '@/components/code-output/code-output.component';
-import { SELECT_USERS, SelectUser } from '../select-demo-data';
+import {Component} from '@angular/core';
+import {FormControl, ReactiveFormsModule} from '@angular/forms';
+import {toSignal} from '@angular/core/rxjs-interop';
+import {FktSelectComponent} from 'frakton-ng/select';
+import {CodeOutputComponent} from '@/components/code-output/code-output.component';
+import {SELECT_USERS, SelectUser} from '../select-demo-data';
+import {FktButtonComponent} from "frakton-ng/button";
 
 @Component({
     selector: 'app-select-hydrated-value-example',
     imports: [
         FktSelectComponent,
-        FktButtonComponent,
         ReactiveFormsModule,
         CodeOutputComponent,
+        FktButtonComponent,
     ],
     templateUrl: './select-hydrated-value-example.component.html',
     styleUrl: './select-hydrated-value-example.component.scss',

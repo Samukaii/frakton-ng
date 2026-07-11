@@ -1,38 +1,38 @@
 <div class="actions">
-    <fkt-button
-        theme="stroked"
-        iconPosition="left"
-        icon="pencil"
-        shape="rect"
-        text="Fill"
-        (click)="fill()"
-    />
-    <fkt-button
-        theme="stroked"
-        iconPosition="left"
-        icon="arrow-uturn-left"
-        shape="rect"
-        text="Reset"
-        (click)="reset()"
-    />
-    <fkt-button
-        theme="stroked"
-        iconPosition="left"
-        icon="lock-closed"
-        shape="rect"
-        text="Toggle disabled"
-        (click)="toggleDisabled()"
-    />
+    <button
+            (click)="fill()"
+            appearance="stroked"
+            fktButton
+            icon="pencil"
+            label="Fill"
+            shape="rounded">
+    </button>
+    <button
+            (click)="reset()"
+            appearance="stroked"
+            fktButton
+            icon="arrow-uturn-left"
+            label="Reset"
+            shape="rounded">
+    </button>
+    <button
+            (click)="toggleDisabled()"
+            appearance="stroked"
+            fktButton
+            icon="lock-closed"
+            label="Toggle disabled"
+            shape="rounded">
+    </button>
 </div>
 
 <fkt-autocomplete
-    label="Country"
-    [formField]="form.country"
-    [options]="countries"
-    labelKey="name"
-    valueKey="code"
-    groupKey="continent"
-    localSearch
+        [formField]="form.country"
+        [options]="countries"
+        groupKey="continent"
+        label="Country"
+        labelKey="name"
+        localSearch
+        valueKey="code"
 />
 
 <app-code-output [value]="model()" title="Form value"/>

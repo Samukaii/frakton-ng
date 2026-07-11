@@ -1,29 +1,47 @@
-import { FktColor, FktLabelColor } from 'frakton-ng/core';
+import { fktColors, FktLabelColor } from 'frakton-ng/core';
 import { FktIconName } from 'frakton-ng/icon';
 
-export const fktButtonShapes = ['rounded', 'rect'] as const;
-export const fktButtonThemes = ['raised', 'stroked', 'basic'] as const;
-export const fktButtonIconPosition = ['left', 'right'] as const;
+export const fktButtonShapes = [
+    'default',
+    'pill',
+    'squircle',
+    'rounded',
+    'sharp',
+] as const;
+export const fktButtonAppearances = [
+    'default',
+    'raised',
+    'stroked',
+    'basic',
+] as const;
 
-export type FktButtonShape = typeof fktButtonShapes[number];
-export type FktButtonTheme = typeof fktButtonThemes[number];
-export type FktButtonIconPosition = typeof fktButtonIconPosition[number];
+export const fktButtonSizes = ['default', 'sm', 'md', 'lg'] as const;
+export const fktButtonTypes = ['button', 'submit', 'reset'] as const;
+export const fktButtonColors = [...fktColors, 'default'] as const;
 
-type ButtonInputs<Context = any> = {
-	loading?: boolean;
-	disabled?: boolean;
-	loadingText?: string;
-	color?: FktColor;
-	labelColor?: FktLabelColor;
-	theme?: FktButtonTheme;
-	shape?: FktButtonShape;
-	icon?: FktIconName;
-	type?: "submit" | "reset" | "button";
-	iconPosition?: FktButtonIconPosition;
-	tooltip?: string;
-	identifier: string;
-	condition?: boolean;
-	click?: (context: Context) => void
+export type FktButtonShape = (typeof fktButtonShapes)[number];
+export type FktButtonAppearance = (typeof fktButtonAppearances)[number];
+export type FktButtonTheme = FktButtonAppearance;
+export type FktButtonSize = (typeof fktButtonSizes)[number];
+export type FktButtonType = (typeof fktButtonTypes)[number];
+export type FktButtonColor = ((typeof fktButtonColors)[number]) | (string & {});
+
+
+export interface FktButtonAction<Context = unknown> {
+    identifier: string;
+    label: string;
+    iconOnly?: boolean;
+    loading?: boolean;
+    disabled?: boolean;
+    color?: FktButtonColor;
+    labelColor?: FktLabelColor;
+    appearance?: FktButtonAppearance;
+    shape?: FktButtonShape;
+    size?: FktButtonSize;
+    type?: FktButtonType;
+    tooltip?: string;
+    condition?: boolean;
+    click?: (context: Context) => void;
+    icon?: FktIconName;
+    suffixIcon?: FktIconName;
 }
-
-export type FktButtonAction<Context = any> = ButtonInputs<Context> & ({text?: string; ariaLabel: string} | {text: string; ariaLabel?: string});

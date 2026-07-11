@@ -5,22 +5,23 @@
 <header class="toolbar">
     <span class="fkt-sr-only" id=":r0:">Toolbar</span>
     <div class="logo">
-        <fkt-button
-            class="show-md"
-            color="primary"
-            (click)="mobileMenuService.toggle()"
-            theme="basic"
-            ariaLabel="Toggle menu"
-            icon="bars-3"
-        />
+        <button
+                (click)="mobileMenuService.toggle()"
+                appearance="basic"
+                class="show-md"
+                fktButton
+                icon="bars-3"
+                iconOnly
+                label="Toggle menu">
+        </button>
         <div class="logo-wrapper hide-sm">
-            <span class="logo-dark" [innerHTML]="INLINE_SVGS.fraktonLogoOneLineDark | bypassHtml"></span>
-            <span class="logo-light" [innerHTML]="INLINE_SVGS.fraktonLogoOneLineLight | bypassHtml"></span>
+            <span [innerHTML]="INLINE_SVGS.fraktonLogoOneLineDark | bypassHtml" class="logo-dark"></span>
+            <span [innerHTML]="INLINE_SVGS.fraktonLogoOneLineLight | bypassHtml" class="logo-light"></span>
         </div>
 
         <div class="logo-wrapper show-sm">
-            <span class="logo-dark" [innerHTML]="INLINE_SVGS.fraktonLogoSymbolDark | bypassHtml"></span>
-            <span class="logo-light" [innerHTML]="INLINE_SVGS.fraktonLogoSymbolLight | bypassHtml"></span>
+            <span [innerHTML]="INLINE_SVGS.fraktonLogoSymbolDark | bypassHtml" class="logo-dark"></span>
+            <span [innerHTML]="INLINE_SVGS.fraktonLogoSymbolLight | bypassHtml" class="logo-light"></span>
         </div>
 
         <span class="toolbar__version-tag hide-sm">
@@ -41,17 +42,18 @@
             </div>
         </button>
 
-        <button class="tool hide-2xs" [attr.aria-label]="buttonThemeLabel()" (click)="toggleTheme()">
-            <fkt-icon [name]="buttonThemeIcon()"/>
+        <button (click)="toggleTheme()" appearance="stroked" [icon]="buttonThemeIcon()" [label]="buttonThemeLabel()" class="tool hide-2xs" fktButton
+                iconOnly>
         </button>
-        <a aria-label="Discord Community" class="tool hide-2xs" href="https://discord.gg/7r6dsN4aah" target="_blank"
-           rel="noopener noreferrer">
-            <span [innerHTML]="INLINE_SVGS.discordLogo | bypassHtml"></span>
+        <a appearance="stroked" class="tool hide-2xs" fktButton href="https://discord.gg/7r6dsN4aah" icon="discord" iconOnly
+           label="Discord Community" rel="noopener noreferrer"
+           target="_blank">
         </a>
-        <a aria-label="Frakton Github" class="tool hide-2xs" href="https://github.com/Samukaii/frakton-ng" target="_blank"
-           rel="noopener noreferrer">
-            <span aria-hidden="true" [innerHTML]="INLINE_SVGS.githubLogo | bypassHtml">
-            </span>
+        <a appearance="stroked" class="tool hide-2xs" fktButton href="https://github.com/Samukaii/frakton-ng" icon="github"
+           iconOnly
+           label="Frakton Github"
+           rel="noopener noreferrer"
+           target="_blank">
         </a>
 
         <span class="toolbar__version-tag show-sm hide-xs">

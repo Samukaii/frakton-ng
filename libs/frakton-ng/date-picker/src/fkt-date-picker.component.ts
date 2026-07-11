@@ -1,16 +1,16 @@
-import { booleanAttribute, Component, computed, inject, input, model } from '@angular/core';
-import { dateFormatter } from 'frakton-ng/forms';
-import { FktOverlayRef, FktOverlayService } from 'frakton-ng/overlay';
-import { FktDatePickerModalComponent } from './modal/fkt-date-picker-modal.component';
-import { isValidDateString, MarkUsed, outsideClickEffect, transformedSignal } from 'frakton-ng/internal/utils';
-import { FktGeometryPosition } from 'frakton-ng/internal/types';
-import { FktButtonComponent } from 'frakton-ng/button';
-import { FormValueControl, ValidationError, WithOptionalFieldTree } from '@angular/forms/signals';
-import { FktFieldComponent, FktFieldSuffixDirective } from 'frakton-ng/field';
-import { FktInputTextDirective } from 'frakton-ng/input-text';
-import { injectCompatFormStateWithoutNative } from 'frakton-ng/internal/di';
-import { FktDateMaskDirective } from './directives/fkt-date-mask.directive';
-import { FormsModule } from '@angular/forms';
+import {booleanAttribute, Component, inject, input, model} from '@angular/core';
+import {dateFormatter} from 'frakton-ng/forms';
+import {FktOverlayRef, FktOverlayService} from 'frakton-ng/overlay';
+import {FktDatePickerModalComponent} from './modal/fkt-date-picker-modal.component';
+import {isValidDateString, MarkUsed, outsideClickEffect, transformedSignal} from 'frakton-ng/internal/utils';
+import {FktGeometryPosition} from 'frakton-ng/internal/types';
+import {FktButtonComponent} from 'frakton-ng/button';
+import {FormValueControl, ValidationError, WithOptionalFieldTree} from '@angular/forms/signals';
+import {FktFieldComponent, FktFieldSuffixDirective} from 'frakton-ng/field';
+import {FktInputTextDirective} from 'frakton-ng/input-text';
+import {injectCompatFormStateWithoutNative} from 'frakton-ng/internal/di';
+import {FktDateMaskDirective} from './directives/fkt-date-mask.directive';
+import {FormsModule} from '@angular/forms';
 
 @Component({
     selector: 'fkt-date-picker',
@@ -100,7 +100,7 @@ export class FktDatePickerComponent
             data: {
                 currentDate: this.getCurrentDate(this.value()),
                 select: (date) => {
-                    this.transformed.set(this.formatDate(date))
+                    this.transformed.set(this.formatDate(date));
                     this.closeModal();
                 },
             },

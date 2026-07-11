@@ -1,9 +1,9 @@
-import { Component, signal } from '@angular/core';
-import { disabled, form, FormField, required } from '@angular/forms/signals';
-import { FktSelectComponent } from 'frakton-ng/select';
-import { FktButtonComponent } from 'frakton-ng/button';
-import { CodeOutputComponent } from '@/components/code-output/code-output.component';
-import { SELECT_USERS } from '../select-demo-data';
+import {Component, signal} from '@angular/core';
+import {disabled, form, FormField, required} from '@angular/forms/signals';
+import {FktSelectComponent} from 'frakton-ng/select';
+import {CodeOutputComponent} from '@/components/code-output/code-output.component';
+import {SELECT_USERS} from '../select-demo-data';
+import {FktButtonComponent} from "frakton-ng/button";
 
 @Component({
     selector: 'app-select-signal-forms-example',

@@ -1,32 +1,47 @@
-import { booleanAttribute, Component, computed, inject, input, linkedSignal, model } from '@angular/core';
-import { FktButtonGroupOption, FktButtonGroupOrientation, FktButtonGroupShape, FktButtonGroupSize } from './fkt-button-group.types';
+import {
+    booleanAttribute,
+    Component,
+    computed,
+    inject,
+    input,
+    linkedSignal,
+    model,
+} from '@angular/core';
+import {
+    FktButtonGroupOption,
+    FktButtonGroupOrientation,
+    FktButtonGroupShape,
+    FktButtonGroupSize,
+} from './fkt-button-group.types';
 import { ControlValueAccessor, NgControl } from '@angular/forms';
-import { FormValueControl, ValidationError, WithOptionalField } from '@angular/forms/signals';
+import {
+    FormValueControl,
+    ValidationError,
+    WithOptionalFieldTree,
+} from '@angular/forms/signals';
 import { FktIconComponent } from 'frakton-ng/icon';
 import { Toolbar, ToolbarWidget } from '@angular/aria/toolbar';
 
 @Component({
     selector: 'fkt-button-group',
-    imports: [
-        FktIconComponent,
-        Toolbar,
-        ToolbarWidget,
-    ],
+    imports: [FktIconComponent, Toolbar, ToolbarWidget],
     templateUrl: './fkt-button-group.component.html',
     styleUrl: './fkt-button-group.component.scss',
     host: {
-        '(click)': "markAsTouched()",
-        '[attr.aria-label]': "accessibleLabel()",
-        '[attr.aria-invalid]': "ngControl?.invalid ?? invalid()",
-        '[attr.aria-errormessage]': "errors()[0]?.message",
-        'role': 'group'
-    }
+        '(click)': 'markAsTouched()',
+        '[attr.aria-label]': 'accessibleLabel()',
+        '[attr.aria-invalid]': 'ngControl?.invalid ?? invalid()',
+        '[attr.aria-errormessage]': 'errors()[0]?.message',
+        role: 'group',
+    },
 })
-export class FktButtonGroupComponent implements ControlValueAccessor, FormValueControl<string[] | string | null> {
-    value = model<string[] | string | null>(null)
-    touched = model<boolean>(false)
+export class FktButtonGroupComponent
+    implements ControlValueAccessor, FormValueControl<string[] | string | null>
+{
+    value = model<string[] | string | null>(null);
+    touched = model<boolean>(false);
     invalid = input(false);
-    errors = input<readonly WithOptionalField<ValidationError>[]>([]);
+    errors = input<readonly WithOptionalFieldTree<ValidationError>[]>([]);
     disabled = model(false);
 
     accessibleLabel = input.required<string>();
@@ -36,18 +51,21 @@ export class FktButtonGroupComponent implements ControlValueAccessor, FormValueC
     orientation = input<FktButtonGroupOrientation>('horizontal');
 
     deselectable = input(false, {
-        transform: booleanAttribute
+        transform: booleanAttribute,
     });
 
     multiple = input(false, {
-        transform: booleanAttribute
+        transform: booleanAttribute,
     });
 
     protected readonly selectedOptions = linkedSignal(() => {
         return this.parseToArray(this.value());
-    })
+    });
 
-    protected readonly ngControl = inject(NgControl, { optional: true, self: true });
+    protected readonly ngControl = inject(NgControl, {
+        optional: true,
+        self: true,
+    });
 
     constructor() {
         if (this.ngControl) this.ngControl.valueAccessor = this;
@@ -78,18 +96,25 @@ export class FktButtonGroupComponent implements ControlValueAccessor, FormValueC
         const orientation = this.orientation();
         const invalid = this.invalid();
 
-        const classes = new Set(['container', `shape-${shape}`, `size-${size}`, `orientation-${orientation}`]);
+        const classes = new Set([
+            'container',
+            `shape-${shape}`,
+            `size-${size}`,
+            `orientation-${orientation}`,
+        ]);
 
-        if(invalid) classes.add('invalid')
+        if (invalid) classes.add('invalid');
         else classes.delete('invalid');
 
         return Array.from(classes).join(' ');
-    })
+    });
 
     protected toggle(value: string) {
-        if(this.disabled()) return;
+        if (this.disabled()) return;
 
-        const result = this.multiple() ? this.getMultipleToggled(value) : this.getSingleToggled(value);
+        const result = this.multiple()
+            ? this.getMultipleToggled(value)
+            : this.getSingleToggled(value);
 
         this.applyChanges(result);
     }
@@ -97,10 +122,10 @@ export class FktButtonGroupComponent implements ControlValueAccessor, FormValueC
     private getMultipleToggled(value: string) {
         const currentValue = this.value();
 
-        if(!Array.isArray(currentValue)) return [value];
+        if (!Array.isArray(currentValue)) return [value];
 
-        if(currentValue.includes(value))
-            return currentValue.filter(item => item !== value);
+        if (currentValue.includes(value))
+            return currentValue.filter((item) => item !== value);
 
         return [...currentValue, value];
     }
@@ -108,8 +133,7 @@ export class FktButtonGroupComponent implements ControlValueAccessor, FormValueC
     private getSingleToggled(value: string) {
         const currentValue = this.value();
 
-        if(currentValue === value && this.deselectable())
-            return null;
+        if (currentValue === value && this.deselectable()) return null;
 
         return value;
     }

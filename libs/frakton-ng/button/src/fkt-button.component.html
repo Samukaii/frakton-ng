@@ -1,27 +1,40 @@
-<button
-  #button
-  [tabIndex]="tabIndex()"
-	[attr.aria-busy]="loading()"
-	[attr.aria-label]="buttonAriaLabel()"
-	[type]="type()" [disabled]="disabled() || loading()" [class]="classes()">
-	@if (loading()) {
-		<div aria-hidden="true" class="spinner"></div>
-		@if (loadingText() || text()) {
-			<p aria-hidden="true">{{ loadingText() || text() }}</p>
-		}
-	} @else {
-		<div
-			aria-hidden="true"
-			[class.icon-left]="iconPosition() === 'left'"
-			class="button-content"
-		>
-			@let iconName = icon();
-			@if (text()) {
-				<p>{{ text() }}</p>
-			}
-			@if (iconName) {
-				<fkt-icon [name]="iconName"></fkt-icon>
-			}
-		</div>
-	}
-</button>
+<span class="surface">
+    @if (showStartLoading()) {
+        <ng-container [ngTemplateOutlet]="loadingIndicator"/>
+    }
+
+    @if (showStartIcon()) {
+        <fkt-icon class="icon" [name]="icon()!" aria-hidden="true"/>
+    }
+
+    @if (iconOnly() && !loading() && icon()) {
+        <fkt-icon class="icon" [name]="icon()!" aria-hidden="true"/>
+    } @else if (hasContent()) {
+        <span class="content" aria-hidden="true">
+            <ng-content select="[fktButtonContent]"/>
+        </span>
+    } @else if (!iconOnly()) {
+        <span class="label">{{ label() }}</span>
+    }
+
+    @if (showSuffixIcon()) {
+        <fkt-icon class="icon" [name]="suffixIcon()!" aria-hidden="true"/>
+    }
+
+    @if (showEndLoading()) {
+        <ng-container [ngTemplateOutlet]="loadingIndicator"/>
+    }
+</span>
+
+<ng-template #loadingIndicator>
+    <span
+        class="loading-indicator"
+        aria-hidden="true"
+    >
+        @if (customLoadingIndicator()) {
+            <ng-content select="[fktButtonLoadingIndicator]"/>
+        } @else {
+            <span class="spinner"></span>
+        }
+    </span>
+</ng-template>

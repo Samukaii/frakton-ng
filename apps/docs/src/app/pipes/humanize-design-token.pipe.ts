@@ -6,6 +6,6 @@ import { kebabToHumanReadable } from '@/utils/kebab-to-human-readable';
 })
 export class HumanizeDesignTokenPipe implements PipeTransform {
     transform(value: string, prefix = ''): string {
-        return kebabToHumanReadable(value.replace(prefix, ''));
+        return kebabToHumanReadable(value.replace(prefix, '').replace('fkt-button-', ''));
     }
 }

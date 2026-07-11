@@ -14,7 +14,7 @@
 ## Types
 ```typescript
 import {FktIconName} from "frakton-ng/icon";
-import {FktButtonAction} from "frakton-ng/button";
+import {FktButtonAction} from 'frakton-ng/button-legacy';
 
 interface FktNoResults {
     label: string;                    // Main heading text (required)

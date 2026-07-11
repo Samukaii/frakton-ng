@@ -15,6 +15,7 @@ const FKT_ICON_SEARCH_METADATA: Partial<Record<FktIconName, string[]>> = {
     'archive-box-arrow-down': ['box', 'download', 'store'],
     'archive-box-x-mark': ['box', 'cancel', 'delete', 'remove', 'store'],
     'arrow-down-on-square': ['download'],
+    'arrow-down-circle': ['download'],
     'arrow-down-on-square-stack': ['download'],
     'arrow-down-tray': ['download'],
     'arrow-left-on-rectangle': ['logout', 'sign out'],
@@ -28,10 +29,36 @@ const FKT_ICON_SEARCH_METADATA: Partial<Record<FktIconName, string[]>> = {
     'arrow-up-tray': ['upload'],
     'arrow-uturn-left': ['back', 'previous'],
     'arrow-uturn-right': ['forward', 'next'],
-    'arrows-pointing-in': ['collapse'],
-    'arrows-pointing-out': ['expand'],
-    'arrows-right-left': ['switch'],
-    'arrows-up-down': ['switch'],
+    'arrows-pointing-in': ['collapse', 'resize', 'minimize'],
+    'arrows-pointing-in-northeast-southwest': [
+        'collapse',
+        'resize',
+        'diagonal',
+        'minimize',
+    ],
+    'arrows-pointing-in-northwest-southeast': [
+        'collapse',
+        'resize',
+        'diagonal',
+        'minimize',
+    ],
+    'arrows-pointing-out': ['expand', 'resize', 'fullscreen', 'maximize'],
+    'arrows-pointing-out-northeast-southwest': [
+        'expand',
+        'resize',
+        'diagonal',
+        'fullscreen',
+        'maximize',
+    ],
+    'arrows-pointing-out-northwest-southeast': [
+        'expand',
+        'resize',
+        'diagonal',
+        'fullscreen',
+        'maximize',
+    ],
+    'arrows-right-left': ['switch', 'reorder', 'change', 'replace'],
+    'arrows-up-down': ['switch', 'reorder', 'sort'],
     'at-symbol': ['@', 'email'],
     backspace: ['delete', 'remove'],
     backward: ['previous', 'rewind'],
@@ -164,15 +191,15 @@ const FKT_ICON_SEARCH_METADATA: Partial<Record<FktIconName, string[]>> = {
     'document-duplicate': ['clone', 'copy'],
     'document-magnifying-glass': ['search'],
     'document-minus': ['document delete'],
-    'ellipsis-horizontal': ['meatballs', 'more'],
-    'ellipsis-horizontal-circle': ['more', 'options'],
-    'ellipsis-vertical': ['kebab', 'more'],
+    'ellipsis-horizontal': ['meatballs', 'more', '3 dots'],
+    'ellipsis-horizontal-circle': ['more', 'options', '3 dots'],
+    'ellipsis-vertical': ['kebab', 'more', '3 dots'],
     envelope: ['letter', 'mail', 'message'],
     'envelope-open': ['letter', 'mail', 'message'],
     'exclamation-circle': ['caution', 'error', 'warning'],
     'exclamation-triangle': ['caution', 'error', 'warning'],
-    eye: ['public', 'seen', 'visible'],
-    'eye-slash': ['hidden', 'invisible', 'private', 'unseen'],
+    eye: ['public', 'seen', 'visible', 'password'],
+    'eye-slash': ['hidden', 'invisible', 'private', 'unseen', 'password'],
     'face-frown': ['emoji', 'sad'],
     'face-smile': ['emoji', 'happy'],
     film: ['cinema', 'movie'],
@@ -240,8 +267,8 @@ const FKT_ICON_SEARCH_METADATA: Partial<Record<FktIconName, string[]>> = {
     scissors: ['cut'],
     'shield-check': ['secure', 'shield tick'],
     'shield-exclamation': ['shield error', 'shield warning'],
-    'shopping-bag': ['cart'],
-    sparkles: ['glitter', 'stars'],
+    'shopping-bag': ['cart', 'market', 'product'],
+    sparkles: ['glitter', 'stars', 'ai', 'generate', 'magic'],
     'speaker-wave': ['audio', 'loud', 'sound', 'unmute', 'volume'],
     'speaker-x-mark': ['audio', 'mute', 'quiet', 'sound', 'volume'],
     star: ['achievement', 'favorite', 'rating', 'score'],
@@ -253,7 +280,6 @@ const FKT_ICON_SEARCH_METADATA: Partial<Record<FktIconName, string[]>> = {
     truck: ['lorry', 'vehicle'],
     user: ['account', 'person', 'profile'],
     'user-circle': ['account', 'person', 'profile'],
-    'user-plus': ['account', 'person', 'profile', 'user add'],
     'user-minus': [
         'account',
         'person',
@@ -261,13 +287,14 @@ const FKT_ICON_SEARCH_METADATA: Partial<Record<FktIconName, string[]>> = {
         'user delete',
         'user remove',
     ],
+    'user-plus': ['account', 'person', 'profile', 'user add'],
     'video-camera': ['movie', 'record'],
     'video-camera-slash': ['movie', 'record', 'stop'],
     wifi: ['connection', 'online', 'signal', 'wireless'],
     wrench: ['options', 'settings', 'tool'],
     'wrench-screwdriver': ['options', 'settings', 'tool'],
-    'x-circle': ['cancel', 'close', 'delete', 'remove', 'stop'],
-    'x-mark': ['cancel', 'close', 'delete', 'remove', 'stop'],
+    'x-circle': ['cancel', 'close', 'delete', 'remove', 'stop', 'clear'],
+    'x-mark': ['cancel', 'close', 'delete', 'remove', 'stop', 'clear'],
 };
 
 export const normalizeSearchText = (value: unknown): string => {
@@ -280,17 +307,88 @@ export const normalizeSearchText = (value: unknown): string => {
         .trim();
 };
 
+const getLevenshteinDistance = (firstWord: string, secondWord: string): number => {
+    const matrix: number[][] = [];
 
+    for (let rowIndex = 0; rowIndex <= secondWord.length; rowIndex++) {
+        matrix[rowIndex] = [rowIndex];
+    }
+    for (let columnIndex = 0; columnIndex <= firstWord.length; columnIndex++) {
+        matrix[0][columnIndex] = columnIndex;
+    }
 
-export const filterIcons = (icons: FktIconName[], searchTerm: string) => {
+    for (let rowIndex = 1; rowIndex <= secondWord.length; rowIndex++) {
+        for (let columnIndex = 1; columnIndex <= firstWord.length; columnIndex++) {
+            if (secondWord.charAt(rowIndex - 1) === firstWord.charAt(columnIndex - 1)) {
+                matrix[rowIndex][columnIndex] = matrix[rowIndex - 1][columnIndex - 1];
+            } else {
+                matrix[rowIndex][columnIndex] = Math.min(
+                    matrix[rowIndex - 1][columnIndex - 1] + 1,
+                    matrix[rowIndex][columnIndex - 1] + 1,
+                    matrix[rowIndex - 1][columnIndex] + 1
+                );
+            }
+        }
+    }
+    return matrix[secondWord.length][firstWord.length];
+};
+
+const calculateFuzzyScore = (targetText: string, searchText: string, maxAllowedDistance: number, baseWeight: number): number => {
+    const distance = getLevenshteinDistance(targetText, searchText);
+    if (distance <= maxAllowedDistance) {
+        return baseWeight - distance * (baseWeight / 3);
+    }
+    return 0;
+};
+
+const calculateIconNameScore = (iconName: string, searchText: string, maxAllowedDistance: number): number => {
+    if (iconName === searchText) return 100;
+    if (iconName.startsWith(searchText)) return 60;
+    if (iconName.includes(searchText)) return 30;
+
+    return calculateFuzzyScore(iconName, searchText, maxAllowedDistance, 30);
+};
+
+const calculateAliasesScore = (aliases: string[], searchText: string, maxAllowedDistance: number): number => {
+    let highestAliasScore = 0;
+
+    for (const alias of aliases) {
+        const normalizedAlias = alias.toLowerCase();
+        let currentAliasScore = 0;
+
+        if (normalizedAlias === searchText) currentAliasScore = 50;
+        else if (normalizedAlias.startsWith(searchText)) currentAliasScore = 25;
+        else if (normalizedAlias.includes(searchText)) currentAliasScore = 10;
+        else currentAliasScore = calculateFuzzyScore(normalizedAlias, searchText, maxAllowedDistance, 15);
+
+        highestAliasScore = Math.max(highestAliasScore, currentAliasScore);
+    }
+
+    return highestAliasScore;
+};
+
+export const filterIcons = (icons: FktIconName[], searchTerm: string): FktIconName[] => {
     const normalizedSearch = normalizeSearchText(searchTerm);
 
-    return icons.filter(icon => {
-        const aliases = FKT_ICON_SEARCH_METADATA[icon] ?? [];
+    if (!normalizedSearch) return icons;
 
-        return (
-            icon.includes(normalizedSearch) ||
-            aliases.some((alias) => alias.includes(normalizedSearch))
-        );
-    })
-}
+    const maxAllowedDistance = normalizedSearch.length > 4 ? 2 : 1;
+
+    return icons
+        .map(icon => {
+            const normalizedIcon = normalizeSearchText(icon.toLowerCase());
+            const aliases = FKT_ICON_SEARCH_METADATA[icon] ?? [];
+
+            let totalScore = calculateIconNameScore(normalizedIcon, normalizedSearch, maxAllowedDistance);
+            totalScore += calculateAliasesScore(aliases, normalizedSearch, maxAllowedDistance);
+
+            if (totalScore > 0) {
+                totalScore -= normalizedIcon.length * 0.1;
+            }
+
+            return { icon, score: totalScore };
+        })
+        .filter(scoredItem => scoredItem.score > 0)
+        .sort((firstItem, secondItem) => secondItem.score - firstItem.score)
+        .map(scoredItem => scoredItem.icon);
+};

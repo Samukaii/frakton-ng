@@ -1,0 +1,7 @@
+:host {
+    --example-brand-color: oklch(55% 0.24 292);
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--fkt-space-sm);
+}

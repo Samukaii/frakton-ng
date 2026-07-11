@@ -1,13 +1,17 @@
-<button
-	#button
-	(click)="openPicker(button)"
+<div
+    class="field"
+    [tabIndex]="0"
+    #button
+    (keydown.enter)="openPicker(button)"
+    (keydown.space)="openPicker(button)"
+    (click)="openPicker(button)"
 >
 	<div class="preview-container">
 		<div class="fkt-transparency-bg">
-			<div class="preview-circle" [style.background-color]="previewColor()">
+			<div [style.background-color]="previewColor()" class="preview-circle">
 				@if (!formattedColor()) {
-					<div class="no-color"></div>
-				}
+                    <div class="no-color"></div>
+                }
 			</div>
 		</div>
 		<div class="content">
@@ -16,25 +20,29 @@
                     {{ label() }}
                 </p>
             }
-			@if (value()) {
-				<p class="preview-value">
+            @if (value()) {
+                <p class="preview-value">
 					{{ value() }}
 				</p>
-			}
+            }
 		</div>
 	</div>
 
 
 	<div class="actions">
-        @if(showCopyButton()) {
-            <fkt-button
-                (click)="$event.stopPropagation(); copy()"
-                ariaLabel="Copy"
-                [theme]="copied() ? 'raised' :'basic'"
-                [color]="copied() ? 'success' : 'primary'"
-                [icon]="copied() ? 'check' : 'clipboard-document-list'"
-            />
+        @if (showCopyButton()) {
+            <button
+                    (click)="$event.stopPropagation(); copy()"
+                    (keydown.enter)="$event.stopPropagation()"
+                    (keydown.space)="$event.stopPropagation()"
+                    [appearance]="copied() ? 'raised' :'basic'"
+                    [color]="copied() ? 'success' : 'primary'"
+                    [icon]="copied() ? 'check' : 'clipboard-document-list'"
+                    fktButton
+                    iconOnly
+                    label="Copy">
+            </button>
         }
 	</div>
-</button>
+</div>
 

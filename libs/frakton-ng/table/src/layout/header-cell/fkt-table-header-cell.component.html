@@ -10,21 +10,24 @@
         </div>
     }
     @if (column().allowSorting) {
-        <fkt-button
-            ariaLabel="order"
-            [icon]="sortingIcon()"
-            theme="basic"
-            (click)="updateSorting()"
-        />
+        <button
+                (click)="updateSorting()"
+                [icon]="sortingIcon()"
+                appearance="basic"
+                fktButton
+                size="sm"
+                iconOnly
+                label="order">
+        </button>
     }
     @if (column().filter) {
         <fkt-table-filter-renderer
-            [column]="column()"
-            [defaultFilters]="defaultFilters()"
-            [(filters)]="filters"
+                [(filters)]="filters"
+                [column]="column()"
+                [defaultFilters]="defaultFilters()"
         />
     }
 </div>
 @if (canResize && !isLast()) {
-    <div class="table__resize-handle" (mousedown)="onResizeStart($event)"></div>
+    <div (mousedown)="onResizeStart($event)" class="table__resize-handle"></div>
 }

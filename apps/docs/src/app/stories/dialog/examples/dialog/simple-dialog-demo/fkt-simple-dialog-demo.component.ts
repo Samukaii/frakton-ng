@@ -17,8 +17,8 @@ export class FktSimpleDialogDemoComponent {
 	actions = computed((): FktButtonAction[] => [
 		{
 			identifier: 'close',
-			text: 'Close',
-			theme: 'raised',
+			label: 'Close',
+			appearance: 'raised',
 			click: () => this.closeDialog.emit()
 		}
 	]);

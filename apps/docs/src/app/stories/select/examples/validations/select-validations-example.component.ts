@@ -1,14 +1,10 @@
-import { Component } from '@angular/core';
-import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
-import { FktSelectComponent } from 'frakton-ng/select';
-import {
-    FktErrorDirective,
-    FktFieldErrorComponent,
-    FktFieldPrefixDirective,
-} from 'frakton-ng/field';
-import { FktIconComponent } from 'frakton-ng/icon';
-import { FktButtonComponent } from 'frakton-ng/button';
-import { SELECT_USERS } from '../select-demo-data';
+import {Component} from '@angular/core';
+import {FormControl, ReactiveFormsModule, Validators} from '@angular/forms';
+import {FktSelectComponent} from 'frakton-ng/select';
+import {FktErrorDirective, FktFieldErrorComponent, FktFieldPrefixDirective,} from 'frakton-ng/field';
+import {FktIconComponent} from 'frakton-ng/icon';
+import {SELECT_USERS} from '../select-demo-data';
+import {FktButtonComponent} from "frakton-ng/button";
 
 @Component({
     selector: 'app-select-validations-example',

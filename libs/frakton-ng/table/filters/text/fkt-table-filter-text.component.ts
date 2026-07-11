@@ -35,17 +35,15 @@ export class FktTableFilterTextComponent
     protected readonly actions: FktButtonAction[] = [
         {
             identifier: 'reset',
-            text: 'Reset',
-            shape: 'rect',
-            theme: 'stroked',
+            label: 'Reset',
+            appearance: 'stroked',
             click: () => {
                 this.apply.emit(this.defaultValue() ?? '');
             },
         },
         {
             identifier: 'apply',
-            shape: 'rect',
-            text: 'Apply',
+            label: 'Apply',
             click: () => {
                 this.apply.emit(this.internalValue());
             },

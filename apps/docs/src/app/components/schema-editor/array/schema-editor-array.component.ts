@@ -1,18 +1,27 @@
-import { Component, computed, input, linkedSignal, model } from '@angular/core';
+import {
+    Component,
+    computed,
+    input,
+    linkedSignal,
+    model,
+    TemplateRef,
+    viewChild,
+} from '@angular/core';
 import {
     FktTableActionFn,
     FktTableColumn,
     FktTableComponent,
 } from 'frakton-ng/table';
-import { FktButtonAction } from 'frakton-ng/button';
+import { FktButtonAction, FktButtonComponent} from 'frakton-ng/button';
 import { ArgTypeSchema, ArgTypeSchemaParsed } from '@/models/arg-type';
 import { parseSchema } from '@/components/schema-editor/utils/parse-schema';
 import { isObjectLiteral } from '@/utils/is-object-literal';
 import { cell } from '@/utils/cell-renderer';
+import { FktButtonsListComponent } from 'frakton-ng/buttons-list';
 
 @Component({
     selector: 'fkt-schema-editor-array',
-    imports: [FktTableComponent],
+    imports: [FktTableComponent, FktButtonComponent],
     templateUrl: './schema-editor-array.component.html',
     styleUrl: './schema-editor-array.component.scss',
 })
@@ -20,6 +29,8 @@ export class SchemaEditorArrayComponent {
     label = input.required<string>();
     value = model.required<any[]>();
     schema = input<ArgTypeSchema>();
+
+    actionsHeader = viewChild.required('actionsHeader', {read: TemplateRef});
 
     parsedSchema = computed(() => {
         return parseSchema(this.schema() ?? {});
@@ -50,6 +61,17 @@ export class SchemaEditorArrayComponent {
             type: value,
         }));
 
+        const actionsColumn: FktTableColumn<any> = {
+            header: this.actionsHeader,
+            key: 'actions',
+            pinned: 'right',
+            width: '50px',
+            cell: (item) =>
+                cell.custom(FktButtonsListComponent, {
+                    actions: this.actionsFn(item),
+                }),
+        };
+
         if (typeof schema === 'string')
             return [
                 {
@@ -65,6 +87,7 @@ export class SchemaEditorArrayComponent {
                             },
                         }),
                 },
+                actionsColumn,
             ] as FktTableColumn<any>[];
 
         const columns: FktTableColumn<any>[] = schemaList
@@ -87,7 +110,7 @@ export class SchemaEditorArrayComponent {
                 };
             });
 
-        return columns;
+        return [...columns, actionsColumn];
     });
 
     private getSchemaDefaultValue = (type: ArgTypeSchemaParsed[string]) => {
@@ -153,8 +176,6 @@ export class SchemaEditorArrayComponent {
     private updateLiteralValue = (id: string, value: any) => {
         const values = [...this.valueWithIds()];
 
-        console.log(values, id, value);
-
         const item = values.find((item) => item.id === id);
 
         if (!item || !('literalValue' in item)) return;
@@ -172,11 +193,18 @@ export class SchemaEditorArrayComponent {
         this.value.set(result);
     };
 
+    protected createNew() {
+        this.value.update((items) => {
+            return [this.createBlank(), ...items];
+        });
+    }
+
     protected actionsFn: FktTableActionFn<any> = (item) => [
         {
             icon: 'trash',
-            ariaLabel: 'Remover',
-            theme: 'basic',
+            label: 'Remover',
+            iconOnly: true,
+            appearance: 'basic',
             color: 'danger',
             identifier: 'remove',
             click: () => {
@@ -184,16 +212,4 @@ export class SchemaEditorArrayComponent {
             },
         },
     ];
-
-    protected addNew: FktButtonAction = {
-        icon: 'plus',
-        identifier: 'add-new',
-        color: 'accent',
-        ariaLabel: 'Add new item',
-        click: () => {
-            this.value.update((items) => {
-                return [this.createBlank(), ...items];
-            });
-        },
-    };
 }

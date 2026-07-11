@@ -1,15 +1,15 @@
 @let example = externalExample.value();
 @let files = example?.files ?? [];
 
-@if (files?.length) {
+@if (files.length) {
     @for (file of files; track file.name) {
         @if (currentTab() === $index) {
-            <div class="code" [class.expanded]="expanded()">
+            <div [class.expanded]="expanded()" class="code">
                 @if (example) {
                     <app-code-highlight
-                        noBorderRadius
-                        [text]="file.content"
                         [language]="file.language"
+                        [text]="file.content"
+                        noBorderRadius
                     />
                 }
             </div>
@@ -17,53 +17,51 @@
     }
 } @else {
     <div class="loading">
-        <fkt-spinner/>
+        <fkt-spinner />
     </div>
 }
 
 <div class="actions">
-    <span class="expand-button show-on-hover" data-fkt-theme="dark">
-        <fkt-button
-            [icon]="expanded() ? 'arrows-pointing-in' : 'arrows-pointing-out'"
-            theme="stroked"
-            shape="rounded"
-            iconPosition="left"
+    <span class="show-on-hover">
+        <button
+            (click)="expanded.set(!expanded())"
             [fktTooltip]="expanded() ? 'Collapse code' : 'Expand code'"
+            [icon]="expanded() ? 'arrows-pointing-in-northeast-southwest' : 'arrows-pointing-out-northeast-southwest'"
+            [label]="expanded() ? 'Collapse code' : 'Expand code'"
+            appearance="stroked"
+            color="white"
+            fktButton
+            iconOnly
+            shape="rounded"
             tooltipColor="white"
-            color="primary"
-            [ariaLabel]="expanded() ? 'Collapse code' : 'Expand code'"
-            (click)="expanded.set(!this.expanded())"
-        />
-
+        ></button>
     </span>
+
     <div class="languages show-on-hover">
         @for (file of files; track file.name) {
+            @let active = currentTab() === $index;
+
             <button
+                (click)="setTab($index)"
+                [appearance]="active ? 'raised' : 'stroked'"
                 [attr.data-language]="file.language"
-                [class.active]="currentTab() === $index"
-                (click)="setTab($index)">
-                @if (file.language === 'angular2html') {
-                    <p>HTML</p>
-                }
-                @if (file.language === 'typescript') {
-                    <p>TS</p>
-                }
-                @if (file.language === 'css') {
-                    <p>SCSS</p>
-                }
-            </button>
+                [color]="file | call: getLanguageColor: active"
+                [label]="file | call: getLanguageLabel"
+                fktButton
+                shape="sharp"
+            ></button>
         }
     </div>
 
-    <span class="copy-button" data-fkt-theme="dark">
-        <fkt-button
-            [icon]="copied() ? 'check':'clipboard-document'"
-            theme="stroked"
-            iconPosition="left"
-            [color]="copied() ? 'success' : 'primary'"
-            [text]="copied() ? 'Copied' : 'Copy'"
+    <span>
+        <button
             (click)="copy()"
-        />
+            [appearance]="copied() ? 'raised': 'stroked'"
+            [color]="copied() ? 'success' : 'white'"
+            [icon]="copied() ? 'check':'clipboard-document'"
+            [label]="copied() ? 'Copied' : 'Copy'"
+            fktButton
+            shape="rounded"
+        ></button>
     </span>
 </div>
-

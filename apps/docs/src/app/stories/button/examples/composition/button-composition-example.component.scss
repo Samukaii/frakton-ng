@@ -1,0 +1,27 @@
+:host {
+  display: flex;
+  align-items: center;
+  gap: var(--fkt-space-md);
+}
+
+.profile-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  align-self: stretch;
+  min-height: 2rem;
+  aspect-ratio: 1;
+
+  padding: 0 var(--fkt-space-xs);
+
+  color: var(--fkt-color-on-primary);
+  background: var(--fkt-color-primary);
+  border-radius: var(--fkt-radius-xl);
+  corner-shape: squircle;
+  font-size: var(--fkt-font-size-xs);
+  font-weight: var(--fkt-font-semibold);
+
+  line-height: 1;
+  box-sizing: border-box;
+}

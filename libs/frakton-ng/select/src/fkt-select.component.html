@@ -1,44 +1,44 @@
 <fkt-field
-    (click)="toggleDropdown()"
-    [label]="context.label()"
-    [size]="context.size()"
-    [hideLabel]="context.hideLabel()"
-    [requiredMarker]="context.requiredMarker()"
-    [showError]="context.showError()"
-    [hint]="context.hint()"
+        (click)="toggleDropdown()"
+        [hideLabel]="context.hideLabel()"
+        [hint]="context.hint()"
+        [label]="context.label()"
+        [requiredMarker]="context.requiredMarker()"
+        [showError]="context.showError()"
+        [size]="context.size()"
 >
     <div
         #select="selectControl"
+        (isTouchedChange)="onTouched?.()"
+        [activeDescendantId]="store.activeDescendant.id()"
+        [context]="context"
+        [disabled]="disabled()"
+        [errors]="formState?.errors() ?? {errors: [], source: 'reactive'}"
+        [invalid]="formState?.invalid() ?? false"
+        [isTouched]="formState?.touched() ?? false"
+        [required]="formState?.required() ?? false"
+        [selection]="selection"
+        aria-haspopup="listbox"
+        class="control"
         fktCustomField
         fktSelectControl
         fktSelectKeyboard
         role="combobox"
-        aria-haspopup="listbox"
-        [context]="context"
-        [selection]="selection"
-        [activeDescendantId]="store.activeDescendant.id()"
-        [errors]="formState?.errors() ?? {errors: [], source: 'reactive'}"
-        [invalid]="formState?.invalid() ?? false"
-        [required]="formState?.required() ?? false"
-        [disabled]="disabled()"
-        [isTouched]="formState?.touched() ?? false"
-        (isTouchedChange)="onTouched?.()"
-        class="control"
     >
         <div class="value">
             @if (context.multiple()) {
                 @for (option of selection.selectedOptions(); track option.value) {
                     <button
-                        type="button"
-                        class="chip"
-                        [disabled]="disabled()"
-                        [attr.aria-label]="`Remove option ${option.label}`"
-                        (click)="remove($event, option)"
+                            (click)="remove($event, option)"
+                            [attr.aria-label]="`Remove option ${option.label}`"
+                            [disabled]="disabled()"
+                            class="chip"
+                            type="button"
                     >
                         @if (chipDirective()) {
                             <ng-container
-                                [ngTemplateOutlet]="chipDirective()!.template"
-                                [ngTemplateOutletContext]="{$implicit: option}"
+                                    [ngTemplateOutletContext]="{$implicit: option}"
+                                    [ngTemplateOutlet]="chipDirective()!.template"
                             />
                         } @else {
                             <span>{{ option.label }}</span>
@@ -64,16 +64,20 @@
 
     <ng-container fktFieldSuffix>
         <ng-content select="[fktFieldSuffix]">
-            <fkt-button
-                suffixNoPadding
-                theme="basic"
-                class="action-button"
-                [loading]="context.loading()"
-                [disabled]="disabled()"
-                [ariaLabel]="(selection.hasValue() && !context.hideClearButton()) ? 'Clear selection' : context.dropdownOpened() ? 'Collapse options' : 'Expand options'"
-                [icon]="(selection.hasValue() && !context.hideClearButton()) ? 'x-mark' : context.dropdownOpened() ? 'chevron-up' : 'chevron-down'"
-                (click)="(selection.hasValue() && !context.hideClearButton()) ? clear($event) : toggleDropdown(); $event.stopPropagation()"
-            />
+            <button
+                    (click)="(selection.hasValue() && !context.hideClearButton()) ? clear($event) : toggleDropdown(); $event.stopPropagation()"
+                    [label]="(selection.hasValue() && !context.hideClearButton()) ? 'Clear selection' : context.dropdownOpened() ? 'Collapse options' : 'Expand options'"
+                    [attr.data-fkt-component-anchor]="(selection.hasValue() && !context.hideClearButton()) ? 'clear-action' : context.dropdownOpened() ? 'collapse-action' : 'expand-action'"
+                    iconOnly
+                    size="sm"
+                    [disabled]="disabled()"
+                    [icon]="(selection.hasValue() && !context.hideClearButton()) ? 'x-mark' : context.dropdownOpened() ? 'chevron-up' : 'chevron-down'"
+                    [loading]="context.loading()"
+                    appearance="basic"
+                    class="action-button"
+                    fktButton
+                    suffixNoPadding>
+            </button>
         </ng-content>
     </ng-container>
 

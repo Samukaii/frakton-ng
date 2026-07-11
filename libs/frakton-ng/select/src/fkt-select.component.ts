@@ -9,8 +9,8 @@ import {
     Self,
     viewChild,
 } from '@angular/core';
-import { NgTemplateOutlet } from '@angular/common';
-import { ControlValueAccessor, NgControl } from '@angular/forms';
+import {NgTemplateOutlet} from '@angular/common';
+import {ControlValueAccessor, NgControl} from '@angular/forms';
 import {
     FktErrorDirective,
     FktFieldComponent,
@@ -19,22 +19,19 @@ import {
     FktHintEndDirective,
     FktHintStartDirective,
 } from 'frakton-ng/field';
-import { FktButtonComponent } from 'frakton-ng/button';
-import { FktIconComponent } from 'frakton-ng/icon';
-import { Generic } from 'frakton-ng/internal/types';
-import { injectCompatFormStateWithoutNative } from 'frakton-ng/internal/di';
-import { FktSelectContextDirective } from './directives/fkt-select-context.directive';
-import { FktSelectSelectionDirective } from './directives/fkt-select-selection.directive';
-import { FktSelectOverlayDirective } from './directives/fkt-select-overlay.directive';
-import { FktSelectControlDirective } from './directives/fkt-select-control.directive';
-import { FktSelectKeyboardDirective } from './directives/fkt-select-keyboard.directive';
-import { FktSelectStoreService } from './services/fkt-select-store.service';
-import {
-    FktNormalizedSelectOption,
-    FktSelectWritableValue,
-} from './fkt-select.types';
-import { normalizeWrittenSelectValue } from './utils/normalize-written-select-value';
-import { FktSelectChipDirective } from './directives/public/fkt-select-chip.directive';
+import {FktIconComponent} from 'frakton-ng/icon';
+import {Generic} from 'frakton-ng/internal/types';
+import {injectCompatFormStateWithoutNative} from 'frakton-ng/internal/di';
+import {FktSelectContextDirective} from './directives/fkt-select-context.directive';
+import {FktSelectSelectionDirective} from './directives/fkt-select-selection.directive';
+import {FktSelectOverlayDirective} from './directives/fkt-select-overlay.directive';
+import {FktSelectControlDirective} from './directives/fkt-select-control.directive';
+import {FktSelectKeyboardDirective} from './directives/fkt-select-keyboard.directive';
+import {FktSelectStoreService} from './services/fkt-select-store.service';
+import {FktNormalizedSelectOption, FktSelectWritableValue,} from './fkt-select.types';
+import {normalizeWrittenSelectValue} from './utils/normalize-written-select-value';
+import {FktSelectChipDirective} from './directives/public/fkt-select-chip.directive';
+import {FktButtonComponent} from "frakton-ng/button";
 
 @Component({
     selector: 'fkt-select',
@@ -46,10 +43,10 @@ import { FktSelectChipDirective } from './directives/public/fkt-select-chip.dire
         FktHintStartDirective,
         FktHintEndDirective,
         FktErrorDirective,
-        FktButtonComponent,
         FktIconComponent,
         FktSelectControlDirective,
         FktSelectKeyboardDirective,
+        FktButtonComponent,
     ],
     templateUrl: './fkt-select.component.html',
     styleUrl: './fkt-select.component.scss',
@@ -172,5 +169,4 @@ export class FktSelectComponent<Option extends Generic | string | number>
         event.stopPropagation();
         this.selection.remove(option);
     }
-
 }

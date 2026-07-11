@@ -1,6 +1,8 @@
 <div class="actions">
-    <fkt-button text="Fill" (click)="fill()" />
-    <fkt-button text="Reset" (click)="reset()" />
+    <button (click)="fill()" fktButton label="Fill">
+    </button>
+    <button (click)="reset()" fktButton label="Reset">
+    </button>
 </div>
 
 <form [formGroup]="form">

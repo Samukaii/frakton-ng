@@ -1,849 +1,874 @@
 // <design-tokens>
+
+/* @scope Button */
+
 /*
-Gap between button content elements (icon and text).
+Gap between loading indicator, icon, label, and custom content.
 @name --fkt-button-content-gap
 @reference --fkt-space-xs
 @category Spacing
 @type size
-*/
+ */
 $content-gap: var(--fkt-button-content-gap, var(--fkt-space-xs));
 
 /*
-Padding for button (vertical and horizontal).
-@name --fkt-button-padding-vertical
-@reference --fkt-space-xs
+Padding for the selected button size. Accepts the CSS padding shorthand.
+@name --fkt-button-padding
+@reference --fkt-space-2xs --fkt-space-md
 @category Spacing
-@type size
-*/
-$padding-vertical: var(--fkt-button-padding-vertical, var(--fkt-space-xs));
+@type spacing
+ */
+$padding: var(--fkt-button-padding, var(--_fkt-button-variant-padding));
 
 /*
-Horizontal padding for button.
-@name --fkt-button-padding-horizontal
-@reference --fkt-space-md
-@category Spacing
+Font size for the selected button size.
+@name --fkt-button-font-size
+@reference --fkt-font-size-sm
+@category Typography
 @type size
-*/
-$padding-horizontal: var(--fkt-button-padding-horizontal, var(--fkt-space-md));
+ */
+$font-size: var(--fkt-button-font-size, var(--_fkt-button-variant-font-size));
 
 /*
-Border radius for button (full rounded).
-@name --fkt-button-border-radius
-@reference --fkt-radius-full
-@category Spacing
-@type size
-*/
-$border-radius: var(--fkt-button-border-radius, var(--fkt-radius-full));
-
-/*
-Border radius for rectangular button shape.
-@name --fkt-button-rect-border-radius
-@reference --fkt-space-2xs
-@category Spacing
-@type size
-*/
-$rect-border-radius: var(--fkt-button-rect-border-radius, var(--fkt-space-2xs));
-
-/*
-Font weight for button text.
+Font weight for the button label.
 @name --fkt-button-font-weight
 @reference --fkt-font-semibold
 @category Typography
 @type size
-*/
+ */
 $font-weight: var(--fkt-button-font-weight, var(--fkt-font-semibold));
 
 /*
-Font weight for icon-only buttons.
-@name --fkt-button-icon-font-weight
-@reference --fkt-font-semibold
+Text decoration applied to the button host.
+@name --fkt-button-text-decoration
+@reference none
 @category Typography
-@type size
-*/
-$icon-font-weight: var(--fkt-button-icon-font-weight, var(--fkt-font-semibold));
+@type text-decoration
+ */
+$text-decoration: var(--fkt-button-text-decoration, none);
 
 /*
-Font size for icon-only buttons.
-@name --fkt-button-icon-font-size
-@reference --fkt-font-size-xl
-@category Typography
-@type size
-*/
-$icon-font-size: var(--fkt-button-icon-font-size, var(--fkt-font-size-xl));
+Horizontal button alignment.
+@name --fkt-button-justify-content
+@reference none
+@category Alignment
+@type flex-alignment
+ */
+$justify-content: var(--fkt-button-justify-content, center);
 
 /*
-Font size for the button.
-@name --fkt-button-font-size
-@reference --fkt-font-size-md
-@category Typography
-@type size
-*/
-$font-size: var(--fkt-button-font-size, var(--fkt-font-size-md));
+Vertical button alignment.
+@name --fkt-button-align-items
+@reference none
+@category Alignment
+@type flex-alignment
+ */
+$align-items: var(--fkt-button-align-items, center);
 
 /*
-Border width for button.
+Border radius for the selected button shape.
+@name --fkt-button-border-radius
+@reference --fkt-radius-md
+@category Shape
+@type size
+ */
+$border-radius: var(--fkt-button-border-radius, var(--_fkt-button-variant-border-radius));
+
+/*
+Width of the button border.
 @name --fkt-button-border-width
-@reference 2px
-@category Spacing
-@type size
-*/
-$border-width: var(--fkt-button-border-width, 2px);
-
-/*
-Border width for icon-only buttons.
-@name --fkt-button-icon-border-width
 @reference 1px
-@category Spacing
+@category Shape
 @type size
-*/
-$icon-border-width: var(--fkt-button-icon-border-width, 1px);
+ */
+$border-width: var(--fkt-button-border-width, 1px);
 
 /*
-Spinner size for loading state.
+Size of the built-in loading spinner.
 @name --fkt-button-spinner-size
-@reference 12px
-@category Spacing
+@reference 1em
+@category Sizing
 @type size
-*/
-$spinner-size: var(--fkt-button-spinner-size, 12px);
+ */
+$spinner-size: var(--fkt-button-spinner-size, 1em);
 
 /*
-Spinner border width.
+Stroke width of the built-in loading spinner.
 @name --fkt-button-spinner-border-width
 @reference 2px
-@category Spacing
+@category Sizing
 @type size
-*/
+ */
 $spinner-border-width: var(--fkt-button-spinner-border-width, 2px);
 
 /*
-Button background disabled color.
+Focus ring color.
+@name --fkt-button-focus-outline-color
+@reference --fkt-color-focus-outline
+@category Colors
+@type color
+ */
+$focus-color: var(--fkt-button-focus-outline-color, var(--fkt-color-focus-outline));
+
+/*
+Disabled button background and border color.
 @name --fkt-button-disabled-color
 @reference --fkt-color-disabled
 @category Colors
 @type color
-*/
+ */
 $disabled-color: var(--fkt-button-disabled-color, var(--fkt-color-disabled));
 
 /*
-Outline button color when it gets focused.
-@name --fkt-color-focus-outline
-@reference --fkt-color-disabled
-@category Colors
-@type color
-*/
-$focus-color: var(--fkt-button-focus-outline-color, var(--fkt-color-focus-outline));
-
-/*
-Button text disabled color.
+Disabled button content color.
 @name --fkt-button-on-disabled-color
 @reference --fkt-color-on-disabled
 @category Colors
 @type color
-*/
-$disabled-on-color: var(--fkt-button-on-disabled-color, var(--fkt-color-on-disabled));
+ */
+$on-disabled-color: var(--fkt-button-on-disabled-color, var(--fkt-color-on-disabled));
 
 /*
-Primary button background and border color.
-@name --fkt-button-primary-color
+Base color used by the selected button appearance to derive its visual states.
+@name --fkt-button-color
 @reference --fkt-color-primary
 @category Colors
 @type color
-*/
-$primary-color: var(--fkt-button-primary-color, var(--fkt-color-primary));
+ */
+$button-color: var(
+        --fkt-button-color,
+        var(--_fkt-button-custom-color, var(--_fkt-button-variant-color))
+);
 
 /*
-Primary button text and icon color.
-@name --fkt-button-on-primary-color
-@reference --fkt-color-on-primary
+Text and content color for the normal state. Defaults to an automatically derived contrast color.
+@name --fkt-button-text-color
+@reference auto
 @category Colors
 @type color
-*/
-$on-primary-color: var(--fkt-button-on-primary-color, var(--fkt-color-on-primary));
+ */
+$button-text-color: var(
+        --fkt-button-text-color,
+        var(--_fkt-button-explicit-text-color, var(--_fkt-button-appearance-text-color))
+);
 
 /*
-Primary button hover background and border color.
-@name --fkt-button-primary-hover-color
-@reference --fkt-color-primary-hover
+Background color for the normal state.
+@name --fkt-button-background-color
+@reference appearance default
 @category Colors
 @type color
-*/
-$primary-hover-color: var(--fkt-button-primary-hover-color, var(--fkt-color-primary-hover));
+ */
+$button-background-color: var(--fkt-button-background-color, var(--_fkt-button-appearance-background-color));
 
 /*
-Success button translucent background color (used for basic theme hover).
-@name --fkt-button-primary-translucent-color
-@reference --fkt-color-primary-opacity-20
+Background color for the hover state.
+@name --fkt-button-hover-background-color
+@reference appearance default
 @category Colors
 @type color
-*/
-$primary-translucent-color: var(--fkt-button-primary-translucent-color, var(--fkt-color-primary-opacity-20));
-
-// Color variants - Success
-/*
-Success button background and border color.
-@name --fkt-button-success-color
-@reference --fkt-color-success
-@category Colors
-@type color
-*/
-$success-color: var(--fkt-button-success-color, var(--fkt-color-success));
+ */
+$button-hover-background-color: var(
+        --fkt-button-hover-background-color,
+        var(--_fkt-button-appearance-hover-background-color)
+);
 
 /*
-Success button text and icon color.
-@name --fkt-button-on-success-color
-@reference --fkt-color-on-success
+Background color for the active state.
+@name --fkt-button-active-background-color
+@reference appearance default
 @category Colors
 @type color
-*/
-$on-success-color: var(--fkt-button-on-success-color, var(--fkt-color-on-success));
+ */
+$button-active-background-color: var(
+        --fkt-button-active-background-color,
+        var(--_fkt-button-appearance-active-background-color)
+);
 
 /*
-Success button hover background and border color.
-@name --fkt-button-success-hover-color
-@reference --fkt-color-success-hover
+Border color for the normal state.
+@name --fkt-button-border-color
+@reference appearance default
 @category Colors
 @type color
-*/
-$success-hover-color: var(--fkt-button-success-hover-color, var(--fkt-color-success-hover));
+ */
+$button-border-color: var(--fkt-button-border-color, var(--_fkt-button-appearance-border-color));
 
 /*
-Success button translucent background color (used for basic theme hover).
-@name --fkt-button-success-translucent-color
-@reference --fkt-color-success-opacity-20
+Border color for the hover state.
+@name --fkt-button-hover-border-color
+@reference appearance default
 @category Colors
 @type color
-*/
-$success-translucent-color: var(--fkt-button-success-translucent-color, var(--fkt-color-success-opacity-20));
-
-// Color variants - Error
-/*
-Error button background and border color.
-@name --fkt-button-danger-color
-@reference --fkt-color-danger
-@category Colors
-@type color
-*/
-$danger-color: var(--fkt-button-danger-color, var(--fkt-color-danger));
+ */
+$button-hover-border-color: var(
+        --fkt-button-hover-border-color,
+        var(--_fkt-button-appearance-hover-border-color)
+);
 
 /*
-Error button text and icon color.
-@name --fkt-button-on-danger-color
-@reference --fkt-color-on-danger
+Border color for the active state.
+@name --fkt-button-active-border-color
+@reference appearance default
 @category Colors
 @type color
-*/
-$on-danger-color: var(--fkt-button-on-danger-color, var(--fkt-color-on-danger));
+ */
+$button-active-border-color: var(
+        --fkt-button-active-border-color,
+        var(--_fkt-button-appearance-active-border-color)
+);
 
 /*
-Error button hover background and border color.
-@name --fkt-button-danger-hover-color
-@reference --fkt-color-danger-hover
-@category Colors
-@type color
-*/
-$danger-hover-color: var(--fkt-button-danger-hover-color, var(--fkt-color-danger-hover));
+Box shadow for the normal state.
+@name --fkt-button-box-shadow
+@reference appearance default
+@category Effects
+@type shadow
+ */
+$button-box-shadow: var(--fkt-button-box-shadow, var(--_fkt-button-appearance-box-shadow));
 
 /*
-Danger button translucent background color (used for basic theme hover).
-@name --fkt-button-danger-translucent-color
-@reference --fkt-color-danger-opacity-20
-@category Colors
-@type color
-*/
-$danger-translucent-color: var(--fkt-button-danger-translucent-color, var(--fkt-color-danger-opacity-20));
-
-// Color variants - Warning
-/*
-Warning button background and border color.
-@name --fkt-button-warning-color
-@reference --fkt-color-warning
-@category Colors
-@type color
-*/
-$warning-color: var(--fkt-button-warning-color, var(--fkt-color-warning));
+Transition animation for button
+@name --fkt-button-transition
+@reference --fkt-transition-base
+@category Effects
+@type transition
+ */
+$button-transition: var(--fkt-button-transition, var(--fkt-transition-base));
 
 /*
-Warning button text and icon color.
-@name --fkt-button-on-warning-color
-@reference --fkt-color-on-warning
-@category Colors
-@type color
-*/
-$on-warning-color: var(--fkt-button-on-warning-color, var(--fkt-color-on-warning));
+Box shadow for the hover state.
+@name --fkt-button-hover-box-shadow
+@reference --fkt-button-box-shadow
+@category Effects
+@type shadow
+ */
+$button-hover-box-shadow: var(
+        --fkt-button-hover-box-shadow,
+        var(--fkt-button-box-shadow, var(--_fkt-button-appearance-hover-box-shadow))
+);
 
 /*
-Warning button hover background and border color.
-@name --fkt-button-warning-hover-color
-@reference --fkt-color-warning-hover
-@category Colors
-@type color
-*/
-$warning-hover-color: var(--fkt-button-warning-hover-color, var(--fkt-color-warning-hover));
-
-/*
-Warning button translucent background color (used for basic theme hover).
-@name --fkt-button-warning-translucent-color
-@reference --fkt-color-warning-opacity-20
-@category Colors
-@type color
-*/
-$warning-translucent-color: var(--fkt-button-warning-translucent-color, var(--fkt-color-warning-opacity-20));
-
-// Color variants - Info
-/*
-Info button background and border color.
-@name --fkt-button-info-color
-@reference --fkt-color-info
-@category Colors
-@type color
-*/
-$info-color: var(--fkt-button-info-color, var(--fkt-color-info));
-
-/*
-Info button text and icon color.
-@name --fkt-button-on-info-color
-@reference --fkt-color-on-info
-@category Colors
-@type color
-*/
-$on-info-color: var(--fkt-button-on-info-color, var(--fkt-color-on-info));
-
-/*
-Info button hover background and border color.
-@name --fkt-button-info-hover-color
-@reference --fkt-color-info-hover
-@category Colors
-@type color
-*/
-$info-hover-color: var(--fkt-button-info-hover-color, var(--fkt-color-info-hover));
-
-/*
-Success button translucent background color (used for basic theme hover).
-@name --fkt-button-info-translucent-color
-@reference --fkt-color-info-opacity-20
-@category Colors
-@type color
-*/
-$info-translucent-color: var(--fkt-button-info-translucent-color, var(--fkt-color-info-opacity-20));
-
-// Color variants - Accent
-/*
-Accent button background and border color.
-@name --fkt-button-accent-color
-@reference --fkt-color-accent
-@category Colors
-@type color
-*/
-$accent-color: var(--fkt-button-accent-color, var(--fkt-color-accent));
-
-/*
-Accent button text and icon color.
-@name --fkt-button-on-accent-color
-@reference --fkt-color-on-accent
-@category Colors
-@type color
-*/
-$on-accent-color: var(--fkt-button-on-accent-color, var(--fkt-color-on-accent));
-
-/*
-Accent button hover background and border color.
-@name --fkt-button-accent-hover-color
-@reference --fkt-color-accent
-@category Colors
-@type color
-*/
-$accent-hover-color: var(--fkt-button-accent-hover-color, var(--fkt-color-accent));
-
-/*
-Accent button translucent background color (used for basic theme hover).
-@name --fkt-button-accent-translucent-color
-@reference --fkt-color-accent-opacity-20
-@category Colors
-@type color
-*/
-$accent-translucent-color: var(--fkt-button-accent-translucent-color, var(--fkt-color-accent-opacity-20));
+Box shadow for the active state.
+@name --fkt-button-active-box-shadow
+@reference --fkt-button-box-shadow
+@category Effects
+@type shadow
+ */
+$button-active-box-shadow: var(
+        --fkt-button-active-box-shadow,
+        var(--fkt-button-box-shadow, var(--_fkt-button-appearance-active-box-shadow))
+);
 
 // </design-tokens>
 
+@function transparent-mix($color, $amount) {
+  @return color-mix(in oklab, $color $amount, transparent);
+}
+
+@function darken-mix($color, $amount) {
+  @return color-mix(in oklab, $color $amount, black);
+}
+
+@function color-contrast($color) {
+  @return color(
+          from $color xyz var(--_fkt-button-auto-text-channel) var(--_fkt-button-auto-text-channel) var(--_fkt-button-auto-text-channel)
+    / 1
+  );
+}
 
 :host {
-	display: block;
-	width: fit-content;
+  --_fkt-button-variant-padding: var(--fkt-space-inset-3xs) var(--fkt-space-inset-2xs);
+  --_fkt-button-variant-font-size: var(--fkt-font-size-sm);
+  --_fkt-button-variant-border-radius: var(--fkt-radius-md);
+  --_fkt-button-variant-color: var(--fkt-color-primary);
+
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  appearance: none;
+  container-type: normal;
+  font: inherit;
+  line-height: 1;
+  text-align: center;
+  text-decoration: $text-decoration;
+  white-space: nowrap;
+  cursor: pointer;
+
+  &:focus-visible {
+    outline: none;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+
+  &[data-fkt-loading]:not([data-fkt-disabled]) {
+    opacity: .9;
+    cursor: default;
+  }
+
+  &[data-fkt-disabled] {
+    cursor: not-allowed;
+  }
 }
 
-p {
-	margin: 0;
-	font-size: $font-size;
+.surface {
+  --_fkt-button-padding: #{$padding};
+  --_fkt-button-font-size: #{$font-size};
+  --_fkt-button-border-radius: #{$border-radius};
+  --_fkt-button-color: #{$button-color};
+
+  --_fkt-button-auto-text-channel: round(up, min(1, max(0, 0.36 - y)));
+  --_fkt-button-auto-text-color: #{color-contrast(var(--_fkt-button-color))};
+  --_fkt-button-appearance-text-color: var(--_fkt-button-auto-text-color);
+  --_fkt-button-text-color: #{$button-text-color};
+  --_fkt-button-appearance-background-color: transparent;
+  --_fkt-button-appearance-hover-background-color: transparent;
+  --_fkt-button-appearance-active-background-color: transparent;
+  --_fkt-button-appearance-border-color: transparent;
+  --_fkt-button-appearance-hover-border-color: transparent;
+  --_fkt-button-appearance-active-border-color: transparent;
+  --_fkt-button-appearance-box-shadow: none;
+  --_fkt-button-appearance-hover-box-shadow: none;
+  --_fkt-button-appearance-active-box-shadow: none;
+
+  --_fkt-button-state-text-color: var(--_fkt-button-text-color);
+  --_fkt-button-state-background-color: #{$button-background-color};
+  --_fkt-button-state-border-color: #{$button-border-color};
+  --_fkt-button-state-box-shadow: #{$button-box-shadow};
+
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: $align-items;
+  justify-content: $justify-content;
+  gap: $content-gap;
+  width: 100%;
+  height: 100%;
+  padding: var(--_fkt-button-padding);
+  border: $border-width solid var(--_fkt-button-state-border-color);
+  border-radius: var(--_fkt-button-border-radius);
+  background-color: var(--_fkt-button-state-background-color);
+  box-shadow: var(--_fkt-button-state-box-shadow);
+  color: var(--_fkt-button-state-text-color);
+  font-size: var(--_fkt-button-font-size);
+  font-weight: $font-weight;
+  transition: var(--fkt-button-transition);
+  pointer-events: none;
 }
 
-
-button {
-	width: 100%;
-	display: flex;
-	justify-content: center;
-	cursor: pointer;
-	border: none;
-	background: none;
-	font-family: inherit;
-	font-size: inherit;
-
-	fkt-icon {
-		font-weight: $icon-font-weight;
-		font-size: $icon-font-size;
-	}
-
-	&:focus-visible {
-		outline: none;
-		box-shadow: 0 0 0 2px $focus-color;
-	}
-
-	&:disabled {
-		cursor: not-allowed;
-	}
+:host(:hover:not(:disabled):not(:active):not([data-fkt-disabled])) .surface {
+  --_fkt-button-state-background-color: #{$button-hover-background-color};
+  --_fkt-button-state-border-color: #{$button-hover-border-color};
+  --_fkt-button-state-box-shadow: #{$button-hover-box-shadow};
 }
 
+:host(:active:not(:disabled):not([data-fkt-disabled])) .surface {
+  --_fkt-button-state-background-color: #{$button-active-background-color};
+  --_fkt-button-state-border-color: #{$button-active-border-color};
+  --_fkt-button-state-box-shadow: #{$button-active-box-shadow};
+}
 
-.button-content {
-	display: flex;
-	align-items: center;
-	gap: $content-gap;
+:host(:focus-visible) .surface {
+  --_fkt-button-state-box-shadow: 0 0 0 2px #{$focus-color};
+}
 
-	&.icon-left {
-		flex-direction: row-reverse;
-	}
+:host([data-fkt-content-fill]) .surface {
+  --_fkt-button-padding: 0;
+
+  gap: 0;
+}
+
+:host([data-fkt-disabled]) .surface {
+  --_fkt-button-state-text-color: #{$on-disabled-color};
+  --_fkt-button-state-background-color: #{$disabled-color};
+  --_fkt-button-state-border-color: #{$disabled-color};
+  --_fkt-button-state-box-shadow: none;
+}
+
+@mixin color-primary {
+  --_fkt-button-variant-color: var(--fkt-color-primary);
+}
+
+@mixin color-accent {
+  --_fkt-button-variant-color: var(--fkt-color-accent);
+}
+
+@mixin color-danger {
+  --_fkt-button-variant-color: var(--fkt-color-danger);
+}
+
+@mixin color-warning {
+  --_fkt-button-variant-color: var(--fkt-color-warning);
+}
+
+@mixin color-success {
+  --_fkt-button-variant-color: var(--fkt-color-success);
+}
+
+@mixin color-info {
+  --_fkt-button-variant-color: var(--fkt-color-info);
+}
+
+@mixin size-sm {
+  --_fkt-button-variant-padding: var(--fkt-space-3xs) var(--fkt-space-sm);
+  --_fkt-button-variant-font-size: var(--fkt-font-size-xs);
+}
+
+@mixin size-sm-icon-only {
+  --_fkt-button-variant-padding: var(--fkt-space-3xs);
+}
+
+@mixin size-md {
+  --_fkt-button-variant-padding: var(--fkt-space-inset-3xs) var(--fkt-space-inset-2xs);
+  --_fkt-button-variant-font-size: var(--fkt-font-size-sm);
+}
+
+@mixin size-md-icon-only {
+  --_fkt-button-variant-padding: var(--fkt-space-inset-3xs);
+}
+
+@mixin size-lg {
+  --_fkt-button-variant-padding: var(--fkt-space-xs) var(--fkt-space-lg);
+  --_fkt-button-variant-font-size: var(--fkt-font-size-md);
+}
+
+@mixin size-lg-icon-only {
+  --_fkt-button-variant-padding: var(--fkt-space-xs);
+}
+
+@mixin shape-sharp {
+  --_fkt-button-variant-border-radius: 0;
+
+  corner-shape: initial;
+}
+
+@mixin shape-rounded {
+  --_fkt-button-variant-border-radius: var(--fkt-radius-md);
+
+  corner-shape: initial;
+}
+
+@mixin shape-squircle {
+  --_fkt-button-variant-border-radius: var(--fkt-radius-xl);
+
+  corner-shape: squircle;
+
+  @supports (corner-shape: squircle) {
+    --_fkt-button-variant-border-radius: var(--fkt-radius-full);
+  }
+}
+
+@mixin shape-pill {
+  --_fkt-button-variant-border-radius: var(--fkt-radius-full);
+
+  corner-shape: initial;
+}
+
+@mixin appearance-raised {
+  --_fkt-button-appearance-text-color: #{color-contrast(var(--_fkt-button-color))};
+  --_fkt-button-appearance-background-color: var(--_fkt-button-color);
+  --_fkt-button-appearance-hover-background-color: color-mix(
+          in oklab,
+          var(--_fkt-button-color) 90%,
+          var(--_fkt-button-text-color)
+  );
+  --_fkt-button-appearance-active-background-color: #{darken-mix(var(--_fkt-button-color), 80%)};
+  --_fkt-button-appearance-border-color: var(--_fkt-button-color);
+  --_fkt-button-appearance-hover-border-color: var(--_fkt-button-appearance-hover-background-color);
+  --_fkt-button-appearance-active-border-color: var(--_fkt-button-appearance-active-background-color);
+  --_fkt-button-appearance-box-shadow: var(--fkt-shadow-lg);
+  --_fkt-button-appearance-hover-box-shadow: var(--fkt-shadow-lg);
+  --_fkt-button-appearance-active-box-shadow: var(--fkt-shadow-lg);
+}
+
+@mixin appearance-stroked {
+  --_fkt-button-appearance-text-color: var(--_fkt-button-color);
+  --_fkt-button-appearance-background-color: transparent;
+  --_fkt-button-appearance-hover-background-color: #{transparent-mix(var(--_fkt-button-color), 7%)};
+  --_fkt-button-appearance-active-background-color: #{transparent-mix(var(--_fkt-button-color), 20%)};
+  --_fkt-button-appearance-border-color: #{transparent-mix(var(--_fkt-button-color), 40%)};
+  --_fkt-button-appearance-hover-border-color: var(--_fkt-button-appearance-border-color);
+  --_fkt-button-appearance-active-border-color: var(--_fkt-button-appearance-border-color);
+  --_fkt-button-appearance-box-shadow: none;
+  --_fkt-button-appearance-hover-box-shadow: none;
+  --_fkt-button-appearance-active-box-shadow: none;
+}
+
+@mixin appearance-basic {
+  --_fkt-button-appearance-text-color: var(--_fkt-button-color);
+  --_fkt-button-appearance-background-color: transparent;
+  --_fkt-button-appearance-hover-background-color: #{transparent-mix(var(--_fkt-button-color), 7%)};
+  --_fkt-button-appearance-active-background-color: #{transparent-mix(var(--_fkt-button-color), 20%)};
+  --_fkt-button-appearance-border-color: transparent;
+  --_fkt-button-appearance-hover-border-color: transparent;
+  --_fkt-button-appearance-active-border-color: transparent;
+  --_fkt-button-appearance-box-shadow: none;
+  --_fkt-button-appearance-hover-box-shadow: none;
+  --_fkt-button-appearance-active-box-shadow: none;
+}
+
+@mixin fallbacks {
+  :host([data-fkt-color='default']) & {
+    @include color-primary;
+  }
+
+  :host([data-fkt-color='primary']) & {
+    @include color-primary;
+  }
+
+  :host([data-fkt-color='accent']) & {
+    @include color-accent;
+  }
+
+  :host([data-fkt-color='danger']) & {
+    @include color-danger;
+  }
+
+  :host([data-fkt-color='warning']) & {
+    @include color-warning;
+  }
+
+  :host([data-fkt-color='success']) & {
+    @include color-success;
+  }
+
+  :host([data-fkt-color='info']) & {
+    @include color-info;
+  }
+
+  :host([data-fkt-size='default']) & {
+    @include size-md;
+  }
+
+  :host([data-fkt-size='md']) & {
+    @include size-md;
+  }
+
+  :host([data-fkt-icon-only][data-fkt-size='default']) & {
+    @include size-md-icon-only;
+  }
+
+  :host([data-fkt-icon-only][data-fkt-size='md']) & {
+    @include size-md-icon-only;
+  }
+
+  :host([data-fkt-size='sm']) & {
+    @include size-sm;
+  }
+
+  :host([data-fkt-icon-only][data-fkt-size='sm']) & {
+    @include size-sm-icon-only;
+  }
+
+  :host([data-fkt-size='lg']) & {
+    @include size-lg;
+  }
+
+  :host([data-fkt-icon-only][data-fkt-size='lg']) & {
+    @include size-lg-icon-only;
+  }
+
+  :host([data-fkt-shape='default']) & {
+    @include shape-squircle;
+  }
+
+  :host([data-fkt-shape='squircle']) & {
+    @include shape-squircle;
+  }
+
+  :host([data-fkt-shape='rounded']) & {
+    @include shape-rounded;
+  }
+
+  :host([data-fkt-shape='sharp']) & {
+    @include shape-sharp;
+  }
+
+  :host([data-fkt-shape='pill']) & {
+    @include shape-pill;
+  }
+
+  :host([data-fkt-appearance='default']) & {
+    @include appearance-raised;
+  }
+
+  :host([data-fkt-appearance='raised']) & {
+    @include appearance-raised;
+  }
+
+  :host([data-fkt-appearance='stroked']) & {
+    @include appearance-stroked;
+  }
+
+  :host([data-fkt-appearance='basic']) & {
+    @include appearance-basic;
+  }
+}
+
+@mixin defined-defaults {
+  @container style(--fkt-button-default-color: primary) {
+    :host([data-fkt-color='default']) & {
+      @include color-primary;
+    }
+  }
+
+  @container style(--fkt-button-default-color: accent) {
+    :host([data-fkt-color='default']) & {
+      @include color-accent;
+    }
+  }
+
+  @container style(--fkt-button-default-color: danger) {
+    :host([data-fkt-color='default']) & {
+      @include color-danger;
+    }
+  }
+
+  @container style(--fkt-button-default-color: warning) {
+    :host([data-fkt-color='default']) & {
+      @include color-warning;
+    }
+  }
+
+  @container style(--fkt-button-default-color: success) {
+    :host([data-fkt-color='default']) & {
+      @include color-success;
+    }
+  }
+
+  @container style(--fkt-button-default-color: info) {
+    :host([data-fkt-color='default']) & {
+      @include color-info;
+    }
+  }
+
+  @container style(--fkt-button-default-size: md) {
+    :host([data-fkt-size='default']) & {
+      @include size-md;
+    }
+
+    :host([data-fkt-icon-only][data-fkt-size='default']) & {
+      @include size-md-icon-only;
+    }
+  }
+
+  @container style(--fkt-button-default-size: sm) {
+    :host([data-fkt-size='default']) & {
+      @include size-sm;
+    }
+
+    :host([data-fkt-icon-only][data-fkt-size='default']) & {
+      @include size-sm-icon-only;
+    }
+  }
+
+  @container style(--fkt-button-default-size: lg) {
+    :host([data-fkt-size='default']) & {
+      @include size-lg;
+    }
+
+    :host([data-fkt-icon-only][data-fkt-size='default']) & {
+      @include size-lg-icon-only;
+    }
+  }
+
+  @container style(--fkt-button-default-shape: squircle) {
+    :host([data-fkt-shape='default']) & {
+      @include shape-squircle;
+    }
+  }
+
+  @container style(--fkt-button-default-shape: rounded) {
+    :host([data-fkt-shape='default']) & {
+      @include shape-rounded;
+    }
+  }
+
+  @container style(--fkt-button-default-shape: sharp) {
+    :host([data-fkt-shape='default']) & {
+      @include shape-sharp;
+    }
+  }
+
+  @container style(--fkt-button-default-shape: pill) {
+    :host([data-fkt-shape='default']) & {
+      @include shape-pill;
+    }
+  }
+
+  @container style(--fkt-button-default-appearance: raised) {
+    :host([data-fkt-appearance='default']) & {
+      @include appearance-raised;
+    }
+  }
+
+  @container style(--fkt-button-default-appearance: stroked) {
+    :host([data-fkt-appearance='default']) & {
+      @include appearance-stroked;
+    }
+  }
+
+  @container style(--fkt-button-default-appearance: basic) {
+    :host([data-fkt-appearance='default']) & {
+      @include appearance-basic;
+    }
+  }
+}
+
+@mixin defined-overrides {
+  @container style(--fkt-button-override-appearance: raised) {
+    :host([data-fkt-accept-overrides~='appearance']) & {
+      @include appearance-raised;
+    }
+  }
+
+  @container style(--fkt-button-override-appearance: stroked) {
+    :host([data-fkt-accept-overrides~='appearance']) & {
+      @include appearance-stroked;
+    }
+  }
+
+  @container style(--fkt-button-override-appearance: basic) {
+    :host([data-fkt-accept-overrides~='appearance']) & {
+      @include appearance-basic;
+    }
+  }
+
+  @container style(--fkt-button-override-shape: squircle) {
+    :host([data-fkt-accept-overrides~='shape']) & {
+      @include shape-squircle;
+    }
+  }
+
+  @container style(--fkt-button-override-shape: rounded) {
+    :host([data-fkt-accept-overrides~='shape']) & {
+      @include shape-rounded;
+    }
+  }
+
+  @container style(--fkt-button-override-shape: sharp) {
+    :host([data-fkt-accept-overrides~='shape']) & {
+      @include shape-sharp;
+    }
+  }
+
+  @container style(--fkt-button-override-shape: pill) {
+    :host([data-fkt-accept-overrides~='shape']) & {
+      @include shape-pill;
+    }
+  }
+
+  @container style(--fkt-button-override-size: md) {
+    :host([data-fkt-accept-overrides~='size']) & {
+      @include size-md;
+    }
+
+    :host([data-fkt-icon-only][data-fkt-accept-overrides~='size']) & {
+      @include size-md-icon-only;
+    }
+  }
+
+  @container style(--fkt-button-override-size: sm) {
+    :host([data-fkt-accept-overrides~='size']) & {
+      @include size-sm;
+    }
+
+    :host([data-fkt-icon-only][data-fkt-accept-overrides~='size']) & {
+      @include size-sm-icon-only;
+    }
+  }
+
+  @container style(--fkt-button-override-size: lg) {
+    :host([data-fkt-accept-overrides~='size']) & {
+      @include size-lg;
+    }
+
+    :host([data-fkt-icon-only][data-fkt-accept-overrides~='size']) & {
+      @include size-lg-icon-only;
+    }
+  }
+
+  @container style(--fkt-button-override-color: primary) {
+    :host([data-fkt-accept-overrides~='color']) & {
+      @include color-primary;
+    }
+  }
+
+  @container style(--fkt-button-override-color: accent) {
+    :host([data-fkt-accept-overrides~='color']) & {
+      @include color-accent;
+    }
+  }
+
+  @container style(--fkt-button-override-color: danger) {
+    :host([data-fkt-accept-overrides~='color']) & {
+      @include color-danger;
+    }
+  }
+
+  @container style(--fkt-button-override-color: warning) {
+    :host([data-fkt-accept-overrides~='color']) & {
+      @include color-warning;
+    }
+  }
+
+  @container style(--fkt-button-override-color: success) {
+    :host([data-fkt-accept-overrides~='color']) & {
+      @include color-success;
+    }
+  }
+
+  @container style(--fkt-button-override-color: info) {
+    :host([data-fkt-accept-overrides~='color']) & {
+      @include color-info;
+    }
+  }
+}
+
+@supports (container-type: normal) {
+  .surface {
+    @include fallbacks;
+    @include defined-defaults;
+    @include defined-overrides;
+  }
+}
+
+.loading-indicator,
+.icon,
+.content {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  height: 100%;
+}
+
+:host([data-fkt-content-fill]) .content {
+  align-self: stretch;
+  flex: 1 1 auto;
+  width: 100%;
 }
 
 .spinner {
-	width: $spinner-size;
-	height: $spinner-size;
-	border: $spinner-border-width solid #e5e7eb;
-	border-top-color: #ffffff61;
-	border-radius: 50%;
-	animation: spin 1s linear infinite;
+  box-sizing: border-box;
+  width: $spinner-size;
+  height: $spinner-size;
+  border: $spinner-border-width solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: fkt-button-spin 0.8s linear infinite;
 }
 
-@keyframes spin {
-	to {
-		transform: rotate(360deg);
-	}
+@keyframes fkt-button-spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
-
-.theme-raised {
-	transition: var(--fkt-transition-base);
-	display: flex;
-	align-items: center;
-	gap: $content-gap;
-	font-weight: $font-weight;
-	color: white;
-	border: $border-width solid;
-	padding: $padding-vertical $padding-horizontal;
-	border-radius: $border-radius;
-	box-shadow: var(--fkt-shadow-md);
-
-	.spinner {
-		border: $spinner-border-width solid #e5e7eb;
-		border-top-color: #ffffff61;
-	}
-
-	&:hover:not(:disabled) {
-		box-shadow: var(--fkt-shadow-lg);
-	}
-
-	&.shape-rounded {
-		&.icon-only {
-			padding: $padding-vertical;
-			border-width: $icon-border-width;
-			font-weight: $icon-font-weight;
-		}
-	}
-
-	&.shape-rect {
-		border-radius: $rect-border-radius;
-
-		&.icon-only {
-			padding: $padding-vertical;
-			border-width: $icon-border-width;
-			font-weight: $icon-font-weight;
-		}
-	}
-
-	&.color-primary {
-		background-color: $primary-color;
-		border-color: $primary-color;
-		color: $on-primary-color;
-
-		&:hover:not(:disabled) {
-			background-color: $primary-hover-color;
-			border-color: $primary-hover-color;
-		}
-	}
-
-	&.color-accent {
-		background-color: $accent-color;
-		border-color: $accent-color;
-		color: $on-accent-color;
-
-		&:hover:not(:disabled) {
-			background-color: $accent-hover-color;
-			border-color: $accent-hover-color;
-		}
-	}
-
-	&.color-warning {
-		background-color: $warning-color;
-		border-color: $warning-color;
-		color: $on-warning-color;
-
-		&:hover:not(:disabled) {
-			background-color: $warning-hover-color;
-			border-color: $warning-hover-color;
-		}
-	}
-
-	&.color-danger {
-		background-color: $danger-color;
-		border-color: $danger-color;
-		color: $on-danger-color;
-
-		&:hover:not(:disabled) {
-			background-color: $danger-hover-color;
-			border-color: $danger-hover-color;
-		}
-	}
-
-	&.color-info {
-		background-color: $info-color;
-		border-color: $info-color;
-		color: $on-info-color;
-
-		&:hover:not(:disabled) {
-			background-color: $info-hover-color;
-			border-color: $info-hover-color;
-		}
-	}
-
-	&.color-success {
-		background-color: $success-color;
-		border-color: $success-color;
-		color: $on-success-color;
-
-		&:hover:not(:disabled) {
-			background-color: $success-hover-color;
-			border-color: $success-hover-color;
-		}
-	}
-
-	&.color-custom {
-		background-color: var(--custom-color);
-		border-color: var(--custom-color);
-		color: var(--custom-label-color);
-
-		&:hover:not(:disabled) {
-			background-color: var(--custom-hover-color);
-			border-color: var(--custom-hover-color);
-		}
-	}
-
-	&:disabled {
-		box-shadow: none;
-		background-color: $disabled-color;
-		border-color: $disabled-color;
-		color: $disabled-on-color;
-
-		.spinner {
-			border: $spinner-border-width solid $disabled-on-color;
-			border-top-color: #ffffff61;
-		}
-
-		&:hover {
-			box-shadow: none;
-			background-color: $disabled-color;
-			border-color: $disabled-color;
-			color: $disabled-on-color;
-		}
-	}
-}
-
-.theme-stroked {
-	transition: background-color 0.3s ease;
-	display: flex;
-	align-items: center;
-	gap: $content-gap;
-	font-weight: $font-weight;
-	border: $border-width solid;
-	padding: $padding-vertical $padding-horizontal;
-	border-radius: $border-radius;
-	background-color: transparent;
-
-
-	&.shape-rounded {
-		&.icon-only {
-			padding: $padding-vertical;
-			border-width: $icon-border-width;
-			font-weight: $icon-font-weight;
-		}
-	}
-
-	&.shape-rect {
-		border-radius: $rect-border-radius;
-
-		&.icon-only {
-			padding: $padding-vertical;
-			border-width: $icon-border-width;
-			font-weight: $icon-font-weight;
-		}
-	}
-
-	&.color-accent {
-		color: $accent-color;
-		border-color: $accent-color;
-
-		.spinner {
-			border: $spinner-border-width solid $accent-color;
-			border-top-color: $accent-translucent-color;
-		}
-
-		&:hover:not(:disabled) {
-			background-color: $accent-color;
-			color: $on-accent-color;
-		}
-	}
-
-	&.color-warning {
-		color: $warning-color;
-		border-color: $warning-color;
-
-		.spinner {
-			border: $spinner-border-width solid $warning-color;
-			border-top-color: $warning-translucent-color;
-		}
-
-		&:hover:not(:disabled) {
-			background-color: $warning-color;
-			color: $on-warning-color;
-		}
-	}
-
-	&.color-primary {
-		color: $primary-color;
-		border-color: $primary-color;
-
-		.spinner {
-			border: $spinner-border-width solid $primary-color;
-			border-top-color: $primary-translucent-color;
-		}
-
-		&:hover:not(:disabled) {
-			background-color: $primary-color;
-			color: $on-primary-color;
-		}
-	}
-
-	&.color-danger {
-		color: $danger-color;
-		border-color: $danger-color;
-
-		.spinner {
-			border: $spinner-border-width solid $danger-color;
-			border-top-color: $danger-translucent-color;
-		}
-
-		&:hover:not(:disabled) {
-			background-color: $danger-color;
-			color: $on-danger-color;
-		}
-	}
-
-	&.color-success {
-		color: $success-color;
-		border-color: $success-color;
-
-		.spinner {
-			border: $spinner-border-width solid $success-color;
-			border-top-color: $success-translucent-color;
-		}
-
-		&:hover:not(:disabled) {
-			background-color: $success-color;
-			color: $on-success-color;
-		}
-	}
-
-	&.color-info {
-		color: $info-color;
-		border-color: $info-color;
-
-		.spinner {
-			border: $spinner-border-width solid $info-color;
-			border-top-color: $info-translucent-color;
-		}
-
-		&:hover:not(:disabled) {
-			background-color: $info-color;
-			color: $on-info-color;
-		}
-	}
-
-	&.color-custom {
-		color: var(--custom-color);
-		border-color: var(--custom-color);
-
-		&:hover:not(:disabled) {
-			background-color: var(--custom-color);
-			color: var(--custom-label-color);
-		}
-	}
-
-	&:hover {
-		.spinner {
-			border: $spinner-border-width solid #e5e7eb;
-			border-top-color: #ffffff61;
-		}
-	}
-
-	&:disabled {
-		background-color: $disabled-color;
-		border-color: $disabled-color;
-		color: $disabled-on-color;
-
-		.spinner {
-			border: $spinner-border-width solid $disabled-on-color;
-			border-top-color: rgba(0, 0, 0, 0.1);
-		}
-	}
-}
-
-.theme-basic {
-	transition: var(--fkt-transition-base);
-	display: flex;
-	align-items: center;
-	gap: $content-gap;
-	font-weight: $font-weight;
-	padding: $padding-vertical $padding-horizontal;
-	border-radius: $border-radius;
-	background-color: transparent;
-	border: $border-width solid transparent;
-
-	&.shape-rounded {
-		&.icon-only {
-			padding: $padding-vertical;
-			border-width: $icon-border-width;
-			font-weight: $icon-font-weight;
-		}
-	}
-
-	&.shape-rect {
-		border-radius: $rect-border-radius;
-
-		&.icon-only {
-			padding: $padding-vertical;
-			border-width: $icon-border-width;
-			font-weight: $icon-font-weight;
-		}
-	}
-
-	&.color-accent {
-		color: $accent-color;
-
-		.spinner {
-			border: $spinner-border-width solid $accent-color;
-			border-top-color: $accent-translucent-color;
-		}
-
-		&:hover:not(:disabled) {
-			background-color: $accent-translucent-color;
-		}
-	}
-
-	&.color-warning {
-		color: $warning-color;
-
-		.spinner {
-			border: $spinner-border-width solid $warning-color;
-			border-top-color: $warning-translucent-color;
-		}
-
-		&:hover:not(:disabled) {
-			background-color: $warning-translucent-color;
-		}
-	}
-
-	&.color-primary {
-		color: $primary-color;
-
-		.spinner {
-			border: $spinner-border-width solid $primary-color;
-			border-top-color: $primary-translucent-color;
-		}
-
-		&:hover:not(:disabled) {
-			background-color: $primary-translucent-color;
-		}
-	}
-
-	&.color-danger {
-		color: $danger-color;
-
-		.spinner {
-			border: $spinner-border-width solid $danger-color;
-			border-top-color: $danger-translucent-color;
-		}
-
-		&:hover:not(:disabled) {
-			background-color: $danger-translucent-color;
-		}
-	}
-
-	&.color-success {
-		color: $success-color;
-
-		.spinner {
-			border: $spinner-border-width solid $success-color;
-			border-top-color: $success-translucent-color;
-		}
-
-		&:hover:not(:disabled) {
-			background-color: $success-translucent-color;
-		}
-	}
-
-	&.color-info {
-		color: $info-color;
-
-		.spinner {
-			border: $spinner-border-width solid $info-color;
-			border-top-color: $info-translucent-color;
-		}
-
-		&:hover:not(:disabled) {
-			background-color: $info-translucent-color;
-		}
-	}
-
-	&.color-custom {
-		color: var(--custom-color);
-
-		.spinner {
-			border: $spinner-border-width solid var(--custom-color);
-			border-top-color: var(--custom-translucent-color);
-		}
-
-		&:hover:not(:disabled) {
-			background-color: var(--custom-translucent-color);
-		}
-	}
-
-	&:disabled:not(.loading) {
-		background-color: $disabled-color;
-		border-color: $disabled-color;
-		color: $disabled-on-color;
-
-		&:hover {
-			background-color: $disabled-color;
-			border-color: $disabled-color;
-			color: $disabled-on-color;
-		}
-	}
-}
-

@@ -1,34 +1,34 @@
-import { Component, model, output } from '@angular/core';
-import { DatePipe } from '@angular/common';
-import { FktNavigatorComponent } from 'frakton-ng/navigator';
-import { FktButtonComponent } from 'frakton-ng/button';
+import {Component, model, output} from '@angular/core';
+import {DatePipe} from '@angular/common';
+import {FktNavigatorComponent} from 'frakton-ng/navigator';
+import {FktButtonComponent} from 'frakton-ng/button';
 
 @Component({
-	selector: 'fkt-calendar-month-header',
-  imports: [DatePipe, FktNavigatorComponent, FktButtonComponent],
-	templateUrl: './calendar-month-header.component.html',
-	styleUrl: './calendar-month-header.component.scss',
+    selector: 'fkt-calendar-month-header',
+    imports: [DatePipe, FktNavigatorComponent, FktButtonComponent],
+    templateUrl: './calendar-month-header.component.html',
+    styleUrl: './calendar-month-header.component.scss',
 })
 export class CalendarMonthHeaderComponent {
-	currentDate = model(new Date());
-	yearClick = output();
-	monthClick = output();
+    currentDate = model(new Date());
+    yearClick = output();
+    monthClick = output();
 
-	protected previous() {
-		this.currentDate.update(date => {
-			const copy = new Date(date);
-			copy.setMonth(copy.getMonth() - 1);
+    protected previous() {
+        this.currentDate.update((date) => {
+            const copy = new Date(date);
+            copy.setMonth(copy.getMonth() - 1);
 
-			return copy;
-		});
-	}
+            return copy;
+        });
+    }
 
-	protected next() {
-		this.currentDate.update(date => {
-			const copy = new Date(date);
-			copy.setMonth(copy.getMonth() + 1);
+    protected next() {
+        this.currentDate.update((date) => {
+            const copy = new Date(date);
+            copy.setMonth(copy.getMonth() + 1);
 
-			return copy;
-		});
-	}
+            return copy;
+        });
+    }
 }

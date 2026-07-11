@@ -12,8 +12,8 @@ export class FileUploadExampleComponent {
 		description: 'This folder is empty. Upload some files to get started.',
 		icon: {name: 'folder-open', size: '120px'},
 		action: {
-			text: 'Upload Files',
-			theme: 'raised',
+			label: 'Upload Files',
+			appearance: 'raised',
 			icon: 'arrow-up-tray',
 			identifier: 'upload-files',
 			click: () => this.openFileUpload()

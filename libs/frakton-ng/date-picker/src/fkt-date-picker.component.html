@@ -1,13 +1,16 @@
 <fkt-field [label]="label()">
-    <input fktInputText [(ngModel)]="transformed" fktDateMask [placeholder]="placeholder()"/>
+    <input [(ngModel)]="transformed" [placeholder]="placeholder()" fktDateMask fktInputText/>
 
-    <div suffixNoPadding fktFieldSuffix class="suffix" #ref>
-        <fkt-button
-            theme="basic"
-            (click)="$event.stopImmediatePropagation(); openModal(ref, 'bottom-end')"
-            icon="calendar"
-            color="primary"
-            ariaLabel="Open calendar"
-        />
+    <div #ref class="suffix" fktFieldSuffix suffixNoPadding>
+        <button
+                (click)="$event.stopImmediatePropagation(); openModal(ref, 'bottom-end')"
+                appearance="basic"
+                color="primary"
+                size="sm"
+                fktButton
+                icon="calendar"
+                iconOnly
+                label="Open calendar">
+        </button>
     </div>
 </fkt-field>

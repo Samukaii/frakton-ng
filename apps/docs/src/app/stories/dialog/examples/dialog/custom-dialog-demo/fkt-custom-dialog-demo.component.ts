@@ -28,14 +28,14 @@ export class FktCustomDialogDemoComponent {
 	protected actions = computed((): FktButtonAction[] => [
 		{
 			identifier: 'details',
-			text: this.showDetails() ? 'Hide Details' : 'Show Details',
-			theme: 'basic',
+			label: this.showDetails() ? 'Hide Details' : 'Show Details',
+			appearance: 'basic',
 			click: () => this.toggleDetails()
 		},
 		{
 			identifier: 'understand',
-			text: 'I Understand',
-			theme: 'raised',
+			label: 'I Understand',
+			appearance: 'raised',
 			click: () => this.dialogConfirmed.emit()
 		}
 	]);

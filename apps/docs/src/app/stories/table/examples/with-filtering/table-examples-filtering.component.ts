@@ -1,35 +1,19 @@
-import {
-    Component,
-    computed,
-    inject,
-    input,
-    resource,
-    signal,
-} from '@angular/core';
-import {
-    defineCells,
-    defineFilters,
-    FktTableColumn,
-    FktTableComponent,
-} from 'frakton-ng/table';
-import { FktNoResults } from 'frakton-ng/no-results';
-import { FktTagComponent } from 'frakton-ng/tag';
-import { FktButtonsListComponent } from 'frakton-ng/buttons-list';
-import { FktTableFilterTextComponent } from 'frakton-ng/table/filters/text';
-import { FktTableFilterSelectComponent } from 'frakton-ng/table/filters/select';
-import { FktTableFilterNumberComponent } from 'frakton-ng/table/filters/number';
-import { FktTableFilterDateRangeComponent } from 'frakton-ng/table/filters/date-range';
-import { JsonPipe } from '@angular/common';
-import { FktButtonComponent } from 'frakton-ng/button';
-import { ProductsService } from '@/stories/table/services/products.service';
-import { Product } from '@/stories/table/models/product';
-import { ProductFilters } from '@/stories/table/models/product-filters';
-import {
-    CATEGORY_COLORS,
-    STATUS_COLORS,
-    STATUS_LABELS,
-} from '@/stories/table/constants/product-constants';
-import { stockColor } from '@/stories/table/utils/stock-color';
+import {Component, computed, inject, input, resource, signal,} from '@angular/core';
+import {defineCells, defineFilters, FktTableColumn, FktTableComponent,} from 'frakton-ng/table';
+import {FktNoResults} from 'frakton-ng/no-results';
+import {FktTagComponent} from 'frakton-ng/tag';
+import {FktButtonsListComponent} from 'frakton-ng/buttons-list';
+import {FktTableFilterTextComponent} from 'frakton-ng/table/filters/text';
+import {FktTableFilterSelectComponent} from 'frakton-ng/table/filters/select';
+import {FktTableFilterNumberComponent} from 'frakton-ng/table/filters/number';
+import {FktTableFilterDateRangeComponent} from 'frakton-ng/table/filters/date-range';
+import {FktButtonComponent} from 'frakton-ng/button';
+import {ProductsService} from '@/stories/table/services/products.service';
+import {Product} from '@/stories/table/models/product';
+import {ProductFilters} from '@/stories/table/models/product-filters';
+import {CATEGORY_COLORS, STATUS_COLORS, STATUS_LABELS,} from '@/stories/table/constants/product-constants';
+import {stockColor} from '@/stories/table/utils/stock-color';
+import {CodeOutputComponent} from "@/components/code-output/code-output.component";
 
 export const cell = defineCells({
     tag: FktTagComponent,
@@ -45,7 +29,7 @@ export const filter = defineFilters({
 
 @Component({
     selector: 'app-table-examples-with-filtering',
-    imports: [FktTableComponent, JsonPipe, FktButtonComponent],
+    imports: [FktTableComponent, FktButtonComponent, CodeOutputComponent],
     templateUrl: './table-examples-filtering.component.html',
     styleUrl: './table-examples-filtering.component.scss',
 })
@@ -116,7 +100,7 @@ export class TableExamplesFilteringComponent {
             header: 'Price',
             filter: filter.number('price', {
                 label: 'Price ($)',
-                placeholder: 'Choose the price'
+                placeholder: 'Choose the price',
             }),
             cell: (product) => `$${product.price.toFixed(2)}`,
         },
@@ -125,7 +109,7 @@ export class TableExamplesFilteringComponent {
             header: 'Stock',
             filter: filter.number('stock', {
                 label: 'Units',
-                placeholder: 'Choose units'
+                placeholder: 'Choose units',
             }),
             cell: (product) =>
                 cell.tag({
@@ -172,8 +156,9 @@ export class TableExamplesFilteringComponent {
                             identifier: 'delete',
                             color: 'danger',
                             icon: 'trash',
-                            theme: 'basic',
-                            ariaLabel: 'Delete product',
+                            appearance: 'basic',
+                            label: 'Delete product',
+                            iconOnly: true,
                             click: () =>
                                 console.log(`deleting ${product.name}`),
                         },

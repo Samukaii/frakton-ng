@@ -1,9 +1,9 @@
-import { Component, signal } from '@angular/core';
-import { email, FormField, form, minLength, required } from '@angular/forms/signals';
-import { FktButtonComponent } from 'frakton-ng/button';
-import { FktFieldComponent } from 'frakton-ng/field';
-import { FktIconComponent } from 'frakton-ng/icon';
-import { FktInputTextDirective } from 'frakton-ng/input-text';
+import {Component, signal} from '@angular/core';
+import {email, form, FormField, minLength, required} from '@angular/forms/signals';
+import {FktFieldComponent} from 'frakton-ng/field';
+import {FktIconComponent} from 'frakton-ng/icon';
+import {FktInputTextDirective} from 'frakton-ng/input-text';
+import {FktButtonComponent} from "frakton-ng/button";
 
 @Component({
     selector: 'app-input-signal-forms-example',

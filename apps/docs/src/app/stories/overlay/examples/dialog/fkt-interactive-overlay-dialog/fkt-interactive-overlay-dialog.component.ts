@@ -1,60 +1,58 @@
-import { Component, input, model, output } from '@angular/core';
-import { FktTagComponent } from 'frakton-ng/tag';
-import { FktIconComponent } from 'frakton-ng/icon';
-import { FktButtonComponent } from 'frakton-ng/button';
+import {Component, input, model, output} from '@angular/core';
+import {FktTagComponent} from 'frakton-ng/tag';
+import {FktIconComponent} from 'frakton-ng/icon';
+import {FktButtonComponent} from "frakton-ng/button";
 
 @Component({
-	selector: 'fkt-interactive-overlay-dialog',
-	imports: [
-		FktTagComponent,
-		FktIconComponent,
-		FktButtonComponent
-	],
-	templateUrl: './fkt-interactive-overlay-dialog.component.html',
-	styleUrl: './fkt-interactive-overlay-dialog.component.scss'
+    selector: 'fkt-interactive-overlay-dialog',
+    imports: [FktTagComponent, FktIconComponent, FktButtonComponent],
+    templateUrl: './fkt-interactive-overlay-dialog.component.html',
+    styleUrl: './fkt-interactive-overlay-dialog.component.scss',
 })
 export class FktInteractiveOverlayDialogComponent {
-	title = input('Interactive Demo');
-	description = input('This overlay demonstrates reactive signals and interactive components.');
+    title = input('Interactive Demo');
+    description = input(
+        'This overlay demonstrates reactive signals and interactive components.'
+    );
 
-	counter = model(0);
-	currentItems = model<string[]>([]);
+    counter = model(0);
+    currentItems = model<string[]>([]);
 
-	onDone = output<void>();
+    onDone = output<void>();
 
-	increment() {
-		const newValue = this.counter() + 1;
-		this.counter.set(newValue);
-	}
+    increment() {
+        const newValue = this.counter() + 1;
+        this.counter.set(newValue);
+    }
 
-	decrement() {
-		if (this.counter() > 0) {
-			const newValue = this.counter() - 1;
-			this.counter.set(newValue);
-		}
-	}
+    decrement() {
+        if (this.counter() > 0) {
+            const newValue = this.counter() - 1;
+            this.counter.set(newValue);
+        }
+    }
 
-	reset() {
-		this.counter.set(0);
-	}
+    reset() {
+        this.counter.set(0);
+    }
 
-	addItem() {
-		const itemNumber = this.currentItems().length + 1;
-		const newItem = `Item ${itemNumber}`;
-		const newItems = [...this.currentItems(), newItem];
-		this.currentItems.set(newItems);
-	}
+    addItem() {
+        const itemNumber = this.currentItems().length + 1;
+        const newItem = `Item ${itemNumber}`;
+        const newItems = [...this.currentItems(), newItem];
+        this.currentItems.set(newItems);
+    }
 
-	removeItem(index: number) {
-		const newItems = this.currentItems().filter((_, i) => i !== index);
-		this.currentItems.set(newItems);
-	}
+    removeItem(index: number) {
+        const newItems = this.currentItems().filter((_, i) => i !== index);
+        this.currentItems.set(newItems);
+    }
 
-	clearItems() {
-		this.currentItems.set(['Initial Item']);
-	}
+    clearItems() {
+        this.currentItems.set(['Initial Item']);
+    }
 
-	handleDone() {
-		this.onDone.emit();
-	}
+    handleDone() {
+        this.onDone.emit();
+    }
 }

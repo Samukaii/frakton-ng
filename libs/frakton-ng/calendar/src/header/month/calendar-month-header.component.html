@@ -1,22 +1,22 @@
 <fkt-navigator
-	(next)="next()"
-	(previous)="previous()"
+        (next)="next()"
+        (previous)="previous()"
 >
-	<div class="container">
-		<fkt-button
-			(click)="monthClick.emit()"
-			[text]="$any(currentDate() | date: 'MMMM')"
-			theme="basic"
-			shape="rect"
-			class="container__month">
-		</fkt-button>
+    <div class="container">
+		<button
+                (click)="monthClick.emit()"
+                [label]="$any(currentDate() | date: 'MMMM')"
+                appearance="basic"
+                class="container__month"
+                fktButton>
+		</button>
 
-		<fkt-button
-			(click)="yearClick.emit()"
-			theme="basic"
-			shape="rect"
-			[text]="$any(currentDate() | date: 'yyyy')"
-			class="container__year">
-		</fkt-button>
-	</div>
+        <button
+                (click)="yearClick.emit()"
+                [label]="$any(currentDate() | date: 'yyyy')"
+                appearance="basic"
+                class="container__year"
+                fktButton>
+		</button>
+    </div>
 </fkt-navigator>

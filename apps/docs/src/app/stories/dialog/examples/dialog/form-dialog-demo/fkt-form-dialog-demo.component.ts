@@ -27,8 +27,8 @@ export class FktFormDialogDemoComponent {
 	initialName = input('');
 	initialEmail = input('');
 
-	submit = output<FormData>();
-	cancel = output<void>();
+	submitForm = output<FormData>();
+	cancelAction = output<void>();
 
 	private value = signal({
 		name: "",
@@ -45,19 +45,19 @@ export class FktFormDialogDemoComponent {
 	protected actions = computed((): FktButtonAction[] => [
 		{
 			identifier: 'cancel',
-			text: 'Cancel',
-			theme: 'stroked',
+			label: 'Cancel',
+			appearance: 'stroked',
 			click: () => {
-				this.cancel.emit();
+				this.cancelAction.emit();
 			}
 		},
 		{
 			identifier: 'save',
-			text: 'Save',
-			theme: 'raised',
+			label: 'Save',
+			appearance: 'raised',
 			click: async () => {
 				await submit(this.form, async () => {
-					this.submit.emit(this.value());
+					this.submitForm.emit(this.value());
 				})
 			}
 		},

@@ -40,7 +40,7 @@ export class FktTableFilterNumberComponent
 
     protected readonly internalValue = linkedSignal<string | null>(() => {
         const value = this.value().value;
-        return value !== null ? String(value) : null;
+        return isNaN(+(String(value))) ? String(value) : null;
     });
 
     protected readonly field = form(this.internalValue);
@@ -48,9 +48,8 @@ export class FktTableFilterNumberComponent
     protected readonly actions: FktButtonAction[] = [
         {
             identifier: 'reset',
-            text: 'Reset',
-            shape: 'rect',
-            theme: 'stroked',
+            label: 'Reset',
+            appearance: 'stroked',
             click: () =>
                 this.apply.emit(
                     this.defaultValue() ?? { modifier: 'eq', value: null }
@@ -58,8 +57,7 @@ export class FktTableFilterNumberComponent
         },
         {
             identifier: 'apply',
-            shape: 'rect',
-            text: 'Apply',
+            label: 'Apply',
             click: () =>
                 this.apply.emit({
                     modifier: this.internalModifier() as FktNumberModifier,

@@ -1,8 +1,13 @@
+<ng-template #actionsHeader>
+    <button color="accent" fktButton icon="plus" iconOnly label="Add new item" shape="pill" (click)="createNew()">
+    </button>
+</ng-template>
+
 <div class="table">
     <fkt-table
-        disableRowHover
-        [data]="valueWithIds()"
-        [columns]="columns()"
-        [loading]="false"
+            [columns]="columns()"
+            [data]="valueWithIds()"
+            [loading]="false"
+            disableRowHover
     />
 </div>

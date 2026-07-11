@@ -1,16 +1,17 @@
 <div class="header">
     <h1>{{ title() }}</h1>
 
-    <fkt-button
-        shape="rect"
-        icon="clipboard-document"
-        iconPosition="left"
-        theme="stroked"
-        (click)="copyMarkdown()"
-        text="Copy markdown"
-    />
+    <button
+            (click)="clipboard.copy()"
+            [appearance]="clipboard.copied() ? 'raised': 'stroked'"
+            [color]="clipboard.copied() ? 'success': 'primary'"
+            [icon]="clipboard.copied() ? 'check': 'clipboard-document'"
+            [label]="clipboard.copied() ? 'Copied': 'Copy markdown'"
+            fktButton
+            shape="rounded">
+    </button>
 </div>
 
 <fkt-markdown
-    [data]="docs()!"
+        [data]="docs()!"
 />

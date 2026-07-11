@@ -1,12 +1,12 @@
 <div class="container">
     <div
-        class="container__interactive-button">
+            class="container__interactive-button">
         <div
-            [fktTooltip]="form.text().value()"
-            [position]="form.position().value()"
-            [tooltipEnabled]="form.enabled().value()"
-            [tooltipColor]="tooltipColor()"
-            disableAutoReposition
+                [fktTooltip]="form.text().value()"
+                [position]="form.position().value()"
+                [tooltipColor]="tooltipColor()"
+                [tooltipEnabled]="form.enabled().value()"
+                disableAutoReposition
         >
             <p>
                 Interactive tooltip element
@@ -18,11 +18,12 @@
         <div class="container__form">
             <div>
                 <fkt-select
-                    [formField]="form.position"
-                    [label]="'Tooltip Position'"
-                    labelKey="label"
-                    valueKey="value"
-                    [options]="positionOptions"
+                        [formField]="form.position"
+                        [options]="positionOptions"
+                        hideClearButton
+                        label="Tooltip Position"
+                        labelKey="label"
+                        valueKey="value"
                 ></fkt-select>
                 <fkt-field label="Tooltip text">
                     <input [formField]="form.text" fktInputText placeholder="Enter tooltip message...">
@@ -30,8 +31,8 @@
             </div>
 
             <fkt-checkbox
-                [formField]="form.enabled"
-                [label]="'Enable Tooltips'"
+                    [formField]="form.enabled"
+                    [label]="'Enable Tooltips'"
             ></fkt-checkbox>
         </div>
     </form>

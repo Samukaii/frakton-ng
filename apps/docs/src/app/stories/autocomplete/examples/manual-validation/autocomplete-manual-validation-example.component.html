@@ -1,26 +1,26 @@
 <div class="actions">
-    <fkt-button
-        theme="stroked"
-        iconPosition="left"
-        icon="check-circle"
-        shape="rect"
-        text="Validate"
-        (click)="validate()"
-    />
+    <button
+            (click)="validate()"
+            appearance="stroked"
+            fktButton
+            icon="check-circle"
+            label="Validate"
+            shape="rounded">
+    </button>
 </div>
 
 <fkt-autocomplete
-    label="Approver"
-    placeholder="Select an approver"
-    [formControl]="approver"
-    [options]="users"
-    labelKey="name"
-    valueKey="id"
-    groupKey="department"
-    localSearch
+        [formControl]="approver"
+        [options]="users"
+        groupKey="department"
+        label="Approver"
+        labelKey="name"
+        localSearch
+        placeholder="Select an approver"
+        valueKey="id"
 >
-    <fkt-icon fktFieldPrefix name="user" />
-    <fkt-icon fktFieldSuffix name="information-circle" />
+    <fkt-icon fktFieldPrefix name="user"/>
+    <fkt-icon fktFieldSuffix name="information-circle"/>
 
     <span fktHintStart>Projected error content replaces the automatic message.</span>
     <span fktHintEnd>Required</span>

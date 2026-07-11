@@ -1,5 +1,8 @@
 import { Component, computed, input, model, signal } from '@angular/core';
-import { FktCalendarComponent, FktCalendarDateConfigFn } from 'frakton-ng/calendar';
+import {
+    FktCalendarComponent,
+    FktCalendarDateConfigFn,
+} from 'frakton-ng/calendar';
 import { FktButtonComponent } from 'frakton-ng/button';
 
 @Component({

@@ -1,13 +1,13 @@
 <fkt-navigator
-	(next)="next()"
-	(previous)="previous()"
+        (next)="next()"
+        (previous)="previous()"
 >
-	<div class="container">
-    <fkt-button
-      [text]="$any(currentDate() | date: 'yyyy')"
-	  (click)="yearClick.emit()"
-      theme="basic"
-      shape="rect"
-    />
-	</div>
+    <div class="container">
+    <button
+            (click)="yearClick.emit()"
+            [label]="$any(currentDate() | date: 'yyyy')"
+            appearance="basic"
+            fktButton>
+    </button>
+    </div>
 </fkt-navigator>
