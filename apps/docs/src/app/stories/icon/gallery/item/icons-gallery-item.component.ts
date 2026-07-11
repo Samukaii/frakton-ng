@@ -6,7 +6,7 @@ import {
     input,
     output,
 } from '@angular/core';
-import { FktIconComponent, FktIconName } from 'frakton-ng/icon';
+import { FktIconComponent, FktIconName, FktIconVariant } from 'frakton-ng/icon';
 
 @Component({
     selector: 'fkt-icons-gallery-item',
@@ -16,6 +16,7 @@ import { FktIconComponent, FktIconName } from 'frakton-ng/icon';
 })
 export class IconsGalleryItemComponent {
     icon = input.required<FktIconName>();
+    variant = input.required<FktIconVariant>();
     descendantActive = input.required<boolean>();
     descendantId = input.required<string>();
 
