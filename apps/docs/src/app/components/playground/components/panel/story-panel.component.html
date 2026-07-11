@@ -152,7 +152,7 @@
     }
     @if (currentTab() === "styling" && canShowDesignTokens()) {
         <div role="tabpanel" id="panel-styling" aria-labelledby="tab-styling">
-            <app-story-design-tokens [parentContainer]="parentRef.nativeElement" [designTokens]="designTokens()"/>
+            <app-story-design-tokens [parentContainer]="previewContainer()" [designTokens]="designTokens()"/>
         </div>
     }
     @if (currentTab() === "code") {

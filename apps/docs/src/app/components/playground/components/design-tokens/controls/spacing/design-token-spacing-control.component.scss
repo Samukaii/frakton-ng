@@ -1,10 +1,6 @@
 :host {
     display: grid;
     gap: var(--fkt-space-xs);
-
-    --fkt-button-icon-font-size: var(--fkt-font-size-xs);
-    --fkt-button-padding-horizontal: var(--fkt-space-3xs);
-    --fkt-button-padding-vertical: var(--fkt-space-3xs);
 }
 
 .preview {

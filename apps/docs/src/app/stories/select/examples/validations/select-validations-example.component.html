@@ -1,33 +1,33 @@
 <div class="actions">
-    <fkt-button
-        theme="stroked"
-        iconPosition="left"
-        icon="check-circle"
-        shape="rect"
-        text="Validate"
-        (click)="validate()"
-    />
+    <button
+            (click)="validate()"
+            appearance="stroked"
+            fktButton
+            icon="check-circle"
+            label="Validate"
+            shape="rounded">
+    </button>
 </div>
 
 <div class="fields">
     <fkt-select
-        label="Automatic validation"
-        placeholder="Select an assignee"
-        [formControl]="automatic"
-        [options]="users"
-        labelKey="name"
-        valueKey="id"
+            [formControl]="automatic"
+            [options]="users"
+            label="Automatic validation"
+            labelKey="name"
+            placeholder="Select an assignee"
+            valueKey="id"
     >
         <fkt-icon fktFieldPrefix name="user"/>
     </fkt-select>
 
     <fkt-select
-        label="Custom validation"
-        placeholder="Select an assignee"
-        [formControl]="custom"
-        [options]="users"
-        labelKey="name"
-        valueKey="id"
+            [formControl]="custom"
+            [options]="users"
+            label="Custom validation"
+            labelKey="name"
+            placeholder="Select an assignee"
+            valueKey="id"
     >
         <fkt-icon fktFieldPrefix name="user"/>
         <fkt-field-error fktError>

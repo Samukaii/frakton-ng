@@ -1,27 +1,28 @@
 <div class="header">
-			<h4 class="header__title">Shared State</h4>
-			<hr>
-			<div class="header__info">
-				<span>Counter: <fkt-tag [text]="sharedCounter().toString()" color="success"></fkt-tag></span>
-				<span>Items: <fkt-tag [text]="sharedItems().length.toString()" color="warning"></fkt-tag></span>
-			</div>
-			<div class="header__description">
-				Changes made in overlays will update this shared state automatically.
-			</div>
-		</div>
-		<hr>
+    <h4 class="header__title">Shared State</h4>
+    <hr>
+    <div class="header__info">
+        <span>Counter: <fkt-tag [text]="sharedCounter().toString()" color="success"></fkt-tag></span>
+        <span>Items: <fkt-tag [text]="sharedItems().length.toString()" color="warning"></fkt-tag></span>
+    </div>
+    <div class="header__description">
+        Changes made in overlays will update this shared state automatically.
+    </div>
+</div>
+<hr>
 
-		<div class="actions">
-			<fkt-button
-				text="Reset All"
-				theme="stroked"
-				color="danger"
-				(click)="resetAll()"
-			></fkt-button>
-			<fkt-button
-				text="Counter Overlay"
-				theme="stroked"
-				color="primary"
-				(click)="openCounterOverlay()"
-			></fkt-button>
-		</div>
+<div #ref class="actions">
+    <button
+            (click)="resetAll()"
+            color="danger"
+            fktButton
+            appearance="stroked"
+            label="Reset All">
+    </button>
+    <button
+            (click)="openCounterOverlay(ref)"
+            color="primary"
+            fktButton
+            label="Counter Overlay">
+    </button>
+</div>

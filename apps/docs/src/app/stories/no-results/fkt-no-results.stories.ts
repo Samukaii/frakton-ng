@@ -34,10 +34,10 @@ const meta: Meta = {
                     }
                 },
                 description: "text",
-                action: {
-                    type: 'object',
-                    schema: buttonActionSchema
-                }
+                // action: {
+                //     type: 'object',
+                //     schema: buttonActionSchema
+                // }
             },
             category: "Attributes",
             type: 'FktNoResults',

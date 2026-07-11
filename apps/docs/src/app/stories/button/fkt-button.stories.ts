@@ -12,6 +12,7 @@ import designTokens from './fkt-button-design-tokens.json';
 import { DesignToken } from '@/models/design-token';
 import documentation from './fkt-button.docs.md' with { loader: 'text' };
 import {
+    ButtonAnchorsExampleComponent,
     ButtonBasicExampleComponent,
     ButtonCompositionExampleComponent,
     ButtonCustomColorsExampleComponent,
@@ -71,7 +72,7 @@ support limited composition without replacing the button's primary semantics.`,
             type: 'boolean',
             defaultValue: 'false',
             description:
-                'Adds the loading indicator, binds aria-busy, and disables the native button.',
+                'Adds the loading indicator, binds aria-busy, and prevents activation. Native buttons receive disabled; anchors receive aria-disabled and are removed from tab order.',
         },
         loadingPosition: {
             control: 'select',
@@ -88,7 +89,7 @@ support limited composition without replacing the button's primary semantics.`,
             type: 'boolean',
             defaultValue: 'false',
             description:
-                'Controls the native disabled property. Loading also disables the button effectively.',
+                'Prevents activation. Native buttons receive disabled; anchors receive aria-disabled and are removed from tab order.',
         },
         color: {
             control: 'text',
@@ -145,15 +146,15 @@ support limited composition without replacing the button's primary semantics.`,
             import: "import { FktButtonType } from 'frakton-ng/button'",
             defaultValue: "'button'",
             description:
-                'Native button type. Defaults to button to avoid accidental form submission.',
+                'Native button type. Applied only when the host is a button. Defaults to button to avoid accidental form submission.',
         },
     },
 };
 
 /**
- * Native button usage. Apply `fktButton` directly to a `<button>` and provide its required label.
- * Events, focus, native attributes, directives, element references, and form behavior stay on the
- * actual interactive element.
+ * Native host usage. Apply `fktButton` directly to a `<button>` or `<a>` and provide its required
+ * label. Events, focus, native attributes, directives, element references, and form or navigation
+ * behavior stay on the actual interactive element.
  */
 export const Usage: StoryIntroduction = {};
 
@@ -164,6 +165,17 @@ export const Usage: StoryIntroduction = {};
  */
 export const Basic: Story<ButtonBasicExampleComponent> = {
     component: ButtonBasicExampleComponent,
+    level: 3,
+    args: {},
+};
+
+/**
+ * Anchor hosts keep native link behavior while sharing the same button appearance and accessibility
+ * contract. `type` and native `disabled` are never applied to anchors; disabled or loading anchors
+ * receive `aria-disabled`, leave the tab order, and block activation.
+ */
+export const AnchorHosts: Story<ButtonAnchorsExampleComponent> = {
+    component: ButtonAnchorsExampleComponent,
     level: 3,
     args: {},
 };

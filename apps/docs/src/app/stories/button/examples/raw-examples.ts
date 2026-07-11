@@ -1,5 +1,8 @@
 // @ts-nocheck
 import { ExternalExample } from '@/models/external-example';
+import buttonAnchorsExampleTemplate from "./anchors/button-anchors-example.component.html" with {loader: "text"};
+import buttonAnchorsExampleStyles from "./anchors/button-anchors-example.component.scss" with {loader: "text"};
+import buttonAnchorsExampleTypescript from "./anchors/button-anchors-example.component.ts" with {loader: "text"};
 import buttonBasicExampleTemplate from "./basic/button-basic-example.component.html" with {loader: "text"};
 import buttonBasicExampleStyles from "./basic/button-basic-example.component.scss" with {loader: "text"};
 import buttonBasicExampleTypescript from "./basic/button-basic-example.component.ts" with {loader: "text"};
@@ -24,6 +27,27 @@ import textVariantsExampleTypescript from "./text-variants/text-variants-example
 
 
 export default {
+	ButtonAnchorsExampleComponent: {
+		name: "ButtonAnchorsExample",
+		files: [
+		
+			{
+				name: "button-anchors-example.component.html",
+				content: buttonAnchorsExampleTemplate as string,
+				language: "angular2html" as const,
+			},		
+			{
+				name: "button-anchors-example.component.ts",
+				content: buttonAnchorsExampleTypescript as string,
+				language: "typescript" as const,
+			},		
+			{
+				name: "button-anchors-example.component.scss",
+				content: buttonAnchorsExampleStyles as string,
+				language: "css" as const,
+			},		
+		]
+	},
 	ButtonBasicExampleComponent: {
 		name: "ButtonBasicExample",
 		files: [

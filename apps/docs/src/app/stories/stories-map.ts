@@ -455,7 +455,7 @@ export const STORIES_MAP: StoryIndexer[] = [	{
 		        name: "Usage",
 		        type: "introduction",
 		        componentName: null,
-		        description:  `Native button usage. Apply \`fktButton\` directly to a \`<button>\` and provide its required label.\nEvents, focus, native attributes, directives, element references, and form behavior stay on the\nactual interactive element.`,
+		        description:  `Native host usage. Apply \`fktButton\` directly to a \`<button>\` or \`<a>\` and provide its required\nlabel. Events, focus, native attributes, directives, element references, and form or navigation\nbehavior stay on the actual interactive element.`,
 		        level: 2,
 		    },
 		    {
@@ -464,6 +464,14 @@ export const STORIES_MAP: StoryIndexer[] = [	{
 		        type: "story",
 		        componentName: "ButtonBasicExampleComponent",
 		        description:  `The appearances use the same native markup and semantic label. \`type="button"\` is applied by\ndefault; consumers can use native attributes such as \`name\`, \`value\`, \`form\`, \`autofocus\`, and\n\`aria-describedby\` without forwarding through a wrapper component.`,
+		        level: 3,
+		    },
+		    {
+		        id: "anchor-hosts",
+		        name: "AnchorHosts",
+		        type: "story",
+		        componentName: "ButtonAnchorsExampleComponent",
+		        description:  `Anchor hosts keep native link behavior while sharing the same button appearance and accessibility\ncontract. \`type\` and native \`disabled\` are never applied to anchors; disabled or loading anchors\nreceive \`aria-disabled\`, leave the tab order, and block activation.`,
 		        level: 3,
 		    },
 		    {
@@ -1541,7 +1549,7 @@ export const STORIES_MAP: StoryIndexer[] = [	{
 		        name: "CustomIcon",
 		        type: "story",
 		        componentName: "IconCustomExampleComponent",
-		        description:  `An application-provided icon rendered through its variantless fallback. The catalog used by this\ndocumentation is registered in the application configuration, not by the example component.\n\nDefine the SVG content in an application-owned catalog and use module augmentation to add its\nkeys to \`FktIconName\`:\n\n\`\`\`ts title="app/custom-icons.ts"\nimport { FktCustomIconCatalog } from 'frakton-ng/icon';\n\nexport const customIcons = {\n    'company-logo': {\n        viewBox: '0 0 32 32',\n        content: '<path fill="currentColor" d="..." />',\n    },\n} as const satisfies FktCustomIconCatalog;\n\ntype CustomIcons = typeof customIcons;\n\ndeclare module 'frakton-ng/icon' {\n    interface FktCustomIcons extends CustomIcons {}\n}\n\`\`\`\n\nRegister the catalog once in the application providers:\n\n\`\`\`ts title="app/app.config.ts"\nimport { provideFktIcons } from 'frakton-ng/icon';\nimport { customIcons } from './custom-icons';\n\nexport const appConfig = {\n    providers: [provideFktIcons(customIcons)],\n};\n\`\`\`\n\nA plain definition is used for every requested variant. When artwork differs by variant, provide\na \`variants\` map and an optional \`fallback\`. SVG content is trusted and rendered without\nsanitization, so catalogs must contain only static, application-owned markup.`,
+		        description:  `An application-provided icon rendered through its variantless fallback. The catalog used by this\ndocumentation is registered in the application configuration, not by the example component.\n\nDefine the SVG content in an application-owned catalog and use module augmentation to add its\nkeys to \`FktIconName\`:\n\n\`\`\`ts title="app/custom-icons.ts"\nimport { FktCustomIconCatalog } from 'frakton-ng/icon';\n\nexport const customIcons = {\n    'github': {\n        viewBox: '0 0 32 32',\n        content: '<path fill="currentColor" d="..." />',\n    },\n    'discord': {\n        viewBox: '0 0 32 32',\n        content: '<path fill="currentColor" d="..." />',\n    },\n} as const satisfies FktCustomIconCatalog;\n\ntype CustomIcons = typeof customIcons;\n\ndeclare module 'frakton-ng/icon' {\n    interface FktCustomIcons extends CustomIcons {}\n}\n\`\`\`\n\nRegister the catalog once in the application providers:\n\n\`\`\`ts title="app/app.config.ts"\nimport { provideFktIcons } from 'frakton-ng/icon';\nimport { customIcons } from './custom-icons';\n\nexport const appConfig = {\n    providers: [provideFktIcons(customIcons)],\n};\n\`\`\`\n\nA plain definition is used for every requested variant. When artwork differs by variant, provide\na \`variants\` map and an optional \`fallback\`. SVG content is trusted and rendered without\nsanitization, so catalogs must contain only static, application-owned markup.`,
 		        level: 3,
 		    }
 	    ]

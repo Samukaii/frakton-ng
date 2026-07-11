@@ -1,14 +1,19 @@
-import { Component, computed, inject, resource, signal } from '@angular/core';
-import { FktTableColumn, FktTableComponent, FktTableSelection, FktTableSelectionDirective } from 'frakton-ng/table';
-import { FktPaginatorComponent } from 'frakton-ng/paginator';
-import { User, UsersService } from '@/stories/table/services/users.service';
-import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
-import { formatDate } from '@angular/common';
+import {Component, computed, inject, resource, signal} from '@angular/core';
+import {FktTableColumn, FktTableComponent, FktTableSelection, FktTableSelectionDirective} from 'frakton-ng/table';
+import {FktPaginatorComponent} from 'frakton-ng/paginator';
+import {User, UsersService} from '@/stories/table/services/users.service';
+import {formatDate} from '@angular/common';
+import {FktButtonComponent} from "frakton-ng/button";
 
 
 @Component({
     selector: 'app-table-examples-row-selection',
-    imports: [FktTableComponent, FktTableSelectionDirective, FktPaginatorComponent, FktButtonLegacyComponent],
+    imports: [
+        FktTableComponent,
+        FktTableSelectionDirective,
+        FktPaginatorComponent,
+        FktButtonComponent,
+    ],
     templateUrl: './table-examples-row-selection.component.html',
     styleUrl: './table-examples-row-selection.component.scss',
 })

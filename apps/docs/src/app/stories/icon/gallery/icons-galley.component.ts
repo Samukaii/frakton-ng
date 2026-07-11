@@ -1,23 +1,13 @@
-import {
-    Component,
-    computed,
-    ElementRef,
-    signal,
-    viewChild,
-    viewChildren,
-} from '@angular/core';
-import { IconsGalleryItemComponent } from './item/icons-gallery-item.component';
-import { FktIconComponent, FktIconName, fktIconNames } from 'frakton-ng/icon';
-import { FktFieldComponent, FktFieldPrefixDirective } from 'frakton-ng/field';
-import { FktInputTextDirective } from 'frakton-ng/input-text';
-import { FormsModule } from '@angular/forms';
-import { debounce, form, FormField } from '@angular/forms/signals';
-import {
-    useActiveDescendantGrid,
-    wait,
-    watchGridColumns,
-} from 'frakton-ng/internal/utils';
-import { filterIcons } from '@/stories/icon/gallery/search-metadata';
+import {Component, computed, ElementRef, signal, viewChild, viewChildren,} from '@angular/core';
+import {IconsGalleryItemComponent} from './item/icons-gallery-item.component';
+import {FktIconComponent, FktIconName, fktIconNames, FktIconVariant,} from 'frakton-ng/icon';
+import {FktFieldComponent, FktFieldPrefixDirective} from 'frakton-ng/field';
+import {FktInputTextDirective} from 'frakton-ng/input-text';
+import {FormsModule} from '@angular/forms';
+import {debounce, form, FormField} from '@angular/forms/signals';
+import {useActiveDescendantGrid, wait, watchGridColumns,} from 'frakton-ng/internal/utils';
+import {filterIcons} from '@/stories/icon/gallery/search-metadata';
+import {FktButtonGroupComponent, FktButtonGroupOption,} from 'frakton-ng/button-group';
 
 @Component({
     selector: 'fkt-icons-galley',
@@ -29,6 +19,7 @@ import { filterIcons } from '@/stories/icon/gallery/search-metadata';
         FktIconComponent,
         FktFieldPrefixDirective,
         FormField,
+        FktButtonGroupComponent,
     ],
     templateUrl: './icons-galley.component.html',
     styleUrl: './icons-galley.component.scss',
@@ -49,12 +40,32 @@ export class IconsGalleyComponent {
     protected readonly galleryId = `icons-gallery-${IconsGalleyComponent.idCounter++}`;
 
     protected readonly columns = watchGridColumns(this.gallery);
+    protected readonly variant = signal<FktIconVariant>('outline');
 
     protected readonly filteredIcons = computed(() => {
         const search = this.search().value();
 
         return filterIcons(this.allIcons(), search);
     });
+
+    protected readonly options: FktButtonGroupOption[] = [
+        {
+            label: 'Outline',
+            id: 'outline',
+        },
+        {
+            label: 'Solid',
+            id: 'solid',
+        },
+        {
+            label: 'Mini',
+            id: 'mini',
+        },
+        {
+            label: 'Micro',
+            id: 'micro',
+        },
+    ];
 
     protected readonly grid = useActiveDescendantGrid({
         items: this.filteredIcons,

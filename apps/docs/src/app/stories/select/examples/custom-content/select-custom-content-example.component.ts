@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { toSignal } from '@angular/core/rxjs-interop';
+import {Component} from '@angular/core';
+import {FormControl, ReactiveFormsModule} from '@angular/forms';
+import {toSignal} from '@angular/core/rxjs-interop';
 import {
     FktSelectChipDirective,
     FktSelectComponent,
@@ -10,11 +10,11 @@ import {
     FktSelectHeaderDirective,
     FktSelectItemDirective,
 } from 'frakton-ng/select';
-import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
-import { FktIconComponent } from 'frakton-ng/icon';
-import { CallPipe } from 'frakton-ng/internal/pipes';
-import { FktTagColor, FktTagComponent } from 'frakton-ng/tag';
-import { CodeOutputComponent } from '@/components/code-output/code-output.component';
+import {FktIconComponent} from 'frakton-ng/icon';
+import {CallPipe} from 'frakton-ng/internal/pipes';
+import {FktTagColor, FktTagComponent} from 'frakton-ng/tag';
+import {CodeOutputComponent} from '@/components/code-output/code-output.component';
+import {FktButtonComponent} from "frakton-ng/button";
 
 interface Product {
     sku: string;
@@ -78,7 +78,7 @@ const PRODUCTS: Product[] = [
         FktSelectFooterDirective,
         FktSelectChipDirective,
         FktSelectEmptyDirective,
-        FktButtonLegacyComponent,
+        FktButtonComponent,
         FktIconComponent,
         CallPipe,
         FktTagComponent,
@@ -108,10 +108,12 @@ export class SelectCustomContentExampleComponent {
     protected price(raw: unknown) {
         const price = (raw as Product | null)?.price;
 
-        return price?.toLocaleString('en-US', {
-            style: 'currency',
-            currency: 'USD',
-        }) ?? '';
+        return (
+            price?.toLocaleString('en-US', {
+                style: 'currency',
+                currency: 'USD',
+            }) ?? ''
+        );
     }
 
     protected stock(raw: unknown) {

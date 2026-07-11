@@ -1,10 +1,11 @@
-<span class="copy-button" data-fkt-theme="dark">
-    <fkt-button
-        [icon]="copied() ? 'check':'clipboard-document'"
-        theme="stroked"
-        iconPosition="left"
-        [color]="copied() ? 'success' : 'primary'"
-        [text]="copied() ? 'Copied' : 'Copy'"
-        (click)="copy()"
-    />
+<span class="copy-button">
+    <button
+            (click)="copy()"
+            [color]="copied() ? 'success' : 'white'"
+            [icon]="copied() ? 'check':'clipboard-document'"
+            [label]="copied() ? 'Copied' : 'Copy'"
+            [appearance]="copied() ? 'raised': 'stroked'"
+            shape="rounded"
+            fktButton>
+    </button>
 </span>

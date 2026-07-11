@@ -1,48 +1,51 @@
 @if (context.features.selection) {
     <td
-        class="table__cell table__cell--checkbox"
-        [class.pinned-left]="'__checkbox' in context.features.pinnedColumns.pinnedOffsets()"
-        [style.left]="context.features.pinnedColumns.pinnedOffsets()['__checkbox']"
-        (click)="$event.stopPropagation()"
+            (click)="$event.stopPropagation()"
+            [class.pinned-left]="'__checkbox' in context.features.pinnedColumns.pinnedOffsets()"
+            [style.left]="context.features.pinnedColumns.pinnedOffsets()['__checkbox']"
+            class="table__cell table__cell--checkbox"
     >
         <fkt-checkbox
-            [checked]="isSelected()"
-            [disabled]="isSelectionDisabled()"
-            (checkedChange)="toggleRowSelection()"
+                (checkedChange)="toggleRowSelection()"
+                [checked]="isSelected()"
+                [disabled]="isSelectionDisabled()"
         />
     </td>
 }
 @if (context.expandableTemplate()) {
     <td
-        class="table__cell table__cell--expand"
-        [class.pinned-left]="'__expand' in context.features.pinnedColumns.pinnedOffsets()"
-        [style.left]="context.features.pinnedColumns.pinnedOffsets()['__expand']"
-        (click)="$event.stopPropagation()"
+            (click)="$event.stopPropagation()"
+            [class.pinned-left]="'__expand' in context.features.pinnedColumns.pinnedOffsets()"
+            [style.left]="context.features.pinnedColumns.pinnedOffsets()['__expand']"
+            class="table__cell table__cell--expand"
     >
-        <fkt-button
-            theme="basic"
-            [icon]="isExpanded() ? 'chevron-up' : 'chevron-down'"
-            [ariaLabel]="isExpanded() ? 'Collapse row' : 'Expand row'"
-            (click)="expandToggle.emit()"
-        />
+        <button
+                (click)="expandToggle.emit()"
+                [icon]="isExpanded() ? 'chevron-up' : 'chevron-down'"
+                [label]="isExpanded() ? 'Collapse row' : 'Expand row'"
+                appearance="basic"
+                fktButton
+                iconOnly
+                size="sm">
+        </button>
     </td>
 }
 @for (column of context.renderedColumns(); track column.key) {
     <td
-        [class]="`table__cell ${item() | call: getClasses: column}`"
-        [class.pinned-left]="column.pinned === 'left'"
-        [class.pinned-right]="column.pinned === 'right'"
-        [class.pinned-left-edge]="leftPinnedKey() === column.key"
-        [class.pinned-right-edge]="rightPinnedKey() === column.key"
-        [style.left]="column.pinned === 'left'
+            [class.pinned-left-edge]="leftPinnedKey() === column.key"
+            [class.pinned-left]="column.pinned === 'left'"
+            [class.pinned-right-edge]="rightPinnedKey() === column.key"
+            [class.pinned-right]="column.pinned === 'right'"
+            [class]="`table__cell ${item() | call: getClasses: column}`"
+            [style.left]="column.pinned === 'left'
             ? context.features.pinnedColumns.pinnedOffsets()[column.key]
             : null"
-        [style.right]="column.pinned === 'right'
+            [style.max-width]="columnWidths() | call : getColumnWidth : column ?? 'none'"
+            [style.min-width]="columnWidths() | call : getColumnWidth : column ?? 'none'"
+            [style.right]="column.pinned === 'right'
             ? context.features.pinnedColumns.pinnedOffsets()[column.key]
             : null"
-        [style.width]="columnWidths() | call : getColumnWidth : column ?? 'auto'"
-        [style.min-width]="columnWidths() | call : getColumnWidth : column ?? 'none'"
-        [style.max-width]="columnWidths() | call : getColumnWidth : column ?? 'none'"
+            [style.width]="columnWidths() | call : getColumnWidth : column ?? 'auto'"
     >
         <fkt-table-cell-renderer [column]="column" [item]="item()"/>
     </td>

@@ -131,6 +131,25 @@ class CustomCssColorHostComponent {}
 })
 class AutomaticCssColorHostComponent {}
 
+@Component({
+    imports: [FktButtonComponent],
+    template: `
+        <a
+            fktButton
+            href="/docs"
+            label="Docs"
+            [disabled]="disabled()"
+            [loading]="loading()"
+            (click)="$event.preventDefault(); clicked.set(clicked() + 1)"
+        ></a>
+    `,
+})
+class AnchorHostComponent {
+    readonly clicked = signal(0);
+    readonly disabled = signal(false);
+    readonly loading = signal(false);
+}
+
 describe('FktButtonComponent', () => {
     it('renders the required label and preserves native button attributes', () => {
         const fixture = TestBed.createComponent(ButtonHostComponent);
@@ -140,6 +159,7 @@ describe('FktButtonComponent', () => {
             fixture.nativeElement.querySelector('button');
 
         expect(button.textContent).toContain('Save');
+        expect(button.querySelector('.surface')).not.toBeNull();
         expect(button.type).toBe('button');
         expect(button.name).toBe('intent');
         expect(button.value).toBe('save');
@@ -188,6 +208,7 @@ describe('FktButtonComponent', () => {
         expect(button.hasAttribute('data-fkt-disabled')).toBeFalse();
         expect(button.getAttribute('aria-busy')).toBe('true');
         expect(button.textContent).toContain('Save');
+        expect(button.querySelector('.surface')).not.toBeNull();
         expect(button.querySelector('fkt-icon')).toBeNull();
         expect(button.querySelector('.spinner')).not.toBeNull();
     });
@@ -276,6 +297,60 @@ describe('FktButtonComponent', () => {
         expect(button.hasAttribute('data-fkt-variant')).toBeFalse();
     });
 
+    it('does not apply button-only attributes to anchor hosts', () => {
+        const fixture = TestBed.createComponent(AnchorHostComponent);
+        fixture.detectChanges();
+
+        const anchor: HTMLAnchorElement =
+            fixture.nativeElement.querySelector('a');
+
+        expect(anchor.getAttribute('type')).toBeNull();
+        expect(anchor.hasAttribute('disabled')).toBeFalse();
+        expect(anchor.getAttribute('aria-disabled')).toBeNull();
+        expect(anchor.getAttribute('tabindex')).toBeNull();
+
+        anchor.click();
+
+        expect(fixture.componentInstance.clicked()).toBe(1);
+    });
+
+    it('uses aria-disabled and blocks activation when anchor hosts are disabled', () => {
+        const fixture = TestBed.createComponent(AnchorHostComponent);
+        fixture.componentInstance.disabled.set(true);
+        fixture.detectChanges();
+
+        const anchor: HTMLAnchorElement =
+            fixture.nativeElement.querySelector('a');
+
+        expect(anchor.hasAttribute('disabled')).toBeFalse();
+        expect(anchor.getAttribute('aria-disabled')).toBe('true');
+        expect(anchor.getAttribute('tabindex')).toBe('-1');
+        expect(anchor.hasAttribute('data-fkt-disabled')).toBeTrue();
+
+        anchor.click();
+
+        expect(fixture.componentInstance.clicked()).toBe(0);
+    });
+
+    it('blocks anchor activation while loading without marking it as visually disabled', () => {
+        const fixture = TestBed.createComponent(AnchorHostComponent);
+        fixture.componentInstance.loading.set(true);
+        fixture.detectChanges();
+
+        const anchor: HTMLAnchorElement =
+            fixture.nativeElement.querySelector('a');
+
+        expect(anchor.hasAttribute('disabled')).toBeFalse();
+        expect(anchor.getAttribute('aria-disabled')).toBe('true');
+        expect(anchor.getAttribute('tabindex')).toBe('-1');
+        expect(anchor.hasAttribute('data-fkt-loading')).toBeTrue();
+        expect(anchor.hasAttribute('data-fkt-disabled')).toBeFalse();
+
+        anchor.click();
+
+        expect(fixture.componentInstance.clicked()).toBe(0);
+    });
+
     it('accepts arbitrary CSS colors and an explicit text color', () => {
         const fixture = TestBed.createComponent(
             CustomCssColorHostComponent
@@ -329,8 +404,10 @@ describe('FktButtonComponent', () => {
             fixture.nativeElement.querySelector(
                 '[data-testid="navy"]'
             );
-        const redText = readRenderedColor(red);
-        const navyText = readRenderedColor(navy);
+        const redSurface: HTMLElement = red.querySelector('.surface')!;
+        const navySurface: HTMLElement = navy.querySelector('.surface')!;
+        const redText = readRenderedColor(redSurface);
+        const navyText = readRenderedColor(navySurface);
 
         expect([...redText.slice(0, 3)].every((value) => value > 240))
             .toBeTrue();

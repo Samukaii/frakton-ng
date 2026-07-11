@@ -1,82 +1,93 @@
 <div class="pagination">
-	@if (mergedConfig().showInfo) {
-		<div class="pagination__info">
-			Showing {{startItem()}}-{{ endItem() }} of {{ total() }} results
-		</div>
-	}
+    @if (mergedConfig().showInfo) {
+        <div class="pagination__info">
+            Showing {{ startItem() }}-{{ endItem() }} of {{ total() }} results
+        </div>
+    }
 
-	<div class="pagination__controls">
-		@if (mergedConfig().showPrevNext) {
-			<fkt-button
-				theme="basic"
-				icon="chevron-left"
-				ariaLabel="Previous page"
-				[disabled]="disabled() || !canGoPrevious()"
-				(click)="goToPrevious()"
-			/>
-		}
+    <div class="pagination__controls">
+        @if (mergedConfig().showPrevNext) {
+            <button
+                    (click)="goToPrevious()"
+                    [disabled]="disabled() || !canGoPrevious()"
+                    square
+                    appearance="basic"
+                    fktButton
+                    icon="chevron-left"
+                    iconOnly
+                    label="Previous page">
+            </button>
+        }
 
-		@if (mergedConfig().showPageNumbers) {
+        @if (mergedConfig().showPageNumbers) {
             @if (!firstIsVisible()) {
-                <fkt-button
-                    [theme]="1 === currentPage() ? 'raised' : 'basic'"
-                    [text]="'1'"
-                    [ariaLabel]="'Go to first page'"
-                    [disabled]="disabled()"
-                    (click)="goToFirst()"
-                />
+                <button
+                        (click)="goToFirst()"
+                        [appearance]="1 === currentPage() ? 'raised' : 'basic'"
+                        [disabled]="disabled()"
+                        square
+                        ariaLabel="Go to first page"
+                        fktButton
+                        label="1">
+                </button>
                 <div>
                     ...
                 </div>
             }
 
 
-			@for (page of visiblePages(); track page) {
-				<fkt-button
-					[theme]="page === currentPage() ? 'raised' : 'basic'"
-					[text]="page.toString()"
-					[ariaLabel]="'Go to page ' + page"
-					[disabled]="disabled()"
-					(click)="goToPage(page)"
-				/>
-			}
+            @for (page of visiblePages(); track page) {
+                <button
+                        (click)="goToPage(page)"
+                        [appearance]="page === currentPage() ? 'raised' : 'basic'"
+                        [ariaLabel]="'Go to page ' + page"
+                        [disabled]="disabled()"
+                        square
+                        [label]="page.toString()"
+                        fktButton>
+                </button>
+            }
             @if (!lastIsVisible()) {
                 <div>
                     ...
                 </div>
-                <fkt-button
-                    [theme]="totalPages() === currentPage() ? 'raised' : 'basic'"
-                    [text]="totalPages().toString()"
-                    [ariaLabel]="'Go to last page'"
-                    [disabled]="disabled()"
-                    (click)="goToLast()"
-                />
+                <button
+                        (click)="goToLast()"
+                        [appearance]="totalPages() === currentPage() ? 'raised' : 'basic'"
+                        ariaLabel="Go to last page"
+                        [disabled]="disabled()"
+                        [label]="totalPages().toString()"
+                        fktButton
+                        iconOnly>
+                </button>
             }
-		}
+        }
 
-		@if (mergedConfig().showPrevNext) {
-			<fkt-button
-				theme="basic"
-				icon="chevron-right"
-				ariaLabel="Next page"
-				[disabled]="disabled() || !canGoNext()"
-				(click)="goToNext()"
-			/>
-		}
-	</div>
+        @if (mergedConfig().showPrevNext) {
+            <button
+                    (click)="goToNext()"
+                    [disabled]="disabled() || !canGoNext()"
+                    appearance="basic"
+                    fktButton
+                    icon="chevron-right"
+                    iconOnly
+                    label="Next page">
+            </button>
+        }
+    </div>
 
-	@if (mergedConfig().showPageSize) {
-		<div class="pagination__page-size">
-			<fkt-select
-				[value]="pageSize()"
-                (valueChange)="changePageSize($event)"
-                labelKey="label"
-                hideClearButton
-                valueKey="value"
-				[options]="pageSizeOptions()"
-				[disabled]="disabled()"
-				label="Items per page"
-			/>
-		</div>
-	}
+    @if (mergedConfig().showPageSize) {
+        <div class="pagination__page-size">
+            <fkt-select
+                    (valueChange)="changePageSize($event)"
+                    [disabled]="disabled()"
+                    [options]="pageSizeOptions()"
+                    [value]="pageSize()"
+                    hideClearButton
+                    label="Items per page"
+                    labelKey="label"
+                    valueKey="value"
+            />
+        </div>
+    }
 </div>

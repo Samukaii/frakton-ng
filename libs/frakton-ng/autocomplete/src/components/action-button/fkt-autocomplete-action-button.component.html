@@ -1,9 +1,15 @@
-<fkt-button
-    suffixNoPadding
-    [ariaLabel]="actionButton().label"
-    [icon]="actionButton().icon"
-    (click)="$event.stopPropagation(); actionButton().action?.()"
-    [disabled]="actionButton().disabled"
-    [loading]="context.loading()"
-    theme="basic"
-/>
+<button
+        (click)="$event.stopPropagation(); actionButton().action?.()"
+        [disabled]="actionButton().disabled"
+        [icon]="actionButton().icon"
+        [label]="actionButton().label"
+        [loading]="context.loading()"
+        appearance="basic"
+        data-fkt-accept-overrides="appearance shape size color"
+        [attr.data-fkt-component-anchor]="actionButton().anchor"
+        fktButton
+        iconOnly
+        shape="pill"
+        size="sm"
+        suffixNoPadding
+></button>

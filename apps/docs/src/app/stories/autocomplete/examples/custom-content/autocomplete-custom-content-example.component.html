@@ -1,13 +1,13 @@
 <fkt-autocomplete
-    label="Team member"
-    placeholder="Search for a teammate"
-    [formControl]="member"
-    [options]="users"
-    multiple
-    labelKey="name"
-    valueKey="id"
-    groupKey="department"
-    localSearch
+        [formControl]="member"
+        [options]="users"
+        groupKey="department"
+        label="Team member"
+        labelKey="name"
+        localSearch
+        multiple
+        placeholder="Search for a teammate"
+        valueKey="id"
 >
     <div *fktAutocompleteHeader class="overlay-header">
         <div>
@@ -22,14 +22,14 @@
     </div>
 
     <div
-        *fktAutocompleteItem="let item; let isSelected = isSelected"
-        class="item"
-        [attr.data-fkt-theme]="isSelected ? 'dark' : 'light'"
-        [class.selected]="isSelected"
+            *fktAutocompleteItem="let item; let isSelected = isSelected"
+            [attr.data-fkt-theme]="isSelected ? 'dark' : 'light'"
+            [class.selected]="isSelected"
+            class="item"
     >
         <fkt-avatar
-            randomBackground
-            [initials]="item.label"
+                [initials]="item.label"
+                randomBackground
         />
 
         <div class="identity">
@@ -37,22 +37,21 @@
             <span>{{ item.raw?.['email'] }}</span>
         </div>
 
-        <fkt-tag variant="faded" color="success" [text]="item.raw?.['department']"/>
+        <fkt-tag [text]="item.raw?.['department']" color="success" variant="faded"/>
     </div>
 
     <div *fktAutocompleteFooter class="overlay-footer">
         <span>Missing someone?</span>
-        <fkt-button
-            text="Invite user"
-            icon="plus"
-            iconPosition="left"
-            theme="stroked"
-            shape="rect"
-        />
+        <button
+                appearance="stroked"
+                fktButton
+                icon="plus"
+                label="Invite user">
+        </button>
     </div>
 
     <div *fktAutocompleteChip="let item" class="custom-chip">
-        <fkt-avatar randomBackground size="xs" [initials]="item.label"/>
+        <fkt-avatar [initials]="item.label" randomBackground size="xs"/>
         <span>{{ item.label }}</span>
         <fkt-icon name="x-circle"/>
     </div>

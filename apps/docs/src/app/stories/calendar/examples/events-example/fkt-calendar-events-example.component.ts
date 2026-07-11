@@ -1,10 +1,13 @@
 import { Component, computed, input, model, signal } from '@angular/core';
-import { FktCalendarComponent, FktCalendarDateConfigFn } from 'frakton-ng/calendar';
-import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
+import {
+    FktCalendarComponent,
+    FktCalendarDateConfigFn,
+} from 'frakton-ng/calendar';
+import { FktButtonComponent } from 'frakton-ng/button';
 
 @Component({
 	selector: 'fkt-calendar-events-example',
-	imports: [FktCalendarComponent, FktButtonLegacyComponent],
+	imports: [FktCalendarComponent, FktButtonComponent],
 	templateUrl: './fkt-calendar-events-example.component.html',
 	styleUrl: './fkt-calendar-events-example.component.scss'
 })

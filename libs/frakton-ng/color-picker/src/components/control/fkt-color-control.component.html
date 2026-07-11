@@ -4,13 +4,13 @@
     </legend>
 
     <fkt-select
-        [label]="locale.controls.formatType"
-        hideLabel
-        hideClearButton
-        valueKey="value"
-        labelKey="label"
-        [(value)]="currentFormat"
-        [options]="formatOptions()"
+            [(value)]="currentFormat"
+            [label]="locale.controls.formatType"
+            [options]="formatOptions()"
+            hideClearButton
+            hideLabel
+            labelKey="label"
+            valueKey="value"
     />
 
     <ng-content></ng-content>
@@ -39,22 +39,26 @@
 
     <div class="actions">
         @if (eyeDropper) {
-            <fkt-button
-                ariaLabel="Color"
-                theme="stroked"
-                icon="eye-dropper"
-                (click)="pickByEyeDropper()"
-            />
+            <button
+                    (click)="pickByEyeDropper()"
+                    appearance="stroked"
+                    fktButton
+                    icon="eye-dropper"
+                    iconOnly
+                    label="Color">
+            </button>
         }
 
-        <fkt-button
-            (click)="copyValue()"
-            [theme]="copied() ? 'raised': 'stroked'"
-            [ariaLabel]="locale.actions.copyColorCode"
-            [color]="copied() ? 'success' : 'primary'"
-            [icon]="copied() ? 'check' : 'clipboard-document-list'"
-            [fktTooltip]="locale.actions.copyColorCode"
-        />
+        <button
+                (click)="copyValue()"
+                [appearance]="copied() ? 'raised': 'stroked'"
+                [color]="copied() ? 'success' : 'primary'"
+                [fktTooltip]="locale.actions.copyColorCode"
+                [icon]="copied() ? 'check' : 'clipboard-document-list'"
+                [label]="locale.actions.copyColorCode"
+                fktButton
+                iconOnly>
+        </button>
     </div>
 </div>
 

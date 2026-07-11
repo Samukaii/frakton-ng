@@ -50,7 +50,7 @@ export class StoryRendererComponent {
     private readonly viewRefs = viewChildren('template', {
         read: ViewContainerRef,
     });
-    private readonly elementRef = viewChild('container', { read: ElementRef });
+    protected readonly previewContainer = viewChild<string, ElementRef<HTMLElement>>('container', { read: ElementRef });
 
     protected readonly variantsConfig = computed(() => {
         const variants = this.storyInfoService.activeStory.variants;
@@ -120,7 +120,7 @@ export class StoryRendererComponent {
 
         this.themeService.currentTheme();
 
-        const elementRef = this.elementRef();
+        const elementRef = this.previewContainer();
 
         if (!elementRef) return [];
 

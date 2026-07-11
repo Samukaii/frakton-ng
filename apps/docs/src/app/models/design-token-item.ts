@@ -10,7 +10,7 @@ export interface DesignTokenItem {
 		selector: string;
 	};
 	description: string;
-	type: 'size' | 'spacing' | 'color' | 'shadow' | 'weight' | 'opacity';
+	type: 'size' | 'spacing' | 'color' | 'shadow' | 'weight' | 'opacity' | 'transition' | 'text-decoration';
 	defaultValue: string;
 	control: WritableSignal<string>;
 }

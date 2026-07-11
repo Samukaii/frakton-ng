@@ -1,5 +1,6 @@
 <div class="header">
-    <button #button (mouseover)="openInfo(button)" (focus)="openInfo(button)" (blur)="overlayRef?.close()" class="token">
+    <button #button (blur)="overlayRef?.close()" (focus)="openInfo(button)" (mouseover)="openInfo(button)"
+            class="token">
         <fkt-icon [name]="categoryIcon() ?? 'academic-cap'"/>
         <span [fktTooltip]="designToken().name" detectOverflow>
 	        {{ designToken().name | humanizeDesignToken: templateSelector() }}
@@ -9,26 +10,29 @@
     <div class="actions">
         <div>
             @if (hasChanges()) {
-                <fkt-button
-                    (click)="resetToken()"
-                    ariaLabel="Reset token"
-                    fktTooltip="Reset token"
-                    shape="rect"
-                    color="primary"
-                    theme="basic"
-                    icon="arrow-uturn-left"
-                />
+                <button
+                        (click)="resetToken()"
+                        appearance="basic"
+                        color="primary"
+                        fktButton
+                        fktTooltip="Reset token"
+                        icon="arrow-uturn-left"
+                        iconOnly
+                        label="Reset token">
+                </button>
             }
 
-            <fkt-button
-                (click)="copyToken()"
-                [ariaLabel]="copied() ? 'Copied': 'Copy this token'"
-                [fktTooltip]="copied() ? 'Copied': 'Copy this token'"
-                [shape]="copied() ? 'rounded': 'rounded'"
-                [color]="copied() ? 'success': 'primary'"
-                [theme]="copied() ? 'raised' : 'basic'"
-                [icon]="copied()  ? 'check' : 'clipboard-document-list'"
-            />
+            <button
+                    (click)="clipboard.copy()"
+                    [appearance]="clipboard.copied() ? 'raised' : 'basic'"
+                    shape="pill"
+                    [color]="clipboard.copied() ? 'success': 'primary'"
+                    [fktTooltip]="clipboard.copied() ? 'Copied': 'Copy this token'"
+                    [icon]="clipboard.copied()  ? 'check' : 'clipboard-document-list'"
+                    [label]="clipboard.copied() ? 'Copied': 'Copy this token'"
+                    fktButton
+                    iconOnly>
+            </button>
         </div>
     </div>
 </div>
@@ -44,11 +48,17 @@
         @case ("weight") {
             <app-design-token-weight-control [token]="designToken()"/>
         }
+        @case ("text-decoration") {
+            <app-design-token-text-decoration-control [token]="designToken()"/>
+        }
         @case ("opacity") {
             <app-design-token-opacity-control [token]="designToken()"/>
         }
         @case ("shadow") {
             <app-design-token-shadow-control [token]="designToken()"/>
+        }
+        @case ("transition") {
+            <app-design-token-transition-control [token]="designToken()"/>
         }
         @case ("color") {
             <app-design-token-color-control [token]="designToken()"/>

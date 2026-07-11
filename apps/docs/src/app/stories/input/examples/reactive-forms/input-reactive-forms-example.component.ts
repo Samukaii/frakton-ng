@@ -1,14 +1,14 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
 import { FktFieldComponent } from 'frakton-ng/field';
 import { FktIconComponent } from 'frakton-ng/icon';
 import { FktInputTextDirective } from 'frakton-ng/input-text';
+import { FktButtonComponent } from 'frakton-ng/button';
 
 @Component({
     selector: 'app-input-reactive-forms-example',
     imports: [
-        FktButtonLegacyComponent,
+        FktButtonComponent,
         FktFieldComponent,
         FktIconComponent,
         FktInputTextDirective,

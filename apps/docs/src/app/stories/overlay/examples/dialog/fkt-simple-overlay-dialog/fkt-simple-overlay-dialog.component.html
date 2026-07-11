@@ -1,11 +1,12 @@
 <div class="container">
-			<h3 class="container__title">{{ title() }}</h3>
-			<p class="container__description">{{ message() }}</p>
-			<div class="container__actions">
-				<fkt-button
-					text="Close"
-					theme="stroked"
-					(click)="handleClose()"
-				></fkt-button>
-			</div>
-		</div>
+    <h3 class="container__title">{{ title() }}</h3>
+    <p class="container__description">{{ message() }}</p>
+    <div class="container__actions">
+        <button
+                fktButton
+                (click)="handleClose()"
+                label="Close"
+                appearance="stroked">
+        </button>
+    </div>
+</div>

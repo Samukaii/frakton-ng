@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { FktSelectComponent } from 'frakton-ng/select';
 import { FktColorPickerFormat } from '../../fkt-color-picker.types';
-import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
+import { FktButtonComponent } from 'frakton-ng/button';
 import { FktTooltipDirective } from 'frakton-ng/tooltip';
 import { getColorDescription } from '../../helpers/get-color-description';
 import { capitalize, fktColorFormatters } from 'frakton-ng/internal/utils';
@@ -19,7 +19,7 @@ import { injectEyeDropper } from 'frakton-ng/internal/di';
 
 @Component({
     selector: 'fkt-color-control',
-    imports: [FktSelectComponent, FktButtonLegacyComponent, FktTooltipDirective],
+    imports: [FktSelectComponent, FktButtonComponent, FktTooltipDirective],
     templateUrl: './fkt-color-control.component.html',
     styleUrl: './fkt-color-control.component.scss',
 })
@@ -69,13 +69,18 @@ export class FktColorControlComponent {
 
     async pickByEyeDropper() {
         if (!this.eyeDropper) return;
+        const abort = new AbortController();
 
         try {
-            const { sRGBHex } = await this.eyeDropper.open();
+            const { sRGBHex } = await this.eyeDropper.open({
+                signal: abort.signal,
+            });
             const asHSV = parseAnyColorToHSV(sRGBHex);
             if (asHSV) this.value.set(asHSV);
+
+            abort.abort();
         } catch {
-            /* empty */
+            abort.abort();
         }
     }
 }

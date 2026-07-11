@@ -1,11 +1,11 @@
-import { Component, computed, input, model } from '@angular/core';
-import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
-import { FktSelectComponent, FktSelectValue } from 'frakton-ng/select';
-import { DEFAULT_PAGINATOR_CONFIG, FktPaginatorConfig } from './fkt-paginator.types';
+import {Component, computed, input, model} from '@angular/core';
+import {FktSelectComponent, FktSelectValue} from 'frakton-ng/select';
+import {DEFAULT_PAGINATOR_CONFIG, FktPaginatorConfig} from './fkt-paginator.types';
+import {FktButtonComponent} from "frakton-ng/button";
 
 @Component({
     selector: 'fkt-paginator',
-    imports: [FktButtonLegacyComponent, FktSelectComponent],
+    imports: [FktButtonComponent, FktSelectComponent],
     templateUrl: './fkt-paginator.component.html',
     styleUrl: './fkt-paginator.component.scss',
 })

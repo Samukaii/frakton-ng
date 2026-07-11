@@ -1,31 +1,36 @@
 :host {
-	display: flex;
-	justify-content: center;
-	width: 100%;
-	color: var(--fkt-color-neutral-950);
-	padding: 1rem;
-	box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  color: var(--fkt-color-neutral-950);
+  padding: 1rem;
+  box-sizing: border-box;
 }
 
 .gallery {
-	width: 1344px;
-	display: flex;
-	flex-direction: column;
-	gap: var(--fkt-space-md);
+  width: 1344px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--fkt-space-md);
+  height: 600px;
 
-	&__item {
-        width: 100%;
-        padding: .5rem;
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(112px, 1fr));
-        grid-template-rows: auto 1fr;
-		gap: var(--fkt-space-md);
-        height: 600px;
-        overflow-y: auto;
-		align-items: flex-start;
-	}
+  &__item {
+    width: 100%;
+    padding: .5rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(112px, 1fr));
+    grid-template-rows: auto 1fr;
+    gap: var(--fkt-space-md);
+    overflow-y: auto;
+    align-items: flex-start;
+    max-height: 600px;
+  }
 
-    fkt-field {
-        width: 100%;
-    }
+  fkt-field {
+    width: 100%;
+  }
+}
+
+fkt-button-group {
+  padding: 0 var(--fkt-space-inset-3xs)
 }

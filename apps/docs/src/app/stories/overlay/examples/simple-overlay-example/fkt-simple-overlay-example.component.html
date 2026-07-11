@@ -1,33 +1,34 @@
 <div class="container">
-			<div #left>
-				<fkt-button
-					text="Left Center"
-					theme="stroked"
-					color="accent"
-					(click)="openOverlay(left, 'left-center')"
-				></fkt-button>
-			</div>
-			<div #right>
-				<fkt-button
-					text="Right Center"
-					theme="stroked"
-					color="primary"
-					(click)="openOverlay(right, 'right-center')"
-				></fkt-button>
-			</div>
-			<div #top>
-				<fkt-button
-					text="Top Center"
-					theme="stroked"
-					color="success"
-					(click)="openOverlay(top, 'top-center')"
-				></fkt-button>
-			</div>
-			<div #bottom>
-				<fkt-button
-					text="Bottom Center (Default)"
-					theme="stroked"
-					(click)="openOverlay(bottom, 'bottom-center')"
-				></fkt-button>
-			</div>
-		</div>
+    <div #left>
+        <button
+                (click)="openOverlay(left, 'left-center')"
+                color="accent"
+                fktButton
+                label="Left Center">
+        </button>
+    </div>
+    <div #right>
+        <button
+                (click)="openOverlay(right, 'right-center')"
+                color="info"
+                fktButton
+                label="Right Center">
+        </button>
+    </div>
+    <div #top>
+        <button
+                (click)="openOverlay(top, 'top-center')"
+                color="success"
+                fktButton
+                label="Top Center">
+        </button>
+    </div>
+    <div #bottom>
+        <button
+                (click)="openOverlay(bottom, 'bottom-center')"
+                fktButton
+                color="warning"
+                label="Bottom Center (Default)">
+        </button>
+    </div>
+</div>

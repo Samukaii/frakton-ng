@@ -15,20 +15,27 @@
             }
         </div>
     }
+    @else {
+        <div></div>
+    }
 
     <div class="actions">
         @if (hasChanges()) {
             <button (click)="resetAll()" appearance="basic" fktButton fktTooltip="Reset all" icon="arrow-uturn-left"
-                    iconOnly label="Reset all"></button>
+                    iconOnly label="Reset all">
+            </button>
             <button
-                    (click)="copyAll()"
-                    [appearance]="copied() ? 'raised' : 'basic'"
-                    [fktTooltip]="copied() ? 'Copied' :'Copy all'"
-                    [icon]="copied() ? 'check' :'clipboard'"
-                    [label]="copied() ? 'Copied' : 'Copy all'"
+                    (click)="clipboard.copy()"
+                    [appearance]="clipboard.copied() ? 'raised' : 'basic'"
+                    [color]="clipboard.copied() ? 'success' : 'primary'"
+                    [fktTooltip]="clipboard.copied() ? 'Copied' :'Copy all'"
+                    [icon]="clipboard.copied() ? 'check' :'clipboard'"
+                    [label]="clipboard.copied() ? 'Copied' : 'Copy all'"
+                    shape="pill"
                     fktButton
-                    fktTooltip="Reset all"
-                    iconOnly></button>
+                    fktTooltip="Copy all"
+                    iconOnly>
+            </button>
         }
     </div>
 </div>

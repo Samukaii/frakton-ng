@@ -1,39 +1,39 @@
 <div class="actions">
-    <fkt-button
-        theme="stroked"
-        iconPosition="left"
-        icon="list-bullet"
-        shape="rect"
-        text="Set ids"
-        (click)="fillWithPrimitiveValues()"
-    />
-    <fkt-button
-        theme="stroked"
-        iconPosition="left"
-        icon="user-plus"
-        shape="rect"
-        text="Set hydrated users"
-        (click)="fillWithHydratedUsers()"
-    />
-    <fkt-button
-        theme="stroked"
-        iconPosition="left"
-        icon="arrow-path-rounded-square"
-        shape="rect"
-        text="Load fresh options"
-        (click)="loadFreshOptions()"
-    />
+    <button
+            (click)="fillWithPrimitiveValues()"
+            appearance="stroked"
+            fktButton
+            shape="rounded"
+            icon="list-bullet"
+            label="Set ids">
+    </button>
+    <button
+            (click)="fillWithHydratedUsers()"
+            appearance="stroked"
+            fktButton
+            shape="rounded"
+            icon="user-plus"
+            label="Set hydrated users">
+    </button>
+    <button
+            (click)="loadFreshOptions()"
+            appearance="stroked"
+            fktButton
+            shape="rounded"
+            icon="arrow-path-rounded-square"
+            label="Load fresh options">
+    </button>
 </div>
 
 <fkt-autocomplete
-    label="Users"
-    placeholder="Search for a user"
-    [formControl]="usersControl"
-    [options]="users"
-    labelKey="name"
-    valueKey="id"
-    multiple
-    localSearch
+        [formControl]="usersControl"
+        [options]="users"
+        label="Users"
+        labelKey="name"
+        localSearch
+        multiple
+        placeholder="Search for a user"
+        valueKey="id"
 />
 
 <app-code-output [value]="value()" title="Field value"/>

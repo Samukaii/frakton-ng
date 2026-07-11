@@ -8,15 +8,12 @@ h3 {
 
 .container {
 	padding: var(--fkt-space-md);
-	margin-top: var(--fkt-space-md);
-	min-width: 20rem;
+	width: 400px;
 
 	&__header {
 		display: flex;
-		padding: var(--fkt-space-xs);
 		gap: var(--fkt-space-xs);
 		align-items: center;
-		border: solid 1px var(--fkt-color-neutral-200);
 
 		&-icon {
 			color: var(--fkt-color-neutral-600);
