@@ -1,8 +1,8 @@
-import { Component, signal } from '@angular/core';
-import { FktToggleComponent } from 'frakton-ng/toggle';
-import { disabled, FormField, form, required } from '@angular/forms/signals';
-import { FktFieldErrorComponent } from 'frakton-ng/field';
-import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
+import {Component, signal} from '@angular/core';
+import {FktToggleComponent} from 'frakton-ng/toggle';
+import {disabled, form, FormField, required} from '@angular/forms/signals';
+import {FktFieldErrorComponent} from 'frakton-ng/field';
+import {FktButtonComponent} from "frakton-ng/button";
 
 @Component({
     selector: 'fkt-toggle-signal-forms',
@@ -10,7 +10,7 @@ import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
         FktToggleComponent,
         FormField,
         FktFieldErrorComponent,
-        FktButtonLegacyComponent,
+        FktButtonComponent,
     ],
     templateUrl: './toggle-signal-forms.component.html',
     styleUrl: './toggle-signal-forms.component.scss',

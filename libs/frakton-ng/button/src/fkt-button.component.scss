@@ -48,6 +48,24 @@ Text decoration applied to the button host.
 $text-decoration: var(--fkt-button-text-decoration, none);
 
 /*
+Horizontal button alignment.
+@name --fkt-button-justify-content
+@reference none
+@category Alignment
+@type flex-alignment
+ */
+$justify-content: var(--fkt-button-justify-content, center);
+
+/*
+Vertical button alignment.
+@name --fkt-button-align-items
+@reference none
+@category Alignment
+@type flex-alignment
+ */
+$align-items: var(--fkt-button-align-items, center);
+
+/*
 Border radius for the selected button shape.
 @name --fkt-button-border-radius
 @reference --fkt-radius-md
@@ -193,7 +211,6 @@ Border color for the active state.
 @name --fkt-button-active-border-color
 @reference appearance default
 @category Colors
-@scope active | [fktButton]
 @type color
  */
 $button-active-border-color: var(
@@ -330,8 +347,8 @@ $button-active-box-shadow: var(
 
   box-sizing: border-box;
   display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  align-items: $align-items;
+  justify-content: $justify-content;
   gap: $content-gap;
   width: 100%;
   height: 100%;

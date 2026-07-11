@@ -1,22 +1,23 @@
 <div class="admin-page admin-settings">
-	<h1 class="admin-page__title">Configurações do Sistema</h1>
-	<div class="admin-page__content">
-		<form class="admin-settings__form">
-			<fkt-field label="Nome da aplicação">
-				<input
-					fktInputText
-					placeholder="Informe aqui o nome da aplicação"
-					[formField]="form.name"
-				/>
-			</fkt-field>
-			<fkt-checkbox
-				label="Modo escuro"
-				[formField]="form.darkMode"
-			/>
-			<fkt-button
-				type="submit"
-				text="Salvar configurações"
-			/>
-		</form>
-	</div>
+    <h1 class="admin-page__title">Configurações do Sistema</h1>
+    <div class="admin-page__content">
+        <form class="admin-settings__form">
+            <fkt-field label="Nome da aplicação">
+                <input
+                        [formField]="form.name"
+                        fktInputText
+                        placeholder="Informe aqui o nome da aplicação"
+                />
+            </fkt-field>
+            <fkt-checkbox
+                    [formField]="form.darkMode"
+                    label="Modo escuro"
+            />
+            <button
+                    fktButton
+                    label="Salvar configurações"
+                    type="submit">
+            </button>
+        </form>
+    </div>
 </div>

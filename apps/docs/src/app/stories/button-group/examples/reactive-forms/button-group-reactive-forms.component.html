@@ -1,19 +1,21 @@
 <div>
     <fkt-button-group
-        accessibleLabel="Filter"
-        [formControl]="form.controls.filter"
-        [options]="options"
-        deselectable
+            [formControl]="form.controls.filter"
+            [options]="options"
+            accessibleLabel="Filter"
+            deselectable
     />
 
     <fkt-field-error
-        [show]="!!(fieldError$ | async)"
-        error="Field is required"
+            [show]="!!(fieldError$ | async)"
+            error="Field is required"
     />
 </div>
 
 
-<fkt-button
-    text="Disable"
-    (click)="toggleDisabled()"
-/>
+<button
+        (click)="toggleDisabled()"
+        fktButton
+        label="Disable">
+</button>
+

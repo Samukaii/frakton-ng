@@ -1,54 +1,53 @@
-import { Component, ElementRef, inject, signal } from '@angular/core';
-import { FktButtonLegacyComponent } from 'frakton-ng/button-legacy';
-import { FktOverlayService } from 'frakton-ng/overlay';
+import {Component, inject, signal} from '@angular/core';
+import {FktOverlayService} from 'frakton-ng/overlay';
 import {
-	FktInteractiveOverlayDialogComponent
+    FktInteractiveOverlayDialogComponent
 } from '../dialog/fkt-interactive-overlay-dialog/fkt-interactive-overlay-dialog.component';
-import { FktTagComponent } from 'frakton-ng/tag';
+import {FktTagComponent} from 'frakton-ng/tag';
+import {FktButtonComponent} from "frakton-ng/button";
 
 
 @Component({
-	selector: 'interactive-overlay-example',
-	templateUrl: './fkt-interactive-overlay-example.component.html',
-	styleUrl: './fkt-interactive-overlay-example.component.scss',
-	imports: [FktButtonLegacyComponent, FktTagComponent]
+    selector: 'interactive-overlay-example',
+    templateUrl: './fkt-interactive-overlay-example.component.html',
+    styleUrl: './fkt-interactive-overlay-example.component.scss',
+    imports: [FktButtonComponent, FktTagComponent],
 })
 export class FktInteractiveOverlayExampleComponent {
-	private overlayService = inject(FktOverlayService);
+    private overlayService = inject(FktOverlayService);
 
-	sharedCounter = signal(0);
-	sharedItems = signal<string[]>(['Initial Item']);
+    sharedCounter = signal(0);
+    sharedItems = signal<string[]>(['Initial Item']);
 
-	private elementRef = inject(ElementRef);
+    openCounterOverlay(nativeElement: HTMLElement) {
+        const overlayRef = this.overlayService.open({
+            anchorElementRef: { nativeElement },
+            component: FktInteractiveOverlayDialogComponent,
+            data: {
+                title: 'Counter Demo',
+                description:
+                    'This overlay demonstrates reactive counter functionality.',
+                counter: this.sharedCounter,
+                currentItems: this.sharedItems,
+                onDone: () => {
+                    console.log('Counter overlay done');
+                    overlayRef.close();
+                },
+            },
+            panelOptions: {
+                preferredPositions: 'top-end',
+                padding: '0',
+                width: '600px',
+                maxHeight: 'fit-content',
+                borderRadius: '8px',
+                boxShadow:
+                    '0 4px 6px rgba(0, 0, 0, 0.07), 0 1px 3px rgba(0, 0, 0, 0.1)',
+            },
+        });
+    }
 
-	openCounterOverlay() {
-		const overlayRef = this.overlayService.open({
-			anchorElementRef: this.elementRef,
-			component: FktInteractiveOverlayDialogComponent,
-			data: {
-				title: 'Counter Demo',
-				description: 'This overlay demonstrates reactive counter functionality.',
-				counter: this.sharedCounter,
-				currentItems: this.sharedItems,
-				onDone: () => {
-					console.log('Counter overlay done');
-					overlayRef.close();
-				}
-			},
-			panelOptions: {
-				preferredPositions: 'bottom-center',
-				padding: '0',
-				width: '600px',
-				disableAutoReposition: true,
-				maxHeight: 'fit-content',
-				borderRadius: '8px',
-				boxShadow: '0 4px 6px rgba(0, 0, 0, 0.07), 0 1px 3px rgba(0, 0, 0, 0.1)'
-			}
-		});
-	}
-
-	resetAll() {
-		this.sharedCounter.set(0);
-		this.sharedItems.set(['Initial Item']);
-	}
+    resetAll() {
+        this.sharedCounter.set(0);
+        this.sharedItems.set(['Initial Item']);
+    }
 }

@@ -46,7 +46,7 @@ interface Tab {
 })
 export class StoryPanelComponent {
     argsList = input.required<ArgItem<any>[]>();
-    container = input<HTMLElement>();
+    previewContainer = input<HTMLElement>();
     designTokens = input.required<DesignTokenItem[]>();
     protected readonly activeControlsOwner = signal('all');
 

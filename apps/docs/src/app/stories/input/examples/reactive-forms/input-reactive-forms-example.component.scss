@@ -6,6 +6,7 @@ form {
 }
 
 .actions {
-    display: flex;
-    gap: var(--fkt-space-xs);
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--fkt-space-xs);
 }

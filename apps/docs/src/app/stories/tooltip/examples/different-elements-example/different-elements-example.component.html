@@ -1,156 +1,157 @@
 <div class="container">
-	<div class="container__examples">
-		<div class="container__buttons">
-			<h4>Buttons</h4>
-			<div>
-				<fkt-button
-					color="primary"
-					fktTooltip="This is the main call-to-action button"
-					[tooltipColor]="tooltipColor()"
-					text="Primary Action"
-					theme="raised"
-				></fkt-button>
+    <div class="container__examples">
+        <div class="container__buttons">
+            <h4>Buttons</h4>
+            <div>
+                <button
+                        [tooltipColor]="tooltipColor()"
+                        color="primary"
+                        fktButton
+                        fktTooltip="This is the main call-to-action button"
+                        label="Primary Action">
+                </button>
 
-				<fkt-button
-					color="primary"
-					fktTooltip="Secondary action with less emphasis"
-					[tooltipColor]="tooltipColor()"
-					text="Secondary"
-					theme="stroked"
-				></fkt-button>
+                <button
+                        [tooltipColor]="tooltipColor()"
+                        color="primary"
+                        fktButton
+                        appearance="stroked"
+                        fktTooltip="Secondary action with less emphasis"
+                        label="Secondary">
+                </button>
 
-				<fkt-button
-					color="danger"
-					fktTooltip="Destructive action - use with caution"
-					[tooltipColor]="tooltipColor()"
-					position="top-center"
-					text="Danger"
-					theme="raised"
-				></fkt-button>
-			</div>
-		</div>
+                <button
+                        [tooltipColor]="tooltipColor()"
+                        color="danger"
+                        fktButton
+                        fktTooltip="Destructive action - use with caution"
+                        label="Danger"
+                        position="top-center">
+                </button>
+            </div>
+        </div>
 
-		<div class="container__icons">
-			<h4>Icons</h4>
-			<div>
-				<fkt-icon
-					fktTooltip="Get more information about this feature"
-					[tooltipColor]="tooltipColor()"
-					name="information-circle"
-					position="top-center"
-				></fkt-icon>
+        <div class="container__icons">
+            <h4>Icons</h4>
+            <div>
+                <fkt-icon
+                        [tooltipColor]="tooltipColor()"
+                        fktTooltip="Get more information about this feature"
+                        name="information-circle"
+                        position="top-center"
+                ></fkt-icon>
 
-				<fkt-icon
-					fktTooltip="Open settings and preferences"
-					[tooltipColor]="tooltipColor()"
-					name="cog-6-tooth"
-					position="top-center"
-				></fkt-icon>
+                <fkt-icon
+                        [tooltipColor]="tooltipColor()"
+                        fktTooltip="Open settings and preferences"
+                        name="cog-6-tooth"
+                        position="top-center"
+                ></fkt-icon>
 
-				<fkt-icon
-					fktTooltip="View your notifications"
-					[tooltipColor]="tooltipColor()"
-					name="bell"
-					position="top-center"
-				></fkt-icon>
+                <fkt-icon
+                        [tooltipColor]="tooltipColor()"
+                        fktTooltip="View your notifications"
+                        name="bell"
+                        position="top-center"
+                ></fkt-icon>
 
-				<fkt-icon
-					fktTooltip="Access your user profile"
-					[tooltipColor]="tooltipColor()"
-					name="user"
-					position="top-center"
-				></fkt-icon>
-			</div>
-		</div>
+                <fkt-icon
+                        [tooltipColor]="tooltipColor()"
+                        fktTooltip="Access your user profile"
+                        name="user"
+                        position="top-center"
+                ></fkt-icon>
+            </div>
+        </div>
 
-		<div class="container__badges">
-			<h4>Badges</h4>
-			<div>
-				<fkt-tag
-					color="success"
-					fktTooltip="Recently added feature"
-					[tooltipColor]="tooltipColor()"
-					text="New"
-				></fkt-tag>
+        <div class="container__badges">
+            <h4>Badges</h4>
+            <div>
+                <fkt-tag
+                        [tooltipColor]="tooltipColor()"
+                        color="success"
+                        fktTooltip="Recently added feature"
+                        text="New"
+                ></fkt-tag>
 
-				<fkt-tag
-					color="warning"
-					fktTooltip="Feature in testing phase"
-					[tooltipColor]="tooltipColor()"
-					text="Beta"
-				></fkt-tag>
+                <fkt-tag
+                        [tooltipColor]="tooltipColor()"
+                        color="warning"
+                        fktTooltip="Feature in testing phase"
+                        text="Beta"
+                ></fkt-tag>
 
-				<fkt-tag
-					color="info"
-					[tooltipColor]="tooltipColor()"
-					fktTooltip="Most used by our customers"
-					text="Popular"
-				></fkt-tag>
-			</div>
-		</div>
+                <fkt-tag
+                        [tooltipColor]="tooltipColor()"
+                        color="info"
+                        fktTooltip="Most used by our customers"
+                        text="Popular"
+                ></fkt-tag>
+            </div>
+        </div>
 
-		<div class="container__texts">
-			<h4>Text Elements</h4>
-			<div>
-				<p
-					fktTooltip="This is a helpful explanation of the underlined term"
-					[tooltipColor]="tooltipColor()"
-				>
-					Hover over this text
-				</p>
+        <div class="container__texts">
+            <h4>Text Elements</h4>
+            <div>
+                <p
+                        [tooltipColor]="tooltipColor()"
+                        fktTooltip="This is a helpful explanation of the underlined term"
+                >
+                    Hover over this text
+                </p>
 
-				<span
-					fktTooltip="Click to learn more about this topic"
-					[tooltipColor]="tooltipColor()"
-					position="right-center"
-				>
+                <span
+                        [tooltipColor]="tooltipColor()"
+                        fktTooltip="Click to learn more about this topic"
+                        position="right-center"
+                >
               Technical Term
             </span>
-			</div>
-		</div>
+            </div>
+        </div>
 
-		<div class="container__interactive">
-			<h4>Interactive Elements</h4>
-			<div>
-				<div
-					fktTooltip="Custom interactive element with gradient background"
-					[tooltipColor]="tooltipColor()"
-					position="left-center"
-				>
-					?
-				</div>
+        <div class="container__interactive">
+            <h4>Interactive Elements</h4>
+            <div>
+                <div
+                        [tooltipColor]="tooltipColor()"
+                        fktTooltip="Custom interactive element with gradient background"
+                        position="left-center"
+                >
+                    ?
+                </div>
 
-				<div
-					fktTooltip="This is a custom card component with hover effects"
-					[tooltipColor]="tooltipColor()"
-					position="top-start"
-				>
-					<small>Custom Card</small>
-				</div>
-			</div>
-		</div>
+                <div
+                        [tooltipColor]="tooltipColor()"
+                        fktTooltip="This is a custom card component with hover effects"
+                        position="top-start"
+                >
+                    <small>Custom Card</small>
+                </div>
+            </div>
+        </div>
 
-		<div class="container__status">
-			<h4>Status Indicators</h4>
-			<div>
-				<div
-					class="container__status--available"
-					fktTooltip="Service is online and operational"
-					[tooltipColor]="tooltipColor()"
-				></div>
+        <div class="container__status">
+            <h4>Status Indicators</h4>
+            <div>
+                <div
+                        [tooltipColor]="tooltipColor()"
+                        class="container__status--available"
+                        fktTooltip="Service is online and operational"
+                ></div>
 
-				<div
-					class="container__status--warning"
-					fktTooltip="Service experiencing minor issues"
-					[tooltipColor]="tooltipColor()"
-				></div>
+                <div
+                        [tooltipColor]="tooltipColor()"
+                        class="container__status--warning"
+                        fktTooltip="Service experiencing minor issues"
+                ></div>
 
-				<div
-					class="container__status--unavailable"
-					fktTooltip="Service is currently unavailable"
-					[tooltipColor]="tooltipColor()"
-				></div>
-			</div>
-		</div>
-	</div>
+                <div
+                        [tooltipColor]="tooltipColor()"
+                        class="container__status--unavailable"
+                        fktTooltip="Service is currently unavailable"
+                ></div>
+            </div>
+        </div>
+    </div>
 </div>

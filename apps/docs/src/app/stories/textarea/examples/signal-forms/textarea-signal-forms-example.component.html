@@ -1,14 +1,16 @@
+<div class="actions">
+    <button (click)="reset()" fktButton label="Reset">
+    </button>
+    <button (click)="fill()" fktButton label="Fill">
+    </button>
+</div>
+
 <fkt-field label="Support message">
     <textarea
-        fktTextarea
-        autoExpand
-        rows="3"
-        [formField]="form.message"
-        placeholder="Describe the issue..."
+            [formField]="form.message"
+            autoExpand
+            fktTextarea
+            placeholder="Describe the issue..."
+            rows="3"
     ></textarea>
 </fkt-field>
-
-<div class="actions">
-    <fkt-button theme="stroked" text="Reset" (click)="reset()" />
-    <fkt-button text="Fill" (click)="fill()" />
-</div>

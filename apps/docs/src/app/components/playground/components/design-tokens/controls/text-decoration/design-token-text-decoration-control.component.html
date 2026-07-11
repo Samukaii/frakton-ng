@@ -1,0 +1,9 @@
+<fkt-select
+        (valueChange)="token().control.set($any($event))"
+        [label]="token().name"
+        [options]="options"
+        hideClearButton
+        [value]="token().control()"
+        hideLabel
+        placeholder="Choose an option"
+/>

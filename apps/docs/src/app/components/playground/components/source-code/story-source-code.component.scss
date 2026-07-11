@@ -1,11 +1,12 @@
 :host {
     position: relative;
     display: block;
-    border-radius: var(--fkt-radius-xl);
     overflow: auto;
+    border-radius: var(--fkt-radius-xl);
     transition: var(--fkt-transition-base);
 
-    &:hover {
+    &:hover,
+    &:focus-within {
         .show-on-hover {
             opacity: 1;
         }
@@ -13,163 +14,68 @@
 }
 
 .show-on-hover {
-    transition: var(--fkt-transition-base);
     opacity: 0;
+    transition: var(--fkt-transition-base);
 }
 
 .code {
     position: relative;
-    max-height: 300px;
     height: 600px;
+    max-height: 300px;
     overflow: auto;
     transition: var(--fkt-transition-base);
 
     &.expanded {
         max-height: 600px;
     }
-
-    fkt-button {
-        position: absolute;
-        cursor: pointer;
-        top: 0;
-        right: 0;
-        margin: var(--fkt-space-md);
-        --fkt-button-icon-font-weight: 500;
-
-        span, p {
-            color: black;
-        }
-
-        p {
-            font-weight: var(--fkt-font-semibold);
-            margin: 0;
-        }
-    }
-}
-
-.actions {
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-    justify-content: flex-start;
-    height: fit-content;
-    width: fit-content;
-    position: absolute;
-    right: 0;
-    top: 0;
-    margin: 1rem;
-    transition: var(--fkt-transition-slow);
-
-    .languages {
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
-        height: fit-content;
-        width: fit-content;
-    }
-
-    button {
-        background-color: transparent;
-        font-weight: var(--fkt-font-semibold);
-        width: fit-content;
-        height: 34px;
-        color: white;
-        padding: .5rem 1rem;
-        border: solid 1px white;
-
-        font-size: .9rem !important;
-        position: relative !important;
-        cursor: pointer !important;
-        display: flex;
-        justify-content: center;
-        gap: .25rem;
-        align-items: center;
-        transition: var(--fkt-transition-base);
-        backdrop-filter: blur(8px);
-
-        &:first-child {
-            border-radius: var(--fkt-radius-lg) 0 0 var(--fkt-radius-lg);
-        }
-
-        &:last-child {
-            border-radius: 0 var(--fkt-radius-lg) var(--fkt-radius-lg) 0;
-        }
-
-        fkt-icon {
-            font-weight: 500;
-        }
-
-        p {
-            margin: 0;
-            max-width: 260px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            color: white;
-            white-space: nowrap;
-        }
-
-
-        &.active, &:hover {
-            transition: var(--fkt-transition-base);
-            --html-background-color: #F4BF75;
-            --ts-background-color: #0288d1;
-            --scss-background-color: #F24D7C;
-
-            --html-text-color: #59462A;
-            --ts-text-color: white;
-            --scss-text-color: white;
-
-            &[data-language="angular2html"] {
-                background: var(--html-background-color);
-                border-color: var(--html-background-color);
-
-                p {
-                    color: var(--html-text-color);
-                }
-            }
-
-            &[data-language="typescript"] {
-                background: var(--ts-background-color);
-                border-color: var(--ts-background-color);
-
-                p {
-                    color: var(--ts-text-color);
-                }
-            }
-
-            &[data-language="css"] {
-                background: var(--scss-background-color);
-                border-color: var(--scss-background-color);
-
-                p {
-                    color: var(--scss-text-color);
-                }
-            }
-        }
-    }
 }
 
 app-code-highlight {
-    height: 100%;
     box-sizing: border-box;
+    height: 100%;
 }
 
-.copy-button, .expand-button {
-    --fkt-button-padding-vertical: var(--fkt-space-2xs);
-    --fkt-button-padding-horizontal: var(--fkt-space-sm);
-    --fkt-button-content-gap: var(--fkt-space-3xs);
-    --fkt-button-primary-color: white;
-    --fkt-button-primary-hover-color: rgba(255, 255, 255, 0.24);
-    --fkt-button-icon-font-weight: 500;
-    --fkt-button-border-width: 1px;
-    --fkt-font-size-md: 14px;
-    backdrop-filter: blur(8px);
+.actions {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: fit-content;
+    height: fit-content;
+    gap: var(--fkt-space-md);
+    margin: var(--fkt-space-md);
+    transition: var(--fkt-transition-slow);
+}
+
+.languages {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: fit-content;
+    height: fit-content;
+
+    button[fktButton] {
+        --fkt-button-border-radius: 0;
+
+        height: 36px;
+
+        &:first-child {
+            --fkt-button-border-radius: var(--fkt-radius-md) 0 0 var(--fkt-radius-md);
+        }
+
+        &:last-child {
+            --fkt-button-border-radius: 0 var(--fkt-radius-md) var(--fkt-radius-md) 0;
+        }
+    }
 }
 
 .loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 100%;
     padding: var(--fkt-space-md);
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
+

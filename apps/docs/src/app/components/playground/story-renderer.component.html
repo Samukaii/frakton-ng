@@ -33,6 +33,7 @@
 @if (!storyInfoService.activeStory.onlyPreview) {
     <app-story-panel
         [argsList]="argsList()"
+        [previewContainer]="previewContainer()?.nativeElement"
         [designTokens]="designTokens()"
     />
 }

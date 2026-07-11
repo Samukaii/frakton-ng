@@ -35,6 +35,6 @@ export class SchemaEditorObjectComponent {
 
         console.log(value);
 
-        this.value.set(value);
+        // this.value.set(value);
     }
 }

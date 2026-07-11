@@ -69,6 +69,32 @@
       "name": "Button",
       "selector": "button[fktButton],a[fktButton]"
     },
+    "description": "Horizontal button alignment.",
+    "name": "--fkt-button-justify-content",
+    "reference": "none",
+    "category": "Alignment",
+    "type": "flex-alignment",
+    "defaultValue": "none",
+    "component": "Button"
+  },
+  {
+    "scope": {
+      "name": "Button",
+      "selector": "button[fktButton],a[fktButton]"
+    },
+    "description": "Vertical button alignment.",
+    "name": "--fkt-button-align-items",
+    "reference": "none",
+    "category": "Alignment",
+    "type": "flex-alignment",
+    "defaultValue": "none",
+    "component": "Button"
+  },
+  {
+    "scope": {
+      "name": "Button",
+      "selector": "button[fktButton],a[fktButton]"
+    },
     "description": "Border radius for the selected button shape.",
     "name": "--fkt-button-border-radius",
     "reference": "--fkt-radius-md",
@@ -248,8 +274,8 @@
   },
   {
     "scope": {
-      "name": "active",
-      "selector": "[fktButton]"
+      "name": "Button",
+      "selector": "button[fktButton],a[fktButton]"
     },
     "description": "Border color for the active state.",
     "name": "--fkt-button-active-border-color",
