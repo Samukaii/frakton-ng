@@ -17,6 +17,9 @@ import { Prism } from '@/prism-languages/prism-js';
 @Component({
     selector: 'app-code-highlight',
     imports: [],
+    host: {
+      dir: 'ltr'
+    },
     templateUrl: './code-highlight.component.html',
     styleUrl: './code-highlight.component.scss',
 })
