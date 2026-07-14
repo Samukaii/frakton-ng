@@ -43,6 +43,7 @@ virtualized lists.`,
             control: 'text',
             category: 'Attributes',
             type: 'InputSignal<string>',
+            required: true,
             description:
                 'Accessible field label rendered by the internal fkt-field wrapper.',
         },
@@ -50,12 +51,14 @@ virtualized lists.`,
             control: 'text',
             category: 'Attributes',
             type: 'InputSignal<string | undefined>',
+            defaultValue: 'undefined',
             description:
                 'Search input placeholder rendered inside the autocomplete field.',
         },
         hint: {
             control: 'text',
             category: 'Attributes',
+            defaultValue: 'undefined',
             type: 'InputSignal<string | undefined>',
             description:
                 'Plain helper text forwarded to the internal fkt-field. Project `[fktHintStart]` for custom hint content.',
@@ -63,6 +66,7 @@ virtualized lists.`,
         showError: {
             control: 'boolean',
             category: 'Attributes',
+            defaultValue: 'undefined',
             type: 'InputSignal<boolean | undefined>',
             description:
                 'Overrides the internal field error visibility rule. When omitted, errors are shown when the autocomplete control is invalid and touched.',
@@ -79,6 +83,7 @@ virtualized lists.`,
         requiredMarker: {
             control: 'boolean',
             category: 'Attributes',
+            defaultValue: 'undefined',
             type: 'InputSignal<boolean | undefined>',
             description:
                 'Overrides required marker visibility. When omitted, the internal field infers it from the autocomplete form state when possible.',
@@ -94,6 +99,7 @@ virtualized lists.`,
         options: {
             control: 'array',
             category: 'Attributes',
+            required: true,
             type: 'InputSignal<Option[]>',
             description:
                 'Current suggestion list. In server scenarios this should be the current page or search result, not necessarily the complete dataset.',
@@ -101,6 +107,7 @@ virtualized lists.`,
         labelKey: {
             control: 'text',
             category: 'Attributes',
+            defaultValue: 'undefined',
             type: 'keyof Option | ((option: Option) => string | number)',
             description:
                 'Property or function used to derive the visible option label.',
@@ -108,6 +115,7 @@ virtualized lists.`,
         valueKey: {
             control: 'text',
             category: 'Attributes',
+            defaultValue: 'undefined',
             type: 'keyof Option | ((option: Option) => string | number)',
             description:
                 'Property or function used to derive the primitive form value.',
@@ -115,6 +123,7 @@ virtualized lists.`,
         groupKey: {
             control: 'text',
             category: 'Attributes',
+            defaultValue: 'undefined',
             type: 'keyof Option | ((option: Option) => string | number | { label: string; value: string })',
             description:
                 'Optional property or function used to group options in the dropdown.',
