@@ -462,7 +462,7 @@ $button-active-box-shadow: var(
   corner-shape: squircle;
 
   @supports (corner-shape: squircle) {
-    --_fkt-button-variant-border-radius: var(--fkt-radius-full);
+    --_fkt-button-variant-border-radius: .8rem;
   }
 }
 
