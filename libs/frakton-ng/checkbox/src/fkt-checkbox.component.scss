@@ -2,11 +2,11 @@
 /*
 Size of the checkbox input (width and height).
 @name --fkt-checkbox-size
-@reference --fkt-space-lg
+@reference --fkt-space-md
 @category Spacing
 @type size
 */
-$checkbox-size: var(--fkt-checkbox-size, var(--fkt-space-lg));
+$checkbox-size: var(--fkt-checkbox-size, var(--fkt-space-md));
 
 /*
 Border color of the checkbox in its default state.
@@ -78,16 +78,16 @@ Margin between checkbox and label text.
 @category Spacing
 @type size
 */
-$label-margin: var(--fkt-checkbox-label-margin, var(--fkt-space-xs));
+$label-margin: var(--fkt-checkbox-label-margin, var(--fkt-space-2xs));
 
 /*
 Font size of the label text.
 @name --fkt-checkbox-label-font-size
-@reference --fkt-font-size-md
+@reference --fkt-font-size-sm
 @category Typography
 @type size
 */
-$label-font-size: var(--fkt-checkbox-label-font-size, var(--fkt-font-size-md));
+$label-font-size: var(--fkt-checkbox-label-font-size, var(--fkt-font-size-sm));
 
 /*
 Color of the label text in invalid state.
@@ -119,93 +119,93 @@ $checkmark-width: var(--fkt-checkbox-checkmark-width, 2px);
 // </design-tokens>
 
 :host {
-	display: block;
+  display: block;
 }
 
 
 label {
-	display: inline-flex;
-	align-items: center;
-	cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
 
-	span {
-		margin-left: $label-margin;
-		font-size: $label-font-size;
-		user-select: none;
-	}
+  span {
+    margin-left: $label-margin;
+    font-size: $label-font-size;
+    user-select: none;
+  }
 
-	input[type="checkbox"] {
-		appearance: none;
-		width: $checkbox-size;
-		height: $checkbox-size;
-		border: $border-width solid $border-color;
-		border-radius: $border-radius;
-		outline: none;
-		transition: var(--fkt-transition-base);
-		position: relative;
-		cursor: pointer;
-		background: $background-color;
+  input[type="checkbox"] {
+    appearance: none;
+    width: $checkbox-size;
+    height: $checkbox-size;
+    border: $border-width solid $border-color;
+    border-radius: $border-radius;
+    outline: none;
+    transition: var(--fkt-transition-base);
+    position: relative;
+    cursor: pointer;
+    background: $background-color;
 
-		&::before {
-			content: '';
-			position: absolute;
-			top: 2px;
-			left: 5px;
-			width: 4px;
-			height: 8px;
-			border-right: $checkmark-width solid $checkmark-color;
-			border-bottom: $checkmark-width solid $checkmark-color;
-			transform: rotate(45deg) scale(0);
-			transition: var(--fkt-transition-base);
-			pointer-events: none;
-		}
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0px;
+      left: 3px;
+      width: 4px;
+      height: 8px;
+      border-right: $checkmark-width solid $checkmark-color;
+      border-bottom: $checkmark-width solid $checkmark-color;
+      transform: rotate(45deg) scale(0);
+      transition: var(--fkt-transition-base);
+      pointer-events: none;
+    }
 
-		&:checked {
-			background-color: $checked-background-color;
-			border-color: $checked-border-color;
+    &:checked {
+      background-color: $checked-background-color;
+      border-color: $checked-border-color;
 
-			&::before {
-				transform: rotate(45deg) scale(1);
-			}
-		}
+      &::before {
+        transform: rotate(45deg) scale(1);
+      }
+    }
 
-		&:indeterminate {
-			background-color: $checked-background-color;
-			border-color: $checked-border-color;
+    &:indeterminate {
+      background-color: $checked-background-color;
+      border-color: $checked-border-color;
 
-			&::before {
-				top: 50%;
-				left: 3px;
-				width: 8px;
-				height: 0;
-				border-right: none;
-				border-bottom: $checkmark-width solid $checkmark-color;
-				transform: translateY(-50%) scale(1);
-			}
-		}
+      &::before {
+        top: 50%;
+        left: 3px;
+        width: 8px;
+        height: 0;
+        border-right: none;
+        border-bottom: $checkmark-width solid $checkmark-color;
+        transform: translateY(-50%) scale(1);
+      }
+    }
 
     &:focus-visible {
       box-shadow: var(--fkt-focus-ring-shadow);
     }
-	}
+  }
 
-	&.invalid {
-		color: $invalid-color;
+  &.invalid {
+    color: $invalid-color;
 
     input[type="checkbox"] {
       border-color: $invalid-color;
     }
-	}
+  }
 
-	&.disabled {
-		filter: grayscale(1);
-		cursor: not-allowed;
-		opacity: $disabled-opacity;
+  &.disabled {
+    filter: grayscale(1);
+    cursor: not-allowed;
+    opacity: $disabled-opacity;
 
-		input[type="checkbox"] {
-			cursor: not-allowed;
-		}
-	}
+    input[type="checkbox"] {
+      cursor: not-allowed;
+    }
+  }
 
 }
 
