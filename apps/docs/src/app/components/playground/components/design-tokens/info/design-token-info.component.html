@@ -3,15 +3,17 @@
         {{ token().name | humanizeDesignToken: templateSelector() }}
     </h1>
 
-    <fkt-tag
-        variant="opaque"
-        [color]="categoryIcon().color"
-    >
-        <div tag-content [attr.data-color]="categoryIcon().color">
-            <fkt-icon [name]="categoryIcon().icon"/>
-            {{ token().category }}
-        </div>
-    </fkt-tag>
+    @if (categoryIcon()) {
+        <fkt-tag
+                variant="opaque"
+                [color]="categoryIcon().color"
+        >
+            <div tag-content [attr.data-color]="categoryIcon().color">
+                <fkt-icon [name]="categoryIcon().icon"/>
+                {{ token().category }}
+            </div>
+        </fkt-tag>
+    }
 </div>
 
 <div class="row">

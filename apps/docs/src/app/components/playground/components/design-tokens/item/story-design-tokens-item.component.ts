@@ -18,6 +18,9 @@ import { createClipboardCopy } from '@/utils/create-clipboard-copy';
 import {
     DesignTokenTextDecorationControlComponent
 } from "@/components/playground/components/design-tokens/controls/text-decoration/design-token-text-decoration-control.component";
+import {
+    DesignTokenBorderControlComponent
+} from "@/components/playground/components/design-tokens/controls/border/design-token-border-control.component";
 
 @Component({
     selector: 'app-story-design-tokens-item',
@@ -34,6 +37,7 @@ import {
         DesignTokenSpacingControlComponent,
         DesignTokenTransitionControlComponent,
         DesignTokenTextDecorationControlComponent,
+        DesignTokenBorderControlComponent,
     ],
     templateUrl: './story-design-tokens-item.component.html',
     styleUrl: './story-design-tokens-item.component.scss',
