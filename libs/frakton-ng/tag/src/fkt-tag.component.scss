@@ -189,78 +189,84 @@ Background color for success badge in faded theme.
 $tag-success-faded-background: var(--fkt-tag-success-faded-background, var(--fkt-color-success-opacity-20));
 // </design-tokens>
 
+:host {
+  display: block;
+  min-width: 0;
+}
+
 .badge {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-    height: fit-content;
-    width: fit-content;
-    border-radius: $tag-border-radius;
+  box-sizing: border-box;
+  height: fit-content;
+  width: fit-content;
+  max-width: 100%;
+  border-radius: $tag-border-radius;
 
-    gap: $tag-gap;
-    padding: $tag-padding;
-    font-weight: $tag-font-weight;
-    font-size: $tag-font-size;
+  gap: $tag-gap;
+  padding: $tag-padding;
+  font-weight: $tag-font-weight;
+  font-size: $tag-font-size;
+  white-space: nowrap;
+
+  .content {
+    max-width: 100%;
+    text-overflow: ellipsis;
     white-space: nowrap;
+    overflow: hidden;
+    display: block;
+  }
 
-    .content {
-        max-width: 100%;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        overflow: hidden;
-        display: block;
+  &.badge--opaque {
+    &.badge--danger {
+      background-color: $tag-danger-background;
+      color: $tag-danger-color;
     }
 
-
-    &.badge--opaque {
-        &.badge--danger {
-            background-color: $tag-danger-background;
-            color: $tag-danger-color;
-        }
-
-        &.badge--info {
-            background-color: $tag-info-background;
-            color: $tag-info-color;
-        }
-
-        &.badge--accent {
-            background-color: $tag-accent-background;
-            color: $tag-accent-color;
-        }
-
-        &.badge--warning {
-            background-color: $tag-warning-background;
-            color: $tag-warning-color;
-        }
-
-        &.badge--success {
-            background-color: $tag-success-background;
-            color: $tag-success-color;
-        }
+    &.badge--info {
+      background-color: $tag-info-background;
+      color: $tag-info-color;
     }
 
-    &.badge--faded {
-        color: $tag-faded-text-color;
-
-        &.badge--danger {
-            background-color: $tag-danger-faded-background;
-        }
-
-        &.badge--info {
-            background-color: $tag-info-faded-background;
-        }
-
-        &.badge--warning {
-            background-color: $tag-warning-faded-background;
-        }
-
-        &.badge--accent {
-            background-color: $tag-accent-faded-background;
-        }
-
-        &.badge--success {
-            background-color: $tag-success-faded-background;
-        }
+    &.badge--accent {
+      background-color: $tag-accent-background;
+      color: $tag-accent-color;
     }
+
+    &.badge--warning {
+      background-color: $tag-warning-background;
+      color: $tag-warning-color;
+    }
+
+    &.badge--success {
+      background-color: $tag-success-background;
+      color: $tag-success-color;
+    }
+  }
+
+  &.badge--faded {
+    color: $tag-faded-text-color;
+
+    &.badge--danger {
+      background-color: $tag-danger-faded-background;
+    }
+
+    &.badge--info {
+      background-color: $tag-info-faded-background;
+    }
+
+    &.badge--warning {
+      background-color: $tag-warning-faded-background;
+    }
+
+    &.badge--accent {
+      background-color: $tag-accent-faded-background;
+    }
+
+    &.badge--success {
+      background-color: $tag-success-faded-background;
+    }
+  }
 }
