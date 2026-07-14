@@ -1,0 +1,11 @@
+<fkt-field
+    [label]="token().name"
+    hideLabel
+>
+    <input
+        fktInputText
+        placeholder="Enter a value"
+        [value]="token().control()"
+        (input)="token().control.set($any($event.target).value)"
+    />
+</fkt-field>
