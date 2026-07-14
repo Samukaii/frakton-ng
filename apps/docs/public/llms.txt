@@ -96,6 +96,9 @@ This file lists the generated Markdown documentation files intended for AI index
 - [Components/Overlays/Overlay](https://fraktonng.com/llms/overlay.md)
   - id: overlay
   - route: /docs/overlay
+- [Components/Overlays/Popover](https://fraktonng.com/llms/popover.md)
+  - id: popover
+  - route: /docs/popover
 - [Components/Overlays/Tooltip](https://fraktonng.com/llms/tooltip.md)
   - id: tooltip
   - route: /docs/tooltip
