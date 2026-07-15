@@ -1,0 +1,18 @@
+<ng-content select="[fktPopoverTrigger]"></ng-content>
+
+<div
+  #panel
+  (focusout)="handleHoverFocusOut($event)"
+  (mouseleave)="handleHoverMouseLeave($event)"
+  [attr.data-fkt-placement]="positioning.appliedPosition()?.name ?? null"
+  [attr.data-fkt-popover-content]="''"
+  [attr.data-fkt-state]="context.open() ? 'open' : 'closed'"
+  [class]="panelClasses()"
+  [id]="context.panelId"
+  [style.left.px]="positioning.appliedPosition()?.coordinates?.x ?? null"
+  [style.top.px]="positioning.appliedPosition()?.coordinates?.y ?? null"
+  popover="manual"
+>
+  <ng-container *ngTemplateOutlet="content().templateRef"></ng-container>
+</div>
+
