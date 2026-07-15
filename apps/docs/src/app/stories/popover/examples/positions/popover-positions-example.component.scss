@@ -1,0 +1,29 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--fkt-space-md);
+}
+
+.positions {
+  display: flex;
+  gap: var(--fkt-space-sm);
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--fkt-space-xs);
+}
+
+.placement {
+  display: grid;
+  gap: var(--fkt-space-2xs);
+  max-width: 12rem;
+  font-size: var(--fkt-font-size-sm);
+
+  span {
+    color: var(--fkt-text-muted-color);
+  }
+}

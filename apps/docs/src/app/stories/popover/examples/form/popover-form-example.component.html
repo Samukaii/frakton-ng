@@ -1,0 +1,42 @@
+<fkt-popover
+  [(open)]="open"
+  [preferredFallbackPositions]="['top-start', 'bottom-end']"
+  preferredPosition="bottom-start"
+>
+  <button
+    fktButton
+    fktPopoverTrigger
+    label="Edit contact"
+    suffixIcon="pencil-square">
+  </button>
+
+  <ng-template fktPopoverContent>
+    <form
+      [formRoot]="form"
+      class="contact-form"
+    >
+      <fkt-field label="Name">
+        <input [formField]="form.name" fktInputText/>
+      </fkt-field>
+
+      <fkt-field label="Email">
+        <input [formField]="form.email" fktInputText type="email"/>
+      </fkt-field>
+
+      <fkt-checkbox
+        [formField]="form.updates"
+        label="Receive product updates"
+      />
+
+      <button
+        fktButton
+        label="Save"
+        type="submit">
+      </button>
+    </form>
+  </ng-template>
+</fkt-popover>
+
+@if (submitted(); as value) {
+  <app-code-output [value]="value"/>
+}
