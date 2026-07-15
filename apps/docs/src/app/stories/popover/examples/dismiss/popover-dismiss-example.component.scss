@@ -1,0 +1,45 @@
+:host {
+  display: grid;
+  gap: var(--fkt-space-sm);
+  justify-items: start;
+}
+
+.content {
+  display: grid;
+  gap: var(--fkt-space-sm);
+  max-width: 18rem;
+  font-size: var(--fkt-font-size-sm);
+
+  p {
+    margin: 0;
+    line-height: 1.4;
+  }
+}
+
+strong {
+  font-size: var(--fkt-font-size-md);
+}
+
+code {
+  color: var(--fkt-color-danger);
+  font-weight: var(--fkt-font-semibold);
+  font-family: monospace;
+  padding: var(--fkt-space-4xs);
+  border: solid 1px var(--fkt-color-neutral-300);
+  border-radius: var(--fkt-radius-sm);
+  font-size: var(--fkt-font-size-xs);
+  width: fit-content;
+}
+
+.description {
+  white-space: pre-line;
+  margin: 0;
+}
+
+.status {
+  font-size: var(--fkt-font-size-sm);
+}
+
+app-code-output {
+  width: 100%;
+}

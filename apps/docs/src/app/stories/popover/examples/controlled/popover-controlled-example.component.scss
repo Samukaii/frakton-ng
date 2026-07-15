@@ -1,0 +1,28 @@
+:host {
+  display: grid;
+  align-items: start;
+  justify-items: start;
+  gap: var(--fkt-space-sm);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--fkt-space-xs);
+}
+
+.anchor {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2rem;
+  padding: 0 var(--fkt-space-sm);
+  color: var(--fkt-text-muted-color);
+  border: 1px dashed var(--fkt-color-border);
+  border-radius: var(--fkt-radius-md);
+}
+
+.content {
+  display: grid;
+  gap: var(--fkt-space-2xs);
+  max-width: 16rem;
+}
