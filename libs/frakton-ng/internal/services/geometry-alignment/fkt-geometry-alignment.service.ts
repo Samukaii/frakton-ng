@@ -36,7 +36,7 @@ export class FktGeometryAlignmentService {
 
 		return {
 			x: base.x + offsetX,
-			y: base.y + offsetY + this.window.scrollY,
+			y: base.y + offsetY,
 		};
 	};
 
@@ -76,10 +76,18 @@ export class FktGeometryAlignmentService {
 			'top-right',
 		]
 
-		const positions = [
-			...(options.preferredPositions ?? []),
-			...(options.disableAutoReposition === true ? [] : defaultPositions)
-		];
+    const preferredPositions = options.preferredPositions ?? [];
+
+    const positions =
+      options.disableAutoReposition === true
+        ? preferredPositions
+        : [...preferredPositions, ...defaultPositions];
+
+    if (positions.length === 0) {
+      throw new Error(
+        'FktGeometryAlignmentService expected at least one position to evaluate.'
+      );
+    }
 
 		const container = options.container ?? {
 			x: 0,
