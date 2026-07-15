@@ -41,61 +41,61 @@ Example component: `PopoverBasicExampleComponent`
 
 ```ts title="popover-basic-example.component.ts"
 import { Component } from '@angular/core';
-import {
-	FktPopoverComponent,
-	FktPopoverContentDirective,
-	FktPopoverTriggerDirective,
-} from 'frakton-ng/popover';
 import { FktButtonComponent } from 'frakton-ng/button';
+import {
+  FktPopoverComponent,
+  FktPopoverContentDirective,
+  FktPopoverTriggerDirective,
+} from 'frakton-ng/popover';
 
 @Component({
-	selector: 'app-popover-basic-example',
-	imports: [
-		FktButtonComponent,
-		FktPopoverComponent,
-		FktPopoverTriggerDirective,
-		FktPopoverContentDirective,
-	],
-	templateUrl: './popover-basic-example.component.html',
-	styleUrl: './popover-basic-example.component.scss',
+  selector: 'app-popover-basic-example',
+  imports: [
+    FktButtonComponent,
+    FktPopoverComponent,
+    FktPopoverTriggerDirective,
+    FktPopoverContentDirective,
+  ],
+  templateUrl: './popover-basic-example.component.html',
+  styleUrl: './popover-basic-example.component.scss',
 })
 export class PopoverBasicExampleComponent {}
 ```
 
 ```html title="popover-basic-example.component.html"
 <fkt-popover>
-	<button fktButton fktPopoverTrigger label="Open popover">
-	</button>
+  <button fktButton fktPopoverTrigger label="Open popover">
+  </button>
 
-	<ng-template fktPopoverContent>
-		<div class="content">
-			<strong>Basic popover</strong>
-			<p>Popover content rendered from a trigger-based template.</p>
-		</div>
-	</ng-template>
+  <ng-template fktPopoverContent>
+    <div class="content">
+      <strong>Basic popover</strong>
+      <p>Popover content rendered from a trigger-based template.</p>
+    </div>
+  </ng-template>
 </fkt-popover>
 ```
 
 ```css title="popover-basic-example.component.scss"
 :host {
-	display: flex;
-	align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .content {
-	max-width: 16rem;
-	display: flex;
-	flex-direction: column;
-	gap: var(--fkt-space-inset-2xs);
-	font-size: var(--fkt-font-size-sm);
+  max-width: 16rem;
+  display: flex;
+  flex-direction: column;
+  gap: var(--fkt-space-inset-2xs);
+  font-size: var(--fkt-font-size-sm);
 
-	strong {
-		font-size: var(--fkt-font-size-md);
-	}
+  strong {
+    font-size: var(--fkt-font-size-md);
+  }
 
-	p {
-		margin: 0;
-	}
+  p {
+    margin: 0;
+  }
 }
 ```
 
@@ -115,58 +115,58 @@ Example component: `PopoverHoverExampleComponent`
 import { Component } from '@angular/core';
 import { FktButtonComponent } from 'frakton-ng/button';
 import {
-	FktPopoverComponent,
-	FktPopoverContentDirective,
-	FktPopoverTriggerDirective,
+  FktPopoverComponent,
+  FktPopoverContentDirective,
+  FktPopoverTriggerDirective,
 } from 'frakton-ng/popover';
 
 @Component({
-	selector: 'app-popover-hover-example',
-	imports: [
-		FktButtonComponent,
-		FktPopoverComponent,
-		FktPopoverTriggerDirective,
-		FktPopoverContentDirective,
-	],
-	templateUrl: './popover-hover-example.component.html',
-	styleUrl: './popover-hover-example.component.scss',
+  selector: 'app-popover-hover-example',
+  imports: [
+    FktButtonComponent,
+    FktPopoverComponent,
+    FktPopoverTriggerDirective,
+    FktPopoverContentDirective,
+  ],
+  templateUrl: './popover-hover-example.component.html',
+  styleUrl: './popover-hover-example.component.scss',
 })
 export class PopoverHoverExampleComponent {}
 ```
 
 ```html title="popover-hover-example.component.html"
-<fkt-popover position="top-center">
-	<button
-		fktButton
-		fktPopoverTrigger
-		label="Hover or focus"
-		triggerOn="hover"
-	>
-	</button>
+<fkt-popover preferredPosition="top-center">
+  <button
+    fktButton
+    fktPopoverTrigger
+    label="Hover or focus"
+    triggerOn="hover"
+  >
+  </button>
 
-	<ng-template fktPopoverContent>
-		<div class="content">
-			<strong>Accessible hover</strong>
-			<p>
-				The same trigger opens on mouse hover and keyboard focus, then
-				closes when pointer and focus leave both trigger and panel.
-			</p>
-			<button appearance="basic" fktButton label="Focusable action">
-			</button>
-		</div>
-	</ng-template>
+  <ng-template fktPopoverContent>
+    <div class="content">
+      <strong>Accessible hover</strong>
+      <p>
+        The same trigger opens on mouse hover and keyboard focus, then
+        closes when pointer and focus leave both trigger and panel.
+      </p>
+      <button appearance="basic" fktButton label="Focusable action">
+      </button>
+    </div>
+  </ng-template>
 </fkt-popover>
 ```
 
 ```css title="popover-hover-example.component.scss"
 .content {
-	display: grid;
-	gap: var(--fkt-space-sm);
-	max-width: 16rem;
+  display: grid;
+  gap: var(--fkt-space-sm);
+  max-width: 16rem;
 
-	p {
-		margin: 0;
-	}
+  p {
+    margin: 0;
+  }
 }
 ```
 
@@ -182,16 +182,8 @@ without a special API.
 Example component: `PopoverFormExampleComponent`
 
 ```ts title="popover-form-example.component.ts"
+import { CodeOutputComponent } from '@/components/code-output/code-output.component';
 import { Component, signal, viewChild } from '@angular/core';
-import {
-  FktPopoverComponent,
-  FktPopoverContentDirective,
-  FktPopoverTriggerDirective,
-} from 'frakton-ng/popover';
-import { FktButtonComponent } from 'frakton-ng/button';
-import { FktFieldComponent } from 'frakton-ng/field';
-import { FktInputTextDirective } from 'frakton-ng/input-text';
-import { FktCheckboxComponent } from 'frakton-ng/checkbox';
 import {
   email,
   form,
@@ -199,7 +191,15 @@ import {
   FormRoot,
   required,
 } from '@angular/forms/signals';
-import { CodeOutputComponent } from '@/components/code-output/code-output.component';
+import { FktButtonComponent } from 'frakton-ng/button';
+import { FktCheckboxComponent } from 'frakton-ng/checkbox';
+import { FktFieldComponent } from 'frakton-ng/field';
+import { FktInputTextDirective } from 'frakton-ng/input-text';
+import {
+  FktPopoverComponent,
+  FktPopoverContentDirective,
+  FktPopoverTriggerDirective,
+} from 'frakton-ng/popover';
 
 interface Payload {
   name: string;
@@ -257,80 +257,80 @@ export class PopoverFormExampleComponent {
 
 ```html title="popover-form-example.component.html"
 <fkt-popover
-	[(open)]="open"
-	[preferredFallbackPositions]="['top-start', 'bottom-end']"
-	position="bottom-start"
+  [(open)]="open"
+  [preferredFallbackPositions]="['top-start', 'bottom-end']"
+  preferredPosition="bottom-start"
 >
-	<button
-		fktButton
-		fktPopoverTrigger
-		label="Edit contact"
-		suffixIcon="pencil-square">
-	</button>
+  <button
+    fktButton
+    fktPopoverTrigger
+    label="Edit contact"
+    suffixIcon="pencil-square">
+  </button>
 
-	<ng-template fktPopoverContent>
-		<form
-			[formRoot]="form"
-			class="contact-form"
-		>
-			<fkt-field label="Name">
-				<input [formField]="form.name" fktInputText/>
-			</fkt-field>
+  <ng-template fktPopoverContent>
+    <form
+      [formRoot]="form"
+      class="contact-form"
+    >
+      <fkt-field label="Name">
+        <input [formField]="form.name" fktInputText/>
+      </fkt-field>
 
-			<fkt-field label="Email">
-				<input [formField]="form.email" fktInputText type="email"/>
-			</fkt-field>
+      <fkt-field label="Email">
+        <input [formField]="form.email" fktInputText type="email"/>
+      </fkt-field>
 
-			<fkt-checkbox
-				[formField]="form.updates"
-				label="Receive product updates"
-			/>
+      <fkt-checkbox
+        [formField]="form.updates"
+        label="Receive product updates"
+      />
 
-			<button
-				fktButton
-				label="Save"
-				type="submit">
-			</button>
-		</form>
-	</ng-template>
+      <button
+        fktButton
+        label="Save"
+        type="submit">
+      </button>
+    </form>
+  </ng-template>
 </fkt-popover>
 
 @if (submitted(); as value) {
-	<app-code-output [value]="value"/>
+  <app-code-output [value]="value"/>
 }
 ```
 
 ```css title="popover-form-example.component.scss"
 :host {
-	display: grid;
-	gap: var(--fkt-space-sm);
-	align-items: start;
-	justify-items: start;
+  display: grid;
+  gap: var(--fkt-space-sm);
+  align-items: start;
+  justify-items: start;
 }
 
 .contact-form {
-	display: flex;
-	flex-direction: column;
-	align-items: flex-end;
-	padding: var(--fkt-space-xs);
-	gap: var(--fkt-space-sm);
-	width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: var(--fkt-space-xs);
+  gap: var(--fkt-space-sm);
+  width: 300px;
 
-	fkt-field, fkt-checkbox {
-		width: 100%;
-	}
+  fkt-field, fkt-checkbox {
+    width: 100%;
+  }
 }
 
 pre {
-	margin: 0;
-	padding: var(--fkt-space-sm);
-	color: var(--fkt-color-accent);
-	background: var(--fkt-color-primary);
-	border-radius: var(--fkt-radius-lg);
+  margin: 0;
+  padding: var(--fkt-space-sm);
+  color: var(--fkt-color-accent);
+  background: var(--fkt-color-primary);
+  border-radius: var(--fkt-radius-lg);
 }
 
 app-code-output {
-	width: 100%;
+  width: 100%;
 }
 ```
 
@@ -356,156 +356,156 @@ Example component: `PopoverPositionsExampleComponent`
 
 ```ts title="popover-positions-example.component.ts"
 import { Component } from '@angular/core';
-import {
-	FktPopoverComponent,
-	FktPopoverContentDirective,
-	FktPopoverPosition,
-	FktPopoverTriggerDirective,
-} from 'frakton-ng/popover';
 import { FktButtonComponent } from 'frakton-ng/button';
+import {
+  FktPopoverComponent,
+  FktPopoverContentDirective,
+  FktPopoverPosition,
+  FktPopoverTriggerDirective,
+} from 'frakton-ng/popover';
 
 @Component({
-	selector: 'app-popover-positions-example',
-	imports: [
-		FktButtonComponent,
-		FktPopoverComponent,
-		FktPopoverTriggerDirective,
-		FktPopoverContentDirective,
-	],
-	templateUrl: './popover-positions-example.component.html',
-	styleUrl: './popover-positions-example.component.scss',
+  selector: 'app-popover-positions-example',
+  imports: [
+    FktButtonComponent,
+    FktPopoverComponent,
+    FktPopoverTriggerDirective,
+    FktPopoverContentDirective,
+  ],
+  templateUrl: './popover-positions-example.component.html',
+  styleUrl: './popover-positions-example.component.scss',
 })
 export class PopoverPositionsExampleComponent {
-	protected readonly groups: {
-		label: string;
-		positions: {
-			label: string;
-			description: string;
-			position: FktPopoverPosition;
-		}[];
-	}[] = [
-		{
-			label: 'Top',
-			positions: [
-				{
-					label: 'Top start',
-					position: 'top-start',
-					description:
-						'The panel is placed above the trigger and starts aligned with the trigger start edge.',
-				},
-				{
-					label: 'Top center',
-					position: 'top-center',
-					description:
-						'The panel is placed above the trigger and centered horizontally.',
-				},
-				{
-					label: 'Top end',
-					position: 'top-end',
-					description:
-						'The panel is placed above the trigger and ends aligned with the trigger end edge.',
-				},
-			],
-		},
-		{
-			label: 'Bottom',
-			positions: [
-				{
-					label: 'Bottom start',
-					position: 'bottom-start',
-					description:
-						'The panel is placed below the trigger and starts aligned with the trigger start edge.',
-				},
-				{
-					label: 'Bottom center',
-					position: 'bottom-center',
-					description:
-						'The panel is placed below the trigger and centered horizontally.',
-				},
-				{
-					label: 'Bottom end',
-					position: 'bottom-end',
-					description:
-						'The panel is placed below the trigger and ends aligned with the trigger end edge.',
-				},
-			],
-		},
-		{
-			label: 'Left',
-			positions: [
-				{
-					label: 'Left start',
-					position: 'left-start',
-					description:
-						'The panel is placed to the left of the trigger and starts aligned with the trigger top edge.',
-				},
-				{
-					label: 'Left center',
-					position: 'left-center',
-					description:
-						'The panel is placed to the left of the trigger and centered vertically.',
-				},
-				{
-					label: 'Left end',
-					position: 'left-end',
-					description:
-						'The panel is placed to the left of the trigger and ends aligned with the trigger bottom edge.',
-				},
-			],
-		},
-		{
-			label: 'Right',
-			positions: [
-				{
-					label: 'Right start',
-					position: 'right-start',
-					description:
-						'The panel is placed to the right of the trigger and starts aligned with the trigger top edge.',
-				},
-				{
-					label: 'Right center',
-					position: 'right-center',
-					description:
-						'The panel is placed to the right of the trigger and centered vertically.',
-				},
-				{
-					label: 'Right end',
-					position: 'right-end',
-					description:
-						'The panel is placed to the right of the trigger and ends aligned with the trigger bottom edge.',
-				},
-			],
-		},
-		{
-			label: 'Corners',
-			positions: [
-				{
-					label: 'Top left',
-					position: 'top-left',
-					description:
-						'The panel is placed around the trigger top-left corner.',
-				},
-				{
-					label: 'Top right',
-					position: 'top-right',
-					description:
-						'The panel is placed around the trigger top-right corner.',
-				},
-				{
-					label: 'Bottom left',
-					position: 'bottom-left',
-					description:
-						'The panel is placed around the trigger bottom-left corner.',
-				},
-				{
-					label: 'Bottom right',
-					position: 'bottom-right',
-					description:
-						'The panel is placed around the trigger bottom-right corner.',
-				},
-			],
-		},
-	];
+  protected readonly groups: {
+    label: string;
+    positions: {
+      label: string;
+      description: string;
+      position: FktPopoverPosition;
+    }[];
+  }[] = [
+    {
+      label: 'Top',
+      positions: [
+        {
+          label: 'Top start',
+          position: 'top-start',
+          description:
+            'The panel is placed above the trigger and starts aligned with the trigger start edge.',
+        },
+        {
+          label: 'Top center',
+          position: 'top-center',
+          description:
+            'The panel is placed above the trigger and centered horizontally.',
+        },
+        {
+          label: 'Top end',
+          position: 'top-end',
+          description:
+            'The panel is placed above the trigger and ends aligned with the trigger end edge.',
+        },
+      ],
+    },
+    {
+      label: 'Bottom',
+      positions: [
+        {
+          label: 'Bottom start',
+          position: 'bottom-start',
+          description:
+            'The panel is placed below the trigger and starts aligned with the trigger start edge.',
+        },
+        {
+          label: 'Bottom center',
+          position: 'bottom-center',
+          description:
+            'The panel is placed below the trigger and centered horizontally.',
+        },
+        {
+          label: 'Bottom end',
+          position: 'bottom-end',
+          description:
+            'The panel is placed below the trigger and ends aligned with the trigger end edge.',
+        },
+      ],
+    },
+    {
+      label: 'Left',
+      positions: [
+        {
+          label: 'Left start',
+          position: 'left-start',
+          description:
+            'The panel is placed to the left of the trigger and starts aligned with the trigger top edge.',
+        },
+        {
+          label: 'Left center',
+          position: 'left-center',
+          description:
+            'The panel is placed to the left of the trigger and centered vertically.',
+        },
+        {
+          label: 'Left end',
+          position: 'left-end',
+          description:
+            'The panel is placed to the left of the trigger and ends aligned with the trigger bottom edge.',
+        },
+      ],
+    },
+    {
+      label: 'Right',
+      positions: [
+        {
+          label: 'Right start',
+          position: 'right-start',
+          description:
+            'The panel is placed to the right of the trigger and starts aligned with the trigger top edge.',
+        },
+        {
+          label: 'Right center',
+          position: 'right-center',
+          description:
+            'The panel is placed to the right of the trigger and centered vertically.',
+        },
+        {
+          label: 'Right end',
+          position: 'right-end',
+          description:
+            'The panel is placed to the right of the trigger and ends aligned with the trigger bottom edge.',
+        },
+      ],
+    },
+    {
+      label: 'Corners',
+      positions: [
+        {
+          label: 'Top left',
+          position: 'top-left',
+          description:
+            'The panel is placed around the trigger top-left corner.',
+        },
+        {
+          label: 'Top right',
+          position: 'top-right',
+          description:
+            'The panel is placed around the trigger top-right corner.',
+        },
+        {
+          label: 'Bottom left',
+          position: 'bottom-left',
+          description:
+            'The panel is placed around the trigger bottom-left corner.',
+        },
+        {
+          label: 'Bottom right',
+          position: 'bottom-right',
+          description:
+            'The panel is placed around the trigger bottom-right corner.',
+        },
+      ],
+    },
+  ];
 }
 ```
 
@@ -516,7 +516,7 @@ export class PopoverPositionsExampleComponent {
     <div class="positions">
       @for (position of group.positions; track position) {
         <fkt-popover
-          [position]="position.position"
+          [preferredPosition]="position.position"
           [preferredFallbackPositions]="['bottom-center', 'top-center']"
         >
           <button
@@ -540,33 +540,33 @@ export class PopoverPositionsExampleComponent {
 
 ```css title="popover-positions-example.component.scss"
 :host {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	gap: var(--fkt-space-md);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--fkt-space-md);
 }
 
 .positions {
-	display: flex;
-	gap: var(--fkt-space-sm);
+  display: flex;
+  gap: var(--fkt-space-sm);
 }
 
 .group {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	gap: var(--fkt-space-xs);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--fkt-space-xs);
 }
 
 .placement {
-	display: grid;
-	gap: var(--fkt-space-2xs);
-	max-width: 12rem;
-	font-size: var(--fkt-font-size-sm);
+  display: grid;
+  gap: var(--fkt-space-2xs);
+  max-width: 12rem;
+  font-size: var(--fkt-font-size-sm);
 
-	span {
-		color: var(--fkt-text-muted-color);
-	}
+  span {
+    color: var(--fkt-text-muted-color);
+  }
 }
 ```
 
@@ -577,92 +577,92 @@ export class PopoverPositionsExampleComponent {
 - component: PopoverRepositionExampleComponent
 
 Use `overflowStrategy="keep-position"` when the preferred placement should be preserved, and call
-`reposition('fit')` when content or layout changes after the popover is open. The method
-can also receive a concrete position to update the active preferred placement.
+`reposition('fit')` when content or layout changes after the popover is open. Programmatic
+repositioning persists the resolved placement as the active preference.
 
 Example component: `PopoverRepositionExampleComponent`
 
 ```ts title="popover-reposition-example.component.ts"
 import { Component } from '@angular/core';
-import {
-	FktPopoverComponent,
-	FktPopoverContentDirective,
-	FktPopoverTriggerDirective,
-} from 'frakton-ng/popover';
 import { FktButtonComponent } from 'frakton-ng/button';
+import {
+  FktPopoverComponent,
+  FktPopoverContentDirective,
+  FktPopoverTriggerDirective,
+} from 'frakton-ng/popover';
 
 @Component({
-	selector: 'app-popover-reposition-example',
-	imports: [
-		FktButtonComponent,
-		FktPopoverComponent,
-		FktPopoverTriggerDirective,
-		FktPopoverContentDirective,
-	],
-	templateUrl: './popover-reposition-example.component.html',
-	styleUrl: './popover-reposition-example.component.scss',
+  selector: 'app-popover-reposition-example',
+  imports: [
+    FktButtonComponent,
+    FktPopoverComponent,
+    FktPopoverTriggerDirective,
+    FktPopoverContentDirective,
+  ],
+  templateUrl: './popover-reposition-example.component.html',
+  styleUrl: './popover-reposition-example.component.scss',
 })
 export class PopoverRepositionExampleComponent {}
 ```
 
 ```html title="popover-reposition-example.component.html"
 <div class="stage">
-	<fkt-popover #popover overflowStrategy="keep-position" position="right-start">
-		<button appearance="stroked" fktButton fktPopoverTrigger label="Open fixed position">
-		</button>
+  <fkt-popover #popover overflowStrategy="keep-position" preferredPosition="right-start">
+    <button appearance="stroked" fktButton fktPopoverTrigger label="Open fixed position">
+    </button>
 
-		<ng-template fktPopoverContent>
-			<div class="content">
-				<strong>Manual reposition</strong>
-				<p>
-					Overflow strategy is keeping the requested placement, so the preferred position is preserved
-					even if it overflows. </p>
+    <ng-template fktPopoverContent>
+      <div class="content">
+        <strong>Manual reposition</strong>
+        <p>
+          Overflow strategy is keeping the requested placement, so the preferred position is preserved
+          even if it overflows. </p>
 
-				<div class="actions">
-					<button (click)="popover.reposition('fit')" appearance="stroked" fktButton label="Fit"
-					        type="button">
-					</button>
+        <div class="actions">
+          <button (click)="popover.reposition('fit')" appearance="stroked" fktButton label="Fit"
+                  type="button">
+          </button>
 
-					<button (click)="popover.reposition('right-center')" appearance="basic" fktButton
-					        label="Move to right" type="button">
-					</button>
-				</div>
-			</div>
-		</ng-template>
-	</fkt-popover>
+          <button (click)="popover.reposition('right-center')" appearance="basic" fktButton
+                  label="Move to right" type="button">
+          </button>
+        </div>
+      </div>
+    </ng-template>
+  </fkt-popover>
 </div>
 ```
 
 ```css title="popover-reposition-example.component.scss"
 :host {
-	display: block;
-	--fkt-popover-width: 18rem;
+  display: block;
+  --fkt-popover-width: 18rem;
 }
 
 .stage {
-	display: flex;
-	justify-content: flex-end;
-	min-height: 10rem;
-	padding: var(--fkt-space-sm);
-	border: 1px dashed var(--fkt-color-border);
-	border-radius: var(--fkt-radius-lg);
+  display: flex;
+  justify-content: flex-end;
+  min-height: 10rem;
+  padding: var(--fkt-space-sm);
+  border: 1px dashed var(--fkt-color-border);
+  border-radius: var(--fkt-radius-lg);
 }
 
 .content {
-	display: grid;
-	gap: var(--fkt-space-sm);
-	font-size: var(--fkt-font-size-sm);
+  display: grid;
+  gap: var(--fkt-space-sm);
+  font-size: var(--fkt-font-size-sm);
 
-	p {
-		margin: 0;
-		line-height: 1.4;
-	}
+  p {
+    margin: 0;
+    line-height: 1.4;
+  }
 }
 
 .actions {
-	display: flex;
-	flex-wrap: wrap;
-	gap: var(--fkt-space-xs);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--fkt-space-xs);
 }
 ```
 
@@ -679,80 +679,81 @@ Example component: `PopoverTriggerWidthExampleComponent`
 
 ```ts title="popover-trigger-width-example.component.ts"
 import { Component } from '@angular/core';
-import {
-	FktPopoverComponent,
-	FktPopoverContentDirective,
-	FktPopoverTriggerDirective,
-} from 'frakton-ng/popover';
 import { FktButtonComponent } from 'frakton-ng/button';
+import {
+  FktPopoverComponent,
+  FktPopoverContentDirective,
+  FktPopoverTriggerDirective,
+} from 'frakton-ng/popover';
 
 @Component({
-	selector: 'app-popover-trigger-width-example',
-	imports: [
-		FktButtonComponent,
-		FktPopoverComponent,
-		FktPopoverTriggerDirective,
-		FktPopoverContentDirective,
-	],
-	templateUrl: './popover-trigger-width-example.component.html',
-	styleUrl: './popover-trigger-width-example.component.scss',
+  selector: 'app-popover-trigger-width-example',
+  imports: [
+    FktButtonComponent,
+    FktPopoverComponent,
+    FktPopoverTriggerDirective,
+    FktPopoverContentDirective,
+  ],
+  templateUrl: './popover-trigger-width-example.component.html',
+  styleUrl: './popover-trigger-width-example.component.scss',
 })
 export class PopoverTriggerWidthExampleComponent {
-	protected readonly examples = [
-		{
-			label: 'Half width',
-			className: 'half-width',
-			description: 'The panel uses half of the trigger width.',
-			token: '--fkt-popover-width: calc(var(--fkt-popover-trigger-width) * 0.5);',
-		},
-		{
-			label: 'Same width',
-			className: 'same-width',
-			description: 'The panel width matches the trigger width.',
-			token: '--fkt-popover-width: var(--fkt-popover-trigger-width);',
-		},
-		{
-			label: 'Double width',
-			className: 'double-width',
-			description: 'The panel uses twice the trigger width.',
-			token: '--fkt-popover-width: calc(var(--fkt-popover-trigger-width) * 2);',
-		},
-	];
+  protected readonly examples = [
+    {
+      label: 'Half width',
+      className: 'half-width',
+      description: 'The panel uses half of the trigger width.',
+      token:
+        '--fkt-popover-width: calc(var(--fkt-popover-trigger-width) * 0.5);',
+    },
+    {
+      label: 'Same width',
+      className: 'same-width',
+      description: 'The panel width matches the trigger width.',
+      token: '--fkt-popover-width: var(--fkt-popover-trigger-width);',
+    },
+    {
+      label: 'Double width',
+      className: 'double-width',
+      description: 'The panel uses twice the trigger width.',
+      token: '--fkt-popover-width: calc(var(--fkt-popover-trigger-width) * 2);',
+    },
+  ];
 }
 ```
 
 ```html title="popover-trigger-width-example.component.html"
 @for (example of examples; track example.label) {
-	<fkt-popover
-		[class]="example.className"
-		position="bottom-start"
-	>
-		<button
-			[label]="example.label"
-			appearance="stroked"
-			class="wide-trigger"
-			fktButton
-			fktPopoverTrigger
-			suffixIcon="chevron-down"
-		></button>
+  <fkt-popover
+    [class]="example.className"
+    preferredPosition="bottom-start"
+  >
+    <button
+      [label]="example.label"
+      appearance="stroked"
+      class="wide-trigger"
+      fktButton
+      fktPopoverTrigger
+      suffixIcon="chevron-down"
+    ></button>
 
-		<ng-template fktPopoverContent>
-			<div class="sized-panel">
-				<strong>{{ example.label }}</strong>
-				<span>{{ example.description }}</span>
-				<code>{{ example.token }}</code>
-			</div>
-		</ng-template>
-	</fkt-popover>
+    <ng-template fktPopoverContent>
+      <div class="sized-panel">
+        <strong>{{ example.label }}</strong>
+        <span>{{ example.description }}</span>
+        <code>{{ example.token }}</code>
+      </div>
+    </ng-template>
+  </fkt-popover>
 }
 ```
 
 ```css title="popover-trigger-width-example.component.scss"
 :host {
-	display: grid;
-	justify-items: start;
-	gap: var(--fkt-space-sm);
-	align-items: center;
+  display: grid;
+  justify-items: start;
+  gap: var(--fkt-space-sm);
+  align-items: center;
 }
 
 code {
@@ -767,30 +768,30 @@ code {
 }
 
 .half-width {
-	--fkt-popover-width: calc(var(--fkt-popover-trigger-width) * 0.5);
+  --fkt-popover-width: calc(var(--fkt-popover-trigger-width) * 0.5);
 }
 
 .same-width {
-	--fkt-popover-width: var(--fkt-popover-trigger-width);
+  --fkt-popover-width: var(--fkt-popover-trigger-width);
 }
 
 .double-width {
-	--fkt-popover-width: calc(var(--fkt-popover-trigger-width) * 2);
+  --fkt-popover-width: calc(var(--fkt-popover-trigger-width) * 2);
 }
 
 .wide-trigger {
-	min-width: 24rem;
+  min-width: 24rem;
 }
 
 .sized-panel {
-	display: grid;
-	gap: var(--fkt-space-2xs);
-	font-size: var(--fkt-font-size-sm);
-	line-height: 1.4;
+  display: grid;
+  gap: var(--fkt-space-2xs);
+  font-size: var(--fkt-font-size-sm);
+  line-height: 1.4;
 
-	span {
-		color: var(--fkt-text-muted-color);
-	}
+  span {
+    color: var(--fkt-text-muted-color);
+  }
 }
 ```
 
@@ -811,14 +812,14 @@ Example component: `PopoverDismissExampleComponent`
 ```ts title="popover-dismiss-example.component.ts"
 import { Component, signal } from '@angular/core';
 import { CodeOutputComponent } from 'apps/docs/src/app/components/code-output/code-output.component';
-import {
-	FktPopoverComponent,
-	FktPopoverContentDirective,
-	FktPopoverDismissEvent,
-	FktPopoverDismissReason,
-	FktPopoverTriggerDirective,
-} from 'frakton-ng/popover';
 import { FktButtonComponent } from 'frakton-ng/button';
+import {
+  FktPopoverComponent,
+  FktPopoverContentDirective,
+  FktPopoverDismissEvent,
+  FktPopoverDismissReason,
+  FktPopoverTriggerDirective,
+} from 'frakton-ng/popover';
 
 @Component({
   selector: 'app-popover-dismiss-example',
@@ -854,7 +855,7 @@ export class PopoverDismissExampleComponent {
         escape: true,
         scroll: true
     }"
-  position="top-start"
+  preferredPosition="top-start"
 >
   <button
     fktButton
@@ -886,21 +887,21 @@ export class PopoverDismissExampleComponent {
 
 ```css title="popover-dismiss-example.component.scss"
 :host {
-	display: grid;
-	gap: var(--fkt-space-sm);
-	justify-items: start;
+  display: grid;
+  gap: var(--fkt-space-sm);
+  justify-items: start;
 }
 
 .content {
-	display: grid;
-	gap: var(--fkt-space-sm);
-	max-width: 18rem;
-	font-size: var(--fkt-font-size-sm);
+  display: grid;
+  gap: var(--fkt-space-sm);
+  max-width: 18rem;
+  font-size: var(--fkt-font-size-sm);
 
-	p {
-		margin: 0;
-		line-height: 1.4;
-	}
+  p {
+    margin: 0;
+    line-height: 1.4;
+  }
 }
 
 strong {
@@ -924,7 +925,7 @@ code {
 }
 
 .status {
-	font-size: var(--fkt-font-size-sm);
+  font-size: var(--fkt-font-size-sm);
 }
 
 app-code-output {
@@ -953,101 +954,101 @@ Example component: `PopoverControlledExampleComponent`
 
 ```ts title="popover-controlled-example.component.ts"
 import { Component, signal } from '@angular/core';
-import {
-	FktPopoverComponent,
-	FktPopoverContentDirective,
-	FktPopoverTriggerDirective,
-} from 'frakton-ng/popover';
 import { FktButtonComponent } from 'frakton-ng/button';
+import {
+  FktPopoverComponent,
+  FktPopoverContentDirective,
+  FktPopoverTriggerDirective,
+} from 'frakton-ng/popover';
 
 @Component({
-	selector: 'app-popover-controlled-example',
-	imports: [
-		FktButtonComponent,
-		FktPopoverComponent,
-		FktPopoverTriggerDirective,
-		FktPopoverContentDirective,
-	],
-	templateUrl: './popover-controlled-example.component.html',
-	styleUrl: './popover-controlled-example.component.scss',
+  selector: 'app-popover-controlled-example',
+  imports: [
+    FktButtonComponent,
+    FktPopoverComponent,
+    FktPopoverTriggerDirective,
+    FktPopoverContentDirective,
+  ],
+  templateUrl: './popover-controlled-example.component.html',
+  styleUrl: './popover-controlled-example.component.scss',
 })
 export class PopoverControlledExampleComponent {
-	protected readonly open = signal(false);
+  protected readonly open = signal(false);
 }
 ```
 
 ```html title="popover-controlled-example.component.html"
 <div class="actions">
-	<button
-		(click)="open.set(true)"
-		appearance="stroked"
-		fktButton
-		label="Open from outside">
-	</button>
+  <button
+    (click)="open.set(true)"
+    appearance="stroked"
+    fktButton
+    label="Open from outside">
+  </button>
 
-	<button
-		(click)="open.set(false)"
-		appearance="basic"
-		fktButton
-		label="Close from outside">
-	</button>
+  <button
+    (click)="open.set(false)"
+    appearance="basic"
+    fktButton
+    label="Close from outside">
+  </button>
 </div>
 
 <fkt-popover
-	#popover="fktPopover"
-	[(open)]="open"
-	[dismissOn]="{ outsideClick: false }"
-	position="bottom-start"
+  #popover="fktPopover"
+  [(open)]="open"
+  [dismissOn]="{ outsideClick: false }"
+  preferredPosition="bottom-start"
 >
     <span
-		class="anchor"
-	    fktPopoverTrigger
-	    triggerOn="manual"
-	>
+      class="anchor"
+      fktPopoverTrigger
+      triggerOn="manual"
+    >
         Manual anchor
     </span>
 
-	<ng-template fktPopoverContent>
-		<div class="content">
-			<strong>Programmatic state</strong>
-			<span>
+  <ng-template fktPopoverContent>
+    <div class="content">
+      <strong>Programmatic state</strong>
+      <span>
                 The parent can own the open signal while each dismiss behavior
                 remains configurable. The trigger only provides ARIA and
                 positioning in manual mode.
             </span>
-		</div>
-	</ng-template>
+    </div>
+  </ng-template>
 </fkt-popover>
 ```
 
 ```css title="popover-controlled-example.component.scss"
 :host {
-	display: grid;
-	align-items: start;
-	justify-items: start;
-	gap: var(--fkt-space-sm);
+  display: grid;
+  align-items: start;
+  justify-items: start;
+  gap: var(--fkt-space-sm);
 }
 
 .actions {
-	display: flex;
-	flex-wrap: wrap;
-	gap: var(--fkt-space-xs);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--fkt-space-xs);
 }
 
 .anchor {
-	display: inline-flex;
-	align-items: center;
-	min-height: 2rem;
-	padding: 0 var(--fkt-space-sm);
-	color: var(--fkt-text-muted-color);
-	border: 1px dashed var(--fkt-color-border);
-	border-radius: var(--fkt-radius-md);
+  display: inline-flex;
+  align-items: center;
+  min-height: 2rem;
+  padding: 0 var(--fkt-space-sm);
+  color: var(--fkt-text-muted-color);
+  border: 1px dashed var(--fkt-color-border);
+  border-radius: var(--fkt-radius-md);
 }
 
 .content {
-	display: grid;
-	gap: var(--fkt-space-2xs);
-	max-width: 16rem;
+  display: grid;
+  gap: var(--fkt-space-2xs);
+  max-width: 16rem;
 }
 ```
 
@@ -1071,57 +1072,57 @@ Example component: `PopoverTokensExampleComponent`
 
 ```ts title="popover-tokens-example.component.ts"
 import { Component } from '@angular/core';
-import {
-	FktPopoverComponent,
-	FktPopoverContentDirective,
-	FktPopoverTriggerDirective,
-} from 'frakton-ng/popover';
 import { FktButtonComponent } from 'frakton-ng/button';
+import {
+  FktPopoverComponent,
+  FktPopoverContentDirective,
+  FktPopoverTriggerDirective,
+} from 'frakton-ng/popover';
 
 @Component({
-	selector: 'app-popover-tokens-example',
-	imports: [
-		FktButtonComponent,
-		FktPopoverComponent,
-		FktPopoverTriggerDirective,
-		FktPopoverContentDirective,
-	],
-	templateUrl: './popover-tokens-example.component.html',
-	styleUrl: './popover-tokens-example.component.scss',
+  selector: 'app-popover-tokens-example',
+  imports: [
+    FktButtonComponent,
+    FktPopoverComponent,
+    FktPopoverTriggerDirective,
+    FktPopoverContentDirective,
+  ],
+  templateUrl: './popover-tokens-example.component.html',
+  styleUrl: './popover-tokens-example.component.scss',
 })
 export class PopoverTokensExampleComponent {}
 ```
 
 ```html title="popover-tokens-example.component.html"
-<fkt-popover animation="app-popover-scale" position="right-start">
-	<button fktButton fktPopoverTrigger label="Token styled">
-	</button>
+<fkt-popover animation="app-popover-scale" preferredPosition="right-start">
+  <button fktButton fktPopoverTrigger label="Token styled">
+  </button>
 
-	<ng-template fktPopoverContent>
-		<div class="content">
-			<strong>Scoped tokens</strong>
-			<span>The panel appearance comes from CSS variables.</span>
-		</div>
-	</ng-template>
+  <ng-template fktPopoverContent>
+    <div class="content">
+      <strong>Scoped tokens</strong>
+      <span>The panel appearance comes from CSS variables.</span>
+    </div>
+  </ng-template>
 </fkt-popover>
 ```
 
 ```css title="popover-tokens-example.component.scss"
 :host {
-	display: inline-flex;
-	border-radius: var(--fkt-radius-lg);
+  display: inline-flex;
+  border-radius: var(--fkt-radius-lg);
 
-	--fkt-popover-padding: 1rem;
-	--fkt-popover-border-radius: 1.25rem;
-	--fkt-popover-background-color: var(--fkt-color-primary);
-	--fkt-popover-text-color: var(--fkt-color-neutral-100);
-	--fkt-popover-box-shadow: var(--fkt-shadow-xl);
+  --fkt-popover-padding: 1rem;
+  --fkt-popover-border-radius: 1.25rem;
+  --fkt-popover-background-color: var(--fkt-color-primary);
+  --fkt-popover-text-color: var(--fkt-color-neutral-100);
+  --fkt-popover-box-shadow: var(--fkt-shadow-xl);
 }
 
 .content {
-	display: grid;
-	gap: var(--fkt-space-2xs);
-	max-width: 14rem;
+  display: grid;
+  gap: var(--fkt-space-2xs);
+  max-width: 14rem;
 }
 ```
 
@@ -1141,165 +1142,165 @@ Example component: `PopoverAnimationsExampleComponent`
 
 ```ts title="popover-animations-example.component.ts"
 import { Component } from '@angular/core';
-import {
-	FktPopoverComponent,
-	FktPopoverContentDirective,
-	FktPopoverTriggerDirective,
-} from 'frakton-ng/popover';
 import { FktButtonComponent } from 'frakton-ng/button';
+import {
+  FktPopoverComponent,
+  FktPopoverContentDirective,
+  FktPopoverTriggerDirective,
+} from 'frakton-ng/popover';
 
 @Component({
-	selector: 'app-popover-animations-example',
-	imports: [
-		FktButtonComponent,
-		FktPopoverComponent,
-		FktPopoverTriggerDirective,
-		FktPopoverContentDirective,
-	],
-	templateUrl: './popover-animations-example.component.html',
-	styleUrl: './popover-animations-example.component.scss',
+  selector: 'app-popover-animations-example',
+  imports: [
+    FktButtonComponent,
+    FktPopoverComponent,
+    FktPopoverTriggerDirective,
+    FktPopoverContentDirective,
+  ],
+  templateUrl: './popover-animations-example.component.html',
+  styleUrl: './popover-animations-example.component.scss',
 })
 export class PopoverAnimationsExampleComponent {}
 ```
 
 ```html title="popover-animations-example.component.html"
 <div class="animations">
-	<fkt-popover position="bottom-start">
-		<button
-			fktButton
-			fktPopoverTrigger
-			label="Default motion"
-		></button>
+  <fkt-popover preferredPosition="bottom-start">
+    <button
+      fktButton
+      fktPopoverTrigger
+      label="Default motion"
+    ></button>
 
-		<ng-template fktPopoverContent>
-			<p>Uses the built-in <code>fade-slide</code> animation.</p>
-		</ng-template>
-	</fkt-popover>
+    <ng-template fktPopoverContent>
+      <p>Uses the built-in <code>fade-slide</code> animation.</p>
+    </ng-template>
+  </fkt-popover>
 
-	<fkt-popover
-		animation="custom-coming-from-outside"
-		position="bottom-start"
-	>
-		<button
-			fktButton
-			fktPopoverTrigger
-			label="Custom motion 1"
-		></button>
+  <fkt-popover
+    animation="custom-coming-from-outside"
+    preferredPosition="bottom-start"
+  >
+    <button
+      fktButton
+      fktPopoverTrigger
+      label="Custom motion 1"
+    ></button>
 
-		<ng-template fktPopoverContent>
-			<p>Uses a consumer-owned class for transition and starting style.</p>
-		</ng-template>
-	</fkt-popover>
+    <ng-template fktPopoverContent>
+      <p>Uses a consumer-owned class for transition and starting style.</p>
+    </ng-template>
+  </fkt-popover>
 
-	<fkt-popover
-		animation="custom-scale-y"
-		position="bottom-start"
-	>
-		<button
-			fktButton
-			fktPopoverTrigger
-			label="Custom motion 2"
-		></button>
+  <fkt-popover
+    animation="custom-scale-y"
+    preferredPosition="bottom-start"
+  >
+    <button
+      fktButton
+      fktPopoverTrigger
+      label="Custom motion 2"
+    ></button>
 
-		<ng-template fktPopoverContent>
-			<p>Uses a consumer-owned class for transition and starting style.</p>
-		</ng-template>
-	</fkt-popover>
+    <ng-template fktPopoverContent>
+      <p>Uses a consumer-owned class for transition and starting style.</p>
+    </ng-template>
+  </fkt-popover>
 
-	<fkt-popover
-		animation="none"
-		position="bottom-start"
-	>
-		<button
-			fktButton
-			fktPopoverTrigger
-			label="No motion"
-		></button>
+  <fkt-popover
+    animation="none"
+    preferredPosition="bottom-start"
+  >
+    <button
+      fktButton
+      fktPopoverTrigger
+      label="No motion"
+    ></button>
 
-		<ng-template fktPopoverContent>
-			<p>Disables the built-in animation class.</p>
-		</ng-template>
-	</fkt-popover>
+    <ng-template fktPopoverContent>
+      <p>Disables the built-in animation class.</p>
+    </ng-template>
+  </fkt-popover>
 </div>
 ```
 
 ```css title="popover-animations-example.component.scss"
 :host {
-	display: block;
+  display: block;
 }
 
 .animations {
-	display: flex;
-	flex-wrap: wrap;
-	gap: var(--fkt-space-sm);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--fkt-space-sm);
 }
 
 p {
-	max-width: 14rem;
-	margin: 0;
-	font-size: var(--fkt-font-size-sm);
-	line-height: 1.4;
+  max-width: 14rem;
+  margin: 0;
+  font-size: var(--fkt-font-size-sm);
+  line-height: 1.4;
 }
 
 fkt-popover ::ng-deep .custom-coming-from-outside {
-	opacity: 0;
-	transform: translateX(0);
-	transform-origin: top left;
+  opacity: 0;
+  transform: translateX(0);
+  transform-origin: top left;
 
-	transition: opacity 300ms ease-in-out,
-	transform 600ms cubic-bezier(0.25, 1, 0.5, 1),
-	display 600ms allow-discrete,
-	overlay 600ms allow-discrete;
+  transition: opacity 300ms ease-in-out,
+  transform 600ms cubic-bezier(0.25, 1, 0.5, 1),
+  display 600ms allow-discrete,
+  overlay 600ms allow-discrete;
 
-	&:popover-open {
-		opacity: 1;
-		transform: translateX(0);
+  &:popover-open {
+    opacity: 1;
+    transform: translateX(0);
 
-		@starting-style {
-			opacity: 0;
-			transform: translateX(-100vw);
-		}
-	}
+    @starting-style {
+      opacity: 0;
+      transform: translateX(-100vw);
+    }
+  }
 }
 
 fkt-popover ::ng-deep .custom-scale-y {
-	opacity: 0;
-	transform: scaleY(0);
-	transform-origin: top left;
+  opacity: 0;
+  transform: scaleY(0);
+  transform-origin: top left;
 
-	transition: opacity 300ms ease-in-out,
-	transform 600ms cubic-bezier(0.25, 1, 0.5, 1),
-	display 600ms allow-discrete,
-	overlay 600ms allow-discrete;
+  transition: opacity 300ms ease-in-out,
+  transform 600ms cubic-bezier(0.25, 1, 0.5, 1),
+  display 600ms allow-discrete,
+  overlay 600ms allow-discrete;
 
-	&:popover-open {
-		opacity: 1;
-		transform: scaleY(1);
+  &:popover-open {
+    opacity: 1;
+    transform: scaleY(1);
 
-		transition: opacity 180ms ease-out,
-		transform 500ms cubic-bezier(0.16, 1, 0.3, 1),
-		display 500ms allow-discrete,
-		overlay 500ms allow-discrete;
+    transition: opacity 180ms ease-out,
+    transform 500ms cubic-bezier(0.16, 1, 0.3, 1),
+    display 500ms allow-discrete,
+    overlay 500ms allow-discrete;
 
-		@starting-style {
-			opacity: 0;
-			transform: scaleY(0);
-		}
-	}
+    @starting-style {
+      opacity: 0;
+      transform: scaleY(0);
+    }
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-	fkt-popover ::ng-deep .custom-coming-from-outside,
-	fkt-popover ::ng-deep .custom-scale-y {
-		transform: none;
-		transition: opacity 1ms linear,
-		display 1ms allow-discrete,
-		overlay 1ms allow-discrete;
+  fkt-popover ::ng-deep .custom-coming-from-outside,
+  fkt-popover ::ng-deep .custom-scale-y {
+    transform: none;
+    transition: opacity 1ms linear,
+    display 1ms allow-discrete,
+    overlay 1ms allow-discrete;
 
-		&:popover-open {
-			transform: none;
-		}
-	}
+    &:popover-open {
+      transform: none;
+    }
+  }
 }
 ```
 
@@ -1397,7 +1398,7 @@ With `overflowStrategy="fit"`, the popover may resolve to a different placement 
 ```angular2html
 
 <fkt-popover
-	position="bottom-start"
+	preferredPosition="bottom-start"
 	[preferredFallbackPositions]="['top-start', 'bottom-end']"
 	overflowStrategy="fit"
 >
@@ -1413,9 +1414,9 @@ The current placement is exposed as `data-fkt-placement` on the panel for placem
 
 The popover repositions while open on document scroll, window resize, and trigger resize.
 
-Panel content size is consumer-owned. Prefer fixed or constrained panel dimensions for dynamic content, and let the content scroll inside the panel when it can grow. If an intentional content layout change should re-evaluate placement, call `reposition('fit')` to run the automatic fit search once.
+Panel content size is consumer-owned. Prefer fixed or constrained panel dimensions for dynamic content, and let the content scroll inside the panel when it can grow. If an intentional content layout change should re-evaluate placement, call `reposition('fit')` to run the automatic fit search and persist the resolved placement as the active preference.
 
-Automatic collision handling updates the active placement while the panel is open. Passing a concrete position to `reposition(position)` also updates the active preferred placement. Neither writes back to the `position` input; when the `position` input changes, the active placement is recalculated from the new input value.
+Automatic collision handling updates the active placement while the panel is open without changing the active preference. Programmatic repositioning updates the active preference to the resolved placement. Neither writes back to the `position` input; when the `position` input changes, the active placement is recalculated from the new input value.
 
 ## Content lifecycle
 
@@ -1488,7 +1489,7 @@ restoreTriggerFocus()
 void;
 ```
 
-`reposition` recalculates placement while the panel is open. Pass `'fit'` to run the fit search once. Pass a concrete position to update the active preferred placement without writing back to the `position` input.
+`reposition` recalculates placement while the panel is open and persists the resolved placement as the active preference. Pass `'fit'` to resolve through the fit search. Pass a concrete position to use that placement directly. The method does not write back to the `position` input.
 
 `restoreTriggerFocus` moves focus back to the trigger. Use it after state-driven closes when returning focus to the trigger is the desired flow.
 
