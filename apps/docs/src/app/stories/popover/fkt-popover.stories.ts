@@ -1,23 +1,22 @@
-import type { FktPopoverOverflowStrategy } from 'frakton-ng/popover';
-import { FktPopoverComponent, } from 'frakton-ng/popover';
+import { DesignToken } from '@/models/design-token';
 import { Meta } from '@/models/meta';
 import { Story, StoryIntroduction } from '@/models/story';
-import { DesignToken } from '@/models/design-token';
+import type { FktPopoverOverflowStrategy } from 'frakton-ng/popover';
+import { FktPopoverComponent } from 'frakton-ng/popover';
+import {
+  PopoverAnimationsExampleComponent,
+  PopoverBasicExampleComponent,
+  PopoverControlledExampleComponent,
+  PopoverDismissExampleComponent,
+  PopoverFormExampleComponent,
+  PopoverHoverExampleComponent,
+  PopoverPositionsExampleComponent,
+  PopoverRepositionExampleComponent,
+  PopoverTokensExampleComponent,
+  PopoverTriggerWidthExampleComponent
+} from './examples';
 import designTokens from './fkt-popover-design-tokens.json';
 import documentation from './fkt-popover.docs.md' with { loader: 'text' };
-import {
-	PopoverAnimationsExampleComponent,
-	PopoverBasicExampleComponent,
-	PopoverControlledExampleComponent,
-	PopoverDismissExampleComponent,
-	PopoverFormExampleComponent,
-	PopoverHoverExampleComponent,
-	PopoverPositionsExampleComponent,
-	PopoverRepositionExampleComponent,
-	PopoverScrollExampleComponent,
-	PopoverTokensExampleComponent,
-	PopoverTriggerWidthExampleComponent,
-} from './examples';
 
 const popover = {
     type: 'component',
