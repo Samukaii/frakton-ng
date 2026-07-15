@@ -1,0 +1,16 @@
+:host {
+  display: inline-flex;
+  border-radius: var(--fkt-radius-lg);
+
+  --fkt-popover-padding: 1rem;
+  --fkt-popover-border-radius: 1.25rem;
+  --fkt-popover-background-color: var(--fkt-color-primary);
+  --fkt-popover-text-color: var(--fkt-color-neutral-100);
+  --fkt-popover-box-shadow: var(--fkt-shadow-xl);
+}
+
+.content {
+  display: grid;
+  gap: var(--fkt-space-2xs);
+  max-width: 14rem;
+}
