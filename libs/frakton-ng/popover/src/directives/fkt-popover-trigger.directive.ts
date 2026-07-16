@@ -3,6 +3,7 @@ import {
   Directive,
   ElementRef,
   inject,
+  OnDestroy,
 } from '@angular/core';
 import { FktPopoverContextDirective } from '../internal/directives/fkt-popover-context.directive';
 import { FktPopoverTriggerInteractionDirective } from '../internal/directives/fkt-popover-trigger-interaction.directive';
@@ -19,10 +20,18 @@ import { FktPopoverTriggerInteractionDirective } from '../internal/directives/fk
     '[attr.data-fkt-popover-trigger]': '""',
   },
 })
-export class FktPopoverTriggerDirective {
+export class FktPopoverTriggerDirective implements OnDestroy {
   private readonly element =
     inject<ElementRef<HTMLElement>>(ElementRef).nativeElement;
   private readonly context = inject(FktPopoverContextDirective);
+
+  constructor() {
+    this.context.registerTrigger(this);
+  }
+
+  ngOnDestroy() {
+    this.context.unregisterTrigger(this);
+  }
 
   private readonly triggerResizeObserver = afterRenderEffect((onCleanup) => {
     this.updateSize();

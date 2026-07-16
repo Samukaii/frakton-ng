@@ -1,6 +1,5 @@
-import { contentChild, Directive, input, model, output, signal } from '@angular/core';
+import { computed, Directive, input, model, output, signal } from '@angular/core';
 import { deepEqual } from 'frakton-ng/internal/utils';
-import { FktPopoverTriggerDirective } from '../../directives/fkt-popover-trigger.directive';
 import {
   type FktPopoverAnimation,
   FktPopoverDismissEvent,
@@ -10,6 +9,13 @@ import {
   FktPopoverPositionDirection,
   FktPopoverTrigger
 } from '../../fkt-popover.types';
+
+interface FktPopoverTriggerRef {
+  contains(target: Node): boolean;
+  focus(): void;
+  getRect(): DOMRect;
+  getDirection(): 'ltr' | 'rtl';
+}
 
 /**
  * @internal
@@ -31,7 +37,19 @@ export class FktPopoverContextDirective {
     direction: 'ltr' | 'rtl';
   }>();
 
-  readonly trigger = contentChild.required(FktPopoverTriggerDirective);
+  private readonly registeredTrigger = signal<FktPopoverTriggerRef | null>(null);
+
+  readonly trigger = computed(() => {
+    const trigger = this.registeredTrigger();
+
+    if (!trigger) {
+      throw new Error(
+        'FktPopoverComponent requires exactly one descendant with fktPopoverTrigger.'
+      );
+    }
+
+    return trigger;
+  });
 
   private static nextPopoverId = 0;
   readonly panelId = `fkt-popover-${FktPopoverContextDirective.nextPopoverId++}`;
@@ -56,5 +74,24 @@ export class FktPopoverContextDirective {
 
   setTriggerSize(size: { width: number; height: number }) {
     this.triggerSize.set(size);
+  }
+
+  registerTrigger(trigger: FktPopoverTriggerRef) {
+    const registeredTrigger = this.registeredTrigger();
+
+    if (registeredTrigger && registeredTrigger !== trigger) {
+      throw new Error(
+        'FktPopoverComponent currently supports exactly one fktPopoverTrigger.'
+      );
+    }
+
+    this.registeredTrigger.set(trigger);
+  }
+
+  unregisterTrigger(trigger: FktPopoverTriggerRef) {
+    if (this.registeredTrigger() !== trigger) return;
+
+    this.registeredTrigger.set(null);
+    this.triggerSize.set(null);
   }
 }
