@@ -14,10 +14,22 @@ import { DesignToken } from '@/models/design-token';
 import documentation from './fkt-tooltip.docs.md' with { loader: "text" };
 
 const positionOptions: FktGeometryPosition[] = [
-	'top-left', 'top-center', 'top-right',
-	'bottom-left', 'bottom-center', 'bottom-right',
-	'top-left', 'left-center', 'bottom-left',
-	'top-right', 'right-center', 'bottom-right'
+	'top-start',
+	'top-center',
+	'top-end',
+	'top-start-corner',
+	'top-end-corner',
+	'bottom-start',
+	'bottom-center',
+	'bottom-end',
+	'bottom-start-corner',
+	'bottom-end-corner',
+	'start-top',
+	'start-center',
+	'start-bottom',
+	'end-top',
+	'end-center',
+	'end-bottom',
 ];
 
 const meta: Meta = {

@@ -8,3 +8,4 @@ export { PopoverFormExampleComponent } from './form/popover-form-example.compone
 export { PopoverTokensExampleComponent } from './tokens/popover-tokens-example.component';
 export { PopoverPositionsExampleComponent } from './positions/popover-positions-example.component';
 export { PopoverRepositionExampleComponent } from './reposition/popover-reposition-example.component';
+export { PopoverRtlExampleComponent } from './rtl/popover-rtl-example.component';

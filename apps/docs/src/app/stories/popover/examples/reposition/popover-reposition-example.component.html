@@ -1,5 +1,5 @@
 <div class="stage">
-  <fkt-popover #popover overflowStrategy="keep-position" preferredPosition="right-start">
+  <fkt-popover #popover overflowStrategy="keep-position" preferredPosition="end-top">
     <button appearance="stroked" fktButton fktPopoverTrigger label="Open fixed position">
     </button>
 
@@ -11,12 +11,12 @@
           even if it overflows. </p>
 
         <div class="actions">
-          <button (click)="popover.reposition('fit')" appearance="stroked" fktButton label="Fit"
+          <button (click)="popover.repositionTo('fit')" appearance="stroked" fktButton label="Fit"
                   type="button">
           </button>
 
-          <button (click)="popover.reposition('right-center')" appearance="basic" fktButton
-                  label="Move to right" type="button">
+          <button (click)="popover.repositionTo('end-center')" appearance="basic" fktButton
+                  label="Move to end" type="button">
           </button>
         </div>
       </div>

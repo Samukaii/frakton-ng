@@ -24,6 +24,9 @@ import popoverPositionsExampleTypescript from "./positions/popover-positions-exa
 import popoverRepositionExampleTemplate from "./reposition/popover-reposition-example.component.html" with {loader: "text"};
 import popoverRepositionExampleStyles from "./reposition/popover-reposition-example.component.scss" with {loader: "text"};
 import popoverRepositionExampleTypescript from "./reposition/popover-reposition-example.component.ts" with {loader: "text"};
+import popoverRtlExampleTemplate from "./rtl/popover-rtl-example.component.html" with {loader: "text"};
+import popoverRtlExampleStyles from "./rtl/popover-rtl-example.component.scss" with {loader: "text"};
+import popoverRtlExampleTypescript from "./rtl/popover-rtl-example.component.ts" with {loader: "text"};
 import popoverTokensExampleTemplate from "./tokens/popover-tokens-example.component.html" with {loader: "text"};
 import popoverTokensExampleStyles from "./tokens/popover-tokens-example.component.scss" with {loader: "text"};
 import popoverTokensExampleTypescript from "./tokens/popover-tokens-example.component.ts" with {loader: "text"};
@@ -197,6 +200,27 @@ export default {
 			{
 				name: "popover-reposition-example.component.scss",
 				content: popoverRepositionExampleStyles as string,
+				language: "css" as const,
+			},		
+		]
+	},
+	PopoverRtlExampleComponent: {
+		name: "PopoverRtlExample",
+		files: [
+		
+			{
+				name: "popover-rtl-example.component.html",
+				content: popoverRtlExampleTemplate as string,
+				language: "angular2html" as const,
+			},		
+			{
+				name: "popover-rtl-example.component.ts",
+				content: popoverRtlExampleTypescript as string,
+				language: "typescript" as const,
+			},		
+			{
+				name: "popover-rtl-example.component.scss",
+				content: popoverRtlExampleStyles as string,
 				language: "css" as const,
 			},		
 		]

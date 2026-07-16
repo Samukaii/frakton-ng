@@ -1,7 +1,7 @@
 import { DOCUMENT } from '@angular/common';
 import { afterRenderEffect, Directive, inject, linkedSignal, OnDestroy, signal, untracked } from '@angular/core';
 import { FktGeometryAlignmentService } from 'frakton-ng/internal/services';
-import type { FktGeometryPoint } from 'frakton-ng/internal/types';
+import type { FktGeometryDirection, FktGeometryPoint } from 'frakton-ng/internal/types';
 import { deepEqual, documentEventListenerEffect, MarkUsed, windowEventListenerEffect } from 'frakton-ng/internal/utils';
 import { FktPopoverPosition } from '../../fkt-popover.types';
 import { FktPopoverContextDirective } from './fkt-popover-context.directive';
@@ -40,6 +40,7 @@ export class FktPopoverPositioningDirective implements OnDestroy {
     this.context.overflowStrategy();
     this.context.offset();
     this.context.triggerSize();
+    this.context.positionDirection();
 
     untracked(() => {
       this.schedulePositionUpdate();
@@ -50,6 +51,7 @@ export class FktPopoverPositioningDirective implements OnDestroy {
 
   private readonly _appliedPosition = signal<{
     name: FktPopoverPosition;
+    direction: FktGeometryDirection;
     coordinates: FktGeometryPoint;
   } | null>(null, { equal: deepEqual });
 
@@ -76,6 +78,14 @@ export class FktPopoverPositioningDirective implements OnDestroy {
 
   private get triggerRect() {
     return this.context.trigger().getRect();
+  }
+
+  private get direction(): FktGeometryDirection {
+    const direction = this.context.positionDirection();
+
+    if (direction !== 'auto') return direction;
+
+    return this.context.trigger().getDirection();
   }
 
   updatePosition() {
@@ -117,6 +127,7 @@ export class FktPopoverPositioningDirective implements OnDestroy {
 
     const result = this.alignmentService.alignTargetTo({
       anchor: triggerRect,
+      direction: this.direction,
       targetSize: panelRect,
       padding: offset,
       position,
@@ -132,6 +143,7 @@ export class FktPopoverPositioningDirective implements OnDestroy {
 
     const { position, result } = this.alignmentService.smartAlignTargetTo({
       anchor: triggerRect,
+      direction: this.direction,
       targetSize: panelRect,
       padding: offset,
       preferredPositions: this.getPreferredPositions(),
@@ -146,17 +158,23 @@ export class FktPopoverPositioningDirective implements OnDestroy {
     position: FktPopoverPosition,
     coordinates: FktGeometryPoint
   ) {
-    const previousPosition = this._appliedPosition()?.name;
+    const direction = this.direction;
+    const previousPosition = this._appliedPosition();
 
     this._appliedPosition.set({
       name: position,
+      direction,
       coordinates,
     });
 
-    if (previousPosition === position) return;
+    if (
+      previousPosition?.name === position &&
+      previousPosition.direction === direction
+    )
+      return;
 
     this.context.resolvedPosition.emit({
-      direction: 'ltr',
+      direction,
       position,
     });
   }

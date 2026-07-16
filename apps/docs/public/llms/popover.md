@@ -11,7 +11,7 @@
 
 ## Description
 
-Declarative trigger-based popover for contextual UI such as previews, compact forms, and small action panels.
+Low-level primitive for custom contextual surfaces that do not fit a specialized Frakton NG component.
 
 ## Features
 
@@ -20,12 +20,18 @@ Declarative trigger-based popover for contextual UI such as previews, compact fo
 - id: usage
 - type: introduction
 
-Popovers render contextual content in the browser top layer without moving it to a global overlay
-container. Tokens, inherited classes, scoped styles, and animation classes keep flowing through
-the normal cascade.
+Popover is a low-level primitive for custom contextual surfaces that do not fit a specialized
+Frakton NG component. Prefer Tooltip, Dialog, Select, Autocomplete, and other dedicated components
+when their interaction pattern matches the use case.
 
-Use it for disclosure and placement. It does not assign menu, tooltip, dialog, or listbox
-semantics by itself.
+It renders content in the browser top layer without moving it to a global overlay container, so
+tokens, inherited classes, scoped styles, and animation classes keep flowing through the normal
+cascade. Popover owns disclosure and placement mechanics, but it does not assign menu, tooltip,
+dialog, or listbox semantics to arbitrary content.
+
+Apply `fktPopoverTrigger` to the interactive control that owns the surface. Frakton synchronizes
+`aria-expanded` and `aria-controls`; custom patterns remain responsible for the panel role and
+name, `aria-haspopup` when applicable, internal keyboard behavior, and additional focus management.
 
 ### Basic
 
@@ -35,7 +41,8 @@ semantics by itself.
 
 The default trigger interaction opens on click, closes on outside click or Escape, and uses
 `bottom-center` placement. The trigger remains the real interactive element and the content
-template becomes the native popover panel.
+template becomes the native popover panel. Apply `fktPopoverTrigger` to a keyboard-accessible
+interactive element; the directive does not turn passive elements into controls.
 
 Example component: `PopoverBasicExampleComponent`
 
@@ -348,9 +355,8 @@ placement does not fit.
 - type: story
 - component: PopoverPositionsExampleComponent
 
-Positions describe where the panel sits around the trigger. `start`, `center`, and `end` align
-the panel along the chosen side of the trigger. Corner positions place the panel around trigger
-corners.
+Positions describe where the panel sits around the trigger. `top` and `bottom` are block sides;
+`start` and `end` are inline sides. Corner positions use the `*-corner` suffix.
 
 Example component: `PopoverPositionsExampleComponent`
 
@@ -431,48 +437,48 @@ export class PopoverPositionsExampleComponent {
       ],
     },
     {
-      label: 'Left',
+      label: 'Start',
       positions: [
         {
-          label: 'Left start',
-          position: 'left-start',
+          label: 'Start top',
+          position: 'start-top',
           description:
-            'The panel is placed to the left of the trigger and starts aligned with the trigger top edge.',
+            'The panel is placed on the trigger start side and top aligned with the trigger.',
         },
         {
-          label: 'Left center',
-          position: 'left-center',
+          label: 'Start center',
+          position: 'start-center',
           description:
-            'The panel is placed to the left of the trigger and centered vertically.',
+            'The panel is placed on the trigger start side and centered vertically.',
         },
         {
-          label: 'Left end',
-          position: 'left-end',
+          label: 'Start bottom',
+          position: 'start-bottom',
           description:
-            'The panel is placed to the left of the trigger and ends aligned with the trigger bottom edge.',
+            'The panel is placed on the trigger start side and bottom aligned with the trigger.',
         },
       ],
     },
     {
-      label: 'Right',
+      label: 'End',
       positions: [
         {
-          label: 'Right start',
-          position: 'right-start',
+          label: 'End top',
+          position: 'end-top',
           description:
-            'The panel is placed to the right of the trigger and starts aligned with the trigger top edge.',
+            'The panel is placed on the trigger end side and top aligned with the trigger.',
         },
         {
-          label: 'Right center',
-          position: 'right-center',
+          label: 'End center',
+          position: 'end-center',
           description:
-            'The panel is placed to the right of the trigger and centered vertically.',
+            'The panel is placed on the trigger end side and centered vertically.',
         },
         {
-          label: 'Right end',
-          position: 'right-end',
+          label: 'End bottom',
+          position: 'end-bottom',
           description:
-            'The panel is placed to the right of the trigger and ends aligned with the trigger bottom edge.',
+            'The panel is placed on the trigger end side and bottom aligned with the trigger.',
         },
       ],
     },
@@ -480,28 +486,28 @@ export class PopoverPositionsExampleComponent {
       label: 'Corners',
       positions: [
         {
-          label: 'Top left',
-          position: 'top-left',
+          label: 'Top start corner',
+          position: 'top-start-corner',
           description:
-            'The panel is placed around the trigger top-left corner.',
+            'The panel is placed around the trigger top-start corner.',
         },
         {
-          label: 'Top right',
-          position: 'top-right',
+          label: 'Top end corner',
+          position: 'top-end-corner',
           description:
-            'The panel is placed around the trigger top-right corner.',
+            'The panel is placed around the trigger top-end corner.',
         },
         {
-          label: 'Bottom left',
-          position: 'bottom-left',
+          label: 'Bottom start corner',
+          position: 'bottom-start-corner',
           description:
-            'The panel is placed around the trigger bottom-left corner.',
+            'The panel is placed around the trigger bottom-start corner.',
         },
         {
-          label: 'Bottom right',
-          position: 'bottom-right',
+          label: 'Bottom end corner',
+          position: 'bottom-end-corner',
           description:
-            'The panel is placed around the trigger bottom-right corner.',
+            'The panel is placed around the trigger bottom-end corner.',
         },
       ],
     },
@@ -570,6 +576,176 @@ export class PopoverPositionsExampleComponent {
 }
 ```
 
+### RtlPositioning
+
+- id: rtl-positioning
+- type: story
+- component: PopoverRtlExampleComponent
+
+Logical `start` and `end` positions follow the trigger direction by default. Use
+`positionDirection="ltr"` or `positionDirection="rtl"` when geometry should be fixed
+independently from the content direction.
+
+Example component: `PopoverRtlExampleComponent`
+
+```ts title="popover-rtl-example.component.ts"
+import { Component, signal } from '@angular/core';
+import { FktButtonComponent } from 'frakton-ng/button';
+import {
+  FktPopoverComponent,
+  FktPopoverContentDirective,
+  FktPopoverTriggerDirective,
+} from 'frakton-ng/popover';
+import { FktSelectComponent } from 'frakton-ng/select';
+
+@Component({
+  selector: 'app-popover-rtl-example',
+  imports: [
+    FktButtonComponent,
+    FktPopoverComponent,
+    FktPopoverTriggerDirective,
+    FktPopoverContentDirective,
+    FktSelectComponent,
+  ],
+  templateUrl: './popover-rtl-example.component.html',
+  styleUrl: './popover-rtl-example.component.scss',
+})
+export class PopoverRtlExampleComponent {
+  protected readonly directions = [
+    { value: 'ltr', label: 'LTR' },
+    { value: 'rtl', label: 'RTL' },
+  ];
+
+  protected direction = signal('rtl');
+}
+```
+
+```html title="popover-rtl-example.component.html"
+<fkt-select [(value)]="direction" [options]="directions" label="Content direction" labelKey="label" valueKey="value"/>
+
+<div [dir]="direction()" class="container">
+  <section class="example-group">
+    <div class="example-group__description">
+      <strong>Automatic content direction ({{ direction() === 'rtl' ? 'RTL' : 'LTR' }})</strong>
+      <span>
+      The positioning follows the selected direction. With <code>positionDirection="auto"</code>,
+      <code>end-center</code> resolves from the trigger direction.
+    </span>
+    </div>
+
+    <fkt-popover preferredPosition="end-center">
+      <button
+        appearance="stroked"
+        fktButton
+        fktPopoverTrigger
+        label="فتح التفاصيل"
+        suffixIcon="chevron-down"
+      ></button>
+
+      <ng-template fktPopoverContent>
+        <div class="panel">
+          <strong>موضع تلقائي</strong>
+          <p>
+            The content and trigger share the selected direction, so logical end follows the same flow.
+          </p>
+        </div>
+      </ng-template>
+    </fkt-popover>
+  </section>
+
+  <section class="example-group">
+    <div class="example-group__description">
+      <strong>Fixed LTR positioning with {{ direction() === 'rtl' ? 'RTL' : 'LTR' }} content</strong>
+      <span>
+      The content follows the selected direction, but <code>positionDirection="ltr"</code>
+      keeps <code>end-center</code> resolved as LTR geometry.
+    </span>
+    </div>
+
+    <fkt-popover positionDirection="ltr" preferredPosition="end-center">
+      <button
+        appearance="stroked"
+        fktButton
+        fktPopoverTrigger
+        label="فتح التفاصيل"
+        suffixIcon="chevron-down"
+      ></button>
+
+      <ng-template fktPopoverContent>
+        <div class="panel">
+          <strong>محتوى RTL</strong>
+          <p>
+            Direction can be fixed for geometry without changing the content direction inside the panel.
+          </p>
+        </div>
+      </ng-template>
+    </fkt-popover>
+  </section>
+</div>
+```
+
+```css title="popover-rtl-example.component.scss"
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container {
+  display: flex;
+  gap: var(--fkt-space-md);
+}
+
+fkt-select {
+  width: 200px;
+  margin-bottom: var(--fkt-space-md);
+}
+
+.example-group {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  justify-items: flex-end;
+  gap: var(--fkt-space-sm);
+  padding: var(--fkt-space-md);
+  border: 1px dashed var(--fkt-color-neutral-400);
+  border-radius: var(--fkt-radius-lg);
+
+  &__description {
+    max-width: 24rem;
+    display: flex;
+    flex-direction: column;
+    gap: var(--fkt-space-2xs);
+    font-size: var(--fkt-font-size-sm);
+    line-height: 1.4;
+
+    span {
+      color: var(--fkt-text-muted-color);
+    }
+  }
+}
+
+code {
+  color: var(--fkt-color-danger);
+  font-family: monospace;
+  font-size: var(--fkt-font-size-xs);
+}
+
+.panel {
+  max-width: 18rem;
+  display: grid;
+  gap: var(--fkt-space-2xs);
+  font-size: var(--fkt-font-size-sm);
+  line-height: 1.4;
+
+  p {
+    margin: 0;
+    color: var(--fkt-text-muted-color);
+  }
+}
+```
+
 ### Reposition
 
 - id: reposition
@@ -577,7 +753,7 @@ export class PopoverPositionsExampleComponent {
 - component: PopoverRepositionExampleComponent
 
 Use `overflowStrategy="keep-position"` when the preferred placement should be preserved, and call
-`reposition('fit')` when content or layout changes after the popover is open. Programmatic
+`repositionTo('fit')` when content or layout changes after the popover is open. Programmatic
 repositioning persists the resolved placement as the active preference.
 
 Example component: `PopoverRepositionExampleComponent`
@@ -607,7 +783,7 @@ export class PopoverRepositionExampleComponent {}
 
 ```html title="popover-reposition-example.component.html"
 <div class="stage">
-  <fkt-popover #popover overflowStrategy="keep-position" preferredPosition="right-start">
+  <fkt-popover #popover overflowStrategy="keep-position" preferredPosition="end-top">
     <button appearance="stroked" fktButton fktPopoverTrigger label="Open fixed position">
     </button>
 
@@ -619,12 +795,12 @@ export class PopoverRepositionExampleComponent {}
           even if it overflows. </p>
 
         <div class="actions">
-          <button (click)="popover.reposition('fit')" appearance="stroked" fktButton label="Fit"
+          <button (click)="popover.repositionTo('fit')" appearance="stroked" fktButton label="Fit"
                   type="button">
           </button>
 
-          <button (click)="popover.reposition('right-center')" appearance="basic" fktButton
-                  label="Move to right" type="button">
+          <button (click)="popover.repositionTo('end-center')" appearance="basic" fktButton
+                  label="Move to end" type="button">
           </button>
         </div>
       </div>
@@ -946,9 +1122,11 @@ Bind `[(open)]` when a parent component should observe or change the popover sta
 - type: story
 - component: PopoverControlledExampleComponent
 
-Bind `[(open)]` when the parent should observe or update the state. Use `triggerOn="manual"`
-when the trigger should only provide the positioning reference while external controls open the panel.
-This is not a separate controlled mode; trigger and dismiss behavior remain configured independently.
+Bind `[(open)]` when the parent should observe or update the state. Use `triggerOn="manual"` when
+the trigger's own handler or parent state should control activation. The directive still belongs on
+the real interactive control and continues to provide `aria-expanded`, `aria-controls`, and the
+positioning reference. This is not a separate controlled mode; trigger and dismiss behavior remain
+configured independently.
 
 Example component: `PopoverControlledExampleComponent`
 
@@ -979,12 +1157,31 @@ export class PopoverControlledExampleComponent {
 
 ```html title="popover-controlled-example.component.html"
 <div class="actions">
-  <button
-    (click)="open.set(true)"
-    appearance="stroked"
-    fktButton
-    label="Open from outside">
-  </button>
+  <fkt-popover
+    [(open)]="open"
+    [dismissOn]="{ outsideClick: false }"
+    preferredPosition="bottom-start"
+  >
+    <button
+      (click)="open.set(true)"
+      appearance="stroked"
+      fktButton
+      fktPopoverTrigger
+      label="Open manually"
+      triggerOn="manual"
+    ></button>
+
+    <ng-template fktPopoverContent>
+      <div class="content">
+        <strong>Programmatic state</strong>
+        <span>
+          The parent owns the open signal. Manual mode leaves activation to the
+          trigger handler while Frakton keeps ARIA state and positioning
+          connected to that same control.
+        </span>
+      </div>
+    </ng-template>
+  </fkt-popover>
 
   <button
     (click)="open.set(false)"
@@ -993,32 +1190,6 @@ export class PopoverControlledExampleComponent {
     label="Close from outside">
   </button>
 </div>
-
-<fkt-popover
-  #popover="fktPopover"
-  [(open)]="open"
-  [dismissOn]="{ outsideClick: false }"
-  preferredPosition="bottom-start"
->
-    <span
-      class="anchor"
-      fktPopoverTrigger
-      triggerOn="manual"
-    >
-        Manual anchor
-    </span>
-
-  <ng-template fktPopoverContent>
-    <div class="content">
-      <strong>Programmatic state</strong>
-      <span>
-                The parent can own the open signal while each dismiss behavior
-                remains configurable. The trigger only provides ARIA and
-                positioning in manual mode.
-            </span>
-    </div>
-  </ng-template>
-</fkt-popover>
 ```
 
 ```css title="popover-controlled-example.component.scss"
@@ -1033,16 +1204,6 @@ export class PopoverControlledExampleComponent {
   display: flex;
   flex-wrap: wrap;
   gap: var(--fkt-space-xs);
-}
-
-.anchor {
-  display: inline-flex;
-  align-items: center;
-  min-height: 2rem;
-  padding: 0 var(--fkt-space-sm);
-  color: var(--fkt-text-muted-color);
-  border: 1px dashed var(--fkt-color-border);
-  border-radius: var(--fkt-radius-md);
 }
 
 .content {
@@ -1094,7 +1255,7 @@ export class PopoverTokensExampleComponent {}
 ```
 
 ```html title="popover-tokens-example.component.html"
-<fkt-popover animation="app-popover-scale" preferredPosition="right-start">
+<fkt-popover animation="app-popover-scale" preferredPosition="end-top">
   <button fktButton fktPopoverTrigger label="Token styled">
   </button>
 
@@ -1310,7 +1471,9 @@ fkt-popover ::ng-deep .custom-scale-y {
 
 <arg-types></arg-types>
 
-`fkt-popover` renders contextual content attached to a trigger. It manages disclosure, placement, automatic dismiss behavior, and optional focus restoration.
+`fkt-popover` is a low-level primitive for custom contextual surfaces that do not fit a specialized Frakton NG component. It manages disclosure, placement, automatic dismiss behavior, and optional focus restoration.
+
+Prefer dedicated components such as Tooltip, Dialog, Select, and Autocomplete when their interaction pattern matches the use case. Those components can provide semantics and keyboard behavior that an arbitrary popover cannot infer.
 
 Use `fktPopoverTrigger` on the trigger element and `fktPopoverContent` on an `ng-template` that contains the panel content.
 
@@ -1337,15 +1500,19 @@ Frakton NG owns trigger-based positioning because native popover does not solve 
 
 ## Semantics
 
-The panel does not assign a semantic role by default. Popover provides surface behavior, not composite-widget accessibility. Use it for contextual surfaces such as previews, compact forms, and small action panels. Use dedicated components, or provide the appropriate role and keyboard behavior yourself, when building menus, listboxes, dialogs, tooltips, or other composite widgets.
+Popover guarantees the mechanics it owns: it keeps `aria-expanded` and `aria-controls` synchronized on the trigger, supports focus as the keyboard equivalent of hover, dismisses with Escape by default, and provides explicit trigger focus restoration.
+
+The panel does not assign a semantic role or accessible name. Popover also does not infer `aria-haspopup`, implement keyboard navigation inside projected content, trap focus, or turn arbitrary markup into a menu, listbox, dialog, tooltip, or other composite widget. When those semantics are required, prefer the dedicated Frakton NG component. For a custom pattern, provide the panel role, accessible name, `aria-haspopup` value, internal keyboard behavior, and focus management required by the chosen pattern.
 
 ## Trigger behavior
 
-The trigger receives `aria-expanded` and `aria-controls`. It also acts as the positioning reference.
+Apply `fktPopoverTrigger` to the interactive control that owns the popover. The trigger receives `aria-expanded` and `aria-controls` and also acts as the positioning reference.
+
+The directive does not infer whether an element is interactive and does not add a role, `tabindex`, or keyboard activation to passive elements. Use a native interactive element when possible. Custom controls must provide their own correct semantics and keyboard behavior.
 
 `triggerOn="hover"` also opens on focus. The popover remains open while pointer or focus stays inside the trigger or panel, and pointer movement across the offset gap is protected by a safe area. Prefer click for persistent, touch-first, or complex interactive flows.
 
-`triggerOn="manual"` disables trigger-driven opening. In that mode, use `[(open)]` for state changes while the trigger remains the positioning reference.
+`triggerOn="manual"` disables only the activation performed by the directive. Use the trigger's own event handler or `[(open)]` for state changes. The directive must remain on the real interactive control: it still owns `aria-expanded`, `aria-controls`, and the positioning reference in manual mode.
 
 `triggerDisabled` disables trigger interaction only. It does not close an open panel and does not prevent external `open` updates.
 
@@ -1391,7 +1558,7 @@ Escape restores focus to the trigger by default. Outside click, scroll, mouse le
 
 ## Positioning
 
-`position` is the declarative preferred placement. `preferredFallbackPositions` adds preferred alternatives before the automatic fit search tries other placements.
+`preferredPosition` is the declarative preferred placement. `preferredFallbackPositions` adds preferred alternatives before the automatic fit search tries other placements.
 
 With `overflowStrategy="fit"`, the popover may resolve to a different placement when the preferred placement does not fit. It tries the declared position, then preferred fallbacks, then an internal fit strategy. `preferredFallbackPositions` only affects this automatic strategy. With `overflowStrategy="keep-position"`, the requested placement is preserved even when it overflows.
 
@@ -1406,17 +1573,19 @@ With `overflowStrategy="fit"`, the popover may resolve to a different placement 
 </fkt-popover>
 ```
 
-`start`, `center`, and `end` are side-alignment slots around the trigger. They are direct geometry positions, not aliases for corner positions. Corner placements such as `top-left`, `top-right`, `bottom-left`, and `bottom-right` are separate positions around trigger corners.
+Positions use logical sides. `top` and `bottom` are block sides. `start` and `end` are inline sides. `center`, `top`, and `bottom` align the panel along the selected side. Corner placements such as `top-start-corner`, `top-end-corner`, `bottom-start-corner`, and `bottom-end-corner` are separate positions around trigger corners.
 
-The current placement is exposed as `data-fkt-placement` on the panel for placement-specific styling and through `positionChange` for Angular state.
+The current placement is exposed as `data-fkt-position` and `data-fkt-position-direction` on the host and panel for placement-specific styling, and through `resolvedPosition` for Angular state.
+
+`positionDirection` controls how logical `start` and `end` positions are resolved. The default `auto` value reads the trigger computed direction. Use `ltr` or `rtl` to force the positioning direction for a specific popover.
 
 ## Position update lifecycle
 
 The popover repositions while open on document scroll, window resize, and trigger resize.
 
-Panel content size is consumer-owned. Prefer fixed or constrained panel dimensions for dynamic content, and let the content scroll inside the panel when it can grow. If an intentional content layout change should re-evaluate placement, call `reposition('fit')` to run the automatic fit search and persist the resolved placement as the active preference.
+Panel content size is consumer-owned. Prefer fixed or constrained panel dimensions for dynamic content, and let the content scroll inside the panel when it can grow. If an intentional content layout change should re-evaluate placement, call `repositionTo('fit')` to run the automatic fit search and persist the resolved placement as the active preference.
 
-Automatic collision handling updates the active placement while the panel is open without changing the active preference. Programmatic repositioning updates the active preference to the resolved placement. Neither writes back to the `position` input; when the `position` input changes, the active placement is recalculated from the new input value.
+Automatic collision handling updates the active placement while the panel is open without changing the active preference. Programmatic repositioning updates the active preference to the resolved placement. Neither writes back to the `preferredPosition` input; when the `preferredPosition` input changes, the active placement is recalculated from the new input value.
 
 ## Content lifecycle
 
@@ -1479,17 +1648,14 @@ The built-in animation respects `prefers-reduced-motion`; custom animations shou
 ## Methods
 
 ```ts
-reposition(target
-:
-FktPopoverRepositionTarget
-):
-void;
-restoreTriggerFocus()
-:
-void;
+class FktPopoverComponent {
+  repositionTo(target: FktPopoverRepositionTarget): void;
+
+  restoreTriggerFocus(): void;
+}
 ```
 
-`reposition` recalculates placement while the panel is open and persists the resolved placement as the active preference. Pass `'fit'` to resolve through the fit search. Pass a concrete position to use that placement directly. The method does not write back to the `position` input.
+`repositionTo` recalculates placement while the panel is open and persists the resolved placement as the active preference. Pass `'fit'` to resolve through the fit search. Pass a concrete position to use that placement directly. The method does not write back to the `preferredPosition` input.
 
 `restoreTriggerFocus` moves focus back to the trigger. Use it after state-driven closes when returning focus to the trigger is the desired flow.
 
@@ -1500,19 +1666,19 @@ type FktPopoverPosition =
 	| 'top-start'
 	| 'top-center'
 	| 'top-end'
-	| 'top-left'
-	| 'top-right'
+	| 'top-start-corner'
+	| 'top-end-corner'
 	| 'bottom-start'
 	| 'bottom-center'
 	| 'bottom-end'
-	| 'bottom-left'
-	| 'bottom-right'
-	| 'left-start'
-	| 'left-center'
-	| 'left-end'
-	| 'right-start'
-	| 'right-center'
-	| 'right-end';
+	| 'bottom-start-corner'
+	| 'bottom-end-corner'
+	| 'start-top'
+	| 'start-center'
+	| 'start-bottom'
+	| 'end-top'
+	| 'end-center'
+	| 'end-bottom';
 
 type FktPopoverTrigger = 'click' | 'hover' | 'manual';
 
@@ -1526,6 +1692,8 @@ type FktPopoverOverflowStrategy = 'fit' | 'keep-position';
 type FktPopoverRepositionTarget =
 	| FktPopoverPosition
 	| 'fit';
+
+type FktPopoverPositionDirection = 'auto' | 'ltr' | 'rtl';
 
 interface FktPopoverDismissOn {
 	outsideClick?: boolean;

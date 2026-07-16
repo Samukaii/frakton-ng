@@ -74,48 +74,48 @@ export class PopoverPositionsExampleComponent {
       ],
     },
     {
-      label: 'Left',
+      label: 'Start',
       positions: [
         {
-          label: 'Left start',
-          position: 'left-start',
+          label: 'Start top',
+          position: 'start-top',
           description:
-            'The panel is placed to the left of the trigger and starts aligned with the trigger top edge.',
+            'The panel is placed on the trigger start side and top aligned with the trigger.',
         },
         {
-          label: 'Left center',
-          position: 'left-center',
+          label: 'Start center',
+          position: 'start-center',
           description:
-            'The panel is placed to the left of the trigger and centered vertically.',
+            'The panel is placed on the trigger start side and centered vertically.',
         },
         {
-          label: 'Left end',
-          position: 'left-end',
+          label: 'Start bottom',
+          position: 'start-bottom',
           description:
-            'The panel is placed to the left of the trigger and ends aligned with the trigger bottom edge.',
+            'The panel is placed on the trigger start side and bottom aligned with the trigger.',
         },
       ],
     },
     {
-      label: 'Right',
+      label: 'End',
       positions: [
         {
-          label: 'Right start',
-          position: 'right-start',
+          label: 'End top',
+          position: 'end-top',
           description:
-            'The panel is placed to the right of the trigger and starts aligned with the trigger top edge.',
+            'The panel is placed on the trigger end side and top aligned with the trigger.',
         },
         {
-          label: 'Right center',
-          position: 'right-center',
+          label: 'End center',
+          position: 'end-center',
           description:
-            'The panel is placed to the right of the trigger and centered vertically.',
+            'The panel is placed on the trigger end side and centered vertically.',
         },
         {
-          label: 'Right end',
-          position: 'right-end',
+          label: 'End bottom',
+          position: 'end-bottom',
           description:
-            'The panel is placed to the right of the trigger and ends aligned with the trigger bottom edge.',
+            'The panel is placed on the trigger end side and bottom aligned with the trigger.',
         },
       ],
     },
@@ -123,28 +123,28 @@ export class PopoverPositionsExampleComponent {
       label: 'Corners',
       positions: [
         {
-          label: 'Top left',
-          position: 'top-left',
+          label: 'Top start corner',
+          position: 'top-start-corner',
           description:
-            'The panel is placed around the trigger top-left corner.',
+            'The panel is placed around the trigger top-start corner.',
         },
         {
-          label: 'Top right',
-          position: 'top-right',
+          label: 'Top end corner',
+          position: 'top-end-corner',
           description:
-            'The panel is placed around the trigger top-right corner.',
+            'The panel is placed around the trigger top-end corner.',
         },
         {
-          label: 'Bottom left',
-          position: 'bottom-left',
+          label: 'Bottom start corner',
+          position: 'bottom-start-corner',
           description:
-            'The panel is placed around the trigger bottom-left corner.',
+            'The panel is placed around the trigger bottom-start corner.',
         },
         {
-          label: 'Bottom right',
-          position: 'bottom-right',
+          label: 'Bottom end corner',
+          position: 'bottom-end-corner',
           description:
-            'The panel is placed around the trigger bottom-right corner.',
+            'The panel is placed around the trigger bottom-end corner.',
         },
       ],
     },

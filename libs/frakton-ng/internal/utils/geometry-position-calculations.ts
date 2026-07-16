@@ -1,21 +1,25 @@
-import { FktGeometryPosition, FktGeometryPositionCalculationFn } from 'frakton-ng/internal/types';
+import {
+	FktGeometryDirection,
+	FktGeometryPosition,
+	FktGeometryPositionCalculationFn,
+} from 'frakton-ng/internal/types';
 
-const topStart: FktGeometryPositionCalculationFn = (anchor, target) => ({
+const topLeft: FktGeometryPositionCalculationFn = (anchor, target) => ({
 	x: anchor.x,
 	y: anchor.y - target.height,
 });
 
-const topEnd: FktGeometryPositionCalculationFn = (anchor, target) => ({
+const topRight: FktGeometryPositionCalculationFn = (anchor, target) => ({
 	x: anchor.x + anchor.width - target.width,
 	y: anchor.y - target.height,
 });
 
-const topLeft: FktGeometryPositionCalculationFn = (anchor, target) => ({
+const topLeftCorner: FktGeometryPositionCalculationFn = (anchor, target) => ({
 	x: anchor.x - target.width,
 	y: anchor.y - target.height,
 });
 
-const topRight: FktGeometryPositionCalculationFn = (anchor, target) => ({
+const topRightCorner: FktGeometryPositionCalculationFn = (anchor, target) => ({
 	x: anchor.x + anchor.width,
 	y: anchor.y - target.height,
 });
@@ -25,22 +29,22 @@ const topCenter: FktGeometryPositionCalculationFn = (anchor, target) => ({
 	y: anchor.y - target.height,
 });
 
-const bottomStart: FktGeometryPositionCalculationFn = (anchor) => ({
+const bottomLeft: FktGeometryPositionCalculationFn = (anchor) => ({
 	x: anchor.x,
 	y: anchor.y + anchor.height,
 });
 
-const bottomEnd: FktGeometryPositionCalculationFn = (anchor, target) => ({
+const bottomRight: FktGeometryPositionCalculationFn = (anchor, target) => ({
 	x: anchor.x + anchor.width - target.width,
 	y: anchor.y + anchor.height,
 });
 
-const bottomLeft: FktGeometryPositionCalculationFn = (anchor, target) => ({
+const bottomLeftCorner: FktGeometryPositionCalculationFn = (anchor, target) => ({
 	x: anchor.x - target.width,
 	y: anchor.y + anchor.height,
 });
 
-const bottomRight: FktGeometryPositionCalculationFn = (anchor) => ({
+const bottomRightCorner: FktGeometryPositionCalculationFn = (anchor) => ({
 	x: anchor.x + anchor.width,
 	y: anchor.y + anchor.height,
 });
@@ -50,7 +54,7 @@ const bottomCenter: FktGeometryPositionCalculationFn = (anchor, target) => ({
 	y: anchor.y + anchor.height,
 });
 
-const leftStart: FktGeometryPositionCalculationFn = (anchor, target) => ({
+const leftTop: FktGeometryPositionCalculationFn = (anchor, target) => ({
 	x: anchor.x - target.width,
 	y: anchor.y,
 });
@@ -60,17 +64,17 @@ const leftCenter: FktGeometryPositionCalculationFn = (anchor, target) => ({
 	y: anchor.y + anchor.height / 2 - target.height / 2,
 });
 
-const leftEnd: FktGeometryPositionCalculationFn = (anchor, target) => ({
+const leftBottom: FktGeometryPositionCalculationFn = (anchor, target) => ({
 	x: anchor.x - target.width,
 	y: anchor.y + anchor.height - target.height,
 });
 
-const rightStart: FktGeometryPositionCalculationFn = (anchor) => ({
+const rightTop: FktGeometryPositionCalculationFn = (anchor) => ({
 	x: anchor.x + anchor.width,
 	y: anchor.y,
 });
 
-const rightEnd: FktGeometryPositionCalculationFn = (anchor, target) => ({
+const rightBottom: FktGeometryPositionCalculationFn = (anchor, target) => ({
 	x: anchor.x + anchor.width,
 	y: anchor.y + anchor.height - target.height,
 });
@@ -80,21 +84,23 @@ const rightCenter: FktGeometryPositionCalculationFn = (anchor, target) => ({
 	y: anchor.y + anchor.height / 2 - target.height / 2,
 });
 
-export const geometryPositionCalculations: Record<FktGeometryPosition, FktGeometryPositionCalculationFn> = {
-	'top-start': topStart,
-	'bottom-start': bottomStart,
-	'left-start': leftStart,
-	'right-start': rightStart,
+export const geometryPositionCalculations = (
+	direction: FktGeometryDirection
+): Record<FktGeometryPosition, FktGeometryPositionCalculationFn> => ({
+	'top-start': direction === 'rtl' ? topRight : topLeft,
+	'bottom-start': direction === 'rtl' ? bottomRight : bottomLeft,
+	'start-top': direction === 'rtl' ? rightTop : leftTop,
+	'end-top': direction === 'rtl' ? leftTop : rightTop,
 	'top-center': topCenter,
 	'bottom-center': bottomCenter,
-	'left-center': leftCenter,
-	'right-center': rightCenter,
-	'top-left': topLeft,
-	'top-right': topRight,
-	'bottom-left': bottomLeft,
-	'bottom-right': bottomRight,
-	'top-end': topEnd,
-	'bottom-end': bottomEnd,
-	'left-end': leftEnd,
-	'right-end': rightEnd,
-};
+	'start-center': direction === 'rtl' ? rightCenter : leftCenter,
+	'end-center': direction === 'rtl' ? leftCenter : rightCenter,
+	'top-start-corner': direction === 'rtl' ? topRightCorner : topLeftCorner,
+	'top-end-corner': direction === 'rtl' ? topLeftCorner : topRightCorner,
+	'bottom-start-corner': direction === 'rtl' ? bottomRightCorner : bottomLeftCorner,
+	'bottom-end-corner': direction === 'rtl' ? bottomLeftCorner : bottomRightCorner,
+	'top-end': direction === 'rtl' ? topLeft : topRight,
+	'bottom-end': direction === 'rtl' ? bottomLeft : bottomRight,
+	'start-bottom': direction === 'rtl' ? rightBottom : leftBottom,
+	'end-bottom': direction === 'rtl' ? leftBottom : rightBottom,
+});

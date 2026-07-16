@@ -3,7 +3,11 @@ import { geometryPositionCalculations } from 'frakton-ng/internal/utils';
 import { FktAlignTargetToOptions } from './models/fkt-align-target-to.options';
 import { FktSmartAlignTargetToOptions } from './models/fkt-smart-align-target-to.options';
 import { WINDOW } from 'frakton-ng/internal/di';
-import { FktGeometryPosition } from 'frakton-ng/internal/types';
+import {
+	FktGeometryDirection,
+	FktGeometryOffset,
+	FktGeometryPosition,
+} from 'frakton-ng/internal/types';
 
 @Injectable({
   providedIn: 'root'
@@ -20,23 +24,18 @@ export class FktGeometryAlignmentService {
 			? options.padding
 			: options.padding?.y ?? 8;
 
-		const aligner = geometryPositionCalculations[options.position];
+		const direction = options.direction ?? 'ltr';
+		const aligner = geometryPositionCalculations(direction)[options.position];
 		const base = aligner(options.anchor, options.targetSize);
-
-		let offsetX = 0;
-		let offsetY = 0;
-
-		const pos = options.position;
-
-		if (pos.startsWith('top')) offsetY = -paddingY;
-		else if (pos.startsWith('bottom')) offsetY = paddingY;
-
-		if (pos.startsWith('left') || pos.endsWith('left')) offsetX = -paddingX;
-		else if (pos.startsWith('right') || pos.endsWith('right')) offsetX = paddingX;
+		const offset = this.calculateOffset({
+			direction,
+			padding: {x: paddingX, y: paddingY},
+			position: options.position,
+		});
 
 		return {
-			x: base.x + offsetX,
-			y: base.y + offsetY,
+			x: base.x + offset.x,
+			y: base.y + offset.y,
 		};
 	};
 
@@ -62,26 +61,28 @@ export class FktGeometryAlignmentService {
 			'top-start',
 			'top-end',
 
-			'left-start',
-			'left-center',
-			'left-end',
+			'start-top',
+			'start-center',
+			'start-bottom',
 
-			'right-start',
-			'right-center',
-			'right-end',
+			'end-top',
+			'end-center',
+			'end-bottom',
 
-			'bottom-left',
-			'bottom-right',
-			'top-left',
-			'top-right',
+			'bottom-start-corner',
+			'bottom-end-corner',
+			'top-start-corner',
+			'top-end-corner',
 		]
 
     const preferredPositions = options.preferredPositions ?? [];
 
+    if (options.disableAutoReposition === true) {
+      return preferredPositions[0] ?? 'bottom-center';
+    }
+
     const positions =
-      options.disableAutoReposition === true
-        ? preferredPositions
-        : [...preferredPositions, ...defaultPositions];
+      [...preferredPositions, ...defaultPositions];
 
     if (positions.length === 0) {
       throw new Error(
@@ -123,5 +124,30 @@ export class FktGeometryAlignmentService {
 		}
 
 		return bestFit!;
+	}
+
+	private calculateOffset(options: {
+		position: FktGeometryPosition;
+		direction: FktGeometryDirection;
+		padding: Required<FktGeometryOffset>;
+	}) {
+		let x = 0;
+		let y = 0;
+
+		const {direction, padding, position} = options;
+
+		if (position.startsWith('top')) y = -padding.y;
+		else if (position.startsWith('bottom')) y = padding.y;
+
+		const startX = direction === 'rtl' ? padding.x : -padding.x;
+		const endX = direction === 'rtl' ? -padding.x : padding.x;
+
+		if (position.startsWith('start') || position.endsWith('start-corner')) {
+			x = startX;
+		} else if (position.startsWith('end') || position.endsWith('end-corner')) {
+			x = endX;
+		}
+
+		return {x, y};
 	}
 }

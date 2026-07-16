@@ -1940,7 +1940,7 @@ export const STORIES_MAP: StoryIndexer[] = [	{
 		id: "popover",
 		title: "Components/Overlays/Popover",
 		componentName: "FktPopoverComponent",
-		description: `Declarative trigger-based popover for contextual UI such as previews, compact forms, and small action panels.`,
+		description: `Low-level primitive for custom contextual surfaces that do not fit a specialized Frakton NG component.`,
 		file: () => import("./popover/fkt-popover.stories"),
 		type: 'story',
 		externalExamples: () => import("./popover/examples/raw-examples").then(file => file.default),
@@ -1966,7 +1966,7 @@ export const STORIES_MAP: StoryIndexer[] = [	{
 		        name: "Usage",
 		        type: "introduction",
 		        componentName: null,
-		        description:  `Popovers render contextual content in the browser top layer without moving it to a global overlay\ncontainer. Tokens, inherited classes, scoped styles, and animation classes keep flowing through\nthe normal cascade.\n\nUse it for disclosure and placement. It does not assign menu, tooltip, dialog, or listbox\nsemantics by itself.`,
+		        description:  `Popover is a low-level primitive for custom contextual surfaces that do not fit a specialized\nFrakton NG component. Prefer Tooltip, Dialog, Select, Autocomplete, and other dedicated components\nwhen their interaction pattern matches the use case.\n\nIt renders content in the browser top layer without moving it to a global overlay container, so\ntokens, inherited classes, scoped styles, and animation classes keep flowing through the normal\ncascade. Popover owns disclosure and placement mechanics, but it does not assign menu, tooltip,\ndialog, or listbox semantics to arbitrary content.\n\nApply \`fktPopoverTrigger\` to the interactive control that owns the surface. Frakton synchronizes\n\`aria-expanded\` and \`aria-controls\`; custom patterns remain responsible for the panel role and\nname, \`aria-haspopup\` when applicable, internal keyboard behavior, and additional focus management.`,
 		        level: 2,
 		    },
 		    {
@@ -1974,7 +1974,7 @@ export const STORIES_MAP: StoryIndexer[] = [	{
 		        name: "Basic",
 		        type: "story",
 		        componentName: "PopoverBasicExampleComponent",
-		        description:  `The default trigger interaction opens on click, closes on outside click or Escape, and uses\n\`bottom-center\` placement. The trigger remains the real interactive element and the content\ntemplate becomes the native popover panel.`,
+		        description:  `The default trigger interaction opens on click, closes on outside click or Escape, and uses\n\`bottom-center\` placement. The trigger remains the real interactive element and the content\ntemplate becomes the native popover panel. Apply \`fktPopoverTrigger\` to a keyboard-accessible\ninteractive element; the directive does not turn passive elements into controls.`,
 		        level: 3,
 		    },
 		    {
@@ -2006,7 +2006,15 @@ export const STORIES_MAP: StoryIndexer[] = [	{
 		        name: "Positions",
 		        type: "story",
 		        componentName: "PopoverPositionsExampleComponent",
-		        description:  `Positions describe where the panel sits around the trigger. \`start\`, \`center\`, and \`end\` align\nthe panel along the chosen side of the trigger. Corner positions place the panel around trigger\ncorners.`,
+		        description:  `Positions describe where the panel sits around the trigger. \`top\` and \`bottom\` are block sides;\n\`start\` and \`end\` are inline sides. Corner positions use the \`*-corner\` suffix.`,
+		        level: 3,
+		    },
+		    {
+		        id: "rtl-positioning",
+		        name: "RtlPositioning",
+		        type: "story",
+		        componentName: "PopoverRtlExampleComponent",
+		        description:  `Logical \`start\` and \`end\` positions follow the trigger direction by default. Use\n\`positionDirection="ltr"\` or \`positionDirection="rtl"\` when geometry should be fixed\nindependently from the content direction.`,
 		        level: 3,
 		    },
 		    {
@@ -2014,7 +2022,7 @@ export const STORIES_MAP: StoryIndexer[] = [	{
 		        name: "Reposition",
 		        type: "story",
 		        componentName: "PopoverRepositionExampleComponent",
-		        description:  `Use \`overflowStrategy="keep-position"\` when the preferred placement should be preserved, and call\n\`reposition('fit')\` when content or layout changes after the popover is open. Programmatic\nrepositioning persists the resolved placement as the active preference.`,
+		        description:  `Use \`overflowStrategy="keep-position"\` when the preferred placement should be preserved, and call\n\`repositionTo('fit')\` when content or layout changes after the popover is open. Programmatic\nrepositioning persists the resolved placement as the active preference.`,
 		        level: 3,
 		    },
 		    {
@@ -2046,7 +2054,7 @@ export const STORIES_MAP: StoryIndexer[] = [	{
 		        name: "ProgrammaticState",
 		        type: "story",
 		        componentName: "PopoverControlledExampleComponent",
-		        description:  `Bind \`[(open)]\` when the parent should observe or update the state. Use \`triggerOn="manual"\`\nwhen the trigger should only provide the positioning reference while external controls open the panel.\nThis is not a separate controlled mode; trigger and dismiss behavior remain configured independently.`,
+		        description:  `Bind \`[(open)]\` when the parent should observe or update the state. Use \`triggerOn="manual"\` when\nthe trigger's own handler or parent state should control activation. The directive still belongs on\nthe real interactive control and continues to provide \`aria-expanded\`, \`aria-controls\`, and the\npositioning reference. This is not a separate controlled mode; trigger and dismiss behavior remain\nconfigured independently.`,
 		        level: 3,
 		    },
 		    {

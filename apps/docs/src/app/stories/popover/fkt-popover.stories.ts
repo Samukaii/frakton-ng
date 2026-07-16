@@ -12,6 +12,7 @@ import {
   PopoverHoverExampleComponent,
   PopoverPositionsExampleComponent,
   PopoverRepositionExampleComponent,
+  PopoverRtlExampleComponent,
   PopoverTokensExampleComponent,
   PopoverTriggerWidthExampleComponent
 } from './examples';
@@ -34,7 +35,7 @@ const popoverTrigger = {
 const meta: Meta = {
     title: 'Components/Overlays/Popover',
     description:
-        'Declarative trigger-based popover for contextual UI such as previews, compact forms, and small action panels.',
+        'Low-level primitive for custom contextual surfaces that do not fit a specialized Frakton NG component.',
     component: FktPopoverComponent,
     documentation,
     designTokens: designTokens as DesignToken[],
@@ -48,7 +49,7 @@ const meta: Meta = {
             description:
                 'Two-way bindable open state. Use [(open)] or bind open and openChange separately.',
         },
-        position: {
+        preferredPosition: {
             control: 'text',
             owner: popover,
             category: 'Attributes',
@@ -66,6 +67,17 @@ const meta: Meta = {
             defaultValue: '[]',
             description:
                 'Preferred fallback placements tried after position and before the automatic fit search.',
+        },
+        positionDirection: {
+            control: 'select',
+            owner: popover,
+            category: 'Attributes',
+            type: 'FktPopoverPositionDirection',
+            import: "import { FktPopoverPositionDirection } from 'frakton-ng/popover'",
+            options: ['auto', 'ltr', 'rtl'],
+            defaultValue: "'auto'",
+            description:
+                'Direction used to resolve logical start/end positions. Auto reads the trigger computed direction.',
         },
         overflowStrategy: {
             control: 'select',
@@ -116,16 +128,16 @@ const meta: Meta = {
             description:
                 'Emits when the popover closes because of an automatic dismiss trigger.',
         },
-        positionChange: {
+        resolvedPosition: {
             control: 'text',
             category: 'Events',
             owner: popover,
-            type: 'OutputEmitterRef<FktPopoverPosition>',
+            type: "OutputEmitterRef<{ position: FktPopoverPosition; direction: 'ltr' | 'rtl' }>",
             import: "import { FktPopoverPosition } from 'frakton-ng/popover'",
             description:
                 'Emits when the resolved placement changes after collision handling or programmatic repositioning.',
         },
-        reposition: {
+        repositionTo: {
             control: 'text',
             category: 'Methods',
             owner: popover,
@@ -150,7 +162,7 @@ const meta: Meta = {
             options: ['click', 'hover', 'manual'],
             defaultValue: "'click'",
             description:
-                'Trigger directive input. Hover also opens on focus and closes after mouse/focus leaves the trigger and panel.',
+                'Trigger directive input. Apply it to the interactive control that owns the popover. Hover also opens on focus and closes after mouse/focus leaves the trigger and panel.',
         },
         triggerDisabled: {
             control: 'boolean',
@@ -165,19 +177,26 @@ const meta: Meta = {
 };
 
 /**
- * Popovers render contextual content in the browser top layer without moving it to a global overlay
- * container. Tokens, inherited classes, scoped styles, and animation classes keep flowing through
- * the normal cascade.
+ * Popover is a low-level primitive for custom contextual surfaces that do not fit a specialized
+ * Frakton NG component. Prefer Tooltip, Dialog, Select, Autocomplete, and other dedicated components
+ * when their interaction pattern matches the use case.
  *
- * Use it for disclosure and placement. It does not assign menu, tooltip, dialog, or listbox
- * semantics by itself.
+ * It renders content in the browser top layer without moving it to a global overlay container, so
+ * tokens, inherited classes, scoped styles, and animation classes keep flowing through the normal
+ * cascade. Popover owns disclosure and placement mechanics, but it does not assign menu, tooltip,
+ * dialog, or listbox semantics to arbitrary content.
+ *
+ * Apply `fktPopoverTrigger` to the interactive control that owns the surface. Frakton synchronizes
+ * `aria-expanded` and `aria-controls`; custom patterns remain responsible for the panel role and
+ * name, `aria-haspopup` when applicable, internal keyboard behavior, and additional focus management.
  */
 export const Usage: StoryIntroduction = {};
 
 /**
  * The default trigger interaction opens on click, closes on outside click or Escape, and uses
  * `bottom-center` placement. The trigger remains the real interactive element and the content
- * template becomes the native popover panel.
+ * template becomes the native popover panel. Apply `fktPopoverTrigger` to a keyboard-accessible
+ * interactive element; the directive does not turn passive elements into controls.
  */
 export const Basic: Story<PopoverBasicExampleComponent> = {
     component: PopoverBasicExampleComponent,
@@ -213,9 +232,8 @@ export const Forms: Story<PopoverFormExampleComponent> = {
 export const Positioning: StoryIntroduction = {};
 
 /**
- * Positions describe where the panel sits around the trigger. `start`, `center`, and `end` align
- * the panel along the chosen side of the trigger. Corner positions place the panel around trigger
- * corners.
+ * Positions describe where the panel sits around the trigger. `top` and `bottom` are block sides;
+ * `start` and `end` are inline sides. Corner positions use the `*-corner` suffix.
  */
 export const Positions: Story<PopoverPositionsExampleComponent> = {
     component: PopoverPositionsExampleComponent,
@@ -224,8 +242,19 @@ export const Positions: Story<PopoverPositionsExampleComponent> = {
 };
 
 /**
+ * Logical `start` and `end` positions follow the trigger direction by default. Use
+ * `positionDirection="ltr"` or `positionDirection="rtl"` when geometry should be fixed
+ * independently from the content direction.
+ */
+export const RtlPositioning: Story<PopoverRtlExampleComponent> = {
+    component: PopoverRtlExampleComponent,
+    level: 3,
+    args: {},
+};
+
+/**
  * Use `overflowStrategy="keep-position"` when the preferred placement should be preserved, and call
- * `reposition('fit')` when content or layout changes after the popover is open. Programmatic
+ * `repositionTo('fit')` when content or layout changes after the popover is open. Programmatic
  * repositioning persists the resolved placement as the active preference.
  */
 export const Reposition: Story<PopoverRepositionExampleComponent> = {
@@ -264,9 +293,11 @@ export const DismissBehavior: Story<PopoverDismissExampleComponent> = {
 export const State: StoryIntroduction = {};
 
 /**
- * Bind `[(open)]` when the parent should observe or update the state. Use `triggerOn="manual"`
- * when the trigger should only provide the positioning reference while external controls open the panel.
- * This is not a separate controlled mode; trigger and dismiss behavior remain configured independently.
+ * Bind `[(open)]` when the parent should observe or update the state. Use `triggerOn="manual"` when
+ * the trigger's own handler or parent state should control activation. The directive still belongs on
+ * the real interactive control and continues to provide `aria-expanded`, `aria-controls`, and the
+ * positioning reference. This is not a separate controlled mode; trigger and dismiss behavior remain
+ * configured independently.
  */
 export const ProgrammaticState: Story<PopoverControlledExampleComponent> = {
     component: PopoverControlledExampleComponent,

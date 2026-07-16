@@ -2,7 +2,9 @@
 
 <arg-types></arg-types>
 
-`fkt-popover` renders contextual content attached to a trigger. It manages disclosure, placement, automatic dismiss behavior, and optional focus restoration.
+`fkt-popover` is a low-level primitive for custom contextual surfaces that do not fit a specialized Frakton NG component. It manages disclosure, placement, automatic dismiss behavior, and optional focus restoration.
+
+Prefer dedicated components such as Tooltip, Dialog, Select, and Autocomplete when their interaction pattern matches the use case. Those components can provide semantics and keyboard behavior that an arbitrary popover cannot infer.
 
 Use `fktPopoverTrigger` on the trigger element and `fktPopoverContent` on an `ng-template` that contains the panel content.
 
@@ -29,15 +31,19 @@ Frakton NG owns trigger-based positioning because native popover does not solve 
 
 ## Semantics
 
-The panel does not assign a semantic role by default. Popover provides surface behavior, not composite-widget accessibility. Use it for contextual surfaces such as previews, compact forms, and small action panels. Use dedicated components, or provide the appropriate role and keyboard behavior yourself, when building menus, listboxes, dialogs, tooltips, or other composite widgets.
+Popover guarantees the mechanics it owns: it keeps `aria-expanded` and `aria-controls` synchronized on the trigger, supports focus as the keyboard equivalent of hover, dismisses with Escape by default, and provides explicit trigger focus restoration.
+
+The panel does not assign a semantic role or accessible name. Popover also does not infer `aria-haspopup`, implement keyboard navigation inside projected content, trap focus, or turn arbitrary markup into a menu, listbox, dialog, tooltip, or other composite widget. When those semantics are required, prefer the dedicated Frakton NG component. For a custom pattern, provide the panel role, accessible name, `aria-haspopup` value, internal keyboard behavior, and focus management required by the chosen pattern.
 
 ## Trigger behavior
 
-The trigger receives `aria-expanded` and `aria-controls`. It also acts as the positioning reference.
+Apply `fktPopoverTrigger` to the interactive control that owns the popover. The trigger receives `aria-expanded` and `aria-controls` and also acts as the positioning reference.
+
+The directive does not infer whether an element is interactive and does not add a role, `tabindex`, or keyboard activation to passive elements. Use a native interactive element when possible. Custom controls must provide their own correct semantics and keyboard behavior.
 
 `triggerOn="hover"` also opens on focus. The popover remains open while pointer or focus stays inside the trigger or panel, and pointer movement across the offset gap is protected by a safe area. Prefer click for persistent, touch-first, or complex interactive flows.
 
-`triggerOn="manual"` disables trigger-driven opening. In that mode, use `[(open)]` for state changes while the trigger remains the positioning reference.
+`triggerOn="manual"` disables only the activation performed by the directive. Use the trigger's own event handler or `[(open)]` for state changes. The directive must remain on the real interactive control: it still owns `aria-expanded`, `aria-controls`, and the positioning reference in manual mode.
 
 `triggerDisabled` disables trigger interaction only. It does not close an open panel and does not prevent external `open` updates.
 
@@ -83,7 +89,7 @@ Escape restores focus to the trigger by default. Outside click, scroll, mouse le
 
 ## Positioning
 
-`position` is the declarative preferred placement. `preferredFallbackPositions` adds preferred alternatives before the automatic fit search tries other placements.
+`preferredPosition` is the declarative preferred placement. `preferredFallbackPositions` adds preferred alternatives before the automatic fit search tries other placements.
 
 With `overflowStrategy="fit"`, the popover may resolve to a different placement when the preferred placement does not fit. It tries the declared position, then preferred fallbacks, then an internal fit strategy. `preferredFallbackPositions` only affects this automatic strategy. With `overflowStrategy="keep-position"`, the requested placement is preserved even when it overflows.
 
@@ -98,17 +104,19 @@ With `overflowStrategy="fit"`, the popover may resolve to a different placement 
 </fkt-popover>
 ```
 
-`start`, `center`, and `end` are side-alignment slots around the trigger. They are direct geometry positions, not aliases for corner positions. Corner placements such as `top-left`, `top-right`, `bottom-left`, and `bottom-right` are separate positions around trigger corners.
+Positions use logical sides. `top` and `bottom` are block sides. `start` and `end` are inline sides. `center`, `top`, and `bottom` align the panel along the selected side. Corner placements such as `top-start-corner`, `top-end-corner`, `bottom-start-corner`, and `bottom-end-corner` are separate positions around trigger corners.
 
-The current placement is exposed as `data-fkt-placement` on the panel for placement-specific styling and through `positionChange` for Angular state.
+The current placement is exposed as `data-fkt-position` and `data-fkt-position-direction` on the host and panel for placement-specific styling, and through `resolvedPosition` for Angular state.
+
+`positionDirection` controls how logical `start` and `end` positions are resolved. The default `auto` value reads the trigger computed direction. Use `ltr` or `rtl` to force the positioning direction for a specific popover.
 
 ## Position update lifecycle
 
 The popover repositions while open on document scroll, window resize, and trigger resize.
 
-Panel content size is consumer-owned. Prefer fixed or constrained panel dimensions for dynamic content, and let the content scroll inside the panel when it can grow. If an intentional content layout change should re-evaluate placement, call `reposition('fit')` to run the automatic fit search and persist the resolved placement as the active preference.
+Panel content size is consumer-owned. Prefer fixed or constrained panel dimensions for dynamic content, and let the content scroll inside the panel when it can grow. If an intentional content layout change should re-evaluate placement, call `repositionTo('fit')` to run the automatic fit search and persist the resolved placement as the active preference.
 
-Automatic collision handling updates the active placement while the panel is open without changing the active preference. Programmatic repositioning updates the active preference to the resolved placement. Neither writes back to the `position` input; when the `position` input changes, the active placement is recalculated from the new input value.
+Automatic collision handling updates the active placement while the panel is open without changing the active preference. Programmatic repositioning updates the active preference to the resolved placement. Neither writes back to the `preferredPosition` input; when the `preferredPosition` input changes, the active placement is recalculated from the new input value.
 
 ## Content lifecycle
 
@@ -171,17 +179,14 @@ The built-in animation respects `prefers-reduced-motion`; custom animations shou
 ## Methods
 
 ```ts
-reposition(target
-:
-FktPopoverRepositionTarget
-):
-void;
-restoreTriggerFocus()
-:
-void;
+class FktPopoverComponent {
+  repositionTo(target: FktPopoverRepositionTarget): void;
+
+  restoreTriggerFocus(): void;
+}
 ```
 
-`reposition` recalculates placement while the panel is open and persists the resolved placement as the active preference. Pass `'fit'` to resolve through the fit search. Pass a concrete position to use that placement directly. The method does not write back to the `position` input.
+`repositionTo` recalculates placement while the panel is open and persists the resolved placement as the active preference. Pass `'fit'` to resolve through the fit search. Pass a concrete position to use that placement directly. The method does not write back to the `preferredPosition` input.
 
 `restoreTriggerFocus` moves focus back to the trigger. Use it after state-driven closes when returning focus to the trigger is the desired flow.
 
@@ -192,19 +197,19 @@ type FktPopoverPosition =
 	| 'top-start'
 	| 'top-center'
 	| 'top-end'
-	| 'top-left'
-	| 'top-right'
+	| 'top-start-corner'
+	| 'top-end-corner'
 	| 'bottom-start'
 	| 'bottom-center'
 	| 'bottom-end'
-	| 'bottom-left'
-	| 'bottom-right'
-	| 'left-start'
-	| 'left-center'
-	| 'left-end'
-	| 'right-start'
-	| 'right-center'
-	| 'right-end';
+	| 'bottom-start-corner'
+	| 'bottom-end-corner'
+	| 'start-top'
+	| 'start-center'
+	| 'start-bottom'
+	| 'end-top'
+	| 'end-center'
+	| 'end-bottom';
 
 type FktPopoverTrigger = 'click' | 'hover' | 'manual';
 
@@ -218,6 +223,8 @@ type FktPopoverOverflowStrategy = 'fit' | 'keep-position';
 type FktPopoverRepositionTarget =
 	| FktPopoverPosition
 	| 'fit';
+
+type FktPopoverPositionDirection = 'auto' | 'ltr' | 'rtl';
 
 interface FktPopoverDismissOn {
 	outsideClick?: boolean;

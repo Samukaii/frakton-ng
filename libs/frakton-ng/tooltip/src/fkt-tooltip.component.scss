@@ -161,39 +161,39 @@ $tooltip-color-info: var(--fkt-tooltip-color-info, var(--fkt-color-info));
 			border-right: solid 5px transparent;
 			border-left: solid 5px transparent;
 
-			// LEFT
-			&.message__tip--left-center {
+			// START
+			&.message__tip--start-center {
 				top: 50%;
 				left: 0;
 				transform: translateX(-100%) translateY(-50%) rotate(270deg);
 			}
 
-			&.message__tip--left-start {
+			&.message__tip--start-top {
 				top: $tooltip-border-radius;
 				left: 0;
 				transform: translateX(-100%) translateY(0) rotate(270deg);
 			}
 
-			&.message__tip--left-end {
+			&.message__tip--start-bottom {
 				bottom: $tooltip-border-radius;
 				left: 0;
 				transform: translateX(-100%) translateY(0) rotate(270deg);
 			}
 
-			// RIGHT
-			&.message__tip--right-center {
+			// END
+			&.message__tip--end-center {
 				top: 50%;
 				right: 0;
 				transform: translateX(100%) translateY(-50%) rotate(90deg);
 			}
 
-			&.message__tip--right-start {
+			&.message__tip--end-top {
 				top: $tooltip-border-radius;
 				right: 0;
 				transform: translateX(100%) translateY(0) rotate(90deg);
 			}
 
-			&.message__tip--right-end {
+			&.message__tip--end-bottom {
 				bottom: $tooltip-border-radius;
 				right: 0;
 				transform: translateX(100%) translateY(0) rotate(90deg);
@@ -218,13 +218,13 @@ $tooltip-color-info: var(--fkt-tooltip-color-info, var(--fkt-color-info));
 				transform: translateX(0) translateY(-100%);
 			}
 
-			&.message__tip--top-left {
+			&.message__tip--top-start-corner {
 				transform: rotate(45deg);
 				right: $tooltip-arrow-final-offset;
 				top: $tooltip-arrow-final-offset;
 			}
 
-			&.message__tip--top-right {
+			&.message__tip--top-end-corner {
 				transform: rotate(-45deg);
 				left: $tooltip-arrow-final-offset;
 				top: $tooltip-arrow-final-offset;
@@ -249,13 +249,13 @@ $tooltip-color-info: var(--fkt-tooltip-color-info, var(--fkt-color-info));
 				transform: translateX(0) translateY(100%) rotate(180deg);
 			}
 
-			&.message__tip--bottom-left {
+			&.message__tip--bottom-start-corner {
 				transform: rotate(135deg);
 				right: $tooltip-arrow-final-offset;
 				bottom: $tooltip-arrow-final-offset;
 			}
 
-			&.message__tip--bottom-right {
+			&.message__tip--bottom-end-corner {
 				transform: rotate(-135deg);
 				left: $tooltip-arrow-final-offset;
 				bottom: $tooltip-arrow-final-offset;

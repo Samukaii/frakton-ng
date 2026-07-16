@@ -57,6 +57,13 @@ export class FktPopoverTriggerDirective {
     return this.element.getBoundingClientRect();
   }
 
+  getDirection() {
+    return this.element.ownerDocument.defaultView?.getComputedStyle(this.element)
+      .direction === 'rtl'
+      ? 'rtl'
+      : 'ltr';
+  }
+
   private updateSize() {
     const {width, height} = this.getRect();
 

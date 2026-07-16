@@ -46,11 +46,15 @@ const DEFAULT_DISMISS_ON: Required<FktPopoverDismissOn> = {
         'offset',
         'animation',
         'dismissOn',
+        'positionDirection',
       ],
       outputs: ['openChange', 'dismiss', 'resolvedPosition'],
     },
   ],
   host: {
+    '[attr.data-fkt-position]': 'positioning.appliedPosition()?.name ?? null',
+    '[attr.data-fkt-position-direction]':
+      'positioning.appliedPosition()?.direction ?? null',
     '[style.--fkt-popover-trigger-width]': 'triggerSizeInPixels().width',
     '[style.--fkt-popover-trigger-height]': 'triggerSizeInPixels().height',
   },
@@ -184,7 +188,7 @@ export class FktPopoverComponent {
     this.context.restoreTriggerFocus();
   }
 
-  reposition(target: FktPopoverRepositionTarget) {
+  repositionTo(target: FktPopoverRepositionTarget) {
     if (target === 'fit') {
       this.positioning.applyPositioningOverride({ strategy: 'fit' });
       return;

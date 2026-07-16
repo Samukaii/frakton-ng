@@ -7,6 +7,7 @@ import {
   type FktPopoverDismissOn,
   FktPopoverOverflowStrategy,
   FktPopoverPosition,
+  FktPopoverPositionDirection,
   FktPopoverTrigger
 } from '../../fkt-popover.types';
 
@@ -22,7 +23,7 @@ export class FktPopoverContextDirective {
   readonly offset = input(8);
   readonly dismissOn = input<FktPopoverDismissOn>({});
   readonly animation = input<FktPopoverAnimation>('fade-slide');
-  readonly positionDirection = input<'ltr' | 'rtl' | 'auto'>('auto');
+  readonly positionDirection = input<FktPopoverPositionDirection>('auto');
 
   readonly dismiss = output<FktPopoverDismissEvent>();
   readonly resolvedPosition = output<{
