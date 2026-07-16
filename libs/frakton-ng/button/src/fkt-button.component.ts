@@ -41,7 +41,7 @@ import {
         '[attr.type]': 'isButtonHost() ? type() : null',
         '[attr.disabled]': 'isButtonHost() && effectiveDisabled() ? "" : null',
         '[attr.aria-disabled]': '!isButtonHost() && effectiveDisabled() ? "true" : null',
-        '[attr.tabindex]': '!isButtonHost() && effectiveDisabled() ? "-1" : null',
+        '[attr.tabindex]': 'tabIndex() ?? (!isButtonHost() && effectiveDisabled() ? \'-1\' : null)',
         '[attr.aria-busy]': 'loading() ? "true" : null',
         '[attr.aria-label]': 'ariaLabel() ?? (usesAccessibleLabelOnly() ? label() : null)',
         '[class.loading]': 'loading()',
@@ -52,6 +52,7 @@ import {
 })
 export class FktButtonComponent {
     readonly label = input.required<string>();
+    readonly tabIndex = input<string | number>();
     readonly ariaLabel = input<string>();
     readonly loading = input(false, { transform: booleanAttribute });
     readonly loadingPosition = input<'start' | 'end'>('start');

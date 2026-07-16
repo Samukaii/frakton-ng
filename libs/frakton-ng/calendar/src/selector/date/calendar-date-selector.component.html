@@ -19,7 +19,7 @@
       <div
         role="gridcell"
         [class]="`calendar__date ${day.classes | toClass }`"
-        [tabindex]="$index === focusedIndex() ? 0 : -1"
+        [tabIndex]="$index === focusedIndex() ? '0' : '-1'"
         [attr.aria-selected]="day.isCurrentDate"
         [attr.aria-disabled]="!day.onClick"
         [class.calendar__date--clickable]="day.onClick"

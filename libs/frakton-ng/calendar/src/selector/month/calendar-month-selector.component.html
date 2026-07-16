@@ -10,7 +10,7 @@
                 (focus)="focusedIndex.set($index)"
                 [class.selected]="$index === selectedIndex"
                 [label]="(months[$index] | date: 'MMMM') ?? ''"
-                [tabIndex]="$index === focusedIndex() ? 0 : -1"
+                [tabIndex]="$index === focusedIndex() ? '0' : '-1'"
                 appearance="basic"
                 fktButton
                 role="gridcell">

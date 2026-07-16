@@ -41,7 +41,7 @@ Apply `fktPopoverTrigger` to the interactive control that owns the popover. The 
 
 The directive does not infer whether an element is interactive and does not add a role, `tabindex`, or keyboard activation to passive elements. Use a native interactive element when possible. Custom controls must provide their own correct semantics and keyboard behavior.
 
-`triggerOn="hover"` also opens on focus. The popover remains open while pointer or focus stays inside the trigger or panel, and pointer movement across the offset gap is protected by a safe area. Prefer click for persistent, touch-first, or complex interactive flows.
+`triggerOn="hover"` also opens on focus. The popover remains open while pointer or focus stays inside the trigger or panel. For pointer interaction, a safe area spans the trigger, panel, and the gap between them, with the configured `offset` used as tolerance. This lets the pointer cross the gap without closing the panel; leaving that area closes it normally. Prefer click for persistent, touch-first, or complex interactive flows.
 
 `triggerOn="manual"` disables only the activation performed by the directive. Use the trigger's own event handler or `[(open)]` for state changes. The directive must remain on the real interactive control: it still owns `aria-expanded`, `aria-controls`, and the positioning reference in manual mode.
 
@@ -91,7 +91,9 @@ Escape restores focus to the trigger by default. Outside click, scroll, mouse le
 
 `preferredPosition` is the declarative preferred placement. `preferredFallbackPositions` adds preferred alternatives before the automatic fit search tries other placements.
 
-With `overflowStrategy="fit"`, the popover may resolve to a different placement when the preferred placement does not fit. It tries the declared position, then preferred fallbacks, then an internal fit strategy. `preferredFallbackPositions` only affects this automatic strategy. With `overflowStrategy="keep-position"`, the requested placement is preserved even when it overflows.
+With `overflowStrategy="fit"`, the popover may resolve to a different placement when the preferred placement does not fit. It first tries the declared position and each `preferredFallbackPositions` entry in the provided order. It then tries natural alternatives: other alignments on the same side, the opposite side while preserving alignment when possible, and finally the remaining placements. The first placement without overflow is selected; if every placement overflows, the one with the smallest overflow is used. `preferredFallbackPositions` only affects this automatic strategy.
+
+With `overflowStrategy="keep-position"`, the requested placement is preserved even when it overflows.
 
 ```angular2html
 
