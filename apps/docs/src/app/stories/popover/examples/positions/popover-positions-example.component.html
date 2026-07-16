@@ -1,0 +1,26 @@
+@for (group of groups; track group.label) {
+  <div class="group">
+    <strong>{{ group.label }}</strong>
+    <div class="positions">
+      @for (position of group.positions; track position) {
+        <fkt-popover
+          [preferredPosition]="position.position"
+          [preferredFallbackPositions]="['bottom-center', 'top-center']"
+        >
+          <button
+            [label]="position.label"
+            fktButton
+            fktPopoverTrigger>
+          </button>
+
+          <ng-template fktPopoverContent>
+            <div class="placement">
+              <strong>{{ position.label }}</strong>
+              <span>{{ position.description }}</span>
+            </div>
+          </ng-template>
+        </fkt-popover>
+      }
+    </div>
+  </div>
+}

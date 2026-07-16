@@ -1,0 +1,37 @@
+<fkt-popover
+  #popover="fktPopover"
+  (dismiss)="trackDismiss($event)"
+  [(open)]="isOpen"
+  [dismissOn]="{
+        outsideClick: true,
+        escape: true,
+        scroll: true
+    }"
+  preferredPosition="top-start"
+>
+  <button
+    fktButton
+    fktPopoverTrigger
+    label="Open dismiss example">
+  </button>
+
+  <ng-template fktPopoverContent>
+    <div class="content">
+      <strong>Dismiss behavior</strong>
+      <pre class="description">
+        Outside click, Escape and scroll dismiss this popover.
+
+        Partial <code>dismissOn</code> values merge with the defaults.
+
+        Try to scroll, type ESC or click outside
+      </pre>
+      <button
+        (click)="isOpen.set(false); popover.restoreTriggerFocus()"
+        fktButton
+        label="Close and restore focus">
+      </button>
+    </div>
+  </ng-template>
+</fkt-popover>
+
+<app-code-output [value]="{dismissReason: lastDismissReason() ?? 'none'}"/>

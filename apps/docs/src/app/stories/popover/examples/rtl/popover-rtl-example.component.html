@@ -1,0 +1,61 @@
+<fkt-select [(value)]="direction" [options]="directions" label="Content direction" labelKey="label" valueKey="value"/>
+
+<div [dir]="direction()" class="container">
+  <section class="example-group">
+    <div class="example-group__description">
+      <strong>Automatic content direction ({{ direction() === 'rtl' ? 'RTL' : 'LTR' }})</strong>
+      <span>
+      The positioning follows the selected direction. With <code>positionDirection="auto"</code>,
+      <code>end-center</code> resolves from the trigger direction.
+    </span>
+    </div>
+
+    <fkt-popover preferredPosition="end-center">
+      <button
+        appearance="stroked"
+        fktButton
+        fktPopoverTrigger
+        label="فتح التفاصيل"
+        suffixIcon="chevron-down"
+      ></button>
+
+      <ng-template fktPopoverContent>
+        <div class="panel">
+          <strong>موضع تلقائي</strong>
+          <p>
+            The content and trigger share the selected direction, so logical end follows the same flow.
+          </p>
+        </div>
+      </ng-template>
+    </fkt-popover>
+  </section>
+
+  <section class="example-group">
+    <div class="example-group__description">
+      <strong>Fixed LTR positioning with {{ direction() === 'rtl' ? 'RTL' : 'LTR' }} content</strong>
+      <span>
+      The content follows the selected direction, but <code>positionDirection="ltr"</code>
+      keeps <code>end-center</code> resolved as LTR geometry.
+    </span>
+    </div>
+
+    <fkt-popover positionDirection="ltr" preferredPosition="end-center">
+      <button
+        appearance="stroked"
+        fktButton
+        fktPopoverTrigger
+        label="فتح التفاصيل"
+        suffixIcon="chevron-down"
+      ></button>
+
+      <ng-template fktPopoverContent>
+        <div class="panel">
+          <strong>محتوى RTL</strong>
+          <p>
+            Direction can be fixed for geometry without changing the content direction inside the panel.
+          </p>
+        </div>
+      </ng-template>
+    </fkt-popover>
+  </section>
+</div>

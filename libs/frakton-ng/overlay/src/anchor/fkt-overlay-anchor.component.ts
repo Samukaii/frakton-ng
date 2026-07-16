@@ -221,7 +221,7 @@ export class FktOverlayAnchorComponent {
     protected alignedPosition = computed(() => {
         this.anchorSize()();
         const anchor = this.anchor() as ElementRef<HTMLElement>;
-        this.windowScroll();
+        const scroll = this.windowScroll();
 
         const anchorRect = anchor.nativeElement.getBoundingClientRect();
         const size = this.sizeSignal();
@@ -230,7 +230,7 @@ export class FktOverlayAnchorComponent {
 
         const preferredPositions = this.preferredPositions();
 
-        return this.alignmentService.smartAlignTargetTo({
+        const alignedPosition = this.alignmentService.smartAlignTargetTo({
             anchor: anchorRect,
             targetSize: size,
             padding: 0,
@@ -241,6 +241,14 @@ export class FktOverlayAnchorComponent {
                     : [preferredPositions]
                 : ['bottom-center'],
         });
+
+        return {
+            ...alignedPosition,
+            result: {
+                x: alignedPosition.result.x + scroll.x,
+                y: alignedPosition.result.y + scroll.y,
+            },
+        };
     });
 
     @MarkUsed()

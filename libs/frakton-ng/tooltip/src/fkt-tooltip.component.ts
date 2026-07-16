@@ -30,22 +30,22 @@ export class FktTooltipComponent {
     private tipPositionMap: Record<FktGeometryPosition, FktGeometryPosition> = {
         'bottom-center': 'top-center',
         'bottom-end': 'top-end',
-        'bottom-left': 'top-left',
-        'bottom-right': 'top-right',
+        'bottom-start-corner': 'top-start-corner',
+        'bottom-end-corner': 'top-end-corner',
         'bottom-start': 'top-start',
 
-        'left-center': 'right-center',
-        'left-end': 'right-end',
-        'left-start': 'right-start',
+        'start-center': 'end-center',
+        'start-bottom': 'end-bottom',
+        'start-top': 'end-top',
 
-        'right-center': 'left-center',
-        'right-end': 'left-end',
-        'right-start': 'left-start',
+        'end-center': 'start-center',
+        'end-bottom': 'start-bottom',
+        'end-top': 'start-top',
 
         'top-center': 'bottom-center',
         'top-end': 'bottom-end',
-        'top-left': 'bottom-left',
-        'top-right': 'bottom-right',
+        'top-start-corner': 'bottom-start-corner',
+        'top-end-corner': 'bottom-end-corner',
         'top-start': 'bottom-start',
     };
 

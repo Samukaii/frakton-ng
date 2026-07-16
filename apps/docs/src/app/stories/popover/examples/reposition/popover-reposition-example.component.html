@@ -1,0 +1,25 @@
+<div class="stage">
+  <fkt-popover #popover overflowStrategy="keep-position" preferredPosition="end-top">
+    <button appearance="stroked" fktButton fktPopoverTrigger label="Open fixed position">
+    </button>
+
+    <ng-template fktPopoverContent>
+      <div class="content">
+        <strong>Manual reposition</strong>
+        <p>
+          Overflow strategy is keeping the requested placement, so the preferred position is preserved
+          even if it overflows. </p>
+
+        <div class="actions">
+          <button (click)="popover.repositionTo('fit')" appearance="stroked" fktButton label="Fit"
+                  type="button">
+          </button>
+
+          <button (click)="popover.repositionTo('end-center')" appearance="basic" fktButton
+                  label="Move to end" type="button">
+          </button>
+        </div>
+      </div>
+    </ng-template>
+  </fkt-popover>
+</div>

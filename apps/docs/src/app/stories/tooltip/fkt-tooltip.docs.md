@@ -19,10 +19,11 @@
 // Available positioning options (16 total positions)
 type FktGeometryPosition =
     | 'top-start' | 'top-center' | 'top-end'
-    | 'right-start' | 'right-center' | 'right-end'
+    | 'top-start-corner' | 'top-end-corner'
     | 'bottom-start' | 'bottom-center' | 'bottom-end'
-    | 'left-start' | 'left-center' | 'left-end'
-    | 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
+    | 'bottom-start-corner' | 'bottom-end-corner'
+    | 'start-top' | 'start-center' | 'start-bottom'
+    | 'end-top' | 'end-center' | 'end-bottom';
 ```
 
 ## Use Cases

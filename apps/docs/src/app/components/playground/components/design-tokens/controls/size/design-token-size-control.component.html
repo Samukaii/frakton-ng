@@ -1,23 +1,25 @@
 <fkt-field
-    [label]="token().name"
-    hideLabel
+        [label]="token().name"
+        hideLabel
 >
     <input
-        fktInputText
-        placeholder="Enter the size"
-        [value]="token().control()"
-        (input)="token().control.set($any($event.target).value)"
-        (keydown)="onKeydown($event, token().control)"
+            (input)="token().control.set($any($event.target).value)"
+            (keydown)="onKeydown($event, token().control)"
+            [value]="token().control()"
+            fktInputText
+            placeholder="Enter the size"
     />
 
-    <div fktFieldSuffix class="numeric-control">
+    <div class="numeric-control" fktFieldSuffix>
         <fkt-icon
-            (mousedown)="update($any($event), token().control, 'increase')"
-            name="chevron-up"
+                (mousedown)="update($any($event), token().control, 'increase')"
+                name="chevron-up"
+                size="sm"
         />
         <fkt-icon
-            (mousedown)="update($any($event), token().control, 'decrease')"
-            name="chevron-down"
+                (mousedown)="update($any($event), token().control, 'decrease')"
+                name="chevron-down"
+                size="sm"
         />
     </div>
 </fkt-field>

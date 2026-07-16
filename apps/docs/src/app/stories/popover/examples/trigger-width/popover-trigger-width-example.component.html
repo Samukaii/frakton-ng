@@ -1,0 +1,23 @@
+@for (example of examples; track example.label) {
+  <fkt-popover
+    [class]="example.className"
+    preferredPosition="bottom-start"
+  >
+    <button
+      [label]="example.label"
+      appearance="stroked"
+      class="wide-trigger"
+      fktButton
+      fktPopoverTrigger
+      suffixIcon="chevron-down"
+    ></button>
+
+    <ng-template fktPopoverContent>
+      <div class="sized-panel">
+        <strong>{{ example.label }}</strong>
+        <span>{{ example.description }}</span>
+        <code>{{ example.token }}</code>
+      </div>
+    </ng-template>
+  </fkt-popover>
+}

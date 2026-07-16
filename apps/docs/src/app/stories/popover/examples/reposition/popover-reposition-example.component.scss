@@ -1,0 +1,30 @@
+:host {
+  display: block;
+  --fkt-popover-width: 18rem;
+}
+
+.stage {
+  display: flex;
+  justify-content: flex-end;
+  min-height: 10rem;
+  padding: var(--fkt-space-sm);
+  border: 1px dashed var(--fkt-color-border);
+  border-radius: var(--fkt-radius-lg);
+}
+
+.content {
+  display: grid;
+  gap: var(--fkt-space-sm);
+  font-size: var(--fkt-font-size-sm);
+
+  p {
+    margin: 0;
+    line-height: 1.4;
+  }
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--fkt-space-xs);
+}

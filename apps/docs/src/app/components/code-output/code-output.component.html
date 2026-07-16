@@ -1,9 +1,11 @@
-<div class="toolbar">
+@if (title()) {
+  <div class="toolbar">
     <span class="title">
         {{ title() || 'Output' }}
     </span>
 
     <fkt-icon name="code-bracket-square"/>
-</div>
+  </div>
+}
 
 <pre [class]="`language-json`"><code [class]="`language-json`" #codeAnchor></code></pre>

@@ -8,6 +8,7 @@ import { FeatureComponent } from '@/pages/docs-page/features/feature/feature.com
 import { injectStoryIndexer } from '@/utils/inject-story-indexer';
 import { FktButtonComponent } from 'frakton-ng/button';
 import { createClipboardCopy } from '@/utils/create-clipboard-copy';
+import { pascalToHumanReadable } from '@/utils/pascal-to-human-readable';
 
 @Component({
     selector: 'app-features',
@@ -39,7 +40,9 @@ export class FeaturesComponent {
         const examples = await this.storyIndexer()?.externalExamples?.();
 
         this.storyIndexer()?.stories?.forEach((story) => {
-            text += '\n\n\n' + `${'#'.repeat(story.level)} ${story.name}`;
+            text +=
+                '\n\n\n' +
+                `${'#'.repeat(story.level)} ${pascalToHumanReadable(story.name)}`;
 
             text += '\n\n' + story.description;
 

@@ -1,0 +1,18 @@
+:host {
+  display: grid;
+  align-items: start;
+  justify-items: start;
+  gap: var(--fkt-space-sm);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--fkt-space-xs);
+}
+
+.content {
+  display: grid;
+  gap: var(--fkt-space-2xs);
+  max-width: 16rem;
+}

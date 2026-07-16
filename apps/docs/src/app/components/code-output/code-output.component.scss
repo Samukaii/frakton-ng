@@ -1,5 +1,16 @@
 :host {
   display: block;
+
+  &.no-title {
+    pre.language-json {
+      border-radius: 5px;
+    }
+  }
+  &.no-title {
+    pre.language-json {
+      border-radius: 5px;
+    }
+  }
 }
 
 pre.language-json {
@@ -9,6 +20,8 @@ pre.language-json {
   border-radius: 0 0 5px 5px;
   margin: 0;
 }
+
+
 
 .toolbar {
   display: flex;
