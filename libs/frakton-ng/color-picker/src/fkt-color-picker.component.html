@@ -1,48 +1,69 @@
-<div
-    class="field"
+<fkt-popover [(open)]="isOpen" preferredPosition="bottom-end">
+  <div
+    (keydown.enter)="isOpen.set(true)"
+    (keydown.space)="isOpen.set(true)"
     [tabIndex]="0"
-    #button
-    (keydown.enter)="openPicker(button)"
-    (keydown.space)="openPicker(button)"
-    (click)="openPicker(button)"
->
-	<div class="preview-container">
-		<div class="fkt-transparency-bg">
-			<div [style.background-color]="previewColor()" class="preview-circle">
-				@if (!formattedColor()) {
-                    <div class="no-color"></div>
-                }
-			</div>
-		</div>
-		<div class="content">
-            @if (!hideLabel()) {
-                <p class="label">
-                    {{ label() }}
-                </p>
-            }
-            @if (value()) {
-                <p class="preview-value">
-					{{ value() }}
-				</p>
-            }
-		</div>
-	</div>
-
-
-	<div class="actions">
-        @if (showCopyButton()) {
-            <button
-                    (click)="$event.stopPropagation(); copy()"
-                    (keydown.enter)="$event.stopPropagation()"
-                    (keydown.space)="$event.stopPropagation()"
-                    [appearance]="copied() ? 'raised' :'basic'"
-                    [color]="copied() ? 'success' : 'primary'"
-                    [icon]="copied() ? 'check' : 'clipboard-document-list'"
-                    fktButton
-                    iconOnly
-                    label="Copy">
-            </button>
+    class="field"
+    fktPopoverTrigger
+  >
+    <div class="preview-container">
+      <div class="fkt-transparency-bg">
+        <div [style.background-color]="previewColor()" class="preview-circle">
+          @if (!formattedColor()) {
+            <div class="no-color"></div>
+          }
+        </div>
+      </div>
+      <div class="content">
+        @if (!hideLabel()) {
+          <p class="label">
+            {{ label() }}
+          </p>
         }
-	</div>
-</div>
+        @if (value()) {
+          <p class="preview-value">
+            {{ value() }}
+          </p>
+        }
+      </div>
+    </div>
+
+
+    <div class="actions">
+      @if (showCopyButton()) {
+        <button
+          (click)="$event.stopPropagation(); copy()"
+          (keydown.enter)="$event.stopPropagation()"
+          (keydown.space)="$event.stopPropagation()"
+          [appearance]="copied() ? 'raised' :'basic'"
+          [color]="copied() ? 'success' : 'primary'"
+          [icon]="copied() ? 'check' : 'clipboard-document-list'"
+          fktButton
+          iconOnly
+          label="Copy">
+        </button>
+      }
+    </div>
+  </div>
+
+  <ng-template fktPopoverContent>
+    @if (isOpen()) {
+      <div
+        [attr.aria-label]="label()"
+        aria-modal="true"
+        fktFocusTrap
+        [autoFocusOnOpen]="true"
+        role="dialog"
+      >
+        <fkt-color-picker-modal
+          [(value)]="value"
+          [defaultFormat]="defaultFormat()"
+          [disableAlphaChanel]="disableAlphaChannel()"
+          [outputFormat]="outputFormat()"
+        />
+      </div>
+    }
+
+  </ng-template>
+</fkt-popover>
 
