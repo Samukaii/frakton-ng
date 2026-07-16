@@ -46,6 +46,8 @@ $selector-height: var(--fkt-color-picker-modal-selector-height, 24px);
 	gap: $modal-gap;
 	background-color: $modal-background-color;
 	color: $modal-text-color;
+  overflow-x: hidden;
+  padding: var(--fkt-space-md);
 }
 
 fkt-alpha-selector, fkt-hue-selector {

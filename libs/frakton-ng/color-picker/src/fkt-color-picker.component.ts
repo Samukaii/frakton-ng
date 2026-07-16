@@ -1,114 +1,118 @@
-import {booleanAttribute, Component, computed, inject, input, model, signal,} from '@angular/core';
-import {FormValueControl, ValidationError, WithOptionalFieldTree,} from '@angular/forms/signals';
-import {FktOverlayService} from 'frakton-ng/overlay';
-import {FktColorPickerModalComponent} from './modal/fkt-color-picker-modal.component';
-import {FktColorPickerFormat} from './fkt-color-picker.types';
-import {capitalize, fktColorFormatters} from 'frakton-ng/internal/utils';
-import {parseAnyColorToHSV} from './helpers/parse-any-color-to-hsl';
-import {FktColorPickerHSV} from 'frakton-ng/internal/types';
-import {getColorDescription} from './helpers/get-color-description';
-import {FKT_COLOR_PICKER_LOCALE_TOKEN} from './injection-tokens/fkt-color-picker-locale-token';
-import {FktButtonComponent} from "frakton-ng/button";
+import {
+  booleanAttribute,
+  Component,
+  computed,
+  inject,
+  input,
+  model,
+  signal,
+} from '@angular/core';
+import {
+  FormValueControl,
+  ValidationError,
+  WithOptionalFieldTree,
+} from '@angular/forms/signals';
+import { FktButtonComponent } from 'frakton-ng/button';
+import { FktFocusTrapDirective } from 'frakton-ng/focus-trap';
+import { FktColorPickerHSV } from 'frakton-ng/internal/types';
+import { capitalize, fktColorFormatters } from 'frakton-ng/internal/utils';
+import {
+  FktPopoverComponent,
+  FktPopoverContentDirective,
+  FktPopoverTriggerDirective,
+} from 'frakton-ng/popover';
+import { FktColorPickerFormat } from './fkt-color-picker.types';
+import { getColorDescription } from './helpers/get-color-description';
+import { parseAnyColorToHSV } from './helpers/parse-any-color-to-hsl';
+import { FKT_COLOR_PICKER_LOCALE_TOKEN } from './injection-tokens/fkt-color-picker-locale-token';
+import { FktColorPickerModalComponent } from './modal/fkt-color-picker-modal.component';
 
 @Component({
-    selector: 'fkt-color-picker',
-    imports: [FktButtonComponent],
-    templateUrl: './fkt-color-picker.component.html',
-    styleUrl: './fkt-color-picker.component.scss',
+  selector: 'fkt-color-picker',
+  imports: [
+    FktButtonComponent,
+    FktPopoverComponent,
+    FktPopoverTriggerDirective,
+    FktPopoverContentDirective,
+    FktColorPickerModalComponent,
+    FktFocusTrapDirective,
+  ],
+  templateUrl: './fkt-color-picker.component.html',
+  styleUrl: './fkt-color-picker.component.scss',
 })
 export class FktColorPickerComponent
-    implements FormValueControl<string | null>
+  implements FormValueControl<string | null>
 {
-    value = model<string | null>(null);
+  value = model<string | null>(null);
 
-    touched = model(false);
-    disabled = input(false);
-    invalid = input(false);
-    errors = input<readonly WithOptionalFieldTree<ValidationError>[]>([]);
-    showCopyButton = input(true);
-    label = input.required<string>();
+  touched = model(false);
+  disabled = input(false);
+  invalid = input(false);
+  errors = input<readonly WithOptionalFieldTree<ValidationError>[]>([]);
+  showCopyButton = input(true);
+  label = input.required<string>();
 
-    hideLabel = input(false, {
-        transform: booleanAttribute,
-    });
+  hideLabel = input(false, {
+    transform: booleanAttribute,
+  });
 
-    defaultFormat = input<FktColorPickerFormat>('hex');
-    outputFormat = input<FktColorPickerFormat>('hex');
-    disableAlphaChannel = input<boolean, unknown>(false, {
-        transform: booleanAttribute,
-    });
+  defaultFormat = input<FktColorPickerFormat>('hex');
+  outputFormat = input<FktColorPickerFormat>('hex');
+  disableAlphaChannel = input<boolean, unknown>(false, {
+    transform: booleanAttribute,
+  });
 
-    protected copied = signal(false);
+  isOpen = signal(false);
 
-    protected locale = inject(FKT_COLOR_PICKER_LOCALE_TOKEN);
+  protected copied = signal(false);
 
-    protected colorDescription = computed(() => {
-        const value = this.value();
+  protected locale = inject(FKT_COLOR_PICKER_LOCALE_TOKEN);
 
-        if (!value) return;
+  protected colorDescription = computed(() => {
+    const value = this.value();
 
-        const asHsv = parseAnyColorToHSV(value);
+    if (!value) return;
 
-        if (!asHsv) return;
+    const asHsv = parseAnyColorToHSV(value);
 
-        const asHSL = fktColorFormatters.hsl.fromHsv(asHsv);
+    if (!asHsv) return;
 
-        const description = getColorDescription(asHSL, this.locale);
+    const asHSL = fktColorFormatters.hsl.fromHsv(asHsv);
 
-        return capitalize(description);
-    });
+    const description = getColorDescription(asHSL, this.locale);
 
-    protected formattedColor = computed<FktColorPickerHSV | null>(() => {
-        const value = this.value();
+    return capitalize(description);
+  });
 
-        if (!value) return null;
+  protected formattedColor = computed<FktColorPickerHSV | null>(() => {
+    const value = this.value();
 
-        return parseAnyColorToHSV(value) ?? null;
-    });
+    if (!value) return null;
 
-    protected previewColor = computed(() => {
-        const formatted = this.formattedColor();
+    return parseAnyColorToHSV(value) ?? null;
+  });
 
-        if (!formatted) return `hsl(0, 0%, 100%)`;
+  protected previewColor = computed(() => {
+    const formatted = this.formattedColor();
 
-        const { hue, saturation, lightness, alpha } =
-            fktColorFormatters.hsl.fromHsv(formatted);
+    if (!formatted) return `hsl(0, 0%, 100%)`;
 
-        return `hsla(${hue}, ${saturation}%, ${lightness}%, ${alpha}%)`;
-    });
+    const { hue, saturation, lightness, alpha } =
+      fktColorFormatters.hsl.fromHsv(formatted);
 
-    private overlay = inject(FktOverlayService);
+    return `hsla(${hue}, ${saturation}%, ${lightness}%, ${alpha}%)`;
+  });
 
-    protected openPicker(nativeElement: HTMLElement) {
-        this.overlay.open({
-            anchorElementRef: { nativeElement },
-            component: FktColorPickerModalComponent,
-            data: {
-                value: this.value,
-                disableAlphaChanel: this.disableAlphaChannel,
-                defaultFormat: this.defaultFormat,
-                outputFormat: this.outputFormat,
-            },
-            panelOptions: {
-                preferredPositions: 'bottom-start',
-                width: '500px',
-                padding: '1rem',
-                maxHeight: 'fit-content',
-                inheritDesignTokensFrom: nativeElement,
-            },
-        });
-    }
+  protected clear() {
+    this.value.set(null);
+  }
 
-    protected clear() {
-        this.value.set(null);
-    }
+  protected async copy() {
+    this.copied.set(true);
+    await navigator.clipboard.writeText(this.value() ?? '');
 
-    protected async copy() {
-        this.copied.set(true);
-        await navigator.clipboard.writeText(this.value() ?? '');
-
-        setTimeout(() => {
-            this.copied.set(false);
-        }, 1000);
-    }
+    setTimeout(() => {
+      this.copied.set(false);
+    }, 1000);
+  }
 }

@@ -126,6 +126,9 @@ $padding-vertical: var(--fkt-color-picker-vertical-padding, var(--fkt-space-xs))
   gap: $gap;
 
   --fkt-button-icon-font-weight: var(--fkt-font-normal);
+  --fkt-popover-padding: 0;
+  --fkt-popover-width: 450px;
+  --fkt-popover-background-color: transparent;
 }
 
 p {
