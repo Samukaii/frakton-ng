@@ -1,62 +1,94 @@
-import { AfterViewInit, Directive, DOCUMENT, ElementRef, inject, input } from '@angular/core';
-import { getFocusableElementsSelectors, filterElementsWithTabIndex } from 'frakton-ng/internal/utils';
+import {
+  AfterViewInit,
+  Directive,
+  DOCUMENT,
+  ElementRef,
+  inject,
+  input,
+} from '@angular/core';
+import {
+  filterElementsWithTabIndex,
+  getFocusableElementsSelectors,
+} from 'frakton-ng/internal/utils';
 
 @Directive({
-	selector: '[fktFocusTrap]',
-	host: {
-		'(keydown)': 'handleTab($event)'
-	}
+  selector: '[fktFocusTrap]',
+  host: {
+    '(keydown)': 'handleTab($event)',
+  },
 })
 export class FktFocusTrapDirective implements AfterViewInit {
-	autoFocusOnOpen = input(true);
-	preventScroll = input(true);
-	private element = inject(ElementRef).nativeElement as HTMLElement;
-    private readonly document = inject(DOCUMENT);
-	private restoreFocusElement: Element | null = null;
+  autoFocusOnOpen = input<boolean | string>(false);
+  preventScroll = input(true);
+  private element = inject(ElementRef).nativeElement as HTMLElement;
+  private readonly document = inject(DOCUMENT);
+  private restoreFocusElement: Element | null = null;
 
-	private selectors = getFocusableElementsSelectors();
+  private selectors = getFocusableElementsSelectors();
 
-	protected handleTab(event: KeyboardEvent) {
-		if (event.key !== 'Tab') return;
+  public restoreFocus(): void {
+    if (!this.restoreFocusElement) return;
 
-		const nodes = filterElementsWithTabIndex(Array.from(this.element.querySelectorAll(this.getSelectors())) as HTMLElement[]);
-		if (!nodes.length) return;
+    if (this.restoreFocusElement instanceof HTMLElement)
+      this.restoreFocusElement.focus({ preventScroll: this.preventScroll() });
+  }
 
-		const first = nodes[0];
-		const last = nodes[nodes.length - 1];
+  ngAfterViewInit() {
+    this.restoreFocusElement = this.document.activeElement;
+    const autoFocusOnOpen = this.autoFocusOnOpen();
 
-		if (event.shiftKey && this.document.activeElement === first) {
-			last.focus({preventScroll: this.preventScroll()});
-			event.preventDefault();
-		} else if (!event.shiftKey && this.document.activeElement === last) {
-			first.focus({preventScroll: this.preventScroll()});
-			event.preventDefault();
-		}
-	}
+    if (autoFocusOnOpen === false) return;
 
-	private getSelectors() {
-		return this.selectors.join(', ')
-	}
+    if (typeof autoFocusOnOpen === 'string')
+      this.focusElementBySelector(autoFocusOnOpen);
+    else this.focusFirstElement();
+  }
 
-	public restoreFocus(): void {
-		if(!this.restoreFocusElement) return;
+  focusFirstElement() {
+    setTimeout(() => {
+      const nodes = this.element.querySelectorAll(this.getSelectors());
+      if (nodes.length)
+        (nodes[0] as HTMLElement).focus({
+          preventScroll: this.preventScroll(),
+        });
+    }, 100);
+  }
 
-		if(this.restoreFocusElement instanceof HTMLElement)
-			this.restoreFocusElement.focus({preventScroll: this.preventScroll()});
-	}
+  focusElementBySelector(selector: string) {
+    setTimeout(() => {
+      const element = this.element.querySelector(selector);
 
-	ngAfterViewInit() {
-		this.restoreFocusElement = this.document.activeElement;
+      if (!element) return;
 
-        if(!this.autoFocusOnOpen()) return;
+      (element as HTMLElement).focus({
+        preventScroll: this.preventScroll(),
+      });
+    }, 100);
+  }
 
-		this.focusFirstElement();
-	}
+  protected handleTab(event: KeyboardEvent) {
+    if (event.key !== 'Tab') return;
 
-    focusFirstElement() {
-        setTimeout(() => {
-            const nodes = this.element.querySelectorAll(this.getSelectors());
-            if (nodes.length) (nodes[0] as HTMLElement).focus({preventScroll: this.preventScroll()});
-        }, 100);
+    const nodes = filterElementsWithTabIndex(
+      Array.from(
+        this.element.querySelectorAll(this.getSelectors())
+      ) as HTMLElement[]
+    );
+    if (!nodes.length) return;
+
+    const first = nodes[0];
+    const last = nodes[nodes.length - 1];
+
+    if (event.shiftKey && this.document.activeElement === first) {
+      last.focus({ preventScroll: this.preventScroll() });
+      event.preventDefault();
+    } else if (!event.shiftKey && this.document.activeElement === last) {
+      first.focus({ preventScroll: this.preventScroll() });
+      event.preventDefault();
     }
+  }
+
+  private getSelectors() {
+    return this.selectors.join(', ');
+  }
 }
