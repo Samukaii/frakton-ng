@@ -136,4 +136,47 @@ describe('FktGeometryAlignmentService', () => {
 
 		expect(result.position).toBe('bottom-center');
 	});
+
+	it('uses bottom-center as the default preferred position', () => {
+		const result = service.smartAlignTargetTo({
+			anchor: { x: 300, y: 200, width: 100, height: 40 },
+			targetSize: { width: 100, height: 100 },
+			padding: 8,
+		});
+
+		expect(result.position).toBe('bottom-center');
+	});
+
+	it('preserves alignment when it has to move to the opposite side', () => {
+		const result = service.smartAlignTargetTo({
+			anchor: { x: 300, y: 760, width: 100, height: 40 },
+			targetSize: { width: 80, height: 100 },
+			padding: 8,
+			preferredPositions: ['bottom-end'],
+		});
+
+		expect(result.position).toBe('top-end');
+	});
+
+	it('tries other alignments on the preferred side before moving to the opposite side', () => {
+		const result = service.smartAlignTargetTo({
+			anchor: { x: 0, y: 300, width: 40, height: 40 },
+			targetSize: { width: 100, height: 100 },
+			padding: 8,
+			preferredPositions: ['bottom-end'],
+		});
+
+		expect(result.position).toBe('bottom-start');
+	});
+
+	it('prioritizes explicit fallback positions over inferred fallbacks', () => {
+		const result = service.smartAlignTargetTo({
+			anchor: { x: 300, y: 760, width: 100, height: 40 },
+			targetSize: { width: 80, height: 100 },
+			padding: 8,
+			preferredPositions: ['bottom-end', 'top-center'],
+		});
+
+		expect(result.position).toBe('top-center');
+	});
 });

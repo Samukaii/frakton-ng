@@ -9,6 +9,113 @@ import {
 	FktGeometryPosition,
 } from 'frakton-ng/internal/types';
 
+const positionFallbacks: Record<FktGeometryPosition, FktGeometryPosition[]> = {
+	'top-start': [
+		'top-center',
+		'top-end',
+		'bottom-start',
+		'bottom-center',
+		'bottom-end',
+	],
+	'top-center': [
+		'top-start',
+		'top-end',
+		'bottom-center',
+		'bottom-start',
+		'bottom-end',
+	],
+	'top-end': [
+		'top-center',
+		'top-start',
+		'bottom-end',
+		'bottom-center',
+		'bottom-start',
+	],
+	'top-start-corner': [
+		'top-end-corner',
+		'bottom-start-corner',
+		'bottom-end-corner',
+	],
+	'top-end-corner': [
+		'top-start-corner',
+		'bottom-end-corner',
+		'bottom-start-corner',
+	],
+	'bottom-start': [
+		'bottom-center',
+		'bottom-end',
+		'top-start',
+		'top-center',
+		'top-end',
+	],
+	'bottom-center': [
+		'bottom-start',
+		'bottom-end',
+		'top-center',
+		'top-start',
+		'top-end',
+	],
+	'bottom-end': [
+		'bottom-center',
+		'bottom-start',
+		'top-end',
+		'top-center',
+		'top-start',
+	],
+	'bottom-start-corner': [
+		'bottom-end-corner',
+		'top-start-corner',
+		'top-end-corner',
+	],
+	'bottom-end-corner': [
+		'bottom-start-corner',
+		'top-end-corner',
+		'top-start-corner',
+	],
+	'start-top': [
+		'start-center',
+		'start-bottom',
+		'end-top',
+		'end-center',
+		'end-bottom',
+	],
+	'start-center': [
+		'start-top',
+		'start-bottom',
+		'end-center',
+		'end-top',
+		'end-bottom',
+	],
+	'start-bottom': [
+		'start-center',
+		'start-top',
+		'end-bottom',
+		'end-center',
+		'end-top',
+	],
+	'end-top': [
+		'end-center',
+		'end-bottom',
+		'start-top',
+		'start-center',
+		'start-bottom',
+	],
+	'end-center': [
+		'end-top',
+		'end-bottom',
+		'start-center',
+		'start-top',
+		'start-bottom',
+	],
+	'end-bottom': [
+		'end-center',
+		'end-top',
+		'start-bottom',
+		'start-center',
+		'start-top',
+	],
+};
+
 @Injectable({
   providedIn: 'root'
 })
@@ -52,7 +159,7 @@ export class FktGeometryAlignmentService {
 	};
 
 	private calculateBestFit(options: FktSmartAlignTargetToOptions) {
-		const defaultPositions: FktGeometryPosition[] = [
+		const remainingPositions: FktGeometryPosition[] = [
 			'bottom-center',
 			'bottom-start',
 			'bottom-end',
@@ -73,7 +180,7 @@ export class FktGeometryAlignmentService {
 			'bottom-end-corner',
 			'top-start-corner',
 			'top-end-corner',
-		]
+		];
 
     const preferredPositions = options.preferredPositions ?? [];
 
@@ -81,8 +188,15 @@ export class FktGeometryAlignmentService {
       return preferredPositions[0] ?? 'bottom-center';
     }
 
-    const positions =
-      [...preferredPositions, ...defaultPositions];
+    const preferredPosition = preferredPositions[0] ?? 'bottom-center';
+    const positions = [
+      ...new Set([
+        ...preferredPositions,
+        preferredPosition,
+        ...positionFallbacks[preferredPosition],
+        ...remainingPositions,
+      ]),
+    ];
 
     if (positions.length === 0) {
       throw new Error(
