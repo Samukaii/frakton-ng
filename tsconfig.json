@@ -47,6 +47,7 @@
             "frakton-ng/no-results": ["libs/frakton-ng/no-results"],
             "frakton-ng/overlay": ["libs/frakton-ng/overlay"],
             "frakton-ng/paginator": ["libs/frakton-ng/paginator"],
+            "frakton-ng/popover": ["libs/frakton-ng/popover"],
             "frakton-ng/progress-bar": ["libs/frakton-ng/progress-bar"],
             "frakton-ng/select": ["libs/frakton-ng/select"],
             "frakton-ng/side-menu": ["libs/frakton-ng/side-menu"],

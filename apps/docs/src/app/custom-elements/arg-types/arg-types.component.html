@@ -47,11 +47,6 @@
         <td>
             Description
         </td>
-        @if (hasMultipleOwners()) {
-            <td>
-                Source
-            </td>
-        }
         <td>
             Default
         </td>
@@ -67,11 +62,6 @@
                     <pre>{{ type.argType.type }}</pre>
                 </td>
                 <td>{{ type.argType.description }}</td>
-                @if (hasMultipleOwners()) {
-                    <td>
-                        <span class="owner-badge">{{ type.ownerLabel }}</span>
-                    </td>
-                }
                 <td>
                     @if (type.argType.required) {
                         <pre>*required</pre>

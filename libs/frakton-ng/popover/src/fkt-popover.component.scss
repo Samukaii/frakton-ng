@@ -1,0 +1,167 @@
+// <design-tokens>
+
+/* @scope Popover */
+
+/*
+Padding applied to the popover panel.
+@name --fkt-popover-padding
+@reference --fkt-space-sm
+@category Spacing
+@type spacing
+ */
+
+/*
+Width applied to the popover panel.
+@name --fkt-popover-width
+@reference auto
+@category Size
+@type size
+ */
+
+/*
+Minimum width applied to the popover panel.
+@name --fkt-popover-min-width
+@reference auto
+@category Size
+@type size
+ */
+
+/*
+Maximum width applied to the popover panel.
+@name --fkt-popover-max-width
+@reference none
+@category Size
+@type size
+ */
+
+/*
+Height applied to the popover panel.
+@name --fkt-popover-height
+@reference auto
+@category Size
+@type size
+ */
+
+/*
+Minimum height applied to the popover panel.
+@name --fkt-popover-min-height
+@reference auto
+@category Size
+@type size
+ */
+
+/*
+Maximum height applied to the popover panel.
+@name --fkt-popover-max-height
+@reference none
+@category Size
+@type size
+ */
+
+/*
+Text color applied to the popover panel.
+@name --fkt-popover-text-color
+@reference --fkt-text-color
+@category Colors
+@type color
+ */
+
+/*
+Background color applied to the popover panel.
+@name --fkt-popover-background-color
+@reference --fkt-color-modal-background
+@category Colors
+@type color
+ */
+
+/*
+Border applied to the popover panel.
+@name --fkt-popover-border
+@reference none
+@category Border
+@type border
+ */
+
+/*
+Border radius applied to the popover panel.
+@name --fkt-popover-border-radius
+@reference --fkt-radius-lg
+@category Shape
+@type size
+ */
+
+/*
+Box shadow applied to the popover panel.
+@name --fkt-popover-box-shadow
+@reference --fkt-shadow-lg
+@category Effects
+@type shadow
+ */
+
+// </design-tokens>
+
+:host {
+  display: contents;
+}
+
+.fkt-popover__content {
+  position: fixed;
+  box-sizing: border-box;
+  inset: unset;
+  margin: 0;
+  width: var(--fkt-popover-width, auto);
+  min-width: var(--fkt-popover-min-width, auto);
+  max-width: var(--fkt-popover-max-width, none);
+  height: var(--fkt-popover-height, auto);
+  min-height: var(--fkt-popover-min-height, auto);
+  max-height: var(--fkt-popover-max-height, none);
+  padding: var(--fkt-popover-padding, var(--fkt-space-sm, 0.5rem));
+  color: var(--fkt-popover-text-color, var(--fkt-text-color));
+  background: var(
+    --fkt-popover-background-color,
+    var(--fkt-color-modal-background)
+  );
+  border: var(--fkt-popover-border, none);
+  border-radius: var(--fkt-popover-border-radius, var(--fkt-radius-lg, 0.75rem));
+  box-shadow: var(--fkt-popover-box-shadow, var(--fkt-shadow-lg));
+}
+
+.fkt-popover-animation-fade-slide {
+  opacity: 0;
+  transform: translateY(-0.5rem);
+  transition: opacity 150ms ease-out,
+  transform 150ms ease-out,
+  display 150ms allow-discrete,
+  overlay 150ms allow-discrete;
+
+  &:popover-open {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@starting-style {
+  .fkt-popover-animation-fade-slide:popover-open {
+    opacity: 0;
+    transform: translateY(-0.5rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fkt-popover-animation-fade-slide {
+    transform: none;
+    transition: opacity 1ms linear,
+    display 1ms allow-discrete,
+    overlay 1ms allow-discrete;
+
+    &:popover-open {
+      transform: none;
+    }
+  }
+
+  @starting-style {
+    .fkt-popover-animation-fade-slide:popover-open {
+      transform: none;
+    }
+  }
+}

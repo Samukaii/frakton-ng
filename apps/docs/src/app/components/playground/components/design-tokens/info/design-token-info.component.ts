@@ -25,6 +25,7 @@ export class DesignTokenInfoComponent {
                 Spacing: { icon: 'squares-2x2', color: 'accent' },
                 Shape: { icon: 'rectangle-group', color: 'success' },
                 Effects: { icon: 'sparkles', color: 'danger' },
+                Border: { icon: 'arrow-down-circle', color: 'accent' },
             };
 
         return icons[token.category];

@@ -2,10 +2,10 @@
   {
     "description": "Size of the checkbox input (width and height).",
     "name": "--fkt-checkbox-size",
-    "reference": "--fkt-space-lg",
+    "reference": "--fkt-space-md",
     "category": "Spacing",
     "type": "size",
-    "defaultValue": "1.25rem"
+    "defaultValue": "1rem"
   },
   {
     "description": "Border color of the checkbox in its default state.",
@@ -74,10 +74,10 @@
   {
     "description": "Font size of the label text.",
     "name": "--fkt-checkbox-label-font-size",
-    "reference": "--fkt-font-size-md",
+    "reference": "--fkt-font-size-sm",
     "category": "Typography",
     "type": "size",
-    "defaultValue": "1rem"
+    "defaultValue": "0.875rem"
   },
   {
     "description": "Color of the label text in invalid state.",

@@ -1,0 +1,11 @@
+export { PopoverBasicExampleComponent } from './basic/popover-basic-example.component';
+export { PopoverHoverExampleComponent } from './hover/popover-hover-example.component';
+export { PopoverTriggerWidthExampleComponent } from './trigger-width/popover-trigger-width-example.component';
+export { PopoverAnimationsExampleComponent } from './animations/popover-animations-example.component';
+export { PopoverControlledExampleComponent } from './controlled/popover-controlled-example.component';
+export { PopoverDismissExampleComponent } from './dismiss/popover-dismiss-example.component';
+export { PopoverFormExampleComponent } from './form/popover-form-example.component';
+export { PopoverTokensExampleComponent } from './tokens/popover-tokens-example.component';
+export { PopoverPositionsExampleComponent } from './positions/popover-positions-example.component';
+export { PopoverRepositionExampleComponent } from './reposition/popover-reposition-example.component';
+export { PopoverRtlExampleComponent } from './rtl/popover-rtl-example.component';

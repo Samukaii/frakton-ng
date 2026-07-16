@@ -73,20 +73,20 @@ export class FktSimpleOverlayExampleComponent {
 
 ```html title="fkt-simple-overlay-example.component.html"
 <div class="container">
-    <div #left>
+    <div #start>
         <button
-                (click)="openOverlay(left, 'left-center')"
+                (click)="openOverlay(start, 'start-center')"
                 color="accent"
                 fktButton
-                label="Left Center">
+                label="Start Center">
         </button>
     </div>
-    <div #right>
+    <div #end>
         <button
-                (click)="openOverlay(right, 'right-center')"
+                (click)="openOverlay(end, 'end-center')"
                 color="info"
                 fktButton
-                label="Right Center">
+                label="End Center">
         </button>
     </div>
     <div #top>
@@ -815,22 +815,22 @@ export interface FktOverlayRef<T> {
 
 The overlay supports intelligent positioning with the following options:
 
-- **`top-start`**: Above anchor, aligned to the left
+- **`top-start`**: Above anchor, aligned to the start edge
 - **`top-center`**: Above anchor, centered
-- **`top-end`**: Above anchor, aligned to the right
-- **`bottom-start`**: Below anchor, aligned to the left
+- **`top-end`**: Above anchor, aligned to the end edge
+- **`bottom-start`**: Below anchor, aligned to the start edge
 - **`bottom-center`**: Below anchor, centered (default)
-- **`bottom-end`**: Below anchor, aligned to the right
-- **`left-start`**: Left of anchor, aligned to the top
-- **`left-center`**: Left of anchor, centered
-- **`left-end`**: Left of anchor, aligned to the bottom
-- **`right-start`**: Right of anchor, aligned to the top
-- **`right-center`**: Right of anchor, centered
-- **`right-end`**: Right of anchor, aligned to the bottom
-- **`top-left`**: Top left corner
-- **`top-right`**: Top right corner
-- **`bottom-left`**: Bottom left corner
-- **`bottom-right`**: Bottom right corner
+- **`bottom-end`**: Below anchor, aligned to the end edge
+- **`start-top`**: On the start side of the anchor, aligned to the top
+- **`start-center`**: On the start side of the anchor, centered
+- **`start-bottom`**: On the start side of the anchor, aligned to the bottom
+- **`end-top`**: On the end side of the anchor, aligned to the top
+- **`end-center`**: On the end side of the anchor, centered
+- **`end-bottom`**: On the end side of the anchor, aligned to the bottom
+- **`top-start-corner`**: Top start corner
+- **`top-end-corner`**: Top end corner
+- **`bottom-start-corner`**: Bottom start corner
+- **`bottom-end-corner`**: Bottom end corner
 
 ## TypeScript Inference & Component Design
 

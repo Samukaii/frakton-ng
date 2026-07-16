@@ -1,0 +1,34 @@
+<div class="actions">
+  <fkt-popover
+    [(open)]="open"
+    [dismissOn]="{ outsideClick: false }"
+    preferredPosition="bottom-start"
+  >
+    <button
+      (click)="open.set(true)"
+      appearance="stroked"
+      fktButton
+      fktPopoverTrigger
+      label="Open manually"
+      triggerOn="manual"
+    ></button>
+
+    <ng-template fktPopoverContent>
+      <div class="content">
+        <strong>Programmatic state</strong>
+        <span>
+          The parent owns the open signal. Manual mode leaves activation to the
+          trigger handler while Frakton keeps ARIA state and positioning
+          connected to that same control.
+        </span>
+      </div>
+    </ng-template>
+  </fkt-popover>
+
+  <button
+    (click)="open.set(false)"
+    appearance="basic"
+    fktButton
+    label="Close from outside">
+  </button>
+</div>

@@ -1,0 +1,158 @@
+[
+  {
+    "scope": {
+      "name": "Popover",
+      "selector": "fkt-popover"
+    },
+    "description": "Padding applied to the popover panel.",
+    "name": "--fkt-popover-padding",
+    "reference": "--fkt-space-sm",
+    "category": "Spacing",
+    "type": "spacing",
+    "defaultValue": ".75rem",
+    "component": "Popover"
+  },
+  {
+    "scope": {
+      "name": "Popover",
+      "selector": "fkt-popover"
+    },
+    "description": "Width applied to the popover panel.",
+    "name": "--fkt-popover-width",
+    "reference": "auto",
+    "category": "Size",
+    "type": "size",
+    "defaultValue": "auto",
+    "component": "Popover"
+  },
+  {
+    "scope": {
+      "name": "Popover",
+      "selector": "fkt-popover"
+    },
+    "description": "Minimum width applied to the popover panel.",
+    "name": "--fkt-popover-min-width",
+    "reference": "auto",
+    "category": "Size",
+    "type": "size",
+    "defaultValue": "auto",
+    "component": "Popover"
+  },
+  {
+    "scope": {
+      "name": "Popover",
+      "selector": "fkt-popover"
+    },
+    "description": "Maximum width applied to the popover panel.",
+    "name": "--fkt-popover-max-width",
+    "reference": "none",
+    "category": "Size",
+    "type": "size",
+    "defaultValue": "none",
+    "component": "Popover"
+  },
+  {
+    "scope": {
+      "name": "Popover",
+      "selector": "fkt-popover"
+    },
+    "description": "Height applied to the popover panel.",
+    "name": "--fkt-popover-height",
+    "reference": "auto",
+    "category": "Size",
+    "type": "size",
+    "defaultValue": "auto",
+    "component": "Popover"
+  },
+  {
+    "scope": {
+      "name": "Popover",
+      "selector": "fkt-popover"
+    },
+    "description": "Minimum height applied to the popover panel.",
+    "name": "--fkt-popover-min-height",
+    "reference": "auto",
+    "category": "Size",
+    "type": "size",
+    "defaultValue": "auto",
+    "component": "Popover"
+  },
+  {
+    "scope": {
+      "name": "Popover",
+      "selector": "fkt-popover"
+    },
+    "description": "Maximum height applied to the popover panel.",
+    "name": "--fkt-popover-max-height",
+    "reference": "none",
+    "category": "Size",
+    "type": "size",
+    "defaultValue": "none",
+    "component": "Popover"
+  },
+  {
+    "scope": {
+      "name": "Popover",
+      "selector": "fkt-popover"
+    },
+    "description": "Text color applied to the popover panel.",
+    "name": "--fkt-popover-text-color",
+    "reference": "--fkt-text-color",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "--fkt-text-color",
+    "component": "Popover"
+  },
+  {
+    "scope": {
+      "name": "Popover",
+      "selector": "fkt-popover"
+    },
+    "description": "Background color applied to the popover panel.",
+    "name": "--fkt-popover-background-color",
+    "reference": "--fkt-color-modal-background",
+    "category": "Colors",
+    "type": "color",
+    "defaultValue": "#f1f5f9",
+    "component": "Popover"
+  },
+  {
+    "scope": {
+      "name": "Popover",
+      "selector": "fkt-popover"
+    },
+    "description": "Border applied to the popover panel.",
+    "name": "--fkt-popover-border",
+    "reference": "none",
+    "category": "Border",
+    "type": "border",
+    "defaultValue": "none",
+    "component": "Popover"
+  },
+  {
+    "scope": {
+      "name": "Popover",
+      "selector": "fkt-popover"
+    },
+    "description": "Border radius applied to the popover panel.",
+    "name": "--fkt-popover-border-radius",
+    "reference": "--fkt-radius-lg",
+    "category": "Shape",
+    "type": "size",
+    "defaultValue": ".5rem",
+    "component": "Popover"
+  },
+  {
+    "scope": {
+      "name": "Popover",
+      "selector": "fkt-popover"
+    },
+    "description": "Box shadow applied to the popover panel.",
+    "name": "--fkt-popover-box-shadow",
+    "reference": "--fkt-shadow-lg",
+    "category": "Effects",
+    "type": "shadow",
+    "defaultValue": "0 10px 15px -3px var(--fkt-shadow-color-sm), 0 4px 6px -4px var(--fkt-shadow-color-lg)",
+    "component": "Popover"
+  }
+]

@@ -200,9 +200,9 @@ export class PositioningTooltipExampleComponent {
                             color="success"
                             disableAutoReposition
                             fktButton
-                            fktTooltip="Left start positioned tooltip"
-                            label="Left Start"
-                            position="left-start">
+                            fktTooltip="Start top positioned tooltip"
+                            label="Start Top"
+                            position="start-top">
                     </button>
 
                     <button
@@ -210,9 +210,9 @@ export class PositioningTooltipExampleComponent {
                             color="success"
                             disableAutoReposition
                             fktButton
-                            fktTooltip="Left center positioned tooltip"
-                            label="Left Center"
-                            position="left-center">
+                            fktTooltip="Start center positioned tooltip"
+                            label="Start Center"
+                            position="start-center">
                     </button>
 
                     <button
@@ -220,9 +220,9 @@ export class PositioningTooltipExampleComponent {
                             color="success"
                             disableAutoReposition
                             fktButton
-                            fktTooltip="Left end positioned tooltip"
-                            label="Left End"
-                            position="left-end">
+                            fktTooltip="Start bottom positioned tooltip"
+                            label="Start Bottom"
+                            position="start-bottom">
                     </button>
                 </div>
 
@@ -232,9 +232,9 @@ export class PositioningTooltipExampleComponent {
                             color="accent"
                             disableAutoReposition
                             fktButton
-                            fktTooltip="Right start positioned tooltip"
-                            label="Right Start"
-                            position="right-start">
+                            fktTooltip="End top positioned tooltip"
+                            label="End Top"
+                            position="end-top">
                     </button>
 
                     <button
@@ -242,9 +242,9 @@ export class PositioningTooltipExampleComponent {
                             color="accent"
                             disableAutoReposition
                             fktButton
-                            fktTooltip="Right center positioned tooltip"
-                            label="Right Center"
-                            position="right-center">
+                            fktTooltip="End center positioned tooltip"
+                            label="End Center"
+                            position="end-center">
                     </button>
 
                     <button
@@ -252,9 +252,9 @@ export class PositioningTooltipExampleComponent {
                             color="accent"
                             disableAutoReposition
                             fktButton
-                            fktTooltip="Right end positioned tooltip"
-                            label="Right End"
-                            position="right-end">
+                            fktTooltip="End bottom positioned tooltip"
+                            label="End Bottom"
+                            position="end-bottom">
                     </button>
                 </div>
             </div>
@@ -268,9 +268,9 @@ export class PositioningTooltipExampleComponent {
                         color="primary"
                         disableAutoReposition
                         fktButton
-                        fktTooltip="Bottom left positioned tooltip"
-                        label="Bottom Left"
-                        position="bottom-left">
+                        fktTooltip="Bottom start corner positioned tooltip"
+                        label="Bottom Start Corner"
+                        position="bottom-start-corner">
                 </button>
 
                 <button
@@ -278,9 +278,9 @@ export class PositioningTooltipExampleComponent {
                         color="primary"
                         disableAutoReposition
                         fktButton
-                        fktTooltip="Top left positioned tooltip"
-                        label="Top Left"
-                        position="top-left">
+                        fktTooltip="Top start corner positioned tooltip"
+                        label="Top Start Corner"
+                        position="top-start-corner">
                 </button>
 
                 <button
@@ -288,9 +288,9 @@ export class PositioningTooltipExampleComponent {
                         color="primary"
                         disableAutoReposition
                         fktButton
-                        fktTooltip="Bottom right positioned tooltip"
-                        label="Bottom Right"
-                        position="bottom-right">
+                        fktTooltip="Bottom end corner positioned tooltip"
+                        label="Bottom End Corner"
+                        position="bottom-end-corner">
                 </button>
 
                 <button
@@ -298,9 +298,9 @@ export class PositioningTooltipExampleComponent {
                         color="primary"
                         disableAutoReposition
                         fktButton
-                        fktTooltip="Top right positioned tooltip"
-                        label="Top Right"
-                        position="top-right">
+                        fktTooltip="Top end corner positioned tooltip"
+                        label="Top End Corner"
+                        position="top-end-corner">
                 </button>
             </div>
         </div>
@@ -655,7 +655,7 @@ export class DifferentElementsExampleComponent {
                 <span
                         [tooltipColor]="tooltipColor()"
                         fktTooltip="Click to learn more about this topic"
-                        position="right-center"
+                        position="end-center"
                 >
               Technical Term
             </span>
@@ -668,7 +668,7 @@ export class DifferentElementsExampleComponent {
                 <div
                         [tooltipColor]="tooltipColor()"
                         fktTooltip="Custom interactive element with gradient background"
-                        position="left-center"
+                        position="start-center"
                 >
                     ?
                 </div>
@@ -983,10 +983,11 @@ h3, h4, p {
 // Available positioning options (16 total positions)
 type FktGeometryPosition =
     | 'top-start' | 'top-center' | 'top-end'
-    | 'right-start' | 'right-center' | 'right-end'
+    | 'top-start-corner' | 'top-end-corner'
     | 'bottom-start' | 'bottom-center' | 'bottom-end'
-    | 'left-start' | 'left-center' | 'left-end'
-    | 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
+    | 'bottom-start-corner' | 'bottom-end-corner'
+    | 'start-top' | 'start-center' | 'start-bottom'
+    | 'end-top' | 'end-center' | 'end-bottom';
 ```
 
 ## Use Cases

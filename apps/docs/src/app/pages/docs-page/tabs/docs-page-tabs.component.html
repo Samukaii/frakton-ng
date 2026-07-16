@@ -1,10 +1,11 @@
-<fkt-tabs-list renderMode="eager" hideTabsWhenOnlyOne (activeTabChange)="activeTabChange.emit($event!)" [activeTab]="activeTab()">
+<fkt-tabs-list (activeTabChange)="activeTabChange.emit($event!)" [activeTab]="activeTab()" hideTabsWhenOnlyOne
+               renderMode="eager">
     <fkt-tab [hidden]="!isStoryType()" key="features" label="Features">
         @if (!loading()) {
             <app-features
-                [title]="title()"
-                [description]="description()"
-                [importStatement]="importStatement()"
+                    [description]="description()"
+                    [importStatement]="importStatement()"
+                    [title]="title()"
             />
         }
     </fkt-tab>
@@ -15,8 +16,9 @@
             <div class="docs">
                 @if (!loading()) {
                     <app-api-reference
-                        [title]="title()"
-                        [docs]="docs()"
+                            [docs]="docs()"
+                            [story]="currentStoryData()"
+                            [title]="title()"
                     />
                 }
             </div>
@@ -27,24 +29,24 @@
 @if (loading()) {
     <div class="loading">
         <fkt-skeleton-container>
-            <fkt-skeleton height="40px" width="200px" marginBottom="1rem"/>
+            <fkt-skeleton height="40px" marginBottom="1rem" width="200px"/>
             <fkt-skeleton height="20px" width="80%"/>
             <fkt-skeleton height="20px" width="40%"/>
         </fkt-skeleton-container>
 
         <fkt-skeleton-container>
-            <fkt-skeleton width="200px" height="30px" marginBottom="1rem"/>
-            <fkt-skeleton height="20px" width="60%" marginBottom="2rem"/>
+            <fkt-skeleton height="30px" marginBottom="1rem" width="200px"/>
+            <fkt-skeleton height="20px" marginBottom="2rem" width="60%"/>
             <fkt-skeleton height="200px" width="100%"/>
         </fkt-skeleton-container>
         <fkt-skeleton-container>
-            <fkt-skeleton width="200px" height="30px" marginBottom="1rem"/>
-            <fkt-skeleton height="20px" width="60%" marginBottom="2rem"/>
+            <fkt-skeleton height="30px" marginBottom="1rem" width="200px"/>
+            <fkt-skeleton height="20px" marginBottom="2rem" width="60%"/>
             <fkt-skeleton height="200px" width="100%"/>
         </fkt-skeleton-container>
         <fkt-skeleton-container>
-            <fkt-skeleton width="200px" height="30px" marginBottom="1rem"/>
-            <fkt-skeleton height="20px" width="60%" marginBottom="2rem"/>
+            <fkt-skeleton height="30px" marginBottom="1rem" width="200px"/>
+            <fkt-skeleton height="20px" marginBottom="2rem" width="60%"/>
             <fkt-skeleton height="200px" width="100%"/>
         </fkt-skeleton-container>
     </div>

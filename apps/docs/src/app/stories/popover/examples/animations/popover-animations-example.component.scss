@@ -1,0 +1,77 @@
+:host {
+  display: block;
+}
+
+.animations {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--fkt-space-sm);
+}
+
+p {
+  max-width: 14rem;
+  margin: 0;
+  font-size: var(--fkt-font-size-sm);
+  line-height: 1.4;
+}
+
+fkt-popover ::ng-deep .custom-coming-from-outside {
+  opacity: 0;
+  transform: translateX(0);
+  transform-origin: top left;
+
+  transition: opacity 300ms ease-in-out,
+  transform 600ms cubic-bezier(0.25, 1, 0.5, 1),
+  display 600ms allow-discrete,
+  overlay 600ms allow-discrete;
+
+  &:popover-open {
+    opacity: 1;
+    transform: translateX(0);
+
+    @starting-style {
+      opacity: 0;
+      transform: translateX(-100vw);
+    }
+  }
+}
+
+fkt-popover ::ng-deep .custom-scale-y {
+  opacity: 0;
+  transform: scaleY(0);
+  transform-origin: top left;
+
+  transition: opacity 300ms ease-in-out,
+  transform 600ms cubic-bezier(0.25, 1, 0.5, 1),
+  display 600ms allow-discrete,
+  overlay 600ms allow-discrete;
+
+  &:popover-open {
+    opacity: 1;
+    transform: scaleY(1);
+
+    transition: opacity 180ms ease-out,
+    transform 500ms cubic-bezier(0.16, 1, 0.3, 1),
+    display 500ms allow-discrete,
+    overlay 500ms allow-discrete;
+
+    @starting-style {
+      opacity: 0;
+      transform: scaleY(0);
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  fkt-popover ::ng-deep .custom-coming-from-outside,
+  fkt-popover ::ng-deep .custom-scale-y {
+    transform: none;
+    transition: opacity 1ms linear,
+    display 1ms allow-discrete,
+    overlay 1ms allow-discrete;
+
+    &:popover-open {
+      transform: none;
+    }
+  }
+}

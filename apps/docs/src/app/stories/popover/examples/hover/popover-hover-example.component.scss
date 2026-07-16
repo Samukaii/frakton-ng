@@ -1,0 +1,9 @@
+.content {
+  display: grid;
+  gap: var(--fkt-space-sm);
+  max-width: 16rem;
+
+  p {
+    margin: 0;
+  }
+}

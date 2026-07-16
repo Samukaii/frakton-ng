@@ -1,0 +1,58 @@
+<div class="animations">
+  <fkt-popover preferredPosition="bottom-start">
+    <button
+      fktButton
+      fktPopoverTrigger
+      label="Default motion"
+    ></button>
+
+    <ng-template fktPopoverContent>
+      <p>Uses the built-in <code>fade-slide</code> animation.</p>
+    </ng-template>
+  </fkt-popover>
+
+  <fkt-popover
+    animation="custom-coming-from-outside"
+    preferredPosition="bottom-start"
+  >
+    <button
+      fktButton
+      fktPopoverTrigger
+      label="Custom motion 1"
+    ></button>
+
+    <ng-template fktPopoverContent>
+      <p>Uses a consumer-owned class for transition and starting style.</p>
+    </ng-template>
+  </fkt-popover>
+
+  <fkt-popover
+    animation="custom-scale-y"
+    preferredPosition="bottom-start"
+  >
+    <button
+      fktButton
+      fktPopoverTrigger
+      label="Custom motion 2"
+    ></button>
+
+    <ng-template fktPopoverContent>
+      <p>Uses a consumer-owned class for transition and starting style.</p>
+    </ng-template>
+  </fkt-popover>
+
+  <fkt-popover
+    animation="none"
+    preferredPosition="bottom-start"
+  >
+    <button
+      fktButton
+      fktPopoverTrigger
+      label="No motion"
+    ></button>
+
+    <ng-template fktPopoverContent>
+      <p>Disables the built-in animation class.</p>
+    </ng-template>
+  </fkt-popover>
+</div>

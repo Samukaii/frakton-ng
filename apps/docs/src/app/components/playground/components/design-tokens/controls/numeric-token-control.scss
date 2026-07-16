@@ -1,21 +1,21 @@
 .numeric-control {
-    display: flex;
-    flex-direction: column;
-    gap: .2rem;
-    pointer-events: auto;
-    width: fit-content;
+  display: flex;
+  flex-direction: column;
+  pointer-events: auto;
+  width: fit-content;
 
-    fkt-icon {
-        background-color: var(--fkt-controls-table-numeric-control-bg);
-        color: var(--fkt-controls-table-numeric-control-color);
-        cursor: pointer;
-        font-size: var(--fkt-font-size-xs);
-        font-weight: var(--fkt-font-semibold);
-        padding: 0 .2rem;
-        transition: var(--fkt-transition-base);
+  fkt-icon {
+    background-color: var(--fkt-color-neutral-200);
+    color: var(--fkt-controls-table-numeric-control-color);
+    cursor: pointer;
+    font-weight: var(--fkt-font-semibold);
+    padding: 0 .25rem;
+    transition: var(--fkt-transition-base);
+    --fkt-icon-stroke-width: 2.5;
+    --fkt-icon-size-sm: .6rem;
 
-        &:hover {
-            background-color: var(--fkt-controls-table-numeric-control-hover-bg);
-        }
+    &:hover {
+      background-color: var(--fkt-color-neutral-300);
     }
+  }
 }

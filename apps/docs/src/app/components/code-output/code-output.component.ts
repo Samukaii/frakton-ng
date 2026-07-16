@@ -17,6 +17,9 @@ import { Prism } from '@/prism-languages/prism-js';
     imports: [FktIconComponent],
     templateUrl: './code-output.component.html',
     styleUrl: './code-output.component.scss',
+    host: {
+      '[class.no-title]': "!title()",
+    }
 })
 export class CodeOutputComponent {
     title = input<string>();
