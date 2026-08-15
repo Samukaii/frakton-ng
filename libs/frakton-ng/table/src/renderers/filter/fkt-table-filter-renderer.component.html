@@ -1,12 +1,23 @@
-<button
-        (click)="openFilter()"
-        appearance="basic"
-        fktButton
-        iconOnly
-        icon="funnel"
-        size="sm"
-        label="filter">
-</button>
+<fkt-popover returnFocus preferredPosition="bottom-start" [(open)]="dropdownOpen">
+  <button
+    fktPopoverTrigger
+    appearance="basic"
+    fktButton
+    iconOnly
+    icon="funnel"
+    size="sm"
+    label="filter">
+  </button>
+
+  <div fktPopoverContent>
+    @let component = filterOptions()?.component;
+    @let data = filterData();
+
+    @if (dropdownOpen() && component) {
+      <fkt-component-renderer [component]="component" [data]="data"/>
+    }
+  </div>
+</fkt-popover>
 
 @if (hasChanges()) {
     <span class="badge"></span>

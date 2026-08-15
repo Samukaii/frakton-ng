@@ -6,9 +6,6 @@
 		<div class="dynamic-permissions-example__content">
 			<div class="dynamic-permissions-example__controls">
 				<h1 class="dynamic-permissions-example__title">User Role: {{ currentRoleName() }}</h1>
-				<div class="dynamic-permissions-example__role-selector">
-					<fkt-tag-selector [options]="roles" [(value)]="userRole"/>
-				</div>
 			</div>
 			<p class="dynamic-permissions-example__description">
 				The menu items change based on the selected user role.
