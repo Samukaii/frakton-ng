@@ -1,0 +1,27 @@
+:host {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--fkt-space-lg);
+  width: 100%;
+}
+
+.anchor {
+  display: grid;
+  gap: var(--fkt-space-2xs);
+  min-width: 14rem;
+  padding: var(--fkt-space-sm);
+  border: 1px dashed var(--fkt-color-border);
+  border-radius: var(--fkt-radius-lg);
+
+  span {
+    color: var(--fkt-text-muted-color);
+    font-size: var(--fkt-font-size-sm);
+  }
+}
+
+.content {
+  max-width: 16rem;
+  font-size: var(--fkt-font-size-sm);
+  line-height: 1.4;
+}

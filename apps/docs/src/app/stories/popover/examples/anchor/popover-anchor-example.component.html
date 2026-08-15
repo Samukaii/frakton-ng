@@ -1,0 +1,21 @@
+<div #anchor class="anchor">
+  <strong>Geometric anchor</strong>
+  <span>The panel is positioned from this region.</span>
+</div>
+
+<fkt-popover #popover preferredPosition="bottom-start">
+  <button
+    [anchor]="anchor"
+    [attr.aria-controls]="popover.popoverId()"
+    [attr.aria-expanded]="popover.isOpen()"
+    appearance="stroked"
+    fktButton
+    fktPopoverTrigger
+    label="Open from another control">
+  </button>
+
+  <div [id]="popover.popoverId()" class="content" fktPopoverContent>
+    The button owns interaction and focus restoration while the highlighted
+    region supplies positioning geometry.
+  </div>
+</fkt-popover>

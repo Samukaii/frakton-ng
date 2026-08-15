@@ -1,40 +1,66 @@
 <fkt-popover
   [(open)]="open"
+  #popover
   [preferredFallbackPositions]="['top-start', 'bottom-end']"
   preferredPosition="bottom-start"
+  returnFocus
 >
   <button
     fktButton
     fktPopoverTrigger
+    [attr.aria-controls]="popover.popoverId()"
+    [attr.aria-expanded]="popover.isOpen()"
+    aria-haspopup="dialog"
     label="Edit contact"
     suffixIcon="pencil-square">
   </button>
 
-  <ng-template fktPopoverContent>
-    <form
-      [formRoot]="form"
-      class="contact-form"
-    >
-      <fkt-field label="Name">
-        <input [formField]="form.name" fktInputText/>
-      </fkt-field>
+  <div
+    aria-labelledby="contact-form-title"
+    [id]="popover.popoverId()"
+    fktPopoverContent
+    role="dialog"
+  >
+    @if (open()) {
+      <form
+        [formRoot]="form"
+        autoFocusOnOpen="input"
+        class="contact-form"
+        fktFocusTrap
+      >
+        <h3 id="contact-form-title">Edit contact</h3>
 
-      <fkt-field label="Email">
-        <input [formField]="form.email" fktInputText type="email"/>
-      </fkt-field>
+        <fkt-field label="Name">
+          <input [formField]="form.name" fktInputText/>
+        </fkt-field>
 
-      <fkt-checkbox
-        [formField]="form.updates"
-        label="Receive product updates"
-      />
+        <fkt-field label="Email">
+          <input [formField]="form.email" fktInputText type="email"/>
+        </fkt-field>
 
-      <button
-        fktButton
-        label="Save"
-        type="submit">
-      </button>
-    </form>
-  </ng-template>
+        <fkt-checkbox
+          [formField]="form.updates"
+          label="Receive product updates"
+        />
+
+        <div class="actions">
+          <button
+            (click)="open.set(false)"
+            appearance="basic"
+            fktButton
+            label="Cancel"
+            type="button">
+          </button>
+
+          <button
+            fktButton
+            label="Save"
+            type="submit">
+          </button>
+        </div>
+      </form>
+    }
+  </div>
 </fkt-popover>
 
 @if (submitted(); as value) {

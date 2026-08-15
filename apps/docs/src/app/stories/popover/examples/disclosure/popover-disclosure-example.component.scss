@@ -1,0 +1,10 @@
+.details {
+  display: grid;
+  gap: var(--fkt-space-2xs);
+  min-width: 14rem;
+  font-size: var(--fkt-font-size-sm);
+
+  span {
+    color: var(--fkt-text-muted-color);
+  }
+}

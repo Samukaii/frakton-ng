@@ -1,5 +1,5 @@
 import { CodeOutputComponent } from '@/components/code-output/code-output.component';
-import { Component, signal, viewChild } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import {
   email,
   form,
@@ -10,6 +10,7 @@ import {
 import { FktButtonComponent } from 'frakton-ng/button';
 import { FktCheckboxComponent } from 'frakton-ng/checkbox';
 import { FktFieldComponent } from 'frakton-ng/field';
+import { FktFocusTrapDirective } from 'frakton-ng/focus-trap';
 import { FktInputTextDirective } from 'frakton-ng/input-text';
 import {
   FktPopoverComponent,
@@ -33,6 +34,7 @@ interface Payload {
     FktFieldComponent,
     FktInputTextDirective,
     FktCheckboxComponent,
+    FktFocusTrapDirective,
     FormField,
     FormRoot,
     CodeOutputComponent,
@@ -43,9 +45,7 @@ interface Payload {
 export class PopoverFormExampleComponent {
   protected readonly open = signal(false);
   protected readonly submitted = signal<Payload | null>(null);
-  private readonly popover = viewChild.required(FktPopoverComponent);
-
-  private payload = signal<Payload>({
+  private readonly payload = signal<Payload>({
     name: 'Ada Lovelace',
     email: 'adalovelace@email.com',
     updates: false,
@@ -63,7 +63,6 @@ export class PopoverFormExampleComponent {
         action: async (form) => {
           this.submitted.set(form().value());
           this.open.set(false);
-          this.popover().restoreTriggerFocus();
         },
       },
     }

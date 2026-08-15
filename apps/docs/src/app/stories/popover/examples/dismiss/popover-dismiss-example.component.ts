@@ -22,6 +22,7 @@ import {
   styleUrl: './popover-dismiss-example.component.scss',
 })
 export class PopoverDismissExampleComponent {
+  protected readonly escapeDismissCount = signal(0);
   protected readonly lastDismissReason = signal<FktPopoverDismissReason | null>(
     null
   );
@@ -29,5 +30,9 @@ export class PopoverDismissExampleComponent {
 
   protected trackDismiss(event: FktPopoverDismissEvent) {
     this.lastDismissReason.set(event.reason);
+  }
+
+  protected trackEscapeDismiss() {
+    this.escapeDismissCount.update((count) => count + 1);
   }
 }

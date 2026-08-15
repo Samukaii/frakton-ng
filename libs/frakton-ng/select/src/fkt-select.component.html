@@ -1,103 +1,122 @@
-<fkt-field
-        (click)="toggleDropdown()"
-        [hideLabel]="context.hideLabel()"
-        [hint]="context.hint()"
-        [label]="context.label()"
-        [requiredMarker]="context.requiredMarker()"
-        [showError]="context.showError()"
-        [size]="context.size()"
->
+<fkt-popover [(open)]="context.dropdownOpened" [offset]="4" preferredPosition="bottom-start">
+  <fkt-field
+    #field
+    (click)="toggleDropdown()"
+    [hideLabel]="context.hideLabel()"
+    [hint]="context.hint()"
+    [label]="context.label()"
+    [requiredMarker]="context.requiredMarker()"
+    [showError]="context.showError()"
+    [size]="context.size()"
+  >
     <div
-        #select="selectControl"
-        (isTouchedChange)="onTouched?.()"
-        [activeDescendantId]="store.activeDescendant.id()"
-        [context]="context"
-        [disabled]="disabled()"
-        [errors]="formState?.errors() ?? {errors: [], source: 'reactive'}"
-        [invalid]="formState?.invalid() ?? false"
-        [isTouched]="formState?.touched() ?? false"
-        [required]="formState?.required() ?? false"
-        [selection]="selection"
-        aria-haspopup="listbox"
-        class="control"
-        fktCustomField
-        fktSelectControl
-        fktSelectKeyboard
-        role="combobox"
+      #select="selectControl"
+      (isTouchedChange)="onTouched?.()"
+      [activeDescendantId]="context.dropdownOpened() ? store.activeDescendant.id(): null"
+      [anchor]="popoverAnchor()"
+      [attr.aria-labelledby]="field.labelId"
+      [context]="context"
+      triggerOn="manual"
+      fktPopoverTrigger
+      [disabled]="disabled()"
+      [errors]="formState?.errors() ?? {errors: [], source: 'reactive'}"
+      [invalid]="formState?.invalid() ?? false"
+      [isTouched]="formState?.touched() ?? false"
+      [required]="formState?.required() ?? false"
+      [selection]="selection"
+      aria-haspopup="listbox"
+      class="control"
+      fktCustomField
+      fktSelectControl
+      fktSelectKeyboard
+      role="combobox"
     >
-        <div class="value">
-            @if (context.multiple()) {
-                @for (option of selection.selectedOptions(); track option.value) {
-                    <button
-                            (click)="remove($event, option)"
-                            [attr.aria-label]="`Remove option ${option.label}`"
-                            [disabled]="disabled()"
-                            class="chip"
-                            type="button"
-                    >
-                        @if (chipDirective()) {
-                            <ng-container
-                                    [ngTemplateOutletContext]="{$implicit: option}"
-                                    [ngTemplateOutlet]="chipDirective()!.template"
-                            />
-                        } @else {
-                            <span>{{ option.label }}</span>
-                            <fkt-icon name="x-circle"/>
-                        }
-                    </button>
-                }
-            } @else if (selection.selectedOptions()[0]; as option) {
-                <span class="selected-value">{{ option.label }}</span>
-            }
+      <div class="value">
+        @if (context.multiple()) {
+          @for (option of selection.selectedOptions(); track option.value) {
+            <button
+              (click)="remove($event, option)"
+              [attr.aria-label]="`Remove option ${option.label}`"
+              [disabled]="disabled()"
+              class="chip"
+              type="button"
+            >
+              @if (chipDirective()) {
+                <ng-container
+                  [ngTemplateOutletContext]="{$implicit: option}"
+                  [ngTemplateOutlet]="chipDirective()!.template"
+                />
+              } @else {
+                <span>{{ option.label }}</span>
+                <fkt-icon name="x-circle"/>
+              }
+            </button>
+          }
+        } @else if (selection.selectedOptions()[0]; as option) {
+          <span class="selected-value">{{ option.label }}</span>
+        }
 
-            @if (!selection.hasValue() && select.focused()) {
-                <span class="placeholder">{{ context.placeholder() }}</span>
-            }
-        </div>
+        @if (!selection.hasValue() && select.focused()) {
+          <span class="placeholder">{{ context.placeholder() }}</span>
+        }
+      </div>
     </div>
 
     @if (prefixDirective()) {
-        <ng-container fktFieldPrefix>
-            <ng-content select="[fktFieldPrefix]"/>
-        </ng-container>
+      <ng-container fktFieldPrefix>
+        <ng-content select="[fktFieldPrefix]"/>
+      </ng-container>
     }
 
     <ng-container fktFieldSuffix>
-        <ng-content select="[fktFieldSuffix]">
-            <button
-                    (click)="(selection.hasValue() && !context.hideClearButton()) ? clear($event) : toggleDropdown(); $event.stopPropagation()"
-                    [label]="(selection.hasValue() && !context.hideClearButton()) ? 'Clear selection' : context.dropdownOpened() ? 'Collapse options' : 'Expand options'"
-                    [attr.data-fkt-component-anchor]="(selection.hasValue() && !context.hideClearButton()) ? 'clear-action' : context.dropdownOpened() ? 'collapse-action' : 'expand-action'"
-                    iconOnly
-                    size="sm"
-                    [disabled]="disabled()"
-                    [icon]="(selection.hasValue() && !context.hideClearButton()) ? 'x-mark' : context.dropdownOpened() ? 'chevron-up' : 'chevron-down'"
-                    [loading]="context.loading()"
-                    appearance="basic"
-                    class="action-button"
-                    fktButton
-                    suffixNoPadding>
-            </button>
-        </ng-content>
+      <ng-content select="[fktFieldSuffix]">
+        <button
+          (click)="(selection.hasValue() && !context.hideClearButton()) ? clear($event) : toggleDropdown(); $event.stopPropagation()"
+          [attr.data-fkt-component-anchor]="(selection.hasValue() && !context.hideClearButton()) ? 'clear-action' : context.dropdownOpened() ? 'collapse-action' : 'expand-action'"
+          [disabled]="disabled()"
+          [icon]="(selection.hasValue() && !context.hideClearButton()) ? 'x-mark' : context.dropdownOpened() ? 'chevron-up' : 'chevron-down'"
+          [label]="(selection.hasValue() && !context.hideClearButton()) ? 'Clear selection' : context.dropdownOpened() ? 'Collapse options' : 'Expand options'"
+          [loading]="context.loading()"
+          appearance="basic"
+          class="action-button"
+          fktButton
+          iconOnly
+          size="sm"
+          suffixNoPadding>
+        </button>
+      </ng-content>
     </ng-container>
 
     @if (hintStartDirective()) {
-        <ng-container fktHintStart>
-            <ng-content select="[fktHintStart]"/>
-        </ng-container>
+      <ng-container fktHintStart>
+        <ng-content select="[fktHintStart]"/>
+      </ng-container>
     }
 
     @if (hintEndDirective()) {
-        <ng-container fktHintEnd>
-            <ng-content select="[fktHintEnd]"/>
-        </ng-container>
+      <ng-container fktHintEnd>
+        <ng-content select="[fktHintEnd]"/>
+      </ng-container>
     }
 
     @if (errorDirective()) {
-        <ng-container fktError>
-            <ng-content select="[fktError]"/>
-        </ng-container>
+      <ng-container fktError>
+        <ng-content select="[fktError]"/>
+      </ng-container>
     }
 
     <ng-content/>
-</fkt-field>
+  </fkt-field>
+
+  @if (context.dropdownOpened()) {
+    <fkt-select-options
+      (select)="selection.select($event)"
+      [emptyTemplate]="emptyTemplate()?.template"
+      [footerTemplate]="footerTemplate()?.template"
+      [groupTemplate]="groupTemplate()?.template"
+      [headerTemplate]="headerTemplate()?.template"
+      [itemTemplate]="itemTemplate()?.template"
+      fktPopoverContent
+    />
+  }
+</fkt-popover>

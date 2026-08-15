@@ -1,8 +1,15 @@
-<fkt-popover #popover [(open)]="isOpen" preferredPosition="bottom-end">
+<fkt-popover
+  #popover
+  [(open)]="isOpen"
+  preferredPosition="bottom-end"
+  returnFocus
+>
   <fkt-field [label]="label()">
     <input
       (keydown.arrowDown)="isOpen.set(true)"
       [(ngModel)]="transformed"
+      [attr.aria-controls]="popover.popoverId()"
+      [attr.aria-expanded]="isOpen()"
       [placeholder]="placeholder()"
       aria-haspopup="dialog"
       fktDateMask
@@ -26,19 +33,19 @@
       </button>
     </div>
   </fkt-field>
-  <ng-template fktPopoverContent>
-    @if (isOpen()) {
-      <div
-        aria-modal="true"
-        autoFocusOnOpen='.calendar__date[tabindex="0"]'
-        fktFocusTrap
-        role="dialog"
-      >
-        <fkt-date-picker-modal
-          (select)="select(popover, $event)"
-          [currentDate]="value() | call: getCurrentDate"
-        />
-      </div>
-    }
-  </ng-template>
+  @if (isOpen()) {
+    <div
+      aria-modal="true"
+      autoFocusOnOpen='.calendar__date[tabindex="0"]'
+      fktFocusTrap
+      fktPopoverContent
+      [id]="popover.popoverId()"
+      role="dialog"
+    >
+      <fkt-date-picker-modal
+        (select)="select($event)"
+        [currentDate]="value() | call: getCurrentDate"
+      />
+    </div>
+  }
 </fkt-popover>

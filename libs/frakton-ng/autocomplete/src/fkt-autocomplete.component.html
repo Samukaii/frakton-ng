@@ -1,63 +1,80 @@
-<fkt-field
-        [class.disabled]="formState?.disabled()"
-        [hideLabel]="context.hideLabel()"
-        [hint]="context.hint()"
-        [label]="context.label()"
-        [requiredMarker]="context.requiredMarker()"
-        [showError]="context.showError()"
-        [size]="context.size()"
-        data-fkt-component-anchor="field">
+<fkt-popover [(open)]="context.dropdownOpened" preferredPosition="bottom-center" returnFocus>
+  <fkt-field
+    #field
+    [class.disabled]="formState?.disabled()"
+    [hideLabel]="context.hideLabel()"
+    [hint]="context.hint()"
+    [label]="context.label()"
+    [requiredMarker]="context.requiredMarker()"
+    [showError]="context.showError()"
+    [size]="context.size()"
+    data-fkt-component-anchor="field">
     <div [attr.aria-controls]="context.listBoxId" [attr.aria-expanded]="context.dropdownOpened()" aria-haspopup="listbox"
          fktCustomField
          role="combobox">
-        <div [class.multiple]="context.multiple()" class="container">
-            <fkt-autocomplete-chips [template]="chipDirective()?.template"/>
+      <div [class.multiple]="context.multiple()" class="container">
+        <fkt-autocomplete-chips [template]="chipDirective()?.template"/>
 
-            <input
-                    (isTouchedChange)="onTouched?.()"
-                    [disabled]="formState?.disabled() ?? false"
-                    [errors]="formState?.errors() ?? {errors: [], source: 'reactive'}"
-                    [hasValue]="hasValue()"
-                    [invalid]="formState?.invalid() ?? false"
-                    [maxLength]="formState?.maxLength() ?? null"
-                    [placeholder]="context.placeholder() ?? ''"
-                    [required]="formState?.required() ?? false"
-                    autocomplete="off"
-                    fktAutocompleteSearch
-            >
-        </div>
+        <input
+          (click)="onClick()"
+          (isTouchedChange)="onTouched?.()"
+          [anchor]="field.container().nativeElement"
+          [disabled]="formState?.disabled() ?? false"
+          [errors]="formState?.errors() ?? {errors: [], source: 'reactive'}"
+          [hasValue]="hasValue()"
+          [invalid]="formState?.invalid() ?? false"
+          [maxLength]="formState?.maxLength() ?? null"
+          [placeholder]="context.placeholder() ?? ''"
+          [required]="formState?.required() ?? false"
+          autocomplete="off"
+          fktAutocompleteSearch
+          fktPopoverTrigger
+          triggerOn="manual"
+        >
+      </div>
     </div>
 
 
     @if (fieldPrefixDirective()) {
-        <ng-container fktFieldPrefix>
-            <ng-content select="[fktFieldPrefix]"/>
-        </ng-container>
+      <ng-container fktFieldPrefix>
+        <ng-content select="[fktFieldPrefix]"/>
+      </ng-container>
     }
 
     <ng-container fktFieldSuffix>
-        <ng-content select="[fktFieldSuffix]">
-            <fkt-autocomplete-action-button [disabled]="formState?.disabled() ?? false"/>
-        </ng-content>
+      <ng-content select="[fktFieldSuffix]">
+        <fkt-autocomplete-action-button [disabled]="formState?.disabled() ?? false"/>
+      </ng-content>
     </ng-container>
 
 
     @if (hintStartDirective()) {
-        <ng-container fktHintStart>
-            <ng-content select="[fktHintStart]"/>
-        </ng-container>
+      <ng-container fktHintStart>
+        <ng-content select="[fktHintStart]"/>
+      </ng-container>
     }
 
     @if (hintEndDirective()) {
-        <ng-container fktHintEnd>
-            <ng-content select="[fktHintEnd]"/>
-        </ng-container>
+      <ng-container fktHintEnd>
+        <ng-content select="[fktHintEnd]"/>
+      </ng-container>
     }
 
     @if (errorDirective()) {
-        <ng-container fktError>
-            <ng-content select="[fktError]"/>
-        </ng-container>
+      <ng-container fktError>
+        <ng-content select="[fktError]"/>
+      </ng-container>
     }
     <ng-content/>
-</fkt-field>
+  </fkt-field>
+  <fkt-autocomplete-options (select)="onSelect($event)"
+                            [emptyTemplate]="emptyTemplate()?.template"
+                            [footerTemplate]="footerTemplate()?.template"
+                            [groupTemplate]="groupTemplate()?.template"
+                            [headerTemplate]="headerTemplate()?.template"
+                            [itemTemplate]="itemTemplate()?.template"
+                            fktPopoverContent
+
+  />
+</fkt-popover>
+

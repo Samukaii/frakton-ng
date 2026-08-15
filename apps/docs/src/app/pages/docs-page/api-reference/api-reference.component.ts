@@ -77,7 +77,7 @@ export class ApiReferenceComponent {
             const description =
                 argType.description?.replaceAll('|', '\\|') ?? '';
             const defaultValue =
-                argType.defaultValue?.replaceAll('|', '\\|') ?? '\\-\\-\\-';
+                argType.defaultValue?.replaceAll('|', '\\|') ?? 'N\\A';
 
             if (argType.required) argName = `* ${argName}`;
 

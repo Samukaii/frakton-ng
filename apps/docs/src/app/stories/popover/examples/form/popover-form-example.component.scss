@@ -8,7 +8,6 @@
 .contact-form {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
   padding: var(--fkt-space-xs);
   gap: var(--fkt-space-sm);
   width: 300px;
@@ -16,6 +15,16 @@
   fkt-field, fkt-checkbox {
     width: 100%;
   }
+}
+
+h3 {
+  margin: 0;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--fkt-space-xs);
 }
 
 pre {

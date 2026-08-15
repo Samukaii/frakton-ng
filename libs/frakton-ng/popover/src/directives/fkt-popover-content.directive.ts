@@ -1,8 +1,10 @@
-import { Directive, TemplateRef } from '@angular/core';
+import { Directive, inject } from '@angular/core';
+import { FktPopoverContextDirective } from '../internal/directives/fkt-popover-context.directive';
 
 @Directive({
-  selector: 'ng-template[fktPopoverContent]',
+  selector: '[fktPopoverContent]:not(ng-template)',
+  exportAs: 'fktPopoverContent',
 })
 export class FktPopoverContentDirective {
-  constructor(readonly templateRef: TemplateRef<unknown>) {}
+  protected readonly context = inject(FktPopoverContextDirective);
 }

@@ -1,8 +1,7 @@
 import { Directive, inject } from '@angular/core';
-import { FktAutocompleteOverlayDirective } from './fkt-autocomplete-overlay.directive';
-import { FktAutocompleteSelectionDirective } from './fkt-autocomplete-selection.directive';
 import { FktAutocompleteStoreService } from '../services/fkt-autocomplete-store.service';
 import { FktAutocompleteContextDirective } from './fkt-autocomplete-context.directive';
+import { FktAutocompleteSelectionDirective } from './fkt-autocomplete-selection.directive';
 
 @Directive({
     selector: 'input[fktAutocompleteSearch][fktAutocompleteKeyboard]',
@@ -12,7 +11,6 @@ import { FktAutocompleteContextDirective } from './fkt-autocomplete-context.dire
 })
 export class FktAutocompleteKeyboardDirective {
     private readonly store = inject(FktAutocompleteStoreService);
-    private readonly overlay = inject(FktAutocompleteOverlayDirective);
     private readonly selection = inject(FktAutocompleteSelectionDirective);
     private readonly context = inject(FktAutocompleteContextDirective);
 
@@ -79,9 +77,6 @@ export class FktAutocompleteKeyboardDirective {
                 break;
             case 'Tab':
                 event.preventDefault();
-
-                this.overlay.focusFirstElement();
-
                 break;
             case 'Enter':
                 event.preventDefault();

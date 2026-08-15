@@ -17,15 +17,15 @@ code {
 }
 
 .half-width {
-  --fkt-popover-width: calc(var(--fkt-popover-trigger-width) * 0.5);
+  --fkt-popover-width: calc(var(--fkt-popover-anchor-width) * 0.5);
 }
 
 .same-width {
-  --fkt-popover-width: var(--fkt-popover-trigger-width);
+  --fkt-popover-width: var(--fkt-popover-anchor-width);
 }
 
 .double-width {
-  --fkt-popover-width: calc(var(--fkt-popover-trigger-width) * 2);
+  --fkt-popover-width: calc(var(--fkt-popover-anchor-width) * 2);
 }
 
 .wide-trigger {

@@ -1,10 +1,9 @@
-import { NgTemplateOutlet } from '@angular/common';
 import {
   afterRenderEffect,
   ChangeDetectionStrategy,
   Component,
   computed,
-  contentChild,
+  contentChildren,
   ElementRef,
   inject,
   untracked,
@@ -47,41 +46,53 @@ const DEFAULT_DISMISS_ON: Required<FktPopoverDismissOn> = {
         'animation',
         'dismissOn',
         'positionDirection',
+        'returnFocus',
       ],
-      outputs: ['openChange', 'dismiss', 'resolvedPosition'],
+      outputs: [
+        'openChange',
+        'dismiss',
+        'resolvedPosition',
+        'dismiss.escape',
+        'dismiss.focusOut',
+        'dismiss.mouseLeave',
+        'dismiss.outsideClick',
+        'dismiss.scroll',
+      ],
     },
   ],
   host: {
     '[attr.data-fkt-position]': 'positioning.appliedPosition()?.name ?? null',
     '[attr.data-fkt-position-direction]':
       'positioning.appliedPosition()?.direction ?? null',
-    '[style.--fkt-popover-trigger-width]': 'triggerSizeInPixels().width',
-    '[style.--fkt-popover-trigger-height]': 'triggerSizeInPixels().height',
+    '[style.--fkt-popover-anchor-width]': 'anchorSizeInPixels().width',
+    '[style.--fkt-popover-anchor-height]': 'anchorSizeInPixels().height',
   },
-  imports: [NgTemplateOutlet],
 })
 export class FktPopoverComponent {
-  protected readonly content = contentChild.required(
-    FktPopoverContentDirective
-  );
+  private readonly host = inject<ElementRef<HTMLElement>>(ElementRef).nativeElement;
+  private readonly contents = contentChildren(FktPopoverContentDirective, {
+    descendants: true,
+  });
 
   protected readonly panel =
     viewChild.required<ElementRef<HTMLElement>>('panel');
   protected readonly context = inject(FktPopoverContextDirective);
   protected readonly positioning = inject(FktPopoverPositioningDirective);
+  readonly popoverId = this.context.popoverId.asReadonly();
+  readonly isOpen = this.context.open.asReadonly();
 
-  readonly triggerSizeInPixels = computed(() => {
-    const triggerRect = this.context.triggerSize();
+  protected readonly anchorSizeInPixels = computed(() => {
+    const anchorSize = this.context.anchorSize();
 
-    if (!triggerRect)
+    if (!anchorSize)
       return {
         width: null,
         height: null,
       };
 
     return {
-      width: `${triggerRect.width}px`,
-      height: `${triggerRect.height}px`,
+      width: `${anchorSize.width}px`,
+      height: `${anchorSize.height}px`,
     };
   });
 
@@ -136,7 +147,10 @@ export class FktPopoverComponent {
         reason: 'escape',
         sourceEvent: event,
       });
-      this.context.restoreTriggerFocus();
+
+      if (this.panel().nativeElement.contains(this.documentActiveElement)) {
+        this.context.restoreTriggerFocus();
+      }
     },
   });
 
@@ -169,18 +183,24 @@ export class FktPopoverComponent {
     });
   });
 
-  protected readonly syncNativePopoverState = afterRenderEffect((onCleanup) => {
+  protected readonly syncNativePopoverState = afterRenderEffect(() => {
     const isOpen = this.context.open();
 
     untracked(() => {
       if (isOpen) {
+        this.context.clearAutomaticClose();
+        this.assertContent();
         this.showPopover();
         this.positioning.updatePosition();
-      } else this.hidePopover();
-    });
+        return;
+      }
 
-    onCleanup(() => {
-      this.hidePopover();
+      const closedAutomatically = this.context.consumeAutomaticClose();
+      const wasOpen = this.hidePopover();
+
+      if (wasOpen && this.context.returnFocus() && !closedAutomatically) {
+        this.context.restoreTriggerFocus();
+      }
     });
   });
 
@@ -221,9 +241,7 @@ export class FktPopoverComponent {
   }
 
   private containsEventTarget(target: Node) {
-    const panel = this.panel().nativeElement;
-
-    return this.context.trigger().contains(target) || panel.contains(target);
+    return this.host.contains(target);
   }
 
   private isMovingWithinPopover(target: EventTarget | null) {
@@ -241,8 +259,24 @@ export class FktPopoverComponent {
   private hidePopover() {
     const panel = this.panel().nativeElement;
 
-    if (!panel.matches(':popover-open')) return;
+    if (!panel.matches(':popover-open')) return false;
 
     panel.hidePopover();
+
+    return true;
+  }
+
+  private assertContent() {
+    const contentCount = this.contents().length;
+
+    if (contentCount === 1) return;
+
+    throw new Error(
+      `FktPopoverComponent requires exactly one descendant with fktPopoverContent before opening, but received ${contentCount}.`
+    );
+  }
+
+  private get documentActiveElement() {
+    return this.host.ownerDocument.activeElement;
   }
 }

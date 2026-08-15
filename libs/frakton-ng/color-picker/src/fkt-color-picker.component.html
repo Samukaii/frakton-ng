@@ -1,10 +1,14 @@
-<fkt-popover [(open)]="isOpen" preferredPosition="bottom-end">
+<fkt-popover #popover [(open)]="isOpen" preferredPosition="bottom-end">
   <div
     (keydown.enter)="isOpen.set(true)"
     (keydown.space)="isOpen.set(true)"
+    [attr.aria-controls]="popover.popoverId()"
+    [attr.aria-expanded]="isOpen()"
     [tabIndex]="0"
+    aria-haspopup="dialog"
     class="field"
     fktPopoverTrigger
+    role="button"
   >
     <div class="preview-container">
       <div class="fkt-transparency-bg">
@@ -46,24 +50,23 @@
     </div>
   </div>
 
-  <ng-template fktPopoverContent>
-    @if (isOpen()) {
-      <div
-        [attr.aria-label]="label()"
-        aria-modal="true"
-        fktFocusTrap
-        [autoFocusOnOpen]="true"
-        role="dialog"
-      >
-        <fkt-color-picker-modal
-          [(value)]="value"
-          [defaultFormat]="defaultFormat()"
-          [disableAlphaChanel]="disableAlphaChannel()"
-          [outputFormat]="outputFormat()"
-        />
-      </div>
-    }
-
-  </ng-template>
+  @if (isOpen()) {
+    <div
+      [attr.aria-label]="label()"
+      [autoFocusOnOpen]="true"
+      aria-modal="true"
+      fktFocusTrap
+      [id]="popover.popoverId()"
+      fktPopoverContent
+      role="dialog"
+    >
+      <fkt-color-picker-modal
+        [(value)]="value"
+        [defaultFormat]="defaultFormat()"
+        [disableAlphaChanel]="disableAlphaChannel()"
+        [outputFormat]="outputFormat()"
+      />
+    </div>
+  }
 </fkt-popover>
 

@@ -1,0 +1,17 @@
+<fkt-popover #popover preferredPosition="bottom-start">
+  <button
+    [attr.aria-controls]="popover.popoverId()"
+    [attr.aria-expanded]="popover.isOpen()"
+    appearance="stroked"
+    fktButton
+    fktPopoverTrigger
+    label="View billing details"
+    suffixIcon="chevron-down">
+  </button>
+
+  <div [id]="popover.popoverId()" class="details" fktPopoverContent>
+    <strong>Current plan</strong>
+    <span>Professional · 12 members</span>
+    <span>Renews on August 19</span>
+  </div>
+</fkt-popover>

@@ -7,14 +7,14 @@ import {
 } from 'frakton-ng/popover';
 
 @Component({
-  selector: 'app-popover-basic-example',
+  selector: 'app-popover-anchor-example',
   imports: [
     FktButtonComponent,
     FktPopoverComponent,
-    FktPopoverTriggerDirective,
     FktPopoverContentDirective,
+    FktPopoverTriggerDirective,
   ],
-  templateUrl: './popover-basic-example.component.html',
-  styleUrl: './popover-basic-example.component.scss',
+  templateUrl: './popover-anchor-example.component.html',
+  styleUrl: './popover-anchor-example.component.scss',
 })
-export class PopoverBasicExampleComponent {}
+export class PopoverAnchorExampleComponent {}

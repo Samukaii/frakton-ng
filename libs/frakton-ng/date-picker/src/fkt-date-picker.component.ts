@@ -90,10 +90,9 @@ export class FktDatePickerComponent
     return new Date();
   }
 
-  protected select(popover: FktPopoverComponent, date: Date) {
+  protected select(date: Date) {
     this.transformed.set(this.formatDate(date));
     this.isOpen.set(false);
-    popover.restoreTriggerFocus();
   }
 
   private formatDate(value: Date) {
