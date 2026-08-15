@@ -10,23 +10,23 @@
     </span>
     </div>
 
-    <fkt-popover preferredPosition="end-center">
+    <fkt-popover #defaultPopover preferredPosition="end-center">
       <button
+        [attr.aria-controls]="defaultPopover.popoverId()"
+        [attr.aria-expanded]="defaultPopover.isOpen()"
         appearance="stroked"
         fktButton
         fktPopoverTrigger
         label="فتح التفاصيل"
-        suffixIcon="chevron-down"
-      ></button>
+        suffixIcon="chevron-down">
+      </button>
 
-      <ng-template fktPopoverContent>
-        <div class="panel">
-          <strong>موضع تلقائي</strong>
-          <p>
-            The content and trigger share the selected direction, so logical end follows the same flow.
-          </p>
-        </div>
-      </ng-template>
+      <div [id]="defaultPopover.popoverId()" class="panel" fktPopoverContent>
+        <strong>موضع تلقائي</strong>
+        <p>
+          The content and trigger share the selected direction, so logical end follows the same flow.
+        </p>
+      </div>
     </fkt-popover>
   </section>
 
@@ -39,23 +39,23 @@
     </span>
     </div>
 
-    <fkt-popover positionDirection="ltr" preferredPosition="end-center">
+    <fkt-popover #fixedPopover positionDirection="ltr" preferredPosition="end-center">
       <button
+        [attr.aria-controls]="fixedPopover.popoverId()"
+        [attr.aria-expanded]="fixedPopover.isOpen()"
         appearance="stroked"
         fktButton
         fktPopoverTrigger
         label="فتح التفاصيل"
-        suffixIcon="chevron-down"
-      ></button>
+        suffixIcon="chevron-down">
+      </button>
 
-      <ng-template fktPopoverContent>
-        <div class="panel">
-          <strong>محتوى RTL</strong>
-          <p>
-            Direction can be fixed for geometry without changing the content direction inside the panel.
-          </p>
-        </div>
-      </ng-template>
+      <div [id]="fixedPopover.popoverId()" class="panel" fktPopoverContent>
+        <strong>محتوى RTL</strong>
+        <p>
+          Direction can be fixed for geometry without changing the content direction inside the panel.
+        </p>
+      </div>
     </fkt-popover>
   </section>
 </div>

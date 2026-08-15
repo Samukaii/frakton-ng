@@ -32,7 +32,8 @@ code {
 }
 
 .description {
-  white-space: pre-line;
+  display: grid;
+  gap: var(--fkt-space-xs);
   margin: 0;
 }
 

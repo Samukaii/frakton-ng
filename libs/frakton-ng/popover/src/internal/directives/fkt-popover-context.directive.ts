@@ -1,4 +1,14 @@
-import { computed, Directive, input, model, output, signal } from '@angular/core';
+import {
+  booleanAttribute,
+  computed,
+  Directive,
+  inject,
+  input,
+  model,
+  output,
+  signal,
+} from '@angular/core';
+import { ElementIdGeneratorService } from 'frakton-ng/internal/services';
 import { deepEqual } from 'frakton-ng/internal/utils';
 import {
   type FktPopoverAnimation,
@@ -13,8 +23,8 @@ import {
 interface FktPopoverTriggerRef {
   contains(target: Node): boolean;
   focus(): void;
-  getRect(): DOMRect;
-  getDirection(): 'ltr' | 'rtl';
+  getAnchorRect(): DOMRect;
+  getAnchorDirection(): 'ltr' | 'rtl';
 }
 
 /**
@@ -30,8 +40,25 @@ export class FktPopoverContextDirective {
   readonly dismissOn = input<FktPopoverDismissOn>({});
   readonly animation = input<FktPopoverAnimation>('fade-slide');
   readonly positionDirection = input<FktPopoverPositionDirection>('auto');
+  readonly returnFocus = input(false, { transform: booleanAttribute });
 
   readonly dismiss = output<FktPopoverDismissEvent>();
+  readonly dismissOutsideClick = output<FktPopoverDismissEvent>({
+    alias: 'dismiss.outsideClick',
+  });
+  readonly dismissEscape = output<FktPopoverDismissEvent>({
+    alias: 'dismiss.escape',
+  });
+  readonly dismissScroll = output<FktPopoverDismissEvent>({
+    alias: 'dismiss.scroll',
+  });
+  readonly dismissMouseLeave = output<FktPopoverDismissEvent>({
+    alias: 'dismiss.mouseLeave',
+  });
+  readonly dismissFocusOut = output<FktPopoverDismissEvent>({
+    alias: 'dismiss.focusOut',
+  });
+
   readonly resolvedPosition = output<{
     position: FktPopoverPosition;
     direction: 'ltr' | 'rtl';
@@ -51,10 +78,11 @@ export class FktPopoverContextDirective {
     return trigger;
   });
 
-  private static nextPopoverId = 0;
-  readonly panelId = `fkt-popover-${FktPopoverContextDirective.nextPopoverId++}`;
+  readonly popoverId = signal(
+    inject(ElementIdGeneratorService).next('fkt-popover')
+  );
 
-  readonly triggerSize = signal<{ width: number; height: number } | null>(
+  readonly anchorSize = signal<{ width: number; height: number } | null>(
     null,
     {
       equal: deepEqual,
@@ -62,18 +90,51 @@ export class FktPopoverContextDirective {
   );
   readonly panelElement = signal<HTMLElement | null>(null);
   readonly triggerOn = signal<FktPopoverTrigger>('click');
+  private automaticClosePending = false;
 
   dismissAutomatically(event: FktPopoverDismissEvent) {
     this.dismiss.emit(event);
+
+    switch (event.reason) {
+      case 'escape':
+        this.dismissEscape.emit(event);
+        break;
+      case 'scroll':
+        this.dismissScroll.emit(event);
+        break;
+      case 'focus-out':
+        this.dismissFocusOut.emit(event);
+        break;
+      case 'mouse-leave':
+        this.dismissMouseLeave.emit(event);
+        break;
+      case 'outside-click':
+        this.dismissOutsideClick.emit(event);
+        break;
+    }
+
+    this.automaticClosePending = true;
     this.open.set(false);
+  }
+
+  consumeAutomaticClose() {
+    const wasAutomatic = this.automaticClosePending;
+
+    this.automaticClosePending = false;
+
+    return wasAutomatic;
+  }
+
+  clearAutomaticClose() {
+    this.automaticClosePending = false;
   }
 
   restoreTriggerFocus() {
     this.trigger().focus();
   }
 
-  setTriggerSize(size: { width: number; height: number }) {
-    this.triggerSize.set(size);
+  setAnchorSize(size: { width: number; height: number }) {
+    this.anchorSize.set(size);
   }
 
   registerTrigger(trigger: FktPopoverTriggerRef) {
@@ -92,6 +153,6 @@ export class FktPopoverContextDirective {
     if (this.registeredTrigger() !== trigger) return;
 
     this.registeredTrigger.set(null);
-    this.triggerSize.set(null);
+    this.anchorSize.set(null);
   }
 }

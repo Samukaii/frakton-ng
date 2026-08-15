@@ -12,6 +12,7 @@ import {
 } from '@angular/core';
 import { MarkUsed } from 'frakton-ng/internal/utils';
 import { FktFieldControl } from 'frakton-ng/internal/directives';
+import { ElementIdGeneratorService } from 'frakton-ng/internal/services';
 import { FktFieldErrorComponent } from './error/fkt-field-error.component';
 import { FKT_FIELD_ERROR_HANDLER } from 'frakton-ng/core';
 import { injectI18nIntegration } from 'frakton-ng/internal/di';
@@ -39,6 +40,8 @@ import { FktFieldSuffixDirective } from './directives/fkt-field-suffix.directive
     },
 })
 export class FktFieldComponent {
+    readonly labelId = inject(ElementIdGeneratorService).next('fkt-field-label');
+
     label = input.required<string>();
     placeholder = input('');
     hint = input<string>();

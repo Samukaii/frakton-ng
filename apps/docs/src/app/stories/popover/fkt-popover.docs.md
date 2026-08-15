@@ -2,52 +2,100 @@
 
 <arg-types></arg-types>
 
-`fkt-popover` is a low-level primitive for custom contextual surfaces that do not fit a specialized Frakton NG component. It manages disclosure, placement, automatic dismiss behavior, and optional focus restoration.
+`fkt-popover` is a low-level primitive for custom contextual surfaces that do not fit a specialized Frakton NG component. It manages visibility, trigger interaction, placement, automatic dismiss behavior, and optional focus restoration.
 
 Prefer dedicated components such as Tooltip, Dialog, Select, and Autocomplete when their interaction pattern matches the use case. Those components can provide semantics and keyboard behavior that an arbitrary popover cannot infer.
 
-Use `fktPopoverTrigger` on the trigger element and `fktPopoverContent` on an `ng-template` that contains the panel content.
+Use `fktPopoverTrigger` on the interactive control that owns the surface and `fktPopoverContent` on the element that represents its content.
+
+The example below uses disclosure semantics because the trigger only shows and hides contextual content. These ARIA bindings belong to that interaction pattern; they are not universal Popover requirements.
 
 ```angular2html
 
-<fkt-popover>
-	<button fktButton fktPopoverTrigger label="Open popover"></button>
+<fkt-popover #popover>
+	<button
+		[attr.aria-controls]="popover.popoverId()"
+		[attr.aria-expanded]="popover.isOpen()"
+		fktButton
+		fktPopoverTrigger
+		label="Open popover"
+	></button>
 
-	<ng-template fktPopoverContent>
-		<p>Popover content</p>
-	</ng-template>
+	<div [id]="popover.popoverId()" fktPopoverContent>Popover content</div>
 </fkt-popover>
 ```
 
 ## Native surface
 
-The panel uses the browser Popover API. It participates in the top layer, is not portaled to a global overlay container, and supports native CSS states such as `:popover-open`, `@starting-style`, and discrete transitions for `display` and `overlay`.
+The panel uses the browser Popover API. It participates in the top layer above ordinary stacking contexts, is not portaled to a global overlay container, and supports native CSS states such as `:popover-open`, `@starting-style`, and discrete transitions for `display` and `overlay`.
 
 Frakton NG owns trigger-based positioning because native popover does not solve trigger placement by itself.
 
 ## Structure constraints
 
-`fkt-popover` expects one `fktPopoverTrigger` and one `fktPopoverContent`. Missing trigger or content is a configuration error. If either is conditionally rendered, ensure it exists before opening the popover.
+`fkt-popover` expects one descendant `fktPopoverTrigger` and one `fktPopoverContent` element. Nesting establishes one-to-one ownership without implying support for shared or multiple triggers. Missing trigger or content is a configuration error. Conditionally rendered content must exist before the popover opens.
 
 ## Semantics
 
-Popover guarantees the mechanics it owns: it keeps `aria-expanded` and `aria-controls` synchronized on the trigger, supports focus as the keyboard equivalent of hover, dismisses with Escape by default, and provides explicit trigger focus restoration.
+Popover guarantees the mechanics it owns: native top-layer rendering, positioning, collision handling, trigger interaction, automatic dismiss reasons, hover safe area, and explicit focus restoration.
 
-The panel does not assign a semantic role or accessible name. Popover also does not infer `aria-haspopup`, implement keyboard navigation inside projected content, trap focus, or turn arbitrary markup into a menu, listbox, dialog, tooltip, or other composite widget. When those semantics are required, prefer the dedicated Frakton NG component. For a custom pattern, provide the panel role, accessible name, `aria-haspopup` value, internal keyboard behavior, and focus management required by the chosen pattern.
+Popover does not infer `role`, `aria-expanded`, `aria-controls`, `aria-haspopup`, an accessible name, keyboard navigation, focus trapping, or modality. Those decisions depend on whether the surface is a preview, dialog, combobox popup, menu, tooltip, or another widget. Prefer the dedicated Frakton NG component whenever one matches the interaction. For a custom pattern, apply the complete semantic, keyboard, and focus contract required by that pattern.
+
+`popoverId()` exposes a generated identifier associated with the Popover instance without assigning it to any element. It can remain unused when the chosen pattern does not need an explicit relationship. When one is required, apply it to the actual semantic target. This removes ID generation and synchronization without assuming that the root marked with `fktPopoverContent` always owns the relationship.
+
+```angular2html
+<fkt-popover #popover>
+	<button
+		[attr.aria-controls]="popover.popoverId()"
+		[attr.aria-expanded]="popover.isOpen()"
+		aria-haspopup="dialog"
+		fktPopoverTrigger
+	>
+		Open settings
+	</button>
+
+	<section
+		[id]="popover.popoverId()"
+		aria-label="Settings"
+		fktPopoverContent
+		role="dialog"
+	>
+		...
+	</section>
+</fkt-popover>
+```
+
+### Common accessibility patterns
+
+- Informational previews normally do not need dialog semantics or a focus trap. Ensure essential information is available through the appropriate accessible relationship or elsewhere in the interface.
+- Non-modal interactive surfaces may use `role="dialog"` with an accessible name when dialog semantics fit, without claiming modality or trapping focus automatically.
+- Dialog surfaces require an accessible name and an intentional focus, keyboard, dismissal, and focus-return policy. [`fktFocusTrap`](/docs/focus-trap/features) can contain Tab and Shift+Tab when appropriate, but it does not make background content inert or declare a dialog modal. Use the dedicated Dialog component when the complete modal contract is required. Specialized widgets such as Date Picker may implement their own popup contract internally.
+- Menus, tooltips, listboxes, comboboxes, and other composite widgets require their own ARIA and keyboard patterns. Use the specialized Frakton component instead of rebuilding one from Popover when available.
 
 ## Trigger behavior
 
-Apply `fktPopoverTrigger` to the interactive control that owns the popover. The trigger receives `aria-expanded` and `aria-controls` and also acts as the positioning reference.
+Apply `fktPopoverTrigger` to the interactive control that owns the popover. It owns trigger interaction and is the destination used by `restoreTriggerFocus()`.
 
 The directive does not infer whether an element is interactive and does not add a role, `tabindex`, or keyboard activation to passive elements. Use a native interactive element when possible. Custom controls must provide their own correct semantics and keyboard behavior.
 
 `triggerOn="hover"` also opens on focus. The popover remains open while pointer or focus stays inside the trigger or panel. For pointer interaction, a safe area spans the trigger, panel, and the gap between them, with the configured `offset` used as tolerance. This lets the pointer cross the gap without closing the panel; leaving that area closes it normally. Prefer click for persistent, touch-first, or complex interactive flows.
 
-`triggerOn="manual"` disables only the activation performed by the directive. Use the trigger's own event handler or `[(open)]` for state changes. The directive must remain on the real interactive control: it still owns `aria-expanded`, `aria-controls`, and the positioning reference in manual mode.
+`triggerOn="manual"` disables only the activation performed by the directive. Use the trigger's own event handler or `[(open)]` for state changes. The directive must remain on the real interactive control so ownership and focus restoration remain unambiguous.
 
 `triggerDisabled` disables trigger interaction only. It does not close an open panel and does not prevent external `open` updates.
 
 There is no global disabled state. Use `triggerDisabled` for trigger-driven interaction and control `open` externally when the whole flow should be unavailable.
+
+By default, positioning uses the trigger as its geometric anchor. Bind `anchor` when the surface should be positioned relative to a different `HTMLElement`. The anchor has no interaction or accessibility semantics; it only supplies geometry.
+
+```angular2html
+<div #anchor>Position relative to this element</div>
+
+<fkt-popover>
+	<button [anchor]="anchor" fktPopoverTrigger>Open</button>
+	<div fktPopoverContent>Content</div>
+</fkt-popover>
+```
 
 ## Dismiss behavior
 
@@ -66,30 +114,41 @@ There is no global disabled state. Use `triggerDisabled` for trigger-driven inte
 
 `dismiss` emits only for automatic dismiss events. Programmatic state changes through `[(open)]` are not emitted as dismiss events.
 
+Reason-specific aliases provide filtered outputs without a guard or `switch`: `dismiss.escape`, `dismiss.outsideClick`, `dismiss.scroll`, `dismiss.mouseLeave`, and `dismiss.focusOut`. Each emits the same `FktPopoverDismissEvent` as `dismiss`.
+
+```angular2html
+<fkt-popover
+	(dismiss.escape)="handleEscape($event)"
+	(dismiss.outsideClick)="handleOutsideClick($event)"
+>
+	...
+</fkt-popover>
+```
+
 By default, scrolling repositions the panel instead of dismissing it. When `dismissOn.scroll` is enabled, external scroll dismisses the popover. Scroll events from inside the trigger or panel are ignored, so scrollable content inside the popover remains usable.
 
 ## Restoring trigger focus
 
-Close the popover by updating `open`. When the same action should return keyboard focus to the trigger, call `restoreTriggerFocus()` after changing state.
+Close the popover by updating `open`. Add `returnFocus` when every programmatic transition from open to closed should return keyboard focus to the trigger.
 
 ```angular2html
 
-<fkt-popover #popover="fktPopover" [(open)]="open">
+<fkt-popover [(open)]="open" returnFocus>
 	...
 
 	<button
 		fktButton
 		label="Apply"
-		(click)="open.set(false); popover.restoreTriggerFocus()"
+		(click)="open.set(false)"
 	></button>
 </fkt-popover>
 ```
 
-Escape restores focus to the trigger by default. Outside click, scroll, mouse leave, focus out, and programmatic state changes do not restore focus automatically.
+`returnFocus` affects state-driven closure only. Automatic dismiss reasons keep their own focus policy, so outside click, scroll, mouse leave, and focus out do not steal focus from their destination. Escape restores focus when focus remains inside the panel being hidden. Use `restoreTriggerFocus()` for an individual flow instead of enabling the policy for every programmatic close.
 
 ## Positioning
 
-`preferredPosition` is the declarative preferred placement. `preferredFallbackPositions` adds preferred alternatives before the automatic fit search tries other placements.
+`preferredPosition` is the declarative preferred placement relative to the resolved anchor. `preferredFallbackPositions` adds preferred alternatives before the automatic fit search tries other placements.
 
 With `overflowStrategy="fit"`, the popover may resolve to a different placement when the preferred placement does not fit. It first tries the declared position and each `preferredFallbackPositions` entry in the provided order. It then tries natural alternatives: other alignments on the same side, the opposite side while preserving alignment when possible, and finally the remaining placements. The first placement without overflow is selected; if every placement overflows, the one with the smallest overflow is used. `preferredFallbackPositions` only affects this automatic strategy.
 
@@ -106,15 +165,15 @@ With `overflowStrategy="keep-position"`, the requested placement is preserved ev
 </fkt-popover>
 ```
 
-Positions use logical sides. `top` and `bottom` are block sides. `start` and `end` are inline sides. `center`, `top`, and `bottom` align the panel along the selected side. Corner placements such as `top-start-corner`, `top-end-corner`, `bottom-start-corner`, and `bottom-end-corner` are separate positions around trigger corners.
+Positions use logical sides. `top` and `bottom` are block sides. `start` and `end` are inline sides. `center`, `top`, and `bottom` align the panel along the selected side. Corner placements such as `top-start-corner`, `top-end-corner`, `bottom-start-corner`, and `bottom-end-corner` are separate positions around anchor corners.
 
 The current placement is exposed as `data-fkt-position` and `data-fkt-position-direction` on the host and panel for placement-specific styling, and through `resolvedPosition` for Angular state.
 
-`positionDirection` controls how logical `start` and `end` positions are resolved. The default `auto` value reads the trigger computed direction. Use `ltr` or `rtl` to force the positioning direction for a specific popover.
+`positionDirection` controls how logical `start` and `end` positions are resolved. The default `auto` value reads the resolved anchor computed direction. Use `ltr` or `rtl` to force the positioning direction for a specific popover.
 
 ## Position update lifecycle
 
-The popover repositions while open on document scroll, window resize, and trigger resize.
+The popover repositions while open on document scroll, window resize, and resolved anchor resize.
 
 Panel content size is consumer-owned. Prefer fixed or constrained panel dimensions for dynamic content, and let the content scroll inside the panel when it can grow. If an intentional content layout change should re-evaluate placement, call `repositionTo('fit')` to run the automatic fit search and persist the resolved placement as the active preference.
 
@@ -122,17 +181,17 @@ Automatic collision handling updates the active placement while the panel is ope
 
 ## Content lifecycle
 
-The content template is instantiated with the popover component and remains mounted while the popover exists. Opening and closing use the native Popover API and do not destroy Angular content. Internal component state, form state, subscriptions, and DOM state inside the content are preserved between openings.
+The element marked with `fktPopoverContent` is projected directly into the native panel and must exist before the popover opens. Opening and closing use the native Popover API and do not destroy Angular content. Internal component state, form state, subscriptions, and DOM state inside the content are preserved between openings.
 
-Because content remains mounted, expensive content should be conditionally instantiated by the consumer when needed.
+For expensive content, keep the element marked with `fktPopoverContent` mounted and conditionally instantiate its children when needed.
 
 ## Sizing and styling
 
-The host exposes `--fkt-popover-trigger-width` and `--fkt-popover-trigger-height`. Combine those variables with sizing tokens for proportional panel sizes.
+The host exposes `--fkt-popover-anchor-width` and `--fkt-popover-anchor-height`. Without an explicit anchor these values describe the trigger. Combine them with sizing tokens for proportional panel sizes.
 
 ```css
 .popover-demo {
-	--fkt-popover-width: var(--fkt-popover-trigger-width);
+	--fkt-popover-width: var(--fkt-popover-anchor-width);
 	--fkt-popover-max-height: 24rem;
 }
 ```
@@ -170,14 +229,6 @@ The built-in animation respects `prefers-reduced-motion`; custom animations shou
 }
 ```
 
-```css
-/* styles.css */
-.app-menu-motion {
-	opacity: 0;
-	transform: scale(0.96);
-}
-```
-
 ## Methods
 
 ```ts
@@ -190,7 +241,7 @@ class FktPopoverComponent {
 
 `repositionTo` recalculates placement while the panel is open and persists the resolved placement as the active preference. Pass `'fit'` to resolve through the fit search. Pass a concrete position to use that placement directly. The method does not write back to the `preferredPosition` input.
 
-`restoreTriggerFocus` moves focus back to the trigger. Use it after state-driven closes when returning focus to the trigger is the desired flow.
+`restoreTriggerFocus` moves focus back to the trigger for a single consumer-controlled flow. Use `returnFocus` when every state-driven close should do so.
 
 ## Public types
 

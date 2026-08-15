@@ -15,9 +15,6 @@
             "frakton-ng/button-group": ["libs/frakton-ng/button-group"],
             "frakton-ng/buttons-list": ["libs/frakton-ng/buttons-list"],
             "frakton-ng/calendar": ["libs/frakton-ng/calendar"],
-            "frakton-ng/calendar-navigator": [
-                "libs/frakton-ng/calendar-navigator"
-            ],
             "frakton-ng/card": ["libs/frakton-ng/card"],
             "frakton-ng/checkbox": ["libs/frakton-ng/checkbox"],
             "frakton-ng/color-picker": ["libs/frakton-ng/color-picker"],
@@ -77,7 +74,6 @@
             ],
             "frakton-ng/tabs": ["libs/frakton-ng/tabs"],
             "frakton-ng/tag": ["libs/frakton-ng/tag"],
-            "frakton-ng/tag-selector": ["libs/frakton-ng/tag-selector"],
             "frakton-ng/textarea": ["libs/frakton-ng/textarea"],
             "frakton-ng/textarea-old": ["libs/frakton-ng/textarea-old"],
             "frakton-ng/toggle": ["libs/frakton-ng/toggle"],

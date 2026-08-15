@@ -24,7 +24,7 @@ import { FktSelectContextDirective } from './fkt-select-context.directive';
         '[class.fkt-control-field]': 'true',
         '[attr.tabindex]': 'disabled() ? -1 : 0',
         '[attr.aria-expanded]': 'context().dropdownOpened()',
-        '[attr.aria-controls]': 'context().listBoxId',
+        '[attr.aria-controls]': 'context().dropdownOpened() ? context().listBoxId : null',
         '[attr.aria-activedescendant]': 'activeDescendantId()',
         '[attr.aria-disabled]': 'disabled()',
         '[attr.aria-invalid]': 'invalid()',
@@ -39,7 +39,7 @@ export class FktSelectControlDirective {
     readonly required = input(false);
     readonly maxLength = input<number | null>(null);
     readonly isTouched = model(false);
-    readonly activeDescendantId = input('');
+    readonly activeDescendantId = input<string | null>(null);
 
     readonly context = input.required<FktSelectContextDirective<any>>();
     readonly selection = input.required<FktSelectSelectionDirective<any>>();

@@ -1,11 +1,12 @@
-<fkt-popover animation="app-popover-scale" preferredPosition="end-top">
-  <button fktButton fktPopoverTrigger label="Token styled">
+<fkt-popover #popover preferredPosition="end-top">
+  <button [attr.aria-controls]="popover.popoverId()"
+          [attr.aria-expanded]="popover.isOpen()"
+          fktButton
+          fktPopoverTrigger label="Token styled">
   </button>
 
-  <ng-template fktPopoverContent>
-    <div class="content">
-      <strong>Scoped tokens</strong>
-      <span>The panel appearance comes from CSS variables.</span>
-    </div>
-  </ng-template>
+  <div [id]="popover.popoverId()" class="content" fktPopoverContent>
+    <strong>Scoped tokens</strong>
+    <span>The panel appearance comes from CSS variables.</span>
+  </div>
 </fkt-popover>

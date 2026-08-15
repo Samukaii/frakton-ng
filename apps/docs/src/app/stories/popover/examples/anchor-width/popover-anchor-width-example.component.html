@@ -1,5 +1,6 @@
 @for (example of examples; track example.label) {
   <fkt-popover
+    #popover
     [class]="example.className"
     preferredPosition="bottom-start"
   >
@@ -7,17 +8,17 @@
       [label]="example.label"
       appearance="stroked"
       class="wide-trigger"
+      [attr.aria-expanded]="popover.isOpen()"
+      [attr.aria-controls]="popover.popoverId()"
       fktButton
       fktPopoverTrigger
-      suffixIcon="chevron-down"
-    ></button>
+      suffixIcon="chevron-down">
+    </button>
 
-    <ng-template fktPopoverContent>
-      <div class="sized-panel">
+    <div class="sized-panel" [id]="popover.popoverId()" fktPopoverContent>
         <strong>{{ example.label }}</strong>
         <span>{{ example.description }}</span>
         <code>{{ example.token }}</code>
-      </div>
-    </ng-template>
+    </div>
   </fkt-popover>
 }

@@ -195,6 +195,15 @@ $suffix-invalid-color: var(--fkt-field-suffix-invalid-text, var(--fkt-color-dang
     }
 }
 
+fkt-popover {
+  --fkt-popover-width: var(--fkt-popover-anchor-width);
+
+  --fkt-popover-border-radius: var(--fkt-select-options-border-radius, var(--fkt-radius-md));
+  --fkt-popover-background-color: var(--fkt-select-options-background-color, var(--fkt-color-modal-background));
+  --fkt-popover-box-shadow: var(--fkt-select-options-shadow, var(--fkt-shadow-md));
+  --fkt-popover-padding: 0;
+}
+
 fkt-field {
     cursor: text;
 

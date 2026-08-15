@@ -1,34 +1,26 @@
 import { Component, computed, input, signal } from '@angular/core';
 import { FktMenuGroup, FktSideMenuComponent } from 'frakton-ng/side-menu';
-import { FktTag, FktTagSelectorComponent } from 'frakton-ng/tag-selector';
 
 interface UserPermissions {
-	canViewAnalytics: boolean;
-	canManageUsers: boolean;
-	canManageProducts: boolean;
-	canViewReports: boolean;
-	isAdmin: boolean;
+  canViewAnalytics: boolean;
+  canManageUsers: boolean;
+  canManageProducts: boolean;
+  canViewReports: boolean;
+  isAdmin: boolean;
 }
 
 @Component({
 	selector: 'dynamic-permissions-side-menu-example',
 	templateUrl: './dynamic-permissions-side-menu-example.component.html',
 	styleUrl: './dynamic-permissions-side-menu-example.component.scss',
-	imports: [FktSideMenuComponent, FktTagSelectorComponent]
+	imports: [FktSideMenuComponent]
 })
 export class DynamicPermissionsSideMenuExampleComponent {
 	groups = input.required<FktMenuGroup[]>();
 	opened = input<boolean>(true);
 
 	protected userRole = signal<'admin' | 'manager' | 'user'>('user');
-
-	protected currentRoleName = computed(() => {
-		const current = this.userRole();
-
-		return this.roles.find((role) => role.id === current)?.name;
-	})
-
-	protected roles: FktTag[] = [
+	protected roles = [
 		{
 			id: "admin",
 			name: "Admin",
@@ -45,7 +37,11 @@ export class DynamicPermissionsSideMenuExampleComponent {
 			color: "info"
 		},
 	]
+	protected currentRoleName = computed(() => {
+		const current = this.userRole();
 
+		return this.roles.find((role) => role.id === current)?.name;
+	})
 	protected userPermissions = computed<UserPermissions>(() => {
 		const role = this.userRole();
 		switch (role) {

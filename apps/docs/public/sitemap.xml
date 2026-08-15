@@ -22,7 +22,7 @@
         <loc>https://fraktonng.com/docs/autocomplete</loc>
         <priority>0.9</priority>
         <changefreq>weekly</changefreq>
-        <lastmod>2026-07-12T21:21:04.118Z</lastmod>
+        <lastmod>2026-07-16T11:33:13.785Z</lastmod>
     </url>
     <url>
         <loc>https://fraktonng.com/docs/avatar</loc>
@@ -142,7 +142,7 @@
         <loc>https://fraktonng.com/docs/popover</loc>
         <priority>0.9</priority>
         <changefreq>weekly</changefreq>
-        <lastmod>2026-07-16T00:36:03.750Z</lastmod>
+        <lastmod>2026-08-12T07:48:37.544Z</lastmod>
     </url>
     <url>
         <loc>https://fraktonng.com/docs/progress-bar</loc>
@@ -208,6 +208,6 @@
         <loc>https://fraktonng.com/docs/tooltip</loc>
         <priority>0.9</priority>
         <changefreq>weekly</changefreq>
-        <lastmod>2026-07-15T18:26:42.727Z</lastmod>
+        <lastmod>2026-07-16T11:33:13.905Z</lastmod>
     </url>
 </urlset>

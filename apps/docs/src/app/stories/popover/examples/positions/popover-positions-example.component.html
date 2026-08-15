@@ -4,21 +4,22 @@
     <div class="positions">
       @for (position of group.positions; track position) {
         <fkt-popover
+          #popover
           [preferredPosition]="position.position"
           [preferredFallbackPositions]="['bottom-center', 'top-center']"
         >
           <button
+            [attr.aria-controls]="popover.popoverId()"
+            [attr.aria-expanded]="popover.isOpen()"
             [label]="position.label"
             fktButton
             fktPopoverTrigger>
           </button>
 
-          <ng-template fktPopoverContent>
-            <div class="placement">
+          <div class="placement" [id]="popover.popoverId()" fktPopoverContent>
               <strong>{{ position.label }}</strong>
               <span>{{ position.description }}</span>
-            </div>
-          </ng-template>
+          </div>
         </fkt-popover>
       }
     </div>

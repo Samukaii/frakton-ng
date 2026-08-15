@@ -1,66 +1,63 @@
 <fkt-autocomplete
-        [formControl]="member"
-        [options]="users"
-        groupKey="department"
-        label="Team member"
-        labelKey="name"
-        localSearch
-        multiple
-        placeholder="Search for a teammate"
-        valueKey="id"
+  [formControl]="member"
+  [options]="users"
+  groupKey="department"
+  label="Team member"
+  labelKey="name"
+  localSearch
+  multiple
+  placeholder="Search for a teammate"
+  valueKey="id"
 >
-    <div *fktAutocompleteHeader class="overlay-header">
-        <div>
-            <strong>Available users</strong>
-            <span>Select a teammate by name, e-mail, or department.</span>
-        </div>
+  <div *fktAutocompleteHeader class="overlay-header">
+    <div>
+      <strong>Available users</strong>
+      <span>Select a teammate by name, e-mail, or department.</span>
     </div>
+  </div>
 
-    <div *fktAutocompleteGroup="let group" class="group">
-        <span>{{ group.label }}</span>
-        <small>{{ group.items.length }} users</small>
+  <div *fktAutocompleteGroup="let group" class="group">
+    <span>{{ group.label }}</span>
+    <small>{{ group.items.length }} users</small>
+  </div>
+
+  <div
+    *fktAutocompleteItem="let item; let isSelected = isSelected"
+    [class.selected]="isSelected"
+    class="item"
+  >
+    <fkt-avatar
+      [initials]="item.label"
+      randomBackground
+    />
+
+    <div class="identity">
+      <strong>{{ item.label }}</strong>
+      <span>{{ item.raw?.['email'] }}</span>
     </div>
+  </div>
 
-    <div
-            *fktAutocompleteItem="let item; let isSelected = isSelected"
-            [attr.data-fkt-theme]="isSelected ? 'dark' : 'light'"
-            [class.selected]="isSelected"
-            class="item"
-    >
-        <fkt-avatar
-                [initials]="item.label"
-                randomBackground
-        />
+  <div *fktAutocompleteFooter class="overlay-footer">
+    <span>Missing someone?</span>
+    <button
+      appearance="stroked"
+      fktButton
+      icon="plus"
+      label="Invite user">
+    </button>
+  </div>
 
-        <div class="identity">
-            <strong>{{ item.label }}</strong>
-            <span>{{ item.raw?.['email'] }}</span>
-        </div>
+  <div *fktAutocompleteChip="let item" class="custom-chip">
+    <fkt-avatar [initials]="item.label" randomBackground size="xs"/>
+    <span>{{ item.label }}</span>
+    <fkt-icon name="x-circle"/>
+  </div>
 
-        <fkt-tag [text]="item.raw?.['department']" color="success" variant="faded"/>
-    </div>
-
-    <div *fktAutocompleteFooter class="overlay-footer">
-        <span>Missing someone?</span>
-        <button
-                appearance="stroked"
-                fktButton
-                icon="plus"
-                label="Invite user">
-        </button>
-    </div>
-
-    <div *fktAutocompleteChip="let item" class="custom-chip">
-        <fkt-avatar [initials]="item.label" randomBackground size="xs"/>
-        <span>{{ item.label }}</span>
-        <fkt-icon name="x-circle"/>
-    </div>
-
-    <div *fktAutocompleteEmpty="let state" class="empty-state">
-        <fkt-icon name="magnifying-glass"/>
-        <strong>No teammates found</strong>
-        <span>{{ state.label }}</span>
-    </div>
+  <div *fktAutocompleteEmpty="let state" class="empty-state">
+    <fkt-icon name="magnifying-glass"/>
+    <strong>No teammates found</strong>
+    <span>{{ state.label }}</span>
+  </div>
 </fkt-autocomplete>
 
 <app-code-output [value]="value()" title="Field value"/>

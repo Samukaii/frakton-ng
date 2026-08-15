@@ -3,6 +3,7 @@ import {
   Directive,
   ElementRef,
   inject,
+  input,
   OnDestroy,
 } from '@angular/core';
 import { FktPopoverContextDirective } from '../internal/directives/fkt-popover-context.directive';
@@ -25,6 +26,8 @@ export class FktPopoverTriggerDirective implements OnDestroy {
     inject<ElementRef<HTMLElement>>(ElementRef).nativeElement;
   private readonly context = inject(FktPopoverContextDirective);
 
+  readonly anchor = input<HTMLElement | null>(null);
+
   constructor() {
     this.context.registerTrigger(this);
   }
@@ -33,17 +36,21 @@ export class FktPopoverTriggerDirective implements OnDestroy {
     this.context.unregisterTrigger(this);
   }
 
-  private readonly triggerResizeObserver = afterRenderEffect((onCleanup) => {
-    this.updateSize();
+  private readonly anchorResizeObserver = afterRenderEffect((onCleanup) => {
+    const anchor = this.anchorElement;
+
+    this.updateAnchorSize();
 
     const ResizeObserverCtor =
       this.element.ownerDocument.defaultView?.ResizeObserver;
 
     if (!ResizeObserverCtor) return;
 
-    const resizeObserver = new ResizeObserverCtor(() => this.updateSize());
+    const resizeObserver = new ResizeObserverCtor(() =>
+      this.updateAnchorSize()
+    );
 
-    resizeObserver.observe(this.element);
+    resizeObserver.observe(anchor);
 
     onCleanup(() => {
       resizeObserver.disconnect();
@@ -62,20 +69,26 @@ export class FktPopoverTriggerDirective implements OnDestroy {
     });
   }
 
-  getRect() {
-    return this.element.getBoundingClientRect();
+  getAnchorRect() {
+    return this.anchorElement.getBoundingClientRect();
   }
 
-  getDirection() {
-    return this.element.ownerDocument.defaultView?.getComputedStyle(this.element)
-      .direction === 'rtl'
+  getAnchorDirection() {
+    const anchor = this.anchorElement;
+
+    return anchor.ownerDocument.defaultView?.getComputedStyle(anchor).direction ===
+      'rtl'
       ? 'rtl'
       : 'ltr';
   }
 
-  private updateSize() {
-    const {width, height} = this.getRect();
+  private get anchorElement() {
+    return this.anchor() ?? this.element;
+  }
 
-    this.context.setTriggerSize({width, height});
+  private updateAnchorSize() {
+    const { width, height } = this.getAnchorRect();
+
+    this.context.setAnchorSize({ width, height });
   }
 }

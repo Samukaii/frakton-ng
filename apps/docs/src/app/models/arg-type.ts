@@ -30,7 +30,7 @@ export type ArgType = {
     options?: readonly string[];
     defaultValue?: string;
     import?: string;
-    category: 'Attributes' | 'Methods' | 'Events';
+    category: 'Attributes' | 'Properties' | 'Methods' | 'Events';
     description?: string;
     owner?: ArgTypeOwner;
     playground?: boolean;

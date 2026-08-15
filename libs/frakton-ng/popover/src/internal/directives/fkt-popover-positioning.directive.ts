@@ -39,7 +39,7 @@ export class FktPopoverPositioningDirective implements OnDestroy {
     this.context.preferredFallbackPositions();
     this.context.overflowStrategy();
     this.context.offset();
-    this.context.triggerSize();
+    this.context.anchorSize();
     this.context.positionDirection();
 
     untracked(() => {
@@ -76,8 +76,8 @@ export class FktPopoverPositioningDirective implements OnDestroy {
     return panel;
   }
 
-  private get triggerRect() {
-    return this.context.trigger().getRect();
+  private get anchorRect() {
+    return this.context.trigger().getAnchorRect();
   }
 
   private get direction(): FktGeometryDirection {
@@ -85,7 +85,7 @@ export class FktPopoverPositioningDirective implements OnDestroy {
 
     if (direction !== 'auto') return direction;
 
-    return this.context.trigger().getDirection();
+    return this.context.trigger().getAnchorDirection();
   }
 
   updatePosition() {
@@ -119,14 +119,14 @@ export class FktPopoverPositioningDirective implements OnDestroy {
     const panelRect = panel.getBoundingClientRect();
     const offset = this.context.offset();
 
-    return { triggerRect: this.triggerRect, panelRect, offset };
+    return { anchorRect: this.anchorRect, panelRect, offset };
   }
 
   private updatePositionTo(position: FktPopoverPosition) {
-    const { triggerRect, panelRect, offset } = this.getPositionOptions();
+    const { anchorRect, panelRect, offset } = this.getPositionOptions();
 
     const result = this.alignmentService.alignTargetTo({
-      anchor: triggerRect,
+      anchor: anchorRect,
       direction: this.direction,
       targetSize: panelRect,
       padding: offset,
@@ -139,10 +139,10 @@ export class FktPopoverPositioningDirective implements OnDestroy {
   }
 
   private updatePositionAvoidingCollisions() {
-    const { triggerRect, panelRect, offset } = this.getPositionOptions();
+    const { anchorRect, panelRect, offset } = this.getPositionOptions();
 
     const { position, result } = this.alignmentService.smartAlignTargetTo({
-      anchor: triggerRect,
+      anchor: anchorRect,
       direction: this.direction,
       targetSize: panelRect,
       padding: offset,

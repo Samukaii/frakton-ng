@@ -9,8 +9,6 @@ import { FktPopoverContextDirective } from './fkt-popover-context.directive';
 @Directive({
   host: {
     '[attr.aria-disabled]': 'triggerDisabled() ? "true" : null',
-    '[attr.aria-expanded]': 'context.open()',
-    '[attr.aria-controls]': 'context.panelId',
     '(click)': 'handleClick()',
     '(mouseenter)': 'handleMouseEnter()',
     '(focusin)': 'handleFocusIn()',

@@ -1,21 +1,17 @@
-<fkt-popover preferredPosition="top-center">
+<fkt-popover #popover preferredPosition="top-center">
   <button
     fktButton
     fktPopoverTrigger
-    label="Hover or focus"
+    [attr.aria-describedby]="popover.popoverId()"
+    label="Preview project"
     triggerOn="hover"
   >
   </button>
 
-  <ng-template fktPopoverContent>
-    <div class="content">
-      <strong>Accessible hover</strong>
+  <div class="content" [id]="popover.popoverId()" fktPopoverContent>
+      <strong>Project Atlas</strong>
       <p>
-        The same trigger opens on mouse hover and keyboard focus, then
-        closes when pointer and focus leave both trigger and panel.
+        Updated yesterday · 4 active contributors · On track
       </p>
-      <button appearance="basic" fktButton label="Focusable action">
-      </button>
-    </div>
-  </ng-template>
+  </div>
 </fkt-popover>

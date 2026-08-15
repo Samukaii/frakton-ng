@@ -1,37 +1,40 @@
 <fkt-popover
-  #popover="fktPopover"
   (dismiss)="trackDismiss($event)"
+  (dismiss.escape)="trackEscapeDismiss()"
   [(open)]="isOpen"
+  #popover
   [dismissOn]="{
         outsideClick: true,
         escape: true,
         scroll: true
-    }"
+  }"
   preferredPosition="top-start"
+  returnFocus
 >
   <button
+    [attr.aria-controls]="popover.popoverId()"
+    [attr.aria-expanded]="popover.isOpen()"
     fktButton
     fktPopoverTrigger
     label="Open dismiss example">
   </button>
 
-  <ng-template fktPopoverContent>
-    <div class="content">
+  <div class="content" [id]="popover.popoverId()" fktPopoverContent>
       <strong>Dismiss behavior</strong>
-      <pre class="description">
-        Outside click, Escape and scroll dismiss this popover.
-
-        Partial <code>dismissOn</code> values merge with the defaults.
-
-        Try to scroll, type ESC or click outside
-      </pre>
+      <div class="description">
+        <p>Outside click, Escape, and external scroll dismiss this popover.</p>
+        <p>Partial <code>dismissOn</code> values merge with the defaults.</p>
+        <p>Try scrolling the page, pressing Escape, or clicking outside.</p>
+      </div>
       <button
-        (click)="isOpen.set(false); popover.restoreTriggerFocus()"
+        (click)="isOpen.set(false)"
         fktButton
         label="Close and restore focus">
       </button>
-    </div>
-  </ng-template>
+  </div>
 </fkt-popover>
 
-<app-code-output [value]="{dismissReason: lastDismissReason() ?? 'none'}"/>
+<app-code-output [value]="{
+  dismissReason: lastDismissReason() ?? 'none',
+  escapeDismissCount: escapeDismissCount()
+}"/>
