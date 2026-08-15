@@ -24,7 +24,8 @@ import {
   FktPopoverComponent,
   FktPopoverContentDirective,
   FktPopoverTriggerDirective,
-} from '../../popover';
+} from 'frakton-ng/popover';
+
 import { FktAutocompleteActionButtonComponent } from './components/action-button/fkt-autocomplete-action-button.component';
 import { FktAutocompleteChipsComponent } from './components/chips/fkt-autocomplete-chips.component';
 import { FktAutocompleteContextDirective } from './directives/fkt-autocomplete-context.directive';
